@@ -1,9 +1,9 @@
 # Cryptographic inventories of open-source code, signed and reproducible
 
-51 audit bundles over **43 codebases**: a machine-readable inventory of every cryptographic
+52 audit bundles over **44 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**2,798 inventory rows**, of which **1,346 fall to Shor's algorithm** and **27 are already
-post-quantum**, from **27,469 parsed files**.
+**2,808 inventory rows**, of which **1,353 fall to Shor's algorithm** and **27 are already
+post-quantum**, from **27,497 parsed files**.
 
 Every bundle is pinned to an upstream commit, carries an Ed25519 signature and a CycloneDX CBOM, and was produced
 before anyone paid for it. The point of publishing them is that you do not have to believe any of the numbers
@@ -15,7 +15,7 @@ No dependencies, no network, nothing to install:
 
 ```
 python3 verify.py --self-test     # test the verifier before trusting what it says
-python3 verify.py                 # verify all 51 bundles
+python3 verify.py                 # verify all 52 bundles
 python3 verify.py audits/secp256k1
 ```
 
@@ -50,10 +50,18 @@ python3 readiness.py --json
 
 Schnorr/BIP-340 primitives are present in 7 of the 10 self-custody codebases, and **exactly 1 of
 the ten holds any post-quantum primitive** — Trezor, with ML-DSA and SLH-DSA, the latter in its boot header beside Ed25519.
-The three zeros are the interesting part and are not a statement about what those wallets can do: `bdk` delegates
-signing to `rust-bitcoin` and `rust-secp256k1`, `seedsigner` to a hash-locked `embit` release, and
-`rust-bitcoin` holds taproot types while the Schnorr signatures live in `rust-secp256k1`. **Readiness for a
-consensus change cannot be read off a single repository** — which is the same defect that once made a Bitcoin
+The zeros are the interesting part and are not a statement about what those wallets can do. `seedsigner`
+delegates to a hash-locked `embit` release; `rust-bitcoin` holds taproot types while the Schnorr signatures live
+in `rust-secp256k1`; and **`bdk` is not a wallet at all** — at the audited commit `bitcoindevkit/bdk` is the
+chain and indexer layer, with no wallet, keys, signer or descriptor crate in the tree. The wallet is the separate
+repository `bitcoindevkit/bdk_wallet`, audited here as `bdk-wallet` on 2026-10-29: 10 inventory rows, 7 of them
+ECDSA, named in `src/wallet/signer.rs`, `src/keys/mod.rs` and the descriptor modules — and no Schnorr there
+either, so for BDK the signing primitive sits two repositories away from the wallet.
+
+**An earlier version of this page said `bdk` "delegates signing to rust-bitcoin and rust-secp256k1".** That was
+the right direction attached to the wrong repository, and it was corrected by auditing the wallet rather than by
+rewording the sentence. It is recorded here because a page arguing that thin results deserve suspicion has no
+business hiding one of its own. **Readiness for a consensus change cannot be read off a single repository** — which is the same defect that once made a Bitcoin
 signer measure 13 inventory rows instead of 98. Presence of a primitive is necessary and not sufficient: P2MR
 also needs address encoding, descriptors and PSBT support. The full argument, with the primary quotations, is in
 `reports/BIP-360-361-READINESS-2026-10-29.md`.
@@ -71,7 +79,7 @@ reports/           the write-ups: re-audits, triage, adoption survey, scope-and-
                    and the BIP-360/361 readiness analysis
 ```
 
-`audits/` holds 51 directories but **43 distinct codebases**: 7 of them
+`audits/` holds 52 directories but **44 distinct codebases**: 7 of them
 (`bitbox02-firmware-en`, `bitgo-mpc-en`, `coinbase-cb-mpc-en`, `fireblocks-mpc-lib-en`, `librustzcash-en`, `trezor-firmware-en`, `trustwallet-wallet-core-en`) are English renderings of an audit also present in Russian, and
 `trezor-vendored-crypto` is a sub-audit of a vendored directory inside `trezor-firmware`. Totals on this page
 exclude all 8 so nothing is counted twice.
@@ -141,6 +149,7 @@ none.
 | `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 14 | 2 | 0 |
 | `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 12 | 2 | 0 |
 | `rustcrypto-rsa` | RustCrypto project | `f96c4b5d629a` | 35 | 11 | 6 | 0 |
+| `bdk-wallet` | Bitcoin Dev Kit (bdk_wallet) | `09c677305139` | 28 | 10 | 7 | 0 |
 | `sigstore-js` | Sigstore project | `769a53d87132` | 180 | 10 | 3 | 0 |
 | `lightwalletd` | Electric Coin Company (Zcash) | `4abfe9cd7b9b` | 34 | 8 | 3 | 0 |
 | `seedsigner` | SeedSigner | `ada81cde050e` | 74 | 7 | 1 | 0 |
@@ -202,10 +211,10 @@ that is the most useful message I can get — the two corrections above both beg
 
 # По-русски
 
-51 подписанных комплектов аудита по **43 кодовым базам**: машиночитаемая инвентаризация
+52 подписанных комплектов аудита по **44 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**2,798 строк инвентаризации**, из них **1,346 ломает алгоритм Шора**, и **27 уже
-постквантовых**; разобрано **27,469 файлов**.
+**2,808 строк инвентаризации**, из них **1,353 ломает алгоритм Шора**, и **27 уже
+постквантовых**; разобрано **27,497 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -217,7 +226,7 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 Самопроверка показывает, что настоящая подпись проходит, реализации согласны, а перевёрнутый байт payload,
 подписи или файла обнаруживается.
 
-В `audits/` 51 каталогов, но **43 разных кодовых баз**: 7 из них — англоязычные
+В `audits/` 52 каталогов, но **44 разных кодовых баз**: 7 из них — англоязычные
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 

@@ -37,12 +37,23 @@ import sys
 from collections import Counter
 
 SELF_CUSTODY = ["secp256k1", "rust-secp256k1", "rust-bitcoin", "libwally-core", "trezor-firmware",
-                "bitbox02-firmware", "jade", "seedsigner", "krux", "bdk"]
+                "bitbox02-firmware", "jade", "seedsigner", "krux", "bdk", "bdk-wallet"]
 
-# Codebases whose signing primitives live in another repository, with where they actually live. Stated so a zero
-# in the Schnorr column is not misread as "this wallet cannot do taproot".
+# The ten codebases quoted in dated write-ups, kept as a set so that figure stays reproducible as the portfolio
+# grows. bdk-wallet was audited on 2026-10-29, after those figures were published.
+SLICE_AS_QUOTED = SELF_CUSTODY[:10]
+
+# Codebases whose signing primitives live in another repository, with where they actually live — checked against
+# the upstream trees, not assumed. Stated so a zero in the Schnorr column is not misread as "this wallet cannot
+# do taproot".
 DELEGATES = {
-    "bdk": "signing is in rust-bitcoin and rust-secp256k1",
+    "bdk": "NOT a wallet: at the audited commit bitcoindevkit/bdk is the chain and indexer layer "
+           "(bitcoind_rpc, chain, core, electrum, esplora, file_store, testenv) with no wallet, keys, signer or "
+           "descriptor crate at all. The wallet is the separate repository bitcoindevkit/bdk_wallet, audited "
+           "here as bdk-wallet",
+    "bdk-wallet": "the wallet itself: ECDSA is named in src/wallet/signer.rs, src/keys/mod.rs and the descriptor "
+                  "modules, but no Schnorr — BIP-340 arrives through rust-bitcoin and rust-secp256k1 as crates, "
+                  "so for BDK the signing primitive is two repositories from the wallet",
     "seedsigner": "signing path is embit, pinned as a hash-locked PyPI release",
     "rust-bitcoin": "holds taproot types; Schnorr signatures are in rust-secp256k1",
 }
@@ -91,6 +102,7 @@ def main(argv: list[str]) -> int:
 
     names = sorted(p.parent.name for p in A.glob("*/report.json"))
     targets = names if want_all else [n for n in SELF_CUSTODY if n in names]
+    quoted = [n for n in SLICE_AS_QUOTED if n in names]
     if not targets:
         sys.exit("none of the self-custody codebases are present; try --all")
     res = [analyse(A / n) for n in targets]
@@ -138,6 +150,17 @@ def main(argv: list[str]) -> int:
     if want_all:
         print("  (that count is over all bundles listed above, which include the -en translation duplicates")
         print("   and the sub-audit; the portfolio line below excludes them, which is why it is smaller)")
+    if not want_all and len(quoted) == 10:
+        qr = qs = 0
+        for n in quoted:
+            s = json.loads((A / n / "report.json").read_text())["summary"]
+            qr += s["inventory_total"]
+            qs += s["inventory_by_quantum_status"].get("vulnerable_shor", 0)
+        tr = sum(r["rows"] for r in res)
+        ts = sum(r["shor"] for r in res)
+        print(f"\nThe ten-codebase slice quoted in dated write-ups is {qr} inventory rows and {qs} "
+              f"Shor-breakable;")
+        print(f"with bdk_wallet, audited 2026-10-29 after those were published, it is {tr} and {ts}.")
     print(f"\nAcross all {len(uniq)} audited codebases: {len(pq_loose)} contain post-quantum cryptography "
           f"counting pqc or hybrid, {len(pq_strict)} counting pqc strictly.")
     print(f"  {', '.join(pq_strict)}")
