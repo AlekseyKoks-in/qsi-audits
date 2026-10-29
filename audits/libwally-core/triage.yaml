@@ -1,0 +1,19 @@
+# Recovered from libwally-core/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-29"
+decisions:
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "transaction and message signing", algorithm: "ECDSA"}
+    decision: confirmed
+    note: "Correct and central: 39 files, and 50 of the 81 inventory rows are ECDSA. The anchor is real call-site code rather than a header banner — src/sign.c:72 declares a secp256k1_ecdsa_signature and takes a context from secp_ctx(), which is the path every libwally consumer signs through. This is the library Blockstream's Jade vendors into its own tree and Green uses, so these rows are the spending path of real hardware rather than a dependency declaration. Forward-only exposure for an unused key; effectively retroactive for any public key already on chain, which is why address reuse is the behaviour to change before the scheme changes."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Schnorr (BIP-340)"}
+    decision: confirmed
+    note: "Correct, 7 rows across 7 files, including the real signing call at src/sign.c:387 (secp256k1_schnorrsig_sign32 guarded by a WALLY_EINVAL return) and the extraparams struct at include/secp256k1_schnorrsig.h:82. Taproot spends therefore sit in the same class as ECDSA ones — BIP-340 changed the signature's shape and its malleability, not the hardness assumption underneath it."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "ECDH"}
+    decision: confirmed
+    note: "Three rows, and the only ones here with a retroactive character, so they should not be read as three more signing rows. One of the three is weaker evidence than the others and that is worth saying: it is a printf in a build-information path announcing \"ECDH key exchange (optional module)\" under #ifdef ENABLE_MODULE_ECDH, which proves the module can be compiled in, not that this build uses it. Where a shared secret derived through ECDH protects stored or recorded data, harvest-now-decrypt-later applies in full, and unlike the signature rows it can be hardened today by wrapping the agreed secret under a hybrid KEM — no consensus change needed. Kept at medium rather than raised, because the evidence for *use* is a conditional compile rather than a call."
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "role not determined"}
+    decision: confirmed
+    note: "Dropped to informational, because these rows are the amalgamation unit rather than a use: src/wally_elements.c and its siblings do #include \"src/secp256k1/src/secp256k1.c\" and #include \"src/secp256k1/src/precompute_ecmult.c\" to build the vendored library into one translation unit. The primitive genuinely appears at those lines, so the rows are correct inventory and are kept visible — a reader who checks the files should find what the tool found — but an #include of a .c file is a build arrangement, and the real uses are decided above."
+  - match: {rule: "DEP-ADVISORY-DEV"}
+    decision: not_applicable
+    note: "Correct as a single non-runtime summary. The seven advisories are ajv, cross-spawn and fast-uri in src/wasm_package/package-lock.json, all marked dev there: they are the toolchain that builds the optional WebAssembly package, not anything a wallet linking libwally loads. Nothing here reaches a signing path."

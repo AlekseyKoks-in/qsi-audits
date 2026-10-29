@@ -1,95 +1,305 @@
-# Security & Post-Quantum Readiness Audit Report
+# Отчёт об аудите безопасности и постквантовой готовности
 
-**Project:** jade @ a59d14c2b397 · Blockstream (Jade) — public repository (passive review)
+**Проект:** jade @ a59d14c2b397 · Blockstream (Jade) — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
-| Organization | QSI |
-| Report date | 2026-10-28 21:17 UTC |
-| Report version | 1 |
-| Audit run | 633fed56-b826-4e1b-93cd-7d2ea40571e8 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
-| Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `7942ddb55815a12070642368e6e3ea6fc9c02c06f4bad7fe1df427ff83cae3e3` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
-> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+| Организация | QSI |
+| Дата отчёта | 2026-10-29 19:59 UTC |
+| Версия отчёта | 1 |
+| Запуск аудита | b3760777-ac16-4f31-8650-45c2187077a4 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.2.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `f4b140a68a457febeea7aae793751c45b1001460fce55b495d23af538ad63b92` |
+| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
-## 1. Executive summary
+## 1. Резюме для руководства
 
-- Critical: **0**
-- High: **0**
-- Medium: **7**
-- Low: **0**
-- Info: **1**
+- Критическая: **0**
+- Высокая: **5**
+- Средняя: **16**
+- Низкая: **0**
+- Информационная: **2**
 
-- Confirmed technical vulnerability: 0
-- Known vulnerable component: 0
-- Confirmed configuration error: 0
-- Potential cryptographic risk: 0
-- Long-term post-quantum risk: 7
-- Improvement recommendation: 1
-- Insufficient data: 0
+- Подтверждённая техническая уязвимость: 5
+- Известная уязвимая версия компонента: 0
+- Подтверждённая ошибка конфигурации: 0
+- Потенциальный криптографический риск: 0
+- Долгосрочный постквантовый риск: 16
+- Рекомендация по улучшению: 1
+- Недостаточность данных: 1
 
-Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-**Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-## 2. Scope and boundaries
+## 2. Область и границы проверки
 
-Mode: Document audit
+Режим: Документальный аудит
 
-Repository: <https://github.com/Blockstream/Jade> @ `a59d14c2b39715060e6721a309a7d49bedd3ee5b` — evidence links open the lines at this commit.
+Репозиторий: <https://github.com/Blockstream/Jade> @ `a59d14c2b39715060e6721a309a7d49bedd3ee5b` — ссылки в доказательствах открывают строки на этом коммите.
 
-568 files, 10186070 bytes in total, 3 redaction(s); the per-file SHA-256 list is in appendix C.
+737 файлов, всего 10856287 байт, редактирований: 8; список SHA-256 по файлам — в приложении C.
 
-## 3. Methodology
+## 3. Методология
 
-| Area | Status | Count | Examples |
+| Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | checked | 559 | components/assets/assets_snapshot.c: 47 lines scanned with 16 rule patterns and 122 registry patterns; components/assets/assets_snapshot.h: 19 lines scanned with 16 rule patterns and 122 registry patterns; components/assets/gen_assets.py: 86 lines scanned with 16 rule patterns and 122 registry patterns |
-| certificates_and_keys | checked | 2 | components/libwally-core/upstream/SECURITY.md: certificates/keys parsed; components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json: certificates/keys parsed |
-| dependencies | checked | 4 | components/libwally-core/upstream/contrib/requirements.txt: 7 dependencies parsed (0 pinned); components/libwally-core/upstream/pyproject.toml: 0 dependencies parsed (0 pinned); components/libwally-core/upstream/src/wasm_package/package-lock.json: 156 dependencies parsed (156 pinned) |
-| keys | error (not checked) | 99 | components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 134: public key could not be parsed (ValueError); components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3600: public key could not be parsed (ValueError); components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3636: public key could not be parsed (ValueError) |
-| secrets | checked | 3 | components/libwally-core/upstream/src/swig_python/contrib/aes.py: value(s) at line(s) 12 (test_aes_cbc_ecdh), 15 (test_aes_cbc_ecdh) are declared inside a fixture and treated as test data, although the file itself is not test code; components/libwally-core/upstream/src/swig_python/contrib/aes.py: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); libjade/selfcheck/descriptor.c: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| osv_advisories | checked | 1 | 156 pinned packages queried at OSV.dev; 5 affected (5 of them only in development or build dependencies) |
+| certificates_and_keys | проверено | 14 | SECURITY.md: certificates/keys parsed; components/libwally-core/upstream/SECURITY.md: certificates/keys parsed; release/scripts/dev_fw_pub_key_A.pub: certificates/keys parsed |
+| source_code | проверено | 708 | bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash.h: 73 lines scanned with 16 rule patterns and 123 registry patterns; bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_config.h: 93 lines scanned with 16 rule patterns and 123 registry patterns; bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_override.h: 130 lines scanned with 16 rule patterns and 123 registry patterns |
+| dependencies | проверено | 6 | components/libwally-core/upstream/contrib/requirements.txt: 7 dependencies parsed (0 pinned); components/libwally-core/upstream/pyproject.toml: 0 dependencies parsed (0 pinned); components/libwally-core/upstream/src/wasm_package/package-lock.json: 156 dependencies parsed (156 pinned) |
+| secrets | проверено | 3 | components/libwally-core/upstream/src/swig_python/contrib/aes.py: value(s) at line(s) 12 (test_aes_cbc_ecdh), 15 (test_aes_cbc_ecdh) are declared inside a fixture and treated as test data, although the file itself is not test code; components/libwally-core/upstream/src/swig_python/contrib/aes.py: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); libjade/selfcheck/descriptor.c: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| tls_configuration | проверено | 2 | pinserver/nginx.conf: nginx TLS directives parsed; pinserver/nginx.runit: nginx TLS directives parsed |
+| osv_advisories | проверено | 1 | 156 pinned packages queried at OSV.dev; 5 affected (5 of them only in development or build dependencies) |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## 4. Assets examined and not examined
+## 4. Проверенные и непроверенные активы
 
-- keys — error (not checked): 99 (examples: components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 134: public key could not be parsed (ValueError); components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3600: public key could not be parsed (ValueError); components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3636: public key could not be parsed (ValueError))
+- Нет
 
-## 5. Architecture overview
+## 5. Краткое описание архитектуры
 
-Static review of the source tree jade at a59d14c2b39715060e6721a309a7d49bedd3ee5b. 568 files analysed; of 965 files, 159 are test, fuzzing, benchmark or example code and were left out, 238 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree jade at a59d14c2b39715060e6721a309a7d49bedd3ee5b. 737 files analysed; of 1641 files, 503 are test, fuzzing, benchmark or example code and were left out, 400 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. 291 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 299 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.
 
-## 6. Overall security posture
+## 6. Общая оценка состояния безопасности
 
-- Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 71.0%
+- Ориентировочный индекс состояния: **40** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 67.3%
 
-## 7. Detailed findings
+## 7. Подробное описание находок
 
-### QSI-2026-06120 — Quantum-vulnerable RSA key (4096-bit) in components/libwally-core/upstream/SECURITY.md
+### QSI-2026-06703 — Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_A.pem
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
-- Affected asset: `file:components/libwally-core/upstream/SECURITY.md#line 52`
-- Data source: components/libwally-core/upstream/SECURITY.md
-- Detection method: Public key parsing.
-- Analyzer: certificates 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 50.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Высокая** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/dev_fw_signing_key_A.pem`
+- Источник данных: release/scripts/dev_fw_signing_key_A.pem
+- Метод обнаружения: Обнаружение PEM-заголовков.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 76.8 / 100
+- CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
 
-A RSA 4096-bit public key was found (line 52).
+Блок «RSA PRIVATE KEY» найден в строке 1 файла release/scripts/dev_fw_signing_key_A.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.
 
-**Potential impact.** Long-term risk once a CRQC exists; for key exchange, recorded traffic could be decrypted retroactively.
+**Возможные последствия.** Любой, кто имеет доступ к файлу (репозиторий, резервные копии, журналы CI), может выдать себя за владельца ключа или расшифровать данные.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 52 in the supplied file components/libwally-core/upstream/SECURITY.md and inspect the quoted lines (see evidence).
+grep -n 'PRIVATE KEY-----' release/scripts/dev_fw_signing_key_A.pem
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_file_excerpt · [release/scripts/dev_fw_signing_key_A.pem](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/release/scripts/dev_fw_signing_key_A.pem#L1) · line 1 · SHA-256 1bedb494a9196172315bee920615c60f99f1f558514afe760ed6514062607126_
+
+```
+Line 1: -----BEGIN RSA PRIVATE KEY----- … [REDACTED BY QSI] … -----END …
+```
+
+**Ограничения проверки.** QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось.
+
+**Рекомендация.** Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM.
+
+**Повторная проверка.** Найдите заголовки закрытых ключей в репозитории и его истории; убедитесь, что старый ключ отозван.
+
+### QSI-2026-06704 — Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_B.pem
+
+- Серьёзность: **Высокая** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/dev_fw_signing_key_B.pem`
+- Источник данных: release/scripts/dev_fw_signing_key_B.pem
+- Метод обнаружения: Обнаружение PEM-заголовков.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 76.8 / 100
+- CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
+
+Блок «RSA PRIVATE KEY» найден в строке 1 файла release/scripts/dev_fw_signing_key_B.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.
+
+**Возможные последствия.** Любой, кто имеет доступ к файлу (репозиторий, резервные копии, журналы CI), может выдать себя за владельца ключа или расшифровать данные.
+
+**Шаги воспроизведения.**
+
+```
+grep -n 'PRIVATE KEY-----' release/scripts/dev_fw_signing_key_B.pem
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [release/scripts/dev_fw_signing_key_B.pem](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/release/scripts/dev_fw_signing_key_B.pem#L1) · line 1 · SHA-256 1bedb494a9196172315bee920615c60f99f1f558514afe760ed6514062607126_
+
+```
+Line 1: -----BEGIN RSA PRIVATE KEY----- … [REDACTED BY QSI] … -----END …
+```
+
+**Ограничения проверки.** QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось.
+
+**Рекомендация.** Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM.
+
+**Повторная проверка.** Найдите заголовки закрытых ключей в репозитории и его истории; убедитесь, что старый ключ отозван.
+
+### QSI-2026-06705 — Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_C.pem
+
+- Серьёзность: **Высокая** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/dev_fw_signing_key_C.pem`
+- Источник данных: release/scripts/dev_fw_signing_key_C.pem
+- Метод обнаружения: Обнаружение PEM-заголовков.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 76.8 / 100
+- CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
+
+Блок «RSA PRIVATE KEY» найден в строке 1 файла release/scripts/dev_fw_signing_key_C.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.
+
+**Возможные последствия.** Любой, кто имеет доступ к файлу (репозиторий, резервные копии, журналы CI), может выдать себя за владельца ключа или расшифровать данные.
+
+**Шаги воспроизведения.**
+
+```
+grep -n 'PRIVATE KEY-----' release/scripts/dev_fw_signing_key_C.pem
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [release/scripts/dev_fw_signing_key_C.pem](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/release/scripts/dev_fw_signing_key_C.pem#L1) · line 1 · SHA-256 1bedb494a9196172315bee920615c60f99f1f558514afe760ed6514062607126_
+
+```
+Line 1: -----BEGIN RSA PRIVATE KEY----- … [REDACTED BY QSI] … -----END …
+```
+
+**Ограничения проверки.** QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось.
+
+**Рекомендация.** Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM.
+
+**Повторная проверка.** Найдите заголовки закрытых ключей в репозитории и его истории; убедитесь, что старый ключ отозван.
+
+### QSI-2026-06710 — Закрытый ключ присутствует в tools/fakeprod_attest.pem
+
+- Серьёзность: **Высокая** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Высокая
+- Затронутый актив: `file:tools/fakeprod_attest.pem`
+- Источник данных: tools/fakeprod_attest.pem
+- Метод обнаружения: Обнаружение PEM-заголовков.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 76.8 / 100
+- CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
+
+Блок «RSA PRIVATE KEY» найден в строке 1 файла tools/fakeprod_attest.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.
+
+**Возможные последствия.** Любой, кто имеет доступ к файлу (репозиторий, резервные копии, журналы CI), может выдать себя за владельца ключа или расшифровать данные.
+
+**Шаги воспроизведения.**
+
+```
+grep -n 'PRIVATE KEY-----' tools/fakeprod_attest.pem
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [tools/fakeprod_attest.pem](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/tools/fakeprod_attest.pem#L1) · line 1 · SHA-256 1bedb494a9196172315bee920615c60f99f1f558514afe760ed6514062607126_
+
+```
+Line 1: -----BEGIN RSA PRIVATE KEY----- … [REDACTED BY QSI] … -----END …
+```
+
+**Ограничения проверки.** QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось.
+
+**Рекомендация.** Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM.
+
+**Повторная проверка.** Найдите заголовки закрытых ключей в репозитории и его истории; убедитесь, что старый ключ отозван.
+
+### QSI-2026-06711 — Закрытый ключ присутствует в tools/fakeprod_v2.pem
+
+- Серьёзность: **Высокая** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Высокая
+- Затронутый актив: `file:tools/fakeprod_v2.pem`
+- Источник данных: tools/fakeprod_v2.pem
+- Метод обнаружения: Обнаружение PEM-заголовков.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 76.8 / 100
+- CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N`)
+
+Блок «RSA PRIVATE KEY» найден в строке 1 файла tools/fakeprod_v2.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.
+
+**Возможные последствия.** Любой, кто имеет доступ к файлу (репозиторий, резервные копии, журналы CI), может выдать себя за владельца ключа или расшифровать данные.
+
+**Шаги воспроизведения.**
+
+```
+grep -n 'PRIVATE KEY-----' tools/fakeprod_v2.pem
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [tools/fakeprod_v2.pem](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/tools/fakeprod_v2.pem#L1) · line 1 · SHA-256 1bedb494a9196172315bee920615c60f99f1f558514afe760ed6514062607126_
+
+```
+Line 1: -----BEGIN RSA PRIVATE KEY----- … [REDACTED BY QSI] … -----END …
+```
+
+**Ограничения проверки.** QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось.
+
+**Рекомендация.** Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM.
+
+**Повторная проверка.** Найдите заголовки закрытых ключей в репозитории и его истории; убедитесь, что старый ключ отозван.
+
+### QSI-2026-06691 — Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:SECURITY.md#line 52`
+- Источник данных: SECURITY.md
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 52).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 52 в предоставленном файле SECURITY.md и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · SECURITY.md · line 52 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · SECURITY.md · line 52 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06693 — Квантово-уязвимый ключ RSA (4096-bit) в components/libwally-core/upstream/SECURITY.md
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:components/libwally-core/upstream/SECURITY.md#line 52`
+- Источник данных: components/libwally-core/upstream/SECURITY.md
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 52).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 52 в предоставленном файле components/libwally-core/upstream/SECURITY.md и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
 
 _key · components/libwally-core/upstream/SECURITY.md · line 52 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
 
@@ -103,33 +313,315 @@ _key · components/libwally-core/upstream/SECURITY.md · line 52 · SHA-256 484f
 OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
 
-**Recommendation.** Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
 
-**Retest procedure.** Re-audit after migration.
+**Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06121 — Quantum-vulnerable ECDSA: transaction and message signing (40 file(s))
+### QSI-2026-06700 — Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/dev_fw_pub_key_A.pub
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:transaction_signing`
-- Data source: components/libwally-core/upstream/setup.py
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 35.6 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/dev_fw_pub_key_A.pub#line 1`
+- Источник данных: release/scripts/dev_fw_pub_key_A.pub
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
 
-146 reference(s) to ECDSA across 40 file(s), e.g. components/libwally-core/upstream/setup.py:58. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+Найден открытый ключ RSA 3072-bit (строка 1).
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open components/libwally-core/upstream/setup.py:58 and inspect the quoted lines; the evidence lists further files.
+Откройте строка 1 в предоставленном файле release/scripts/dev_fw_pub_key_A.pub и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_key · release/scripts/dev_fw_pub_key_A.pub · line 1 · SHA-256 52a0aded6932261fc9c973a2a612f99bc4eaa602b4ac6c991be4b192ce07d277_
+
+```
+RSA public key, 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06701 — Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/dev_fw_pub_key_B.pub
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/dev_fw_pub_key_B.pub#line 1`
+- Источник данных: release/scripts/dev_fw_pub_key_B.pub
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле release/scripts/dev_fw_pub_key_B.pub и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · release/scripts/dev_fw_pub_key_B.pub · line 1 · SHA-256 52a0aded6932261fc9c973a2a612f99bc4eaa602b4ac6c991be4b192ce07d277_
+
+```
+RSA public key, 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06702 — Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/dev_fw_pub_key_C.pub
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/dev_fw_pub_key_C.pub#line 1`
+- Источник данных: release/scripts/dev_fw_pub_key_C.pub
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле release/scripts/dev_fw_pub_key_C.pub и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · release/scripts/dev_fw_pub_key_C.pub · line 1 · SHA-256 52a0aded6932261fc9c973a2a612f99bc4eaa602b4ac6c991be4b192ce07d277_
+
+```
+RSA public key, 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06706 — Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pk1.pub
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/v2pk1.pub#line 1`
+- Источник данных: release/scripts/v2pk1.pub
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле release/scripts/v2pk1.pub и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · release/scripts/v2pk1.pub · line 1 · SHA-256 52a0aded6932261fc9c973a2a612f99bc4eaa602b4ac6c991be4b192ce07d277_
+
+```
+RSA public key, 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06707 — Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pk2.pub
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/v2pk2.pub#line 1`
+- Источник данных: release/scripts/v2pk2.pub
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле release/scripts/v2pk2.pub и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · release/scripts/v2pk2.pub · line 1 · SHA-256 52a0aded6932261fc9c973a2a612f99bc4eaa602b4ac6c991be4b192ce07d277_
+
+```
+RSA public key, 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06708 — Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pk3.pub
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/v2pk3.pub#line 1`
+- Источник данных: release/scripts/v2pk3.pub
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле release/scripts/v2pk3.pub и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · release/scripts/v2pk3.pub · line 1 · SHA-256 52a0aded6932261fc9c973a2a612f99bc4eaa602b4ac6c991be4b192ce07d277_
+
+```
+RSA public key, 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06709 — Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pkdev.pub
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:release/scripts/v2pkdev.pub#line 1`
+- Источник данных: release/scripts/v2pkdev.pub
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле release/scripts/v2pkdev.pub и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · release/scripts/v2pkdev.pub · line 1 · SHA-256 52a0aded6932261fc9c973a2a612f99bc4eaa602b4ac6c991be4b192ce07d277_
+
+```
+RSA public key, 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-06692 — Квантово-уязвимый ECDSA: проверка прошивки и загрузки (корень доверия) (2 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:root_of_trust`
+- Источник данных: bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 36.9 / 100
+- CVSS v3.1: неприменимо
+
+2 упоминаний ECDSA в 2 файл(ах), например bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c:118. Роль по путям, именам функций и соседнему коду: проверка прошивки и загрузки (корень доверия). Эти открытые ключи зашиты в загрузчик или устройство: с криптографически значимым квантовым компьютером (CRQC) злоумышленник подделает подпись прошивки, а замена ключей требует обновления загрузчика на устройствах в поле.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c:118 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c#L118) · line 118 · SHA-256 a4da63c83511cb381a5e58d21cdac2b5437c54d9eba5d14925b80671a41cc707_
+
+```
+  117 | 
+  118 |     ret = mbedtls_ecdsa_verify(&ecdsa_context.MBEDTLS_PRIVATE(grp), image_digest, ESP_SECURE_BOOT_DIGEST_LEN, &ecdsa_context.MBEDTLS_PRIVATE(Q), &r, &s);
+  119 |     ESP_LOGD(TAG, "Verification result %d", ret);
+```
+
+_file_excerpt · [bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_ecdsa_signature.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_ecdsa_signature.c#L112) · line 112 · SHA-256 627da10f5178db6bf0c872718e69dabf983888aafbc0d485ff32e09bb0d59e4b_
+
+```
+  111 | 
+  112 |     ret = mbedtls_ecdsa_verify(&ecdsa_context.MBEDTLS_PRIVATE(grp), image_digest, ESP_SECURE_BOOT_DIGEST_LEN, &ecdsa_context.MBEDTLS_PRIVATE(Q), &r, &s);
+  113 | 
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Запланируйте гибридную подпись прошивки (классическая плюс ML-DSA или SLH-DSA, обе обязательны) и способ доставить новые ключи обновлением загрузчика.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-06694 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (36 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:transaction_signing`
+- Источник данных: components/libwally-core/upstream/setup.py
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
+
+131 упоминаний ECDSA в 36 файл(ах), например components/libwally-core/upstream/setup.py:58. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте components/libwally-core/upstream/setup.py:58 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [components/libwally-core/upstream/setup.py](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/setup.py#L58) · line 58 · SHA-256 faf6a0cba5f30b003359e096b202e6312b83d259b06c8c18493fc02a13b16467_
 
@@ -211,33 +703,33 @@ _file_excerpt · [components/libwally-core/upstream/src/secp256k1/contrib/lax_de
    58 | #ifndef SECP256K1_H
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06123 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (6 file(s))
+### QSI-2026-06696 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (5 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:Schnorr (BIP-340):transaction_signing`
-- Data source: components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 35.6 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
+- Источник данных: components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
 
-37 reference(s) to Schnorr (BIP-340) across 6 file(s), e.g. components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h:82. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+34 упоминаний Schnorr (BIP-340) в 5 файл(ах), например components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h:82. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h:82 and inspect the quoted lines; the evidence lists further files.
+Откройте components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h:82 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h#L82) · line 82 · SHA-256 6aae3b20f8f8b503597acb97fe491246b6777b5a9660b8a41542605d18aab6f4_
 
@@ -295,57 +787,57 @@ _file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/modules/mu
   622 | 
 ```
 
-_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/bench_impl.h](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/bench_impl.h#L33) · line 33 · SHA-256 fc2c5559f32fc9bd9a85efef59a46eaf722b1b8e2745b837696cdf6a6c00259e_
+_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/main_impl.h](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/main_impl.h#L98) · line 98 · SHA-256 a1153ae2ef17b61baf8d2585aa893927fd88f650b34ce0d8166071a4d0fd904f_
 
 ```
-   32 |         msg[1] = i >> 8;
-   33 |         CHECK(secp256k1_schnorrsig_sign_custom(data->ctx, sig, msg, MSGLEN, data->keypairs[i], NULL));
-   34 |     }
+   97 |  * SHA256 to SHA256("BIP0340/challenge")||SHA256("BIP0340/challenge"). */
+   98 | static void secp256k1_schnorrsig_sha256_tagged(secp256k1_sha256 *sha) {
+   99 |     static const uint32_t midstate[8] = {
 ```
 
-_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/bench_impl.h](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/bench_impl.h#L44) · line 44 · SHA-256 4f2e9b7b2529431d8190d606bbe0ce49659d6e5a1e0410625d931eacdcd05a06_
+_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/main_impl.h](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/main_impl.h#L106) · line 106 · SHA-256 f299d1f78d3628291910977b1ab869c1f4322bf525ee5240bf39f43fcf9a3411_
 
 ```
-   43 |         CHECK(secp256k1_xonly_pubkey_parse(data->ctx, &pk, data->pk[i]) == 1);
-   44 |         CHECK(secp256k1_schnorrsig_verify(data->ctx, data->sigs[i], data->msgs[i], MSGLEN, &pk));
-   45 |     }
+  105 | 
+  106 | static void secp256k1_schnorrsig_challenge(const secp256k1_hash_ctx *hash_ctx, secp256k1_scalar* e, const unsigned char *r32, const unsigned char *msg, size_t msglen, const unsigned char *pubkey32)
+  107 | {
 ```
 
-_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/bench_impl.h](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/bench_impl.h#L80) · line 80 · SHA-256 0ca8c9b51520014576b4c622e33014e8b93cc7c4bd0bc826e9cd4563a3642698_
+_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/main_impl.h](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/main_impl.h#L112) · line 112 · SHA-256 a0a16dc204430e96c9903e6ee6ef21caae66df417cf75c5030f669edff995e9b_
 
 ```
-   79 |         CHECK(secp256k1_keypair_create(data.ctx, keypair, sk));
-   80 |         CHECK(secp256k1_schnorrsig_sign_custom(data.ctx, sig, msg, MSGLEN, keypair, NULL));
-   81 |         CHECK(secp256k1_keypair_xonly_pub(data.ctx, &pk, NULL, keypair));
+  111 |     /* tagged hash(r.x, pk.x, msg) */
+  112 |     secp256k1_schnorrsig_sha256_tagged(&sha);
+  113 |     secp256k1_sha256_write(hash_ctx, &sha, r32, 32);
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06122 — Quantum-vulnerable ECDSA: role not determined (2 file(s))
+### QSI-2026-06695 — Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:general`
-- Data source: components/libwally-core/upstream/src/amalgamation/combined.c
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:general`
+- Источник данных: components/libwally-core/upstream/src/amalgamation/combined.c
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
 
-4 reference(s) to ECDSA across 2 file(s), e.g. components/libwally-core/upstream/src/amalgamation/combined.c:34. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+4 упоминаний ECDSA в 2 файл(ах), например components/libwally-core/upstream/src/amalgamation/combined.c:34. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open components/libwally-core/upstream/src/amalgamation/combined.c:34 and inspect the quoted lines; the evidence lists further files.
+Откройте components/libwally-core/upstream/src/amalgamation/combined.c:34 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [components/libwally-core/upstream/src/amalgamation/combined.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/amalgamation/combined.c#L34) · line 34 · SHA-256 8cce795a23b61e665185923e4058d56ed7e106c55784ee042d2a237e9547756d_
 
@@ -379,85 +871,33 @@ _file_excerpt · [components/libwally-core/upstream/src/internal.h](https://gith
    34 | #include <secp256k1_recovery.h>
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06124 — Quantum-vulnerable ECDH: role not determined (1 file(s))
+### QSI-2026-06697 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDH:general`
-- Data source: components/libwally-core/upstream/src/secp256k1/src/bench.c
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Schnorr (BIP-340):general`
+- Источник данных: components/libwally-core/upstream/src/sign.c
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
 
-4 reference(s) to ECDH across 1 file(s), e.g. components/libwally-core/upstream/src/secp256k1/src/bench.c:24. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+2 упоминаний Schnorr (BIP-340) в 1 файл(ах), например components/libwally-core/upstream/src/sign.c:387. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
-
-```
-Open components/libwally-core/upstream/src/secp256k1/src/bench.c:24 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/bench.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/bench.c#L24) · line 24 · SHA-256 6ec91ca104f465f4b861193bee0ed1f6d91c4074fb5085511ca06c7dd6747616_
+**Шаги воспроизведения.**
 
 ```
-   23 | #ifdef ENABLE_MODULE_ECDH
-   24 |     printf("    - ECDH key exchange (optional module)\n");
-   25 | #endif
+Откройте components/libwally-core/upstream/src/sign.c:387 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/bench.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/bench.c#L54) · line 54 · SHA-256 b21ecd8d53157d4f920477f57713fa34b7fe6379df61daa64f27e4a77f9133e1_
-
-```
-   53 | #ifdef ENABLE_MODULE_ECDH
-   54 |     printf("    ecdh              : ECDH key exchange algorithm\n");
-   55 | #endif
-```
-
-_file_excerpt · [components/libwally-core/upstream/src/secp256k1/src/bench.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/secp256k1/src/bench.c#L68) · line 68 · SHA-256 ae7392892e7a0840c3596f3442ca87927d89cc694ec91267d2a73193091dac83_
-
-```
-   67 |     printf("    ellswift_keygen   : ElligatorSwift key generation\n");
-   68 |     printf("    ellswift_ecdh     : ECDH on ElligatorSwift keys\n");
-   69 | #endif
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-06125 — Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:Schnorr (BIP-340):general`
-- Data source: components/libwally-core/upstream/src/sign.c
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
-
-2 reference(s) to Schnorr (BIP-340) across 1 file(s), e.g. components/libwally-core/upstream/src/sign.c:387. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open components/libwally-core/upstream/src/sign.c:387 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [components/libwally-core/upstream/src/sign.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/components/libwally-core/upstream/src/sign.c#L387) · line 387 · SHA-256 b957a7949930facdb75237e2e6c12333acd87496052f7b47d028be3337f21aa3_
 
@@ -475,33 +915,85 @@ _file_excerpt · [components/libwally-core/upstream/src/sign.c](https://github.c
   457 |         wally_clear(&xonly_pub, sizeof(xonly_pub));
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for crypto-agility.
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06126 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-06698 — Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:authentication`
-- Data source: main/identity.c
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:RSA:authentication`
+- Источник данных: jade_attest.py
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
 
-3 reference(s) to ECDSA across 1 file(s), e.g. main/identity.c:251. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier.
+3 упоминаний RSA в 1 файл(ах), например jade_attest.py:41. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open main/identity.c:251 and inspect the quoted lines; the evidence lists further files.
+Откройте jade_attest.py:41 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_file_excerpt · [jade_attest.py](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/jade_attest.py#L41) · line 41 · SHA-256 864f2c726fc870e492b863bfd3c6e711eeb751ab71c28745a70fb92d9fb1e301_
+
+```
+   40 |     with open(filename, 'rb') as f:
+   41 |         return RSA.import_key(f.read())
+   42 | 
+```
+
+_file_excerpt · [jade_attest.py](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/jade_attest.py#L51) · line 51 · SHA-256 f27a8f01ad890716e8bcded04b7036144b00124e0daf2429a8b240819c95efbf_
+
+```
+   50 |     logger.info('Verifying challenge signature')
+   51 |     public_key = RSA.import_key(attest_rslt['pubkey_pem'])
+   52 |     challenge_hash = SHA256.new(challenge)
+```
+
+_file_excerpt · [jade_attest.py](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/jade_attest.py#L75) · line 75 · SHA-256 cd6b8ca21cb2e1488f3f0f7561b165930f0694b0fac2819274d298ef88b1da62_
+
+```
+   74 |         logger.info(f'Generating new RSA {RSA_KEY_LEN} private key')
+   75 |         private_key = [REDACTED] e=RSA_EXPONENT)
+   76 |     else:
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-06699 — Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:authentication`
+- Источник данных: main/identity.c
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+3 упоминаний ECDSA в 1 файл(ах), например main/identity.c:251. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте main/identity.c:251 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [main/identity.c](https://github.com/Blockstream/Jade/blob/a59d14c2b39715060e6721a309a7d49bedd3ee5b/main/identity.c#L251) · line 251 · SHA-256 e4f065671df536c8ac1aa4a99bc178b3d17ff42fa11fb09a36df34b5991b1488_
 
@@ -527,33 +1019,33 @@ _file_excerpt · [main/identity.c](https://github.com/Blockstream/Jade/blob/a59d
   276 |         &keypair->MBEDTLS_PRIVATE(grp), challenge, challenge_len, &keypair->MBEDTLS_PRIVATE(Q), pr, ps));
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them.
+**Рекомендация.** Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06127 — 15 advisories in 5 development or build-only npm package(s)
+### QSI-2026-06713 — 15 бюллетеней в 5 пакет(ах) npm, нужных только для разработки или сборки
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies:npm:non-runtime`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 21:17 UTC
-- Priority score: 15.5 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies:npm:non-runtime`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 15.5 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists 15 advisories (8 rated high or critical) for 5 npm package(s) that only development or build tooling pulls in (components/libwally-core/upstream/src/wasm_package/package-lock.json): e.g. ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; baseline-browser-mapping@2.9.19 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.1 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.5 [dev]: GHSA-333x-w4r6-6crp, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. The manifests mark them as such (devDependencies, "dev": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships.
+OSV.dev сообщает 15 бюллетеней (8 с оценкой high или critical) для 5 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (components/libwally-core/upstream/src/wasm_package/package-lock.json): например, ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; baseline-browser-mapping@2.9.19 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.1 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.5 [dev]: GHSA-333x-w4r6-6crp, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
-**Potential impact.** They do not reach users of the product. They can affect developer machines and CI (supply chain): a compromised or vulnerable tool can tamper with builds.
+**Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Look the packages listed in the evidence up at https://osv.dev and check their scope in components/libwally-core/upstream/src/wasm_package/package-lock.json.
+Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в components/libwally-core/upstream/src/wasm_package/package-lock.json.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev (npm)](https://osv.dev/) · components/libwally-core/upstream/src/wasm_package/package-lock.json · SHA-256 33de8bddd802999eabbfb4e4b5e3ecf4a6765d989bd5c6b7e1fbc9284468c9fa_
 
@@ -565,101 +1057,164 @@ cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275
 fast-uri@3.1.5 [dev]: GHSA-333x-w4r6-6crp, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
 
-**Recommendation.** Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts.
+**Рекомендация.** Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.
 
-**Retest procedure.** Re-run the dependency scan after updating.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-06712 — Не обнаружено криптобиблиотек с поддержкой PQC
+
+- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies`
+- Источник данных: dependency manifests
+- Метод обнаружения: Сопоставление названий зависимостей.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 19:59 UTC
+- Балл приоритета: 13.3 / 100
+- CVSS v3.1: неприменимо
+
+В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (pycryptodome), но ни одной из списка поддерживающих PQC.
+
+**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
+
+**Шаги воспроизведения.**
+
+```
+Изучите перечисленные в доказательстве манифесты.
+```
+
+**Подтверждающие доказательства.**
+
+_dependency · components/libwally-core/upstream/contrib/requirements.txt, components/libwally-core/upstream/pyproject.toml, components/libwally-core/upstream/src/wasm_package/package-lock.json, components/libwally-core/upstream/src/wasm_package/package.json, pinserver/requirements.txt, requirements.txt · SHA-256 e280eb5fc6b8277dc9d1f6b790727ea384c6912da68dcabc0f3ec1f088cd3b41_
+
+```
+Crypto libraries: pycryptodome
+```
+
+**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
+
+**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
+
+**Повторная проверка.** Повторите сканирование после обновлений.
 
 
-## 8. Post-quantum assessment
+## 8. Постквантовая оценка
 
-| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+| | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Data/key lifetime x | 10 | 10 |
-| Migration time y | 5 | 5 |
-| Assumed years to CRQC z | 8 (early) | 8 |
-| x + y − z | 7 → migration would finish too late under this scenario | 7 → migration would finish too late under this scenario |
-#### Where z comes from
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
+| Принятое число лет до CRQC z | 8 (early) | 8 |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
+#### Откуда взято z
 
-Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
 
-| Within | Likelihood | The report's wording |
+| В пределах | Вероятность | Формулировка отчёта |
 |---|---|---|
-| 5 years | ~15% | averaged estimate |
-| 10 years | 28-49% | quite possible |
-| 15 years | 51-70% | likely |
+| 5 лет | ~15% | усреднённая оценка |
+| 10 лет | 28-49% | вполне возможно |
+| 15 лет | 51-70% | вероятно |
 
-**Why this scenario (early, z = 8):** Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.
-_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change._
+**Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
-### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
+### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
+- Только классика — проверка прошивки и загрузки (корень доверия): ECDSA (2 файл(ов))
 
-**Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
+_Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
 
-### What the quantum-vulnerable algorithms do
+### Что делают квантово-уязвимые алгоритмы
 
-| Role | Algorithms (files) | ID | First step |
+| Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (40), Schnorr (BIP-340) (6) | QSI-2026-06121, QSI-2026-06123 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1) | QSI-2026-06126 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | ECDSA (2), ECDH (1), Schnorr (BIP-340) (1) | QSI-2026-06122, QSI-2026-06124, QSI-2026-06125 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **проверка прошивки и загрузки (корень доверия)** | ECDSA (2) | QSI-2026-06692 | Запланируйте гибридную подпись прошивки (классическая плюс ML-DSA или SLH-DSA, обе обязательны) и способ доставить новые ключи обновлением загрузчика |
+| **подпись транзакций и сообщений** | ECDSA (36), Schnorr (BIP-340) (5) | QSI-2026-06694, QSI-2026-06696 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | ECDSA (1), RSA (1) | QSI-2026-06698, QSI-2026-06699 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
+| **роль не определена** | ECDSA (2), Schnorr (BIP-340) (1) | QSI-2026-06695, QSI-2026-06697 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
-_Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
-No readiness questionnaire was completed for this project.
+_Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
+Анкета готовности для проекта не заполнялась.
 
-### Quantum algorithms relevant to this inventory
+### Квантовые алгоритмы, значимые для этой инвентаризации
 
-| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+| Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Shor's algorithm — factoring | breaks | Q1 | RSA (4) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (3), ECDSA (52), Schnorr (BIP-340) (7) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | HMAC (9), PBKDF2 (1), RIPEMD-160 (2), SHA-2 (8), SHAKE (2), scrypt (5) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | RIPEMD-160 (2), SHA-2 (8), SHAKE (2) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Алгоритм Шора — факторизация | взламывает | Q1 | RSA (16) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (2), ECDSA (50), Schnorr (BIP-340) (6) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | HMAC (11), PBKDF2 (1), RIPEMD-160 (2), SHA-2 (14), SHAKE (2), scrypt (5) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | RIPEMD-160 (2), SHA-2 (14), SHAKE (2) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
-_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+_Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
 
-## 9. Limitations and assumptions
+## 9. Ограничения и допущения
 
-- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
-- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
-- keys: 99 (examples: components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 134: public key could not be parsed (ValueError); components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3600: public key could not be parsed (ValueError); components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3636: public key could not be parsed (ValueError))
+- Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
+- z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
 
-## 10. Remediation plan / Priorities for 30, 60 and 90 days
+## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
-### 30 days
+### 30 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-### 60 days
+| P1 | QSI-2026-06703 | Немедленно отзовите/замените ключ из release/scripts/dev_fw_signing_key_A.pem и ограничьте доступ к файлу. | краткосрочное снижение риска | Старый ключ отозван, новый развёрнут. |
+| P1 | QSI-2026-06704 | Немедленно отзовите/замените ключ из release/scripts/dev_fw_signing_key_B.pem и ограничьте доступ к файлу. | краткосрочное снижение риска | Старый ключ отозван, новый развёрнут. |
+| P1 | QSI-2026-06705 | Немедленно отзовите/замените ключ из release/scripts/dev_fw_signing_key_C.pem и ограничьте доступ к файлу. | краткосрочное снижение риска | Старый ключ отозван, новый развёрнут. |
+| P1 | QSI-2026-06710 | Немедленно отзовите/замените ключ из tools/fakeprod_attest.pem и ограничьте доступ к файлу. | краткосрочное снижение риска | Старый ключ отозван, новый развёрнут. |
+| P1 | QSI-2026-06711 | Немедленно отзовите/замените ключ из tools/fakeprod_v2.pem и ограничьте доступ к файлу. | краткосрочное снижение риска | Старый ключ отозван, новый развёрнут. |
+### 60 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-### 90 days
+| P1 | QSI-2026-06703 | Перенесите хранение ключей в менеджер секретов или HSM; добавьте сканирование секретов в CI и pre-commit; очистите историю. | устранение первопричины | Сканирование секретов обязательно в CI; ключей в истории нет. |
+| P1 | QSI-2026-06704 | Перенесите хранение ключей в менеджер секретов или HSM; добавьте сканирование секретов в CI и pre-commit; очистите историю. | устранение первопричины | Сканирование секретов обязательно в CI; ключей в истории нет. |
+| P1 | QSI-2026-06705 | Перенесите хранение ключей в менеджер секретов или HSM; добавьте сканирование секретов в CI и pre-commit; очистите историю. | устранение первопричины | Сканирование секретов обязательно в CI; ключей в истории нет. |
+| P1 | QSI-2026-06710 | Перенесите хранение ключей в менеджер секретов или HSM; добавьте сканирование секретов в CI и pre-commit; очистите историю. | устранение первопричины | Сканирование секретов обязательно в CI; ключей в истории нет. |
+| P1 | QSI-2026-06711 | Перенесите хранение ключей в менеджер секретов или HSM; добавьте сканирование секретов в CI и pre-commit; очистите историю. | устранение первопричины | Сканирование секретов обязательно в CI; ключей в истории нет. |
+### 90 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06120 | Add RSA usages at file:components/libwally-core/upstream/SECURITY.md to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06121 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06123 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06122 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06124 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06125 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06126 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-06120 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-06121 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06123 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-06122 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06124 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-06125 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-06126 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06127 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
+| P3 | QSI-2026-06691 | Внесите использования RSA в file:SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06693 | Внесите использования RSA в file:components/libwally-core/upstream/SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06700 | Внесите использования RSA в file:release/scripts/dev_fw_pub_key_A.pub в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06701 | Внесите использования RSA в file:release/scripts/dev_fw_pub_key_B.pub в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06702 | Внесите использования RSA в file:release/scripts/dev_fw_pub_key_C.pub в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06706 | Внесите использования RSA в file:release/scripts/v2pk1.pub в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06707 | Внесите использования RSA в file:release/scripts/v2pk2.pub в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06708 | Внесите использования RSA в file:release/scripts/v2pk3.pub в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06709 | Внесите использования RSA в file:release/scripts/v2pkdev.pub в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06692 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06694 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06696 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06695 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06697 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06698 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-06699 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-06691 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06693 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06700 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06701 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06702 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06706 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06707 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06708 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06709 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-06692 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-06694 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-06696 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-06695 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-06697 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-06698 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-06699 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-06713 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
-## 11. Tools used
+## 11. Использованные инструменты
 
 - blockchain 1.0.0
 - certificates 1.1.0
@@ -674,7 +1229,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - qsi-engine 1.2.0
 - OSV.dev API v1
 
-## 12. Sources and normative documents
+## 12. Источники и нормативные документы
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
@@ -697,35 +1252,168 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
 20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 21. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-22. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-23. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-24. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+22. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+23. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+24. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+25. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
-## Appendices: Cryptographic inventory
+## Приложения: Криптографическая инвентаризация
 
-| Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
+| Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
-| RIPEMD-160 | RIPEMD-160 |  | weak classically | legacy | 2 | 2 | components/libwally-core/upstream/src/ccan/ccan/crypto/ripemd160/ripemd160.c; components/libwally-core/upstream/src/ccan/ccan/crypto/ripemd160/ripemd160.h |
-| HMAC |  |  | reduced margin (Grover), approved | acceptable | 9 | 9 | components/libwally-core/upstream/include/wally.hpp:146; components/libwally-core/upstream/include/wally_bip32.h:170; components/libwally-core/upstream/src/aes.c:273 |
-| PBKDF2 |  |  | reduced margin (Grover), approved | acceptable | 1 | 1 | components/libwally-core/upstream/src/pbkdf2.c |
-| SHA-2 | SHA-512 |  | reduced margin (Grover), approved | acceptable | 2 | 2 | components/libwally-core/upstream/src/ccan/ccan/crypto/sha512/sha512.c; components/libwally-core/upstream/src/ccan/ccan/crypto/sha512/sha512.h |
-| SHAKE | SHAKE256 |  | reduced margin (Grover), approved | acceptable | 2 | 2 | main/utils/shake256.c; main/utils/shake256.h |
-| scrypt |  |  | reduced margin (Grover), approved | acceptable | 5 | 5 | components/libwally-core/upstream/src/scrypt.c; components/libwally-core/upstream/src/scrypt/crypto_scrypt.c; components/libwally-core/upstream/src/scrypt/crypto_scrypt_smix.c |
-| SHA-2 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 2 | 2 | components/esp32_bc-ur/src/sha2.c; components/esp32_bc-ur/src/sha2.h |
-| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 4 | 4 | components/libwally-core/upstream/src/ccan/ccan/crypto/sha256/sha256.c; components/libwally-core/upstream/src/ccan/ccan/crypto/sha256/sha256.h; components/libwally-core/upstream/src/ccan/ccan/crypto/sha256/sha256_sse4.c |
-| ECDH |  |  | vulnerable (Shor) | acceptable | 3 | 3 | components/libwally-core/upstream/src/ecdh.c; components/libwally-core/upstream/src/secp256k1/include/secp256k1_ecdh.h; components/libwally-core/upstream/src/secp256k1/src/bench.c:24 |
-| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 36 | 36 | components/libwally-core/upstream/setup.py:58; components/libwally-core/upstream/src/amalgamation/combined.c:34; components/libwally-core/upstream/src/internal.h:33 |
-| ECDSA |  |  | vulnerable (Shor) | acceptable | 16 | 16 | components/libwally-core/upstream/src/anti_exfil.c:72; components/libwally-core/upstream/src/secp256k1/contrib/lax_der_parsing.c:11; components/libwally-core/upstream/src/secp256k1/contrib/lax_der_parsing.h:88 |
-| RSA | 4096-bit |  | vulnerable (Shor) | acceptable | 2 | 2 | components/libwally-core/upstream/SECURITY.md (line 52) |
-| RSA |  |  | vulnerable (Shor) | acceptable | 2 | 2 | main/rsa.c; main/rsa.h |
-| Schnorr (BIP-340) |  |  | vulnerable (Shor) | acceptable | 7 | 7 | components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h:82; components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h:43; components/libwally-core/upstream/src/secp256k1/src/modules/musig/session_impl.h:621 |
+| RIPEMD-160 | RIPEMD-160 |  | слаб классически | устаревающий | 2 | 2 | components/libwally-core/upstream/src/ccan/ccan/crypto/ripemd160/ripemd160.c; components/libwally-core/upstream/src/ccan/ccan/crypto/ripemd160/ripemd160.h |
+| HMAC |  |  | сниженный запас (Гровер), одобрен | допустимо | 11 | 11 | bootloader_components/bootloader_support/src/flash_encrypt.c:378; bootloader_components/bootloader_support/src/secure_boot.c:311; components/libwally-core/upstream/include/wally.hpp:146 |
+| PBKDF2 |  |  | сниженный запас (Гровер), одобрен | допустимо | 1 | 1 | components/libwally-core/upstream/src/pbkdf2.c |
+| SHA-2 | SHA-512 |  | сниженный запас (Гровер), одобрен | допустимо | 2 | 2 | components/libwally-core/upstream/src/ccan/ccan/crypto/sha512/sha512.c; components/libwally-core/upstream/src/ccan/ccan/crypto/sha512/sha512.h |
+| SHAKE | SHAKE256 |  | сниженный запас (Гровер), одобрен | допустимо | 2 | 2 | main/utils/shake256.c; main/utils/shake256.h |
+| scrypt |  |  | сниженный запас (Гровер), одобрен | допустимо | 5 | 5 | components/libwally-core/upstream/src/scrypt.c; components/libwally-core/upstream/src/scrypt/crypto_scrypt.c; components/libwally-core/upstream/src/scrypt/crypto_scrypt_smix.c |
+| SHA-2 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 2 | 2 | components/esp32_bc-ur/src/sha2.c; components/esp32_bc-ur/src/sha2.h |
+| SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 10 | 10 | components/libwally-core/upstream/src/ccan/ccan/crypto/sha256/sha256.c; components/libwally-core/upstream/src/ccan/ccan/crypto/sha256/sha256.h; components/libwally-core/upstream/src/ccan/ccan/crypto/sha256/sha256_sse4.c |
+| Crypto library | ==3.20.0 \ | pycryptodome (PyCryptodome) | н/п | допустимо | 1 | 1 | requirements.txt:94 |
+| ECDH |  |  | уязвим (Шор) | допустимо | 2 | 2 | components/libwally-core/upstream/src/ecdh.c; components/libwally-core/upstream/src/secp256k1/include/secp256k1_ecdh.h |
+| ECDSA |  |  | уязвим (Шор) | допустимо | 18 | 18 | bootloader_components/bootloader_support/src/esp32c6/bootloader_ecdsa.c; bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c:118; bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_ecdsa_signature.c:112 |
+| ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 32 | 32 | components/libwally-core/upstream/setup.py:58; components/libwally-core/upstream/src/amalgamation/combined.c:34; components/libwally-core/upstream/src/internal.h:33 |
+| RSA | 4096-bit |  | уязвим (Шор) | допустимо | 4 | 4 | SECURITY.md (line 52); components/libwally-core/upstream/SECURITY.md (line 52) |
+| RSA |  |  | уязвим (Шор) | допустимо | 5 | 5 | bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_rsa_signature.c; jade_attest.py:41; jade_bip85_rsa_sign.py |
+| RSA | 3072-bit |  | уязвим (Шор) | допустимо | 7 | 7 | release/scripts/dev_fw_pub_key_A.pub (line 1); release/scripts/dev_fw_pub_key_B.pub (line 1); release/scripts/dev_fw_pub_key_C.pub (line 1) |
+| Schnorr (BIP-340) |  |  | уязвим (Шор) | допустимо | 6 | 6 | components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig.h:82; components/libwally-core/upstream/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h:43; components/libwally-core/upstream/src/secp256k1/src/modules/musig/session_impl.h:621 |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## Appendices: Input files
+## Приложения: Входные файлы
 
-| File | Size | SHA-256 | Redactions |
+| Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
+| SECURITY.md | 5789 | `f7d968f6335f3b0d872a524a76330be093d8f99873f48b985dca9166fc91aed6` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash.h | 1877 | `bd9d6c7ad917e137f87dd8cacb8f97d7be23cb155aff14deade2a177cac558d1` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_config.h | 2529 | `2b5aa5309c21e579f88598ba615518dabae5c0c81f2fbb8c5cb2c0d667082b9a` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_override.h | 3437 | `3d31d401d3cf3424c42ee04a96ab82b3915573302bf66c241f0910e0b00d52e8` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/include/bootloader_flash_priv.h | 6862 | `661a09bbfb98fab06dec78a6ada98c3a808549e65522a56fd2accdb172173f83` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/include/esp_private/bootloader_flash_internal.h | 793 | `e866478c4005f9b10393137a765001b106d3741746e02879b18c50af0d104990` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/include/flash_qio_mode.h | 647 | `af2a0d2013b6f76734af50f0dc2ae02a7463e3e8da97743842a435ab134ee992` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash.c | 37234 | `b3bbd14204d9efba1171a2983d9cd67adaf6b5a4eec60ba4dac2df2c50ccceea` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32.c | 18441 | `5bde7e0ae5ca6bc9fdd86e131da76414c02661719f49158c648a5aeb49817d2c` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c2.c | 9795 | `ff34d059fa8549448bb4e12f87e77d3272d2050df19415246f4b5196bbb888e8` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c3.c | 10590 | `306ca0bf2e96fafb397f3abda8f5f79e444548163fe1daf2fda247aeb771cc9a` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c5.c | 9971 | `0c1a2152eb8dd507616b51b1b817d6b60bf91149784456523eee34be5ff3844e` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c6.c | 9039 | `205ae07146acb70679aefe279585224c3799a2869ea4086cdd7ce629b8fbccfa` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c61.c | 9534 | `177fffd894e80e474f4c000ccb4c91200b0b4d60475849bf33ec246c15b1ad80` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32h2.c | 9177 | `15d2c8829bbca2e9bcb320c20208b34cb90811a21e852e953b162ab000f7341c` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32h21.c | 8774 | `c46f8c522bd6c557bb13623400bafa4c18256acdd9ba095d2b44540c132f5cdc` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32h4.c | 8556 | `ba6ff81331eab3cf80f7a2a1daa466e63c70cac5bf743aea763673b3ac88d4e0` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32p4.c | 9354 | `691514e447048332bb6a433d309f4b554c2cc0df00b1ed457fd66acda8696d06` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32s2.c | 10611 | `623c7d69c262f9d4e1f355a2f9e325adfddfbd5e25e1c0f45136a8a69d66b9c6` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32s3.c | 12053 | `f968dd6b8f36c069ae9547627b11daff41d1fcfdcde21162b3563947f6697a79` | 0 |
+| bootloader_components/bootloader_support/bootloader_flash/src/flash_qio_mode.c | 8730 | `4831aa6e28e42ebff84f9e68520594d1691b71f3739ac9c667a4a1842e42fcf9` | 0 |
+| bootloader_components/bootloader_support/include/bootloader_clock.h | 490 | `4fa3b3ac268fa5998d2af27b7d9f0ccc9195969709afeaf00b7b5fafa5e66cbb` | 0 |
+| bootloader_components/bootloader_support/include/bootloader_common.h | 11529 | `6f0d60cce67b00fe0516e63614df757b10f23938db884356b96ce230e02cf96f` | 0 |
+| bootloader_components/bootloader_support/include/bootloader_mem.h | 237 | `1b36a71e1d49dd8f755d71f9d505d6690384a9768ecc51d38437abb3c61a598a` | 0 |
+| bootloader_components/bootloader_support/include/bootloader_memory_utils.h | 7119 | `99f1f75fcf088b3ddea4849f9b6cc62134f6768d6b9dc029fb7ba05dfa1e6d9e` | 0 |
+| bootloader_components/bootloader_support/include/bootloader_random.h | 1840 | `27168710f9bc067a988e4cda1b54d3347f2989d14864e0dcbc0d717f04956063` | 0 |
+| bootloader_components/bootloader_support/include/bootloader_util.h | 772 | `53c7b4a241e3fa55b6e6d45fa56b90bbb4fab7168c20c3501690dc6c73af0d0b` | 0 |
+| bootloader_components/bootloader_support/include/bootloader_utility_tee.h | 1510 | `90bb32d202f9ed02b48a560f253928f4e070a1e812d486893c296843ac49f396` | 0 |
+| bootloader_components/bootloader_support/include/esp_app_format.h | 5861 | `34657b34c7408443186c2d4007edc0c6dc0ca1afc8f7b31e730266c56e249661` | 0 |
+| bootloader_components/bootloader_support/include/esp_flash_data_types.h | 274 | `df4bffffeda5985df665000b9e76d29fb792c2741cc50871d2680d7b3234eef8` | 0 |
+| bootloader_components/bootloader_support/include/esp_flash_encrypt.h | 7899 | `3ecc1f07550f55105d0227d7e833c4497c90913afe1b510f41479f06f05d59b0` | 0 |
+| bootloader_components/bootloader_support/include/esp_flash_partitions.h | 5327 | `fb6c020402ae7793f1c3aeb14997ffed92bc5841a2fc930630008e6f83783a63` | 0 |
+| bootloader_components/bootloader_support/include/esp_image_format.h | 9281 | `5c4f045b248d834fc64d6e3ba7bdc79381de1d1b45cb1c529ef104af7e3cefd9` | 0 |
+| bootloader_components/bootloader_support/include/esp_secure_boot.h | 16403 | `85f65968af185648e5b8bb3c9e87f70f2c034bebef18be975c9f66d99ed096f7` | 0 |
+| bootloader_components/bootloader_support/include/esp_tee_ota_utils.h | 1784 | `b08685e03d42cd2002abb6c3804efb36d8ec3951a019f5cd237f916fefdc17ef` | 0 |
+| bootloader_components/bootloader_support/private_include/bootloader_config.h | 1060 | `480292bce0c7eac45fdbe075fecb8f0f54c7f74b4d45a7c04b56a08ed3211288` | 0 |
+| bootloader_components/bootloader_support/private_include/bootloader_console.h | 586 | `d36d39783087a83a0f03e682e2c8edb770e443a07810c9716ba99385da84704f` | 0 |
+| bootloader_components/bootloader_support/private_include/bootloader_init.h | 1299 | `fa62e01c5c2456603e03bed3157edcb2a0cb7641957d05b80b5de3dfabc5fcd3` | 0 |
+| bootloader_components/bootloader_support/private_include/bootloader_sha.h | 1244 | `bf2312c1c6323087d4154883a98e6d232739579d11b8a9a1151a5c97b395e955` | 0 |
+| bootloader_components/bootloader_support/private_include/bootloader_signature.h | 1227 | `56249ff0eda4f20ec3c32fd0d221b543de067f2bb7eab065b07d73d3b56640b6` | 0 |
+| bootloader_components/bootloader_support/private_include/bootloader_soc.h | 740 | `10231f6b2ee9f69a31fbc1466cf6bbe9cc3d8539d5ea3e386041c940dc702417` | 0 |
+| bootloader_components/bootloader_support/private_include/bootloader_utility.h | 5856 | `913ed73e9d1a9f94d38145dbc18977acc682f78746ad121be72359e11a22fc12` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_clock_init.c | 10360 | `0062d5f4531da61910c19bd9aabdeebaced2a1db776c66f8ab90ab4e0f051892` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_clock_loader.c | 264 | `9183380f9b86a9caba3a139cf2fe3539ac1aa4b133b3b98a8f4b4dc3cf74fec7` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_common.c | 7247 | `b0d06c886732d0ea814bf477d33c071f4dee8e8a8ffb3b8b7e2f58ea122533e4` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_common_loader.c | 10297 | `de0e6cbe7e1eea76af374fe867c11fcbf7e8cd17ab4fa2e123b10f7ce277ade5` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_console.c | 5639 | `3b735a187e3fc7bd92bfc0861a11a7d78159f259759e5af1c84bd7c85ede1830` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_console_loader.c | 2606 | `ece56669cd81253420ac9b35ee44e93f807e828790e7916e103d1d0036055a91` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_efuse.c | 1225 | `a5325c6a8ec259e41ad7b841f1d3b2453ceca57ed233061babed2fecf35bec50` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_init.c | 4540 | `52d84a4456b5472179a8cbc670f6cac46d8cf02f1a2c424f61c21bb45846aa13` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_mem.c | 1347 | `42e56744c33d9a17845f9446645e0a921ae18aeccdc5c25ed484f52d65ac025d` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_panic.c | 774 | `7d148cc10ee5e75aec9a90be974971356b4503d317e22d6abd446b318e298767` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random.c | 3192 | `eb710fc31bcde2692061a81d76f4faf3b2358ad5c8ef70e9cc150f7ca7f67508` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32.c | 5330 | `c0de56ab57b7061423dcc6e17059fa82cb3186bef7a60b7abc16ae33b5c13024` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32c2.c | 3311 | `3024976ed49a6660efc332d0114e637d3e78efc830aa0e73b6cb71446d5f1071` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32c3.c | 3300 | `50331fd993343aca54e7367cff2568a9a3ee88858384fa1b46bb497e4c472b0f` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32c5.c | 2868 | `b4bb0ec047b12fcff66d6573566ea485b555c89c66c9af31fc7e07aa14f670ee` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32c6.c | 2642 | `2c583c96196292f19fcd5d0f6b83f08e85120d6d075677dff5520661754fe0b2` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32c61.c | 2712 | `8b6ad7f7d730bb2bbb3676761f3c952ee50a8688342e1e2f628723a08715c97d` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32h2.c | 2581 | `0663fe2174dc1cf14db4b43d480ded66d189475a21f1a33f6856edbb359c5f0b` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32p4.c | 2718 | `82ce1d65a90931bc469fa5c6284b148d2b0e1003b77279f003e1bb44936d57c1` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32s2.c | 3893 | `b9538aa2d4df138e25150e68fae572ef259d05c3e6cabd0aa64c19742af3253f` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_random_esp32s3.c | 4670 | `8a0536dffbe5f7606fd3cde904ca2913472695aee723fc53b6490815b240eb4f` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_sha.c | 7384 | `6a484ea3293b06f37e8e18c9c53f877bd1cae94738c74a9b1c6eef71171e2199` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_utility.c | 53824 | `31a22de7e0b2f45f2407d47991217832e9b33848130ed938929335df265d216b` | 0 |
+| bootloader_components/bootloader_support/src/bootloader_utility_tee.c | 10079 | `f054b7ec5633860a20579a9246ed275256c361a4aa5b07003117ce08c25019eb` | 0 |
+| bootloader_components/bootloader_support/src/esp32/bootloader_esp32.c | 8936 | `da683a459ca260c114cbfa4c3aa3328e80270e50fd198eb8e3d9f43d3c4ad04d` | 0 |
+| bootloader_components/bootloader_support/src/esp32/bootloader_soc.c | 295 | `f01312d10e48b053b70961f7bd596adc1d6517467f77ee8e356dbb742b29fef1` | 0 |
+| bootloader_components/bootloader_support/src/esp32/flash_encryption_secure_features.c | 3474 | `c06887936b3f9a3bbc2d1d17de60490a322d0abdd004881dd706a5dab3a82d9d` | 0 |
+| bootloader_components/bootloader_support/src/esp32/secure_boot_secure_features.c | 3303 | `10bb4c7298f91b02ce29cbf92cb892659a4e105f1fe96324f79493e8f1856ae8` | 0 |
+| bootloader_components/bootloader_support/src/esp32c2/bootloader_esp32c2.c | 4484 | `7d98173f58402a5f3e4e9e5a673866c9805500ad20e796235fe26c4a2cb735ed` | 0 |
+| bootloader_components/bootloader_support/src/esp32c2/bootloader_soc.c | 629 | `138fd6193c57a666f327814db33657468c9978ea8e49115d37c0e7241c51b9c8` | 0 |
+| bootloader_components/bootloader_support/src/esp32c2/flash_encryption_secure_features.c | 1248 | `68e937a0550756fb6f41423ef210022d83c1b386de45e8f49309512471cec57f` | 0 |
+| bootloader_components/bootloader_support/src/esp32c2/secure_boot_secure_features.c | 2157 | `c298219c1a452578e9dac3ff3510db064eb5e98948a22f23d98531da95e1f430` | 0 |
+| bootloader_components/bootloader_support/src/esp32c3/bootloader_esp32c3.c | 6089 | `d0df10924a750ab447f7fb1d86d681eb1477937757e3bdfe1dfaa842029b29d7` | 0 |
+| bootloader_components/bootloader_support/src/esp32c3/bootloader_soc.c | 800 | `814c099f8f8dd6be555e4693f27ac6f3e629bc349852f6e932fbaebdab79332a` | 0 |
+| bootloader_components/bootloader_support/src/esp32c3/flash_encryption_secure_features.c | 2164 | `ef0e2f91a765cbbc378896e6d41ca78ca24274a7304526882dfe6aeffdc6d248` | 0 |
+| bootloader_components/bootloader_support/src/esp32c3/secure_boot_secure_features.c | 2317 | `8446676eaac0de187f9dcad1191e09f270ee0365d5d60944f5417ee330162587` | 0 |
+| bootloader_components/bootloader_support/src/esp32c5/bootloader_esp32c5.c | 5768 | `d548f2a75b168a53c637a447eb050568da28ef3ed65c0ab0de7fefb16c422b23` | 0 |
+| bootloader_components/bootloader_support/src/esp32c5/bootloader_soc.c | 1217 | `9a0265b068a7e7db1fde9894083ab65c83b692d802629cd1dd043e60057bbf42` | 0 |
+| bootloader_components/bootloader_support/src/esp32c5/flash_encryption_secure_features.c | 3064 | `de9e28104dd6e8f827d1f4490379dc251f4c196a028897abfbfd94ed26a999d2` | 0 |
+| bootloader_components/bootloader_support/src/esp32c5/secure_boot_secure_features.c | 2430 | `38fa3483cd9709dca284363f85a1a077a58fd686f8297ef14323c5b05e5f503b` | 0 |
+| bootloader_components/bootloader_support/src/esp32c6/bootloader_ecdsa.c | 1610 | `1df714de84d32fa0defbf02f6ee811d49a0715c3811d58fb1d14163eec4d5108` | 0 |
+| bootloader_components/bootloader_support/src/esp32c6/bootloader_esp32c6.c | 5538 | `be435b9f08acbb79db3e525021d0ec62b0a37c0405b4f45bc311d5f1af07a363` | 0 |
+| bootloader_components/bootloader_support/src/esp32c6/bootloader_soc.c | 596 | `93b874a7ed3db4d368658aa6b6fda3da13e88c6b4434807220a266c0b6a486a3` | 0 |
+| bootloader_components/bootloader_support/src/esp32c6/flash_encryption_secure_features.c | 2190 | `e16a74bd1a9c69cf58b568c98cf0f5ce66663d3d3229cea73483f82cc44eb56b` | 0 |
+| bootloader_components/bootloader_support/src/esp32c6/secure_boot_secure_features.c | 2312 | `da63e47fd766bceae0ce7dc9ac516c202381e9a4553ef7cf2aece2abf322b1a4` | 0 |
+| bootloader_components/bootloader_support/src/esp32c61/bootloader_esp32c61.c | 5451 | `78af0b6774452a35f5d28223b26055106bd6d94f971d763801a0c632695d758a` | 0 |
+| bootloader_components/bootloader_support/src/esp32c61/bootloader_soc.c | 1175 | `bf20f7202afd71054ceb89104402a0f99ffc920083ee4916c61e8e69888bc790` | 0 |
+| bootloader_components/bootloader_support/src/esp32c61/flash_encryption_secure_features.c | 2509 | `8c3babb940d0478da3ddc5508b78dd6d3e7361db0a8bbe7afe5c84770c53537f` | 0 |
+| bootloader_components/bootloader_support/src/esp32c61/secure_boot_secure_features.c | 2340 | `968eb3b1987baeb1392543ca549f4c5eb7359ec0d0624bf98c8e006820fdd74e` | 0 |
+| bootloader_components/bootloader_support/src/esp32h2/bootloader_esp32h2.c | 5415 | `f6a1e1c9f8b908aeba50a24a5cf84da94a902f4ed1275ae96fa29813ebc4cebd` | 0 |
+| bootloader_components/bootloader_support/src/esp32h2/bootloader_soc.c | 555 | `78dfd4ca357cbf959c8c78925d590f7cb924f67decc6857d9bd2864f855e4eba` | 0 |
+| bootloader_components/bootloader_support/src/esp32h2/flash_encryption_secure_features.c | 2408 | `974d302a507578da69393fead6d293f5f85cf1f8a5498f424bed8a2e3be87160` | 0 |
+| bootloader_components/bootloader_support/src/esp32h2/secure_boot_secure_features.c | 2343 | `f8fa157b3f6d79c7059dc830bc0b4d20c8034bfa0d2477f7ab31a358658a20bc` | 0 |
+| bootloader_components/bootloader_support/src/esp32h21/bootloader_esp32h21.c | 5342 | `a37a8492bfee15e73ee6111179656b5b1c678ad5ab5ab6e2f171670c9e4d19e6` | 0 |
+| bootloader_components/bootloader_support/src/esp32h21/bootloader_soc.c | 960 | `7825404aa0aee7c60fa9df9a0d4332e6b0e46fb0dd46317ee883bd55e9bd8db9` | 0 |
+| bootloader_components/bootloader_support/src/esp32h21/flash_encryption_secure_features.c | 1909 | `eb9e5a99fbcc306c8225fe771c68489d9ef6341e2ac5418d3e6f42d34fa17bad` | 0 |
+| bootloader_components/bootloader_support/src/esp32h21/secure_boot_secure_features.c | 2317 | `47518e3ad22609c5fe4488cb8e7e53e02cb0179e320763f6552a4127b8fb34a8` | 0 |
+| bootloader_components/bootloader_support/src/esp32h4/bootloader_esp32h4.c | 6956 | `00f5c0bc4e63b06a7d11c8eeb3e0d927e8681a102bccc328bf2f4509765e364e` | 0 |
+| bootloader_components/bootloader_support/src/esp32h4/bootloader_soc.c | 658 | `a14e943c3487a4fc0cb8d793352f9743a7e219229f452f73af117d4b19d97749` | 0 |
+| bootloader_components/bootloader_support/src/esp32h4/flash_encryption_secure_features.c | 488 | `2a613eee66d13f23f98ada91117f8df343f107aab4c38c4f62af4efd2293bcf7` | 0 |
+| bootloader_components/bootloader_support/src/esp32h4/secure_boot_secure_features.c | 481 | `e75c1d6866bc03b8a45eedf0d32d3b1d49ac2b738de0b1ec9fcdd70a869a2650` | 0 |
+| bootloader_components/bootloader_support/src/esp32p4/bootloader_esp32p4.c | 6258 | `657d0f7ad0ee8db2dba9e9adf8990899ae8963e89eaae021bf80268b305a7224` | 0 |
+| bootloader_components/bootloader_support/src/esp32p4/bootloader_soc.c | 346 | `7324a7b9522cb0de4aab719a906bbbecc7357d2089a751faac06aa216166d176` | 0 |
+| bootloader_components/bootloader_support/src/esp32p4/flash_encryption_secure_features.c | 2155 | `19cbfbb2cbcfbfc9c5dc2020bde7079134a6712a1eaa463a4fdea9380a93f4e5` | 0 |
+| bootloader_components/bootloader_support/src/esp32p4/secure_boot_secure_features.c | 2317 | `02e50a86a05fceac88ab8c3581f44ff5557824488e2d354ac2690e02c897f5ea` | 0 |
+| bootloader_components/bootloader_support/src/esp32s2/bootloader_esp32s2.c | 6181 | `6f060cf302ccc4f5ae68093645602980d4eee732f836feee35b6dd512d9fc90d` | 0 |
+| bootloader_components/bootloader_support/src/esp32s2/bootloader_soc.c | 295 | `f01312d10e48b053b70961f7bd596adc1d6517467f77ee8e356dbb742b29fef1` | 0 |
+| bootloader_components/bootloader_support/src/esp32s2/flash_encryption_secure_features.c | 2301 | `4a44a73741c02defbaeddc704a90c49a30f64651f747c8a247e8a1918b60c730` | 0 |
+| bootloader_components/bootloader_support/src/esp32s2/secure_boot_secure_features.c | 2285 | `efe39a4f037eb228d7823c9c8d4925c583d02017157d3b603506e97816dab372` | 0 |
+| bootloader_components/bootloader_support/src/esp32s3/bootloader_esp32s3.c | 7486 | `93d3836dd096e50f991ce988b2bb445c3fd6074b0cad7256cc73ee9d8add5c5a` | 0 |
+| bootloader_components/bootloader_support/src/esp32s3/bootloader_soc.c | 800 | `814c099f8f8dd6be555e4693f27ac6f3e629bc349852f6e932fbaebdab79332a` | 0 |
+| bootloader_components/bootloader_support/src/esp32s3/flash_encryption_secure_features.c | 2344 | `ca7d7b7abdca10206a2e37ed29ecad83d33077faae5c0f0cb8f3f194c946d981` | 0 |
+| bootloader_components/bootloader_support/src/esp32s3/secure_boot_secure_features.c | 2318 | `22a7a1d4cb696981a1b6a65482f9650c43f58ec16d3fdba91735e0ac72b1d8af` | 0 |
+| bootloader_components/bootloader_support/src/esp_image_format.c | 50251 | `3136b6ab8af372c57257fb7abdf3e48b296cf2d59801b0dc47f8ae073d6ec4ca` | 0 |
+| bootloader_components/bootloader_support/src/flash_encrypt.c | 19212 | `fda247159dc76fa92527b70422ef44fcd99ea7fd0e1bdfc92fe4e884a5cfdcdb` | 0 |
+| bootloader_components/bootloader_support/src/flash_encryption/flash_encrypt.c | 18642 | `27aa2fa2301e240d6eb9109458d6e9eecd926191aef1779fc19b486b48990bd6` | 0 |
+| bootloader_components/bootloader_support/src/flash_partitions.c | 3086 | `de300b5b829d0253a99d35bdcbf04cefdc63ed563507d9b1363d327c3756c1f8` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot.c | 17446 | `da8b3e104ab959368501531801369174aad4131e87b2a7399ecb99acb93b4e57` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot.c | 5968 | `76f5dcabb5170935d68c9e07f9cb56bab88580336f4aea2384263a68b34384c5` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c | 5058 | `c2c45fd448c84711bc9586204a35d2dce2fac8c248420d7e3be13da0c8989621` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_bootloader.c | 3310 | `eb8dbc0cf1303deaa7d3197452e36d82ee65e010decfeb21e18dd828bd2bc597` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot.c | 16482 | `283581518e04a4675a56f0d3d04e1bd1817de1fbc24baefca14af0a05bfd4a5d` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_ecdsa_signature.c | 4072 | `8a3b5a2608c60aa05cfd246cc2986740fcc549697e69e0247c0abf2879bb8ce6` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_rsa_signature.c | 3244 | `eabf99e7619b45703280e69f18dd5cde39008c0f4c7e9620dfada0beea21a459` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_signature_priv.h | 510 | `800f8bb82560a91ddcf1d8245d0235e351c05d4d4cebd4f850cb75cc1ad60301` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_signatures_app.c | 16684 | `3639f30542c227e3cbbd0ae8312889b5140eb8485547272e24320fb16fa18f71` | 0 |
+| bootloader_components/bootloader_support/src/secure_boot_v2/secure_boot_signatures_bootloader.c | 11828 | `1c61ca4656bc59a7ff51cf8fb82b822633309e5434af7503464bde7603f99d99` | 0 |
+| bootloader_components/main/bootloader_start.c | 2044 | `d941a326b893c80c091f6fe819bbf627ae804df35c8043141548835ec28a5807` | 0 |
 | components/assets/assets_snapshot.c | 2103 | `ec1f77a3fc4474a97c955a063a815513508aed16ae9de70f91ca06452845d113` | 0 |
 | components/assets/assets_snapshot.h | 514 | `a680e722bb23d471e95bbc65a990620dd383a2b971322d2bcea4748319c42a8f` | 0 |
 | components/assets/gen_assets.py | 2715 | `9d8beedc80645bb85c3892b0d2532e4bf39015d7a6940aa17654afdd19062dbe` | 0 |
@@ -850,7 +1538,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | components/libwally-core/upstream/src/coins.c | 7481 | `32a65ff8892db2fa25f1ea43e4c5e4ae5dd2c853a369e771165cbd976ce98584` | 0 |
 | components/libwally-core/upstream/src/cpufeatures/cpu-features.c | 40717 | `60b4e0194012595a58c88fcd4089bc72c4752f8fc829b022b1228a9c39afcc8b` | 0 |
 | components/libwally-core/upstream/src/cpufeatures/cpu-features.h | 11746 | `4e85e43209f0ba184a4bc5d3353d99695d4b7543d436333cf465bd6c7ec0239f` | 0 |
-| components/libwally-core/upstream/src/ctaes/bench.c | 4977 | `237677992b69e7dcc6d4fab66f74e8afa7c999dd3a16598e6acd3c9fdb13125b` | 0 |
 | components/libwally-core/upstream/src/ctaes/ctaes.c | 18015 | `2f8a63e6a9a00da3fcc9c38d53dfbbb650376191689864ed211a36d8184c287b` | 0 |
 | components/libwally-core/upstream/src/ctaes/ctaes.h | 1541 | `bf837cfa914ac30b11cea64d5267065614686d41586c886e84bd4e7e11112af2` | 0 |
 | components/libwally-core/upstream/src/ctest/psbts.h | 96356 | `03ef1939fb98779fe78fd0619ac9af38b4b9f11d13d03ed5a4d5b8958dfc1d2e` | 0 |
@@ -908,14 +1595,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | components/libwally-core/upstream/src/secp256k1/include/secp256k1_surjectionproof.h | 12407 | `f6b245fe8234309715225fb6a3fdf3a4d20a4f5a7f395c1686debae189af07a0` | 0 |
 | components/libwally-core/upstream/src/secp256k1/include/secp256k1_whitelist.h | 6241 | `2e060720e5f8bdef9b99021a3c1d45a610219f4026d1421c86a8112a0e5e7d66` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/assumptions.h | 4667 | `cc875f356cc8f7f272def71f7d7261e44cc27a18a5b668cd8192c84d238e4e68` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench.c | 10190 | `832edacf541809e3cbc59a4e698d5e33a9388a7dddd55662936244cd106fccce` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench.h | 4777 | `12fafa36167bb38d28698536cdb34bdbcf8c972eed4d3cf69e71796972b880d1` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench_bppp.c | 1102 | `7c17a6b0fada57db18cc68b1ec183f1e6346983903ee1da4f894acb09bfab6e2` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench_ecmult.c | 15684 | `7daaf2e676b42f08a509b846139e90f9f04da94aaeda62a64ce38f64e45884a4` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench_generator.c | 2001 | `6396798ee1f4a018d4ebd9e962b6c289f4a1928a870c20918285500f7972bf61` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench_internal.c | 19230 | `6fb683c1d9dd79261e9a519c033ee6934687f18bcdad0327f570769d57fe0e42` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench_rangeproof.c | 2349 | `6c24fa0c6c12242da3b2629742e0baab65b24967d173fb83e94e2ce1847d8a10` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/bench_whitelist.c | 4089 | `8f77ebf85792d8270790e1c0689d24896c2da3d7ce6f35c6dffec2909ddc4082` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/checkmem.h | 5355 | `f367089bffa53b8998047de2f718f75d627dad549a1e5dc2a9ce9ab9f581ffe8` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/eccommit.h | 2198 | `3b04b7fdae817984c26ce995fad4f3f6d72d5c05b9d3f78d5991c531a5e99eed` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/eccommit_impl.h | 3165 | `6c71a9cba341b7782302741603db3ae2179b699ce2e7670cb03a749b94d114ca` | 0 |
@@ -961,12 +1640,10 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | components/libwally-core/upstream/src/secp256k1/src/modules/bppp/bppp_util.h | 2794 | `fb22fd546df224866adc6c756f76170b4aa2575cdda6872ee56f32af8079db95` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/bppp/main.h | 403 | `20d3c6914baf5513f17d02787e51a97ecaa1670202ea5ca15bf7b09a35b0aa80` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/bppp/main_impl.h | 3583 | `938885438c1a41562294d15e068e9a7dac58972113e7e4945cd945f196dd6e5b` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/modules/ecdh/bench_impl.h | 1761 | `3929ead352b3b6425f0fdf94a1b2268d124cc0176929ae6ea3b4fa82abac0bbf` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/ecdh/main_impl.h | 2929 | `3cf3b168e8048cd7b03c9b4d56d072214ef859a31bc970e5a16c2cbeba8fc4eb` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/ecdsa_adaptor/dleq_impl.h | 6275 | `d5973e606b4225b4cbce6ea02496385f3a8e9c221aa3bcf6f62c108357baf0de` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/ecdsa_adaptor/main_impl.h | 15004 | `157bf8e45ad426f56583b7def22d91418c0d4bec281b5ab9cd5fce3158a5a238` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/ecdsa_s2c/main_impl.h | 8784 | `20bea71274c43c26093e5e00a22a9a0ac97eca2330291e2b2fe9f9864cbb3e4b` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/modules/ellswift/bench_impl.h | 4399 | `8973d64bda27eb72a4807aae665a1a2932d624370f9d40f8833f7c8f03b05564` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/ellswift/main_impl.h | 27602 | `8deffa7b37a0602be2b87d0378419410e6cc9683ebcf3fb033d2eed56c4f8416` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/extrakeys/main_impl.h | 9961 | `a58762afb6a494aaec984d2e65adacf1125be5e55ad2904af0f26e490cc0d3b4` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/generator/main_impl.h | 17287 | `756c2aea7b7221d6b523ae17d367a6e819b67f87485987b2bfff71ed75e2e785` | 0 |
@@ -984,9 +1661,7 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | components/libwally-core/upstream/src/secp256k1/src/modules/rangeproof/main_impl.h | 5051 | `5403c2086d4b81f9e85a91f2290cafd3234e111fae7adbd065a2f5eb78adae82` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/rangeproof/rangeproof.h | 956 | `a8d6285ada07204cc46dab26087b3c61b732c3b37cbcbbbcb793a8705f0ff80f` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/rangeproof/rangeproof_impl.h | 26166 | `94685312146bc3ac7ead5f4a29cddf7d9c51bdb2165b1a27af5ba2a0a6814137` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/modules/recovery/bench_impl.h | 2320 | `20d13192a4aabaa52ac4c2a2da772d8aafef00773051836b25faa2816226b386` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/recovery/main_impl.h | 6153 | `93fb7455adaa364a3c1f8acef82ba409b88a49f688dfe23ab8555510fc614c96` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/bench_impl.h | 3795 | `9655992c7fd214231623716a738a1928e24a86b4bcdd909f331712df800a1abc` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig/main_impl.h | 10970 | `138c330969201f4d7ff5eb512715b7e05665c3ab4f6d5d9b4172a41aa7c80164` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/schnorrsig_halfagg/main_impl.h | 7991 | `ba7c408bf639159630920933e29fb97be7be5ebcbf978716f8c0b839ed4e6ffc` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/modules/surjection/main_impl.h | 16513 | `5a8dc46515e1a885f221fc8c036ef08c219a2d211fd403b86b482f4ef15904fb` | 0 |
@@ -1017,7 +1692,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | components/libwally-core/upstream/src/secp256k1/src/testutil.h | 4945 | `5a780fc16fcd8549ea4774d15beb2d36c6ad9a2ca7180dd95f84199a2863d1ff` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/util.h | 16482 | `a203e19a64dc197ac051aadad15163515fb013ea37dfb8d241929bea4cd09ba7` | 0 |
 | components/libwally-core/upstream/src/secp256k1/src/util_local_visibility.h | 402 | `d47d4a58f40157ab2a298151f366c5ebec8f7a1e7aaba88e36b530b1c01584ca` | 0 |
-| components/libwally-core/upstream/src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json | 299012 | `1be8742064fec73d670339f0036dec56b21baa94cb2d8e0fbbb6fb480f733869` | 0 |
 | components/libwally-core/upstream/src/secp256k1/tools/symbol-check.py | 2416 | `1706069df728c1a2ac1d2578897076713c16eed73315be6c83ad9690007bca70` | 0 |
 | components/libwally-core/upstream/src/secp256k1/tools/wycheproof_utils.py | 427 | `9f2c2368953eeb3c9b7c3b31a807cde76b3106df93fbb975993638d5eb1a1e8a` | 0 |
 | components/libwally-core/upstream/src/sign.c | 28672 | `9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168` | 0 |
@@ -1054,6 +1728,20 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | components/libwally-core/upstream/tools/build_psbt_ctests.py | 854 | `ecc8332fc3ea0a904897ba05598608e174a64d02fdd77be821920a983c249419` | 0 |
 | components/libwally-core/upstream/tools/build_wrappers.py | 26927 | `b59803b7ca9b045961bf6f446dc6c1d24b8c7b8c82fb9cf007299ccdad9c6f35` | 0 |
 | components/libwally-core/upstream/tools/wordlist_cc.py | 1736 | `e389277f851b59a3d4167ffec131903087ffeb646312e49949691a67260b853c` | 0 |
+| docs/conf.py | 1857 | `59b899837558dd12d66fdf4acddd5c29663aabdf1ad98e91969cc2e57933fb56` | 0 |
+| jade-client-requirements.txt.asc | 1072 | `91cfaf67a5273a104ae0d88be4311d7f4e7ce02244bfaac6b957bca6e434fbd1` | 0 |
+| jade_attest.py | 7610 | `7a3a20c3fba5b13eabd0f0871251c105aee6312818a31257bf478562a6fd423b` | 0 |
+| jade_auth.py | 2529 | `d82e07ee067d41b62ba3328be20aa3a28b1dad5bc52dd4661f903256810fafcd` | 0 |
+| jade_bip85_rsa_sign.py | 6672 | `e6a8f76040ff6f125e835d5c49144a5ab6bef98b4ca10cd5d2fd450413d63788` | 0 |
+| jade_cli.py | 7040 | `b6577c77329c4c47e5b886d6a1db911bdf7b17b3ab55b9a4128ba4c3a435bad8` | 0 |
+| jade_ota.py | 22755 | `a353789b906cd2678690893eaa056c361ddb6892249a2f5d1a42bdbb06b847b3` | 0 |
+| jadepy/__init__.py | 84 | `d00923afa8a07b34fb8c31bd9f08258f18187df2e6f583a1c6e2c3fc0a3b14a7` | 0 |
+| jadepy/jade.py | 93174 | `b66d756c8068a2e01ad33059476b6240d52a7bae0aa5d48fb13db8be57c33713` | 0 |
+| jadepy/jade_ble.py | 8793 | `9aa03aa8f264fa4a25e234a4e5ab655a252afcc7aec2a2dceac2b5cddf0c33aa` | 0 |
+| jadepy/jade_error.py | 613 | `68a216f856f87d017a6349e14d60230e03caf571da2ad5e45e83a35b451d02d3` | 0 |
+| jadepy/jade_serial.py | 2689 | `3b5dc8b6c506179324001e4ed467b7434cbf1b21be976393910946c4ead2be6d` | 0 |
+| jadepy/jade_sw.py | 3575 | `f80659229a4006a954c9996a2e54e8edd924a29a3607e743dda78832322911c7` | 0 |
+| jadepy/jade_tcp.py | 2520 | `2d8450865c676a96c8f95e4d2bcfae0f03c8991f323c275de34bce2287ea3fc3` | 0 |
 | libjade/daemon.c | 13786 | `f7a879446d031324ab8a7c6f3852fe798423a27ce8836e3c31c057d1605021b2` | 0 |
 | libjade/esp_camera.c | 4097 | `2dd75df9a8ea04009e2292489933d9fcf3d34cb00319c9279ab88d58cde13524` | 0 |
 | libjade/esp_event.c | 7180 | `232359c418327dc712fe37fec5925be3f4376903e7cd89af152193a8816db56e` | 0 |
@@ -1107,6 +1795,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | libjade/selfcheck/urldecode.c | 9085 | `952e3646b3aa5cfb9876921eaf6746839597f9a714347d56fb8a324680dd1bd1` | 0 |
 | libjade/task.c | 14246 | `cffbe18f86ce557fe1fd87ad5c709ccbcbf98a87558c1350abfbadf2cf1e9909` | 0 |
 | libjade/tcp_bridge.py | 3297 | `f53615430e1d62c23859662b383eaf4426dd1cc07f29c4225978104e40c5999f` | 0 |
+| logo/bmp_to_compressed_bgr565_byteswapped.py | 1182 | `250eb5e990a869936207c5e3d82eb9bfe4493ccd3c299ea307209c1472345c87` | 0 |
+| logo/compressed_bgr565_byteswapped_to_bmp.py | 1383 | `a46ef80050143b0fe440684cf1b44a2389a70c06c4fa7e9167f8db9280ff8b07` | 0 |
 | main/aes.c | 2577 | `cc9a126c7be550237fbd6b27f715a486e96a301e432ae9d6d23a51e9a4f00942` | 0 |
 | main/aes.h | 802 | `49bec702f79dbd7d5d4a0095b126c263144410e445ae1be71aad27e01e1a7d37` | 0 |
 | main/amalgamated.c | 5318 | `5e3b8981f49e16b1b72264eb4ca9a2c1f3d24a0802ced2dd3e21dc3aa2d36378` | 0 |
@@ -1294,3 +1984,40 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | main/wifi.h | 460 | `8273dacaee29f457b4a5453c7ccbbf06b825416e8803b4588fa7ab9f3a619d2b` | 0 |
 | main/wire.c | 7543 | `1a6c534cb518b8698aebbae58c13e7ae41dc72f85254914d24376ca412d36038` | 0 |
 | main/wire.h | 746 | `c7dfa1c20463b7e99997545721fb2aacf08cf5474158466edf623eafc4f45436` | 0 |
+| pinserver/__init__.py | 2 | `32c4858e22cc2c967b42150fa550562a2c839c2cebcaab91cabdf6f4da020022` | 0 |
+| pinserver/client.py | 2854 | `f4a978b1cd26fb93515532cb07bcb3d227bb86d75f11d4a2fde745a71092a375` | 0 |
+| pinserver/flaskserver.py | 4277 | `08e82e17822a22b7948bdd4b9dc47015bc89bb967778050f7b8bd19c27aac26c` | 0 |
+| pinserver/generateserverkey.py | 107 | `1d64e15240a45dc3680dcb099c8c226add60461bd61e3f53d1cf20356a72f9cb` | 0 |
+| pinserver/lib.py | 2237 | `50e7b79f87908c805b499141142d64678bc3c3c2c652dd6ab03da1c62122a9a1` | 0 |
+| pinserver/nginx.conf | 446 | `98913f6a3df630550bc9588610b4e07f284da936d53f9c8a2bf3018d46352c27` | 0 |
+| pinserver/nginx.runit | 62 | `3de74324e835a1de23a2b06e42f7f24a928f5781e7c0ff1b793da4ff710a6c5a` | 0 |
+| pinserver/pindb.py | 11950 | `dcf58d522718481dc931640f30167a6401ae46e404a3d1222d096142c07105ad` | 0 |
+| pinserver/requirements.txt | 32596 | `23ffc3b8931f16a664615f28362789f1f9039403cd5acc93a7efd2bcf783bbbf` | 0 |
+| pinserver/server.py | 5233 | `f1a33bff3075ce847e5c16e5e366089d886986b9b3ec28051c0c308d0380f5ae` | 0 |
+| pinserver/wsgi.py | 175 | `b640feb24168d41c3dea1626f12994b7818ea18021f5ba6e02bbc0e6ab242632` | 0 |
+| pinserver_public_key.pub | 33 | `4b15b0aa90bba10af30353a8aa616e6a2e1966cfc8e6ff05cb2c990c669a393e` | 0 |
+| release/scripts/dev_fw_pub_key_A.pub | 625 | `b2dd4a86e1138b27dd1a13ad2cabcb4ea863f4f52d173341452e25a5f8afb4e4` | 0 |
+| release/scripts/dev_fw_pub_key_B.pub | 625 | `25067329806235c82fa1f9cc386e7d1b8618f9d504c21e647a848d581c48b0ba` | 0 |
+| release/scripts/dev_fw_pub_key_C.pub | 625 | `b18c59f82294b9f6746cfafac951283c6ea64b115ffaca651d8ef84e3b2b6d68` | 0 |
+| release/scripts/dev_fw_signing_key_A.pem | 116 | `9ca1e4e0bdfd0bb7d73cffc1724a754a9d3f45542b0785bc5c7c6ee6cfe3db2c` | 1 |
+| release/scripts/dev_fw_signing_key_B.pem | 116 | `3ca9a9dc698f8a9c4b8b32d005bac71a53d51ffdd0a0cfa6ab6cd2e5d326de3b` | 1 |
+| release/scripts/dev_fw_signing_key_C.pem | 116 | `d8c6ab0ab97cd549426aead484cd260502a41a13c9439377a561d989f1911c3c` | 1 |
+| release/scripts/v2pk1.pub | 625 | `8ac2f58e782977adb6b6ab4cf0916d730dea6b81ce3a1bbeb2eeb5e48b2bd646` | 0 |
+| release/scripts/v2pk2.pub | 625 | `2c173c1c756fb2ef5c7580022edc860684d1047974ed935c128798fdb95bc3b0` | 0 |
+| release/scripts/v2pk3.pub | 625 | `61e86e6c31a183c8a185e59397d9c9916f6e7017949bbaccb21e5591d16dedc9` | 0 |
+| release/scripts/v2pkdev.pub | 625 | `9d478c5eb172967a5dd3035efc4885750e1ffb2ac037a848cd3427cc68bd387b` | 0 |
+| requirements.txt | 31277 | `06b85a4e72730ea3c7c6c68c757704ae1c17d44da3169b419495f62fa7ad6db8` | 0 |
+| server_private_key.key | 32 | `0bd82b55a09f1e21cea19b9a7813b3355eec8018c832468b808196dcae180525` | 0 |
+| server_public_key.pub | 33 | `b93b25d069f2c6d3a09caf81360acc373433181813951c119fcee664733ba8ab` | 0 |
+| set_jade_pinserver.py | 4331 | `92001705bbd445e1193b38ff491b1b8d3b13b734f3a4b6e193cf50065ddc881f` | 0 |
+| setup.py | 1522 | `f11870b2d69506965e44fc296a438961aaa0b3ce04798e3186886910df7fb033` | 0 |
+| tools/bip85_rsa_key_gen/main.c | 6342 | `77c1e4b8f3783371abb7e680c7c03e26b60b1d4b9a3412b0076aaa66ee7590e0` | 0 |
+| tools/fakeprod_attest.pem | 128 | `20ee7256b70e0a02ed6f17ffad84591d111952f2fb55e16b480562487613e95e` | 1 |
+| tools/fakeprod_v2.pem | 116 | `9c35cb5e47270a5e58d2bd72049708aa49d542d64e908ac9f52294c830c770b9` | 1 |
+| tools/fix_compilation_db.py | 1532 | `067983fb5ea78dfdb2150c007667fe23d83c17fbf5751e3d4038ab74a42aa078` | 0 |
+| tools/fwprep.py | 1760 | `ce21ba10ecb2e9b4162511636d1e56340c413b82e812b38117f50fb04f2847f3` | 0 |
+| tools/fwtools.py | 4553 | `3f092ad0a5a85c904678590f776d77dc5e12444f24fd39462a3aaabae5724349` | 0 |
+| tools/mkdefaults.py | 2710 | `33b6ea868ba3847b18d4dab9af822f41baa54fc3da37beb9f6d1ed811a901632` | 0 |
+| tools/mkindex.py | 4523 | `9616c1b42c0d257fc549bd234d6142369cb6fda935a75146af384ba520a7d013` | 0 |
+| tools/mkpatch.py | 4182 | `701edaf4d222c01592678cc0860d77ab299698d92b9f2ade55f890a5eda0a053` | 0 |
+| update_jade_fw.py | 10834 | `2b215129a8696273d3016636c53c40451f77d1386cea7a6c7b06c1cadedbd2a6` | 0 |

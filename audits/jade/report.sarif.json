@@ -11,10 +11,35 @@
           "version": "1.2.0",
           "rules": [
             {
+              "id": "KEY-PRIVATE-IN-INPUT",
+              "name": "KeyPrivateInInput",
+              "shortDescription": {
+                "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_A.pem"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "secrets",
+                  "confirmed_vulnerability"
+                ],
+                "security-severity": "8.1"
+              },
+              "fullDescription": {
+                "text": "Блок «RSA PRIVATE KEY» найден в строке 1 файла release/scripts/dev_fw_signing_key_A.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
+              },
+              "help": {
+                "text": "Блок «RSA PRIVATE KEY» найден в строке 1 файла release/scripts/dev_fw_signing_key_A.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
               "id": "KEY-QV-PUBLIC",
               "name": "KeyQvPublic",
               "shortDescription": {
-                "text": "Quantum-vulnerable RSA key (4096-bit) in components/libwally-core/upstream/SECURITY.md"
+                "text": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -28,10 +53,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "A RSA 4096-bit public key was found (line 52). Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability."
+                "text": "Найден открытый ключ RSA 4096-bit (строка 52). Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
               },
               "help": {
-                "text": "A RSA 4096-bit public key was found (line 52). Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability."
+                "text": "Найден открытый ключ RSA 4096-bit (строка 52). Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -39,7 +64,7 @@
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable ECDSA: transaction and message signing (40 file(s))"
+                "text": "Квантово-уязвимый ECDSA: проверка прошивки и загрузки (корень доверия) (2 файл(ов))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -53,10 +78,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "146 reference(s) to ECDSA across 40 file(s), e.g. components/libwally-core/upstream/setup.py:58. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "2 упоминаний ECDSA в 2 файл(ах), например bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c:118. Роль по путям, именам функций и соседнему коду: проверка прошивки и загрузки (корень доверия). Эти открытые ключи зашиты в загрузчик или устройство: с криптографически значимым квантовым компьютером (CRQC) злоумышленник подделает подпись прошивки, а замена ключей требует обновления загрузчика на устройствах в поле. Запланируйте гибридную подпись прошивки (классическая плюс ML-DSA или SLH-DSA, обе обязательны) и способ доставить новые ключи обновлением загрузчика. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "146 reference(s) to ECDSA across 40 file(s), e.g. components/libwally-core/upstream/setup.py:58. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "2 упоминаний ECDSA в 2 файл(ах), например bootloader_components/bootloader_support/src/secure_boot_v1/secure_boot_signatures_app.c:118. Роль по путям, именам функций и соседнему коду: проверка прошивки и загрузки (корень доверия). Эти открытые ключи зашиты в загрузчик или устройство: с криптографически значимым квантовым компьютером (CRQC) злоумышленник подделает подпись прошивки, а замена ключей требует обновления загрузчика на устройствах в поле. Запланируйте гибридную подпись прошивки (классическая плюс ML-DSA или SLH-DSA, обе обязательны) и способ доставить новые ключи обновлением загрузчика. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -64,7 +89,7 @@
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "15 advisories in 5 development or build-only npm package(s)"
+                "text": "15 бюллетеней в 5 пакет(ах) npm, нужных только для разработки или сборки"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -78,29 +103,348 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev lists 15 advisories (8 rated high or critical) for 5 npm package(s) that only development or build tooling pulls in (components/libwally-core/upstream/src/wasm_package/package-lock.json): e.g. ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; baseline-browser-mapping@2.9.19 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.1 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.5 [dev]: GHSA-333x-w4r6-6crp, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine mainten…"
+                "text": "OSV.dev сообщает 15 бюллетеней (8 с оценкой high или critical) для 5 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (components/libwally-core/upstream/src/wasm_package/package-lock.json): например, ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; baseline-browser-mapping@2.9.19 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.1 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.5 [dev]: GHSA-333x-w4r6-6crp, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные ар…"
               },
               "help": {
-                "text": "OSV.dev lists 15 advisories (8 rated high or critical) for 5 npm package(s) that only development or build tooling pulls in (components/libwally-core/upstream/src/wasm_package/package-lock.json): e.g. ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; baseline-browser-mapping@2.9.19 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.1 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.5 [dev]: GHSA-333x-w4r6-6crp, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
+                "text": "OSV.dev сообщает 15 бюллетеней (8 с оценкой high или critical) для 5 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (components/libwally-core/upstream/src/wasm_package/package-lock.json): например, ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; baseline-browser-mapping@2.9.19 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.1 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.5 [dev]: GHSA-333x-w4r6-6crp, GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-qw65-cvwx-89v3, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (pycryptodome), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "help": {
+                "text": "В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (pycryptodome), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
           ]
         }
       },
       "results": [
         {
-          "ruleId": "KEY-QV-PUBLIC",
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
           "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_A.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "625323bc5a3b34a4d377755538e9afc4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06703",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "release/scripts/dev_fw_signing_key_A.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_B.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "04d9ab1656a40edbbeeee42bbbf26870"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06704",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "release/scripts/dev_fw_signing_key_B.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_C.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d59da22404e567a06756060b4b4457ff"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06705",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "release/scripts/dev_fw_signing_key_C.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в tools/fakeprod_attest.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "59a3ce90999c07761680b7a82dddbdf8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06710",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/fakeprod_attest.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в tools/fakeprod_v2.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9681280d7fbe76fc10410a863c955140"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06711",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/fakeprod_v2.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable RSA key (4096-bit) in components/libwally-core/upstream/SECURITY.md"
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2d44bf907c8f8deae06fb74e8260bfca"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06691",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в components/libwally-core/upstream/SECURITY.md"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "631111c82958a24ca4eb11ab8ee411e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-06120",
+            "qsiId": "QSI-2026-06693",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/dev_fw_pub_key_A.pub"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "44f022f9d8c7a2019532e85022c0544a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06700",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/dev_fw_pub_key_B.pub"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0634ef92374c448ea28ff13b1f26aa98"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06701",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/dev_fw_pub_key_C.pub"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "673a3d470585a2d1b3603011e0d345c7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06702",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pk1.pub"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6d0cbcc52eed3d6d1d2e013c246c36d7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06706",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pk2.pub"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1db9354e38d72ef657d8ad0ad832be27"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06707",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pk3.pub"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "38cac7ac78496d60c427087a942d7a62"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06708",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в release/scripts/v2pkdev.pub"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ebd7c67fcaa93d7e59721be8a97f7c23"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06709",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -109,16 +453,34 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: transaction and message signing (40 file(s))"
+            "text": "Квантово-уязвимый ECDSA: проверка прошивки и загрузки (корень доверия) (2 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a40c69f2e897406891adf400d5d59cf8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06692",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (36 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-06121",
+            "qsiId": "QSI-2026-06694",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -127,16 +489,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (6 file(s))"
+            "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (5 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-06123",
+            "qsiId": "QSI-2026-06696",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -145,16 +507,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: role not determined (2 file(s))"
+            "text": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-06122",
+            "qsiId": "QSI-2026-06695",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -163,34 +525,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDH: role not determined (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06124",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))"
+            "text": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-06125",
+            "qsiId": "QSI-2026-06697",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -199,16 +543,34 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))"
+            "text": "Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06698",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-06126",
+            "qsiId": "QSI-2026-06699",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -217,16 +579,16 @@
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
-            "text": "15 advisories in 5 development or build-only npm package(s) (dependencies: npm:non-runtime)"
+            "text": "15 бюллетеней в 5 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-06127",
+            "qsiId": "QSI-2026-06713",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -241,16 +603,34 @@
               }
             }
           ]
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06712",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
         }
       ],
       "automationDetails": {
-        "id": "qsi/jade @ a59d14c2b397/633fed56-b826-4e1b-93cd-7d2ea40571e8"
+        "id": "qsi/jade @ a59d14c2b397/b3760777-ac16-4f31-8650-45c2187077a4"
       },
       "properties": {
-        "qsiContentSha256": "7942ddb55815a12070642368e6e3ea6fc9c02c06f4bad7fe1df427ff83cae3e3",
+        "qsiContentSha256": "f4b140a68a457febeea7aae793751c45b1001460fce55b495d23af538ad63b92",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-28T21:17:19.340192+00:00",
+        "qsiGeneratedAt": "2026-10-29T19:59:17.115192+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

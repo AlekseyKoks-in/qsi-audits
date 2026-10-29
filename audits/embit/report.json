@@ -1,8 +1,8 @@
 {
-  "content_sha256": "6952d6f2effe767632633748509a85fe1bcc8364547c3efd53734d2d89571361",
+  "content_sha256": "14c757ffe03c6a7fe308eb8fae17fa1c4950de88a24495fe5684d5853937e12e",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-29T19:13:27.400781+00:00",
+  "generated_at": "2026-10-29T20:14:47.082270+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,21 +11,72 @@
     "id": "185423f5-9b58-4bac-9bbf-80a3831b3f11",
     "name": "embit @ 2b375a33bd89",
     "client_name": "embit (SeedSigner, Krux)",
-    "description": "Static review of the source tree embit at 2b375a33bd8926caec7e53d7cfd41b165d196566. 153 files analysed; of 302 files, 60 are test, fuzzing, benchmark or example code and were left out, 89 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 62 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 96 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree embit at 2b375a33bd8926caec7e53d7cfd41b165d196566. 142 files analysed; of 302 files, 71 are test, fuzzing, benchmark or example code and were left out, 89 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 63 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 85 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "190c0a5c-8216-4102-a411-ddc027bdc759",
+    "id": "1cd45d27-cbfb-422a-a589-078b9002d7d9",
     "mode": "document",
     "title": "Document audit: embit",
     "status": "completed",
     "engine_version": "1.2.0",
-    "started_at": "2026-10-29T19:12:52.341014+00:00",
-    "finished_at": "2026-10-29T19:13:27.145693+00:00",
+    "started_at": "2026-10-29T20:14:19.160950+00:00",
+    "finished_at": "2026-10-29T20:14:46.947287+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
       "ref": "2b375a33bd8926caec7e53d7cfd41b165d196566",
+      "triage": {
+        "analyst": "QSI review, 2026-10-29",
+        "decisions": [
+          {
+            "note": "Verified against source at 2b375a33bd89. src/embit/ec.py wraps the implementation directly: line 18 serialises with secp256k1.ecdsa_signature_serialize_der and line 24 parses with ecdsa_signature_parse_der, over the pinned secp256k1/secp256k1-zkp submodule. This is the signing path two hardware wallets actually reach: SeedSigner through embit==0.8.0, pinned with a sha256 hash lock in its requirements.txt, and Krux through the vendor/embit submodule. A CRQC recovers the private key from a public key already on chain, so the exposure is retroactive for any reused or already-spent address. One correction to the finding's own exemplar: contrib/lax_der_parsing.c:11 is a permissive DER parsing helper, not the signing core, and a reader checking that line first will underrate the finding. src/embit/ec.py:18 and :24 are the lines to read.",
+            "match": {
+              "rule": "CODE-QV-ASYMMETRIC",
+              "asset": "source-code:ECDSA:transaction_signing"
+            },
+            "decision": "confirmed"
+          },
+          {
+            "note": "Verified. include/secp256k1_schnorrsig.h:82 is secp256k1_schnorrsig_sign and :100 is secp256k1_schnorrsig_verify, so taproot signing is present and reachable from embit. BIP-340 rests on the same discrete-log hardness as ECDSA: it fixed malleability and enabled aggregation, not quantum resistance, so these rows are exposed exactly as the ECDSA ones are. Counted with a caveat recorded against the scanner rather than against the project: one of the cited files, src/bench_schnorrsig.c, is a benchmark, and benchmark files inside a pinned submodule were not excluded by the test-and-example filter even though the report claims they were. 12 of this audit's 89 inventory rows come from bench_*.c files in secp256k1-zkp. That is an over-count on my side, the mirror image of the submodule under-reads this project has already fixed, and it is being fixed in the runner rather than papered over here.",
+            "match": {
+              "rule": "CODE-QV-ASYMMETRIC",
+              "asset": "source-code:Schnorr (BIP-340):transaction_signing"
+            },
+            "decision": "confirmed"
+          },
+          {
+            "note": "Confirmed, with the role corrected. The finding reports \"role not determined\" for src/embit/ec.py, but the role is determinable from the file itself: ec.py is embit's signature and public-key class, and lines 18 and 24 serialise and parse DER ECDSA signatures for transactions. This is the same transaction-signing role as the other ECDSA finding in this audit, not an undetermined one, and the two should be read together rather than as separate exposures.",
+            "match": {
+              "rule": "CODE-QV-ASYMMETRIC",
+              "asset": "source-code:ECDSA:general"
+            },
+            "decision": "confirmed"
+          },
+          {
+            "note": "The primitive is present and quantum-relevant, but both the role and the stated consequence are wrong and are corrected here. src/embit/liquid/pset.py:101 and :300 call secp256k1.pedersen_commit over value blinding factors: this is Liquid confidential transactions, not threshold signing and not MPC. And the consequence is the opposite way round from the finding's text: a Pedersen commitment's HIDING property is information-theoretic, so a CRQC does not retroactively reveal blinded amounts, while its BINDING property rests on the discrete logarithm, so a CRQC can open a commitment to a different value. The risk here is forged amounts, that is inflation of a confidential asset, not loss of confidentiality. Priority should be read accordingly.",
+            "match": {
+              "rule": "CODE-QV-ASYMMETRIC",
+              "asset": "source-code:Pedersen commitment:threshold_mpc"
+            },
+            "decision": "confirmed"
+          },
+          {
+            "note": "Read the source: src/embit/slip39.py runs hashlib.pbkdf2_hmac(\"sha256\", i + passphrase, salt + right, 2500 << exponent, half) inside a loop over four round indices. SLIP-39 specifies a base iteration count of 10000 divided across its four Feistel rounds, which is 2500 per round, scaled by two to the power of the share's exponent field. The number is mandated by the standard the file implements, not a configuration the project chose, and the effective total at exponent 0 is 10000. Flagging it would mean flagging SLIP-39 itself, which is a different argument and does not belong in this finding.",
+            "match": {
+              "rule": "CODE-WEAK-PBKDF2"
+            },
+            "decision": "false_positive"
+          },
+          {
+            "note": "All eight packages are reached only through development and build groups in poetry.lock - black, certifi, filelock and similar - and none is imported by src/embit, which is the code that ships to SeedSigner as a wheel and to Krux as a submodule. The advisories are real for those packages and irrelevant to anyone running the library, so they are recorded and kept out of any risk figure. The dev-versus-runtime split is doing its job here.",
+            "match": {
+              "rule": "DEP-ADVISORY-DEV"
+            },
+            "decision": "not_applicable"
+          }
+        ]
+      },
       "language": "ru",
       "repo_url": "https://github.com/diybitcoinhardware/embit",
       "osv_lookup": true,
@@ -168,72 +219,6 @@
       "name": "secp256k1/secp256k1-zkp/src/basic-config.h",
       "size": 590,
       "sha256": "5af274e93a0de7a51f1111f356d249262b1934976d0e537c072ddbbbec2ae7b6",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench.h",
-      "size": 3248,
-      "sha256": "67c79b13fdab8785cee3dc99c04d33d348e7fe7d83f95a19f1bec2cda301bd8c",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_ecdh.c",
-      "size": 1780,
-      "sha256": "1ee504efb7e2ceb3c20bf6a3e9ae58b9af406f27c07d41f7ac0fb93c91951580",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_ecmult.c",
-      "size": 13913,
-      "sha256": "3a4364ee95d65ef3ef1537915c3417817efbe60d429c2737636de08c793930ea",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_generator.c",
-      "size": 1937,
-      "sha256": "f8329e9cdc68bfede01433cb6f1f8c60ccd9805c3367143a92aaad11cd57af5d",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_internal.c",
-      "size": 15815,
-      "sha256": "e97bf77934b3cde1dd9450917dbc958e130ed964873156b6c168a1314dfbcc88",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_rangeproof.c",
-      "size": 2285,
-      "sha256": "9565559cee0be2595fb6949bc198dab62b501737991da4234ae6ac3efb5492ca",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_recover.c",
-      "size": 2097,
-      "sha256": "6d5c4875a5914bfe80244852ad820cace9850ab7d051c0a1b027145f328d7613",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c",
-      "size": 3562,
-      "sha256": "2818e1de5c6a6b9901618caaf52d50ff410e10b3b43a52a9654feea638d5af02",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_sign.c",
-      "size": 1674,
-      "sha256": "1267c04ff3173197fb701ea7db98b4e37bfbc500bb698d0ac61b229f8272e5b4",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_verify.c",
-      "size": 3972,
-      "sha256": "c29c485cc0bb3bffb420ee047916424ffb6a77fe8e614841d148252f4155c270",
-      "redactions": 0
-    },
-    {
-      "name": "secp256k1/secp256k1-zkp/src/bench_whitelist.c",
-      "size": 3790,
-      "sha256": "fbada26bce0086e0c02280604da159e78270eade5183c5af2aea679732760523",
       "redactions": 0
     },
     {
@@ -958,8 +943,8 @@
     }
   ],
   "inputs_total": {
-    "files": 153,
-    "bytes": 1456411,
+    "files": 142,
+    "bytes": 1402338,
     "redactions": 0
   },
   "coverage": [
@@ -1351,61 +1336,6 @@
     {
       "area": "source_code",
       "detail": "secp256k1/secp256k1-zkp/src/basic-config.h: 17 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench.h: 133 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_ecdh.c: 59 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_ecmult.c: 367 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_generator.c: 60 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_internal.c: 399 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_rangeproof.c: 65 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_recover.c: 62 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c: 102 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_sign.c: 58 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_verify.c: 115 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "secp256k1/secp256k1-zkp/src/bench_whitelist.c: 107 lines scanned with 16 rule patterns and 123 registry patterns",
       "status": "checked"
     },
     {
@@ -2064,8 +1994,8 @@
     {
       "area": "source_code",
       "status": "checked",
-      "count": 151,
-      "rows": 151,
+      "count": 140,
+      "rows": 140,
       "examples": [
         "secp256k1/config/libsecp256k1-config.h: 44 lines scanned with 16 rule patterns and 123 registry patterns",
         "secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 123 registry patterns",
@@ -2428,17 +2358,6 @@
       "secp256k1/secp256k1-zkp/include/secp256k1_whitelist.h",
       "secp256k1/secp256k1-zkp/src/assumptions.h",
       "secp256k1/secp256k1-zkp/src/basic-config.h",
-      "secp256k1/secp256k1-zkp/src/bench.h",
-      "secp256k1/secp256k1-zkp/src/bench_ecdh.c",
-      "secp256k1/secp256k1-zkp/src/bench_ecmult.c",
-      "secp256k1/secp256k1-zkp/src/bench_generator.c",
-      "secp256k1/secp256k1-zkp/src/bench_internal.c",
-      "secp256k1/secp256k1-zkp/src/bench_rangeproof.c",
-      "secp256k1/secp256k1-zkp/src/bench_recover.c",
-      "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c",
-      "secp256k1/secp256k1-zkp/src/bench_sign.c",
-      "secp256k1/secp256k1-zkp/src/bench_verify.c",
-      "secp256k1/secp256k1-zkp/src/bench_whitelist.c",
       "secp256k1/secp256k1-zkp/src/eccommit.h",
       "secp256k1/secp256k1-zkp/src/eccommit_impl.h",
       "secp256k1/secp256k1-zkp/src/ecdsa.h",
@@ -2561,13 +2480,29 @@
       "tools/verify_package_artifacts.py"
     ]
   },
-  "dismissed": [],
-  "triage": null,
+  "dismissed": [
+    {
+      "public_id": "QSI-2026-06829",
+      "rule_id": "CODE-WEAK-PBKDF2",
+      "title": "Малое число итераций PBKDF2 (2500) в src/embit/slip39.py",
+      "note": "Read the source: src/embit/slip39.py runs hashlib.pbkdf2_hmac(\"sha256\", i + passphrase, salt + right, 2500 << exponent, half) inside a loop over four round indices. SLIP-39 specifies a base iteration count of 10000 divided across its four Feistel rounds, which is 2500 per round, scaled by two to the power of the share's exponent field. The number is mandated by the standard the file implements, not a configuration the project chose, and the effective total at exponent 0 is 10000. Flagging it would mean flagging SLIP-39 itself, which is a different argument and does not belong in this finding.",
+      "analyst": "QSI review, 2026-10-29"
+    }
+  ],
+  "triage": {
+    "analyst": "QSI review, 2026-10-29",
+    "counts": {
+      "confirmed": 4,
+      "not_applicable": 1,
+      "false_positive": 1
+    },
+    "text": "Проверка аналитика: подтверждено — 4, не применимо — 1, отклонено как ложные срабатывания — 1."
+  },
   "summary": {
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 5,
+      "medium": 4,
       "low": 0,
       "info": 1
     },
@@ -2575,29 +2510,29 @@
       "confirmed_vulnerability": 0,
       "known_vulnerable_component": 0,
       "confirmed_misconfiguration": 0,
-      "potential_crypto_risk": 1,
+      "potential_crypto_risk": 0,
       "pq_long_term_risk": 4,
       "improvement": 1,
       "insufficient_data": 0
     },
-    "total": 6,
-    "posture_index": 97,
-    "pq_vulnerable_share": 75.3,
-    "inventory_total": 89,
+    "total": 5,
+    "posture_index": 100,
+    "pq_vulnerable_share": 71.4,
+    "inventory_total": 77,
     "inventory_by_quantum_status": {
       "classical_weakness": 3,
       "grover_margin": 9,
       "grover_reduced": 10,
-      "vulnerable_shor": 67
+      "vulnerable_shor": 55
     }
   },
   "findings": [
     {
-      "id": "dba563b3-05d0-41f9-aeea-24f0ab1bd062",
-      "public_id": "QSI-2026-06655",
+      "id": "e9b5b01a-3613-46b9-86fa-f3afa4e01f62",
+      "public_id": "QSI-2026-06825",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (39 файл(ов))",
-      "description": "296 упоминаний ECDSA в 39 файл(ах), например secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
+      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (31 файл(ов))",
+      "description": "277 упоминаний ECDSA в 31 файл(ах), например secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
       "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
       "recommendation": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.",
       "retest": "Повторите инвентаризацию после рефакторинга.",
@@ -2608,14 +2543,19 @@
       "classification": "pq_long_term_risk",
       "severity": "medium",
       "confidence": "medium",
-      "preliminary": true,
+      "preliminary": false,
       "status": "open",
-      "triage": null,
+      "triage": {
+        "note": "Verified against source at 2b375a33bd89. src/embit/ec.py wraps the implementation directly: line 18 serialises with secp256k1.ecdsa_signature_serialize_der and line 24 parses with ecdsa_signature_parse_der, over the pinned secp256k1/secp256k1-zkp submodule. This is the signing path two hardware wallets actually reach: SeedSigner through embit==0.8.0, pinned with a sha256 hash lock in its requirements.txt, and Krux through the vendor/embit submodule. A CRQC recovers the private key from a public key already on chain, so the exposure is retroactive for any reused or already-spent address. One correction to the finding's own exemplar: contrib/lax_der_parsing.c:11 is a permissive DER parsing helper, not the signing core, and a reader checking that line first will underrate the finding. src/embit/ec.py:18 and :24 are the lines to read.",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "confirmed",
+        "severity_before": "medium"
+      },
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:13:26.828717+00:00",
-      "risk_score": 35.6,
+      "detected_at": "2026-10-29T20:14:46.839838+00:00",
+      "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
           "x": 10.0,
@@ -2629,7 +2569,7 @@
           "x_source": "project signature lifetime",
           "margin_years": 7.0
         },
-        "score": 35.6,
+        "score": 41.8,
         "factors": {
           "ease": 0.3,
           "asset": 0.8,
@@ -2675,7 +2615,7 @@
           "severity": 12.5,
           "exploitability": 2.0
         },
-        "confidence_multiplier": 0.68
+        "confidence_multiplier": 0.8
       },
       "cvss_vector": null,
       "cvss_score": null,
@@ -2711,7 +2651,7 @@
           "content_sha256": "9197354c850cb53bbc475b348c0f97bb3f550706fcced8bf483336d626575330",
           "source_sha256": "14225148538be5587db2304dcb6ba6340b2f195352ada8de78da53ba9ca7eec1",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884046+00:00",
+          "collected_at": "2026-10-29T20:14:46.857950+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c#L11"
         },
         {
@@ -2722,7 +2662,7 @@
           "content_sha256": "234aeaaf6b28e1d2ff43854e60a3119e3c3f55229e18841e2dc766404eab65d0",
           "source_sha256": "14225148538be5587db2304dcb6ba6340b2f195352ada8de78da53ba9ca7eec1",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884057+00:00",
+          "collected_at": "2026-10-29T20:14:46.857959+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c#L19"
         },
         {
@@ -2733,7 +2673,7 @@
           "content_sha256": "75ad5d0cba25ca64adb6d971da937879704b4abc8845c17dc1da9fa1eb773e5e",
           "source_sha256": "14225148538be5587db2304dcb6ba6340b2f195352ada8de78da53ba9ca7eec1",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884061+00:00",
+          "collected_at": "2026-10-29T20:14:46.857962+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c#L140"
         },
         {
@@ -2744,7 +2684,7 @@
           "content_sha256": "25af7e242d92af0d3c46ae8d8a48030e247c4bfdeba65068030e64eb4c88c912",
           "source_sha256": "79c479a9e6f51a5ad1e83b9efcde9df4e3431c2a3e894d37de8e9c9bc4538fb2",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884064+00:00",
+          "collected_at": "2026-10-29T20:14:46.857966+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h#L57"
         },
         {
@@ -2755,7 +2695,7 @@
           "content_sha256": "4c35a81e99a7eaf5ea7315346f3b8cacb0832f7c4a3b1a3d003ff0bd3b6a82c1",
           "source_sha256": "79c479a9e6f51a5ad1e83b9efcde9df4e3431c2a3e894d37de8e9c9bc4538fb2",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884068+00:00",
+          "collected_at": "2026-10-29T20:14:46.857970+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h#L59"
         },
         {
@@ -2766,7 +2706,7 @@
           "content_sha256": "85efcade66268dd4d0b42e8f31b634ea4cd93d9d55cdc2e036715108d8697665",
           "source_sha256": "79c479a9e6f51a5ad1e83b9efcde9df4e3431c2a3e894d37de8e9c9bc4538fb2",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884071+00:00",
+          "collected_at": "2026-10-29T20:14:46.857973+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h#L88"
         },
         {
@@ -2777,7 +2717,7 @@
           "content_sha256": "163cac24f6b60e798317e2383fb603da718e728035262dc9759d7cf3fbd47b4f",
           "source_sha256": "3dcaf6d98270a20ef1455f67479191ff31747af1e66cec979b01a2be41a968f2",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884074+00:00",
+          "collected_at": "2026-10-29T20:14:46.857976+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h#L34"
         },
         {
@@ -2788,7 +2728,7 @@
           "content_sha256": "2741d1869779ddac4f151ac1740c338ba299b2bed7b98a38e6042acb62fca350",
           "source_sha256": "3dcaf6d98270a20ef1455f67479191ff31747af1e66cec979b01a2be41a968f2",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884077+00:00",
+          "collected_at": "2026-10-29T20:14:46.857980+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h#L36"
         },
         {
@@ -2799,7 +2739,7 @@
           "content_sha256": "976a23a4a733f368307a87186feac41d258d0c7eae4fef7da5eddec537f04c62",
           "source_sha256": "524e48b39a62c9f54f203dca9b8a5a69946028fe7adeadeb60a81e590eb5c78a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884080+00:00",
+          "collected_at": "2026-10-29T20:14:46.857984+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/include/secp256k1.h#L85"
         },
         {
@@ -2810,7 +2750,7 @@
           "content_sha256": "15748a6fd21f774cca6b0c463fb56ef156b0a05c17cc86d0a52c76c0ed75a59e",
           "source_sha256": "524e48b39a62c9f54f203dca9b8a5a69946028fe7adeadeb60a81e590eb5c78a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.884083+00:00",
+          "collected_at": "2026-10-29T20:14:46.857987+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/include/secp256k1.h#L417"
         }
       ],
@@ -2848,11 +2788,11 @@
       ]
     },
     {
-      "id": "925c9b05-e142-473f-a5f9-35d43d2df707",
-      "public_id": "QSI-2026-06656",
+      "id": "687bf9d5-86e1-4a86-8bbe-6dd74d8a40e0",
+      "public_id": "QSI-2026-06826",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))",
-      "description": "22 упоминаний Schnorr (BIP-340) в 7 файл(ах), например secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
+      "title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (6 файл(ов))",
+      "description": "19 упоминаний Schnorr (BIP-340) в 6 файл(ах), например secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
       "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
       "recommendation": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.",
       "retest": "Повторите инвентаризацию после рефакторинга.",
@@ -2863,14 +2803,19 @@
       "classification": "pq_long_term_risk",
       "severity": "medium",
       "confidence": "medium",
-      "preliminary": true,
+      "preliminary": false,
       "status": "open",
-      "triage": null,
+      "triage": {
+        "note": "Verified. include/secp256k1_schnorrsig.h:82 is secp256k1_schnorrsig_sign and :100 is secp256k1_schnorrsig_verify, so taproot signing is present and reachable from embit. BIP-340 rests on the same discrete-log hardness as ECDSA: it fixed malleability and enabled aggregation, not quantum resistance, so these rows are exposed exactly as the ECDSA ones are. Counted with a caveat recorded against the scanner rather than against the project: one of the cited files, src/bench_schnorrsig.c, is a benchmark, and benchmark files inside a pinned submodule were not excluded by the test-and-example filter even though the report claims they were. 12 of this audit's 89 inventory rows come from bench_*.c files in secp256k1-zkp. That is an over-count on my side, the mirror image of the submodule under-reads this project has already fixed, and it is being fixed in the runner rather than papered over here.",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "confirmed",
+        "severity_before": "medium"
+      },
       "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
       "data_source": "secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:13:26.867837+00:00",
-      "risk_score": 35.6,
+      "detected_at": "2026-10-29T20:14:46.851377+00:00",
+      "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
           "x": 10.0,
@@ -2884,7 +2829,7 @@
           "x_source": "project signature lifetime",
           "margin_years": 7.0
         },
-        "score": 35.6,
+        "score": 41.8,
         "factors": {
           "ease": 0.3,
           "asset": 0.8,
@@ -2930,7 +2875,7 @@
           "severity": 12.5,
           "exploitability": 2.0
         },
-        "confidence_multiplier": 0.68
+        "confidence_multiplier": 0.8
       },
       "cvss_vector": null,
       "cvss_score": null,
@@ -2966,7 +2911,7 @@
           "content_sha256": "44a2365db81547948644f36130e817fe690091caa187560ab468f34585def2d5",
           "source_sha256": "4c06e835211e9426c0a1af5a6e7ba8a9b7a0849eb6c60adb9f9309902266b9b4",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917362+00:00",
+          "collected_at": "2026-10-29T20:14:46.879085+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h#L82"
         },
         {
@@ -2977,41 +2922,8 @@
           "content_sha256": "72dc7958413515e7228437fe19dec8a24a240083981c855296f98cdf0e8262f2",
           "source_sha256": "4c06e835211e9426c0a1af5a6e7ba8a9b7a0849eb6c60adb9f9309902266b9b4",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917371+00:00",
+          "collected_at": "2026-10-29T20:14:46.879096+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h#L100"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c",
-          "location": "line 35",
-          "content": "   34 |         msg[1] = i >> 8;\n   35 |         CHECK(secp256k1_schnorrsig_sign(data->ctx, sig, msg, data->keypairs[i], NULL, NULL));\n   36 |     }",
-          "content_sha256": "674eca5c90f2832557ebb0e80a0d9602e21023babdcafa1cd7a408fc4e030aaf",
-          "source_sha256": "2818e1de5c6a6b9901618caaf52d50ff410e10b3b43a52a9654feea638d5af02",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917374+00:00",
-          "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c#L35"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c",
-          "location": "line 46",
-          "content": "   45 |         CHECK(secp256k1_xonly_pubkey_parse(data->ctx, &pk, data->pk[i]) == 1);\n   46 |         CHECK(secp256k1_schnorrsig_verify(data->ctx, data->sigs[i], data->msgs[i], &pk));\n   47 |     }",
-          "content_sha256": "84de389aa6107e5e013a9fd58f887352a61df857f4e7eb5d5ef0a104237c8bdd",
-          "source_sha256": "2818e1de5c6a6b9901618caaf52d50ff410e10b3b43a52a9654feea638d5af02",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917377+00:00",
-          "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c#L46"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c",
-          "location": "line 81",
-          "content": "   80 |         CHECK(secp256k1_keypair_create(data.ctx, keypair, sk));\n   81 |         CHECK(secp256k1_schnorrsig_sign(data.ctx, sig, msg, keypair, NULL, NULL));\n   82 |         CHECK(secp256k1_keypair_xonly_pub(data.ctx, &pk, NULL, keypair));",
-          "content_sha256": "2fbca448de4d89f7312e1825db82d238f30049d1dd81211703821e5aec69b2b3",
-          "source_sha256": "2818e1de5c6a6b9901618caaf52d50ff410e10b3b43a52a9654feea638d5af02",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917380+00:00",
-          "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c#L81"
         },
         {
           "kind": "file_excerpt",
@@ -3021,7 +2933,7 @@
           "content_sha256": "e6ab7181c8dbb6504611247b2678ae83985acb1cf70e10429645f5d869e047bd",
           "source_sha256": "7568f0ec3778da013a98fd5e3133c2a640e3eb3f3cff59290cee43de7cdf856a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917383+00:00",
+          "collected_at": "2026-10-29T20:14:46.879100+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/musig/example.c#L160"
         },
         {
@@ -3032,7 +2944,7 @@
           "content_sha256": "8347c1cd3e521a8ba5e1c0b465436477efc94e0749e2b6314e1928dcfbe9a321",
           "source_sha256": "f5b1e1cb467ee05a70006c55efe00cbc54962adf5a5446f74438f0b282aa1d75",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917386+00:00",
+          "collected_at": "2026-10-29T20:14:46.879104+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h#L460"
         },
         {
@@ -3043,7 +2955,7 @@
           "content_sha256": "e73ca8d800b70a374cf5e3972e2d153290a93d2d12334ada5196282ceec4cede",
           "source_sha256": "eb51e55a0617e6145afed8ccdd2be86d3fc640a0a996f421a1caa5eb3f34e935",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917389+00:00",
+          "collected_at": "2026-10-29T20:14:46.879107+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h#L98"
         },
         {
@@ -3054,7 +2966,7 @@
           "content_sha256": "0dd4fa6557933bdf32a316d69c6f05a1a458a5fd3f056f03a250c6cee3636b68",
           "source_sha256": "eb51e55a0617e6145afed8ccdd2be86d3fc640a0a996f421a1caa5eb3f34e935",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917392+00:00",
+          "collected_at": "2026-10-29T20:14:46.879110+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h#L111"
         },
         {
@@ -3065,8 +2977,41 @@
           "content_sha256": "d433a64049d5b15ad012fcc92d25efe3f9c0faef114da2cfbe07f26c8e3c3e2f",
           "source_sha256": "eb51e55a0617e6145afed8ccdd2be86d3fc640a0a996f421a1caa5eb3f34e935",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.917396+00:00",
+          "collected_at": "2026-10-29T20:14:46.879113+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h#L117"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/embit/util/ctypes_secp256k1.py",
+          "location": "line 287",
+          "content": "  286 | \n  287 |         secp256k1.secp256k1_schnorrsig_verify.argtypes = [\n  288 |             c_void_p,  # ctx",
+          "content_sha256": "57e08893e8b0d02ff62160e83bf0ee2a5297829ebdd67694ce5df8eac407d88d",
+          "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T20:14:46.879116+00:00",
+          "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L287"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/embit/util/ctypes_secp256k1.py",
+          "location": "line 293",
+          "content": "  292 |         ]\n  293 |         secp256k1.secp256k1_schnorrsig_verify.restype = c_int\n  294 | ",
+          "content_sha256": "081fdf562b7a5fc864bee913ad182153c51fe01d652d42c0ccaec47ab8249e94",
+          "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T20:14:46.879119+00:00",
+          "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L293"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/embit/util/ctypes_secp256k1.py",
+          "location": "line 295",
+          "content": "  294 | \n  295 |         secp256k1.secp256k1_schnorrsig_sign.argtypes = [\n  296 |             c_void_p,  # ctx",
+          "content_sha256": "ca6ef88f4a54753ab4313ab865dab0bd59f732d4276c85eb8d3f4d7a3600a616",
+          "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T20:14:46.879122+00:00",
+          "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L295"
         }
       ],
       "remediation": [
@@ -3103,8 +3048,8 @@
       ]
     },
     {
-      "id": "2566d69f-1532-47b5-915c-59c021f91ba3",
-      "public_id": "QSI-2026-06658",
+      "id": "40f49500-c08a-4128-8b36-3743003b142f",
+      "public_id": "QSI-2026-06828",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))",
       "description": "15 упоминаний Pedersen commitment в 4 файл(ах), например src/embit/liquid/pset.py:101. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -3118,14 +3063,19 @@
       "classification": "pq_long_term_risk",
       "severity": "medium",
       "confidence": "medium",
-      "preliminary": true,
+      "preliminary": false,
       "status": "open",
-      "triage": null,
+      "triage": {
+        "note": "The primitive is present and quantum-relevant, but both the role and the stated consequence are wrong and are corrected here. src/embit/liquid/pset.py:101 and :300 call secp256k1.pedersen_commit over value blinding factors: this is Liquid confidential transactions, not threshold signing and not MPC. And the consequence is the opposite way round from the finding's text: a Pedersen commitment's HIDING property is information-theoretic, so a CRQC does not retroactively reveal blinded amounts, while its BINDING property rests on the discrete logarithm, so a CRQC can open a commitment to a different value. The risk here is forged amounts, that is inflation of a confidential asset, not loss of confidentiality. Priority should be read accordingly.",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "confirmed",
+        "severity_before": "medium"
+      },
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "src/embit/liquid/pset.py",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:13:26.944805+00:00",
-      "risk_score": 35.6,
+      "detected_at": "2026-10-29T20:14:46.900893+00:00",
+      "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
           "x": 10.0,
@@ -3139,7 +3089,7 @@
           "x_source": "project signature lifetime",
           "margin_years": 7.0
         },
-        "score": 35.6,
+        "score": 41.8,
         "factors": {
           "ease": 0.3,
           "asset": 0.8,
@@ -3185,7 +3135,7 @@
           "severity": 12.5,
           "exploitability": 2.0
         },
-        "confidence_multiplier": 0.68
+        "confidence_multiplier": 0.8
       },
       "cvss_vector": null,
       "cvss_score": null,
@@ -3221,7 +3171,7 @@
           "content_sha256": "b66b1e583d90306b059a9fd44ead20cf204eaa731e5f490ea219c83b49b2b806",
           "source_sha256": "b9bd8b713c6395282122052daeb4e95540d556abcaf40e055cb9c597d618738b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.051171+00:00",
+          "collected_at": "2026-10-29T20:14:46.923825+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/liquid/pset.py#L101"
         },
         {
@@ -3232,7 +3182,7 @@
           "content_sha256": "06f441e13a3c4ee80a5e7bc1c367c410548b47089185765cf11a4af021382bbc",
           "source_sha256": "b9bd8b713c6395282122052daeb4e95540d556abcaf40e055cb9c597d618738b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.051180+00:00",
+          "collected_at": "2026-10-29T20:14:46.923833+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/liquid/pset.py#L102"
         },
         {
@@ -3243,7 +3193,7 @@
           "content_sha256": "e13d6f4ff6fe3bd7adcceae1d254128bfd231d1754548bed4173819fd6551f55",
           "source_sha256": "b9bd8b713c6395282122052daeb4e95540d556abcaf40e055cb9c597d618738b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.051184+00:00",
+          "collected_at": "2026-10-29T20:14:46.923837+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/liquid/pset.py#L300"
         },
         {
@@ -3254,7 +3204,7 @@
           "content_sha256": "ffe62aaa23ace0fd2936ab3f4a57b541efac76f5ce1fdc493f53d8712547af75",
           "source_sha256": "601e672e0ae53c08780b307a0b231215d31c8325b0fe18b97bb45a3e2892cb16",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.051187+00:00",
+          "collected_at": "2026-10-29T20:14:46.923840+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/liquid/transaction.py#L90"
         },
         {
@@ -3265,7 +3215,7 @@
           "content_sha256": "b7bf98d515fa733b6fa50b40868407081e5d056aea4aa1f8521535f39f60d5b6",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.051190+00:00",
+          "collected_at": "2026-10-29T20:14:46.923843+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L949"
         },
         {
@@ -3276,7 +3226,7 @@
           "content_sha256": "ae7600847f2badfdc520dc9b43caa54fe5c140fbc3f2618b08e27f37897e4ee4",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.051194+00:00",
+          "collected_at": "2026-10-29T20:14:46.923846+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L960"
         },
         {
@@ -3287,7 +3237,7 @@
           "content_sha256": "d061be5d1ea86ffb8675c67e3f0d729a08048a4c9b7bd6c3790b187b4d3ede29",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.052882+00:00",
+          "collected_at": "2026-10-29T20:14:46.923849+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L971"
         },
         {
@@ -3298,7 +3248,7 @@
           "content_sha256": "4485c26fa3e644b515ed1a6abf59b2d50f2bc77722ad56b84c581a20e445d203",
           "source_sha256": "3f0dfccabac80a6c83c0d2318582d296d0fa9cf88ab347418ba7e27af5e333c6",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.052900+00:00",
+          "collected_at": "2026-10-29T20:14:46.923853+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/secp256k1.py#L51"
         },
         {
@@ -3309,7 +3259,7 @@
           "content_sha256": "9ee2ecc76d93cb9f14a224de7eee8a4eb5a1dab003a01063faae76fc6b3515e0",
           "source_sha256": "3f0dfccabac80a6c83c0d2318582d296d0fa9cf88ab347418ba7e27af5e333c6",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.052905+00:00",
+          "collected_at": "2026-10-29T20:14:46.923856+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/secp256k1.py#L52"
         },
         {
@@ -3320,7 +3270,7 @@
           "content_sha256": "b419e6b04ad1f224679bd93af0189ee4ac479a9d15402a9c1c3e8a73e7604079",
           "source_sha256": "3f0dfccabac80a6c83c0d2318582d296d0fa9cf88ab347418ba7e27af5e333c6",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.052908+00:00",
+          "collected_at": "2026-10-29T20:14:46.923859+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/secp256k1.py#L53"
         }
       ],
@@ -3358,8 +3308,8 @@
       ]
     },
     {
-      "id": "fdba2a06-4c83-4be0-8d23-b0549f8b9405",
-      "public_id": "QSI-2026-06657",
+      "id": "20c60242-8997-4f99-aea9-c97ce0fcacb7",
+      "public_id": "QSI-2026-06827",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))",
       "description": "31 упоминаний ECDSA в 4 файл(ах), например src/embit/ec.py:3. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -3373,14 +3323,19 @@
       "classification": "pq_long_term_risk",
       "severity": "medium",
       "confidence": "medium",
-      "preliminary": true,
+      "preliminary": false,
       "status": "open",
-      "triage": null,
+      "triage": {
+        "note": "Confirmed, with the role corrected. The finding reports \"role not determined\" for src/embit/ec.py, but the role is determinable from the file itself: ec.py is embit's signature and public-key class, and lines 18 and 24 serialise and parse DER ECDSA signatures for transactions. This is the same transaction-signing role as the other ECDSA finding in this audit, not an undetermined one, and the two should be read together rather than as separate exposures.",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "confirmed",
+        "severity_before": "medium"
+      },
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "src/embit/ec.py",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:13:26.912559+00:00",
-      "risk_score": 34.2,
+      "detected_at": "2026-10-29T20:14:46.875165+00:00",
+      "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
           "x": 10.0,
@@ -3394,7 +3349,7 @@
           "x_source": "project signature lifetime",
           "margin_years": 7.0
         },
-        "score": 34.2,
+        "score": 40.2,
         "factors": {
           "ease": 0.3,
           "asset": 0.6,
@@ -3440,7 +3395,7 @@
           "severity": 12.5,
           "exploitability": 2.0
         },
-        "confidence_multiplier": 0.68
+        "confidence_multiplier": 0.8
       },
       "cvss_vector": null,
       "cvss_score": null,
@@ -3476,7 +3431,7 @@
           "content_sha256": "2da5ac4f0aac6b95a77ebbf62d29881b49cb5b77b6b6b0e545c568d12aeab1d0",
           "source_sha256": "1c2b11a8e397a903473962ff0baa2b3de02e81c211b6df300fe828f1249a533b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962142+00:00",
+          "collected_at": "2026-10-29T20:14:46.905159+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/ec.py#L3"
         },
         {
@@ -3487,7 +3442,7 @@
           "content_sha256": "22af8149d1de86bdaa2f37e9a1ee21d18db2b64fbb9fcd55610a17ea2df854d2",
           "source_sha256": "1c2b11a8e397a903473962ff0baa2b3de02e81c211b6df300fe828f1249a533b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962153+00:00",
+          "collected_at": "2026-10-29T20:14:46.905170+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/ec.py#L18"
         },
         {
@@ -3498,7 +3453,7 @@
           "content_sha256": "91eebf765cedecb0508205d819b8bdf939b5d9534e0cb94aab17156c7e3b5641",
           "source_sha256": "1c2b11a8e397a903473962ff0baa2b3de02e81c211b6df300fe828f1249a533b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962157+00:00",
+          "collected_at": "2026-10-29T20:14:46.905174+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/ec.py#L24"
         },
         {
@@ -3509,7 +3464,7 @@
           "content_sha256": "05b74d409d6158636eb6487a7526851bab9bc6f71ec1c6983c7c03cd2cc94eec",
           "source_sha256": "fc544d7dcb476386b4a2c1b47ea6c6da553e3471d916e8b2c24ea6328769ef9d",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962160+00:00",
+          "collected_at": "2026-10-29T20:14:46.905177+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/misc.py#L7"
         },
         {
@@ -3520,7 +3475,7 @@
           "content_sha256": "ff45e726cacf161b9a430429e3241edb8cf6b0a3b38b7970dee8086c42c5c030",
           "source_sha256": "fc544d7dcb476386b4a2c1b47ea6c6da553e3471d916e8b2c24ea6328769ef9d",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962163+00:00",
+          "collected_at": "2026-10-29T20:14:46.905180+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/misc.py#L9"
         },
         {
@@ -3531,7 +3486,7 @@
           "content_sha256": "00860f29eecbf17fef97f8df024ac6a0e1c1e9cbbe9369e049e938eacbea33e9",
           "source_sha256": "23cccc8f03e645102b5d2722758ac955edda2a2b14b7d24eec17a28b71595c79",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962166+00:00",
+          "collected_at": "2026-10-29T20:14:46.905183+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/__init__.py#L1"
         },
         {
@@ -3542,7 +3497,7 @@
           "content_sha256": "fb27cc95d202f1f9be5c94d5caf6544118c775bffd007789a844330fdfa96171",
           "source_sha256": "0850b1637dafc13c7c2e0d1e4afbbcbc655890dc142da543c340ac8e494a5dd9",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962169+00:00",
+          "collected_at": "2026-10-29T20:14:46.905187+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/key.py#L3"
         },
         {
@@ -3553,7 +3508,7 @@
           "content_sha256": "f4860ef5ca982601d75e3762c06772c2ab7ccf9a8ffdaa2358d967ebabd52c20",
           "source_sha256": "0850b1637dafc13c7c2e0d1e4afbbcbc655890dc142da543c340ac8e494a5dd9",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962172+00:00",
+          "collected_at": "2026-10-29T20:14:46.905190+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/key.py#L72"
         },
         {
@@ -3564,7 +3519,7 @@
           "content_sha256": "1471d3953d248e8889d6d17cab1582a88926e37c21d530e7fd12090d810e15b7",
           "source_sha256": "0850b1637dafc13c7c2e0d1e4afbbcbc655890dc142da543c340ac8e494a5dd9",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:26.962176+00:00",
+          "collected_at": "2026-10-29T20:14:46.905194+00:00",
           "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/key.py#L261"
         }
       ],
@@ -3602,108 +3557,8 @@
       ]
     },
     {
-      "id": "2d30b8d7-ec7f-45c1-a928-8f12782cddb7",
-      "public_id": "QSI-2026-06659",
-      "rule_id": "CODE-WEAK-PBKDF2",
-      "title": "Малое число итераций PBKDF2 (2500) в src/embit/slip39.py",
-      "description": "PBKDF2 с 2500 итерациями в строка 51.",
-      "impact": "Малое число итераций удешевляет офлайн-подбор паролей.",
-      "recommendation": "Следуйте актуальным рекомендациям OWASP Password Storage (например, 600 000 итераций для PBKDF2-HMAC-SHA256) или используйте Argon2id.",
-      "retest": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-      "limitations": "Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
-      "method": "Сопоставление регулярных выражений с API конкретного языка.",
-      "repro": "Откройте строка 51 в предоставленном файле src/embit/slip39.py и изучите приведённые строки (см. доказательство).",
-      "category": "source_code",
-      "classification": "potential_crypto_risk",
-      "severity": "medium",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "file:src/embit/slip39.py",
-      "data_source": "src/embit/slip39.py",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:13:27.016364+00:00",
-      "risk_score": 33.7,
-      "risk_breakdown": {
-        "score": 33.7,
-        "factors": {
-          "ease": 0.6,
-          "asset": 0.6,
-          "impact": 0.35,
-          "urgency": 1.0,
-          "exposure": 0.4,
-          "severity": 0.5,
-          "exploitability": 0.4
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 49.5,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 7.0,
-          "urgency": 10.0,
-          "exposure": 6.0,
-          "severity": 12.5,
-          "exploitability": 8.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "SP800-132",
-          "url": "https://csrc.nist.gov/pubs/sp/800/132/final",
-          "title": "NIST SP 800-132 — Recommendation for Password-Based Key Derivation",
-          "status": "final (2010)",
-          "publisher": "NIST"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "src/embit/slip39.py",
-          "location": "line 51",
-          "content": "   49 |     salt = b\"shamir\" + id.to_bytes(2, \"big\")\n   50 |     for i in indices:\n   51 |         f = hashlib.pbkdf2_hmac(\n   52 |             \"sha256\",\n   53 |             i + passphrase,",
-          "content_sha256": "e0acab3c3d0997f0fb4255d3150bb54b2560dd0c4f85952ae27123e588883358",
-          "source_sha256": "363e0dbd9282b7d6bd0e6aecaf04b58a3d86dd69df05eaaa1cf7df82870add79",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.131285+00:00",
-          "url": "https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/slip39.py#L51"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "root_cause",
-          "action": "Следуйте актуальным рекомендациям OWASP Password Storage (например, 600 000 итераций для PBKDF2-HMAC-SHA256) или используйте Argon2id.",
-          "rationale": "Малое число итераций удешевляет офлайн-подбор паролей.",
-          "expected_outcome": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-          "priority": "P2",
-          "horizon_days": 60,
-          "complexity": "medium",
-          "dependencies": "",
-          "side_effects": "",
-          "pre_tests": "Откройте строка 51 в предоставленном файле src/embit/slip39.py и изучите приведённые строки (см. доказательство).",
-          "post_tests": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-          "closure_criteria": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "e7cd5250-32d9-43ee-9822-3e81cc6d8705",
-      "public_id": "QSI-2026-06660",
+      "id": "376db5bb-4728-4c53-9cb2-524c98dd409c",
+      "public_id": "QSI-2026-06830",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "40 бюллетеней в 8 пакет(ах) PyPI, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 40 бюллетеней (17 с оценкой high или critical) для 8 пакет(ов) PyPI, которые подтягивают только инструменты разработки или сборки (poetry.lock): например, black@26.3.1 [dev]: GHSA-cg8m-r9f2-5wm2; certifi@2026.2.25 [dev]: GHSA-6q48-6c7w-9gw2; filelock@3.25.2 [dev]: GHSA-567q-5qvw-pf92, GHSA-69hj-f68j-2879, GHSA-8mx5-7m5m-r77g, GHSA-9vhv-jxww-xfm5, GHSA-cwqr-hh33-gh44, GHSA-fq56-3cx3-fjxp, GHSA-j8f7-rjxc-mr56, GHSA-rfpc-qcw5-3pc4, GHSA-v4x8-3wr5-3wq8; idna@3.11 [dev]: GHSA-65pc-fj4g-8rjx; mkdocs-material@9.7.6 [dev]: GHSA-xvg9-69gf-fjrf. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -3717,16 +3572,21 @@
       "classification": "improvement",
       "severity": "info",
       "confidence": "medium",
-      "preliminary": true,
+      "preliminary": false,
       "status": "open",
-      "triage": null,
+      "triage": {
+        "note": "All eight packages are reached only through development and build groups in poetry.lock - black, certifi, filelock and similar - and none is imported by src/embit, which is the code that ships to SeedSigner as a wheel and to Krux as a submodule. The advisories are real for those packages and irrelevant to anyone running the library, so they are recorded and kept out of any risk figure. The dev-versus-runtime split is doing its job here.",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "not_applicable",
+        "severity_before": "info"
+      },
       "affected_asset": "dependencies:PyPI:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-29T19:13:27.115718+00:00",
-      "risk_score": 15.5,
+      "detected_at": "2026-10-29T20:14:46.932477+00:00",
+      "risk_score": 18.3,
       "risk_breakdown": {
-        "score": 15.5,
+        "score": 18.3,
         "factors": {
           "ease": 1.0,
           "asset": 0.6,
@@ -3757,7 +3617,7 @@
           "severity": 1.25,
           "exploitability": 2.0
         },
-        "confidence_multiplier": 0.68
+        "confidence_multiplier": 0.8
       },
       "cvss_vector": null,
       "cvss_score": null,
@@ -3779,7 +3639,7 @@
           "content_sha256": "47704e2f28f1e9b2997e7f58043e0a0637c52977b48edc36f9c64c07f445ea48",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-29T19:13:27.194130+00:00",
+          "collected_at": "2026-10-29T20:14:46.986012+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -3823,10 +3683,10 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-06655",
-      "QSI-2026-06656",
-      "QSI-2026-06658",
-      "QSI-2026-06657"
+      "QSI-2026-06825",
+      "QSI-2026-06826",
+      "QSI-2026-06828",
+      "QSI-2026-06827"
     ],
     "roles": [
       {
@@ -3842,7 +3702,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-06658"
+          "QSI-2026-06828"
         ],
         "files": 4
       },
@@ -3855,18 +3715,18 @@
         "algorithms": [
           {
             "algorithm": "ECDSA",
-            "files": 39
+            "files": 31
           },
           {
             "algorithm": "Schnorr (BIP-340)",
-            "files": 7
+            "files": 6
           }
         ],
         "findings": [
-          "QSI-2026-06655",
-          "QSI-2026-06656"
+          "QSI-2026-06825",
+          "QSI-2026-06826"
         ],
-        "files": 46
+        "files": 37
       },
       {
         "role": "general",
@@ -3881,7 +3741,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-06657"
+          "QSI-2026-06827"
         ],
         "files": 4
       }
@@ -3903,11 +3763,11 @@
         "affected": [
           {
             "algorithm": "ECDH",
-            "rows": 2
+            "rows": 1
           },
           {
             "algorithm": "ECDSA",
-            "rows": 54
+            "rows": 44
           },
           {
             "algorithm": "Pedersen commitment",
@@ -3915,7 +3775,7 @@
           },
           {
             "algorithm": "Schnorr (BIP-340)",
-            "rows": 7
+            "rows": 6
           }
         ],
         "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
@@ -4026,26 +3886,7 @@
   },
   "plan": {
     "30": [],
-    "60": [
-      {
-        "kind": "root_cause",
-        "action": "Следуйте актуальным рекомендациям OWASP Password Storage (например, 600 000 итераций для PBKDF2-HMAC-SHA256) или используйте Argon2id.",
-        "rationale": "Малое число итераций удешевляет офлайн-подбор паролей.",
-        "expected_outcome": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-        "priority": "P2",
-        "horizon_days": 60,
-        "complexity": "medium",
-        "dependencies": "",
-        "side_effects": "",
-        "pre_tests": "Откройте строка 51 в предоставленном файле src/embit/slip39.py и изучите приведённые строки (см. доказательство).",
-        "post_tests": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-        "closure_criteria": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-        "status": "todo",
-        "finding": "QSI-2026-06659",
-        "finding_title": "Малое число итераций PBKDF2 (2500) в src/embit/slip39.py",
-        "severity": "medium"
-      }
-    ],
+    "60": [],
     "90": [
       {
         "kind": "mitigation",
@@ -4061,8 +3902,8 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06655",
-        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (39 файл(ов))",
+        "finding": "QSI-2026-06825",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (31 файл(ов))",
         "severity": "medium"
       },
       {
@@ -4079,8 +3920,8 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06656",
-        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))",
+        "finding": "QSI-2026-06826",
+        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (6 файл(ов))",
         "severity": "medium"
       },
       {
@@ -4097,7 +3938,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06658",
+        "finding": "QSI-2026-06828",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))",
         "severity": "medium"
       },
@@ -4115,7 +3956,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06657",
+        "finding": "QSI-2026-06827",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -4133,8 +3974,8 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06655",
-        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (39 файл(ов))",
+        "finding": "QSI-2026-06825",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (31 файл(ов))",
         "severity": "medium"
       },
       {
@@ -4151,8 +3992,8 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06656",
-        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))",
+        "finding": "QSI-2026-06826",
+        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (6 файл(ов))",
         "severity": "medium"
       },
       {
@@ -4169,7 +4010,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06658",
+        "finding": "QSI-2026-06828",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))",
         "severity": "medium"
       },
@@ -4187,7 +4028,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06657",
+        "finding": "QSI-2026-06827",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -4205,7 +4046,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-06660",
+        "finding": "QSI-2026-06830",
         "finding_title": "40 бюллетеней в 8 пакет(ах) PyPI, нужных только для разработки или сборки",
         "severity": "info"
       }
@@ -4380,13 +4221,6 @@
       "publisher": "NIST",
       "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
       "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
-    },
-    {
-      "key": "SP800-132",
-      "url": "https://csrc.nist.gov/pubs/sp/800/132/final",
-      "title": "NIST SP 800-132 — Recommendation for Password-Based Key Derivation",
-      "status": "final (2010)",
-      "publisher": "NIST"
     },
     {
       "key": "NIST-PQC-SEC",
@@ -4703,18 +4537,6 @@
       "occurrences": 1
     },
     {
-      "algorithm": "ECDH",
-      "family": "key_exchange",
-      "parameter": "",
-      "usage": "implemented in a file of this name",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_ecdh.c",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "low",
-      "occurrences": 1
-    },
-    {
       "algorithm": "ECDSA",
       "family": "signature",
       "parameter": "",
@@ -4925,126 +4747,6 @@
       "usage": "source code (1 reference(s))",
       "library": "",
       "location": "secp256k1/secp256k1-zkp/include/secp256k1_whitelist.h:10",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_ecdh.c:9",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (2 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_ecmult.c:8",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 2
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (2 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_internal.c:8",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 2
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_recover.c:7",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c:11",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (3 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_sign.c:37",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 3
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_sign.c:7",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_verify.c:10",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (6 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_verify.c:40",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 6
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_whitelist.c:8",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
@@ -5426,18 +5128,6 @@
       "algorithm": "Schnorr (BIP-340)",
       "family": "signature",
       "parameter": "",
-      "usage": "source code (3 reference(s))",
-      "library": "",
-      "location": "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c:35",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 3
-    },
-    {
-      "algorithm": "Schnorr (BIP-340)",
-      "family": "signature",
-      "parameter": "",
       "usage": "source code (1 reference(s))",
       "library": "",
       "location": "secp256k1/secp256k1-zkp/src/modules/musig/example.c:160",
@@ -5569,11 +5259,10 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 2,
-      "rows": 2,
+      "count": 1,
+      "rows": 1,
       "examples": [
-        "secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h",
-        "secp256k1/secp256k1-zkp/src/bench_ecdh.c"
+        "secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h"
       ]
     },
     {
@@ -5582,8 +5271,8 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 16,
-      "rows": 16,
+      "count": 14,
+      "rows": 14,
       "examples": [
         "secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11",
         "secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:88",
@@ -5596,8 +5285,8 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 38,
-      "rows": 38,
+      "count": 30,
+      "rows": 30,
       "examples": [
         "secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:57",
         "secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h:34",
@@ -5624,12 +5313,12 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 7,
-      "rows": 7,
+      "count": 6,
+      "rows": 6,
       "examples": [
         "secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82",
-        "secp256k1/secp256k1-zkp/src/bench_schnorrsig.c:35",
-        "secp256k1/secp256k1-zkp/src/modules/musig/example.c:160"
+        "secp256k1/secp256k1-zkp/src/modules/musig/example.c:160",
+        "secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h:460"
       ]
     }
   ]

@@ -1,8 +1,8 @@
 {
-  "content_sha256": "8797db4762dd52e196cddf2691a7276f78102237791f50ebae31f9746b5cd17d",
+  "content_sha256": "df90bccaf38bd16d1d242f2278bdcc891e053d3d16dabc0f7ffb293761a8cc6c",
   "schema": "qsi.report/1",
-  "language": "en",
-  "generated_at": "2026-10-29T05:50:19.299608+00:00",
+  "language": "ru",
+  "generated_at": "2026-10-29T19:57:19.022206+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,19 +11,19 @@
     "id": "0d227d5e-0c96-4875-9899-a4faab97e1b4",
     "name": "libwally-core @ 374df231d054",
     "client_name": "Blockstream (libwally)",
-    "description": "Static review of the source tree libwally-core at 374df231d05410a31d605b31c1cc5256581381d7. 254 files analysed; of 495 files, 136 are test, fuzzing, benchmark or example code and were left out, 105 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 132 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree libwally-core at 374df231d05410a31d605b31c1cc5256581381d7. 249 files analysed; of 561 files, 151 are test, fuzzing, benchmark or example code and were left out, 161 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 63 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 120 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "a8a74d72-c13c-47ad-8a96-b74a698831a5",
+    "id": "6d1ba0de-c0f0-421d-ba42-4bdacac23f40",
     "mode": "document",
     "title": "Document audit: libwally-core",
     "status": "completed",
     "engine_version": "1.2.0",
-    "started_at": "2026-10-29T05:49:40.629008+00:00",
-    "finished_at": "2026-10-29T05:50:18.768683+00:00",
+    "started_at": "2026-10-29T19:56:54.839569+00:00",
+    "finished_at": "2026-10-29T19:57:18.876688+00:00",
     "risk_profile": "crypto_exchange",
-    "risk_profile_name": "Crypto exchange, custodian or wallet",
+    "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
       "ref": "374df231d05410a31d605b31c1cc5256581381d7",
       "triage": {
@@ -52,8 +52,7 @@
               "rule": "CODE-QV-ASYMMETRIC",
               "algorithm": "ECDH"
             },
-            "decision": "confirmed",
-            "severity": "medium"
+            "decision": "confirmed"
           },
           {
             "note": "Dropped to informational, because these rows are the amalgamation unit rather than a use: src/wally_elements.c and its siblings do #include \"src/secp256k1/src/secp256k1.c\" and #include \"src/secp256k1/src/precompute_ecmult.c\" to build the vendored library into one translation unit. The primitive genuinely appears at those lines, so the rows are correct inventory and are kept visible — a reader who checks the files should find what the tool found — but an #include of a .c file is a build arrangement, and the real uses are decided above.",
@@ -61,8 +60,7 @@
               "rule": "CODE-QV-ASYMMETRIC",
               "title": "role not determined"
             },
-            "decision": "confirmed",
-            "severity": "info"
+            "decision": "confirmed"
           },
           {
             "note": "Correct as a single non-runtime summary. The seven advisories are ajv, cross-spawn and fast-uri in src/wasm_package/package-lock.json, all marked dev there: they are the toolchain that builds the optional WebAssembly package, not anything a wallet linking libwally loads. Nothing here reaches a signing path.",
@@ -73,7 +71,7 @@
           }
         ]
       },
-      "language": "en",
+      "language": "ru",
       "repo_url": "https://github.com/ElementsProject/libwally-core",
       "osv_lookup": true,
       "public_review": true,
@@ -85,6 +83,24 @@
     }
   },
   "inputs": [
+    {
+      "name": "SECURITY.md",
+      "size": 5780,
+      "sha256": "3ab230590b464090a9bd2d92a77fe84b7f6514328b8922e4b7bfd4f8a73b0e6b",
+      "redactions": 0
+    },
+    {
+      "name": "contrib/requirements.txt",
+      "size": 76,
+      "sha256": "40039c059b565df34460f06ccbc2e54a86f758b1347259ef84389837264698a7",
+      "redactions": 0
+    },
+    {
+      "name": "docs/source/conf.py",
+      "size": 9400,
+      "sha256": "bc6dfa797847a290d783f88a90731a5b2e28c94598511824c10e7b3302b0be28",
+      "redactions": 0
+    },
     {
       "name": "include/wally.hpp",
       "size": 177878,
@@ -197,6 +213,18 @@
       "name": "include/wally_transaction_members.h",
       "size": 14257,
       "sha256": "71199aa909d73759bcb9328885072d810bfabe9cc7f661a3dd0b50597f390872",
+      "redactions": 0
+    },
+    {
+      "name": "pyproject.toml",
+      "size": 91,
+      "sha256": "81562b11a9a84cb5d47f66a78e7338546fddb7f5c62f4308b337e891f7d8a0d7",
+      "redactions": 0
+    },
+    {
+      "name": "setup.py",
+      "size": 7382,
+      "sha256": "016931c29406077b6d11f67500ba0bc5cc27e7fa9e76a7b4a7de30e9f0a17325",
       "redactions": 0
     },
     {
@@ -407,12 +435,6 @@
       "name": "src/cpufeatures/cpu-features.h",
       "size": 11746,
       "sha256": "4e85e43209f0ba184a4bc5d3353d99695d4b7543d436333cf465bd6c7ec0239f",
-      "redactions": 0
-    },
-    {
-      "name": "src/ctaes/bench.c",
-      "size": 4977,
-      "sha256": "237677992b69e7dcc6d4fab66f74e8afa7c999dd3a16598e6acd3c9fdb13125b",
       "redactions": 0
     },
     {
@@ -758,54 +780,6 @@
       "redactions": 0
     },
     {
-      "name": "src/secp256k1/src/bench.c",
-      "size": 10190,
-      "sha256": "832edacf541809e3cbc59a4e698d5e33a9388a7dddd55662936244cd106fccce",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/bench.h",
-      "size": 4777,
-      "sha256": "12fafa36167bb38d28698536cdb34bdbcf8c972eed4d3cf69e71796972b880d1",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/bench_bppp.c",
-      "size": 1102,
-      "sha256": "7c17a6b0fada57db18cc68b1ec183f1e6346983903ee1da4f894acb09bfab6e2",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/bench_ecmult.c",
-      "size": 15684,
-      "sha256": "7daaf2e676b42f08a509b846139e90f9f04da94aaeda62a64ce38f64e45884a4",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/bench_generator.c",
-      "size": 2001,
-      "sha256": "6396798ee1f4a018d4ebd9e962b6c289f4a1928a870c20918285500f7972bf61",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/bench_internal.c",
-      "size": 19230,
-      "sha256": "6fb683c1d9dd79261e9a519c033ee6934687f18bcdad0327f570769d57fe0e42",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/bench_rangeproof.c",
-      "size": 2349,
-      "sha256": "6c24fa0c6c12242da3b2629742e0baab65b24967d173fb83e94e2ce1847d8a10",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/bench_whitelist.c",
-      "size": 4089,
-      "sha256": "8f77ebf85792d8270790e1c0689d24896c2da3d7ce6f35c6dffec2909ddc4082",
-      "redactions": 0
-    },
-    {
       "name": "src/secp256k1/src/checkmem.h",
       "size": 5355,
       "sha256": "f367089bffa53b8998047de2f718f75d627dad549a1e5dc2a9ce9ab9f581ffe8",
@@ -1076,12 +1050,6 @@
       "redactions": 0
     },
     {
-      "name": "src/secp256k1/src/modules/ecdh/bench_impl.h",
-      "size": 1761,
-      "sha256": "3929ead352b3b6425f0fdf94a1b2268d124cc0176929ae6ea3b4fa82abac0bbf",
-      "redactions": 0
-    },
-    {
       "name": "src/secp256k1/src/modules/ecdh/main_impl.h",
       "size": 2929,
       "sha256": "3cf3b168e8048cd7b03c9b4d56d072214ef859a31bc970e5a16c2cbeba8fc4eb",
@@ -1103,12 +1071,6 @@
       "name": "src/secp256k1/src/modules/ecdsa_s2c/main_impl.h",
       "size": 8784,
       "sha256": "20bea71274c43c26093e5e00a22a9a0ac97eca2330291e2b2fe9f9864cbb3e4b",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/modules/ellswift/bench_impl.h",
-      "size": 4399,
-      "sha256": "8973d64bda27eb72a4807aae665a1a2932d624370f9d40f8833f7c8f03b05564",
       "redactions": 0
     },
     {
@@ -1214,21 +1176,9 @@
       "redactions": 0
     },
     {
-      "name": "src/secp256k1/src/modules/recovery/bench_impl.h",
-      "size": 2320,
-      "sha256": "20d13192a4aabaa52ac4c2a2da772d8aafef00773051836b25faa2816226b386",
-      "redactions": 0
-    },
-    {
       "name": "src/secp256k1/src/modules/recovery/main_impl.h",
       "size": 6153,
       "sha256": "93fb7455adaa364a3c1f8acef82ba409b88a49f688dfe23ab8555510fc614c96",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/modules/schnorrsig/bench_impl.h",
-      "size": 3795,
-      "sha256": "9655992c7fd214231623716a738a1928e24a86b4bcdd909f331712df800a1abc",
       "redactions": 0
     },
     {
@@ -1608,14 +1558,47 @@
       "size": 1678,
       "sha256": "7e8993598f450d95843cd4217f2d4fcfccf349a7464a8bc9dc0457c79a84f5d7",
       "redactions": 0
+    },
+    {
+      "name": "tools/build_psbt_ctests.py",
+      "size": 854,
+      "sha256": "ecc8332fc3ea0a904897ba05598608e174a64d02fdd77be821920a983c249419",
+      "redactions": 0
+    },
+    {
+      "name": "tools/build_wrappers.py",
+      "size": 26927,
+      "sha256": "b59803b7ca9b045961bf6f446dc6c1d24b8c7b8c82fb9cf007299ccdad9c6f35",
+      "redactions": 0
+    },
+    {
+      "name": "tools/wordlist_cc.py",
+      "size": 1736,
+      "sha256": "e389277f851b59a3d4167ffec131903087ffeb646312e49949691a67260b853c",
+      "redactions": 0
     }
   ],
   "inputs_total": {
-    "files": 254,
-    "bytes": 6858643,
+    "files": 249,
+    "bytes": 6834215,
     "redactions": 2
   },
   "coverage": [
+    {
+      "area": "certificates_and_keys",
+      "detail": "SECURITY.md: certificates/keys parsed",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "contrib/requirements.txt: 7 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "docs/source/conf.py: 267 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
     {
       "area": "source_code",
       "detail": "include/wally.hpp: 3375 lines scanned with 16 rule patterns and 123 registry patterns",
@@ -1709,6 +1692,16 @@
     {
       "area": "source_code",
       "detail": "include/wally_transaction_members.h: 185 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "pyproject.toml: 0 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "setup.py: 211 lines scanned with 16 rule patterns and 123 registry patterns",
       "status": "checked"
     },
     {
@@ -1884,11 +1877,6 @@
     {
       "area": "source_code",
       "detail": "src/cpufeatures/cpu-features.h: 323 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/ctaes/bench.c: 170 lines scanned with 16 rule patterns and 123 registry patterns",
       "status": "checked"
     },
     {
@@ -2178,46 +2166,6 @@
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/bench.c: 288 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/bench.h: 174 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/bench_bppp.c: 42 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/bench_ecmult.c: 409 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/bench_generator.c: 64 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/bench_internal.c: 477 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/bench_rangeproof.c: 69 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/bench_whitelist.c: 112 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
       "detail": "src/secp256k1/src/checkmem.h: 117 lines scanned with 16 rule patterns and 123 registry patterns",
       "status": "checked"
     },
@@ -2443,11 +2391,6 @@
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/ecdh/bench_impl.h: 54 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
       "detail": "src/secp256k1/src/modules/ecdh/main_impl.h: 79 lines scanned with 16 rule patterns and 123 registry patterns",
       "status": "checked"
     },
@@ -2464,11 +2407,6 @@
     {
       "area": "source_code",
       "detail": "src/secp256k1/src/modules/ecdsa_s2c/main_impl.h: 190 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/modules/ellswift/bench_impl.h: 106 lines scanned with 16 rule patterns and 123 registry patterns",
       "status": "checked"
     },
     {
@@ -2558,17 +2496,7 @@
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/recovery/bench_impl.h: 62 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
       "detail": "src/secp256k1/src/modules/recovery/main_impl.h: 159 lines scanned with 16 rule patterns and 123 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/modules/schnorrsig/bench_impl.h: 104 lines scanned with 16 rule patterns and 123 registry patterns",
       "status": "checked"
     },
     {
@@ -2897,6 +2825,21 @@
       "status": "checked"
     },
     {
+      "area": "source_code",
+      "detail": "tools/build_psbt_ctests.py: 32 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "tools/build_wrappers.py: 601 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "tools/wordlist_cc.py: 52 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
       "area": "osv_advisories",
       "detail": "156 pinned packages queried at OSV.dev; 3 affected (3 of them only in development or build dependencies)",
       "status": "checked"
@@ -2904,14 +2847,34 @@
   ],
   "coverage_grouped": [
     {
+      "area": "certificates_and_keys",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "SECURITY.md: certificates/keys parsed"
+      ]
+    },
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "contrib/requirements.txt: 7 dependencies parsed (0 pinned)",
+        "pyproject.toml: 0 dependencies parsed (0 pinned)",
+        "src/wasm_package/package-lock.json: 156 dependencies parsed (156 pinned)"
+      ]
+    },
+    {
       "area": "source_code",
       "status": "checked",
-      "count": 252,
-      "rows": 252,
+      "count": 244,
+      "rows": 244,
       "examples": [
+        "docs/source/conf.py: 267 lines scanned with 16 rule patterns and 123 registry patterns",
         "include/wally.hpp: 3375 lines scanned with 16 rule patterns and 123 registry patterns",
-        "include/wally_address.h: 376 lines scanned with 16 rule patterns and 123 registry patterns",
-        "include/wally_anti_exfil.h: 119 lines scanned with 16 rule patterns and 123 registry patterns"
+        "include/wally_address.h: 376 lines scanned with 16 rule patterns and 123 registry patterns"
       ]
     },
     {
@@ -2922,16 +2885,6 @@
       "examples": [
         "src/swig_python/contrib/aes.py: value(s) at line(s) 12 (test_aes_cbc_ecdh), 15 (test_aes_cbc_ecdh) are declared inside a fixture and treated as test data, although the file itself is not test code",
         "src/swig_python/contrib/aes.py: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)"
-      ]
-    },
-    {
-      "area": "dependencies",
-      "status": "checked",
-      "count": 2,
-      "rows": 2,
-      "examples": [
-        "src/wasm_package/package-lock.json: 156 dependencies parsed (156 pinned)",
-        "src/wasm_package/package.json: 4 dependencies parsed (0 pinned)"
       ]
     },
     {
@@ -2952,6 +2905,9 @@
     "registered": [],
     "examined_inputs": [
       "156 pinned packages queried at OSV.dev; 3 affected (3 of them only in development or build dependencies)",
+      "SECURITY.md",
+      "contrib/requirements.txt",
+      "docs/source/conf.py",
       "include/wally.hpp",
       "include/wally_address.h",
       "include/wally_anti_exfil.h",
@@ -2971,6 +2927,8 @@
       "include/wally_symmetric.h",
       "include/wally_transaction.h",
       "include/wally_transaction_members.h",
+      "pyproject.toml",
+      "setup.py",
       "src/address.c",
       "src/aes.c",
       "src/amalgamation/combined.c",
@@ -3006,7 +2964,6 @@
       "src/coins.c",
       "src/cpufeatures/cpu-features.c",
       "src/cpufeatures/cpu-features.h",
-      "src/ctaes/bench.c",
       "src/ctaes/ctaes.c",
       "src/ctaes/ctaes.h",
       "src/ctest/psbts.h",
@@ -3064,14 +3021,6 @@
       "src/secp256k1/include/secp256k1_surjectionproof.h",
       "src/secp256k1/include/secp256k1_whitelist.h",
       "src/secp256k1/src/assumptions.h",
-      "src/secp256k1/src/bench.c",
-      "src/secp256k1/src/bench.h",
-      "src/secp256k1/src/bench_bppp.c",
-      "src/secp256k1/src/bench_ecmult.c",
-      "src/secp256k1/src/bench_generator.c",
-      "src/secp256k1/src/bench_internal.c",
-      "src/secp256k1/src/bench_rangeproof.c",
-      "src/secp256k1/src/bench_whitelist.c",
       "src/secp256k1/src/checkmem.h",
       "src/secp256k1/src/eccommit.h",
       "src/secp256k1/src/eccommit_impl.h",
@@ -3117,12 +3066,10 @@
       "src/secp256k1/src/modules/bppp/bppp_util.h",
       "src/secp256k1/src/modules/bppp/main.h",
       "src/secp256k1/src/modules/bppp/main_impl.h",
-      "src/secp256k1/src/modules/ecdh/bench_impl.h",
       "src/secp256k1/src/modules/ecdh/main_impl.h",
       "src/secp256k1/src/modules/ecdsa_adaptor/dleq_impl.h",
       "src/secp256k1/src/modules/ecdsa_adaptor/main_impl.h",
       "src/secp256k1/src/modules/ecdsa_s2c/main_impl.h",
-      "src/secp256k1/src/modules/ellswift/bench_impl.h",
       "src/secp256k1/src/modules/ellswift/main_impl.h",
       "src/secp256k1/src/modules/extrakeys/main_impl.h",
       "src/secp256k1/src/modules/generator/main_impl.h",
@@ -3140,9 +3087,7 @@
       "src/secp256k1/src/modules/rangeproof/main_impl.h",
       "src/secp256k1/src/modules/rangeproof/rangeproof.h",
       "src/secp256k1/src/modules/rangeproof/rangeproof_impl.h",
-      "src/secp256k1/src/modules/recovery/bench_impl.h",
       "src/secp256k1/src/modules/recovery/main_impl.h",
-      "src/secp256k1/src/modules/schnorrsig/bench_impl.h",
       "src/secp256k1/src/modules/schnorrsig/main_impl.h",
       "src/secp256k1/src/modules/schnorrsig_halfagg/main_impl.h",
       "src/secp256k1/src/modules/surjection/main_impl.h",
@@ -3205,26 +3150,29 @@
       "src/wasm_package/webpack.config.js",
       "src/wif.c",
       "src/wordlist.c",
-      "src/wordlist.h"
+      "src/wordlist.h",
+      "tools/build_psbt_ctests.py",
+      "tools/build_wrappers.py",
+      "tools/wordlist_cc.py"
     ]
   },
   "dismissed": [],
   "triage": {
     "analyst": "QSI review, 2026-10-29",
     "counts": {
-      "confirmed": 5,
+      "confirmed": 4,
       "not_applicable": 1,
       "false_positive": 0
     },
-    "text": "Analyst review: 5 confirmed, 1 not applicable, 0 dismissed as false positives."
+    "text": "Проверка аналитика: подтверждено — 4, не применимо — 1, отклонено как ложные срабатывания — 0."
   },
   "summary": {
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 4,
+      "medium": 5,
       "low": 0,
-      "info": 2
+      "info": 1
     },
     "by_classification": {
       "confirmed_vulnerability": 0,
@@ -3237,28 +3185,188 @@
     },
     "total": 6,
     "posture_index": 100,
-    "pq_vulnerable_share": 74.1,
-    "inventory_total": 81,
+    "pq_vulnerable_share": 72.7,
+    "inventory_total": 77,
     "inventory_by_quantum_status": {
       "classical_weakness": 2,
       "grover_margin": 15,
       "grover_reduced": 4,
-      "vulnerable_shor": 60
+      "vulnerable_shor": 56
     }
   },
   "findings": [
     {
-      "id": "06becb5a-b907-438b-96e9-a8fe6bae41c7",
-      "public_id": "QSI-2026-06415",
+      "id": "fe2fe367-87b3-44ef-acf0-f6afcf5d4e2b",
+      "public_id": "QSI-2026-06685",
+      "rule_id": "KEY-QV-PUBLIC",
+      "title": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md",
+      "description": "Найден открытый ключ RSA 4096-bit (строка 52).",
+      "impact": "Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.",
+      "recommendation": "Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..",
+      "retest": "Повторный аудит после миграции.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.",
+      "method": "Разбор открытого ключа.",
+      "repro": "Откройте строка 52 в предоставленном файле SECURITY.md и изучите приведённые строки (см. доказательство).",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "high",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "file:SECURITY.md#line 52",
+      "data_source": "SECURITY.md",
+      "analyzer": "certificates 1.2.0",
+      "detected_at": "2026-10-29T19:57:18.794082+00:00",
+      "risk_score": 50.3,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "unspecified",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life",
+          "margin_years": 7.0
+        },
+        "score": 50.3,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 1.0
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "key",
+          "source": "SECURITY.md",
+          "location": "line 52",
+          "content": "OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit",
+          "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
+          "source_sha256": "3ab230590b464090a9bd2d92a77fe84b7f6514328b8922e4b7bfd4f8a73b0e6b",
+          "collector": "certificates 1.2.0",
+          "collected_at": "2026-10-29T19:57:18.808637+00:00",
+          "url": null
+        },
+        {
+          "kind": "key",
+          "source": "SECURITY.md",
+          "location": "line 52",
+          "content": "OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit",
+          "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
+          "source_sha256": "3ab230590b464090a9bd2d92a77fe84b7f6514328b8922e4b7bfd4f8a73b0e6b",
+          "collector": "certificates 1.2.0",
+          "collected_at": "2026-10-29T19:57:18.808646+00:00",
+          "url": null
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования RSA в file:SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "ffde304c-3d69-4f84-93a1-62e02111f98a",
+      "public_id": "QSI-2026-06686",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Quantum-vulnerable ECDSA: transaction and message signing (39 file(s))",
-      "description": "135 reference(s) to ECDSA across 39 file(s), e.g. src/anti_exfil.c:72. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
-      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
-      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
-      "retest": "Re-run the inventory after refactoring.",
-      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
-      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
-      "repro": "Open src/anti_exfil.c:72 and inspect the quoted lines; the evidence lists further files.",
+      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (36 файл(ов))",
+      "description": "131 упоминаний ECDSA в 36 файл(ах), например setup.py:58. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте setup.py:58 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
       "category": "post_quantum",
       "classification": "pq_long_term_risk",
       "severity": "medium",
@@ -3272,9 +3380,9 @@
         "severity_before": "medium"
       },
       "affected_asset": "source-code:ECDSA:transaction_signing",
-      "data_source": "src/anti_exfil.c",
+      "data_source": "setup.py",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T05:50:18.530898+00:00",
+      "detected_at": "2026-10-29T19:57:18.803667+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3365,13 +3473,46 @@
       "evidence": [
         {
           "kind": "file_excerpt",
+          "source": "setup.py",
+          "location": "line 58",
+          "content": "   57 | \n   58 | if (USE_LIB == 'no' or not PKG_SECP256K1) and not os.path.exists('src/secp256k1/Makefile.am'):\n   59 |     # Sync libsecp256k1-zkp (only if needed)",
+          "content_sha256": "faf6a0cba5f30b003359e096b202e6312b83d259b06c8c18493fc02a13b16467",
+          "source_sha256": "016931c29406077b6d11f67500ba0bc5cc27e7fa9e76a7b4a7de30e9f0a17325",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T19:57:18.827714+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/setup.py#L58"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "setup.py",
+          "location": "line 75",
+          "content": "   74 | if PKG_SECP256K1:\n   75 |     CONFIGURE_ARGS += ['--with-system-secp256k1=' + PKG_SECP256K1]\n   76 | ",
+          "content_sha256": "07224e44121568888046b6db0a64d8c77d33d1715e2c4c0e03b44ebbcca10b36",
+          "source_sha256": "016931c29406077b6d11f67500ba0bc5cc27e7fa9e76a7b4a7de30e9f0a17325",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T19:57:18.827724+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/setup.py#L75"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "setup.py",
+          "location": "line 132",
+          "content": "  131 |         './src/ccan',\n  132 |         './src/secp256k1/include',\n  133 |     ]",
+          "content_sha256": "790764e66fa46e6f76061b300ae744943186e2a604de2f62962c3fae53c69b3b",
+          "source_sha256": "016931c29406077b6d11f67500ba0bc5cc27e7fa9e76a7b4a7de30e9f0a17325",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T19:57:18.827728+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/setup.py#L132"
+        },
+        {
+          "kind": "file_excerpt",
           "source": "src/anti_exfil.c",
           "location": "line 72",
           "content": "   71 | {\n   72 |     secp256k1_ecdsa_signature sig_secp;\n   73 |     const secp256k1_context *ctx = secp_ctx();",
           "content_sha256": "38a6257c59bd1576fcad77de26a0b8b07e8d637f0457829ebd386222ffc20554",
           "source_sha256": "9a82b2e8a8fb25df7d59ee0108552079c29c7f5e522a9ba9700f4fa10983a612",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607438+00:00",
+          "collected_at": "2026-10-29T19:57:18.827732+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L72"
         },
         {
@@ -3382,7 +3523,7 @@
           "content_sha256": "9213bc4125f159f48bc6b0e8d7906dc826e6431c9b90cc8d1e9b98c342c9ee10",
           "source_sha256": "9a82b2e8a8fb25df7d59ee0108552079c29c7f5e522a9ba9700f4fa10983a612",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607447+00:00",
+          "collected_at": "2026-10-29T19:57:18.827735+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L87"
         },
         {
@@ -3393,7 +3534,7 @@
           "content_sha256": "ccc27036c049ec2fe55b8cab5992c66b4834971552c32740b52ae96fbe16eecd",
           "source_sha256": "9a82b2e8a8fb25df7d59ee0108552079c29c7f5e522a9ba9700f4fa10983a612",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607451+00:00",
+          "collected_at": "2026-10-29T19:57:18.827739+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L107"
         },
         {
@@ -3404,7 +3545,7 @@
           "content_sha256": "9197354c850cb53bbc475b348c0f97bb3f550706fcced8bf483336d626575330",
           "source_sha256": "4da2ecdc0a3b9dbb9029d188bb0243764a3c2f2324613a688f1ac4d3fc878851",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607456+00:00",
+          "collected_at": "2026-10-29T19:57:18.827743+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.c#L11"
         },
         {
@@ -3415,7 +3556,7 @@
           "content_sha256": "234aeaaf6b28e1d2ff43854e60a3119e3c3f55229e18841e2dc766404eab65d0",
           "source_sha256": "4da2ecdc0a3b9dbb9029d188bb0243764a3c2f2324613a688f1ac4d3fc878851",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607460+00:00",
+          "collected_at": "2026-10-29T19:57:18.827747+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.c#L19"
         },
         {
@@ -3426,7 +3567,7 @@
           "content_sha256": "75ad5d0cba25ca64adb6d971da937879704b4abc8845c17dc1da9fa1eb773e5e",
           "source_sha256": "4da2ecdc0a3b9dbb9029d188bb0243764a3c2f2324613a688f1ac4d3fc878851",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607464+00:00",
+          "collected_at": "2026-10-29T19:57:18.827750+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.c#L140"
         },
         {
@@ -3437,88 +3578,55 @@
           "content_sha256": "25af7e242d92af0d3c46ae8d8a48030e247c4bfdeba65068030e64eb4c88c912",
           "source_sha256": "7f3e8ba009f19a5f2759c9065af02cc8e62351100d69f8ae7e762fa4b65ea675",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607467+00:00",
+          "collected_at": "2026-10-29T19:57:18.827753+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.h#L57"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/secp256k1/contrib/lax_der_parsing.h",
-          "location": "line 59",
-          "content": "   58 | #ifndef SECP256K1_H\n   59 | #include <secp256k1.h>\n   60 | #endif",
-          "content_sha256": "4c35a81e99a7eaf5ea7315346f3b8cacb0832f7c4a3b1a3d003ff0bd3b6a82c1",
-          "source_sha256": "7f3e8ba009f19a5f2759c9065af02cc8e62351100d69f8ae7e762fa4b65ea675",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607471+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.h#L59"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/secp256k1/contrib/lax_der_parsing.h",
-          "location": "line 88",
-          "content": "   87 |     const secp256k1_context* ctx,\n   88 |     secp256k1_ecdsa_signature* sig,\n   89 |     const unsigned char *input,",
-          "content_sha256": "85efcade66268dd4d0b42e8f31b634ea4cd93d9d55cdc2e036715108d8697665",
-          "source_sha256": "7f3e8ba009f19a5f2759c9065af02cc8e62351100d69f8ae7e762fa4b65ea675",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607474+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.h#L88"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/secp256k1/contrib/lax_der_privatekey_parsing.h",
-          "location": "line 34",
-          "content": "   33 |    files (such as tests.c) without the need to set an explicit -I flag,\n   34 |    which would be necessary to locate secp256k1.h. */\n   35 | #ifndef SECP256K1_H",
-          "content_sha256": "163cac24f6b60e798317e2383fb603da718e728035262dc9759d7cf3fbd47b4f",
-          "source_sha256": "3420812d623c0f2f86debe0535f98eab9b929036bb2fee2de8e3b1adc3e1a0b9",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.607477+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_privatekey_parsing.h#L34"
         }
       ],
       "remediation": [
         {
           "kind": "mitigation",
-          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
           "priority": "P3",
           "horizon_days": 90,
           "complexity": "medium",
-          "dependencies": "Access to system owners.",
-          "side_effects": "None (documentation and design work).",
-          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-          "post_tests": "Inventory review signed off by the system owner.",
-          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
           "status": "todo"
         },
         {
           "kind": "root_cause",
-          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
           "priority": "P4",
           "horizon_days": 90,
           "complexity": "high",
-          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-          "pre_tests": "Interoperability tests in a staging environment.",
-          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
           "status": "todo"
         }
       ]
     },
     {
-      "id": "30b33b94-0d6d-44b0-ba1b-6a9783b98711",
-      "public_id": "QSI-2026-06416",
+      "id": "8c843ef6-db2e-4bdc-a430-902e6af8799a",
+      "public_id": "QSI-2026-06688",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (6 file(s))",
-      "description": "37 reference(s) to Schnorr (BIP-340) across 6 file(s), e.g. src/secp256k1/include/secp256k1_schnorrsig.h:82. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
-      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
-      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
-      "retest": "Re-run the inventory after refactoring.",
-      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
-      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
-      "repro": "Open src/secp256k1/include/secp256k1_schnorrsig.h:82 and inspect the quoted lines; the evidence lists further files.",
+      "title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (5 файл(ов))",
+      "description": "34 упоминаний Schnorr (BIP-340) в 5 файл(ах), например src/secp256k1/include/secp256k1_schnorrsig.h:82. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте src/secp256k1/include/secp256k1_schnorrsig.h:82 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
       "category": "post_quantum",
       "classification": "pq_long_term_risk",
       "severity": "medium",
@@ -3534,7 +3642,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
       "data_source": "src/secp256k1/include/secp256k1_schnorrsig.h",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T05:50:18.603381+00:00",
+      "detected_at": "2026-10-29T19:57:18.838461+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3631,7 +3739,7 @@
           "content_sha256": "6aae3b20f8f8b503597acb97fe491246b6777b5a9660b8a41542605d18aab6f4",
           "source_sha256": "8185d6c6ea3234fff05f38fad4b1b6f48f0574ab599dfc87297ab9bca0abfca5",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626779+00:00",
+          "collected_at": "2026-10-29T19:57:18.855365+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig.h#L82"
         },
         {
@@ -3642,7 +3750,7 @@
           "content_sha256": "43d5f6045ac4e6b23daf11fd6c10022dca16ca76afd775c3ee898ddbef44d5bd",
           "source_sha256": "8185d6c6ea3234fff05f38fad4b1b6f48f0574ab599dfc87297ab9bca0abfca5",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626787+00:00",
+          "collected_at": "2026-10-29T19:57:18.855373+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig.h#L86"
         },
         {
@@ -3653,7 +3761,7 @@
           "content_sha256": "1e555d327421285c8a81345e58876f5f2f017571adb2f2168aafc7c44770594c",
           "source_sha256": "8185d6c6ea3234fff05f38fad4b1b6f48f0574ab599dfc87297ab9bca0abfca5",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626793+00:00",
+          "collected_at": "2026-10-29T19:57:18.855376+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig.h#L119"
         },
         {
@@ -3664,7 +3772,7 @@
           "content_sha256": "b3d54ae6f144846b9769cfe141d006f33bf49fa9572bafb7307c2ade17fd95eb",
           "source_sha256": "89669a3ad2c904072c1177e7b783996af5d72635bb7590e02284e776cc4e085f",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626796+00:00",
+          "collected_at": "2026-10-29T19:57:18.855380+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h#L43"
         },
         {
@@ -3675,7 +3783,7 @@
           "content_sha256": "be378be4953e3b3d2e2b5a4ddab26874bc43e6f72392495b730cac093c057a7a",
           "source_sha256": "89669a3ad2c904072c1177e7b783996af5d72635bb7590e02284e776cc4e085f",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626800+00:00",
+          "collected_at": "2026-10-29T19:57:18.855383+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h#L70"
         },
         {
@@ -3686,7 +3794,7 @@
           "content_sha256": "b10de912dd2b9f3e510c8fe909f0b6db3a25cde95edbbe0af55b109a33026fce",
           "source_sha256": "89669a3ad2c904072c1177e7b783996af5d72635bb7590e02284e776cc4e085f",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626803+00:00",
+          "collected_at": "2026-10-29T19:57:18.855386+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h#L94"
         },
         {
@@ -3697,88 +3805,88 @@
           "content_sha256": "6254128e9a575e14bb87c68d5f2f12d65a6084dd7de58385e4a2764f96f3935a",
           "source_sha256": "ddcb0d007ebaa3ccf9611de3671c8551ef93e7f33b588d27156d42a95bc46ede",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626807+00:00",
+          "collected_at": "2026-10-29T19:57:18.855389+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/musig/session_impl.h#L621"
         },
         {
           "kind": "file_excerpt",
-          "source": "src/secp256k1/src/modules/schnorrsig/bench_impl.h",
-          "location": "line 33",
-          "content": "   32 |         msg[1] = i >> 8;\n   33 |         CHECK(secp256k1_schnorrsig_sign_custom(data->ctx, sig, msg, MSGLEN, data->keypairs[i], NULL));\n   34 |     }",
-          "content_sha256": "fc2c5559f32fc9bd9a85efef59a46eaf722b1b8e2745b837696cdf6a6c00259e",
-          "source_sha256": "9655992c7fd214231623716a738a1928e24a86b4bcdd909f331712df800a1abc",
+          "source": "src/secp256k1/src/modules/schnorrsig/main_impl.h",
+          "location": "line 98",
+          "content": "   97 |  * SHA256 to SHA256(\"BIP0340/challenge\")||SHA256(\"BIP0340/challenge\"). */\n   98 | static void secp256k1_schnorrsig_sha256_tagged(secp256k1_sha256 *sha) {\n   99 |     static const uint32_t midstate[8] = {",
+          "content_sha256": "a1153ae2ef17b61baf8d2585aa893927fd88f650b34ce0d8166071a4d0fd904f",
+          "source_sha256": "138c330969201f4d7ff5eb512715b7e05665c3ab4f6d5d9b4172a41aa7c80164",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626810+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/bench_impl.h#L33"
+          "collected_at": "2026-10-29T19:57:18.855392+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/main_impl.h#L98"
         },
         {
           "kind": "file_excerpt",
-          "source": "src/secp256k1/src/modules/schnorrsig/bench_impl.h",
-          "location": "line 44",
-          "content": "   43 |         CHECK(secp256k1_xonly_pubkey_parse(data->ctx, &pk, data->pk[i]) == 1);\n   44 |         CHECK(secp256k1_schnorrsig_verify(data->ctx, data->sigs[i], data->msgs[i], MSGLEN, &pk));\n   45 |     }",
-          "content_sha256": "4f2e9b7b2529431d8190d606bbe0ce49659d6e5a1e0410625d931eacdcd05a06",
-          "source_sha256": "9655992c7fd214231623716a738a1928e24a86b4bcdd909f331712df800a1abc",
+          "source": "src/secp256k1/src/modules/schnorrsig/main_impl.h",
+          "location": "line 106",
+          "content": "  105 | \n  106 | static void secp256k1_schnorrsig_challenge(const secp256k1_hash_ctx *hash_ctx, secp256k1_scalar* e, const unsigned char *r32, const unsigned char *msg, size_t msglen, const unsigned char *pubkey32)\n  107 | {",
+          "content_sha256": "f299d1f78d3628291910977b1ab869c1f4322bf525ee5240bf39f43fcf9a3411",
+          "source_sha256": "138c330969201f4d7ff5eb512715b7e05665c3ab4f6d5d9b4172a41aa7c80164",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626814+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/bench_impl.h#L44"
+          "collected_at": "2026-10-29T19:57:18.855395+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/main_impl.h#L106"
         },
         {
           "kind": "file_excerpt",
-          "source": "src/secp256k1/src/modules/schnorrsig/bench_impl.h",
-          "location": "line 80",
-          "content": "   79 |         CHECK(secp256k1_keypair_create(data.ctx, keypair, sk));\n   80 |         CHECK(secp256k1_schnorrsig_sign_custom(data.ctx, sig, msg, MSGLEN, keypair, NULL));\n   81 |         CHECK(secp256k1_keypair_xonly_pub(data.ctx, &pk, NULL, keypair));",
-          "content_sha256": "0ca8c9b51520014576b4c622e33014e8b93cc7c4bd0bc826e9cd4563a3642698",
-          "source_sha256": "9655992c7fd214231623716a738a1928e24a86b4bcdd909f331712df800a1abc",
+          "source": "src/secp256k1/src/modules/schnorrsig/main_impl.h",
+          "location": "line 112",
+          "content": "  111 |     /* tagged hash(r.x, pk.x, msg) */\n  112 |     secp256k1_schnorrsig_sha256_tagged(&sha);\n  113 |     secp256k1_sha256_write(hash_ctx, &sha, r32, 32);",
+          "content_sha256": "a0a16dc204430e96c9903e6ee6ef21caae66df417cf75c5030f669edff995e9b",
+          "source_sha256": "138c330969201f4d7ff5eb512715b7e05665c3ab4f6d5d9b4172a41aa7c80164",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.626817+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/bench_impl.h#L80"
+          "collected_at": "2026-10-29T19:57:18.855398+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/main_impl.h#L112"
         }
       ],
       "remediation": [
         {
           "kind": "mitigation",
-          "action": "Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "action": "Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
           "priority": "P3",
           "horizon_days": 90,
           "complexity": "medium",
-          "dependencies": "Access to system owners.",
-          "side_effects": "None (documentation and design work).",
-          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-          "post_tests": "Inventory review signed off by the system owner.",
-          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
           "status": "todo"
         },
         {
           "kind": "root_cause",
-          "action": "Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "action": "Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
           "priority": "P4",
           "horizon_days": 90,
           "complexity": "high",
-          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-          "pre_tests": "Interoperability tests in a staging environment.",
-          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-          "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
           "status": "todo"
         }
       ]
     },
     {
-      "id": "3ff10ebe-4aa6-4833-8232-6f77d0c5df73",
-      "public_id": "QSI-2026-06417",
+      "id": "a8f701d5-9a3a-4758-8739-c8baa9149422",
+      "public_id": "QSI-2026-06687",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Quantum-vulnerable ECDH: role not determined (1 file(s))",
-      "description": "4 reference(s) to ECDH across 1 file(s), e.g. src/secp256k1/src/bench.c:24. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
-      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
-      "recommendation": "Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility.",
-      "retest": "Re-run the inventory after refactoring.",
-      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
-      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
-      "repro": "Open src/secp256k1/src/bench.c:24 and inspect the quoted lines; the evidence lists further files.",
+      "title": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))",
+      "description": "4 упоминаний ECDSA в 2 файл(ах), например src/amalgamation/combined.c:34. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте src/amalgamation/combined.c:34 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
       "category": "post_quantum",
       "classification": "pq_long_term_risk",
       "severity": "medium",
@@ -3786,27 +3894,27 @@
       "preliminary": false,
       "status": "open",
       "triage": {
-        "note": "Three rows, and the only ones here with a retroactive character, so they should not be read as three more signing rows. One of the three is weaker evidence than the others and that is worth saying: it is a printf in a build-information path announcing \"ECDH key exchange (optional module)\" under #ifdef ENABLE_MODULE_ECDH, which proves the module can be compiled in, not that this build uses it. Where a shared secret derived through ECDH protects stored or recorded data, harvest-now-decrypt-later applies in full, and unlike the signature rows it can be hardened today by wrapping the agreed secret under a hybrid KEM — no consensus change needed. Kept at medium rather than raised, because the evidence for *use* is a conditional compile rather than a call.",
+        "note": "Dropped to informational, because these rows are the amalgamation unit rather than a use: src/wally_elements.c and its siblings do #include \"src/secp256k1/src/secp256k1.c\" and #include \"src/secp256k1/src/precompute_ecmult.c\" to build the vendored library into one translation unit. The primitive genuinely appears at those lines, so the rows are correct inventory and are kept visible — a reader who checks the files should find what the tool found — but an #include of a .c file is a build arrangement, and the real uses are decided above.",
         "analyst": "QSI review, 2026-10-29",
         "decision": "confirmed",
         "severity_before": "medium"
       },
-      "affected_asset": "source-code:ECDH:general",
-      "data_source": "src/secp256k1/src/bench.c",
+      "affected_asset": "source-code:ECDSA:general",
+      "data_source": "src/amalgamation/combined.c",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T05:50:18.622780+00:00",
+      "detected_at": "2026-10-29T19:57:18.823840+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
           "x": 10.0,
           "y": 5.0,
           "z": 8.0,
-          "kind": "key_establishment",
+          "kind": "signature",
           "note": "z is an assumed planning scenario, not a forecast",
           "urgency": 1.0,
           "verdict": "migration_late_under_scenario",
           "scenario": "early",
-          "x_source": "project data shelf life (harvest now, decrypt later)",
+          "x_source": "project signature lifetime",
           "margin_years": 7.0
         },
         "score": 40.2,
@@ -3885,83 +3993,94 @@
       "evidence": [
         {
           "kind": "file_excerpt",
-          "source": "src/secp256k1/src/bench.c",
-          "location": "line 24",
-          "content": "   23 | #ifdef ENABLE_MODULE_ECDH\n   24 |     printf(\"    - ECDH key exchange (optional module)\\n\");\n   25 | #endif",
-          "content_sha256": "6ec91ca104f465f4b861193bee0ed1f6d91c4074fb5085511ca06c7dd6747616",
-          "source_sha256": "832edacf541809e3cbc59a4e698d5e33a9388a7dddd55662936244cd106fccce",
+          "source": "src/amalgamation/combined.c",
+          "location": "line 34",
+          "content": "   33 | #endif\n   34 | #include \"src/secp256k1/src/secp256k1.c\"\n   35 | #include \"src/secp256k1/src/precomputed_ecmult_gen.c\"",
+          "content_sha256": "8cce795a23b61e665185923e4058d56ed7e106c55784ee042d2a237e9547756d",
+          "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.679449+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/bench.c#L24"
+          "collected_at": "2026-10-29T19:57:18.841989+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L34"
         },
         {
           "kind": "file_excerpt",
-          "source": "src/secp256k1/src/bench.c",
-          "location": "line 54",
-          "content": "   53 | #ifdef ENABLE_MODULE_ECDH\n   54 |     printf(\"    ecdh              : ECDH key exchange algorithm\\n\");\n   55 | #endif",
-          "content_sha256": "b21ecd8d53157d4f920477f57713fa34b7fe6379df61daa64f27e4a77f9133e1",
-          "source_sha256": "832edacf541809e3cbc59a4e698d5e33a9388a7dddd55662936244cd106fccce",
+          "source": "src/amalgamation/combined.c",
+          "location": "line 35",
+          "content": "   34 | #include \"src/secp256k1/src/secp256k1.c\"\n   35 | #include \"src/secp256k1/src/precomputed_ecmult_gen.c\"\n   36 | #include \"src/secp256k1/src/precomputed_ecmult.c\"",
+          "content_sha256": "b0ba42431dd53977e931a49f059369c0a07f7bb7b7924b65b78a0d467021b948",
+          "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.679460+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/bench.c#L54"
+          "collected_at": "2026-10-29T19:57:18.841997+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L35"
         },
         {
           "kind": "file_excerpt",
-          "source": "src/secp256k1/src/bench.c",
-          "location": "line 68",
-          "content": "   67 |     printf(\"    ellswift_keygen   : ElligatorSwift key generation\\n\");\n   68 |     printf(\"    ellswift_ecdh     : ECDH on ElligatorSwift keys\\n\");\n   69 | #endif",
-          "content_sha256": "ae7392892e7a0840c3596f3442ca87927d89cc694ec91267d2a73193091dac83",
-          "source_sha256": "832edacf541809e3cbc59a4e698d5e33a9388a7dddd55662936244cd106fccce",
+          "source": "src/amalgamation/combined.c",
+          "location": "line 36",
+          "content": "   35 | #include \"src/secp256k1/src/precomputed_ecmult_gen.c\"\n   36 | #include \"src/secp256k1/src/precomputed_ecmult.c\"\n   37 | ",
+          "content_sha256": "9f2414696e322db70b097fe19907ea2f68a74d7db34037aad03b8dd534091072",
+          "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.679464+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/bench.c#L68"
+          "collected_at": "2026-10-29T19:57:18.842001+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L36"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/internal.h",
+          "location": "line 33",
+          "content": "   32 | \n   33 | #include <secp256k1.h>\n   34 | #include <secp256k1_recovery.h>",
+          "content_sha256": "a3cf3e2c758ea293394dc165dc129bd87d56cac6ce0aa935b84a4eee6ffc8113",
+          "source_sha256": "f21377ed9eba49d06a5664dc4c28437e62d1b2868f4d6cfb75fd844804cd4b65",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T19:57:18.842004+00:00",
+          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/internal.h#L33"
         }
       ],
       "remediation": [
         {
           "kind": "mitigation",
-          "action": "Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
           "priority": "P3",
           "horizon_days": 90,
           "complexity": "medium",
-          "dependencies": "Access to system owners.",
-          "side_effects": "None (documentation and design work).",
-          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-          "post_tests": "Inventory review signed off by the system owner.",
-          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
           "status": "todo"
         },
         {
           "kind": "root_cause",
-          "action": "Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
           "priority": "P4",
           "horizon_days": 90,
           "complexity": "high",
-          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-          "pre_tests": "Interoperability tests in a staging environment.",
-          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-          "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
           "status": "todo"
         }
       ]
     },
     {
-      "id": "9b99c1a0-e6cb-447e-8a5a-c3f526550197",
-      "public_id": "QSI-2026-06418",
+      "id": "24401b8d-7685-407e-9a38-116dcb0c9b95",
+      "public_id": "QSI-2026-06689",
       "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))",
-      "description": "2 reference(s) to Schnorr (BIP-340) across 1 file(s), e.g. src/sign.c:387. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
-      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
-      "recommendation": "Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for crypto-agility.",
-      "retest": "Re-run the inventory after refactoring.",
-      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
-      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
-      "repro": "Open src/sign.c:387 and inspect the quoted lines; the evidence lists further files.",
+      "title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))",
+      "description": "2 упоминаний Schnorr (BIP-340) в 1 файл(ах), например src/sign.c:387. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте src/sign.c:387 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
       "category": "post_quantum",
       "classification": "pq_long_term_risk",
       "severity": "medium",
@@ -3977,7 +4096,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):general",
       "data_source": "src/sign.c",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T05:50:18.659162+00:00",
+      "detected_at": "2026-10-29T19:57:18.851241+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4074,7 +4193,7 @@
           "content_sha256": "b957a7949930facdb75237e2e6c12333acd87496052f7b47d028be3337f21aa3",
           "source_sha256": "9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.754728+00:00",
+          "collected_at": "2026-10-29T19:57:18.868340+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L387"
         },
         {
@@ -4085,249 +4204,55 @@
           "content_sha256": "b2cc452c48e864fed16b916f1e68559e9d63deec6656b7f76f35916d3cb585af",
           "source_sha256": "9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.754739+00:00",
+          "collected_at": "2026-10-29T19:57:18.868348+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L456"
         }
       ],
       "remediation": [
         {
           "kind": "mitigation",
-          "action": "Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "action": "Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
           "priority": "P3",
           "horizon_days": 90,
           "complexity": "medium",
-          "dependencies": "Access to system owners.",
-          "side_effects": "None (documentation and design work).",
-          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-          "post_tests": "Inventory review signed off by the system owner.",
-          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
           "status": "todo"
         },
         {
           "kind": "root_cause",
-          "action": "Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "action": "Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
           "priority": "P4",
           "horizon_days": 90,
           "complexity": "high",
-          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-          "pre_tests": "Interoperability tests in a staging environment.",
-          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-          "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
           "status": "todo"
         }
       ]
     },
     {
-      "id": "8a84fcf8-89b4-4d73-95a8-b6e13e658e5a",
-      "public_id": "QSI-2026-06414",
-      "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Quantum-vulnerable ECDSA: role not determined (2 file(s))",
-      "description": "4 reference(s) to ECDSA across 2 file(s), e.g. src/amalgamation/combined.c:34. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
-      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
-      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
-      "retest": "Re-run the inventory after refactoring.",
-      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
-      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
-      "repro": "Open src/amalgamation/combined.c:34 and inspect the quoted lines; the evidence lists further files.",
-      "category": "post_quantum",
-      "classification": "pq_long_term_risk",
-      "severity": "info",
-      "confidence": "medium",
-      "preliminary": false,
-      "status": "open",
-      "triage": {
-        "note": "Dropped to informational, because these rows are the amalgamation unit rather than a use: src/wally_elements.c and its siblings do #include \"src/secp256k1/src/secp256k1.c\" and #include \"src/secp256k1/src/precompute_ecmult.c\" to build the vendored library into one translation unit. The primitive genuinely appears at those lines, so the rows are correct inventory and are kept visible — a reader who checks the files should find what the tool found — but an #include of a .c file is a build arrangement, and the real uses are decided above.",
-        "analyst": "QSI review, 2026-10-29",
-        "decision": "confirmed",
-        "severity_before": "medium"
-      },
-      "affected_asset": "source-code:ECDSA:general",
-      "data_source": "src/amalgamation/combined.c",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T05:50:18.516780+00:00",
-      "risk_score": 31.2,
-      "risk_breakdown": {
-        "mosca": {
-          "x": 10.0,
-          "y": 5.0,
-          "z": 8.0,
-          "kind": "signature",
-          "note": "z is an assumed planning scenario, not a forecast",
-          "urgency": 1.0,
-          "verdict": "migration_late_under_scenario",
-          "scenario": "early",
-          "x_source": "project signature lifetime",
-          "margin_years": 7.0
-        },
-        "score": 31.2,
-        "factors": {
-          "ease": 0.3,
-          "asset": 0.6,
-          "impact": 0.54,
-          "urgency": 1.0,
-          "exposure": 0.6,
-          "severity": 0.05,
-          "exploitability": 0.1
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 39.05,
-        "references": [
-          {
-            "key": "CVSS31",
-            "url": "https://www.first.org/cvss/v3.1/specification-document",
-            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
-            "status": "final",
-            "publisher": "FIRST"
-          },
-          {
-            "key": "MOSCA2018",
-            "url": "https://doi.org/10.1109/MSP.2018.3761723",
-            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
-            "status": "peer-reviewed article; source of the x + y > z migration inequality",
-            "publisher": "IEEE"
-          }
-        ],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 10.8,
-          "urgency": 10.0,
-          "exposure": 9.0,
-          "severity": 1.25,
-          "exploitability": 2.0
-        },
-        "confidence_multiplier": 0.8
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "SHOR1997",
-          "url": "https://doi.org/10.1137/S0097539795293172",
-          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
-          "status": "peer-reviewed article",
-          "publisher": "SIAM"
-        },
-        {
-          "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
-          "publisher": "NIST"
-        },
-        {
-          "key": "MOSCA2018",
-          "url": "https://doi.org/10.1109/MSP.2018.3761723",
-          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
-          "status": "peer-reviewed article; source of the x + y > z migration inequality",
-          "publisher": "IEEE"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "src/amalgamation/combined.c",
-          "location": "line 34",
-          "content": "   33 | #endif\n   34 | #include \"src/secp256k1/src/secp256k1.c\"\n   35 | #include \"src/secp256k1/src/precomputed_ecmult_gen.c\"",
-          "content_sha256": "8cce795a23b61e665185923e4058d56ed7e106c55784ee042d2a237e9547756d",
-          "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.571089+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L34"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/amalgamation/combined.c",
-          "location": "line 35",
-          "content": "   34 | #include \"src/secp256k1/src/secp256k1.c\"\n   35 | #include \"src/secp256k1/src/precomputed_ecmult_gen.c\"\n   36 | #include \"src/secp256k1/src/precomputed_ecmult.c\"",
-          "content_sha256": "b0ba42431dd53977e931a49f059369c0a07f7bb7b7924b65b78a0d467021b948",
-          "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.571098+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L35"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/amalgamation/combined.c",
-          "location": "line 36",
-          "content": "   35 | #include \"src/secp256k1/src/precomputed_ecmult_gen.c\"\n   36 | #include \"src/secp256k1/src/precomputed_ecmult.c\"\n   37 | ",
-          "content_sha256": "9f2414696e322db70b097fe19907ea2f68a74d7db34037aad03b8dd534091072",
-          "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.571102+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L36"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "src/internal.h",
-          "location": "line 33",
-          "content": "   32 | \n   33 | #include <secp256k1.h>\n   34 | #include <secp256k1_recovery.h>",
-          "content_sha256": "a3cf3e2c758ea293394dc165dc129bd87d56cac6ce0aa935b84a4eee6ffc8113",
-          "source_sha256": "f21377ed9eba49d06a5664dc4c28437e62d1b2868f4d6cfb75fd844804cd4b65",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.571105+00:00",
-          "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/internal.h#L33"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "mitigation",
-          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
-          "priority": "P3",
-          "horizon_days": 90,
-          "complexity": "medium",
-          "dependencies": "Access to system owners.",
-          "side_effects": "None (documentation and design work).",
-          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-          "post_tests": "Inventory review signed off by the system owner.",
-          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
-          "status": "todo"
-        },
-        {
-          "kind": "root_cause",
-          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
-          "priority": "P4",
-          "horizon_days": 90,
-          "complexity": "high",
-          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-          "pre_tests": "Interoperability tests in a staging environment.",
-          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "c5c349bc-1139-4e58-9e74-1cf9a860735c",
-      "public_id": "QSI-2026-06419",
+      "id": "82960a49-a048-403d-87b5-c171be7b6c33",
+      "public_id": "QSI-2026-06690",
       "rule_id": "DEP-ADVISORY-DEV",
-      "title": "7 advisories in 3 development or build-only npm package(s)",
-      "description": "OSV.dev lists 7 advisories (1 rated high or critical) for 3 npm package(s) that only development or build tooling pulls in (src/wasm_package/package-lock.json): e.g. ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.7 [dev]: GHSA-333x-w4r6-6crp, GHSA-hrr3-gc8f-f4qj, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships.",
-      "impact": "They do not reach users of the product. They can affect developer machines and CI (supply chain): a compromised or vulnerable tool can tamper with builds.",
-      "recommendation": "Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts.",
-      "retest": "Re-run the dependency scan after updating.",
-      "limitations": "Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller.",
-      "method": "OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.",
-      "repro": "Look the packages listed in the evidence up at https://osv.dev and check their scope in src/wasm_package/package-lock.json.",
+      "title": "7 бюллетеней в 3 пакет(ах) npm, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 7 бюллетеней (1 с оценкой high или critical) для 3 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (src/wasm_package/package-lock.json): например, ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.7 [dev]: GHSA-333x-w4r6-6crp, GHSA-hrr3-gc8f-f4qj, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
+      "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.",
+      "method": "Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.",
+      "repro": "Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в src/wasm_package/package-lock.json.",
       "category": "dependencies",
       "classification": "improvement",
       "severity": "info",
@@ -4343,7 +4268,7 @@
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-29T05:50:18.722894+00:00",
+      "detected_at": "2026-10-29T19:57:18.864615+00:00",
       "risk_score": 18.3,
       "risk_breakdown": {
         "score": 18.3,
@@ -4399,24 +4324,24 @@
           "content_sha256": "baa45062fa297ca1092e6508e54634767572b685acf5a4da92151730871ea6fb",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-29T05:50:18.915010+00:00",
+          "collected_at": "2026-10-29T19:57:18.921438+00:00",
           "url": "https://osv.dev/"
         }
       ],
       "remediation": [
         {
           "kind": "root_cause",
-          "action": "Update the development and build dependencies listed in the evidence.",
-          "rationale": "Eliminates the root cause described in the finding.",
-          "expected_outcome": "The weakness is no longer present on re-test.",
+          "action": "Обновите зависимости разработки и сборки из доказательства.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
           "priority": "P4",
           "horizon_days": 90,
           "complexity": "low",
-          "dependencies": "Change window and owner approval.",
-          "side_effects": "Tooling upgrades may change build output; compare release artefacts.",
-          "pre_tests": "Reproduce the finding using the documented steps.",
-          "post_tests": "Re-run the retest procedure from the finding.",
-          "closure_criteria": "The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded.",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
           "status": "todo"
         }
       ]
@@ -4441,41 +4366,41 @@
       "kind": "signature",
       "x_assumed": false
     },
-    "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
+    "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-06415",
-      "QSI-2026-06416",
-      "QSI-2026-06417",
-      "QSI-2026-06418",
-      "QSI-2026-06414"
+      "QSI-2026-06685",
+      "QSI-2026-06686",
+      "QSI-2026-06688",
+      "QSI-2026-06687",
+      "QSI-2026-06689"
     ],
     "roles": [
       {
         "role": "transaction_signing",
-        "label": "transaction and message signing",
-        "action": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them",
+        "label": "подпись транзакций и сообщений",
+        "action": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями",
         "criticality": 4,
         "severity": "medium",
         "algorithms": [
           {
             "algorithm": "ECDSA",
-            "files": 39
+            "files": 36
           },
           {
             "algorithm": "Schnorr (BIP-340)",
-            "files": 6
+            "files": 5
           }
         ],
         "findings": [
-          "QSI-2026-06415",
-          "QSI-2026-06416"
+          "QSI-2026-06686",
+          "QSI-2026-06688"
         ],
-        "files": 45
+        "files": 41
       },
       {
         "role": "general",
-        "label": "role not determined",
-        "action": "Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility",
+        "label": "роль не определена",
+        "action": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости",
         "criticality": 3,
         "severity": "medium",
         "algorithms": [
@@ -4484,52 +4409,69 @@
             "files": 2
           },
           {
-            "algorithm": "ECDH",
-            "files": 1
-          },
-          {
             "algorithm": "Schnorr (BIP-340)",
             "files": 1
           }
         ],
         "findings": [
-          "QSI-2026-06414",
-          "QSI-2026-06417",
-          "QSI-2026-06418"
+          "QSI-2026-06687",
+          "QSI-2026-06689"
         ],
-        "files": 4
+        "files": 3
       }
     ],
     "maturity": {
       "level": 0,
-      "label": "no post-quantum cryptography",
-      "next": "Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.",
+      "label": "постквантовой криптографии нет",
+      "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
       "facts": []
     },
     "quantum_algorithms": [
       {
-        "id": "shor-ecdlp",
-        "name": "Shor's algorithm — elliptic-curve discrete logarithms",
+        "id": "shor-factoring",
+        "name": "Алгоритм Шора — факторизация",
         "effect": "breaks",
-        "effect_label": "breaks",
+        "effect_label": "взламывает",
         "model": "Q1",
-        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "RSA",
+            "rows": 2
+          }
+        ],
+        "audit": "Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей.",
+        "practicality": "Нужен отказоустойчивый квантовый компьютер. Опубликованные оценки для RSA-2048 снизились с 20 млн шумных кубитов и 8 часов (Гидни–Экеро, 2021) до менее чем миллиона шумных кубитов и менее недели (Гидни, 2025); проект 2026 года на нейтральных атомах оценивает RSA-2048 на один-два порядка дольше, чем P-256, на 26 000 кубитов (Кейн и др.). Это сценарии при заявленных допущениях; публично такой машины нет.",
+        "sources": [
+          "SHOR1997",
+          "GIDNEY-EKERA2021",
+          "GIDNEY2025",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "shor-ecdlp",
+        "name": "Алгоритм Шора — дискретный логарифм на эллиптических кривых",
+        "effect": "breaks",
+        "effect_label": "взламывает",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
         "affected": [
           {
             "algorithm": "ECDH",
-            "rows": 3
+            "rows": 2
           },
           {
             "algorithm": "ECDSA",
-            "rows": 50
+            "rows": 46
           },
           {
             "algorithm": "Schnorr (BIP-340)",
-            "rows": 7
+            "rows": 6
           }
         ],
-        "audit": "Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.",
-        "practicality": "2026 estimates for a 256-bit curve: under 1,200 logical qubits and 90 million Toffoli gates, under half a million physical superconducting qubits running for minutes (Babbush et al.); 1,193 logical qubits with more gates (Chevignard–Fouque–Schrottenloher); P-256 in a few days on 26,000 neutral-atom qubits (Cain et al.). Scenarios under stated assumptions, not forecasts.",
+        "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
+        "practicality": "Оценки 2026 года для 256-битной кривой: менее 1200 логических кубитов и 90 млн вентилей Тоффоли, менее полумиллиона физических сверхпроводниковых кубитов и минуты работы (Баббуш и др.); 1193 логических кубита при большем числе вентилей (Шевиньяр–Фук–Шроттенлохер); P-256 за несколько дней на 26 000 кубитов на нейтральных атомах (Кейн и др.). Сценарии при заявленных допущениях, а не прогнозы.",
         "sources": [
           "PROOS-ZALKA2003",
           "ROETTELER2017",
@@ -4541,11 +4483,11 @@
       },
       {
         "id": "grover",
-        "name": "Grover's algorithm — key search and preimages",
+        "name": "Алгоритм Гровера — поиск ключа и прообразов",
         "effect": "weakens",
-        "effect_label": "weakens (larger keys restore the margin)",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
         "model": "Q1",
-        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
         "affected": [
           {
             "algorithm": "HMAC",
@@ -4568,8 +4510,8 @@
             "rows": 5
           }
         ],
-        "audit": "Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.",
-        "practicality": "The search is long and serial: NIST counts AES-128 key search as 2^170/MAXDEPTH quantum gates with MAXDEPTH between 2^40 and 2^96 and uses it as the yardstick of security category 1; a SHA-256 preimage was estimated at about 2^153.8 surface-code cycles on 2^12.6 logical qubits (Amy et al. 2016).",
+        "audit": "Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.",
+        "practicality": "Поиск долгий и последовательный: NIST оценивает поиск ключа AES-128 в 2^170/MAXDEPTH квантовых вентилей при MAXDEPTH от 2^40 до 2^96 и использует его как эталон категории стойкости 1; прообраз SHA-256 оценён примерно в 2^153,8 циклов поверхностного кода на 2^12,6 логических кубитах (Эми и др., 2016).",
         "sources": [
           "GROVER1996",
           "ZALKA1999",
@@ -4580,11 +4522,11 @@
       },
       {
         "id": "bht-collision",
-        "name": "Brassard–Høyer–Tapp — collision search",
+        "name": "Брассар–Хойер–Тапп — поиск коллизий",
         "effect": "weakens",
-        "effect_label": "weakens (larger keys restore the margin)",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
         "model": "Q1",
-        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
         "affected": [
           {
             "algorithm": "RIPEMD-160",
@@ -4595,8 +4537,8 @@
             "rows": 6
           }
         ],
-        "audit": "256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.",
-        "practicality": "Bernstein (2009) argued that, once hardware cost is counted, it is not cheaper than classical parallel collision search; NIST defines security category 2 by SHA3-256 collision search counted in classical gates (2^146).",
+        "audit": "256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.",
+        "practicality": "Бернштейн (2009) показал, что с учётом стоимости оборудования этот поиск не дешевле классического параллельного поиска коллизий; NIST определяет категорию стойкости 2 через поиск коллизий SHA3-256 в классических вентилях (2^146).",
         "sources": [
           "BHT-COLLISION1998",
           "CNS2017",
@@ -4611,25 +4553,25 @@
           "years": 5,
           "likelihood": "~15%",
           "ref": "GRI-QTT",
-          "wording": "averaged estimate"
+          "wording": "усреднённая оценка"
         },
         {
           "years": 10,
           "likelihood": "28-49%",
           "ref": "GRI-QTT",
-          "wording": "quite possible"
+          "wording": "вполне возможно"
         },
         {
           "years": 15,
           "likelihood": "51-70%",
           "ref": "GRI-QTT",
-          "wording": "likely"
+          "wording": "вероятно"
         }
       ],
       "scenario": {
         "key": "early",
         "years": 8,
-        "rationale": "Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.",
+        "rationale": "Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.",
         "refs": [
           "GRI-QTT",
           "BSI-CRQC"
@@ -4644,200 +4586,200 @@
     "90": [
       {
         "kind": "mitigation",
-        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "action": "Внесите использования RSA в file:SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
         "priority": "P3",
         "horizon_days": 90,
         "complexity": "medium",
-        "dependencies": "Access to system owners.",
-        "side_effects": "None (documentation and design work).",
-        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-        "post_tests": "Inventory review signed off by the system owner.",
-        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06415",
-        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (39 file(s))",
+        "finding": "QSI-2026-06685",
+        "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md",
         "severity": "medium"
       },
       {
         "kind": "mitigation",
-        "action": "Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
         "priority": "P3",
         "horizon_days": 90,
         "complexity": "medium",
-        "dependencies": "Access to system owners.",
-        "side_effects": "None (documentation and design work).",
-        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-        "post_tests": "Inventory review signed off by the system owner.",
-        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06416",
-        "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (6 file(s))",
+        "finding": "QSI-2026-06686",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (36 файл(ов))",
         "severity": "medium"
       },
       {
         "kind": "mitigation",
-        "action": "Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "action": "Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
         "priority": "P3",
         "horizon_days": 90,
         "complexity": "medium",
-        "dependencies": "Access to system owners.",
-        "side_effects": "None (documentation and design work).",
-        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-        "post_tests": "Inventory review signed off by the system owner.",
-        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06417",
-        "finding_title": "Quantum-vulnerable ECDH: role not determined (1 file(s))",
+        "finding": "QSI-2026-06688",
+        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (5 файл(ов))",
         "severity": "medium"
       },
       {
         "kind": "mitigation",
-        "action": "Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
         "priority": "P3",
         "horizon_days": 90,
         "complexity": "medium",
-        "dependencies": "Access to system owners.",
-        "side_effects": "None (documentation and design work).",
-        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-        "post_tests": "Inventory review signed off by the system owner.",
-        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06418",
-        "finding_title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))",
+        "finding": "QSI-2026-06687",
+        "finding_title": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
       {
         "kind": "mitigation",
-        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
-        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
-        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "action": "Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
         "priority": "P3",
         "horizon_days": 90,
         "complexity": "medium",
-        "dependencies": "Access to system owners.",
-        "side_effects": "None (documentation and design work).",
-        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
-        "post_tests": "Inventory review signed off by the system owner.",
-        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06414",
-        "finding_title": "Quantum-vulnerable ECDSA: role not determined (2 file(s))",
-        "severity": "info"
-      },
-      {
-        "kind": "root_cause",
-        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
-        "priority": "P4",
-        "horizon_days": 90,
-        "complexity": "high",
-        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-        "pre_tests": "Interoperability tests in a staging environment.",
-        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
-        "status": "todo",
-        "finding": "QSI-2026-06415",
-        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (39 file(s))",
+        "finding": "QSI-2026-06689",
+        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))",
         "severity": "medium"
       },
       {
         "kind": "root_cause",
-        "action": "Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "action": "Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
         "priority": "P4",
         "horizon_days": 90,
         "complexity": "high",
-        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-        "pre_tests": "Interoperability tests in a staging environment.",
-        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-        "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06416",
-        "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (6 file(s))",
+        "finding": "QSI-2026-06685",
+        "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md",
         "severity": "medium"
       },
       {
         "kind": "root_cause",
-        "action": "Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
         "priority": "P4",
         "horizon_days": 90,
         "complexity": "high",
-        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-        "pre_tests": "Interoperability tests in a staging environment.",
-        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-        "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06417",
-        "finding_title": "Quantum-vulnerable ECDH: role not determined (1 file(s))",
+        "finding": "QSI-2026-06686",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (36 файл(ов))",
         "severity": "medium"
       },
       {
         "kind": "root_cause",
-        "action": "Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "action": "Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
         "priority": "P4",
         "horizon_days": 90,
         "complexity": "high",
-        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-        "pre_tests": "Interoperability tests in a staging environment.",
-        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-        "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06418",
-        "finding_title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))",
+        "finding": "QSI-2026-06688",
+        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (5 файл(ов))",
         "severity": "medium"
       },
       {
         "kind": "root_cause",
-        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
-        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
-        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
         "priority": "P4",
         "horizon_days": 90,
         "complexity": "high",
-        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
-        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
-        "pre_tests": "Interoperability tests in a staging environment.",
-        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
-        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06414",
-        "finding_title": "Quantum-vulnerable ECDSA: role not determined (2 file(s))",
-        "severity": "info"
+        "finding": "QSI-2026-06687",
+        "finding_title": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))",
+        "severity": "medium"
       },
       {
         "kind": "root_cause",
-        "action": "Update the development and build dependencies listed in the evidence.",
-        "rationale": "Eliminates the root cause described in the finding.",
-        "expected_outcome": "The weakness is no longer present on re-test.",
+        "action": "Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-06689",
+        "finding_title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите зависимости разработки и сборки из доказательства.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
         "priority": "P4",
         "horizon_days": 90,
         "complexity": "low",
-        "dependencies": "Change window and owner approval.",
-        "side_effects": "Tooling upgrades may change build output; compare release artefacts.",
-        "pre_tests": "Reproduce the finding using the documented steps.",
-        "post_tests": "Re-run the retest procedure from the finding.",
-        "closure_criteria": "The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded.",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-06419",
-        "finding_title": "7 advisories in 3 development or build-only npm package(s)",
+        "finding": "QSI-2026-06690",
+        "finding_title": "7 бюллетеней в 3 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }
     ]
@@ -4906,6 +4848,20 @@
       "publisher": "IACR ePrint",
       "url": "https://eprint.iacr.org/2026/280",
       "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "GIDNEY2025",
+      "title": "C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2505.15917",
+      "status": "preprint (2025-05-21): < 1 million noisy qubits, < 1 week, 0.1% gate error, 1 µs surface-code cycle"
+    },
+    {
+      "key": "GIDNEY-EKERA2021",
+      "title": "C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433)",
+      "publisher": "Quantum",
+      "url": "https://doi.org/10.22331/q-2021-04-15-433",
+      "status": "peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time"
     },
     {
       "key": "ZALKA1999",
@@ -5327,16 +5283,16 @@
       "occurrences": 1
     },
     {
-      "algorithm": "ECDH",
-      "family": "key_exchange",
-      "parameter": "",
-      "usage": "source code (4 reference(s))",
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (11 reference(s))",
       "library": "",
-      "location": "src/secp256k1/src/bench.c:24",
+      "location": "setup.py:58",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 11
     },
     {
       "algorithm": "ECDSA",
@@ -5641,66 +5597,6 @@
     {
       "algorithm": "ECDSA",
       "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "src/secp256k1/src/bench.c:11",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (9 reference(s))",
-      "library": "",
-      "location": "src/secp256k1/src/bench.c:90",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 9
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (2 reference(s))",
-      "library": "",
-      "location": "src/secp256k1/src/bench_ecmult.c:9",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 2
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (2 reference(s))",
-      "library": "",
-      "location": "src/secp256k1/src/bench_internal.c:9",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 2
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "secp256k1",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "src/secp256k1/src/bench_whitelist.c:9",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
       "parameter": "",
       "usage": "implemented in a file of this name",
       "library": "",
@@ -5939,6 +5835,30 @@
       "occurrences": 19
     },
     {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "4096-bit",
+      "usage": "OpenPGP subkey",
+      "library": "",
+      "location": "SECURITY.md (line 52)",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "4096-bit",
+      "usage": "OpenPGP primary key",
+      "library": "",
+      "location": "SECURITY.md (line 52)",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
       "algorithm": "Schnorr (BIP-340)",
       "family": "signature",
       "parameter": "",
@@ -5973,18 +5893,6 @@
       "classical_status": "ok",
       "confidence": "medium",
       "occurrences": 1
-    },
-    {
-      "algorithm": "Schnorr (BIP-340)",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (3 reference(s))",
-      "library": "",
-      "location": "src/secp256k1/src/modules/schnorrsig/bench_impl.h:33",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 3
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6110,12 +6018,11 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 3,
-      "rows": 3,
+      "count": 2,
+      "rows": 2,
       "examples": [
         "src/ecdh.c",
-        "src/secp256k1/include/secp256k1_ecdh.h",
-        "src/secp256k1/src/bench.c:24"
+        "src/secp256k1/include/secp256k1_ecdh.h"
       ]
     },
     {
@@ -6124,12 +6031,12 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 35,
-      "rows": 35,
+      "count": 32,
+      "rows": 32,
       "examples": [
+        "setup.py:58",
         "src/amalgamation/combined.c:34",
-        "src/internal.h:33",
-        "src/secp256k1/contrib/lax_der_parsing.h:57"
+        "src/internal.h:33"
       ]
     },
     {
@@ -6138,12 +6045,24 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 15,
-      "rows": 15,
+      "count": 14,
+      "rows": 14,
       "examples": [
         "src/anti_exfil.c:72",
         "src/secp256k1/contrib/lax_der_parsing.c:11",
         "src/secp256k1/contrib/lax_der_parsing.h:88"
+      ]
+    },
+    {
+      "algorithm": "RSA",
+      "parameter": "4096-bit",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "SECURITY.md (line 52)"
       ]
     },
     {
@@ -6152,8 +6071,8 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 7,
-      "rows": 7,
+      "count": 6,
+      "rows": 6,
       "examples": [
         "src/secp256k1/include/secp256k1_schnorrsig.h:82",
         "src/secp256k1/include/secp256k1_schnorrsig_halfagg.h:43",

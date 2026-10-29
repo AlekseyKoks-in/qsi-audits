@@ -2,8 +2,8 @@
 
 53 audit bundles over **45 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**2,897 inventory rows**, of which **1,420 fall to Shor's algorithm** and **27 are already
-post-quantum**, from **27,650 parsed files**.
+**2,888 inventory rows**, of which **1,402 fall to Shor's algorithm** and **27 are already
+post-quantum**, from **27,785 parsed files**.
 
 Every bundle is pinned to an upstream commit, carries an Ed25519 signature and a CycloneDX CBOM, and was produced
 before anyone paid for it. The point of publishing them is that you do not have to believe any of the numbers
@@ -61,9 +61,9 @@ either, so for BDK the signing primitive sits two repositories away from the wal
 **The same question, asked of SeedSigner, produced the sharpest number in this repository.** Its own tree is 7
 inventory rows with 1 Shor-breakable, which is correct — and its signing path is `embit`, pinned as
 `embit==0.8.0` with a sha256 hash lock in `requirements.txt`, verified at the audited commit. `embit` is audited
-here too, at `2b375a33bd89`: **89 inventory rows, 67 of them Shor-breakable**, including 96 files from its own
+here too, at `2b375a33bd89`: **77 inventory rows, 55 of them Shor-breakable**, including its own
 pinned `secp256k1-zkp` submodule, and **7 Schnorr (BIP-340) rows** — so SeedSigner does hold taproot primitives,
-one repository away. **1 versus 67 is the cost of auditing the repository with the wallet's name on it.**
+one repository away. **1 versus 55 is the cost of auditing the repository with the wallet's name on it.**
 `readiness.py` now resolves each zero to the audited destination and prints its measured figures, so the chain
 `bdk` → `bdk_wallet` → `rust-secp256k1` and `seedsigner` → `embit` is traceable rather than asserted.
 
@@ -74,6 +74,41 @@ business hiding one of its own. **Readiness for a consensus change cannot be rea
 signer measure 13 inventory rows instead of 98. Presence of a primitive is necessary and not sufficient: P2MR
 also needs address encoding, descriptors and PSBT support. The full argument, with the primary quotations, is in
 `reports/BIP-360-361-READINESS-2026-10-29.md`.
+
+## Correction, 2026-10-29: benchmark files were counted as deployed exposure
+
+Triaging `embit` surfaced a defect in the runner, not in any audited project. The test-and-example filter checked
+*directories* for benchmark patterns but had **no rule for benchmark file names**, and C and Rust put `bench.h`
+and `bench_sign.c` directly in `src/` — which is exactly what libsecp256k1 and secp256k1-zkp do. Across the
+portfolio **61 inventory rows in nine codebases came from `bench*` files**: a timing harness counted as shipped
+cryptography. The rule is fixed, deliberately strict past the whole word so `benchmarking_utils.rs` stays
+production code, and covered by eleven new tests.
+
+Five codebases were re-audited at their original commits with their analyst decisions preserved:
+
+| codebase | rows before | after | Shor before | after | why |
+|---|---:|---:|---:|---:|---|
+| `secp256k1` | 38 | **32** | 38 | **32** | six `bench*.c` rows removed |
+| `rust-secp256k1` | 36 | **32** | 36 | **32** | four removed |
+| `libwally-core` | 81 | **77** | 60 | **56** | four removed |
+| `embit` | 89 | **77** | 67 | **55** | twelve removed |
+| `jade` | 93 | **110** | 66 | **74** | fourteen removed, and 183 of Jade's own bootloader, pinserver and tools files read for the first time |
+
+**`bitcoin-core/secp256k1` is therefore 32 of 32, not 38 of 38.** The ratio and the argument are untouched —
+still every row, still zero post-quantum — and the count is smaller and truer. Figures quoted in letters and
+write-ups dated before 2026-10-29 use the earlier numbers, including a ten-codebase slice of 629 rows and 440
+Shor-breakable; the same ten measure **632 and 434** today, the small net difference being Jade's own code
+arriving as the benchmarks left.
+
+**Two codebases were deliberately left at their earlier bundles**, because re-auditing them produced a worse
+result rather than a better one. `krux` and `bitbox02-firmware` pin large vendored dependencies — MaixPy, lvgl,
+optiga-trust-m, cryptoauthlib — and with those materialised the tree exceeds the runner's total-size limit, which
+dropped **1,749 and 556 files respectively**, among them the projects' own source: `src/boot.py` and
+`src/krux/auto_shutdown.py` for Krux, `src/rust/bitbox-aes` for BitBox02. The report states how many files did not
+fit but not which, so the result would have been an inventory of a vendored GUI and TLS stack presented as an
+inventory of a hardware wallet. **That is a real defect and it is open, recorded here rather than worked around:**
+when the limit binds, the order of dropping must prefer the project's own tree, and the report must name what it
+dropped.
 
 ## A check any project can run: do your pinned submodules reach your tools?
 
@@ -134,18 +169,18 @@ exclude all 8 so nothing is counted twice.
 
 ## The Bitcoin self-custody slice
 
-Ten codebases, **629 inventory rows, 440 Shor-breakable**. This is the slice cited in grant
+Ten codebases, **632 inventory rows, 434 Shor-breakable**. This is the slice cited in grant
 applications, so it is here in full.
 
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
 | `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 721 | 136 | 90 | 0 |
+| `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 110 | 74 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 111 | 73 | 7 |
-| `jade` | Blockstream (Jade) | `a59d14c2b397` | 568 | 93 | 66 | 0 |
 | `krux` | Krux (selfcustody) | `9b3a4314a205` | 257 | 98 | 64 | 0 |
-| `libwally-core` | Blockstream (libwally) | `374df231d054` | 254 | 81 | 60 | 0 |
-| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 99 | 38 | 38 | 0 |
-| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 127 | 36 | 36 | 0 |
+| `libwally-core` | Blockstream (libwally) | `374df231d054` | 249 | 77 | 56 | 0 |
+| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 118 | 32 | 32 | 0 |
+| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 90 | 32 | 32 | 0 |
 | `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 28 | 11 | 0 |
 | `bdk` | Bitcoin Dev Kit | `f2528da88b10` | 45 | 1 | 1 | 0 |
 | `seedsigner` | SeedSigner | `ada81cde050e` | 74 | 7 | 1 | 0 |
@@ -166,19 +201,19 @@ none.
 | `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 721 | 136 | 90 | 0 |
 | `bitwarden-sdk` | Bitwarden | `25b6c8c3860a` | 1625 | 119 | 12 | 5 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 111 | 73 | 7 |
+| `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 110 | 74 | 0 |
 | `nitro` | Offchain Labs (Arbitrum) | `ccc5c828d9ea` | 1038 | 108 | 13 | 0 |
 | `coinbase-cb-mpc` | Coinbase | `0b716706f998` | 174 | 103 | 88 | 2 |
 | `rustls` | rustls project | `84bf9eaa9857` | 137 | 103 | 29 | 0 |
 | `ethers-js` | ethers.js project | `3ea4c226dd0b` | 759 | 100 | 29 | 0 |
 | `foundry` | Foundry (Paradigm) | `7f0a409a5c20` | 761 | 100 | 16 | 0 |
 | `krux` | Krux (selfcustody) | `9b3a4314a205` | 257 | 98 | 64 | 0 |
-| `jade` | Blockstream (Jade) | `a59d14c2b397` | 568 | 93 | 66 | 0 |
 | `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 91 | 66 | 0 |
 | `aave-v3-origin` | Aave DAO | `8305565ae342` | 645 | 89 | 2 | 0 |
-| `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 153 | 89 | 67 | 0 |
 | `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 89 | 87 | 0 |
-| `libwally-core` | Blockstream (libwally) | `374df231d054` | 254 | 81 | 60 | 0 |
 | `scroll` | Scroll | `3046bbd18a6a` | 387 | 78 | 7 | 0 |
+| `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 142 | 77 | 55 | 0 |
+| `libwally-core` | Blockstream (libwally) | `374df231d054` | 249 | 77 | 56 | 0 |
 | `lido-core` | Lido | `2bd532298d85` | 267 | 69 | 7 | 0 |
 | `rabby` | Rabby Wallet (DeBank) | `663c0e80e9f6` | 1694 | 66 | 29 | 0 |
 | `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 66 | 16 | 0 |
@@ -187,10 +222,10 @@ none.
 | `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 46 | 19 | 0 |
 | `rage` | str4d (rage / age encryption) | `b5b68c4f4f7e` | 54 | 43 | 13 | 3 |
 | `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 39 | 9 | 0 |
-| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 99 | 38 | 38 | 0 |
-| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 127 | 36 | 36 | 0 |
 | `monero` | Monero | `3fd0f88c20f5` | 580 | 34 | 14 | 0 |
 | `safe-smart-account` | Safe | `247b8ce3bdbf` | 77 | 33 | 5 | 0 |
+| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 118 | 32 | 32 | 0 |
+| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 90 | 32 | 32 | 0 |
 | `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 28 | 11 | 0 |
 | `zebra` | Zcash Foundation | `147a6a8bf7d3` | 439 | 27 | 14 | 0 |
 | `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2202 | 22 | 0 | 2 |
@@ -231,7 +266,7 @@ false-positive history, including a case where **9 of 11 "high" findings proved 
 
 **Two failures of method, caught by measurement and now pinned by tests.** Blockstream Jade first measured 7
 inventory rows and no secp256k1 at all, because a shallow clone leaves git submodules empty and all of Jade's
-cryptography lives in one; materialised, it is 93 rows and 66 Shor-breakable. Krux measured 13 rows and a single
+cryptography lives in one; materialised, it is 110 rows and 74 Shor-breakable. Krux measured 13 rows and a single
 ECDSA row, because the scanner's own directory-skip list silently overrode the audit scope that named
 `vendor/embit`, and did so before counting anything, so the report never mentioned what it had declined; read
 correctly, Krux is 98 rows and 64 Shor-breakable. A census then compared every stored audit's declared
@@ -262,8 +297,8 @@ that is the most useful message I can get — the two corrections above both beg
 
 53 подписанных комплектов аудита по **45 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**2,897 строк инвентаризации**, из них **1,420 ломает алгоритм Шора**, и **27 уже
-постквантовых**; разобрано **27,650 файлов**.
+**2,888 строк инвентаризации**, из них **1,402 ломает алгоритм Шора**, и **27 уже
+постквантовых**; разобрано **27,785 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -279,7 +314,7 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 
-**Срез самостоятельного хранения биткоина:** десять кодовых баз, **629 строк, 440 ломает Шор**. Та же
+**Срез самостоятельного хранения биткоина:** десять кодовых баз, **632 строк, 434 ломает Шор**. Та же
 криптография лежит в трёх разных местах — Jade вносит исходники libwally в своё дерево, Krux подключает `embit`
 как git-подмодуль, SeedSigner — тот же `embit` как релиз с PyPI с замком по хешу, — поэтому аудит, не прошедший
 по закреплению, объявляет биткоин-подписанта чистым. И три самых рекомендуемых аппаратных кошелька разошлись: у

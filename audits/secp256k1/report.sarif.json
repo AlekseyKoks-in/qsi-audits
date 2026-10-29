@@ -14,7 +14,7 @@
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable ECDSA: transaction and message signing (10 file(s))"
+                "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -28,10 +28,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "51 reference(s) to ECDSA across 10 file(s), e.g. include/secp256k1.h:75. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "51 упоминаний ECDSA в 10 файл(ах), например include/secp256k1.h:75. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "51 reference(s) to ECDSA across 10 file(s), e.g. include/secp256k1.h:75. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "51 упоминаний ECDSA в 10 файл(ах), например include/secp256k1.h:75. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             }
@@ -44,13 +44,13 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: transaction and message signing (10 file(s))"
+            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-06409",
+            "qsiId": "QSI-2026-06680",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -62,13 +62,13 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s))"
+            "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-06410",
+            "qsiId": "QSI-2026-06681",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -80,64 +80,28 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDH: role not determined (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06411",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: role not determined (16 file(s))"
+            "text": "Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-06408",
-            "severity": "info",
+            "qsiId": "QSI-2026-06679",
+            "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06412",
-            "severity": "info",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "1.0"
+            "security-severity": "5.0"
           }
         }
       ],
       "automationDetails": {
-        "id": "qsi/secp256k1 @ 1b4181f93f7a/978b0176-06de-45cc-9c2d-8afbe12829e1"
+        "id": "qsi/secp256k1 @ 1b4181f93f7a/bb11543f-3012-4bf0-b0b8-e449c4c01a94"
       },
       "properties": {
-        "qsiContentSha256": "169d88e86f2f6d7d0b7b36eaadbd0524a11b958affb0f07abddec70ff1d2820a",
+        "qsiContentSha256": "56f80d0b643240472a5275315c67519ccec002d816ceb4d16c80c8c585d6670a",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T05:36:02.902154+00:00",
+        "qsiGeneratedAt": "2026-10-29T19:55:26.414657+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
