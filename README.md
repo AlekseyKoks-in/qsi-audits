@@ -1,9 +1,9 @@
 # Cryptographic inventories of open-source code, signed and reproducible
 
-52 audit bundles over **44 codebases**: a machine-readable inventory of every cryptographic
+53 audit bundles over **45 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**2,808 inventory rows**, of which **1,353 fall to Shor's algorithm** and **27 are already
-post-quantum**, from **27,497 parsed files**.
+**2,897 inventory rows**, of which **1,420 fall to Shor's algorithm** and **27 are already
+post-quantum**, from **27,650 parsed files**.
 
 Every bundle is pinned to an upstream commit, carries an Ed25519 signature and a CycloneDX CBOM, and was produced
 before anyone paid for it. The point of publishing them is that you do not have to believe any of the numbers
@@ -15,7 +15,7 @@ No dependencies, no network, nothing to install:
 
 ```
 python3 verify.py --self-test     # test the verifier before trusting what it says
-python3 verify.py                 # verify all 52 bundles
+python3 verify.py                 # verify all 53 bundles
 python3 verify.py audits/secp256k1
 ```
 
@@ -58,6 +58,15 @@ repository `bitcoindevkit/bdk_wallet`, audited here as `bdk-wallet` on 2026-10-2
 ECDSA, named in `src/wallet/signer.rs`, `src/keys/mod.rs` and the descriptor modules — and no Schnorr there
 either, so for BDK the signing primitive sits two repositories away from the wallet.
 
+**The same question, asked of SeedSigner, produced the sharpest number in this repository.** Its own tree is 7
+inventory rows with 1 Shor-breakable, which is correct — and its signing path is `embit`, pinned as
+`embit==0.8.0` with a sha256 hash lock in `requirements.txt`, verified at the audited commit. `embit` is audited
+here too, at `2b375a33bd89`: **89 inventory rows, 67 of them Shor-breakable**, including 96 files from its own
+pinned `secp256k1-zkp` submodule, and **7 Schnorr (BIP-340) rows** — so SeedSigner does hold taproot primitives,
+one repository away. **1 versus 67 is the cost of auditing the repository with the wallet's name on it.**
+`readiness.py` now resolves each zero to the audited destination and prints its measured figures, so the chain
+`bdk` → `bdk_wallet` → `rust-secp256k1` and `seedsigner` → `embit` is traceable rather than asserted.
+
 **An earlier version of this page said `bdk` "delegates signing to rust-bitcoin and rust-secp256k1".** That was
 the right direction attached to the wrong repository, and it was corrected by auditing the wallet rather than by
 rewording the sentence. It is recorded here because a page arguing that thin results deserve suspicion has no
@@ -79,7 +88,7 @@ reports/           the write-ups: re-audits, triage, adoption survey, scope-and-
                    and the BIP-360/361 readiness analysis
 ```
 
-`audits/` holds 52 directories but **44 distinct codebases**: 7 of them
+`audits/` holds 53 directories but **45 distinct codebases**: 7 of them
 (`bitbox02-firmware-en`, `bitgo-mpc-en`, `coinbase-cb-mpc-en`, `fireblocks-mpc-lib-en`, `librustzcash-en`, `trezor-firmware-en`, `trustwallet-wallet-core-en`) are English renderings of an audit also present in Russian, and
 `trezor-vendored-crypto` is a sub-audit of a vendored directory inside `trezor-firmware`. Totals on this page
 exclude all 8 so nothing is counted twice.
@@ -127,6 +136,7 @@ none.
 | `jade` | Blockstream (Jade) | `a59d14c2b397` | 568 | 93 | 66 | 0 |
 | `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 91 | 66 | 0 |
 | `aave-v3-origin` | Aave DAO | `8305565ae342` | 645 | 89 | 2 | 0 |
+| `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 153 | 89 | 67 | 0 |
 | `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 89 | 87 | 0 |
 | `libwally-core` | Blockstream (libwally) | `374df231d054` | 254 | 81 | 60 | 0 |
 | `scroll` | Scroll | `3046bbd18a6a` | 387 | 78 | 7 | 0 |
@@ -211,10 +221,10 @@ that is the most useful message I can get — the two corrections above both beg
 
 # По-русски
 
-52 подписанных комплектов аудита по **44 кодовым базам**: машиночитаемая инвентаризация
+53 подписанных комплектов аудита по **45 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**2,808 строк инвентаризации**, из них **1,353 ломает алгоритм Шора**, и **27 уже
-постквантовых**; разобрано **27,497 файлов**.
+**2,897 строк инвентаризации**, из них **1,420 ломает алгоритм Шора**, и **27 уже
+постквантовых**; разобрано **27,650 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -226,7 +236,7 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 Самопроверка показывает, что настоящая подпись проходит, реализации согласны, а перевёрнутый байт payload,
 подписи или файла обнаруживается.
 
-В `audits/` 52 каталогов, но **44 разных кодовых баз**: 7 из них — англоязычные
+В `audits/` 53 каталогов, но **45 разных кодовых баз**: 7 из них — англоязычные
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 

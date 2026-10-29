@@ -37,7 +37,7 @@ import sys
 from collections import Counter
 
 SELF_CUSTODY = ["secp256k1", "rust-secp256k1", "rust-bitcoin", "libwally-core", "trezor-firmware",
-                "bitbox02-firmware", "jade", "seedsigner", "krux", "bdk", "bdk-wallet"]
+                "bitbox02-firmware", "jade", "seedsigner", "krux", "bdk", "bdk-wallet", "embit"]
 
 # The ten codebases quoted in dated write-ups, kept as a set so that figure stays reproducible as the portfolio
 # grows. bdk-wallet was audited on 2026-10-29, after those figures were published.
@@ -46,16 +46,21 @@ SLICE_AS_QUOTED = SELF_CUSTODY[:10]
 # Codebases whose signing primitives live in another repository, with where they actually live — checked against
 # the upstream trees, not assumed. Stated so a zero in the Schnorr column is not misread as "this wallet cannot
 # do taproot".
+# Where a zero actually resolves to. The second element names an audited bundle in this repository, so the tool
+# can print measured numbers instead of a claim; None means the destination is not audited here.
 DELEGATES = {
-    "bdk": "NOT a wallet: at the audited commit bitcoindevkit/bdk is the chain and indexer layer "
-           "(bitcoind_rpc, chain, core, electrum, esplora, file_store, testenv) with no wallet, keys, signer or "
-           "descriptor crate at all. The wallet is the separate repository bitcoindevkit/bdk_wallet, audited "
-           "here as bdk-wallet",
-    "bdk-wallet": "the wallet itself: ECDSA is named in src/wallet/signer.rs, src/keys/mod.rs and the descriptor "
-                  "modules, but no Schnorr — BIP-340 arrives through rust-bitcoin and rust-secp256k1 as crates, "
-                  "so for BDK the signing primitive is two repositories from the wallet",
-    "seedsigner": "signing path is embit, pinned as a hash-locked PyPI release",
-    "rust-bitcoin": "holds taproot types; Schnorr signatures are in rust-secp256k1",
+    "bdk": ("NOT a wallet: at the audited commit bitcoindevkit/bdk is the chain and indexer layer "
+            "(bitcoind_rpc, chain, core, electrum, esplora, file_store, testenv), with no wallet, keys, signer "
+            "or descriptor crate at all. The wallet is the separate repository bitcoindevkit/bdk_wallet",
+            "bdk-wallet"),
+    "bdk-wallet": ("the wallet itself: ECDSA named in src/wallet/signer.rs, src/keys/mod.rs and the descriptor "
+                   "modules, but no Schnorr — BIP-340 arrives through rust-bitcoin and rust-secp256k1 as crates",
+                   "rust-secp256k1"),
+    "seedsigner": ("the signing path is embit, pinned as embit==0.8.0 with a sha256 hash lock in "
+                   "requirements.txt — verified at the audited commit",
+                   "embit"),
+    "rust-bitcoin": ("holds taproot types; the Schnorr signatures themselves are in rust-secp256k1",
+                     "rust-secp256k1"),
 }
 
 SCHNORR = re.compile(r"schnorr|bip.?340|x-?only", re.I)
@@ -136,10 +141,24 @@ def main(argv: list[str]) -> int:
 
     zeros = [r["name"] for r in res if r["schnorr"] == 0]
     if zeros:
-        print("\nA zero in the Schnorr column is not a statement about what a wallet can do:")
+        print("\nA zero in the Schnorr column is not a statement about what a wallet can do.")
+        print("Where each one actually resolves to, with the destination's measured figures where it is")
+        print("audited here as well:")
+        by_name = {r["name"]: r for r in res}
         for n in zeros:
-            why = DELEGATES.get(n, "no Schnorr primitive in the audited tree")
+            entry = DELEGATES.get(n)
+            if not entry:
+                print(f"  {n}: no Schnorr primitive in the audited tree, and no delegation recorded")
+                continue
+            why, dest = entry
             print(f"  {n}: {why}")
+            if dest:
+                d = by_name.get(dest) or (analyse(A / dest) if (A / dest / "report.json").exists() else None)
+                if d:
+                    print(f"      -> {dest} @ {d['commit']}: {d['rows']} rows, {d['shor']} Shor-breakable, "
+                          f"{d['schnorr']} Schnorr, {d['pq']} post-quantum")
+                else:
+                    print(f"      -> {dest} is not audited in this repository")
         print("  Readiness for a consensus change cannot be read off a single repository.")
 
     have = [r["name"] for r in res if r["schnorr"] > 0]
