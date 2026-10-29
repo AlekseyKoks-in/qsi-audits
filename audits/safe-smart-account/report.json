@@ -1,0 +1,3892 @@
+{
+  "content_sha256": "0da61727ced613d6767f96b37828d8b962f93bc2e81d7a8c2e0fab5270116a40",
+  "schema": "qsi.report/1",
+  "language": "ru",
+  "generated_at": "2026-10-28T12:53:28.462239+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "5d8b683e-ad6e-4179-b295-b074f8e119fc",
+    "name": "safe-smart-account @ 247b8ce3bdbf",
+    "client_name": "Safe",
+    "description": "Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 77 files analysed; of 236 files, 81 are test, fuzzing, benchmark or example code and were left out, 78 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "b1c7d303-5af9-48a1-91d2-59255d391677",
+    "mode": "document",
+    "title": "Document audit: safe-smart-account",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-28T12:52:36.232285+00:00",
+    "finished_at": "2026-10-28T12:53:28.351012+00:00",
+    "risk_profile": "financial",
+    "risk_profile_name": "Финансовая организация",
+    "parameters": {
+      "ref": "247b8ce3bdbf204a120e77f5b369d137424ddc58",
+      "language": "ru",
+      "repo_url": "https://github.com/safe-global/safe-smart-account",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": ".solcover.js",
+      "size": 433,
+      "sha256": "e082bfb212d25c3367596453ba28440137a54a63b8ff8072b5e004fb98629686",
+      "redactions": 0
+    },
+    {
+      "name": "certora/harnesses/ExtensibleFallbackHandlerHarness.sol",
+      "size": 368,
+      "sha256": "a23d35cd9283f8262742377b7862f63c10aeeec1964f31b610dc35e53ea9f911",
+      "redactions": 0
+    },
+    {
+      "name": "certora/harnesses/SafeHarness.sol",
+      "size": 3751,
+      "sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
+      "redactions": 0
+    },
+    {
+      "name": "certora/requirements.txt",
+      "size": 20,
+      "sha256": "138d8afeb220dd3aadad0b7221d49d76c3ec475ca2c6f5bed4f44298b41af4fa",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/Safe.sol",
+      "size": 30242,
+      "sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
+      "redactions": 2
+    },
+    {
+      "name": "contracts/SafeL2.sol",
+      "size": 3685,
+      "sha256": "6030700562329d1ebd42ec3c0494b10c9001dbe9080fbb4abf75c1563ed466db",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/accessors/SimulateTxAccessor.sol",
+      "size": 2900,
+      "sha256": "ea5890f27c3a488246ecb1880d632f4a5a30fcbbb65a512bad7a1c5b88f86082",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/base/Executor.sol",
+      "size": 1674,
+      "sha256": "dcea582290abd1dc0ce89171389d78b716e89f6c788fce523c5cb562e81743e8",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/base/FallbackManager.sol",
+      "size": 4005,
+      "sha256": "da724d64eb3238f1cb3355bf8b87c459cf812fc3f6dd100f2f89290a8a169eb9",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/base/GuardManager.sol",
+      "size": 3922,
+      "sha256": "e1db96b2ed4f15aa42c8ceca0d8701048e7b6fe276cb437a4f814d85f69119a9",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/base/ModuleManager.sol",
+      "size": 12927,
+      "sha256": "3b7be17091c7c9e37c9ddaba41e57464b1c4a334500d34eaddd94721f8cd83b3",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/base/OwnerManager.sol",
+      "size": 7302,
+      "sha256": "c9744122158f543336c11bafc70d376711f48c4dd310fe09f385231f264a3fc1",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/EIP7702.sol",
+      "size": 1385,
+      "sha256": "719f239f789764c2d79150ab0d6d5b3b49af4fee4409f0e6c3303350e30aad3a",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/EIP7951.sol",
+      "size": 2378,
+      "sha256": "445d712873ba07b5ef800edd7038d8483da9d2ae1f56ee972e18076a7ee90992",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/ErrorMessage.sol",
+      "size": 1497,
+      "sha256": "7844168e46d0802b3a07a27e974e8db13ba7ff26486d9fc5a746ef272b32c2da",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/NativeCurrencyPaymentFallback.sol",
+      "size": 592,
+      "sha256": "401744eb862f9f731819c8f904d2ca5768825c0d7680d3448f1a1232cac36ef5",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/SecuredSignatureValidator.sol",
+      "size": 1442,
+      "sha256": "506e766774ac7800a022d4316831a483af05cd0d42fd1561e00a6a23c48cb1d5",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/SecuredTokenTransfer.sol",
+      "size": 1913,
+      "sha256": "4aaa684a44631b1a6b14ee97b894380431014abf1fec8e4e4118fd7b275c7010",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/SelfAuthorized.sol",
+      "size": 879,
+      "sha256": "002069912ab0cb639e0e0eebd5293ceee76530aeaae17a9e0512ea4871ef868f",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/SignatureDecoder.sol",
+      "size": 1559,
+      "sha256": "784cb20d89bb46765bb8cdf6c5b6e3dada2fa4e932f8afbf1f5d7159ccd8d5c6",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/Singleton.sol",
+      "size": 734,
+      "sha256": "8bc56aad42a49782b135011e29323cd5117dc41c3a7451470eefe748b5dfab3c",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/common/StorageAccessible.sol",
+      "size": 2087,
+      "sha256": "d6ea29d3e65b9a72357e1433aa3798a3d48afe8d8ff1faedf335dcc225302df8",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/external/SafeMath.sol",
+      "size": 1762,
+      "sha256": "f56c2b3b9f29c9b8854e6a656ef01577a1fd553e17462119960c45a412c42a9b",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/CompatibilityFallbackHandler.sol",
+      "size": 11112,
+      "sha256": "6d52fbba9bdea0f5e47999219e566b1f5983ccd69fcace78579f6f3873a98fe1",
+      "redactions": 2
+    },
+    {
+      "name": "contracts/handler/ExtensibleFallbackHandler.sol",
+      "size": 1422,
+      "sha256": "79616d9746ee36e264be7ff2bfc2b7d48e5eba4c43c285cd42d28a8eb19b5cab",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/HandlerContext.sol",
+      "size": 3000,
+      "sha256": "120c699c7c7807684c28ed650b2e290353aab5d738d6a388b8a95de1f0e49632",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/TokenCallbackHandler.sol",
+      "size": 2895,
+      "sha256": "87853ae257aa5790cd834d88e1db479aa15b308de49d9641df35be45cccb6ffb",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/extensible/ERC165Handler.sol",
+      "size": 4560,
+      "sha256": "4d8e55c1e4878665300a43c6b4d7f61bfad9a835754a803e0c33d44355e8f703",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/extensible/ExtensibleBase.sol",
+      "size": 3597,
+      "sha256": "ab19a4e9dfae9bc43c635e561bec080c86b81ea68659df5f52f1b7a5eb7bf727",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/extensible/FallbackHandler.sol",
+      "size": 1689,
+      "sha256": "c1ee9193eebab1be01513a3ea32c63512c3061c898622b234f74f60e3af49070",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/extensible/MarshalLib.sol",
+      "size": 3362,
+      "sha256": "8e8d769dbc1f46a31ad64a5263236d5b464fcb8b886d3055bc06bb66c0292481",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/handler/extensible/SignatureVerifierMuxer.sol",
+      "size": 8119,
+      "sha256": "ab760df5f703d6cdbdc16afaa0a8df211520739411ca4a3d76422d94bc5a3d3e",
+      "redactions": 1
+    },
+    {
+      "name": "contracts/handler/extensible/TokenCallbacks.sol",
+      "size": 1750,
+      "sha256": "91b1a830a84b55df375737867402183301ef826ecdd3f0e70b13c76694cff382",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/ERC1155TokenReceiver.sol",
+      "size": 2983,
+      "sha256": "41f98fce7278be0b07c77526565272372b227ec773c85adc22fff9fb3cbc7a95",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/ERC721TokenReceiver.sol",
+      "size": 1136,
+      "sha256": "df706828bef2646a8770edb2e6aa93aeb07ed5aaabc953896c87c314218d5ba9",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/ERC777TokensRecipient.sol",
+      "size": 1155,
+      "sha256": "ecbca6e65b6f18f30a61351fd3fe92c635be3aa8a7f9f9442c06e5bbb280eed5",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/Enum.sol",
+      "size": 531,
+      "sha256": "320aa4eafeefda680db5d0c57ceb0823a93f8a5e85a6c2a2a01d2779f8c2b4ee",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/IERC165.sol",
+      "size": 829,
+      "sha256": "423a812abe03f809ca695223a1a8ea070fb2e7fd7a7e41b3b629004bd0236b2f",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/IFallbackManager.sol",
+      "size": 2778,
+      "sha256": "1035a4feaecda99b3263bad0af092396a820f093c52f7c95ea70e5feca486135",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/IGuardManager.sol",
+      "size": 1165,
+      "sha256": "209325b458c3a401952e6f9172cedb2f1e7b2ed5f09e044621ed2cb543432d6c",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/IModuleManager.sol",
+      "size": 5409,
+      "sha256": "9251c075d62d1a3667ccbbb77237addd4d3d014ca64ec1fb9d532e44449ddb69",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/INativeCurrencyPaymentFallback.sol",
+      "size": 718,
+      "sha256": "4c369916f727133f5d9084f69e541bbd7674621f047d9e8810430838817b0e28",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/IOwnerManager.sol",
+      "size": 4338,
+      "sha256": "15e46219c43b16d649bbe4c8e21598821f572e9f5b70d76067235b45b0eda47d",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/ISafe.sol",
+      "size": 11532,
+      "sha256": "102d7a71f3be160a7a98536ea6c447df599693e7d4f2f195c63c47118c10d448",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/ISignatureValidator.sol",
+      "size": 1205,
+      "sha256": "da8e2d45e549c2e94f185cf4c8fbb2294feef389b1fa4b913d65d22466bb44d7",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/IStorageAccessible.sol",
+      "size": 1369,
+      "sha256": "664c8393448986b757a4cddf58e84be6a9a6d4883a49645545dc1d7450e7dc35",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/interfaces/ViewStorageAccessible.sol",
+      "size": 837,
+      "sha256": "c03720d0b31ec9208f2372c1ed397e2b4e7c77f60dc80a571721e50d66a598cf",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/libraries/CreateCall.sol",
+      "size": 2130,
+      "sha256": "710ece301e83835acffe0448001c41a912410cb331c81372fe199bab37b7ae1c",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/libraries/MultiSend.sol",
+      "size": 3913,
+      "sha256": "7fa2709d8434193d3eeb7e78910d00731b842de71584e0caf3db5417cb6d9c87",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/libraries/MultiSendCallOnly.sol",
+      "size": 3825,
+      "sha256": "70b259054dfced971ef259e9f29842ba79a00b34c260fba7d96dbf39613c874a",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/libraries/SafeMigration.sol",
+      "size": 4868,
+      "sha256": "4dcfcce8929dceb78331698e71eef595da61ed2b3ee9cbceb3556d22cb948837",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/libraries/SafeStorage.sol",
+      "size": 2125,
+      "sha256": "642b3e3f69348c8bb715ed222fd510f71e265f6cf45b71b8d7d88b2bdff00cea",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/libraries/SafeToL2Setup.sol",
+      "size": 3028,
+      "sha256": "1e644dbebf6bf8674fb3dc09a681cbc3284463098446464f9b87b89d31014b2f",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/libraries/SignMessageLib.sol",
+      "size": 1705,
+      "sha256": "e4a3e7d20f385bd984aa91cb8c8a863bc3a75a25e550144bb4ca88b2a6c0ebf9",
+      "redactions": 1
+    },
+    {
+      "name": "contracts/proxies/SafeProxy.sol",
+      "size": 4223,
+      "sha256": "c867699db68a9e0bc9cbde5561a99d88be71fd4e8d82532e79a464e34bd9d3b2",
+      "redactions": 0
+    },
+    {
+      "name": "contracts/proxies/SafeProxyFactory.sol",
+      "size": 9439,
+      "sha256": "f5bee22d37e20de6967c4f9eeb7cd099652d83f5a5815eb0118c352ea79bc721",
+      "redactions": 0
+    },
+    {
+      "name": "eslint.config.mjs",
+      "size": 600,
+      "sha256": "006760d41bce4c0a43b2de66bc3b0169d9c6c7fe7de6ff051d5cea8cc96fe6ea",
+      "redactions": 0
+    },
+    {
+      "name": "hardhat.config.ts",
+      "size": 3899,
+      "sha256": "c20bc7de941edd9ab880721b2d6fdf54f822e79bfde0691d0d22381706f103a1",
+      "redactions": 0
+    },
+    {
+      "name": "package-lock.json",
+      "size": 491576,
+      "sha256": "0c9c252a258643903bcbbe7dd88370ca331b6dbeac50004ea387c60ae8ac0476",
+      "redactions": 0
+    },
+    {
+      "name": "package.json",
+      "size": 3644,
+      "sha256": "c511ccd2c192aec0465222ddb88e0f14637683627120fb5204819c6cb14f8cc8",
+      "redactions": 0
+    },
+    {
+      "name": "src/deploy/deploy_accessors.ts",
+      "size": 523,
+      "sha256": "212f7de0c1c9a1c53bf45642f56dbdc237bca3aa236c73fab33467f34b2a1bd3",
+      "redactions": 0
+    },
+    {
+      "name": "src/deploy/deploy_factories.ts",
+      "size": 519,
+      "sha256": "40be845012ef729a2a4064405001dc626d601cc8c3b13f434fe0e2ab1816aff3",
+      "redactions": 0
+    },
+    {
+      "name": "src/deploy/deploy_handlers.ts",
+      "size": 887,
+      "sha256": "6a618e83a095dff59bcf3de49fc6d905a1abaf16d835a6f469ac0376d197ef36",
+      "redactions": 0
+    },
+    {
+      "name": "src/deploy/deploy_libraries.ts",
+      "size": 1188,
+      "sha256": "3e8c1def9e86c56dfe7e540e7bad0ea5c69e3d3712c3965f9e587ac3d37c4f94",
+      "redactions": 0
+    },
+    {
+      "name": "src/deploy/deploy_migrations.ts",
+      "size": 848,
+      "sha256": "3e6d315deaa8623422d9a4efbdfb8c34b692d0a6b5645d2dc64448ffacc89fc1",
+      "redactions": 0
+    },
+    {
+      "name": "src/deploy/deploy_safe_l2.ts",
+      "size": 504,
+      "sha256": "34831ce49f360236eb31430caed6736c07021d9a1afac968fb340f66f0fb6953",
+      "redactions": 0
+    },
+    {
+      "name": "src/deploy/deploy_safe_singleton.ts",
+      "size": 497,
+      "sha256": "95c750d38a54d68faf7846634fcc05912ea206b93f0bec5c80e93d5778dbf2e2",
+      "redactions": 0
+    },
+    {
+      "name": "src/index.ts",
+      "size": 138,
+      "sha256": "c28eecba58a69976643c7f065158bc48e26fab159001a43a7f248990abc242d9",
+      "redactions": 0
+    },
+    {
+      "name": "src/tasks/deploy_contracts.ts",
+      "size": 343,
+      "sha256": "8fdf706d87497d9556a2b1ce25b1e6f2056cea8094e4e93964851955e46386fe",
+      "redactions": 0
+    },
+    {
+      "name": "src/tasks/local_verify.ts",
+      "size": 2405,
+      "sha256": "2a65e63f135cac4ec6d0f4d9c60021793cd56dead066c8fc1c9386cf56bca703",
+      "redactions": 0
+    },
+    {
+      "name": "src/tasks/show_codesize.ts",
+      "size": 1867,
+      "sha256": "b8bbf4580179fdf67e1621d5a20dc19f7bb244edd64f527042f8fc7b4ece7277",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/constants.ts",
+      "size": 72,
+      "sha256": "8d14c53227906c725b97fb116b673c25f06f2b8f18dda038259132bf963cbb5c",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/execution.ts",
+      "size": 10195,
+      "sha256": "d2d395bd775bb64117ad4d323fb164f4dd5ef7c616c64f26beeabbf0096121b3",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/multisend.ts",
+      "size": 941,
+      "sha256": "a6192636ef8e58f6a4a147c9998d635eb5852ceb39de03751c54ad1d1295d143",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/proxies.ts",
+      "size": 1410,
+      "sha256": "8607ae9d409cfb95c2b84f9a939e9d8a0e35d643b9596443e2f9bd5da94eada5",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/solc.ts",
+      "size": 565,
+      "sha256": "c8ba714eb2cc44edc0b1e4de52b7200445d715d54a9eb3a38d9576ed92638f71",
+      "redactions": 0
+    },
+    {
+      "name": "types/solc.d.ts",
+      "size": 23,
+      "sha256": "c2232cadfd97cc9479df2315795d7dac60974b2fa08404d4aef03129d084e3d5",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 77,
+    "bytes": 722848,
+    "redactions": 6
+  },
+  "coverage": [
+    {
+      "area": "source_code",
+      "detail": ".solcover.js: 15 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "certora/harnesses/ExtensibleFallbackHandlerHarness.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "certora/harnesses/SafeHarness.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "certora/requirements.txt: 1 dependencies parsed (1 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/Safe.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "contracts/Safe.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/SafeL2.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/accessors/SimulateTxAccessor.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/base/Executor.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/base/FallbackManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/base/GuardManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/base/ModuleManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/base/OwnerManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/EIP7702.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/EIP7951.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/ErrorMessage.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/NativeCurrencyPaymentFallback.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/SecuredSignatureValidator.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/SecuredTokenTransfer.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/SelfAuthorized.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/SignatureDecoder.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/Singleton.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/common/StorageAccessible.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/external/SafeMath.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/CompatibilityFallbackHandler.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "contracts/handler/CompatibilityFallbackHandler.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/ExtensibleFallbackHandler.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/HandlerContext.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/TokenCallbackHandler.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/extensible/ERC165Handler.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/extensible/ExtensibleBase.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/extensible/FallbackHandler.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/extensible/MarshalLib.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/extensible/SignatureVerifierMuxer.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "contracts/handler/extensible/SignatureVerifierMuxer.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/handler/extensible/TokenCallbacks.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/ERC1155TokenReceiver.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/ERC721TokenReceiver.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/ERC777TokensRecipient.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/Enum.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/IERC165.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/IFallbackManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/IGuardManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/IModuleManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/INativeCurrencyPaymentFallback.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/IOwnerManager.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/ISafe.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/ISignatureValidator.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/IStorageAccessible.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/interfaces/ViewStorageAccessible.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/libraries/CreateCall.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/libraries/MultiSend.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/libraries/MultiSendCallOnly.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/libraries/SafeMigration.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/libraries/SafeStorage.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/libraries/SafeToL2Setup.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/libraries/SignMessageLib.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "contracts/libraries/SignMessageLib.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/proxies/SafeProxy.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "smart_contracts",
+      "detail": "contracts/proxies/SafeProxyFactory.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "package-lock.json: 831 dependencies parsed (831 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "package.json: 30 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deploy/deploy_accessors.ts: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deploy/deploy_factories.ts: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deploy/deploy_handlers.ts: 30 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deploy/deploy_libraries.ts: 44 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deploy/deploy_migrations.ts: 21 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deploy/deploy_safe_l2.ts: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deploy/deploy_safe_singleton.ts: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/index.ts: 4 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/tasks/deploy_contracts.ts: 10 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/tasks/local_verify.ts: 47 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/tasks/show_codesize.ts: 37 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/constants.ts: 1 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/execution.ts: 284 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/multisend.ts: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/proxies.ts: 28 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/solc.ts: 18 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "types/solc.d.ts: 1 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "736 pinned packages queried at OSV.dev; 45 affected (45 of them only in development or build dependencies)",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest",
+      "status": "insufficient_data"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest",
+      "status": "insufficient_data"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 20,
+      "rows": 20,
+      "examples": [
+        ".solcover.js: 15 lines scanned with 16 rule patterns and 122 registry patterns",
+        "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 122 registry patterns",
+        "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 122 registry patterns"
+      ]
+    },
+    {
+      "area": "smart_contracts",
+      "status": "checked",
+      "count": 54,
+      "rows": 54,
+      "examples": [
+        "certora/harnesses/ExtensibleFallbackHandlerHarness.sol: built-in Solidity pattern checks",
+        "certora/harnesses/SafeHarness.sol: built-in Solidity pattern checks",
+        "contracts/Safe.sol: built-in Solidity pattern checks"
+      ]
+    },
+    {
+      "area": "slither",
+      "status": "not_checked",
+      "count": 54,
+      "rows": 54,
+      "examples": [
+        "slither is not installed on the server (pip install slither-analyzer + solc)"
+      ]
+    },
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "certora/requirements.txt: 1 dependencies parsed (1 pinned)",
+        "package-lock.json: 831 dependencies parsed (831 pinned)",
+        "package.json: 30 dependencies parsed (0 pinned)"
+      ]
+    },
+    {
+      "area": "secrets",
+      "status": "checked",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "contracts/Safe.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+        "contracts/handler/CompatibilityFallbackHandler.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+        "contracts/handler/extensible/SignatureVerifierMuxer.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "736 pinned packages queried at OSV.dev; 45 affected (45 of them only in development or build dependencies)"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "insufficient_data",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest",
+        "npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest"
+      ]
+    }
+  ],
+  "not_checked": [
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "slither",
+      "detail": "slither is not installed on the server (pip install slither-analyzer + solc)",
+      "status": "not_checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest",
+      "status": "insufficient_data"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest",
+      "status": "insufficient_data"
+    }
+  ],
+  "not_checked_grouped": [
+    {
+      "area": "slither",
+      "status": "not_checked",
+      "count": 54,
+      "rows": 54,
+      "examples": [
+        "slither is not installed on the server (pip install slither-analyzer + solc)"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "insufficient_data",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest",
+        "npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest"
+      ]
+    }
+  ],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      ".solcover.js",
+      "736 pinned packages queried at OSV.dev; 45 affected (45 of them only in development or build dependencies)",
+      "certora/harnesses/ExtensibleFallbackHandlerHarness.sol",
+      "certora/harnesses/SafeHarness.sol",
+      "certora/requirements.txt",
+      "contracts/Safe.sol",
+      "contracts/SafeL2.sol",
+      "contracts/accessors/SimulateTxAccessor.sol",
+      "contracts/base/Executor.sol",
+      "contracts/base/FallbackManager.sol",
+      "contracts/base/GuardManager.sol",
+      "contracts/base/ModuleManager.sol",
+      "contracts/base/OwnerManager.sol",
+      "contracts/common/EIP7702.sol",
+      "contracts/common/EIP7951.sol",
+      "contracts/common/ErrorMessage.sol",
+      "contracts/common/NativeCurrencyPaymentFallback.sol",
+      "contracts/common/SecuredSignatureValidator.sol",
+      "contracts/common/SecuredTokenTransfer.sol",
+      "contracts/common/SelfAuthorized.sol",
+      "contracts/common/SignatureDecoder.sol",
+      "contracts/common/Singleton.sol",
+      "contracts/common/StorageAccessible.sol",
+      "contracts/external/SafeMath.sol",
+      "contracts/handler/CompatibilityFallbackHandler.sol",
+      "contracts/handler/ExtensibleFallbackHandler.sol",
+      "contracts/handler/HandlerContext.sol",
+      "contracts/handler/TokenCallbackHandler.sol",
+      "contracts/handler/extensible/ERC165Handler.sol",
+      "contracts/handler/extensible/ExtensibleBase.sol",
+      "contracts/handler/extensible/FallbackHandler.sol",
+      "contracts/handler/extensible/MarshalLib.sol",
+      "contracts/handler/extensible/SignatureVerifierMuxer.sol",
+      "contracts/handler/extensible/TokenCallbacks.sol",
+      "contracts/interfaces/ERC1155TokenReceiver.sol",
+      "contracts/interfaces/ERC721TokenReceiver.sol",
+      "contracts/interfaces/ERC777TokensRecipient.sol",
+      "contracts/interfaces/Enum.sol",
+      "contracts/interfaces/IERC165.sol",
+      "contracts/interfaces/IFallbackManager.sol",
+      "contracts/interfaces/IGuardManager.sol",
+      "contracts/interfaces/IModuleManager.sol",
+      "contracts/interfaces/INativeCurrencyPaymentFallback.sol",
+      "contracts/interfaces/IOwnerManager.sol",
+      "contracts/interfaces/ISafe.sol",
+      "contracts/interfaces/ISignatureValidator.sol",
+      "contracts/interfaces/IStorageAccessible.sol",
+      "contracts/interfaces/ViewStorageAccessible.sol",
+      "contracts/libraries/CreateCall.sol",
+      "contracts/libraries/MultiSend.sol",
+      "contracts/libraries/MultiSendCallOnly.sol",
+      "contracts/libraries/SafeMigration.sol",
+      "contracts/libraries/SafeStorage.sol",
+      "contracts/libraries/SafeToL2Setup.sol",
+      "contracts/libraries/SignMessageLib.sol",
+      "contracts/proxies/SafeProxy.sol",
+      "contracts/proxies/SafeProxyFactory.sol",
+      "eslint.config.mjs",
+      "hardhat.config.ts",
+      "package-lock.json",
+      "package.json",
+      "src/deploy/deploy_accessors.ts",
+      "src/deploy/deploy_factories.ts",
+      "src/deploy/deploy_handlers.ts",
+      "src/deploy/deploy_libraries.ts",
+      "src/deploy/deploy_migrations.ts",
+      "src/deploy/deploy_safe_l2.ts",
+      "src/deploy/deploy_safe_singleton.ts",
+      "src/index.ts",
+      "src/tasks/deploy_contracts.ts",
+      "src/tasks/local_verify.ts",
+      "src/tasks/show_codesize.ts",
+      "src/utils/constants.ts",
+      "src/utils/execution.ts",
+      "src/utils/multisend.ts",
+      "src/utils/proxies.ts",
+      "src/utils/solc.ts",
+      "types/solc.d.ts"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 3,
+      "low": 3,
+      "info": 2
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 2,
+      "pq_long_term_risk": 1,
+      "improvement": 4,
+      "insufficient_data": 1
+    },
+    "total": 8,
+    "posture_index": 94,
+    "pq_vulnerable_share": 15.2,
+    "inventory_total": 33,
+    "inventory_by_quantum_status": {
+      "grover_reduced": 8,
+      "not_applicable": 20,
+      "vulnerable_shor": 5
+    }
+  },
+  "findings": [
+    {
+      "id": "b3d81773-ebfb-4dd8-b5cc-5f29e42f8840",
+      "public_id": "QSI-2026-05092",
+      "rule_id": "SOL-ECRECOVER",
+      "title": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol",
+      "description": "ecrecover в строка 32. (см. SWC-117/SWC-121)",
+      "impact": "Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).",
+      "recommendation": "Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.",
+      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
+      "method": "Анализ шаблонов исходного кода Solidity.",
+      "repro": "Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
+      "category": "smart_contract",
+      "classification": "potential_crypto_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "contract:certora/harnesses/SafeHarness.sol",
+      "data_source": "certora/harnesses/SafeHarness.sol",
+      "analyzer": "solidity 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.202722+00:00",
+      "risk_score": 43.0,
+      "risk_breakdown": {
+        "score": 43.0,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.44,
+          "urgency": 1.0,
+          "exposure": 0.8,
+          "severity": 0.5,
+          "exploitability": 0.6
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 63.3,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 8.8,
+          "urgency": 15.0,
+          "exposure": 12.0,
+          "severity": 12.5,
+          "exploitability": 9.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "certora/harnesses/SafeHarness.sol",
+          "location": "line 32",
+          "content": "   30 |             currentOwner = address(uint160(uint256(r)));\n   31 |         } else if (v > 30) {\n   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);",
+          "content_sha256": "e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0",
+          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.248282+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "certora/harnesses/SafeHarness.sol",
+          "location": "line 34",
+          "content": "   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);\n   35 |         }\n   36 |     }",
+          "content_sha256": "3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef",
+          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.248293+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.",
+          "rationale": "Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).",
+          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "priority": "P2",
+          "horizon_days": 60,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
+          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "d97eeb50-52fa-4958-b11a-37ae0c249144",
+      "public_id": "QSI-2026-05093",
+      "rule_id": "SOL-UNCHECKED-CALL",
+      "title": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol",
+      "description": "Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104)",
+      "impact": "Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.",
+      "recommendation": "Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.",
+      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
+      "method": "Анализ шаблонов исходного кода Solidity.",
+      "repro": "Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
+      "category": "smart_contract",
+      "classification": "potential_crypto_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "contract:certora/harnesses/SafeHarness.sol",
+      "data_source": "certora/harnesses/SafeHarness.sol",
+      "analyzer": "solidity 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.243530+00:00",
+      "risk_score": 43.0,
+      "risk_breakdown": {
+        "score": 43.0,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.44,
+          "urgency": 1.0,
+          "exposure": 0.8,
+          "severity": 0.5,
+          "exploitability": 0.6
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 63.3,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 8.8,
+          "urgency": 15.0,
+          "exposure": 12.0,
+          "severity": 12.5,
+          "exploitability": 9.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "certora/harnesses/SafeHarness.sol",
+          "location": "line 88",
+          "content": "   86 | \n   87 |     function callDummyHandler(bytes4 selector) public {\n   88 |         address(this).call(abi.encodeWithSelector(selector));\n   89 |     }\n   90 | ",
+          "content_sha256": "8e885c80b50cce328ce145786c0515613599e25c3226c2115c450b873c5e9506",
+          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.272465+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L88"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.",
+          "rationale": "Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.",
+          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "priority": "P2",
+          "horizon_days": 60,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
+          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "9dba45e3-52f5-46e7-9f63-39c8bda33ce7",
+      "public_id": "QSI-2026-05091",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
+      "description": "5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте certora/harnesses/SafeHarness.sol:32 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:transaction_signing",
+      "data_source": "certora/harnesses/SafeHarness.sol",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.128261+00:00",
+      "risk_score": 39.6,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 39.6,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.61,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 58.2,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 12.2,
+          "urgency": 15.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 1.5
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "certora/harnesses/SafeHarness.sol",
+          "location": "line 32",
+          "content": "   30 |             currentOwner = address(uint160(uint256(r)));\n   31 |         } else if (v > 30) {\n   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);",
+          "content_sha256": "e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0",
+          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.222868+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "certora/harnesses/SafeHarness.sol",
+          "location": "line 34",
+          "content": "   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), v - 4, r, s);\n   33 |         } else {\n   34 |             currentOwner = ecrecover(dataHash, v, r, s);\n   35 |         }\n   36 |     }",
+          "content_sha256": "3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef",
+          "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.222879+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/Safe.sol",
+          "location": "line 403",
+          "content": "  401 |                 // If `v > 30` then default `v` (27, 28) has been adjusted to encode an `eth_sign` signature.\n  402 |                 // To support `eth_sign` and similar we adjust `v` and hash the `dataHash` with the EIP-191 message prefix before applying `ecrecover`.\n  403 |                 currentOwner = ecrecover(keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\", dataHash)), uint8(v - 4), r, s);\n  404 |             } else {\n  405 |                 // Default is `ecrecover` for the provided `dataHash`.",
+          "content_sha256": "be7c18bdbce908e503f1c899b447b921a9a3880ec49ae5d3d5ea33045ae5aec7",
+          "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.222882+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L403"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/Safe.sol",
+          "location": "line 406",
+          "content": "  404 |             } else {\n  405 |                 // Default is `ecrecover` for the provided `dataHash`.\n  406 |                 currentOwner = ecrecover(dataHash, uint8(v), r, s);\n  407 |             }\n  408 |             if (currentOwner <= lastOwner || owners[currentOwner] == address(0) || currentOwner == SENTINEL_OWNERS)",
+          "content_sha256": "361e3d349b65a6cf85ae3cc313307e936af7349c06d154fd2e39b0f84d9b4714",
+          "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.222886+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L406"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/utils/execution.ts",
+          "location": "line 113",
+          "content": "  112 |         signer: signerAddress,\n  113 |         data: await signer.signTypedData({ verifyingContract: safeAddress, chainId: cid }, EIP712_SAFE_TX_TYPE, safeTx),\n  114 |     };",
+          "content_sha256": "a189cee56b6fb9aa095cce0a3b5099d5f195bc22ad24f9e656e950cde6a753c0",
+          "source_sha256": "d2d395bd775bb64117ad4d323fb164f4dd5ef7c616c64f26beeabbf0096121b3",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.222889+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/src/utils/execution.ts#L113"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "e7e32f3b-3525-48ee-9f72-b0c7693778bc",
+      "public_id": "QSI-2026-05094",
+      "rule_id": "SOL-FLOATING-PRAGMA",
+      "title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
+      "description": "pragma >=0.7.0 <0.9.0 в 50 файл(ах), впервые в contracts/Safe.sol:2. (см. SWC-103)",
+      "impact": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+      "recommendation": "Зафиксируйте версию компилятора, использованную при тестировании.",
+      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
+      "method": "Анализ шаблонов исходного кода Solidity.",
+      "repro": "Откройте contracts/Safe.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "smart_contract",
+      "classification": "improvement",
+      "severity": "low",
+      "confidence": "high",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "solidity:pragma:>=0.7.0 <0.9.0",
+      "data_source": "contracts/Safe.sol",
+      "analyzer": "solidity 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.267521+00:00",
+      "risk_score": 38.4,
+      "risk_breakdown": {
+        "score": 38.4,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.105,
+          "urgency": 1.0,
+          "exposure": 0.5,
+          "severity": 0.25,
+          "exploitability": 0.1
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 38.35,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 2.1,
+          "urgency": 15.0,
+          "exposure": 7.5,
+          "severity": 6.25,
+          "exploitability": 1.5
+        },
+        "confidence_multiplier": 1.0
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/Safe.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {FallbackManager} from \"./base/FallbackManager.sol\";",
+          "content_sha256": "e88d87460c9e31999f74a385f7211f2a3d247576a8d5e7321fb8ab7610726718",
+          "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310455+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/SafeL2.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | // The import is used in the @inheritdoc, false positive",
+          "content_sha256": "15c9f4200fba8411f86f51e4783fa81326529bbdedb3a85d3d69541f7783cbd7",
+          "source_sha256": "6030700562329d1ebd42ec3c0494b10c9001dbe9080fbb4abf75c1563ed466db",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310464+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/SafeL2.sol#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/accessors/SimulateTxAccessor.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {Executor, Enum} from \"../base/Executor.sol\";",
+          "content_sha256": "af5c840a272a5dab66211c10e60731181ce16ddf9518928201829db6baacef22",
+          "source_sha256": "ea5890f27c3a488246ecb1880d632f4a5a30fcbbb65a512bad7a1c5b88f86082",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310468+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/accessors/SimulateTxAccessor.sol#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/base/Executor.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | import {Enum} from \"../interfaces/Enum.sol\";\n    4 | ",
+          "content_sha256": "c8eec2e4083c16adc0bf1e7eea14ca740cca55b1f5676d9cb4a355576c6800c6",
+          "source_sha256": "dcea582290abd1dc0ce89171389d78b716e89f6c788fce523c5cb562e81743e8",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310471+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/Executor.sol#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/base/FallbackManager.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {SelfAuthorized} from \"../common/SelfAuthorized.sol\";",
+          "content_sha256": "f0696aecda7f2d4390ae2470ec51a56b07a6565df8ff4be3d0a6524628ffb825",
+          "source_sha256": "da724d64eb3238f1cb3355bf8b87c459cf812fc3f6dd100f2f89290a8a169eb9",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310475+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/FallbackManager.sol#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/base/GuardManager.sol",
+          "location": "line 3",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | /* solhint-disable one-contract-per-file */\n    3 | pragma solidity >=0.7.0 <0.9.0;\n    4 | \n    5 | import {SelfAuthorized} from \"./../common/SelfAuthorized.sol\";",
+          "content_sha256": "2f8023b221054a49f2c7512edfc7f592b58e8c7053625f4af7216c1251f2bd74",
+          "source_sha256": "e1db96b2ed4f15aa42c8ceca0d8701048e7b6fe276cb437a4f814d85f69119a9",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310478+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/GuardManager.sol#L3"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/base/ModuleManager.sol",
+          "location": "line 3",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | /* solhint-disable one-contract-per-file */\n    3 | pragma solidity >=0.7.0 <0.9.0;\n    4 | import {SelfAuthorized} from \"./../common/SelfAuthorized.sol\";\n    5 | import {IERC165} from \"./../interfaces/IERC165.sol\";",
+          "content_sha256": "6fd7193061543bd17b02478604b1e136ee186957854410e2482d2fd544017605",
+          "source_sha256": "3b7be17091c7c9e37c9ddaba41e57464b1c4a334500d34eaddd94721f8cd83b3",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310481+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/ModuleManager.sol#L3"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/base/OwnerManager.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | import {EIP7702} from \"../common/EIP7702.sol\";",
+          "content_sha256": "43281753a6047468ec8145eb656909a730f9b1bb7e3a6388e81a52f7cc0c1714",
+          "source_sha256": "c9744122158f543336c11bafc70d376711f48c4dd310fe09f385231f264a3fc1",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310484+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/OwnerManager.sol#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/common/EIP7702.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | /**",
+          "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
+          "source_sha256": "719f239f789764c2d79150ab0d6d5b3b49af4fee4409f0e6c3303350e30aad3a",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310488+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7702.sol#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/common/EIP7951.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.0 <0.9.0;\n    3 | \n    4 | /**",
+          "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
+          "source_sha256": "445d712873ba07b5ef800edd7038d8483da9d2ae1f56ee972e18076a7ee90992",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.310490+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7951.sol#L2"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Зафиксируйте версию компилятора, использованную при тестировании.",
+          "rationale": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Откройте contracts/Safe.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "2f8cada8-4155-4c73-a311-8911d9ebe4e1",
+      "public_id": "QSI-2026-05095",
+      "rule_id": "SOL-FLOATING-PRAGMA",
+      "title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
+      "description": "pragma >=0.5.0 <0.9.0 в 1 файл(ах), впервые в contracts/interfaces/ViewStorageAccessible.sol:2. (см. SWC-103)",
+      "impact": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+      "recommendation": "Зафиксируйте версию компилятора, использованную при тестировании.",
+      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
+      "method": "Анализ шаблонов исходного кода Solidity.",
+      "repro": "Откройте contracts/interfaces/ViewStorageAccessible.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "smart_contract",
+      "classification": "improvement",
+      "severity": "low",
+      "confidence": "high",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "solidity:pragma:>=0.5.0 <0.9.0",
+      "data_source": "contracts/interfaces/ViewStorageAccessible.sol",
+      "analyzer": "solidity 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.290762+00:00",
+      "risk_score": 38.4,
+      "risk_breakdown": {
+        "score": 38.4,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.105,
+          "urgency": 1.0,
+          "exposure": 0.5,
+          "severity": 0.25,
+          "exploitability": 0.1
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 38.35,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 2.1,
+          "urgency": 15.0,
+          "exposure": 7.5,
+          "severity": 6.25,
+          "exploitability": 1.5
+        },
+        "confidence_multiplier": 1.0
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/interfaces/ViewStorageAccessible.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.5.0 <0.9.0;\n    3 | \n    4 | /**",
+          "content_sha256": "983f9c51447ea383d35f05b85564c2a8e5c2eb17d9109edf52dad4e588c49ca6",
+          "source_sha256": "c03720d0b31ec9208f2372c1ed397e2b4e7c77f60dc80a571721e50d66a598cf",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.324892+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/interfaces/ViewStorageAccessible.sol#L2"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Зафиксируйте версию компилятора, использованную при тестировании.",
+          "rationale": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Откройте contracts/interfaces/ViewStorageAccessible.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "a48bd1f6-9748-424e-bb8d-dd40ac2d839b",
+      "public_id": "QSI-2026-05096",
+      "rule_id": "SOL-FLOATING-PRAGMA",
+      "title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
+      "description": "pragma >=0.7.4 <0.9.0 в 1 файл(ах), впервые в contracts/libraries/SafeStorage.sol:2. (см. SWC-103)",
+      "impact": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+      "recommendation": "Зафиксируйте версию компилятора, использованную при тестировании.",
+      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
+      "method": "Анализ шаблонов исходного кода Solidity.",
+      "repro": "Откройте contracts/libraries/SafeStorage.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "smart_contract",
+      "classification": "improvement",
+      "severity": "low",
+      "confidence": "high",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "solidity:pragma:>=0.7.4 <0.9.0",
+      "data_source": "contracts/libraries/SafeStorage.sol",
+      "analyzer": "solidity 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.321100+00:00",
+      "risk_score": 38.4,
+      "risk_breakdown": {
+        "score": 38.4,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.105,
+          "urgency": 1.0,
+          "exposure": 0.5,
+          "severity": 0.25,
+          "exploitability": 0.1
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 38.35,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 2.1,
+          "urgency": 15.0,
+          "exposure": 7.5,
+          "severity": 6.25,
+          "exploitability": 1.5
+        },
+        "confidence_multiplier": 1.0
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "contracts/libraries/SafeStorage.sol",
+          "location": "line 2",
+          "content": "    1 | // SPDX-License-Identifier: LGPL-3.0-only\n    2 | pragma solidity >=0.7.4 <0.9.0;\n    3 | \n    4 | /**",
+          "content_sha256": "11c26335bd27fe89dda40165c6fea219ab0021d1c0b45a5bace32a1322a9ae25",
+          "source_sha256": "642b3e3f69348c8bb715ed222fd510f71e265f6cf45b71b8d7d88b2bdff00cea",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.333894+00:00",
+          "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/libraries/SafeStorage.sol#L2"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Зафиксируйте версию компилятора, использованную при тестировании.",
+          "rationale": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Откройте contracts/libraries/SafeStorage.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "b1415759-1d90-49d9-903f-a444eea2e5e6",
+      "public_id": "QSI-2026-05098",
+      "rule_id": "DEP-ADVISORY-DEV",
+      "title": "174 бюллетеней в 45 пакет(ах) npm, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 174 бюллетеней (95 с оценкой high или critical) для 45 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; @openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
+      "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.",
+      "method": "Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.",
+      "repro": "Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в package-lock.json.",
+      "category": "dependencies",
+      "classification": "improvement",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies:npm:non-runtime",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.339414+00:00",
+      "risk_score": 17.1,
+      "risk_breakdown": {
+        "score": 17.1,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.22,
+          "urgency": 0.6,
+          "exposure": 0.2,
+          "severity": 0.05,
+          "exploitability": 0.1
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 25.15,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.4,
+          "urgency": 9.0,
+          "exposure": 3.0,
+          "severity": 1.25,
+          "exploitability": 1.5
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "OSV-DEV",
+          "url": "https://osv.dev/",
+          "title": "OSV.dev — open-source vulnerability database and API",
+          "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+          "publisher": "Open Source Security Foundation"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev (npm)",
+          "location": "package-lock.json",
+          "content": "@fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx\n@humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g\n@isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2\n@openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh\nadm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85\najv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6\najv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6\naxios@0.21.4 [dev]: GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-43fc-jf86-j433, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc, GHSA-jr5f-v2jv-69x6, GHSA-m7pr-hjqh-92cm, GHSA-mmx7-hfxf-jppx, GHSA-p92q-9vqr-4j8v, GHSA-pf86-5x62-jrwf, GHSA-pjwm-pj3p-43mv, GHSA-pmwg-cvhr-8vh7, GHSA-vf2m-468p-8v99, GHSA-w9j2-pvgh-6h63\naxios@1.13.2 [dev]: GHSA-35jp-ww65-95wh, GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-3pq3-5fj3-cg6v, GHSA-3w6x-2g7m-8v23, GHSA-42h9-826w-cgv3, GHSA-43fc-jf86-j433, GHSA-445q-vr5w-6q77, GHSA-4hqw-qxg8-jxx2, GHSA-542g-h47m-68v8, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-777c-7fjr-54vf, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-9fr6-4gfg-395g, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc\nbn.js@4.11.6 [dev]: GHSA-378v-28hj-76wf\nbn.js@4.12.2 [dev]: GHSA-378v-28hj-76wf\nbn.js@5.2.2 [dev]: GHSA-378v-28hj-76wf\nbrace-expansion@1.1.12 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\nbrace-expansion@2.0.2 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\ncookie@0.4.2 [dev]: GHSA-pxg6-pf52-xh8x\ndiff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx\ndiff@5.2.0 [dev]: GHSA-73rr-hh4g-fpgx\nelliptic@6.5.4 [dev]: GHSA-434g-2637-qmqr, GHSA-49q7-c7j4-3p7m, GHSA-848j-6mx2-7j84, GHSA-977x-g7h5-7qgw, GHSA-f7q4-pwc6-w24p, GHSA-fc9h-whq2-v747, GHSA-vjh7-7g9h-fjfh\nelliptic@6.6.1 [dev]: GHSA-848j-6mx2-7j84\nfast-uri@3.1.0 [dev]: GHSA-333x-w4r6-6crp, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7, GHSA-f65p-4m7j-42xc, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-q3j6-qgpj-74h6, GHSA-qw65-cvwx-89v3, GHSA-v2hh-gcrm-f6hx, GHSA-v39h-62p7-jpjc, GHSA-w74x-v6f9-j3xg, GHSA-xhq7-xmqj-769h\nflatted@3.3.3 [dev]: GHSA-25h7-pfq9-p65f, GHSA-rf6f-7fwh-wjgh\nfollow-redirects@1.15.11 [dev]: GHSA-r4q5-vmmm-2653\nform-data@4.0.5 [dev]: GHSA-hmw2-7cc7-3qxx\nhandlebars@4.7.8 [dev]: GHSA-2qvq-rjwj-gvw9, GHSA-2w6w-674q-4c4q, GHSA-3mfm-83xf-c92r, GHSA-442j-39wm-28r2, GHSA-7rx3-28cr-v5wh, GHSA-8r5x-fm3f-whwj, GHSA-9cx6-37pm-9jff, GHSA-p8wg-vrv2-v86f, GHSA-xhpv-hc6g-r9c6, GHSA-xjpj-3mr7-gcpf, GHSA-xw65-4hp5-5hc7\nhttp-cache-semantics@4.2.0 [dev]: GHSA-ch52-4w7c-c8xp\nimmutable@4.3.7 [dev]: GHSA-v56q-mh7h-f735, GHSA-wf6x-7x77-mvgw, GHSA-xvcm-6775-5m9r\njs-yaml@3.14.2 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\njs-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68\nlodash@4.17.21 [dev]: GHSA-f23m-r3pf-42rh, GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg\nminimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\nminimatch@3.1.2 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\nminimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\nminimatch@9.0.5 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj\npbkdf2@3.1.5 [dev]: GHSA-477h-4r7f-fvrx\npicomatch@2.3.1 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj\npicomatch@4.0.3 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj\nserialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v\ntmp@0.0.33 [dev]: GHSA-52f5-9888-hmc6, GHSA-ph9p-34f9-6g65\nundici@5.29.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g52, GHSA-4992-7rv2-5pvq, GHSA-8xcm-r25x-g524, GHSA-9fm3-97px-rjf6, GHSA-g8m3-5g58-fq7m, GHSA-g9mf-h72j-4rw9, GHSA-m8rv-5g2x-5cg5, GHSA-p88m-4jfj-68fv, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-v3r7-h72x-cjcm, GHSA-v9p9-hfj2-hcw8, GHSA-vrm6-8vpv-qv8q, GHSA-vxpw-j846-p89q\nuuid@8.3.2 [dev]: GHSA-w5hq-g745-h8pq\nws@7.4.6 [dev]: GHSA-3h5v-q93c-6h6q, GHSA-96hv-2xvq-fx4p\nws@7.5.10 [dev]: GHSA-96hv-2xvq-fx4p\nws@8.17.1 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p\nws@8.18.0 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p\nws@8.18.3 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p",
+          "content_sha256": "246d1fc835bf80bae1bffb3a9be4793d552a4248f1d02f0cec4af5e423ea4959",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.382801+00:00",
+          "url": "https://osv.dev/"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите зависимости разработки и сборки из доказательства.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "ac44fbaa-6fde-4c26-8f24-816b10f28085",
+      "public_id": "QSI-2026-05097",
+      "rule_id": "DEP-NO-PQC-LIBRARY",
+      "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
+      "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.",
+      "impact": "Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.",
+      "recommendation": "Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).",
+      "retest": "Повторите сканирование после обновлений.",
+      "limitations": "Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.",
+      "method": "Сопоставление названий зависимостей.",
+      "repro": "Изучите перечисленные в доказательстве манифесты.",
+      "category": "post_quantum",
+      "classification": "insufficient_data",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies",
+      "data_source": "dependency manifests",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-28T12:53:28.331692+00:00",
+      "risk_score": 14.5,
+      "risk_breakdown": {
+        "score": 14.5,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.255,
+          "urgency": 0.3,
+          "exposure": 0.3,
+          "severity": 0.05,
+          "exploitability": 0.0
+        },
+        "profile": "financial",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.15,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.15
+        },
+        "raw_score": 21.35,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.1,
+          "urgency": 4.5,
+          "exposure": 4.5,
+          "severity": 1.25,
+          "exploitability": 0.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "FIPS203",
+          "url": "https://csrc.nist.gov/pubs/fips/203/final",
+          "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        },
+        {
+          "key": "FIPS204",
+          "url": "https://csrc.nist.gov/pubs/fips/204/final",
+          "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "dependency",
+          "source": "certora/requirements.txt, package-lock.json, package.json",
+          "location": null,
+          "content": "Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1",
+          "content_sha256": "47e156b611a62a94da8b2ebeeacd5c7d245cbbdc38b44af530ee4ffe425233ff",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-28T12:53:28.342526+00:00",
+          "url": null
+        }
+      ],
+      "remediation": []
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Финансовая организация», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
+    "pq_findings": [
+      "QSI-2026-05091"
+    ],
+    "roles": [
+      {
+        "role": "transaction_signing",
+        "label": "подпись транзакций и сообщений",
+        "action": "Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями",
+        "criticality": 4,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 3
+          }
+        ],
+        "findings": [
+          "QSI-2026-05091"
+        ],
+        "files": 3
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "постквантовой криптографии нет",
+      "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Алгоритм Шора — дискретный логарифм на эллиптических кривых",
+        "effect": "breaks",
+        "effect_label": "взламывает",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "ECDSA",
+            "rows": 5
+          }
+        ],
+        "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
+        "practicality": "Оценки 2026 года для 256-битной кривой: менее 1200 логических кубитов и 90 млн вентилей Тоффоли, менее полумиллиона физических сверхпроводниковых кубитов и минуты работы (Баббуш и др.); 1193 логических кубита при большем числе вентилей (Шевиньяр–Фук–Шроттенлохер); P-256 за несколько дней на 26 000 кубитов на нейтральных атомах (Кейн и др.). Сценарии при заявленных допущениях, а не прогнозы.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "grover",
+        "name": "Алгоритм Гровера — поиск ключа и прообразов",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Keccak-256",
+            "rows": 8
+          }
+        ],
+        "audit": "Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.",
+        "practicality": "Поиск долгий и последовательный: NIST оценивает поиск ключа AES-128 в 2^170/MAXDEPTH квантовых вентилей при MAXDEPTH от 2^40 до 2^96 и использует его как эталон категории стойкости 1; прообраз SHA-256 оценён примерно в 2^153,8 циклов поверхностного кода на 2^12,6 логических кубитах (Эми и др., 2016).",
+        "sources": [
+          "GROVER1996",
+          "ZALKA1999",
+          "NIST-PQC-SEC",
+          "JAQUES2020",
+          "AMY2016"
+        ]
+      },
+      {
+        "id": "bht-collision",
+        "name": "Брассар–Хойер–Тапп — поиск коллизий",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Keccak-256",
+            "rows": 8
+          }
+        ],
+        "audit": "256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.",
+        "practicality": "Бернштейн (2009) показал, что с учётом стоимости оборудования этот поиск не дешевле классического параллельного поиска коллизий; NIST определяет категорию стойкости 2 через поиск коллизий SHA3-256 в классических вентилях (2^146).",
+        "sources": [
+          "BHT-COLLISION1998",
+          "CNS2017",
+          "BERNSTEIN2009-COLLISION",
+          "NIST-PQC-SEC"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "усреднённая оценка"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "вполне возможно"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "вероятно"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [
+      {
+        "kind": "root_cause",
+        "action": "Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.",
+        "rationale": "Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).",
+        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "priority": "P2",
+        "horizon_days": 60,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
+        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "status": "todo",
+        "finding": "QSI-2026-05092",
+        "finding_title": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.",
+        "rationale": "Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.",
+        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "priority": "P2",
+        "horizon_days": 60,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).",
+        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "status": "todo",
+        "finding": "QSI-2026-05093",
+        "finding_title": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol",
+        "severity": "medium"
+      }
+    ],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-05091",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Зафиксируйте версию компилятора, использованную при тестировании.",
+        "rationale": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Откройте contracts/Safe.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "status": "todo",
+        "finding": "QSI-2026-05094",
+        "finding_title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
+        "severity": "low"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Зафиксируйте версию компилятора, использованную при тестировании.",
+        "rationale": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Откройте contracts/interfaces/ViewStorageAccessible.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "status": "todo",
+        "finding": "QSI-2026-05095",
+        "finding_title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
+        "severity": "low"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Зафиксируйте версию компилятора, использованную при тестировании.",
+        "rationale": "Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.",
+        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Откройте contracts/libraries/SafeStorage.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "status": "todo",
+        "finding": "QSI-2026-05096",
+        "finding_title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
+        "severity": "low"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-05091",
+        "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите зависимости разработки и сборки из доказательства.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+        "status": "todo",
+        "finding": "QSI-2026-05098",
+        "finding_title": "174 бюллетеней в 45 пакет(ах) npm, нужных только для разработки или сборки",
+        "severity": "info"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CNS2017",
+      "title": "A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2017/847",
+      "status": "peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory"
+    },
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "ZALKA1999",
+      "title": "C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070)",
+      "publisher": "APS",
+      "url": "https://doi.org/10.1103/PhysRevA.60.2746",
+      "status": "peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "BERNSTEIN2009-COLLISION",
+      "title": "D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009)",
+      "publisher": "cr.yp.to",
+      "url": "https://cr.yp.to/hash/collisioncost-20090823.pdf",
+      "status": "paper dated 2009-08-23"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "BHT-COLLISION1998",
+      "title": "G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/quant-ph/9705002",
+      "status": "peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "GROVER1996",
+      "title": "L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996)",
+      "publisher": "ACM",
+      "url": "https://doi.org/10.1145/237814.237866",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "AMY2016",
+      "title": "M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1603.09383",
+      "status": "peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "NIST-PQC-SEC",
+      "title": "NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)",
+      "status": "security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96"
+    },
+    {
+      "key": "OSV-DEV",
+      "url": "https://osv.dev/",
+      "title": "OSV.dev — open-source vulnerability database and API",
+      "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+      "publisher": "Open Source Security Foundation"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    },
+    {
+      "key": "JAQUES2020",
+      "title": "S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1910.01700",
+      "status": "peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories"
+    },
+    {
+      "key": "SWC",
+      "url": "https://swcregistry.io/",
+      "title": "Smart Contract Weakness Classification (SWC) Registry",
+      "status": "historic reference; still widely cited",
+      "publisher": "SWC community (no longer actively maintained)"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "smart contract",
+      "library": "",
+      "location": "certora/harnesses/SafeHarness.sol:32",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "smart contract",
+      "library": "",
+      "location": "contracts/Safe.sol:396",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "smart contract",
+      "library": "",
+      "location": "contracts/handler/CompatibilityFallbackHandler.sol:52",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "smart contract",
+      "library": "",
+      "location": "contracts/handler/extensible/SignatureVerifierMuxer.sol:129",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "smart contract",
+      "library": "",
+      "location": "contracts/libraries/SignMessageLib.sol:42",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "smart contract",
+      "library": "",
+      "location": "contracts/proxies/SafeProxyFactory.sol:44",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/tasks/local_verify.ts:39",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/utils/proxies.ts:10",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.2.0",
+      "usage": "npm dependency",
+      "library": "@noble/curves (noble-curves)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.2.0",
+      "usage": "npm dependency",
+      "library": "@noble/hashes (noble-hashes)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.3.2",
+      "usage": "npm dependency",
+      "library": "@noble/hashes (noble-hashes)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.4.0",
+      "usage": "npm dependency",
+      "library": "@noble/hashes (noble-hashes)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.4.2",
+      "usage": "npm dependency",
+      "library": "@noble/curves (noble-curves)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.7.1",
+      "usage": "npm dependency",
+      "library": "@noble/secp256k1 (noble-curves)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.7.2",
+      "usage": "npm dependency",
+      "library": "@noble/hashes (noble-hashes)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.8.0",
+      "usage": "npm dependency",
+      "library": "@noble/hashes (noble-hashes)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.8.2",
+      "usage": "npm dependency",
+      "library": "@noble/curves (noble-curves)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.9.1",
+      "usage": "npm dependency",
+      "library": "@noble/curves (noble-curves)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.9.7",
+      "usage": "npm dependency",
+      "library": "@noble/curves (noble-curves)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "2.0.1",
+      "usage": "npm dependency",
+      "library": "@noble/curves (noble-curves)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "2.0.1",
+      "usage": "npm dependency",
+      "library": "@noble/hashes (noble-hashes)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "4.0.4",
+      "usage": "npm dependency",
+      "library": "secp256k1 (secp256k1 bindings)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "5.7.2",
+      "usage": "npm dependency",
+      "library": "ethers (ethers.js)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "5.8.0",
+      "usage": "npm dependency",
+      "library": "ethers (ethers.js)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "6.15.0",
+      "usage": "npm dependency",
+      "library": "ethers (ethers.js)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "6.5.4",
+      "usage": "npm dependency",
+      "library": "elliptic (elliptic (Node))",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "6.6.1",
+      "usage": "npm dependency",
+      "library": "elliptic (elliptic (Node))",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "^2.0.1",
+      "usage": "npm dependency",
+      "library": "@noble/curves (noble-curves)",
+      "location": "package.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1 (ecrecover)",
+      "usage": "on-chain signature verification (ecrecover)",
+      "library": "",
+      "location": "certora/harnesses/SafeHarness.sol:32",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1 (ecrecover)",
+      "usage": "on-chain signature verification (ecrecover)",
+      "library": "",
+      "location": "certora/harnesses/SafeHarness.sol:34",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1 (ecrecover)",
+      "usage": "on-chain signature verification (ecrecover, zero-address check and nonce present)",
+      "library": "",
+      "location": "contracts/Safe.sol:403",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1 (ecrecover)",
+      "usage": "on-chain signature verification (ecrecover, zero-address check and nonce present)",
+      "library": "",
+      "location": "contracts/Safe.sol:406",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/utils/execution.ts:113",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "Keccak-256",
+      "parameter": "Keccak-256",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 8,
+      "rows": 8,
+      "examples": [
+        "certora/harnesses/SafeHarness.sol:32",
+        "contracts/Safe.sol:396",
+        "contracts/handler/CompatibilityFallbackHandler.sol:52"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.2.0",
+      "library": "@noble/curves (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.2.0",
+      "library": "@noble/hashes (noble-hashes)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.3.2",
+      "library": "@noble/hashes (noble-hashes)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.4.0",
+      "library": "@noble/hashes (noble-hashes)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.4.2",
+      "library": "@noble/curves (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.7.1",
+      "library": "@noble/secp256k1 (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.7.2",
+      "library": "@noble/hashes (noble-hashes)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.8.0",
+      "library": "@noble/hashes (noble-hashes)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.8.2",
+      "library": "@noble/curves (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.9.1",
+      "library": "@noble/curves (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "1.9.7",
+      "library": "@noble/curves (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "2.0.1",
+      "library": "@noble/curves (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "2.0.1",
+      "library": "@noble/hashes (noble-hashes)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "4.0.4",
+      "library": "secp256k1 (secp256k1 bindings)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "5.7.2",
+      "library": "ethers (ethers.js)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "5.8.0",
+      "library": "ethers (ethers.js)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "6.15.0",
+      "library": "ethers (ethers.js)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "6.5.4",
+      "library": "elliptic (elliptic (Node))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "6.6.1",
+      "library": "elliptic (elliptic (Node))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "^2.0.1",
+      "library": "@noble/curves (noble-curves)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "package.json"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "secp256k1 (ecrecover)",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "certora/harnesses/SafeHarness.sol:32",
+        "certora/harnesses/SafeHarness.sol:34",
+        "contracts/Safe.sol:403"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/utils/execution.ts:113"
+      ]
+    }
+  ]
+}

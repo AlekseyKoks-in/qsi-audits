@@ -1,0 +1,1691 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "SOL-DELEGATECALL",
+              "name": "SolDelegatecall",
+              "shortDescription": {
+                "text": "Использование delegatecall в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "delegatecall в строка 97. (см. SWC-112) Ограничьте цели delegatecall доверенными неизменяемыми реализациями. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "delegatecall в строка 97. (см. SWC-112) Ограничьте цели delegatecall доверенными неизменяемыми реализациями. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "SOL-UNPROTECTED-INITIALIZER",
+              "name": "SolUnprotectedInitializer",
+              "shortDescription": {
+                "text": "initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "Функция initialize в строка 25 не имеет защиты initializer/onlyInitializing. (см. SWC-118) Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "Функция initialize в строка 25 не имеет защиты initializer/onlyInitializing. (см. SWC-118) Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "SOL-ECRECOVER",
+              "name": "SolEcrecover",
+              "shortDescription": {
+                "text": "Прямое использование ecrecover в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "ecrecover в строка 98. (см. SWC-117/SWC-121) Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "ecrecover в строка 98. (см. SWC-117/SWC-121) Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "2 упоминаний ECDSA в 2 файл(ах), например certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:98. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "2 упоминаний ECDSA в 2 файл(ах), например certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:98. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "SOL-FLOATING-PRAGMA",
+              "name": "SolFloatingPragma",
+              "shortDescription": {
+                "text": "Плавающая версия компилятора (^0.8.0) в 116 файл(ах)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "improvement"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "pragma ^0.8.0 в 116 файл(ах), впервые в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:7. (см. SWC-103) Зафиксируйте версию компилятора, использованную при тестировании. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "pragma ^0.8.0 в 116 файл(ах), впервые в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:7. (см. SWC-103) Зафиксируйте версию компилятора, использованную при тестировании. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "SOL-ADMIN-FUNCTIONS",
+              "name": "SolAdminFunctions",
+              "shortDescription": {
+                "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol: restricted"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "Функции, защищённые модификаторами владельца/ролей: restricted. (см. —) Используйте мультиподпись/таймлок для ролей администратора и документируйте их. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "Функции, защищённые модификаторами владельца/ролей: restricted. (см. —) Используйте мультиподпись/таймлок для ролей администратора и документируйте их. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "DEP-ADVISORY-DEV",
+              "name": "DepAdvisoryDev",
+              "shortDescription": {
+                "text": "197 бюллетеней в 53 пакет(ах) npm, нужных только для разработки или сборки"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает 197 бюллетеней (103 с оценкой high или critical) для 53 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json, lib/solidity-utils/package-lock.json, package-lock.json): например, @babel/runtime@7.22.15 [dev]: GHSA-968p-4wvh-cqc8; @babel/runtime@7.26.9 [dev]: GHSA-968p-4wvh-cqc8; @fastify/busboy@2.0.0 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85; ajv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секр…"
+              },
+              "help": {
+                "text": "OSV.dev сообщает 197 бюллетеней (103 с оценкой high или critical) для 53 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json, lib/solidity-utils/package-lock.json, package-lock.json): например, @babel/runtime@7.22.15 [dev]: GHSA-968p-4wvh-cqc8; @babel/runtime@7.26.9 [dev]: GHSA-968p-4wvh-cqc8; @fastify/busboy@2.0.0 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85; ajv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "helpUri": "https://osv.dev/"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "В 12 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1, tweetnacl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "help": {
+                "text": "В 12 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1, tweetnacl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Использование delegatecall в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6e4c0b1c5709c2ed67b5476042c318ea"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06514",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol"
+                },
+                "region": {
+                  "startLine": 97
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Использование delegatecall в src/contracts/dependencies/openzeppelin/contracts/Address.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "389801eed905202cfdb88965c4040561"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06520",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/dependencies/openzeppelin/contracts/Address.sol"
+                },
+                "region": {
+                  "startLine": 189
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "db90a3de173965879e4520a0bd36330c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06522",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol"
+                },
+                "region": {
+                  "startLine": 91
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-UNPROTECTED-INITIALIZER",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2ca4b79a92a1a8e2c372e08c1ea6929e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06523",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol"
+                },
+                "region": {
+                  "startLine": 25
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dd81efa508f6039835559313e3f025c2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06524",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol"
+                },
+                "region": {
+                  "startLine": 25
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-UNPROTECTED-INITIALIZER",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f0ab4bff0b8f8bdda20ac6c5869c77ad"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06525",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol"
+                },
+                "region": {
+                  "startLine": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "79c721ff56b587a3ea5c209ab503e9e3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06526",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol"
+                },
+                "region": {
+                  "startLine": 24
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-DELEGATECALL",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Использование delegatecall в src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "43f763d3d5793ad103f84daabe395704"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06530",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol"
+                },
+                "region": {
+                  "startLine": 74
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-UNPROTECTED-INITIALIZER",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "initialize() без модификатора initializer в src/contracts/protocol/libraries/logic/ReserveLogic.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19ba5a08d75466bf0d1ef83b94c81f3f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06533",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/protocol/libraries/logic/ReserveLogic.sol"
+                },
+                "region": {
+                  "startLine": 109
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ECRECOVER",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Прямое использование ecrecover в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7b1ac79558e37c0771337171d2ba6654"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06482",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol"
+                },
+                "region": {
+                  "startLine": 98
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ECRECOVER",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Прямое использование ecrecover в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b3acf28daf795612211a7d19f5fb36ce"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06515",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol"
+                },
+                "region": {
+                  "startLine": 148
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06481",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.0) в 116 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9222f1a479645679076868cdfc63c53c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06480",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.10) в 91 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d7874aefe2eb24c325fa0153f9d67e3f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06483",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.19) в 8 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ae19580eb27181c5292061f70ba12ebf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06484",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.8.0) в 5 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "74be19e8d45860cc87734826500a497b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06485",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.20) в 259 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b5106ab77ad2ab496f2b2c3a7c47b8a3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06486",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.24) в 5 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ad4c91f080f8598ca456c14e76fe5ad3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06498",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.8.0 <0.9.0) в 4 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "57f820cc63d788ddb1a36d487beca9e6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06499",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.21) в 1 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f8f4be5a45d673b7271ad308142e1c7b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06511",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.7.0) в 2 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0ca7609d345bcb68984109faa8b85131"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06516",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.6.0) в 1 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5ca61228b9fbad3c858e32c9d0436683"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06517",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.8) в 9 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aacb0fe28ad7c14e802007f1be8aafa5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06518",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.8.24) в 1 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6d17ef1b5540951e577d800578403178"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06519",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.17) в 2 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dd05c5abba08a2578e72781e64b6e9e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06527",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.18) в 10 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1094caea691b40eb93be0f4bb2fb8449"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06528",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d76e0ccad43e741d171a842e4a07ee52"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06487",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c37373d6ea08e9a2ae2d996177f4bbff"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06488",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aa7ff9374a16d3746e9911cd9254e002"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06489",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3fdf23550606faba02b5a45a4773b47a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06490",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "63c9c38209c012fb0140dd30c92fbf4b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06491",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d4218dc579447ab5c9f7b4d4187ce7da"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06492",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "74a28e13cfa7ee535f3e7797ee2e6489"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06493",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "63e01fddf5cd2e6db3b6058ec8820af3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06494",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b3e39b7e198904d1250c67e06ae82ea5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06495",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "afcba9aafb6e1ecb6d25f26dae3ee5b9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06496",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ce3d47928c9d13012e56593e07cce465"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06497",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4ebf16baad6e12bac967a5a590f6eceb"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06500",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol: restricted"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ff5f56a6051a6b5b31c579d90b3dde28"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06501",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "549b2de1a0a7243bd0acf03d66d2e6b7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06502",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7657bab530d01031aa5b71b445c5840b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06503",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "de4ae27cb6e1e43079127d58969d50e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06504",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "599057ad1617f0707086bbddd9bd654b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06505",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2ea446401026d9d214ce21f9354bef4b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06506",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "493ec3e5c92fd44337d9b4869701dda0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06507",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "269336176b4505320ab6a7c98dcd3754"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06508",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7a092e562808ebf3b3d036368c58eb47"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06509",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ad17f73feb45d91a0993099d5772850a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06510",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c2f9e4f71492b2f06a50c7f397dac867"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06512",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2fa031957c28d54b638a74d4dd0000e9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06513",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в src/contracts/dependencies/openzeppelin/contracts/Ownable.sol: renounceOwnership, transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a53929ff78cb11c6fff01085201976fe"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06521",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/dependencies/openzeppelin/contracts/Ownable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в src/contracts/helpers/WrappedTokenGatewayV3.sol: emergencyTokenTransfer, emergencyEtherTransfer"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "978759640f6e5d6df900231e122fafa9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06529",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/helpers/WrappedTokenGatewayV3.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProvider.sol: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, setPoolConfiguratorImpl, setPriceOracle, setACLManager, setACLAdmin, setPriceOracleSentinel, setPoolDataProvider"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "442844983b4a3337fa5c41cddd05a978"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06531",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/protocol/configuration/PoolAddressesProvider.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol: registerAddressesProvider, unregisterAddressesProvider"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fc91e37b9f217f6f3b4e953d4312029b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06532",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в src/contracts/rewards/EmissionManager.sol: setClaimer, setEmissionAdmin, setRewardsController"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d7ea109e813bc03c448366b11fde47ce"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06534",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/contracts/rewards/EmissionManager.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol: setupAaveV3Market, setMarketReport, setProtocolDataProvider, transferMarketOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "43c5cd03e990deb270901bce1de0b4e0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06535",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "197 бюллетеней в 53 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06537",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06536",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/aave-v3-origin @ 8305565ae342/621b91b7-50f0-4a96-bb2c-fd8f374d3ff9"
+      },
+      "properties": {
+        "qsiContentSha256": "e7d4254918ac124d044234875cf5eaf0ca41e8942ad34749fce947e2c8940dca",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "financial",
+        "qsiGeneratedAt": "2026-10-29T06:16:27.045403+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "8305565ae342f1773c42cd2e4593f175fe5968a0",
+          "repositoryUri": "https://github.com/aave-dao/aave-v3-origin"
+        }
+      ]
+    }
+  ]
+}

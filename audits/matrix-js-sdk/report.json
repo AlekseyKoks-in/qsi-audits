@@ -1,0 +1,4244 @@
+{
+  "content_sha256": "6b99f797316754f231b4b06db6d193f9d0893a7f657f49253d76cbd060ebaeb3",
+  "schema": "qsi.report/1",
+  "language": "ru",
+  "generated_at": "2026-10-28T18:22:51.009302+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "244af096-41a7-4fbd-99e4-a0ecbf208a26",
+    "name": "matrix-js-sdk @ 61b08bd037a3",
+    "client_name": "Matrix.org Foundation",
+    "description": "Static review of the source tree matrix-js-sdk at 61b08bd037a3b987f267e2e8ac47002c75d59d85. 240 files analysed; of 489 files, 196 are test, fuzzing, benchmark or example code and were left out, 53 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "259476ec-cff6-4f97-af62-52170c902315",
+    "mode": "document",
+    "title": "Document audit: matrix-js-sdk",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-28T18:22:20.926977+00:00",
+    "finished_at": "2026-10-28T18:22:50.892517+00:00",
+    "risk_profile": "security_software",
+    "risk_profile_name": "Разработчик ПО безопасности",
+    "parameters": {
+      "ref": "61b08bd037a3b987f267e2e8ac47002c75d59d85",
+      "language": "ru",
+      "repo_url": "https://github.com/matrix-org/matrix-js-sdk",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "babel.config.cjs",
+      "size": 838,
+      "sha256": "d8487617a57ed6e8f76916f79b2ac697ce565aace57c6e4cf4798a8ae966be89",
+      "redactions": 0
+    },
+    {
+      "name": "knip.ts",
+      "size": 1496,
+      "sha256": "1c88e8e97b0b64ea37ee3a1cbb245d2596b4371c28c2652202bb1b1f1c5632b5",
+      "redactions": 0
+    },
+    {
+      "name": "package.json",
+      "size": 3986,
+      "sha256": "8ae6857538fa3eab294a871bd8ac2416c5b75f17aa23152a56221ae7bee80f45",
+      "redactions": 0
+    },
+    {
+      "name": "pnpm-lock.yaml",
+      "size": 169329,
+      "sha256": "fa7755cd81af319523d2b6e2c565d4db3aa3e47b9706d1b0fc93aff829e56b21",
+      "redactions": 0
+    },
+    {
+      "name": "scripts/changelog_head.py",
+      "size": 396,
+      "sha256": "213633aabe6b0ecd0b41661926bbb92562a70bb5f2f21d4408461a6c08af42c6",
+      "redactions": 0
+    },
+    {
+      "name": "scripts/release/merge-release-notes.cjs",
+      "size": 5718,
+      "sha256": "e88315a38e05813c79a9f1ba8aadde595815524dd961baba4fda58ba7e507585",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/AESEncryptedSecretStoragePayload.ts",
+      "size": 1020,
+      "sha256": "20510dba8ceb6f5b4c0fa3e4b348c00a85a65a4b5ac920e2b4eed81d8b78ef95",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/IIdentityServerProvider.ts",
+      "size": 846,
+      "sha256": "39910b15ca704703fe5389ab6011d23c249539ef81b71ded3ae002298294523a",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/PushRules.ts",
+      "size": 6806,
+      "sha256": "3ff431925e7fcfb9d8b117af81136a4b58cb3d8635045b58fddd95257b5e61c7",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/another-json.d.ts",
+      "size": 664,
+      "sha256": "bcb997cdd9864124ca69331883aad3bdc4895b331aa91f8c1f987449cce87efb",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/auth.ts",
+      "size": 7952,
+      "sha256": "effa5bfaf6e950c1460b1df65d01d174e42cf744635322ee097df103502e67c2",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/beacon.ts",
+      "size": 4488,
+      "sha256": "948b55f6dd4dbc7d97741d9324b25d212dd6479494b8db35338dee4138f30c8d",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/common.ts",
+      "size": 968,
+      "sha256": "cadb03da235959cbfb07724ee89c2376fed46020f31454279aaed3325a68be5b",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/crypto.ts",
+      "size": 2242,
+      "sha256": "1662efde2e5664a155a59e98d7baeafb21ca48e506101e208dde144879da1f96",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/event.ts",
+      "size": 18605,
+      "sha256": "a59aed0213e99e7090ab404ae748d3258cb75c14a847363f37d89546de9d624a",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/events.ts",
+      "size": 3452,
+      "sha256": "ae9a96475201d45afde8ea1af4764613b477da8221f604066de57b615d14d204",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/extensible_events.ts",
+      "size": 4482,
+      "sha256": "0fe97d0c836327a0dbb9e5fe88570f4de20f3a08adc9ca6e91f6c61415c80c2c",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/global.d.ts",
+      "size": 2591,
+      "sha256": "354a8b07308d5b357cbdc1b1ccf9df79c6dc87e3e028eb1df522e4c314187c38",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/json.ts",
+      "size": 1020,
+      "sha256": "7b5b40c9afd5ee029af5f4b1e8021da72f96be836d96944eee6c8274747d854b",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/local_notifications.ts",
+      "size": 653,
+      "sha256": "b9c6ca061ec461e72548e1ddabb1cb23bd60dad5b5093e90fdab4380fa26618f",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/location.ts",
+      "size": 3093,
+      "sha256": "34940336609eef50853f24331ea594c4cd19eee78430540a2120d0202b2465c8",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/matrix-sdk-crypto-wasm.d.ts",
+      "size": 1247,
+      "sha256": "ca107d72268a8bedfb6a48ef46e976ac0bd3325d4b58f97e4a341737acfdeb29",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/media.ts",
+      "size": 6625,
+      "sha256": "caa697aceb489de1b42bbe7f7f3a27732b2482b5fc582c7de925ee3012c291b8",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/membership.ts",
+      "size": 1963,
+      "sha256": "4bcb367817978b17d16993b7f7d9b3de1c66dab8e22f6f6e14c78fa6befec62f",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/partials.ts",
+      "size": 2930,
+      "sha256": "0462b5311be09a1b538f2d219ba9009adca0888d25edae3d9ccfccac38f578a7",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/polls.ts",
+      "size": 3497,
+      "sha256": "ef73efd29ce7875b31041543420be7859f2cc1b8a53f4e575ecd9bf8729e08d2",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/read_receipts.ts",
+      "size": 1641,
+      "sha256": "09edb9131e7b138fe4fd64efd10928a65db127dbd2e3c19d32412db7fc7e340c",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/registration.ts",
+      "size": 3808,
+      "sha256": "6e884107390fbb0e175895443eb861d6a1f2c7bf73be82fa721da7a5b54f6b54",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/requests.ts",
+      "size": 9798,
+      "sha256": "37f93e9be6b1d34a910556b98f6f1fea94acb42a332e910e7ab5bd6f7c9a277b",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/retention.ts",
+      "size": 479,
+      "sha256": "a0af5b6d61f44494aae8315608fe8b23c3047448498969dd354dbe91daf63f31",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/search.ts",
+      "size": 2984,
+      "sha256": "93633a66a7172469c832320700620ff3d808a59451886a399e8e7a5c4b3cb54b",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/signed.ts",
+      "size": 737,
+      "sha256": "71cceb07439f89b166f88e60e056f8afd5cd1f32bf745ddcbb4db6686e797ba3",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/spaces.ts",
+      "size": 1145,
+      "sha256": "6f68c7edf5e135f59bea777f27fe1f125a6d96854fea5b9e410281888a763798",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/state_events.ts",
+      "size": 3874,
+      "sha256": "33ecbcb7b9e8546c0d670e4dcb0aeb3291f0edd5f4838b3631a9819ada9bced8",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/synapse.ts",
+      "size": 1144,
+      "sha256": "8458b4597eb9f6a788a130ea558014910cb8260c9a8a5abb894519bf509a665a",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/sync.ts",
+      "size": 908,
+      "sha256": "d7436c88c3df472ce8b9eece06c8b1448d65a67a2bdd8ff8d5c45008b0005813",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/threepids.ts",
+      "size": 875,
+      "sha256": "7e5254649443769e67e13d456d199f1bb8c9ce0e261ec092b08388f0eb58b0ec",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/topic.ts",
+      "size": 2060,
+      "sha256": "57c2040dde964caf0796016e2ceda1cf2f97845cdb06a6e6ffb933325bb52482",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/type-guards.ts",
+      "size": 4261,
+      "sha256": "655dccaf0c7ab81d815a838579e0bdbc62e2abf35a9a37006d2e9da4550f356a",
+      "redactions": 0
+    },
+    {
+      "name": "src/@types/uia.ts",
+      "size": 776,
+      "sha256": "48bce6f2ee9a86af6f106a5e6d2292b19888e7ed44d33fd6f039daee869b5a88",
+      "redactions": 0
+    },
+    {
+      "name": "src/NamespacedValue.ts",
+      "size": 3866,
+      "sha256": "1c5448e4432b8ea80e6bf99bca08a190818f35f77c42254a14954335414e3d75",
+      "redactions": 0
+    },
+    {
+      "name": "src/ReEmitter.ts",
+      "size": 4189,
+      "sha256": "d7fa5703fe86b04ea36a111ae42acdd200db5dc5c0a4f218be1204d17bd02868",
+      "redactions": 0
+    },
+    {
+      "name": "src/ToDeviceMessageQueue.ts",
+      "size": 5877,
+      "sha256": "38dff9d72492dbbc020072e7f023bd148266fdc855b5c49022cce9ea718f3403",
+      "redactions": 0
+    },
+    {
+      "name": "src/autodiscovery.ts",
+      "size": 21527,
+      "sha256": "9efb22539c918c0ddf852256df7066359f13afc2f074ad2817330aa2bf1e45ad",
+      "redactions": 0
+    },
+    {
+      "name": "src/base64.ts",
+      "size": 3254,
+      "sha256": "c2a93ebbe5eece1cd11cf596fbd068ae441320facfe076860614be6337903000",
+      "redactions": 0
+    },
+    {
+      "name": "src/browser-index.ts",
+      "size": 1349,
+      "sha256": "27a292283dd8afe1ab2aa229f0a663cb5664aaa30f0990dede77d678091b499c",
+      "redactions": 0
+    },
+    {
+      "name": "src/capabilityPoller.ts",
+      "size": 3587,
+      "sha256": "6614aa776dc1a08d5d29149036dd1b6bf83ba7470d9533326ed90d5b3f81b93a",
+      "redactions": 0
+    },
+    {
+      "name": "src/client.ts",
+      "size": 367565,
+      "sha256": "800d9d53d093e2ab714c52ce7d1f6cfe297ba2aae7e988a27f7b3b3fece07d19",
+      "redactions": 0
+    },
+    {
+      "name": "src/common-crypto/CryptoBackend.ts",
+      "size": 12906,
+      "sha256": "761d044db45fbcfcded2dc7c17dd45436f940c63c34d953a7c0505227f24ff97",
+      "redactions": 0
+    },
+    {
+      "name": "src/common-crypto/key-passphrase.ts",
+      "size": 1666,
+      "sha256": "0497286a5c2b87322efe2277542da41397a693bf427943ed23df847fc2d4ba61",
+      "redactions": 0
+    },
+    {
+      "name": "src/content-helpers.ts",
+      "size": 9767,
+      "sha256": "b76aee41c31f897738340b506b96144f814bdf959d165c4e2c7df92858a979d7",
+      "redactions": 0
+    },
+    {
+      "name": "src/content-repo.ts",
+      "size": 4753,
+      "sha256": "23335245613a79a43c5c6ab4c734e9f542d98ae11a8d404803ee7fcd6f20e7dc",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto/store/base.ts",
+      "size": 11763,
+      "sha256": "25a3357b33b9882138ccdd2fc657c797de6c3692f112e597e9cd30a23869bd3b",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto/store/indexeddb-crypto-store-backend.ts",
+      "size": 23284,
+      "sha256": "6588d87733a9338da870a0368164a83bba038a26583862202069b75993c8eb2f",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto/store/indexeddb-crypto-store.ts",
+      "size": 21319,
+      "sha256": "b8522f1c25d9facd08ca9eb51172eb7bf1a87bbf459e756de5c0a949b76adf1d",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto/store/localStorage-crypto-store.ts",
+      "size": 14334,
+      "sha256": "e94d62c588e95676802531dfbc29d9daef13dbb252250019006e333060e90c1c",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto/store/memory-crypto-store.ts",
+      "size": 10567,
+      "sha256": "1076fa25d42978d7679b82f97541d3e9fbd8fb18850a8c38a7aef3887c216522",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto-api/CryptoEvent.ts",
+      "size": 6111,
+      "sha256": "fa30bfb3616d19f67f5c020a1cad02970159a45c88594df4a6611fac1e9ddcb5",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto-api/CryptoEventHandlerMap.ts",
+      "size": 2172,
+      "sha256": "7f7afc73296aa48175bbf40d8db645aaa3faad969eeaa095a8328dcb81999121",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto-api/index.ts",
+      "size": 57450,
+      "sha256": "81d909f45999be8257af79de4726eafc0a4f995d7acfa852a7ad7878c9b3e51e",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto-api/key-passphrase.ts",
+      "size": 1879,
+      "sha256": "a1bf4b485d1b360ec6f84d003cad7a471a4a67964160b11463179765367fe645",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto-api/keybackup.ts",
+      "size": 3483,
+      "sha256": "dde2c150bdedea6659a64a23c79a56bc2b3a9282f502165feeb392c3b46be6a2",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto-api/recovery-key.ts",
+      "size": 2459,
+      "sha256": "f4e4b9d8362eb8df77da57953482e0241186a9a66a359bdf88281944757a2ca1",
+      "redactions": 0
+    },
+    {
+      "name": "src/crypto-api/verification.ts",
+      "size": 14929,
+      "sha256": "2b23f38b315c32b57339ec46b09b8648aadc2d5d894421ae508a5f9c7007637e",
+      "redactions": 0
+    },
+    {
+      "name": "src/digest.ts",
+      "size": 1329,
+      "sha256": "244e0b9d539bf1f18349b6a616d31c677bdfb2d8b0fa63cb38ab2833fddbccdb",
+      "redactions": 0
+    },
+    {
+      "name": "src/embedded.ts",
+      "size": 43095,
+      "sha256": "146f21cacab40a49b8ddcb5f280e4b88b1c665d5841174a44de234c3e34f2b76",
+      "redactions": 0
+    },
+    {
+      "name": "src/errors.ts",
+      "size": 2729,
+      "sha256": "63e21fd48f51cf763d5f3f8cbf64fd113a171be3ecb6f0cf6ba844ed4b89a50a",
+      "redactions": 0
+    },
+    {
+      "name": "src/event-mapper.ts",
+      "size": 3800,
+      "sha256": "58c8cbdff06bae6db3c93843e92176d92b22be27dab558a70b3239c8bb047d9b",
+      "redactions": 0
+    },
+    {
+      "name": "src/extensible_events_v1/ExtensibleEvent.ts",
+      "size": 2179,
+      "sha256": "f9bbea5242e6b31b0353851c0baf0f6dcf3584dbccfbfe2fcfa7f6a2a2cbcccc",
+      "redactions": 0
+    },
+    {
+      "name": "src/extensible_events_v1/InvalidEventError.ts",
+      "size": 768,
+      "sha256": "cced0ac4b3ab82b4a68f9bd97da729e545a6256f27d0e1d43371e0de4b28eb86",
+      "redactions": 0
+    },
+    {
+      "name": "src/extensible_events_v1/MessageEvent.ts",
+      "size": 5084,
+      "sha256": "f6e929502c7d0da0a4a3f29694a577a62ded7ed680f0ce3232c9b410c78d814b",
+      "redactions": 0
+    },
+    {
+      "name": "src/extensible_events_v1/PollEndEvent.ts",
+      "size": 3275,
+      "sha256": "0e9c4467aedaa65721a6c9857c2605e563d9fb9c3c3b882b7b883d7ba4cc51be",
+      "redactions": 0
+    },
+    {
+      "name": "src/extensible_events_v1/PollResponseEvent.ts",
+      "size": 5056,
+      "sha256": "31f0b3d3a42d1bc8d3107aa567d1eb58b52010e39916f0476c5f449b02474d93",
+      "redactions": 0
+    },
+    {
+      "name": "src/extensible_events_v1/PollStartEvent.ts",
+      "size": 6945,
+      "sha256": "c92eb6dc3927e0a1698c69c9553ced92866d4842512b39b608e261f13e706376",
+      "redactions": 0
+    },
+    {
+      "name": "src/extensible_events_v1/utilities.ts",
+      "size": 1162,
+      "sha256": "2092972fe8de9be061f3f9b0c02f9b3d19a7acd73cfbca3c1054039ff8e489d3",
+      "redactions": 0
+    },
+    {
+      "name": "src/feature.ts",
+      "size": 2996,
+      "sha256": "2e24b41c7451fc7c4ec9b4f6fd760c35bcec2bcf9dac04d5b1d84f4e14bdbdde",
+      "redactions": 0
+    },
+    {
+      "name": "src/filter-component.ts",
+      "size": 8063,
+      "sha256": "00f05c2de44b03dc220bf59c1f7bf2667407abfba17382fab771602e104dcfae",
+      "redactions": 0
+    },
+    {
+      "name": "src/filter.ts",
+      "size": 9092,
+      "sha256": "dd80a302fdcffabce87ac316dfa3beb629c5f98cd9123bea21af93841565e4c2",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/errors.ts",
+      "size": 9914,
+      "sha256": "5270b7eff25eabf044e9e07985658e6657819326c5845454f9fc4b4fe3728a54",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/fetch.ts",
+      "size": 14063,
+      "sha256": "3d7ae9021672e214486b011644dd51a7750004c37ac9ccfd1d2ffc4a00e6b2a1",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/index.ts",
+      "size": 6933,
+      "sha256": "0a64857990faf90f5982a749c8dfd6221fc78dc7004ddcc7edf08a22b9860871",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/interface.ts",
+      "size": 8530,
+      "sha256": "43698eff8415956711c001dbf2b787847e9b1461d85a80edfbd994f6c4b9316b",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/logging.ts",
+      "size": 1634,
+      "sha256": "b99dd7591f264a2c8c438d780b5a500bc7334f5335cd124d64a90886766e0707",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/method.ts",
+      "size": 744,
+      "sha256": "ea8f9e89d2efb1bb6192f224d42016349a1d3f61d68862975ef9a394f19cfcfa",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/prefix.ts",
+      "size": 1480,
+      "sha256": "66b5a853cf17b7f855037bcc32ac329e1aa296e417a8eba5611153983657c775",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/refresh.ts",
+      "size": 11981,
+      "sha256": "395da66d8f54d75958acb25342dabe03c3b2afcddc24aa7b4c2f777e3dc37f84",
+      "redactions": 0
+    },
+    {
+      "name": "src/http-api/utils.ts",
+      "size": 7120,
+      "sha256": "e1c0540813071a798f3e97ee8c12776a661d2512a70ef08ee9d282958217c201",
+      "redactions": 0
+    },
+    {
+      "name": "src/index.ts",
+      "size": 825,
+      "sha256": "a3aa4efcb1b97f77a506e7658562d37623b082b478fc9285129361db15afc215",
+      "redactions": 0
+    },
+    {
+      "name": "src/indexeddb-helpers.ts",
+      "size": 2051,
+      "sha256": "12d3639b721c26c152998f13c68eca81f3d008c8e68b44b7a98680d7cfe7b3ec",
+      "redactions": 0
+    },
+    {
+      "name": "src/indexeddb-worker.ts",
+      "size": 844,
+      "sha256": "a1960982fc087aa2614cf37ec6747982b905ea826acff12e9b975ac643c3bf49",
+      "redactions": 0
+    },
+    {
+      "name": "src/interactive-auth.ts",
+      "size": 27333,
+      "sha256": "7006d8316421c79e7433913c72ff3985d1cb23baa1509d6b825064913bdeb3a7",
+      "redactions": 1
+    },
+    {
+      "name": "src/logger.ts",
+      "size": 9396,
+      "sha256": "bcb5d9c019239d881e1f395d953e5e29595606f78d96f93b7d031f04057ef72e",
+      "redactions": 1
+    },
+    {
+      "name": "src/matrix.ts",
+      "size": 7402,
+      "sha256": "b9042cdc15ad1b12d7ebd0e99cab15237b3ff3b9dee207ddeea72c1e31e2c114",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/CallMembership.ts",
+      "size": 18412,
+      "sha256": "972414c3a8cd1454602b22b94baf573ef4c6e845e9f1e39c8464ede58f260f85",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/EncryptionManager.ts",
+      "size": 2217,
+      "sha256": "2ccc57e6c7b597c0ea00de7c0ffd2ee10fc4b432c4572d7ca951fc871837fd9c",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/IKeyTransport.ts",
+      "size": 2344,
+      "sha256": "a1c72008ca532a3a8774c4d65e71b81b3ac7bbd3d2fbb6828a90090a6e23533f",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/IMembershipManager.ts",
+      "size": 4752,
+      "sha256": "5729e6fe9bddf142ec97f38bdb6c01b56fcfde01fcee88ef98b199c44ad4fabd",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/LivekitTransport.ts",
+      "size": 6796,
+      "sha256": "d77dc18e9d6507a6bb2f562969429c0b82911e6d73fe569fb5507c700f4fb071",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/MatrixRTCSession.ts",
+      "size": 44404,
+      "sha256": "afa1b8a5fc8e2cb674dcb81f23fa39a88c75c72c893ed1564ed631cd1f1314ea",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/MatrixRTCSessionManager.ts",
+      "size": 8056,
+      "sha256": "3bfe402da2c23d7ff3f66083613ad7b980396b62fc731c432f28b32a80d43b58",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/MembershipManager.ts",
+      "size": 70530,
+      "sha256": "5d9bdd3f6870aafd9823890110bb915afe648728450312162ef028fb5b1dd935",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/MembershipManagerActionScheduler.ts",
+      "size": 5838,
+      "sha256": "3a4ef26cc897253e2498bb593d008485ee5aa98f33793660f892003f13ae9628",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/RTCEncryptionManager.ts",
+      "size": 23203,
+      "sha256": "4833a51c3359a55a0d536c6b2da0a4f538af21625ccaff4315f0d7ea785f6434",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/ToDeviceKeyTransport.ts",
+      "size": 8527,
+      "sha256": "295cbe9859623de1625dc88a2ad189848b1f998b9cb00a75d2868dd83588dd79",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/index.ts",
+      "size": 1170,
+      "sha256": "a8a1509f9bf9c1bd765f5739b34b36971b8a0db574a2ad8d071d0e1db3a76a38",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/membershipData/common.ts",
+      "size": 1589,
+      "sha256": "ad1bb426add45bf9141b5d5c1fbac16027d3f63174fe7e44a370b6fa209904aa",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/membershipData/index.ts",
+      "size": 927,
+      "sha256": "f7cdca646ee94a839a4b52888b1c5e85083fee432b4578836cd04460e2ad12d8",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/membershipData/rtc.ts",
+      "size": 7523,
+      "sha256": "7afd5aaa0a32207bd9c45c2b2e5bc88f2ef739dd68926a1bc202c27ce0c922e4",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/membershipData/session.ts",
+      "size": 6096,
+      "sha256": "ccb0c9ea9dc963913932fd8db688e3294d6759a393a8adefc87cd43094c7e36d",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/types.ts",
+      "size": 23653,
+      "sha256": "cdd5f60cc80fec04e320a154557f4153909f9fbc393332cbb82384607437d48b",
+      "redactions": 0
+    },
+    {
+      "name": "src/matrixrtc/utils.ts",
+      "size": 4521,
+      "sha256": "3e4a831d70244139c3f23425f86e4781e80226e75d387155a68b012bdda308da",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/MSC3089Branch.ts",
+      "size": 9116,
+      "sha256": "4074d38b089d1cd6c0cac673309574726d2e0660d5f268d5eae2e5337d7f9f3b",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/MSC3089TreeSpace.ts",
+      "size": 21966,
+      "sha256": "b2601d996f1a6d2f85a8b55001cdda3d57eb79a240f1602ad5c99df668af0852",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/ToDeviceMessage.ts",
+      "size": 1054,
+      "sha256": "354dbded9593d4ddd47d114f9bfa77b2c66e1f8bb6a01fb7ee0cf4e8ce7f7069",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/beacon.ts",
+      "size": 7912,
+      "sha256": "3693974c1df9a8dae9b53cd6f09c8fcec2ecf05aac634a35fdcc0458022ae454",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/compare-event-ordering.ts",
+      "size": 5231,
+      "sha256": "481e38e6586a51747ca320c38fb40c1e30fe0b17d56a5feb04272ff9760b7dd1",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/device.ts",
+      "size": 2810,
+      "sha256": "18ac35d9b9f2dcd6d648a9404ad02bcea23208ff92ae98c10187183c496e3d8d",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/event-context.ts",
+      "size": 3426,
+      "sha256": "16a58be3f94bf5cc98500bf75899a70c13e1243e8ccedd1f203107aad28cb312",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/event-status.ts",
+      "size": 1196,
+      "sha256": "b078fba2106c6124a93ff4940c6806af1571583a66a438e244ab558d7a1e7320",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/event-timeline-set.ts",
+      "size": 38025,
+      "sha256": "ae6d2dcaac213ffaab4479ede9412726fc2281486feb0291d0f8790679d9628b",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/event-timeline.ts",
+      "size": 17804,
+      "sha256": "c1a81a590b53e4338746e71be48486096a9cf6c61c6b2f5281b0ac4529d2461b",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/event.ts",
+      "size": 65156,
+      "sha256": "728e50cacb7cef2035718356be17450366201eae16b3ce3cf2513a957157d1b5",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/invites-ignorer-types.ts",
+      "size": 1676,
+      "sha256": "65c3454002fea8a39b04ba32ff8e45c1666ef05a6560b76469f528510482585d",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/invites-ignorer.ts",
+      "size": 13110,
+      "sha256": "81da95c6882d1861fb8fa5f679133496a113387ec3b5f9994a70316266a0ec65",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/poll.ts",
+      "size": 9618,
+      "sha256": "cc8a4d9c6f6c6c41c06a18b69d27e855ec163119c24f8ace9bf45f3c597b0832",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/profile-keys.ts",
+      "size": 1238,
+      "sha256": "f674468cd75106ca4b9806d1a439461116807fd9ab8e3c4830e43c0342259a33",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/read-receipt.ts",
+      "size": 17755,
+      "sha256": "be5ae6a6eb646d0fde186633b286b08894ade58f1560c84679707b725680e892",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/related-relations.ts",
+      "size": 1437,
+      "sha256": "585cdea6d03094f09b68d9b02364d51e473cfa03a33a6bc6b00306a14b8630e1",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/relations-container.ts",
+      "size": 7959,
+      "sha256": "b4a93146ae6f76eb0b377711a11a4e59e49ffdebaf53b890c9b013ef6d86adb0",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/relations.ts",
+      "size": 14652,
+      "sha256": "1d97cacb6ff9599a77c0b5f118b63aeae75dc212cfa02707bcdfd345aa90fd9a",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/room-member.ts",
+      "size": 18099,
+      "sha256": "3661c90c98f93e4adb5faa9149c4bb57218acfa46f2a2f2b07a29d917488ac0c",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/room-receipts.ts",
+      "size": 17020,
+      "sha256": "da78d7ba3e655e1d21e7536807a2216c023e8f5341e0abfc03be963b73a10d15",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/room-retention.ts",
+      "size": 9530,
+      "sha256": "b0e890b7963e2c81026f27128b7b715b7b9dd2f1a42f20333dd711bb46566bb4",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/room-state.ts",
+      "size": 50103,
+      "sha256": "f91b2e95f7b42a1a7ac149ff2e399be4b3e36ee98bd61909877c155b561f8581",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/room-sticky-events.ts",
+      "size": 19477,
+      "sha256": "cd5ffd89151377771108b91731bf92560ac9777d8537096804644a6bf85ca352",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/room-summary.ts",
+      "size": 2560,
+      "sha256": "6426b176e81418e80711e4ab105cd9d15fb3b2b7e7fa9852d23b3b7234856874",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/room.ts",
+      "size": 167450,
+      "sha256": "4976465f362fc7e8790e1b6a3c1986a194e985a503a7d681eebf9acc79d5ac0a",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/search-result.ts",
+      "size": 2196,
+      "sha256": "0fc61ec647138279b7c973325a0090b7540d2bef0a18b45a28802b5f8935c27c",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/thread.ts",
+      "size": 45029,
+      "sha256": "e85b3f2848922b182ba8e68d23cbea40a93698cfe7e64e37d8870b29cfef1444",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/typed-event-emitter.ts",
+      "size": 9887,
+      "sha256": "cb12d8ff1a35a791659f58e3da9695e9cc2dd891525c4f5af03f18aae800e9f2",
+      "redactions": 0
+    },
+    {
+      "name": "src/models/user.ts",
+      "size": 10505,
+      "sha256": "56bb8cfbc8bb29cb1596ffc79751c80527efe87576af0a8f2108fadda954b510",
+      "redactions": 0
+    },
+    {
+      "name": "src/oauth/authorize.ts",
+      "size": 10988,
+      "sha256": "4ba90565262ef275a7bd251ab3eac49b9b468151a858e266e45d2d83defea7fa",
+      "redactions": 0
+    },
+    {
+      "name": "src/oauth/discover.ts",
+      "size": 5150,
+      "sha256": "19e641fb6b38ca2c1fa18409c94f432f63f3828fe333d660f71ac1a3fbc8d657",
+      "redactions": 0
+    },
+    {
+      "name": "src/oauth/error.ts",
+      "size": 4263,
+      "sha256": "7af7a2776a1549cbb9f81afd2dd1822386ee8161d26bbf6b6b2040408b3cb028",
+      "redactions": 0
+    },
+    {
+      "name": "src/oauth/fetch.ts",
+      "size": 2136,
+      "sha256": "60558cde378df42637e6710913167a0d1137911eee8ebeba320405d7e9ce2e07",
+      "redactions": 0
+    },
+    {
+      "name": "src/oauth/index.ts",
+      "size": 15803,
+      "sha256": "beda6be4deac26d2a12ecd040e540baf752a4cdc2d3df7d330366bd71675a235",
+      "redactions": 0
+    },
+    {
+      "name": "src/oauth/register.ts",
+      "size": 6371,
+      "sha256": "e86713edc415bbc7e5a6a646aabf0bc918b03028c7e304a00991d64599a5e25f",
+      "redactions": 0
+    },
+    {
+      "name": "src/oauth/tokenRefresher.ts",
+      "size": 3893,
+      "sha256": "1decce2d46fd3016c1d3c2bb983730a2a042d854b9ce176ff893fe9abbb993bc",
+      "redactions": 0
+    },
+    {
+      "name": "src/pollingCachedValue.ts",
+      "size": 6379,
+      "sha256": "e435c8d82c1a08da83e462c2370997c03fcab8f7b00a5032332676870e298065",
+      "redactions": 0
+    },
+    {
+      "name": "src/pushprocessor.ts",
+      "size": 31074,
+      "sha256": "5a2575ea60ab16d5a33bd91ca6c04d9980869191b4a5a09fbd3c7a284780c053",
+      "redactions": 0
+    },
+    {
+      "name": "src/randomstring.ts",
+      "size": 4348,
+      "sha256": "fe71468843d165ab583cb979192743bff24a0ce173a4a88dbc8f1dda962cddf0",
+      "redactions": 0
+    },
+    {
+      "name": "src/realtime-callbacks.ts",
+      "size": 5674,
+      "sha256": "e63fa71d8f3661356e60137939599cc126478474102d417a6d3f22654e680545",
+      "redactions": 0
+    },
+    {
+      "name": "src/receipt-accumulator.ts",
+      "size": 8390,
+      "sha256": "1d2ecfe2c66188ece295fc7511eb8ec8b2ea7d72c1260f58874f1eba1a6eaf39",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/MSC4108SignInWithQR.ts",
+      "size": 21110,
+      "sha256": "925187960dfff07845867ff3a74faf85d8e2ee5d44ba8025bfaeacb3fb3df7ef",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/RendezvousChannel.ts",
+      "size": 1451,
+      "sha256": "1ea65e1917379fca5782f5f47da0c438fc08fce9e17f81369fcc9b60f7314359",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/RendezvousCode.ts",
+      "size": 832,
+      "sha256": "11be1f05c09de3b557093db04ff6b5c98f69c69a5fd14e7161bc88ac27c83680",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/RendezvousError.ts",
+      "size": 829,
+      "sha256": "2131ea8a277b4cac473168728e5a458771a50a7041c369534d334a8ed9eb6242",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/RendezvousFailureReason.ts",
+      "size": 2008,
+      "sha256": "858699640806fb28c533e97734ac83f9d40cc9a02e7c315434e9a517d67be2af",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/RendezvousIntent.ts",
+      "size": 718,
+      "sha256": "c71f317d2df74b603d4eccab6835f297554f1d885c3878b5693d597b54b889b0",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/RendezvousTransport.ts",
+      "size": 1740,
+      "sha256": "991721867dd0b8c2ef6567cf28f58431b74f0e2024b5ebfeac71d905c053d414",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/SignInWithQRFlow.ts",
+      "size": 4540,
+      "sha256": "2b2bd60ebc9cd7f7730e4e032af3fc13373a8aea8929e4fe65028d9c45508a0a",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/channels/MSC4108SecureChannel.ts",
+      "size": 9892,
+      "sha256": "99cb0cdd4a82c41e00eead904cf0a000034110973af769842541a89ab98db64c",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/channels/index.ts",
+      "size": 623,
+      "sha256": "ef7aa8d1738686cc5b718a7832704b2da0206c47edbf7b6e2253eb96a5d04ad4",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/index.ts",
+      "size": 5824,
+      "sha256": "53ac165dc75663cabca7f96a6404fc0203964b9c5a0ade61501319a8e1d995b6",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/transports/MSC4108RendezvousSession.ts",
+      "size": 9060,
+      "sha256": "865fdbcf852ac598cc8ae59ff5356cecb854ca4bd9d3430cc78b9e6f571dbe4c",
+      "redactions": 0
+    },
+    {
+      "name": "src/rendezvous/transports/index.ts",
+      "size": 627,
+      "sha256": "989be957b9236c1b71e89e0ea4e8fd4b5d5ea95caf4106771b106c509ce9133d",
+      "redactions": 0
+    },
+    {
+      "name": "src/retentionPolicy.ts",
+      "size": 2063,
+      "sha256": "b8caa86221cfe5f20ccff56f9fdf6d1996a8121271789160739a41802a4827af",
+      "redactions": 0
+    },
+    {
+      "name": "src/room-hierarchy.ts",
+      "size": 5405,
+      "sha256": "bc100c5cba12f338b4f546f9ae310c6d9ebf3f3d70ec71643911c55d24df88b7",
+      "redactions": 0
+    },
+    {
+      "name": "src/room-summary-api.ts",
+      "size": 4825,
+      "sha256": "b4cdbb3ab8d1ab8c995187ed9c204cbb2c855ef70132f30624aa5f5d89cf898c",
+      "redactions": 0
+    },
+    {
+      "name": "src/rtcTransportsCachedValue.ts",
+      "size": 1746,
+      "sha256": "f950137da8f72e830d86e9d0cb3a95f62c0f14665f103be6dd9e62c82cf05218",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/CrossSigningIdentity.ts",
+      "size": 9487,
+      "sha256": "e2366abe19f8076a530ac9396ee0d13759f1612763890e0a35812df33ece7eaa",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/DehydratedDeviceManager.ts",
+      "size": 15261,
+      "sha256": "477011159b88e67df40be583e6271106734a3bbc18251498ef2ac747459028b1",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/KeyClaimManager.ts",
+      "size": 3571,
+      "sha256": "9a9e03f41cbf7cfc583e789c40cc5933c4dc8aae654243b42c828746e7063125",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/OutgoingRequestProcessor.ts",
+      "size": 9576,
+      "sha256": "d23c183e6887110f85e941a8538b719db187e2a2f5ad1c79eb01796df2043cf6",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/OutgoingRequestsManager.ts",
+      "size": 7792,
+      "sha256": "9a97dd4bfe10496fe4c09e4b62933d1e99354100e98b6e96e981b22b9c820c97",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/PerSessionKeyBackupDownloader.ts",
+      "size": 22375,
+      "sha256": "d9a2f9770fd79ff4ef8df35c95f6a4ca4bf683cb5d03011162853b2ecd406b29",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/RoomEncryptor.ts",
+      "size": 17345,
+      "sha256": "5e765d042c692c59ec58153f8091bfd3ae5ef220ce457ce538cdc0c09b7e1acc",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/backup.ts",
+      "size": 43711,
+      "sha256": "0035718d4b52dd39964519ed204cf25887214b6a0104755f3119d187d731af41",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/constants.ts",
+      "size": 694,
+      "sha256": "71dd26458c9d5eb99d484609365c6a47a3bcf5b718d904e972aaa7ebe5b76e08",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/device-converter.ts",
+      "size": 4512,
+      "sha256": "f509daf3849824b479a132b2ef4d9316081244a9cac7cefd688017c52ce8d248",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/index.ts",
+      "size": 12193,
+      "sha256": "b76c96fa2cd65147622d3f4c91559548da7c32211dbc6eab5334b013d666924d",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/libolm_migration.ts",
+      "size": 23501,
+      "sha256": "8f5d5aa20614a49e855d21e6377cadc18b3d53f588bd4badc25694312066f631",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/rust-crypto.ts",
+      "size": 110017,
+      "sha256": "d9ceb74fad995cc8f9c64b7ef419f61b60013b834fc04ffd3c891fed4fab7986",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/secret-storage.ts",
+      "size": 2260,
+      "sha256": "17e0294adf6b2c600067bbcd629dd646374270e7d8c662d34c54c07c2e62b7b8",
+      "redactions": 0
+    },
+    {
+      "name": "src/rust-crypto/verification.ts",
+      "size": 33650,
+      "sha256": "efcf60058c76106c7b4de92f320edf896b386c9aa37c98be6f2bd32a5e99b153",
+      "redactions": 0
+    },
+    {
+      "name": "src/scheduler.ts",
+      "size": 12287,
+      "sha256": "d149c0154588fed8858f3ffd5d34e4656c5240314672c021567b2c3ff71b9f91",
+      "redactions": 0
+    },
+    {
+      "name": "src/secret-storage.ts",
+      "size": 26566,
+      "sha256": "8722cb2b6e1e8f68f6174f527ca0eea15c6a5b955210ba96674dcb2d79ee3a61",
+      "redactions": 0
+    },
+    {
+      "name": "src/serverCapabilities.ts",
+      "size": 2950,
+      "sha256": "c989d09e10b42f97fe107d1dfc09936dce398856faf05d137bc8b1e1adbc6c49",
+      "redactions": 0
+    },
+    {
+      "name": "src/service-types.ts",
+      "size": 721,
+      "sha256": "5e48fe607051965406a73b44f92ce75442e2ecf6a14e877faeedc85fd5006034",
+      "redactions": 0
+    },
+    {
+      "name": "src/sliding-sync-sdk.ts",
+      "size": 44910,
+      "sha256": "8661849d8dcee600c0955da41978fb59e1e636cda18a88a0b41fff88386fd879",
+      "redactions": 0
+    },
+    {
+      "name": "src/sliding-sync.ts",
+      "size": 27535,
+      "sha256": "e0cceacb26c49b6274bc0a997b7b75c6c770108fbf91568ad68b4b2505d69064",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/index.ts",
+      "size": 9226,
+      "sha256": "a4c54803d0c8e1dbf92dc8591477ca24333c017a705274e4eaca82300c1fcb77",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/indexeddb-backend.ts",
+      "size": 2211,
+      "sha256": "5cd1fdae79c7011129dfba4151f366138ca0e5c9854d1e0b7cc2c11c521918a6",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/indexeddb-local-backend.ts",
+      "size": 26077,
+      "sha256": "da2854c9469853a6b497803e10b8ae3265dde110c5b0af0f29cfd904a85ae87f",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/indexeddb-remote-backend.ts",
+      "size": 9114,
+      "sha256": "556f633671521246aaf0ff55590b319a3ac403a2ff0b8408d436c67111218024",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/indexeddb-store-worker.ts",
+      "size": 6046,
+      "sha256": "474cbca7c93511c83c67306186f92207be5fb2d0fc4146bc588c21529f51bf30",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/indexeddb.ts",
+      "size": 17247,
+      "sha256": "d5020b51f9a60e71ce977813866008404782abd71946ead89da74dd282505668",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/local-storage-events-emitter.ts",
+      "size": 2045,
+      "sha256": "1f123f1c351923540faa95889d0961fc028a75e5f616848725fa0988fd057b8b",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/memory.ts",
+      "size": 15594,
+      "sha256": "5592ba38069de2b8583382d317451af56b624aaa230630fa9ab19572b6891895",
+      "redactions": 0
+    },
+    {
+      "name": "src/store/stub.ts",
+      "size": 7611,
+      "sha256": "3445f68b4c4050b3e87e2c899d9a5e12750e7d23c1f31e76a803f73436d6b74d",
+      "redactions": 0
+    },
+    {
+      "name": "src/sync-accumulator.ts",
+      "size": 34890,
+      "sha256": "98f0f4f808d91404f271a9736d8d1b2dcebee1b3263e4812fc29c5edd5b0ab1b",
+      "redactions": 0
+    },
+    {
+      "name": "src/sync.ts",
+      "size": 93097,
+      "sha256": "19b79aa8a268472f7ce56865ca33ed22b664a8aba29ee3553747957c28255de6",
+      "redactions": 0
+    },
+    {
+      "name": "src/testing.ts",
+      "size": 6908,
+      "sha256": "903c8f4bc6b109c578406a6bba7821f98b67b525ea6e05391d943194c5300331",
+      "redactions": 0
+    },
+    {
+      "name": "src/thread-utils.ts",
+      "size": 1258,
+      "sha256": "c531d4a91a8124026f98fd9012db84f93a35d3eef33f7bc6f1d4d94a6d3b3ad7",
+      "redactions": 0
+    },
+    {
+      "name": "src/timeline-window.ts",
+      "size": 19595,
+      "sha256": "05301487a143cdb69e6bca783ad71a7b9a7e99386e652f879dad54fcb71d9430",
+      "redactions": 0
+    },
+    {
+      "name": "src/types.ts",
+      "size": 2035,
+      "sha256": "3850d38c16d9c0b03931eb2f99cf708fa4cb9052574277a982d068fb8a0b8110",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/decryptAESSecretStorageItem.ts",
+      "size": 2264,
+      "sha256": "5c53b9ac52ee3cbd47e7ca56fe3db3f72063e8abfbed9ffb7c8bb95bc0082868",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/encryptAESSecretStorageItem.ts",
+      "size": 2843,
+      "sha256": "bf40753c5a65f16b9a5886488d80e7a66fc777d93d134c15b7e9a45bc49be3f8",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/internal/deriveKeys.ts",
+      "size": 2005,
+      "sha256": "fab4c426a661592eb5a5b40588e9a9c6fd40a5979370121c731385d768766500",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils/roomVersion.ts",
+      "size": 1467,
+      "sha256": "481c12212e6f04b16b2c1095d7a14c22ab2aaa21c1758904484c632bc139754f",
+      "redactions": 0
+    },
+    {
+      "name": "src/utils.ts",
+      "size": 27415,
+      "sha256": "4faf2126db1ed8aad725b932bea303c5c479269c2cdedb40bb8a2f83ca1bd5d8",
+      "redactions": 0
+    },
+    {
+      "name": "src/version-support.ts",
+      "size": 1577,
+      "sha256": "6669ba730d7298a6d45ba40041952ddedf2abf1c2998557cec8e453ae9d902c7",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/audioContext.ts",
+      "size": 1477,
+      "sha256": "831090f15b5220517c57d9fa2c933c383e3794f33cace713b1a916e511687de7",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/call.ts",
+      "size": 123321,
+      "sha256": "e17b2fc7175a8c66e0506cf8e61b39b20b6efec3716dd7dccb837ad10bef5929",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/callEventHandler.ts",
+      "size": 17298,
+      "sha256": "283ccca3d2a468ffaaa0a9baa74d769b7abac09d9152fdd11834a1d487042f07",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/callEventTypes.ts",
+      "size": 2496,
+      "sha256": "70708254b828611f755dffe95c2cf9af116ee9d33756ba9151a3fbb3e47e3d8e",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/callFeed.ts",
+      "size": 12065,
+      "sha256": "8ebe216d2898b458a4dfb4b38608777239e962b1430d0def2a73c17c9aa03ad6",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/groupCall.ts",
+      "size": 68210,
+      "sha256": "a61054771c760ec292c058e8aac89c036e2d178877f1daf6f45b9be39cdc6840",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/groupCallEventHandler.ts",
+      "size": 9298,
+      "sha256": "9337e8b6c2f4a1e49ce7a8722a1a848df66d3bd6852d0c0cef4c1c75da1e3e89",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/mediaHandler.ts",
+      "size": 19176,
+      "sha256": "18cda97b96758ff4962f1fc1ed93e24b2f173c34e07d867987c104d45502625f",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/callFeedStatsReporter.ts",
+      "size": 3496,
+      "sha256": "f2c3dd8282b23e3042be1bc84d84f6e72ed4d0125499a2ca505f8c1da9ad73f0",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/callStatsReportGatherer.ts",
+      "size": 10228,
+      "sha256": "b491689b1af9ec33f8fdf5b09bbedbc45fa1cac1bd4cf08533e5b6a052f720db",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/callStatsReportSummary.ts",
+      "size": 993,
+      "sha256": "c54b4406c0798c790afc79cba592e9f8e689f343ac4acf170e2d9bb739f02b80",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/connectionStats.ts",
+      "size": 1349,
+      "sha256": "afd082c7cfc4240bb1cc9fa682c4d9f8361d68e5c6702c83111f468470c52303",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/connectionStatsBuilder.ts",
+      "size": 1131,
+      "sha256": "1381fda8aa3750634bf6a396d237753a2e4558b6ca5630bf88ca9d879a88725b",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/connectionStatsReportBuilder.ts",
+      "size": 5292,
+      "sha256": "7869e4f9bfae21c390b7329a895f493a1d581040cf67d7aa1676296a620e64cd",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/groupCallStats.ts",
+      "size": 3371,
+      "sha256": "bd2b420619f6cd1985243f08f6d95e68ff10dc8f7d130fa1eb80f845a0751919",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/media/mediaSsrcHandler.ts",
+      "size": 1907,
+      "sha256": "c6b75144798c1d48d9bb1111a7529a12fbe56ddbdd5e475b6ecf81b9969cdd94",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/media/mediaTrackHandler.ts",
+      "size": 2637,
+      "sha256": "9a07a863c721f264ff93fbe658204203178ae5e005b0a78004ae1acee2410ec3",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/media/mediaTrackStats.ts",
+      "size": 4477,
+      "sha256": "c04232716c147a8c0fcefeffe9829012f2469e5984fbd37cd4215a195a44db2b",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/media/mediaTrackStatsHandler.ts",
+      "size": 3481,
+      "sha256": "92812080650bc2da12e8ba2f702775d41e865f77bd51b37a52c8e2bc3dc5fafd",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/statsReport.ts",
+      "size": 4561,
+      "sha256": "3045a650ce872682e61c2bdfe41f2fa90481a9368b980df524a792aa3212a8ac",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/statsReportEmitter.ts",
+      "size": 1795,
+      "sha256": "4bec70aa41d8693d903d0846b7d629f5463b7204f778d2b481187a35d0a6ac39",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/summaryStatsReportGatherer.ts",
+      "size": 6470,
+      "sha256": "099c58b3ddc43eac4d99f870ac702d27ac6b8e9c1219c6cb78bbcabeeb9dc0cd",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/trackStatsBuilder.ts",
+      "size": 7631,
+      "sha256": "7edf66a452f0552d75a45b7fff299dba2954a1f1503773dd60bf267d6cefb6d1",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/transportStats.ts",
+      "size": 800,
+      "sha256": "61e6f86550bb6de2f3f882c1a7079af16876be11929de3752b3870a8e1580cbf",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/transportStatsBuilder.ts",
+      "size": 2010,
+      "sha256": "95211b2daa84be1eeea410b0ef25c28380db6d5a4df16bfc6633ac41bca36d93",
+      "redactions": 0
+    },
+    {
+      "name": "src/webrtc/stats/valueFormatter.ts",
+      "size": 885,
+      "sha256": "c03b184006a65bf8b1942c47fabf777341c77a35ad251da66254ad34e3b7cb11",
+      "redactions": 0
+    },
+    {
+      "name": "src/wellKnownCachedValue.ts",
+      "size": 1358,
+      "sha256": "c47bdc52b01888fcb04ee4b079762ed6f99650fb0ac7ed552780468acf4f3464",
+      "redactions": 0
+    },
+    {
+      "name": "vitest.config.ts",
+      "size": 2153,
+      "sha256": "9c5aa10acada72503b56023cc19cf4520e500e35b19960da6e6546150b8060f8",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 240,
+    "bytes": 3159398,
+    "redactions": 2
+  },
+  "coverage": [
+    {
+      "area": "source_code",
+      "detail": "babel.config.cjs: 33 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "knip.ts: 45 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "package.json: 49 dependencies parsed (3 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "pnpm-lock.yaml: 487 dependencies parsed (487 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "scripts/changelog_head.py: 18 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "scripts/release/merge-release-notes.cjs: 164 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/AESEncryptedSecretStoragePayload.ts: 29 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/IIdentityServerProvider.ts: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/PushRules.ts: 205 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/another-json.d.ts: 19 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/auth.ts: 246 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/beacon.ts: 140 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/common.ts: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/crypto.ts: 67 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/event.ts: 486 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/events.ts: 119 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/extensible_events.ts: 146 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/global.d.ts: 67 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/json.ts: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/local_notifications.ts: 19 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/location.ts: 92 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/matrix-sdk-crypto-wasm.d.ts: 41 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/media.ts: 245 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/membership.ts: 57 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/partials.ts: 101 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/polls.ts: 120 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/read_receipts.ts: 61 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/registration.ts: 102 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/requests.ts: 342 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/retention.ts: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/search.ts: 117 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/signed.ts: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/spaces.ts: 35 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/state_events.ts: 153 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/synapse.ts: 38 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/sync.ts: 27 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/threepids.ts: 29 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/topic.ts: 69 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/type-guards.ts: 126 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/@types/uia.ts: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/NamespacedValue.ts: 121 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ReEmitter.ts: 93 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ToDeviceMessageQueue.ts: 154 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/autodiscovery.ts: 505 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/base64.ts: 86 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/browser-index.ts: 44 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/capabilityPoller.ts: 108 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/client.ts: 9293 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/common-crypto/CryptoBackend.ts: 329 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/common-crypto/key-passphrase.ts: 42 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/content-helpers.ts: 298 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/content-repo.ts: 122 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto/store/base.ts: 381 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto/store/indexeddb-crypto-store-backend.ts: 656 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto/store/indexeddb-crypto-store.ts: 553 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto/store/localStorage-crypto-store.ts: 408 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto/store/memory-crypto-store.ts: 326 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto-api/CryptoEvent.ts: 152 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto-api/CryptoEventHandlerMap.ts: 42 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto-api/index.ts: 1416 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto-api/key-passphrase.ts: 58 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto-api/keybackup.ts: 121 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto-api/recovery-key.ts: 69 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/crypto-api/verification.ts: 400 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/digest.ts: 34 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/embedded.ts: 997 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/errors.ts: 88 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/event-mapper.ts: 88 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/extensible_events_v1/ExtensibleEvent.ts: 58 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/extensible_events_v1/InvalidEventError.ts: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/extensible_events_v1/MessageEvent.ts: 143 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/extensible_events_v1/PollEndEvent.ts: 97 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/extensible_events_v1/PollResponseEvent.ts: 148 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/extensible_events_v1/PollStartEvent.ts: 207 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/extensible_events_v1/utilities.ts: 35 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/feature.ts: 85 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/filter-component.ts: 209 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/filter.ts: 268 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/errors.ts: 277 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/fetch.ts: 367 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/index.ts: 172 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/interface.ts: 249 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/logging.ts: 46 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/method.ts: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/prefix.ts: 48 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/refresh.ts: 274 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/http-api/utils.ts: 212 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/index.ts: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/indexeddb-helpers.ts: 50 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/indexeddb-worker.ts: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/interactive-auth.ts: 706 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/interactive-auth.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/logger.ts: 277 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/logger.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrix.ts: 175 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/CallMembership.ts: 446 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/EncryptionManager.ts: 62 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/IKeyTransport.ts: 63 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/IMembershipManager.ts: 113 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/LivekitTransport.ts: 194 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/MatrixRTCSession.ts: 1053 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/MatrixRTCSessionManager.ts: 189 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/MembershipManager.ts: 1388 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/MembershipManagerActionScheduler.ts: 138 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/RTCEncryptionManager.ts: 522 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/ToDeviceKeyTransport.ts: 220 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/index.ts: 35 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/membershipData/common.ts: 42 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/membershipData/index.ts: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/membershipData/rtc.ts: 192 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/membershipData/session.ts: 158 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/types.ts: 619 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/matrixrtc/utils.ts: 122 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/MSC3089Branch.ts: 272 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/MSC3089TreeSpace.ts: 565 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/ToDeviceMessage.ts: 38 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/beacon.ts: 213 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/compare-event-ordering.ts: 139 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/device.ts: 85 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/event-context.ts: 110 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/event-status.ts: 39 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/event-timeline-set.ts: 977 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/event-timeline.ts: 461 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/event.ts: 1815 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/invites-ignorer-types.ts: 58 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/invites-ignorer.ts: 341 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/poll.ts: 285 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/profile-keys.ts: 33 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/read-receipt.ts: 422 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/related-relations.ts: 39 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/relations-container.ts: 185 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/relations.ts: 392 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/room-member.ts: 486 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/room-receipts.ts: 483 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/room-retention.ts: 230 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/room-state.ts: 1227 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/room-sticky-events.ts: 443 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/room-summary.ts: 78 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/room.ts: 4087 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/search-result.ts: 57 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/thread.ts: 1004 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/typed-event-emitter.ts: 246 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/models/user.ts: 308 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/oauth/authorize.ts: 295 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/oauth/discover.ts: 102 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/oauth/error.ts: 103 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/oauth/fetch.ts: 56 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/oauth/index.ts: 375 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/oauth/register.ts: 166 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/oauth/tokenRefresher.ts: 101 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/pollingCachedValue.ts: 184 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/pushprocessor.ts: 856 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/randomstring.ts: 103 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/realtime-callbacks.ts: 190 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/receipt-accumulator.ts: 194 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/MSC4108SignInWithQR.ts: 555 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/RendezvousChannel.ts: 48 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/RendezvousCode.ts: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/RendezvousError.ts: 26 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/RendezvousFailureReason.ts: 49 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/RendezvousIntent.ts: 20 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/RendezvousTransport.ts: 58 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/SignInWithQRFlow.ts: 117 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/channels/MSC4108SecureChannel.ts: 278 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/channels/index.ts: 17 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/index.ts: 141 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/transports/MSC4108RendezvousSession.ts: 271 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rendezvous/transports/index.ts: 17 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/retentionPolicy.ts: 65 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/room-hierarchy.ts: 152 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/room-summary-api.ts: 114 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rtcTransportsCachedValue.ts: 40 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/CrossSigningIdentity.ts: 195 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/DehydratedDeviceManager.ts: 422 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/KeyClaimManager.ts: 86 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/OutgoingRequestProcessor.ts: 232 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/OutgoingRequestsManager.ts: 170 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/PerSessionKeyBackupDownloader.ts: 501 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/RoomEncryptor.ts: 362 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/backup.ts: 1021 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/constants.ts: 18 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/device-converter.ts: 129 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/index.ts: 303 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/libolm_migration.ts: 537 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/rust-crypto.ts: 2629 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/secret-storage.ts: 60 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/rust-crypto/verification.ts: 833 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/scheduler.ts: 306 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/secret-storage.ts: 691 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/serverCapabilities.ts: 87 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/service-types.ts: 20 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/sliding-sync-sdk.ts: 1125 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/sliding-sync.ts: 705 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/index.ts: 288 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/indexeddb-backend.ts: 45 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/indexeddb-local-backend.ts: 652 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/indexeddb-remote-backend.ts: 244 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/indexeddb-store-worker.ts: 167 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/indexeddb.ts: 420 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/local-storage-events-emitter.ts: 46 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/memory.ts: 463 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/store/stub.ts: 295 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/sync-accumulator.ts: 839 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/sync.ts: 2104 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/testing.ts: 212 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/thread-utils.ts: 31 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/timeline-window.ts: 533 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/types.ts: 59 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/decryptAESSecretStorageItem.ts: 54 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/encryptAESSecretStorageItem.ts: 73 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/internal/deriveKeys.ts: 62 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils/roomVersion.ts: 35 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/utils.ts: 786 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/version-support.ts: 50 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/audioContext.ts: 44 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/call.ts: 3060 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/callEventHandler.ts: 425 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/callEventTypes.ts: 96 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/callFeed.ts: 364 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/groupCall.ts: 1729 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/groupCallEventHandler.ts: 234 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/mediaHandler.ts: 501 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/callFeedStatsReporter.ts: 91 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/callStatsReportGatherer.ts: 219 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/callStatsReportSummary.ts: 30 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/connectionStats.ts: 47 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/connectionStatsBuilder.ts: 28 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/connectionStatsReportBuilder.ts: 140 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/groupCallStats.ts: 93 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/media/mediaSsrcHandler.ts: 57 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/media/mediaTrackHandler.ts: 70 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/media/mediaTrackStats.ts: 176 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/media/mediaTrackStatsHandler.ts: 90 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/statsReport.ts: 133 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/statsReportEmitter.ts: 49 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/summaryStatsReportGatherer.ts: 148 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/trackStatsBuilder.ts: 207 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/transportStats.ts: 26 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/transportStatsBuilder.ts: 48 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/webrtc/stats/valueFormatter.ts: 27 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/wellKnownCachedValue.ts: 34 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "vitest.config.ts: 64 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "487 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies)",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 238,
+      "rows": 238,
+      "examples": [
+        "babel.config.cjs: 33 lines scanned with 16 rule patterns and 122 registry patterns",
+        "knip.ts: 45 lines scanned with 16 rule patterns and 122 registry patterns",
+        "scripts/changelog_head.py: 18 lines scanned with 16 rule patterns and 122 registry patterns"
+      ]
+    },
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "package.json: 49 dependencies parsed (3 pinned)",
+        "pnpm-lock.yaml: 487 dependencies parsed (487 pinned)"
+      ]
+    },
+    {
+      "area": "secrets",
+      "status": "checked",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "src/interactive-auth.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+        "src/logger.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "487 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies)"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "487 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies)",
+      "babel.config.cjs",
+      "knip.ts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "scripts/changelog_head.py",
+      "scripts/release/merge-release-notes.cjs",
+      "src/@types/AESEncryptedSecretStoragePayload.ts",
+      "src/@types/IIdentityServerProvider.ts",
+      "src/@types/PushRules.ts",
+      "src/@types/another-json.d.ts",
+      "src/@types/auth.ts",
+      "src/@types/beacon.ts",
+      "src/@types/common.ts",
+      "src/@types/crypto.ts",
+      "src/@types/event.ts",
+      "src/@types/events.ts",
+      "src/@types/extensible_events.ts",
+      "src/@types/global.d.ts",
+      "src/@types/json.ts",
+      "src/@types/local_notifications.ts",
+      "src/@types/location.ts",
+      "src/@types/matrix-sdk-crypto-wasm.d.ts",
+      "src/@types/media.ts",
+      "src/@types/membership.ts",
+      "src/@types/partials.ts",
+      "src/@types/polls.ts",
+      "src/@types/read_receipts.ts",
+      "src/@types/registration.ts",
+      "src/@types/requests.ts",
+      "src/@types/retention.ts",
+      "src/@types/search.ts",
+      "src/@types/signed.ts",
+      "src/@types/spaces.ts",
+      "src/@types/state_events.ts",
+      "src/@types/synapse.ts",
+      "src/@types/sync.ts",
+      "src/@types/threepids.ts",
+      "src/@types/topic.ts",
+      "src/@types/type-guards.ts",
+      "src/@types/uia.ts",
+      "src/NamespacedValue.ts",
+      "src/ReEmitter.ts",
+      "src/ToDeviceMessageQueue.ts",
+      "src/autodiscovery.ts",
+      "src/base64.ts",
+      "src/browser-index.ts",
+      "src/capabilityPoller.ts",
+      "src/client.ts",
+      "src/common-crypto/CryptoBackend.ts",
+      "src/common-crypto/key-passphrase.ts",
+      "src/content-helpers.ts",
+      "src/content-repo.ts",
+      "src/crypto-api/CryptoEvent.ts",
+      "src/crypto-api/CryptoEventHandlerMap.ts",
+      "src/crypto-api/index.ts",
+      "src/crypto-api/key-passphrase.ts",
+      "src/crypto-api/keybackup.ts",
+      "src/crypto-api/recovery-key.ts",
+      "src/crypto-api/verification.ts",
+      "src/crypto/store/base.ts",
+      "src/crypto/store/indexeddb-crypto-store-backend.ts",
+      "src/crypto/store/indexeddb-crypto-store.ts",
+      "src/crypto/store/localStorage-crypto-store.ts",
+      "src/crypto/store/memory-crypto-store.ts",
+      "src/digest.ts",
+      "src/embedded.ts",
+      "src/errors.ts",
+      "src/event-mapper.ts",
+      "src/extensible_events_v1/ExtensibleEvent.ts",
+      "src/extensible_events_v1/InvalidEventError.ts",
+      "src/extensible_events_v1/MessageEvent.ts",
+      "src/extensible_events_v1/PollEndEvent.ts",
+      "src/extensible_events_v1/PollResponseEvent.ts",
+      "src/extensible_events_v1/PollStartEvent.ts",
+      "src/extensible_events_v1/utilities.ts",
+      "src/feature.ts",
+      "src/filter-component.ts",
+      "src/filter.ts",
+      "src/http-api/errors.ts",
+      "src/http-api/fetch.ts",
+      "src/http-api/index.ts",
+      "src/http-api/interface.ts",
+      "src/http-api/logging.ts",
+      "src/http-api/method.ts",
+      "src/http-api/prefix.ts",
+      "src/http-api/refresh.ts",
+      "src/http-api/utils.ts",
+      "src/index.ts",
+      "src/indexeddb-helpers.ts",
+      "src/indexeddb-worker.ts",
+      "src/interactive-auth.ts",
+      "src/logger.ts",
+      "src/matrix.ts",
+      "src/matrixrtc/CallMembership.ts",
+      "src/matrixrtc/EncryptionManager.ts",
+      "src/matrixrtc/IKeyTransport.ts",
+      "src/matrixrtc/IMembershipManager.ts",
+      "src/matrixrtc/LivekitTransport.ts",
+      "src/matrixrtc/MatrixRTCSession.ts",
+      "src/matrixrtc/MatrixRTCSessionManager.ts",
+      "src/matrixrtc/MembershipManager.ts",
+      "src/matrixrtc/MembershipManagerActionScheduler.ts",
+      "src/matrixrtc/RTCEncryptionManager.ts",
+      "src/matrixrtc/ToDeviceKeyTransport.ts",
+      "src/matrixrtc/index.ts",
+      "src/matrixrtc/membershipData/common.ts",
+      "src/matrixrtc/membershipData/index.ts",
+      "src/matrixrtc/membershipData/rtc.ts",
+      "src/matrixrtc/membershipData/session.ts",
+      "src/matrixrtc/types.ts",
+      "src/matrixrtc/utils.ts",
+      "src/models/MSC3089Branch.ts",
+      "src/models/MSC3089TreeSpace.ts",
+      "src/models/ToDeviceMessage.ts",
+      "src/models/beacon.ts",
+      "src/models/compare-event-ordering.ts",
+      "src/models/device.ts",
+      "src/models/event-context.ts",
+      "src/models/event-status.ts",
+      "src/models/event-timeline-set.ts",
+      "src/models/event-timeline.ts",
+      "src/models/event.ts",
+      "src/models/invites-ignorer-types.ts",
+      "src/models/invites-ignorer.ts",
+      "src/models/poll.ts",
+      "src/models/profile-keys.ts",
+      "src/models/read-receipt.ts",
+      "src/models/related-relations.ts",
+      "src/models/relations-container.ts",
+      "src/models/relations.ts",
+      "src/models/room-member.ts",
+      "src/models/room-receipts.ts",
+      "src/models/room-retention.ts",
+      "src/models/room-state.ts",
+      "src/models/room-sticky-events.ts",
+      "src/models/room-summary.ts",
+      "src/models/room.ts",
+      "src/models/search-result.ts",
+      "src/models/thread.ts",
+      "src/models/typed-event-emitter.ts",
+      "src/models/user.ts",
+      "src/oauth/authorize.ts",
+      "src/oauth/discover.ts",
+      "src/oauth/error.ts",
+      "src/oauth/fetch.ts",
+      "src/oauth/index.ts",
+      "src/oauth/register.ts",
+      "src/oauth/tokenRefresher.ts",
+      "src/pollingCachedValue.ts",
+      "src/pushprocessor.ts",
+      "src/randomstring.ts",
+      "src/realtime-callbacks.ts",
+      "src/receipt-accumulator.ts",
+      "src/rendezvous/MSC4108SignInWithQR.ts",
+      "src/rendezvous/RendezvousChannel.ts",
+      "src/rendezvous/RendezvousCode.ts",
+      "src/rendezvous/RendezvousError.ts",
+      "src/rendezvous/RendezvousFailureReason.ts",
+      "src/rendezvous/RendezvousIntent.ts",
+      "src/rendezvous/RendezvousTransport.ts",
+      "src/rendezvous/SignInWithQRFlow.ts",
+      "src/rendezvous/channels/MSC4108SecureChannel.ts",
+      "src/rendezvous/channels/index.ts",
+      "src/rendezvous/index.ts",
+      "src/rendezvous/transports/MSC4108RendezvousSession.ts",
+      "src/rendezvous/transports/index.ts",
+      "src/retentionPolicy.ts",
+      "src/room-hierarchy.ts",
+      "src/room-summary-api.ts",
+      "src/rtcTransportsCachedValue.ts",
+      "src/rust-crypto/CrossSigningIdentity.ts",
+      "src/rust-crypto/DehydratedDeviceManager.ts",
+      "src/rust-crypto/KeyClaimManager.ts",
+      "src/rust-crypto/OutgoingRequestProcessor.ts",
+      "src/rust-crypto/OutgoingRequestsManager.ts",
+      "src/rust-crypto/PerSessionKeyBackupDownloader.ts",
+      "src/rust-crypto/RoomEncryptor.ts",
+      "src/rust-crypto/backup.ts",
+      "src/rust-crypto/constants.ts",
+      "src/rust-crypto/device-converter.ts",
+      "src/rust-crypto/index.ts",
+      "src/rust-crypto/libolm_migration.ts",
+      "src/rust-crypto/rust-crypto.ts",
+      "src/rust-crypto/secret-storage.ts",
+      "src/rust-crypto/verification.ts",
+      "src/scheduler.ts",
+      "src/secret-storage.ts",
+      "src/serverCapabilities.ts",
+      "src/service-types.ts",
+      "src/sliding-sync-sdk.ts",
+      "src/sliding-sync.ts",
+      "src/store/index.ts",
+      "src/store/indexeddb-backend.ts",
+      "src/store/indexeddb-local-backend.ts",
+      "src/store/indexeddb-remote-backend.ts",
+      "src/store/indexeddb-store-worker.ts",
+      "src/store/indexeddb.ts",
+      "src/store/local-storage-events-emitter.ts",
+      "src/store/memory.ts",
+      "src/store/stub.ts",
+      "src/sync-accumulator.ts",
+      "src/sync.ts",
+      "src/testing.ts",
+      "src/thread-utils.ts",
+      "src/timeline-window.ts",
+      "src/types.ts",
+      "src/utils.ts",
+      "src/utils/decryptAESSecretStorageItem.ts",
+      "src/utils/encryptAESSecretStorageItem.ts",
+      "src/utils/internal/deriveKeys.ts",
+      "src/utils/roomVersion.ts",
+      "src/version-support.ts",
+      "src/webrtc/audioContext.ts",
+      "src/webrtc/call.ts",
+      "src/webrtc/callEventHandler.ts",
+      "src/webrtc/callEventTypes.ts",
+      "src/webrtc/callFeed.ts",
+      "src/webrtc/groupCall.ts",
+      "src/webrtc/groupCallEventHandler.ts",
+      "src/webrtc/mediaHandler.ts",
+      "src/webrtc/stats/callFeedStatsReporter.ts",
+      "src/webrtc/stats/callStatsReportGatherer.ts",
+      "src/webrtc/stats/callStatsReportSummary.ts",
+      "src/webrtc/stats/connectionStats.ts",
+      "src/webrtc/stats/connectionStatsBuilder.ts",
+      "src/webrtc/stats/connectionStatsReportBuilder.ts",
+      "src/webrtc/stats/groupCallStats.ts",
+      "src/webrtc/stats/media/mediaSsrcHandler.ts",
+      "src/webrtc/stats/media/mediaTrackHandler.ts",
+      "src/webrtc/stats/media/mediaTrackStats.ts",
+      "src/webrtc/stats/media/mediaTrackStatsHandler.ts",
+      "src/webrtc/stats/statsReport.ts",
+      "src/webrtc/stats/statsReportEmitter.ts",
+      "src/webrtc/stats/summaryStatsReportGatherer.ts",
+      "src/webrtc/stats/trackStatsBuilder.ts",
+      "src/webrtc/stats/transportStats.ts",
+      "src/webrtc/stats/transportStatsBuilder.ts",
+      "src/webrtc/stats/valueFormatter.ts",
+      "src/wellKnownCachedValue.ts",
+      "vitest.config.ts"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 2,
+      "medium": 1,
+      "low": 1,
+      "info": 1
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 3,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 1,
+      "improvement": 1,
+      "insufficient_data": 0
+    },
+    "total": 5,
+    "posture_index": 74,
+    "pq_vulnerable_share": 16.7,
+    "inventory_total": 6,
+    "inventory_by_quantum_status": {
+      "grover_margin": 5,
+      "vulnerable_shor": 1
+    }
+  },
+  "findings": [
+    {
+      "id": "7df44b84-1707-4172-9cc4-001dc14c96f9",
+      "public_id": "QSI-2026-05835",
+      "rule_id": "DEP-KNOWN-ADVISORY",
+      "title": "markdown-it 14.3.2 затронут GHSA-gfr2-rv44-r23c (CVE-2026-111758)",
+      "description": "OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
+      "recommendation": "Обновите до исправленной версии (14.3.3, 15.0.3).",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-gfr2-rv44-r23c",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "high",
+      "confidence": "low",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "reachability": "unknown",
+      "affected_asset": "dependency:npm/markdown-it@14.3.2",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-28T18:22:50.843224+00:00",
+      "risk_score": 37.7,
+      "risk_breakdown": {
+        "cvss": {
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "base_score": 7.5,
+          "applicability": "technical vulnerability"
+        },
+        "score": 37.7,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.47,
+          "urgency": 1.0,
+          "exposure": 0.5,
+          "severity": 0.8,
+          "exploitability": 0.5
+        },
+        "profile": "security_software",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 62.9,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.4,
+          "urgency": 10.0,
+          "exposure": 7.5,
+          "severity": 20.0,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.6
+      },
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "cvss_score": 7.5,
+      "references": [
+        {
+          "key": "GHSA-gfr2-rv44-r23c",
+          "url": "https://osv.dev/vulnerability/GHSA-gfr2-rv44-r23c",
+          "title": "OSV advisory GHSA-gfr2-rv44-r23c",
+          "status": "modified 2026-10-20T20:45:05.953469039Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GHSA-gfr2-rv44-r23c",
+          "location": "manifest",
+          "content": "{\"id\": \"GHSA-gfr2-rv44-r23c\", \"aliases\": [\"CVE-2026-111758\"], \"modified\": \"2026-10-20T20:45:05.953469039Z\", \"summary\": \"markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0)\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}], \"declared_in_manifest\": false}",
+          "content_sha256": "b0f56e1087570043d40ebe490125d4879ff93876350edee5858cf5249d19c659",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-28T18:22:50.865518+00:00",
+          "url": "https://osv.dev/vulnerability/GHSA-gfr2-rv44-r23c"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите markdown-it до исправленной версии (14.3.3, 15.0.3).",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P2",
+          "horizon_days": 30,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Возможны изменения API.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758).",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "bad90cf8-3b56-4df1-be95-08fd22872d84",
+      "public_id": "QSI-2026-05837",
+      "rule_id": "DEP-KNOWN-ADVISORY",
+      "title": "zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)",
+      "description": "OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 4.6.5: Zod can exhaust memory while validating oversized constrained collections. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
+      "recommendation": "Обновите до исправленной версии (4.6.6).",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-mrhx-c7xc-m3w5",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "high",
+      "confidence": "low",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "reachability": "unknown",
+      "affected_asset": "dependency:npm/zod@4.6.5",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-28T18:22:50.875287+00:00",
+      "risk_score": 37.7,
+      "risk_breakdown": {
+        "cvss": {
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "base_score": 7.5,
+          "applicability": "technical vulnerability"
+        },
+        "score": 37.7,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.47,
+          "urgency": 1.0,
+          "exposure": 0.5,
+          "severity": 0.8,
+          "exploitability": 0.5
+        },
+        "profile": "security_software",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 62.9,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.4,
+          "urgency": 10.0,
+          "exposure": 7.5,
+          "severity": 20.0,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.6
+      },
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "cvss_score": 7.5,
+      "references": [
+        {
+          "key": "GHSA-mrhx-c7xc-m3w5",
+          "url": "https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5",
+          "title": "OSV advisory GHSA-mrhx-c7xc-m3w5",
+          "status": "modified 2026-10-23T18:30:09.376405885Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GHSA-mrhx-c7xc-m3w5",
+          "location": "manifest",
+          "content": "{\"id\": \"GHSA-mrhx-c7xc-m3w5\", \"aliases\": [\"CVE-2023-54404\"], \"modified\": \"2026-10-23T18:30:09.376405885Z\", \"summary\": \"Zod can exhaust memory while validating oversized constrained collections\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"}, {\"type\": \"CVSS_V4\", \"score\": \"CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N\"}], \"declared_in_manifest\": false}",
+          "content_sha256": "a49e02cfde3c6444146081879a6e65025dde29e8aca8c1e27449299070b2de78",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-28T18:22:50.888258+00:00",
+          "url": "https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите zod до исправленной версии (4.6.6).",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P2",
+          "horizon_days": 30,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Возможны изменения API.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404).",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "83b8c6a6-83c3-4996-aefc-5f4ab9a3029a",
+      "public_id": "QSI-2026-05834",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый ECDH: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
+      "description": "2 упоминаний ECDH в 1 файл(ах), например src/rendezvous/channels/MSC4108SecureChannel.ts:109. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise).",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте src/rendezvous/channels/MSC4108SecureChannel.ts:109 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDH:channel",
+      "data_source": "src/rendezvous/channels/MSC4108SecureChannel.ts",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-28T18:22:50.833030+00:00",
+      "risk_score": 36.7,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 3.0,
+          "z": 8.0,
+          "kind": "key_establishment",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life (harvest now, decrypt later)",
+          "margin_years": 5.0
+        },
+        "score": 36.7,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.62,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "security_software",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 53.9,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 12.4,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/rendezvous/channels/MSC4108SecureChannel.ts",
+          "location": "line 109",
+          "content": "  108 |              Nonce := 0\n  109 |              SH := ECDH(Ss, Gp)\n  110 |              EncKey := HKDF_SHA256(SH, \"MATRIX_QR_CODE_LOGIN|\" || Gp || \"|\" || Sp, 0, 32)",
+          "content_sha256": "6b0afe39c4b8782fe2c057524dbf28e4c5d12981ba44c92d874936f156a63ec7",
+          "source_sha256": "99cb0cdd4a82c41e00eead904cf0a000034110973af769842541a89ab98db64c",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T18:22:50.847356+00:00",
+          "url": "https://github.com/matrix-org/matrix-js-sdk/blob/61b08bd037a3b987f267e2e8ac47002c75d59d85/src/rendezvous/channels/MSC4108SecureChannel.ts#L109"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/rendezvous/channels/MSC4108SecureChannel.ts",
+          "location": "line 158",
+          "content": "  157 |             (TaggedCiphertext, Sp) := Unpack(LoginInitiateMessage)\n  158 |             SH := ECDH(Gs, Sp)\n  159 |             EncKey := HKDF_SHA256(SH, \"MATRIX_QR_CODE_LOGIN|\" || Gp || \"|\" || Sp, 0, 32)",
+          "content_sha256": "66f212ef044f2d1d30441468f096f6c543825f8fb6cd4691236b10021cebfe58",
+          "source_sha256": "99cb0cdd4a82c41e00eead904cf0a000034110973af769842541a89ab98db64c",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T18:22:50.847455+00:00",
+          "url": "https://github.com/matrix-org/matrix-js-sdk/blob/61b08bd037a3b987f267e2e8ac47002c75d59d85/src/rendezvous/channels/MSC4108SecureChannel.ts#L158"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "8b7de9a3-cf4e-40ea-8eea-7df3ee5562d2",
+      "public_id": "QSI-2026-05836",
+      "rule_id": "DEP-KNOWN-ADVISORY",
+      "title": "markdown-it 14.3.2 затронут GHSA-vfgh-jcmw-g37q (CVE-2026-111766)",
+      "description": "OSV.dev сообщает GHSA-vfgh-jcmw-g37q (CVE-2026-111766) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time denial of service in inline HTML parsing with html enabled. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "impact": "Зависит от достижимости уязвимого кода в вашем приложении.",
+      "recommendation": "Обновите до исправленной версии (14.3.3, 15.0.3).",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/GHSA-vfgh-jcmw-g37q",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "low",
+      "confidence": "low",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "reachability": "unknown",
+      "affected_asset": "dependency:npm/markdown-it@14.3.2",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-28T18:22:50.861930+00:00",
+      "risk_score": 29.5,
+      "risk_breakdown": {
+        "cvss": {
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+          "base_score": 3.7,
+          "applicability": "technical vulnerability"
+        },
+        "score": 29.5,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.47,
+          "urgency": 1.0,
+          "exposure": 0.5,
+          "severity": 0.25,
+          "exploitability": 0.5
+        },
+        "profile": "security_software",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 49.15,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 9.4,
+          "urgency": 10.0,
+          "exposure": 7.5,
+          "severity": 6.25,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.6
+      },
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+      "cvss_score": 3.7,
+      "references": [
+        {
+          "key": "GHSA-vfgh-jcmw-g37q",
+          "url": "https://osv.dev/vulnerability/GHSA-vfgh-jcmw-g37q",
+          "title": "OSV advisory GHSA-vfgh-jcmw-g37q",
+          "status": "modified 2026-10-20T20:15:05.220039200Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev GHSA-vfgh-jcmw-g37q",
+          "location": "manifest",
+          "content": "{\"id\": \"GHSA-vfgh-jcmw-g37q\", \"aliases\": [\"CVE-2026-111766\"], \"modified\": \"2026-10-20T20:15:05.220039200Z\", \"summary\": \"markdown-it: Quadratic-time denial of service in inline HTML parsing with html enabled\", \"severity\": [{\"type\": \"CVSS_V3\", \"score\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L\"}], \"declared_in_manifest\": false}",
+          "content_sha256": "beb06991ca4608c3fb72076c861f838df0f3ab50c9407b3e6769fc5e7ad6c3e4",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-28T18:22:50.879408+00:00",
+          "url": "https://osv.dev/vulnerability/GHSA-vfgh-jcmw-g37q"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите markdown-it до исправленной версии (14.3.3, 15.0.3).",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P2",
+          "horizon_days": 30,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Возможны изменения API.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-vfgh-jcmw-g37q (CVE-2026-111766).",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "5a6e4cbf-95f5-494f-a906-655fa6b3d99d",
+      "public_id": "QSI-2026-05838",
+      "rule_id": "DEP-ADVISORY-DEV",
+      "title": "1 бюллетеней в 1 пакет(ах) npm, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 1 бюллетеней (1 с оценкой high или critical) для 1 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (pnpm-lock.yaml): например, happy-dom@21.0.3 [dev]: GHSA-834v-8h66-3h79. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
+      "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.",
+      "method": "Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.",
+      "repro": "Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в pnpm-lock.yaml.",
+      "category": "dependencies",
+      "classification": "improvement",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies:npm:non-runtime",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-28T18:22:50.885338+00:00",
+      "risk_score": 15.3,
+      "risk_breakdown": {
+        "score": 15.3,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.215,
+          "urgency": 0.6,
+          "exposure": 0.2,
+          "severity": 0.05,
+          "exploitability": 0.1
+        },
+        "profile": "security_software",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 22.55,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.3,
+          "urgency": 6.0,
+          "exposure": 3.0,
+          "severity": 1.25,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "OSV-DEV",
+          "url": "https://osv.dev/",
+          "title": "OSV.dev — open-source vulnerability database and API",
+          "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+          "publisher": "Open Source Security Foundation"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev (npm)",
+          "location": "pnpm-lock.yaml",
+          "content": "happy-dom@21.0.3 [dev]: GHSA-834v-8h66-3h79",
+          "content_sha256": "740af9fc707d62bb061ed54085924e55fa634b368786e710aa6e924e366f8307",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-28T18:22:50.915191+00:00",
+          "url": "https://osv.dev/"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите зависимости разработки и сборки из доказательства.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 3,
+      "z": 8,
+      "margin": 5,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 5,
+      "y": 3,
+      "z": 8,
+      "margin": 0,
+      "verdict": "tight",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Разработчик ПО безопасности», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
+    "pq_findings": [
+      "QSI-2026-05834"
+    ],
+    "roles": [
+      {
+        "role": "channel",
+        "label": "обмен ключами в канале (TLS, Noise, рукопожатия)",
+        "action": "Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise)",
+        "criticality": 4,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDH",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-05834"
+        ],
+        "files": 1
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "постквантовой криптографии нет",
+      "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
+      "facts": [
+        "Только классика — обмен ключами в канале (TLS, Noise, рукопожатия): ECDH (1 файл(ов))"
+      ]
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Алгоритм Шора — дискретный логарифм на эллиптических кривых",
+        "effect": "breaks",
+        "effect_label": "взламывает",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "ECDH",
+            "rows": 1
+          }
+        ],
+        "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
+        "practicality": "Оценки 2026 года для 256-битной кривой: менее 1200 логических кубитов и 90 млн вентилей Тоффоли, менее полумиллиона физических сверхпроводниковых кубитов и минуты работы (Баббуш и др.); 1193 логических кубита при большем числе вентилей (Шевиньяр–Фук–Шроттенлохер); P-256 за несколько дней на 26 000 кубитов на нейтральных атомах (Кейн и др.). Сценарии при заявленных допущениях, а не прогнозы.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "grover",
+        "name": "Алгоритм Гровера — поиск ключа и прообразов",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "HKDF",
+            "rows": 1
+          },
+          {
+            "algorithm": "HMAC",
+            "rows": 3
+          },
+          {
+            "algorithm": "PBKDF2",
+            "rows": 1
+          }
+        ],
+        "audit": "Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.",
+        "practicality": "Поиск долгий и последовательный: NIST оценивает поиск ключа AES-128 в 2^170/MAXDEPTH квантовых вентилей при MAXDEPTH от 2^40 до 2^96 и использует его как эталон категории стойкости 1; прообраз SHA-256 оценён примерно в 2^153,8 циклов поверхностного кода на 2^12,6 логических кубитах (Эми и др., 2016).",
+        "sources": [
+          "GROVER1996",
+          "ZALKA1999",
+          "NIST-PQC-SEC",
+          "JAQUES2020",
+          "AMY2016"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "усреднённая оценка"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "вполне возможно"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "вероятно"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [
+      {
+        "kind": "root_cause",
+        "action": "Обновите markdown-it до исправленной версии (14.3.3, 15.0.3).",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P2",
+        "horizon_days": 30,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Возможны изменения API.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758).",
+        "status": "todo",
+        "finding": "QSI-2026-05835",
+        "finding_title": "markdown-it 14.3.2 затронут GHSA-gfr2-rv44-r23c (CVE-2026-111758)",
+        "severity": "high"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите zod до исправленной версии (4.6.6).",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P2",
+        "horizon_days": 30,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Возможны изменения API.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404).",
+        "status": "todo",
+        "finding": "QSI-2026-05837",
+        "finding_title": "zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)",
+        "severity": "high"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите markdown-it до исправленной версии (14.3.3, 15.0.3).",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P2",
+        "horizon_days": 30,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Возможны изменения API.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-vfgh-jcmw-g37q (CVE-2026-111766).",
+        "status": "todo",
+        "finding": "QSI-2026-05836",
+        "finding_title": "markdown-it 14.3.2 затронут GHSA-vfgh-jcmw-g37q (CVE-2026-111766)",
+        "severity": "low"
+      }
+    ],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-05834",
+        "finding_title": "Квантово-уязвимый ECDH: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-05834",
+        "finding_title": "Квантово-уязвимый ECDH: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите зависимости разработки и сборки из доказательства.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+        "status": "todo",
+        "finding": "QSI-2026-05838",
+        "finding_title": "1 бюллетеней в 1 пакет(ах) npm, нужных только для разработки или сборки",
+        "severity": "info"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "ZALKA1999",
+      "title": "C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070)",
+      "publisher": "APS",
+      "url": "https://doi.org/10.1103/PhysRevA.60.2746",
+      "status": "peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "GROVER1996",
+      "title": "L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996)",
+      "publisher": "ACM",
+      "url": "https://doi.org/10.1145/237814.237866",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "AMY2016",
+      "title": "M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1603.09383",
+      "status": "peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "NIST-PQC-SEC",
+      "title": "NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)",
+      "status": "security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96"
+    },
+    {
+      "key": "GHSA-gfr2-rv44-r23c",
+      "url": "https://osv.dev/vulnerability/GHSA-gfr2-rv44-r23c",
+      "title": "OSV advisory GHSA-gfr2-rv44-r23c",
+      "status": "modified 2026-10-20T20:45:05.953469039Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GHSA-mrhx-c7xc-m3w5",
+      "url": "https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5",
+      "title": "OSV advisory GHSA-mrhx-c7xc-m3w5",
+      "status": "modified 2026-10-23T18:30:09.376405885Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "GHSA-vfgh-jcmw-g37q",
+      "url": "https://osv.dev/vulnerability/GHSA-vfgh-jcmw-g37q",
+      "title": "OSV advisory GHSA-vfgh-jcmw-g37q",
+      "status": "modified 2026-10-20T20:15:05.220039200Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "OSV-DEV",
+      "url": "https://osv.dev/",
+      "title": "OSV.dev — open-source vulnerability database and API",
+      "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+      "publisher": "Open Source Security Foundation"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    },
+    {
+      "key": "JAQUES2020",
+      "title": "S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1910.01700",
+      "status": "peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "HKDF",
+      "family": "kdf",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/utils/internal/deriveKeys.ts:29",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "HMAC",
+      "family": "mac",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/utils/decryptAESSecretStorageItem.ts:39",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "HMAC",
+      "family": "mac",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/utils/encryptAESSecretStorageItem.ts:66",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "HMAC",
+      "family": "mac",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/utils/internal/deriveKeys.ts:54",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "PBKDF2",
+      "family": "kdf",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/crypto-api/key-passphrase.ts:41",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDH",
+      "family": "key_exchange",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/rendezvous/channels/MSC4108SecureChannel.ts:109",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "HKDF",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/utils/internal/deriveKeys.ts:29"
+      ]
+    },
+    {
+      "algorithm": "HMAC",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "src/utils/decryptAESSecretStorageItem.ts:39",
+        "src/utils/encryptAESSecretStorageItem.ts:66",
+        "src/utils/internal/deriveKeys.ts:54"
+      ]
+    },
+    {
+      "algorithm": "PBKDF2",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/crypto-api/key-passphrase.ts:41"
+      ]
+    },
+    {
+      "algorithm": "ECDH",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/rendezvous/channels/MSC4108SecureChannel.ts:109"
+      ]
+    }
+  ]
+}

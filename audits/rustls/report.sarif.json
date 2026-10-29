@@ -1,0 +1,888 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "KEY-PRIVATE-IN-INPUT",
+              "name": "KeyPrivateInInput",
+              "shortDescription": {
+                "text": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "secrets",
+                  "confirmed_vulnerability"
+                ],
+                "security-severity": "8.1"
+              },
+              "fullDescription": {
+                "text": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/ecdsa_p256_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
+              },
+              "help": {
+                "text": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/ecdsa_p256_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
+              "id": "CERT-WEAK-RSA",
+              "name": "CertWeakRsa",
+              "shortDescription": {
+                "text": "RSA-ключ короче 2048 бит (1024 бит, O=bogo-rsa1024)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "certificates",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "Сертификат O=bogo-rsa1024 использует RSA-ключ длиной 1024 бит. NIST SP 800-131A запрещает RSA-ключи короче 2048 бит. Перевыпустите с RSA ≥ 3072 или ECDSA P-256/P-384; запланируйте миграцию на PQC. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
+              },
+              "help": {
+                "text": "Сертификат O=bogo-rsa1024 использует RSA-ключ длиной 1024 бит. NIST SP 800-131A запрещает RSA-ключи короче 2048 бит. Перевыпустите с RSA ≥ 3072 или ECDSA P-256/P-384; запланируйте миграцию на PQC. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
+            },
+            {
+              "id": "CERT-WEAK-SIGNATURE-HASH",
+              "name": "CertWeakSignatureHash",
+              "shortDescription": {
+                "text": "Сертификат подписан с SHA1 (O=bogo-p256)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "certificates",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей. Перевыпустите с подписью SHA-256 или сильнее. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256. Самоподписанные корневые сертификаты в хранилищах доверия затрагиваются иначе."
+              },
+              "help": {
+                "text": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей. Перевыпустите с подписью SHA-256 или сильнее. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256. Самоподписанные корневые сертификаты в хранилищах доверия затрагиваются иначе."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
+            },
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "tokio 1.54.0 затронут GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384) для пакета crates.io tokio версии 1.54.0: Tokio: Race condition in `tokio::time::Interval`. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (1.54.1). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "help": {
+                "text": "OSV.dev сообщает GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384) для пакета crates.io tokio версии 1.54.0: Tokio: Race condition in `tokio::time::Interval`. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (1.54.1). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-5wjr-9356-4wc8"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "122 упоминаний RSA в 10 файл(ах), например bogo/src/main.rs:38. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "122 упоминаний RSA в 10 файл(ах), например bogo/src/main.rs:38. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "CERT-QV-KEY",
+              "name": "CertQvKey",
+              "shortDescription": {
+                "text": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "Сертификат O=bogo использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC. Учитывайте в PQC-инвентаризации; используйте короткие сроки действия; следуйте рекомендациям CA/Browser Forum и NIST по переходу на сертификаты ML-DSA. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
+              },
+              "help": {
+                "text": "Сертификат O=bogo использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC. Учитывайте в PQC-инвентаризации; используйте короткие сроки действия; следуйте рекомендациям CA/Browser Forum и NIST по переходу на сертификаты ML-DSA. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "CERT-LONG-VALIDITY",
+              "name": "CertLongValidity",
+              "shortDescription": {
+                "text": "Срок действия конечного сертификата 3650 дн. (O=bogo)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "certificates",
+                  "improvement"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше. Используйте более короткие сроки с автоматическим продлением. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256. Сертификаты частной PKI могут намеренно следовать другой политике."
+              },
+              "help": {
+                "text": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше. Используйте более короткие сроки с автоматическим продлением. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256. Сертификаты частной PKI могут намеренно следовать другой политике."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
+            },
+            {
+              "id": "CERT-SELF-SIGNED",
+              "name": "CertSelfSigned",
+              "shortDescription": {
+                "text": "Самоподписанный конечный сертификат (O=bogo)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "certificates",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "Издатель совпадает с субъектом, сертификат не помечен как CA. Используйте сертификат публичного или внутреннего УЦ либо явный пиннинг. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256. Допустимо в закрытых тестовых средах."
+              },
+              "help": {
+                "text": "Издатель совпадает с субъектом, сертификат не помечен как CA. Используйте сертификат публичного или внутреннего УЦ либо явный пиннинг. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256. Допустимо в закрытых тестовых средах."
+              },
+              "helpUri": "https://www.rfc-editor.org/rfc/rfc5280"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "В 9 манифестах зависимостей QSI нашёл криптобиблиотеки (openssl, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "help": {
+                "text": "В 9 манифестах зависимостей QSI нашёл криптобиблиотеки (openssl, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "50fe6c6a2f37614b953f8e15d9f306d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05067",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bogo/keys/ecdsa_p256_key.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в bogo/keys/ecdsa_p384_key.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7ade1d10ee5b0e5e745058a2056b3029"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05072",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bogo/keys/ecdsa_p384_key.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в bogo/keys/key.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ed7c46de07c5800aefb7c2f5b4d048ce"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05073",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bogo/keys/key.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в bogo/keys/rsa_1024_key.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "06d257135b65369d0a3013eaf00dac02"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05079",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bogo/keys/rsa_1024_key.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Закрытый ключ присутствует в bogo/keys/rsa_chain_key.pem"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1656144f136119379ffd7322b7417906"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05084",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bogo/keys/rsa_chain_key.pem"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CERT-WEAK-RSA",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "RSA-ключ короче 2048 бит (1024 бит, O=bogo-rsa1024)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "de1492ba604e026fac79252e1ca2ccb3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05074",
+            "severity": "high",
+            "confidence": "high",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "CERT-WEAK-SIGNATURE-HASH",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Сертификат подписан с SHA1 (O=bogo-p256)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "79d485ceb708549ee6a35c427c8e6d81"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05063",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CERT-WEAK-SIGNATURE-HASH",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Сертификат подписан с SHA1 (O=bogo-p384)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e9c074583b3b37e3082558b14fda3eb4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05068",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CERT-WEAK-SIGNATURE-HASH",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Сертификат подписан с SHA1 (O=bogo-rsa1024)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "336dbc105080a3e75cabbd6799dcafa7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05075",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "tokio 1.54.0 затронут GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384) (dependency: crates.io/tokio@1.54.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8b0a98fd99a628773c22fa0d84be5d7c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05090",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cb7dd5d879e7ccc6fbf842f8dd2da6e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05085",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05087",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9e314c84eaec9df4f694425094a6d0a9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05060",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p256)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "60ab83f80f0c1508b98dd27565359dcc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05064",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p384)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0cd9b3a1aa0f56b4ae8257bcd8c9c34"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05069",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-rsa1024)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f40126d347babb85458a302913682266"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05076",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-chain)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1d6071af0cdcaf57557578606c357df0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05080",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-QV-KEY",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA в сертификате (O=Internet Widgits Pty Ltd,ST=Some-State,C=AU)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b2d3673353e654855bb7debccd5f01ca"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05083",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-LONG-VALIDITY",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Срок действия конечного сертификата 3650 дн. (O=bogo)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "711dc9efe2780ee8c04c764e6fd94ad2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05061",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-LONG-VALIDITY",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Срок действия конечного сертификата 3650 дн. (O=bogo-p256)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a7ae63140649e583c4c187b3f4f42bb9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05065",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-LONG-VALIDITY",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Срок действия конечного сертификата 3650 дн. (O=bogo-p384)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f5d188ef242d036cee582fe9d2790206"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05070",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-LONG-VALIDITY",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Срок действия конечного сертификата 3650 дн. (O=bogo-rsa1024)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dade2c6f245183cbf6f300f49cbb9afa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05077",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-LONG-VALIDITY",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Срок действия конечного сертификата 3650 дн. (O=bogo-chain)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f686d0f5232b8d468fff9d046b3c10bf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05081",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05086",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Квантово-уязвимый Ed25519: роль не определена (4 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05088",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CERT-SELF-SIGNED",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Самоподписанный конечный сертификат (O=bogo)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "eb1e8e018ea00717ea7742964ccf2671"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05062",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "CERT-SELF-SIGNED",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Самоподписанный конечный сертификат (O=bogo-p256)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5dd10635e370c1c0ec0215a8aa4a7154"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05066",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "CERT-SELF-SIGNED",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Самоподписанный конечный сертификат (O=bogo-p384)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a30a22203c653164a06570fc7bbc2e2a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05071",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "CERT-SELF-SIGNED",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Самоподписанный конечный сертификат (O=bogo-rsa1024)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b34b18b094331a3543cc08f4e3b3b28a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05078",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "CERT-SELF-SIGNED",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Самоподписанный конечный сертификат (O=bogo-chain)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dc3635ab0d685eada89e0d0d45047c66"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05082",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05089",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/rustls @ 84bf9eaa9857/9ec28293-60b5-4ff8-b8ef-2eaf3d076e52"
+      },
+      "properties": {
+        "qsiContentSha256": "092f138746963e5313e56c6c6e1021a35d44fc24760a45e90140e65837152d06",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "security_software",
+        "qsiGeneratedAt": "2026-10-28T12:52:04.278917+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77",
+          "repositoryUri": "https://github.com/rustls/rustls"
+        }
+      ]
+    }
+  ]
+}

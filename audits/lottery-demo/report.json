@@ -1,0 +1,977 @@
+{
+  "content_sha256": "73de6bbc6c9edcedd4634eb26480047a3070d69b3c2421b669a4a8148817a2c0",
+  "schema": "qsi.report/1",
+  "language": "ru",
+  "generated_at": "2026-10-21T18:06:35.927014+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "580e370e-d1f3-4b2f-bcff-9d6414d23714",
+    "name": "lottery-demo",
+    "client_name": "Демо-клиент",
+    "description": "Static review of the source tree lottery-demo. 1 files analysed; of 1 files, 0 are test, fuzzing, benchmark or example code and were left out, 0 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "99320e04-794b-4c57-b9a9-0ea147fbcfb9",
+    "mode": "document",
+    "title": "Document audit: lottery-demo",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-21T18:06:29.808319+00:00",
+    "finished_at": "2026-10-21T18:06:35.822392+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
+    "parameters": {
+      "language": "ru",
+      "osv_lookup": false,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "Lottery.sol",
+      "size": 529,
+      "sha256": "b067d3e6b6cebe0e9b77210cad59bb5db3fbf2e358115f7d25f35d1688d79463",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 1,
+    "bytes": 529,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "smart_contracts",
+      "detail": "Lottery.sol: built-in Solidity pattern checks",
+      "status": "checked"
+    },
+    {
+      "area": "slither",
+      "detail": "Lottery.sol: slither 0.11.6 (pragma 0.8.28 -> solc 0.8.28)",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "smart_contracts",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Lottery.sol: built-in Solidity pattern checks"
+      ]
+    },
+    {
+      "area": "slither",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Lottery.sol: slither 0.11.6 (pragma 0.8.28 -> solc 0.8.28)"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "Lottery.sol"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 3,
+      "medium": 1,
+      "low": 0,
+      "info": 1
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 5,
+      "pq_long_term_risk": 0,
+      "improvement": 0,
+      "insufficient_data": 0
+    },
+    "total": 5,
+    "posture_index": 71,
+    "pq_vulnerable_share": 0.0,
+    "inventory_total": 1,
+    "inventory_by_quantum_status": {
+      "grover_reduced": 1
+    }
+  },
+  "findings": [
+    {
+      "id": "fcb2557e-91c3-4170-9e28-34b17dd4f36f",
+      "public_id": "QSI-2026-00254",
+      "rule_id": "SOL-TX-ORIGIN",
+      "title": "tx.origin используется для авторизации в Lottery.sol",
+      "description": "Проверка авторизации через tx.origin в строка 14. (см. SWC-115)",
+      "impact": "Вредоносный контракт, вызванный владельцем, может пройти проверку (фишинговая атака).",
+      "recommendation": "Используйте msg.sender для авторизации.",
+      "retest": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+      "limitations": "Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).",
+      "method": "Анализ шаблонов исходного кода Solidity.",
+      "repro": "Откройте строка 14 в предоставленном файле Lottery.sol и изучите приведённые строки (см. доказательство).",
+      "category": "smart_contract",
+      "classification": "potential_crypto_risk",
+      "severity": "high",
+      "confidence": "high",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "contract:Lottery.sol",
+      "data_source": "Lottery.sol",
+      "analyzer": "solidity 1.2.0",
+      "detected_at": "2026-10-21T18:06:35.768805+00:00",
+      "risk_score": 71.6,
+      "risk_breakdown": {
+        "score": 71.6,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.58,
+          "urgency": 1.0,
+          "exposure": 0.8,
+          "severity": 0.8,
+          "exploitability": 0.6
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 71.6,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 11.6,
+          "urgency": 10.0,
+          "exposure": 12.0,
+          "severity": 20.0,
+          "exploitability": 12.0
+        },
+        "confidence_multiplier": 1.0
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "Lottery.sol",
+          "location": "line 14",
+          "content": "   12 | \n   13 |     function withdraw() external {\n   14 |         require(tx.origin == owner, \"not owner\");\n   15 |         payable(msg.sender).transfer(address(this).balance);\n   16 |     }",
+          "content_sha256": "2ba9b426538197a1edca2a6573fd3189e94ae6eb3bbf359d7ea987bf25b2b01d",
+          "source_sha256": "b067d3e6b6cebe0e9b77210cad59bb5db3fbf2e358115f7d25f35d1688d79463",
+          "collector": "solidity 1.2.0",
+          "collected_at": "2026-10-21T18:06:35.778140+00:00",
+          "url": null
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Используйте msg.sender для авторизации.",
+          "rationale": "Вредоносный контракт, вызванный владельцем, может пройти проверку (фишинговая атака).",
+          "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "priority": "P1",
+          "horizon_days": 30,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Откройте строка 14 в предоставленном файле Lottery.sol и изучите приведённые строки (см. доказательство).",
+          "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "3a54fec2-f045-4d1d-ace1-7663b6f43d52",
+      "public_id": "QSI-2026-00255",
+      "rule_id": "TOOL-SLITHER",
+      "title": "Slither: arbitrary-send-eth в Lottery.sol",
+      "description": "Lottery.withdraw() (Lottery.sol#13-16) sends eth to arbitrary user\n\tDangerous calls:\n\t- address(msg.sender).transfer(address(this).balance) (Lottery.sol#15)\n",
+      "impact": "Влияние по оценке Slither: High.",
+      "recommendation": "Изучите документацию детектора Slither «arbitrary-send-eth» и исправьте или обоснуйте.",
+      "retest": "Повторно запустите slither.",
+      "limitations": "Результат внешнего статического анализатора; возможны ложные срабатывания.",
+      "method": "JSON-вывод Slither 0.11.6.",
+      "repro": "slither Lottery.sol --detect arbitrary-send-eth",
+      "category": "smart_contract",
+      "classification": "potential_crypto_risk",
+      "severity": "high",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "contract:Lottery.sol",
+      "data_source": "Lottery.sol",
+      "analyzer": "slither 1.2.0",
+      "detected_at": "2026-10-21T18:06:35.775134+00:00",
+      "risk_score": 46.4,
+      "risk_breakdown": {
+        "score": 46.4,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.51,
+          "urgency": 1.0,
+          "exposure": 0.8,
+          "severity": 0.8,
+          "exploitability": 0.5
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 68.2,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.2,
+          "urgency": 10.0,
+          "exposure": 12.0,
+          "severity": 20.0,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "slither 0.11.6",
+          "location": "line 13",
+          "content": "Lottery.withdraw() (Lottery.sol#13-16) sends eth to arbitrary user\n\tDangerous calls:\n\t- address(msg.sender).transfer(address(this).balance) (Lottery.sol#15)\n",
+          "content_sha256": "b80d4d2639b98f960875417a42224e70ac52945dffdcfd2f2f780b62d6983e4e",
+          "source_sha256": "b067d3e6b6cebe0e9b77210cad59bb5db3fbf2e358115f7d25f35d1688d79463",
+          "collector": "slither 1.2.0",
+          "collected_at": "2026-10-21T18:06:35.787274+00:00",
+          "url": null
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Изучите документацию детектора Slither «arbitrary-send-eth» и исправьте или обоснуйте.",
+          "rationale": "Влияние по оценке Slither: High.",
+          "expected_outcome": "Повторно запустите slither.",
+          "priority": "P1",
+          "horizon_days": 30,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "slither Lottery.sol --detect arbitrary-send-eth",
+          "post_tests": "Повторно запустите slither.",
+          "closure_criteria": "Повторно запустите slither.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "b670e187-bedf-46aa-89d9-a95fd8720864",
+      "public_id": "QSI-2026-00256",
+      "rule_id": "TOOL-SLITHER",
+      "title": "Slither: weak-prng в Lottery.sol",
+      "description": "Lottery.pickWinner(address[]) (Lottery.sol#8-11) uses a weak PRNG: \"i = uint256(keccak256(bytes)(abi.encodePacked(block.timestamp,block.prevrandao))) % players.length (Lottery.sol#9)\" \n",
+      "impact": "Влияние по оценке Slither: High.",
+      "recommendation": "Изучите документацию детектора Slither «weak-prng» и исправьте или обоснуйте.",
+      "retest": "Повторно запустите slither.",
+      "limitations": "Результат внешнего статического анализатора; возможны ложные срабатывания.",
+      "method": "JSON-вывод Slither 0.11.6.",
+      "repro": "slither Lottery.sol --detect weak-prng",
+      "category": "smart_contract",
+      "classification": "potential_crypto_risk",
+      "severity": "high",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "contract:Lottery.sol",
+      "data_source": "Lottery.sol",
+      "analyzer": "slither 1.2.0",
+      "detected_at": "2026-10-21T18:06:35.785141+00:00",
+      "risk_score": 46.4,
+      "risk_breakdown": {
+        "score": 46.4,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.51,
+          "urgency": 1.0,
+          "exposure": 0.8,
+          "severity": 0.8,
+          "exploitability": 0.5
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 68.2,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.2,
+          "urgency": 10.0,
+          "exposure": 12.0,
+          "severity": 20.0,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "slither 0.11.6",
+          "location": "line 8",
+          "content": "Lottery.pickWinner(address[]) (Lottery.sol#8-11) uses a weak PRNG: \"i = uint256(keccak256(bytes)(abi.encodePacked(block.timestamp,block.prevrandao))) % players.length (Lottery.sol#9)\" \n",
+          "content_sha256": "49aff3270921d2a86c544c28fa1c05962ebee3afbf1fff64c6a317c9c3410bef",
+          "source_sha256": "b067d3e6b6cebe0e9b77210cad59bb5db3fbf2e358115f7d25f35d1688d79463",
+          "collector": "slither 1.2.0",
+          "collected_at": "2026-10-21T18:06:35.809206+00:00",
+          "url": null
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Изучите документацию детектора Slither «weak-prng» и исправьте или обоснуйте.",
+          "rationale": "Влияние по оценке Slither: High.",
+          "expected_outcome": "Повторно запустите slither.",
+          "priority": "P1",
+          "horizon_days": 30,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "slither Lottery.sol --detect weak-prng",
+          "post_tests": "Повторно запустите slither.",
+          "closure_criteria": "Повторно запустите slither.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "dc3c20e3-91eb-4371-a938-d439e483c4cb",
+      "public_id": "QSI-2026-00257",
+      "rule_id": "TOOL-SLITHER",
+      "title": "Slither: tx-origin в Lottery.sol",
+      "description": "Lottery.withdraw() (Lottery.sol#13-16) uses tx.origin for authorization: require(bool,string)(tx.origin == owner,not owner) (Lottery.sol#14)\n",
+      "impact": "Влияние по оценке Slither: Medium.",
+      "recommendation": "Изучите документацию детектора Slither «tx-origin» и исправьте или обоснуйте.",
+      "retest": "Повторно запустите slither.",
+      "limitations": "Результат внешнего статического анализатора; возможны ложные срабатывания.",
+      "method": "JSON-вывод Slither 0.11.6.",
+      "repro": "slither Lottery.sol --detect tx-origin",
+      "category": "smart_contract",
+      "classification": "potential_crypto_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "contract:Lottery.sol",
+      "data_source": "Lottery.sol",
+      "analyzer": "slither 1.2.0",
+      "detected_at": "2026-10-21T18:06:35.806494+00:00",
+      "risk_score": 41.3,
+      "risk_breakdown": {
+        "score": 41.3,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.51,
+          "urgency": 1.0,
+          "exposure": 0.8,
+          "severity": 0.5,
+          "exploitability": 0.5
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 60.7,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.2,
+          "urgency": 10.0,
+          "exposure": 12.0,
+          "severity": 12.5,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "slither 0.11.6",
+          "location": "line 13",
+          "content": "Lottery.withdraw() (Lottery.sol#13-16) uses tx.origin for authorization: require(bool,string)(tx.origin == owner,not owner) (Lottery.sol#14)\n",
+          "content_sha256": "94e1c4c8f5c507814d63d8beccdf0c9acf3fb68f044e843b69f364d9366ce6ce",
+          "source_sha256": "b067d3e6b6cebe0e9b77210cad59bb5db3fbf2e358115f7d25f35d1688d79463",
+          "collector": "slither 1.2.0",
+          "collected_at": "2026-10-21T18:06:35.818252+00:00",
+          "url": null
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Изучите документацию детектора Slither «tx-origin» и исправьте или обоснуйте.",
+          "rationale": "Влияние по оценке Slither: Medium.",
+          "expected_outcome": "Повторно запустите slither.",
+          "priority": "P2",
+          "horizon_days": 60,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "slither Lottery.sol --detect tx-origin",
+          "post_tests": "Повторно запустите slither.",
+          "closure_criteria": "Повторно запустите slither.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "2450ce7d-665b-43e2-ae6d-b30b8f5046dd",
+      "public_id": "QSI-2026-00258",
+      "rule_id": "TOOL-SLITHER",
+      "title": "Slither: immutable-states в Lottery.sol",
+      "description": "Lottery.owner (Lottery.sol#5) should be immutable \n",
+      "impact": "Влияние по оценке Slither: Optimization.",
+      "recommendation": "Изучите документацию детектора Slither «immutable-states» и исправьте или обоснуйте.",
+      "retest": "Повторно запустите slither.",
+      "limitations": "Результат внешнего статического анализатора; возможны ложные срабатывания.",
+      "method": "JSON-вывод Slither 0.11.6.",
+      "repro": "slither Lottery.sol --detect immutable-states",
+      "category": "smart_contract",
+      "classification": "potential_crypto_risk",
+      "severity": "info",
+      "confidence": "high",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "contract:Lottery.sol",
+      "data_source": "Lottery.sol",
+      "analyzer": "slither 1.2.0",
+      "detected_at": "2026-10-21T18:06:35.814785+00:00",
+      "risk_score": 42.0,
+      "risk_breakdown": {
+        "score": 42.0,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.51,
+          "urgency": 1.0,
+          "exposure": 0.8,
+          "severity": 0.05,
+          "exploitability": 0.5
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 49.45,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.2,
+          "urgency": 10.0,
+          "exposure": 12.0,
+          "severity": 1.25,
+          "exploitability": 10.0
+        },
+        "confidence_multiplier": 0.85
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SWC",
+          "url": "https://swcregistry.io/",
+          "title": "Smart Contract Weakness Classification (SWC) Registry",
+          "status": "historic reference; still widely cited",
+          "publisher": "SWC community (no longer actively maintained)"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "slither 0.11.6",
+          "location": "line 5",
+          "content": "Lottery.owner (Lottery.sol#5) should be immutable \n",
+          "content_sha256": "fad8d91b70936aed2495f6871e3d8646d25422ceca5066eeea75429eaedc2dd5",
+          "source_sha256": "b067d3e6b6cebe0e9b77210cad59bb5db3fbf2e358115f7d25f35d1688d79463",
+          "collector": "slither 1.2.0",
+          "collected_at": "2026-10-21T18:06:35.835594+00:00",
+          "url": null
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Изучите документацию детектора Slither «immutable-states» и исправьте или обоснуйте.",
+          "rationale": "Влияние по оценке Slither: Optimization.",
+          "expected_outcome": "Повторно запустите slither.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "slither Lottery.sol --detect immutable-states",
+          "post_tests": "Повторно запустите slither.",
+          "closure_criteria": "Повторно запустите slither.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
+    "pq_findings": [],
+    "roles": [],
+    "maturity": {
+      "level": 0,
+      "label": "постквантовой криптографии нет",
+      "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "grover",
+        "name": "Алгоритм Гровера — поиск ключа и прообразов",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Keccak-256",
+            "occurrences": 1
+          }
+        ],
+        "audit": "Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.",
+        "practicality": "Поиск долгий и последовательный: NIST оценивает поиск ключа AES-128 в 2^170/MAXDEPTH квантовых вентилей при MAXDEPTH от 2^40 до 2^96 и использует его как эталон категории стойкости 1; прообраз SHA-256 оценён примерно в 2^153,8 циклов поверхностного кода на 2^12,6 логических кубитах (Эми и др., 2016).",
+        "sources": [
+          "GROVER1996",
+          "ZALKA1999",
+          "NIST-PQC-SEC",
+          "JAQUES2020",
+          "AMY2016"
+        ]
+      },
+      {
+        "id": "bht-collision",
+        "name": "Брассар–Хойер–Тапп — поиск коллизий",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Keccak-256",
+            "occurrences": 1
+          }
+        ],
+        "audit": "256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.",
+        "practicality": "Бернштейн (2009) показал, что с учётом стоимости оборудования этот поиск не дешевле классического параллельного поиска коллизий; NIST определяет категорию стойкости 2 через поиск коллизий SHA3-256 в классических вентилях (2^146).",
+        "sources": [
+          "BHT-COLLISION1998",
+          "CNS2017",
+          "BERNSTEIN2009-COLLISION",
+          "NIST-PQC-SEC"
+        ]
+      }
+    ],
+    "readiness": null
+  },
+  "plan": {
+    "30": [
+      {
+        "kind": "root_cause",
+        "action": "Используйте msg.sender для авторизации.",
+        "rationale": "Вредоносный контракт, вызванный владельцем, может пройти проверку (фишинговая атака).",
+        "expected_outcome": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "priority": "P1",
+        "horizon_days": 30,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Откройте строка 14 в предоставленном файле Lottery.sol и изучите приведённые строки (см. доказательство).",
+        "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
+        "status": "todo",
+        "finding": "QSI-2026-00254",
+        "finding_title": "tx.origin используется для авторизации в Lottery.sol",
+        "severity": "high"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Изучите документацию детектора Slither «arbitrary-send-eth» и исправьте или обоснуйте.",
+        "rationale": "Влияние по оценке Slither: High.",
+        "expected_outcome": "Повторно запустите slither.",
+        "priority": "P1",
+        "horizon_days": 30,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "slither Lottery.sol --detect arbitrary-send-eth",
+        "post_tests": "Повторно запустите slither.",
+        "closure_criteria": "Повторно запустите slither.",
+        "status": "todo",
+        "finding": "QSI-2026-00255",
+        "finding_title": "Slither: arbitrary-send-eth в Lottery.sol",
+        "severity": "high"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Изучите документацию детектора Slither «weak-prng» и исправьте или обоснуйте.",
+        "rationale": "Влияние по оценке Slither: High.",
+        "expected_outcome": "Повторно запустите slither.",
+        "priority": "P1",
+        "horizon_days": 30,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "slither Lottery.sol --detect weak-prng",
+        "post_tests": "Повторно запустите slither.",
+        "closure_criteria": "Повторно запустите slither.",
+        "status": "todo",
+        "finding": "QSI-2026-00256",
+        "finding_title": "Slither: weak-prng в Lottery.sol",
+        "severity": "high"
+      }
+    ],
+    "60": [
+      {
+        "kind": "root_cause",
+        "action": "Изучите документацию детектора Slither «tx-origin» и исправьте или обоснуйте.",
+        "rationale": "Влияние по оценке Slither: Medium.",
+        "expected_outcome": "Повторно запустите slither.",
+        "priority": "P2",
+        "horizon_days": 60,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "slither Lottery.sol --detect tx-origin",
+        "post_tests": "Повторно запустите slither.",
+        "closure_criteria": "Повторно запустите slither.",
+        "status": "todo",
+        "finding": "QSI-2026-00257",
+        "finding_title": "Slither: tx-origin в Lottery.sol",
+        "severity": "medium"
+      }
+    ],
+    "90": [
+      {
+        "kind": "root_cause",
+        "action": "Изучите документацию детектора Slither «immutable-states» и исправьте или обоснуйте.",
+        "rationale": "Влияние по оценке Slither: Optimization.",
+        "expected_outcome": "Повторно запустите slither.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "slither Lottery.sol --detect immutable-states",
+        "post_tests": "Повторно запустите slither.",
+        "closure_criteria": "Повторно запустите slither.",
+        "status": "todo",
+        "finding": "QSI-2026-00258",
+        "finding_title": "Slither: immutable-states в Lottery.sol",
+        "severity": "info"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    }
+  ],
+  "references": [
+    {
+      "key": "CNS2017",
+      "title": "A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2017/847",
+      "status": "peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory"
+    },
+    {
+      "key": "ZALKA1999",
+      "title": "C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070)",
+      "publisher": "APS",
+      "url": "https://doi.org/10.1103/PhysRevA.60.2746",
+      "status": "peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "BERNSTEIN2009-COLLISION",
+      "title": "D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009)",
+      "publisher": "cr.yp.to",
+      "url": "https://cr.yp.to/hash/collisioncost-20090823.pdf",
+      "status": "paper dated 2009-08-23"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "BHT-COLLISION1998",
+      "title": "G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/quant-ph/9705002",
+      "status": "peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations"
+    },
+    {
+      "key": "GROVER1996",
+      "title": "L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996)",
+      "publisher": "ACM",
+      "url": "https://doi.org/10.1145/237814.237866",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "AMY2016",
+      "title": "M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1603.09383",
+      "status": "peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "NIST-PQC-SEC",
+      "title": "NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)",
+      "status": "security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96"
+    },
+    {
+      "key": "JAQUES2020",
+      "title": "S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1910.01700",
+      "status": "peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories"
+    },
+    {
+      "key": "SWC",
+      "url": "https://swcregistry.io/",
+      "title": "Smart Contract Weakness Classification (SWC) Registry",
+      "status": "historic reference; still widely cited",
+      "publisher": "SWC community (no longer actively maintained)"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "Keccak-256",
+      "family": "hash",
+      "parameter": "Keccak-256",
+      "usage": "smart contract",
+      "library": "",
+      "location": "Lottery.sol:9",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "occurrences": 1
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "Keccak-256",
+      "parameter": "Keccak-256",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Lottery.sol:9"
+      ]
+    }
+  ]
+}

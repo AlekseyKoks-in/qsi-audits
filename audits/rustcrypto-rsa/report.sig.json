@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"1acd22ab-77cd-485d-86c8-d51734a5ccfe\",\"content_sha256\":\"c0d439a694ce1e368fd2f36235910d4b8fb8e439d2c8ee8f0b7a317d4baa0ae1\",\"files_sha256\":{\"html\":\"68e7000cd1e923440501b6319d4e1a549fd471ee0a33b8e00e15cadbfbf721f5\",\"json\":\"fa3bb7cf8d6964c630e2c756e307be1b3dbd0b8a471d199b65a89ae2d3969d32\",\"md\":\"cfac4542deb16cbbc196bfda05f564a2915efd6c58d2c7904e4975847a2a066e\",\"pdf\":\"7b0f4bd0c3e7da282554b5bf9320a004b01b1719ecc42e87deab4c32404c8b02\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"ru\",\"organization\":\"QSI\",\"project\":\"rustcrypto-rsa @ f96c4b5d629a\",\"report_id\":\"f5f68368-5d5a-45be-a665-e90a6c384b77\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T12:51:28+00:00\",\"version\":1}",
+  "signature": "ix9vMR3WAFwlcQKN+rhX0kXHi4FcyaIotbH8+Q94fAcdb6nIkn3jpTNAVw/IqBEo5SSP1ZiCSOZ5s08gw3WiCg=="
+}

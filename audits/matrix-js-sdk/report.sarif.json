@@ -1,0 +1,237 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "markdown-it 14.3.2 затронут GHSA-gfr2-rv44-r23c (CVE-2026-111758)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (14.3.3, 15.0.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "help": {
+                "text": "OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (14.3.3, 15.0.3). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-gfr2-rv44-r23c"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый ECDH: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "2 упоминаний ECDH в 1 файл(ах), например src/rendezvous/channels/MSC4108SecureChannel.ts:109. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "2 упоминаний ECDH в 1 файл(ах), например src/rendezvous/channels/MSC4108SecureChannel.ts:109. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-ADVISORY-DEV",
+              "name": "DepAdvisoryDev",
+              "shortDescription": {
+                "text": "1 бюллетеней в 1 пакет(ах) npm, нужных только для разработки или сборки"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает 1 бюллетеней (1 с оценкой high или critical) для 1 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (pnpm-lock.yaml): например, happy-dom@21.0.3 [dev]: GHSA-834v-8h66-3h79. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "help": {
+                "text": "OSV.dev сообщает 1 бюллетеней (1 с оценкой high или critical) для 1 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (pnpm-lock.yaml): например, happy-dom@21.0.3 [dev]: GHSA-834v-8h66-3h79. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "helpUri": "https://osv.dev/"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "markdown-it 14.3.2 затронут GHSA-gfr2-rv44-r23c (CVE-2026-111758) (dependency: npm/markdown-it@14.3.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "947e04d7f733036f7c8eb3c415e38833"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05835",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pnpm-lock.yaml"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) (dependency: npm/zod@4.6.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05837",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pnpm-lock.yaml"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDH: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a485bc45a5405282aba6af2ba5891438"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05834",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "markdown-it 14.3.2 затронут GHSA-vfgh-jcmw-g37q (CVE-2026-111766) (dependency: npm/markdown-it@14.3.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0aa12c201eb807b5b56f469cb17df97"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05836",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pnpm-lock.yaml"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "1 бюллетеней в 1 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-05838",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pnpm-lock.yaml"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/matrix-js-sdk @ 61b08bd037a3/259476ec-cff6-4f97-af62-52170c902315"
+      },
+      "properties": {
+        "qsiContentSha256": "6b99f797316754f231b4b06db6d193f9d0893a7f657f49253d76cbd060ebaeb3",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "security_software",
+        "qsiGeneratedAt": "2026-10-28T18:22:51.009302+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "61b08bd037a3b987f267e2e8ac47002c75d59d85",
+          "repositoryUri": "https://github.com/matrix-org/matrix-js-sdk"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,769 @@
+ok   aave-v3-origin               (19 inventory rows, summary agrees)
+FAIL agave                        (189 inventory rows)
+       inventory_total 191 != 189 rows
+       by_quantum_status {'classical_weakness': 15, 'grover_margin': 23, 'grover_reduced': 17, 'not_applicable': 33, 'vulnerable_shor': 103} != {'classical_weakness': 15, 'grover_margin': 23, 'grover_reduced': 17, 'not_applicable': 31, 'vulnerable_shor': 103}
+       inventory_grouped counts 191 != 189 rows
+       pq_vulnerable_share 53.9 != 54.5
+       SHA-3 at zk-token-sdk/src/encryption/auth_encryption.rs:138: usage says 2, occurrences 1
+       Keccak-256 at sdk/program/src/keccak.rs:8: usage says 2, occurrences 1
+       Keccak-256 at sdk/src/secp256k1_instruction.rs:852: usage says 3, occurrences 1
+       SHA-2 at cargo-registry/src/crate_handler.rs:287: usage says 2, occurrences 1
+       BN254 (alt_bn128) at programs/bpf_loader/src/syscalls/mod.rs:26: usage says 3, occurrences 1
+       BN254 (alt_bn128) at programs/sbf/rust/alt_bn128/src/lib.rs:5: usage says 2, occurrences 1
+       BN254 (alt_bn128) at sdk/program/src/alt_bn128/compression.rs:2: usage says 2, occurrences 1
+       BN254 (alt_bn128) at sdk/src/feature_set.rs:914: usage says 2, occurrences 1
+       Bulletproofs at zk-token-sdk/src/range_proof/generators.rs:64: usage says 3, occurrences 1
+       Bulletproofs at zk-token-sdk/src/range_proof/mod.rs:25: usage says 3, occurrences 1
+       ECDSA at sdk/src/feature_set.rs:786: usage says 2, occurrences 1
+       Ed25519 at core/src/sigverify.rs:8: usage says 2, occurrences 1
+       Ed25519 at ledger/src/sigverify_shreds.rs:280: usage says 2, occurrences 1
+       Ed25519 at perf/src/perf_libs.rs:27: usage says 2, occurrences 1
+       Ed25519 at perf/src/sigverify.rs:518: usage says 9, occurrences 1
+       Ed25519 at sdk/src/ed25519_instruction.rs:10: usage says 3, occurrences 1
+       Ed25519 at sdk/src/signature.rs:48: usage says 2, occurrences 1
+       Ed25519 at sdk/src/signer/keypair.rs:10: usage says 20, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/encryption/elgamal.rs:21: usage says 5, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/encryption/grouped_elgamal.rs:19: usage says 3, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/encryption/pedersen.rs:44: usage says 35, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u128.rs:6: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u256.rs:6: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u64.rs:6: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/batched_range_proof/mod.rs:30: usage says 9, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/ciphertext_commitment_equality.rs:13: usage says 4, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/fee_sigma.rs:14: usage says 10, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/range_proof.rs:10: usage says 4, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/transfer/encryption.rs:5: usage says 3, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/transfer/mod.rs:10: usage says 7, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/transfer/with_fee.rs:6: usage says 18, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/transfer/without_fee.rs:6: usage says 5, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/instruction/withdraw.rs:6: usage says 4, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/range_proof/mod.rs:15: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/sigma_proofs/batched_grouped_ciphertext_validity_proof.rs:14: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/sigma_proofs/ciphertext_commitment_equality_proof.rs:16: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/sigma_proofs/fee_proof.rs:16: usage says 10, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/sigma_proofs/grouped_ciphertext_validity_proof.rs:16: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/transcript.rs:48: usage says 2, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/zk_token_elgamal/convert.rs:3: usage says 8, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/zk_token_elgamal/ops.rs:21: usage says 12, occurrences 1
+       Pedersen commitment at zk-token-sdk/src/zk_token_elgamal/pod/pedersen.rs:22: usage says 8, occurrences 1
+FAIL bitbox02-firmware            (81 inventory rows)
+       ChaCha20-Poly1305 at src/rust/bitbox-noise/src/noise_xx.rs:9: usage says 4, occurrences 1
+       HKDF at src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs:12: usage says 4, occurrences 1
+       HMAC at src/rust/bitbox-aes/src/lib.rs:10: usage says 2, occurrences 1
+       HMAC at src/rust/bitbox-platform-host/src/securechip.rs:94: usage says 6, occurrences 1
+       HMAC at src/rust/bitbox-securechip/src/optiga.rs:175: usage says 5, occurrences 1
+       HMAC at src/rust/bitbox02-rust/src/backup.rs:13: usage says 2, occurrences 1
+       HMAC at src/rust/bitbox02-rust/src/keystore.rs:17: usage says 5, occurrences 1
+       HMAC at src/rust/bitbox02-rust/src/keystore/ed25519.rs:8: usage says 3, occurrences 1
+       HMAC at src/rust/bitbox02/src/securechip/imp_fake.rs:16: usage says 2, occurrences 1
+       HMAC at src/rust/util/src/sha2.rs:16: usage says 4, occurrences 1
+       Keccak-256 at src/rust/bitbox02-rust/src/hww/api/ethereum/address.rs:17: usage says 2, occurrences 1
+       Keccak-256 at src/rust/bitbox02-rust/src/hww/api/ethereum/sighash.rs:3: usage says 4, occurrences 1
+       Keccak-256 at src/rust/bitbox02-rust/src/hww/api/ethereum/sign_typed_msg.rs:274: usage says 7, occurrences 1
+       SHA-2 at src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs:81: usage says 4, occurrences 1
+       SHA-2 at src/rust/bitbox02-rust/src/hww/api/bitcoin/bip143.rs:5: usage says 3, occurrences 1
+       SHA-2 at src/rust/bitbox02-rust/src/hww/api/bitcoin/bip341.rs:4: usage says 3, occurrences 1
+       SHA-2 at src/rust/bitbox02-rust/src/hww/api/bitcoin/common.rs:139: usage says 2, occurrences 1
+       SHA-2 at src/rust/bitbox02-rust/src/hww/api/bitcoin/policies.rs:691: usage says 2, occurrences 1
+       SHA-2 at src/rust/bitbox02-rust/src/hww/api/bitcoin/signtx.rs:362: usage says 10, occurrences 1
+       SHA-2 at src/rust/bitbox02-rust/src/hww/api/payment_request.rs:213: usage says 2, occurrences 1
+       SHA-2 at src/rust/util/src/sha2.rs:8: usage says 3, occurrences 1
+       ECDSA at src/bootloader/bootloader.c:537: usage says 4, occurrences 1
+       ECDSA at src/rust/bitbox-secp256k1/build.rs:6: usage says 3, occurrences 1
+       ECDSA at src/rust/bitbox-secp256k1/src/lib.rs:7: usage says 17, occurrences 1
+       ECDSA at src/rust/bitbox02-rust-c/src/firmware_c_api.rs:23: usage says 2, occurrences 1
+       ECDSA at src/rust/bitbox02-rust-c/src/secp256k1.rs:3: usage says 2, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/bip32.rs:13: usage says 2, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/hww/api/bitcoin/signmsg.rs:134: usage says 2, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/hww/api/bitcoin/signtx.rs:15: usage says 3, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/hww/api/ethereum/sign.rs:642: usage says 2, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/hww/api/ethereum/sign_typed_msg.rs:782: usage says 2, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/hww/api/ethereum/signmsg.rs:57: usage says 2, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/hww/api/payment_request.rs:14: usage says 7, occurrences 1
+       ECDSA at src/rust/bitbox02-rust/src/keystore.rs:15: usage says 4, occurrences 1
+       ECDSA at src/rust/streaming-silent-payments/src/lib.rs:12: usage says 5, occurrences 1
+       Ed25519 at src/rust/bitbox02-rust/src/keystore/ed25519.rs:10: usage says 2, occurrences 1
+       X25519 at src/rust/bitbox-noise/src/lib.rs:16: usage says 2, occurrences 1
+       X25519 at src/rust/bitbox-noise/src/x25519.rs:49: usage says 3, occurrences 1
+       X25519 at src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs:15: usage says 3, occurrences 1
+FAIL bitgo-mpc                    (91 inventory rows)
+       HMAC at modules/sdk-lib-mpc/src/curves/ed25519Bip32HdTree.ts:60: usage says 2, occurrences 1
+       SHA-2 at modules/sdk-core/src/account-lib/mpc/tss/eddsa/eddsa.ts:86: usage says 5, occurrences 1
+       SHA-2 at modules/sdk-core/src/bitgo/safe/derivableEd25519Pub.ts:78: usage says 3, occurrences 1
+       SHA-2 at modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts:178: usage says 6, occurrences 1
+       SHA-2 at modules/sdk-lib-mpc/src/tss/ecdsa/rangeproof.ts:133: usage says 6, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/ecdh.ts:16: usage says 2, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/utils/opengpgUtils.ts:17: usage says 3, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/utils/tss/addressVerification.ts:60: usage says 4, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/base.ts:1: usage says 3, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsa.ts:125: usage says 2, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts:83: usage says 4, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaVrfMPCv2.ts:86: usage says 3, occurrences 1
+       ECDSA at modules/sdk-core/src/bitgo/utils/tss/eddsa/eddsa.ts:395: usage says 2, occurrences 1
+       ECDSA at modules/sdk-lib-mpc/src/tss/ecdsa-dkls/types.ts:245: usage says 2, occurrences 1
+       ECDSA at modules/sdk-lib-mpc/src/tss/ecdsa-dkls/util.ts:1: usage says 4, occurrences 1
+       Paillier at modules/sdk-core/src/account-lib/mpc/tss/ecdsa/ecdsa.ts:1: usage says 14, occurrences 1
+       Paillier at modules/sdk-core/src/account-lib/mpc/tss/ecdsa/types.ts:45: usage says 3, occurrences 1
+       Paillier at modules/sdk-core/src/bitgo/keychain/keychains.ts:707: usage says 4, occurrences 1
+       Paillier at modules/sdk-core/src/bitgo/tss/common.ts:326: usage says 2, occurrences 1
+       Paillier at modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsa.ts:570: usage says 3, occurrences 1
+       Paillier at modules/sdk-lib-mpc/src/tss/ecdsa/paillierproof.ts:40: usage says 3, occurrences 1
+       Paillier at modules/sdk-lib-mpc/src/tss/ecdsa/types.ts:120: usage says 6, occurrences 1
+       RSA at modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts:33: usage says 2, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/account-lib/mpc/util.ts:9: usage says 6, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/baseCoin/iBaseCoin.ts:9: usage says 2, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/pendingApproval/pendingApproval.ts:25: usage says 2, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/tss/ecdsa/ecdsaMPCv2.ts:3: usage says 19, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/SMC/utils.ts:17: usage says 7, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2.ts:2: usage says 85, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaMPCv2KeyGenSender.ts:10: usage says 4, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/utils/tss/ecdsa/ecdsaVrfMPCv2.ts:1: usage says 55, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/wallet/iWallets.ts:2: usage says 14, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/bitgo/wallet/wallet.ts:57: usage says 3, occurrences 1
+       Threshold ECDSA at modules/sdk-core/src/index.ts:10: usage says 7, occurrences 1
+       Threshold ECDSA at modules/sdk-lib-mpc/src/tss/ecdsa-dkls/dkg.ts:18: usage says 2, occurrences 1
+       Threshold ECDSA at modules/sdk-lib-mpc/src/tss/ecdsa-dkls/dsg.ts:9: usage says 2, occurrences 1
+       Threshold ECDSA at modules/sdk-lib-mpc/src/tss/ecdsa-dkls/index.ts:1: usage says 5, occurrences 1
+       X25519 at modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts:3: usage says 2, occurrences 1
+       X25519 at modules/sdk-lib-mpc/src/tss/redpallas-mps/util.ts:3: usage says 2, occurrences 1
+FAIL bitwarden-sdk                (119 inventory rows)
+       AES-256 at crates/bitwarden-crypto/src/cose/symmetric.rs:17: usage says 21, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc.rs:29: usage says 2, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_ae.rs:38: usage says 2, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_aead.rs:45: usage says 2, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes_gcm.rs:20: usage says 3, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/mod.rs:34: usage says 3, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/keys/symmetric_crypto_key.rs:102: usage says 8, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/safe/key_hierarchy/content_encryption_key.rs:19: usage says 2, occurrences 1
+       AES-256 at crates/bitwarden-crypto/src/stream/aes256_cbc_hmac_legacy_stream.rs:64: usage says 4, occurrences 1
+       AES-256 at crates/bitwarden-importers/src/importers/keeper/crypto/types.rs:199: usage says 2, occurrences 1
+       AES-256 at crates/bitwarden-importers/src/importers/keeper/crypto/types.rs:237: usage says 4, occurrences 1
+       AES-256 at crates/bitwarden-importers/src/importers/onepassword/access/opdata.rs:7: usage says 6, occurrences 1
+       AES-256 at crates/bitwarden-ipc/src/crypto_provider/noise/handshake.rs:39: usage says 2, occurrences 1
+       AES-256 at crates/bitwarden-ipc/src/crypto_provider/noise/transport_state.rs:16: usage says 2, occurrences 1
+       Argon2 at crates/bitwarden-crypto/src/safe/password_protected_key_envelope.rs:303: usage says 7, occurrences 1
+       Argon2 at crates/bitwarden-uniffi/kotlin/app/src/main/java/com/bitwarden/myapplication/MainActivity.kt:228: usage says 3, occurrences 1
+       ChaCha20-Poly1305 at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/mod.rs:35: usage says 2, occurrences 1
+       ChaCha20-Poly1305 at crates/bitwarden-ipc/src/crypto_provider/noise/transport_state.rs:14: usage says 2, occurrences 1
+       HKDF at crates/bitwarden-crypto/src/keys/shareable_key.rs:9: usage says 2, occurrences 1
+       HKDF at crates/bitwarden-crypto/src/keys/utils.rs:7: usage says 3, occurrences 1
+       HKDF at crates/bitwarden-crypto/src/safe/secret_protected_key_envelope.rs:106: usage says 12, occurrences 1
+       HKDF at crates/bitwarden-crypto/src/util.rs:32: usage says 6, occurrences 1
+       HKDF at crates/bitwarden-importers/src/importers/onepassword/access/kdf.rs:6: usage says 2, occurrences 1
+       HMAC at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_ae.rs:12: usage says 2, occurrences 1
+       HMAC at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_ae.rs:7: usage says 2, occurrences 1
+       HMAC at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_aead.rs:14: usage says 2, occurrences 1
+       HMAC at crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_aead.rs:7: usage says 2, occurrences 1
+       HMAC at crates/bitwarden-crypto/src/stream/aes256_cbc_hmac_legacy_stream.rs:34: usage says 8, occurrences 1
+       HMAC at crates/bitwarden-crypto/src/util.rs:3: usage says 2, occurrences 1
+       HMAC at crates/bitwarden-fido/src/device_auth_key.rs:16: usage says 3, occurrences 1
+       HMAC at crates/bitwarden-vault/src/totp.rs:19: usage says 3, occurrences 1
+       HMAC at crates/bitwarden-vault/src/totp.rs:20: usage says 2, occurrences 1
+       HMAC at crates/bitwarden-vault/src/totp.rs:21: usage says 2, occurrences 1
+       SHA-2 at crates/bitwarden-crypto/src/enc_string/asymmetric.rs:294: usage says 2, occurrences 1
+       SHA-2 at crates/bitwarden-crypto/src/util.rs:14: usage says 2, occurrences 1
+       SHA-2 at crates/bitwarden-importers/src/importers/keeper/crypto/types.rs:426: usage says 2, occurrences 1
+       SHA-2 at crates/bitwarden-vault/src/cipher/login.rs:70: usage says 2, occurrences 1
+       ML-DSA at crates/bitwarden-crypto/src/signing/cose.rs:7: usage says 5, occurrences 1
+       ML-DSA at crates/bitwarden-crypto/src/signing/signing_key.rs:12: usage says 6, occurrences 1
+       ML-DSA at crates/bitwarden-crypto/src/signing/verifying_key.rs:14: usage says 5, occurrences 1
+       Ed25519 at crates/bitwarden-crypto/src/signing/cose.rs:70: usage says 6, occurrences 1
+       Ed25519 at crates/bitwarden-crypto/src/signing/signing_key.rs:10: usage says 6, occurrences 1
+       Ed25519 at crates/bitwarden-crypto/src/signing/verifying_key.rs:16: usage says 4, occurrences 1
+       RSA at crates/bitwarden-crypto/src/keys/public_key_encryption.rs:92: usage says 3, occurrences 1
+       RSA at crates/bitwarden-wasm-internal/src/pure_crypto.rs:335: usage says 2, occurrences 1
+FAIL cairo                        (18 inventory rows)
+       Keccak-256 at crates/cairo-lang-semantic/src/types.rs:23: usage says 3, occurrences 1
+       Keccak-256 at crates/cairo-lang-sierra/src/ids.rs:4: usage says 2, occurrences 1
+       Keccak-256 at crates/cairo-lang-starknet-classes/src/keccak.rs:2: usage says 2, occurrences 1
+FAIL coinbase-cb-mpc              (103 inventory rows)
+       AES-192 at src/cbmpc/crypto/base.cpp:126: usage says 2, occurrences 1
+       AES-256 at src/cbmpc/crypto/base.cpp:128: usage says 2, occurrences 1
+       HKDF at include-internal/cbmpc/internal/crypto/base_hash.h:351: usage says 5, occurrences 1
+       HKDF at include-internal/cbmpc/internal/crypto/base_pki.h:57: usage says 6, occurrences 1
+       HKDF at src/cbmpc/crypto/base_hash.cpp:212: usage says 5, occurrences 1
+       AES-128 at src/cbmpc/crypto/base.cpp:124: usage says 2, occurrences 1
+       BLAKE2 at src/cbmpc/crypto/base_hash.cpp:68: usage says 2, occurrences 1
+       SHA-2 at src/cbmpc/crypto/base_hash.cpp:55: usage says 3, occurrences 1
+       SHA-3 at src/cbmpc/crypto/base_hash.cpp:63: usage says 3, occurrences 1
+       ECDSA at include-internal/cbmpc/internal/crypto/base_ecc.h:17: usage says 3, occurrences 1
+       ECDSA at src/cbmpc/api/curve_util.h:13: usage says 2, occurrences 1
+       ECDSA at src/cbmpc/api/schnorr2pc.cpp:31: usage says 5, occurrences 1
+       ECDSA at src/cbmpc/api/schnorr_mp.cpp:46: usage says 10, occurrences 1
+       ECDSA at src/cbmpc/crypto/base_ecc.cpp:673: usage says 3, occurrences 1
+       ECDSA at src/cbmpc/crypto/base_ecc_secp256k1.cpp:5: usage says 45, occurrences 1
+       ECDSA at src/cbmpc/protocol/schnorr_2p.cpp:82: usage says 2, occurrences 1
+       Ed25519 at include-internal/cbmpc/internal/protocol/eddsa.h:6: usage says 2, occurrences 1
+       Ed25519 at include/cbmpc/api/eddsa_2p.h:8: usage says 2, occurrences 1
+       Ed25519 at src/cbmpc/api/eddsa2pc.cpp:1: usage says 14, occurrences 1
+       Ed25519 at src/cbmpc/api/hd_keyset_eddsa_2p.cpp:23: usage says 6, occurrences 1
+       Ed25519 at src/cbmpc/c_api/eddsa2pc.cpp:4: usage says 9, occurrences 1
+       Ed25519 at src/cbmpc/protocol/eddsa.cpp:3: usage says 2, occurrences 1
+       Paillier at include-internal/cbmpc/internal/crypto/base_bn.h:46: usage says 2, occurrences 1
+       Paillier at include-internal/cbmpc/internal/crypto/base_paillier.h:8: usage says 23, occurrences 1
+       Paillier at include-internal/cbmpc/internal/protocol/ecdsa_2p.h:18: usage says 11, occurrences 1
+       Paillier at include-internal/cbmpc/internal/zk/zk_paillier.h:9: usage says 37, occurrences 1
+       Paillier at include-internal/cbmpc/internal/zk/zk_pedersen.h:78: usage says 16, occurrences 1
+       Paillier at include-internal/cbmpc/internal/zk/zk_util.h:39: usage says 2, occurrences 1
+       Paillier at src/cbmpc/api/ecdsa2pc.cpp:29: usage says 20, occurrences 1
+       Paillier at src/cbmpc/api/hd_keyset_ecdsa_2p.cpp:36: usage says 8, occurrences 1
+       Paillier at src/cbmpc/crypto/base_paillier.cpp:11: usage says 33, occurrences 1
+       Paillier at src/cbmpc/protocol/ecdsa_2p.cpp:18: usage says 81, occurrences 1
+       Paillier at src/cbmpc/protocol/hd_keyset_ecdsa_2p.cpp:25: usage says 7, occurrences 1
+       Paillier at src/cbmpc/zk/zk_paillier.cpp:7: usage says 77, occurrences 1
+       Paillier at src/cbmpc/zk/zk_pedersen.cpp:250: usage says 33, occurrences 1
+       Pedersen commitment at include-internal/cbmpc/internal/zk/zk_pedersen.h:8: usage says 3, occurrences 1
+       Pedersen commitment at src/cbmpc/zk/zk_pedersen.cpp:6: usage says 16, occurrences 1
+       RSA at src/cbmpc/crypto/base_rsa.cpp:96: usage says 2, occurrences 1
+       Threshold ECDSA at include-internal/cbmpc/internal/protocol/ecdsa_2p.h:10: usage says 2, occurrences 1
+       Threshold ECDSA at include-internal/cbmpc/internal/protocol/ecdsa_mp.h:9: usage says 2, occurrences 1
+       Threshold ECDSA at include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h:3: usage says 2, occurrences 1
+       Threshold ECDSA at include/cbmpc/api/ecdsa_2p.h:12: usage says 2, occurrences 1
+       Threshold ECDSA at include/cbmpc/api/ecdsa_mp.h:15: usage says 2, occurrences 1
+       Threshold ECDSA at src/cbmpc/api/ecdsa2pc.cpp:1: usage says 18, occurrences 1
+       Threshold ECDSA at src/cbmpc/api/ecdsa_mp.cpp:7: usage says 25, occurrences 1
+       Threshold ECDSA at src/cbmpc/api/hd_keyset_ecdsa_2p.cpp:3: usage says 7, occurrences 1
+       Threshold ECDSA at src/cbmpc/c_api/ecdsa2pc.cpp:9: usage says 9, occurrences 1
+       Threshold ECDSA at src/cbmpc/c_api/ecdsa_mp.cpp:9: usage says 12, occurrences 1
+       Threshold ECDSA at src/cbmpc/protocol/ecdsa_2p.cpp:5: usage says 11, occurrences 1
+       Threshold ECDSA at src/cbmpc/protocol/ecdsa_mp.cpp:4: usage says 4, occurrences 1
+       Threshold ECDSA at src/cbmpc/protocol/hd_keyset_ecdsa_2p.cpp:25: usage says 6, occurrences 1
+FAIL ethers-js                    (100 inventory rows)
+       AES-128 at lib.commonjs/wallet/json-keystore.js:39: usage says 2, occurrences 1
+       AES-128 at lib.esm/wallet/json-keystore.js:35: usage says 2, occurrences 1
+       AES-128 at src.ts/wallet/json-keystore.ts:75: usage says 2, occurrences 1
+       Keccak-256 at lib.commonjs/crypto/keccak.js:13: usage says 2, occurrences 1
+       Keccak-256 at lib.esm/abi/interface.js:874: usage says 2, occurrences 1
+       Keccak-256 at lib.esm/address/contract-address.js:36: usage says 2, occurrences 1
+       Keccak-256 at lib.esm/crypto/keccak.js:6: usage says 3, occurrences 1
+       Keccak-256 at lib.esm/hash/typed-data.js:103: usage says 5, occurrences 1
+       Keccak-256 at lib.esm/transaction/transaction.js:934: usage says 2, occurrences 1
+       Keccak-256 at lib.esm/wallet/json-keystore.js:47: usage says 2, occurrences 1
+       Keccak-256 at src.ts/abi/interface.ts:1025: usage says 2, occurrences 1
+       Keccak-256 at src.ts/address/contract-address.ts:44: usage says 2, occurrences 1
+       Keccak-256 at src.ts/crypto/keccak.ts:7: usage says 3, occurrences 1
+       Keccak-256 at src.ts/hash/typed-data.ts:170: usage says 5, occurrences 1
+       Keccak-256 at src.ts/transaction/transaction.ts:1218: usage says 2, occurrences 1
+       Keccak-256 at src.ts/wallet/json-keystore.ts:90: usage says 2, occurrences 1
+       ECDSA at lib.commonjs/crypto/signing-key.js:9: usage says 8, occurrences 1
+       ECDSA at lib.commonjs/providers/abstract-signer.d.ts:42: usage says 2, occurrences 1
+       ECDSA at lib.commonjs/providers/abstract-signer.js:244: usage says 2, occurrences 1
+       ECDSA at lib.commonjs/providers/provider-jsonrpc.js:205: usage says 2, occurrences 1
+       ECDSA at lib.commonjs/providers/signer-noncemanager.js:73: usage says 2, occurrences 1
+       ECDSA at lib.esm/crypto/signing-key.js:6: usage says 8, occurrences 1
+       ECDSA at lib.esm/providers/abstract-signer.d.ts:42: usage says 2, occurrences 1
+       ECDSA at lib.esm/providers/abstract-signer.js:240: usage says 2, occurrences 1
+       ECDSA at lib.esm/providers/provider-jsonrpc.js:202: usage says 2, occurrences 1
+       ECDSA at lib.esm/providers/signer-noncemanager.js:70: usage says 2, occurrences 1
+       ECDSA at src.ts/crypto/signing-key.ts:7: usage says 8, occurrences 1
+       ECDSA at src.ts/providers/abstract-signer.ts:266: usage says 3, occurrences 1
+       ECDSA at src.ts/providers/provider-jsonrpc.ts:449: usage says 3, occurrences 1
+       ECDSA at src.ts/providers/signer-noncemanager.ts:95: usage says 2, occurrences 1
+FAIL fireblocks-mpc-lib           (89 inventory rows)
+       Ed25519 at src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp:401: usage says 2, occurrences 1
+       FROST at include/cosigner/frost_cosigner.h:17: usage says 5, occurrences 1
+       FROST at include/cosigner/frost_cosigner_client.h:3: usage says 8, occurrences 1
+       FROST at include/cosigner/frost_cosigner_server.h:3: usage says 4, occurrences 1
+       FROST at include/cosigner/platform_service.h:20: usage says 2, occurrences 1
+       FROST at src/common/cosigner/frost_cosigner.cpp:5: usage says 25, occurrences 1
+       FROST at src/common/cosigner/frost_cosigner_client.cpp:8: usage says 14, occurrences 1
+       FROST at src/common/cosigner/frost_cosigner_server.cpp:11: usage says 12, occurrences 1
+       Paillier at include/cosigner/bam_ecdsa_cosigner.h:59: usage says 5, occurrences 1
+       Paillier at include/cosigner/bam_key_persistency_structures_client.h:5: usage says 2, occurrences 1
+       Paillier at include/cosigner/bam_key_persistency_structures_server.h:4: usage says 2, occurrences 1
+       Paillier at include/cosigner/cmp_ecdsa_signing_service.h:7: usage says 2, occurrences 1
+       Paillier at include/cosigner/cmp_key_persistency.h:12: usage says 4, occurrences 1
+       Paillier at include/cosigner/cmp_setup_service.h:33: usage says 7, occurrences 1
+       Paillier at include/cosigner/cosigner_exception.h:111: usage says 3, occurrences 1
+       Paillier at include/crypto/paillier/paillier.h:12: usage says 33, occurrences 1
+       Paillier at include/crypto/paillier_commitment/paillier_commitment.h:5: usage says 31, occurrences 1
+       Paillier at include/crypto/zero_knowledge_proof/range_proofs.h:9: usage says 26, occurrences 1
+       Paillier at src/common/cosigner/bam_ecdsa_cosigner_client.cpp:9: usage says 33, occurrences 1
+       Paillier at src/common/cosigner/bam_ecdsa_cosigner_server.cpp:16: usage says 54, occurrences 1
+       Paillier at src/common/cosigner/bam_well_formed_proof.cpp:10: usage says 62, occurrences 1
+       Paillier at src/common/cosigner/bam_well_formed_proof.h:5: usage says 3, occurrences 1
+       Paillier at src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp:63: usage says 5, occurrences 1
+       Paillier at src/common/cosigner/cmp_ecdsa_online_signing_service.cpp:106: usage says 6, occurrences 1
+       Paillier at src/common/cosigner/cmp_ecdsa_signing_service.cpp:28: usage says 9, occurrences 1
+       Paillier at src/common/cosigner/cmp_setup_service.cpp:207: usage says 46, occurrences 1
+       Paillier at src/common/cosigner/cosigner_exception.cpp:2: usage says 4, occurrences 1
+       Paillier at src/common/cosigner/mta.cpp:9: usage says 91, occurrences 1
+       Paillier at src/common/cosigner/mta.h:5: usage says 16, occurrences 1
+       Paillier at src/common/crypto/paillier/paillier.c:1: usage says 83, occurrences 1
+       Paillier at src/common/crypto/paillier/paillier_internal.h:4: usage says 9, occurrences 1
+       Paillier at src/common/crypto/paillier/paillier_zkp.c:1: usage says 21, occurrences 1
+       Paillier at src/common/crypto/paillier_commitment/paillier_commitment.c:1: usage says 107, occurrences 1
+       Paillier at src/common/crypto/paillier_commitment/paillier_commitment_internal.h:9: usage says 14, occurrences 1
+       Paillier at src/common/crypto/zero_knowledge_proof/range_proofs.c:2: usage says 230, occurrences 1
+       Pedersen commitment at include/cosigner/bam_ecdsa_cosigner_client.h:8: usage says 2, occurrences 1
+       Pedersen commitment at include/crypto/commitments/pedersen.h:25: usage says 7, occurrences 1
+       Pedersen commitment at src/common/cosigner/bam_ecdsa_cosigner_client.cpp:193: usage says 2, occurrences 1
+       Pedersen commitment at src/common/cosigner/bam_well_formed_proof.cpp:167: usage says 6, occurrences 1
+       Pedersen commitment at src/common/cosigner/bam_well_formed_proof.h:19: usage says 2, occurrences 1
+       Pedersen commitment at src/common/crypto/commitments/pedersen.c:13: usage says 6, occurrences 1
+       Threshold ECDSA at include/cosigner/cmp_ecdsa_offline_signing_service.h:5: usage says 3, occurrences 1
+       Threshold ECDSA at include/cosigner/cmp_ecdsa_online_signing_service.h:5: usage says 3, occurrences 1
+       Threshold ECDSA at include/cosigner/cmp_ecdsa_signing_service.h:90: usage says 3, occurrences 1
+       Threshold ECDSA at src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp:1: usage says 9, occurrences 1
+       Threshold ECDSA at src/common/cosigner/cmp_ecdsa_online_signing_service.cpp:1: usage says 10, occurrences 1
+       Threshold ECDSA at src/common/cosigner/cmp_ecdsa_signing_service.cpp:1: usage says 14, occurrences 1
+FAIL foundry                      (100 inventory rows)
+       RIPEMD-160 at crates/evm/traces/src/decoder/precompiles.rs:78: usage says 3, occurrences 1
+       AES-256 at crates/cast/src/cmd/tempo/zone/encryption.rs:6: usage says 2, occurrences 1
+       HKDF at crates/cast/src/cmd/tempo/zone/encryption.rs:9: usage says 2, occurrences 1
+       Keccak-256 at crates/anvil/src/config.rs:222: usage says 2, occurrences 1
+       Keccak-256 at crates/anvil/src/eth/backend/mem/mod.rs:339: usage says 6, occurrences 1
+       Keccak-256 at crates/anvil/src/eth/backend/mem/state.rs:118: usage says 8, occurrences 1
+       Keccak-256 at crates/cast/src/args.rs:20: usage says 9, occurrences 1
+       Keccak-256 at crates/cast/src/cmd/create2.rs:69: usage says 2, occurrences 1
+       Keccak-256 at crates/cast/src/cmd/tip20/mine.rs:230: usage says 2, occurrences 1
+       Keccak-256 at crates/cast/src/cmd/tip20/role.rs:35: usage says 2, occurrences 1
+       Keccak-256 at crates/cheatcodes/src/evm.rs:828: usage says 5, occurrences 1
+       Keccak-256 at crates/cheatcodes/src/utils.rs:361: usage says 3, occurrences 1
+       Keccak-256 at crates/common/src/preprocessor/deps.rs:624: usage says 2, occurrences 1
+       Keccak-256 at crates/common/src/slot_identifier.rs:223: usage says 2, occurrences 1
+       Keccak-256 at crates/common/src/utils.rs:49: usage says 2, occurrences 1
+       Keccak-256 at crates/evm/core/src/fork/mod.rs:163: usage says 2, occurrences 1
+       Keccak-256 at crates/evm/evm/src/executors/invariant/error.rs:139: usage says 3, occurrences 1
+       Keccak-256 at crates/evm/evm/src/executors/mod.rs:334: usage says 3, occurrences 1
+       Keccak-256 at crates/evm/evm/src/executors/showmap.rs:403: usage says 2, occurrences 1
+       Keccak-256 at crates/evm/symbolic/src/runtime/address.rs:5: usage says 2, occurrences 1
+       Keccak-256 at crates/evm/symbolic/src/runtime/expr/expr.rs:2285: usage says 2, occurrences 1
+       Keccak-256 at crates/evm/symbolic/src/runtime/expr/mod.rs:45: usage says 3, occurrences 1
+       Keccak-256 at crates/forge/src/cmd/lsp/editor.rs:3: usage says 4, occurrences 1
+       Keccak-256 at crates/forge/src/runner.rs:5752: usage says 2, occurrences 1
+       Keccak-256 at crates/forge/src/symbolic_regression.rs:249: usage says 3, occurrences 1
+       Keccak-256 at crates/lint/src/sol/med/cheatcode_environment.rs:1031: usage says 2, occurrences 1
+       BLS12-381 at crates/debugger/src/node.rs:291: usage says 7, occurrences 1
+       BLS12-381 at crates/evm/core/src/precompiles.rs:34: usage says 14, occurrences 1
+       BLS12-381 at crates/evm/traces/src/decoder/mod.rs:28: usage says 9, occurrences 1
+       BLS12-381 at crates/evm/traces/src/decoder/precompiles.rs:7: usage says 16, occurrences 1
+       ECDSA at crates/cast/src/cmd/keychain.rs:153: usage says 5, occurrences 1
+       ECDSA at crates/cheatcodes/src/crypto.rs:526: usage says 3, occurrences 1
+       ECDSA at crates/common/src/tempo/auth.rs:115: usage says 2, occurrences 1
+FAIL librustzcash                 (46 inventory rows)
+       inventory_total 49 != 46 rows
+       by_quantum_status {'classical_weakness': 2, 'grover_reduced': 7, 'not_applicable': 21, 'vulnerable_shor': 19} != {'classical_weakness': 2, 'grover_reduced': 7, 'not_applicable': 18, 'vulnerable_shor': 19}
+       inventory_grouped counts 49 != 46 rows
+       pq_vulnerable_share 38.8 != 41.3
+       RIPEMD-160 at zcash_transparent/src/pczt/updater.rs:3: usage says 2, occurrences 1
+       RIPEMD-160 at zcash_transparent/src/util/hash160.rs:4: usage says 5, occurrences 1
+       Keccak-256 at components/eip681/src/parse.rs:15: usage says 2, occurrences 1
+       SHA-2 at zcash_transparent/src/pczt/updater.rs:98: usage says 2, occurrences 1
+       SHA-2 at zcash_transparent/src/util/hash160.rs:29: usage says 2, occurrences 1
+       SHA-2 at zcash_transparent/src/util/sha256d.rs:15: usage says 4, occurrences 1
+       BLS12-381 at zcash_proofs/src/prover.rs:3: usage says 2, occurrences 1
+       ECDSA at pczt/src/roles/signer/mod.rs:278: usage says 2, occurrences 1
+       ECDSA at zcash_client_backend/src/data_api.rs:3935: usage says 2, occurrences 1
+       ECDSA at zcash_client_backend/src/data_api/wallet.rs:1380: usage says 2, occurrences 1
+       ECDSA at zcash_client_backend/src/wallet.rs:1093: usage says 2, occurrences 1
+       ECDSA at zcash_client_sqlite/src/lib.rs:1951: usage says 4, occurrences 1
+       ECDSA at zcash_client_sqlite/src/wallet.rs:966: usage says 3, occurrences 1
+       ECDSA at zcash_client_sqlite/src/zewif.rs:274: usage says 5, occurrences 1
+       ECDSA at zcash_transparent/src/builder.rs:120: usage says 16, occurrences 1
+       ECDSA at zcash_transparent/src/keys.rs:15: usage says 9, occurrences 1
+       ECDSA at zcash_transparent/src/pczt/signer.rs:103: usage says 9, occurrences 1
+FAIL librustzcash-en              (46 inventory rows)
+       inventory_total 49 != 46 rows
+       by_quantum_status {'classical_weakness': 2, 'grover_reduced': 7, 'not_applicable': 21, 'vulnerable_shor': 19} != {'classical_weakness': 2, 'grover_reduced': 7, 'not_applicable': 18, 'vulnerable_shor': 19}
+       inventory_grouped counts 49 != 46 rows
+       pq_vulnerable_share 38.8 != 41.3
+       RIPEMD-160 at zcash_transparent/src/pczt/updater.rs:3: usage says 2, occurrences 1
+       RIPEMD-160 at zcash_transparent/src/util/hash160.rs:4: usage says 5, occurrences 1
+       Keccak-256 at components/eip681/src/parse.rs:15: usage says 2, occurrences 1
+       SHA-2 at zcash_transparent/src/pczt/updater.rs:98: usage says 2, occurrences 1
+       SHA-2 at zcash_transparent/src/util/hash160.rs:29: usage says 2, occurrences 1
+       SHA-2 at zcash_transparent/src/util/sha256d.rs:15: usage says 4, occurrences 1
+       BLS12-381 at zcash_proofs/src/prover.rs:3: usage says 2, occurrences 1
+       ECDSA at pczt/src/roles/signer/mod.rs:278: usage says 2, occurrences 1
+       ECDSA at zcash_client_backend/src/data_api.rs:3935: usage says 2, occurrences 1
+       ECDSA at zcash_client_backend/src/data_api/wallet.rs:1380: usage says 2, occurrences 1
+       ECDSA at zcash_client_backend/src/wallet.rs:1093: usage says 2, occurrences 1
+       ECDSA at zcash_client_sqlite/src/lib.rs:1951: usage says 4, occurrences 1
+       ECDSA at zcash_client_sqlite/src/wallet.rs:966: usage says 3, occurrences 1
+       ECDSA at zcash_client_sqlite/src/zewif.rs:274: usage says 5, occurrences 1
+       ECDSA at zcash_transparent/src/builder.rs:120: usage says 16, occurrences 1
+       ECDSA at zcash_transparent/src/keys.rs:15: usage says 9, occurrences 1
+       ECDSA at zcash_transparent/src/pczt/signer.rs:103: usage says 9, occurrences 1
+FAIL lido-core                    (69 inventory rows)
+       Keccak-256 at lib/oracle.ts:88: usage says 2, occurrences 1
+       Keccak-256 at lib/protocol/helpers/cmv2.ts:155: usage says 2, occurrences 1
+       BLS12-381 at lib/pdg.ts:8: usage says 2, occurrences 1
+       BLS12-381 at lib/protocol/helpers/vaults.ts:23: usage says 2, occurrences 1
+FAIL lightwalletd                 (8 inventory rows)
+       SHA-2 at common/darkside.go:6: usage says 4, occurrences 1
+       SHA-2 at parser/block_header.go:10: usage says 5, occurrences 1
+       SHA-2 at testtools/genblocks/main.go:28: usage says 2, occurrences 1
+       RSA at common/generatecerts.go:8: usage says 2, occurrences 1
+ok   lottery-demo                 (1 inventory rows, summary agrees)
+FAIL matrix-js-sdk                (6 inventory rows)
+       HKDF at src/utils/internal/deriveKeys.ts:29: usage says 2, occurrences 1
+       PBKDF2 at src/crypto-api/key-passphrase.ts:41: usage says 2, occurrences 1
+       ECDH at src/rendezvous/channels/MSC4108SecureChannel.ts:109: usage says 2, occurrences 1
+FAIL metamask-extension           (50 inventory rows)
+       PBKDF2 at app/scripts/lib/encryptor-factory.ts:33: usage says 4, occurrences 1
+       ECDSA at app/offscreen/hardware-wallets/ledger-dmk-handler.ts:753: usage says 2, occurrences 1
+       ECDSA at app/offscreen/hardware-wallets/ledger.ts:372: usage says 3, occurrences 1
+       ECDSA at shared/constants/offscreen-communication.ts:86: usage says 2, occurrences 1
+       ECDSA at ui/pages/confirmations/components/confirm/title/title.tsx:141: usage says 2, occurrences 1
+FAIL nitro                        (108 inventory rows)
+       inventory_total 109 != 108 rows
+       by_quantum_status {'grover_margin': 3, 'grover_reduced': 65, 'not_applicable': 28, 'vulnerable_shor': 13} != {'grover_margin': 3, 'grover_reduced': 65, 'not_applicable': 27, 'vulnerable_shor': 13}
+       inventory_grouped counts 109 != 108 rows
+       pq_vulnerable_share 11.9 != 12.0
+       Keccak-256 at arbnode/batch_poster.go:581: usage says 3, occurrences 1
+       Keccak-256 at arbnode/mel/messages.go:56: usage says 2, occurrences 1
+       Keccak-256 at arbos/l1pricing/l1pricing.go:560: usage says 4, occurrences 1
+       Keccak-256 at arbos/merkleAccumulator/merkleAccumulator.go:80: usage says 3, occurrences 1
+       Keccak-256 at arbos/storage/storage.go:357: usage says 3, occurrences 1
+       Keccak-256 at crates/arbutil/src/types.rs:34: usage says 2, occurrences 1
+       Keccak-256 at daprovider/data_streaming/signing.go:24: usage says 3, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-consensus/da-provider/src/lib.rs:74: usage says 2, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-consensus/mel/types/src/lib.rs:9: usage says 4, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-evm/src/build.rs:865: usage says 4, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-evm/src/evm.rs:867: usage says 6, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-precompiles/src/arbsys.rs:653: usage says 3, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-precompiles/src/nodeinterface.rs:314: usage says 4, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-primitives/src/signed_tx.rs:218: usage says 11, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-rpc/src/outbox_proof.rs:171: usage says 2, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-storage/src/layout.rs:59: usage says 4, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-storage/src/slot.rs:17: usage says 4, occurrences 1
+       Keccak-256 at nitro-reth/crates/arb-storage/src/state_ops.rs:31: usage says 2, occurrences 1
+       Keccak-256 at nitro-reth/crates/arbos/src/header.rs:116: usage says 4, occurrences 1
+       Keccak-256 at nitro-reth/crates/arbos/src/merkle_accumulator/mod.rs:88: usage says 4, occurrences 1
+       Keccak-256 at nitro-reth/crates/arbos/src/parse_l2.rs:229: usage says 3, occurrences 1
+       SHA-2 at cmd/nitro/init/init.go:8: usage says 2, occurrences 1
+       SHA-2 at crates/prover/src/utils.rs:15: usage says 3, occurrences 1
+       SHA-2 at daprovider/referenceda/certificate.go:7: usage says 2, occurrences 1
+       SHA-2 at daprovider/referenceda/reference_reader.go:8: usage says 2, occurrences 1
+       SHA-2 at daprovider/referenceda/storage.go:7: usage says 2, occurrences 1
+       SHA-2 at execution/gethexec/addressfilter/hash_store.go:7: usage says 3, occurrences 1
+       SHA-2 at util/blobs/blobs.go:8: usage says 2, occurrences 1
+       ECDSA at nitro-reth/crates/arb-precompiles/src/lib.rs:94: usage says 2, occurrences 1
+       ECDSA at nitro-reth/crates/arb-test-harness/src/messaging/signed_tx.rs:3: usage says 2, occurrences 1
+       Ed25519 at cmd/filtering-report/signer/signertest/pki.go:32: usage says 2, occurrences 1
+FAIL noir                         (39 inventory rows)
+       BLS12-381 at acvm-repo/acir_field/src/lib.rs:29: usage says 2, occurrences 1
+       BLS12-381 at compiler/noirc_frontend/src/hir/def_collector/dc_mod.rs:1574: usage says 2, occurrences 1
+       Pedersen commitment at noir_stdlib/docs/search-index.js:747: usage says 2, occurrences 1
+FAIL openpgpjs                    (65 inventory rows)
+       3DES at src/crypto/cipher/index.js:16: usage says 3, occurrences 1
+       Blowfish at src/crypto/cipher/index.js:14: usage says 3, occurrences 1
+       CAST5 at src/crypto/cipher/cast5.js:600: usage says 3, occurrences 1
+       CAST5 at src/crypto/cipher/index.js:13: usage says 3, occurrences 1
+       HKDF at src/crypto/hkdf.js:15: usage says 2, occurrences 1
+       HMAC at src/crypto/aes_kw.js:47: usage says 2, occurrences 1
+       CBC mode at src/crypto/cmac.js:87: usage says 2, occurrences 1
+       ML-DSA at src/crypto/public_key/post_quantum/signature/ml_dsa.js:30: usage says 6, occurrences 1
+       ML-KEM at src/crypto/public_key/post_quantum/kem/ml_kem.js:30: usage says 6, occurrences 1
+       ECDH at src/crypto/public_key/elliptic/ecdh.js:249: usage says 8, occurrences 1
+       ECDH at src/crypto/public_key/elliptic/ecdh_x.js:69: usage says 8, occurrences 1
+       ECDSA at src/crypto/public_key/elliptic/noble_curves.js:10: usage says 2, occurrences 1
+       ECDSA at src/crypto/public_key/elliptic/oid_curves.js:41: usage says 4, occurrences 1
+       RSA at src/crypto/public_key/rsa.js:162: usage says 4, occurrences 1
+       X25519 at src/crypto/crypto.js:67: usage says 12, occurrences 1
+       X25519 at src/crypto/public_key/elliptic/ecdh.js:92: usage says 2, occurrences 1
+       X25519 at src/crypto/public_key/elliptic/ecdh_x.js:16: usage says 21, occurrences 1
+       X25519 at src/crypto/public_key/elliptic/oid_curves.js:189: usage says 2, occurrences 1
+       X25519 at src/crypto/public_key/post_quantum/kem/ecc_kem.js:9: usage says 4, occurrences 1
+       X25519 at src/enums.d.ts:77: usage says 2, occurrences 1
+       X25519 at src/key/helper.js:425: usage says 4, occurrences 1
+       X25519 at src/packet/public_key_encrypted_session_key.js:27: usage says 3, occurrences 1
+FAIL rabby                        (66 inventory rows)
+       MD5 at scripts/fns.js:97: usage says 2, occurrences 1
+       HKDF at src/ui/utils/biometric.ts:70: usage says 2, occurrences 1
+       GCM mode at src/ui/utils/biometric.ts:64: usage says 4, occurrences 1
+       ECDSA at src/background/controller/wallet.ts:5012: usage says 2, occurrences 1
+       ECDSA at src/background/service/keyring/eth-gnosis-keyring.ts:723: usage says 2, occurrences 1
+       ECDSA at src/background/service/keyring/eth-ledger-keyring.ts:1403: usage says 2, occurrences 1
+       ECDSA at src/background/service/perps.ts:4: usage says 2, occurrences 1
+       ECDSA at src/ui/views/Approval/components/Actions/AssetOrder.tsx:205: usage says 4, occurrences 1
+       ECDSA at src/ui/views/Approval/components/SignTypedData.tsx:231: usage says 12, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TextActions/utils.ts:8: usage says 2, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/BatchPermit2.tsx:107: usage says 3, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/BatchSellNFT.tsx:124: usage says 6, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/BuyNFT.tsx:124: usage says 5, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/Permit.tsx:94: usage says 2, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/Permit2.tsx:94: usage says 3, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/SellNFT.tsx:122: usage says 6, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/SwapTokenOrder.tsx:193: usage says 3, occurrences 1
+       ECDSA at src/ui/views/Approval/components/TypedDataActions/utils.ts:12: usage says 7, occurrences 1
+       ECDSA at src/ui/views/DesktopPerps/hooks/usePerpsProState.ts:362: usage says 2, occurrences 1
+       ECDSA at src/ui/views/Perps/hooks/usePerpsState.ts:515: usage says 2, occurrences 1
+FAIL rage                         (43 inventory rows)
+       AES-256 at age/src/ssh.rs:11: usage says 5, occurrences 1
+       ChaCha20-Poly1305 at age-core/src/primitives.rs:7: usage says 6, occurrences 1
+       ChaCha20-Poly1305 at age/src/primitives/stream.rs:5: usage says 4, occurrences 1
+       HKDF at age-core/src/primitives.rs:10: usage says 4, occurrences 1
+       HKDF at age/src/native.rs:3: usage says 2, occurrences 1
+       HMAC at age/src/error.rs:422: usage says 2, occurrences 1
+       HMAC at age/src/format.rs:10: usage says 8, occurrences 1
+       HMAC at age/src/keys.rs:13: usage says 3, occurrences 1
+       HMAC at age/src/primitives.rs:4: usage says 7, occurrences 1
+       RSA at age/src/ssh.rs:346: usage says 5, occurrences 1
+       RSA at age/src/ssh/recipient.rs:42: usage says 3, occurrences 1
+       X25519 at age/src/cli_common/recipients.rs:5: usage says 2, occurrences 1
+       X25519 at age/src/identity.rs:10: usage says 3, occurrences 1
+       X25519 at age/src/ssh/identity.rs:103: usage says 2, occurrences 1
+       X25519 at age/src/ssh/identity.rs:20: usage says 3, occurrences 1
+       X25519 at age/src/ssh/recipient.rs:24: usage says 3, occurrences 1
+       X25519 at rage/build.rs:258: usage says 2, occurrences 1
+FAIL reown-appkit                 (66 inventory rows)
+       SHA-2 at apps/browser-extension/src/core/TronProvider.ts:24: usage says 2, occurrences 1
+       ECDSA at apps/browser-extension/src/core/transport.ts:23: usage says 2, occurrences 1
+       ECDSA at apps/laboratory/src/utils/EncodingUtils.ts:10: usage says 3, occurrences 1
+       ECDSA at apps/laboratory/src/utils/EncodingUtils.ts:11: usage says 3, occurrences 1
+       ECDSA at packages/experimental/src/smart-session/schema/index.ts:21: usage says 2, occurrences 1
+       ECDSA at packages/experimental/src/smart-session/schema/index.ts:21: usage says 2, occurrences 1
+FAIL rustcrypto-rsa               (11 inventory rows)
+       RSA at src/encoding.rs:68: usage says 2, occurrences 1
+       RSA at src/key.rs:338: usage says 2, occurrences 1
+       RSA at src/pkcs1v15/signing_key.rs:60: usage says 2, occurrences 1
+FAIL rustls                       (103 inventory rows)
+       AES-256 at rustls-aws-lc-rs/src/hpke.rs:68: usage says 9, occurrences 1
+       AES-256 at rustls-aws-lc-rs/src/tls12.rs:148: usage says 2, occurrences 1
+       AES-256 at rustls-aws-lc-rs/src/tls13.rs:66: usage says 3, occurrences 1
+       AES-256 at rustls-ring/src/tls12.rs:135: usage says 2, occurrences 1
+       AES-256 at rustls-ring/src/tls13.rs:61: usage says 3, occurrences 1
+       AES-256 at rustls/src/crypto/hpke.rs:216: usage says 2, occurrences 1
+       ChaCha20-Poly1305 at rustls-aws-lc-rs/src/hpke.rs:91: usage says 4, occurrences 1
+       ChaCha20-Poly1305 at rustls-aws-lc-rs/src/tls12.rs:58: usage says 6, occurrences 1
+       ChaCha20-Poly1305 at rustls-aws-lc-rs/src/tls13.rs:46: usage says 2, occurrences 1
+       ChaCha20-Poly1305 at rustls-ring/src/tls12.rs:44: usage says 6, occurrences 1
+       ChaCha20-Poly1305 at rustls-ring/src/tls13.rs:41: usage says 2, occurrences 1
+       ChaCha20-Poly1305 at rustls/src/manual/defaults.rs:5: usage says 3, occurrences 1
+       HKDF at rustls-aws-lc-rs/src/hpke.rs:15: usage says 10, occurrences 1
+       HKDF at rustls-aws-lc-rs/src/tls13.rs:4: usage says 15, occurrences 1
+       HKDF at rustls-ring/src/tls13.rs:5: usage says 15, occurrences 1
+       HKDF at rustls/src/crypto/tls13.rs:13: usage says 19, occurrences 1
+       HKDF at rustls/src/quic.rs:15: usage says 15, occurrences 1
+       HKDF at rustls/src/tls13/key_schedule.rs:10: usage says 50, occurrences 1
+       HKDF at rustls/src/tls13/mod.rs:58: usage says 3, occurrences 1
+       HMAC at rustls-aws-lc-rs/src/hmac.rs:7: usage says 12, occurrences 1
+       HMAC at rustls-aws-lc-rs/src/ticketer.rs:23: usage says 6, occurrences 1
+       HMAC at rustls-aws-lc-rs/src/tls13.rs:45: usage says 6, occurrences 1
+       HMAC at rustls-fuzzing-provider/src/lib.rs:206: usage says 8, occurrences 1
+       HMAC at rustls-ring/src/hmac.rs:7: usage says 12, occurrences 1
+       HMAC at rustls-ring/src/tls12.rs:45: usage says 6, occurrences 1
+       HMAC at rustls-ring/src/tls13.rs:40: usage says 6, occurrences 1
+       HMAC at rustls/src/crypto/tls12.rs:12: usage says 8, occurrences 1
+       HMAC at rustls/src/crypto/tls13.rs:13: usage says 8, occurrences 1
+       HMAC at rustls/src/tls13/key_schedule.rs:139: usage says 8, occurrences 1
+       AES-128 at rustls-aws-lc-rs/src/hpke.rs:52: usage says 9, occurrences 1
+       AES-128 at rustls-aws-lc-rs/src/lib.rs:225: usage says 3, occurrences 1
+       AES-128 at rustls-aws-lc-rs/src/tls12.rs:27: usage says 10, occurrences 1
+       AES-128 at rustls-aws-lc-rs/src/tls13.rs:23: usage says 7, occurrences 1
+       AES-128 at rustls-ring/src/lib.rs:165: usage says 3, occurrences 1
+       AES-128 at rustls-ring/src/tls12.rs:26: usage says 8, occurrences 1
+       AES-128 at rustls-ring/src/tls13.rs:26: usage says 6, occurrences 1
+       AES-128 at rustls/src/crypto/enums.rs:11: usage says 9, occurrences 1
+       AES-128 at rustls/src/crypto/hpke.rs:215: usage says 3, occurrences 1
+       ECDSA at rustls-aws-lc-rs/src/sign.rs:223: usage says 2, occurrences 1
+       ECDSA at rustls-aws-lc-rs/src/verify.rs:172: usage says 4, occurrences 1
+       ECDSA at rustls-ring/src/sign.rs:260: usage says 2, occurrences 1
+       ECDSA at rustls-ring/src/verify.rs:120: usage says 4, occurrences 1
+       Ed25519 at rustls-aws-lc-rs/src/lib.rs:58: usage says 2, occurrences 1
+       Ed25519 at rustls-aws-lc-rs/src/sign.rs:10: usage says 10, occurrences 1
+       Ed25519 at rustls-ring/src/lib.rs:34: usage says 2, occurrences 1
+       Ed25519 at rustls-ring/src/sign.rs:10: usage says 10, occurrences 1
+       RSA at bogo/src/main.rs:38: usage says 18, occurrences 1
+       RSA at rustls-aws-lc-rs/src/lib.rs:85: usage says 4, occurrences 1
+       RSA at rustls-aws-lc-rs/src/sign.rs:31: usage says 6, occurrences 1
+       RSA at rustls-aws-lc-rs/src/tls12.rs:139: usage says 3, occurrences 1
+       RSA at rustls-aws-lc-rs/src/verify.rs:27: usage says 36, occurrences 1
+       RSA at rustls-ring/src/lib.rs:60: usage says 4, occurrences 1
+       RSA at rustls-ring/src/sign.rs:27: usage says 6, occurrences 1
+       RSA at rustls-ring/src/tls12.rs:126: usage says 3, occurrences 1
+       RSA at rustls-ring/src/verify.rs:18: usage says 36, occurrences 1
+       RSA at rustls/src/crypto/enums.rs:379: usage says 6, occurrences 1
+       X25519 at rustls/src/manual/defaults.rs:14: usage says 3, occurrences 1
+FAIL safe-smart-account           (33 inventory rows)
+       inventory_total 42 != 33 rows
+       by_quantum_status {'grover_reduced': 8, 'not_applicable': 29, 'vulnerable_shor': 5} != {'grover_reduced': 8, 'not_applicable': 20, 'vulnerable_shor': 5}
+       inventory_grouped counts 42 != 33 rows
+       pq_vulnerable_share 11.9 != 15.2
+       Keccak-256 at src/tasks/local_verify.ts:39: usage says 2, occurrences 1
+       Keccak-256 at src/utils/proxies.ts:10: usage says 2, occurrences 1
+FAIL scroll                       (30 inventory rows)
+       inventory_total 32 != 30 rows
+       by_quantum_status {'grover_reduced': 13, 'not_applicable': 14, 'vulnerable_shor': 5} != {'grover_reduced': 13, 'not_applicable': 12, 'vulnerable_shor': 5}
+       inventory_grouped counts 32 != 30 rows
+       pq_vulnerable_share 15.6 != 16.7
+       Keccak-256 at bridge-history-api/internal/utils/utils.go:27: usage says 2, occurrences 1
+       SHA-2 at common/utils/blob.go:4: usage says 2, occurrences 1
+       STARK (FRI) at common/types/message/message.go:189: usage says 6, occurrences 1
+       STARK (FRI) at coordinator/internal/logic/submitproof/proof_receiver.go:234: usage says 4, occurrences 1
+       STARK (FRI) at coordinator/internal/logic/verifier/mock.go:24: usage says 2, occurrences 1
+       STARK (FRI) at crates/libzkp/src/proofs.rs:7: usage says 4, occurrences 1
+       STARK (FRI) at crates/prover-bin/src/deferral.rs:10: usage says 3, occurrences 1
+       STARK (FRI) at crates/prover-bin/src/prover.rs:15: usage says 2, occurrences 1
+       ECDSA at rollup/internal/controller/sender/kms_signer.go:64: usage says 3, occurrences 1
+FAIL signal-desktop               (22 inventory rows)
+       AES-256 at ts/Crypto.node.ts:437: usage says 2, occurrences 1
+       AES-256 at ts/context/Crypto.node.ts:46: usage says 2, occurrences 1
+       AES-256 at ts/types/Crypto.std.ts:12: usage says 3, occurrences 1
+       HMAC at sticker-creator/src/util/crypto.ts:90: usage says 2, occurrences 1
+       HMAC at ts/AttachmentCrypto.node.ts:387: usage says 2, occurrences 1
+       HMAC at ts/services/backups/index.preload.ts:845: usage says 2, occurrences 1
+       SHA-2 at app/OptionalResourceService.main.ts:76: usage says 2, occurrences 1
+       SHA-2 at scripts/generate-icu-types.mjs:281: usage says 2, occurrences 1
+       SHA-2 at ts/updater/util.node.ts:28: usage says 2, occurrences 1
+       CBC mode at sticker-creator/src/util/crypto.ts:82: usage says 2, occurrences 1
+ok   sigstore-js                  (10 inventory rows, summary agrees)
+FAIL trezor-firmware              (111 inventory rows)
+       Keccak-256 at crypto/nem.c:135: usage says 4, occurrences 1
+       ML-DSA at core/embed/sec/mldsa44/inc/sec/mldsa44.h:25: usage says 8, occurrences 1
+       ML-DSA at core/embed/sec/mldsa44/mldsa44.c:26: usage says 8, occurrences 1
+       ECDSA at crypto/curves.c:25: usage says 4, occurrences 1
+       ECDSA at crypto/ecdsa.c:38: usage says 9, occurrences 1
+       ECDSA at crypto/ecdsa.c:672: usage says 4, occurrences 1
+       ECDSA at crypto/ecdsa.h:98: usage says 2, occurrences 1
+       ECDSA at crypto/secp256k1.c:24: usage says 7, occurrences 1
+       ECDSA at crypto/zkp_bip340.c:30: usage says 3, occurrences 1
+       ECDSA at crypto/zkp_ecdsa.c:229: usage says 5, occurrences 1
+       ECDSA at crypto/zkp_ecdsa.c:29: usage says 22, occurrences 1
+       Ed25519 at core/embed/sec/image/image.c:190: usage says 3, occurrences 1
+       Ed25519 at crypto/bip32.c:477: usage says 7, occurrences 1
+       Ed25519 at crypto/ed25519-donna/ed25519-keccak.h:10: usage says 3, occurrences 1
+       Ed25519 at crypto/ed25519-donna/ed25519-sha3.h:10: usage says 3, occurrences 1
+       Ed25519 at crypto/ed25519-donna/ed25519.c:47: usage says 8, occurrences 1
+       Ed25519 at crypto/ed25519-donna/ed25519.h:12: usage says 7, occurrences 1
+       Ed25519 at crypto/nem.c:207: usage says 2, occurrences 1
+       Schnorr (BIP-340) at crypto/zkp_bip340.c:139: usage says 2, occurrences 1
+       X25519 at crypto/bip32.c:485: usage says 2, occurrences 1
+       X25519 at crypto/ed25519-donna/ed25519.c:274: usage says 2, occurrences 1
+       X25519 at crypto/ed25519-donna/ed25519.h:29: usage says 2, occurrences 1
+       X25519 at crypto/noise_kk1.c:187: usage says 11, occurrences 1
+       X25519 at crypto/noise_xxpsk3.c:138: usage says 2, occurrences 1
+FAIL trustwallet-wallet-core      (355 inventory rows)
+       RIPEMD-160 at rust/tw_hash/src/ripemd.rs:12: usage says 3, occurrences 1
+       HMAC at rust/tw_hash/src/hmac.rs:8: usage says 2, occurrences 1
+       HMAC at rust/tw_keypair/src/ecdsa/canonical.rs:25: usage says 3, occurrences 1
+       Keccak-256 at rust/tw_evm/src/address.rs:52: usage says 3, occurrences 1
+       Keccak-256 at rust/tw_evm/src/message/eip712/eip712_message.rs:99: usage says 6, occurrences 1
+       Keccak-256 at rust/tw_evm/src/modules/barz/core.rs:43: usage says 5, occurrences 1
+       Keccak-256 at rust/tw_evm/src/modules/biz.rs:50: usage says 6, occurrences 1
+       Keccak-256 at rust/tw_evm/src/transaction/user_operation.rs:46: usage says 5, occurrences 1
+       Keccak-256 at rust/tw_evm/src/transaction/user_operation_v0_7.rs:75: usage says 5, occurrences 1
+       Keccak-256 at rust/tw_hash/src/ffi.rs:168: usage says 2, occurrences 1
+       Keccak-256 at rust/tw_hash/src/hasher.rs:89: usage says 3, occurrences 1
+       Keccak-256 at rust/tw_hash/src/sha3.rs:8: usage says 4, occurrences 1
+       Keccak-256 at src/Harmony/Signer.cpp:531: usage says 2, occurrences 1
+       Keccak-256 at src/Hash.cpp:72: usage says 2, occurrences 1
+       Keccak-256 at src/Hash.h:67: usage says 3, occurrences 1
+       Keccak-256 at src/IoTeX/Signer.cpp:35: usage says 3, occurrences 1
+       Keccak-256 at src/Theta/Signer.cpp:63: usage says 2, occurrences 1
+       Keccak-256 at trezor-crypto/crypto/nem.c:134: usage says 4, occurrences 1
+       ECDSA at rust/chains/tw_binance/src/context.rs:7: usage says 3, occurrences 1
+       ECDSA at rust/chains/tw_binance/src/signature.rs:5: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_binance/src/signer.rs:15: usage says 3, occurrences 1
+       ECDSA at rust/chains/tw_bitcoin/src/babylon/spending_info.rs:55: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_bitcoin/src/modules/signer.rs:138: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_bitcoin/src/modules/tx_builder/public_keys.rs:39: usage says 5, occurrences 1
+       ECDSA at rust/chains/tw_bitcoin/src/modules/tx_builder/script_parser.rs:19: usage says 3, occurrences 1
+       ECDSA at rust/chains/tw_bitcoin/src/modules/tx_builder/utxo_protobuf.rs:93: usage says 4, occurrences 1
+       ECDSA at rust/chains/tw_bitcoincash/src/cash_address/mod.rs:40: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_greenfield/src/address.rs:12: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_greenfield/src/context.rs:8: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_greenfield/src/public_key.rs:9: usage says 3, occurrences 1
+       ECDSA at rust/chains/tw_greenfield/src/signature.rs:7: usage says 4, occurrences 1
+       ECDSA at rust/chains/tw_greenfield/src/signer.rs:12: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_internet_computer/src/signer.rs:8: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_native_evmos/src/context.rs:8: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_native_injective/src/context.rs:8: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_ripple/src/compiler.rs:13: usage says 3, occurrences 1
+       ECDSA at rust/chains/tw_ripple/src/modules/protobuf_builder.rs:25: usage says 4, occurrences 1
+       ECDSA at rust/chains/tw_ripple/src/modules/transaction_signer.rs:13: usage says 8, occurrences 1
+       ECDSA at rust/chains/tw_ripple/src/signer.rs:11: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_ripple/src/transaction/transaction_builder.rs:25: usage says 2, occurrences 1
+       ECDSA at rust/chains/tw_ronin/src/address.rs:10: usage says 2, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/address/taproot.rs:66: usage says 2, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/modules/keys_manager.rs:16: usage says 4, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/modules/sighash_verifier.rs:79: usage says 2, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/modules/tx_signer.rs:56: usage says 3, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/script/standard_script/conditions.rs:3: usage says 3, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/signature.rs:90: usage says 4, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/transaction/asset/ordinal.rs:91: usage says 2, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/transaction/standard_transaction/builder/output.rs:68: usage says 3, occurrences 1
+       ECDSA at rust/frameworks/tw_utxo/src/transaction/standard_transaction/builder/utxo.rs:143: usage says 3, occurrences 1
+       ECDSA at rust/tw_cosmos_sdk/src/context.rs:6: usage says 3, occurrences 1
+       ECDSA at rust/tw_cosmos_sdk/src/public_key/secp256k1.rs:8: usage says 6, occurrences 1
+       ECDSA at rust/tw_cosmos_sdk/src/signature/secp256k1.rs:6: usage says 2, occurrences 1
+       ECDSA at rust/tw_evm/src/address.rs:15: usage says 2, occurrences 1
+       ECDSA at rust/tw_evm/src/message/signature.rs:11: usage says 8, occurrences 1
+       ECDSA at rust/tw_evm/src/modules/compiler.rs:13: usage says 2, occurrences 1
+       ECDSA at rust/tw_evm/src/modules/message_signer.rs:17: usage says 4, occurrences 1
+       ECDSA at rust/tw_evm/src/modules/signer.rs:11: usage says 2, occurrences 1
+       ECDSA at rust/tw_evm/src/modules/tx_builder.rs:30: usage says 4, occurrences 1
+       ECDSA at rust/tw_evm/src/transaction/mod.rs:15: usage says 4, occurrences 1
+       ECDSA at rust/tw_evm/src/transaction/signature.rs:7: usage says 3, occurrences 1
+       ECDSA at rust/tw_evm/src/transaction/transaction_eip1559.rs:11: usage says 2, occurrences 1
+       ECDSA at rust/tw_evm/src/transaction/transaction_eip7702.rs:12: usage says 2, occurrences 1
+       ECDSA at rust/tw_evm/src/transaction/transaction_non_typed.rs:10: usage says 2, occurrences 1
+       ECDSA at rust/tw_keypair/src/ecdsa/nist256p1/public.rs:8: usage says 2, occurrences 1
+       ECDSA at rust/tw_keypair/src/ecdsa/secp256k1/keypair.rs:5: usage says 3, occurrences 1
+       ECDSA at rust/tw_keypair/src/ecdsa/secp256k1/private.rs:5: usage says 3, occurrences 1
+       ECDSA at rust/tw_keypair/src/ecdsa/secp256k1/public.rs:5: usage says 3, occurrences 1
+       ECDSA at rust/tw_keypair/src/schnorr/private.rs:7: usage says 5, occurrences 1
+       ECDSA at rust/tw_keypair/src/schnorr/public.rs:5: usage says 8, occurrences 1
+       ECDSA at rust/tw_keypair/src/schnorr/signature.rs:7: usage says 5, occurrences 1
+       ECDSA at rust/tw_keypair/src/tw/private.rs:5: usage says 4, occurrences 1
+       ECDSA at rust/tw_keypair/src/tw/public.rs:5: usage says 10, occurrences 1
+       ECDSA at src/FIO/Encryption.cpp:17: usage says 3, occurrences 1
+       ECDSA at src/PrivateKey.cpp:17: usage says 8, occurrences 1
+       ECDSA at src/PublicKey.cpp:14: usage says 6, occurrences 1
+       ECDSA at src/PublicKey.cpp:196: usage says 3, occurrences 1
+       ECDSA at trezor-crypto/crypto/bip32.c:41: usage says 2, occurrences 1
+       ECDSA at trezor-crypto/crypto/curves.c:26: usage says 4, occurrences 1
+       ECDSA at trezor-crypto/crypto/ecdsa.c:38: usage says 2, occurrences 1
+       ECDSA at trezor-crypto/crypto/ecdsa.c:668: usage says 4, occurrences 1
+       ECDSA at trezor-crypto/crypto/secp256k1.c:24: usage says 7, occurrences 1
+       ECDSA at trezor-crypto/include/TrezorCrypto/ecdsa.h:93: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_pactus/src/compiler.rs:67: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_pactus/src/transaction/mod.rs:8: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_solana/src/address.rs:35: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_solana/src/compiler.rs:89: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_solana/src/modules/message_builder.rs:42: usage says 8, occurrences 1
+       Ed25519 at rust/chains/tw_solana/src/modules/message_builder.rs:717: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_solana/src/modules/message_signer.rs:43: usage says 5, occurrences 1
+       Ed25519 at rust/chains/tw_solana/src/modules/tx_signer.rs:19: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_solana/src/modules/tx_signer.rs:33: usage says 3, occurrences 1
+       Ed25519 at rust/chains/tw_sui/src/address.rs:28: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_sui/src/compiler.rs:86: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_sui/src/modules/message_signer.rs:32: usage says 3, occurrences 1
+       Ed25519 at rust/chains/tw_sui/src/modules/tx_builder.rs:33: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_sui/src/modules/tx_signer.rs:31: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_sui/src/signature.rs:25: usage says 2, occurrences 1
+       Ed25519 at rust/chains/tw_ton/src/modules/personal_message_signer.rs:6: usage says 2, occurrences 1
+       Ed25519 at rust/frameworks/tw_substrate/src/entry.rs:64: usage says 2, occurrences 1
+       Ed25519 at rust/tw_keypair/src/tw/private.rs:79: usage says 3, occurrences 1
+       Ed25519 at rust/tw_keypair/src/tw/public.rs:21: usage says 4, occurrences 1
+       Ed25519 at src/PrivateKey.cpp:218: usage says 8, occurrences 1
+       Ed25519 at src/PublicKey.cpp:201: usage says 4, occurrences 1
+       Ed25519 at trezor-crypto/crypto/bip32.c:496: usage says 7, occurrences 1
+       Ed25519 at trezor-crypto/crypto/ed25519-donna/ed25519-donna-impl-base.c:34: usage says 3, occurrences 1
+       Ed25519 at trezor-crypto/crypto/ed25519-donna/ed25519.c:45: usage says 9, occurrences 1
+       Ed25519 at trezor-crypto/crypto/nem.c:206: usage says 2, occurrences 1
+       Ed25519 at trezor-crypto/include/TrezorCrypto/ed25519-donna/ed25519-blake2b.h:10: usage says 3, occurrences 1
+       Ed25519 at trezor-crypto/include/TrezorCrypto/ed25519-donna/ed25519-keccak.h:10: usage says 3, occurrences 1
+       Ed25519 at trezor-crypto/include/TrezorCrypto/ed25519-donna/ed25519-sha3.h:10: usage says 3, occurrences 1
+       Ed25519 at trezor-crypto/include/TrezorCrypto/ed25519.h:10: usage says 7, occurrences 1
+       X25519 at trezor-crypto/crypto/bip32.c:504: usage says 2, occurrences 1
+       X25519 at trezor-crypto/crypto/ed25519-donna/ed25519.c:256: usage says 2, occurrences 1
+       X25519 at trezor-crypto/include/TrezorCrypto/ed25519.h:27: usage says 2, occurrences 1
+ok   zcash-android-wallet-sdk     (14 inventory rows, summary agrees)
+ok   zcash-swift-wallet-sdk       (12 inventory rows, summary agrees)
+FAIL zebra                        (27 inventory rows)
+       inventory_total 28 != 27 rows
+       by_quantum_status {'grover_reduced': 3, 'not_applicable': 10, 'vulnerable_shor': 15} != {'grover_reduced': 3, 'not_applicable': 10, 'vulnerable_shor': 14}
+       inventory_grouped counts 28 != 27 rows
+       pq_vulnerable_share 53.6 != 51.9
+       SHA-2 at zebra-chain/src/serialization/sha256d.rs:17: usage says 3, occurrences 1
+       ECDSA at zebra-chain/src/transparent/keys.rs:8: usage says 2, occurrences 1
+       X25519 at zebra-chain/src/primitives.rs:18: usage says 1, occurrences 2
+       X25519 at zebra-chain/src/sprout/joinsplit.rs:11: usage says 3, occurrences 1
+FAIL zodl-android                 (5 inventory rows)
+       ChaCha20-Poly1305 at ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/addressbook/AddressBookEncryptor.kt:8: usage says 3, occurrences 1
+       ChaCha20-Poly1305 at ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/metadata/MetadaEncryptor.kt:10: usage says 3, occurrences 1
+
+35 bundles checked, 30 disagree with themselves

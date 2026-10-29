@@ -1,0 +1,57 @@
+======== fireblocks-mpc-lib  (fireblocks/mpc-lib @ 00ae08b7f1bd) scope: src include CMakeLists.txt
+  pruned tree holds 126 files
+{
+  "findings": {
+    "medium": 7
+}
+  bundle -> here/fireblocks-mpc-lib
+  scope check: archived 123 of 126, now 123 of 126  MATCH
+======== coinbase-cb-mpc  (coinbase/cb-mpc @ 0b716706f998) scope: src include include-internal CMakeLists.txt
+  pruned tree holds 181 files
+{
+  "findings": {
+    "medium": 9
+}
+  bundle -> here/coinbase-cb-mpc
+  scope check: archived 174 of 181, now 174 of 181  MATCH
+======== bitgo-mpc  (BitGo/BitGoJS @ 3c892fd6a388) scope: package.json modules/sdk-lib-mpc/src modules/sdk-lib-mpc/package.json modules/sdk-core/src modules/sdk-core/package.json
+  pruned tree holds 272 files
+{
+  "findings": {
+    "medium": 8
+}
+  bundle -> here/bitgo-mpc
+  scope check: archived 271 of 272, now 271 of 272  MATCH
+======== trustwallet-wallet-core  (trustwallet/wallet-core @ adf80f8bac98) scope: src include rust trezor-crypto
+  pruned tree holds 2104 files
+{
+  "findings": {
+    "medium": 12
+}
+  bundle -> here/trustwallet-wallet-core
+  scope check: archived 1695 of 2104, now 1695 of 2104  MATCH
+======== trezor-firmware  (trezor/trezor-firmware @ 72489948b3c4) scope: crypto core/embed/sec core/embed/projects/bootloader common/protob
+  pruned tree holds 464 files
+{
+  "findings": {
+    "medium": 11
+}
+  bundle -> here/trezor-firmware
+  scope check: archived 411 of 464, now 411 of 464  MATCH
+======== bitbox02-firmware  (BitBoxSwiss/bitbox02-firmware @ ae548ef4e40f) scope: src messages
+  pruned tree holds 771 files
+{
+  "findings": {
+    "medium": 9
+}
+  bundle -> here/bitbox02-firmware
+  scope check: archived 589 of 771, now 589 of 771  MATCH
+======== bitwarden-sdk  (bitwarden/sdk-internal @ 25b6c8c3860a) scope: crates Cargo.toml Cargo.lock package.json package-lock.json
+  pruned tree holds 2037 files
+{
+  "findings": {
+    "medium": 7
+}
+  bundle -> here/bitwarden-sdk
+  scope check: archived 1625 of 2037, now 1625 of 2037  MATCH
+======== done ========

@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"3299dddc-14ef-48e1-91a2-a864b03ce4d0\",\"content_sha256\":\"1e4739b3d4d55d63452098b66dfb2f91cf88d4f8816147acca500b5289e09586\",\"files_sha256\":{\"html\":\"95df811fa55caa4e007c547b97df5d207292fb11d5efd2438a41963071269d22\",\"json\":\"4f4c5acd65e68932b992b817db3d2c05958e73041474eb70d3d0a316233b8b00\",\"md\":\"3d0de1d9af975b50b9be88a3a98aeb9ffa32f5e8569d4ea562032670d1340afc\",\"pdf\":\"48add37d3f53fa1bd7e367440b6284f14404b538a087c339fefa5599f0fd3376\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"ru\",\"organization\":\"QSI\",\"project\":\"bitwarden-sdk @ 25b6c8c3860a\",\"report_id\":\"844172fa-4cb6-4fd0-baae-2c511467375a\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T18:19:41+00:00\",\"version\":1}",
+  "signature": "1JEQo39Ec0aouE+c6FY75StlXBMki8yTCSXo8oGNQIqj1/FT1QEFYuIXKL5kVZtXL5lE2ZZHbWzQNmsCt7AiBA=="
+}

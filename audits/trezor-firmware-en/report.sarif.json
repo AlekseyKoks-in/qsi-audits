@@ -1,0 +1,284 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "CHAINMAP-QV",
+              "name": "ChainmapQv",
+              "shortDescription": {
+                "text": "Transaction signing for 11 chain(s) relies on elliptic-curve signatures"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "blockchain",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "The wallet's message definitions cover Bitcoin, Cardano, EOS, Ethereum and EVM chains, Monero, NEM, Solana, Stellar, Tezos, Tron, XRP Ledger. These chains authorize transactions with ECDSA, Ed25519, Schnorr (BIP-340), which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a…"
+              },
+              "help": {
+                "text": "The wallet's message definitions cover Bitcoin, Cardano, EOS, Ethereum and EVM chains, Monero, NEM, Solana, Stellar, Tezos, Tron, XRP Ledger. These chains authorize transactions with ECDSA, Ed25519, Schnorr (BIP-340), which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Chains are recognized from the names of the message definitions (.proto files and packages); the schemes are the chains' documented account signatures, not an analysis of the wallet's signing code."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Quantum-vulnerable Ed25519: firmware and boot verification (root of trust) (2 file(s))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "4 reference(s) to Ed25519 across 2 file(s), e.g. core/embed/sec/image/boot_header.c:81. Role, judged from paths, function names and nearby code: firmware and boot verification (root of trust). These public keys are fixed in the bootloader or the device: with a cryptographically relevant quantum computer (CRQC) an attacker forges a firmware signature, and replacing the keys needs a bootloader update in the field. Plan a hybrid firmware signature (the classical one plus ML-DSA or SLH-DSA, both required) and the path to ship the new keys in a bootloader update. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "4 reference(s) to Ed25519 across 2 file(s), e.g. core/embed/sec/image/boot_header.c:81. Role, judged from paths, function names and nearby code: firmware and boot verification (root of trust). These public keys are fixed in the bootloader or the device: with a cryptographically relevant quantum computer (CRQC) an attacker forges a firmware signature, and replacing the keys needs a bootloader update in the field. Plan a hybrid firmware signature (the classical one plus ML-DSA or SLH-DSA, both required) and the path to ship the new keys in a bootloader update. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CHAINMAP-QV",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Transaction signing for 11 chain(s) relies on elliptic-curve signatures"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06105",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: firmware and boot verification (root of trust) (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ede492d68e8699e95192c4d206c7540b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06095",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable X25519: channel key exchange (TLS, Noise, handshakes) (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06097",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06098",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06101",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06104",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06096",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDH: role not determined (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06099",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable X25519: role not determined (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06100",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (8 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06102",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: role not determined (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06103",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/trezor-firmware-en @ 72489948b3c4/a7f00b63-4f9d-4441-8ea3-3c925595335f"
+      },
+      "properties": {
+        "qsiContentSha256": "5f237bcd3b3f212cf552c39f811bb7feec6f84750e4b79b7a4f3eaafac0ba77d",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-10-28T18:57:13.801311+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "72489948b3c44a37598de9da658be28e4fabb4ae",
+          "repositoryUri": "https://github.com/trezor/trezor-firmware"
+        }
+      ]
+    }
+  ]
+}

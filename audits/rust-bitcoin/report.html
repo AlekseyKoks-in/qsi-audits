@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security &amp; Post-Quantum Readiness Audit Report — rust-bitcoin @ f127ba2ae14e</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "rust-bitcoin @ f127ba2ae14e · Security \26  Post-Quantum Readiness Audit Report"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 12081a441ae1"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "This report presents automated and documented analysis results for the stated scope. It is not a legal opinion…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Security &amp; Post-Quantum Readiness Audit Report</h1>
+    <div class="project">rust-bitcoin @ f127ba2ae14e · rust-bitcoin — public repository (passive review)</div>
+  </div>
+  <table>
+    <tr><td>Organization</td><td>QSI</td></tr>
+    <tr><td>Report date</td><td>2026-10-28 19:28 UTC</td></tr>
+    <tr><td>Report version</td><td>1</td></tr>
+    <tr><td>Audit run</td><td>7e9e1d8a-3dd1-4920-820b-36f24fab9a7b · Document audit · 2026-10-28 19:28 UTC</td></tr>
+    <tr><td>Analyzer engine</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Risk profile</td><td>Crypto exchange, custodian or wallet</td></tr>
+    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">12081a441ae15f877685ae1f00258d13f31914bf44da4ccc081d5a16ec586eb9</td></tr>
+<tr><td>Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#executive_summary">Executive summary</a></li>
+    <li><a href="#scope">Scope and boundaries</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#assets">Assets examined and not examined</a></li>
+    <li><a href="#architecture">Architecture overview</a></li>
+    <li><a href="#posture">Overall security posture</a></li>
+    <li><a href="#summary_by_severity">Findings by severity</a></li>
+    <li><a href="#details">Detailed findings</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+    <li><a href="#pq">Post-quantum assessment</a></li>
+    <li><a href="#limitations">Limitations and assumptions</a></li>
+    <li><a href="#plan">Remediation plan</a></li>
+    <li><a href="#priorities">Priorities for 30, 60 and 90 days</a></li>
+    <li><a href="#retests">Verification after remediation</a></li>
+    <li><a href="#tools">Tools used</a></li>
+    <li><a href="#references">Sources and normative documents</a></li>
+    <li><a href="#appendices">Appendices</a></li>
+  </ol>
+  <p class="note">This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Executive summary</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">4</div><div class="l">Findings in total</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Critical</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">High</span></div></div>
+    <div class="kpi"><div class="v">2</div><div class="l"><span class="sev sev-medium">Medium</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-low">Low</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Classification</th><th>Count</th></tr>
+<tr><td>Confirmed technical vulnerability</td><td>0</td></tr><tr><td>Known vulnerable component</td><td>0</td></tr><tr><td>Confirmed configuration error</td><td>0</td></tr><tr><td>Potential cryptographic risk</td><td>0</td></tr><tr><td>Long-term post-quantum risk</td><td>2</td></tr><tr><td>Improvement recommendation</td><td>1</td></tr><tr><td>Insufficient data</td><td>1</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Severity</th><th>Detailed findings</th><th>Priority score</th></tr>
+<tr><td>QSI-2026-06108</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: transaction and message signing (7 file(s)) <span class="tag pre">preliminary</span></td><td>35.6</td></tr><tr><td>QSI-2026-06109</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: role not determined (4 file(s)) <span class="tag pre">preliminary</span></td><td>34.2</td></tr><tr><td>QSI-2026-06110</td><td><span class="sev sev-info">Info</span></td><td>No post-quantum capable cryptographic library detected <span class="tag pre">preliminary</span></td><td>13.3</td></tr><tr><td>QSI-2026-06111</td><td><span class="sev sev-info">Info</span></td><td>bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)</td><td>11.8</td></tr>  </table>
+  <p class="note">Mosca&#39;s inequality (x + y &gt; z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
+<p class="note"><strong>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.</strong> Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Scope and boundaries</h2>
+  <p><strong>Mode:</strong> Document audit</p>
+<p><strong>Repository:</strong> <a href="https://github.com/rust-bitcoin/rust-bitcoin">https://github.com/rust-bitcoin/rust-bitcoin</a> @ <span class="small">f127ba2ae14e0447606bfee5d5783e623c423809</span> — evidence links open the lines at this commit.</p>  <h3>Supplied inputs</h3>
+  <p>125 files, 2038425 bytes in total, 18 redaction(s); the per-file SHA-256 list is in appendix C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Methodology</h2>
+  <p>The audit was performed by the QSI engine 1.2.0. Each analyzer emits facts (rule, parameters, evidence); finding texts are generated from the rule catalog. Methodology sources are listed under "Sources and normative documents".</p>
+  <p>Prioritization uses an explainable weighted model (severity, exploitability, exposure, confidentiality/integrity/availability impact weighted by the "Crypto exchange, custodian or wallet" profile, asset criticality, urgency, ease of remediation) with a confidence multiplier. CVSS v3.1 is applied only to technical vulnerabilities with a defined vector. Long-term quantum risks use Mosca's inequality; their severity is capped at Medium and they are never presented as exploitable vulnerabilities.</p>
+  <p>Finding classes: confirmed technical vulnerability; known vulnerable component (a dependency version named in an advisory; whether the affected code is reachable is assessed separately, and a component confirmed by review becomes a vulnerability); confirmed configuration error; potential cryptographic risk; long-term post-quantum risk; improvement recommendation; insufficient data. Heuristic findings are marked preliminary; analyst decisions are shown next to the findings.</p>
+  <h3>Coverage of checks</h3>
+  <table class="data"><tr><th>Area</th><th>Status</th><th>Count</th><th>Examples</th></tr>
+<tr><td>dependencies</td><td>checked</td><td>15</td><td class="small">Cargo.toml: 0 dependencies parsed (0 pinned); addresses/Cargo.toml: 10 dependencies parsed (0 pinned); base58/Cargo.toml: 3 dependencies parsed (0 pinned)</td></tr><tr><td>source_code</td><td>checked</td><td>110</td><td class="small">addresses/src/error.rs: 314 lines scanned with 16 rule patterns and 122 registry patterns; addresses/src/lib.rs: 1608 lines scanned with 16 rule patterns and 122 registry patterns; 291 lines in #[cfg(test)] modules ignored; addresses/src/witness_program.rs: 246 lines scanned with 16 rule patterns and 122 registry patterns; 48 lines in #[cfg(test)] modules ignored</td></tr><tr><td>secrets</td><td>checked</td><td>9</td><td class="small">bitcoin/src/address.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); bitcoin/src/taproot/mod.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); chacha20_poly1305/src/chacha20/avx2.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)</td></tr><tr><td>osv_advisories</td><td>checked</td><td>1</td><td class="small">39 pinned packages queried at OSV.dev; 1 affected</td></tr>  </table>
+  <p class="note">Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Assets examined and not examined</h2>
+  <p><strong>Supplied inputs:</strong> 126 (input files: C)</p>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Architecture overview</h2>
+  <p>Static review of the source tree rust-bitcoin at f127ba2ae14e0447606bfee5d5783e623c423809. 125 files analysed; of 250 files, 96 are test, fuzzing, benchmark or example code and were left out, 29 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Overall security posture</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">100</div><div class="l">Indicative posture index (0–100)</div></div>
+    <div class="kpi"><div class="v">39.3%</div><div class="l">Quantum-vulnerable share of inventory</div></div>
+    <div class="kpi"><div class="v">28</div><div class="l">Cryptographic inventory</div></div>
+  </div>
+  <p class="note">Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Findings by severity</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Critical</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">High</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Medium</span></td><td style="width:8%">2</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Low</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Info</span></td><td style="width:8%">2</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Detailed findings</th><th>Classification</th><th>Severity</th><th>Confidence</th></tr>
+<tr><td>QSI-2026-06108</td><td>Quantum-vulnerable ECDSA: transaction and message signing (7 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-06109</td><td>Quantum-vulnerable ECDSA: role not determined (4 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-06110</td><td>No post-quantum capable cryptographic library detected</td><td class="small">Insufficient data</td><td><span class="sev sev-info">Info</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-06111</td><td>bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)</td><td class="small">Improvement recommendation</td><td><span class="sev sev-info">Info</span></td><td>Low</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Detailed findings</h2>
+  <article class="finding" id="QSI-2026-06108">
+    <header><span class="fid">QSI-2026-06108 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+    <h3>Quantum-vulnerable ECDSA: transaction and message signing (7 file(s))</h3>
+    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>119 reference(s) to ECDSA across 7 file(s), e.g. bitcoin/src/crypto/key.rs:12. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>source-code:ECDSA:transaction_signing</dd>
+      <dt>Data source</dt><dd>bitcoin/src/crypto/key.rs</dd>
+      <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
+      <dt>Analyzer</dt><dd>source_code 1.2.0 · 2026-10-28 19:28 UTC</dd>
+      <dt>Priority score</dt><dd>35.6 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → migration would finish too late under this scenario</dd>    </dl>
+    <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
+    <h4>Reproduction steps</h4><pre>Open bitcoin/src/crypto/key.rs:12 and inspect the quoted lines; the evidence lists further files.</pre>
+    <h4 id="ev-QSI-2026-06108">Evidence</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/key.rs#L12">bitcoin/src/crypto/key.rs</a> · line 12 · SHA-256 c93e86cfaeebca80… · File 2df23abc0dabfff5…</div>
+      <pre>   11 | #[rustfmt::skip]                // Keep public re-exports separate.
+   12 | pub use secp256k1::{constants, Parity};
+   13 | #[cfg(feature = &#34;serde&#34;)]</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L56">bitcoin/src/crypto/sighash.rs</a> · line 56 · SHA-256 2822beecffec9cda… · File 158eb7428c169de7…</div>
+      <pre>   55 |     ($ty:ident) =&gt; {
+   56 |         impl From&lt;$ty&gt; for secp256k1::Message {
+   57 |             fn from(hash: $ty) -&gt; secp256k1::Message {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L57">bitcoin/src/crypto/sighash.rs</a> · line 57 · SHA-256 a44e4b3f206b39e7… · File 158eb7428c169de7…</div>
+      <pre>   56 |         impl From&lt;$ty&gt; for secp256k1::Message {
+   57 |             fn from(hash: $ty) -&gt; secp256k1::Message {
+   58 |                 secp256k1::Message::from_digest(hash.to_byte_array())</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L58">bitcoin/src/crypto/sighash.rs</a> · line 58 · SHA-256 25b0f81a19b2e975… · File 158eb7428c169de7…</div>
+      <pre>   57 |             fn from(hash: $ty) -&gt; secp256k1::Message {
+   58 |                 secp256k1::Message::from_digest(hash.to_byte_array())
+   59 |             }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/lib.rs#L75">bitcoin/src/lib.rs</a> · line 75 · SHA-256 ab3c659f323740e3… · File f3e202f3d9b18ced…</div>
+      <pre>   74 | pub extern crate primitives;
+   75 | pub extern crate secp256k1;
+   76 | pub extern crate taproot_primitives;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L28">bitcoin/src/sign_message.rs</a> · line 28 · SHA-256 bf4fee8211e6567a… · File 0490974e5abf48fc…</div>
+      <pre>   27 |     use hashes::sha256d;
+   28 |     use secp256k1::ecdsa::{RecoverableSignature, RecoveryId};
+   29 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L63">bitcoin/src/sign_message.rs</a> · line 63 · SHA-256 e5103bd3d5618003… · File 0490974e5abf48fc…</div>
+      <pre>   62 |         /// Constructs a new `MessageSignature` from a fixed-length array.
+   63 |         pub fn from_byte_array(bytes: &amp;[u8; 65]) -&gt; Result&lt;Self, secp256k1::Error&gt; {
+   64 |             // We just check this here so we can safely subtract further.</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L66">bitcoin/src/sign_message.rs</a> · line 66 · SHA-256 daffb40573316105… · File 0490974e5abf48fc…</div>
+      <pre>   65 |             if bytes[0] &lt; 27 {
+   66 |                 return Err(secp256k1::Error::InvalidRecoveryId);
+   67 |             };</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/taproot/mod.rs#L158">bitcoin/src/taproot/mod.rs</a> · line 158 · SHA-256 926dc0b90be8780f… · File 3f7348eb8976129c…</div>
+      <pre>  157 |     /// The sign final output pubkey as per BIP 341.
+  158 |     output_key_parity: secp256k1::Parity,
+  159 |     /// The tweaked output key.</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/taproot/mod.rs#L227">bitcoin/src/taproot/mod.rs</a> · line 227 · SHA-256 121c27c3766b1a10… · File 3f7348eb8976129c…</div>
+      <pre>  226 |     /// Returns the parity of the output key. See also [`TaprootSpendInfo::output_key`].
+  227 |     pub fn output_key_parity(&amp;self) -&gt; secp256k1::Parity { self.output_key_parity }
+  228 | </pre>
+    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.</p>
+    <h4>Recommendation</h4><p>Follow each chain&#39;s post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.</p>
+    <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-06109">
+    <header><span class="fid">QSI-2026-06109 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+    <h3>Quantum-vulnerable ECDSA: role not determined (4 file(s))</h3>
+    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>16 reference(s) to ECDSA across 4 file(s), e.g. crypto/src/ecdsa.rs:47. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>source-code:ECDSA:general</dd>
+      <dt>Data source</dt><dd>crypto/src/ecdsa.rs</dd>
+      <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
+      <dt>Analyzer</dt><dd>source_code 1.2.0 · 2026-10-28 19:28 UTC</dd>
+      <dt>Priority score</dt><dd>34.2 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → migration would finish too late under this scenario</dd>    </dl>
+    <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
+    <h4>Reproduction steps</h4><pre>Open crypto/src/ecdsa.rs:47 and inspect the quoted lines; the evidence lists further files.</pre>
+    <h4 id="ev-QSI-2026-06109">Evidence</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L47">crypto/src/ecdsa.rs</a> · line 47 · SHA-256 53c2d800e17a34a8… · File 15b5b705b602cfcc…</div>
+      <pre>   46 |     /// The underlying ECDSA Signature.
+   47 |     pub signature: secp256k1::ecdsa::Signature,
+   48 |     /// The corresponding hash type.</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L55">crypto/src/ecdsa.rs</a> · line 55 · SHA-256 e94855bdb686f74e… · File 15b5b705b602cfcc…</div>
+      <pre>   54 |     #[inline]
+   55 |     pub fn sighash_all(signature: secp256k1::ecdsa::Signature) -&gt; Self {
+   56 |         Self { signature, sighash_type: EcdsaSighashType::All }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L72">crypto/src/ecdsa.rs</a> · line 72 · SHA-256 2b73d6e3eb649b2a… · File 15b5b705b602cfcc…</div>
+      <pre>   71 |         let sighash_type = EcdsaSighashType::from_consensus(u32::from(*sighash_type));
+   72 |         let signature = secp256k1::ecdsa::Signature::from_der(sig)
+   73 |             .map_err(|_| InvalidDerError)</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/lib.rs#L25">crypto/src/lib.rs</a> · line 25 · SHA-256 578776bfe3591a6c… · File 63a929ca613ec617…</div>
+      <pre>   24 | 
+   25 | pub extern crate secp256k1;
+   26 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L41">crypto/src/taproot.rs</a> · line 41 · SHA-256 213d77204e7e7c82… · File 9d693dad36273608…</div>
+      <pre>   40 |     /// The underlying schnorr signature.
+   41 |     pub signature: secp256k1::schnorr::Signature,
+   42 |     /// The corresponding hash type.</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L57">crypto/src/taproot.rs</a> · line 57 · SHA-256 0cac400fbdf512ea… · File 9d693dad36273608…</div>
+      <pre>   56 |             // default type
+   57 |             let signature = secp256k1::schnorr::Signature::from_byte_array(signature);
+   58 |             Ok(Self { signature, sighash_type: TapSighashType::Default })</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L68">crypto/src/taproot.rs</a> · line 68 · SHA-256 28bd3991c242414a… · File 9d693dad36273608…</div>
+      <pre>   67 |             }
+   68 |             let signature = secp256k1::schnorr::Signature::from_byte_array(*signature);
+   69 |             Ok(Self { signature, sighash_type })</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L26">taproot_primitives/src/lib.rs</a> · line 26 · SHA-256 d6300f17aee73f0b… · File 0efe9ae04fe70035…</div>
+      <pre>   25 | pub extern crate hashes;
+   26 | pub extern crate secp256k1;
+   27 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L45">taproot_primitives/src/lib.rs</a> · line 45 · SHA-256 0a8766074a73453f… · File 0efe9ae04fe70035…</div>
+      <pre>   44 | use hashes::{hash_newtype, sha256, sha256t, HashEngine as _};
+   45 | use secp256k1::Scalar;
+   46 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L428">taproot_primitives/src/lib.rs</a> · line 428 · SHA-256 0a6bcc9eaac7c6f5… · File 0efe9ae04fe70035…</div>
+      <pre>  427 | 
+  428 |         let secp_sk = secp256k1::SecretKey::from_secret_bytes(self.to_secret_bytes())
+  429 |             .expect(&#34;secret key parsed from serialized secret key&#34;);</pre>
+    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.</p>
+    <h4>Recommendation</h4><p>Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.</p>
+    <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-06110">
+    <header><span class="fid">QSI-2026-06110 · DEP-NO-PQC-LIBRARY</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>No post-quantum capable cryptographic library detected</h3>
+    <p><span class="tag">Insufficient data</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
+    <p>Across 15 dependency manifests, QSI found crypto libraries (secp256k1) but none from its PQC-capable list.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependencies</dd>
+      <dt>Data source</dt><dd>dependency manifests</dd>
+      <dt>Detection method</dt><dd>Dependency name matching.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 19:28 UTC</dd>
+      <dt>Priority score</dt><dd>13.3 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.</p>
+    <h4>Reproduction steps</h4><pre>Review the dependency manifests listed in the evidence.</pre>
+    <h4 id="ev-QSI-2026-06110">Evidence</h4>
+      <div class="ev-meta">dependency · Cargo.toml, addresses/Cargo.toml, base58/Cargo.toml, bip158/Cargo.toml, bitcoin/Cargo.toml, bitcoin/embedded/Cargo.lock, bitcoin/embedded/Cargo.toml, chacha20_poly1305/Cargo.toml, crypto/Cargo.toml, hashes/Cargo.toml, hashes/embedded/Cargo.lock, hashes/embedded/Cargo.toml, key_expression/Cargo.toml, primitives/Cargo.toml, taproot_primitives/Cargo.toml · SHA-256 287cb2008737c0fe…</div>
+      <pre>Crypto libraries: secp256k1</pre>
+    <h4>Limitations of the check</h4><p class="small">Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.</p>
+    <h4>Recommendation</h4><p>Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).</p>
+    <h4>Retest procedure</h4><p>Re-scan after upgrades.</p>
+<p class="small muted">FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM); FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)</p>  </article>
+  <article class="finding" id="QSI-2026-06111">
+    <header><span class="fid">QSI-2026-06111 · DEP-ADVISORY-INFORMATIONAL</span><span><span class="sev sev-info">Info</span></span></header>
+    <h3>bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)</h3>
+    <p><span class="tag">Improvement recommendation</span><span class="tag">Confidence: Low</span></p>
+    <p>OSV.dev lists RUSTSEC-2026-0110 for crates.io package bare-metal at version 0.2.5 as informational (unmaintained): bare-metal is deprecated. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>dependency:crates.io/bare-metal@0.2.5</dd>
+      <dt>Data source</dt><dd>OSV.dev</dd>
+      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
+      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 19:28 UTC</dd>
+      <dt>Priority score</dt><dd>11.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+    </dl>
+    <h4>Potential impact</h4><p>No known vulnerability. Future security fixes may not be released.</p>
+    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0110</pre>
+    <h4 id="ev-QSI-2026-06111">Evidence</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0110">OSV.dev RUSTSEC-2026-0110</a> · manifest · SHA-256 1377cbc63847011c…</div>
+      <pre>{&#34;id&#34;: &#34;RUSTSEC-2026-0110&#34;, &#34;aliases&#34;: [], &#34;modified&#34;: &#34;2026-04-24T09:45:08.136572Z&#34;, &#34;summary&#34;: &#34;bare-metal is deprecated&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: false}</pre>
+    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time.</p>
+    <h4>Recommendation</h4><p>Plan a move to a maintained alternative, or record the decision to keep it.</p>
+    <h4>Retest procedure</h4><p>Re-run the dependency scan after the change.</p>
+<p class="small muted">OSV advisory RUSTSEC-2026-0110</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Evidence</h2>
+  <table class="data"><tr><th>ID</th><th>Type</th><th>Data source</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/key.rs#L12">bitcoin/src/crypto/key.rs</a> (line 12)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c93e86cfaeebca80fbf060ce376c25680c18aa75440b4253ffcd7a15a541f9d7</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L56">bitcoin/src/crypto/sighash.rs</a> (line 56)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2822beecffec9cdaf16cd469a9b483c5f199eabb1a5112d154fb772fefc005fb</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L57">bitcoin/src/crypto/sighash.rs</a> (line 57)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a44e4b3f206b39e7373c5f48d480336f2629628dd7187b405314a5cc90da0c27</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L58">bitcoin/src/crypto/sighash.rs</a> (line 58)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">25b0f81a19b2e9754b744b8d912d6f6de45858b0c60259a7cd27242a84ba2c73</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/lib.rs#L75">bitcoin/src/lib.rs</a> (line 75)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ab3c659f323740e32e371c569c0f6ac7f7ff86e25ad6ec754da5d97e126b5819</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L28">bitcoin/src/sign_message.rs</a> (line 28)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bf4fee8211e6567a4e0a3a3739c0f3c72177fc774e7f45999f64f4cdf35bd455</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L63">bitcoin/src/sign_message.rs</a> (line 63)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e5103bd3d5618003bfda34ed283bcfa72b5be925a6f77e78e667ea6b0d7acdc4</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L66">bitcoin/src/sign_message.rs</a> (line 66)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">daffb40573316105a3cbc121be9b542304e26171369749552d75f17aa3ad69ff</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/taproot/mod.rs#L158">bitcoin/src/taproot/mod.rs</a> (line 158)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">926dc0b90be8780f6937e1eb75cde088ab4d94afd69b315a36af1ed49d65f334</td></tr><tr><td><a href="#ev-QSI-2026-06108">QSI-2026-06108</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/taproot/mod.rs#L227">bitcoin/src/taproot/mod.rs</a> (line 227)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">121c27c3766b1a1005c6e0c4561a685abe1f71f5b1d7c43abb5d96d8e81004d4</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L47">crypto/src/ecdsa.rs</a> (line 47)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">53c2d800e17a34a85eb1592b1e52421478bf84dc95d463f9736abce9ab62b6f5</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L55">crypto/src/ecdsa.rs</a> (line 55)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e94855bdb686f74e258a508f15131f1590dbac165bd7028d1cf0730771b56a61</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L72">crypto/src/ecdsa.rs</a> (line 72)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2b73d6e3eb649b2a23602e482ce344e339f148dd5f49125fea88808d2268ee43</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/lib.rs#L25">crypto/src/lib.rs</a> (line 25)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">578776bfe3591a6c57fcfeb143276ee3d3b8df7a8a565dc7d054a3f0b1f368f8</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L41">crypto/src/taproot.rs</a> (line 41)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">213d77204e7e7c822521a037fd89f4e9af3fd172cf63282da563512204b11de4</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L57">crypto/src/taproot.rs</a> (line 57)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0cac400fbdf512ea35e6d74060c50a98fc42199dd184dee36f1f92376f161cf4</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L68">crypto/src/taproot.rs</a> (line 68)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">28bd3991c242414afc776fa4fc386bf16462ff632f79400412ceebcf8f0a8f95</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L26">taproot_primitives/src/lib.rs</a> (line 26)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d6300f17aee73f0bd828c9fdcb6ce3ddae6425ddcdfa65f65c3681722964a7bc</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L45">taproot_primitives/src/lib.rs</a> (line 45)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a8766074a73453f2b6314ff9afd59a6df105eda4b2c7153ec595c3107e68936</td></tr><tr><td><a href="#ev-QSI-2026-06109">QSI-2026-06109</a></td><td>file_excerpt</td><td><a href="https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L428">taproot_primitives/src/lib.rs</a> (line 428)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a6bcc9eaac7c6f524ec18cb59f4f7a67f61f2bcb70890f81c37a61fddefe56b</td></tr><tr><td><a href="#ev-QSI-2026-06110">QSI-2026-06110</a></td><td>dependency</td><td>Cargo.toml, addresses/Cargo.toml, base58/Cargo.toml, bip158/Cargo.toml, bitcoin/Cargo.toml, bitcoin/embedded/Cargo.lock, bitcoin/embedded/Cargo.toml, chacha20_poly1305/Cargo.toml, crypto/Cargo.toml, hashes/Cargo.toml, hashes/embedded/Cargo.lock, hashes/embedded/Cargo.toml, key_expression/Cargo.toml, primitives/Cargo.toml, taproot_primitives/Cargo.toml</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">287cb2008737c0fe03b7729193c577d77a128b5d87065e91d8e4624b7d0f14ce</td></tr><tr><td><a href="#ev-QSI-2026-06111">QSI-2026-06111</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/RUSTSEC-2026-0110">OSV.dev RUSTSEC-2026-0110</a> (manifest)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1377cbc63847011c54324d486e3a7bae12ccbda6c1c9a981451db3532783f3c2</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Post-quantum assessment</h2>
+  <table class="data">
+    <tr><th></th><th>Key establishment (x = how long data must stay confidential; harvest now, decrypt later)</th><th>Signatures (x = how long signatures/keys must stay trusted)</th></tr>
+    <tr><th>Data/key lifetime x</th><td>10</td><td>10</td></tr>
+    <tr><th>Migration time y</th><td>5</td><td>5</td></tr>
+    <tr><th>Assumed years to CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → migration would finish too late under this scenario</td><td>7 → migration would finish too late under this scenario</td></tr>
+  </table>
+<p class="note">Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client&#39;s figures; with the client&#39;s actual lifetimes the verdict can change.</p>  <h3>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography</h3>
+  <p><strong>Next step:</strong> Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p>
+  <p class="note">Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests.</p>
+  <h3>What the quantum-vulnerable algorithms do</h3>
+  <table class="data"><tr><th>Role</th><th>Algorithms (files)</th><th>ID</th><th>First step</th></tr>
+<tr><td><strong>transaction and message signing</strong></td><td>ECDSA (7)</td><td class="small"><a href="#QSI-2026-06108">QSI-2026-06108</a></td><td class="small">Follow each chain&#39;s post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them</td></tr><tr><td><strong>role not determined</strong></td><td>ECDSA (4)</td><td class="small"><a href="#QSI-2026-06109">QSI-2026-06109</a></td><td class="small">Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility</td></tr>  </table>
+  <p class="note">Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today.</p>
+  <p class="note">z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
+  <table class="data"><tr><th>Quantum status</th><th>Count</th></tr>
+<tr><td>weak classically</td><td>1</td></tr><tr><td>reduced margin (Grover), approved</td><td>10</td></tr><tr><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>1</td></tr><tr><td>n/a</td><td>5</td></tr><tr><td>vulnerable (Shor)</td><td>11</td></tr>  </table>
+  <p><strong>Detailed findings:</strong> QSI-2026-06108, QSI-2026-06109</p>
+  <h3>PQC readiness questionnaire</h3>
+<p class="muted">No readiness questionnaire was completed for this project.</p>  <h3>Quantum algorithms relevant to this inventory</h3>
+  <table class="data"><tr><th>Quantum algorithm</th><th>Effect</th><th>Inventoried algorithms (rows)</th><th>What it means for this audit</th></tr>
+<tr><td>Shor&#39;s algorithm — elliptic-curve discrete logarithms<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>breaks</td>
+    <td>ECDSA (11)</td><td class="small">Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.</td></tr><tr><td>Grover&#39;s algorithm — key search and preimages<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
+    <td>ChaCha20-Poly1305 (2), HKDF (1), HMAC (6), Poly1305 (1), RIPEMD-160 (1), SHA-2 (1)</td><td class="small">Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.</td></tr><tr><td>Brassard–Høyer–Tapp — collision search<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
+    <td>RIPEMD-160 (1), SHA-2 (1)</td><td class="small">256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.</td></tr>  </table>
+  <p class="note">Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Limitations and assumptions</h2>
+  <ul>
+    <li>This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</li>
+    <li>z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>Remediation plan</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-06108 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <h3>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
+      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
+      <dt>Complexity</dt><dd>medium</dd>
+<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
+      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
+      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-06109 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <h3>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
+      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
+      <dt>Complexity</dt><dd>medium</dd>
+<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
+      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
+      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-06108 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
+      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
+      <dt>Complexity</dt><dd>high</dd>
+<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
+      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
+      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-06109 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
+      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
+      <dt>Complexity</dt><dd>high</dd>
+<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
+      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
+      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-06111 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Replace bare-metal with a maintained alternative or record why it stays.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
+      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
+      <dt>Complexity</dt><dd>medium</dd>
+<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Code changes may be required.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
+      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
+      <dt>Closure criteria</dt><dd>bare-metal replaced, or the decision recorded.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Priorities for 30, 60 and 90 days</h2>
+  <h3>30 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td colspan="4" class="muted">None</td></tr>  </table>
+  <h3>60 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td colspan="4" class="muted">None</td></tr>  </table>
+  <h3>90 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td>P3</td><td>QSI-2026-06108</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P3</td><td>QSI-2026-06109</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-06108</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr><tr><td>P4</td><td>QSI-2026-06109</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr><tr><td>P4</td><td>QSI-2026-06111</td><td>Replace bare-metal with a maintained alternative or record why it stays.</td><td class="small">root-cause fix</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Verification after remediation</h2>
+  <table class="data"><tr><th>ID</th><th>Retest procedure</th></tr>
+<tr><td>QSI-2026-06108</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-06109</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-06110</td><td>Re-scan after upgrades.</td></tr><tr><td>QSI-2026-06111</td><td>Re-run the dependency scan after the change.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Tools used</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Sources and normative documents</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <a href="https://eprint.iacr.org/2017/847">https://eprint.iacr.org/2017/847</a> <span class="muted">(peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)</span></li><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <a href="https://cr.yp.to/hash/collisioncost-20090823.pdf">https://cr.yp.to/hash/collisioncost-20090823.pdf</a> <span class="muted">(paper dated 2009-08-23)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN &#39;98; arXiv:quant-ph/9705002) — Springer / arXiv. <a href="https://arxiv.org/abs/quant-ph/9705002">https://arxiv.org/abs/quant-ph/9705002</a> <span class="muted">(peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>OSV advisory RUSTSEC-2026-0110 — OSV.dev. <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0110">https://osv.dev/vulnerability/RUSTSEC-2026-0110</a> <span class="muted">(modified 2026-04-24T09:45:08.136572Z)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Appendices</h2>
+  <h3>A. Cryptographic inventory</h3>
+  <table class="data"><tr><th>Algorithm</th><th>Parameter</th><th>Location</th><th>Quantum status</th><th>Classical status</th></tr>
+<tr><td>RIPEMD-160</td><td>RIPEMD-160</td><td class="small">hashes/src/lib.rs:126</td><td>weak classically</td><td>legacy</td></tr><tr><td>ChaCha20-Poly1305</td><td></td><td class="small">chacha20_poly1305/src/chacha20.rs</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>ChaCha20-Poly1305</td><td>ChaCha20-Poly1305</td><td class="small">chacha20_poly1305/src/lib.rs:37</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>HKDF</td><td></td><td class="small">hashes/src/lib.rs:115</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>HMAC</td><td></td><td class="small">hashes/src/hkdf/mod.rs:13</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>HMAC</td><td></td><td class="small">hashes/src/hmac/mod.rs:85</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>HMAC</td><td></td><td class="small">hashes/src/lib.rs:116</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>HMAC</td><td>HMAC-SHA-256</td><td class="small">hashes/src/lib.rs:156</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>HMAC</td><td>HMAC-SHA-512</td><td class="small">hashes/src/lib.rs:159</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>HMAC</td><td></td><td class="small">key_expression/src/bip32.rs:17</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>Poly1305</td><td></td><td class="small">chacha20_poly1305/src/poly1305.rs</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>SHA-2</td><td></td><td class="small">hashes/src/sha256/crypto/arm_sha2.rs</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>0.33.0</td><td class="small">bitcoin/Cargo.toml</td><td>n/a</td><td>acceptable</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>0.33.0</td><td class="small">bitcoin/embedded/Cargo.lock</td><td>n/a</td><td>acceptable</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>0.33.0</td><td class="small">crypto/Cargo.toml</td><td>n/a</td><td>acceptable</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>0.33.0</td><td class="small">key_expression/Cargo.toml</td><td>n/a</td><td>acceptable</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>0.33.0</td><td class="small">taproot_primitives/Cargo.toml</td><td>n/a</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">bitcoin/src/crypto/key.rs:12</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">bitcoin/src/crypto/sighash.rs:56</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">bitcoin/src/lib.rs:75</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">bitcoin/src/sign_message.rs:28</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">bitcoin/src/taproot/mod.rs:158</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">crypto/src/ecdsa.rs:47</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">crypto/src/key.rs:26</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">crypto/src/lib.rs:25</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">crypto/src/taproot.rs:41</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">key_expression/src/bip32.rs:172</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">taproot_primitives/src/lib.rs:26</td><td>vulnerable (Shor)</td><td>acceptable</td></tr>  </table>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 12081a441ae15f877685ae1f00258d13f31914bf44da4ccc081d5a16ec586eb9</p>
+  <h3>C. Input files</h3>
+  <table class="data"><tr><th>File</th><th>Size</th><th>SHA-256</th><th>Redactions</th></tr>
+<tr><td>Cargo.toml</td><td>5373</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e8bf29d651f5c6ee4c292a3402614f8ece9c767dedcdd4a2ed6b0d3eb88d7cf5</td><td>0</td></tr><tr><td>addresses/Cargo.toml</td><td>2013</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3bd9f423606d7458fd2c255dc59307d5dc61ec7626888299c28f518f8b3aa697</td><td>0</td></tr><tr><td>addresses/src/error.rs</td><td>9710</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ad67a11a320f725c1dbb103da0b1f1e7ee3d633bbc9f4f293f9f0feabc7c4073</td><td>0</td></tr><tr><td>addresses/src/lib.rs</td><td>66824</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ece00974e73f9eb54b931fcbf26fa63fa348dbd560546cfa2871b2a7843e161a</td><td>0</td></tr><tr><td>addresses/src/witness_program.rs</td><td>9228</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b8e1d242636be622dad37f6d2f272cf4a822c5f96d93ac162d85e01b9ed8e36b</td><td>0</td></tr><tr><td>base58/Cargo.toml</td><td>1012</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d837e0d7392179c2fc996700cfdfb8d9e8cd6f4d48aa6b3304b3002da3b12dae</td><td>0</td></tr><tr><td>base58/src/error.rs</td><td>11149</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8a76188cc5f1a0eb9102502f0810740f0525a03d32fc66339daf5e43c6794e67</td><td>0</td></tr><tr><td>base58/src/ext_array_vec.rs</td><td>3330</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">355f940b6980a81af463032e9d6aecf9302afbd2620d8c2ba661ed8c9d3c81d7</td><td>0</td></tr><tr><td>base58/src/lib.rs</td><td>25702</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">353388dadd79e5167b35c162b29f675a7dd06ec83219176331565ee2fad7089e</td><td>0</td></tr><tr><td>bip158/Cargo.toml</td><td>1469</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">eef49bdb47c4934084695b3a06fa29c3efea18157076e8057a88c20d28277e88</td><td>0</td></tr><tr><td>bip158/src/filter.rs</td><td>21845</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">533e291cc898fdb4dd255e34546ba30061e31d760761a21244c69db249d0939e</td><td>0</td></tr><tr><td>bip158/src/hash_types.rs</td><td>4682</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">76677bcf066aa24651c3df1816adde3c74cd59d0439db21d9910a16f598252c5</td><td>0</td></tr><tr><td>bip158/src/lib.rs</td><td>2709</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">db46c5a6966e9ead82c845b73aba2f13063b848b449ba453626844c46e8d496b</td><td>0</td></tr><tr><td>bitcoin/Cargo.toml</td><td>5122</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fb516481d3eaf37d66f8eb5abace88706504f4ec910d6514578169a704a32425</td><td>0</td></tr><tr><td>bitcoin/embedded/Cargo.lock</td><td>11126</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f5b10832abfbfd8f6f1f216747d473de2ce9af006a2d936704da806a38588653</td><td>0</td></tr><tr><td>bitcoin/embedded/Cargo.toml</td><td>897</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">955fd6ff50f61fe797ebd2ae6bc5efa4730df4c06126b007096b69462963b20c</td><td>0</td></tr><tr><td>bitcoin/embedded/src/main.rs</td><td>1484</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">29075044edc0e8c72c5ad9358290cd41a1605ce414801230988da4784bc920c6</td><td>0</td></tr><tr><td>bitcoin/src/address.rs</td><td>16897</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">66b5446df5096dbe6074784b497c0f9441f510171d8283ffc7472330f7b42cc1</td><td>1</td></tr><tr><td>bitcoin/src/bip158.rs</td><td>23408</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">817e7965f048d514fbb746cb670c65114554e026feaf7195a1a5eb2fd2c5660f</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/block.rs</td><td>29237</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f42a9c15f772b4adc72ad67b8b6eabd69a1224c6f415b8a6fcbc24a139868c40</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/constants.rs</td><td>18990</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fdf80b8a5eb0ae04fc82a101d7e63d52f460ca44084a1b4fec92e8939407d593</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/mod.rs</td><td>3063</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f75808cb3a5704725756c7d9f627126ef2681ce2437bdef860f81358dff8c366</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/opcodes.rs</td><td>41605</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f07eafaf98fec6cedaffd7a8dea2b12ee45cced5be59059561010ef05f413eae</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/borrowed.rs</td><td>23945</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c6645b184ed13c98bf834a4319890f0f6f74287f9c3d09f97f3f1750259ff0cc</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/builder.rs</td><td>6878</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">07e5a99622d45b1d598c69b68b20f061cce279e95156c742cb1852b57f0217d9</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/instruction.rs</td><td>9661</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6910dc6b75e179e849878c31d1281837965171e0efe4aba3030209040c5e0e32</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/mod.rs</td><td>10542</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d7c50a4889de1ecd5d3115338fb32d8b8ca736ff6f93f66d4341fc969c8b2add</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/owned.rs</td><td>13066</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6ec49656f2f33d57d406547612f93cce95a50c91e7e58bf7efe22346754efb1a</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/push_bytes.rs</td><td>4959</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4e88c38df3ecffb89d8411f5c38b92dfb12131da86270985d6266434b848c4f3</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/script_code.rs</td><td>1709</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bef241d9842a104af8e2a14258548218fe4b4dbd9d00b82d8e753b65499e46ac</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/script/witness_version.rs</td><td>3013</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6f45000dd8ec46d35414a37851dbff91a30b9a00d74ecf3d6b15d981ef74cb92</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/transaction.rs</td><td>88053</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a78e7f37d17c90fc07e2cf7f597bf7cb91c0b71f26433bbecc717be9e904901d</td><td>0</td></tr><tr><td>bitcoin/src/blockdata/witness.rs</td><td>20870</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7516177bb6effefd27a72bb84659268863556982c8766d2455d8b54f39fa71f4</td><td>0</td></tr><tr><td>bitcoin/src/consensus_validation.rs</td><td>9904</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c4c2ed94e5ad3b4791094b5393352365b6b555d88e72262552271c69f6c03103</td><td>0</td></tr><tr><td>bitcoin/src/crypto/key.rs</td><td>4794</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2df23abc0dabfff5cbcb1676eb835acc4c1b63ac4bd5c70b626c0f4a6118bfd3</td><td>0</td></tr><tr><td>bitcoin/src/crypto/mod.rs</td><td>591</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d7ede9e715b6de219217605542a6463c5f6c578b22fff8599b19da391fb25ed7</td><td>0</td></tr><tr><td>bitcoin/src/crypto/sighash.rs</td><td>92044</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">158eb7428c169de7f0617db2c82357e2a53afb669e2e06ceae5f008c3b9b168d</td><td>0</td></tr><tr><td>bitcoin/src/hash_types.rs</td><td>3522</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">183a8cd9c6ce6db95f21f4d35bcc75d877a8b39d62988db191a5ae7e0098a83e</td><td>0</td></tr><tr><td>bitcoin/src/internal_macros.rs</td><td>2993</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">60544e3927dfb93b1341adb74356758a10d4f5c38a9fad5eaff01e495b91a891</td><td>0</td></tr><tr><td>bitcoin/src/lib.rs</td><td>11363</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f3e202f3d9b18ced89e127f6868f1abf5d83c2011071ed894f989e9252520049</td><td>0</td></tr><tr><td>bitcoin/src/merkle_tree/mod.rs</td><td>957</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ada941367ce3c12fd025317af125e479348e83a59824b9dd00fb751a2e63aca9</td><td>0</td></tr><tr><td>bitcoin/src/network/mod.rs</td><td>3952</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e61971081da1dd960c196e5bed715f1da47d9a75d48887fa8a37e76f1a5ad049</td><td>0</td></tr><tr><td>bitcoin/src/network/params.rs</td><td>12479</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3f116d15831a48fc87cc5b697436b647881aa3321aa24fc82fba434f713ef9bd</td><td>0</td></tr><tr><td>bitcoin/src/policy.rs</td><td>2601</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bc7ef91de58e80e0e2108e24f22fc370cdd8e7567c2df7894df0e4d2df37f9eb</td><td>0</td></tr><tr><td>bitcoin/src/pow.rs</td><td>36399</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">533f346853985f4ad5927e4ee099e499af04a7b11260df45176f228858914261</td><td>0</td></tr><tr><td>bitcoin/src/sign_message.rs</td><td>14034</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0490974e5abf48fc440341969267e3054cf9d211ea053a04796c84318ea8afa3</td><td>0</td></tr><tr><td>bitcoin/src/taproot/merkle_branch/borrowed.rs</td><td>10201</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0f05c94d9865395c46f806cc3cf44121d8938dceb86a607f6dfe78bc95c26119</td><td>0</td></tr><tr><td>bitcoin/src/taproot/merkle_branch/buf.rs</td><td>9107</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">57e6dbc78d2a1d9c385073aa3d19790303cf519610b93fa83001a76e156a6ff7</td><td>0</td></tr><tr><td>bitcoin/src/taproot/merkle_branch/mod.rs</td><td>2638</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7e2a80098101843975f596a5e547257dbe199180b41cc3745a68e110c032a124</td><td>0</td></tr><tr><td>bitcoin/src/taproot/mod.rs</td><td>84505</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3f7348eb8976129c7bca923770d3738026d7892d021593ed394364cefa7540ea</td><td>2</td></tr><tr><td>chacha20_poly1305/Cargo.toml</td><td>774</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9c7b67669ae343d2f19ced0fc8d9c9472604332ca51bb143cb780f3bc48da854</td><td>0</td></tr><tr><td>chacha20_poly1305/src/chacha20/avx2.rs</td><td>13746</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">be640d2626aa4ee2466b626cc78129a150ab39f800dc1932d51e1b23de7339a7</td><td>1</td></tr><tr><td>chacha20_poly1305/src/chacha20/neon.rs</td><td>19982</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2c1dfdf324d4e110955ae984b39dc6d86514479e646f2f3922085c2c38d92b91</td><td>2</td></tr><tr><td>chacha20_poly1305/src/chacha20/sse2.rs</td><td>12404</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">43b1abcbcb85df34a9d6b5996fbc7b0dc24375c5579b3c311d05606fd16d77ba</td><td>1</td></tr><tr><td>chacha20_poly1305/src/chacha20.rs</td><td>30677</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c21cbe5b9fe807284d2cd3e65787725e439f36412ad7a0aee96f66e9595527e3</td><td>8</td></tr><tr><td>chacha20_poly1305/src/lib.rs</td><td>8259</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">285c8255e6dde2bbb615b0257e12d449db4b340c7a88bf1726c1390642e984c0</td><td>1</td></tr><tr><td>chacha20_poly1305/src/poly1305.rs</td><td>9985</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">acf7d6f169d5277c7799915ae6ed1d90b3389edabeae8b6cfbb00012266f7c0f</td><td>1</td></tr><tr><td>crypto/Cargo.toml</td><td>2128</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0b2764683d818c132a6e54a72f770e52488650c2d2181ceaf6dc508d50f0b85d</td><td>0</td></tr><tr><td>crypto/src/ecdsa.rs</td><td>16680</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">15b5b705b602cfccdc101dc668c9f1e1dac3a98e9b0e5b02417b3b306f59b79b</td><td>0</td></tr><tr><td>crypto/src/key.rs</td><td>97439</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e6ec0c249f979301ec4102cd05e208bfd3697f48de38c7ebea85808d17721713</td><td>1</td></tr><tr><td>crypto/src/lib.rs</td><td>1936</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">63a929ca613ec617c03b443f48baa2eddfd00c66967ed0eee58ff13c3ac08510</td><td>0</td></tr><tr><td>crypto/src/sighash.rs</td><td>19617</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">631667280ad0756069ca6eac0a3874dd2805a241d84a199ffd29be748cb142e6</td><td>0</td></tr><tr><td>crypto/src/taproot.rs</td><td>21754</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9d693dad362736086d00a7d8f8d36592f7629ba6560ffcd550f680929e6f9150</td><td>0</td></tr><tr><td>hashes/Cargo.toml</td><td>1823</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3a81da5cf718beec623aa609e35511acc888b8d30cb893ec0cc26d0fbac62981</td><td>0</td></tr><tr><td>hashes/embedded/Cargo.lock</td><td>7256</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">23e5c2173fbc8554c909edfd4e64a761591a562d4dd41204a6b4b324ccdc9de9</td><td>0</td></tr><tr><td>hashes/embedded/Cargo.toml</td><td>1089</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ec0da86761d2af6227cbed506de3928556db677078ed3bb444dfcec346a0d7ab</td><td>0</td></tr><tr><td>hashes/embedded/src/main.rs</td><td>1926</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">465f12a2e8ba2641f8c18543eaa885a0dac2a4fa1101e6a4a40a641af0579144</td><td>0</td></tr><tr><td>hashes/src/cmp.rs</td><td>4405</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5e2856045a9b18bf176b3aae12336b23fa1aba73ed36e3e61aaf3fdeda34af46</td><td>0</td></tr><tr><td>hashes/src/hash160/mod.rs</td><td>4414</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0b141e2362abcd7bfad058a8f834c2a67bd8c800e2fcd03c788192c53d013f20</td><td>0</td></tr><tr><td>hashes/src/hkdf/mod.rs</td><td>10569</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bef046b7d422595aea0727a1922b9439574c8787822d4d27ab85dffe872fb019</td><td>0</td></tr><tr><td>hashes/src/hmac/mod.rs</td><td>12860</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f9d6d941441682bb8d915c6d94fb1a0d0702256f9a884111ec6e09b19dd6b72d</td><td>0</td></tr><tr><td>hashes/src/internal_macros.rs</td><td>8424</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b694e44d79ac571e25ded16cb3f0c9f6a0f87883c3e2aacea06a147ceebac3a8</td><td>0</td></tr><tr><td>hashes/src/lib.rs</td><td>10878</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8330d3eeac3ff37774830e8a51512dc1fe57cc9f6a433ed2e5dfaa1eedecc36e</td><td>0</td></tr><tr><td>hashes/src/macros.rs</td><td>26846</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7225b9d7f80cdf831807107e4f44afcdc0e1613ac46706ec5d8a174d67dea9a3</td><td>0</td></tr><tr><td>hashes/src/muhash/mod.rs</td><td>1523</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">795e2a9dcf7ec438125eeea2ed2dd7f6a18a42dd2eade559499f66a839833979</td><td>0</td></tr><tr><td>hashes/src/ripemd160/crypto.rs</td><td>19744</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7e593401bf1d5ea7dd3d80f020a493366e9cdbaa1cbc5d14f89bbfcbdbe3b51e</td><td>0</td></tr><tr><td>hashes/src/ripemd160/mod.rs</td><td>2501</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e112a478fc820538876841cb112f8b8a0be1d1eb7a6aab0f51ce4637ae4602a9</td><td>0</td></tr><tr><td>hashes/src/sha1/crypto.rs</td><td>1988</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f857f488d2056e7316e3b89db35e8d3cb1204835a3d10adb89b3cf1561433e3a</td><td>0</td></tr><tr><td>hashes/src/sha1/mod.rs</td><td>2243</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">15abaf4b771584a185692fb8dc6dce03d9ca2ec93adf302038dc9a01951d7962</td><td>0</td></tr><tr><td>hashes/src/sha256/crypto/arm_sha2.rs</td><td>38500</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">761196ba342de96d9b1ac73968e11711aa65e9e561cc55eac139d749df2b57dc</td><td>0</td></tr><tr><td>hashes/src/sha256/crypto/avx2.rs</td><td>22485</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0c0bc9ec1a651d3699c6af599445576fde79a72dcc7e2f59ab168bfa50b56fc4</td><td>0</td></tr><tr><td>hashes/src/sha256/crypto/mod.rs</td><td>42919</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8cf411df2a92cb7f7f4abe7b45ba1941dbb491756f37f7ed0c695c7528f92255</td><td>0</td></tr><tr><td>hashes/src/sha256/crypto/sse41.rs</td><td>21527</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cc91be883a03721e7a4dcabef558d0e2c06cea9244a4fe7188cfacee9e41afc4</td><td>0</td></tr><tr><td>hashes/src/sha256/crypto/x86_shani.rs</td><td>50170</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e84adbbc18c6e86ebe24f42405367a2b134460b3d7f66bb5db3abedba5f692c5</td><td>0</td></tr><tr><td>hashes/src/sha256/mod.rs</td><td>13393</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7d5adb9d3dbe4beecc65f5853b2557e0b6a5a881d1e865040e364091aa2834f3</td><td>0</td></tr><tr><td>hashes/src/sha256d/mod.rs</td><td>5511</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8cb6e7fff0a47c6dab928bddfddcd06983bb1560d9f43440ba1c838740ec3ba4</td><td>0</td></tr><tr><td>hashes/src/sha256t/mod.rs</td><td>9208</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f0cd394d6e9d5c8e30b22b574dde121690bfb31fcf4d28e72c1ba6e4541673c8</td><td>0</td></tr><tr><td>hashes/src/sha384/mod.rs</td><td>5768</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3dc8e584db2516a8b3f7773ede3af349210d3a12f905bdb935b16101883eed73</td><td>0</td></tr><tr><td>hashes/src/sha3_256/mod.rs</td><td>7406</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4131dcdc92f67cf5d4b1d872e58a7d878c9a6cfd0278e61ce94fda0d636c7596</td><td>0</td></tr><tr><td>hashes/src/sha512/crypto.rs</td><td>11306</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a5b91b2dfe9ccadfdd7f08b2445222f5600d555bef9461326a2bc0e602e1d064</td><td>0</td></tr><tr><td>hashes/src/sha512/mod.rs</td><td>3685</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9db14d804dcd9fd3597fc8b4a521bbabfcf32072157944bf54b0669357ece0cc</td><td>0</td></tr><tr><td>hashes/src/sha512_256/mod.rs</td><td>5859</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fde2f1e7eeb3df2a7f7dd50514f0e985ca9233a3bffe4ded58ce1603b34870aa</td><td>0</td></tr><tr><td>hashes/src/siphash24/mod.rs</td><td>12498</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3263477af8a6419895b6990cd709dd008d379d036e63eb220d27a23c4f51c87b</td><td>0</td></tr><tr><td>key_expression/Cargo.toml</td><td>2024</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">910599a1bfa3917a3d5f398e4c9e3640ceab90b1cefffe7752d449079c6140a3</td><td>0</td></tr><tr><td>key_expression/src/bip32.rs</td><td>92318</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">01e732b72bc832c6cd2ba7d7ba45432371a357e78231dbe4acb0578aaf148c13</td><td>0</td></tr><tr><td>key_expression/src/lib.rs</td><td>852</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e8867d4c237adc41047ad01c18b3d99478d39275788f1f284930eaed4000b18d</td><td>0</td></tr><tr><td>primitives/Cargo.toml</td><td>2178</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ff4824a9b6e2ec38e04fe1416ba8aa862f49572cc7c8793555c89e394d8eb1d2</td><td>0</td></tr><tr><td>primitives/src/block.rs</td><td>98351</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">15f208bbb3aaf3c5170559ab41c538f6573036e3c07a58878cfd0e9fe224e6d9</td><td>0</td></tr><tr><td>primitives/src/hash_types/block_hash.rs</td><td>3181</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">33350e38b3fcd4907c3453dca56397f4138952f9cbeaa1571737631af4c95700</td><td>0</td></tr><tr><td>primitives/src/hash_types/generic.rs</td><td>2089</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f8733916256247da37a781222f0f80fbf0b86c45f0c51faf9c58766aa296e0eb</td><td>0</td></tr><tr><td>primitives/src/hash_types/mod.rs</td><td>13053</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">818f9b21f2a72247e3e33199879f6062d91dc08ae075651497c6c69164530fcb</td><td>0</td></tr><tr><td>primitives/src/hash_types/ntxid.rs</td><td>1217</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c670e29ca3c15ea261e8246fd7656eeb76f1bd430216f16248bfed6ea91bcbcd</td><td>0</td></tr><tr><td>primitives/src/hash_types/script_hash.rs</td><td>6666</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">422524ffd76c13071f99b40627061bdd68bc72299e9e4bb50b482c2810d4109f</td><td>0</td></tr><tr><td>primitives/src/hash_types/transaction_merkle_node.rs</td><td>4299</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">59fd7e0db3b9551c3bbd5b98c7e0971e82c5d347492a7e6af8f18968aa89c328</td><td>0</td></tr><tr><td>primitives/src/hash_types/txid.rs</td><td>1260</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5c70971e351eed37777c5e27effa6c1196c6351701314d43656f1aa630e8f391</td><td>0</td></tr><tr><td>primitives/src/hash_types/witness_commitment.rs</td><td>610</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e7cf954fbd63817a7bb6ae06fae899510bc5603820c73ce27d4cbf3daeb20c31</td><td>0</td></tr><tr><td>primitives/src/hash_types/witness_merkle_node.rs</td><td>5181</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3c574b3459d7918ef31732c30ed0568ed88a3066b7d56d14db10ef2283b64030</td><td>0</td></tr><tr><td>primitives/src/hash_types/witness_script_hash.rs</td><td>4186</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5c4d78d2598391a44c2abf2fc2e33c28067de2ea94bcd5f9a975506095ac4c86</td><td>0</td></tr><tr><td>primitives/src/hash_types/wtxid.rs</td><td>973</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">517f27799abd0504c97d86cee83b758f29296d84990458eb28ae56004bfeafa2</td><td>0</td></tr><tr><td>primitives/src/hex_codec.rs</td><td>4135</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5e49a620a0cd54f3aa3a4330695be29ba5e23411a46955c96d355f4f8c4a80e3</td><td>0</td></tr><tr><td>primitives/src/lib.rs</td><td>5486</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5743595c9efea8947ced95d4b7c0370a9ebae1080a64440be3872a6c24f59b48</td><td>0</td></tr><tr><td>primitives/src/merkle_tree.rs</td><td>16002</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d6449e5acf7c61fde7a8144ecb8d304076095ffdde66c1ebdc24e14a786d71be</td><td>0</td></tr><tr><td>primitives/src/opcodes.rs</td><td>15187</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7f21910077ea25e9c7215359b6c8e040193852d2fb9c987efafd18e7880fb4af</td><td>0</td></tr><tr><td>primitives/src/script/borrowed.rs</td><td>13985</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">459a937a9ead0385129d5352459766785ff4b871087cac0b4ce1f80eab9f2888</td><td>0</td></tr><tr><td>primitives/src/script/builder.rs</td><td>7472</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9153dfc34c2ede56539d00e6db0bb7b39a09450a07b71249b782740fe82bb729</td><td>0</td></tr><tr><td>primitives/src/script/error.rs</td><td>1063</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4e4bf6dab86b801bac29e49fafec70306e251860cb6a65f98c4a724e84a9972c</td><td>0</td></tr><tr><td>primitives/src/script/mod.rs</td><td>20220</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f3bde67ce4de1e2dd6b976d5941f8b4c08587634176ca8e3d60422a2cf54d1e7</td><td>0</td></tr><tr><td>primitives/src/script/owned.rs</td><td>18360</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">042ede48727e659bc4c180b41676b9521c8bd00f41c20c3ab509d11c77b4e000</td><td>0</td></tr><tr><td>primitives/src/script/push_bytes.rs</td><td>23070</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c8c00a961c670c77bc0d43e95191eb743c786c6ed6baa16d3f855c4248ce3b60</td><td>0</td></tr><tr><td>primitives/src/script/tag.rs</td><td>1727</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bf739230a9e9401bf9b513c2dc4baccfde09db341ab47900f3c1195b17d635fa</td><td>0</td></tr><tr><td>primitives/src/transaction.rs</td><td>135524</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6439681b5d335decd22d56742c46855477b3965a896c205b547a1dca4afea1c1</td><td>0</td></tr><tr><td>primitives/src/witness.rs</td><td>74499</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1e8cb120552a2679ee86feef0406003e329d67361557735917d732e111c6604d</td><td>0</td></tr><tr><td>primitives/src/witness_version.rs</td><td>14525</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ac3e6a532a41af4f690315de94ae4b26665a863d3737587eaf29b8a8cae4c565</td><td>0</td></tr><tr><td>taproot_primitives/Cargo.toml</td><td>1696</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">53e2d6683ce90b7395196b769b66d6e16e025833472b52982f47c1e784dd9c3a</td><td>0</td></tr><tr><td>taproot_primitives/src/lib.rs</td><td>21276</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0efe9ae04fe70035b6d6d9d56defe9de124c1e49f474c63c6d99e055341295ac</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"6b539d4a-eef3-4846-a464-de667f7610a8\",\"content_sha256\":\"0c00bdc5593a25af9f9a0fe8c051afd695a843eb50b641638c48ceff2a06ee0d\",\"files_sha256\":{\"html\":\"29741a46327fdb5e09766c6820b3038b57b3f242d7d69fc19222fedd196ec05d\",\"json\":\"6da9c509f49f6e21fcebb76ab3f5d355f8eb930716e064dfa7c0eb535751caf2\",\"md\":\"477dc9a77088a64f41b21a7025c94af7082dbaaf59ab75b2c87a02cdbf9e0d3e\",\"pdf\":\"b90cab7fa6bb6bc0c53338d984e5c010ac1f63859e7fe526e01b2144f8ce1bc4\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"zodl-android @ 229dd3bff749\",\"report_id\":\"bef9af3f-5c1f-42cd-b263-5677d0bd601b\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T13:07:21+00:00\",\"version\":1}",
+  "signature": "yvLsHK/uQ7w0PVgew+x8bl8yhGBqMSpSxgB9iQtL9HF5XmXbIc1DyGsVCpDoWYFbHJ7OcB650QDcelW4+1CjDQ=="
+}

@@ -1,0 +1,1756 @@
+{
+  "content_sha256": "effe8cd836a4aeb1f5d672cd26315f8ade845f2d3a8f3b60aa0ba39a6416ff83",
+  "schema": "qsi.report/1",
+  "language": "en",
+  "generated_at": "2026-10-29T05:36:48.227253+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "236b4f19-63be-4898-a417-8a36b632f884",
+    "name": "seedsigner @ ada81cde050e",
+    "client_name": "SeedSigner",
+    "description": "Static review of the source tree seedsigner at ada81cde050e46c19cb6e3fa73872b73955a138c. 74 files analysed; of 166 files, 57 are test, fuzzing, benchmark or example code and were left out, 34 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. 3 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "54ad7f7a-4171-4408-aacb-3479d20b9be8",
+    "mode": "document",
+    "title": "Document audit: seedsigner",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-29T05:36:42.950290+00:00",
+    "finished_at": "2026-10-29T05:36:48.019351+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Crypto exchange, custodian or wallet",
+    "parameters": {
+      "ref": "ada81cde050e46c19cb6e3fa73872b73955a138c",
+      "triage": {
+        "analyst": "QSI review, 2026-10-29",
+        "decisions": [
+          {
+            "note": "Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit's, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of \"1 Shor-breakable row\" is \"this repository delegates its signing\", not \"this device is nearly post-quantum\". Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not \"when will SeedSigner adopt a post-quantum signature\" but \"when will embit\", and after that, \"how fast can a hash-locked pin be moved\" — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept.",
+            "match": {
+              "rule": "CODE-QV-ASYMMETRIC",
+              "algorithm": "ECDSA"
+            },
+            "decision": "confirmed"
+          }
+        ]
+      },
+      "language": "en",
+      "repo_url": "https://github.com/SeedSigner/seedsigner",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "pyproject.toml",
+      "size": 2006,
+      "sha256": "806812aaa643b69646850af44736db858192095ae1da0dd6432fa9a52a2a9331",
+      "redactions": 0
+    },
+    {
+      "name": "requirements-raspi.txt",
+      "size": 98,
+      "sha256": "97a87553c8c5e02b39450fd57707fef2d68d1564c89402d3d25be468eb3c8481",
+      "redactions": 0
+    },
+    {
+      "name": "requirements.txt",
+      "size": 7698,
+      "sha256": "f43fdf89d5cfe76e4f1d01d27df6c5030d6aa1767217d9d8c855e4a5fe34b45a",
+      "redactions": 0
+    },
+    {
+      "name": "setup.py",
+      "size": 181,
+      "sha256": "d79d8ecf1aa4f4e496d725ea43fa2082d91016d760ad1581aae0ca8e5be61c4b",
+      "redactions": 0
+    },
+    {
+      "name": "src/main.py",
+      "size": 1540,
+      "sha256": "0fec0abc13bf4f8d754e78ee16649b51028a85c3286f2abcb860fcc0b723bf27",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/controller.py",
+      "size": 18529,
+      "sha256": "2b536116eb906cb6b30ef1ee0aeb85ff3b6e5dd4cb49f30ce9cf55ede4cbb97d",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/__init__.py",
+      "size": 30,
+      "sha256": "dbcabb7d019bd42ebf2861fff87f66cbd004a652b0f5ea912505bc3b4dbe3258",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/components.py",
+      "size": 79525,
+      "sha256": "9bf81d18f771279eaf856a536a59a54d9b445fb7fe777ce1a0dbf412e844af93",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/keyboard.py",
+      "size": 25548,
+      "sha256": "dbfa96f48aec0b0d6cf7d83f4b493aca81fa4f67fee4d7c11e310c622e393334",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/renderer.py",
+      "size": 4501,
+      "sha256": "308c77a3e190df410245c7c2762e2ee7464fa73933d6da4e8acc2a936460af67",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/screens/__init__.py",
+      "size": 21,
+      "sha256": "a5496c911fdee0f9907e2d37723907443f11db5d81eb9559a8a527aba51a4b9f",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/screens/psbt_screens.py",
+      "size": 33501,
+      "sha256": "d8fae1241725686353d884bf816325bcff936d64ad831700234ecc943354063b",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/screens/scan_screens.py",
+      "size": 13062,
+      "sha256": "938d846d7c518a035ab0b757fd87ee2c75cbe64b00ed5959e42592f35d460696",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/screens/screen.py",
+      "size": 55000,
+      "sha256": "0212127e2533cdc72d421fb0ebc58f8f3278f1d3a4960ba9941abb01051f8eff",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/screens/seed_screens.py",
+      "size": 70769,
+      "sha256": "c0b9eca6e4c76947997ba1352d3971ac259391f4746b19d74ba24d89bf85b17a",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/screens/settings_screens.py",
+      "size": 19504,
+      "sha256": "e379674269d2edcce5f794a41b05896f4b692db39d5e19e3ea774415232c9a49",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/screens/tools_screens.py",
+      "size": 31245,
+      "sha256": "4e407f8bfd50fe12fcd6e32037b44895abea4c2d196df6bdcaf228839bd03da4",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/gui/toast.py",
+      "size": 13196,
+      "sha256": "ec4cb0206b3d3d9903be66dfedee0bf920ade3bb71fb1f8496de8988bab7b245",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/buttons.py",
+      "size": 7931,
+      "sha256": "4471efdfa2dfd502ab17f1a0e016bacb1031060293f9fb27c00d988748f625f7",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/camera.py",
+      "size": 3241,
+      "sha256": "4d1d61508ab5f83ebe23a20e2f9ea01fbd9269f3026865720d515497f717533b",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/displays/ST7789.py",
+      "size": 4997,
+      "sha256": "4d43e4974a43bb8aa12f7e0697ade09894a582085dfe67eec6b9582930479a7e",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/displays/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/displays/display_driver.py",
+      "size": 3068,
+      "sha256": "99b99244032d27ce88865a1e4e5d3765e933a9b46a97e8f4ac63e4b05ca6a2d8",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/displays/ili9341.py",
+      "size": 12574,
+      "sha256": "c73eb77327bb882ecc78e7e5af355af969ce09d22435d981168cdab017fad998",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/displays/st7789_mpy.py",
+      "size": 32972,
+      "sha256": "71347193cdc17edb2aa54485f38befaa827dcadc02687d826d32f1597a3ce89f",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/microsd.py",
+      "size": 2389,
+      "sha256": "6b7dfe146c69b151eb4fe3dad3bd4e518875f04e30d51ec544d4d6432d317ac1",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/hardware/pivideostream.py",
+      "size": 1819,
+      "sha256": "0eb5e7d8333ed7d590d79eecdadf395d1c71d77772febea413dd1f924909e51c",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/embit_utils.py",
+      "size": 7727,
+      "sha256": "c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/l10n.py",
+      "size": 162,
+      "sha256": "611cbe564315817964999f3437eecc6a988e2b968a8169066b146e0d1f784686",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/mnemonic_generation.py",
+      "size": 4630,
+      "sha256": "1da00ac502a88ae77733681fd19f0fb61df03ebdee759b9ac78798fe9399c8fc",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/qr.py",
+      "size": 4808,
+      "sha256": "ed12c8c01002e52af9946e2c0b579c4fd692dee81612dabbc77e73fb1f0bdca8",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/bytewords.py",
+      "size": 4929,
+      "sha256": "b652f89758fb84d2beafaeb01e77a8af5f3e7a201d5b3fa1473e01ef8418bfc1",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/cbor_lite.py",
+      "size": 11208,
+      "sha256": "313c06f8d23542fcd7eaa0c25ccb57d568571ba7afd6e630c5d9d418c2265913",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/constants.py",
+      "size": 179,
+      "sha256": "d7a4ccd6c624c69aec6983667399c6566dddb60134349e43443ac05b67956495",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/crc32.py",
+      "size": 1037,
+      "sha256": "888541118b69e5a3f587e1556f0787f6b644ff263811c6913843eb18b68513da",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/fountain_decoder.py",
+      "size": 12114,
+      "sha256": "4285d087cb3dcfb740c9c92329c4ba805cc3044f1a874fb0daa33405ef4fec3f",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/fountain_encoder.py",
+      "size": 5244,
+      "sha256": "155812c2f58fc22888b6b2ec601d40fe405f6a4cbc0be58794c8052bf411b25a",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/fountain_utils.py",
+      "size": 1597,
+      "sha256": "cbbc87708a1ad1f4e5494f04a4c29ca585946fa55fb0a4dd92711d7d40c20d42",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/random_sampler.py",
+      "size": 1568,
+      "sha256": "dcb23762815edd2a0b0fe48fba02fac5b3aba3d67c1f27bafe6823b1dda04b59",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/ur.py",
+      "size": 494,
+      "sha256": "b51393572a556ff4426412783b1902d1afc6241f26870ecf649eefb719880929",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/ur_decoder.py",
+      "size": 5203,
+      "sha256": "61fc0d5319f6915aab118bcd13e6aa25e0e021c5b4dcc6af2222ff30a14e9c6a",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/ur_encoder.py",
+      "size": 2430,
+      "sha256": "2a05145e5961347404ccf7230727eee85efa2822f0b39890ae42e6fe47202c1b",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/utils.py",
+      "size": 1619,
+      "sha256": "565724921749e1ed0e92b6beb38d4f00df2ec373b105928bed1f8c30da297c6d",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/ur2/xoshiro256.py",
+      "size": 4397,
+      "sha256": "d4d700a789502a4ba21f4a3a24a3c8381f13a3c7fb896b0e19dffc6948aef1d4",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/helpers/version.py",
+      "size": 37956,
+      "sha256": "70759ff9f528343912572b8ff4e1597cf08f4371029346e93b5875322ed3b7b7",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/decode_qr.py",
+      "size": 39285,
+      "sha256": "ca35d03c9ede201893a01e5faceb96d58449e1600a28e564ae29d6a2b0248912",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/encode_qr.py",
+      "size": 13142,
+      "sha256": "cba66b93b19ed0831e27bec44c49e6e488cf1634f2b82e5c5f3e9cffe9695957",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/psbt_parser.py",
+      "size": 82783,
+      "sha256": "3f8cbba4d378aa4f82ac9a1d4c05b5b7017f9b720eb92c38d530f4aab3dafbe3",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/qr_type.py",
+      "size": 930,
+      "sha256": "56b4789b1bc55e2b129d0a1fe873f7b2ff2d7ddafe62f8fce6c0e4d3814b5230",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/seed.py",
+      "size": 7768,
+      "sha256": "4f612eeae59dd972bd9187818c6648a70efe7e258f4d5c81662f9175060a7658",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/seed_storage.py",
+      "size": 2957,
+      "sha256": "2c2ad94d462898ca0d83b7dc935750db96d60c173aa0422dffc41ca9b2cde686",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/settings.py",
+      "size": 13398,
+      "sha256": "864853cc67cd59d60c220bceb922c502fe06db3993de3de76acee11604e23c13",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/settings_definition.py",
+      "size": 35542,
+      "sha256": "ffdefda767a713a8c7a54dffd712739daa235b01efdffa2068fbaba86b241cce",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/singleton.py",
+      "size": 1059,
+      "sha256": "caaa41a60af389c8b5322d510536d310664fa4ef53e8957c9fab7f021c4e71ac",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/models/threads.py",
+      "size": 1079,
+      "sha256": "678a61d601a2c8a0d5ff3b1c110f781b07b17a2f152e20a6fcf55e95f6a531ee",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py",
+      "size": 6279,
+      "sha256": "7a1ecba23853b008f72921dfb453b14959e35ed7d8f0ebfa906a4eb0908319f2",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py",
+      "size": 2700,
+      "sha256": "df7055b2f0c8460ee5fd9f1e995cb7a8346e43af628d90a2b08b46d7766cd7ff",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/resources/seedsigner-translations/tools/requirements.txt",
+      "size": 6,
+      "sha256": "68359c38ed3bf77f71bad8d21c219fbe8c094d44374b35d2974e202f8b24472b",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/__init__.py",
+      "size": 50,
+      "sha256": "07d90e6e3c9bc4127568b08e5bdf2725ac093964a987c50d52efe3e4dca8d505",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/psbt_views.py",
+      "size": 41251,
+      "sha256": "47fff120f41e2710226560d722b70d51a8bee0ece389b9b3567092988b413750",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/scan_views.py",
+      "size": 9526,
+      "sha256": "f49166b5417dbc649da3b2b7871308aae608f573312e105945de36568d3628d3",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/screensaver.py",
+      "size": 9727,
+      "sha256": "e3eb0f54536dcd7d02296c5e5c6aa34ffcae152e24e994cc67d1e4b626a9d3cc",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/seed_views.py",
+      "size": 90475,
+      "sha256": "4c977bac0dbf3e893b0e58b7fabdf0ab89b141f32717e038de659a097e470d4c",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/settings_views.py",
+      "size": 15828,
+      "sha256": "eaaa53d1250f6ba624cbddb0a696306f08187653a598f783002e51a5c3c09797",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/tools_views.py",
+      "size": 34242,
+      "sha256": "c9dde008d0e3565a27bb572529d6a9a23607fc9cfa1560e6d4b12ab68e11f537",
+      "redactions": 0
+    },
+    {
+      "name": "src/seedsigner/views/view.py",
+      "size": 16231,
+      "sha256": "b92cb1e521001a270d678ef7d32126c7736fecd629f781251a860a4d349d957d",
+      "redactions": 0
+    },
+    {
+      "name": "tools/mnemonic.py",
+      "size": 6971,
+      "sha256": "92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60",
+      "redactions": 0
+    },
+    {
+      "name": "tools/seed_phrase_to_qr.py",
+      "size": 1580,
+      "sha256": "de71bf293c28d5c4e637c545a07685160c2aa92c9f64213d7a5259d9e91de66b",
+      "redactions": 0
+    },
+    {
+      "name": "tools/write_versionfile.py",
+      "size": 1602,
+      "sha256": "2bb499c921b6f8cf04f40f835ca3a6cd92ea445c50deb893e90d38262e19f53a",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 74,
+    "bytes": 986658,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "dependencies",
+      "detail": "pyproject.toml: 0 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "requirements-raspi.txt: 4 dependencies parsed (4 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "requirements.txt: 6 dependencies parsed (1 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "setup.py: 8 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/main.py: 53 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/controller.py: 482 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/__init__.py: 1 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/components.py: 2011 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/keyboard.py: 666 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/renderer.py: 126 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/screens/__init__.py: 1 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/screens/psbt_screens.py: 807 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/screens/scan_screens.py: 266 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/screens/screen.py: 1330 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/screens/seed_screens.py: 1677 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/screens/settings_screens.py: 451 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/screens/tools_screens.py: 675 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/gui/toast.py: 341 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/buttons.py: 205 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/camera.py: 100 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/displays/ST7789.py: 180 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/displays/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/displays/display_driver.py: 92 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/displays/ili9341.py: 369 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/displays/st7789_mpy.py: 1033 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/microsd.py: 75 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/hardware/pivideostream.py: 65 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/embit_utils.py: 210 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/l10n.py: 3 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/mnemonic_generation.py: 112 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/qr.py: 107 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/bytewords.py: 140 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/cbor_lite.py: 316 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/constants.py: 9 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/crc32.py: 40 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/fountain_decoder.py: 341 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/fountain_encoder.py: 163 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/fountain_utils.py: 55 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/random_sampler.py: 65 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/ur.py: 26 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/ur_decoder.py: 176 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/ur_encoder.py: 72 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/utils.py: 73 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/ur2/xoshiro256.py: 169 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/helpers/version.py: 901 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/decode_qr.py: 1174 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/encode_qr.py: 406 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/psbt_parser.py: 1646 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/qr_type.py: 35 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/seed.py: 241 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/seed_storage.py: 103 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/settings.py: 314 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/settings_definition.py: 816 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/singleton.py: 33 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/models/threads.py: 46 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py: 138 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py: 74 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "src/seedsigner/resources/seedsigner-translations/tools/requirements.txt: 1 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/__init__.py: 1 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/psbt_views.py: 1030 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/scan_views.py: 229 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/screensaver.py: 260 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/seed_views.py: 2270 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/settings_views.py: 387 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/tools_views.py: 775 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/seedsigner/views/view.py: 476 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "tools/mnemonic.py: 169 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "tools/seed_phrase_to_qr.py: 44 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "tools/write_versionfile.py: 47 lines scanned with 16 rule patterns and 123 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "5 pinned packages queried at OSV.dev; 0 affected",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "pyproject.toml: 0 dependencies parsed (0 pinned)",
+        "requirements-raspi.txt: 4 dependencies parsed (4 pinned)",
+        "requirements.txt: 6 dependencies parsed (1 pinned)"
+      ]
+    },
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 70,
+      "rows": 70,
+      "examples": [
+        "setup.py: 8 lines scanned with 16 rule patterns and 123 registry patterns",
+        "src/main.py: 53 lines scanned with 16 rule patterns and 123 registry patterns",
+        "src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "5 pinned packages queried at OSV.dev; 0 affected"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "5 pinned packages queried at OSV.dev; 0 affected",
+      "pyproject.toml",
+      "requirements-raspi.txt",
+      "requirements.txt",
+      "setup.py",
+      "src/main.py",
+      "src/seedsigner/__init__.py",
+      "src/seedsigner/controller.py",
+      "src/seedsigner/gui/__init__.py",
+      "src/seedsigner/gui/components.py",
+      "src/seedsigner/gui/keyboard.py",
+      "src/seedsigner/gui/renderer.py",
+      "src/seedsigner/gui/screens/__init__.py",
+      "src/seedsigner/gui/screens/psbt_screens.py",
+      "src/seedsigner/gui/screens/scan_screens.py",
+      "src/seedsigner/gui/screens/screen.py",
+      "src/seedsigner/gui/screens/seed_screens.py",
+      "src/seedsigner/gui/screens/settings_screens.py",
+      "src/seedsigner/gui/screens/tools_screens.py",
+      "src/seedsigner/gui/toast.py",
+      "src/seedsigner/hardware/__init__.py",
+      "src/seedsigner/hardware/buttons.py",
+      "src/seedsigner/hardware/camera.py",
+      "src/seedsigner/hardware/displays/ST7789.py",
+      "src/seedsigner/hardware/displays/__init__.py",
+      "src/seedsigner/hardware/displays/display_driver.py",
+      "src/seedsigner/hardware/displays/ili9341.py",
+      "src/seedsigner/hardware/displays/st7789_mpy.py",
+      "src/seedsigner/hardware/microsd.py",
+      "src/seedsigner/hardware/pivideostream.py",
+      "src/seedsigner/helpers/__init__.py",
+      "src/seedsigner/helpers/embit_utils.py",
+      "src/seedsigner/helpers/l10n.py",
+      "src/seedsigner/helpers/mnemonic_generation.py",
+      "src/seedsigner/helpers/qr.py",
+      "src/seedsigner/helpers/ur2/__init__.py",
+      "src/seedsigner/helpers/ur2/bytewords.py",
+      "src/seedsigner/helpers/ur2/cbor_lite.py",
+      "src/seedsigner/helpers/ur2/constants.py",
+      "src/seedsigner/helpers/ur2/crc32.py",
+      "src/seedsigner/helpers/ur2/fountain_decoder.py",
+      "src/seedsigner/helpers/ur2/fountain_encoder.py",
+      "src/seedsigner/helpers/ur2/fountain_utils.py",
+      "src/seedsigner/helpers/ur2/random_sampler.py",
+      "src/seedsigner/helpers/ur2/ur.py",
+      "src/seedsigner/helpers/ur2/ur_decoder.py",
+      "src/seedsigner/helpers/ur2/ur_encoder.py",
+      "src/seedsigner/helpers/ur2/utils.py",
+      "src/seedsigner/helpers/ur2/xoshiro256.py",
+      "src/seedsigner/helpers/version.py",
+      "src/seedsigner/models/__init__.py",
+      "src/seedsigner/models/decode_qr.py",
+      "src/seedsigner/models/encode_qr.py",
+      "src/seedsigner/models/psbt_parser.py",
+      "src/seedsigner/models/qr_type.py",
+      "src/seedsigner/models/seed.py",
+      "src/seedsigner/models/seed_storage.py",
+      "src/seedsigner/models/settings.py",
+      "src/seedsigner/models/settings_definition.py",
+      "src/seedsigner/models/singleton.py",
+      "src/seedsigner/models/threads.py",
+      "src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py",
+      "src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py",
+      "src/seedsigner/resources/seedsigner-translations/tools/requirements.txt",
+      "src/seedsigner/views/__init__.py",
+      "src/seedsigner/views/psbt_views.py",
+      "src/seedsigner/views/scan_views.py",
+      "src/seedsigner/views/screensaver.py",
+      "src/seedsigner/views/seed_views.py",
+      "src/seedsigner/views/settings_views.py",
+      "src/seedsigner/views/tools_views.py",
+      "src/seedsigner/views/view.py",
+      "tools/mnemonic.py",
+      "tools/seed_phrase_to_qr.py",
+      "tools/write_versionfile.py"
+    ]
+  },
+  "dismissed": [],
+  "triage": {
+    "analyst": "QSI review, 2026-10-29",
+    "counts": {
+      "confirmed": 1,
+      "not_applicable": 0,
+      "false_positive": 0
+    },
+    "text": "Analyst review: 1 confirmed, 0 not applicable, 0 dismissed as false positives."
+  },
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 0,
+      "info": 0
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 1,
+      "improvement": 0,
+      "insufficient_data": 0
+    },
+    "total": 1,
+    "posture_index": 100,
+    "pq_vulnerable_share": 14.3,
+    "inventory_total": 7,
+    "inventory_by_quantum_status": {
+      "grover_margin": 2,
+      "grover_reduced": 4,
+      "vulnerable_shor": 1
+    }
+  },
+  "findings": [
+    {
+      "id": "07742831-767c-444a-8cc5-88c9710a6fcb",
+      "public_id": "QSI-2026-06413",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
+      "description": "3 reference(s) to ECDSA across 1 file(s), e.g. src/seedsigner/helpers/embit_utils.py:10. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/seedsigner/helpers/embit_utils.py:10 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": false,
+      "status": "open",
+      "triage": {
+        "note": "Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit's, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of \"1 Shor-breakable row\" is \"this repository delegates its signing\", not \"this device is nearly post-quantum\". Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not \"when will SeedSigner adopt a post-quantum signature\" but \"when will embit\", and after that, \"how fast can a hash-locked pin be moved\" — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept.",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "confirmed",
+        "severity_before": "medium"
+      },
+      "affected_asset": "source-code:ECDSA:transaction_signing",
+      "data_source": "src/seedsigner/helpers/embit_utils.py",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-29T05:36:47.984524+00:00",
+      "risk_score": 41.8,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 41.8,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 52.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.8
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/seedsigner/helpers/embit_utils.py",
+          "location": "line 10",
+          "content": "    9 | from embit.networks import NETWORKS\n   10 | from embit.util import secp256k1\n   11 | ",
+          "content_sha256": "1e5604518dfe3ecc40df631b9df1ab8a9e5e838974ac1c814502658edc7d3fd3",
+          "source_sha256": "c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T05:36:48.040892+00:00",
+          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L10"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/seedsigner/helpers/embit_utils.py",
+          "location": "line 204",
+          "content": "  203 |     prv = root.derive(derivation).key\n  204 |     sig = secp256k1.ecdsa_sign_recoverable(msghash, prv._secret)\n  205 |     flag = sig[64]",
+          "content_sha256": "1060384364a8c023d525064551aeed7ece6fd577f80394a1a55de0cce5980c19",
+          "source_sha256": "c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T05:36:48.040901+00:00",
+          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L204"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/seedsigner/helpers/embit_utils.py",
+          "location": "line 209",
+          "content": "  208 |     flag = bytes([27 + flag + c])\n  209 |     ser = flag + secp256k1.ecdsa_signature_serialize_compact(sig._sig)\n  210 |     return b2a_base64(ser).strip().decode()",
+          "content_sha256": "1e4a07630105e8ba280ad6a4b597896533871c3bfe4f6dc7bdfcc27b6efb125e",
+          "source_sha256": "c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T05:36:48.040904+00:00",
+          "url": "https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L209"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
+    "pq_findings": [
+      "QSI-2026-06413"
+    ],
+    "roles": [
+      {
+        "role": "transaction_signing",
+        "label": "transaction and message signing",
+        "action": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them",
+        "criticality": 4,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-06413"
+        ],
+        "files": 1
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "no post-quantum cryptography",
+      "next": "Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Shor's algorithm — elliptic-curve discrete logarithms",
+        "effect": "breaks",
+        "effect_label": "breaks",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "ECDSA",
+            "rows": 1
+          }
+        ],
+        "audit": "Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.",
+        "practicality": "2026 estimates for a 256-bit curve: under 1,200 logical qubits and 90 million Toffoli gates, under half a million physical superconducting qubits running for minutes (Babbush et al.); 1,193 logical qubits with more gates (Chevignard–Fouque–Schrottenloher); P-256 in a few days on 26,000 neutral-atom qubits (Cain et al.). Scenarios under stated assumptions, not forecasts.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "grover",
+        "name": "Grover's algorithm — key search and preimages",
+        "effect": "weakens",
+        "effect_label": "weakens (larger keys restore the margin)",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "PBKDF2",
+            "rows": 1
+          },
+          {
+            "algorithm": "SHA-2",
+            "rows": 5
+          }
+        ],
+        "audit": "Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.",
+        "practicality": "The search is long and serial: NIST counts AES-128 key search as 2^170/MAXDEPTH quantum gates with MAXDEPTH between 2^40 and 2^96 and uses it as the yardstick of security category 1; a SHA-256 preimage was estimated at about 2^153.8 surface-code cycles on 2^12.6 logical qubits (Amy et al. 2016).",
+        "sources": [
+          "GROVER1996",
+          "ZALKA1999",
+          "NIST-PQC-SEC",
+          "JAQUES2020",
+          "AMY2016"
+        ]
+      },
+      {
+        "id": "bht-collision",
+        "name": "Brassard–Høyer–Tapp — collision search",
+        "effect": "weakens",
+        "effect_label": "weakens (larger keys restore the margin)",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "SHA-2",
+            "rows": 5
+          }
+        ],
+        "audit": "256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.",
+        "practicality": "Bernstein (2009) argued that, once hardware cost is counted, it is not cheaper than classical parallel collision search; NIST defines security category 2 by SHA3-256 collision search counted in classical gates (2^146).",
+        "sources": [
+          "BHT-COLLISION1998",
+          "CNS2017",
+          "BERNSTEIN2009-COLLISION",
+          "NIST-PQC-SEC"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "averaged estimate"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "quite possible"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "likely"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-06413",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-06413",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
+        "severity": "medium"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CNS2017",
+      "title": "A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2017/847",
+      "status": "peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory"
+    },
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "ZALKA1999",
+      "title": "C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070)",
+      "publisher": "APS",
+      "url": "https://doi.org/10.1103/PhysRevA.60.2746",
+      "status": "peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "BERNSTEIN2009-COLLISION",
+      "title": "D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009)",
+      "publisher": "cr.yp.to",
+      "url": "https://cr.yp.to/hash/collisioncost-20090823.pdf",
+      "status": "paper dated 2009-08-23"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "BHT-COLLISION1998",
+      "title": "G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/quant-ph/9705002",
+      "status": "peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "GROVER1996",
+      "title": "L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996)",
+      "publisher": "ACM",
+      "url": "https://doi.org/10.1145/237814.237866",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "AMY2016",
+      "title": "M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1603.09383",
+      "status": "peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "NIST-PQC-SEC",
+      "title": "NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)",
+      "status": "security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    },
+    {
+      "key": "JAQUES2020",
+      "title": "S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1910.01700",
+      "status": "peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "PBKDF2",
+      "family": "kdf",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/seedsigner/models/seed.py:186",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-512",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/seedsigner/models/seed.py:181",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/seedsigner/gui/screens/tools_screens.py:112",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/seedsigner/helpers/mnemonic_generation.py:74",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/seedsigner/helpers/ur2/xoshiro256.py:66",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "source code (4 reference(s))",
+      "library": "",
+      "location": "src/seedsigner/views/tools_views.py:183",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 4
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "src/seedsigner/helpers/embit_utils.py:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "PBKDF2",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/seedsigner/models/seed.py:186"
+      ]
+    },
+    {
+      "algorithm": "SHA-2",
+      "parameter": "SHA-512",
+      "library": "",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/seedsigner/models/seed.py:181"
+      ]
+    },
+    {
+      "algorithm": "SHA-2",
+      "parameter": "SHA-256",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "src/seedsigner/gui/screens/tools_screens.py:112",
+        "src/seedsigner/helpers/mnemonic_generation.py:74",
+        "src/seedsigner/helpers/ur2/xoshiro256.py:66"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "secp256k1",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/seedsigner/helpers/embit_utils.py:10"
+      ]
+    }
+  ]
+}

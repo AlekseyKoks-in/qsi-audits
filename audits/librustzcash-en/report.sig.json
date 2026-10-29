@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"f85bc266-8b23-479c-9153-9ef865f5547a\",\"content_sha256\":\"6baf13b4c84a81172f24a313d909b2982d9a321075c01d5dd2a3c642e63e31f1\",\"files_sha256\":{\"html\":\"e1da925abd452e6473eca8a29b12e513784c03afb0997fa821876bc61f297673\",\"json\":\"dadf9343798d645ef70c61d07f2b9e8adf234baa920558b535e80f6e134c69e6\",\"md\":\"b223f8d5637800b6e7b6d96b3f149bcbc269a1c85aad2b79fdc8fe855f29d224\",\"pdf\":\"192429d4e0ab31a2900606d2cda0d5564a65156053bc0ef867db6880ded0ba33\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"librustzcash-en @ 8672a4b2d60f\",\"report_id\":\"cd49117b-1d13-479e-bdac-cce2672f2e77\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T12:30:21+00:00\",\"version\":1}",
+  "signature": "iOPH6DIsDZl58VVmvRctGUQ49JVn86dvI1icFniB7LbYxYhIWeXnJKzuFX5pO3t2d5q6neCtrwRN5TgfYvfMAg=="
+}

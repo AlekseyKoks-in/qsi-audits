@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"0551bbf6-76b1-47c4-8902-fd58654b4121\",\"content_sha256\":\"95cafacb721dbd2090c5af18bd163aecd86fc6cb4bfd30be3473880d42dfd4eb\",\"files_sha256\":{\"html\":\"63a558f778e0490e18ae3a6dc3c56d2179aee95f444d95ff8cc0f5fdca4709e7\",\"json\":\"a8654a2854c2ea496f3f340e693ec74298cd3eaac93bfe4d7e665bfc01f6f2b2\",\"md\":\"8fd974dd05f0cd0884077aec6564d0b72db892e42950ba7365e239d902b9ce5f\",\"pdf\":\"74b9255a9ddcf19c84874219ee10d234075c13c93bdf6ec1ac6d502083d7b916\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"agave @ 7700cb3128c1\",\"report_id\":\"528891a8-61f6-47be-b061-e48cd97982ca\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T12:16:20+00:00\",\"version\":1}",
+  "signature": "5q6fTk4THXkqKhjgRK8w6Nl9AZse/VWktxRZLwepN5fW0Vi84z8adUp9U5zAwr2HTWpz88T0qXwTohjkt6IXBw=="
+}

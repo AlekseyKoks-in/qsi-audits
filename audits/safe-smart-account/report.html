@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отчёт об аудите безопасности и постквантовой готовности — safe-smart-account @ 247b8ce3bdbf</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "safe-smart-account @ 247b8ce3bdbf · Отчёт об аудите безопасности и постквантовой готовности"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 0da61727ced6"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является ю…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Отчёт об аудите безопасности и постквантовой готовности</h1>
+    <div class="project">safe-smart-account @ 247b8ce3bdbf · Safe — публичный репозиторий (пассивная проверка)</div>
+  </div>
+  <table>
+    <tr><td>Организация</td><td>QSI</td></tr>
+    <tr><td>Дата отчёта</td><td>2026-10-28 12:53 UTC</td></tr>
+    <tr><td>Версия отчёта</td><td>1</td></tr>
+    <tr><td>Запуск аудита</td><td>b1c7d303-5af9-48a1-91d2-59255d391677 · Документальный аудит · 2026-10-28 12:53 UTC</td></tr>
+    <tr><td>Версия анализатора</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Профиль риска</td><td>Финансовая организация</td></tr>
+    <tr><td>SHA-256 содержимого</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">0da61727ced613d6767f96b37828d8b962f93bc2e81d7a8c2e0fab5270116a40</td></tr>
+<tr><td>Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#executive_summary">Резюме для руководства</a></li>
+    <li><a href="#scope">Область и границы проверки</a></li>
+    <li><a href="#methodology">Методология</a></li>
+    <li><a href="#assets">Проверенные и непроверенные активы</a></li>
+    <li><a href="#architecture">Краткое описание архитектуры</a></li>
+    <li><a href="#posture">Общая оценка состояния безопасности</a></li>
+    <li><a href="#summary_by_severity">Сводка находок по серьёзности</a></li>
+    <li><a href="#details">Подробное описание находок</a></li>
+    <li><a href="#evidence">Подтверждающие доказательства</a></li>
+    <li><a href="#pq">Постквантовая оценка</a></li>
+    <li><a href="#limitations">Ограничения и допущения</a></li>
+    <li><a href="#plan">План устранения проблем</a></li>
+    <li><a href="#priorities">Приоритеты на 30, 60 и 90 дней</a></li>
+    <li><a href="#retests">Проверки после устранения</a></li>
+    <li><a href="#tools">Использованные инструменты</a></li>
+    <li><a href="#references">Источники и нормативные документы</a></li>
+    <li><a href="#appendices">Приложения</a></li>
+  </ol>
+  <p class="note">Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Резюме для руководства</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">8</div><div class="l">Всего находок</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Критическая</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">Высокая</span></div></div>
+    <div class="kpi"><div class="v">3</div><div class="l"><span class="sev sev-medium">Средняя</span></div></div>
+    <div class="kpi"><div class="v">3</div><div class="l"><span class="sev sev-low">Низкая</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Классификация</th><th>Количество</th></tr>
+<tr><td>Подтверждённая техническая уязвимость</td><td>0</td></tr><tr><td>Известная уязвимая версия компонента</td><td>0</td></tr><tr><td>Подтверждённая ошибка конфигурации</td><td>0</td></tr><tr><td>Потенциальный криптографический риск</td><td>2</td></tr><tr><td>Долгосрочный постквантовый риск</td><td>1</td></tr><tr><td>Рекомендация по улучшению</td><td>4</td></tr><tr><td>Недостаточность данных</td><td>1</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Серьёзность</th><th>Подробное описание находок</th><th>Балл приоритета</th></tr>
+<tr><td>QSI-2026-05092</td><td><span class="sev sev-medium">Средняя</span></td><td>Прямое использование ecrecover в certora/harnesses/SafeHarness.sol <span class="tag pre">предварительно</span></td><td>43.0</td></tr><tr><td>QSI-2026-05093</td><td><span class="sev sev-medium">Средняя</span></td><td>Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol <span class="tag pre">предварительно</span></td><td>43.0</td></tr><tr><td>QSI-2026-05091</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов)) <span class="tag pre">предварительно</span></td><td>39.6</td></tr><tr><td>QSI-2026-05094</td><td><span class="sev sev-low">Низкая</span></td><td>Плавающая версия компилятора (&gt;=0.7.0 &lt;0.9.0) в 50 файл(ах)</td><td>38.4</td></tr><tr><td>QSI-2026-05095</td><td><span class="sev sev-low">Низкая</span></td><td>Плавающая версия компилятора (&gt;=0.5.0 &lt;0.9.0) в 1 файл(ах)</td><td>38.4</td></tr>  </table>
+  <p class="note">Неравенство Моски (x + y &gt; z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+<p class="note"><strong>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.</strong> Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Область и границы проверки</h2>
+  <p><strong>Режим:</strong> Документальный аудит</p>
+<p><strong>Репозиторий:</strong> <a href="https://github.com/safe-global/safe-smart-account">https://github.com/safe-global/safe-smart-account</a> @ <span class="small">247b8ce3bdbf204a120e77f5b369d137424ddc58</span> — ссылки в доказательствах открывают строки на этом коммите.</p>  <h3>Предоставленные входные данные</h3>
+  <p>77 файлов, всего 722848 байт, редактирований: 6; список SHA-256 по файлам — в приложении C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Методология</h2>
+  <p>Аудит выполнен движком QSI 1.2.0. Каждый анализатор формирует факты (правило, параметры, доказательства); тексты находок генерируются из каталога правил. Источники методики указаны в разделе «Источники и нормативные документы».</p>
+  <p>Приоритизация: объяснимая взвешенная модель (серьёзность, вероятность эксплуатации, доступность атакующему, влияние на конфиденциальность/целостность/доступность с весами профиля «Финансовая организация», критичность актива, срочность, простота устранения) с множителем уверенности. CVSS v3.1 применяется только к техническим уязвимостям с определённым вектором. Для долгосрочных квантовых рисков используется неравенство Моски; их серьёзность ограничена уровнем «Средняя», и они никогда не представляются как эксплуатируемые уязвимости.</p>
+  <p>Классификация находок: подтверждённая техническая уязвимость; известная уязвимая версия компонента (версия зависимости названа в бюллетене; затронутый код может не вызываться — это проверяется отдельно, а подтверждённая проверкой становится уязвимостью); подтверждённая ошибка конфигурации; потенциальный криптографический риск; долгосрочный постквантовый риск; рекомендация по улучшению; недостаточность данных. Находки на основе эвристик помечены как предварительные; решения аналитика показаны рядом с находками.</p>
+  <h3>Покрытие проверок</h3>
+  <table class="data"><tr><th>Область</th><th>Статус</th><th>Количество</th><th>Примеры</th></tr>
+<tr><td>source_code</td><td>проверено</td><td>20</td><td class="small">.solcover.js: 15 lines scanned with 16 rule patterns and 122 registry patterns; eslint.config.mjs: 20 lines scanned with 16 rule patterns and 122 registry patterns; hardhat.config.ts: 134 lines scanned with 16 rule patterns and 122 registry patterns</td></tr><tr><td>smart_contracts</td><td>проверено</td><td>54</td><td class="small">certora/harnesses/ExtensibleFallbackHandlerHarness.sol: built-in Solidity pattern checks; certora/harnesses/SafeHarness.sol: built-in Solidity pattern checks; contracts/Safe.sol: built-in Solidity pattern checks</td></tr><tr><td>slither</td><td>не проверено</td><td>54</td><td class="small">slither is not installed on the server (pip install slither-analyzer + solc)</td></tr><tr><td>dependencies</td><td>проверено</td><td>3</td><td class="small">certora/requirements.txt: 1 dependencies parsed (1 pinned); package-lock.json: 831 dependencies parsed (831 pinned); package.json: 30 dependencies parsed (0 pinned)</td></tr><tr><td>secrets</td><td>проверено</td><td>4</td><td class="small">contracts/Safe.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/handler/CompatibilityFallbackHandler.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/handler/extensible/SignatureVerifierMuxer.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)</td></tr><tr><td>osv_advisories</td><td>проверено</td><td>1</td><td class="small">736 pinned packages queried at OSV.dev; 45 affected (45 of them only in development or build dependencies)</td></tr><tr><td>osv_advisories</td><td>Недостаточность данных</td><td>2</td><td class="small">npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Проверенные и непроверенные активы</h2>
+  <p><strong>Предоставленные входные данные:</strong> 78 (входные файлы: C)</p>
+  <h3>Не проверено</h3>
+  <ul><li>slither: 54 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))</li><li>osv_advisories: 2 (примеры: npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)</li></ul>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Краткое описание архитектуры</h2>
+  <p>Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 77 files analysed; of 236 files, 81 are test, fuzzing, benchmark or example code and were left out, 78 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Общая оценка состояния безопасности</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">94</div><div class="l">Ориентировочный индекс состояния (0–100)</div></div>
+    <div class="kpi"><div class="v">15.2%</div><div class="l">Доля квантово-уязвимых элементов инвентаризации</div></div>
+    <div class="kpi"><div class="v">33</div><div class="l">Криптографическая инвентаризация</div></div>
+  </div>
+  <p class="note">Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Сводка находок по серьёзности</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Критическая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">Высокая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Средняя</span></td><td style="width:8%">3</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Низкая</span></td><td style="width:8%">3</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Информационная</span></td><td style="width:8%">2</td>
+  <td><div class="bar"><span style="width: 66.7%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Подробное описание находок</th><th>Классификация</th><th>Серьёзность</th><th>Уверенность</th></tr>
+<tr><td>QSI-2026-05092</td><td>Прямое использование ecrecover в certora/harnesses/SafeHarness.sol</td><td class="small">Потенциальный криптографический риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-05093</td><td>Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol</td><td class="small">Потенциальный криптографический риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-05091</td><td>Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-05094</td><td>Плавающая версия компилятора (&gt;=0.7.0 &lt;0.9.0) в 50 файл(ах)</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-low">Низкая</span></td><td>Высокая</td></tr><tr><td>QSI-2026-05095</td><td>Плавающая версия компилятора (&gt;=0.5.0 &lt;0.9.0) в 1 файл(ах)</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-low">Низкая</span></td><td>Высокая</td></tr><tr><td>QSI-2026-05096</td><td>Плавающая версия компилятора (&gt;=0.7.4 &lt;0.9.0) в 1 файл(ах)</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-low">Низкая</span></td><td>Высокая</td></tr><tr><td>QSI-2026-05098</td><td>174 бюллетеней в 45 пакет(ах) npm, нужных только для разработки или сборки</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-05097</td><td>Не обнаружено криптобиблиотек с поддержкой PQC</td><td class="small">Недостаточность данных</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Подробное описание находок</h2>
+  <article class="finding" id="QSI-2026-05092">
+    <header><span class="fid">QSI-2026-05092 · SOL-ECRECOVER</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Прямое использование ecrecover в certora/harnesses/SafeHarness.sol</h3>
+    <p><span class="tag">Потенциальный криптографический риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>ecrecover в строка 32. (см. SWC-117/SWC-121)</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>contract:certora/harnesses/SafeHarness.sol</dd>
+      <dt>Источник данных</dt><dd>certora/harnesses/SafeHarness.sol</dd>
+      <dt>Метод обнаружения</dt><dd>Анализ шаблонов исходного кода Solidity.</dd>
+      <dt>Анализатор</dt><dd>solidity 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>43.0 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).</pre>
+    <h4 id="ev-QSI-2026-05092">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32">certora/harnesses/SafeHarness.sol</a> · line 32 · SHA-256 e416f88cf9d56a07… · Файл 0c6a4b08571e47ad…</div>
+      <pre>   30 |             currentOwner = address(uint160(uint256(r)));
+   31 |         } else if (v &gt; 30) {
+   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(&#34;\x19Ethereum Signed Message:\n32&#34;, dataHash)), v - 4, r, s);
+   33 |         } else {
+   34 |             currentOwner = ecrecover(dataHash, v, r, s);</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34">certora/harnesses/SafeHarness.sol</a> · line 34 · SHA-256 3a44416872ad9ffc… · Файл 0c6a4b08571e47ad…</div>
+      <pre>   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(&#34;\x19Ethereum Signed Message:\n32&#34;, dataHash)), v - 4, r, s);
+   33 |         } else {
+   34 |             currentOwner = ecrecover(dataHash, v, r, s);
+   35 |         }
+   36 |     }</pre>
+    <h4>Ограничения проверки</h4><p class="small">Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).</p>
+    <h4>Рекомендация</h4><p>Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.</p>
+    <h4>Повторная проверка</h4><p>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</p>
+<p class="small muted">Smart Contract Weakness Classification (SWC) Registry</p>  </article>
+  <article class="finding" id="QSI-2026-05093">
+    <header><span class="fid">QSI-2026-05093 · SOL-UNCHECKED-CALL</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol</h3>
+    <p><span class="tag">Потенциальный криптографический риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104)</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>contract:certora/harnesses/SafeHarness.sol</dd>
+      <dt>Источник данных</dt><dd>certora/harnesses/SafeHarness.sol</dd>
+      <dt>Метод обнаружения</dt><dd>Анализ шаблонов исходного кода Solidity.</dd>
+      <dt>Анализатор</dt><dd>solidity 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>43.0 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).</pre>
+    <h4 id="ev-QSI-2026-05093">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L88">certora/harnesses/SafeHarness.sol</a> · line 88 · SHA-256 8e885c80b50cce32… · Файл 0c6a4b08571e47ad…</div>
+      <pre>   86 | 
+   87 |     function callDummyHandler(bytes4 selector) public {
+   88 |         address(this).call(abi.encodeWithSelector(selector));
+   89 |     }
+   90 | </pre>
+    <h4>Ограничения проверки</h4><p class="small">Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).</p>
+    <h4>Рекомендация</h4><p>Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.</p>
+    <h4>Повторная проверка</h4><p>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</p>
+<p class="small muted">Smart Contract Weakness Classification (SWC) Registry</p>  </article>
+  <article class="finding" id="QSI-2026-05091">
+    <header><span class="fid">QSI-2026-05091 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:ECDSA:transaction_signing</dd>
+      <dt>Источник данных</dt><dd>certora/harnesses/SafeHarness.sol</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>39.6 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте certora/harnesses/SafeHarness.sol:32 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-05091">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32">certora/harnesses/SafeHarness.sol</a> · line 32 · SHA-256 e416f88cf9d56a07… · Файл 0c6a4b08571e47ad…</div>
+      <pre>   30 |             currentOwner = address(uint160(uint256(r)));
+   31 |         } else if (v &gt; 30) {
+   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(&#34;\x19Ethereum Signed Message:\n32&#34;, dataHash)), v - 4, r, s);
+   33 |         } else {
+   34 |             currentOwner = ecrecover(dataHash, v, r, s);</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34">certora/harnesses/SafeHarness.sol</a> · line 34 · SHA-256 3a44416872ad9ffc… · Файл 0c6a4b08571e47ad…</div>
+      <pre>   32 |             currentOwner = ecrecover(keccak256(abi.encodePacked(&#34;\x19Ethereum Signed Message:\n32&#34;, dataHash)), v - 4, r, s);
+   33 |         } else {
+   34 |             currentOwner = ecrecover(dataHash, v, r, s);
+   35 |         }
+   36 |     }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L403">contracts/Safe.sol</a> · line 403 · SHA-256 be7c18bdbce908e5… · Файл 60d4d0321549c9aa…</div>
+      <pre>  401 |                 // If `v &gt; 30` then default `v` (27, 28) has been adjusted to encode an `eth_sign` signature.
+  402 |                 // To support `eth_sign` and similar we adjust `v` and hash the `dataHash` with the EIP-191 message prefix before applying `ecrecover`.
+  403 |                 currentOwner = ecrecover(keccak256(abi.encodePacked(&#34;\x19Ethereum Signed Message:\n32&#34;, dataHash)), uint8(v - 4), r, s);
+  404 |             } else {
+  405 |                 // Default is `ecrecover` for the provided `dataHash`.</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L406">contracts/Safe.sol</a> · line 406 · SHA-256 361e3d349b65a6cf… · Файл 60d4d0321549c9aa…</div>
+      <pre>  404 |             } else {
+  405 |                 // Default is `ecrecover` for the provided `dataHash`.
+  406 |                 currentOwner = ecrecover(dataHash, uint8(v), r, s);
+  407 |             }
+  408 |             if (currentOwner &lt;= lastOwner || owners[currentOwner] == address(0) || currentOwner == SENTINEL_OWNERS)</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/src/utils/execution.ts#L113">src/utils/execution.ts</a> · line 113 · SHA-256 a189cee56b6fb9aa… · Файл d2d395bd775bb641…</div>
+      <pre>  112 |         signer: signerAddress,
+  113 |         data: await signer.signTypedData({ verifyingContract: safeAddress, chainId: cid }, EIP712_SAFE_TX_TYPE, safeTx),
+  114 |     };</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-05094">
+    <header><span class="fid">QSI-2026-05094 · SOL-FLOATING-PRAGMA</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>Плавающая версия компилятора (&gt;=0.7.0 &lt;0.9.0) в 50 файл(ах)</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Высокая</span></p>
+    <p>pragma &gt;=0.7.0 &lt;0.9.0 в 50 файл(ах), впервые в contracts/Safe.sol:2. (см. SWC-103)</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>solidity:pragma:&gt;=0.7.0 &lt;0.9.0</dd>
+      <dt>Источник данных</dt><dd>contracts/Safe.sol</dd>
+      <dt>Метод обнаружения</dt><dd>Анализ шаблонов исходного кода Solidity.</dd>
+      <dt>Анализатор</dt><dd>solidity 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>38.4 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте contracts/Safe.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-05094">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L2">contracts/Safe.sol</a> · line 2 · SHA-256 e88d87460c9e3199… · Файл 60d4d0321549c9aa…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | 
+    4 | import {FallbackManager} from &#34;./base/FallbackManager.sol&#34;;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/SafeL2.sol#L2">contracts/SafeL2.sol</a> · line 2 · SHA-256 15c9f4200fba8411… · Файл 6030700562329d1e…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | 
+    4 | // The import is used in the @inheritdoc, false positive</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/accessors/SimulateTxAccessor.sol#L2">contracts/accessors/SimulateTxAccessor.sol</a> · line 2 · SHA-256 af5c840a272a5dab… · Файл ea5890f27c3a4882…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | 
+    4 | import {Executor, Enum} from &#34;../base/Executor.sol&#34;;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/Executor.sol#L2">contracts/base/Executor.sol</a> · line 2 · SHA-256 c8eec2e4083c16ad… · Файл dcea582290abd1dc…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | import {Enum} from &#34;../interfaces/Enum.sol&#34;;
+    4 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/FallbackManager.sol#L2">contracts/base/FallbackManager.sol</a> · line 2 · SHA-256 f0696aecda7f2d43… · Файл da724d64eb3238f1…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | 
+    4 | import {SelfAuthorized} from &#34;../common/SelfAuthorized.sol&#34;;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/GuardManager.sol#L3">contracts/base/GuardManager.sol</a> · line 3 · SHA-256 2f8023b221054a49… · Файл e1db96b2ed4f15aa…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | /* solhint-disable one-contract-per-file */
+    3 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    4 | 
+    5 | import {SelfAuthorized} from &#34;./../common/SelfAuthorized.sol&#34;;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/ModuleManager.sol#L3">contracts/base/ModuleManager.sol</a> · line 3 · SHA-256 6fd7193061543bd1… · Файл 3b7be17091c7c9e3…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | /* solhint-disable one-contract-per-file */
+    3 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    4 | import {SelfAuthorized} from &#34;./../common/SelfAuthorized.sol&#34;;
+    5 | import {IERC165} from &#34;./../interfaces/IERC165.sol&#34;;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/OwnerManager.sol#L2">contracts/base/OwnerManager.sol</a> · line 2 · SHA-256 43281753a6047468… · Файл c9744122158f5433…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | 
+    4 | import {EIP7702} from &#34;../common/EIP7702.sol&#34;;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7702.sol#L2">contracts/common/EIP7702.sol</a> · line 2 · SHA-256 4664953c5c56b94f… · Файл 719f239f789764c2…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | 
+    4 | /**</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7951.sol#L2">contracts/common/EIP7951.sol</a> · line 2 · SHA-256 4664953c5c56b94f… · Файл 445d712873ba07b5…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.0 &lt;0.9.0;
+    3 | 
+    4 | /**</pre>
+    <h4>Ограничения проверки</h4><p class="small">Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).</p>
+    <h4>Рекомендация</h4><p>Зафиксируйте версию компилятора, использованную при тестировании.</p>
+    <h4>Повторная проверка</h4><p>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</p>
+<p class="small muted">Smart Contract Weakness Classification (SWC) Registry</p>  </article>
+  <article class="finding" id="QSI-2026-05095">
+    <header><span class="fid">QSI-2026-05095 · SOL-FLOATING-PRAGMA</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>Плавающая версия компилятора (&gt;=0.5.0 &lt;0.9.0) в 1 файл(ах)</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Высокая</span></p>
+    <p>pragma &gt;=0.5.0 &lt;0.9.0 в 1 файл(ах), впервые в contracts/interfaces/ViewStorageAccessible.sol:2. (см. SWC-103)</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>solidity:pragma:&gt;=0.5.0 &lt;0.9.0</dd>
+      <dt>Источник данных</dt><dd>contracts/interfaces/ViewStorageAccessible.sol</dd>
+      <dt>Метод обнаружения</dt><dd>Анализ шаблонов исходного кода Solidity.</dd>
+      <dt>Анализатор</dt><dd>solidity 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>38.4 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте contracts/interfaces/ViewStorageAccessible.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-05095">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/interfaces/ViewStorageAccessible.sol#L2">contracts/interfaces/ViewStorageAccessible.sol</a> · line 2 · SHA-256 983f9c51447ea383… · Файл c03720d0b31ec920…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.5.0 &lt;0.9.0;
+    3 | 
+    4 | /**</pre>
+    <h4>Ограничения проверки</h4><p class="small">Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).</p>
+    <h4>Рекомендация</h4><p>Зафиксируйте версию компилятора, использованную при тестировании.</p>
+    <h4>Повторная проверка</h4><p>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</p>
+<p class="small muted">Smart Contract Weakness Classification (SWC) Registry</p>  </article>
+  <article class="finding" id="QSI-2026-05096">
+    <header><span class="fid">QSI-2026-05096 · SOL-FLOATING-PRAGMA</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>Плавающая версия компилятора (&gt;=0.7.4 &lt;0.9.0) в 1 файл(ах)</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Высокая</span></p>
+    <p>pragma &gt;=0.7.4 &lt;0.9.0 в 1 файл(ах), впервые в contracts/libraries/SafeStorage.sol:2. (см. SWC-103)</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>solidity:pragma:&gt;=0.7.4 &lt;0.9.0</dd>
+      <dt>Источник данных</dt><dd>contracts/libraries/SafeStorage.sol</dd>
+      <dt>Метод обнаружения</dt><dd>Анализ шаблонов исходного кода Solidity.</dd>
+      <dt>Анализатор</dt><dd>solidity 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>38.4 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте contracts/libraries/SafeStorage.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-05096">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/libraries/SafeStorage.sol#L2">contracts/libraries/SafeStorage.sol</a> · line 2 · SHA-256 11c26335bd27fe89… · Файл 642b3e3f69348c8b…</div>
+      <pre>    1 | // SPDX-License-Identifier: LGPL-3.0-only
+    2 | pragma solidity &gt;=0.7.4 &lt;0.9.0;
+    3 | 
+    4 | /**</pre>
+    <h4>Ограничения проверки</h4><p class="small">Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).</p>
+    <h4>Рекомендация</h4><p>Зафиксируйте версию компилятора, использованную при тестировании.</p>
+    <h4>Повторная проверка</h4><p>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</p>
+<p class="small muted">Smart Contract Weakness Classification (SWC) Registry</p>  </article>
+  <article class="finding" id="QSI-2026-05098">
+    <header><span class="fid">QSI-2026-05098 · DEP-ADVISORY-DEV</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>174 бюллетеней в 45 пакет(ах) npm, нужных только для разработки или сборки</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает 174 бюллетеней (95 с оценкой high или critical) для 45 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; @openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, &#34;dev&#34;: true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies:npm:non-runtime</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>17.1 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.</p>
+    <h4>Шаги воспроизведения</h4><pre>Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в package-lock.json.</pre>
+    <h4 id="ev-QSI-2026-05098">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/">OSV.dev (npm)</a> · package-lock.json · SHA-256 246d1fc835bf80ba…</div>
+      <pre>@fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx
+@humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g
+@isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2
+@openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh
+adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85
+ajv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6
+ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6
+axios@0.21.4 [dev]: GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-43fc-jf86-j433, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc, GHSA-jr5f-v2jv-69x6, GHSA-m7pr-hjqh-92cm, GHSA-mmx7-hfxf-jppx, GHSA-p92q-9vqr-4j8v, GHSA-pf86-5x62-jrwf, GHSA-pjwm-pj3p-43mv, GHSA-pmwg-cvhr-8vh7, GHSA-vf2m-468p-8v99, GHSA-w9j2-pvgh-6h63
+axios@1.13.2 [dev]: GHSA-35jp-ww65-95wh, GHSA-3g43-6gmg-66jw, GHSA-3p68-rc4w-qgx5, GHSA-3pq3-5fj3-cg6v, GHSA-3w6x-2g7m-8v23, GHSA-42h9-826w-cgv3, GHSA-43fc-jf86-j433, GHSA-445q-vr5w-6q77, GHSA-4hqw-qxg8-jxx2, GHSA-542g-h47m-68v8, GHSA-5c9x-8gcm-mpgx, GHSA-62hf-57xw-28j9, GHSA-6chq-wfr3-2hj9, GHSA-777c-7fjr-54vf, GHSA-7q8q-rj6j-mhjq, GHSA-898c-q2cr-xwhg, GHSA-9fr6-4gfg-395g, GHSA-fvcv-3m26-pcqx, GHSA-hfxv-24rg-xrqf, GHSA-j5f8-grm9-p9fc
+bn.js@4.11.6 [dev]: GHSA-378v-28hj-76wf
+bn.js@4.12.2 [dev]: GHSA-378v-28hj-76wf
+bn.js@5.2.2 [dev]: GHSA-378v-28hj-76wf
+brace-expansion@1.1.12 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895
+brace-expansion@2.0.2 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895
+cookie@0.4.2 [dev]: GHSA-pxg6-pf52-xh8x
+diff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx
+diff@5.2.0 [dev]: GHSA-73rr-hh4g-fpgx
+elliptic@6.5.4 [dev]: GHSA-434g-2637-qmqr, GHSA-49q7-c7j4-3p7m, GHSA-848j-6mx2-7j84, GHSA-977x-g7h5-7qgw, GHSA-f7q4-pwc6-w24p, GHSA-fc9h-whq2-v747, GHSA-vjh7-7g9h-fjfh
+elliptic@6.6.1 [dev]: GHSA-848j-6mx2-7j84
+fast-uri@3.1.0 [dev]: GHSA-333x-w4r6-6crp, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7, GHSA-f65p-4m7j-42xc, GHSA-hrr3-gc8f-f4qj, GHSA-jqff-g426-hqxp, GHSA-q3j6-qgpj-74h6, GHSA-qw65-cvwx-89v3, GHSA-v2hh-gcrm-f6hx, GHSA-v39h-62p7-jpjc, GHSA-w74x-v6f9-j3xg, GHSA-xhq7-xmqj-769h
+flatted@3.3.3 [dev]: GHSA-25h7-pfq9-p65f, GHSA-rf6f-7fwh-wjgh
+follow-redirects@1.15.11 [dev]: GHSA-r4q5-vmmm-2653
+form-data@4.0.5 [dev]: GHSA-hmw2-7cc7-3qxx
+handlebars@4.7.8 [dev]: GHSA-2qvq-rjwj-gvw9, GHSA-2w6w-674q-4c4q, GHSA-3mfm-83xf-c92r, GHSA-442j-39wm-28r2, GHSA-7rx3-28cr-v5wh, GHSA-8r5x-fm3f-whwj, GHSA-9cx6-37pm-9jff, GHSA-p8wg-vrv2-v86f, GHSA-xhpv-hc6g-r9c6, GHSA-xjpj-3mr7-gcpf, GHSA-xw65-4hp5-5hc7
+http-cache-semantics@4.2.0 [dev]: GHSA-ch52-4w7c-c8xp
+immutable@4.3.7 [dev]: GHSA-v56q-mh7h-f735, GHSA-wf6x-7x77-mvgw, GHSA-xvcm-6775-5m9r
+js-yaml@3.14.2 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68
+js-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68
+lodash@4.17.21 [dev]: GHSA-f23m-r3pf-42rh, GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg
+minimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+minimatch@3.1.2 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+minimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+minimatch@9.0.5 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+pbkdf2@3.1.5 [dev]: GHSA-477h-4r7f-fvrx
+picomatch@2.3.1 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj
+picomatch@4.0.3 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj
+serialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v
+tmp@0.0.33 [dev]: GHSA-52f5-9888-hmc6, GHSA-ph9p-34f9-6g65
+undici@5.29.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g52, GHSA-4992-7rv2-5pvq, GHSA-8xcm-r25x-g524, GHSA-9fm3-97px-rjf6, GHSA-g8m3-5g58-fq7m, GHSA-g9mf-h72j-4rw9, GHSA-m8rv-5g2x-5cg5, GHSA-p88m-4jfj-68fv, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-v3r7-h72x-cjcm, GHSA-v9p9-hfj2-hcw8, GHSA-vrm6-8vpv-qv8q, GHSA-vxpw-j846-p89q
+uuid@8.3.2 [dev]: GHSA-w5hq-g745-h8pq
+ws@7.4.6 [dev]: GHSA-3h5v-q93c-6h6q, GHSA-96hv-2xvq-fx4p
+ws@7.5.10 [dev]: GHSA-96hv-2xvq-fx4p
+ws@8.17.1 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p
+ws@8.18.0 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p
+ws@8.18.3 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.</p>
+    <h4>Рекомендация</h4><p>Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV.dev — open-source vulnerability database and API</p>  </article>
+  <article class="finding" id="QSI-2026-05097">
+    <header><span class="fid">QSI-2026-05097 · DEP-NO-PQC-LIBRARY</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>Не обнаружено криптобиблиотек с поддержкой PQC</h3>
+    <p><span class="tag">Недостаточность данных</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies</dd>
+      <dt>Источник данных</dt><dd>dependency manifests</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление названий зависимостей.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-28 12:53 UTC</dd>
+      <dt>Балл приоритета</dt><dd>14.5 / 100 (Финансовая организация)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.</p>
+    <h4>Шаги воспроизведения</h4><pre>Изучите перечисленные в доказательстве манифесты.</pre>
+    <h4 id="ev-QSI-2026-05097">Подтверждающие доказательства</h4>
+      <div class="ev-meta">dependency · certora/requirements.txt, package-lock.json, package.json · SHA-256 47e156b611a62a94…</div>
+      <pre>Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1</pre>
+    <h4>Ограничения проверки</h4><p class="small">Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.</p>
+    <h4>Рекомендация</h4><p>Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование после обновлений.</p>
+<p class="small muted">FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM); FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Подтверждающие доказательства</h2>
+  <table class="data"><tr><th>ID</th><th>Тип</th><th>Источник данных</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-05092">QSI-2026-05092</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32">certora/harnesses/SafeHarness.sol</a> (line 32)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0</td></tr><tr><td><a href="#ev-QSI-2026-05092">QSI-2026-05092</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34">certora/harnesses/SafeHarness.sol</a> (line 34)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef</td></tr><tr><td><a href="#ev-QSI-2026-05093">QSI-2026-05093</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L88">certora/harnesses/SafeHarness.sol</a> (line 88)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8e885c80b50cce328ce145786c0515613599e25c3226c2115c450b873c5e9506</td></tr><tr><td><a href="#ev-QSI-2026-05091">QSI-2026-05091</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32">certora/harnesses/SafeHarness.sol</a> (line 32)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0</td></tr><tr><td><a href="#ev-QSI-2026-05091">QSI-2026-05091</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34">certora/harnesses/SafeHarness.sol</a> (line 34)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef</td></tr><tr><td><a href="#ev-QSI-2026-05091">QSI-2026-05091</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L403">contracts/Safe.sol</a> (line 403)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">be7c18bdbce908e503f1c899b447b921a9a3880ec49ae5d3d5ea33045ae5aec7</td></tr><tr><td><a href="#ev-QSI-2026-05091">QSI-2026-05091</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L406">contracts/Safe.sol</a> (line 406)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">361e3d349b65a6cf85ae3cc313307e936af7349c06d154fd2e39b0f84d9b4714</td></tr><tr><td><a href="#ev-QSI-2026-05091">QSI-2026-05091</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/src/utils/execution.ts#L113">src/utils/execution.ts</a> (line 113)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a189cee56b6fb9aa095cce0a3b5099d5f195bc22ad24f9e656e950cde6a753c0</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L2">contracts/Safe.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e88d87460c9e31999f74a385f7211f2a3d247576a8d5e7321fb8ab7610726718</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/SafeL2.sol#L2">contracts/SafeL2.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">15c9f4200fba8411f86f51e4783fa81326529bbdedb3a85d3d69541f7783cbd7</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/accessors/SimulateTxAccessor.sol#L2">contracts/accessors/SimulateTxAccessor.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">af5c840a272a5dab66211c10e60731181ce16ddf9518928201829db6baacef22</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/Executor.sol#L2">contracts/base/Executor.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c8eec2e4083c16adc0bf1e7eea14ca740cca55b1f5676d9cb4a355576c6800c6</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/FallbackManager.sol#L2">contracts/base/FallbackManager.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f0696aecda7f2d4390ae2470ec51a56b07a6565df8ff4be3d0a6524628ffb825</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/GuardManager.sol#L3">contracts/base/GuardManager.sol</a> (line 3)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2f8023b221054a49f2c7512edfc7f592b58e8c7053625f4af7216c1251f2bd74</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/ModuleManager.sol#L3">contracts/base/ModuleManager.sol</a> (line 3)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6fd7193061543bd17b02478604b1e136ee186957854410e2482d2fd544017605</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/OwnerManager.sol#L2">contracts/base/OwnerManager.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">43281753a6047468ec8145eb656909a730f9b1bb7e3a6388e81a52f7cc0c1714</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7702.sol#L2">contracts/common/EIP7702.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f</td></tr><tr><td><a href="#ev-QSI-2026-05094">QSI-2026-05094</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7951.sol#L2">contracts/common/EIP7951.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f</td></tr><tr><td><a href="#ev-QSI-2026-05095">QSI-2026-05095</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/interfaces/ViewStorageAccessible.sol#L2">contracts/interfaces/ViewStorageAccessible.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">983f9c51447ea383d35f05b85564c2a8e5c2eb17d9109edf52dad4e588c49ca6</td></tr><tr><td><a href="#ev-QSI-2026-05096">QSI-2026-05096</a></td><td>file_excerpt</td><td><a href="https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/libraries/SafeStorage.sol#L2">contracts/libraries/SafeStorage.sol</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">11c26335bd27fe89dda40165c6fea219ab0021d1c0b45a5bace32a1322a9ae25</td></tr><tr><td><a href="#ev-QSI-2026-05098">QSI-2026-05098</a></td><td>tool_output</td><td><a href="https://osv.dev/">OSV.dev (npm)</a> (package-lock.json)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">246d1fc835bf80bae1bffb3a9be4793d552a4248f1d02f0cec4af5e423ea4959</td></tr><tr><td><a href="#ev-QSI-2026-05097">QSI-2026-05097</a></td><td>dependency</td><td>certora/requirements.txt, package-lock.json, package.json</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">47e156b611a62a94da8b2ebeeacd5c7d245cbbdc38b44af530ee4ffe425233ff</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Постквантовая оценка</h2>
+  <table class="data">
+    <tr><th></th><th>Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом»)</th><th>Подписи (x — сколько подписи и ключи должны оставаться доверенными)</th></tr>
+    <tr><th>Срок жизни данных/ключей x</th><td>10</td><td>10</td></tr>
+    <tr><th>Время миграции y</th><td>5</td><td>5</td></tr>
+    <tr><th>Принятое число лет до CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → при этом сценарии миграция завершится слишком поздно</td><td>7 → при этом сценарии миграция завершится слишком поздно</td></tr>
+  </table>
+<p class="note">Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Финансовая организация», а не данные клиента; с фактическими сроками клиента вывод может измениться.</p>  <h3>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет</h3>
+  <p><strong>Следующий шаг:</strong> Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p>
+  <p class="note">Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам.</p>
+  <h3>Что делают квантово-уязвимые алгоритмы</h3>
+  <table class="data"><tr><th>Роль</th><th>Алгоритмы (файлы)</th><th>ID</th><th>Первый шаг</th></tr>
+<tr><td><strong>подпись транзакций и сообщений</strong></td><td>ECDSA (3)</td><td class="small"><a href="#QSI-2026-05091">QSI-2026-05091</a></td><td class="small">Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями</td></tr>  </table>
+  <p class="note">Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня.</p>
+  <p class="note">z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+  <table class="data"><tr><th>Квантовый статус</th><th>Количество</th></tr>
+<tr><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>8</td></tr><tr><td>н/п</td><td>20</td></tr><tr><td>уязвим (Шор)</td><td>5</td></tr>  </table>
+  <p><strong>Подробное описание находок:</strong> QSI-2026-05091</p>
+  <h3>Анкета постквантовой готовности</h3>
+<p class="muted">Анкета готовности для проекта не заполнялась.</p>  <h3>Квантовые алгоритмы, значимые для этой инвентаризации</h3>
+  <table class="data"><tr><th>Квантовый алгоритм</th><th>Действие</th><th>Алгоритмы из инвентаризации (строк)</th><th>Что это значит для аудита</th></tr>
+<tr><td>Алгоритм Шора — дискретный логарифм на эллиптических кривых<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>ECDSA (5)</td><td class="small">Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.</td></tr><tr><td>Алгоритм Гровера — поиск ключа и прообразов<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>Keccak-256 (8)</td><td class="small">Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.</td></tr><tr><td>Брассар–Хойер–Тапп — поиск коллизий<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>Keccak-256 (8)</td><td class="small">256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.</td></tr>  </table>
+  <p class="note">Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Ограничения и допущения</h2>
+  <ul>
+    <li>Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</li>
+    <li>z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</li>
+<li>slither — не проверено: 54 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))</li><li>osv_advisories — Недостаточность данных: 2 (примеры: npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest)</li>  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>План устранения проблем</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05092 · P2 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).</dd>
+      <dt>Ожидаемый результат</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+      <dt>Тесты до изменения</dt><dd>Откройте строка 32 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).</dd>
+      <dt>Тесты после изменения</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Условие закрытия</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05093 · P2 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Неудачные вызовы остаются незамеченными, что ведёт к несогласованному состоянию.</dd>
+      <dt>Ожидаемый результат</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+      <dt>Тесты до изменения</dt><dd>Откройте строка 88 в предоставленном файле certora/harnesses/SafeHarness.sol и изучите приведённые строки (см. доказательство).</dd>
+      <dt>Тесты после изменения</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Условие закрытия</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05091 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05094 · P3 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Зафиксируйте версию компилятора, использованную при тестировании.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.</dd>
+      <dt>Ожидаемый результат</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+      <dt>Тесты до изменения</dt><dd>Откройте contracts/Safe.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</dd>
+      <dt>Тесты после изменения</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Условие закрытия</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05095 · P3 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Зафиксируйте версию компилятора, использованную при тестировании.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.</dd>
+      <dt>Ожидаемый результат</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+      <dt>Тесты до изменения</dt><dd>Откройте contracts/interfaces/ViewStorageAccessible.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</dd>
+      <dt>Тесты после изменения</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Условие закрытия</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05096 · P3 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Зафиксируйте версию компилятора, использованную при тестировании.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.</dd>
+      <dt>Ожидаемый результат</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+      <dt>Тесты до изменения</dt><dd>Откройте contracts/libraries/SafeStorage.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</dd>
+      <dt>Тесты после изменения</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+      <dt>Условие закрытия</dt><dd>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05091 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-05098 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Обновите зависимости разработки и сборки из доказательства.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Обновление инструментов может изменить результат сборки; сравните релизные артефакты.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Приоритеты на 30, 60 и 90 дней</h2>
+  <h3>30 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td colspan="4" class="muted">Нет</td></tr>  </table>
+  <h3>60 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P2</td><td>QSI-2026-05092</td><td>Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.</td><td class="small">устранение первопричины</td></tr><tr><td>P2</td><td>QSI-2026-05093</td><td>Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall.</td><td class="small">устранение первопричины</td></tr>  </table>
+  <h3>90 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-05091</td><td>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-05094</td><td>Зафиксируйте версию компилятора, использованную при тестировании.</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-05095</td><td>Зафиксируйте версию компилятора, использованную при тестировании.</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-05096</td><td>Зафиксируйте версию компилятора, использованную при тестировании.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-05091</td><td>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-05098</td><td>Обновите зависимости разработки и сборки из доказательства.</td><td class="small">устранение первопричины</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Проверки после устранения</h2>
+  <table class="data"><tr><th>ID</th><th>Повторная проверка</th></tr>
+<tr><td>QSI-2026-05092</td><td>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</td></tr><tr><td>QSI-2026-05093</td><td>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</td></tr><tr><td>QSI-2026-05091</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-05094</td><td>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</td></tr><tr><td>QSI-2026-05095</td><td>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</td></tr><tr><td>QSI-2026-05096</td><td>Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.</td></tr><tr><td>QSI-2026-05098</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-05097</td><td>Повторите сканирование после обновлений.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Использованные инструменты</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Источники и нормативные документы</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <a href="https://eprint.iacr.org/2017/847">https://eprint.iacr.org/2017/847</a> <span class="muted">(peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)</span></li><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <a href="https://cr.yp.to/hash/collisioncost-20090823.pdf">https://cr.yp.to/hash/collisioncost-20090823.pdf</a> <span class="muted">(paper dated 2009-08-23)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN &#39;98; arXiv:quant-ph/9705002) — Springer / arXiv. <a href="https://arxiv.org/abs/quant-ph/9705002">https://arxiv.org/abs/quant-ph/9705002</a> <span class="muted">(peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <a href="https://osv.dev/">https://osv.dev/</a> <span class="muted">(the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/&lt;id&gt;)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li><li>Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <a href="https://swcregistry.io/">https://swcregistry.io/</a> <span class="muted">(historic reference; still widely cited)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Приложения</h2>
+  <h3>A. Криптографическая инвентаризация</h3>
+  <table class="data"><tr><th>Алгоритм</th><th>Параметр</th><th>Квантовый статус</th><th>Классический статус</th><th>Количество</th><th>Мест</th><th>Примеры</th></tr>
+<tr><td>Keccak-256</td><td>Keccak-256</td><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>допустимо</td><td>8</td><td>8</td><td class="small">certora/harnesses/SafeHarness.sol:32; contracts/Safe.sol:396; contracts/handler/CompatibilityFallbackHandler.sol:52</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>1.2.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>1.2.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>1.3.2</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>1.4.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>1.4.2</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/secp256k1 (noble-curves)</span></td><td>1.7.1</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>1.7.2</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>1.8.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>1.8.2</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>1.9.1</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>1.9.7</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>2.0.1</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>2.0.1</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>4.0.4</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">ethers (ethers.js)</span></td><td>5.7.2</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">ethers (ethers.js)</span></td><td>5.8.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">ethers (ethers.js)</span></td><td>6.15.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">elliptic (elliptic (Node))</span></td><td>6.5.4</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">elliptic (elliptic (Node))</span></td><td>6.6.1</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>^2.0.1</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package.json</td></tr><tr><td>ECDSA</td><td>secp256k1 (ecrecover)</td><td>уязвим (Шор)</td><td>допустимо</td><td>4</td><td>4</td><td class="small">certora/harnesses/SafeHarness.sol:32; certora/harnesses/SafeHarness.sol:34; contracts/Safe.sol:403</td></tr><tr><td>ECDSA</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/utils/execution.ts:113</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 0da61727ced613d6767f96b37828d8b962f93bc2e81d7a8c2e0fab5270116a40</p>
+  <h3>C. Входные файлы</h3>
+  <table class="data"><tr><th>Файл</th><th>Размер</th><th>SHA-256</th><th>Маскирования</th></tr>
+<tr><td>.solcover.js</td><td>433</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e082bfb212d25c3367596453ba28440137a54a63b8ff8072b5e004fb98629686</td><td>0</td></tr><tr><td>certora/harnesses/ExtensibleFallbackHandlerHarness.sol</td><td>368</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a23d35cd9283f8262742377b7862f63c10aeeec1964f31b610dc35e53ea9f911</td><td>0</td></tr><tr><td>certora/harnesses/SafeHarness.sol</td><td>3751</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401</td><td>0</td></tr><tr><td>certora/requirements.txt</td><td>20</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">138d8afeb220dd3aadad0b7221d49d76c3ec475ca2c6f5bed4f44298b41af4fa</td><td>0</td></tr><tr><td>contracts/Safe.sol</td><td>30242</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130</td><td>2</td></tr><tr><td>contracts/SafeL2.sol</td><td>3685</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6030700562329d1ebd42ec3c0494b10c9001dbe9080fbb4abf75c1563ed466db</td><td>0</td></tr><tr><td>contracts/accessors/SimulateTxAccessor.sol</td><td>2900</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ea5890f27c3a488246ecb1880d632f4a5a30fcbbb65a512bad7a1c5b88f86082</td><td>0</td></tr><tr><td>contracts/base/Executor.sol</td><td>1674</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dcea582290abd1dc0ce89171389d78b716e89f6c788fce523c5cb562e81743e8</td><td>0</td></tr><tr><td>contracts/base/FallbackManager.sol</td><td>4005</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">da724d64eb3238f1cb3355bf8b87c459cf812fc3f6dd100f2f89290a8a169eb9</td><td>0</td></tr><tr><td>contracts/base/GuardManager.sol</td><td>3922</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e1db96b2ed4f15aa42c8ceca0d8701048e7b6fe276cb437a4f814d85f69119a9</td><td>0</td></tr><tr><td>contracts/base/ModuleManager.sol</td><td>12927</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3b7be17091c7c9e37c9ddaba41e57464b1c4a334500d34eaddd94721f8cd83b3</td><td>0</td></tr><tr><td>contracts/base/OwnerManager.sol</td><td>7302</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c9744122158f543336c11bafc70d376711f48c4dd310fe09f385231f264a3fc1</td><td>0</td></tr><tr><td>contracts/common/EIP7702.sol</td><td>1385</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">719f239f789764c2d79150ab0d6d5b3b49af4fee4409f0e6c3303350e30aad3a</td><td>0</td></tr><tr><td>contracts/common/EIP7951.sol</td><td>2378</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">445d712873ba07b5ef800edd7038d8483da9d2ae1f56ee972e18076a7ee90992</td><td>0</td></tr><tr><td>contracts/common/ErrorMessage.sol</td><td>1497</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7844168e46d0802b3a07a27e974e8db13ba7ff26486d9fc5a746ef272b32c2da</td><td>0</td></tr><tr><td>contracts/common/NativeCurrencyPaymentFallback.sol</td><td>592</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">401744eb862f9f731819c8f904d2ca5768825c0d7680d3448f1a1232cac36ef5</td><td>0</td></tr><tr><td>contracts/common/SecuredSignatureValidator.sol</td><td>1442</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">506e766774ac7800a022d4316831a483af05cd0d42fd1561e00a6a23c48cb1d5</td><td>0</td></tr><tr><td>contracts/common/SecuredTokenTransfer.sol</td><td>1913</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4aaa684a44631b1a6b14ee97b894380431014abf1fec8e4e4118fd7b275c7010</td><td>0</td></tr><tr><td>contracts/common/SelfAuthorized.sol</td><td>879</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">002069912ab0cb639e0e0eebd5293ceee76530aeaae17a9e0512ea4871ef868f</td><td>0</td></tr><tr><td>contracts/common/SignatureDecoder.sol</td><td>1559</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">784cb20d89bb46765bb8cdf6c5b6e3dada2fa4e932f8afbf1f5d7159ccd8d5c6</td><td>0</td></tr><tr><td>contracts/common/Singleton.sol</td><td>734</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8bc56aad42a49782b135011e29323cd5117dc41c3a7451470eefe748b5dfab3c</td><td>0</td></tr><tr><td>contracts/common/StorageAccessible.sol</td><td>2087</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d6ea29d3e65b9a72357e1433aa3798a3d48afe8d8ff1faedf335dcc225302df8</td><td>0</td></tr><tr><td>contracts/external/SafeMath.sol</td><td>1762</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f56c2b3b9f29c9b8854e6a656ef01577a1fd553e17462119960c45a412c42a9b</td><td>0</td></tr><tr><td>contracts/handler/CompatibilityFallbackHandler.sol</td><td>11112</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6d52fbba9bdea0f5e47999219e566b1f5983ccd69fcace78579f6f3873a98fe1</td><td>2</td></tr><tr><td>contracts/handler/ExtensibleFallbackHandler.sol</td><td>1422</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">79616d9746ee36e264be7ff2bfc2b7d48e5eba4c43c285cd42d28a8eb19b5cab</td><td>0</td></tr><tr><td>contracts/handler/HandlerContext.sol</td><td>3000</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">120c699c7c7807684c28ed650b2e290353aab5d738d6a388b8a95de1f0e49632</td><td>0</td></tr><tr><td>contracts/handler/TokenCallbackHandler.sol</td><td>2895</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">87853ae257aa5790cd834d88e1db479aa15b308de49d9641df35be45cccb6ffb</td><td>0</td></tr><tr><td>contracts/handler/extensible/ERC165Handler.sol</td><td>4560</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4d8e55c1e4878665300a43c6b4d7f61bfad9a835754a803e0c33d44355e8f703</td><td>0</td></tr><tr><td>contracts/handler/extensible/ExtensibleBase.sol</td><td>3597</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ab19a4e9dfae9bc43c635e561bec080c86b81ea68659df5f52f1b7a5eb7bf727</td><td>0</td></tr><tr><td>contracts/handler/extensible/FallbackHandler.sol</td><td>1689</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c1ee9193eebab1be01513a3ea32c63512c3061c898622b234f74f60e3af49070</td><td>0</td></tr><tr><td>contracts/handler/extensible/MarshalLib.sol</td><td>3362</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8e8d769dbc1f46a31ad64a5263236d5b464fcb8b886d3055bc06bb66c0292481</td><td>0</td></tr><tr><td>contracts/handler/extensible/SignatureVerifierMuxer.sol</td><td>8119</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ab760df5f703d6cdbdc16afaa0a8df211520739411ca4a3d76422d94bc5a3d3e</td><td>1</td></tr><tr><td>contracts/handler/extensible/TokenCallbacks.sol</td><td>1750</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">91b1a830a84b55df375737867402183301ef826ecdd3f0e70b13c76694cff382</td><td>0</td></tr><tr><td>contracts/interfaces/ERC1155TokenReceiver.sol</td><td>2983</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">41f98fce7278be0b07c77526565272372b227ec773c85adc22fff9fb3cbc7a95</td><td>0</td></tr><tr><td>contracts/interfaces/ERC721TokenReceiver.sol</td><td>1136</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">df706828bef2646a8770edb2e6aa93aeb07ed5aaabc953896c87c314218d5ba9</td><td>0</td></tr><tr><td>contracts/interfaces/ERC777TokensRecipient.sol</td><td>1155</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ecbca6e65b6f18f30a61351fd3fe92c635be3aa8a7f9f9442c06e5bbb280eed5</td><td>0</td></tr><tr><td>contracts/interfaces/Enum.sol</td><td>531</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">320aa4eafeefda680db5d0c57ceb0823a93f8a5e85a6c2a2a01d2779f8c2b4ee</td><td>0</td></tr><tr><td>contracts/interfaces/IERC165.sol</td><td>829</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">423a812abe03f809ca695223a1a8ea070fb2e7fd7a7e41b3b629004bd0236b2f</td><td>0</td></tr><tr><td>contracts/interfaces/IFallbackManager.sol</td><td>2778</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1035a4feaecda99b3263bad0af092396a820f093c52f7c95ea70e5feca486135</td><td>0</td></tr><tr><td>contracts/interfaces/IGuardManager.sol</td><td>1165</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">209325b458c3a401952e6f9172cedb2f1e7b2ed5f09e044621ed2cb543432d6c</td><td>0</td></tr><tr><td>contracts/interfaces/IModuleManager.sol</td><td>5409</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9251c075d62d1a3667ccbbb77237addd4d3d014ca64ec1fb9d532e44449ddb69</td><td>0</td></tr><tr><td>contracts/interfaces/INativeCurrencyPaymentFallback.sol</td><td>718</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4c369916f727133f5d9084f69e541bbd7674621f047d9e8810430838817b0e28</td><td>0</td></tr><tr><td>contracts/interfaces/IOwnerManager.sol</td><td>4338</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">15e46219c43b16d649bbe4c8e21598821f572e9f5b70d76067235b45b0eda47d</td><td>0</td></tr><tr><td>contracts/interfaces/ISafe.sol</td><td>11532</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">102d7a71f3be160a7a98536ea6c447df599693e7d4f2f195c63c47118c10d448</td><td>0</td></tr><tr><td>contracts/interfaces/ISignatureValidator.sol</td><td>1205</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">da8e2d45e549c2e94f185cf4c8fbb2294feef389b1fa4b913d65d22466bb44d7</td><td>0</td></tr><tr><td>contracts/interfaces/IStorageAccessible.sol</td><td>1369</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">664c8393448986b757a4cddf58e84be6a9a6d4883a49645545dc1d7450e7dc35</td><td>0</td></tr><tr><td>contracts/interfaces/ViewStorageAccessible.sol</td><td>837</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c03720d0b31ec9208f2372c1ed397e2b4e7c77f60dc80a571721e50d66a598cf</td><td>0</td></tr><tr><td>contracts/libraries/CreateCall.sol</td><td>2130</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">710ece301e83835acffe0448001c41a912410cb331c81372fe199bab37b7ae1c</td><td>0</td></tr><tr><td>contracts/libraries/MultiSend.sol</td><td>3913</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7fa2709d8434193d3eeb7e78910d00731b842de71584e0caf3db5417cb6d9c87</td><td>0</td></tr><tr><td>contracts/libraries/MultiSendCallOnly.sol</td><td>3825</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">70b259054dfced971ef259e9f29842ba79a00b34c260fba7d96dbf39613c874a</td><td>0</td></tr><tr><td>contracts/libraries/SafeMigration.sol</td><td>4868</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4dcfcce8929dceb78331698e71eef595da61ed2b3ee9cbceb3556d22cb948837</td><td>0</td></tr><tr><td>contracts/libraries/SafeStorage.sol</td><td>2125</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">642b3e3f69348c8bb715ed222fd510f71e265f6cf45b71b8d7d88b2bdff00cea</td><td>0</td></tr><tr><td>contracts/libraries/SafeToL2Setup.sol</td><td>3028</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1e644dbebf6bf8674fb3dc09a681cbc3284463098446464f9b87b89d31014b2f</td><td>0</td></tr><tr><td>contracts/libraries/SignMessageLib.sol</td><td>1705</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e4a3e7d20f385bd984aa91cb8c8a863bc3a75a25e550144bb4ca88b2a6c0ebf9</td><td>1</td></tr><tr><td>contracts/proxies/SafeProxy.sol</td><td>4223</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c867699db68a9e0bc9cbde5561a99d88be71fd4e8d82532e79a464e34bd9d3b2</td><td>0</td></tr><tr><td>contracts/proxies/SafeProxyFactory.sol</td><td>9439</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f5bee22d37e20de6967c4f9eeb7cd099652d83f5a5815eb0118c352ea79bc721</td><td>0</td></tr><tr><td>eslint.config.mjs</td><td>600</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">006760d41bce4c0a43b2de66bc3b0169d9c6c7fe7de6ff051d5cea8cc96fe6ea</td><td>0</td></tr><tr><td>hardhat.config.ts</td><td>3899</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c20bc7de941edd9ab880721b2d6fdf54f822e79bfde0691d0d22381706f103a1</td><td>0</td></tr><tr><td>package-lock.json</td><td>491576</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0c9c252a258643903bcbbe7dd88370ca331b6dbeac50004ea387c60ae8ac0476</td><td>0</td></tr><tr><td>package.json</td><td>3644</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c511ccd2c192aec0465222ddb88e0f14637683627120fb5204819c6cb14f8cc8</td><td>0</td></tr><tr><td>src/deploy/deploy_accessors.ts</td><td>523</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">212f7de0c1c9a1c53bf45642f56dbdc237bca3aa236c73fab33467f34b2a1bd3</td><td>0</td></tr><tr><td>src/deploy/deploy_factories.ts</td><td>519</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">40be845012ef729a2a4064405001dc626d601cc8c3b13f434fe0e2ab1816aff3</td><td>0</td></tr><tr><td>src/deploy/deploy_handlers.ts</td><td>887</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6a618e83a095dff59bcf3de49fc6d905a1abaf16d835a6f469ac0376d197ef36</td><td>0</td></tr><tr><td>src/deploy/deploy_libraries.ts</td><td>1188</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e8c1def9e86c56dfe7e540e7bad0ea5c69e3d3712c3965f9e587ac3d37c4f94</td><td>0</td></tr><tr><td>src/deploy/deploy_migrations.ts</td><td>848</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e6d315deaa8623422d9a4efbdfb8c34b692d0a6b5645d2dc64448ffacc89fc1</td><td>0</td></tr><tr><td>src/deploy/deploy_safe_l2.ts</td><td>504</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">34831ce49f360236eb31430caed6736c07021d9a1afac968fb340f66f0fb6953</td><td>0</td></tr><tr><td>src/deploy/deploy_safe_singleton.ts</td><td>497</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">95c750d38a54d68faf7846634fcc05912ea206b93f0bec5c80e93d5778dbf2e2</td><td>0</td></tr><tr><td>src/index.ts</td><td>138</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c28eecba58a69976643c7f065158bc48e26fab159001a43a7f248990abc242d9</td><td>0</td></tr><tr><td>src/tasks/deploy_contracts.ts</td><td>343</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8fdf706d87497d9556a2b1ce25b1e6f2056cea8094e4e93964851955e46386fe</td><td>0</td></tr><tr><td>src/tasks/local_verify.ts</td><td>2405</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2a65e63f135cac4ec6d0f4d9c60021793cd56dead066c8fc1c9386cf56bca703</td><td>0</td></tr><tr><td>src/tasks/show_codesize.ts</td><td>1867</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b8bbf4580179fdf67e1621d5a20dc19f7bb244edd64f527042f8fc7b4ece7277</td><td>0</td></tr><tr><td>src/utils/constants.ts</td><td>72</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8d14c53227906c725b97fb116b673c25f06f2b8f18dda038259132bf963cbb5c</td><td>0</td></tr><tr><td>src/utils/execution.ts</td><td>10195</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d2d395bd775bb64117ad4d323fb164f4dd5ef7c616c64f26beeabbf0096121b3</td><td>0</td></tr><tr><td>src/utils/multisend.ts</td><td>941</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a6192636ef8e58f6a4a147c9998d635eb5852ceb39de03751c54ad1d1295d143</td><td>0</td></tr><tr><td>src/utils/proxies.ts</td><td>1410</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8607ae9d409cfb95c2b84f9a939e9d8a0e35d643b9596443e2f9bd5da94eada5</td><td>0</td></tr><tr><td>src/utils/solc.ts</td><td>565</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c8ba714eb2cc44edc0b1e4de52b7200445d715d54a9eb3a38d9576ed92638f71</td><td>0</td></tr><tr><td>types/solc.d.ts</td><td>23</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c2232cadfd97cc9479df2315795d7dac60974b2fa08404d4aef03129d084e3d5</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>

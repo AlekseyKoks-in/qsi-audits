@@ -1,0 +1,45 @@
+.. scroll: files analysed 225 -> 224 in the same scope of 481
+.. sigstore-js: files analysed 182 -> 180 in the same scope of 403
+.. zcash-android-wallet-sdk: files analysed 348 -> 350 in the same scope of 2062
+compared 34 audits, each at its own pinned commit
+
+=== attributable to the engine change ===
+  CODE-HARDCODED-SECRET        high     -7
+  DEP-ADVISORY-DEV             info     +2
+  SOL-FLOATING-PRAGMA          low      -1
+
+=== attributable to the advisory databases moving ===
+  DEP-ADVISORY-UNRATED         info     +7
+  DEP-ADVISORY-UNRATED         low      +103
+  DEP-KNOWN-ADVISORY           high     +6
+  DEP-KNOWN-ADVISORY           info     +2
+  DEP-KNOWN-ADVISORY           low      +4
+  DEP-KNOWN-ADVISORY           medium   +28
+
+audit                       engine  databases
+ethers-js                       -3         +0
+agave                           -1        +13
+metamask-extension              -1         +0
+nitro                           -1         +4
+noir                            -1         +4
+scroll                          -1        +19
+bitbox02-firmware               +0         +2
+bitwarden-sdk                   +0         +5
+cairo                           +0         +3
+foundry                         +0         +5
+librustzcash                    +0        +15
+librustzcash-en                 +0        +13
+lido-core                       +0         +1
+rabby                           +0         +1
+rage                            +0        +16
+reown-appkit                    +0         +1
+rustcrypto-rsa                  +0         +2
+signal-desktop                  +0         +6
+sigstore-js                     +0         +2
+trustwallet-wallet-core         +0         +3
+zcash-swift-wallet-sdk          +0        +16
+zebra                           +0         +1
+matrix-js-sdk                   +1         +1
+zcash-android-wallet-sdk        +1        +17
+
+TOTAL                           -6       +150

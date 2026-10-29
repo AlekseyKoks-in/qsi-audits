@@ -1,0 +1,2389 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "openssl 0.10.64 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports GHSA-8c75-8mhr-p7r9 (CVE-2026-41678) for crates.io package openssl at version 0.10.64: rust-openssl has incorrect bounds assertion in aes key wrap. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (0.10.78). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "help": {
+                "text": "OSV.dev reports GHSA-8c75-8mhr-p7r9 (CVE-2026-41678) for crates.io package openssl at version 0.10.64: rust-openssl has incorrect bounds assertion in aes key wrap. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (0.10.78). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-8c75-8mhr-p7r9"
+            },
+            {
+              "id": "CHAINMAP-QV",
+              "name": "ChainmapQv",
+              "shortDescription": {
+                "text": "Transaction signing for 1 chain(s) relies on elliptic-curve signatures"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "blockchain",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "The wallet's message definitions cover Solana. These chains authorize transactions with Ed25519, which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Chains are recognized from the names of the message definitions (.proto files and…"
+              },
+              "help": {
+                "text": "The wallet's message definitions cover Solana. These chains authorize transactions with Ed25519, which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Chains are recognized from the names of the message definitions (.proto files and packages); the schemes are the chains' documented account signatures, not an analysis of the wallet's signing code."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "TLSCODE-NO-PQ-HYBRID",
+              "name": "TlscodeNoPqHybrid",
+              "shortDescription": {
+                "text": "TLS without a post-quantum key exchange: rustls before 0.23 (ring only)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "rustls before 0.23 (ring only) at Cargo.toml:289: the configured key exchange (ring) has no hybrid ML-KEM group such as X25519MLKEM768 (RFC 10024), so the handshake cannot negotiate one. Upgrade rustls to 0.23 or later with the aws-lc-rs provider and the prefer-post-quantum feature. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Read from code and manifests only: the library versions deployed and settings made outside the code (environment, launch flags) were not determined."
+              },
+              "help": {
+                "text": "rustls before 0.23 (ring only) at Cargo.toml:289: the configured key exchange (ring) has no hybrid ML-KEM group such as X25519MLKEM768 (RFC 10024), so the handshake cannot negotiate one. Upgrade rustls to 0.23 or later with the aws-lc-rs provider and the prefer-post-quantum feature. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Read from code and manifests only: the library versions deployed and settings made outside the code (environment, launch flags) were not determined."
+              },
+              "helpUri": "https://www.rfc-editor.org/rfc/rfc10024"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "4 reference(s) to ECDSA across 3 file(s), e.g. sdk/bpf/c/inc/solana_sdk.h:18. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "4 reference(s) to ECDSA across 3 file(s), e.g. sdk/bpf/c/inc/solana_sdk.h:18. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-ADVISORY-UNRATED",
+              "name": "DepAdvisoryUnrated",
+              "shortDescription": {
+                "text": "crossbeam-epoch 0.9.5 is affected by RUSTSEC-2026-0204 (no severity rating)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports RUSTSEC-2026-0204 for crates.io package crossbeam-epoch at version 0.9.5: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.9.20) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "help": {
+                "text": "OSV.dev reports RUSTSEC-2026-0204 for crates.io package crossbeam-epoch at version 0.9.5: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.9.20) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0204"
+            },
+            {
+              "id": "DEP-ADVISORY-INFORMATIONAL",
+              "name": "DepAdvisoryInformational",
+              "shortDescription": {
+                "text": "atty 0.2.14: informational advisory RUSTSEC-2024-0375 (unmaintained)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev lists RUSTSEC-2024-0375 for crates.io package atty at version 0.2.14 as informational (unmaintained): `atty` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones. Plan a move to a maintained alternative, or record the decision to keep it. Advisory data comes from OSV.dev at the recorded time."
+              },
+              "help": {
+                "text": "OSV.dev lists RUSTSEC-2024-0375 for crates.io package atty at version 0.2.14 as informational (unmaintained): `atty` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones. Plan a move to a maintained alternative, or record the decision to keep it. Advisory data comes from OSV.dev at the recorded time."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2024-0375"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "No post-quantum capable cryptographic library detected"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "Across 158 dependency manifests, QSI found crypto libraries (curve25519-dalek, ed25519-dalek, node-forge, openssl, ring, rustls) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+              },
+              "help": {
+                "text": "Across 158 dependency manifests, QSI found crypto libraries (curve25519-dalek, ed25519-dalek, node-forge, openssl, ring, rustls) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "03a6f0a6cee994007876d30d23ac7ee2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04273",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-ghm9-cr32-g9qj (CVE-2026-41681) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0933c38dbc506192441b5e32db4caefe"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04274",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-hppc-g8h3-xhp3 (CVE-2026-41898) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "420f79409eb5af40269803a25708bd3a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04275",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-pqf5-4pqq-29f5 (CVE-2026-41676) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "137148b4c898a24cd968b7d3f677caed"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04277",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-xp3w-r5p5-63rr (CVE-2026-42327) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "755363ff9b962e864cbfb3fd9b3ce15e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04281",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "quinn-proto 0.10.6 is affected by GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185) (dependency: crates.io/quinn-proto@0.10.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2156fddb2e7f128e54332657b24ea4bf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04285",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "quinn-proto 0.10.6 is affected by GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037) (dependency: crates.io/quinn-proto@0.10.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1bd37688010739263d283ef5f22ae59a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04286",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "tar 0.4.40 is affected by GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068) (dependency: crates.io/tar@0.4.40)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "de40ffc13ee60bc01ded702b56bf5d7b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04311",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "rustls-webpki 0.101.7 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (dependency: crates.io/rustls-webpki@0.101.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "83d164a3f21e7dfa026a2d053eb86e40"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04302",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "semver 6.3.0 is affected by GHSA-c2qf-rxjj-qqgw (CVE-2022-25883) (dependency: npm/semver@6.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1ac5958b0d1bdc4d354d1fc9dc512157"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04331",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "@babel/plugin-transform-modules-systemjs 7.19.6 is affected by GHSA-fv7c-fp4j-7gwp (CVE-2026-44728) (dependency: npm/@babel/plugin-transform-modules-systemjs@7.19.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a0139b292b6be68ae42dc7487ecc3c7f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04333",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "js-yaml 3.14.1 is affected by GHSA-2883-xcg3-v3hh (CVE-2026-84375) (dependency: npm/js-yaml@3.14.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f78a8a5be30fd78e371dec8467df4ca4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04336",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "js-yaml 3.14.1 is affected by GHSA-52cp-r559-cp3m (CVE-2026-59869) (dependency: npm/js-yaml@3.14.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d3bc9bb989f015c6af6075ce37b5f798"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04337",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "js-yaml 3.14.1 is affected by GHSA-5p4m-2wfm-xmqj (dependency: npm/js-yaml@3.14.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "57ac45f1f2e0e983df71b4c362af18d4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04338",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "semver 5.7.1 is affected by GHSA-c2qf-rxjj-qqgw (CVE-2022-25883) (dependency: npm/semver@5.7.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1ac5958b0d1bdc4d354d1fc9dc512157"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04342",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "block-buffer 0.7.3 is affected by GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.7.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04248",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "block-buffer 0.9.0 is affected by GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.9.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04249",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.10.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04250",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "borsh 0.9.3 is affected by GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033) (dependency: crates.io/borsh@0.9.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7b933337c3932c612ba7265a74b6227a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04251",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "borsh 0.10.3 is affected by GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033) (dependency: crates.io/borsh@0.10.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7b933337c3932c612ba7265a74b6227a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04252",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "bytes 1.5.0 is affected by GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007) (dependency: crates.io/bytes@1.5.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6f42502cb5eeb8f316e35896e0476819"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04253",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "crossbeam-channel 0.5.12 is affected by GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024) (dependency: crates.io/crossbeam-channel@0.5.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fccb1b4397447154ed1e60a2b15ea4b2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04254",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ed25519-dalek 1.0.1 is affected by GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093) (dependency: crates.io/ed25519-dalek@1.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "926f1a6b627311fa758c7794bd43f15d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04258",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-phqj-4mhp-q6mq (CVE-2026-45784) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ebe3fea6258d403ad92ebc5496b5fe3b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04276",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-xv59-967r-8726 (CVE-2026-44662) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3096cda12577b6c6e8c68fb518737710"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04282",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "rustls 0.21.10 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) (dependency: crates.io/rustls@0.21.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c2c7f55f264ba1c2b08a407506bcb98f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04297",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "serde_with 2.3.3 is affected by GHSA-7gcf-g7xr-8hxj (dependency: crates.io/serde_with@2.3.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04306",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "tar 0.4.40 is affected by GHSA-3pv8-6f4r-ffg2 (dependency: crates.io/tar@0.4.40)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e670838caa3c6871cbba6c50a36ebda3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04310",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "tar 0.4.40 is affected by GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067) (dependency: crates.io/tar@0.4.40)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "079e87103b17ac0ef927dd10cc682c34"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04312",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "h2 0.3.24 is affected by GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332) (dependency: crates.io/h2@0.3.24)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1ff71c5f47e886ec159cdfdb481fb15d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04259",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "idna 0.1.5 is affected by GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421) (dependency: crates.io/idna@0.1.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4c33801efb9ac94121b21621343396a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04261",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "idna 0.5.0 is affected by GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421) (dependency: crates.io/idna@0.5.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4c33801efb9ac94121b21621343396a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04262",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ring 0.16.20 is affected by GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009) (dependency: crates.io/ring@0.16.20)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fe9c4ddc901f14f3269d4e44ef7f9fb7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04292",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ring 0.17.3 is affected by GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009) (dependency: crates.io/ring@0.17.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fe9c4ddc901f14f3269d4e44ef7f9fb7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04294",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "time 0.3.9 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) (dependency: crates.io/time@0.3.9)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2ac8c159371cd6957a4d2f0c1eb519e1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04313",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@babel/helpers 7.19.4 is affected by GHSA-968p-4wvh-cqc8 (CVE-2025-27789) (dependency: npm/@babel/helpers@7.19.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9d5b8141a4394eb3ef3d1fe620dc6ddd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04332",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@babel/runtime 7.19.4 is affected by GHSA-968p-4wvh-cqc8 (CVE-2025-27789) (dependency: npm/@babel/runtime@7.19.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9d5b8141a4394eb3ef3d1fe620dc6ddd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04334",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@babel/runtime-corejs3 7.19.6 is affected by GHSA-968p-4wvh-cqc8 (CVE-2025-27789) (dependency: npm/@babel/runtime-corejs3@7.19.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9d5b8141a4394eb3ef3d1fe620dc6ddd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04335",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "js-yaml 3.14.1 is affected by GHSA-h67p-54hq-rp68 (CVE-2026-53550) (dependency: npm/js-yaml@3.14.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6d5ebd2b6093b649b95b4eb7423d7ff5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04339",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "js-yaml 3.14.1 is affected by GHSA-mh29-5h37-fv8m (CVE-2025-64718) (dependency: npm/js-yaml@3.14.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "27e81ce7be0b8e3205841222fb4bdf9b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04340",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@sideway/formula 3.0.0 is affected by GHSA-c2jc-4fpr-4vhg (CVE-2023-25166) (dependency: npm/@sideway/formula@3.0.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "73a2327b0e0652cc5506027271c77195"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04343",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CHAINMAP-QV",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "Transaction signing for 1 chain(s) relies on elliptic-curve signatures"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04238",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "atty 0.2.14 is affected by GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145) (dependency: crates.io/atty@0.2.14)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2eda64e1c30707135339d8ced1e60af9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04243",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "curve25519-dalek 3.2.1 is affected by GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344) (dependency: crates.io/curve25519-dalek@3.2.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dd24d41084302c29abc1e0a9f75852d5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04256",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "2.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-xmgf-hq76-4vx2 (CVE-2026-41677) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "43eeea5cb851368e9dc81a2f2fc1edbd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04280",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rand 0.7.3 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) (dependency: crates.io/rand@0.7.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04290",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) (dependency: crates.io/rand@0.8.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04291",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rpassword 7.3.1 is affected by GHSA-2p6r-x3vv-xqm2 (dependency: crates.io/rpassword@7.3.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a625843e4ccee480286593d731d4b2c1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04295",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.8"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rustls 0.21.10 is affected by GHSA-h2v8-394m-p7vv (dependency: crates.io/rustls@0.21.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d4c7cf2a81d03919d11f20e7dc08e38b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04298",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rustls 0.21.10 is affected by GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) (dependency: crates.io/rustls@0.21.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0c214321e3e7ce2b7c0a2531f71801b7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04299",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.7"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "tokio 1.29.1 is affected by GHSA-rr8g-9fpq-6wmg (RUSTSEC-2025-0023) (dependency: crates.io/tokio@1.29.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0c05bd849721c5d4e1327e2e0cb83e84"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04314",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rustls-webpki 0.101.7 is affected by GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098) (dependency: crates.io/rustls-webpki@0.101.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "adfdacaa53c3495b24ba7e9605f21234"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04303",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "2.2"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rustls-webpki 0.101.7 is affected by GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099) (dependency: crates.io/rustls-webpki@0.101.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9c88680942853d4dd027ebd090f613d7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04304",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "2.2"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "tracing-subscriber 0.3.7 is affected by GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055) (dependency: crates.io/tracing-subscriber@0.3.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c4d28076ad96dc58706ae85a13b98936"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04316",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "@babel/core 7.19.6 is affected by GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356) (dependency: npm/@babel/core@7.19.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fc7335f01cb00c0dd00739f18b8a8ae6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04330",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "@babel/core 7.12.9 is affected by GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356) (dependency: npm/@babel/core@7.12.9)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fc7335f01cb00c0dd00739f18b8a8ae6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04341",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "TLSCODE-NO-PQ-HYBRID",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "TLS without a post-quantum key exchange: rustls before 0.23 (ring only)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7fc21f856bfdeff47991cbd6a67b7748"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04230",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04233",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "165b56bf80c5202d2b78b049308c9f0c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04234",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04235",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (25 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04236",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "keccak 0.1.5 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) (dependency: crates.io/keccak@0.1.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04266",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: role not determined (9 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04231",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable BN254 (alt_bn128): role not determined (10 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b58a222ac9ad4ea99637f155e5fe9d0f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04232",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Quantum-vulnerable Bulletproofs: role not determined (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "99a0fc39f9471f2b85ba20b7d5d1f84a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04237",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "crossbeam-epoch 0.9.5 is affected by RUSTSEC-2026-0204 (no severity rating) (dependency: crates.io/crossbeam-epoch@0.9.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "448a6164ab26507814c597ba435e2257"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04255",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "h2 0.3.24 is affected by RUSTSEC-2026-0258 (no severity rating) (dependency: crates.io/h2@0.3.24)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "39a5d837e386bcefe64c321f97b1e5db"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04260",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "im 15.1.0 is affected by RUSTSEC-2023-0126 (no severity rating) (dependency: crates.io/im@15.1.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a9628d49ac341d9670dbb27743707f2f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04263",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "lru 0.7.8 is affected by RUSTSEC-2026-0253 (no severity rating) (dependency: crates.io/lru@0.7.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a99cb340246a5baec640a7f8aa0fb8b1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04268",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.10.6 is affected by RUSTSEC-2026-0338 (no severity rating) (dependency: crates.io/quinn-proto@0.10.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d3ca7fccd21f67bd5f8f9561c7543a2c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04287",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.10.6 is affected by RUSTSEC-2026-0339 (no severity rating) (dependency: crates.io/quinn-proto@0.10.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "654eafedce8c5c17c2ce41da18ded4ea"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04288",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "quinn-proto 0.10.6 is affected by RUSTSEC-2026-0342 (no severity rating) (dependency: crates.io/quinn-proto@0.10.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "39f30a2a3ec7f5404ef71baf0e11c67a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04289",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "rustls-webpki 0.101.7 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating) (dependency: crates.io/rustls-webpki@0.101.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ba8434a29ae02f313b720c0655582a47"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04305",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "sized-chunks 0.6.5 is affected by RUSTSEC-2026-0255 (no severity rating) (dependency: crates.io/sized-chunks@0.6.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "018daf3521d5ac70bd7d8f6c3a8a8dbd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04308",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "solana_rbpf 0.8.0 is affected by RUSTSEC-2026-0191 (no severity rating) (dependency: crates.io/solana_rbpf@0.8.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b54c8d21bb8b349d200f2b6c94babe5a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04309",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "webpki-roots 0.24.0 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating) (dependency: crates.io/webpki-roots@0.24.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "75ea72e743b02165442bef2814615a03"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04318",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "webpki-roots 0.25.2 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating) (dependency: crates.io/webpki-roots@0.25.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "75ea72e743b02165442bef2814615a03"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04319",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0395 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "64c1fd5f38431b58ce6bc40e7e4e227e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04321",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0397 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d382b3b77376d5f430467a2dda781ead"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04322",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0399 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "af7099f6a028cb26db55b7dda7ed86ea"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04323",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0400 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f9c8da51df1c7bb095d219042d1c82ee"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04324",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0401 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d6ac7e8d63f0f129f6fc20b7d503cca8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04325",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0402 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6f7f35cf9b55ea6dc2311fe171f62a01"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04326",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0403 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "29aeb0f151232cc86bd2fd6047e19579"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04327",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0404 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "93aaa6f71615d11ec32093f39cfdd5ed"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04328",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0406 (no severity rating) (dependency: crates.io/zstd-safe@5.0.1+zstd.1.5.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "71976817d2bf587b4a2e06fc1dbdab81"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04329",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "182506c9252588271e40dc0357072eba"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04272",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "614954de2744c90b3a8d646e713bd421"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04278",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "openssl 0.10.64 is affected by GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004) (dependency: crates.io/openssl@0.10.64)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "85d843ef078c2ac4839dbec13059e31a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04279",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "rustls 0.21.10 is affected by GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336) (dependency: crates.io/rustls@0.21.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "43f1d1077f87e1aff13d95029d619aac"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04296",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "atty 0.2.14: informational advisory RUSTSEC-2024-0375 (unmaintained) (dependency: crates.io/atty@0.2.14)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8152cdc99d2b32a001ec096f3ede3e86"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04244",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "backoff 0.4.0: informational advisory RUSTSEC-2025-0012 (unmaintained) (dependency: crates.io/backoff@0.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2113a1300692ea477f0c7914eda69b25"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04245",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained) (dependency: crates.io/bincode@1.3.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04246",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained) (dependency: crates.io/derivative@2.2.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04257",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "im 15.1.0: informational advisory RUSTSEC-2026-0248 (unmaintained) (dependency: crates.io/im@15.1.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "581bab7211359c1774fccad6d2da7c47"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04264",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "libsecp256k1 0.6.0: informational advisory RUSTSEC-2025-0161 (unmaintained) (dependency: crates.io/libsecp256k1@0.6.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d7ac17c260cd52dfe2551c2a76977625"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04267",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "net2 0.2.37: informational advisory RUSTSEC-2020-0016 (unmaintained) (dependency: crates.io/net2@0.2.37)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "638562644cc2c8a210e97efb738ed32b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04270",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "anyhow 1.0.80 is affected by RUSTSEC-2026-0190 (no severity rating) (dependency: crates.io/anyhow@1.0.80)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04242",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "memmap2 0.5.10 is affected by RUSTSEC-2026-0186 (no severity rating) (dependency: crates.io/memmap2@0.5.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d450ea4cefb583e620c3aa89112706ba"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04269",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "tokio 1.29.1 is affected by RUSTSEC-2026-0386 (no severity rating) (dependency: crates.io/tokio@1.29.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04315",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "No post-quantum capable cryptographic library detected"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04239",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "adler 1.0.2: informational advisory RUSTSEC-2025-0056 (unmaintained) (dependency: crates.io/adler@1.0.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d5bac48d64a6bf2f66ad3ad87972b471"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04240",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "ansi_term 0.11.0: informational advisory RUSTSEC-2021-0139 (unmaintained) (dependency: crates.io/ansi_term@0.11.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "665517bdb4ad6562fd552f32d83e32c8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04241",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "bitmaps 2.1.0: informational advisory RUSTSEC-2026-0247 (unmaintained) (dependency: crates.io/bitmaps@2.1.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cd678ee5ed2549029e338d1037efc634"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04247",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "instant 0.1.12: informational advisory RUSTSEC-2024-0384 (unmaintained) (dependency: crates.io/instant@0.1.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c38825eb3e0be8d7636b89b1f64b78e5"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04265",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "number_prefix 0.4.0: informational advisory RUSTSEC-2025-0119 (unmaintained) (dependency: crates.io/number_prefix@0.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "16273bfa1ae794b33193c628ce29d01d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04271",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "paste 1.0.9: informational advisory RUSTSEC-2024-0436 (unmaintained) (dependency: crates.io/paste@1.0.9)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04283",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "proc-macro-error 1.0.4: informational advisory RUSTSEC-2024-0370 (unmaintained) (dependency: crates.io/proc-macro-error@1.0.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2b6fa4b2f9c2e028a075e66fb8c40d56"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04284",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "ring 0.16.20: informational advisory RUSTSEC-2025-0010 (unmaintained) (dependency: crates.io/ring@0.16.20)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "886fe3a4327f85d05a0d9a609263f1dd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04293",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "rustls-pemfile 0.2.1: informational advisory RUSTSEC-2025-0134 (unmaintained) (dependency: crates.io/rustls-pemfile@0.2.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8e847c69df82b32bee45f465b3270533"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04300",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "rustls-pemfile 1.0.0: informational advisory RUSTSEC-2025-0134 (unmaintained) (dependency: crates.io/rustls-pemfile@1.0.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8e847c69df82b32bee45f465b3270533"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04301",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "sized-chunks 0.6.5: informational advisory RUSTSEC-2026-0251 (unmaintained) (dependency: crates.io/sized-chunks@0.6.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "632d54ebbac916a3eb1982a70c96babe"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04307",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "unsafe-libyaml 0.2.10: informational advisory RUSTSEC-2024-0449 (unmaintained) (dependency: crates.io/unsafe-libyaml@0.2.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "af089dcbba7dfa68eca6e4460004633a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04317",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "yaml-rust 0.4.5: informational advisory RUSTSEC-2024-0320 (unmaintained) (dependency: crates.io/yaml-rust@0.4.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e211f4e363c774fce63143e8a9043b82"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-04320",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/agave @ 7700cb3128c1/0551bbf6-76b1-47c4-8902-fd58654b4121"
+      },
+      "properties": {
+        "qsiContentSha256": "95cafacb721dbd2090c5af18bd163aecd86fc6cb4bfd30be3473880d42dfd4eb",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "small_tech",
+        "qsiGeneratedAt": "2026-10-28T12:15:41.083264+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "7700cb3128c1f19820de67b81aa45d18f73d2ac0",
+          "repositoryUri": "https://github.com/anza-xyz/agave"
+        }
+      ]
+    }
+  ]
+}

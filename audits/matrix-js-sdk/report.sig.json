@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"259476ec-cff6-4f97-af62-52170c902315\",\"content_sha256\":\"6b99f797316754f231b4b06db6d193f9d0893a7f657f49253d76cbd060ebaeb3\",\"files_sha256\":{\"html\":\"4b4b193201bce66e90633d6efafce47e5a3a763fbb95d57ae42356d0e0be3489\",\"json\":\"14bdc6b83dc602fb12789dacc0e83859764e500de1e08d8f301b3a455ee97991\",\"md\":\"ae5315cdeace9b6377619430e54f807154c1a1bb1827eee922ba208b76599d36\",\"pdf\":\"f6706f4ce2bd8fa23afe53d98154c420dc0c00b3430e2163d51ceb7180d56029\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"ru\",\"organization\":\"QSI\",\"project\":\"matrix-js-sdk @ 61b08bd037a3\",\"report_id\":\"c5816520-db8c-4082-a0f6-385d8ce20b80\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T18:22:58+00:00\",\"version\":1}",
+  "signature": "7icHKz3ppw2htGudjYk2PjffqhzDsW6x6TBSy4uU2y5DiZNmQEX7Q2gBKcz6cxA7JaW4phq4TOZ+RIY07ay+CA=="
+}

@@ -1,0 +1,1169 @@
+{
+  "content_sha256": "17cf808163d3356c7d53bcdb7c9e634e4a9e6400eb6e18601bfc81fadd83aba5",
+  "schema": "qsi.report/1",
+  "language": "en",
+  "generated_at": "2026-10-28T19:24:33.727356+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "e6d31be6-d539-45f2-8bec-1874ee73d0f6",
+    "name": "bdk @ f2528da88b10",
+    "client_name": "Bitcoin Dev Kit",
+    "description": "Static review of the source tree bdk at f2528da88b1041bdddf547d677511aea19ad3573. 45 files analysed; of 89 files, 30 are test, fuzzing, benchmark or example code and were left out, 14 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "2b50b8d0-5f83-4b6a-8343-16d2e8f4851e",
+    "mode": "document",
+    "title": "Document audit: bdk",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-28T19:24:30.262418+00:00",
+    "finished_at": "2026-10-28T19:24:33.578066+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Crypto exchange, custodian or wallet",
+    "parameters": {
+      "ref": "f2528da88b1041bdddf547d677511aea19ad3573",
+      "language": "en",
+      "repo_url": "https://github.com/bitcoindevkit/bdk",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "crates/bitcoind_rpc/Cargo.toml",
+      "size": 1205,
+      "sha256": "83b91c7a3e4ca359834c618240fa8f3a0a5e758f6732d666046c41a11bf49d1e",
+      "redactions": 0
+    },
+    {
+      "name": "crates/bitcoind_rpc/src/bip158.rs",
+      "size": 6761,
+      "sha256": "b34cdc094a2395ce3336c503df9bcc0ee29f344f741ab25a3392d80020c1f06e",
+      "redactions": 0
+    },
+    {
+      "name": "crates/bitcoind_rpc/src/lib.rs",
+      "size": 24629,
+      "sha256": "baf69cb786789de4b5f1b9357cd496200656552d93bf3ae8958180b289c7d41e",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/Cargo.toml",
+      "size": 1488,
+      "sha256": "0a170fa2a682fa7b5dd32a1a18d3c923136b75e44bf0bbc6497a6a565d8b38b3",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/balance.rs",
+      "size": 3239,
+      "sha256": "c4722689b26a97489acec069808665f2d99f21756d149dd98526a622fb596188",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/canonical.rs",
+      "size": 28704,
+      "sha256": "6d3081611bb7099213687c0ec0225ace91dd7662cdd20161b30cd37d16c34022",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/canonical_task.rs",
+      "size": 19546,
+      "sha256": "a774ade1336130608faff6ce1ecca7b07b9665c1a4c00eeb6a29fa0691d525ef",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/canonical_view_task.rs",
+      "size": 8775,
+      "sha256": "f60cac7e957c47be21c1e66c8a75230b8f1bea954d6784716a24ca05c9afcb32",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/chain_data.rs",
+      "size": 13411,
+      "sha256": "770bdca6ee7e8706a14a4ab08f93fb094d2c7ba5149452d23f75d71f3adf64c7",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/descriptor_ext.rs",
+      "size": 1395,
+      "sha256": "c046997e44f8ebdf762a39d259763091cd70ec1897e22cc7e6ac253705bdf837",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/example_utils.rs",
+      "size": 2544,
+      "sha256": "8f76a44443ebc40cceff4833b82898a1eda21784774582649e4a3edd2d80c710",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/indexed_tx_graph.rs",
+      "size": 20256,
+      "sha256": "9d90f8c1ce2109d50a351f4c8c9f7e360bde210957cfc95f825ffedc509226ad",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/indexer/keychain_txout.rs",
+      "size": 55225,
+      "sha256": "13f5011338a01c5776262b07538efd04338f13c9ad33349a06c925b5d38a8539",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/indexer/spk_txout.rs",
+      "size": 19747,
+      "sha256": "3f60ae8ee0ec261ba9a93407ef2d9e232787526bf4fad22daf6877e9ca1f1820",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/indexer.rs",
+      "size": 2332,
+      "sha256": "2745f08c61b5c64bad7768ae5a5f5cd94bbf608120f62df8ff0fead96b227653",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/lib.rs",
+      "size": 2931,
+      "sha256": "90a0f842b2b47069220959344f84c0aa4c8ecfc1344bff8572dd2e307e176d9e",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/local_chain.rs",
+      "size": 35484,
+      "sha256": "81ff161a87ed2621837edac91ef5f4b44e01d8ad2cdb2fcd2a7e71c64b69fc1f",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/rusqlite_impl.rs",
+      "size": 31001,
+      "sha256": "f0d1ee07c37b7463e0d6d51509518fb765da6a043a0f80ef5253d8dd7e39a8da",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/spk_iter.rs",
+      "size": 11496,
+      "sha256": "5df96d8c7921b3306d986d117a4348e9afe98be7c27c94b1ef8fe1ab13c2f7b9",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/tx_data_traits.rs",
+      "size": 3937,
+      "sha256": "3955c21e9df3f266e015156de68802b855c4eff8b4248dcb2beba6ccf3ca9748",
+      "redactions": 0
+    },
+    {
+      "name": "crates/chain/src/tx_graph.rs",
+      "size": 54561,
+      "sha256": "6e99486950e6e752f1451b68fef0df8f2b365c4c816c33aac9b263e6a75bf317",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/Cargo.toml",
+      "size": 967,
+      "sha256": "b7d7c5845ff0fe6681193d2de326a75c076e01201a1a7ee345dda16980f1cb28",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/block_id.rs",
+      "size": 1431,
+      "sha256": "9b95ef3640317298b5a38d6fa7b89fdac18edc53aac55292b7a85f0f4f850619",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/chain_query.rs",
+      "size": 1659,
+      "sha256": "369fb027368651a610f09a66bce4adaf2fc7774eeff122ab6a368a3b0471ac6b",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/checkpoint.rs",
+      "size": 26783,
+      "sha256": "fbb0c2a3f0d13941adc50f6d8ba9f84cd703d1505f51a098dd4fa011acc01f4f",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/checkpoint_entry.rs",
+      "size": 5428,
+      "sha256": "6864fd17b358f33675409d53e65ff00d83cd929d507c600bf1dbfb1f80c7cb76",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/lib.rs",
+      "size": 2986,
+      "sha256": "70bd648e7f01758a128bd04cce0251d5194bd1e84b9ae4a9ac90a0e6d9f5e327",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/merge.rs",
+      "size": 2522,
+      "sha256": "a7d01b0607e0b525e9841d59a2d011bd2e8d2edb807a888634db7400922b5c49",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/spk_client.rs",
+      "size": 26500,
+      "sha256": "b36f7eac9ea9faef7ca22e2604d857d218ed1b1aa47a2657edb659e5a501b91d",
+      "redactions": 0
+    },
+    {
+      "name": "crates/core/src/tx_update.rs",
+      "size": 4343,
+      "sha256": "4fa8a8f174889198258acc3293f726142d6c1882c41468be839c4db8077e2af7",
+      "redactions": 0
+    },
+    {
+      "name": "crates/electrum/Cargo.toml",
+      "size": 984,
+      "sha256": "71d66c3d4f5fad2b279c8ce0d48ada975679f93668f9425670e14d1fe19b0200",
+      "redactions": 0
+    },
+    {
+      "name": "crates/electrum/src/bdk_electrum_client.rs",
+      "size": 36790,
+      "sha256": "e390a2b8437c83a9d14daeb3f923b19797efea2fb50e6a11fb8f79f58b12f53b",
+      "redactions": 0
+    },
+    {
+      "name": "crates/electrum/src/lib.rs",
+      "size": 1100,
+      "sha256": "bbbeb08934d653c218be80344abe9f46b62085154b47ca29fe0b704f1370d3c0",
+      "redactions": 0
+    },
+    {
+      "name": "crates/esplora/Cargo.toml",
+      "size": 1748,
+      "sha256": "1daccf1d0415e843e617673ccedabfb49813555855b01c80f8cf9b3853a2acda",
+      "redactions": 0
+    },
+    {
+      "name": "crates/esplora/src/async_ext.rs",
+      "size": 28886,
+      "sha256": "c2fb578219b5fc719a943f6529f68b25857c9191c866752f283b005c31698aed",
+      "redactions": 0
+    },
+    {
+      "name": "crates/esplora/src/blocking_ext.rs",
+      "size": 35556,
+      "sha256": "dd5711d633b794f71c5b5ce84767028799dd1f8d9f61cc01d1b995a0f15a27e0",
+      "redactions": 0
+    },
+    {
+      "name": "crates/esplora/src/lib.rs",
+      "size": 2777,
+      "sha256": "69cd2fb696e1b267c0891e57eadac8ada2f1a27fe96305e6889930569f9580ff",
+      "redactions": 0
+    },
+    {
+      "name": "crates/file_store/Cargo.toml",
+      "size": 761,
+      "sha256": "afcf61e36799750107cce36d0333badc52cbaaf3803d7eca9ec35e164de765d4",
+      "redactions": 0
+    },
+    {
+      "name": "crates/file_store/src/entry_iter.rs",
+      "size": 2635,
+      "sha256": "00cb247c7ca63d3ae44317c2abbaffdd5b36a49bfbbf99ff5fca9c79234a299b",
+      "redactions": 0
+    },
+    {
+      "name": "crates/file_store/src/lib.rs",
+      "size": 1714,
+      "sha256": "1010d865adab4b312801b24b93f4f851d6da991ba31e449907aba70aad735550",
+      "redactions": 0
+    },
+    {
+      "name": "crates/file_store/src/store.rs",
+      "size": 23655,
+      "sha256": "9390058ea9f9ab92fe1ca6732e3dbf06fd99822533b48b5a91d5a98ae46fcfce",
+      "redactions": 0
+    },
+    {
+      "name": "crates/testenv/Cargo.toml",
+      "size": 1067,
+      "sha256": "1595b83bbd626078abc111bd7ac9233df0406f944473aa8d0e1a956de0dc4845",
+      "redactions": 0
+    },
+    {
+      "name": "crates/testenv/src/lib.rs",
+      "size": 21293,
+      "sha256": "16bd1975ff6ead0e1f8bb86c65f33bec630835b2f21f48ff6c61e4dde0ea97aa",
+      "redactions": 0
+    },
+    {
+      "name": "crates/testenv/src/persist_test_utils.rs",
+      "size": 6370,
+      "sha256": "fcfef6b7701ba51df6048b7ddd9ace6402ff9fe29cd7b8e0eacf16b77d8e554f",
+      "redactions": 0
+    },
+    {
+      "name": "crates/testenv/src/utils.rs",
+      "size": 5585,
+      "sha256": "50b9ebfe246c3d0be4e277d2acd16773aabe06d1bfff2ee1e87f38efe851b894",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 45,
+    "bytes": 592207,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "dependencies",
+      "detail": "crates/bitcoind_rpc/Cargo.toml: 4 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 122 registry patterns; 137 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "crates/chain/Cargo.toml: 9 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 122 registry patterns; 38 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/canonical.rs: 676 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/canonical_task.rs: 506 lines scanned with 16 rule patterns and 122 registry patterns; 59 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/canonical_view_task.rs: 223 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/chain_data.rs: 385 lines scanned with 16 rule patterns and 122 registry patterns; 200 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/descriptor_ext.rs: 38 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/example_utils.rs: 29 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/indexed_tx_graph.rs: 524 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/indexer/keychain_txout.rs: 1320 lines scanned with 16 rule patterns and 122 registry patterns; 157 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/indexer/spk_txout.rs: 510 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/indexer.rs: 58 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/lib.rs: 107 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/local_chain.rs: 934 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/rusqlite_impl.rs: 906 lines scanned with 16 rule patterns and 122 registry patterns; 245 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/spk_iter.rs: 300 lines scanned with 16 rule patterns and 122 registry patterns; 159 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/tx_data_traits.rs: 115 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/chain/src/tx_graph.rs: 1458 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "crates/core/Cargo.toml: 5 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/block_id.rs: 51 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/chain_query.rs: 41 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/checkpoint.rs: 739 lines scanned with 16 rule patterns and 122 registry patterns; 116 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/checkpoint_entry.rs: 163 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/lib.rs: 93 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/merge.rs: 82 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/spk_client.rs: 734 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/core/src/tx_update.rs: 112 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "crates/electrum/Cargo.toml: 3 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/electrum/src/bdk_electrum_client.rs: 916 lines scanned with 16 rule patterns and 122 registry patterns; 135 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/electrum/src/lib.rs: 23 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "crates/esplora/Cargo.toml: 7 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/esplora/src/async_ext.rs: 803 lines scanned with 16 rule patterns and 122 registry patterns; 232 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/esplora/src/blocking_ext.rs: 966 lines scanned with 16 rule patterns and 122 registry patterns; 436 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/esplora/src/lib.rs: 83 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "crates/file_store/Cargo.toml: 4 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/file_store/src/entry_iter.rs: 83 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/file_store/src/lib.rs: 56 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/file_store/src/store.rs: 633 lines scanned with 16 rule patterns and 122 registry patterns; 351 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "crates/testenv/Cargo.toml: 3 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/testenv/src/lib.rs: 579 lines scanned with 16 rule patterns and 122 registry patterns; 117 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/testenv/src/persist_test_utils.rs: 197 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/testenv/src/utils.rs: 158 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "no exactly pinned versions to query",
+      "status": "not_checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 7,
+      "rows": 7,
+      "examples": [
+        "crates/bitcoind_rpc/Cargo.toml: 4 dependencies parsed (0 pinned)",
+        "crates/chain/Cargo.toml: 9 dependencies parsed (0 pinned)",
+        "crates/core/Cargo.toml: 5 dependencies parsed (0 pinned)"
+      ]
+    },
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 38,
+      "rows": 38,
+      "examples": [
+        "crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 122 registry patterns",
+        "crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 122 registry patterns; 137 lines in #[cfg(test)] modules ignored",
+        "crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 122 registry patterns; 38 lines in #[cfg(test)] modules ignored"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "not_checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "no exactly pinned versions to query"
+      ]
+    }
+  ],
+  "not_checked": [
+    {
+      "area": "osv_advisories",
+      "detail": "no exactly pinned versions to query",
+      "status": "not_checked"
+    }
+  ],
+  "not_checked_grouped": [
+    {
+      "area": "osv_advisories",
+      "status": "not_checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "no exactly pinned versions to query"
+      ]
+    }
+  ],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "crates/bitcoind_rpc/Cargo.toml",
+      "crates/bitcoind_rpc/src/bip158.rs",
+      "crates/bitcoind_rpc/src/lib.rs",
+      "crates/chain/Cargo.toml",
+      "crates/chain/src/balance.rs",
+      "crates/chain/src/canonical.rs",
+      "crates/chain/src/canonical_task.rs",
+      "crates/chain/src/canonical_view_task.rs",
+      "crates/chain/src/chain_data.rs",
+      "crates/chain/src/descriptor_ext.rs",
+      "crates/chain/src/example_utils.rs",
+      "crates/chain/src/indexed_tx_graph.rs",
+      "crates/chain/src/indexer.rs",
+      "crates/chain/src/indexer/keychain_txout.rs",
+      "crates/chain/src/indexer/spk_txout.rs",
+      "crates/chain/src/lib.rs",
+      "crates/chain/src/local_chain.rs",
+      "crates/chain/src/rusqlite_impl.rs",
+      "crates/chain/src/spk_iter.rs",
+      "crates/chain/src/tx_data_traits.rs",
+      "crates/chain/src/tx_graph.rs",
+      "crates/core/Cargo.toml",
+      "crates/core/src/block_id.rs",
+      "crates/core/src/chain_query.rs",
+      "crates/core/src/checkpoint.rs",
+      "crates/core/src/checkpoint_entry.rs",
+      "crates/core/src/lib.rs",
+      "crates/core/src/merge.rs",
+      "crates/core/src/spk_client.rs",
+      "crates/core/src/tx_update.rs",
+      "crates/electrum/Cargo.toml",
+      "crates/electrum/src/bdk_electrum_client.rs",
+      "crates/electrum/src/lib.rs",
+      "crates/esplora/Cargo.toml",
+      "crates/esplora/src/async_ext.rs",
+      "crates/esplora/src/blocking_ext.rs",
+      "crates/esplora/src/lib.rs",
+      "crates/file_store/Cargo.toml",
+      "crates/file_store/src/entry_iter.rs",
+      "crates/file_store/src/lib.rs",
+      "crates/file_store/src/store.rs",
+      "crates/testenv/Cargo.toml",
+      "crates/testenv/src/lib.rs",
+      "crates/testenv/src/persist_test_utils.rs",
+      "crates/testenv/src/utils.rs"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 0,
+      "info": 0
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 1,
+      "improvement": 0,
+      "insufficient_data": 0
+    },
+    "total": 1,
+    "posture_index": 100,
+    "pq_vulnerable_share": 100.0,
+    "inventory_total": 1,
+    "inventory_by_quantum_status": {
+      "vulnerable_shor": 1
+    }
+  },
+  "findings": [
+    {
+      "id": "43f51abc-bb16-44af-91b9-4660e4cf6fa6",
+      "public_id": "QSI-2026-06106",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
+      "description": "2 reference(s) to ECDSA across 1 file(s), e.g. crates/chain/src/spk_iter.rs:2. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open crates/chain/src/spk_iter.rs:2 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:transaction_signing",
+      "data_source": "crates/chain/src/spk_iter.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-28T19:24:33.560787+00:00",
+      "risk_score": 35.6,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 35.6,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 52.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "crates/chain/src/spk_iter.rs",
+          "location": "line 2",
+          "content": "    1 | use crate::{\n    2 |     bitcoin::{secp256k1::Secp256k1, ScriptBuf},\n    3 |     miniscript::{Descriptor, DescriptorPublicKey},",
+          "content_sha256": "58953e8cd27684683f75e8c61ebc1f8b6d9c286a2f5983b56e89a0ae255886b5",
+          "source_sha256": "5df96d8c7921b3306d986d117a4348e9afe98be7c27c94b1ef8fe1ab13c2f7b9",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:24:33.591100+00:00",
+          "url": "https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L2"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/chain/src/spk_iter.rs",
+          "location": "line 40",
+          "content": "   39 |     descriptor: D,\n   40 |     secp: Secp256k1<bitcoin::secp256k1::VerifyOnly>,\n   41 | }",
+          "content_sha256": "2100b069271cc49191876e6a859414230e335185aeb5ec18d55ed509e55d5e14",
+          "source_sha256": "5df96d8c7921b3306d986d117a4348e9afe98be7c27c94b1ef8fe1ab13c2f7b9",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:24:33.591109+00:00",
+          "url": "https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L40"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
+    "pq_findings": [
+      "QSI-2026-06106"
+    ],
+    "roles": [
+      {
+        "role": "transaction_signing",
+        "label": "transaction and message signing",
+        "action": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them",
+        "criticality": 4,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-06106"
+        ],
+        "files": 1
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "no post-quantum cryptography",
+      "next": "Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Shor's algorithm — elliptic-curve discrete logarithms",
+        "effect": "breaks",
+        "effect_label": "breaks",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "ECDSA",
+            "rows": 1
+          }
+        ],
+        "audit": "Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.",
+        "practicality": "2026 estimates for a 256-bit curve: under 1,200 logical qubits and 90 million Toffoli gates, under half a million physical superconducting qubits running for minutes (Babbush et al.); 1,193 logical qubits with more gates (Chevignard–Fouque–Schrottenloher); P-256 in a few days on 26,000 neutral-atom qubits (Cain et al.). Scenarios under stated assumptions, not forecasts.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "averaged estimate"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "quite possible"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "likely"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-06106",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-06106",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
+        "severity": "medium"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "crates/chain/src/spk_iter.rs:2",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "ECDSA",
+      "parameter": "secp256k1",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "crates/chain/src/spk_iter.rs:2"
+      ]
+    }
+  ]
+}

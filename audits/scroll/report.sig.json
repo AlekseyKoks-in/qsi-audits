@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"dc77e591-28df-4e0e-aec7-f047b3208f63\",\"content_sha256\":\"bfe57c31bc57c669da6e4a7cee997a8bd19fd26d0a62a5decfc2255b7452d9bb\",\"files_sha256\":{\"html\":\"f9b0d6a7643a6cc876c46a4e46cf156a8e4d4deabc1f36fe3e80995c9ee0caf8\",\"json\":\"117231b77cb7f40c1014e97c00a225de957440d216d3d3fc9fc94c7770a5d5aa\",\"md\":\"c93b961247aa31979ff42b2d3e942ff4a79a0c2b156ed95856c1b8747b1c3474\",\"pdf\":\"c2460c2e134983a7edc9775c7e13f5cf9667f02b894da710fcb4e0b47c5d2f3e\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"scroll @ 3046bbd18a6a\",\"report_id\":\"ca80e270-514f-4fd9-9c23-63387f6c04cc\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-29T06:19:29+00:00\",\"version\":1}",
+  "signature": "yxsNGDPMl9ZdOjgCBlxZw1wNFbmfE5hbv1tIEpme/7eokzZBacXKHxF9e0nFdVDEXxl3xoY1xS85Plfugp5uCQ=="
+}

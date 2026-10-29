@@ -1,0 +1,4473 @@
+{
+  "content_sha256": "2f9180a54b4c716991a4c8736399076b3da27e48b936ad8bd07be50fd10740f8",
+  "schema": "qsi.report/1",
+  "language": "en",
+  "generated_at": "2026-10-28T19:28:44.356226+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "1fd9ee4c-7e7f-4e2e-9e55-f1d2f3a7fd70",
+    "name": "rust-secp256k1 @ fe8b3bec962f",
+    "client_name": "rust-secp256k1",
+    "description": "Static review of the source tree rust-secp256k1 at fe8b3bec962fc2c7052501de397fde58ef7142d1. 127 files analysed; of 216 files, 26 are test, fuzzing, benchmark or example code and were left out, 63 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "f030bcd6-5287-4f61-b078-ddc67276c23d",
+    "mode": "document",
+    "title": "Document audit: rust-secp256k1",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-28T19:28:32.080212+00:00",
+    "finished_at": "2026-10-28T19:28:44.209270+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Crypto exchange, custodian or wallet",
+    "parameters": {
+      "ref": "fe8b3bec962fc2c7052501de397fde58ef7142d1",
+      "language": "en",
+      "repo_url": "https://github.com/rust-bitcoin/rust-secp256k1",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "Cargo.toml",
+      "size": 3184,
+      "sha256": "f1840f6dfb58f6ca1bc442f730c97893c96648fbc84ca860cf4d31fb0c8e386e",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/Cargo.toml",
+      "size": 1619,
+      "sha256": "ff4c6efd6aeaf4f76348f7b2f3ad7477f62657998825eb07dc13745e6c4348ee",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/build.rs",
+      "size": 2705,
+      "sha256": "f28218d715a210ccf4a02a72a8b10ba1bc32e55aab62de87c620c071616e15c4",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/check_uint128_t.c",
+      "size": 248,
+      "sha256": "c20d2a8c6f6991595840a78f0e72eb0b32cce41209e62d30599c238fd21d5f47",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c",
+      "size": 3855,
+      "sha256": "d59c736417fbed06df5db4f476caf5643b55ecc5c950596ee3b80462dfb52859",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h",
+      "size": 4290,
+      "sha256": "9e3f5c6282938e3e141e911381ec6aebb321ad5a6d03b1e9e7a921548b6b51cc",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.c",
+      "size": 5182,
+      "sha256": "c729549dd004b2631c72ddd9083b370886de6bfde0f06fad01eddafdc8da27bb",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h",
+      "size": 4056,
+      "sha256": "270578950fc61f0875a252f809a718a9a414754e17fc070846d577113e11e3e6",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1.h",
+      "size": 43026,
+      "sha256": "d39c553b7903dfaec2c0947e33ed33eafbdfa09b3ef4a59fd4eb32ac959f370f",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h",
+      "size": 2710,
+      "sha256": "24a629250a48ff976ddff7c56f0b4e3ce47ea49b97105accc2e41a4b5eaa017a",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h",
+      "size": 9397,
+      "sha256": "05e4a55ae2d4610f8f832472824bc7c6dd9a96e347e9f956a5320b39b6f7a24a",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h",
+      "size": 11490,
+      "sha256": "6d168046d730b7a69f50e7793bf4254f6cb56c22002a3249836b41c6ea907a30",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1_musig.h",
+      "size": 29265,
+      "sha256": "4fc94ae766ba1edb13003431948183fece6328ba682a3bea9496998184b219c6",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1_preallocated.h",
+      "size": 6306,
+      "sha256": "6ca991814860e7448cc67d8501a39b9327fba65a5501bf79951d3ac861e79a4a",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1_recovery.h",
+      "size": 4922,
+      "sha256": "f87789710c856ee08d6f04fa0809343cbdb508a9045580cf91ffe4aaf717be82",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h",
+      "size": 8487,
+      "sha256": "d76fff4bac7c0214df645179031dfe75d56df83c17bcdf646d0aa189251f20d7",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/assumptions.h",
+      "size": 4677,
+      "sha256": "cbad7817c315f29783e2fa21f6477888b20a262672f674bc94c5858d3309806e",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/bench.c",
+      "size": 10281,
+      "sha256": "7032161ad890bf972879b77ccc970b0b07fb39d75c4043617c2b030ca410198a",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/bench.h",
+      "size": 5088,
+      "sha256": "f1739e0f0a8eb444edb516cbf42faa4c503145b81eaa857c0bf2f35459eadf38",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/bench_ecmult.c",
+      "size": 15847,
+      "sha256": "e92a968a6637adc0ac4a4ef0e013723f103b52e2a52116c48e7962f4f7fd1de8",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/bench_internal.c",
+      "size": 18104,
+      "sha256": "7de9942375b76d01842227e9adfebb5d0511acd60068548115e06a7e6d2514e8",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/checkmem.h",
+      "size": 4640,
+      "sha256": "338d267031b23e83133614ed1ad23e68480ba9f837c497155c326d08322d3c16",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecdsa.h",
+      "size": 1344,
+      "sha256": "011f5744a12548a5c333e6ea3a3d0e43b7f90a698955f7452e948b552abb19c1",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h",
+      "size": 11302,
+      "sha256": "c6f44808c93278a1bd42aea9c6cc66bafc2df90ad4b09bf25ace1efa0965b112",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/eckey.h",
+      "size": 1323,
+      "sha256": "b1f23329bb6abe30e52f335975ba7617564ad10dccd580a894ffd0bef965e461",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/eckey_impl.h",
+      "size": 3843,
+      "sha256": "5f73e180882c209f28352612dd996136abdb102e93d9e3f8e2478888db20e46e",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult.h",
+      "size": 2819,
+      "sha256": "1aedbc9abb1bce054768b366f886c40e0ac0cf535b4deb0859cf858c692419bf",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_compute_table.h",
+      "size": 1153,
+      "sha256": "7f8b7cb544b64c46f2d9744c5fdecf5115a0ee898f3be86c1ab666567e6661a9",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_compute_table_impl.h",
+      "size": 2143,
+      "sha256": "a3427b408943cfc6c1a4edefb9e9ee565f8cffe3728fe9e2396e7ff4163b2eca",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_const.h",
+      "size": 1454,
+      "sha256": "6b4c471e779bc5c6eeb6014250bfb582e4713437208c1d8d8024cef6dce148e0",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_const_impl.h",
+      "size": 20379,
+      "sha256": "8838775cdd25cf65e253dc226e9ef0573a8c8cf58efb0c1e8a8fda4fbb9f9434",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_gen.h",
+      "size": 5528,
+      "sha256": "02b5f57bbcd49da5dd3cb385e326ceef3eebdca190dfe6ec5d439417691501dc",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_gen_compute_table.h",
+      "size": 702,
+      "sha256": "7dbc14514dbc0228998a73078865ce5bb1913c56f9ae1ec28be25511d41f018d",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_gen_compute_table_impl.h",
+      "size": 5015,
+      "sha256": "08fe63e5adbb6e67a55fb66fc2d14554c8643db49c60e9d279eea57708551c90",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_gen_impl.h",
+      "size": 17227,
+      "sha256": "77fc665701acc1aaae6b61a73c4a05431be6a673f93c31d77bd77e9c9bcb8918",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/ecmult_impl.h",
+      "size": 36899,
+      "sha256": "aabc88f8acaaf07b5e931e58535a5e15af86f30cc128c18b6c49714f548010f8",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/field.h",
+      "size": 16635,
+      "sha256": "1a4ad5e0a6047cea3d54d573093756e4484d24e5d62e70a6a4bf941c529125ac",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/field_10x26.h",
+      "size": 2358,
+      "sha256": "47f9d068809137d2ffb9119bf1cfea3280e0aeb11978feea0ac7802be37a0107",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/field_10x26_impl.h",
+      "size": 53112,
+      "sha256": "02550b9ca48ded198f3aa8db9d8c6eee0bb6be585d82caa93f1413e382582c21",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/field_5x52.h",
+      "size": 2400,
+      "sha256": "9b6ab1a6c79b776d4b082ee127ce471f355e255bf5108effb599a96b9029ff70",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/field_5x52_impl.h",
+      "size": 20326,
+      "sha256": "2e3d35fcffced09bb6ac898760af75fcf26c6cb4260e1a89c2340fc516788fc5",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/field_5x52_int128_impl.h",
+      "size": 12391,
+      "sha256": "59ed9576d6deb63c100b26019a33d24c230a7d136b956f67133e6877208530eb",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/field_impl.h",
+      "size": 16223,
+      "sha256": "0afd349a2cbe8f9846c4c9651f09c982fb16334eea6ff8cca1971a87cf810ae1",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/group.h",
+      "size": 13118,
+      "sha256": "ba3b2da5ab27366dd92b636e7d8dca9249c2db923c4239d7189dd958c6734761",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/group_impl.h",
+      "size": 38781,
+      "sha256": "8aefc6d6eeab3d16aa83ab3355596b2dcf04c921ede1f4e2b09f825dd2cb6d32",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/hash.h",
+      "size": 2196,
+      "sha256": "2a78cc73f4ecf25179f859c7778e0c9eb2d7a4ac03e2c13d8fd3480fa0bebd00",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/hash_impl.h",
+      "size": 14582,
+      "sha256": "d152eb1b1578edab2ecf3ada77aa185ea52020c1bdcbc9eb4c393fdd8295a77e",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/hsort.h",
+      "size": 1705,
+      "sha256": "bd108b51741b926781cb0a3ff2a054b61db2296f09857dfb2150fd661ace6cf1",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/hsort_impl.h",
+      "size": 5038,
+      "sha256": "6a794299c0fa53600b8bce5c4c463586cdbd204fe2eaad469e3eb9c12a9c4d67",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/int128.h",
+      "size": 4012,
+      "sha256": "8435767d08876d419b3b743dd5ae31b07e0b74218df1be45462ea487015d84d2",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/int128_impl.h",
+      "size": 376,
+      "sha256": "5683c02dfc495639da259d80624711c1c449bbaee6186729e399e713a28b4719",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/int128_native.h",
+      "size": 601,
+      "sha256": "c28a470a02e1fd799f2cf8228ffe1731b3e0d2be191978355697a235e26a6805",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/int128_native_impl.h",
+      "size": 3271,
+      "sha256": "3c1cbd5272d9b62783acd262d5807aee79d6d386f4aba888eaf906512c82d4e4",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/int128_struct.h",
+      "size": 259,
+      "sha256": "b8eed83cae0de920af460eefdb26d796862a8dd36759869db76a72db262c2984",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/int128_struct_impl.h",
+      "size": 8434,
+      "sha256": "1c09fafe1861c7ce5e524a92e561afd6f1525dec86b154d7abb39d09d033431c",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modinv32.h",
+      "size": 1995,
+      "sha256": "cc7da45d20d976a9753a7926a04fb694a151b35329d8d1ebbd008febddf9ad8c",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modinv32_impl.h",
+      "size": 34692,
+      "sha256": "248a5c185fdd1b34c22e8d0f12d1c3d80211aa37bb83178fde22abef062c988d",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modinv64.h",
+      "size": 2099,
+      "sha256": "db15aae18793d2bd401f9e9de5d8b22c513787f85aec694e8b367b9e0cb69efc",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modinv64_impl.h",
+      "size": 40233,
+      "sha256": "8cbe489cf14cbbd8fe916ad91d02ac99d37bb442f9f29b9efeff737821909707",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/ecdh/bench_impl.h",
+      "size": 1935,
+      "sha256": "a57875b66001de606592b8b993e89c2a0d81334b1fb7c2a5e7c3c61aff3b420c",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h",
+      "size": 2822,
+      "sha256": "53241d7caec889c4f41c4ee71cda197214ff31caf20459425a6af86d48c07b40",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/ellswift/bench_impl.h",
+      "size": 4529,
+      "sha256": "30b383bce338073942ecd69ef8d3a21b302dc8e907f15bb70b8214b72d8a5870",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/ellswift/main_impl.h",
+      "size": 28694,
+      "sha256": "bed144aea3f7559f294e57d9e3062386d1c12de7ebf48a5d0ccebde9aece2736",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/extrakeys/main_impl.h",
+      "size": 11241,
+      "sha256": "27b18e35f1200c70329123c9dc6bc2ae54de2ea15f7f7671a80fb1cdb2a02b30",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/musig/keyagg.h",
+      "size": 1408,
+      "sha256": "079c5b03c77422b29a33294aea99b9c26c22fb53e89a1d7152afe0d05a68eed3",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/musig/keyagg_impl.h",
+      "size": 12327,
+      "sha256": "05b8ee77127f75455ab1e169579a9e86f43fcaafc0cb7182b60b44449695be5e",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/musig/main_impl.h",
+      "size": 426,
+      "sha256": "9ec7e6082aa496353466769bb9f7705c32caf8d060b0c92815cb37f6c4265654",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/musig/session.h",
+      "size": 941,
+      "sha256": "c12f5ec3df77df5ad3f4fcdfe99c8545c574825680c333c12e086238696ce0e2",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/musig/session_impl.h",
+      "size": 34842,
+      "sha256": "168e7cc3ac954ef9927711879f1cc44c788521057402695c723c14509047bb46",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/musig/vectors.h",
+      "size": 37797,
+      "sha256": "c7cd9dc3804d864d17e43c5b00335a405a3bc4a30861838ac4599a213231e132",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/recovery/bench_impl.h",
+      "size": 2400,
+      "sha256": "b6a1f35f2fee1653a5e2c2b1f88a6ec3bb59aa421267ea8cb52d0e2549904052",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/recovery/main_impl.h",
+      "size": 6985,
+      "sha256": "197bdb189d471cfb9123cab1b1beb5118e89985e4688d00781fd554aa6fa3c09",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/schnorrsig/bench_impl.h",
+      "size": 4137,
+      "sha256": "b344d0ba298d435a80868003e56bee1221736a787964a8b56e053683cc32f845",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/modules/schnorrsig/main_impl.h",
+      "size": 11292,
+      "sha256": "b55b1d634b9bcac79c10278b2d1407cc0bcad13c813bc65ff0deccd6f117adb1",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/precompute_ecmult.c",
+      "size": 4134,
+      "sha256": "eab942df74b984eb0cb55b924344391a399bb07472886501b19776e955478950",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/precompute_ecmult_gen.c",
+      "size": 3939,
+      "sha256": "77e375055b057465e20bb0bc703f46203c16cb41b98ce76856b53b88a6116fc1",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult.c",
+      "size": 2409228,
+      "sha256": "44c8513c966cd6f49ecc57a5a623dbb2e9f17d70fa09039fce0738d2de515c79",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult.h",
+      "size": 1665,
+      "sha256": "cee6422b15bd9fe22fd5306613cf2cabd690490bebe3afd794bc8961e92191e5",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult_gen.c",
+      "size": 259735,
+      "sha256": "feefab4d4c735d9fd3e76271eeeda476e9859022e5c845bd8a3f83947cf38385",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult_gen.h",
+      "size": 1013,
+      "sha256": "c045bde13bd99de253b19351959d1c0411f0398a53c15e5c2e20a5a0f05f1e9f",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar.h",
+      "size": 6075,
+      "sha256": "d3561ecba79556e0d7d2a3f0cf93398bd1f2353441cb0abdd9f8fc49ad67c04b",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar_4x64.h",
+      "size": 811,
+      "sha256": "1f7e75c03494ed55e6466b84507e3f240ad5616bc85a8e1f9f46daaa3150fd35",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar_4x64_impl.h",
+      "size": 35169,
+      "sha256": "183eaa00def71b4b240eda3354968de160b8908b4a891399d75622e593969924",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar_8x32.h",
+      "size": 735,
+      "sha256": "9f77522d7fd95caf61693492fc2883800722f2978f64fcf04420a3daec0d13e2",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar_8x32_impl.h",
+      "size": 30216,
+      "sha256": "4ef4a71103799cf6192dbcd6e49da527ec022abb5380147cda44761e66d906f7",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar_impl.h",
+      "size": 12744,
+      "sha256": "c4c79e9d73303c958128906625a1c96fe35e06fcd7a2c0dea282c827088bc4c3",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar_low.h",
+      "size": 1145,
+      "sha256": "4138194717181b6227fc03529f1e5fe54789515f0d3ee83b5c258b28fdb2fd92",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scalar_low_impl.h",
+      "size": 6411,
+      "sha256": "570e203ca151e15563312a753715780b01d23a5a1f171c5511f71af38b818ab8",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scratch.h",
+      "size": 2182,
+      "sha256": "aa9c7b6d2e1e68d17dd2e70d282bd0227302bae7aa7396062da205429009c967",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/scratch_impl.h",
+      "size": 2867,
+      "sha256": "02c34bdf19ebcaf23d24b0b6d4b9aae31809d3edec285386bddbef3cf7b2ea7d",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/secp256k1.c",
+      "size": 30671,
+      "sha256": "39e452b52a252c9389ae99ecd26489f34122018ad053b566ebf213ad874af476",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/selftest.h",
+      "size": 1351,
+      "sha256": "cca836fd26cb12b60a66ad808c9e89bd42a45c3220626def81437f7fbae6f97f",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/testrand.h",
+      "size": 1886,
+      "sha256": "b1708cdab67d44311b97af6f77c719f6dfc03d8c53e5e686bc1d9fd967a49687",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/testrand_impl.h",
+      "size": 5805,
+      "sha256": "5303c670a157d2857c1f5de4567f73d04b2f5a37434eae1fcaabe00597dab57a",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/testutil.h",
+      "size": 4603,
+      "sha256": "a2f705686ab565024949f5a4018ccb978b4c9e0eb11fec58a771b17467009654",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/util.h",
+      "size": 14727,
+      "sha256": "224fda59fc8ed42d1b259dfef2ecdf130a3e4c126cced79d0d1362521518153d",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/util_local_visibility.h",
+      "size": 402,
+      "sha256": "d47d4a58f40157ab2a298151f366c5ebec8f7a1e7aaba88e36b530b1c01584ca",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json",
+      "size": 299043,
+      "sha256": "0a0b8066df1e1b6576f2e2da0b1241170e23a5beca7ed127647c48475235693a",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/tools/symbol-check.py",
+      "size": 2426,
+      "sha256": "fc152ef1c87a7c0c1d6487fe3f451068f42efe3c1a7205571404226c2a364f2b",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/depend/secp256k1/tools/wycheproof_utils.py",
+      "size": 427,
+      "sha256": "9f2c2368953eeb3c9b7c3b31a807cde76b3106df93fbb975993638d5eb1a1e8a",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/src/lib.rs",
+      "size": 70718,
+      "sha256": "415aae64b2c5f2f51644db0273decde6dedf092e159d583810f1bd439f759d73",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/src/macros.rs",
+      "size": 3221,
+      "sha256": "5cc2d18ba578ab1bd5f24cda2e5d04bec238e0ac5d615845b5f49f13aed86719",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/src/recovery.rs",
+      "size": 7321,
+      "sha256": "0b3128bbdb9d7b6896d23fa70a495644627b22fbcbcea2013bfc12d5cab49882",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/src/types.rs",
+      "size": 3312,
+      "sha256": "5d51de698119d62dae9f7402b415080a4bb3efcf3105cf1d11881fa48474e2d7",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/wasm/wasm-sysroot/stdio.h",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/wasm/wasm-sysroot/stdlib.h",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/wasm/wasm-sysroot/string.h",
+      "size": 236,
+      "sha256": "fbfdac6ad0b66450c634081c5270b724179fd2b5dd615275489b3c22d275268f",
+      "redactions": 0
+    },
+    {
+      "name": "secp256k1-sys/wasm/wasm.c",
+      "size": 710,
+      "sha256": "804c35ac2746282ad01c6bf1bf331ff4bb17843f14750308580575215caaeb6e",
+      "redactions": 0
+    },
+    {
+      "name": "src/constants.rs",
+      "size": 2446,
+      "sha256": "b731982fed3921dd7b391c5185cfb80a9bac3519147fe760fe9af10d012e3b56",
+      "redactions": 0
+    },
+    {
+      "name": "src/context/internal_nostd.rs",
+      "size": 6529,
+      "sha256": "6a41454cde81eb9f37b40f7f35977575766c89d3a275ad616f689178424045d7",
+      "redactions": 0
+    },
+    {
+      "name": "src/context/internal_std.rs",
+      "size": 3291,
+      "sha256": "ace7fc791d4ecab0d3e171ae20f3e377f23b6eb0a5ea8cf700bd99382db15a57",
+      "redactions": 0
+    },
+    {
+      "name": "src/context/mod.rs",
+      "size": 16342,
+      "sha256": "8c2ad10e9f9a1a23a9ea56ebabaa4e7c5a12c41bf739addff45a1b394ae3b1b2",
+      "redactions": 0
+    },
+    {
+      "name": "src/context/spinlock.rs",
+      "size": 7872,
+      "sha256": "0f63af558b09bcc4a563853efa343628c3de044e86a6aa1fe9f412904f1f0d39",
+      "redactions": 0
+    },
+    {
+      "name": "src/ecdh.rs",
+      "size": 8625,
+      "sha256": "b7a382d0fbefc1944aecab86e5fa62e1fcb07d16ab97b89a1c5352357428009c",
+      "redactions": 0
+    },
+    {
+      "name": "src/ecdsa/mod.rs",
+      "size": 19911,
+      "sha256": "c2501fabd9e06440ba379326e1179f0a1501d86b6c8025278e081bfc7e703599",
+      "redactions": 0
+    },
+    {
+      "name": "src/ecdsa/recovery.rs",
+      "size": 16666,
+      "sha256": "acec0d5ab6859c999ddcf8b441a6e5014022e9e91b310443f4be9d7f0654fe01",
+      "redactions": 0
+    },
+    {
+      "name": "src/ecdsa/serialized_signature.rs",
+      "size": 9043,
+      "sha256": "f7083c232563eed68b246c14d7b4329152b41a1ab5cad21053cf7d80a19cfd5e",
+      "redactions": 0
+    },
+    {
+      "name": "src/ellswift.rs",
+      "size": 46614,
+      "sha256": "0f8263f7a08819e9cee525235766c818379d5005ff04a7e7b9be3e48b88b7518",
+      "redactions": 2
+    },
+    {
+      "name": "src/key/mod.rs",
+      "size": 75790,
+      "sha256": "811fd2982f101aa42c8157f37db01cb4b4e13850686cdb596319e20b761c8e15",
+      "redactions": 3
+    },
+    {
+      "name": "src/key/secret.rs",
+      "size": 11958,
+      "sha256": "df49878912b209974289c9d479c12ab2b19c1a6d0638539ad5dd62d1401936ed",
+      "redactions": 0
+    },
+    {
+      "name": "src/lib.rs",
+      "size": 42297,
+      "sha256": "41069109679af98f2c060205d76170ecba86ad5f26ad30c4894d1b751b09d6a9",
+      "redactions": 3
+    },
+    {
+      "name": "src/macros.rs",
+      "size": 4164,
+      "sha256": "31ece8ad2fa96786df7cc5498e455f454dee353c6a0383c2a282f87a034d0b7b",
+      "redactions": 0
+    },
+    {
+      "name": "src/musig.rs",
+      "size": 69169,
+      "sha256": "a22fd3466a745b4fad5e685c04a0cda15648102fc580db8b29eb1be41414cf60",
+      "redactions": 0
+    },
+    {
+      "name": "src/scalar.rs",
+      "size": 5109,
+      "sha256": "59603163ac5b2947abbbe913d83a8950713a87afaad29aa929c821e5fc0d21ec",
+      "redactions": 0
+    },
+    {
+      "name": "src/schnorr.rs",
+      "size": 31606,
+      "sha256": "259030c32d226d4f1ef6ccbe7426f0f86874ec494aed531855f743140af02a25",
+      "redactions": 28
+    },
+    {
+      "name": "src/secret.rs",
+      "size": 7120,
+      "sha256": "b9f4f2ee7314d6ba80e8ecc1d50b3a9050671acc2e2649109e7831db5977f8ab",
+      "redactions": 3
+    },
+    {
+      "name": "src/serde_util.rs",
+      "size": 3017,
+      "sha256": "a3c07e7486b54c50e5fbd1c47391cd84f3debfbad051036ee5e42de920620d9e",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 127,
+    "bytes": 4379620,
+    "redactions": 39
+  },
+  "coverage": [
+    {
+      "area": "dependencies",
+      "detail": "Cargo.toml: 11 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "secp256k1-sys/Cargo.toml: 2 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/build.rs: 68 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/check_uint128_t.c: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c: 150 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h: 95 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1.h: 868 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h: 63 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h: 200 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h: 250 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1_musig.h: 588 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1_preallocated.h: 134 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1_recovery.h: 113 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h: 190 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/assumptions.h: 87 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/bench.c: 284 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/bench.h: 188 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/bench_ecmult.c: 399 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/bench_internal.c: 437 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/checkmem.h: 102 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecdsa.h: 21 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h: 304 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/eckey.h: 25 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/eckey_impl.h: 95 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult.h: 61 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_compute_table.h: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_compute_table_impl.h: 49 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_const.h: 38 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_const_impl.h: 401 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_gen.h: 143 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_gen_compute_table.h: 14 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_gen_compute_table_impl.h: 108 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_gen_impl.h: 341 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/ecmult_impl.h: 853 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/field.h: 350 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/field_10x26.h: 57 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/field_10x26_impl.h: 1232 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/field_5x52.h: 62 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/field_5x52_impl.h: 522 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/field_5x52_int128_impl.h: 274 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/field_impl.h: 457 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/group.h: 216 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/group_impl.h: 1012 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/hash.h: 44 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/hash_impl.h: 299 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/hsort.h: 33 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/hsort_impl.h: 125 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/int128.h: 90 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/int128_impl.h: 18 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/int128_native.h: 19 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/int128_native_impl.h: 94 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/int128_struct.h: 14 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/int128_struct_impl.h: 205 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modinv32.h: 43 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modinv32_impl.h: 725 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modinv64.h: 47 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modinv64_impl.h: 780 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/ecdh/bench_impl.h: 57 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h: 74 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/ellswift/bench_impl.h: 106 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/ellswift/main_impl.h: 592 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/extrakeys/main_impl.h: 285 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/musig/keyagg.h: 32 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/musig/keyagg_impl.h: 291 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/musig/main_impl.h: 12 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/musig/session.h: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/musig/session_impl.h: 824 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/musig/vectors.h: 346 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/recovery/bench_impl.h: 62 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/recovery/main_impl.h: 159 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/schnorrsig/bench_impl.h: 104 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/modules/schnorrsig/main_impl.h: 271 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/precompute_ecmult.c: 91 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/precompute_ecmult_gen.c: 101 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult.c: 16456 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult.h: 40 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult_gen.c: 1779 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult_gen.h: 28 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar.h: 105 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar_4x64.h: 19 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar_4x64_impl.h: 1000 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar_8x32.h: 19 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar_8x32_impl.h: 816 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar_impl.h: 321 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar_low.h: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scalar_low_impl.h: 206 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scratch.h: 40 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/scratch_impl.h: 74 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/secp256k1.c: 773 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/selftest.h: 32 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/testrand.h: 48 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/testrand_impl.h: 167 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/testutil.h: 148 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/util.h: 428 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/src/util_local_visibility.h: 12 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 134: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3600: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3636: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3662: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3688: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3714: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3741: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3768: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3795: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3822: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3849: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3886: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3912: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3938: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3964: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3990: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4016: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4042: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4068: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4094: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4120: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4146: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4172: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4208: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4235: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4262: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4289: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4316: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4343: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4370: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4397: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4424: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4451: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4478: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4505: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4532: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4559: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4586: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4613: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4640: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4666: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4692: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4718: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4744: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4770: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4796: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4822: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4848: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4874: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4900: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4926: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4952: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4978: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5004: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5030: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5056: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5082: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5108: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5134: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5160: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5186: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5212: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5238: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5264: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5290: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5316: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5342: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5368: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5394: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5420: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5446: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5472: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5498: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5524: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5550: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5576: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5602: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5628: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5654: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5680: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5706: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5732: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5758: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5784: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5810: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5836: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5862: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5888: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5914: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5940: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5966: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6002: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6038: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6094: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6140: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6186: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6232: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6278: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6324: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "certificates_and_keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json: certificates/keys parsed",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/tools/symbol-check.py: 72 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/depend/secp256k1/tools/wycheproof_utils.py: 12 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/src/lib.rs: 2072 lines scanned with 16 rule patterns and 122 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/src/macros.rs: 80 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/src/recovery.rs: 241 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/src/types.rs: 91 lines scanned with 16 rule patterns and 122 registry patterns; 19 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/wasm/wasm-sysroot/stdio.h: 0 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/wasm/wasm-sysroot/stdlib.h: 0 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/wasm/wasm-sysroot/string.h: 5 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "secp256k1-sys/wasm/wasm.c: 17 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/constants.rs: 78 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/context/internal_nostd.rs: 159 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/context/internal_std.rs: 85 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/context/mod.rs: 429 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/context/spinlock.rs: 250 lines scanned with 16 rule patterns and 122 registry patterns; 135 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ecdh.rs: 265 lines scanned with 16 rule patterns and 122 registry patterns; 61 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ecdsa/mod.rs: 555 lines scanned with 16 rule patterns and 122 registry patterns; 54 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ecdsa/recovery.rs: 465 lines scanned with 16 rule patterns and 122 registry patterns; 167 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ecdsa/serialized_signature.rs: 301 lines scanned with 16 rule patterns and 122 registry patterns; 35 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/ellswift.rs: 751 lines scanned with 16 rule patterns and 122 registry patterns; 399 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/ellswift.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/key/mod.rs: 2197 lines scanned with 16 rule patterns and 122 registry patterns; 817 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/key/mod.rs: value(s) at line(s) 2162 (test_keypair_deserialize_serde) are declared inside a fixture and treated as test data, although the file itself is not test code",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/key/mod.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/key/secret.rs: 351 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/lib.rs: 1045 lines scanned with 16 rule patterns and 122 registry patterns; 470 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/lib.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/macros.rs: 115 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/musig.rs: 1722 lines scanned with 16 rule patterns and 122 registry patterns; 319 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/scalar.rs: 156 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/schnorr.rs: 744 lines scanned with 16 rule patterns and 122 registry patterns; 506 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/schnorr.rs: value(s) at line(s) 567 (TestVector), 568 (TestVector), 575 (TestVector), 576 (TestVector), 583 (TestVector), 584 (TestVector), 591 (TestVector), 592 (TestVector), 600 (TestVector), 608 (TestVector), 616 (TestVector), 624 (TestVector), 632 (TestVector), 640 (TestVector), 648 (TestVector), 656 (TestVector), 664 (TestVector), 672 (TestVector), 680 (TestVector), 687 (TestVector), 688 (TestVector), 695 (TestVector), 696 (TestVector), 703 (TestVector), 704 (TestVector), 711 (TestVector), 712 (TestVector) are declared inside a fixture and treated as test data, although the file itself is not test code",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/schnorr.rs: 28 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/secret.rs: 189 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "secrets",
+      "detail": "src/secret.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/serde_util.rs: 116 lines scanned with 16 rule patterns and 122 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "no exactly pinned versions to query",
+      "status": "not_checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "Cargo.toml: 11 dependencies parsed (0 pinned)",
+        "secp256k1-sys/Cargo.toml: 2 dependencies parsed (0 pinned)"
+      ]
+    },
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 124,
+      "rows": 124,
+      "examples": [
+        "secp256k1-sys/build.rs: 68 lines scanned with 16 rule patterns and 122 registry patterns",
+        "secp256k1-sys/depend/check_uint128_t.c: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+        "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c: 150 lines scanned with 16 rule patterns and 122 registry patterns"
+      ]
+    },
+    {
+      "area": "keys",
+      "status": "error",
+      "count": 99,
+      "rows": 99,
+      "examples": [
+        "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 134: public key could not be parsed (ValueError)",
+        "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3600: public key could not be parsed (ValueError)",
+        "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3636: public key could not be parsed (ValueError)"
+      ]
+    },
+    {
+      "area": "certificates_and_keys",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json: certificates/keys parsed"
+      ]
+    },
+    {
+      "area": "secrets",
+      "status": "checked",
+      "count": 7,
+      "rows": 7,
+      "examples": [
+        "src/ellswift.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+        "src/key/mod.rs: value(s) at line(s) 2162 (test_keypair_deserialize_serde) are declared inside a fixture and treated as test data, although the file itself is not test code",
+        "src/key/mod.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "not_checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "no exactly pinned versions to query"
+      ]
+    }
+  ],
+  "not_checked": [
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 134: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3600: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3636: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3662: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3688: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3714: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3741: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3768: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3795: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3822: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3849: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3886: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3912: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3938: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3964: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3990: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4016: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4042: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4068: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4094: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4120: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4146: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4172: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4208: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4235: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4262: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4289: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4316: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4343: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4370: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4397: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4424: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4451: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4478: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4505: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4532: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4559: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4586: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4613: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4640: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4666: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4692: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4718: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4744: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4770: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4796: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4822: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4848: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4874: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4900: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4926: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4952: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 4978: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5004: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5030: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5056: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5082: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5108: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5134: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5160: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5186: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5212: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5238: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5264: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5290: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5316: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5342: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5368: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5394: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5420: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5446: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5472: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5498: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5524: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5550: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5576: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5602: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5628: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5654: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5680: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5706: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5732: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5758: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5784: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5810: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5836: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5862: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5888: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5914: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5940: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 5966: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6002: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6038: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6094: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6140: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6186: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6232: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6278: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 6324: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "no exactly pinned versions to query",
+      "status": "not_checked"
+    }
+  ],
+  "not_checked_grouped": [
+    {
+      "area": "keys",
+      "status": "error",
+      "count": 99,
+      "rows": 99,
+      "examples": [
+        "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 134: public key could not be parsed (ValueError)",
+        "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3600: public key could not be parsed (ValueError)",
+        "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json line 3636: public key could not be parsed (ValueError)"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "not_checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "no exactly pinned versions to query"
+      ]
+    }
+  ],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "Cargo.toml",
+      "secp256k1-sys/Cargo.toml",
+      "secp256k1-sys/build.rs",
+      "secp256k1-sys/depend/check_uint128_t.c",
+      "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c",
+      "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h",
+      "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.c",
+      "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1_musig.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1_preallocated.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1_recovery.h",
+      "secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h",
+      "secp256k1-sys/depend/secp256k1/src/assumptions.h",
+      "secp256k1-sys/depend/secp256k1/src/bench.c",
+      "secp256k1-sys/depend/secp256k1/src/bench.h",
+      "secp256k1-sys/depend/secp256k1/src/bench_ecmult.c",
+      "secp256k1-sys/depend/secp256k1/src/bench_internal.c",
+      "secp256k1-sys/depend/secp256k1/src/checkmem.h",
+      "secp256k1-sys/depend/secp256k1/src/ecdsa.h",
+      "secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/eckey.h",
+      "secp256k1-sys/depend/secp256k1/src/eckey_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_compute_table.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_compute_table_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_const.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_const_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_gen.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_gen_compute_table.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_gen_compute_table_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_gen_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/ecmult_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/field.h",
+      "secp256k1-sys/depend/secp256k1/src/field_10x26.h",
+      "secp256k1-sys/depend/secp256k1/src/field_10x26_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/field_5x52.h",
+      "secp256k1-sys/depend/secp256k1/src/field_5x52_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/field_5x52_int128_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/field_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/group.h",
+      "secp256k1-sys/depend/secp256k1/src/group_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/hash.h",
+      "secp256k1-sys/depend/secp256k1/src/hash_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/hsort.h",
+      "secp256k1-sys/depend/secp256k1/src/hsort_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/int128.h",
+      "secp256k1-sys/depend/secp256k1/src/int128_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/int128_native.h",
+      "secp256k1-sys/depend/secp256k1/src/int128_native_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/int128_struct.h",
+      "secp256k1-sys/depend/secp256k1/src/int128_struct_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modinv32.h",
+      "secp256k1-sys/depend/secp256k1/src/modinv32_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modinv64.h",
+      "secp256k1-sys/depend/secp256k1/src/modinv64_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/ecdh/bench_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/ellswift/bench_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/ellswift/main_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/extrakeys/main_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/musig/keyagg.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/musig/keyagg_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/musig/main_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/musig/session.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/musig/session_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/musig/vectors.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/recovery/bench_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/recovery/main_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/schnorrsig/bench_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/modules/schnorrsig/main_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/precompute_ecmult.c",
+      "secp256k1-sys/depend/secp256k1/src/precompute_ecmult_gen.c",
+      "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult.c",
+      "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult.h",
+      "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult_gen.c",
+      "secp256k1-sys/depend/secp256k1/src/precomputed_ecmult_gen.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar_4x64.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar_4x64_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar_8x32.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar_8x32_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar_low.h",
+      "secp256k1-sys/depend/secp256k1/src/scalar_low_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/scratch.h",
+      "secp256k1-sys/depend/secp256k1/src/scratch_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/secp256k1.c",
+      "secp256k1-sys/depend/secp256k1/src/selftest.h",
+      "secp256k1-sys/depend/secp256k1/src/testrand.h",
+      "secp256k1-sys/depend/secp256k1/src/testrand_impl.h",
+      "secp256k1-sys/depend/secp256k1/src/testutil.h",
+      "secp256k1-sys/depend/secp256k1/src/util.h",
+      "secp256k1-sys/depend/secp256k1/src/util_local_visibility.h",
+      "secp256k1-sys/depend/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json",
+      "secp256k1-sys/depend/secp256k1/tools/symbol-check.py",
+      "secp256k1-sys/depend/secp256k1/tools/wycheproof_utils.py",
+      "secp256k1-sys/src/lib.rs",
+      "secp256k1-sys/src/macros.rs",
+      "secp256k1-sys/src/recovery.rs",
+      "secp256k1-sys/src/types.rs",
+      "secp256k1-sys/wasm/wasm-sysroot/stdio.h",
+      "secp256k1-sys/wasm/wasm-sysroot/stdlib.h",
+      "secp256k1-sys/wasm/wasm-sysroot/string.h",
+      "secp256k1-sys/wasm/wasm.c",
+      "src/constants.rs",
+      "src/context/internal_nostd.rs",
+      "src/context/internal_std.rs",
+      "src/context/mod.rs",
+      "src/context/spinlock.rs",
+      "src/ecdh.rs",
+      "src/ecdsa/mod.rs",
+      "src/ecdsa/recovery.rs",
+      "src/ecdsa/serialized_signature.rs",
+      "src/ellswift.rs",
+      "src/key/mod.rs",
+      "src/key/secret.rs",
+      "src/lib.rs",
+      "src/macros.rs",
+      "src/musig.rs",
+      "src/scalar.rs",
+      "src/schnorr.rs",
+      "src/secret.rs",
+      "src/serde_util.rs"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 4,
+      "low": 0,
+      "info": 0
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 4,
+      "improvement": 0,
+      "insufficient_data": 0
+    },
+    "total": 4,
+    "posture_index": 100,
+    "pq_vulnerable_share": 100.0,
+    "inventory_total": 36,
+    "inventory_by_quantum_status": {
+      "vulnerable_shor": 36
+    }
+  },
+  "findings": [
+    {
+      "id": "271cd83b-2ac9-4a20-b215-896b6af9f44c",
+      "public_id": "QSI-2026-06112",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: transaction and message signing (26 file(s))",
+      "description": "56 reference(s) to ECDSA across 26 file(s), e.g. secp256k1-sys/build.rs:20. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open secp256k1-sys/build.rs:20 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:transaction_signing",
+      "data_source": "secp256k1-sys/build.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-28T19:28:44.020752+00:00",
+      "risk_score": 35.6,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 35.6,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 52.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/build.rs",
+          "location": "line 20",
+          "content": "   19 |     base_config\n   20 |         .include(\"depend/secp256k1/\")\n   21 |         .include(\"depend/secp256k1/include\")",
+          "content_sha256": "a5f2d41826e68b84e6cc0e9f6c66bb2d8df138b21870fab304ea5baa3f0cf9c8",
+          "source_sha256": "f28218d715a210ccf4a02a72a8b10ba1bc32e55aab62de87c620c071616e15c4",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036927+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/build.rs#L20"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/build.rs",
+          "location": "line 21",
+          "content": "   20 |         .include(\"depend/secp256k1/\")\n   21 |         .include(\"depend/secp256k1/include\")\n   22 |         .include(\"depend/secp256k1/src\")",
+          "content_sha256": "4199c21bcb627930afb8759ea12971929ddaeea49d540dec5f3120dd9275a26f",
+          "source_sha256": "f28218d715a210ccf4a02a72a8b10ba1bc32e55aab62de87c620c071616e15c4",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036936+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/build.rs#L21"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/build.rs",
+          "location": "line 22",
+          "content": "   21 |         .include(\"depend/secp256k1/include\")\n   22 |         .include(\"depend/secp256k1/src\")\n   23 |         .flag_if_supported(\"-Wno-unused-function\") // some ecmult stuff is defined but not used upstream",
+          "content_sha256": "92465db9e22b0cd0df7d8585a8505b1318dcb874a3c6015e59d2af2c13a254f7",
+          "source_sha256": "f28218d715a210ccf4a02a72a8b10ba1bc32e55aab62de87c620c071616e15c4",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036940+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/build.rs#L22"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h",
+          "location": "line 57",
+          "content": "   56 |    files (such as tests.c) without the need to set an explicit -I flag,\n   57 |    which would be necessary to locate secp256k1.h. */\n   58 | #ifndef SECP256K1_H",
+          "content_sha256": "25af7e242d92af0d3c46ae8d8a48030e247c4bfdeba65068030e64eb4c88c912",
+          "source_sha256": "9e3f5c6282938e3e141e911381ec6aebb321ad5a6d03b1e9e7a921548b6b51cc",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036943+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h#L57"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h",
+          "location": "line 59",
+          "content": "   58 | #ifndef SECP256K1_H\n   59 | #include <secp256k1.h>\n   60 | #endif",
+          "content_sha256": "4c35a81e99a7eaf5ea7315346f3b8cacb0832f7c4a3b1a3d003ff0bd3b6a82c1",
+          "source_sha256": "9e3f5c6282938e3e141e911381ec6aebb321ad5a6d03b1e9e7a921548b6b51cc",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036946+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h#L59"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h",
+          "location": "line 34",
+          "content": "   33 |    files (such as tests.c) without the need to set an explicit -I flag,\n   34 |    which would be necessary to locate secp256k1.h. */\n   35 | #ifndef SECP256K1_H",
+          "content_sha256": "163cac24f6b60e798317e2383fb603da718e728035262dc9759d7cf3fbd47b4f",
+          "source_sha256": "270578950fc61f0875a252f809a718a9a414754e17fc070846d577113e11e3e6",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036950+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h#L34"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h",
+          "location": "line 36",
+          "content": "   35 | #ifndef SECP256K1_H\n   36 | #include <secp256k1.h>\n   37 | #endif",
+          "content_sha256": "2741d1869779ddac4f151ac1740c338ba299b2bed7b98a38e6042acb62fca350",
+          "source_sha256": "270578950fc61f0875a252f809a718a9a414754e17fc070846d577113e11e3e6",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036953+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h#L36"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h",
+          "location": "line 4",
+          "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
+          "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
+          "source_sha256": "24a629250a48ff976ddff7c56f0b4e3ce47ea49b97105accc2e41a4b5eaa017a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036956+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h#L4"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h",
+          "location": "line 4",
+          "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
+          "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
+          "source_sha256": "05e4a55ae2d4610f8f832472824bc7c6dd9a96e347e9f956a5320b39b6f7a24a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036959+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h#L4"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h",
+          "location": "line 4",
+          "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
+          "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
+          "source_sha256": "6d168046d730b7a69f50e7793bf4254f6cb56c22002a3249836b41c6ea907a30",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.036962+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h#L4"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "edf752a2-b9df-42c2-bddd-9214f0ff95a9",
+      "public_id": "QSI-2026-06114",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (2 file(s))",
+      "description": "9 reference(s) to Schnorr (BIP-340) across 2 file(s), e.g. secp256k1-sys/src/lib.rs:1073. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open secp256k1-sys/src/lib.rs:1073 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
+      "data_source": "secp256k1-sys/src/lib.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-28T19:28:44.166172+00:00",
+      "risk_score": 35.6,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 35.6,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 52.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/src/lib.rs",
+          "location": "line 1073",
+          "content": " 1072 |     )]\n 1073 |     pub fn secp256k1_schnorrsig_sign(\n 1074 |         cx: *const Context,",
+          "content_sha256": "efacee2282622bd9afdbd4d21fba13b4ae52c3b7950fd46c6eaad7f2833d7b66",
+          "source_sha256": "415aae64b2c5f2f51644db0273decde6dedf092e159d583810f1bd439f759d73",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.194056+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1073"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/src/lib.rs",
+          "location": "line 1086",
+          "content": " 1085 |     )]\n 1086 |     pub fn secp256k1_schnorrsig_sign_custom(\n 1087 |         cx: *const Context,",
+          "content_sha256": "7155b9ee61a6b3b7a19c9ac3b631ad3edddee83c1b261e3bb09f225c048c9e9d",
+          "source_sha256": "415aae64b2c5f2f51644db0273decde6dedf092e159d583810f1bd439f759d73",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.194064+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1086"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/src/lib.rs",
+          "location": "line 1099",
+          "content": " 1098 |     )]\n 1099 |     pub fn secp256k1_schnorrsig_verify(\n 1100 |         cx: *const Context,",
+          "content_sha256": "c0c60e7da096f64bf928a080f61201ddc6e99b91eb09cbad8df405a0f2587182",
+          "source_sha256": "415aae64b2c5f2f51644db0273decde6dedf092e159d583810f1bd439f759d73",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.194068+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1099"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/schnorr.rs",
+          "location": "line 119",
+          "content": "  118 |             |secp: &Secp256k1<crate::AllPreallocated>| {\n  119 |                 ffi::secp256k1_schnorrsig_sign_custom(\n  120 |                     secp.ctx.as_ptr(),",
+          "content_sha256": "b0ac4aa5cec5e41d8282163f25ae8852222c94224505fe06a05e79b8e0e43c6f",
+          "source_sha256": "259030c32d226d4f1ef6ccbe7426f0f86874ec494aed531855f743140af02a25",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.194072+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/schnorr.rs#L119"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/schnorr.rs",
+          "location": "line 167",
+          "content": "  166 |             |secp: &Secp256k1<crate::AllPreallocated>| {\n  167 |                 ffi::secp256k1_schnorrsig_verify(\n  168 |                     secp.ctx.as_ptr(),",
+          "content_sha256": "3c8d77857e39e275e2dbfcd82048329024ab19596a4d5f0aeac8ee8c576d00d8",
+          "source_sha256": "259030c32d226d4f1ef6ccbe7426f0f86874ec494aed531855f743140af02a25",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.194075+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/schnorr.rs#L167"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "e614f8da-b58f-4f02-8db1-3812f138b768",
+      "public_id": "QSI-2026-06113",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDH: role not determined (1 file(s))",
+      "description": "4 reference(s) to ECDH across 1 file(s), e.g. secp256k1-sys/depend/secp256k1/src/bench.c:24. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open secp256k1-sys/depend/secp256k1/src/bench.c:24 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDH:general",
+      "data_source": "secp256k1-sys/depend/secp256k1/src/bench.c",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-28T19:28:44.032527+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "key_establishment",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life (harvest now, decrypt later)",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/src/bench.c",
+          "location": "line 24",
+          "content": "   23 | #ifdef ENABLE_MODULE_ECDH\n   24 |     printf(\"    - ECDH key exchange (optional module)\\n\");\n   25 | #endif",
+          "content_sha256": "6ec91ca104f465f4b861193bee0ed1f6d91c4074fb5085511ca06c7dd6747616",
+          "source_sha256": "7032161ad890bf972879b77ccc970b0b07fb39d75c4043617c2b030ca410198a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.180805+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/bench.c#L24"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/src/bench.c",
+          "location": "line 54",
+          "content": "   53 | #ifdef ENABLE_MODULE_ECDH\n   54 |     printf(\"    ecdh              : ECDH key exchange algorithm\\n\");\n   55 | #endif",
+          "content_sha256": "b21ecd8d53157d4f920477f57713fa34b7fe6379df61daa64f27e4a77f9133e1",
+          "source_sha256": "7032161ad890bf972879b77ccc970b0b07fb39d75c4043617c2b030ca410198a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.180815+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/bench.c#L54"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "secp256k1-sys/depend/secp256k1/src/bench.c",
+          "location": "line 68",
+          "content": "   67 |     printf(\"    ellswift_keygen   : ElligatorSwift key generation\\n\");\n   68 |     printf(\"    ellswift_ecdh     : ECDH on ElligatorSwift keys\\n\");\n   69 | #endif",
+          "content_sha256": "ae7392892e7a0840c3596f3442ca87927d89cc694ec91267d2a73193091dac83",
+          "source_sha256": "7032161ad890bf972879b77ccc970b0b07fb39d75c4043617c2b030ca410198a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.180819+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/bench.c#L68"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "860915fd-41a9-4f64-a1a9-1c016c1d9a1a",
+      "public_id": "QSI-2026-06115",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Quantum-vulnerable ECDSA: role not determined (2 file(s))",
+      "description": "3 reference(s) to ECDSA across 2 file(s), e.g. src/lib.rs:362. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
+      "impact": "Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).",
+      "recommendation": "Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.",
+      "retest": "Re-run the inventory after refactoring.",
+      "limitations": "This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.",
+      "method": "Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.",
+      "repro": "Open src/lib.rs:362 and inspect the quoted lines; the evidence lists further files.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:ECDSA:general",
+      "data_source": "src/lib.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-28T19:28:44.191302+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/lib.rs",
+          "location": "line 362",
+          "content": "  361 |     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {\n  362 |         write!(f, \"<secp256k1 context {:?}, {}>\", self.ctx, C::DESCRIPTION)\n  363 |     }",
+          "content_sha256": "ffad46a775c24c96bcfcbea7698aa07d993b31975376d7e818d1f3c45d00c042",
+          "source_sha256": "41069109679af98f2c060205d76170ecba86ad5f26ad30c4894d1b751b09d6a9",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.240753+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/lib.rs#L362"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/lib.rs",
+          "location": "line 416",
+          "content": "  415 |     #[cfg(feature = \"rand\")]\n  416 |     #[deprecated(since = \"0.32.0\", note = \"use secp256k1::generate_keypair instead\")]\n  417 |     pub fn generate_keypair<R: rand::Rng + ?Sized>(",
+          "content_sha256": "f7ed24bd3aef909915629692e58bc72335aab84d369d315f1446ff5438803c34",
+          "source_sha256": "41069109679af98f2c060205d76170ecba86ad5f26ad30c4894d1b751b09d6a9",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.240762+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/lib.rs#L416"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/scalar.rs",
+          "location": "line 151",
+          "content": "  150 |     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {\n  151 |         fmt::Display::fmt(\"the value is not a member of secp256k1 field\", f)\n  152 |     }",
+          "content_sha256": "d1c2f06aed006e6ebf628ab453e342b3fd91780c66badcc37598269148d8a562",
+          "source_sha256": "59603163ac5b2947abbbe913d83a8950713a87afaad29aa929c821e5fc0d21ec",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-28T19:28:44.240767+00:00",
+          "url": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/scalar.rs#L151"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+          "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+          "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Access to system owners.",
+          "side_effects": "None (documentation and design work).",
+          "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+          "post_tests": "Inventory review signed off by the system owner.",
+          "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+          "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+          "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+          "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+          "pre_tests": "Interoperability tests in a staging environment.",
+          "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+          "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
+    "pq_findings": [
+      "QSI-2026-06112",
+      "QSI-2026-06114",
+      "QSI-2026-06113",
+      "QSI-2026-06115"
+    ],
+    "roles": [
+      {
+        "role": "transaction_signing",
+        "label": "transaction and message signing",
+        "action": "Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them",
+        "criticality": 4,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 26
+          },
+          {
+            "algorithm": "Schnorr (BIP-340)",
+            "files": 2
+          }
+        ],
+        "findings": [
+          "QSI-2026-06112",
+          "QSI-2026-06114"
+        ],
+        "files": 28
+      },
+      {
+        "role": "general",
+        "label": "role not determined",
+        "action": "Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "ECDSA",
+            "files": 2
+          },
+          {
+            "algorithm": "ECDH",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-06113",
+          "QSI-2026-06115"
+        ],
+        "files": 3
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "no post-quantum cryptography",
+      "next": "Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Shor's algorithm — elliptic-curve discrete logarithms",
+        "effect": "breaks",
+        "effect_label": "breaks",
+        "model": "Q1",
+        "model_label": "Q1: quantum computation offline, classical access to the victim",
+        "affected": [
+          {
+            "algorithm": "ECDH",
+            "rows": 3
+          },
+          {
+            "algorithm": "ECDSA",
+            "rows": 30
+          },
+          {
+            "algorithm": "Schnorr (BIP-340)",
+            "rows": 3
+          }
+        ],
+        "audit": "Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.",
+        "practicality": "2026 estimates for a 256-bit curve: under 1,200 logical qubits and 90 million Toffoli gates, under half a million physical superconducting qubits running for minutes (Babbush et al.); 1,193 logical qubits with more gates (Chevignard–Fouque–Schrottenloher); P-256 in a few days on 26,000 neutral-atom qubits (Cain et al.). Scenarios under stated assumptions, not forecasts.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "averaged estimate"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "quite possible"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "likely"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-06112",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (26 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-06114",
+        "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (2 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-06113",
+        "finding_title": "Quantum-vulnerable ECDH: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).",
+        "rationale": "Migration cannot be planned without knowing where and why the algorithm is used.",
+        "expected_outcome": "Every usage has an owner, a lifetime and a migration path.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Access to system owners.",
+        "side_effects": "None (documentation and design work).",
+        "pre_tests": "Confirm the inventory entry matches the deployed configuration.",
+        "post_tests": "Inventory review signed off by the system owner.",
+        "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
+        "status": "todo",
+        "finding": "QSI-2026-06115",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (2 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-06112",
+        "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (26 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-06114",
+        "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (2 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-06113",
+        "finding_title": "Quantum-vulnerable ECDH: role not determined (1 file(s))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.",
+        "rationale": "Removes dependence on a quantum-vulnerable public-key primitive.",
+        "expected_outcome": "The asset uses a NIST-standardized post-quantum or hybrid algorithm.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.",
+        "side_effects": "Larger keys/signatures, possible performance and compatibility impact.",
+        "pre_tests": "Interoperability tests in a staging environment.",
+        "post_tests": "Verify the negotiated/used algorithm on the production asset.",
+        "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
+        "status": "todo",
+        "finding": "QSI-2026-06115",
+        "finding_title": "Quantum-vulnerable ECDSA: role not determined (2 file(s))",
+        "severity": "medium"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "ECDH",
+      "family": "key_exchange",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDH",
+      "family": "key_exchange",
+      "parameter": "",
+      "usage": "source code (4 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/bench.c:24",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 4
+    },
+    {
+      "algorithm": "ECDH",
+      "family": "key_exchange",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "src/ecdh.rs",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (7 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/build.rs:20",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 7
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h:57",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h:34",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_ellswift.h:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_preallocated.h:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_recovery.h:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/bench.c:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/bench_ecmult.c:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/bench_internal.c:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/ecdsa.h",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/modules/ellswift/main_impl.h:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/modules/extrakeys/main_impl.h:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/modules/musig/keyagg.h:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/modules/musig/session.h:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/modules/musig/session_impl.h:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/modules/schnorrsig/main_impl.h:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/precompute_ecmult.c:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/precompute_ecmult_gen.c:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/secp256k1.c:20",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/src/util.h:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (10 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/src/lib.rs:271",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 10
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/src/recovery.rs:141",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (10 reference(s))",
+      "library": "",
+      "location": "src/ecdsa/mod.rs:57",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 10
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/ecdsa/recovery.rs:169",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/lib.rs:362",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "secp256k1",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/scalar.rs:151",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Schnorr (BIP-340)",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Schnorr (BIP-340)",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (7 reference(s))",
+      "library": "",
+      "location": "secp256k1-sys/src/lib.rs:1073",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 7
+    },
+    {
+      "algorithm": "Schnorr (BIP-340)",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/schnorr.rs:119",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "ECDH",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h",
+        "secp256k1-sys/depend/secp256k1/src/bench.c:24",
+        "src/ecdh.rs"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "secp256k1",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 24,
+      "rows": 24,
+      "examples": [
+        "secp256k1-sys/build.rs:20",
+        "secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h:57",
+        "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h:34"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 6,
+      "rows": 6,
+      "examples": [
+        "secp256k1-sys/depend/secp256k1/src/ecdsa.h",
+        "secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h",
+        "secp256k1-sys/src/lib.rs:271"
+      ]
+    },
+    {
+      "algorithm": "Schnorr (BIP-340)",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h",
+        "secp256k1-sys/src/lib.rs:1073",
+        "src/schnorr.rs:119"
+      ]
+    }
+  ]
+}

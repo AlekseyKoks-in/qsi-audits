@@ -1,0 +1,5949 @@
+# Security & Post-Quantum Readiness Audit Report
+
+**Project:** agave @ 7700cb3128c1 · Anza (Solana) — public repository (passive review)
+| | |
+|---|---|
+| Organization | QSI |
+| Report date | 2026-10-28 12:15 UTC |
+| Report version | 1 |
+| Audit run | 0551bbf6-76b1-47c4-8902-fd58654b4121 (Document audit) |
+| Analyzer engine | qsi-engine 1.2.0 |
+| Risk profile | Small technology company |
+| Content SHA-256 | `95cafacb721dbd2090c5af18bd163aecd86fc6cb4bfd30be3473880d42dfd4eb` |
+| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+
+## 1. Executive summary
+
+- Critical: **0**
+- High: **15**
+- Medium: **26**
+- Low: **45**
+- Info: **28**
+
+- Confirmed technical vulnerability: 0
+- Known vulnerable component: 84
+- Confirmed configuration error: 0
+- Potential cryptographic risk: 0
+- Long-term post-quantum risk: 9
+- Improvement recommendation: 20
+- Insufficient data: 1
+
+Mosca's inequality (x + y > z): x = 5, y = 3, z = 12 → time available under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+
+**Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+
+## 2. Scope and boundaries
+
+Mode: Document audit
+
+Repository: <https://github.com/anza-xyz/agave> @ `7700cb3128c1f19820de67b81aa45d18f73d2ac0` — evidence links open the lines at this commit.
+
+1293 files, 21712932 bytes in total, 2 redaction(s); the per-file SHA-256 list is in appendix C.
+
+## 3. Methodology
+
+| Area | Status | Count | Examples |
+|---|---|---|---|
+| dependencies | checked | 158 | Cargo.lock: 670 dependencies parsed (670 pinned); Cargo.toml: 293 dependencies parsed (90 pinned); account-decoder/Cargo.toml: 19 dependencies parsed (0 pinned) |
+| source_code | checked | 1126 | account-decoder/src/lib.rs: 278 lines scanned with 16 rule patterns and 122 registry patterns; 59 lines in #[cfg(test)] modules ignored; account-decoder/src/parse_account_data.rs: 174 lines scanned with 16 rule patterns and 122 registry patterns; 50 lines in #[cfg(test)] modules ignored; account-decoder/src/parse_address_lookup_table.rs: 117 lines scanned with 16 rule patterns and 122 registry patterns; 58 lines in #[cfg(test)] modules ignored |
+| tls_code | checked | 6 | core/src/repair/quic_endpoint.rs: TLS key-exchange settings read; quic-client/src/nonblocking/quic_client.rs: TLS key-exchange settings read; streamer/src/nonblocking/quic.rs: TLS key-exchange settings read |
+| secrets | checked | 3 | docs/docusaurus.config.js: value(s) at line(s) 106 are not reported as secrets because the source annotates them as published (publishable, search-only, safe to commit); that is the project's own decision, recorded here rather than raised against it; docs/docusaurus.config.js: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); rpc/src/rpc_pubsub.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| certificates | checked | 1 | storage-bigtable/src/pki-goog-roots.pem: 39 certificates, all self-signed CAs — a root trust store. Their algorithms are inventoried; their expiry and issuance properties describe those CAs, not this project, and are not reported as findings against it |
+| certificates_and_keys | checked | 1 | storage-bigtable/src/pki-goog-roots.pem: certificates/keys parsed |
+| chain_map | checked | 4 | storage-proto/proto/confirmed_block.proto: Solana; storage-proto/proto/entries.proto: Solana; storage-proto/proto/transaction_by_addr.proto: Solana |
+| osv_advisories | checked | 1 | 1000 pinned packages queried at OSV.dev; 64 affected |
+
+_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+
+## 4. Assets examined and not examined
+
+- None
+
+## 5. Architecture overview
+
+Static review of the source tree agave at 7700cb3128c1f19820de67b81aa45d18f73d2ac0. 1293 files analysed; of 2166 files, 275 are test, fuzzing, benchmark or example code and were left out, 598 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+
+## 6. Overall security posture
+
+- Indicative posture index: **0** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
+- Quantum-vulnerable share of inventory: 54.5%
+
+## 7. Detailed findings
+
+### QSI-2026-04273 — openssl 0.10.64 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-8c75-8mhr-p7r9 (CVE-2026-41678) for crates.io package openssl at version 0.10.64: rust-openssl has incorrect bounds assertion in aes key wrap. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-8c75-8mhr-p7r9
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-8c75-8mhr-p7r9](https://osv.dev/vulnerability/GHSA-8c75-8mhr-p7r9) · manifest · SHA-256 3aad5bd9d1c003ab2b96d5db0793f28cb8f0c5142257f336b7b43cd5b34cf547_
+
+```
+{"id": "GHSA-8c75-8mhr-p7r9", "aliases": ["CVE-2026-41678"], "modified": "2026-09-10T03:50:43.807790048Z", "summary": "rust-openssl has incorrect bounds assertion in aes key wrap", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.78).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04274 — openssl 0.10.64 is affected by GHSA-ghm9-cr32-g9qj (CVE-2026-41681)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-ghm9-cr32-g9qj (CVE-2026-41681) for crates.io package openssl at version 0.10.64: rust-openssl: rustMdCtxRef::digest_final() writes past caller buffer with no length check. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-ghm9-cr32-g9qj
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-ghm9-cr32-g9qj](https://osv.dev/vulnerability/GHSA-ghm9-cr32-g9qj) · manifest · SHA-256 a28b4158e70d006847d7366caffb35a0fcacb32dc5bb1b22e933704ba6cfd162_
+
+```
+{"id": "GHSA-ghm9-cr32-g9qj", "aliases": ["CVE-2026-41681"], "modified": "2026-09-10T03:51:01.732377930Z", "summary": "rust-openssl: rustMdCtxRef::digest_final() writes past caller buffer with no length check", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.78).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04275 — openssl 0.10.64 is affected by GHSA-hppc-g8h3-xhp3 (CVE-2026-41898)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-hppc-g8h3-xhp3 (CVE-2026-41898) for crates.io package openssl at version 0.10.64: rust-openssl: Unchecked callback length in PSK/cookie trampolines leaks adjacent memory to peer. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-hppc-g8h3-xhp3
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-hppc-g8h3-xhp3](https://osv.dev/vulnerability/GHSA-hppc-g8h3-xhp3) · manifest · SHA-256 4f9db19321f900c752849d513eab3ae2a1db5bbadb0d39d6898cd32d705ecbd4_
+
+```
+{"id": "GHSA-hppc-g8h3-xhp3", "aliases": ["CVE-2026-41898"], "modified": "2026-09-10T03:51:02.103657748Z", "summary": "rust-openssl: Unchecked callback length in PSK/cookie trampolines leaks adjacent memory to peer", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.78).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04277 — openssl 0.10.64 is affected by GHSA-pqf5-4pqq-29f5 (CVE-2026-41676)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-pqf5-4pqq-29f5 (CVE-2026-41676) for crates.io package openssl at version 0.10.64: rust-openssl: Deriver::derive and PkeyCtxRef::derive can overflow short buffers on OpenSSL 1.1.1. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-pqf5-4pqq-29f5
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-pqf5-4pqq-29f5](https://osv.dev/vulnerability/GHSA-pqf5-4pqq-29f5) · manifest · SHA-256 d611e6c5503009eb10feaf4c65c39dd3401d4942de3ff07feb17de2f23d137b9_
+
+```
+{"id": "GHSA-pqf5-4pqq-29f5", "aliases": ["CVE-2026-41676"], "modified": "2026-09-10T03:51:02.503624598Z", "summary": "rust-openssl: Deriver::derive and PkeyCtxRef::derive can overflow short buffers on OpenSSL 1.1.1", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.78).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04281 — openssl 0.10.64 is affected by GHSA-xp3w-r5p5-63rr (CVE-2026-42327)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-xp3w-r5p5-63rr (CVE-2026-42327) for crates.io package openssl at version 0.10.64: rust-openssl has undefined behavior in X509Ref::ocsp_responders for certificates with non-UTF-8 OCSP URLs. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-xp3w-r5p5-63rr
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-xp3w-r5p5-63rr](https://osv.dev/vulnerability/GHSA-xp3w-r5p5-63rr) · manifest · SHA-256 36fb4bcac33ef3c8a4dc8eb85bbb24052e75e938b10468cfe0c2a978f8b3193b_
+
+```
+{"id": "GHSA-xp3w-r5p5-63rr", "aliases": ["CVE-2026-42327"], "modified": "2026-09-10T03:51:07.254489393Z", "summary": "rust-openssl has undefined behavior in X509Ref::ocsp_responders for certificates with non-UTF-8 OCSP URLs", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.79).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04285 — quinn-proto 0.10.6 is affected by GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/quinn-proto@0.10.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185) for crates.io package quinn-proto at version 0.10.6: Quinn: Remote memory exhaustion in quinn-proto from unbounded out-of-order stream reassembly. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-4w2j-m93h-cj5j
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-4w2j-m93h-cj5j](https://osv.dev/vulnerability/GHSA-4w2j-m93h-cj5j) · manifest · SHA-256 554b1aef9d075ba0bd70d3fb8539f8dc512ec0e77a79619f801c80a1c58aac52_
+
+```
+{"id": "GHSA-4w2j-m93h-cj5j", "aliases": ["CVE-2026-25800", "RUSTSEC-2026-0185"], "modified": "2026-09-10T03:51:10.288925502Z", "summary": "Quinn: Remote memory exhaustion in quinn-proto from unbounded out-of-order stream reassembly", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.11.15).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04286 — quinn-proto 0.10.6 is affected by GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/quinn-proto@0.10.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037) for crates.io package quinn-proto at version 0.10.6: Quinn affected by unauthenticated remote DoS via panic in QUIC transport parameter parsing. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-6xvm-j4wr-6v98
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-6xvm-j4wr-6v98](https://osv.dev/vulnerability/GHSA-6xvm-j4wr-6v98) · manifest · SHA-256 803b73c2d64bc84ffac2f990cf6c1d2142c4327294705149543a9501f88975b3_
+
+```
+{"id": "GHSA-6xvm-j4wr-6v98", "aliases": ["CVE-2026-31812", "RUSTSEC-2026-0037"], "modified": "2026-09-10T03:50:37.796449419Z", "summary": "Quinn affected by unauthenticated remote DoS via panic in QUIC transport parameter parsing", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.11.14).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04311 — tar 0.4.40 is affected by GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/tar@0.4.40`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 51.3 / 100
+- CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N`)
+
+OSV.dev reports GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068) for crates.io package tar at version 0.4.40: tar-rs incorrectly ignores PAX size headers if header size is nonzero. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-gchp-q4r4-x4ff
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-gchp-q4r4-x4ff](https://osv.dev/vulnerability/GHSA-gchp-q4r4-x4ff) · manifest · SHA-256 87cdd295ae2dd672df4247da0e39ccd4b1bfc5a9c525e9004ccb94a63b8ab728_
+
+```
+{"id": "GHSA-gchp-q4r4-x4ff", "aliases": ["CVE-2026-33055", "RUSTSEC-2026-0068"], "modified": "2026-09-10T03:50:39.204912381Z", "summary": "tar-rs incorrectly ignores PAX size headers if header size is nonzero", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.4.45).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04302 — rustls-webpki 0.101.7 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/rustls-webpki@0.101.7`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.5 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) for crates.io package rustls-webpki at version 0.101.7: rustls-webpki: Denial of service via panic on malformed CRL BIT STRING. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-82j2-j2ch-gfr8
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-82j2-j2ch-gfr8](https://osv.dev/vulnerability/GHSA-82j2-j2ch-gfr8) · manifest · SHA-256 a2f685e85eb5c808cb9d2de44620be02b2f87b43da592ad8769d4abeedddf3f4_
+
+```
+{"id": "GHSA-82j2-j2ch-gfr8", "aliases": ["CVE-2026-93599", "RUSTSEC-2026-0104"], "modified": "2026-09-19T03:55:33.412079637Z", "summary": "rustls-webpki: Denial of service via panic on malformed CRL BIT STRING", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.103.13, 0.104.0-alpha.7).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04331 — semver 6.3.0 is affected by GHSA-c2qf-rxjj-qqgw (CVE-2022-25883)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/semver@6.3.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.5 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-c2qf-rxjj-qqgw (CVE-2022-25883) for npm package semver at version 6.3.0: semver vulnerable to Regular Expression Denial of Service. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-c2qf-rxjj-qqgw
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-c2qf-rxjj-qqgw](https://osv.dev/vulnerability/GHSA-c2qf-rxjj-qqgw) · manifest · SHA-256 48eb8102bb480f77c2ef0fe2b6aa51c62e706e91dcb49135c44702f7fd3e6b1c_
+
+```
+{"id": "GHSA-c2qf-rxjj-qqgw", "aliases": ["CVE-2022-25883"], "modified": "2026-09-10T03:50:02.224637541Z", "summary": "semver vulnerable to Regular Expression Denial of Service", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (5.7.2, 6.3.1, 7.5.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04333 — @babel/plugin-transform-modules-systemjs 7.19.6 is affected by GHSA-fv7c-fp4j-7gwp (CVE-2026-44728)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/@babel/plugin-transform-modules-systemjs@7.19.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.5 / 100
+- CVSS v3.1: 8.2 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H`)
+
+OSV.dev reports GHSA-fv7c-fp4j-7gwp (CVE-2026-44728) for npm package @babel/plugin-transform-modules-systemjs at version 7.19.6: @babel/plugin-transform-modules-systemjs generates arbitrary code when compiling malicious input. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-fv7c-fp4j-7gwp
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-fv7c-fp4j-7gwp](https://osv.dev/vulnerability/GHSA-fv7c-fp4j-7gwp) · manifest · SHA-256 e3684d1cb03fd6fb3bd3a79d6225f3462943419778e3ab139a00af6895a3a642_
+
+```
+{"id": "GHSA-fv7c-fp4j-7gwp", "aliases": ["CVE-2026-44728"], "modified": "2026-09-10T03:51:05.541786109Z", "summary": "@babel/plugin-transform-modules-systemjs generates arbitrary code when compiling malicious input", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (7.29.4, 8.0.0-alpha.13).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04336 — js-yaml 3.14.1 is affected by GHSA-2883-xcg3-v3hh (CVE-2026-84375)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/js-yaml@3.14.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.5 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-2883-xcg3-v3hh (CVE-2026-84375) for npm package js-yaml at version 3.14.1: js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-2883-xcg3-v3hh
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-2883-xcg3-v3hh](https://osv.dev/vulnerability/GHSA-2883-xcg3-v3hh) · manifest · SHA-256 c5452b9803a817841029bc3bb77580dd32682e52b603a117dc610d6c5d77d3f8_
+
+```
+{"id": "GHSA-2883-xcg3-v3hh", "aliases": ["CVE-2026-84375"], "modified": "2026-09-08T21:30:05.575808098Z", "summary": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (3.15.2, 4.3.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04337 — js-yaml 3.14.1 is affected by GHSA-52cp-r559-cp3m (CVE-2026-59869)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/js-yaml@3.14.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.5 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-52cp-r559-cp3m (CVE-2026-59869) for npm package js-yaml at version 3.14.1: js-yaml: YAML merge-key chains can force quadratic CPU consumption. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-52cp-r559-cp3m
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-52cp-r559-cp3m](https://osv.dev/vulnerability/GHSA-52cp-r559-cp3m) · manifest · SHA-256 468ca95d3480349e7c4b9faa16bea570194eb65fff234542e933749d4e61259f_
+
+```
+{"id": "GHSA-52cp-r559-cp3m", "aliases": ["CVE-2026-59869"], "modified": "2026-09-10T03:50:12.263307536Z", "summary": "js-yaml: YAML merge-key chains can force quadratic CPU consumption", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (3.15.0, 4.3.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04338 — js-yaml 3.14.1 is affected by GHSA-5p4m-2wfm-xmqj
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/js-yaml@3.14.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.5 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-5p4m-2wfm-xmqj for npm package js-yaml at version 3.14.1: JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) — CVE-2026-59870 fix not backported. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-5p4m-2wfm-xmqj
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-5p4m-2wfm-xmqj](https://osv.dev/vulnerability/GHSA-5p4m-2wfm-xmqj) · manifest · SHA-256 b856f3b817bbe160d357174ddd82acc736df3638a9da5baa0beaf0cbfb8f7e4a_
+
+```
+{"id": "GHSA-5p4m-2wfm-xmqj", "aliases": [], "modified": "2026-09-10T03:50:53.407436483Z", "summary": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) — CVE-2026-59870 fix not backported", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (3.15.1, 4.3.1).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04342 — semver 5.7.1 is affected by GHSA-c2qf-rxjj-qqgw (CVE-2022-25883)
+
+- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/semver@5.7.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.5 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-c2qf-rxjj-qqgw (CVE-2022-25883) for npm package semver at version 5.7.1: semver vulnerable to Regular Expression Denial of Service. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-c2qf-rxjj-qqgw
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-c2qf-rxjj-qqgw](https://osv.dev/vulnerability/GHSA-c2qf-rxjj-qqgw) · manifest · SHA-256 48eb8102bb480f77c2ef0fe2b6aa51c62e706e91dcb49135c44702f7fd3e6b1c_
+
+```
+{"id": "GHSA-c2qf-rxjj-qqgw", "aliases": ["CVE-2022-25883"], "modified": "2026-09-10T03:50:02.224637541Z", "summary": "semver vulnerable to Regular Expression Denial of Service", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (5.7.2, 6.3.1, 7.5.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04248 — block-buffer 0.7.3 is affected by GHSA-qwgh-2vcv-g2f7
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/block-buffer@0.7.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.7.3: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 d6b6882147b53b546abda839d3d2c62d6153a00310710d653406a92d34704267_
+
+```
+{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04249 — block-buffer 0.9.0 is affected by GHSA-qwgh-2vcv-g2f7
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/block-buffer@0.9.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.9.0: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 d6b6882147b53b546abda839d3d2c62d6153a00310710d653406a92d34704267_
+
+```
+{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04250 — block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/block-buffer@0.10.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 d6b6882147b53b546abda839d3d2c62d6153a00310710d653406a92d34704267_
+
+```
+{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04251 — borsh 0.9.3 is affected by GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/borsh@0.9.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033) for crates.io package borsh at version 0.9.3: Parsing borsh messages with ZST which are not-copy/clone is unsound. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-fjx5-qpf4-xjf2
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-fjx5-qpf4-xjf2](https://osv.dev/vulnerability/GHSA-fjx5-qpf4-xjf2) · manifest · SHA-256 88fd195164d983713fac6c314f531ec02bcc042410c6889cee63ccb81ce041db_
+
+```
+{"id": "GHSA-fjx5-qpf4-xjf2", "aliases": ["RUSTSEC-2023-0033"], "modified": "2024-09-23T16:34:09Z", "summary": "Parsing borsh messages with ZST which are not-copy/clone is unsound", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.0.0-alpha.1).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04252 — borsh 0.10.3 is affected by GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/borsh@0.10.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033) for crates.io package borsh at version 0.10.3: Parsing borsh messages with ZST which are not-copy/clone is unsound. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-fjx5-qpf4-xjf2
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-fjx5-qpf4-xjf2](https://osv.dev/vulnerability/GHSA-fjx5-qpf4-xjf2) · manifest · SHA-256 88fd195164d983713fac6c314f531ec02bcc042410c6889cee63ccb81ce041db_
+
+```
+{"id": "GHSA-fjx5-qpf4-xjf2", "aliases": ["RUSTSEC-2023-0033"], "modified": "2024-09-23T16:34:09Z", "summary": "Parsing borsh messages with ZST which are not-copy/clone is unsound", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.0.0-alpha.1).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04253 — bytes 1.5.0 is affected by GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/bytes@1.5.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007) for crates.io package bytes at version 1.5.0: bytes has integer overflow in BytesMut::reserve. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-434x-w66g-qw3r
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-434x-w66g-qw3r](https://osv.dev/vulnerability/GHSA-434x-w66g-qw3r) · manifest · SHA-256 1d4e2bdd391ddcb0e9e30902adad4f7d97ebbc1bb6b8f5b9ebebc52a3e6906ab_
+
+```
+{"id": "GHSA-434x-w66g-qw3r", "aliases": ["CVE-2026-25541", "RUSTSEC-2026-0007"], "modified": "2026-09-10T03:50:33.995841351Z", "summary": "bytes has integer overflow in BytesMut::reserve", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.11.1).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04254 — crossbeam-channel 0.5.12 is affected by GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/crossbeam-channel@0.5.12`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024) for crates.io package crossbeam-channel at version 0.5.12: crossbeam-channel Vulnerable to Double Free on Drop. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-pg9f-39pc-qf8g
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-pg9f-39pc-qf8g](https://osv.dev/vulnerability/GHSA-pg9f-39pc-qf8g) · manifest · SHA-256 6e9fcb37d5bd8e20da897df5e48e3b2936d1873b059a092dbb3301f34429ab0f_
+
+```
+{"id": "GHSA-pg9f-39pc-qf8g", "aliases": ["CVE-2025-4574", "RUSTSEC-2025-0024", "TROVE-2025-013"], "modified": "2026-09-10T03:50:57.409985647Z", "summary": "crossbeam-channel Vulnerable to Double Free on Drop", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.5.15).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04258 — ed25519-dalek 1.0.1 is affected by GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/ed25519-dalek@1.0.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: 5.9 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N`)
+
+OSV.dev reports GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093) for crates.io package ed25519-dalek at version 1.0.1: `ed25519-dalek` Double Public Key Signing Function Oracle Attack. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-w5vr-6qhr-36cc
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-w5vr-6qhr-36cc](https://osv.dev/vulnerability/GHSA-w5vr-6qhr-36cc) · manifest · SHA-256 cb6ff0415cd158ac4633f9487cdfad72db5743ccc805b563e6cb01ce12085b27_
+
+```
+{"id": "GHSA-w5vr-6qhr-36cc", "aliases": ["CVE-2022-50237", "RUSTSEC-2022-0093"], "modified": "2026-02-04T03:12:24.206854Z", "summary": "`ed25519-dalek` Double Public Key Signing Function Oracle Attack", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (2.0.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04276 — openssl 0.10.64 is affected by GHSA-phqj-4mhp-q6mq (CVE-2026-45784)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-phqj-4mhp-q6mq (CVE-2026-45784) for crates.io package openssl at version 0.10.64: rust-openssl: Potential out-of-bounds write in `CipherCtxRef::cipher_update_inplace` for AES-KW-PAD ciphers. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-phqj-4mhp-q6mq
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-phqj-4mhp-q6mq](https://osv.dev/vulnerability/GHSA-phqj-4mhp-q6mq) · manifest · SHA-256 61c6e9c92e963bb8a32a02f44131615481897f1baf425212190b1ba732f6fc94_
+
+```
+{"id": "GHSA-phqj-4mhp-q6mq", "aliases": ["CVE-2026-45784"], "modified": "2026-09-10T03:51:06.601254514Z", "summary": "rust-openssl: Potential out-of-bounds write in `CipherCtxRef::cipher_update_inplace` for AES-KW-PAD ciphers", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.80).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04282 — openssl 0.10.64 is affected by GHSA-xv59-967r-8726 (CVE-2026-44662)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-xv59-967r-8726 (CVE-2026-44662) for crates.io package openssl at version 0.10.64: rust-openssl vulnerable to heap buffer overflow when encrypting with AES key-wrap-with-padding. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-xv59-967r-8726
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-xv59-967r-8726](https://osv.dev/vulnerability/GHSA-xv59-967r-8726) · manifest · SHA-256 25d6e9f4bd277191f2701bfca57ff06fcd74519faa488b871483ab8f7d24d0b0_
+
+```
+{"id": "GHSA-xv59-967r-8726", "aliases": ["CVE-2026-44662"], "modified": "2026-09-10T03:51:07.319185525Z", "summary": "rust-openssl vulnerable to heap buffer overflow when encrypting with AES key-wrap-with-padding", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.79).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04297 — rustls 0.21.10 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/rustls@0.21.10`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
+
+OSV.dev reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) for crates.io package rustls at version 0.21.10: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-c8m5-c952-6cm4
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4) · manifest · SHA-256 b8f49a7948da20f17a5b61070e9e354a2a3e38b5743f8f41c9b2f3d2a264b002_
+
+```
+{"id": "GHSA-c8m5-c952-6cm4", "aliases": ["RUSTSEC-2026-0346"], "modified": "2026-10-27T16:15:05.354395696Z", "summary": "Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04306 — serde_with 2.3.3 is affected by GHSA-7gcf-g7xr-8hxj
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/serde_with@2.3.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-7gcf-g7xr-8hxj for crates.io package serde_with at version 2.3.3: serde_with: KeyValueMap serialization panics on empty sequence or map entries. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-7gcf-g7xr-8hxj
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj) · manifest · SHA-256 b42c751004bfb387a1f24d4e9b23157ae70dc8f33fdb503f87f6d04255008aa3_
+
+```
+{"id": "GHSA-7gcf-g7xr-8hxj", "aliases": [], "modified": "2026-09-10T03:51:10.897685062Z", "summary": "serde_with: KeyValueMap serialization panics on empty sequence or map entries", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (3.21.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04310 — tar 0.4.40 is affected by GHSA-3pv8-6f4r-ffg2
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/tar@0.4.40`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-3pv8-6f4r-ffg2 for crates.io package tar at version 0.4.40: tar has a PAX header desynchronization issue. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-3pv8-6f4r-ffg2
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-3pv8-6f4r-ffg2](https://osv.dev/vulnerability/GHSA-3pv8-6f4r-ffg2) · manifest · SHA-256 ea380731f63af3a9d11d5db2269a81a3bb262ca10b6cbc95fecc4fef0221ee6f_
+
+```
+{"id": "GHSA-3pv8-6f4r-ffg2", "aliases": [], "modified": "2026-09-10T03:51:04.454810375Z", "summary": "tar has a PAX header desynchronization issue", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.4.46).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04312 — tar 0.4.40 is affected by GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/tar@0.4.40`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 44.1 / 100
+- CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N`)
+
+OSV.dev reports GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067) for crates.io package tar at version 0.4.40: tar-rs `unpack_in` can chmod arbitrary directories by following symlinks. The audited code names tar::Entry::unpack, tar::Entry::unpack_in: the affected code may be reachable.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-j4xf-2g29-59ph
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-j4xf-2g29-59ph](https://osv.dev/vulnerability/GHSA-j4xf-2g29-59ph) · manifest · SHA-256 7583d567822bc9713af02e4a42b6f6f00fb6473592e32391935e5b301ff3c004_
+
+```
+{"id": "GHSA-j4xf-2g29-59ph", "aliases": ["CVE-2026-33056", "RUSTSEC-2026-0067"], "modified": "2026-09-10T03:50:39.751471613Z", "summary": "tar-rs `unpack_in` can chmod arbitrary directories by following symlinks", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.4.45).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04259 — h2 0.3.24 is affected by GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/h2@0.3.24`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev reports GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332) for crates.io package h2 at version 0.3.24: h2 servers vulnerable to degradation of service with CONTINUATION Flood. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-q6cp-qfwq-4gcv
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-q6cp-qfwq-4gcv](https://osv.dev/vulnerability/GHSA-q6cp-qfwq-4gcv) · manifest · SHA-256 e7ad8af144d30542aa056718f1be39811d71daaede7804a47fecd11d5af72584_
+
+```
+{"id": "GHSA-q6cp-qfwq-4gcv", "aliases": ["RUSTSEC-2024-0332"], "modified": "2026-09-10T03:49:18.784343884Z", "summary": "h2 servers vulnerable to degradation of service with CONTINUATION Flood", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.3.26, 0.4.4).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04261 — idna 0.1.5 is affected by GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/idna@0.1.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421) for crates.io package idna at version 0.1.5: `idna` accepts Punycode labels that do not produce any non-ASCII when decoded. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-h97m-ww89-6jmq
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-h97m-ww89-6jmq](https://osv.dev/vulnerability/GHSA-h97m-ww89-6jmq) · manifest · SHA-256 40c8af539f6e50020125000c4380931e3435fb8fa2a2435a2de73443fefae2b2_
+
+```
+{"id": "GHSA-h97m-ww89-6jmq", "aliases": ["CVE-2024-12224", "RUSTSEC-2024-0421"], "modified": "2026-09-10T03:50:21.562272915Z", "summary": "`idna` accepts Punycode labels that do not produce any non-ASCII when decoded", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.0.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04262 — idna 0.5.0 is affected by GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/idna@0.5.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421) for crates.io package idna at version 0.5.0: `idna` accepts Punycode labels that do not produce any non-ASCII when decoded. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-h97m-ww89-6jmq
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-h97m-ww89-6jmq](https://osv.dev/vulnerability/GHSA-h97m-ww89-6jmq) · manifest · SHA-256 40c8af539f6e50020125000c4380931e3435fb8fa2a2435a2de73443fefae2b2_
+
+```
+{"id": "GHSA-h97m-ww89-6jmq", "aliases": ["CVE-2024-12224", "RUSTSEC-2024-0421"], "modified": "2026-09-10T03:50:21.562272915Z", "summary": "`idna` accepts Punycode labels that do not produce any non-ASCII when decoded", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.0.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04292 — ring 0.16.20 is affected by GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/ring@0.16.20`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009) for crates.io package ring at version 0.16.20: Some AES functions may panic when overflow checking is enabled in ring. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-4p46-pwfr-66x6
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-4p46-pwfr-66x6](https://osv.dev/vulnerability/GHSA-4p46-pwfr-66x6) · manifest · SHA-256 e1cdbbc1af725f418da298fa7a437fcbd6f367648d47c3f7680fcf09ad304265_
+
+```
+{"id": "GHSA-4p46-pwfr-66x6", "aliases": ["CVE-2025-4432", "GHSA-c86p-w88r-qvqr", "GO-2025-3678", "RUSTSEC-2025-0009"], "modified": "2026-09-10T03:50:56.900994558Z", "summary": "Some AES functions may panic when overflow checking is enabled in ring", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.17.12).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04294 — ring 0.17.3 is affected by GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/ring@0.17.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009) for crates.io package ring at version 0.17.3: Some AES functions may panic when overflow checking is enabled in ring. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-4p46-pwfr-66x6
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-4p46-pwfr-66x6](https://osv.dev/vulnerability/GHSA-4p46-pwfr-66x6) · manifest · SHA-256 e1cdbbc1af725f418da298fa7a437fcbd6f367648d47c3f7680fcf09ad304265_
+
+```
+{"id": "GHSA-4p46-pwfr-66x6", "aliases": ["CVE-2025-4432", "GHSA-c86p-w88r-qvqr", "GO-2025-3678", "RUSTSEC-2025-0009"], "modified": "2026-09-10T03:50:56.900994558Z", "summary": "Some AES functions may panic when overflow checking is enabled in ring", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.17.12).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04313 — time 0.3.9 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/time@0.3.9`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) for crates.io package time at version 0.3.9: time vulnerable to stack exhaustion Denial of Service attack. The audited code names time::Date::parse, time::Time::parse: the affected code may be reachable.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-r6v5-fh4h-64xc
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc) · manifest · SHA-256 47bed44226c6f8f5c94bfd27c3dd67ade62aa708c5d61bcca37c2b8bbe9b577d_
+
+```
+{"id": "GHSA-r6v5-fh4h-64xc", "aliases": ["CVE-2026-25727", "RUSTSEC-2026-0009"], "modified": "2026-09-10T03:50:35.583241382Z", "summary": "time vulnerable to stack exhaustion Denial of Service attack", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.3.47).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04332 — @babel/helpers 7.19.4 is affected by GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/@babel/helpers@7.19.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-968p-4wvh-cqc8 (CVE-2025-27789) for npm package @babel/helpers at version 7.19.4: Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-968p-4wvh-cqc8
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-968p-4wvh-cqc8](https://osv.dev/vulnerability/GHSA-968p-4wvh-cqc8) · manifest · SHA-256 7bc3174869552dd66bd418f9e04c71cb361db3e4d72f4664a1168cc739088da3_
+
+```
+{"id": "GHSA-968p-4wvh-cqc8", "aliases": ["CVE-2025-27789"], "modified": "2026-09-10T03:50:22.971593530Z", "summary": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (7.26.10, 8.0.0-alpha.17).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04334 — @babel/runtime 7.19.4 is affected by GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/@babel/runtime@7.19.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-968p-4wvh-cqc8 (CVE-2025-27789) for npm package @babel/runtime at version 7.19.4: Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-968p-4wvh-cqc8
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-968p-4wvh-cqc8](https://osv.dev/vulnerability/GHSA-968p-4wvh-cqc8) · manifest · SHA-256 7bc3174869552dd66bd418f9e04c71cb361db3e4d72f4664a1168cc739088da3_
+
+```
+{"id": "GHSA-968p-4wvh-cqc8", "aliases": ["CVE-2025-27789"], "modified": "2026-09-10T03:50:22.971593530Z", "summary": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (7.26.10, 8.0.0-alpha.17).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04335 — @babel/runtime-corejs3 7.19.6 is affected by GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/@babel/runtime-corejs3@7.19.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-968p-4wvh-cqc8 (CVE-2025-27789) for npm package @babel/runtime-corejs3 at version 7.19.6: Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-968p-4wvh-cqc8
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-968p-4wvh-cqc8](https://osv.dev/vulnerability/GHSA-968p-4wvh-cqc8) · manifest · SHA-256 7bc3174869552dd66bd418f9e04c71cb361db3e4d72f4664a1168cc739088da3_
+
+```
+{"id": "GHSA-968p-4wvh-cqc8", "aliases": ["CVE-2025-27789"], "modified": "2026-09-10T03:50:22.971593530Z", "summary": "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (7.26.10, 8.0.0-alpha.17).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04339 — js-yaml 3.14.1 is affected by GHSA-h67p-54hq-rp68 (CVE-2026-53550)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/js-yaml@3.14.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev reports GHSA-h67p-54hq-rp68 (CVE-2026-53550) for npm package js-yaml at version 3.14.1: JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-h67p-54hq-rp68
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-h67p-54hq-rp68](https://osv.dev/vulnerability/GHSA-h67p-54hq-rp68) · manifest · SHA-256 505b2f9aa992c862d89253c0dde26c7ce71187e9ad1d587f0095fc2e722cab77_
+
+```
+{"id": "GHSA-h67p-54hq-rp68", "aliases": ["CVE-2026-53550"], "modified": "2026-09-10T03:50:49.729923880Z", "summary": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (3.15.0, 4.2.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04340 — js-yaml 3.14.1 is affected by GHSA-mh29-5h37-fv8m (CVE-2025-64718)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/js-yaml@3.14.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
+
+OSV.dev reports GHSA-mh29-5h37-fv8m (CVE-2025-64718) for npm package js-yaml at version 3.14.1: js-yaml has prototype pollution in merge (<<). The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-mh29-5h37-fv8m
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-mh29-5h37-fv8m](https://osv.dev/vulnerability/GHSA-mh29-5h37-fv8m) · manifest · SHA-256 49ecaa3fb7cde599cd864883a7d4bad32fa41ff9564c4ed1654dc503c40cefb0_
+
+```
+{"id": "GHSA-mh29-5h37-fv8m", "aliases": ["CVE-2025-64718"], "modified": "2026-09-10T03:50:58.469126910Z", "summary": "js-yaml has prototype pollution in merge (<<)", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (3.14.2, 4.1.1).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04343 — @sideway/formula 3.0.0 is affected by GHSA-c2jc-4fpr-4vhg (CVE-2023-25166)
+
+- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/@sideway/formula@3.0.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 33.1 / 100
+- CVSS v3.1: 5.5 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-c2jc-4fpr-4vhg (CVE-2023-25166) for npm package @sideway/formula at version 3.0.0: @sideway/formula contains Regular Expression Denial of Service (ReDoS) Vulnerability. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-c2jc-4fpr-4vhg
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-c2jc-4fpr-4vhg](https://osv.dev/vulnerability/GHSA-c2jc-4fpr-4vhg) · manifest · SHA-256 cab09e1d236aa833c2650ed0a679f5b19f7aae58fd966394fca18dfe00078a9b_
+
+```
+{"id": "GHSA-c2jc-4fpr-4vhg", "aliases": ["CVE-2023-25166"], "modified": "2023-11-08T04:11:50.947189Z", "summary": "@sideway/formula contains Regular Expression Denial of Service (ReDoS) Vulnerability", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (3.0.1).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04238 — Transaction signing for 1 chain(s) relies on elliptic-curve signatures
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
+- Affected asset: `chain-map`
+- Data source: storage-proto/proto/confirmed_block.proto
+- Detection method: Message definitions (.proto) matched to QSI's table of chain signature schemes.
+- Analyzer: chain_map 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 39.1 / 100
+- CVSS v3.1: not applicable
+
+The wallet's message definitions cover Solana. These chains authorize transactions with Ed25519, which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first.
+
+**Potential impact.** Once a CRQC exists, an attacker who sees an account's public key could derive the private key and move funds; how soon keys are exposed depends on each chain (address reuse, account model).
+
+**Reproduction steps.**
+
+```
+Open the .proto files named in the evidence.
+```
+
+**Evidence.**
+
+_file_excerpt · [storage-proto/proto/confirmed_block.proto](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/storage-proto/proto/confirmed_block.proto#L3) · line 3 · SHA-256 8e2b99d91a450afa4aceb26eb53041ebc00059bdf39042088ba2d461d6cb717e_
+
+```
+package solana.storage.ConfirmedBlock;
+```
+
+_file_excerpt · [storage-proto/proto/entries.proto](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/storage-proto/proto/entries.proto#L3) · line 3 · SHA-256 5d19891f93f3ce3eab8c33dd398b9043696f7776245e3f02d43a5d9bbf101441_
+
+```
+package solana.storage.Entries;
+```
+
+_file_excerpt · [storage-proto/proto/transaction_by_addr.proto](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/storage-proto/proto/transaction_by_addr.proto#L3) · line 3 · SHA-256 1284fb928ee8682589f66ee68c357038bdd73e06898e986c7ced5a97c2fbb9a4_
+
+```
+package solana.storage.TransactionByAddr;
+```
+
+_file_excerpt · [wen-restart/proto/wen_restart.proto](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/wen-restart/proto/wen_restart.proto#L2) · line 2 · SHA-256 663c888ac6e800641d3baf0614554bc94a8d2b4732ac9ad28e63b1bd6056563a_
+
+```
+package solana.wen_restart_proto;
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Chains are recognized from the names of the message definitions (.proto files and packages); the schemes are the chains' documented account signatures, not an analysis of the wallet's signing code.
+
+**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it.
+
+**Retest procedure.** Re-run when a chain activates a post-quantum signature scheme or the wallet adds one.
+
+### QSI-2026-04243 — atty 0.2.14 is affected by GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/atty@0.2.14`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145) for crates.io package atty at version 0.2.14: atty potential unaligned read. The advisory names no affected functions, so reachability was not determined. It affects only windows targets.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-g98v-hv3f-hcfr
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-g98v-hv3f-hcfr](https://osv.dev/vulnerability/GHSA-g98v-hv3f-hcfr) · manifest · SHA-256 d81376bb46074299840475fb75b153ea76607daa4eb168913dccc511b26218b6_
+
+```
+{"id": "GHSA-g98v-hv3f-hcfr", "aliases": ["RUSTSEC-2021-0145"], "modified": "2026-09-10T03:49:53.897184297Z", "summary": "atty potential unaligned read", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04256 — curve25519-dalek 3.2.1 is affected by GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/curve25519-dalek@3.2.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: 2.9 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
+
+OSV.dev reports GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344) for crates.io package curve25519-dalek at version 3.2.1: curve25519-dalek has timing variability in `curve25519-dalek`'s `Scalar29::sub`/`Scalar52::sub`. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-x4gp-pqpj-f43q
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-x4gp-pqpj-f43q](https://osv.dev/vulnerability/GHSA-x4gp-pqpj-f43q) · manifest · SHA-256 9c5ba7e4d1d09d2c4281ad759683fef0dfc421b4b4415921e436a1ddb8987906_
+
+```
+{"id": "GHSA-x4gp-pqpj-f43q", "aliases": ["CVE-2024-58262", "RUSTSEC-2024-0344"], "modified": "2026-09-10T03:50:15.886084155Z", "summary": "curve25519-dalek has timing variability in `curve25519-dalek`'s `Scalar29::sub`/`Scalar52::sub`", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (4.1.3).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04280 — openssl 0.10.64 is affected by GHSA-xmgf-hq76-4vx2 (CVE-2026-41677)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-xmgf-hq76-4vx2 (CVE-2026-41677) for crates.io package openssl at version 0.10.64: rust-opennssl has an Out-of-bounds read in PEM password callback when returning an oversized length. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-xmgf-hq76-4vx2
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-xmgf-hq76-4vx2](https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2) · manifest · SHA-256 50287afcf37f9747f276888bb1248e939d92db2e15c3f47950ac561f5eaa5edf_
+
+```
+{"id": "GHSA-xmgf-hq76-4vx2", "aliases": ["CVE-2026-41677"], "modified": "2026-09-10T03:50:44.840710191Z", "summary": "rust-opennssl has an Out-of-bounds read in PEM password callback when returning an oversized length", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:L/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.78).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04290 — rand 0.7.3 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/rand@0.7.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) for crates.io package rand at version 0.7.3: Rand is unsound with a custom logger using rand::rng(). The audited code names rand::rng, rand::thread_rng: the affected code may be reachable.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-cq8v-f236-94qc
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA-cq8v-f236-94qc) · manifest · SHA-256 a61cde8ef254431f750cff43ce8ebe999ba61525990761c3c15b83d24b6124b6_
+
+```
+{"id": "GHSA-cq8v-f236-94qc", "aliases": ["RUSTSEC-2026-0097"], "modified": "2026-09-10T03:50:43.958966498Z", "summary": "Rand is unsound with a custom logger using rand::rng()", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.1, 0.8.6, 0.9.3).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04291 — rand 0.8.5 is affected by GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/rand@0.8.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) for crates.io package rand at version 0.8.5: Rand is unsound with a custom logger using rand::rng(). The audited code names rand::rng, rand::thread_rng: the affected code may be reachable.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-cq8v-f236-94qc
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA-cq8v-f236-94qc) · manifest · SHA-256 a61cde8ef254431f750cff43ce8ebe999ba61525990761c3c15b83d24b6124b6_
+
+```
+{"id": "GHSA-cq8v-f236-94qc", "aliases": ["RUSTSEC-2026-0097"], "modified": "2026-09-10T03:50:43.958966498Z", "summary": "Rand is unsound with a custom logger using rand::rng()", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.1, 0.8.6, 0.9.3).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04295 — rpassword 7.3.1 is affected by GHSA-2p6r-x3vv-xqm2
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/rpassword@7.3.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: 3.8 (`CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
+
+OSV.dev reports GHSA-2p6r-x3vv-xqm2 for crates.io package rpassword at version 7.3.1: rpassword affected by partial password reveal when input is interrupted. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-2p6r-x3vv-xqm2
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-2p6r-x3vv-xqm2](https://osv.dev/vulnerability/GHSA-2p6r-x3vv-xqm2) · manifest · SHA-256 11185d1da1f8cb816c844017a664ac6f9b6f004091db1e12a3eda6935a0eab51_
+
+```
+{"id": "GHSA-2p6r-x3vv-xqm2", "aliases": [], "modified": "2026-09-10T03:51:04.143649116Z", "summary": "rpassword affected by partial password reveal when input is interrupted ", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (7.5.0).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04298 — rustls 0.21.10 is affected by GHSA-h2v8-394m-p7vv
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/rustls@0.21.10`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
+
+OSV.dev reports GHSA-h2v8-394m-p7vv for crates.io package rustls at version 0.21.10: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-h2v8-394m-p7vv
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv) · manifest · SHA-256 ef730867cc8cb815c91955194f5da4ea1c0131c459ebef7b69607dc8c2b7b925_
+
+```
+{"id": "GHSA-h2v8-394m-p7vv", "aliases": ["RUSTSEC-2026-0348"], "modified": "2026-10-27T16:15:05.337819489Z", "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04299 — rustls 0.21.10 is affected by GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/rustls@0.21.10`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
+
+OSV.dev reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) for crates.io package rustls at version 0.21.10: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-w44r-93j7-qv28
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28) · manifest · SHA-256 b623bcfe2c8c4d8706ab88fdde828cce35c31267db92f075982196f3c127f7ad_
+
+```
+{"id": "GHSA-w44r-93j7-qv28", "aliases": ["RUSTSEC-2026-0349"], "modified": "2026-10-27T16:15:05.340347056Z", "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04314 — tokio 1.29.1 is affected by GHSA-rr8g-9fpq-6wmg (RUSTSEC-2025-0023)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
+- Affected asset: `dependency:crates.io/tokio@1.29.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 38.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-rr8g-9fpq-6wmg (RUSTSEC-2025-0023) for crates.io package tokio at version 1.29.1: Tokio broadcast channel calls clone in parallel, but does not require `Sync`. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-rr8g-9fpq-6wmg
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-rr8g-9fpq-6wmg](https://osv.dev/vulnerability/GHSA-rr8g-9fpq-6wmg) · manifest · SHA-256 0b8ec087b92f8e517fa86ad41f421dc6d897f5c467346c42b1cc6fb002d1834d_
+
+```
+{"id": "GHSA-rr8g-9fpq-6wmg", "aliases": ["RUSTSEC-2025-0023"], "modified": "2026-09-10T03:50:24.081979053Z", "summary": "Tokio broadcast channel calls clone in parallel, but does not require `Sync`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (1.38.2, 1.43.1, 1.44.2).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04303 — rustls-webpki 0.101.7 is affected by GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/rustls-webpki@0.101.7`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.6 / 100
+- CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
+
+OSV.dev reports GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098) for crates.io package rustls-webpki at version 0.101.7: webpki: Name constraints for URI names were incorrectly accepted. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-965h-392x-2mh5
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-965h-392x-2mh5](https://osv.dev/vulnerability/GHSA-965h-392x-2mh5) · manifest · SHA-256 7dfbf39859f726382fb5bacff8569cd96b6823e01f426668833099ff6d756657_
+
+```
+{"id": "GHSA-965h-392x-2mh5", "aliases": ["CVE-2026-93600", "RUSTSEC-2026-0098"], "modified": "2026-09-19T03:55:32.245575348Z", "summary": "webpki: Name constraints for URI names were incorrectly accepted", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.103.12, 0.104.0-alpha.6).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04304 — rustls-webpki 0.101.7 is affected by GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/rustls-webpki@0.101.7`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.6 / 100
+- CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
+
+OSV.dev reports GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099) for crates.io package rustls-webpki at version 0.101.7: webpki: Name constraints were accepted for certificates asserting a wildcard name. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-xgp8-3hg3-c2mh
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-xgp8-3hg3-c2mh](https://osv.dev/vulnerability/GHSA-xgp8-3hg3-c2mh) · manifest · SHA-256 c068ea92e7b545b187eef89198d9b7ef2f675512c425f0664366565735f890b6_
+
+```
+{"id": "GHSA-xgp8-3hg3-c2mh", "aliases": ["CVE-2026-93601", "RUSTSEC-2026-0099"], "modified": "2026-09-19T03:55:49.146112754Z", "summary": "webpki: Name constraints were accepted for certificates asserting a wildcard name", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.103.12, 0.104.0-alpha.6).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04316 — tracing-subscriber 0.3.7 is affected by GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:crates.io/tracing-subscriber@0.3.7`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.6 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055) for crates.io package tracing-subscriber at version 0.3.7: Tracing logging user input may result in poisoning logs with ANSI escape sequences. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-xwfj-jgwm-7wp5
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-xwfj-jgwm-7wp5](https://osv.dev/vulnerability/GHSA-xwfj-jgwm-7wp5) · manifest · SHA-256 c5ea2040929b0bf0d590c444d6ef1ef2de439865d4d25d158415ac6297ef25c5_
+
+```
+{"id": "GHSA-xwfj-jgwm-7wp5", "aliases": ["CVE-2025-58160", "RUSTSEC-2025-0055"], "modified": "2026-09-10T03:50:27.766863705Z", "summary": " Tracing logging user input may result in poisoning logs with ANSI escape sequences", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.3.20).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04330 — @babel/core 7.19.6 is affected by GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/@babel/core@7.19.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.6 / 100
+- CVSS v3.1: 3.2 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N`)
+
+OSV.dev reports GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356) for npm package @babel/core at version 7.19.6: @babel/core: Arbitrary File Read via sourceMappingURL Comment. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-4x5r-pxfx-6jf8
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-4x5r-pxfx-6jf8](https://osv.dev/vulnerability/GHSA-4x5r-pxfx-6jf8) · manifest · SHA-256 5f71a1b5a670c67dd7f59ea74e809d2535212120b0cb536b016fe24ee52565e2_
+
+```
+{"id": "GHSA-4x5r-pxfx-6jf8", "aliases": ["CVE-2026-49356"], "modified": "2026-09-10T03:50:48.280629201Z", "summary": "@babel/core: Arbitrary File Read via sourceMappingURL Comment", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (7.29.6, 8.0.0-rc.6).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04341 — @babel/core 7.12.9 is affected by GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
+- Affected asset: `dependency:npm/@babel/core@7.12.9`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.6 / 100
+- CVSS v3.1: 3.2 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N`)
+
+OSV.dev reports GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356) for npm package @babel/core at version 7.12.9: @babel/core: Arbitrary File Read via sourceMappingURL Comment. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-4x5r-pxfx-6jf8
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-4x5r-pxfx-6jf8](https://osv.dev/vulnerability/GHSA-4x5r-pxfx-6jf8) · manifest · SHA-256 5f71a1b5a670c67dd7f59ea74e809d2535212120b0cb536b016fe24ee52565e2_
+
+```
+{"id": "GHSA-4x5r-pxfx-6jf8", "aliases": ["CVE-2026-49356"], "modified": "2026-09-10T03:50:48.280629201Z", "summary": "@babel/core: Arbitrary File Read via sourceMappingURL Comment", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (7.29.6, 8.0.0-rc.6).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04230 — TLS without a post-quantum key exchange: rustls before 0.23 (ring only)
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `tls-code:rustls-old`
+- Data source: Cargo.toml
+- Detection method: Static reading of TLS library configuration in code and manifests: crypto provider, group and curve lists, GODEBUG.
+- Analyzer: tls_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.2 / 100
+- CVSS v3.1: not applicable
+
+rustls before 0.23 (ring only) at Cargo.toml:289: the configured key exchange (ring) has no hybrid ML-KEM group such as X25519MLKEM768 (RFC 10024), so the handshake cannot negotiate one.
+
+**Potential impact.** Traffic protected only by classical ECDHE could be recorded today and decrypted once a CRQC exists (harvest now, decrypt later). Relevant when transmitted data must stay confidential for many years.
+
+**Reproduction steps.**
+
+```
+Open Cargo.toml:289 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [Cargo.toml](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/Cargo.toml#L289) · line 289 · SHA-256 1c1c37735d8f9da680d292dcf245e4a55c60b259a3b7c1fb11fe8f9237fea131_
+
+```
+  288 | rustc_version = "0.4"
+  289 | rustls = { version = "0.21.10", default-features = false, features = ["quic"] }
+  290 | rustversion = "1.0.14"
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Read from code and manifests only: the library versions deployed and settings made outside the code (environment, launch flags) were not determined.
+
+**Recommendation.** Upgrade rustls to 0.23 or later with the aws-lc-rs provider and the prefer-post-quantum feature.
+
+**Retest procedure.** Connect with a client that offers X25519MLKEM768 (openssl s_client -groups X25519MLKEM768 with OpenSSL 3.5+, or a Go 1.24+ client) and confirm the negotiated group.
+
+### QSI-2026-04233 — Quantum-vulnerable ECDSA: transaction and message signing (3 file(s))
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:ECDSA:transaction_signing`
+- Data source: sdk/bpf/c/inc/solana_sdk.h
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 25.0 / 100
+- CVSS v3.1: not applicable
+
+4 reference(s) to ECDSA across 3 file(s), e.g. sdk/bpf/c/inc/solana_sdk.h:18. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open sdk/bpf/c/inc/solana_sdk.h:18 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [sdk/bpf/c/inc/solana_sdk.h](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/bpf/c/inc/solana_sdk.h#L18) · line 18 · SHA-256 7ea2f477e30b94c74af3d9d7076fecc50c8f171d7519b312cf0ebb8c4955dcdf_
+
+```
+   17 | #include <sol/return_data.h>
+   18 | #include <sol/secp256k1.h>
+   19 | #include <sol/sha.h>
+```
+
+_file_excerpt · [sdk/sbf/c/inc/solana_sdk.h](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/sbf/c/inc/solana_sdk.h#L18) · line 18 · SHA-256 7ea2f477e30b94c74af3d9d7076fecc50c8f171d7519b312cf0ebb8c4955dcdf_
+
+```
+   17 | #include <sol/return_data.h>
+   18 | #include <sol/secp256k1.h>
+   19 | #include <sol/sha.h>
+```
+
+_file_excerpt · [sdk/src/feature_set.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/feature_set.rs#L786) · line 786 · SHA-256 368177c1bb059d5866c586895db4bb409fa42674f8ac5e5b56dec9a49d482149_
+
+```
+  785 |     pub static ref FEATURE_NAMES: HashMap<Pubkey, &'static str> = [
+  786 |         (secp256k1_program_enabled::id(), "secp256k1 program"),
+  787 |         (deprecate_rewards_sysvar::id(), "deprecate unused rewards sysvar"),
+```
+
+_file_excerpt · [sdk/src/feature_set.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/feature_set.rs#L857) · line 857 · SHA-256 deab6efe86d8254aee4dadde03ced64b2d395f9be02a8070226d025319efa128_
+
+```
+  856 |         (check_physical_overlapping::id(), "check physical overlapping regions"),
+  857 |         (limit_secp256k1_recovery_id::id(), "limit secp256k1 recovery id"),
+  858 |         (disable_deprecated_loader::id(), "disable the deprecated BPF loader"),
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-04234 — Quantum-vulnerable BN254 (alt_bn128): transaction and message signing (1 file(s))
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:BN254 (alt_bn128):transaction_signing`
+- Data source: sdk/bpf/c/inc/solana_sdk.h
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 25.0 / 100
+- CVSS v3.1: not applicable
+
+1 reference(s) to BN254 (alt_bn128) across 1 file(s), e.g. sdk/bpf/c/inc/solana_sdk.h:6. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open sdk/bpf/c/inc/solana_sdk.h:6 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [sdk/bpf/c/inc/solana_sdk.h](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/bpf/c/inc/solana_sdk.h#L6) · line 6 · SHA-256 9952563698b1bcbc913d96839d77fbfdf00a67fc90f816686bf01520f1fe1af2_
+
+```
+    5 | 
+    6 | #include <sol/alt_bn128.h>
+    7 | #include <sol/assert.h>
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-04235 — Quantum-vulnerable Ed25519: transaction and message signing (1 file(s))
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:Ed25519:transaction_signing`
+- Data source: sdk/src/signer/keypair.rs
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 25.0 / 100
+- CVSS v3.1: not applicable
+
+20 reference(s) to Ed25519 across 1 file(s), e.g. sdk/src/signer/keypair.rs:10. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open sdk/src/signer/keypair.rs:10 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/signer/keypair.rs#L10) · line 10 · SHA-256 7ae788012069eb47d66e43c5b32f8eecf1d074d57a390603fdc728ab15c91b84_
+
+```
+    9 |     },
+   10 |     ed25519_dalek::Signer as DalekSigner,
+   11 |     ed25519_dalek_bip32::Error as Bip32Error,
+```
+
+_file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/signer/keypair.rs#L25) · line 25 · SHA-256 628e3ed54eb2db72bd4afd7046167a9a13117e9f60ff243f5b3bf1309bb240c5_
+
+```
+   24 | #[derive(Debug)]
+   25 | pub struct Keypair(ed25519_dalek::Keypair);
+   26 | 
+```
+
+_file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/signer/keypair.rs#L36) · line 36 · SHA-256 1c9d963316c581741e1225025050eb7559bf8c0650f0aa1eb93d9c54b9ef5c2a_
+
+```
+   35 |     {
+   36 |         Self(ed25519_dalek::Keypair::generate(csprng))
+   37 |     }
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-04236 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (25 file(s))
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:Pedersen commitment:threshold_mpc`
+- Data source: zk-token-sdk/src/encryption/elgamal.rs
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 25.0 / 100
+- CVSS v3.1: not applicable
+
+162 reference(s) to Pedersen commitment across 25 file(s), e.g. zk-token-sdk/src/encryption/elgamal.rs:21. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open zk-token-sdk/src/encryption/elgamal.rs:21 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [zk-token-sdk/src/encryption/elgamal.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/elgamal.rs#L21) · line 21 · SHA-256 9298f8295108602f64bbb5cf175ad688e9deb4aba9c0fc41fb9b3a36ea08f4c5_
+
+```
+   20 |             pedersen::{
+   21 |                 Pedersen, PedersenCommitment, PedersenOpening, G, H, PEDERSEN_COMMITMENT_LEN,
+   22 |             },
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/elgamal.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/elgamal.rs#L565) · line 565 · SHA-256 dbc3b217c5a9ab26bfac98c5f164cbb882835525ad42448e93288762ce674556_
+
+```
+  564 | pub struct ElGamalCiphertext {
+  565 |     pub commitment: PedersenCommitment,
+  566 |     pub handle: DecryptHandle,
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/elgamal.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/elgamal.rs#L571) · line 571 · SHA-256 6bd5a4ab503d98d2ae1e1738c30c9c242bb50a72d0238de24624506831028e9b_
+
+```
+  570 |         let point = amount.into() * &(*G);
+  571 |         let commitment_to_add = PedersenCommitment::new(point);
+  572 |         ElGamalCiphertext {
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/grouped_elgamal.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/grouped_elgamal.rs#L19) · line 19 · SHA-256 524aa0ac348b171139743a7cbfdf687c53d0c03d42a02a0ba9f5a61d3e47e778_
+
+```
+   18 |             elgamal::{DecryptHandle, ElGamalCiphertext, ElGamalPubkey, ElGamalSecretKey},
+   19 |             pedersen::{Pedersen, PedersenCommitment, PedersenOpening},
+   20 |         },
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/grouped_elgamal.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/grouped_elgamal.rs#L130) · line 130 · SHA-256 d0706622e1f99f3caeccbddeb5f38c8e6e5033b65da6bd735f5502b7127e0b4d_
+
+```
+  129 | pub struct GroupedElGamalCiphertext<const N: usize> {
+  130 |     pub commitment: PedersenCommitment,
+  131 |     pub handles: [DecryptHandle; N],
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/grouped_elgamal.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/grouped_elgamal.rs#L188) · line 188 · SHA-256 09c7997e14f67b5caac525fe6cfe67652dcc0ec6163b756374bed35de72dd94d_
+
+```
+  187 |         let mut iter = bytes.chunks(RISTRETTO_POINT_LEN);
+  188 |         let commitment = PedersenCommitment::from_bytes(iter.next()?)?;
+  189 | 
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/pedersen.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/pedersen.rs#L44) · line 44 · SHA-256 22037efeafeac0ad3ed74d1c46ff831dae6c515b520462ddaea34d3f6ba44fec_
+
+```
+   43 |     #[allow(clippy::new_ret_no_self)]
+   44 |     pub fn new<T: Into<Scalar>>(amount: T) -> (PedersenCommitment, PedersenOpening) {
+   45 |         let opening = PedersenOpening::new_rand();
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/pedersen.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/pedersen.rs#L56) · line 56 · SHA-256 8977d8cf7015a927959a20fcd825e892c3c61fb1adb88934764b84555861c648_
+
+```
+   55 |     #[allow(non_snake_case)]
+   56 |     pub fn with<T: Into<Scalar>>(amount: T, opening: &PedersenOpening) -> PedersenCommitment {
+   57 |         let x: Scalar = amount.into();
+```
+
+_file_excerpt · [zk-token-sdk/src/encryption/pedersen.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/pedersen.rs#L60) · line 60 · SHA-256 4baa28fb5e42e5c4f739e9726dd584b0ec7ca794493e7e3130ad32ae705a7552_
+
+```
+   59 | 
+   60 |         PedersenCommitment(RistrettoPoint::multiscalar_mul(&[x, *r], &[*G, *H]))
+   61 |     }
+```
+
+_file_excerpt · [zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u128.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u128.rs#L6) · line 6 · SHA-256 4ba01b50b4dadc9583e0ac1ba03fd295cf2000365dc624031b7f80415be6b391_
+
+```
+    5 |     crate::{
+    6 |         encryption::pedersen::{PedersenCommitment, PedersenOpening},
+    7 |         errors::{ProofGenerationError, ProofVerificationError},
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-04266 — keccak 0.1.5 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/keccak@0.1.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 24.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) for crates.io package keccak at version 0.1.5: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. The affected code sits behind the `asm` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-3288-p39f-rqpv
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv) · manifest · SHA-256 d5a8f5565101ab9d60521142f31c54583db5b87e9a59fc99e1fa93d6c2e5f782_
+
+```
+{"id": "GHSA-3288-p39f-rqpv", "aliases": ["RUSTSEC-2026-0012"], "modified": "2026-09-10T03:50:59.332505686Z", "summary": "Unsoundness in opt-in ARMv8 assembly backend for `keccak`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.1.6).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04231 — Quantum-vulnerable Ed25519: role not determined (9 file(s))
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:Ed25519:general`
+- Data source: core/src/cluster_info_vote_listener.rs
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 23.6 / 100
+- CVSS v3.1: not applicable
+
+23 reference(s) to Ed25519 across 9 file(s), e.g. core/src/cluster_info_vote_listener.rs:340. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open core/src/cluster_info_vote_listener.rs:340 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [core/src/cluster_info_vote_listener.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/core/src/cluster_info_vote_listener.rs#L340) · line 340 · SHA-256 3d37dba77d8fc83a37cdad17d27016924095578066424d2a1c124f00a7412858_
+
+```
+  339 |         // Votes should already be filtered by this point.
+  340 |         sigverify::ed25519_verify_cpu(
+  341 |             &mut packet_batches,
+```
+
+_file_excerpt · [core/src/sigverify.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/core/src/sigverify.rs#L8) · line 8 · SHA-256 fe4de448f72450e4c3bdbc6d7badb9eb350f357872abe034fd34d58581dcc25d_
+
+```
+    7 | pub use solana_perf::sigverify::{
+    8 |     count_packets_in_batches, ed25519_verify_cpu, ed25519_verify_disabled, init, TxOffset,
+    9 | };
+```
+
+_file_excerpt · [core/src/sigverify.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/core/src/sigverify.rs#L141) · line 141 · SHA-256 a7ff0601451a096305ee1fe83a51028c664b0ef9e36e46b398fe772ecbd004bc_
+
+```
+  140 |     ) -> Vec<PacketBatch> {
+  141 |         sigverify::ed25519_verify(
+  142 |             &mut batches,
+```
+
+_file_excerpt · [core/src/sigverify_stage.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/core/src/sigverify_stage.rs#L228) · line 228 · SHA-256 31d5114baba7d1a754509e636ad432f7f446783b3b114f90f684a67deca1fed5_
+
+```
+  227 |     ) -> Vec<PacketBatch> {
+  228 |         sigverify::ed25519_verify_disabled(&mut batches);
+  229 |         batches
+```
+
+_file_excerpt · [entry/src/entry.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/entry/src/entry.rs#L579) · line 579 · SHA-256 d7da3bedbc73dacccf9889c0de997d70f6fd5aa592e17181138c6f2220bdcf4f_
+
+```
+  578 |             let mut verify_time = Measure::start("sigverify");
+  579 |             sigverify::ed25519_verify(
+  580 |                 &mut packet_batches,
+```
+
+_file_excerpt · [ledger/src/sigverify_shreds.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/ledger/src/sigverify_shreds.rs#L280) · line 280 · SHA-256 04e411cf46997eee530e97a63de09cf3302ad3103d1e09bb097ce921ff425662_
+
+```
+  279 |     unsafe {
+  280 |         let res = (api.ed25519_verify_many)(
+  281 |             elems.as_ptr(),
+```
+
+_file_excerpt · [ledger/src/sigverify_shreds.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/ledger/src/sigverify_shreds.rs#L410) · line 410 · SHA-256 e4162b5dcf2e5554118be06f5cc2c2a26cfb4d0452f04434ca197d1ba209e002_
+
+```
+  409 |     unsafe {
+  410 |         let res = (api.ed25519_sign_many)(
+  411 |             elems.as_mut_ptr(),
+```
+
+_file_excerpt · [perf/src/perf_libs.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/perf/src/perf_libs.rs#L27) · line 27 · SHA-256 6d30fe89b1d1bdc30529b8b3c93d7e4ba1fff23125ae744fd14412ff3c301bb1_
+
+```
+   26 |     #[allow(clippy::type_complexity)]
+   27 |     pub ed25519_verify_many: Symbol<
+   28 |         'a,
+```
+
+_file_excerpt · [perf/src/perf_libs.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/perf/src/perf_libs.rs#L45) · line 45 · SHA-256 1b30044c34b32e73dbd56591cf845a2a1a1fc38dcd1a06e7aa16a254becbdea9_
+
+```
+   44 |     #[allow(clippy::type_complexity)]
+   45 |     pub ed25519_sign_many: Symbol<
+   46 |         'a,
+```
+
+_file_excerpt · [perf/src/sigverify.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/perf/src/sigverify.rs#L518) · line 518 · SHA-256 704b1c78782591afb31cbb43ac4d453207abbc1eddd3b7a494aae17196b533e0_
+
+```
+  517 | 
+  518 | pub fn ed25519_verify_cpu(batches: &mut [PacketBatch], reject_non_vote: bool, packet_count: usize) {
+  519 |     debug!("CPU ECDSA for {}", packet_count);
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-04232 — Quantum-vulnerable BN254 (alt_bn128): role not determined (10 file(s))
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:BN254 (alt_bn128):general`
+- Data source: programs/bpf_loader/src/syscalls/mod.rs
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 23.6 / 100
+- CVSS v3.1: not applicable
+
+15 reference(s) to BN254 (alt_bn128) across 10 file(s), e.g. programs/bpf_loader/src/syscalls/mod.rs:26. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open programs/bpf_loader/src/syscalls/mod.rs:26 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [programs/bpf_loader/src/syscalls/mod.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/bpf_loader/src/syscalls/mod.rs#L26) · line 26 · SHA-256 dc42c1c8ee5bb74cffb9f5675c629b35bbf12c1a9bb71d5e1b437bb16426e1dd_
+
+```
+   25 |         account_info::AccountInfo,
+   26 |         alt_bn128::prelude::{
+   27 |             alt_bn128_addition, alt_bn128_multiplication, alt_bn128_pairing, AltBn128Error,
+```
+
+_file_excerpt · [programs/bpf_loader/src/syscalls/mod.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/bpf_loader/src/syscalls/mod.rs#L1501) · line 1501 · SHA-256 3db3b7d92bc219178a130887d0166b86182673c5037f8c5c6bee55912e5f5737_
+
+```
+ 1500 |     ) -> Result<u64, Error> {
+ 1501 |         use solana_sdk::alt_bn128::prelude::{ALT_BN128_ADD, ALT_BN128_MUL, ALT_BN128_PAIRING};
+ 1502 |         let budget = invoke_context.get_compute_budget();
+```
+
+_file_excerpt · [programs/bpf_loader/src/syscalls/mod.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/bpf_loader/src/syscalls/mod.rs#L1749) · line 1749 · SHA-256 7fa1c56f8ad026f23d32e5595e123849aa1e0f55f62ed0d79f79c71fa8881106_
+
+```
+ 1748 |     ) -> Result<u64, Error> {
+ 1749 |         use solana_sdk::alt_bn128::compression::prelude::{
+ 1750 |             alt_bn128_g1_compress, alt_bn128_g1_decompress, alt_bn128_g2_compress,
+```
+
+_file_excerpt · [programs/sbf/build.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/sbf/build.rs#L67) · line 67 · SHA-256 0cd39a5d4a06ed47d4cf6c624342ab45b08447902ab5b24a9cdcefd8db6ca8e3_
+
+```
+   66 |             "alloc",
+   67 |             "alt_bn128",
+   68 |             "alt_bn128_compression",
+```
+
+_file_excerpt · [programs/sbf/c/src/alt_bn128/alt_bn128.c](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/sbf/c/src/alt_bn128/alt_bn128.c#L4) · line 4 · SHA-256 bdfe31948c062be62cd5bfe8a03da9a8252acfaf8ea7dc6c340017c264e9e53d_
+
+```
+    3 |  */
+    4 | #include <sol/alt_bn128.h>
+    5 | #include <sol/assert.h>
+```
+
+_file_excerpt · [programs/sbf/rust/alt_bn128/src/lib.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/sbf/rust/alt_bn128/src/lib.rs#L5) · line 5 · SHA-256 345323dc9672e60f3f93d33833ccd7319278bcd3ded54d00950f79bc24eb491b_
+
+```
+    4 | use solana_program::{
+    5 |     alt_bn128::prelude::{alt_bn128_addition, alt_bn128_multiplication, alt_bn128_pairing},
+    6 |     custom_heap_default, custom_panic_default, msg,
+```
+
+_file_excerpt · [programs/sbf/rust/alt_bn128/src/lib.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/sbf/rust/alt_bn128/src/lib.rs#L718) · line 718 · SHA-256 701438176427241ab5eb0d5873724855dec5ce0e1dc3574b6a80d15f72acb681_
+
+```
+  717 | pub extern "C" fn entrypoint(_input: *mut u8) -> u64 {
+  718 |     msg!("alt_bn128");
+  719 | 
+```
+
+_file_excerpt · [programs/sbf/rust/alt_bn128_compression/src/lib.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/programs/sbf/rust/alt_bn128_compression/src/lib.rs#L5) · line 5 · SHA-256 5ea84cc24eeb401d23e1d9b20f694f13363d2df13017933ef0a94ffa0cbb94f3_
+
+```
+    4 | use solana_program::{
+    5 |     alt_bn128::compression::prelude::{
+    6 |         alt_bn128_g1_compress, alt_bn128_g1_decompress, alt_bn128_g2_compress,
+```
+
+_file_excerpt · [sdk/program/src/alt_bn128/compression.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/program/src/alt_bn128/compression.rs#L2) · line 2 · SHA-256 124b02485c74c15a922ae612b50cec6fc2a604da76f493aff32a68d461d59a21_
+
+```
+    1 | pub mod prelude {
+    2 |     pub use crate::alt_bn128::compression::{
+    3 |         alt_bn128_compression_size::*, consts::*, target_arch::*, AltBn128CompressionError,
+```
+
+_file_excerpt · [sdk/program/src/alt_bn128/compression.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/program/src/alt_bn128/compression.rs#L70) · line 70 · SHA-256 2889ad8e4d4f836ffb2dc117aac23fb6c40bec8ad2c5352732490b5b93959c45_
+
+```
+   69 |         super::*,
+   70 |         crate::alt_bn128::compression::alt_bn128_compression_size,
+   71 |         ark_serialize::{CanonicalDeserialize, CanonicalSerialize, Compress, Validate},
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for crypto-agility.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-04237 — Quantum-vulnerable Bulletproofs: role not determined (2 file(s))
+
+- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `source-code:Bulletproofs:general`
+- Data source: zk-token-sdk/src/range_proof/generators.rs
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 23.6 / 100
+- CVSS v3.1: not applicable
+
+6 reference(s) to Bulletproofs across 2 file(s), e.g. zk-token-sdk/src/range_proof/generators.rs:64. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open zk-token-sdk/src/range_proof/generators.rs:64 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [zk-token-sdk/src/range_proof/generators.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/range_proof/generators.rs#L64) · line 64 · SHA-256 f6ab6366149e606c37824b26a1e43c2fb78935e3114389bf5af2cc39e8aa7878_
+
+```
+   63 | #[derive(Clone)]
+   64 | pub struct BulletproofGens {
+   65 |     /// The maximum number of usable generators.
+```
+
+_file_excerpt · [zk-token-sdk/src/range_proof/generators.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/range_proof/generators.rs#L73) · line 73 · SHA-256 1324375ba59b02a28c43c40c68384631ae812ef9bc23718b3b12aa1653848927_
+
+```
+   72 | 
+   73 | impl BulletproofGens {
+   74 |     pub fn new(gens_capacity: usize) -> Result<Self, RangeProofGeneratorError> {
+```
+
+_file_excerpt · [zk-token-sdk/src/range_proof/generators.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/range_proof/generators.rs#L75) · line 75 · SHA-256 747aceec7b062de80d4997be97db7774e30d69d2ffbfe4651d7a6c8ebd533304_
+
+```
+   74 |     pub fn new(gens_capacity: usize) -> Result<Self, RangeProofGeneratorError> {
+   75 |         let mut gens = BulletproofGens {
+   76 |             gens_capacity: 0,
+```
+
+_file_excerpt · [zk-token-sdk/src/range_proof/mod.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/range_proof/mod.rs#L25) · line 25 · SHA-256 173f62711d17ee330d7d6aa029c05d6016a75a5686dc511336b62e039e5a4729_
+
+```
+   24 |             errors::{RangeProofGenerationError, RangeProofVerificationError},
+   25 |             generators::BulletproofGens,
+   26 |             inner_product::InnerProductProof,
+```
+
+_file_excerpt · [zk-token-sdk/src/range_proof/mod.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/range_proof/mod.rs#L96) · line 96 · SHA-256 52eec9967b27baa041a0b2d924db5be444ef5d5018afdfe989f8345523e80761_
+
+```
+   95 | 
+   96 |         let bp_gens = BulletproofGens::new(nm)
+   97 |             .map_err(|_| RangeProofGenerationError::MaximumGeneratorLengthExceeded)?;
+```
+
+_file_excerpt · [zk-token-sdk/src/range_proof/mod.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/range_proof/mod.rs#L267) · line 267 · SHA-256 64d78bef4a47738b1674b844297f66f7f01a770ca09a01ad9a8634e9ae26df19_
+
+```
+  266 |         let nm: usize = bit_lengths.iter().sum();
+  267 |         let bp_gens = BulletproofGens::new(nm)
+  268 |             .map_err(|_| RangeProofVerificationError::MaximumGeneratorLengthExceeded)?;
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for crypto-agility.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-04255 — crossbeam-epoch 0.9.5 is affected by RUSTSEC-2026-0204 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/crossbeam-epoch@0.9.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0204 for crates.io package crossbeam-epoch at version 0.9.5: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0204
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0204](https://osv.dev/vulnerability/RUSTSEC-2026-0204) · manifest · SHA-256 87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95_
+
+```
+{"id": "RUSTSEC-2026-0204", "aliases": [], "modified": "2026-07-06T22:30:04.159269138Z", "summary": "Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.20) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04260 — h2 0.3.24 is affected by RUSTSEC-2026-0258 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/h2@0.3.24`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0258 for crates.io package h2 at version 0.3.24: h2 unbounded empty DATA frames. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0258
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0258](https://osv.dev/vulnerability/RUSTSEC-2026-0258) · manifest · SHA-256 d8694780e4da4b8ee995c62dbd89ea4aef9579bf2c51b2a4b677a2231b8d4edc_
+
+```
+{"id": "RUSTSEC-2026-0258", "aliases": ["GHSA-q83h-524g-xf6h"], "modified": "2026-10-12T18:00:10.934581734Z", "summary": "h2 unbounded empty DATA frames", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.4.16) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04263 — im 15.1.0 is affected by RUSTSEC-2023-0126 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/im@15.1.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2023-0126 for crates.io package im at version 15.1.0: Aliasing violation in `OrdSet` insertion. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2023-0126
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2023-0126](https://osv.dev/vulnerability/RUSTSEC-2023-0126) · manifest · SHA-256 160dfa85ba32ad679ef9d8bff3c892d61723f2ab6af7ffc83631d33fadad0b8a_
+
+```
+{"id": "RUSTSEC-2023-0126", "aliases": [], "modified": "2026-08-10T19:45:04.530371817Z", "summary": "Aliasing violation in `OrdSet` insertion", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04268 — lru 0.7.8 is affected by RUSTSEC-2026-0253 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/lru@0.7.8`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0253 for crates.io package lru at version 0.7.8: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0253
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSEC-2026-0253) · manifest · SHA-256 82a341ad1e624183fd43c087afde5eb620b02fb5f5dbd7e44d5cee598aa0935c_
+
+```
+{"id": "RUSTSEC-2026-0253", "aliases": [], "modified": "2026-08-11T11:15:06.101553049Z", "summary": "Potential use-after-free due to lack of panic safety in `LruCache::pop()`", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.18.2) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04287 — quinn-proto 0.10.6 is affected by RUSTSEC-2026-0338 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.10.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0338 for crates.io package quinn-proto at version 0.10.6: Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0338
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSEC-2026-0338) · manifest · SHA-256 91b2bd8f15b3c6ddb6b1a8021b9ff2dd98645bbf68e5e0b15b810043986a07b4_
+
+```
+{"id": "RUSTSEC-2026-0338", "aliases": ["GHSA-465w-v9q3-7j98"], "modified": "2026-10-12T18:15:01.969514645Z", "summary": "Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.18) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04288 — quinn-proto 0.10.6 is affected by RUSTSEC-2026-0339 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.10.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0339 for crates.io package quinn-proto at version 0.10.6: Unbounded growth of pending connection ID retirements in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0339
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSEC-2026-0339) · manifest · SHA-256 754eb18e6ed8e143f4c1e6730eb3dad29c8743897205cc360d051a5b570dff58_
+
+```
+{"id": "RUSTSEC-2026-0339", "aliases": ["GHSA-hmxj-32vh-65vr"], "modified": "2026-10-12T18:15:01.956822776Z", "summary": "Unbounded growth of pending connection ID retirements in quinn-proto", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04289 — quinn-proto 0.10.6 is affected by RUSTSEC-2026-0342 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/quinn-proto@0.10.6`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0342 for crates.io package quinn-proto at version 0.10.6: Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0342
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSEC-2026-0342) · manifest · SHA-256 e1697cd703466ae830a7d12e1e0766cc3c48ce32f9bf3e90ea282e7e0ecfb2a0_
+
+```
+{"id": "RUSTSEC-2026-0342", "aliases": ["GHSA-2hv7-gw8g-gpq5"], "modified": "2026-10-12T18:15:01.956681478Z", "summary": "Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04305 — rustls-webpki 0.101.7 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/rustls-webpki@0.101.7`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0382 (CVE-2026-111943) for crates.io package rustls-webpki at version 0.101.7: Certificate verification may accept distrusted intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 9111e73d752392534752d5ea5c9da4ec9a422a29c088531d446d16b27a016fa8_
+
+```
+{"id": "RUSTSEC-2026-0382", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-21T00:55:56.763143468Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04308 — sized-chunks 0.6.5 is affected by RUSTSEC-2026-0255 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/sized-chunks@0.6.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0255 for crates.io package sized-chunks at version 0.6.5: Panic-safety unsoundness in `Chunk`, `RingBuffer`, and `InlineArray` (use-after-free / double-free). The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names sized_chunks::Chunk::clear: the affected code may be reachable.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0255
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0255](https://osv.dev/vulnerability/RUSTSEC-2026-0255) · manifest · SHA-256 d9e32fa55cbe4b80cbe44d1226473818856e6e173466b8dfdd916ac62ba54618_
+
+```
+{"id": "RUSTSEC-2026-0255", "aliases": [], "modified": "2026-08-12T10:30:03.078996208Z", "summary": "Panic-safety unsoundness in `Chunk`, `RingBuffer`, and `InlineArray` (use-after-free / double-free)", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04309 — solana_rbpf 0.8.0 is affected by RUSTSEC-2026-0191 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/solana_rbpf@0.8.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0191 for crates.io package solana_rbpf at version 0.8.0: `EbpfVm::invoke_function` performs out-of-bounds pointer arithmetic. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names solana_rbpf::vm::EbpfVm::invoke_function: the affected code may be reachable.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0191
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0191](https://osv.dev/vulnerability/RUSTSEC-2026-0191) · manifest · SHA-256 07a5a3a266ff92d3e7da120d01c47dc7ec2246a01ad76dd229042083e2fda060_
+
+```
+{"id": "RUSTSEC-2026-0191", "aliases": [], "modified": "2026-06-29T14:45:04.175629528Z", "summary": "`EbpfVm::invoke_function` performs out-of-bounds pointer arithmetic", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04318 — webpki-roots 0.24.0 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/webpki-roots@0.24.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0381 (CVE-2026-111943) for crates.io package webpki-roots at version 0.24.0: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 a97aff76592b60902cd4b16acc1ea2e7be27cd23fb1cd59575028f4953d51114_
+
+```
+{"id": "RUSTSEC-2026-0381", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-21T06:30:02.818201920Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04319 — webpki-roots 0.25.2 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/webpki-roots@0.25.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0381 (CVE-2026-111943) for crates.io package webpki-roots at version 0.25.2: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 a97aff76592b60902cd4b16acc1ea2e7be27cd23fb1cd59575028f4953d51114_
+
+```
+{"id": "RUSTSEC-2026-0381", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-21T06:30:02.818201920Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04321 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0395 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0395 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Use-after-free with `CParameter::StableInBuffer`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::set_parameter); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSEC-2026-0395) · manifest · SHA-256 cf314e3df3f714ad17083f648e4d6822839805759c13c152cf2b2edcfbba9cdb_
+
+```
+{"id": "RUSTSEC-2026-0395", "aliases": [], "modified": "2026-10-26T14:00:06.388344282Z", "summary": "Use-after-free with `CParameter::StableInBuffer`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04322 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0397 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0397 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: `OutBuffer::around_pos` exposes uninitialized memory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::OutBuffer::around_pos); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSEC-2026-0397) · manifest · SHA-256 e1cc2d6a8e69a560eb15d719dcb988b36e18b940b8913145ec52a73efd0b9fcc_
+
+```
+{"id": "RUSTSEC-2026-0397", "aliases": [], "modified": "2026-10-26T14:00:05.089587004Z", "summary": "`OutBuffer::around_pos` exposes uninitialized memory", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04323 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0399 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0399 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Use-after-free through `init_using_cdict` and `init_using_ddict`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSEC-2026-0399) · manifest · SHA-256 dde7c9d1fcd35a89a4e462b7b42373ae75187190ebfffa3876d9e2bba20e386a_
+
+```
+{"id": "RUSTSEC-2026-0399", "aliases": [], "modified": "2026-10-26T14:00:05.792431051Z", "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04324 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0400 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0400 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Use-after-free of a dictionary after a one-shot call on a context with an open stream. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSEC-2026-0400) · manifest · SHA-256 12a31cd97694259b60fd13de0204d4257a30facebdbf5eb19bc091d2b54c85f6_
+
+```
+{"id": "RUSTSEC-2026-0400", "aliases": [], "modified": "2026-10-26T14:00:05.692077560Z", "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04325 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0401 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0401 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::train_from_buffer); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSEC-2026-0401) · manifest · SHA-256 8f606743a027e187f8815975be52f1a4018a22a8d8cacc5d66407f974573c3a0_
+
+```
+{"id": "RUSTSEC-2026-0401", "aliases": [], "modified": "2026-10-26T14:00:04.231502512Z", "summary": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04326 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0402 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0402 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSEC-2026-0402) · manifest · SHA-256 1659ee65665b5ae755a87f2715370efa327fc3064514c61888dd4fa3a3f32642_
+
+```
+{"id": "RUSTSEC-2026-0402", "aliases": [], "modified": "2026-10-26T14:00:05.685817733Z", "summary": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04327 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0403 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0403 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Uninitialized memory exposed when streaming decompression of a legacy frame fails. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress_stream); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSEC-2026-0403) · manifest · SHA-256 b1d1701270f636af5d21f2b55cbd122bcd0df90ce4dce6793aa9263b377caddb_
+
+```
+{"id": "RUSTSEC-2026-0403", "aliases": [], "modified": "2026-10-26T14:00:05.787441176Z", "summary": "Uninitialized memory exposed when streaming decompression of a legacy frame fails", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04328 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0404 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0404 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Double free in `DCtx::try_clone`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSEC-2026-0404) · manifest · SHA-256 7c25f3932e55150f3788cd8fcee7738d3c905758f825a562b19f78d7e041b0b2_
+
+```
+{"id": "RUSTSEC-2026-0404", "aliases": [], "modified": "2026-10-26T14:00:05.092817237Z", "summary": "Double free in `DCtx::try_clone`", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04329 — zstd-safe 5.0.1+zstd.1.5.2 is affected by RUSTSEC-2026-0406 (no severity rating)
+
+- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.2 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0406 for crates.io package zstd-safe at version 5.0.1+zstd.1.5.2: Use-after-free when changing a multithreaded context with an unfinished frame. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe comes in through other dependencies, which may still call them.
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSEC-2026-0406) · manifest · SHA-256 deca0b7103bdc0c3ed051bcdb0dbd3d63e215fecdbdba6a7f24f9fb8c2e93ecd_
+
+```
+{"id": "RUSTSEC-2026-0406", "aliases": [], "modified": "2026-10-26T14:00:05.095427051Z", "summary": "Use-after-free when changing a multithreaded context with an unfinished frame", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04272 — openssl 0.10.64 is affected by GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022) for crates.io package openssl at version 0.10.64: rust-openssl Use-After-Free in `Md::fetch` and `Cipher::fetch`. None of the affected functions (openssl::cipher::Cipher::fetch, openssl::md::Md::fetch) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-4fcv-w3qc-ppgg
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-4fcv-w3qc-ppgg](https://osv.dev/vulnerability/GHSA-4fcv-w3qc-ppgg) · manifest · SHA-256 5f39e15490656881beb8d8fe7e9a378678c7e7d222efa1db29429979dcfad462_
+
+```
+{"id": "GHSA-4fcv-w3qc-ppgg", "aliases": ["RUSTSEC-2025-0022"], "modified": "2026-09-10T03:50:56.938932795Z", "summary": "rust-openssl Use-After-Free in `Md::fetch` and `Cipher::fetch`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.72).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04278 — openssl 0.10.64 is affected by GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.3 / 100
+- CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L`)
+
+OSV.dev reports GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357) for crates.io package openssl at version 0.10.64: openssl's `MemBio::get_buf` has undefined behavior with empty buffers. None of the affected functions (openssl::bio::MemBio::get_buf) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-q445-7m23-qrmw
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-q445-7m23-qrmw](https://osv.dev/vulnerability/GHSA-q445-7m23-qrmw) · manifest · SHA-256 e5aac99d59ed02309315e7dacc9c23bf9b2fc66a931c932537ceeed849043fcb_
+
+```
+{"id": "GHSA-q445-7m23-qrmw", "aliases": ["RUSTSEC-2024-0357"], "modified": "2026-09-10T03:50:16.826604285Z", "summary": "openssl's `MemBio::get_buf` has undefined behavior with empty buffers", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.66).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04279 — openssl 0.10.64 is affected by GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/openssl@0.10.64`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004) for crates.io package openssl at version 0.10.64: rust-openssl ssl::select_next_proto use after free. None of the affected functions (openssl::ssl::select_next_proto) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-rpmj-rpgj-qmpm
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-rpmj-rpgj-qmpm](https://osv.dev/vulnerability/GHSA-rpmj-rpgj-qmpm) · manifest · SHA-256 c2da7e4a4e9295370252573626f1a6ede4af1f4c111a59d7665d6fe7deed3391_
+
+```
+{"id": "GHSA-rpmj-rpgj-qmpm", "aliases": ["CVE-2025-24898", "RUSTSEC-2025-0004"], "modified": "2026-09-10T03:50:06.186180196Z", "summary": "rust-openssl ssl::select_next_proto use after free", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:L/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.10.70).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04296 — rustls 0.21.10 is affected by GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/rustls@0.21.10`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 28.3 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev reports GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336) for crates.io package rustls at version 0.21.10: Denial of Service Vulnerability in Rustls Library. None of the affected functions (rustls::ConnectionCommon::complete_io) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+
+**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-6g7w-8wpp-frhj
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev GHSA-6g7w-8wpp-frhj](https://osv.dev/vulnerability/GHSA-6g7w-8wpp-frhj) · manifest · SHA-256 4c7c44aaf23fe1a2eeb55732c482d24a14a922e88d913b2003cc39c1b6bf9adb_
+
+```
+{"id": "GHSA-6g7w-8wpp-frhj", "aliases": ["CVE-2024-32650", "RUSTSEC-2024-0336"], "modified": "2026-09-10T03:50:12.362313607Z", "summary": "Denial of Service Vulnerability in Rustls Library", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Upgrade to a fixed version (0.21.11, 0.22.4, 0.23.5).
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04244 — atty 0.2.14: informational advisory RUSTSEC-2024-0375 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `dependency:crates.io/atty@0.2.14`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2024-0375 for crates.io package atty at version 0.2.14 as informational (unmaintained): `atty` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0375
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2024-0375](https://osv.dev/vulnerability/RUSTSEC-2024-0375) · manifest · SHA-256 5ab589485ba21a4b551852292d871ffa8242a5548f609f54b6f55b13dd6e01d2_
+
+```
+{"id": "RUSTSEC-2024-0375", "aliases": [], "modified": "2024-09-26T12:26:22Z", "summary": "`atty` is unmaintained", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04245 — backoff 0.4.0: informational advisory RUSTSEC-2025-0012 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `dependency:crates.io/backoff@0.4.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0012 for crates.io package backoff at version 0.4.0 as informational (unmaintained): `backoff` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0012
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0012](https://osv.dev/vulnerability/RUSTSEC-2025-0012) · manifest · SHA-256 816a40adb812df8b86e1e124ae3cc792e36ed026e571318b62dabe98b2dc8f8e_
+
+```
+{"id": "RUSTSEC-2025-0012", "aliases": [], "modified": "2025-08-06T09:33:04Z", "summary": "`backoff` is unmaintained.", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04246 — bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `dependency:crates.io/bincode@1.3.3`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0141 for crates.io package bincode at version 1.3.3 as informational (unmaintained): Bincode is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0141
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSEC-2025-0141) · manifest · SHA-256 2d4ec91d374dc1d163952a86f9da46edd4e89ca1a0fd828fd523b2b1dcfe3a14_
+
+```
+{"id": "RUSTSEC-2025-0141", "aliases": [], "modified": "2026-01-16T11:07:28.867553Z", "summary": "Bincode is unmaintained", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04257 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `dependency:crates.io/derivative@2.2.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2024-0388 for crates.io package derivative at version 2.2.0 as informational (unmaintained): `derivative` is unmaintained; consider using an alternative. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0388
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSEC-2024-0388) · manifest · SHA-256 0624a2acbe96d2e8c44b2e7c9e0253aa4d99e8e969cd062a4b077f6a30749e57_
+
+```
+{"id": "RUSTSEC-2024-0388", "aliases": [], "modified": "2024-11-10T13:34:40Z", "summary": "`derivative` is unmaintained; consider using an alternative", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04264 — im 15.1.0: informational advisory RUSTSEC-2026-0248 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `dependency:crates.io/im@15.1.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2026-0248 for crates.io package im at version 15.1.0 as informational (unmaintained): im is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0248
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0248](https://osv.dev/vulnerability/RUSTSEC-2026-0248) · manifest · SHA-256 98fe6fbd127fa4e0594c014a49ab9f663bd756f904f5a70bc9cd943074c8750d_
+
+```
+{"id": "RUSTSEC-2026-0248", "aliases": [], "modified": "2026-08-10T19:45:04.540038805Z", "summary": "im is unmaintained", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04267 — libsecp256k1 0.6.0: informational advisory RUSTSEC-2025-0161 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `dependency:crates.io/libsecp256k1@0.6.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0161 for crates.io package libsecp256k1 at version 0.6.0 as informational (unmaintained): libsecp256k1 is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0161
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0161](https://osv.dev/vulnerability/RUSTSEC-2025-0161) · manifest · SHA-256 287d3b0ed00abdfa2431a9984273bfae1b5e960ba6376570a4f107cba3628c8f_
+
+```
+{"id": "RUSTSEC-2025-0161", "aliases": [], "modified": "2026-04-14T11:30:08.962845Z", "summary": "libsecp256k1 is unmaintained", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04270 — net2 0.2.37: informational advisory RUSTSEC-2020-0016 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
+- Affected asset: `dependency:crates.io/net2@0.2.37`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 20.4 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2020-0016 for crates.io package net2 at version 0.2.37 as informational (unmaintained): `net2` crate has been deprecated; use `socket2` instead. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2020-0016
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2020-0016](https://osv.dev/vulnerability/RUSTSEC-2020-0016) · manifest · SHA-256 d9b2ce19bd36810a17e4c9438ef5ad525e1c6a457fc693576c0a07bf8adb0c26_
+
+```
+{"id": "RUSTSEC-2020-0016", "aliases": [], "modified": "2020-10-02T01:29:11Z", "summary": "`net2` crate has been deprecated; use `socket2` instead", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04242 — anyhow 1.0.80 is affected by RUSTSEC-2026-0190 (no severity rating)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/anyhow@1.0.80`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 17.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0190 for crates.io package anyhow at version 1.0.80: Unsoundness in `Error::downcast_mut()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (anyhow::Error::downcast_mut) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0190
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSEC-2026-0190) · manifest · SHA-256 9b326e11cad5998fcbb9f1ebd28aa1272c12693cad71de91698880f0657cc0b1_
+
+```
+{"id": "RUSTSEC-2026-0190", "aliases": [], "modified": "2026-06-29T14:15:03.650725453Z", "summary": "Unsoundness in `Error::downcast_mut()`", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (1.0.103) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04269 — memmap2 0.5.10 is affected by RUSTSEC-2026-0186 (no severity rating)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/memmap2@0.5.10`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 17.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0186 for crates.io package memmap2 at version 0.5.10: Unchecked pointer offset in crate `memmap2`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (memmap2::Mmap::advise_range, memmap2::Mmap::unchecked_advise_range, memmap2::MmapMut::advise_range, memmap2::MmapMut::flush_async_range, memmap2::MmapMut::flush_range, memmap2::MmapMut::unchecked_advise_range) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0186
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0186](https://osv.dev/vulnerability/RUSTSEC-2026-0186) · manifest · SHA-256 abc4a56ddad0b63aae8760b21a5d27d9651dcf6482143baacadf82a8c5338590_
+
+```
+{"id": "RUSTSEC-2026-0186", "aliases": [], "modified": "2026-06-22T18:15:03.600280397Z", "summary": "Unchecked pointer offset in crate `memmap2`", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (0.9.11) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04315 — tokio 1.29.1 is affected by RUSTSEC-2026-0386 (no severity rating)
+
+- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
+- Affected asset: `dependency:crates.io/tokio@1.29.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 17.1 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev reports RUSTSEC-2026-0386 for crates.io package tokio at version 1.29.1: `AsyncFd::new` and related constructors violate I/O safety. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+
+**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0386
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSEC-2026-0386) · manifest · SHA-256 1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6_
+
+```
+{"id": "RUSTSEC-2026-0386", "aliases": [], "modified": "2026-10-23T14:45:03.847864944Z", "summary": "`AsyncFd::new` and related constructors violate I/O safety", "severity": null, "declared_in_manifest": true}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+
+**Recommendation.** Triage the advisory; upgrade to a fixed version (1.51.6, 1.53.3) if it applies.
+
+**Retest procedure.** Re-run the dependency scan after upgrading.
+
+### QSI-2026-04239 — No post-quantum capable cryptographic library detected
+
+- Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `dependencies`
+- Data source: dependency manifests
+- Detection method: Dependency name matching.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 13.4 / 100
+- CVSS v3.1: not applicable
+
+Across 158 dependency manifests, QSI found crypto libraries (curve25519-dalek, ed25519-dalek, node-forge, openssl, ring, rustls) but none from its PQC-capable list.
+
+**Potential impact.** Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.
+
+**Reproduction steps.**
+
+```
+Review the dependency manifests listed in the evidence.
+```
+
+**Evidence.**
+
+_dependency · Cargo.lock, Cargo.toml, account-decoder/Cargo.toml, accounts-db/Cargo.toml, accounts-db/store-tool/Cargo.toml, banks-client/Cargo.toml, banks-interface/Cargo.toml, banks-server/Cargo.toml, bloom/Cargo.toml, bucket_map/Cargo.toml, cargo-registry/Cargo.toml, clap-utils/Cargo.toml, clap-v3-utils/Cargo.toml, cli/Cargo.toml, cli-config/Cargo.toml, cli-output/Cargo.toml, client/Cargo.toml, connection-cache/Cargo.toml, core/Cargo.toml, cost-model/Cargo.toml, docs/package-lock.json, docs/package.json, d · SHA-256 873aaf1b8950113f66ad4504eb0962c08e2a05a4777a1601d708ff7dd1a3a411_
+
+```
+Crypto libraries: curve25519-dalek, ed25519-dalek, node-forge, openssl, ring, rustls. PQC support depends on the version for: openssl
+```
+
+**Limitations of the check.** Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.
+
+**Recommendation.** Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).
+
+**Retest procedure.** Re-scan after upgrades.
+
+### QSI-2026-04240 — adler 1.0.2: informational advisory RUSTSEC-2025-0056 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/adler@1.0.2`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0056 for crates.io package adler at version 1.0.2 as informational (unmaintained): adler crate is unmaintained, use adler2 instead. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0056
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0056](https://osv.dev/vulnerability/RUSTSEC-2025-0056) · manifest · SHA-256 e9b7ae0431d69f626bc876560ccaff44bb57b35757fd9296256424ca73e69fd2_
+
+```
+{"id": "RUSTSEC-2025-0056", "aliases": [], "modified": "2025-09-05T09:05:48Z", "summary": "adler crate is unmaintained, use adler2 instead", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04241 — ansi_term 0.11.0: informational advisory RUSTSEC-2021-0139 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/ansi_term@0.11.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2021-0139 for crates.io package ansi_term at version 0.11.0 as informational (unmaintained): ansi_term is Unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2021-0139
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2021-0139](https://osv.dev/vulnerability/RUSTSEC-2021-0139) · manifest · SHA-256 de5d4542b27afa47634a32a636aaf6122580e13132fee8a7d4fc9eec3cbb2e7f_
+
+```
+{"id": "RUSTSEC-2021-0139", "aliases": [], "modified": "2023-09-06T22:52:31Z", "summary": "ansi_term is Unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04247 — bitmaps 2.1.0: informational advisory RUSTSEC-2026-0247 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/bitmaps@2.1.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2026-0247 for crates.io package bitmaps at version 2.1.0 as informational (unmaintained): bitmaps is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0247
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0247](https://osv.dev/vulnerability/RUSTSEC-2026-0247) · manifest · SHA-256 0490df19bf77e9550b234acd867daf2068a02e110718d7cc15521f8ac2a12dfd_
+
+```
+{"id": "RUSTSEC-2026-0247", "aliases": [], "modified": "2026-08-10T19:45:04.540318330Z", "summary": "bitmaps is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04265 — instant 0.1.12: informational advisory RUSTSEC-2024-0384 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/instant@0.1.12`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2024-0384 for crates.io package instant at version 0.1.12 as informational (unmaintained): `instant` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0384
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2024-0384](https://osv.dev/vulnerability/RUSTSEC-2024-0384) · manifest · SHA-256 7f4b719b4e4bb232235b9d7f05f5a0b3918208f119164caa2133d8b6ed869cee_
+
+```
+{"id": "RUSTSEC-2024-0384", "aliases": [], "modified": "2024-11-10T13:10:28Z", "summary": "`instant` is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04271 — number_prefix 0.4.0: informational advisory RUSTSEC-2025-0119 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/number_prefix@0.4.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0119 for crates.io package number_prefix at version 0.4.0 as informational (unmaintained): number_prefix crate is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0119
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0119](https://osv.dev/vulnerability/RUSTSEC-2025-0119) · manifest · SHA-256 fdb2df9598c08223c197071bbc0a302c79f15f783a40297c48b4513e4162cda5_
+
+```
+{"id": "RUSTSEC-2025-0119", "aliases": [], "modified": "2025-11-18T08:13:56Z", "summary": "number_prefix crate is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04283 — paste 1.0.9: informational advisory RUSTSEC-2024-0436 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/paste@1.0.9`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2024-0436 for crates.io package paste at version 1.0.9 as informational (unmaintained): paste - no longer maintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0436
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSEC-2024-0436) · manifest · SHA-256 ea867adb8ba26c96c3779becf55b3de25d46f37f23ab55131e09c98a8b0b9975_
+
+```
+{"id": "RUSTSEC-2024-0436", "aliases": [], "modified": "2026-01-27T22:03:15.694766Z", "summary": "paste - no longer maintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04284 — proc-macro-error 1.0.4: informational advisory RUSTSEC-2024-0370 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/proc-macro-error@1.0.4`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2024-0370 for crates.io package proc-macro-error at version 1.0.4 as informational (unmaintained): proc-macro-error is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0370
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2024-0370](https://osv.dev/vulnerability/RUSTSEC-2024-0370) · manifest · SHA-256 31fe0830d6149ef7bd8a557f7bdf7451b97b71aa4e25f7a96204c4fc47ba193f_
+
+```
+{"id": "RUSTSEC-2024-0370", "aliases": [], "modified": "2026-06-07T20:00:03.923932350Z", "summary": "proc-macro-error is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04293 — ring 0.16.20: informational advisory RUSTSEC-2025-0010 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/ring@0.16.20`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0010 for crates.io package ring at version 0.16.20 as informational (unmaintained): Versions of *ring* prior to 0.17 are unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0010
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0010](https://osv.dev/vulnerability/RUSTSEC-2025-0010) · manifest · SHA-256 06c65bc49c12c2b310641d982d20a797bd6e77a10a2b1f0a90c92992a1fd1260_
+
+```
+{"id": "RUSTSEC-2025-0010", "aliases": [], "modified": "2025-03-07T15:46:47Z", "summary": "Versions of *ring* prior to 0.17 are unmaintained.", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04300 — rustls-pemfile 0.2.1: informational advisory RUSTSEC-2025-0134 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/rustls-pemfile@0.2.1`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0134 for crates.io package rustls-pemfile at version 0.2.1 as informational (unmaintained): rustls-pemfile is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0134
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0134](https://osv.dev/vulnerability/RUSTSEC-2025-0134) · manifest · SHA-256 8a337a969850fe57bfcbd48340c157654002251ff4155f018ebd3fc00f0657fc_
+
+```
+{"id": "RUSTSEC-2025-0134", "aliases": [], "modified": "2025-12-05T19:07:59.622592Z", "summary": "rustls-pemfile is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04301 — rustls-pemfile 1.0.0: informational advisory RUSTSEC-2025-0134 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/rustls-pemfile@1.0.0`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2025-0134 for crates.io package rustls-pemfile at version 1.0.0 as informational (unmaintained): rustls-pemfile is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0134
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2025-0134](https://osv.dev/vulnerability/RUSTSEC-2025-0134) · manifest · SHA-256 8a337a969850fe57bfcbd48340c157654002251ff4155f018ebd3fc00f0657fc_
+
+```
+{"id": "RUSTSEC-2025-0134", "aliases": [], "modified": "2025-12-05T19:07:59.622592Z", "summary": "rustls-pemfile is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04307 — sized-chunks 0.6.5: informational advisory RUSTSEC-2026-0251 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/sized-chunks@0.6.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2026-0251 for crates.io package sized-chunks at version 0.6.5 as informational (unmaintained): sized-chunks is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0251
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0251](https://osv.dev/vulnerability/RUSTSEC-2026-0251) · manifest · SHA-256 b1194118ff1622d83b3984da14414e9ccdfe6ae60a578d626deeaebd941f84a1_
+
+```
+{"id": "RUSTSEC-2026-0251", "aliases": [], "modified": "2026-08-10T19:45:04.444367447Z", "summary": "sized-chunks is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04317 — unsafe-libyaml 0.2.10: informational advisory RUSTSEC-2024-0449 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/unsafe-libyaml@0.2.10`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2024-0449 for crates.io package unsafe-libyaml at version 0.2.10 as informational (unmaintained): unsafe-libyaml is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0449
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2024-0449](https://osv.dev/vulnerability/RUSTSEC-2024-0449) · manifest · SHA-256 26d102e813573cb2577fa623e28e26359b004df953372bdda3fd7cf447bb3d4b_
+
+```
+{"id": "RUSTSEC-2024-0449", "aliases": [], "modified": "2026-10-12T11:45:02.518189315Z", "summary": "unsafe-libyaml is unmaintained", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+### QSI-2026-04320 — yaml-rust 0.4.5: informational advisory RUSTSEC-2024-0320 (unmaintained)
+
+- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
+- Affected asset: `dependency:crates.io/yaml-rust@0.4.5`
+- Data source: OSV.dev
+- Detection method: OSV.dev querybatch API lookup of the exact declared version.
+- Analyzer: dependencies 1.2.0 · 2026-10-28 12:15 UTC
+- Priority score: 12.3 / 100
+- CVSS v3.1: not applicable
+
+OSV.dev lists RUSTSEC-2024-0320 for crates.io package yaml-rust at version 0.4.5 as informational (unmaintained): yaml-rust is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+
+**Potential impact.** No known vulnerability. Future security fixes may not be released.
+
+**Reproduction steps.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0320
+```
+
+**Evidence.**
+
+_tool_output · [OSV.dev RUSTSEC-2024-0320](https://osv.dev/vulnerability/RUSTSEC-2024-0320) · manifest · SHA-256 773ccb39b8497321518510dcf5661ce8011377dd59df5abcc44b583461b36195_
+
+```
+{"id": "RUSTSEC-2024-0320", "aliases": [], "modified": "2024-11-01T12:31:51Z", "summary": "yaml-rust is unmaintained.", "severity": null, "declared_in_manifest": false}
+```
+
+**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+
+**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+
+**Retest procedure.** Re-run the dependency scan after the change.
+
+
+## 8. Post-quantum assessment
+
+| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+|---|---|---|
+| Data/key lifetime x | 5 | 5 |
+| Migration time y | 3 | 3 |
+| Assumed years to CRQC z | 12 (central) | 12 |
+| x + y − z | -4 → time available under this scenario | -4 → time available under this scenario |
+_No signature lifetime is set for the project; the data lifetime is used as an assumption._
+#### Where z comes from
+
+Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+
+| Within | Likelihood | The report's wording |
+|---|---|---|
+| 5 years | ~15% | averaged estimate |
+| 10 years | 28-49% | quite possible |
+| 15 years | 51-70% | likely |
+
+**Why this scenario (central, z = 12):** Between the 10-year band (28-49%) and the 15-year band (51-70%): roughly where the experts' averaged likelihood crosses one half. More than half of the respondents (13 of 26) already put the likelihood at 50% or more for some horizon.
+_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Small technology company”, not the client's figures; with the client's actual lifetimes the verdict can change._
+
+### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
+
+- Classical only — channel key exchange (TLS, Noise, handshakes): TLS (classical groups) (1 file(s))
+
+**Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+
+_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
+
+### What the quantum-vulnerable algorithms do
+
+| Role | Algorithms (files) | ID | First step |
+|---|---|---|---|
+| **channel key exchange (TLS, Noise, handshakes)** | TLS ECDHE (1) | QSI-2026-04230 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
+| **threshold signing and MPC protocols** | Pedersen commitment (25) | QSI-2026-04236 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
+| **transaction and message signing** | Ed25519 (5), ECDSA (3), BN254 (alt_bn128) (1) | QSI-2026-04233, QSI-2026-04234, QSI-2026-04235, QSI-2026-04238 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | BN254 (alt_bn128) (10), Ed25519 (9), Bulletproofs (2) | QSI-2026-04231, QSI-2026-04232, QSI-2026-04237 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+
+_Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
+No readiness questionnaire was completed for this project.
+
+### Quantum algorithms relevant to this inventory
+
+| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+|---|---|---|---|---|
+| Shor's algorithm — factoring | breaks | Q1 | RSA (29) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
+| Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | BN254 (alt_bn128) (15), ElGamal (4) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BN254 (alt_bn128) (15), Bulletproofs (2), ECDSA (13), Ed25519 (15), Pedersen commitment (25) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | BLAKE3 (5), HMAC (1), Keccak-256 (3), SHA-1 (15), SHA-2 (27), SHA-3 (3), SHAKE (1) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
+| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | BLAKE3 (5), Keccak-256 (3), SHA-1 (15), SHA-2 (27), SHA-3 (3), SHAKE (1) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+
+_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+
+
+## 9. Limitations and assumptions
+
+- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
+
+## 10. Remediation plan / Priorities for 30, 60 and 90 days
+
+### 30 days
+
+| Priority | ID | Action | Type | Closure criteria |
+|---|---|---|---|---|
+| P2 | QSI-2026-04273 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-8c75-8mhr-p7r9 (CVE-2026-41678). |
+| P2 | QSI-2026-04274 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-ghm9-cr32-g9qj (CVE-2026-41681). |
+| P2 | QSI-2026-04275 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-hppc-g8h3-xhp3 (CVE-2026-41898). |
+| P2 | QSI-2026-04277 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-pqf5-4pqq-29f5 (CVE-2026-41676). |
+| P2 | QSI-2026-04281 | Upgrade openssl to a fixed version (0.10.79). | root-cause fix | Dependency scan no longer reports GHSA-xp3w-r5p5-63rr (CVE-2026-42327). |
+| P2 | QSI-2026-04285 | Upgrade quinn-proto to a fixed version (0.11.15). | root-cause fix | Dependency scan no longer reports GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185). |
+| P2 | QSI-2026-04286 | Upgrade quinn-proto to a fixed version (0.11.14). | root-cause fix | Dependency scan no longer reports GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037). |
+| P2 | QSI-2026-04311 | Upgrade tar to a fixed version (0.4.45). | root-cause fix | Dependency scan no longer reports GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068). |
+| P2 | QSI-2026-04302 | Upgrade rustls-webpki to a fixed version (0.103.13, 0.104.0-alpha.7). | root-cause fix | Dependency scan no longer reports GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104). |
+| P2 | QSI-2026-04331 | Upgrade semver to a fixed version (5.7.2, 6.3.1, 7.5.2). | root-cause fix | Dependency scan no longer reports GHSA-c2qf-rxjj-qqgw (CVE-2022-25883). |
+| P2 | QSI-2026-04333 | Upgrade @babel/plugin-transform-modules-systemjs to a fixed version (7.29.4, 8.0.0-alpha.13). | root-cause fix | Dependency scan no longer reports GHSA-fv7c-fp4j-7gwp (CVE-2026-44728). |
+| P2 | QSI-2026-04336 | Upgrade js-yaml to a fixed version (3.15.2, 4.3.2). | root-cause fix | Dependency scan no longer reports GHSA-2883-xcg3-v3hh (CVE-2026-84375). |
+| P2 | QSI-2026-04337 | Upgrade js-yaml to a fixed version (3.15.0, 4.3.0). | root-cause fix | Dependency scan no longer reports GHSA-52cp-r559-cp3m (CVE-2026-59869). |
+| P2 | QSI-2026-04338 | Upgrade js-yaml to a fixed version (3.15.1, 4.3.1). | root-cause fix | Dependency scan no longer reports GHSA-5p4m-2wfm-xmqj. |
+| P2 | QSI-2026-04342 | Upgrade semver to a fixed version (5.7.2, 6.3.1, 7.5.2). | root-cause fix | Dependency scan no longer reports GHSA-c2qf-rxjj-qqgw (CVE-2022-25883). |
+| P2 | QSI-2026-04248 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-04249 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-04250 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-04251 | Upgrade borsh to a fixed version (1.0.0-alpha.1). | root-cause fix | Dependency scan no longer reports GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033). |
+| P2 | QSI-2026-04252 | Upgrade borsh to a fixed version (1.0.0-alpha.1). | root-cause fix | Dependency scan no longer reports GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033). |
+| P2 | QSI-2026-04253 | Upgrade bytes to a fixed version (1.11.1). | root-cause fix | Dependency scan no longer reports GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
+| P2 | QSI-2026-04254 | Upgrade crossbeam-channel to a fixed version (0.5.15). | root-cause fix | Dependency scan no longer reports GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024). |
+| P2 | QSI-2026-04258 | Upgrade ed25519-dalek to a fixed version (2.0.0). | root-cause fix | Dependency scan no longer reports GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093). |
+| P2 | QSI-2026-04276 | Upgrade openssl to a fixed version (0.10.80). | root-cause fix | Dependency scan no longer reports GHSA-phqj-4mhp-q6mq (CVE-2026-45784). |
+| P2 | QSI-2026-04282 | Upgrade openssl to a fixed version (0.10.79). | root-cause fix | Dependency scan no longer reports GHSA-xv59-967r-8726 (CVE-2026-44662). |
+| P2 | QSI-2026-04297 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-04306 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-04310 | Upgrade tar to a fixed version (0.4.46). | root-cause fix | Dependency scan no longer reports GHSA-3pv8-6f4r-ffg2. |
+| P2 | QSI-2026-04312 | Upgrade tar to a fixed version (0.4.45). | root-cause fix | Dependency scan no longer reports GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067). |
+| P2 | QSI-2026-04259 | Upgrade h2 to a fixed version (0.3.26, 0.4.4). | root-cause fix | Dependency scan no longer reports GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332). |
+| P2 | QSI-2026-04261 | Upgrade idna to a fixed version (1.0.0). | root-cause fix | Dependency scan no longer reports GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421). |
+| P2 | QSI-2026-04262 | Upgrade idna to a fixed version (1.0.0). | root-cause fix | Dependency scan no longer reports GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421). |
+| P2 | QSI-2026-04292 | Upgrade ring to a fixed version (0.17.12). | root-cause fix | Dependency scan no longer reports GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009). |
+| P2 | QSI-2026-04294 | Upgrade ring to a fixed version (0.17.12). | root-cause fix | Dependency scan no longer reports GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009). |
+| P2 | QSI-2026-04313 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P2 | QSI-2026-04332 | Upgrade @babel/helpers to a fixed version (7.26.10, 8.0.0-alpha.17). | root-cause fix | Dependency scan no longer reports GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
+| P2 | QSI-2026-04334 | Upgrade @babel/runtime to a fixed version (7.26.10, 8.0.0-alpha.17). | root-cause fix | Dependency scan no longer reports GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
+| P2 | QSI-2026-04335 | Upgrade @babel/runtime-corejs3 to a fixed version (7.26.10, 8.0.0-alpha.17). | root-cause fix | Dependency scan no longer reports GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
+| P2 | QSI-2026-04339 | Upgrade js-yaml to a fixed version (3.15.0, 4.2.0). | root-cause fix | Dependency scan no longer reports GHSA-h67p-54hq-rp68 (CVE-2026-53550). |
+| P2 | QSI-2026-04340 | Upgrade js-yaml to a fixed version (3.14.2, 4.1.1). | root-cause fix | Dependency scan no longer reports GHSA-mh29-5h37-fv8m (CVE-2025-64718). |
+| P2 | QSI-2026-04343 | Upgrade @sideway/formula to a fixed version (3.0.1). | root-cause fix | Dependency scan no longer reports GHSA-c2jc-4fpr-4vhg (CVE-2023-25166). |
+| P2 | QSI-2026-04243 | Upgrade atty to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145). |
+| P2 | QSI-2026-04256 | Upgrade curve25519-dalek to a fixed version (4.1.3). | root-cause fix | Dependency scan no longer reports GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344). |
+| P2 | QSI-2026-04280 | Upgrade openssl to a fixed version (0.10.78). | root-cause fix | Dependency scan no longer reports GHSA-xmgf-hq76-4vx2 (CVE-2026-41677). |
+| P2 | QSI-2026-04290 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-04291 | Upgrade rand to a fixed version (0.10.1, 0.8.6, 0.9.3). | root-cause fix | Dependency scan no longer reports GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-04295 | Upgrade rpassword to a fixed version (7.5.0). | root-cause fix | Dependency scan no longer reports GHSA-2p6r-x3vv-xqm2. |
+| P2 | QSI-2026-04298 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-h2v8-394m-p7vv. |
+| P2 | QSI-2026-04299 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-04314 | Upgrade tokio to a fixed version (1.38.2, 1.43.1, 1.44.2). | root-cause fix | Dependency scan no longer reports GHSA-rr8g-9fpq-6wmg (RUSTSEC-2025-0023). |
+| P2 | QSI-2026-04303 | Upgrade rustls-webpki to a fixed version (0.103.12, 0.104.0-alpha.6). | root-cause fix | Dependency scan no longer reports GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098). |
+| P2 | QSI-2026-04304 | Upgrade rustls-webpki to a fixed version (0.103.12, 0.104.0-alpha.6). | root-cause fix | Dependency scan no longer reports GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099). |
+| P2 | QSI-2026-04316 | Upgrade tracing-subscriber to a fixed version (0.3.20). | root-cause fix | Dependency scan no longer reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
+| P2 | QSI-2026-04330 | Upgrade @babel/core to a fixed version (7.29.6, 8.0.0-rc.6). | root-cause fix | Dependency scan no longer reports GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356). |
+| P2 | QSI-2026-04341 | Upgrade @babel/core to a fixed version (7.29.6, 8.0.0-rc.6). | root-cause fix | Dependency scan no longer reports GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356). |
+| P2 | QSI-2026-04266 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-04272 | Upgrade openssl to a fixed version (0.10.72). | root-cause fix | Dependency scan no longer reports GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022). |
+| P2 | QSI-2026-04278 | Upgrade openssl to a fixed version (0.10.66). | root-cause fix | Dependency scan no longer reports GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357). |
+| P2 | QSI-2026-04279 | Upgrade openssl to a fixed version (0.10.70). | root-cause fix | Dependency scan no longer reports GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004). |
+| P2 | QSI-2026-04296 | Upgrade rustls to a fixed version (0.21.11, 0.22.4, 0.23.5). | root-cause fix | Dependency scan no longer reports GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336). |
+### 60 days
+
+| Priority | ID | Action | Type | Closure criteria |
+|---|---|---|---|---|
+| P2 | QSI-2026-04230 | Upgrade rustls to 0.23 or later with the aws-lc-rs provider and the prefer-post-quantum feature. | root-cause fix | A PQ-capable client negotiates X25519MLKEM768. |
+| P3 | QSI-2026-04255 | Triage RUSTSEC-2026-0204; upgrade crossbeam-epoch to a fixed version (0.9.20) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0204, or the triage is recorded. |
+| P3 | QSI-2026-04260 | Triage RUSTSEC-2026-0258; upgrade h2 to a fixed version (0.4.16) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0258, or the triage is recorded. |
+| P3 | QSI-2026-04263 | Triage RUSTSEC-2023-0126; upgrade im to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2023-0126, or the triage is recorded. |
+| P3 | QSI-2026-04268 | Triage RUSTSEC-2026-0253; upgrade lru to a fixed version (0.18.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0253, or the triage is recorded. |
+| P3 | QSI-2026-04287 | Triage RUSTSEC-2026-0338; upgrade quinn-proto to a fixed version (0.11.18) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0338, or the triage is recorded. |
+| P3 | QSI-2026-04288 | Triage RUSTSEC-2026-0339; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0339, or the triage is recorded. |
+| P3 | QSI-2026-04289 | Triage RUSTSEC-2026-0342; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0342, or the triage is recorded. |
+| P3 | QSI-2026-04305 | Triage RUSTSEC-2026-0382 (CVE-2026-111943); upgrade rustls-webpki to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0382 (CVE-2026-111943), or the triage is recorded. |
+| P3 | QSI-2026-04308 | Triage RUSTSEC-2026-0255; upgrade sized-chunks to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0255, or the triage is recorded. |
+| P3 | QSI-2026-04309 | Triage RUSTSEC-2026-0191; upgrade solana_rbpf to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0191, or the triage is recorded. |
+| P3 | QSI-2026-04318 | Triage RUSTSEC-2026-0381 (CVE-2026-111943); upgrade webpki-roots to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0381 (CVE-2026-111943), or the triage is recorded. |
+| P3 | QSI-2026-04319 | Triage RUSTSEC-2026-0381 (CVE-2026-111943); upgrade webpki-roots to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0381 (CVE-2026-111943), or the triage is recorded. |
+| P3 | QSI-2026-04321 | Triage RUSTSEC-2026-0395; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0395, or the triage is recorded. |
+| P3 | QSI-2026-04322 | Triage RUSTSEC-2026-0397; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0397, or the triage is recorded. |
+| P3 | QSI-2026-04323 | Triage RUSTSEC-2026-0399; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0399, or the triage is recorded. |
+| P3 | QSI-2026-04324 | Triage RUSTSEC-2026-0400; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0400, or the triage is recorded. |
+| P3 | QSI-2026-04325 | Triage RUSTSEC-2026-0401; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0401, or the triage is recorded. |
+| P3 | QSI-2026-04326 | Triage RUSTSEC-2026-0402; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0402, or the triage is recorded. |
+| P3 | QSI-2026-04327 | Triage RUSTSEC-2026-0403; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0403, or the triage is recorded. |
+| P3 | QSI-2026-04328 | Triage RUSTSEC-2026-0404; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0404, or the triage is recorded. |
+| P3 | QSI-2026-04329 | Triage RUSTSEC-2026-0406; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0406, or the triage is recorded. |
+| P3 | QSI-2026-04242 | Triage RUSTSEC-2026-0190; upgrade anyhow to a fixed version (1.0.103) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0190, or the triage is recorded. |
+| P3 | QSI-2026-04269 | Triage RUSTSEC-2026-0186; upgrade memmap2 to a fixed version (0.9.11) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0186, or the triage is recorded. |
+| P3 | QSI-2026-04315 | Triage RUSTSEC-2026-0386; upgrade tokio to a fixed version (1.51.6, 1.53.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0386, or the triage is recorded. |
+### 90 days
+
+| Priority | ID | Action | Type | Closure criteria |
+|---|---|---|---|---|
+| P3 | QSI-2026-04238 | Add Ed25519 usages at the wallet's transaction signing to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-04233 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-04234 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-04235 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-04236 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-04231 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-04232 | Add BN254 (alt_bn128) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-04237 | Add Bulletproofs usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-04238 | Plan migration of Ed25519 to ? (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ? or a hybrid scheme in use. |
+| P4 | QSI-2026-04233 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-04234 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-04235 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-04236 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-04231 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-04232 | Plan migration of BN254 (alt_bn128) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-04237 | Plan migration of Bulletproofs to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-04244 | Replace atty with a maintained alternative or record why it stays. | root-cause fix | atty replaced, or the decision recorded. |
+| P4 | QSI-2026-04245 | Replace backoff with a maintained alternative or record why it stays. | root-cause fix | backoff replaced, or the decision recorded. |
+| P4 | QSI-2026-04246 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
+| P4 | QSI-2026-04257 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
+| P4 | QSI-2026-04264 | Replace im with a maintained alternative or record why it stays. | root-cause fix | im replaced, or the decision recorded. |
+| P4 | QSI-2026-04267 | Replace libsecp256k1 with a maintained alternative or record why it stays. | root-cause fix | libsecp256k1 replaced, or the decision recorded. |
+| P4 | QSI-2026-04270 | Replace net2 with a maintained alternative or record why it stays. | root-cause fix | net2 replaced, or the decision recorded. |
+| P4 | QSI-2026-04240 | Replace adler with a maintained alternative or record why it stays. | root-cause fix | adler replaced, or the decision recorded. |
+| P4 | QSI-2026-04241 | Replace ansi_term with a maintained alternative or record why it stays. | root-cause fix | ansi_term replaced, or the decision recorded. |
+| P4 | QSI-2026-04247 | Replace bitmaps with a maintained alternative or record why it stays. | root-cause fix | bitmaps replaced, or the decision recorded. |
+| P4 | QSI-2026-04265 | Replace instant with a maintained alternative or record why it stays. | root-cause fix | instant replaced, or the decision recorded. |
+| P4 | QSI-2026-04271 | Replace number_prefix with a maintained alternative or record why it stays. | root-cause fix | number_prefix replaced, or the decision recorded. |
+| P4 | QSI-2026-04283 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P4 | QSI-2026-04284 | Replace proc-macro-error with a maintained alternative or record why it stays. | root-cause fix | proc-macro-error replaced, or the decision recorded. |
+| P4 | QSI-2026-04293 | Replace ring with a maintained alternative or record why it stays. | root-cause fix | ring replaced, or the decision recorded. |
+| P4 | QSI-2026-04300 | Replace rustls-pemfile with a maintained alternative or record why it stays. | root-cause fix | rustls-pemfile replaced, or the decision recorded. |
+| P4 | QSI-2026-04301 | Replace rustls-pemfile with a maintained alternative or record why it stays. | root-cause fix | rustls-pemfile replaced, or the decision recorded. |
+| P4 | QSI-2026-04307 | Replace sized-chunks with a maintained alternative or record why it stays. | root-cause fix | sized-chunks replaced, or the decision recorded. |
+| P4 | QSI-2026-04317 | Replace unsafe-libyaml with a maintained alternative or record why it stays. | root-cause fix | unsafe-libyaml replaced, or the decision recorded. |
+| P4 | QSI-2026-04320 | Replace yaml-rust with a maintained alternative or record why it stays. | root-cause fix | yaml-rust replaced, or the decision recorded. |
+
+## 11. Tools used
+
+- blockchain 1.0.0
+- certificates 1.1.0
+- chain_map 1.0.0
+- configs 1.1.0
+- dependencies 1.2.0
+- inventory_document 1.1.0
+- solidity 1.2.0
+- source_code 1.3.0
+- tls_code 1.1.0
+- tls_live 1.0.0
+- qsi-engine 1.2.0
+- OSV.dev API v1
+
+## 12. Sources and normative documents
+
+1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
+2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
+3. C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <https://arxiv.org/abs/2505.15917> (preprint (2025-05-21): < 1 million noisy qubits, < 1 week, 0.1% gate error, 1 µs surface-code cycle)
+4. C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <https://doi.org/10.22331/q-2021-04-15-433> (peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)
+5. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
+6. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+7. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+8. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+9. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+10. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+11. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+12. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+13. IANA — Transport Layer Security (TLS) Parameters (Supported Groups, SignatureScheme, Cipher Suites) — IANA. <https://www.iana.org/assignments/tls-parameters/> (living registry (checked 2026-10-13); 'Recommended' column Y/N/D)
+14. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+15. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+16. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+17. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+18. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
+19. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+20. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+21. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+22. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+23. OSV advisory GHSA-2883-xcg3-v3hh — OSV.dev. <https://osv.dev/vulnerability/GHSA-2883-xcg3-v3hh> (modified 2026-09-08T21:30:05.575808098Z)
+24. OSV advisory GHSA-2p6r-x3vv-xqm2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2p6r-x3vv-xqm2> (modified 2026-09-10T03:51:04.143649116Z)
+25. OSV advisory GHSA-3288-p39f-rqpv — OSV.dev. <https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv> (modified 2026-09-10T03:50:59.332505686Z)
+26. OSV advisory GHSA-3pv8-6f4r-ffg2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3pv8-6f4r-ffg2> (modified 2026-09-10T03:51:04.454810375Z)
+27. OSV advisory GHSA-434x-w66g-qw3r — OSV.dev. <https://osv.dev/vulnerability/GHSA-434x-w66g-qw3r> (modified 2026-09-10T03:50:33.995841351Z)
+28. OSV advisory GHSA-4fcv-w3qc-ppgg — OSV.dev. <https://osv.dev/vulnerability/GHSA-4fcv-w3qc-ppgg> (modified 2026-09-10T03:50:56.938932795Z)
+29. OSV advisory GHSA-4p46-pwfr-66x6 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4p46-pwfr-66x6> (modified 2026-09-10T03:50:56.900994558Z)
+30. OSV advisory GHSA-4w2j-m93h-cj5j — OSV.dev. <https://osv.dev/vulnerability/GHSA-4w2j-m93h-cj5j> (modified 2026-09-10T03:51:10.288925502Z)
+31. OSV advisory GHSA-4x5r-pxfx-6jf8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4x5r-pxfx-6jf8> (modified 2026-09-10T03:50:48.280629201Z)
+32. OSV advisory GHSA-52cp-r559-cp3m — OSV.dev. <https://osv.dev/vulnerability/GHSA-52cp-r559-cp3m> (modified 2026-09-10T03:50:12.263307536Z)
+33. OSV advisory GHSA-5p4m-2wfm-xmqj — OSV.dev. <https://osv.dev/vulnerability/GHSA-5p4m-2wfm-xmqj> (modified 2026-09-10T03:50:53.407436483Z)
+34. OSV advisory GHSA-6g7w-8wpp-frhj — OSV.dev. <https://osv.dev/vulnerability/GHSA-6g7w-8wpp-frhj> (modified 2026-09-10T03:50:12.362313607Z)
+35. OSV advisory GHSA-6xvm-j4wr-6v98 — OSV.dev. <https://osv.dev/vulnerability/GHSA-6xvm-j4wr-6v98> (modified 2026-09-10T03:50:37.796449419Z)
+36. OSV advisory GHSA-7gcf-g7xr-8hxj — OSV.dev. <https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj> (modified 2026-09-10T03:51:10.897685062Z)
+37. OSV advisory GHSA-82j2-j2ch-gfr8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-82j2-j2ch-gfr8> (modified 2026-09-19T03:55:33.412079637Z)
+38. OSV advisory GHSA-8c75-8mhr-p7r9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8c75-8mhr-p7r9> (modified 2026-09-10T03:50:43.807790048Z)
+39. OSV advisory GHSA-965h-392x-2mh5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-965h-392x-2mh5> (modified 2026-09-19T03:55:32.245575348Z)
+40. OSV advisory GHSA-968p-4wvh-cqc8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-968p-4wvh-cqc8> (modified 2026-09-10T03:50:22.971593530Z)
+41. OSV advisory GHSA-c2jc-4fpr-4vhg — OSV.dev. <https://osv.dev/vulnerability/GHSA-c2jc-4fpr-4vhg> (modified 2023-11-08T04:11:50.947189Z)
+42. OSV advisory GHSA-c2qf-rxjj-qqgw — OSV.dev. <https://osv.dev/vulnerability/GHSA-c2qf-rxjj-qqgw> (modified 2026-09-10T03:50:02.224637541Z)
+43. OSV advisory GHSA-c8m5-c952-6cm4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4> (modified 2026-10-27T16:15:05.354395696Z)
+44. OSV advisory GHSA-cq8v-f236-94qc — OSV.dev. <https://osv.dev/vulnerability/GHSA-cq8v-f236-94qc> (modified 2026-09-10T03:50:43.958966498Z)
+45. OSV advisory GHSA-fjx5-qpf4-xjf2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-fjx5-qpf4-xjf2> (modified 2024-09-23T16:34:09Z)
+46. OSV advisory GHSA-fv7c-fp4j-7gwp — OSV.dev. <https://osv.dev/vulnerability/GHSA-fv7c-fp4j-7gwp> (modified 2026-09-10T03:51:05.541786109Z)
+47. OSV advisory GHSA-g98v-hv3f-hcfr — OSV.dev. <https://osv.dev/vulnerability/GHSA-g98v-hv3f-hcfr> (modified 2026-09-10T03:49:53.897184297Z)
+48. OSV advisory GHSA-gchp-q4r4-x4ff — OSV.dev. <https://osv.dev/vulnerability/GHSA-gchp-q4r4-x4ff> (modified 2026-09-10T03:50:39.204912381Z)
+49. OSV advisory GHSA-ghm9-cr32-g9qj — OSV.dev. <https://osv.dev/vulnerability/GHSA-ghm9-cr32-g9qj> (modified 2026-09-10T03:51:01.732377930Z)
+50. OSV advisory GHSA-h2v8-394m-p7vv — OSV.dev. <https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv> (modified 2026-10-27T16:15:05.337819489Z)
+51. OSV advisory GHSA-h67p-54hq-rp68 — OSV.dev. <https://osv.dev/vulnerability/GHSA-h67p-54hq-rp68> (modified 2026-09-10T03:50:49.729923880Z)
+52. OSV advisory GHSA-h97m-ww89-6jmq — OSV.dev. <https://osv.dev/vulnerability/GHSA-h97m-ww89-6jmq> (modified 2026-09-10T03:50:21.562272915Z)
+53. OSV advisory GHSA-hppc-g8h3-xhp3 — OSV.dev. <https://osv.dev/vulnerability/GHSA-hppc-g8h3-xhp3> (modified 2026-09-10T03:51:02.103657748Z)
+54. OSV advisory GHSA-j4xf-2g29-59ph — OSV.dev. <https://osv.dev/vulnerability/GHSA-j4xf-2g29-59ph> (modified 2026-09-10T03:50:39.751471613Z)
+55. OSV advisory GHSA-mh29-5h37-fv8m — OSV.dev. <https://osv.dev/vulnerability/GHSA-mh29-5h37-fv8m> (modified 2026-09-10T03:50:58.469126910Z)
+56. OSV advisory GHSA-pg9f-39pc-qf8g — OSV.dev. <https://osv.dev/vulnerability/GHSA-pg9f-39pc-qf8g> (modified 2026-09-10T03:50:57.409985647Z)
+57. OSV advisory GHSA-phqj-4mhp-q6mq — OSV.dev. <https://osv.dev/vulnerability/GHSA-phqj-4mhp-q6mq> (modified 2026-09-10T03:51:06.601254514Z)
+58. OSV advisory GHSA-pqf5-4pqq-29f5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-pqf5-4pqq-29f5> (modified 2026-09-10T03:51:02.503624598Z)
+59. OSV advisory GHSA-q445-7m23-qrmw — OSV.dev. <https://osv.dev/vulnerability/GHSA-q445-7m23-qrmw> (modified 2026-09-10T03:50:16.826604285Z)
+60. OSV advisory GHSA-q6cp-qfwq-4gcv — OSV.dev. <https://osv.dev/vulnerability/GHSA-q6cp-qfwq-4gcv> (modified 2026-09-10T03:49:18.784343884Z)
+61. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
+62. OSV advisory GHSA-r6v5-fh4h-64xc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc> (modified 2026-09-10T03:50:35.583241382Z)
+63. OSV advisory GHSA-rpmj-rpgj-qmpm — OSV.dev. <https://osv.dev/vulnerability/GHSA-rpmj-rpgj-qmpm> (modified 2026-09-10T03:50:06.186180196Z)
+64. OSV advisory GHSA-rr8g-9fpq-6wmg — OSV.dev. <https://osv.dev/vulnerability/GHSA-rr8g-9fpq-6wmg> (modified 2026-09-10T03:50:24.081979053Z)
+65. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-10-27T16:15:05.340347056Z)
+66. OSV advisory GHSA-w5vr-6qhr-36cc — OSV.dev. <https://osv.dev/vulnerability/GHSA-w5vr-6qhr-36cc> (modified 2026-02-04T03:12:24.206854Z)
+67. OSV advisory GHSA-x4gp-pqpj-f43q — OSV.dev. <https://osv.dev/vulnerability/GHSA-x4gp-pqpj-f43q> (modified 2026-09-10T03:50:15.886084155Z)
+68. OSV advisory GHSA-xgp8-3hg3-c2mh — OSV.dev. <https://osv.dev/vulnerability/GHSA-xgp8-3hg3-c2mh> (modified 2026-09-19T03:55:49.146112754Z)
+69. OSV advisory GHSA-xmgf-hq76-4vx2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2> (modified 2026-09-10T03:50:44.840710191Z)
+70. OSV advisory GHSA-xp3w-r5p5-63rr — OSV.dev. <https://osv.dev/vulnerability/GHSA-xp3w-r5p5-63rr> (modified 2026-09-10T03:51:07.254489393Z)
+71. OSV advisory GHSA-xv59-967r-8726 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xv59-967r-8726> (modified 2026-09-10T03:51:07.319185525Z)
+72. OSV advisory GHSA-xwfj-jgwm-7wp5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xwfj-jgwm-7wp5> (modified 2026-09-10T03:50:27.766863705Z)
+73. OSV advisory RUSTSEC-2020-0016 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2020-0016> (modified 2020-10-02T01:29:11Z)
+74. OSV advisory RUSTSEC-2021-0139 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2021-0139> (modified 2023-09-06T22:52:31Z)
+75. OSV advisory RUSTSEC-2023-0126 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0126> (modified 2026-08-10T19:45:04.530371817Z)
+76. OSV advisory RUSTSEC-2024-0320 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0320> (modified 2024-11-01T12:31:51Z)
+77. OSV advisory RUSTSEC-2024-0370 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0370> (modified 2026-06-07T20:00:03.923932350Z)
+78. OSV advisory RUSTSEC-2024-0375 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0375> (modified 2024-09-26T12:26:22Z)
+79. OSV advisory RUSTSEC-2024-0384 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0384> (modified 2024-11-10T13:10:28Z)
+80. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
+81. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
+82. OSV advisory RUSTSEC-2024-0449 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0449> (modified 2026-10-12T11:45:02.518189315Z)
+83. OSV advisory RUSTSEC-2025-0010 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0010> (modified 2025-03-07T15:46:47Z)
+84. OSV advisory RUSTSEC-2025-0012 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0012> (modified 2025-08-06T09:33:04Z)
+85. OSV advisory RUSTSEC-2025-0056 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0056> (modified 2025-09-05T09:05:48Z)
+86. OSV advisory RUSTSEC-2025-0119 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0119> (modified 2025-11-18T08:13:56Z)
+87. OSV advisory RUSTSEC-2025-0134 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0134> (modified 2025-12-05T19:07:59.622592Z)
+88. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
+89. OSV advisory RUSTSEC-2025-0161 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0161> (modified 2026-04-14T11:30:08.962845Z)
+90. OSV advisory RUSTSEC-2026-0186 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0186> (modified 2026-06-22T18:15:03.600280397Z)
+91. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
+92. OSV advisory RUSTSEC-2026-0191 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0191> (modified 2026-06-29T14:45:04.175629528Z)
+93. OSV advisory RUSTSEC-2026-0204 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0204> (modified 2026-07-06T22:30:04.159269138Z)
+94. OSV advisory RUSTSEC-2026-0247 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0247> (modified 2026-08-10T19:45:04.540318330Z)
+95. OSV advisory RUSTSEC-2026-0248 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0248> (modified 2026-08-10T19:45:04.540038805Z)
+96. OSV advisory RUSTSEC-2026-0251 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0251> (modified 2026-08-10T19:45:04.444367447Z)
+97. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
+98. OSV advisory RUSTSEC-2026-0255 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0255> (modified 2026-08-12T10:30:03.078996208Z)
+99. OSV advisory RUSTSEC-2026-0258 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0258> (modified 2026-10-12T18:00:10.934581734Z)
+100. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
+101. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
+102. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
+103. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-21T06:30:02.818201920Z)
+104. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-21T00:55:56.763143468Z)
+105. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
+106. OSV advisory RUSTSEC-2026-0395 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0395> (modified 2026-10-26T14:00:06.388344282Z)
+107. OSV advisory RUSTSEC-2026-0397 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0397> (modified 2026-10-26T14:00:05.089587004Z)
+108. OSV advisory RUSTSEC-2026-0399 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0399> (modified 2026-10-26T14:00:05.792431051Z)
+109. OSV advisory RUSTSEC-2026-0400 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0400> (modified 2026-10-26T14:00:05.692077560Z)
+110. OSV advisory RUSTSEC-2026-0401 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0401> (modified 2026-10-26T14:00:04.231502512Z)
+111. OSV advisory RUSTSEC-2026-0402 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0402> (modified 2026-10-26T14:00:05.685817733Z)
+112. OSV advisory RUSTSEC-2026-0403 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0403> (modified 2026-10-26T14:00:05.787441176Z)
+113. OSV advisory RUSTSEC-2026-0404 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0404> (modified 2026-10-26T14:00:05.092817237Z)
+114. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-10-26T14:00:05.095427051Z)
+115. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+116. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+117. RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024) — IETF. <https://www.rfc-editor.org/rfc/rfc10024> (standards track; checked 2026-10-13)
+118. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+
+## Appendices: Cryptographic inventory
+
+| Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
+|---|---|---|---|---|---|---|---|
+| SHA-1 | SHA-1 |  | weak classically | deprecated | 15 | 15 | storage-bigtable/src/pki-goog-roots.pem (line 1028); storage-bigtable/src/pki-goog-roots.pem (line 1062); storage-bigtable/src/pki-goog-roots.pem (line 156) |
+| HMAC |  |  | reduced margin (Grover), approved | acceptable | 1 | 1 | sdk/src/signer/keypair.rs:12 |
+| SHA-2 | SHA-512 |  | reduced margin (Grover), approved | acceptable | 2 | 2 | ledger/src/sigverify_shreds.rs:340; sdk/src/signer/keypair.rs:252 |
+| SHA-2 | SHA-384 |  | reduced margin (Grover), approved | acceptable | 16 | 16 | storage-bigtable/src/pki-goog-roots.pem (line 1006); storage-bigtable/src/pki-goog-roots.pem (line 1096); storage-bigtable/src/pki-goog-roots.pem (line 1121) |
+| SHA-3 | SHA3-512 |  | reduced margin (Grover), approved | acceptable | 3 | 3 | zk-token-sdk/src/encryption/auth_encryption.rs:138; zk-token-sdk/src/encryption/elgamal.rs:441; zk-token-sdk/src/encryption/pedersen.rs:15 |
+| SHAKE | SHAKE256 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | zk-token-sdk/src/range_proof/generators.rs:21 |
+| BLAKE3 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 5 | 5 | accounts-db/src/accounts_hash.rs:1171; programs/sbf/rust/sha/src/lib.rs:27; sdk/bpf/c/inc/sol/blake3.h |
+| Keccak-256 | Keccak-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 3 | 3 | programs/bpf_loader/src/syscalls/mod.rs:201; sdk/program/src/keccak.rs:8; sdk/src/secp256k1_instruction.rs:852 |
+| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 9 | 9 | cargo-registry/src/crate_handler.rs:287; storage-bigtable/src/pki-goog-roots.pem (line 101); storage-bigtable/src/pki-goog-roots.pem (line 187) |
+| Crypto library | 0.10.64 | openssl (OpenSSL) | n/a | acceptable | 2 | 2 | Cargo.lock; programs/sbf/Cargo.lock |
+| Crypto library | 0.16.20 | ring (ring (Rust)) | n/a | acceptable | 2 | 2 | Cargo.lock; programs/sbf/Cargo.lock |
+| Crypto library | 0.17.3 | ring (ring (Rust)) | n/a | acceptable | 2 | 2 | Cargo.lock; programs/sbf/Cargo.lock |
+| Crypto library | 0.21.10 | rustls (rustls) | n/a | acceptable | 3 | 3 | Cargo.lock; Cargo.toml; programs/sbf/Cargo.lock |
+| Crypto library | 1.0.1 | ed25519-dalek (ed25519-dalek) | n/a | acceptable | 2 | 2 | Cargo.lock; programs/sbf/Cargo.lock |
+| Crypto library | 3.2.1 | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 3 | 3 | Cargo.lock; Cargo.toml; programs/sbf/Cargo.lock |
+| Crypto library | 0.10 | openssl (OpenSSL) | n/a | acceptable | 1 | 1 | Cargo.toml |
+| Crypto library | =1.0.1 | ed25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | Cargo.toml |
+| Crypto library | workspace | ed25519-dalek (ed25519-dalek) | n/a | acceptable | 4 | 4 | accounts-db/Cargo.toml; cli-output/Cargo.toml; runtime/Cargo.toml |
+| Crypto library | workspace | rustls (rustls) | n/a | acceptable | 4 | 4 | core/Cargo.toml; quic-client/Cargo.toml; streamer/Cargo.toml |
+| Crypto library | 1.3.1 | node-forge (node-forge) | n/a | acceptable | 1 | 1 | docs/package-lock.json |
+| Crypto library | workspace | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 5 | 5 | perf/Cargo.toml; programs/zk-token-proof/Cargo.toml; sdk/Cargo.toml |
+| Crypto library | workspace | openssl (OpenSSL) | n/a | acceptable | 1 | 1 | storage-bigtable/Cargo.toml |
+| BN254 (alt_bn128) |  |  | vulnerable (Shor) | acceptable | 15 | 15 | programs/bpf_loader/src/syscalls/mod.rs:26; programs/sbf/build.rs:67; programs/sbf/c/src/alt_bn128/alt_bn128.c:4 |
+| Bulletproofs |  |  | vulnerable (Shor) | acceptable | 2 | 2 | zk-token-sdk/src/range_proof/generators.rs:64; zk-token-sdk/src/range_proof/mod.rs:25 |
+| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 3 | 3 | sdk/bpf/c/inc/solana_sdk.h:18; sdk/sbf/c/inc/solana_sdk.h:18; sdk/src/feature_set.rs:786 |
+| ECDSA | secp384r1 |  | vulnerable (Shor) | acceptable | 9 | 9 | storage-bigtable/src/pki-goog-roots.pem (line 1006) — GTS Root R4; storage-bigtable/src/pki-goog-roots.pem (line 1096) — COMODO ECC Certification Authority; storage-bigtable/src/pki-goog-roots.pem (line 1164) — USERTrust ECC Certification Authority |
+| ECDSA | secp256r1 |  | vulnerable (Shor) | acceptable | 1 | 1 | storage-bigtable/src/pki-goog-roots.pem (line 882) — GlobalSign |
+| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 11 | 11 | core/src/cluster_info_vote_listener.rs:340; core/src/sigverify.rs:8; core/src/sigverify_stage.rs:228 |
+| Ed25519 |  |  | vulnerable (Shor) | acceptable | 4 | 4 | storage-proto/proto/confirmed_block.proto:3; storage-proto/proto/entries.proto:3; storage-proto/proto/transaction_by_addr.proto:3 |
+| ElGamal |  |  | vulnerable (Shor) | deprecated | 4 | 4 | zk-token-sdk/src/encryption/elgamal.rs; zk-token-sdk/src/encryption/grouped_elgamal.rs; zk-token-sdk/src/zk_token_elgamal/pod/elgamal.rs |
+| Pedersen commitment |  |  | vulnerable (Shor) | acceptable | 25 | 25 | zk-token-sdk/src/encryption/elgamal.rs:21; zk-token-sdk/src/encryption/grouped_elgamal.rs:19; zk-token-sdk/src/encryption/pedersen.rs:44 |
+| RSA | 2048-bit |  | vulnerable (Shor) | acceptable | 22 | 22 | storage-bigtable/src/pki-goog-roots.pem (line 101) — DigiCert Assured ID Root G2; storage-bigtable/src/pki-goog-roots.pem (line 1028) — AAA Certificate Services; storage-bigtable/src/pki-goog-roots.pem (line 1062) — COMODO Certification Authority |
+| RSA | 4096-bit |  | vulnerable (Shor) | acceptable | 7 | 7 | storage-bigtable/src/pki-goog-roots.pem (line 1121) — COMODO RSA Certification Authority; storage-bigtable/src/pki-goog-roots.pem (line 1189) — USERTrust RSA Certification Authority; storage-bigtable/src/pki-goog-roots.pem (line 274) — DigiCert Trusted Root G4 |
+
+_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+
+## Appendices: Input files
+
+| File | Size | SHA-256 | Redactions |
+|---|---|---|---|
+| Cargo.lock | 209098 | `4d874033eb93b0ad58084d1b15a307b7f02d4c27a2ff99e233bede0eff677a43` | 0 |
+| Cargo.toml | 19071 | `8c4c8376ebed19b2cde08a736d46d07a14f87d5d941a05d4542547b242512349` | 0 |
+| account-decoder/Cargo.toml | 1154 | `c5aabb10f7aefcb4b6f009e0aa75a892f123f55a901e765ab634d974d0959da9` | 0 |
+| account-decoder/src/lib.rs | 8883 | `f07c463960b0e675f01bb3506f198dc09729a87da043909523894cf45ba356d9` | 0 |
+| account-decoder/src/parse_account_data.rs | 6000 | `4e187623a5015d06160074fcb10328601f919cd7f89bc70adbf82cf75ed28e91` | 0 |
+| account-decoder/src/parse_address_lookup_table.rs | 4181 | `1b1abd021a3fa76a6e2e303c33e9bec173417180fc0190ef2b90559c23144349` | 0 |
+| account-decoder/src/parse_bpf_loader.rs | 7335 | `1401a3b13210db19c02502be9797c2b30b8fa7f21eb5e467506dddfaa1a3b30a` | 0 |
+| account-decoder/src/parse_config.rs | 4826 | `c5008e4ea82e1d71ac95b9a34e1ae7c82b96ec4bde1b7db2e5feeb42fc6b9e51` | 0 |
+| account-decoder/src/parse_nonce.rs | 2621 | `d06322c790e48128293cf0b8c6b473b575e9c1eb214dd5b19854e0194b12efa9` | 0 |
+| account-decoder/src/parse_stake.rs | 7597 | `66ddd24b5b93542e6cc1ab55778074413cc00bf647f1af4e1691666d66439452` | 0 |
+| account-decoder/src/parse_sysvar.rs | 13373 | `095ff21acbf200b1a8785cce7628bd50447f073a85f4ec7304be10518168e327` | 0 |
+| account-decoder/src/parse_token.rs | 24096 | `2bb6516dec16181d6938b2e95b8eba69d5aca757c04cf570318c29059b495c65` | 0 |
+| account-decoder/src/parse_token_extension.rs | 23963 | `d6646951853cb03ddc263237fcb24aa876e805bd5c45ccc48f18bdb7838c8689` | 0 |
+| account-decoder/src/parse_vote.rs | 4603 | `4b60a905fe442297de8423aea07469733615e1d9701e35545ef70af4cc70ea0d` | 0 |
+| account-decoder/src/validator_info.rs | 465 | `a5ae8672b8d8dd73f917c1e86ca511c8f64f71a21d4fb900147fb6cd075fa9b8` | 0 |
+| accounts-db/Cargo.toml | 3157 | `4cda1a186d64e5a247e7793b174fc6583f986be7f210abff425a15433080605e` | 0 |
+| accounts-db/src/account_info.rs | 8299 | `4b28c52e007d564681d275177de56cf7f1a02eaa9b4164326ed8f045329f9e23` | 0 |
+| accounts-db/src/account_storage/meta.rs | 9388 | `fd66101a8a1aefb207a678d7396d5029b3c8a600f26995cd52a8615e45e3c067` | 0 |
+| accounts-db/src/account_storage.rs | 19406 | `f86fc96dd587438705afd4735e1ae03018e8f2a8f9f03a1d5bd589bee82b910b` | 0 |
+| accounts-db/src/accounts.rs | 83402 | `f3f54871c59b8793d8ca24d369025c67a2a5f98da3c8793aaeabc3d4a9d412d1` | 0 |
+| accounts-db/src/accounts_cache.rs | 11726 | `5dcec95bf00337b75cc89eec1598b89b5800ebebbf65b2c49c0528481724c111` | 0 |
+| accounts-db/src/accounts_db/geyser_plugin_utils.rs | 16075 | `97ce35f43a0995fa16a1533afb7d07e78a9b62c78639c153e47d2c1ae3b5d93b` | 0 |
+| accounts-db/src/accounts_db.rs | 720716 | `4813386265a631e7b039ad2db6cab66158bb078389da7eb1569955ef6645f602` | 0 |
+| accounts-db/src/accounts_file.rs | 6113 | `d7a3ddb7ff077dacaee0baa920c93c7402eb1e8071477cfc03d3d93c45a8c6d3` | 0 |
+| accounts-db/src/accounts_hash.rs | 97838 | `f6a24c9681ce6b8bf35a97d1d4700a2e5f352bc5194c59a3b71887fc8e3a36e9` | 0 |
+| accounts-db/src/accounts_index/in_mem_accounts_index.rs | 88682 | `e63e921b4057e9dfe6af52faa2c7d54f87fe6b94bbca87364ec429744f508f1f` | 0 |
+| accounts-db/src/accounts_index.rs | 151053 | `a0335fa025196c3a4fac8b47e5f15c87b4917b34904ac900cb521fb2d7066563` | 0 |
+| accounts-db/src/accounts_index_storage.rs | 6282 | `8bdb70f9bf55400069ff5c891231abf29b741ff249c0c9ba33730a666045f47a` | 0 |
+| accounts-db/src/accounts_partition.rs | 28009 | `057750a32c248273c6645b24d28fca27d56208bd05020934ee7ac6406a3c9dfa` | 0 |
+| accounts-db/src/accounts_update_notifier_interface.rs | 987 | `78ccb0ea83d24ab115a36f3b4d652e8f8ebf1865a383f9d9aafe2122b3812ae8` | 0 |
+| accounts-db/src/active_stats.rs | 3150 | `c0c86cb36104d93a0b0884002b12803071af9abdc68921a2fb5945aae6536179` | 0 |
+| accounts-db/src/ancestors.rs | 6674 | `af0f2d8e4a590a27eadfe132c4337526db489b9ef098a614bc9d814d32b9b79e` | 0 |
+| accounts-db/src/ancient_append_vecs.rs | 148133 | `98c8e7996f4799d6df93a0bc9670d16ce6a524cf67f9d061911a60817061087b` | 0 |
+| accounts-db/src/append_vec.rs | 52022 | `94075633305eda2dcdb2fc8da863dc03dbc521daab595628a579037666219232` | 0 |
+| accounts-db/src/blockhash_queue.rs | 9435 | `6c6568fdba055f914a26fa9183c4ccb1599b3ebcdb03569af4b841d89ff41a8e` | 0 |
+| accounts-db/src/bucket_map_holder.rs | 22829 | `7d41c1af2d3f6f4864d1d379f7b079e64ba4ca1c837b9b9ac7733cecedb49590` | 0 |
+| accounts-db/src/bucket_map_holder_stats.rs | 23453 | `eb131aa7c118464dbbb305afe017473189962cc17131ca1073fce9e61bbe51ff` | 0 |
+| accounts-db/src/cache_hash_data.rs | 22289 | `a080b3f881f4fdb65a246b27efb955cec692d0408ca1ffc6e4389c28dbcfeabf` | 0 |
+| accounts-db/src/cache_hash_data_stats.rs | 2604 | `64fbefe7a79334e91638367a25278ce44391070b80f0edefbec4692f48349e4f` | 0 |
+| accounts-db/src/contains.rs | 1271 | `b02e95c030a56d1f0853710a81383c883d2d97bcd3d45a45625fc3fa18debb54` | 0 |
+| accounts-db/src/epoch_accounts_hash/manager.rs | 6541 | `307bd57d38ea6be5c0641f4ff77bed31c3e75d51071ed656b71e150585289d31` | 0 |
+| accounts-db/src/epoch_accounts_hash.rs | 1211 | `78133f530563e95c4d87d1f8c67309407649d8f0cb805467578abcfd7cecc938` | 0 |
+| accounts-db/src/hardened_unpack.rs | 35128 | `1786e5795bd90d45c0663ae72468c484ccfe7c893647d70170bbb72bff84b62c` | 0 |
+| accounts-db/src/inline_spl_token.rs | 2896 | `a1d6faad2d08bc101ee8b03984394de6dbd1d987f22f1d6d5d7d24da05afcdca` | 0 |
+| accounts-db/src/inline_spl_token_2022.rs | 715 | `0720c6f0be4c05596bc021220b358b37e0e485b10c19e31f8cc6f524a08c618a` | 0 |
+| accounts-db/src/lib.rs | 1266 | `6283fe225eed1b19e1ef16a353c11efe2b8770337c0e06f45f4de2cde5a2cba3` | 0 |
+| accounts-db/src/partitioned_rewards.rs | 5073 | `4001ae3b5132f6cf9d983895b264d02beaf43854cc895d0fad583826d5358820` | 0 |
+| accounts-db/src/pubkey_bins.rs | 6544 | `8007efea11f70c2a4d2f33d3a1ef8650ec9db6a9f34c436a11c4dcd8ea857b67` | 0 |
+| accounts-db/src/read_only_accounts_cache.rs | 15081 | `543f0869ce7503e5eacc53cf29b45805a03e4e87d90badf4ab7d39606307642b` | 0 |
+| accounts-db/src/rolling_bit_field/iterators.rs | 2588 | `8bba87f0eaa6ac1d46768f6816b93119163d012688192bb46f310aaf365cf094` | 0 |
+| accounts-db/src/rolling_bit_field.rs | 35355 | `4dc8ffa7a5499fe99eca10d25063e5ec2c1f15100478ac456a61e7ff1041172c` | 0 |
+| accounts-db/src/secondary_index.rs | 8058 | `09fb88d2609b47ceabf064696260ccfa9075d3b788881c4ef83509853c5b6277` | 0 |
+| accounts-db/src/shared_buffer_reader.rs | 38851 | `693fbbcc8a3d8d0d862a6d0a9771305f8c5de3688ad3a241c6d3a17ddbff0569` | 0 |
+| accounts-db/src/sorted_storages.rs | 17457 | `f78f7f1ebcad3732e2f54009132ac50588191cfe1ea917bfc2b281f7be8a7ca9` | 0 |
+| accounts-db/src/stake_rewards.rs | 3071 | `e8cce6ea3acace1ae9542db338d691bf0cb8b8e64195635081aa30d6a0c39ded` | 0 |
+| accounts-db/src/storable_accounts.rs | 21194 | `a67562f2a9b61c282d368227579382efdadcafcef48b3d5405a2cc90917eca9e` | 0 |
+| accounts-db/src/tiered_storage/byte_block.rs | 13713 | `1d3d9d33b3038d781b7d5bbb7be521c520ec960c9b3ad5211688c0170447cc1d` | 0 |
+| accounts-db/src/tiered_storage/error.rs | 1102 | `fc8fbca36dc8d8ed3beb703f8dbe994fbe24ff3c23597f457ac8522a153a18a0` | 0 |
+| accounts-db/src/tiered_storage/file.rs | 6121 | `8b197de484b07333251d0fc8a6bee9e7149985243df6c71e1b4c069bb9633ba4` | 0 |
+| accounts-db/src/tiered_storage/footer.rs | 16778 | `ef330b0a5bf95419cc80fde8f50434f3c1199b0c1f840be7bcd7d6a0b03226dc` | 0 |
+| accounts-db/src/tiered_storage/hot.rs | 54042 | `db3ef724ce60ce9ebf437992d4be821d34d73a8968743a3be7f6354d1d777ce5` | 0 |
+| accounts-db/src/tiered_storage/index.rs | 12348 | `0469bff9501df0b413227dc23d9a0413b90a80d52879616fc963377ccd347b34` | 0 |
+| accounts-db/src/tiered_storage/meta.rs | 9788 | `e0c87f66a3e030b9be2fc348d88d945a62d7615c7f3a425eda5e1c33a314a8bc` | 0 |
+| accounts-db/src/tiered_storage/mmap_utils.rs | 2388 | `f62c834c6a590ae56505a23bb5495873fde17213dcf9a2060dd1711f1bc6822b` | 0 |
+| accounts-db/src/tiered_storage/owners.rs | 6443 | `f2363db19db77f4bf59bd0c603904cc932e9ba2ff66cd15a70e9c72986386e00` | 0 |
+| accounts-db/src/tiered_storage/readable.rs | 2957 | `aa5caa3cf355d6d6709f62a15c9ed598f6457398bad107b549d8fac834d49644` | 0 |
+| accounts-db/src/tiered_storage.rs | 15413 | `dbcc071b4489eb4da469c0b56f27f825657220b1942c03ac433d6ab5e4b2e137` | 0 |
+| accounts-db/src/utils.rs | 8461 | `b58b282620d2ddb69905958fc60d77b7dc9a0e7d9b631a1e41376a630377eaf2` | 0 |
+| accounts-db/src/verify_accounts_hash_in_background.rs | 5523 | `9b956f317bd571e5f0f55b8602bc94c7eee01c549361d92ee4f5afaea39a121d` | 0 |
+| accounts-db/src/waitable_condvar.rs | 2891 | `2d20c7c7a76eee5b01ce8cb326afca4afcc50b3b8b84bd29c0513ecc89f3cb6a` | 0 |
+| accounts-db/store-tool/Cargo.toml | 576 | `7a14aceef49d15de48a2e9535c4a03c3d37c27eea231f2904df5fa9d13961362` | 0 |
+| accounts-db/store-tool/src/main.rs | 2596 | `fb236b2f6338214c4b652a67461f19b5ea94fb5d5249f38cbd87123ed982af8f` | 0 |
+| banks-client/Cargo.toml | 969 | `14e8bcefb7b4b58fef2cb03a0a42b3bee5fb45d435906c40c1b5adec8447db81` | 0 |
+| banks-client/src/error.rs | 2529 | `510159054a056e4206b994382a039a3ca96e1ee1c35d9778e1b4ca810a296119` | 0 |
+| banks-client/src/lib.rs | 26225 | `c5fbb6d4b707036992b3bc183743100da0e85c533f8071ebfe130b07afed1f06` | 0 |
+| banks-interface/Cargo.toml | 611 | `15dacc1e50bae7bf9d272e722e140c943ba20e17d6bbccd0b690c7554a76f119` | 0 |
+| banks-interface/src/lib.rs | 4075 | `2978c8cc9a31f60678a490b9c5347d55b9efc94dba33d2ef7a6b7f809dac2e31` | 0 |
+| banks-server/Cargo.toml | 965 | `338e8a775df823b24fc76a049def9ae76932b09b6e83def0b4fdf4ae54c12561` | 0 |
+| banks-server/src/banks_server.rs | 17187 | `adea1f330c4a2864b945ae01cbb09e167e16cabf64d7648934fb1b53cc4482c6` | 0 |
+| banks-server/src/lib.rs | 65 | `acec6bf7bcadd1514157ccd0d6c2f590c88c9196b4981edf22c25f69a443f0d2` | 0 |
+| bloom/Cargo.toml | 862 | `a981a96440173f8dae2057b6c7ab5d170dc7015ba58c17ff12cbe5262244d9ab` | 0 |
+| bloom/src/bloom.rs | 15905 | `87e1db1c98030265f2cebbf49587578e6125511a6988ba548d871a6982fb01a3` | 0 |
+| bloom/src/lib.rs | 136 | `5705232a9b3fbcc023b6bd26578d64e62fec58cf870e058b19b8094c9df3c1b0` | 0 |
+| bucket_map/Cargo.toml | 922 | `72b0329a971aec421199aa37828f3b16829484cb5e54b71370aa085d27d95b72` | 0 |
+| bucket_map/src/bucket.rs | 66054 | `1f163bc619bf7b4bc598ada05396b291249ec23d1c6bebf9a9c2af0e32dae7eb` | 0 |
+| bucket_map/src/bucket_api.rs | 5139 | `ee2d48081ec9d0201de7b34900253c43a767548717e79cc276f66d5657f65cbb` | 0 |
+| bucket_map/src/bucket_item.rs | 194 | `06f7089f1ed04066827e1e1db4865692a818f7ed571967c8807e82c4db45411d` | 0 |
+| bucket_map/src/bucket_map.rs | 24809 | `4f28f1d0419bb53621f08d498c1676aa6170ea48c4f576895cc041f7f371194b` | 0 |
+| bucket_map/src/bucket_stats.rs | 1084 | `407db1b6f4c9bbfc68b3db2389f3300a2d92ab07c4b44fe68c3e547e289fdb1d` | 0 |
+| bucket_map/src/bucket_storage.rs | 25381 | `72973259594ac37459689f142f320c51cc23fb9bd98d9227a45467971b2efaa2` | 0 |
+| bucket_map/src/index_entry.rs | 19384 | `ea6f6c7c8a9fabafd8fc449fa2cb5a528a632199daf8ebed024f39db4518214f` | 0 |
+| bucket_map/src/lib.rs | 230 | `0f5e20dbea9ba2f658a6b9a81ebabcf2347ecc713271fb160df719f84523ca77` | 0 |
+| bucket_map/src/restart.rs | 23692 | `e9f4c60fafc203b0663be4bc89937727d65cb8d5c757b063c85a86ba124417c4` | 0 |
+| cargo-registry/Cargo.toml | 1384 | `5b3399122179049427d461f43dce3bf30703c9598b4f66fe8b213debde20d8f7` | 0 |
+| cargo-registry/src/client.rs | 8251 | `6040d31521c9a6d5abbbee81cf358f3920802fd4c011d4de7025452cfe93c85f` | 0 |
+| cargo-registry/src/crate_handler.rs | 15092 | `e3b2112eade7d592a413e4fab96c83ff8178bd810f1b06001930e42ec520c01e` | 0 |
+| cargo-registry/src/main.rs | 10075 | `a621bd27376eabf98ebad235f866f558ead7a4a42bd32552390ab3cb064e99dc` | 0 |
+| cargo-registry/src/response_builder.rs | 1666 | `ceb5f1e5d2e41783716ffca5476d49d55fe5f155fae452b9704f156778843d11` | 0 |
+| cargo-registry/src/sparse_index.rs | 9224 | `c3d26487ff55aed448fc08160446f3c881c2bdb2ddd33db8f33706f36e5b10b5` | 0 |
+| ci/order-crates-for-publishing.py | 5600 | `88b5ac6d462273fcfee6c958cf971fde8c0bdec36827c30303aebbc4e3fb5b9a` | 0 |
+| clap-utils/Cargo.toml | 839 | `dd4e53cc1f8575a5a74c46c35ae3158c82b22bc6297652ca563412e42f5f838b` | 0 |
+| clap-utils/src/compute_unit_price.rs | 552 | `3066ddccb0f3db9334c7f835947e322581ff3096608a52d07a5f52ac2fd62772` | 0 |
+| clap-utils/src/fee_payer.rs | 694 | `942354f00b8706e0f0aa055ddf4d0961cc829c1d3649be78623461fe102baa3b` | 0 |
+| clap-utils/src/input_parsers.rs | 11636 | `12651291f04b5f2a9a491055dd386a399c8ea06ac7f7e36a64f7416523f29771` | 0 |
+| clap-utils/src/input_validators.rs | 12450 | `9b81869b5ec9d30193dff8db0648fe0b65dfc9b48d971017000a4ff21d800901` | 0 |
+| clap-utils/src/keypair.rs | 49013 | `e3d4e8fde0129d3b6b69d73d7545cd36acede5d8d2bffa46bb4842fe4dde0ea4` | 0 |
+| clap-utils/src/lib.rs | 873 | `c6b6fb4e347ce9819fd62a7daf0fd3bb4ab51087303acd8949dd01f85b722e80` | 0 |
+| clap-utils/src/memo.rs | 400 | `c5dad9ebb83dd441c4a85619883bd8269868ce5e8faa81618a8fc9082a5ab76e` | 0 |
+| clap-utils/src/nonce.rs | 1606 | `ccdda48fb2795d40d3ba633c4f89394cf676049badd4f5ae9bd7c8a69cfbd421` | 0 |
+| clap-utils/src/offline.rs | 2919 | `421bfb8166ceb76002f279609d7e8c879429da57dd0b9222604bae8aead28d9a` | 0 |
+| clap-v3-utils/Cargo.toml | 927 | `5b1e3d0ad0e71cb09bc84cceb127e38967b514364927aa3bfdb9c0496569cd43` | 0 |
+| clap-v3-utils/src/fee_payer.rs | 708 | `de452e79bad6b4dc9320b28a3f86d271bee02407d2ebe0673fb3fde8d74ce17c` | 0 |
+| clap-v3-utils/src/input_parsers/mod.rs | 17646 | `b3bf6d79c54d42871b34a637f508c1bff9a7dc83e4e78abd53c462d6ef8f8491` | 0 |
+| clap-v3-utils/src/input_parsers/signer.rs | 30595 | `3bfaebc1d5472d39458734c92c4e7f4e725783ee5101ee2cb2b7c2de07856210` | 0 |
+| clap-v3-utils/src/input_validators.rs | 13771 | `be0cb73f65faaaef2bbe454cfffbafa7588872aec23f66b2163b1a501247e847` | 0 |
+| clap-v3-utils/src/keygen/derivation_path.rs | 1112 | `869a7707b66ff05518c89b76d7bcdb6d2011b4d1ddff13ac56a4acb8387d91f7` | 0 |
+| clap-v3-utils/src/keygen/mnemonic.rs | 3148 | `1ee0ac2a40b9dfc41627dd4ba5ea5e0f7c92bca9152fe8567d4fcbf69ee02751` | 0 |
+| clap-v3-utils/src/keygen/mod.rs | 1236 | `ad6df26d2b08e49211cf7e4ee1215f01e6f64e7933fc6b76dda2ef83b63a24c4` | 0 |
+| clap-v3-utils/src/keypair.rs | 47369 | `42d5001e600b9557dc6add24cabfcad1d468f88760c1b0c62917e7536e588673` | 0 |
+| clap-v3-utils/src/lib.rs | 762 | `4425d974d97c6843fdc72f412c7665748c92b97272413e181369ea4a81e0a0e9` | 0 |
+| clap-v3-utils/src/memo.rs | 386 | `6ab3a68e781acafe1003e8045c74b01fb2ff6555a5af5d7dd82039a35621c2bd` | 0 |
+| clap-v3-utils/src/nonce.rs | 1576 | `3eee903123675b24799479b71ad9c2a48a0111a50a89c6f4df29e3528a45eecc` | 0 |
+| clap-v3-utils/src/offline.rs | 2930 | `45c45e0f62acac2fc3239c032f1abc32dc989d2a36665608daa1698d58ed2f0b` | 0 |
+| cli/Cargo.toml | 2465 | `63bb1152ff0d95ef44728516caa5068e81ff58fed9c525d4afe97f5dc0f23542` | 0 |
+| cli/src/address_lookup_table.rs | 35716 | `1f8934e0c94c524d758524a8351514464cf9f06fa10ae0a0c31aa7b31f9de2ec` | 0 |
+| cli/src/checks.rs | 10495 | `8f4deb0f821221d42ecfe2124e7b8ee99483601c6a575b1a36c55742c0dc619e` | 0 |
+| cli/src/clap_app.rs | 8718 | `3f02da13656d4fc1a7377f00c4f7ed28a427382c0f56a7f8f755894e93f859f9` | 0 |
+| cli/src/cli.rs | 95682 | `7ac246045f6c8070aaf4a9e9810790f629a6f76c7e47631af1fbd0c887ebafe2` | 0 |
+| cli/src/cluster_query.rs | 88694 | `547f1ff99bebaec8eb6300c5411a93cc6af5e1f8c33a3903c07ce77abc08018a` | 0 |
+| cli/src/compute_unit_price.rs | 556 | `269b0138c11acf0e3c0035d1c3d115a30fb40da5b426c2a30e630292030d69a6` | 0 |
+| cli/src/feature.rs | 33348 | `364550b399c3eb42263922f9289982a0023b43e67784a4773d45fce08aa82b73` | 0 |
+| cli/src/inflation.rs | 5068 | `27e0913696b470d65dcc738837d513de04ed9f5679c3bb17d5360f32c44cfec9` | 0 |
+| cli/src/lib.rs | 959 | `d216f53e3f4bd82eb51657859faf7fe0373876ab62f19dba1c6c0f1f72efcd4c` | 0 |
+| cli/src/main.rs | 10952 | `5ffcef4f0f182312c8aaa43c513d26bfe3460962d03cd7f931a0fcf942622801` | 0 |
+| cli/src/memo.rs | 615 | `9239ea4a15cad62bb82e0726a31c3f2f2e48d283898a2f67046a493094ce1a5a` | 0 |
+| cli/src/nonce.rs | 42096 | `2f42d86c804bebff1b286d42f260fbc799186810030a5924042df5b6774c1a37` | 0 |
+| cli/src/program.rs | 146147 | `62c903a8d70456b85f90a09a3dbe62054e4e9ca9d909f7c7d3fe8b6454ba619c` | 0 |
+| cli/src/program_v4.rs | 65627 | `ca4815783c9a64f35d60693ae838a39bca51eca9934365db58f90b506a4e2e1a` | 0 |
+| cli/src/spend_utils.rs | 5723 | `31c10110d3082608de1c6290fc8d10888c6e6854372bb9e7534dd53109ef7b8d` | 0 |
+| cli/src/stake.rs | 201075 | `624230d4ca7273bdce1724135203b14b1335950e8382ad3cdd5877221b9331cc` | 0 |
+| cli/src/validator_info.rs | 23391 | `e2fa3164f55d998ad564f872700a98f9fbed8d4b14377af31bd193792d090b0c` | 0 |
+| cli/src/vote.rs | 91685 | `334d3e59d7eba18fc3fc242b75974dd6c6c7f8e6c5554217b575a0809a746ded` | 0 |
+| cli/src/wallet.rs | 38936 | `ef1512977319089268de6183acbff61dddd82dddc918499b22a7021cae6118bc` | 0 |
+| cli-config/Cargo.toml | 727 | `ddf892febe253b85de183e51570dd3dffd5d19e7f1adbafaced48c86b0a7c30c` | 0 |
+| cli-config/src/config.rs | 6925 | `053c8b401cd0c6c63c88ebbfe301d8520a51cfad8f90047892beb161a2fef89f` | 0 |
+| cli-config/src/config_input.rs | 3975 | `56219bd81a440bab978f94b17eb4e20f088a42307097a18ce00bc25710d9b9cb` | 0 |
+| cli-config/src/lib.rs | 3795 | `b972195bcfa0f08a4dd9336f3f62f0cffa9ddbb0feeff2e50d472faf804c8ec8` | 0 |
+| cli-output/Cargo.toml | 1192 | `ba7dc27dc4909f2afd760c0bd97247d777368f228f1820d251d8cb3a79dc6004` | 0 |
+| cli-output/src/cli_output.rs | 111019 | `cb9d6a8a4220dd8560dea9e59f118a28bf416b9d8ceb151f61221167aa30cdac` | 0 |
+| cli-output/src/cli_version.rs | 1498 | `f5358be282cffdc534e1984cd22d7b5a50df8199de0ea542169a05b47aff10ba` | 0 |
+| cli-output/src/display.rs | 31076 | `329d7ef495e01a7a40262aa52f1bd88bb4dfe89982539321066e7a92f52a13d6` | 0 |
+| cli-output/src/lib.rs | 434 | `1f6935fbefacf176aac2e3782d177464f0bd6a8a47c4fb77f60ae4ac772594a6` | 0 |
+| client/Cargo.toml | 1435 | `0dd000e23c6075d72eea62b796c91ecd9fe6b4294f50a748c333ae1236e5fcef` | 0 |
+| client/src/connection_cache.rs | 10872 | `71752ff30c44b8958ad0d6039379406bdf4b01303fd4a8720eb00bc570937737` | 0 |
+| client/src/lib.rs | 1819 | `73b5c9e23026655412e664350507347de025ba72c1f66591123d0efbbdaa0e67` | 0 |
+| client/src/nonblocking/mod.rs | 869 | `9cc2d7aa72efc8a88c6aa319943c72447280383e70b9c089d2871b171e22c96e` | 0 |
+| client/src/nonblocking/quic_client.rs | 365 | `997903cf01cf29c49a966e8a1ba58158f73266f3bbf29aff227dbc5e034dc020` | 0 |
+| client/src/nonblocking/tpu_client.rs | 4888 | `6f288c6a39688a406cb15bc06d6ff520df65f723600219afaeb925ffc0fb2e00` | 0 |
+| client/src/nonblocking/tpu_connection.rs | 248 | `b30a71c1f4e20f6d952cdb9a83a3136247b137a56515f307d52d3f3119bcabdc` | 0 |
+| client/src/nonblocking/udp_client.rs | 231 | `15c75cfcc826db7573d20186125e543b62d13dc90ab58743f8133565ed84ee46` | 0 |
+| client/src/quic_client.rs | 212 | `dd7067641a850c17e6497009e216d34b04e41bfb6b8d5c6577654b8815b4f6c7` | 0 |
+| client/src/send_and_confirm_transactions_in_parallel.rs | 19877 | `9973c7fae84d22e0af026446895724fcb03ce0fff339bf578bbc7e0500854614` | 0 |
+| client/src/thin_client.rs | 10036 | `078acf76658312c690983ed49da02ece2b6ab05529a5d60e169a93f485ed1683` | 0 |
+| client/src/tpu_client.rs | 4965 | `bf76c3dd9f6baf1dea23cf0ac0513346c58bb7a92de1bfb5fb08645d6c1a7b83` | 0 |
+| client/src/tpu_connection.rs | 287 | `781bf0d83aab49047f1bccde22db1990fa537c4dfcd9a2ee80a9c4f5189d27e5` | 0 |
+| client/src/transaction_executor.rs | 6604 | `000aa4e6542d4ffd86f60bfcd1ffeddd5280dc8e7a3bb956c28d5d632dc8ddf3` | 0 |
+| client/src/udp_client.rs | 205 | `451ec9b554e663045e7a7b5d4dcb495bd1fdda517ed1b6c6e0bbd47556c9e4ae` | 0 |
+| connection-cache/Cargo.toml | 981 | `51ef426afe4590707762004c0f8bf289cd99bd777bfbef4117b4338ed128439d` | 0 |
+| connection-cache/src/client_connection.rs | 1628 | `34156ec82b79a492ace6b464d05cd3d662453e674d4be27702d6f79f828819b0` | 0 |
+| connection-cache/src/connection_cache.rs | 26836 | `070efae08a628ba4f305efb456e54b302b3a5ebbd39ab3c72afc7f8512ea18dc` | 0 |
+| connection-cache/src/connection_cache_stats.rs | 7759 | `7d384e37093c30da5102d53e02a822040eb1926e474d21e9aafcbc0a9a9e90f1` | 0 |
+| connection-cache/src/lib.rs | 193 | `75e8796bcda141c34764725f1701c7559e16a8542a1786595962c65ea611437f` | 0 |
+| connection-cache/src/nonblocking/client_connection.rs | 433 | `452f0bc171c174181149691fd5f931ae324f4903af1b74a37b14009842585037` | 0 |
+| connection-cache/src/nonblocking/mod.rs | 27 | `2a27a2e74b31f9ad5a22c844771ccae8eb0b29c5e089df2aefc4a1da6c77c0a7` | 0 |
+| core/Cargo.toml | 4092 | `9477424e2d4baa12c3aa283fda16ac7b5361794fa41a8c45ae38efabf201d9b3` | 0 |
+| core/src/accounts_hash_verifier.rs | 31500 | `de47fb4024eb46248f0e4c87e276b51b7b423401ec8842d078be2cc47d4275c1` | 0 |
+| core/src/admin_rpc_post_init.rs | 895 | `8d1bbb4e9e3ae598f1861cf72da861399df992c585675e38ec73e75473b7258a` | 0 |
+| core/src/banking_stage/committer.rs | 6752 | `2e65771da30058fa6100e6721ee2d9261afe048795528facba75ef8be70b877a` | 0 |
+| core/src/banking_stage/consume_worker.rs | 33592 | `aaac2e0c8ebc8ab3ff49624a5e3dfffa29f1f8d3b2bb4af3102ad66c87d8a1d1` | 0 |
+| core/src/banking_stage/consumer.rs | 105131 | `e09e0c47f21907c8c258bf63a857c008d26b8008b05d82dfc16fa97c6007e93c` | 0 |
+| core/src/banking_stage/decision_maker.rs | 10508 | `6cb2f1b5e93486dfb9d412d526bcecf93847c71f550e1df6dd42cdf5d1516d90` | 0 |
+| core/src/banking_stage/forward_packet_batches_by_accounts.rs | 13483 | `b60dd4fcb53ad307acb7d3d191b8b57f081ae7619ea0d92bd865050ca110caa3` | 0 |
+| core/src/banking_stage/forward_worker.rs | 7551 | `02903672e55b31e610844c2c53a28afb51b28a8bd04811ca916c5a75fbe6f529` | 0 |
+| core/src/banking_stage/forwarder.rs | 19111 | `949a8ce5fd68fcf47b9facaae2eb4133227a4dc0db9f4bbabf729715def14eda` | 0 |
+| core/src/banking_stage/immutable_deserialized_packet.rs | 5354 | `91856665b0f3f53ec9f44757aaac487f3499073da798068e6d69a7a4be10f6dd` | 0 |
+| core/src/banking_stage/latest_unprocessed_votes.rs | 30139 | `51d2653a84cd4dac70abd3b298074256e406333ab3bdf91c9bd1486d4a853027` | 0 |
+| core/src/banking_stage/leader_slot_metrics.rs | 45036 | `4b055b4937de5c6caf3684990fba331560d004ca26dd762287b09abf5266c870` | 0 |
+| core/src/banking_stage/leader_slot_timing_metrics.rs | 9520 | `e64d198b7955c36c242a5075f2a8a19992fb153b349575cb710760b97a2a4059` | 0 |
+| core/src/banking_stage/multi_iterator_scanner.rs | 14504 | `e90559c937cf94c88b7fb43d8cdfb915801fdcc07205bd10c65c28c7024a0d46` | 0 |
+| core/src/banking_stage/packet_deserializer.rs | 8779 | `18c2a6dc186ef83769c13ff8f48d563f80a5a7b24ac4e87decc65fa7d029c1a1` | 0 |
+| core/src/banking_stage/packet_receiver.rs | 7392 | `560037dd7d1109e0918a24b34936617b9a5518443e2fb65ef04955606b8a9750` | 0 |
+| core/src/banking_stage/qos_service.rs | 36340 | `2eea69910bf82cc6b9c1fa551decd087f7f45b4cca582322d0fca228d520164f` | 0 |
+| core/src/banking_stage/read_write_account_set.rs | 9828 | `35123f835fc31e449ab9569e545f0770ed6092e493476cb7d1044686f99d921f` | 0 |
+| core/src/banking_stage/scheduler_messages.rs | 1729 | `1352ae96fca3f18cdcc9edd899dc1082476cdc5e661e658e4e35d45fe3078e4c` | 0 |
+| core/src/banking_stage/transaction_scheduler/batch_id_generator.rs | 340 | `231065d7da16b95eabcd5f7af2c98317fbac7908eef6ee22144782ad780e2736` | 0 |
+| core/src/banking_stage/transaction_scheduler/in_flight_tracker.rs | 4204 | `b37327b83554f6f8dc2b4555d5b44cd3f34fc700fe482207692e6b125a07ac37` | 0 |
+| core/src/banking_stage/transaction_scheduler/mod.rs | 383 | `e88f4a0e6d63a57e260027fa89a6fbb016ecbb437405795663723f752281aef5` | 0 |
+| core/src/banking_stage/transaction_scheduler/prio_graph_scheduler.rs | 31283 | `c50bc3a8afcf969db42921f6d41087de2b0b4a8c3c78c8dcd522799af2616dcd` | 0 |
+| core/src/banking_stage/transaction_scheduler/scheduler_controller.rs | 38812 | `822025d11c4e89fd79146e066cfc5a1ac22fc9013c68e1d02527641a70550794` | 0 |
+| core/src/banking_stage/transaction_scheduler/scheduler_error.rs | 258 | `dea16f2f824c65c62f76f3fdcf5503c05981f9ba49d1869322927af9f5daaeef` | 0 |
+| core/src/banking_stage/transaction_scheduler/scheduler_metrics.rs | 11386 | `41714e778eb2461d6a85bb6fb980983b51e97b64dcc9a8f6aabfe23bde1b163f` | 0 |
+| core/src/banking_stage/transaction_scheduler/thread_aware_account_locks.rs | 24045 | `b086a9db9c6da01155c457537cbd9f655e647686f68615422dc714d78c61c11f` | 0 |
+| core/src/banking_stage/transaction_scheduler/transaction_id_generator.rs | 470 | `926e75e5346ecec45820d434fc9c5dba6e6bb73117d10afaea96e626fb6c7e77` | 0 |
+| core/src/banking_stage/transaction_scheduler/transaction_priority_id.rs | 1058 | `161de87b06656837f5a065e588f64c1863c339a37b1e0575e763500eca4037df` | 0 |
+| core/src/banking_stage/transaction_scheduler/transaction_state.rs | 10395 | `c1df257ad4d43f7094eb6eb0a9849b03f1f80d2d202054158dc44a6a4e70ed16` | 0 |
+| core/src/banking_stage/transaction_scheduler/transaction_state_container.rs | 9156 | `e8c3fb6bb2890f5ff851ef02bb7d92bc993819037ba3a6cbb28d4cfc375dbdf2` | 0 |
+| core/src/banking_stage/unprocessed_packet_batches.rs | 19875 | `9f993304a21f068f2982695e8eeccea60b8706389fe9041ccbd80752e89eeb47` | 0 |
+| core/src/banking_stage/unprocessed_transaction_storage.rs | 54015 | `06e1c0e62c2b7307cc5d26f57de9a8a75fea54435f1c3258941fdf1451bc008f` | 0 |
+| core/src/banking_stage.rs | 58576 | `93a225d5f5a2eb995a64af00204f54636ad3119f1b31057583eb2d3ce1d70fbb` | 0 |
+| core/src/banking_trace.rs | 20500 | `35097f40d8bc9c5c54b5a52198d7c90e35e17a3bfb98589cd196bad3fbebd917` | 0 |
+| core/src/cache_block_meta_service.rs | 2482 | `92f9770bfe43ee347292161a1928147cba4695b94a76c31d08a2ef17ee31eb26` | 0 |
+| core/src/cluster_info_vote_listener.rs | 76487 | `aa0d6940567503edb7bde4c952802d00cebd6d3ac23ab8acd2c56d9cdf0ed555` | 0 |
+| core/src/cluster_slots_service/cluster_slots.rs | 13670 | `420329314e0eb95f59640252d08b0a6767c3057b9c4a43cb632716d29656f5d7` | 0 |
+| core/src/cluster_slots_service.rs | 7404 | `70209155cb7ff62b2bd283ca143be1b9572e2ba145a0fe42019fbe3bf52c3eb0` | 0 |
+| core/src/commitment_service.rs | 25344 | `fc7d22c67f77308cf795ce5a53f04dfcbcc497388b524fc3909b985222ae1858` | 0 |
+| core/src/completed_data_sets_service.rs | 4870 | `a9b4d5061f753fe3276290ccbbae0eba51b9b51903fa2973e073f67f4db02b99` | 0 |
+| core/src/consensus/fork_choice.rs | 1606 | `5fa6e99e7c4050d4af496117dc4a14892d153172b2e2cde76977b93ed73adf01` | 0 |
+| core/src/consensus/heaviest_subtree_fork_choice.rs | 178974 | `60eeedb0f760d7dff10fc7aec997266194e833ede2d80e14172db999025f84bd` | 0 |
+| core/src/consensus/latest_validator_votes_for_frozen_banks.rs | 20345 | `91f8beca7f5d5b4fab22708ad5324fd656b2a94475721650e9f61851c47eb351` | 0 |
+| core/src/consensus/progress_map.rs | 26213 | `d379c5d85a95027d89037431fe5ac457ad5fce12ec8155e76f872d3b9db98d03` | 0 |
+| core/src/consensus/tower1_14_11.rs | 1662 | `69e1c28eff47e01440807bf6c7d63ef058604f56830ea4b1bf34ad00f33cc131` | 0 |
+| core/src/consensus/tower1_7_14.rs | 2607 | `719c344915652db70a41a5e0e678cb4fd3946d852d356ba462a5ab6bb6ebf603` | 0 |
+| core/src/consensus/tower_storage.rs | 14299 | `30f6086a48695cb8b6386316005a3caa5527f5efdd3e638c4d543e8555a0bbc8` | 0 |
+| core/src/consensus/tree_diff.rs | 1099 | `aca5d3f3fecefc8982b338f9ec4cea080705b3e130b1975e9eb4aeb0da03a7c4` | 0 |
+| core/src/consensus/vote_stake_tracker.rs | 3417 | `65b7ddb5a9d0b437693f3a25c46137b7930b21c291a54053671cee27a6681799` | 0 |
+| core/src/consensus.rs | 140896 | `d0638e740e057cfbf88a94e597ac04fa34618eef8c442e8127e88ced8dcaeb67` | 0 |
+| core/src/cost_update_service.rs | 1271 | `be110a422e53cd6bf21567f49a8477a504bab108fcbb321f4b116ef1192dc954` | 0 |
+| core/src/drop_bank_service.rs | 1227 | `a7728d7334c7d7a59400f732e1a2ce65e5c034242fa91bb363a1a58a7d8718ef` | 0 |
+| core/src/fetch_stage.rs | 9148 | `4986e5cc466b7080463481f7511a62315619ea5714803446e2cc63b362d6ec30` | 0 |
+| core/src/gen_keys.rs | 2380 | `fe179a8db39c7a66c687a9a59637a5f4e636fad8c43bf89f472e4ff5c92738af` | 0 |
+| core/src/lib.rs | 1935 | `e498d65824de77df3c796bad8a9b2f1a2e297504c576e819ef6c0a504fa9e4f2` | 0 |
+| core/src/next_leader.rs | 1025 | `842b63a4802b272345196bfcefcd30b77a740265ddfbba7e0cd606d613640c61` | 0 |
+| core/src/optimistic_confirmation_verifier.rs | 13922 | `a510270c9cc4c14fe4920cca6ef4111cb5cf71a3c2e68d3ff550aebb3d16756c` | 0 |
+| core/src/poh_timing_report_service.rs | 2886 | `ff662f2f456660f6620875581b579615936123a86b8656b55f7c0b1335a7a049` | 0 |
+| core/src/poh_timing_reporter.rs | 8110 | `efe6f6ea473b2e48ad0c5dc8b74a22aa2a9791001956be6bf2caa09295ee432f` | 0 |
+| core/src/repair/ancestor_hashes_service.rs | 93186 | `28b52db82dacc2a0b3e7fae3467970dd32f885d6703b9c477947b03016658b52` | 0 |
+| core/src/repair/cluster_slot_state_verifier.rs | 97615 | `81abf6f45333d91e8fff9690bf073aabcf9bce64f969c4705da2da009c2fdcbb` | 0 |
+| core/src/repair/duplicate_repair_status.rs | 52132 | `70c87d4c436e6ea45e3e815d525283c1b1c8bcadf1f61fe89b7aeae6234d2727` | 0 |
+| core/src/repair/mod.rs | 424 | `8a8041cc441956324227cbfe8a938ea651fb41bec8872b993cc34f46861d9e07` | 0 |
+| core/src/repair/outstanding_requests.rs | 6663 | `d52643e93d72cc0201ded2b0a782b92c25c41e9106892144514e72e6f9923221` | 0 |
+| core/src/repair/packet_threshold.rs | 2362 | `b62deb31e5c6770e9633f9a1d93293d5fb8419e537ea5c383817e732d8ebfe2d` | 0 |
+| core/src/repair/quic_endpoint.rs | 39619 | `1ccf3a8d87fcd0aeb6f6d146381aeb53ce78c0edb1e4b4faba29f1fda3cbc715` | 0 |
+| core/src/repair/repair_generic_traversal.rs | 12340 | `e3ff60dfe92b42df0f300b4bd77ade50b4a92614d7d84b0fc2ff1a7220df3aab` | 0 |
+| core/src/repair/repair_response.rs | 3229 | `f9acb84aa72033f586da012ddbf2b373d20e7e0e7c548aa7e0ed0062309cd9be` | 0 |
+| core/src/repair/repair_service.rs | 64846 | `ed0f91b5bee9a2475509d12da22cd1b68649d16df0fecce6469798e2486c90ea` | 0 |
+| core/src/repair/repair_weight.rs | 105388 | `0f8d0d5ec48bfa8f660640dc5834b071a067c877af9dd363a58a6a5793225d86` | 0 |
+| core/src/repair/repair_weighted_traversal.rs | 13270 | `3ae57d59443d7856b524f01c39119f117005f0f981fe6c01fa7fdb3d07c99577` | 0 |
+| core/src/repair/request_response.rs | 160 | `49a35edd3a29b4a5666cf03f3de9bb8a07316a90694b4c854a7959eaeaaba37c` | 0 |
+| core/src/repair/result.rs | 943 | `cd70a83d359a1accfc07df508f97c7d38b17f9450fb671e24d1068dd4328f56c` | 0 |
+| core/src/repair/serve_repair.rs | 92578 | `b92df904c34d2ee88fb9d6d89827cafc05a3bb29158d382322676b002b9d7772` | 0 |
+| core/src/repair/serve_repair_service.rs | 3414 | `4b32d2429d85c3f6983e91c8990f3ec22d0cb9eac1532f4cee38be5438e2a30c` | 0 |
+| core/src/replay_stage.rs | 350857 | `b238163746778aa7712469be5705330cae59baec72802978d5248149d4d31ecb` | 0 |
+| core/src/result.rs | 2410 | `1eca1f0bba7e91726d859c09fef0968f368be296b0b11dd3ff713a6e66f8a6bc` | 0 |
+| core/src/rewards_recorder_service.rs | 2712 | `5267fa1b33f8d021eda58f1d536a5d7d0adc4e70fe8bd6630936fbb62d06f5e1` | 0 |
+| core/src/sample_performance_service.rs | 3757 | `34dc2a6ec03726a622975ca4ae7dcc4b1ce6932ac7f5596b85a1dd2a030d6832` | 0 |
+| core/src/shred_fetch_stage.rs | 20750 | `691b376da51401c02e7411e5559f427878f008d37f0f0752e8bc0555e12694d7` | 0 |
+| core/src/sigverify.rs | 4897 | `f2603c5fb1f59bb2be331143092d2f82ece1bc68d6c5ff834558ff2307562760` | 0 |
+| core/src/sigverify_stage.rs | 25796 | `dcf4753cfcde544e1aa9e93d79159b95dfb567a4adab1494636dc888e3faaf5f` | 0 |
+| core/src/snapshot_packager_service/snapshot_gossip_manager.rs | 5996 | `40630fe565d650f335714dedf91af6279fe31f590435516cc0f669cacd697aa0` | 0 |
+| core/src/snapshot_packager_service.rs | 15255 | `c239ca41d6f436ccac420e58311bfde469a835bf04f0c291cb73dc869082e541` | 0 |
+| core/src/staked_nodes_updater_service.rs | 1505 | `f80be873dec3a8eaaafed524c7974ed6e421e1d8a5025b8b72e301ee28a5db1e` | 0 |
+| core/src/stats_reporter_service.rs | 1396 | `441def53a12f953dd62ee85492b2e511a490974e58b0fd0365a81edcff411830` | 0 |
+| core/src/system_monitor_service.rs | 41145 | `95695c651a99454a265a9387e4a23b0bc32cd783564c3470720edc3157943bf0` | 0 |
+| core/src/tpu.rs | 11631 | `14d4a941d598ece6b38cbf5b2ab23221a59d3a1a76ae450149c3e54201033615` | 0 |
+| core/src/tpu_entry_notifier.rs | 3667 | `89e961b2bf15de5693087d859698353c24b8a92622e325c5af38009fb68a1c47` | 0 |
+| core/src/tracer_packet_stats.rs | 8020 | `15941291797845eb3153951b4c6fd7cbd0986c1f9b58cab558a3d3aba03b1feb` | 0 |
+| core/src/tvu.rs | 20688 | `009f8b07d7655567be9bf4a67c0efcd23f4e38c37d5a297a6818f3988831af2b` | 0 |
+| core/src/unfrozen_gossip_verified_vote_hashes.rs | 5229 | `51fd317ae57c9dde623340e9ea9307b4817b6de86f33c3eb1f03e8102e2c9786` | 0 |
+| core/src/validator.rs | 112493 | `bffb05d523a03cfff8c01c87856155c40bd360d0423d6e33164b087e60deb43d` | 0 |
+| core/src/verified_vote_packets.rs | 34759 | `6e9b06dfe7422b0bb496cc9acbc3240d67d291bb3867ca48f3a021999a5a4df8` | 0 |
+| core/src/vote_simulator.rs | 13066 | `703f4b1c24502d5cd1829cd2def8ad725e370f3baa801ad9449a54da91283fb0` | 0 |
+| core/src/voting_service.rs | 2919 | `32db1eff18f91c9fb35ce550e0d8e7a2e560d7813e4b2cd14224bfeb74552ef2` | 0 |
+| core/src/warm_quic_cache_service.rs | 2761 | `97ffe0b652c42305144e0d76c2c18416c216c0f98e59cc52f0b2469ee45f957b` | 0 |
+| core/src/window_service.rs | 29713 | `3d2bd73fcc3296dad7dc21cb17b20f48f09ac7fac7231e412712002f357880a8` | 0 |
+| cost-model/Cargo.toml | 1368 | `72ac4ce21bafde43c07b817669be107cb07f8df6c71ea9b7b79de39446883a89` | 0 |
+| cost-model/src/block_cost_limits.rs | 4336 | `027da30734690314a8bb81c462af848fce80679cc8ab1ed205356150a0ff929d` | 0 |
+| cost-model/src/cost_model.rs | 27557 | `bd094ab8a6bdfa26b5e4f491a5ced8f0b525f396bf62eac1688468f6a58a92a8` | 0 |
+| cost-model/src/cost_tracker.rs | 33708 | `4f218b9bb71e5b6685063a5777205451c33dd2460f69c115f3675d20e70dbf49` | 0 |
+| cost-model/src/lib.rs | 260 | `1491ae1f33932ee7b2f902ce6b6ad4340da20f2ff36412725064fd25eaf138a7` | 0 |
+| cost-model/src/transaction_cost.rs | 8891 | `a08db89efcd7bc62183bb9d2a57df2827da6cb1c23fbf51acdb047c540a3616f` | 0 |
+| docs/babel.config.js | 89 | `543f91b48879d760be7a7c722f9fa482e471d6c197418ce6f77d1c058e28914d` | 0 |
+| docs/components/Card.jsx | 1492 | `c24246f680017a7fd885ae319e6218058c33e09bbe29d1f5c773c3e904732bfc` | 0 |
+| docs/components/HomeCtaLinks.jsx | 727 | `b7affda948f01ffe6a77abc9318375dc553b6f6b35e2e8db0a3018962ed19818` | 0 |
+| docs/docusaurus.config.js | 5141 | `24fe99743dcab1ab29bd2da7adbb67404dcf7c52226335fe876cf2527cea2a29` | 1 |
+| docs/package-lock.json | 1013758 | `076d69350ccd7ff9471aaf757f71812490adfbe5a19d05e374fb8f551f11cc34` | 0 |
+| docs/package.json | 1602 | `51f062b6cd16dbc6567501ef27b50255a200e6f056fd7d5168362a623a44ab11` | 0 |
+| docs/sidebars.js | 2712 | `d7687324c619045aa4c36e950bae921b28f224238152f455782e952e2c0e51d4` | 0 |
+| docs/src/theme/Footer/index.js | 3602 | `f137ffb9d052c3a478225c29ea42abda0a3a0613925f3f4ef544bf0b204a365c` | 0 |
+| docs/static/katex/contrib/auto-render.js | 11435 | `fbbfe11b98b0b126f495ef586975ecf21934123ad36b0ec56d63a308acba490f` | 0 |
+| docs/static/katex/contrib/auto-render.min.js | 3519 | `a04b9054bc0ee488bab2e6c286d2dbad8e60c7b343454f94249f63bef6aef852` | 0 |
+| docs/static/katex/contrib/auto-render.mjs | 6489 | `89dfea6cc71f502ad13a8eefbf598e05e0ebdd9d7e0cec657800e6fd823b085e` | 0 |
+| docs/static/katex/contrib/copy-tex.js | 7634 | `1431ffa4254ea0f0d7471fc679f413fd68b58166b3c966e6eec5ddf786df0326` | 0 |
+| docs/static/katex/contrib/copy-tex.min.js | 2315 | `2ab2237329021bc443986c8327f6e61357fb68a54e5d233d224023718c02207d` | 0 |
+| docs/static/katex/contrib/copy-tex.mjs | 2814 | `53894a5e70622117ae87a4253b92293aa235cc079ffadcf54c9ab6cc4b947d0b` | 0 |
+| docs/static/katex/contrib/mathtex-script-type.js | 5382 | `24e74003dbdfbdfa14706c66e7f5ee1c3d40c76287446167d1ec475a57d2ac0d` | 0 |
+| docs/static/katex/contrib/mathtex-script-type.min.js | 1774 | `6fc7625443a03c3c54a740ae6028bbfa56f9c4819c82bb4876bbc4f1dfe8ced4` | 0 |
+| docs/static/katex/contrib/mathtex-script-type.mjs | 755 | `4bed88aad2fa0d109a1f592f2f668b39340796aa70e9d72c95252eb59e02f43b` | 0 |
+| docs/static/katex/contrib/mhchem.js | 80601 | `5816cb85ed1616b0a65443abc0d7bd6c772cba85d39ef974b7ebb0c5cff9739e` | 0 |
+| docs/static/katex/contrib/mhchem.min.js | 34236 | `788ed3b72f3a796fade4278b8f6a3befe6ca816d632f38900121c8de587eb27f` | 0 |
+| docs/static/katex/contrib/mhchem.mjs | 75558 | `82e78c634e33d1b9b69ca52fd9a2d4dd5b09fa8d0d519febfd753e6cf1b01e90` | 0 |
+| docs/static/katex/contrib/render-a11y-string.js | 24362 | `2a700c33c92fe379309969324980bc8f4ee2f8458520fca8557ffd51b1c17eea` | 0 |
+| docs/static/katex/contrib/render-a11y-string.min.js | 8827 | `2faa9e6552840a1d2e2754ed9e2ab3a5dda7e02f84a93bc20dc26ac5aaf39cac` | 0 |
+| docs/static/katex/contrib/render-a11y-string.mjs | 19478 | `b2951fc18a3b2016fe08f455eb10bb7c8ef9cfb7e00234adc76528b3e7a01924` | 0 |
+| docs/static/katex/katex.js | 593507 | `c80478aab8a663057ea23ff8d80859581ab937221593aa3bded284a04f0c2526` | 0 |
+| docs/static/katex/katex.min.js | 257661 | `d6a849c0082c48f5524a39505537b01d2e3d79aa006cecfae7576f79400d5412` | 0 |
+| docs/static/katex/katex.mjs | 559723 | `7fb4ac0855e52393ee914af319e70c162aa13f52b4edf082a19cc5c27008cffd` | 0 |
+| dos/Cargo.toml | 1342 | `4421186d1ecb4063a8dddd30672b0f7ad071700c02026e3d3ba334612eba679b` | 0 |
+| dos/src/cli.rs | 13139 | `d74c22b211d9d981951015e8f718b10d20432c434f3be8aa2079d41ece99d78d` | 0 |
+| dos/src/lib.rs | 56 | `99bc0ff96dd06065fe4d5191f7b45eca235c2b02ba7a8f177c26111a30f2e58b` | 0 |
+| dos/src/main.rs | 45714 | `c598b9ce0715a02fb5c2762b94eaef937b5845715591d8a00af69f4a7de82b0a` | 0 |
+| download-utils/Cargo.toml | 834 | `7c145b0a0a21f2c948e00c8f4e4fe1ef43d3b9794df520fef2a4816b26083708` | 0 |
+| download-utils/src/lib.rs | 11804 | `6d5fb272b25fc947cd5b8a9df7837c94b299154c7f7725a88424684c92d931ae` | 0 |
+| entry/Cargo.toml | 1046 | `2d1fc02112e3fa4bceb586d82ec072b58f4bc5196620cf3c48daa418a2cb70b1` | 0 |
+| entry/src/entry.rs | 49755 | `78ebfa9bf1dc577933ca9a476c81bfaff5a04aa25f18be65f98667b6b0f61164` | 0 |
+| entry/src/lib.rs | 90 | `942a0af681102878e8d2f030711e83d91258d41cdee3104eeb16dee889f69568` | 0 |
+| entry/src/poh.rs | 9993 | `1e5ea60737418a8ededdfbd0a46b53b4d31c8dc28b3d6b752ac323cd73a3f2ad` | 0 |
+| faucet/Cargo.toml | 1093 | `e06bc257b6d7300dbfe7ae4c5d3118d2891ed800a0062cf689664bba5d202fe6` | 0 |
+| faucet/src/bin/faucet.rs | 3374 | `27f5db342f5567c1fc8365802217881a88e5ec6e41b50efbaeba9a3fb8a21108` | 0 |
+| faucet/src/faucet.rs | 23457 | `1158c8b434200e390dd179ed5df030b7596a3a05e6eb748e3fc21009677d4076` | 0 |
+| faucet/src/faucet_mock.rs | 702 | `14826e74dfe49cedf671071615fb410d2788e9fc710dc7c15d5aee714ddb43df` | 0 |
+| faucet/src/lib.rs | 37 | `12f8d5160b7dde8cfbe09b3fd5c50066d065d661f5a8126424125cc1b1aedc0e` | 0 |
+| frozen-abi/Cargo.toml | 1216 | `e57ab32d50c351dc63d77cc570d6fc9a43e863c8467f2dea710a987645b4afc6` | 0 |
+| frozen-abi/build.rs | 748 | `6b3e8086a184eb40df00377c2c8e2e52ecdcb56d27a80c67ddf0393c24194bbb` | 0 |
+| frozen-abi/macro/Cargo.toml | 572 | `5817420cc663c66b89bcdee08016e42c4d244da70bc92912edb29ea450a5850e` | 0 |
+| frozen-abi/macro/src/lib.rs | 15080 | `3b3c83eec14f465bb98c0f06d6bbcbe1285ac5c6911e5cca575beb60b0eb46d7` | 0 |
+| frozen-abi/src/abi_digester.rs | 22042 | `005579a9e1be75c2537b787d6a1301ab30a87d414f04400536c0a8868a56f653` | 0 |
+| frozen-abi/src/abi_example.rs | 18917 | `a480127e68b45850d55a2056bcd72454a630c89a314122ad19fc882d547a3b84` | 0 |
+| frozen-abi/src/hash.rs | 543 | `6a91561b531148efc7ea97106ddbade0f24f7ee2b8e499dfca7bb1d59b538b51` | 0 |
+| frozen-abi/src/lib.rs | 551 | `cfbe50eac87ff2f11a6b97ffbd9fb9c9bc73ba3905adbca13897c2c27e5c6ad0` | 0 |
+| genesis/Cargo.toml | 1266 | `1b85f12d770c4045085e225715b27542e93c238f823f1626e419a13f7cfb6bee` | 0 |
+| genesis/src/address_generator.rs | 686 | `93420019dac412b96072c0adb5f9ee0478c899e917c0f0a838cb66012d97bccb` | 0 |
+| genesis/src/genesis_accounts.rs | 10711 | `b3404c5d3c3889a2fdc9f3e19c68ae68b63c13673488e0621c2d808a58d31a00` | 0 |
+| genesis/src/lib.rs | 392 | `8fb412cafce00d5097842e70b4fb49608bd0141518b039697853695acfc6c125` | 0 |
+| genesis/src/main.rs | 39469 | `115341e30e923caddb94601a593e972635d81688db24117f770e75de55fbb86e` | 0 |
+| genesis/src/stakes.rs | 12066 | `b393c52a1e211d84685ca61ba733bdefc44c34e206924367896feffb9dc31373` | 0 |
+| genesis/src/unlocks.rs | 6715 | `bd5782f08b273bf1cbf8afe81af9f4e9ee1ab1a302828a41fc0dd2f83d684c98` | 0 |
+| genesis-utils/Cargo.toml | 653 | `c411dd64d085734338e1b02354febca69c1477c3ff588f26906e43fe8fc71375` | 0 |
+| genesis-utils/src/lib.rs | 4007 | `ee3dd749cf52d6eb4390972b51fff99dbd6117f02b0c198b555277c0ca22e330` | 0 |
+| geyser-plugin-interface/Cargo.toml | 583 | `1dca09c2177051de5f21408aeb3e4c8ca3e3a9d576e161dbb6c1106120d0415f` | 0 |
+| geyser-plugin-interface/src/geyser_plugin_interface.rs | 14661 | `87bb09df630d53b167857307d763a4cac453c51b4b656ef399b4042ce94f83ed` | 0 |
+| geyser-plugin-interface/src/lib.rs | 33 | `28fc18e87bc0d285cf76b2eda2a4430137f52edb7aa9449a1d0494e9a9fc2c20` | 0 |
+| geyser-plugin-manager/Cargo.toml | 1125 | `15c987a63c445a14dd73f77a454a27b6591233ff2b07fe5f814e538c36ba10e2` | 0 |
+| geyser-plugin-manager/src/accounts_update_notifier.rs | 6563 | `c57f8897b209ec1270a5da492e9d16b50a57c1d7432d3ed3ed716c88515c9c8a` | 0 |
+| geyser-plugin-manager/src/block_metadata_notifier.rs | 3930 | `b2a35ff31cbd91f21acd8b05c64580ec4b877627935b9b7e472854c6253f5d9c` | 0 |
+| geyser-plugin-manager/src/block_metadata_notifier_interface.rs | 718 | `f0f149df7274253b6f0d2540aec5eae4add8c072c39a26f5543c75f6c1621470` | 0 |
+| geyser-plugin-manager/src/entry_notifier.rs | 2575 | `69331e59082291f4cd1692cd1293fcb15b4a7255809a1a18365dd3dda381ebb8` | 0 |
+| geyser-plugin-manager/src/geyser_plugin_manager.rs | 19271 | `4dab3c44ac42dc46dbecf8452a8fd6af9dc05173efff232b7a5e29d5323f6d24` | 0 |
+| geyser-plugin-manager/src/geyser_plugin_service.rs | 10159 | `f326cd25d824e457be2ee872ac102707155acb9333a4ab3e945d55e1f7fe4d8d` | 0 |
+| geyser-plugin-manager/src/lib.rs | 346 | `0806ef560a22844325fd50ec6136c433dfbe910323464bcba5de210a003ad4ff` | 0 |
+| geyser-plugin-manager/src/slot_status_notifier.rs | 2724 | `72d3026c7010c3ef045c4567de19979803e8c67830bc27090a775bbfa9a37922` | 0 |
+| geyser-plugin-manager/src/slot_status_observer.rs | 2857 | `cbbb107c94d4f10381e75de04d19d1f512f459614a0744f91b68f3ef2024c3a4` | 0 |
+| geyser-plugin-manager/src/transaction_notifier.rs | 3374 | `0af44a7ecf46a20110797a3a81f09b3eb7506c6898e3fd0165eb019bab65f42e` | 0 |
+| gossip/Cargo.toml | 2321 | `1836fa27790af3468555a21e02587699499a5b1b089d905615b2203b64ad1aea` | 0 |
+| gossip/src/cluster_info.rs | 188054 | `4de7d90d03e96cdf6752df390ae05d36aba5e2fe0dc17ec6cda19a9c494020f7` | 0 |
+| gossip/src/cluster_info_metrics.rs | 24862 | `6ce1a7c6d00e9eb857724bf1ac92802b014c9605f6b1cfad63d92491bd57471b` | 0 |
+| gossip/src/contact_info.rs | 33665 | `d7e058baa622584a4b35c3be7ce66a6d0b6f41216500b15ab8980afa0929f4a3` | 0 |
+| gossip/src/crds.rs | 59662 | `cd22f2e68ec6ea30e3515e6ba0703060b1fdbebb97b6a3c2b4fe11198cabc2fb` | 0 |
+| gossip/src/crds_entry.rs | 4363 | `2ef49923b9aab1c6053e8fe18231fac797ab46e4d0d20740819b561ffa79b710` | 0 |
+| gossip/src/crds_gossip.rs | 15827 | `9c4c5e729b65db2034eff0672dae2b0171377b18fc08b388a9fe570e74df1c2d` | 0 |
+| gossip/src/crds_gossip_error.rs | 175 | `fdda087f68756fcbeeb92d9825cdf9ebded3404cd1a3909261b9dd6d9c12255b` | 0 |
+| gossip/src/crds_gossip_pull.rs | 53536 | `a4118964b8dc47ab800cae5575dbd18196a1da9053373826f800439acb4b7cb7` | 0 |
+| gossip/src/crds_gossip_push.rs | 22439 | `a919208496d041b867d34bda0d3ea4eb62bf4ab9e9263953113e5554dd1879ae` | 0 |
+| gossip/src/crds_shards.rs | 7931 | `55d369177a6b3f67c88c552f097972649b33b102f98b3e78ce4374fa0cb179f5` | 0 |
+| gossip/src/crds_value.rs | 39437 | `2262d9ff396e613fea5bd5f8a7cf9ecb3cb741eab0b543d692fac73a74660a00` | 0 |
+| gossip/src/deprecated.rs | 492 | `8fedc43c4aa0d4895b1b874f225501e5ed62cf2552f3f5fd4991ef3877b0d807` | 0 |
+| gossip/src/duplicate_shred.rs | 37054 | `783653405749d7bd3ced926fd1cd424cd88f4a127081204dac8b993aa66ae25f` | 0 |
+| gossip/src/duplicate_shred_handler.rs | 19916 | `58a960db1e5881b6dc43432e07061ac85f31d7a8acb027e86f78ced9f93ed92c` | 0 |
+| gossip/src/duplicate_shred_listener.rs | 4135 | `e7a8e8b50f916ac6b1f61bcef30c184810f05bdc00d409364168c580238f6af8` | 0 |
+| gossip/src/epoch_slots.rs | 17825 | `76ea05600b23b57f07e62259fba871196d010b41dd21ba10b8ec0cd2b685562d` | 0 |
+| gossip/src/gossip_error.rs | 820 | `a138b20e30c18997155e706e533143e10409ea4b82310330930ec481e5c3a757` | 0 |
+| gossip/src/gossip_service.rs | 14618 | `8cf8bde0fcc997300b972e4b5e1129395419a0730674db9c76a5e1532c914b44` | 0 |
+| gossip/src/legacy_contact_info.rs | 10885 | `ed6df80cb7bbd87cd72baf0f4417c04d8027352c78f4557dab90852f63ab5b44` | 0 |
+| gossip/src/lib.rs | 918 | `b2ca530cea248fbe0c3333ae2ffeaf8457d6844b36fc6f72cc9d84234271bd94` | 0 |
+| gossip/src/main.rs | 12148 | `c008fb8243b8c6c76d8605de412e385e1085682d28df5661d78136d23a4759d4` | 0 |
+| gossip/src/ping_pong.rs | 13644 | `0a47ec80ec3a057557b8aa9112726f26eb1700b3cd27a4b98623730d256e8f36` | 0 |
+| gossip/src/push_active_set.rs | 12878 | `85f0b1bcbf8b92505b136893f5d5a49d4cdb9dcb129be01cd14c61aaa2ce701d` | 0 |
+| gossip/src/received_cache.rs | 6558 | `8e4f57ad29dc138d061aaa5054de5827e95405d6ea257b7ce42ad6b1cf8bfd31` | 0 |
+| gossip/src/restart_crds_values.rs | 12468 | `ded07eed583f5b7e7f1f2d34723e275d7f33aafd5d985cb4744a0d59b9572c49` | 0 |
+| gossip/src/weighted_shuffle.rs | 13167 | `c9abd7e3a5d99c1d9b2608bd9d202b0697c313e8737e6e9710bb6b91df0e34d3` | 0 |
+| install/Cargo.toml | 1623 | `9a93265111e7751aa217cad22330e9fa9b19aebef109f03c71449283a19502b0` | 0 |
+| install/build.rs | 347 | `0b8d02bf24b9c8b107220e4a3a2dcbc800b20982ec492ce32e675641a31906de` | 0 |
+| install/src/bin/solana-install-init.rs | 699 | `79799b842bbcad06506c35fdab720f12d654e6b6ab07b1e6a66041cae586c358` | 0 |
+| install/src/build_env.rs | 130 | `ff4fa84f35301b5883e1e7ce750dbd6bd59d80154a9a6be3767279ecee87e12d` | 0 |
+| install/src/command.rs | 46391 | `fcc980f5fba993217541acd790803f7b16dcf6e1a6f9de460337eb0d557042f8` | 0 |
+| install/src/config.rs | 7173 | `d4386f96552936be22f27a7ae946cf6ca312e3213e91c5bef814c51279b69224` | 0 |
+| install/src/defaults.rs | 767 | `7806b06eca0fe3f872e6eb9741638c825aef8cfe81dc769bf71e9b3c7ebb23c2` | 0 |
+| install/src/lib.rs | 13233 | `89592f7fa84625759695795e7833559d022c67c9e96b5c8643a2e4700dd3b571` | 0 |
+| install/src/main.rs | 63 | `a88e6cb2444e8e415950386c1df334f291ef6f70e8de7cdf5b76ac6ca6433689` | 0 |
+| install/src/stop_process.rs | 1978 | `eba4e41980dc42cdb3619fcb33044926786946ef8b99f38d444646113c4c7562` | 0 |
+| install/src/update_manifest.rs | 1948 | `108fc60b3877a51ffda8f45470f6e2565a708cecf23ce4914e66c563e896c079` | 0 |
+| keygen/Cargo.toml | 910 | `a7c0bd96222bdca37a4e212b1fe49b11ad0e337339a7fc63903770cdffd27ed7` | 0 |
+| keygen/src/keygen.rs | 41499 | `72b87b83ec0049e608539ba3cdaa0e0b99e30b5c0898648cdc668f45f98b7b62` | 0 |
+| ledger/Cargo.toml | 3355 | `6cac0ca0e6c805de8b25cdbc902bd7ba00ca01978cd95f519a2786b37acfa3c9` | 0 |
+| ledger/src/ancestor_iterator.rs | 5652 | `130931defe188503d0f379a684f0cdef93307404b5290a78428d029065de798b` | 0 |
+| ledger/src/bank_forks_utils.rs | 14449 | `3ba3e604406e81477898e443b62a275742377706ac4b0b4bddce55cea7950a64` | 0 |
+| ledger/src/bigtable_delete.rs | 1667 | `a6752ce51ae646264ecda31ccc7b62fc346d00d17a2e3beded19f726387d6061` | 0 |
+| ledger/src/bigtable_upload.rs | 10119 | `429fd1d80216f640a34377ea49899767b27a22cd038a9469375d5c1142a5fedc` | 0 |
+| ledger/src/bigtable_upload_service.rs | 4551 | `7d49006bb57fd573f3f38cdb4d94b4c1b6da7346e8a81c11e4d84ec44e069313` | 0 |
+| ledger/src/block_error.rs | 1265 | `25fae5c2d466897c162129c3feccf5692887ca11df6a190078afe31af71bc528` | 0 |
+| ledger/src/blockstore/blockstore_purge.rs | 46190 | `265ae6d1705937157bb05b92a760a6774a1daefd610b473ed2ac43ca84a8be1c` | 0 |
+| ledger/src/blockstore.rs | 410656 | `81d9a47902260f5af803917bb3258ff823c58f60019e23020c8317d2d571cabf` | 0 |
+| ledger/src/blockstore_cleanup_service.rs | 18868 | `35a40428b513468dbe858229d159e70dff90bbc63f11e69177688aa1c971d0b0` | 0 |
+| ledger/src/blockstore_db.rs | 83271 | `f03d35c22193c25710fff6244a96bb8c3c1a6d8fac8cc9bf7604d99f6a02d1c8` | 0 |
+| ledger/src/blockstore_meta.rs | 22572 | `0453b4d696f36fcf8f2c9dc06527eec89ca21e7bae45bcec435b334c6f233c23` | 0 |
+| ledger/src/blockstore_metric_report_service.rs | 1419 | `5959538e87ffeafd68020d101af704c581e2e916e21e31d56a7a2d2b6ec44872` | 0 |
+| ledger/src/blockstore_metrics.rs | 27800 | `b657858eafd306b2490decf31a0ec937339408e4cd45f9f3e1f25eee8905cb56` | 0 |
+| ledger/src/blockstore_options.rs | 9807 | `5388343d37c29a4010641dfecabdbff92685f3c6b0adbd6147da86dbacd239f3` | 0 |
+| ledger/src/blockstore_processor.rs | 171453 | `7f761caadbee78effa0dd37045918e8a48cd378a3efdb13cdcc9dfc37597ada5` | 0 |
+| ledger/src/entry_notifier_interface.rs | 336 | `e5c158ef4826db8c05cf87a82d976265fd4a8eadd811cecbdf7622cdcf8afedd` | 0 |
+| ledger/src/entry_notifier_service.rs | 2255 | `3cac4d4b095b89650e4b0d99632ea682d6951d695830a2fea919d6cb33db2533` | 0 |
+| ledger/src/genesis_utils.rs | 490 | `728f36cc6bbd5b90e9fa759414b5b56f311af6697fdabf0e6a27d01af1da660c` | 0 |
+| ledger/src/leader_schedule.rs | 7782 | `bf3b8af5cb3f62e6882720aa6a57d17b201765ec511b228c8078a4110bfee0b9` | 0 |
+| ledger/src/leader_schedule_cache.rs | 22476 | `2036e5d8efda12eca529778b73bb6c307fa4ad404317cf0810bcdea19d982755` | 0 |
+| ledger/src/leader_schedule_utils.rs | 5228 | `7740d275420a12ac1da2635723460f8d0804e240cdb69d459b554e14f15876d3` | 0 |
+| ledger/src/lib.rs | 1083 | `895d100244a8a4bddda8a2e1f2d391b4510c8cff48546741884e7d94d0beadca` | 0 |
+| ledger/src/next_slots_iterator.rs | 3318 | `d41ce1c24a74d0beac874ce8f5759f4a591682f44a6d19d821445cb3c6fee845` | 0 |
+| ledger/src/rooted_slot_iterator.rs | 7209 | `689e258608356ccd8ceb72fa70a5ff30bfcb83380c4c872079fc695b5c54a613` | 0 |
+| ledger/src/shred/common.rs | 2749 | `72b1b11bca1e02cf8f0ab7f3eaa39a7f93a217b0033042b3bc13307191a9b645` | 0 |
+| ledger/src/shred/legacy.rs | 17288 | `29198a4fe61a4700e6c3871ac93aa34dab35d202f027d927304a8f1a59495450` | 0 |
+| ledger/src/shred/merkle.rs | 71414 | `947a487c8077663c76027e65a1643cb0f39109535964c2c81aa566205ada5c26` | 0 |
+| ledger/src/shred/shred_code.rs | 6362 | `69f01de5e9a14e9fa357d8b512e157b2d356cb2592f2dffd36825abef4f1f892` | 0 |
+| ledger/src/shred/shred_data.rs | 6184 | `280ae5bef144594c85e5546e1b42bdad9cf805f72c4b023e0fda1c85676363f0` | 0 |
+| ledger/src/shred/stats.rs | 7476 | `06c921ef69877336d5c459cf0f1b559e4c4f57ed40cd92446bfeaf1725852a41` | 0 |
+| ledger/src/shred/traits.rs | 2234 | `699d9e29ab8ce22671282811a84a52e2d905b5d4148449800500b1ac171c4987` | 0 |
+| ledger/src/shred.rs | 67559 | `fa3ecf6c2be466aa151d6b5492bb4362fa2ff204d1cd5422d0682eb80bb763da` | 0 |
+| ledger/src/shredder.rs | 47925 | `9d56993276e753248fcac4974a163eaaa5e35bf8f49e1331b583242885123121` | 0 |
+| ledger/src/sigverify_shreds.rs | 33344 | `3c8ba53b70a1d499464e3c47c443804cd43460a7b60b929d4408e4c488bbd5c2` | 0 |
+| ledger/src/slot_stats.rs | 5156 | `9bf5982f49520ecf2844a2ef9fbf506e752389232320d4c479832678ecef1a26` | 0 |
+| ledger/src/staking_utils.rs | 4262 | `9168b83c8b7f831e5b0b533b75368a33bd29c63e1b1d5ef17a8853f52fafabb6` | 0 |
+| ledger/src/token_balances.rs | 16717 | `6f64410e712d24dcce65eb86ebec485aec0d7a5385048440fae8e2e7ae00cc61` | 0 |
+| ledger/src/transaction_address_lookup_table_scanner.rs | 1373 | `0fd292ec4215147f1b8f155d90ccc9a09830aad490130b87daca57fb252e4a95` | 0 |
+| ledger/src/use_snapshot_archives_at_startup.rs | 2729 | `05be7c895e250a6b8f277dfd48f967a8ba0ce5ddb158a10b22d1a4e969d64e88` | 0 |
+| ledger-tool/Cargo.toml | 2357 | `a5de8c11c20f3302b9fb25a9b15395fa85eb403fb96f9b3dc349f9f53c0f739a` | 0 |
+| ledger-tool/src/args.rs | 6516 | `f39296c571a8a0858dbd2c50c1ecbd8eecc1a347da1bec4e332daa987259a4c6` | 0 |
+| ledger-tool/src/bigtable.rs | 58691 | `8b94b68d520530168f312bedb6ad3ace762e18e7f51a75fc830a8067ac5e44c7` | 0 |
+| ledger-tool/src/blockstore.rs | 45770 | `2d64ae7a8497581338d8913f30750520389f61864e20140c7b7c59743c465519` | 0 |
+| ledger-tool/src/error.rs | 408 | `b9305acb1f9175ba86f585091ea5382687b6a724e2085fa5d915462fc719869f` | 0 |
+| ledger-tool/src/ledger_path.rs | 473 | `3d84dde0218c8f8992d3b0d5a334df4ab50bf86a44fa2e4f66f2e9011c8466e9` | 0 |
+| ledger-tool/src/ledger_utils.rs | 22844 | `6994a65a65d464afa6e7780ef21011c94f751669397ca81c2cdd5ab9d8b12f5e` | 0 |
+| ledger-tool/src/main.rs | 139639 | `89359d6e3ebfbe920b05641bd3cd35466d42c39ab05dd4e20eebea6a8b965c59` | 0 |
+| ledger-tool/src/output.rs | 27702 | `aca85984b433dce70d2edcf60c97496789702e36076cf069b993b16abda34f59` | 0 |
+| ledger-tool/src/program.rs | 22646 | `48d9770d3e10123eb23f3c7433ee72686ae64c01cdefc7176c6d0ffecd79579f` | 0 |
+| local-cluster/Cargo.toml | 1779 | `f63179a85836835c138cb99166863d0adc463b3149e7efef007b243bdc15f196` | 0 |
+| local-cluster/src/cluster.rs | 2465 | `53b5d2f78a9b347e0a3db62837f31980ff809a760919148d0e18e9e32755ec2a` | 0 |
+| local-cluster/src/lib.rs | 194 | `b315c48ab29228228d047d8397b136093b0fcb51f96a91f883c6e4ad1bb328e7` | 0 |
+| local-cluster/src/local_cluster.rs | 36282 | `4ae7ea9ff97eb4e61c97a33af655a19bb40531de056f3141dab09a1702e471c8` | 0 |
+| local-cluster/src/local_cluster_snapshot_utils.rs | 5485 | `061277c74b5bde305bd9b669bce372b8c0c60578b555d07cd95f960ebfd8142e` | 0 |
+| local-cluster/src/validator_configs.rs | 4454 | `9e7ec33ad82c2352bd114eb4fd157a5abf33f3e6c5421570795c1f046919e45a` | 0 |
+| log-analyzer/Cargo.toml | 666 | `86ae7ee865cd3c2a32294f12475ed424cf8e48ec55ed4a449f623d7eef4bd74c` | 0 |
+| log-analyzer/src/main.rs | 8303 | `f15fd6e0ecab0df68effa7474092a99cdf562ce68da6ef7976559c643a49c731` | 0 |
+| logger/Cargo.toml | 510 | `ba599e0288ebb4c02776a270a5682bb9be9092ccd6d08a3fca1308cf4d47800b` | 0 |
+| logger/src/lib.rs | 2104 | `bf89df503f812eb0015a52f4ee21324df77c77e684bfc649120fcdd86e485542` | 0 |
+| measure/Cargo.toml | 487 | `e91414b8bd73c78e75f1737a91762ead285d7cf75ee4883421e70877b94167f8` | 0 |
+| measure/src/lib.rs | 76 | `1276527fb1b17c47f04b943bbe4c8611ac639e711250bb033e46ddc8bff7107a` | 0 |
+| measure/src/macros.rs | 5590 | `6da0d8cd44f15a7e7cab7c0273423b155af2cb76b53b41eddd90dc0452e136e6` | 0 |
+| measure/src/measure.rs | 3800 | `c6362984e4e4568e829dd2168539013824be4591f6f7daeee19511858ac467fc` | 0 |
+| memory-management/Cargo.toml | 275 | `566771eb6d4ba465454bb44844d4659ccb94c8031100743df575be13ca6f2984` | 0 |
+| memory-management/src/aligned_memory.rs | 10021 | `a3ce60c5876d267ba485c77a986eae478d1c5f8760ed6254be45337ec9dda2b2` | 0 |
+| memory-management/src/lib.rs | 273 | `c0a2f218b441a86a3859173ec3e9ec9663e7da67703937bf25619c3a62ad45bf` | 0 |
+| merkle-tree/Cargo.toml | 573 | `f0a9c8ff14afe286a5b2d1db03d919a5dc310233b82f81e898ce93c620d24162` | 0 |
+| merkle-tree/src/lib.rs | 98 | `0572d18adc85720842952cf9d0c5ab2360fd3269d96f91bd75fc0954749e9fec` | 0 |
+| merkle-tree/src/merkle_tree.rs | 9017 | `0336480fa4f9e5646473776a6f925d383d9ed153429f072e25c6ed0f7b834d93` | 0 |
+| metrics/Cargo.toml | 875 | `1a367801871911917b04d132fa29ac6db959fb56ba8734a0fbe4ddf9dc248da1` | 0 |
+| metrics/scripts/adjust-dashboard-for-channel.py | 8642 | `aa2537a5a2336ea9c9403cb039ebd11d368a14aa496808f5c739aa4b469afcbc` | 0 |
+| metrics/src/counter.rs | 11347 | `3db6a3b0f74c1d6830d9fed91853e4f1913ae9a937e64567220aa14fa220a0cd` | 0 |
+| metrics/src/datapoint.rs | 11985 | `bce9e26fb492885dc3f3685399155e7eb8fea140a101f0e688957e3985d32b97` | 0 |
+| metrics/src/lib.rs | 2442 | `7bceb3ce47bc45af2c278af2bc6e977d533d8dea764b2f1583929101ad8c1105` | 0 |
+| metrics/src/metrics.rs | 21788 | `08d1e4b2c3c32004d4b1eb1fafe79e48bb940c29a66b2a5a4d6371863f214805` | 0 |
+| metrics/src/poh_timing_point.rs | 5348 | `a6ddf4aab0b94b8ecd0cad2a7a680cc907ac8d193e23103011eb66663cde6f1c` | 0 |
+| net/scripts/add-datacenter-solana-user-authorized_keys.sh | 409 | `9c03aa5d7db175ccd2e1d56a6a3254d6cc3749feae0b20388529fc87e68d8cd1` | 0 |
+| net/scripts/add-testnet-solana-user-authorized_keys.sh | 563 | `669d7e2e76942b24976d62e22efe042784b6d9204358da2c617f4cdae51284e3` | 0 |
+| net/scripts/solana-user-authorized_keys.sh | 6363 | `90c82f30e876e7314b980bf86673e9ebb8d08236eecfe0ba3b2fcda194d0b7ec` | 0 |
+| net-shaper/Cargo.toml | 641 | `ec536a541212bb99f357b319139708a668aebe3e3546fea44ccba8c5e675a0dd` | 0 |
+| net-shaper/src/main.rs | 19969 | `f8d1c2254c12f81389db5319902fe4b33d5ec43bec38bcfcd955604b1be99621` | 0 |
+| net-utils/Cargo.toml | 1069 | `638e2821d0f23a2384ceb15e0b205c80e6432b1db969302bd75c7321b818d8f7` | 0 |
+| net-utils/src/bin/ip_address.rs | 750 | `8a9f071e669cb92dc5553753f6e80ca12a8b0d6248976b1a386bed396e007637` | 0 |
+| net-utils/src/bin/ip_address_server.rs | 864 | `ef49761ab8cb820530ed6f0fa6bc3262f0f184e67e8e172d08517998915af1b7` | 0 |
+| net-utils/src/ip_echo_server.rs | 6303 | `c9557a4e7e5a9924d38889b286c9e713e9a7bbebfc10cc9649fb4fe48b31f97b` | 0 |
+| net-utils/src/lib.rs | 29527 | `a914ac445681b8c120c6e7f04e19ea6806b16f4ebdebe6bdcfab5029ae13f6a7` | 0 |
+| notifier/Cargo.toml | 624 | `cc82c084f26ecfdc855dda9d655d07ae18e7777b58851eb54de7af9bdddb6c33` | 0 |
+| notifier/src/lib.rs | 8733 | `b0510064cdf106330e0b62b86965df61ea1ff112b39cfa8261844370e684971f` | 0 |
+| perf/Cargo.toml | 1438 | `7eb008951863fb8764c3b370f4089800059d406dc6a42788cbfaba77c1a92a71` | 0 |
+| perf/build.rs | 1066 | `6530c0cda629dab5aec4fafccda21dd7c5cccea49741140208830e18eb11f68b` | 0 |
+| perf/src/cuda_runtime.rs | 9881 | `4f5806ef3ce3b1837da76c2f80407048fc81aa2df95f87f73a28e01f44f440d7` | 0 |
+| perf/src/data_budget.rs | 3689 | `215bc4514ea86f49b9ef20a9366cc3c92f51442132a3d7d646185c78b6798c1f` | 0 |
+| perf/src/deduper.rs | 10735 | `19852b729e792333bf9e8249a5d2a8f1f6b2c6a45f5ecb8c1af8d2e47a09c34d` | 0 |
+| perf/src/discard.rs | 915 | `6000077476524663df03e9ce8c227fc847db5fc8628b69089dabdc4bb528ff45` | 0 |
+| perf/src/lib.rs | 2430 | `d1a17beac8c5daf49bc6be354fb0da186672a8f93095da1cb424397974d5534f` | 0 |
+| perf/src/packet.rs | 8351 | `0d1444f9ce76e01491b6f511f1877e63ec69c47cd6ca287504239eed63a3048d` | 0 |
+| perf/src/perf_libs.rs | 5912 | `beaa7b81041765a635ebd8daaea471b3888fc824523abae4e5b55eecb28fb4c0` | 0 |
+| perf/src/recycler.rs | 8632 | `d2a2856f2c6b9dfce4fcefac41e97ff036757c6f2ed5f16cfd54bbf2cf19c51e` | 0 |
+| perf/src/recycler_cache.rs | 602 | `cabdd55a6479da8ed08b249b0fb5459fbbbe83e98d66d75b908ddbe3c959b007` | 0 |
+| perf/src/sigverify.rs | 60501 | `7ce48d271cd888f4aadce324a54e23463b1c759de8e6b40dd8a09db40eeda2cb` | 0 |
+| perf/src/thread.rs | 4595 | `54a308f339e27a1b5e5427953d2213be078c81382d8dbe6a66128d527acc9b9f` | 0 |
+| poh/Cargo.toml | 1179 | `d4cd63b1039f2a99a92099abb8cf65cf000d982d73f672d6fdb01e04a8bf4f73` | 0 |
+| poh/src/leader_bank_notifier.rs | 10007 | `10fdf496cbed167641a8d401cdc9b929bfacb1d454417d5c6edeacc78e5a4332` | 0 |
+| poh/src/lib.rs | 215 | `ec5def30991f7d74170a72a0a58c21cad36b18ee301811794247bfa710c89607` | 0 |
+| poh/src/poh_recorder.rs | 80841 | `1b04e9582d729ab3ae15461f2f47fb0f4fdc0d2cfbd81d7b9b670615a068bd76` | 0 |
+| poh/src/poh_service.rs | 21449 | `89c7ed9fe506fa04bb20a7a690c6ec7651e74bb54c6de1c19484233629b34f01` | 0 |
+| program-runtime/Cargo.toml | 1436 | `d86c612df1036503942b3c1dcfa665ea11d5c442143f394c2009663663402c94` | 0 |
+| program-runtime/src/compute_budget.rs | 10580 | `9caa515b1322200261625b700260802ad5650d409ec55cf1cc4c2b9ccf49875f` | 0 |
+| program-runtime/src/compute_budget_processor.rs | 19552 | `f0b324c9304f3883daa764725db6b1e658f9475403457a1f70eb3bfa6237d75b` | 0 |
+| program-runtime/src/invoke_context.rs | 48114 | `b8697e2e1da65c4b224d9fd4f0f0f9cc52144b651af553f11736309b83978d3f` | 0 |
+| program-runtime/src/lib.rs | 542 | `195c50f1a82b1317ee8ef4f7c1191ddec0c6cd78ac199c4bcc7d2c47d762b037` | 0 |
+| program-runtime/src/loaded_programs.rs | 105444 | `dc10af05f50a7901ac03aaae88d31f803a40b62581ad6f20113408d420fdf964` | 0 |
+| program-runtime/src/log_collector.rs | 3494 | `753efe8059336d30ca82be4795016c40c7b3e5c8ba9c220db22bb28bb166779c` | 0 |
+| program-runtime/src/message_processor.rs | 26333 | `0b12d108d70f3967069e554ff4136019aa6c0319ce613da4ccf008293fab456f` | 0 |
+| program-runtime/src/prioritization_fee.rs | 3373 | `3d6ae1240061c712ec032db9d2ba7792b168f63fe1c800a504f52be31e5e037a` | 0 |
+| program-runtime/src/runtime_config.rs | 567 | `f6f20cc2457cb998ab099a19708b9f810c0d962c2fb3a561e8f2fdd63b2cba69` | 0 |
+| program-runtime/src/stable_log.rs | 2904 | `c8f123555437a95f937cb3c2cef4f0d96d6c91c8834bf036f28f36a1d44448f9` | 0 |
+| program-runtime/src/sysvar_cache.rs | 10909 | `4263f9defde1230d8d1f13bb1f6170bead9c0708b9596095c13dd7f6d1250f68` | 0 |
+| program-runtime/src/timings.rs | 18563 | `23c73082de42170b2fd83689f924cde359460e61642b9194063d482f0d33e29c` | 0 |
+| programs/address-lookup-table/Cargo.toml | 1088 | `2cb38447bac7ea57625c7d66d2a67e228542d39bc9300b2f2e7bf9dd93c8b42d` | 0 |
+| programs/address-lookup-table/src/lib.rs | 380 | `d2aa2abe5232a6d15be7eca6622f2dfe4991b04e0fed9a858caf288f92a719fd` | 0 |
+| programs/address-lookup-table/src/processor.rs | 19296 | `e98750d2e2ea1a50956f224d1c8bf79255a58a1ace5005d32063cfec383ad5c3` | 0 |
+| programs/bpf_loader/Cargo.toml | 1090 | `ea4c7c64fc6396090ef7156cdc88a98c0b4051c7554b42d848dbc2984d03e924` | 0 |
+| programs/bpf_loader/gen-syscall-list/Cargo.toml | 293 | `ba4dcf76d2c1f875b0bc97861530517c8bea9821812f350f015d5b0735b90d75` | 0 |
+| programs/bpf_loader/gen-syscall-list/build.rs | 1408 | `ad949df414c1793dc0d05808b12be03780495cc9a5b0b36e2d6af74a44dc706b` | 0 |
+| programs/bpf_loader/gen-syscall-list/src/main.rs | 58 | `8309f9b0f5e958f48adc37af306cc168fdff8b97ab11c5b860c426a521a58d71` | 0 |
+| programs/bpf_loader/src/lib.rs | 146261 | `a39cfc5e659a672845e693a4c495ff92bf8da00d75b467919c0c11c46a3a7ec5` | 0 |
+| programs/bpf_loader/src/serialization.rs | 45899 | `0eb16e089fc1d22a016a45d9a022f5335e0c8b4d43753fdd627f8d28152ffee9` | 0 |
+| programs/bpf_loader/src/syscalls/cpi.rs | 104406 | `8db0abc3ff8baa3ebf40a3171e9629702359a463dc72a45e0c837910329d9a36` | 0 |
+| programs/bpf_loader/src/syscalls/logging.rs | 4434 | `cf4b35ec1b0d9cc4c8f0b5f0261c4631c8a3381cfee1b5e6cd7a7e75ba23929f` | 0 |
+| programs/bpf_loader/src/syscalls/mem_ops.rs | 31416 | `870f2bd626e61cdf0c9c7c0a5b4e614c88615316eba3a8edd2ac34ec3a57e3fb` | 0 |
+| programs/bpf_loader/src/syscalls/mod.rs | 145289 | `b02d54c0d7275856274e8ac2507d8fc2dc1f335c91224a3a821450e172dff71d` | 0 |
+| programs/bpf_loader/src/syscalls/sysvar.rs | 4037 | `ea854d41c71526213fd1cffe3540780051b6d0993cc03390a681a2e3676086de` | 0 |
+| programs/compute-budget/Cargo.toml | 579 | `bdfb756010c420a76f0c15c7dae8db7e1877d930db36c0db0008ec3bb4a53d65` | 0 |
+| programs/compute-budget/src/lib.rs | 272 | `552ffb972b1c98e75e4c7e5846a3d564b1b68592bf48ad8fafa80123388eb943` | 0 |
+| programs/config/Cargo.toml | 763 | `8fbb7de7089f629a1540fea97738a390a55783d30df41de4300f05632cc0c743` | 0 |
+| programs/config/src/config_instruction.rs | 1665 | `7726bcbed6aebab2f93add8233d7359a75c5d9db2618dc628a63fd8dc0eecd6a` | 0 |
+| programs/config/src/config_processor.rs | 30367 | `1770928a5eae910f6afd3010ae988cc9cc205798eba66b9bfec47d371149d632` | 0 |
+| programs/config/src/date_instruction.rs | 1588 | `d74289692a015ee998079a2f5fa850a22f07343be32af208b22e1e056f42fab9` | 0 |
+| programs/config/src/lib.rs | 1952 | `bb89a4d67b12fdb82334ea60134df51223dc4fa8fcafdad9784197b9cdc5b162` | 0 |
+| programs/loader-v4/Cargo.toml | 643 | `00a8a4ce1b4cff8b04896c3b80c3fe99df241787158425560dbf07f5896736ef` | 0 |
+| programs/loader-v4/src/lib.rs | 59659 | `fb6b63d63cace09f130cd33caa924dd0aee71cebf6acfde28e84eb95e4259c41` | 0 |
+| programs/sbf/Cargo.lock | 184349 | `506d9cd942f0098faef4becec022af6fb1e84e52fbe452c8d2741a0190edf10b` | 0 |
+| programs/sbf/Cargo.toml | 7187 | `99af567112a879a4c51d3e213b9117ca32f335347d0259bcc3ea4751d6a18441` | 0 |
+| programs/sbf/build.rs | 4128 | `b14b8ccec8ce55a5f1305006c3026b153ca00ddcba98cc6bf668e626307913e6` | 0 |
+| programs/sbf/c/src/alloc/alloc.c | 1716 | `26b15be5533759f5238bedf6746ce451572f48c4c39354f06457902ea859ccc2` | 0 |
+| programs/sbf/c/src/alt_bn128/alt_bn128.c | 6233 | `60d644d5ab9e5fa72bb57446cd04d28848c33bbd4aacd838b39df7c288abe8df` | 0 |
+| programs/sbf/c/src/alt_bn128_compression/alt_bn128.c | 2388 | `a22771b3b757945b896f9e7ef387eaec18e9e7be56f493af2de69c186e97bef9` | 0 |
+| programs/sbf/c/src/big_mod_exp/big_mod_exp.c | 1778 | `4884a99f1c51fd80d3a7297b3ee1c5031e79b3b9800bc6e3ccbf6d972cc77974` | 0 |
+| programs/sbf/c/src/deprecated_loader/deprecated_loader.c | 697 | `472ddfea2271698ae513e99351648d76b0cb84bb367e671133a0b793f56af635` | 0 |
+| programs/sbf/c/src/dup_accounts/dup_accounts.c | 3025 | `e55d44403133b27f75da5e560cf8ce89bc9d09475f070f8e4fc00cb9ecc5a436` | 0 |
+| programs/sbf/c/src/error_handling/error_handling.c | 1172 | `08ba00e13022c3a0b9301fb7415d66f3e253e8e804515e029d07cec3a143c358` | 0 |
+| programs/sbf/c/src/float/float.c | 934 | `2bec48a5ce9f536a9584cb85a8792ac88cac81fe737a994e8eab0609ef7fb8f7` | 0 |
+| programs/sbf/c/src/invoke/invoke.c | 33993 | `d3ec898c4983351c6db1f6697f4ef89ff4b1441667b1d3dfeaa46733c1c35b28` | 0 |
+| programs/sbf/c/src/invoked/instruction.h | 679 | `09602f27fa5f7857ab9011ccb6322c79cbce86c62d911640f2f72f191e3ce465` | 0 |
+| programs/sbf/c/src/invoked/invoked.c | 10646 | `a39a48b3b864ac20b41af5b5d32e2f6553c880f5be75b6372edf47ba4af1d561` | 0 |
+| programs/sbf/c/src/log_data/log_data.c | 766 | `752a37ea54e178dc6027904956eeed1d672842020b705144c4aa7ab8c4136114` | 0 |
+| programs/sbf/c/src/move_funds/move_funds.c | 987 | `54c18cfa75858754d59fd988f0f1181d92a519320182d3ae0413c11e76f973f0` | 0 |
+| programs/sbf/c/src/multiple_static/multiple_static.c | 249 | `d3ba8d888d8aee7e67482a1c623545a26541c6b484c48c8b2ca0f296b9a6efc8` | 0 |
+| programs/sbf/c/src/noop/noop.c | 377 | `a1dee57f82c05725d9f5d55199de0c19e5bf9740b1a28b10ef045c4f91398d57` | 0 |
+| programs/sbf/c/src/noop++/noop++.cc | 373 | `6d8431ef27d88a75633e5d9d43e87925cbf0d5368ec08065a894575a0ab763da` | 0 |
+| programs/sbf/c/src/panic/panic.c | 204 | `dfb2c74da15cc1a807c0bfaa2c116d5f0d4d3404e67bf9187b8fb006cc976634` | 0 |
+| programs/sbf/c/src/poseidon/poseidon.c | 12104 | `de1ed4a17fe15ee48bdacf9737216abba430878860d2a356cd4b321eb3fb9493` | 0 |
+| programs/sbf/c/src/read_program/read_program.c | 579 | `4fa5c99b3f945a21bac2108af8fc2302fcdd08e3e80cf81e7006038580abfdbf` | 0 |
+| programs/sbf/c/src/relative_call/relative_call.c | 276 | `5e1f0e88ef495e28634f1675f280d1dffff37525321df5ea2d192b787b20c77f` | 0 |
+| programs/sbf/c/src/remaining_compute_units/remaining_compute_units.c | 482 | `25fae13c9761f309b4d3904e392139ce6c744bef7b8f0248dd384c43e8032dcf` | 0 |
+| programs/sbf/c/src/return_data/return_data.c | 910 | `6c66de66745fb2768c8f18299d230a4229eda7f47b270462c3532f001d823ded` | 0 |
+| programs/sbf/c/src/sanity/sanity.c | 660 | `a9ae499460886abb78370fe15b3cef1791f24cce4ee76b40279ea1a94ddcddaf` | 0 |
+| programs/sbf/c/src/sanity++/sanity++.cc | 712 | `44d37f141eae13e81103b689c77497abe7147ec93350ace158463eb00f99c369` | 0 |
+| programs/sbf/c/src/sbf_to_sbf/entrypoint.c | 272 | `7096c55f4cbbe601784da8dd438ea8d91b768ffdde6d7ffde89048bc311f5db8` | 0 |
+| programs/sbf/c/src/sbf_to_sbf/helper.c | 190 | `06b5e2889170a1c261ea450cfb154ffe77b3a58425eb599e9c74120747ee885b` | 0 |
+| programs/sbf/c/src/sbf_to_sbf/helper.h | 146 | `e3a70558caff4874565354394ced121bd5aba472bba1bb47f8cc89135bb8c064` | 0 |
+| programs/sbf/c/src/secp256k1_recover/secp256k1_recover.c | 1887 | `20e4afe6e9fe22957dda8c3edf441b11944aa50843ceac329786a9dc409264e9` | 0 |
+| programs/sbf/c/src/ser/ser.c | 1021 | `69a63629dca785a838c536fd66feb8f24e6e1687204a4995cdce31b18da0a9ff` | 0 |
+| programs/sbf/c/src/sha/sha.c | 2652 | `ad8056c9c799393442055bc0de841ec689ef753309a50dbb57c7148db4d9b4a9` | 0 |
+| programs/sbf/c/src/stdlib/stdlib.c | 625 | `41a7cabc3b413cbf813ee35227f15143442091440cdc5e29ede0463d73399f46` | 0 |
+| programs/sbf/c/src/struct_pass/struct_pass.c | 381 | `732067c2f04d266a4c8d995151edfda082b2b8e6e491bc71c20fac139fad7dbd` | 0 |
+| programs/sbf/c/src/struct_ret/struct_ret.c | 511 | `56eb16ed1df4c4842d9f1dae04d275c00da2e97430c7915de3ad727029e7ce98` | 0 |
+| programs/sbf/c/src/tuner/tuner.c | 1217 | `73d0a6ab770fbaae8c35571cc1e45a44791e612533f48807fcacd9f54a592f78` | 0 |
+| programs/sbf/c/src/tuner-variable-iterations/tuner-variable-iterations.c | 1108 | `2a4edde4c053383940314acd395bddc3de61432bb7029ded755bb9bbe4cbf318` | 0 |
+| programs/sbf/rust/128bit/Cargo.toml | 526 | `a6803b11785552c725b95b36ee95c5c550f4c2b061e6e0a7f19388174e4f6b32` | 0 |
+| programs/sbf/rust/128bit/src/lib.rs | 2092 | `b58d96e0bf07eea7a886c84e868ab74a39912a3aaa26fbac7efd342fe8898fa5` | 0 |
+| programs/sbf/rust/128bit_dep/Cargo.toml | 453 | `9d19387dca04a4b64a4dcebe83d14bc78a0884d093ba224fd8f11002a2bf9f49` | 0 |
+| programs/sbf/rust/128bit_dep/src/lib.rs | 685 | `fa9f5c852247f8cfc90ee5a51b7905fbc54426f4f98a8ae11f16ef7224860443` | 0 |
+| programs/sbf/rust/alloc/Cargo.toml | 474 | `8f211b984926ce7531b3ca2035624f885d5c98949ea89520b87b732b953a697b` | 0 |
+| programs/sbf/rust/alloc/src/lib.rs | 2214 | `a9ef4474cb63f430077209fd5d8f0301520670b29f00a13058d61b17024110f8` | 0 |
+| programs/sbf/rust/alt_bn128/Cargo.toml | 478 | `4dcfa2a6ae11d652240903e90a68288ee3c8fedddd7f22467e278444a7fb551e` | 0 |
+| programs/sbf/rust/alt_bn128/src/lib.rs | 51950 | `c605c8b104ebc6a8cd6a7e8280da1600752287bb6a4cd72c98e63930a95555c1` | 0 |
+| programs/sbf/rust/alt_bn128_compression/Cargo.toml | 490 | `e6d32f3d87c7d91f1dc21207b79d1823f55e800b9180c558395b92c3b13f8086` | 0 |
+| programs/sbf/rust/alt_bn128_compression/src/lib.rs | 3315 | `66cff7a9351d5f6e3e5de7c8d15a4c0a84f3a9ef690d3cd4d034e766659fb795` | 0 |
+| programs/sbf/rust/big_mod_exp/Cargo.toml | 607 | `fd714c3d3ef3dd0a69dd7a02f511f631229698731f0fa98fe59db4837f24174c` | 0 |
+| programs/sbf/rust/big_mod_exp/src/lib.rs | 4582 | `11104b99c09e18a10ae5eb62dd50d384e422257fcd99177a26f2dd4f67059909` | 0 |
+| programs/sbf/rust/call_depth/Cargo.toml | 484 | `b054d46f71acb2b6018eaf1db249972615ed04b2c3b741f0617f33da17f188c9` | 0 |
+| programs/sbf/rust/call_depth/src/lib.rs | 790 | `7676cc40760d0778aac1d48c0d5a9d22eefdfe5f6ef6afcc3296a8ff5ffc1df8` | 0 |
+| programs/sbf/rust/caller_access/Cargo.toml | 490 | `00eb2ac66a921724dd25ac72752af3347fc42ac56bf2fb83c8b54bdf18db88b9` | 0 |
+| programs/sbf/rust/caller_access/src/lib.rs | 1458 | `08c4365093eb73921e4d65b11ef4c06528ce5636bcea3e772bbedb4695dc95f0` | 0 |
+| programs/sbf/rust/curve25519/Cargo.toml | 531 | `0703e40adcf831958c8de84bd72e99137ac262be4aca379c5712f64546e1e7ae` | 0 |
+| programs/sbf/rust/curve25519/src/lib.rs | 2711 | `4e5c694fdee8b360c0aba7b1dbbf79c5d6ad040c86940fa6e38c8c643aae5792` | 0 |
+| programs/sbf/rust/custom_heap/Cargo.toml | 541 | `367d6452000e731e9a218876d55d73e228bc45da22ece13bbcac1ca47f9b1cd8` | 0 |
+| programs/sbf/rust/custom_heap/src/lib.rs | 2238 | `26b7d848ce39e23c45ba0a54c15295b3de65d93f5a8849b906eb86a3d1345fea` | 0 |
+| programs/sbf/rust/dep_crate/Cargo.toml | 573 | `79011a6706ca254637d89d838d250ded4a7da0a67d8d73715dabbf75fa6f8b50` | 0 |
+| programs/sbf/rust/dep_crate/src/lib.rs | 679 | `7dc83bdfb747440de5cb2cd937719909070ad207517c4d7621f4aeb0f2128669` | 0 |
+| programs/sbf/rust/deprecated_loader/Cargo.toml | 498 | `998d7b184ddeb18f9344bc34420f75607822770181be645d24ad22420704738e` | 0 |
+| programs/sbf/rust/deprecated_loader/src/lib.rs | 5869 | `42208db2afe8850d2f4d889b5d739dbbc8327708710edf8cce9969c1096fe525` | 0 |
+| programs/sbf/rust/dup_accounts/Cargo.toml | 488 | `449a874715694a0bcf61f940f5192b97b248d15d01693f6cb1c1df53854ae154` | 0 |
+| programs/sbf/rust/dup_accounts/src/lib.rs | 3399 | `847c78576ca5aa9f7f57ed658aead17f5a9b33c6000a9b2f7d730bbcc39d763b` | 0 |
+| programs/sbf/rust/error_handling/Cargo.toml | 593 | `b9bf3328e45522938f8bfdc137a513daecf3da0211f54a06a26223b33ac9b1d4` | 0 |
+| programs/sbf/rust/error_handling/src/lib.rs | 2293 | `475e6c9883e2bb5ef6cb589f24764bd4f98996c7153c3f247060ab6190bf63af` | 0 |
+| programs/sbf/rust/external_spend/Cargo.toml | 492 | `27b6da71c626133fb6800c6b550f07afa947eb9383d195d2644b48d9dbfd6bf1` | 0 |
+| programs/sbf/rust/external_spend/src/lib.rs | 750 | `6ed29916060eb9513eade40492b289d50a809a44c6e496d4b16ac9f2c48fe127` | 0 |
+| programs/sbf/rust/finalize/Cargo.toml | 480 | `b34d308dd7a7bdd853028b4ce1b45d19cfed6a4665c82d786727d8d29c4847f0` | 0 |
+| programs/sbf/rust/finalize/src/lib.rs | 703 | `2a361a88462fcc09fec1b1b5b47b645ffce4c05920daae2106d56fe999d49d71` | 0 |
+| programs/sbf/rust/get_minimum_delegation/Cargo.toml | 508 | `aacdbf89c878c544c5468695c40ebc39ec8e1a38f13e5601305843246d0f2b90` | 0 |
+| programs/sbf/rust/get_minimum_delegation/src/lib.rs | 656 | `55d6df6efeecebfc6bffc5d3b2fa2bce96f5ca54e6ff187300ea4f7ac48cd1e7` | 0 |
+| programs/sbf/rust/inner_instruction_alignment_check/Cargo.toml | 530 | `881be91e6813cfa1a89904ea9a10a014f4dcc9aad6e8c93f54fbde0a594128cc` | 0 |
+| programs/sbf/rust/inner_instruction_alignment_check/src/lib.rs | 1096 | `8101b125fa0b2a986e5c88cd782a9020f5faea3160d4920bc7bf060039a067db` | 0 |
+| programs/sbf/rust/instruction_introspection/Cargo.toml | 514 | `f35e9de485fbc8830fcf3b5bff7247e431c05f2643b7ad0912e437545b9d3d6b` | 0 |
+| programs/sbf/rust/instruction_introspection/src/lib.rs | 1973 | `ff6d10d46327b16cb029c044a0869939063ba8befdd788bfe26d05c62f4f1cde` | 0 |
+| programs/sbf/rust/invoke/Cargo.toml | 659 | `add1b16665a3d564014895b285930cbb9d56d3da2b26d332895bfb941f43ca15` | 0 |
+| programs/sbf/rust/invoke/src/instructions.rs | 2821 | `40e90ae01d18f80fb2ab99bf4770f4cfda90cbfa338b5e88b52590b27fd35ff5` | 0 |
+| programs/sbf/rust/invoke/src/lib.rs | 115 | `4135d6f22aefda318640728e961f6440c08e991eded320551d1f7e85e319dd1e` | 0 |
+| programs/sbf/rust/invoke/src/processor.rs | 57083 | `5cdb8259ca2a490d675ddce7c246c83a7a84d58afa82bdf42d3da89d7147a974` | 0 |
+| programs/sbf/rust/invoke_and_error/Cargo.toml | 496 | `5e4ab1e44d932331d9bcf80e40aa1928ee32c8120f36963c9dfd8c9599253ead` | 0 |
+| programs/sbf/rust/invoke_and_error/src/lib.rs | 978 | `1461b719b478e56fdb591052ce61da3db8f6b51444b0b6624d221e721ac8fba6` | 0 |
+| programs/sbf/rust/invoke_and_ok/Cargo.toml | 490 | `ac828e3ab45b67f50ac34700bd70a9ae4d08745e908963b73406ad3ef3716bfa` | 0 |
+| programs/sbf/rust/invoke_and_ok/src/lib.rs | 1014 | `d02f6593d1549fd23b4a5aaefe15e1279c8fe20bd4415415e88e0cebd0642fe7` | 0 |
+| programs/sbf/rust/invoke_and_return/Cargo.toml | 498 | `5507691d025b46bd08a0646c368f7e65ad58f189494b31b0bfb0fe90dd11cef0` | 0 |
+| programs/sbf/rust/invoke_and_return/src/lib.rs | 1105 | `fd8223d1f8d851ec2cd5b065e109f08b43e1234b87a0df4d3b6e46ebd1c4e766` | 0 |
+| programs/sbf/rust/invoked/Cargo.toml | 532 | `959ce57c399a6acfbf809019c5b40d322f8e9ad7d2465945822f8ad91f22fb61` | 0 |
+| programs/sbf/rust/invoked/src/instructions.rs | 1302 | `7e4aa8b8f5286532b898a18a34400f7c6e85ea7552b1c28e164b75cd45b9eec9` | 0 |
+| programs/sbf/rust/invoked/src/lib.rs | 116 | `9b8f00eb36ba5ea103c77d0e937eab527455616aa9c91576fe5fe536f277fdc0` | 0 |
+| programs/sbf/rust/invoked/src/processor.rs | 12468 | `76187ec2247fb8bec11332fb6cc1a86f6106787293e2fb17efe0ea2334f59e1c` | 0 |
+| programs/sbf/rust/iter/Cargo.toml | 472 | `b0f9bd27a6a0199a3af0b8e1f391453d6db70b340033c1d90c153fdc63c64822` | 0 |
+| programs/sbf/rust/iter/src/lib.rs | 739 | `af22f7db4cfe9a928268eb3fc29d8d232df36d4c8185b532034c06de79fa5236` | 0 |
+| programs/sbf/rust/log_data/Cargo.toml | 534 | `b2b3a42912d9235dd6ccd987794c230f9767ba5509ea0b45fc9224fb6f78b72b` | 0 |
+| programs/sbf/rust/log_data/src/lib.rs | 627 | `5a04adf0e1c91a936441417c4a453cbaa916ebf11d55dcbe21a829cf3cdba286` | 0 |
+| programs/sbf/rust/many_args/Cargo.toml | 535 | `252b286b5a605241ff1d87212b10e8ad5277637a0036aa0018259b17acfdb2f2` | 0 |
+| programs/sbf/rust/many_args/src/helper.rs | 508 | `cf11f3badf09bee77ed86a8bf6495b76ca75448ddeb0d7798095f14b62158225` | 0 |
+| programs/sbf/rust/many_args/src/lib.rs | 957 | `db32dc78529c9208d55d01046e19b22d0ca719f6ff46eeaa25771c5e330a74c9` | 0 |
+| programs/sbf/rust/many_args_dep/Cargo.toml | 459 | `f7e4e7b7f7ea7d73143b40fecf22adde1896733a6d76ff403604a16ac6661d5d` | 0 |
+| programs/sbf/rust/many_args_dep/src/lib.rs | 1587 | `f5e6996d72f27e74e832ba8d07c26931a3a87d211be42da75e6781ed6c877c29` | 0 |
+| programs/sbf/rust/mem/Cargo.toml | 699 | `3e6f0573b87b29303882fc168e116a8b6b15a84c851a4cab1ec112f322374844` | 0 |
+| programs/sbf/rust/mem/src/entrypoint.rs | 1103 | `276552369c8e1ff4617a0902fe2ffc080e8b0b833434765e5140a76061224eb8` | 0 |
+| programs/sbf/rust/mem/src/lib.rs | 6555 | `43dbd40ed53814324821c435410eeb65d2206998dafd1cd6fce26c99c9d469f6` | 0 |
+| programs/sbf/rust/membuiltins/Cargo.toml | 551 | `1f4a4a12724bae1987dcbe7c4213cecb740eac9cf2afcabc5a3dbac131c60b22` | 0 |
+| programs/sbf/rust/membuiltins/src/lib.rs | 1240 | `d7c5e673b6f5050ec8ae4de7b4de701f5fdabc37dcc1dbd738a14b31c78d13ff` | 0 |
+| programs/sbf/rust/noop/Cargo.toml | 472 | `41dea57c1b5d499c7cc4b436c7d95b2d0b9bd34d244a64a1580e5d6a288bd715` | 0 |
+| programs/sbf/rust/noop/src/lib.rs | 394 | `76c6856cea32d4256936384f197b0a0d942d4eeb75aca015e083f9a8eb68f3d4` | 0 |
+| programs/sbf/rust/panic/Cargo.toml | 531 | `107c63a4fc4173974083683b56145f7b6d148ada7db349c4db07f6c3a3c9b87e` | 0 |
+| programs/sbf/rust/panic/src/lib.rs | 728 | `a3d7af9de14064398bde2bf0c67b04806f3de24c8ddf6c84a422f1f310a7b810` | 0 |
+| programs/sbf/rust/param_passing/Cargo.toml | 547 | `458aae63354532a3aded7a94d8aaec3a0bc4a1552af34de30552c7bdbbc9a00f` | 0 |
+| programs/sbf/rust/param_passing/src/lib.rs | 935 | `ed128ff4ef5f3f779863675ffc63de446d2ec1d2a6d51d4f7c083a8e06f02f06` | 0 |
+| programs/sbf/rust/param_passing_dep/Cargo.toml | 483 | `4344082cb19f92192b47dd9c66284112d565230e4f0c899616e0ec4553513d07` | 0 |
+| programs/sbf/rust/param_passing_dep/src/lib.rs | 1031 | `b5f3caeb860436a52e19b09eea615fd7dbabc70338df39f047bd9c4cf57aa85b` | 0 |
+| programs/sbf/rust/poseidon/Cargo.toml | 477 | `072b5f64be8027f07753a0a1e2d749eb59fb1346bcb5ada6f74b5a8650a22d9a` | 0 |
+| programs/sbf/rust/poseidon/src/lib.rs | 6389 | `1623bfed624a16710a8c1fb1614e3130e62e7bc8a3c7de4e6d9ebc880483cfc2` | 0 |
+| programs/sbf/rust/rand/Cargo.toml | 556 | `d8255025768d15ebb5cc780c827dbc9ebea9e19c8f80507dbec7e182d3a4bef8` | 0 |
+| programs/sbf/rust/rand/src/lib.rs | 466 | `370b2fa84d10b594bbbfc65b4941db9303644963846a68a1ba059dabfa5ad763` | 0 |
+| programs/sbf/rust/realloc/Cargo.toml | 532 | `a5b7a23a89762eab774bea887a3e462b0cf0bf0e46d6ebe4182619958a58b94a` | 0 |
+| programs/sbf/rust/realloc/src/instructions.rs | 2784 | `6db7c750b923186fa1ac61abef2fa7384f6c0228f83a1ede99f6f43ff9150199` | 0 |
+| programs/sbf/rust/realloc/src/lib.rs | 90 | `17122a2bf771da49ed2cf85e806dd93cd2209f3230452260bd26bf8570bc3dcd` | 0 |
+| programs/sbf/rust/realloc/src/processor.rs | 7370 | `84190f2263a07545c4dc9d76c10ef3a3fb814bb9f804d445352ff18d47216220` | 0 |
+| programs/sbf/rust/realloc_invoke/Cargo.toml | 593 | `20c229ad59e0e13c76cc1b39a01d6b9a98fda3d29bcfe1f6b829492ddc3768cb` | 0 |
+| programs/sbf/rust/realloc_invoke/src/instructions.rs | 880 | `1d4a1b7d26a2652ada9f26d48c13b4e8ae67c63255fe6d0c6e681d9a0374ce85` | 0 |
+| programs/sbf/rust/realloc_invoke/src/lib.rs | 90 | `17122a2bf771da49ed2cf85e806dd93cd2209f3230452260bd26bf8570bc3dcd` | 0 |
+| programs/sbf/rust/realloc_invoke/src/processor.rs | 12826 | `55b673a89031194e43f428309b06ad2f8cf912bc864521f16ed1d802ac012af6` | 0 |
+| programs/sbf/rust/remaining_compute_units/Cargo.toml | 739 | `be2a537ee08d7bfda94f3ce8019b99bbc437537906e2b1ab5dc8a44f18d7f61c` | 0 |
+| programs/sbf/rust/remaining_compute_units/src/lib.rs | 821 | `3de651e4d3522a349a71157f26e85ded34eb3974f0597a46973138e179b95271` | 0 |
+| programs/sbf/rust/ro_account_modify/Cargo.toml | 490 | `c3c4e0e95d2a38deb5ea4c7dd00b41d96e7861fe0918f061ffb3695f8884b92e` | 0 |
+| programs/sbf/rust/ro_account_modify/src/lib.rs | 2217 | `f1f5fa58c268b281c62c2c8d6249539390c384de75051d0ecaf196934e8d1c98` | 0 |
+| programs/sbf/rust/ro_modify/Cargo.toml | 482 | `303ce56570bd4b7848b2b6d0f965cf681260f1bf81a67c085962410a33cc9786` | 0 |
+| programs/sbf/rust/ro_modify/src/lib.rs | 6283 | `461f0f51c00d2f77284227368a9bc7403fe28068f16b8b81cbe2385e7654b1a1` | 0 |
+| programs/sbf/rust/sanity/Cargo.toml | 686 | `8ba2922e158b1fc70d6c9794bcda758760712a3515fddf2cb6dcb05f1c1190be` | 0 |
+| programs/sbf/rust/sanity/src/lib.rs | 2822 | `f71bbcb852a0b32710b076c3445fbca4f50861d4703d5b63f054fabe30823700` | 0 |
+| programs/sbf/rust/secp256k1_recover/Cargo.toml | 534 | `1b0ae18c2a082efdfe01d8ad6168669459cb103369d3da3679e5b897bf9a4a33` | 0 |
+| programs/sbf/rust/secp256k1_recover/src/lib.rs | 3902 | `a72b28de4f9704743d69ecd92a7712576a0b58a201c8cc9ac483522215ec5a6d` | 0 |
+| programs/sbf/rust/sha/Cargo.toml | 500 | `c9785ee78b6d51e111ed7c8bf95cdb7d47bf3b319fe2b1bd0fa21876d92405c4` | 0 |
+| programs/sbf/rust/sha/src/lib.rs | 1312 | `173295145983c3f55048607cdc12bc21ebb0a0b2ff1b397194d1c925fefafdbd` | 0 |
+| programs/sbf/rust/sibling_inner_instruction/Cargo.toml | 552 | `14eb5775e4ad6351170b63bfcf9f947413ac83a29aff1b97151839ae7b138368` | 0 |
+| programs/sbf/rust/sibling_inner_instruction/src/lib.rs | 1896 | `42eba45be1669d727615555d33c9f3822870f62a5b364c1c9e7989eaa51cf682` | 0 |
+| programs/sbf/rust/sibling_instruction/Cargo.toml | 546 | `9f9782c03956ba22b2be991ab15bb8b5fb761efe3fc44460b98656b5ea80876b` | 0 |
+| programs/sbf/rust/sibling_instruction/src/lib.rs | 2839 | `72c6f75ab4956739cd8bcf3437c50ed8561e3765911cead9355076149f9acbbd` | 0 |
+| programs/sbf/rust/simulation/Cargo.toml | 714 | `ba078dae6a9c500e4057af07c0a2ca76fc967d7cd60b59ac1572d580e465ea73` | 0 |
+| programs/sbf/rust/simulation/src/lib.rs | 1516 | `51e25d2f2e15371ceb750007268d36f2297042db01fe0afb4f5f7af0ee7dc00d` | 0 |
+| programs/sbf/rust/spoof1/Cargo.toml | 476 | `8c28ace927c23425486ccc3239623cac7fcc47c6f175fd98fa467f490e9d5c3d` | 0 |
+| programs/sbf/rust/spoof1/src/lib.rs | 1249 | `cd9d1a3c77212aed02c709a38a95df3407f8f8275149d9893e988f2f77905f94` | 0 |
+| programs/sbf/rust/spoof1_system/Cargo.toml | 490 | `83a65704b6db041330496accf9d3800713e4d36c1e13971cb9450e40a1c400ee` | 0 |
+| programs/sbf/rust/spoof1_system/src/lib.rs | 565 | `94114b8bf92f32cfae8e508f40cb27c22e881bbcd0deeeffea526b6adaef4938` | 0 |
+| programs/sbf/rust/sysvar/Cargo.toml | 686 | `5c05f599bd630a3f0e28766c295ce32d4b42bd571acc6755528cd8ef19676436` | 0 |
+| programs/sbf/rust/sysvar/src/lib.rs | 4688 | `5c433b00be03ab8317769ae0c348b14406c0ae71e156a80ad455972226848823` | 0 |
+| programs/sbf/rust/upgradeable/Cargo.toml | 523 | `7a7398c883202be03e47f7b92469cc570e0adb736ff523c3cc12e77477efd80f` | 0 |
+| programs/sbf/rust/upgradeable/src/lib.rs | 514 | `06d58513db002e9586f892d7eb534bcb079fd1e7afc431159ec2a89bd6c2449c` | 0 |
+| programs/sbf/rust/upgraded/Cargo.toml | 514 | `e7d6173f49eb58f07c3be01f0c0442b896f5387e917ce9b117b14d0ca80defde` | 0 |
+| programs/sbf/rust/upgraded/src/lib.rs | 508 | `98a75e943768831fe0f7f9a0711c8bf77fcf262c466cf3e22d79c1f03a0feae4` | 0 |
+| programs/stake/Cargo.toml | 908 | `ba8879a6d4e165660ea58001065087df5b72b9272fdacf689c63b642a5e73619` | 0 |
+| programs/stake/src/config.rs | 1293 | `ce7a7d57c6a7a35fe20187d55e9f283a099f4577abd627d2d6afc2a3619abe9c` | 0 |
+| programs/stake/src/lib.rs | 1268 | `2f8c3cf7e2f16678e9a1a7d4deef7f8bcc3291c0d6bb3588700f2bb1b232017f` | 0 |
+| programs/stake/src/points.rs | 8784 | `175f8afedad54e612b500f1007d85e14f9606bbf398d8ba6f1d70c0c8a9ad356` | 0 |
+| programs/stake/src/rewards.rs | 20971 | `aba435c64d779b58714bbc1ff6da0464599e1b5f9c7df8151816520cbd9bd08c` | 0 |
+| programs/stake/src/stake_instruction.rs | 307931 | `a224b998869bb8f3132fb3292c051b3a9f9c2ebd1a7c053645abaa0d5001820c` | 0 |
+| programs/stake/src/stake_state.rs | 105078 | `56709de614bdb5d56e3da158cc480722d473d66cb3f16e78768d67e3594b1392` | 0 |
+| programs/system/Cargo.toml | 765 | `e7b29a253677e0e0ff23285152bb629dcabba55ff64f542f6cefc66b325cbc6b` | 0 |
+| programs/system/src/lib.rs | 993 | `4d2032d553f2fa693abb122beb7415d6bcc816bba923698fdb0e0a6ae3261af4` | 0 |
+| programs/system/src/system_instruction.rs | 46793 | `cfe2cca7042ef8927120f55889d2671e1bceac53192e4fb81519a6c291a730df` | 0 |
+| programs/system/src/system_processor.rs | 74431 | `afd51f6b4068e1fbe6085bb7240d74b0f9e3805a8f0bcf5d9e5e0303baf8ee2b` | 0 |
+| programs/vote/Cargo.toml | 1114 | `9eecd0be90fcd963618e7cabe772b10e7eddfb863558b04ef46cade66c8b147b` | 0 |
+| programs/vote/src/lib.rs | 373 | `c121537c0969f0dafa17306d65c155c9efb08d089ea0a7f843b3361d6af36338` | 0 |
+| programs/vote/src/vote_processor.rs | 75079 | `0112da438cb04e17c0946114db64d0e42736c0204def650b61a3a54672ca0d0d` | 0 |
+| programs/vote/src/vote_state/mod.rs | 146518 | `6c5e96a65a77e7b555b709ee9fb7e874f939e1e799de26ba4da2a686c7e0fe7c` | 0 |
+| programs/vote/src/vote_transaction.rs | 3113 | `391a85a3df6410a6ba611b85c28703ae5ec57d406817401d155f33aac82e43b7` | 0 |
+| programs/zk-token-proof/Cargo.toml | 690 | `2a4ff7d9a18d9b4b55e0f8e030f73ff27cb236636fc978facee9cdda290f456b` | 0 |
+| programs/zk-token-proof/src/lib.rs | 15679 | `cc711ef7b5b5dc8da45574ff72f4110907e62ac5a234c715248dcfdae8c64b94` | 0 |
+| pubsub-client/Cargo.toml | 1222 | `ce7884297aae8703f65661f898669dc7b9ea7ebb0cfd0c3cc11bdd565e402f19` | 0 |
+| pubsub-client/src/lib.rs | 88 | `d34cdf0d4349fe51089aec1a25d899adbe18c8e970dff84eae0cc571d39ce4aa` | 0 |
+| pubsub-client/src/nonblocking/mod.rs | 23 | `8cb744f31cb343b5734cecedca5f08547f1e3da2f78abf672c21a22185a44f39` | 0 |
+| pubsub-client/src/nonblocking/pubsub_client.rs | 30842 | `76fc2b074964c73da5f1bf8f436e36cbde9370005bc2b9e812d75e506ab54d73` | 0 |
+| pubsub-client/src/pubsub_client.rs | 29879 | `c608c8347f38ddbc7caaa4eef61725dcf2560c96cbb3f0c145561e987a8268a9` | 0 |
+| quic-client/Cargo.toml | 1159 | `2027c89019bf4dcbd9c4fcf989d3a91a3a92b5816dd5ec4669b759ac86445132` | 0 |
+| quic-client/src/lib.rs | 10084 | `ea0612378cfc9885bb5b7b94bdfb07fdc1cdf017bfbd99affcf6d354f260e56b` | 0 |
+| quic-client/src/nonblocking/mod.rs | 21 | `46539172217670f3400f381437ea5bf5e4d1ff9acf628739f5d327fb7bbc0fe8` | 0 |
+| quic-client/src/nonblocking/quic_client.rs | 21629 | `7b5c9004b9d333644ae3f4e09b5076165b0cb47364aee63a091ea4e70a162e0a` | 0 |
+| quic-client/src/quic_client.rs | 5792 | `f37244bfff99d44f3a6a519390179141bd3898565af2dc7a708c9e3b6d712dfb` | 0 |
+| rayon-threadlimit/Cargo.toml | 508 | `644ea7fe8dbd493130d16438915e60788f43c3dadeb66e457a3034f8d9c37e51` | 0 |
+| rayon-threadlimit/src/lib.rs | 692 | `d7e32c514b779b3fadb83907b4ea9a79635871f109c591bc91ef0d5fbf8d4b77` | 0 |
+| rbpf-cli/Cargo.toml | 359 | `98761fbeb4d0b13a80b2de040b57860c67ba982c49735e728e5d5f52bd2932bc` | 0 |
+| rbpf-cli/src/main.rs | 191 | `13df81ef25c898f088ae35d669c6a45c82d542f8ebdf63c002bc1913d7f0ac40` | 0 |
+| remote-wallet/Cargo.toml | 1210 | `30fc298f608eb1ef12ae9f0d4a2e6e6ac7175e27dcf0a37dcdabcd563b780ee9` | 0 |
+| remote-wallet/src/bin/ledger-udev.rs | 2131 | `f59ac7477c1881c1f8b0057300b34e37c57bab264c38de06b8ab5502c7dee9d7` | 0 |
+| remote-wallet/src/ledger.rs | 23064 | `6f42cdaacb4ee34f48aeb67fffd9fbed239abafc01633054e8cbcc012197c09e` | 0 |
+| remote-wallet/src/ledger_error.rs | 2520 | `71a0b93e2abc9f2809bbd872151e542d440aa915cb2c4754605599035187d470` | 0 |
+| remote-wallet/src/lib.rs | 166 | `cfaaf5b3d3f19ccb8e3fb3534921e84859b2556cd2b7f52bed2beefc369a7ab2` | 0 |
+| remote-wallet/src/locator.rs | 12019 | `d092a0366b8ca03fa0b0d529926ebf7f0202bd66a30cc765a9742500b2248be7` | 0 |
+| remote-wallet/src/remote_keypair.rs | 2300 | `0c4734ba8f118222fed333a0f20945b4ea89a7a632f4952823a525a0643b402e` | 0 |
+| remote-wallet/src/remote_wallet.rs | 13797 | `105c61d56e0d2f64c1ab3e0ed6da8e329464b1bce8e09a286a95fdf20eb0d14d` | 0 |
+| rpc/Cargo.toml | 2660 | `cb54e43c893730ac0659292f3dc28c76e16774f3a85f63719e6a00f81f84b50a` | 0 |
+| rpc/src/cluster_tpu_info.rs | 8510 | `d6cfbc575db2d7d901aefae3616b6b62ef94df24b1a7ee29207012b5de9cc098` | 0 |
+| rpc/src/lib.rs | 621 | `76dbba693cd6ae36980f760029f3eb9e495d7555487f106bc602bed715ff3ecd` | 0 |
+| rpc/src/max_slots.rs | 142 | `9e31dcdd3bd0b8947cc1e2057c4d29adfffcd29ee5dcae865b4814a91bcb66a2` | 0 |
+| rpc/src/optimistically_confirmed_bank_tracker.rs | 27987 | `fe705add2bec7cf658ea7fc47c43ace62b5fcd72e8f6392f6b0a4f8e32ce75a9` | 0 |
+| rpc/src/parsed_token_accounts.rs | 3459 | `333534c3917ba63139b27b6d1c6324d6140f5e071926b7e0922b17eae93b6bfc` | 0 |
+| rpc/src/rpc/account_resolver.rs | 457 | `45b52a42ee4a09fede5b5fd22d6aff7ee67c6bdef1415df2f67a77462becb0c3` | 0 |
+| rpc/src/rpc.rs | 363194 | `5807624f25c1c858e77d91ef8c96ba65994742ca4b0a940cce3bb7b751980fe2` | 0 |
+| rpc/src/rpc_cache.rs | 2014 | `fde6cd4ac274080934f4e56c16dcff8c1ffde187fcc3244d74fe0ab35010e58f` | 0 |
+| rpc/src/rpc_completed_slots_service.rs | 1794 | `7aab62a79fd3529edc0b97724f80f5d7679971db725d94f292ad66605f8eaf32` | 0 |
+| rpc/src/rpc_health.rs | 8947 | `d4ae98c3f538c223a02d81d4a062504a0c79b29396268b5a217d08ab86edb464` | 0 |
+| rpc/src/rpc_pubsub.rs | 52778 | `2eab3a07d54a5198aa703254dc6be0dba8993c3995f8df2bbf59c90dc746f84d` | 1 |
+| rpc/src/rpc_pubsub_service.rs | 17583 | `ab3fc9f0a576677557d25031282ec1111ef69d43f58d29326e2dbd93661027e0` | 0 |
+| rpc/src/rpc_service.rs | 35344 | `d98d37ef6c34b118327c6a0f7ccdca09e9b84548425e66cdd54ac3adc7788f8e` | 0 |
+| rpc/src/rpc_subscription_tracker.rs | 28545 | `9be7f8be1557681a9f3aa836044f60881dceb31bd6393317d3da60a875e83f8f` | 0 |
+| rpc/src/rpc_subscriptions.rs | 122117 | `b3ead927df2a54c7c40d8983ce698ade847a68abd134b9e5658265f9d45997ff` | 0 |
+| rpc/src/transaction_notifier_interface.rs | 525 | `497c94200a974c03932e29dad9411e66989f08c23aac73407aa94220cf74bdc4` | 0 |
+| rpc/src/transaction_status_service.rs | 17340 | `3e39871fe2821d426d6f1cb6d94d73661f9b215a1eb1ebbe881f112283a7613f` | 0 |
+| rpc-client/Cargo.toml | 1504 | `75e566e5c27c0933427d3964dfb15329f74d039be6156e78422489581c4b3e9e` | 0 |
+| rpc-client/src/http_sender.rs | 8769 | `801097eacdc77406004a2b04c05d7a961d80e97d617961ff6680e7d2d9d62f64` | 0 |
+| rpc-client/src/lib.rs | 434 | `9f1940c3a494ba4806c01a5489bde9cb92f22ca0beeda48d8c132fe3a77b0a20` | 0 |
+| rpc-client/src/mock_sender.rs | 22058 | `08925822d858ff83a08d937005be460de656e3854238ae3ce57555f685e3de9a` | 0 |
+| rpc-client/src/nonblocking/mod.rs | 20 | `fd1374dbc7df7ff6b81503320120ed726b38c8d6393b9307357a656fba93d573` | 0 |
+| rpc-client/src/nonblocking/rpc_client.rs | 204017 | `09b67c9e8b420bf9dbc6c6e33266deb92429e0ab7795c5590e8aa292b0d9a648` | 0 |
+| rpc-client/src/rpc_client.rs | 168425 | `4d7734adc2deb4c870c53dfdcbadf9da369c27fd457797f252cd8657e82a9275` | 0 |
+| rpc-client/src/rpc_sender.rs | 1032 | `19f91ee5248941356e4201bad01453b9cb2a9fb4fdd35121c4d7c84234cbc30d` | 0 |
+| rpc-client/src/spinner.rs | 1401 | `47bbcd97759abd3d26c73e571fad99cd094a69ab26ad2d352d07b4a826dfdbca` | 0 |
+| rpc-client-api/Cargo.toml | 1035 | `e218168cfa41515cddf1c89f0c5c545f3b50d84bd0dfbd5319fbe8fc97a028e7` | 0 |
+| rpc-client-api/src/client_error.rs | 4647 | `04ac12aae1c124d9bd248cd58e9c3a8c1d4f501038d28db86b203d35654ac1b3` | 0 |
+| rpc-client-api/src/config.rs | 11040 | `bae472cbd05fb3aef062e34637056b840b774c0039d9a079e443b26464e2d369` | 0 |
+| rpc-client-api/src/custom_error.rs | 9466 | `b36220f9bdd6526a96838d5aa1513f302deb7b30f04aac7c526ba8a0b40e9fb4` | 0 |
+| rpc-client-api/src/deprecated_config.rs | 3965 | `5ce5ff107753f940e056afb1dfec2b840b1ea46881eb9d279fc71c8c16b376d0` | 0 |
+| rpc-client-api/src/error_object.rs | 104 | `c224092c4d9c7610d9eae86edaa23497ab8b3c6bfd1a6a57f7909756315a9502` | 0 |
+| rpc-client-api/src/filter.rs | 14851 | `a03cae469a155ba1a4b53033644c92e18080d1db53d79f0530abadab7486bae1` | 0 |
+| rpc-client-api/src/lib.rs | 266 | `db49aa0bacccbb6a8af42f16df1d1be2331df9e6242c4fa64e2856bdc5a82e4e` | 0 |
+| rpc-client-api/src/request.rs | 14372 | `efddd4a392fe6e1208389b9a18c7dcaf6e176160d54b367bd090a71abf4fb025` | 0 |
+| rpc-client-api/src/response.rs | 18049 | `fb16d9917ca2cbc8d1e9e280ba014546d8fcf1cdb09bea3d6368ea2102c8d59e` | 0 |
+| rpc-client-api/src/version_req.rs | 663 | `dfb836253ec15334bad40ea73a3c1e490bbfbf5d06046ccafa5ea33ff82bc70a` | 0 |
+| rpc-client-nonce-utils/Cargo.toml | 847 | `1fbbe6f39b022d9e1250fd3cbc298168450ca7de24df9d8e937fc92521489151` | 0 |
+| rpc-client-nonce-utils/src/blockhash_query.rs | 17738 | `f7a33d137beb5cd911d42bc0f83c8eb24535a173330c1dacd6f46e59132dd267` | 0 |
+| rpc-client-nonce-utils/src/lib.rs | 1597 | `458fff6a8c01388c3f23e26772e791a493f1178e9fadfd232d4822a17a974bf4` | 0 |
+| rpc-client-nonce-utils/src/nonblocking/blockhash_query.rs | 14490 | `0974eac39628d987697bbc765688133943b07b6bc1aa7b404c9081411184203b` | 0 |
+| rpc-client-nonce-utils/src/nonblocking/mod.rs | 7852 | `bfbf4c580dc24e0d34f39559553e430bb82ccf5c3c7df50adb9762128bcbde24` | 0 |
+| runtime/Cargo.toml | 3754 | `702012096ba97e6c5fe88c2d018538abacd087e2c34263ab71d3ea15e09d9551` | 0 |
+| runtime/src/accounts_background_service/stats.rs | 5335 | `2e1a97ee0cd3dd7be6269bbd04af56d4b8dab2120b3f56e3ef85d302339f47fd` | 0 |
+| runtime/src/accounts_background_service.rs | 48372 | `da831bb8824a0f27fca62946d94e813a47dedd22fabbc37b0ff7e8a19d5160a1` | 0 |
+| runtime/src/bank/address_lookup_table.rs | 1657 | `b6e3ec3d63cd34f0b2eef124b264acfa4c6c625a547ede437c98f258793c0537` | 0 |
+| runtime/src/bank/bank_hash_details.rs | 11653 | `0c6640ac639d9911cde56872e5c92e64c0ac00b8e5822b4e44be30910044edfe` | 0 |
+| runtime/src/bank/builtin_programs.rs | 2520 | `faf602fc966a09e1414f9d463b9e0843c7dfd569279353956643a812f2d296e3` | 0 |
+| runtime/src/bank/epoch_accounts_hash_utils.rs | 8220 | `8e698177e2c925c38688ce604a93455090cd441e32441a571bbbf6e1b3cc3c90` | 0 |
+| runtime/src/bank/fee_distribution.rs | 32567 | `e907e52476597944ecbb3e039a4ebc89ca67a2d35d838ab657de028e942c082e` | 0 |
+| runtime/src/bank/metrics.rs | 6620 | `267639227ee2633b30a9522c72be4152d99db98b20a81568f9ab2ca1db7b1d26` | 0 |
+| runtime/src/bank/serde_snapshot.rs | 26071 | `e33350c769245ac57274b45eb5d5f694a015fddc6204211df0e25ade8ff123f0` | 0 |
+| runtime/src/bank/sysvar_cache.rs | 7483 | `865babef13584aa57c42063e8c0df46e3d48df273370a3dda8048e83cf37deeb` | 0 |
+| runtime/src/bank.rs | 316227 | `d63aa7973ad02ae7fe0b7271fb586265efdb90d7ae102fa511cbede6d8a3a65b` | 0 |
+| runtime/src/bank_client.rs | 12663 | `6181acc7d6865e62f6e675eac00821187e0042f7fb91070eae1a9ec45f5a334d` | 0 |
+| runtime/src/bank_forks.rs | 41807 | `b9f2667b37c5561964ed75cb97004370f477a79838479c8296e8bb449aa0be16` | 0 |
+| runtime/src/bank_utils.rs | 2028 | `1370c747e08cf3e3c4c72a9407b811797b8c2bb9e27749beb90ac0b2fa6c8b23` | 0 |
+| runtime/src/builtins.rs | 3883 | `2e880e167e4249ec84a4de6fd39a75ca7453dc5d06676975fad7312fa2f6c9f7` | 0 |
+| runtime/src/commitment.rs | 12920 | `9118a3c46459ac954a72dea4eeb5b78882ccbf9f999564780d68d94770795923` | 0 |
+| runtime/src/compute_budget_details.rs | 6876 | `dd8a3a360fa1232432341209bb9ca0582d0a366dc7e9959b829483a48c47163d` | 0 |
+| runtime/src/epoch_rewards_hasher.rs | 3449 | `2f3b1db772c6314888a26a92eb32da66341e3267f0b08c21cd774e0d3dbf8b28` | 0 |
+| runtime/src/epoch_stakes.rs | 8147 | `e2c94971b486c509b024c46cc982003a168a685cea7f0d8cc4f482fc8798446e` | 0 |
+| runtime/src/genesis_utils.rs | 9368 | `8361d3191ba28217ccca220ccc15456e9a14f21932c302cb0ee3f108b7347e3d` | 0 |
+| runtime/src/inline_spl_associated_token_account.rs | 319 | `0e8e7b7192e183b63ef904b39ebfec9d42835c9a0e246aedc9893f55e70d4044` | 0 |
+| runtime/src/installed_scheduler_pool.rs | 20913 | `4ca00683f2eabd8fd069490d76ebb75e4b564d7a58d0e75a090da1f3dfa9e942` | 0 |
+| runtime/src/lib.rs | 1132 | `394858bc2cda5d790882202404bdc1053cf7da662966be34a546e5083a1b5bb5` | 0 |
+| runtime/src/loader_utils.rs | 9815 | `80603b06c3514756732d90816da1808ad8e274e430df69dc584aa9878cb9dae7` | 0 |
+| runtime/src/non_circulating_supply.rs | 14026 | `bdbcfb0db0c311affe23e6acf16db562e0acffcb65e9ab39d7d38d07373279b3` | 0 |
+| runtime/src/prioritization_fee.rs | 14350 | `6d975e782258834d12f9a2d6a00cd0915e62b15d39335173884d67c33467d5a2` | 0 |
+| runtime/src/prioritization_fee_cache.rs | 37538 | `79009615436a200199353aa7abbbb553690b9e774169cf7336bdafcc58c0d478` | 0 |
+| runtime/src/root_bank_cache.rs | 3363 | `69d74a866c9d5b9edda5f0764deb06250fa5af9049eedb444986622cb8f880b0` | 0 |
+| runtime/src/serde_snapshot/newer.rs | 18949 | `f7f8617e79d024db27a35550e0fe4e4cdc8ee653e35e1faa8019e8c0824f69ea` | 0 |
+| runtime/src/serde_snapshot/storage.rs | 1188 | `96e4aa73b4df267c4008478ab570621d92859c55b2052e2d857f6568d92ea8ff` | 0 |
+| runtime/src/serde_snapshot/utils.rs | 3516 | `054d258d8b4557b09a2155eafa99b02324cba9c3e9d24fb87fcae4fa33a78b11` | 0 |
+| runtime/src/serde_snapshot.rs | 34814 | `ea3c96304cee6b420c43ae93d6f4074f4f51cdb85322364d08b6209ee7ff1cb4` | 0 |
+| runtime/src/snapshot_archive_info.rs | 4862 | `2ca21cd618e4f8653b29aed557da121fc9a695b1814c0f71f1ed0072deddf6c7` | 0 |
+| runtime/src/snapshot_bank_utils.rs | 101108 | `b71c76688b12d95f8b9de0131154c5840cd082b6a6276cdfb9424adccc22b7b4` | 0 |
+| runtime/src/snapshot_config.rs | 3628 | `8f0ef636e0ca55d35244224d5fde564fd658e0e775253baa263c4fd6fa028435` | 0 |
+| runtime/src/snapshot_hash.rs | 2057 | `b5a6fd5ee76a8bb796944c4108442ef5f50c518ba5af8a6a78526e1301c62846` | 0 |
+| runtime/src/snapshot_minimizer.rs | 25930 | `e35545aa867566cff5bac09abd306c621621f5a428983c55cf17893f07286bcf` | 0 |
+| runtime/src/snapshot_package/compare.rs | 17273 | `13ec45ba188b330885acea74df5aedff8f1c71e55c5b75a449c4f64f2a53dfae` | 0 |
+| runtime/src/snapshot_package.rs | 12848 | `5ecceaddf49e68467f35088753488346215d7f139266d2287f2c2678a4e2df14` | 0 |
+| runtime/src/snapshot_utils/archive_format.rs | 5518 | `6a900b53ae6ee630dbf2b8c90550039d6c3cde5ab30567e60bb74129b64a61f2` | 0 |
+| runtime/src/snapshot_utils/snapshot_storage_rebuilder.rs | 19899 | `49f415a0924a0ea926e294c2e31a2789d772c08b52d023017e5ce36872e91c3b` | 0 |
+| runtime/src/snapshot_utils.rs | 123909 | `71917338ab947df8b73870c013c500527ff0105a69963771eb794a644be5d819` | 0 |
+| runtime/src/stake_account.rs | 3406 | `42dcfd811f26c06e86761caa6b16973f26f6ebb09cb438db7a16ca0719dd88e2` | 0 |
+| runtime/src/stake_history.rs | 4368 | `2488d506098e5d40770e173e31965cd3e01b4c60e1af189901ff80384779b525` | 0 |
+| runtime/src/stake_weighted_timestamp.rs | 27535 | `5df75e9119bb493af926a087b2900188b7ad9a2df570b388eff2a6f93684453a` | 0 |
+| runtime/src/stakes.rs | 41198 | `2cf6d5133d6fadbbabe23d20c2eea81030967cdb13643f506ba485cfd3c42f70` | 0 |
+| runtime/src/static_ids.rs | 506 | `d600307ec4074e96c6aa5a60f955f7fb3429826eb90a03a642fdeaba43ecac7e` | 0 |
+| runtime/src/status_cache.rs | 19259 | `02ed3dd3ff7c18f9364f6c4c44c05e56fbd7e6edd801485a5a8ea41d8df21c65` | 0 |
+| runtime/src/transaction_batch.rs | 6787 | `3ae9ce82722d40a39e130d4b954036ae7ed55e235619e4b5ef0076a86e24d1a2` | 0 |
+| runtime-transaction/Cargo.toml | 802 | `c23a6d74b94a3d1c244c085b35ad1e37c6cdb17f884d2bed1fb0e6bdd3a1ad9e` | 0 |
+| runtime-transaction/src/lib.rs | 168 | `b4863079956459406c0f86ba20c9a03cfc606ad93c53f4091b0e0e36f365d771` | 0 |
+| runtime-transaction/src/runtime_transaction.rs | 10587 | `6c3d78bc4ba60fbee9ea5c07d0ac9a8be90460e477d43b2e0431efceb0d9a6ee` | 0 |
+| runtime-transaction/src/transaction_meta.rs | 2434 | `f4949e1b6980e9c2278473dfcb02d5d0bdd89543f0c9c4af9826137795dd3e96` | 0 |
+| rust-toolchain.toml | 31 | `9526694ebc85d50dc10644587e1af672024de145bcb7e7e9e2e596210a98afdd` | 0 |
+| scripts/perf-plot.py | 1090 | `20ecb266262149a7c94d86f7b7240bb21aa84f3807651fb087244ca3f9d03993` | 0 |
+| scripts/perf-stats.py | 3201 | `22c82b101411e87419d2661d3cb75df79aa664ce96d6b95f437fb8ba98bcfd11` | 0 |
+| sdk/Cargo.toml | 3349 | `3399112e334c3a51fc9519c4ace585af93b9bf866947976f8bb9741812e7b5d8` | 0 |
+| sdk/bpf/c/inc/deserialize_deprecated.h | 39 | `76c96c25637df160388fac89f265c0af946dae909fa37fbb0d979cb35946b03e` | 0 |
+| sdk/bpf/c/inc/sol/alt_bn128.h | 1227 | `6dfa66a68da0f981befec320bdca3f32e54443dd9e0923667703435dffb9262f` | 0 |
+| sdk/bpf/c/inc/sol/assert.h | 1283 | `d6e5277f9b84fa34f1405b4821b3aff9c51c8ffbc4e91ba967e9b3aab080f6fb` | 0 |
+| sdk/bpf/c/inc/sol/big_mod_exp.h | 841 | `f23757041ed8125474bc9e06ef8ab674a8742ec70c2ddaf8a0d2eaf36d3acd00` | 0 |
+| sdk/bpf/c/inc/sol/blake3.h | 905 | `ea7e9ad0f96d06c80590f16f61e1b23bcdd0bb45107718e2fd02231c828be84d` | 0 |
+| sdk/bpf/c/inc/sol/constants.h | 801 | `7dd040c41526b0676d0f2ab7e2a9137065106e83a4d83a375b95d28d52307b5b` | 0 |
+| sdk/bpf/c/inc/sol/cpi.h | 3825 | `c2d690c425ecc264fe50ddc94ea627f1ea59559c15c24e3402776de9cd497104` | 0 |
+| sdk/bpf/c/inc/sol/deserialize.h | 4071 | `20b026a4b7865fbe3168b7a0528a25e43fbdeafe2bb961695ebd947fa7ff7237` | 0 |
+| sdk/bpf/c/inc/sol/deserialize_deprecated.h | 3420 | `d12ce6b752923207f0ea6ff482428238d9a883b5676694bc3021748f21fb6550` | 0 |
+| sdk/bpf/c/inc/sol/entrypoint.h | 1663 | `2f99d265e925adf204041008ccfae84844a486bfe456f75ee03e2c04ee9374ab` | 0 |
+| sdk/bpf/c/inc/sol/keccak.h | 909 | `9780b586ec94b5f910bdc43db238be9b0f2ada642e2315ced1237644412bd715` | 0 |
+| sdk/bpf/c/inc/sol/log.h | 4244 | `9caac66e5dd0cf3e631a9e47fc3436fee8b14f77a66f76e4ec45714187dbcece` | 0 |
+| sdk/bpf/c/inc/sol/pubkey.h | 3973 | `d8ea0937512c557a149c2e76b9e1e4bd55a2de4c2f6b09216ac55c3245e66c50` | 0 |
+| sdk/bpf/c/inc/sol/return_data.h | 1831 | `b3ee9bb2cc62054f6976db9eda7580e7607bfcc9a3473bab20030ecf7e950b41` | 0 |
+| sdk/bpf/c/inc/sol/secp256k1.h | 1765 | `a93bb16fed3b16d2ad47cb9401fc88287789784341b88b4707c2042424be5579` | 0 |
+| sdk/bpf/c/inc/sol/sha.h | 881 | `e312670abef76576ca009061ad3ad0962752d4d8bbfd0c45dfca460475344cb9` | 0 |
+| sdk/bpf/c/inc/sol/string.h | 2069 | `1fb1db89fba24801dc0c014fdd6543c96ebddd051787f768005e069122df5461` | 0 |
+| sdk/bpf/c/inc/sol/types.h | 3883 | `674240cfa1959e7859642cc39d2622d37612d87c5358da6cef73e25f20f4f55f` | 0 |
+| sdk/bpf/c/inc/solana_sdk.h | 511 | `a405253924b7b31176ebae33eb0e5a39253f748cd6726ceffebea3cfa19354c7` | 0 |
+| sdk/bpf/c/inc/stdio.h | 81 | `b05557a562439eb2981507f79f90855a72aaf716cc068a4d96727b958162fdf1` | 0 |
+| sdk/bpf/c/inc/stdlib.h | 37 | `866e40d29930b07886fba1a881cf11cb43a1e19ce00e656d67c6f6e528afdf83` | 0 |
+| sdk/bpf/c/inc/string.h | 117 | `6f4df1d6b44c637a874dbb45a4137751174ec335e8c8e1ae6164991aad6b66e9` | 0 |
+| sdk/bpf/c/inc/sys/param.h | 13 | `b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201` | 0 |
+| sdk/bpf/c/inc/wchar.h | 13 | `b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201` | 0 |
+| sdk/cargo-build-bpf/Cargo.toml | 521 | `9d2711d54cd2f571beff9e09ba491411511d2f7069903f8e5bbcf47abbe67464` | 0 |
+| sdk/cargo-build-bpf/src/main.rs | 1512 | `9413a48839833fd03ba0412668f7126ad8a1d9104fc5650ca0c8310da5ce8399` | 0 |
+| sdk/cargo-build-sbf/Cargo.toml | 1110 | `89da67cb03d6725d61ed596d131693b480283fe313b8d18b16b92ab6b4a7635c` | 0 |
+| sdk/cargo-build-sbf/src/main.rs | 39532 | `b9fc6e291869515fa74b6429849d5cd1e6c4e0bcafa882d2229266020251eadc` | 0 |
+| sdk/cargo-test-bpf/Cargo.toml | 395 | `7dc7ad046bb1f514276fe302b9df120a05e3aba3dc271766d19cc6933d1603f4` | 0 |
+| sdk/cargo-test-bpf/src/main.rs | 1839 | `d77e25b8dcdfa85cd6dc7f31a89760dae3dcc556e782f5ce7288c8237df014c5` | 0 |
+| sdk/cargo-test-sbf/Cargo.toml | 617 | `333f925c7da9225571bbf6c2b772c682f0ba7bed2343ca3784b60539173bb24d` | 0 |
+| sdk/cargo-test-sbf/src/main.rs | 13615 | `cfbd8d0bbf04fef3c91a2b16c9dc4892de7fff3849a11eda97fe8b999c46381c` | 0 |
+| sdk/gen-headers/Cargo.toml | 380 | `b7f61076008b5fb15b7c6bacf631a961a004935b35b8d62b42846889daeabc28` | 0 |
+| sdk/gen-headers/src/main.rs | 5469 | `c7e8567b71a4d3d306021133811953ff0bc408785ae424046802936da385aceb` | 0 |
+| sdk/macro/Cargo.toml | 609 | `fc626d0feaa0a28b857672307f3d4e7642ddd987322b94f48aea7f0b46e323f6` | 0 |
+| sdk/macro/src/lib.rs | 14021 | `c9a3c400761f50185d8272bbc065dc47d7a7f289371f355291c99d6701e4430e` | 0 |
+| sdk/program/Cargo.toml | 3586 | `cee38b95b2f1d16f3623ed305ef56d6f9512eb61420183479515bff1b2164617` | 0 |
+| sdk/program/package.json | 390 | `abd63f0bc5f0971c1fa6f3b1f493a86575ea2f4b1f03d7ac6bc4863e5a4a8aec` | 0 |
+| sdk/program/src/account_info.rs | 16801 | `dc0096411ce48bed4ec21e0b0ba45f39de5e3c72d69db2594ac12a65acb62413` | 0 |
+| sdk/program/src/address_lookup_table/error.rs | 767 | `7d70f63a07f233de8cec22a2838db3978bb0a8374ef64149dd259e6d079719d1` | 0 |
+| sdk/program/src/address_lookup_table/instruction.rs | 7531 | `0666f3125b37f849a7c31f34d5ff9e503bab3d509bb849413fd89bf6682fb26c` | 0 |
+| sdk/program/src/address_lookup_table/mod.rs | 553 | `74f20f9f246bdde23ca52549a93c9b571ed9367b811123c16777bf5cb218d4b9` | 0 |
+| sdk/program/src/address_lookup_table/state.rs | 17346 | `e6aafdaf12dd9d8bf299c01990af674d226e493113dc6abe429a0b7ac8f8b822` | 0 |
+| sdk/program/src/alt_bn128/compression.rs | 34814 | `a28a59533009fd89edc2be62fa6e848ebbdab25c8d7a6dfa0e9b62302e3877c6` | 0 |
+| sdk/program/src/alt_bn128/mod.rs | 48589 | `00f7a919c02f0f16d2b0d13223a47bd2145548992796138ad548d7a5e2bba398` | 0 |
+| sdk/program/src/atomic_u64.rs | 916 | `55a2e2786ef2a4c8fe21f9641eb0da22de41fe390bfb24e5fb090fd904b1834f` | 0 |
+| sdk/program/src/big_mod_exp.rs | 6133 | `f47176dfdfc851661c601c57bfce453071f65a30febe05bdc117cd754794bd0c` | 0 |
+| sdk/program/src/blake3.rs | 5741 | `05feb9c11ee2087213f2694b83435e6984d50eedc5c7c948b373303afd194c7e` | 0 |
+| sdk/program/src/borsh.rs | 15236 | `7129931ddef846426de5c572736d5f39cfb9f37886b80d25397d7da5abdc26c3` | 0 |
+| sdk/program/src/borsh0_10.rs | 1033 | `d153b45e2f0004cb01efbdd0f78202086bb3cbfd994cec768317cd50b913e1cb` | 0 |
+| sdk/program/src/borsh0_9.rs | 1177 | `62b63500b6c1360d45ca701bfe0a2bd0a89961ffdd7ad9bdb75d38618a0794c3` | 0 |
+| sdk/program/src/borsh1.rs | 506 | `b98dfc1c960f5b68f451feec652f5963e57897da3a7265ea0cc061d90648d80e` | 0 |
+| sdk/program/src/bpf_loader.rs | 1119 | `20214ac69534e387311bf2a367ca4ab6fcc1b58e1816de737fd4677e0499d4ec` | 0 |
+| sdk/program/src/bpf_loader_deprecated.rs | 667 | `2a33c794f849520c88e29f7f4d25f8cf080f2ed62fa517fc34af5cf68205df7f` | 0 |
+| sdk/program/src/bpf_loader_upgradeable.rs | 18337 | `d56cdc315d79c160d7582a555860b814f7553362fde32990b754976687ab2aed` | 0 |
+| sdk/program/src/clock.rs | 8829 | `69408f4e02c360a90fc0583f8e2f3078e4b9328a1235f0b76494ad73a54ac3e2` | 0 |
+| sdk/program/src/compute_units.rs | 339 | `d6dc0c333f753bd01a853ee5c37102355c82b279b794db754b3ac1ddcdb6be2f` | 0 |
+| sdk/program/src/debug_account_data.rs | 759 | `f8072c717b837976cfe08f08f7907f3febf5564be6b3f3975680159d90623a52` | 0 |
+| sdk/program/src/decode_error.rs | 2039 | `2e7fafda7ee226572133a48ee55f8e53fc2d58db86c5533f28a76fe8481eff8a` | 0 |
+| sdk/program/src/ed25519_program.rs | 181 | `76bbc11d182696c6ddd719cc39c443fc3bf3bec007d5b0af13293d36fab9f016` | 0 |
+| sdk/program/src/entrypoint.rs | 16336 | `244d919d95bf4682e45cdca6c77de858047a334eba9a6037252424669d57abdb` | 0 |
+| sdk/program/src/entrypoint_deprecated.rs | 4858 | `f4d7d209109593e7feb89b84a5896d80cc3a71221a2da5ca2c42cd52b0f1eb3c` | 0 |
+| sdk/program/src/epoch_rewards.rs | 2246 | `e5eb93b01cffed162dd3228899ee4cd1676bd315a51a5c43b5ca3bdb7e3af343` | 0 |
+| sdk/program/src/epoch_schedule.rs | 10119 | `e42406544424d4fe23faf1068d1d6ba0044e4d93d6c734db1206ad1a85672680` | 0 |
+| sdk/program/src/example_mocks.rs | 9001 | `30904240b13eec561ae7583e9710b61e87d06760803ee6d524692812317a40b1` | 0 |
+| sdk/program/src/feature.rs | 3063 | `0f2f0a1762870a6dd2b3acb5a72eacf248c34f07c6a38a9197be182ee2dd75c2` | 0 |
+| sdk/program/src/fee_calculator.rs | 12486 | `3fb3caf382de313c523abb596f4042d26edc8f0540d6092b8f1cf38cf730a77b` | 0 |
+| sdk/program/src/hash.rs | 6126 | `5370764878a2ae9bfe903486505fc77c2da04ae5510b0d2f32bcf2f7687d8e68` | 0 |
+| sdk/program/src/incinerator.rs | 241 | `41f8178091d73232974a470fbbf5b6f23b9f428e02c54c3bf1c05a2df0cd8ca6` | 0 |
+| sdk/program/src/instruction.rs | 27104 | `73e5b0ccc41d73c925bb090ec2819a4327a6da9304889ec1235b148f45c474ca` | 0 |
+| sdk/program/src/keccak.rs | 3926 | `fe68d5a3510faa797db21b4460321fc0457e09a2af9f5f2654bba864c32d906c` | 0 |
+| sdk/program/src/lamports.rs | 651 | `1e3f869ee610442849498faf2f7511e32c568bab71390c3969e9a9a9e6587239` | 0 |
+| sdk/program/src/last_restart_slot.rs | 302 | `4a9d8cad6b823c69cc48a9096697d5a0b548b8862d7024c0db9f9a66e4bad8f9` | 0 |
+| sdk/program/src/lib.rs | 28634 | `dd83e72a8de95edbd2d79a68dc2aca748234fe053d0e0d24ac575f424e810f14` | 0 |
+| sdk/program/src/loader_instruction.rs | 1619 | `9e59f6041affffe0d9e391a39ebf409be74b372a674c9df3ab2b97efbc682482` | 0 |
+| sdk/program/src/loader_upgradeable_instruction.rs | 6888 | `87a1467387f1bd9bdbb3cfe8aa584e7510bca6db0a96b5f88cbb83d0dc635827` | 0 |
+| sdk/program/src/loader_v4.rs | 13623 | `8bb60bd2991e27e7b5733eabf74d393baec49d5b61f71829fc4c076ad0adfcb9` | 0 |
+| sdk/program/src/loader_v4_instruction.rs | 3066 | `ec34343d79cc48652cedd139d5c5af5d1b852dbfca20402a10265aa8f668e90d` | 0 |
+| sdk/program/src/log.rs | 5633 | `c6e8614299832441bd49516fbda5f9e2438b684e7be452f5dda994d5eb52487c` | 0 |
+| sdk/program/src/message/account_keys.rs | 11099 | `5332a55d8e89084e0254f92e7241dc23887b91dcf36f70d1a553d61619f44222` | 0 |
+| sdk/program/src/message/address_loader.rs | 1721 | `6cc08619e6c9417f5425d57abd28ce5dfdd39b3f8284b281fc2e371cffcf0718` | 0 |
+| sdk/program/src/message/compiled_keys.rs | 22474 | `b6b63b9a581e416e222ab90c5fecce23b4dc0f70807f66931044726ac7cc11f0` | 0 |
+| sdk/program/src/message/legacy.rs | 33255 | `4ffac4c781a2bc7cde2ec52ca9fe5c98fee5d1b45937294d0f525829d3f20199` | 0 |
+| sdk/program/src/message/mod.rs | 4993 | `f6020334d707c6060853a2a298750036d94af65f4ecbf14928651053cabb6f5d` | 0 |
+| sdk/program/src/message/sanitized.rs | 23927 | `3833befc8b32514be17e440817a35ac1a3fc4899d2e8d15d2a7cf5ae97c72ece` | 0 |
+| sdk/program/src/message/versions/mod.rs | 14789 | `ea32fdb1d53430cca1011d0b16d161dcdb89a33e3b7c6fa9bc76129877954dff` | 0 |
+| sdk/program/src/message/versions/sanitized.rs | 1450 | `c7046234b940c3e468049281f9d3e39c4218e42a13b4dbceddd989605436a336` | 0 |
+| sdk/program/src/message/versions/v0/loaded.rs | 11684 | `84d52a9e09fad43139d41bfdfad98ed7a075f2c048f1cd600c8ee77da11aec30` | 0 |
+| sdk/program/src/message/versions/v0/mod.rs | 25105 | `1febbbf00050ed58fb9e03ac669e837e95cac7dcf404e2390f346460182d2c4f` | 0 |
+| sdk/program/src/native_token.rs | 1079 | `a6481bb72042547c902c9fd58192201eeb0083b2edc070375c96f3eb49fe0276` | 0 |
+| sdk/program/src/nonce/mod.rs | 116 | `2d02d158db33c86e6764b4ad77a88d3192b00dbd0e31cc9e0580df263f7d8bc4` | 0 |
+| sdk/program/src/nonce/state/current.rs | 3183 | `d57712e751ccf38042b7609769d0c95e11501b67d6a6ee27ae9fcf87f42e0837` | 0 |
+| sdk/program/src/nonce/state/mod.rs | 9198 | `6fc7da0bc993c6cb18bb6f4d0b85fa071496e13cf74793d987346334d3ac4336` | 0 |
+| sdk/program/src/poseidon.rs | 15582 | `62824483a40b2112d17f2d0baba42cd125218e337d5fbefe17f8a84eb26abdfa` | 0 |
+| sdk/program/src/program.rs | 20971 | `33f46f4c7aa476f418526a4cac64401de75ed110ee3710dd6c944293736a9b8d` | 0 |
+| sdk/program/src/program_error.rs | 16852 | `7e29782c1980ebd5e6d191fd2e055bd4688092d8e2e3284f72f30ad5d86ade92` | 0 |
+| sdk/program/src/program_memory.rs | 4268 | `e14d548aea8a93abe2ef437455cfbc46108917fcf7dee97a937882cf849754d9` | 0 |
+| sdk/program/src/program_option.rs | 30883 | `9be40978e9447abcd41bcc8706a766d1eebc91fb5b651ca5144dfe3a41b9ab69` | 0 |
+| sdk/program/src/program_pack.rs | 1579 | `b2d54191aa3aa2df48311af82e8440a203160d6e0401d7c3292f47e6d4d7a4d7` | 0 |
+| sdk/program/src/program_stubs.rs | 7698 | `d12a7fea45a4f706bd91fdb37829c0b7cd8875d2c036a010e946398340d9843d` | 0 |
+| sdk/program/src/program_utils.rs | 1575 | `70709056f0d89919f8c91f09740721e181e6e7bbbb9ada915df73a9b129d27dc` | 0 |
+| sdk/program/src/pubkey.rs | 35843 | `d2d3e31f542c7e662c0e36f3eabfb73c2146e485fd0ba10738f2e748d8ab2c26` | 0 |
+| sdk/program/src/rent.rs | 6995 | `7f2edfe899abdb01ac3828691d748752b8c814651a24d9aeec1bf470cb9b1231` | 0 |
+| sdk/program/src/sanitize.rs | 1069 | `87b062ecd0f893ec59bc309327638a93f4b7871fbe74ed69ead5871cebcd4534` | 0 |
+| sdk/program/src/secp256k1_program.rs | 467 | `d2de3331d95a0e50b4ba9e025b1a99e47f09bc012a592c6c2f626d044e362138` | 0 |
+| sdk/program/src/secp256k1_recover.rs | 17194 | `06b76c033dbc26522d5e902e39861ac51c5b2c0f3d4b4b9e62ed71ccbd017c5b` | 0 |
+| sdk/program/src/serde_varint.rs | 8799 | `78b7c9857f2f26ae36e1ec202b42df93c2a388e58bd5e9e472c4d1e7bad602bb` | 0 |
+| sdk/program/src/serialize_utils/cursor.rs | 3965 | `1e6b54a6d6c4a4459d5c7d0a0394c1eeb04e41a10f2289f39f2eec5eee058a13` | 0 |
+| sdk/program/src/serialize_utils/mod.rs | 1968 | `5b0d6693289c9ccb8fc9c7dcb50f35a26b3e79732131136efdda441d3b3a5bbe` | 0 |
+| sdk/program/src/short_vec.rs | 12000 | `e25627dcfed5b8098ae830e2c986ae976f7f44ebe178420b2d5d0016f9ea4007` | 0 |
+| sdk/program/src/slot_hashes.rs | 3123 | `dabec8c128d1330f436161d76c3004790fb0552cce90c3983d63215eab8193ea` | 0 |
+| sdk/program/src/slot_history.rs | 6887 | `5439a4142613c3c5822b9b1157806497d1a1536860555c9b3889b355ec72da3c` | 0 |
+| sdk/program/src/stable_layout/stable_instruction.rs | 3151 | `4d8cfd4cbf16a3520096a026e3ff7849749f131d7bd8d45ce006179a132d5464` | 0 |
+| sdk/program/src/stable_layout/stable_rc.rs | 882 | `419e409a6c9a8a6026c35bf9951d246b58c20ec4b83b2fef335465c6ae88ec8d` | 0 |
+| sdk/program/src/stable_layout/stable_ref_cell.rs | 731 | `da9ae20e4e60384160a2145b6574c3412a03a77a1dbaebd32a862af3ade8feec` | 0 |
+| sdk/program/src/stable_layout/stable_slice.rs | 901 | `c39c32f1a1716e841e9da9655b276e540b0f009c9472324bcc3123272f1ebf97` | 0 |
+| sdk/program/src/stable_layout/stable_vec.rs | 5892 | `b2e116dcaa88f222dd150fb4e81c04d0dc68463decdce7eabc9f654f12cf4e70` | 0 |
+| sdk/program/src/stable_layout.rs | 212 | `943a2150b8fd89c8ca7ac3c81b4cf908fc407de419560f807fcb1501eb37cbd6` | 0 |
+| sdk/program/src/stake/config.rs | 1114 | `7866e02c4d32a604586901b45fe5b7eefcddd4362c385e98819a23447423f5c5` | 0 |
+| sdk/program/src/stake/deprecated.rs | 173 | `6b0a1ece4394bebf79b4e7e4c62ed9397dad0fa82e18a9a99f36283013ab23ec` | 0 |
+| sdk/program/src/stake/instruction.rs | 28027 | `f12fa41c5c5143436fdc3ec89c2f1de57a0792c552c8328e3b99f6d224a80925` | 0 |
+| sdk/program/src/stake/mod.rs | 582 | `2c6e4d19c579fa95eb561d7191e60218c1b0662c0e2627ad5c1f39c009d16ae4` | 0 |
+| sdk/program/src/stake/stake_flags.rs | 4370 | `008c094b2a5a9cab392833e6c9d55cee1334009e2d2e332fbd119b8ee41e7dbc` | 0 |
+| sdk/program/src/stake/state.rs | 47570 | `f9da32ca6e1b486649b1f74548e70fa48cf6e8c1d31c891fb7767483d8a7a18a` | 0 |
+| sdk/program/src/stake/tools.rs | 5210 | `1b1bc0758ee46b9653a84527187beafca0b6482f175bf736a8c57ae23a6ec303` | 0 |
+| sdk/program/src/stake_history.rs | 3323 | `d46cfcb44da72effa68b066abf6bbdd0f433a4b61ff34af415607db9affe6cc3` | 0 |
+| sdk/program/src/syscalls/definitions.rs | 5975 | `33a59a9ed3aa5858e3d86815205ef1be3cd7508e404a25699b47ba9a268c601c` | 0 |
+| sdk/program/src/syscalls/mod.rs | 1060 | `89946836b953ae7fd925fed9bf6e862c9e81877dd270ffbd924a1c5487f4a51e` | 0 |
+| sdk/program/src/system_instruction.rs | 60567 | `11290063479656abb54515942cb02dbc0945ce380bac46f62af067d8a0a47c1a` | 0 |
+| sdk/program/src/system_program.rs | 168 | `1c39e35ff03861152f46cd22d800950caac11ecba40de8acb703ec7e1578282f` | 0 |
+| sdk/program/src/sysvar/clock.rs | 4348 | `3fabbda95419371cbe401e41a763dc4fdce71e4236e122e90b72c586dc292d7d` | 0 |
+| sdk/program/src/sysvar/epoch_rewards.rs | 4650 | `8a1409577fa80ca953b3fc0801cc1a7653edd979d6dc50df1928579fe9890bc4` | 0 |
+| sdk/program/src/sysvar/epoch_schedule.rs | 4545 | `01b9a6fc2c1e6732ab28b1bc8c24c6e007a418925a05e072e50a9b1201ac0339` | 0 |
+| sdk/program/src/sysvar/fees.rs | 1920 | `4ca94455b1ed92cabc1d6e159392933115963ba5a31d0723fd81465cecddf571` | 0 |
+| sdk/program/src/sysvar/instructions.rs | 19664 | `5e1b66e9c00c27bb85eecec3e85b62a51df06547040bf0512eab6749de50a858` | 0 |
+| sdk/program/src/sysvar/last_restart_slot.rs | 1563 | `df8322068de7f3f1a899ac4c0a2eea7e747cc05a31a9922d6f4cb49a067a41cd` | 0 |
+| sdk/program/src/sysvar/mod.rs | 9552 | `fd0e9260ddd911dadad785fb0775904671d387b9f74df3778fcf5e3d9def8ef7` | 0 |
+| sdk/program/src/sysvar/recent_blockhashes.rs | 5258 | `4b4b87dae470778ba22d51646706f5fbe46decdc33074ffe5b4deac80e6bdff7` | 0 |
+| sdk/program/src/sysvar/rent.rs | 4024 | `622b3f90c4071d60561da52794665fa0373e487e0a8f5115eb565b5dbd406b86` | 0 |
+| sdk/program/src/sysvar/rewards.rs | 496 | `0cc5f8c15962d10f8cdca0a3fda2289742ab2e956fd1d02699e4a2d2f6b9e688` | 0 |
+| sdk/program/src/sysvar/slot_hashes.rs | 2952 | `ce15d1f3ba28402a5e2f03740982f7432f0f562996d5139d712c316d85fb64bb` | 0 |
+| sdk/program/src/sysvar/slot_history.rs | 2656 | `2574aa1b299dcf75d0763abff1d2dd472874e6cdada98c7ca41b6d685c85884e` | 0 |
+| sdk/program/src/sysvar/stake_history.rs | 3414 | `8efdf7fb806314838a1b568fc9500c368d0e4485f4a6a10804be0aa725e2e696` | 0 |
+| sdk/program/src/vote/authorized_voters.rs | 3710 | `e450b1e913c6526ba2279b9cd9eb795d5fdeaef74f5e5ba004b4358a64a4d615` | 0 |
+| sdk/program/src/vote/error.rs | 3114 | `be1fde89843dd7f66d5bc77cf365eedf59642b9a83c9134f34a4a025801a66b2` | 0 |
+| sdk/program/src/vote/instruction.rs | 16965 | `ab8884a9f9c7695b2877ead0944522d3d8f38b7bbd29e789c254d3408938d4a9` | 0 |
+| sdk/program/src/vote/mod.rs | 278 | `96a650f2027e5b8b2b001b06d011309fc5485253ecbd8c2a758cfbfefc5012fe` | 0 |
+| sdk/program/src/vote/state/mod.rs | 51678 | `58f4dd05377a0768f5eb97765bc87b5dba27f4d73fa6e5aa8a5b14dec70a5989` | 0 |
+| sdk/program/src/vote/state/vote_state_0_23_5.rs | 1728 | `31d67e151c39458d6c6704e8b1a5d18ca59ec94f1cb758742bfefc651cc35573` | 0 |
+| sdk/program/src/vote/state/vote_state_1_14_11.rs | 2845 | `e177552c4345e00ec616728be1477515f96b557630f5c148c4886fec1479f9e0` | 0 |
+| sdk/program/src/vote/state/vote_state_deserialize.rs | 4428 | `04c04c7f214e01bb54d14bcbed55f16d6b826c7579214a3fa1480883ccff31f8` | 0 |
+| sdk/program/src/vote/state/vote_state_versions.rs | 3347 | `b33591290aff888396d5e9dad36a8860168e12632b35444ce94656b6a0272f95` | 0 |
+| sdk/program/src/wasm/hash.rs | 1853 | `8e80cb085fd2d965d8f069e1cf03d02b141efca614dec9540bcb590dfe32478c` | 0 |
+| sdk/program/src/wasm/instructions.rs | 753 | `26ee08cb0e73a3562b467fe49a6ea657c6bae654c654629da0de573b89c538d0` | 0 |
+| sdk/program/src/wasm/mod.rs | 624 | `940b55f28a727d2ed9f60b2f05697c05fd7944c902bbc46986edf67fdcecb776` | 0 |
+| sdk/program/src/wasm/pubkey.rs | 4159 | `dab63fff724dbab7419024d345bd411e279e84f3ba7dd30bf5c63a5acff4528e` | 0 |
+| sdk/program/src/wasm/system_instruction.rs | 3051 | `317410afe7e3b6502678e1fe548a6f04ce09fb68a944626e090d0dced0071c4b` | 0 |
+| sdk/sbf/c/inc/deserialize_deprecated.h | 39 | `76c96c25637df160388fac89f265c0af946dae909fa37fbb0d979cb35946b03e` | 0 |
+| sdk/sbf/c/inc/sol/alt_bn128.h | 1609 | `fb68b592b5907ef24edadf99a93a7b067a77b8018d06a701b6268b0583e3d3c1` | 0 |
+| sdk/sbf/c/inc/sol/alt_bn128_compression.h | 2040 | `862b9c3e0b03f98316115c1197238f24494e596aef13b5fd54bdee3cf4a2a8a7` | 0 |
+| sdk/sbf/c/inc/sol/assert.h | 1283 | `1292878e8644dc3353b3ffe5fc69d92e80a01f077c90e78592a92b3f502d1ee2` | 0 |
+| sdk/sbf/c/inc/sol/big_mod_exp.h | 841 | `7db01d5b613e3d64f3a80bef1c8b19672226d66a96f05830b99ec9a214f43610` | 0 |
+| sdk/sbf/c/inc/sol/blake3.h | 905 | `d1e25b432d1ad3ee76e11553b1d316a0846b18db31757e6309fdb977d5ff5bd1` | 0 |
+| sdk/sbf/c/inc/sol/compute_units.h | 885 | `73d756c41af6330a21be5d991607079522ba2bac0386db721065150c382b8ce9` | 0 |
+| sdk/sbf/c/inc/sol/constants.h | 801 | `7dd040c41526b0676d0f2ab7e2a9137065106e83a4d83a375b95d28d52307b5b` | 0 |
+| sdk/sbf/c/inc/sol/cpi.h | 3825 | `69088c537c37d4273cc589562c6bc5259aa8073e68f67f165c6d04b984980e13` | 0 |
+| sdk/sbf/c/inc/sol/deserialize.h | 4071 | `fb9f6e9b59f258dfc33473ce5600d50bb7b70220777fd42dd822debcfd2662eb` | 0 |
+| sdk/sbf/c/inc/sol/deserialize_deprecated.h | 3420 | `113d2f4577684caa2ff6f4607e98537079c597349db145aab6c457715076feaa` | 0 |
+| sdk/sbf/c/inc/sol/entrypoint.h | 1663 | `2f99d265e925adf204041008ccfae84844a486bfe456f75ee03e2c04ee9374ab` | 0 |
+| sdk/sbf/c/inc/sol/keccak.h | 909 | `494afe3bd2dce9a04d3a85307ec0c86c36d933f790e7c3607b59cad0ab8eefd2` | 0 |
+| sdk/sbf/c/inc/sol/last_restart_slot.h | 734 | `5eed71c9a0f459a2def5c44382726dcdc1c819ef58a38b648e777a08ac0398cf` | 0 |
+| sdk/sbf/c/inc/sol/log.h | 4244 | `011ce595baa8887ec8e1ff9c650e029a8c54dd134c5732048938d1c8a833675f` | 0 |
+| sdk/sbf/c/inc/sol/poseidon.h | 1900 | `6d1b0e6e0b03376f9ab792613742456e77f037ce3cd8b2461647d0e3fb1fac3c` | 0 |
+| sdk/sbf/c/inc/sol/pubkey.h | 3973 | `e6d5a5d1a366335770a29b3e0105aca3510f89fb8f47da089fd1ceaf178980e3` | 0 |
+| sdk/sbf/c/inc/sol/return_data.h | 1831 | `cef06f3d6cc37c5af62f5d16b507c439103611aaf7be56a0a17c2f4cc770ae0b` | 0 |
+| sdk/sbf/c/inc/sol/secp256k1.h | 1765 | `4e3818e514f6c0b85e0dd1c334a26c539092fc9fc3cf13dc9f18516d870bfe17` | 0 |
+| sdk/sbf/c/inc/sol/sha.h | 881 | `a312d6e84db9062d2b91a212cce1d9806a1ed7532ac7b662871636c5ebd58c12` | 0 |
+| sdk/sbf/c/inc/sol/string.h | 2069 | `1fb1db89fba24801dc0c014fdd6543c96ebddd051787f768005e069122df5461` | 0 |
+| sdk/sbf/c/inc/sol/types.h | 3883 | `e52965f8bd283e8ac7b504022d394b718dd2ba77270e9ce34f6b64acd555326e` | 0 |
+| sdk/sbf/c/inc/solana_sdk.h | 515 | `cf7f5762db7a87677bfb62b357c6950cba6d1146bc2a4e3adc8eacab7bde1d44` | 0 |
+| sdk/sbf/c/inc/stdio.h | 81 | `b05557a562439eb2981507f79f90855a72aaf716cc068a4d96727b958162fdf1` | 0 |
+| sdk/sbf/c/inc/stdlib.h | 37 | `866e40d29930b07886fba1a881cf11cb43a1e19ce00e656d67c6f6e528afdf83` | 0 |
+| sdk/sbf/c/inc/string.h | 116 | `1fa8b80022c45e01274e452964efad09dd7e7951e060874a3c8ca03bab320635` | 0 |
+| sdk/sbf/c/inc/sys/param.h | 13 | `b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201` | 0 |
+| sdk/sbf/c/inc/wchar.h | 13 | `b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201` | 0 |
+| sdk/src/account.rs | 39305 | `904b5f91eb9900a77a21124c043c3c3d8d0677b2c493d466467eda71b24046f4` | 0 |
+| sdk/src/account_utils.rs | 2656 | `9a96503c3db89651f4afc31b96d0668a7edf993a412dbc9fc9f2ac651c762300` | 0 |
+| sdk/src/client.rs | 8585 | `21c1c152e20d5622cab9801d1f99dce7e782cb1eddc25f9f2996dd790d09e046` | 0 |
+| sdk/src/commitment_config.rs | 7607 | `1fe9d3c10867f9f55509665ef384afcba92e2c2dfd050d354767d9282bc6faee` | 0 |
+| sdk/src/compute_budget.rs | 2539 | `1982e9b74cf8edc3dce57960148e285f67dd88188740cf833fda60b4bb68242a` | 0 |
+| sdk/src/derivation_path.rs | 24424 | `b3a9b9ab7b0ab3e007e71383a0429181ddd51855e6aa26276567f811fbfd1772` | 0 |
+| sdk/src/deserialize_utils.rs | 3945 | `00d54f360c463751deb793c6b6283d5f9e57b530317b417bd2200ffc3982d874` | 0 |
+| sdk/src/ed25519_instruction.rs | 12559 | `e43547f4202a7119c74606d9f40e6cccbbd54abf2bdfb60511fb082637ad5cd2` | 0 |
+| sdk/src/entrypoint.rs | 1156 | `f357445988f1cf2d2edfc6ed0a072b459df948f1ecad2615be8789a7ec63336c` | 0 |
+| sdk/src/entrypoint_deprecated.rs | 1081 | `64c3df18b406382aeeae138814bf0a3cf867e522e929163fcc473e74550f37b7` | 0 |
+| sdk/src/epoch_info.rs | 783 | `7c64abf28424ba386023f8d8edb3f12532900e98cc0216757b1222be7486aceb` | 0 |
+| sdk/src/epoch_rewards_hasher.rs | 7302 | `19bb51328bbda63f931584f3d4ef5563dc254dc8079674bd014c1d1f1244c787` | 0 |
+| sdk/src/example_mocks.rs | 1595 | `07de8dfc8326b3a58fa619d2a0484058959808c84643ce7502a05a2c21a8e3f1` | 0 |
+| sdk/src/exit.rs | 653 | `fa0588f468cb44c7ed1a57df47b00233c08d16eff5e35e6632c09980a72fdaaa` | 0 |
+| sdk/src/feature.rs | 1136 | `b6d88297db7717f1c2a0ed9bab1c666b1b8d7989d156494fd971b12fee7cb29b` | 0 |
+| sdk/src/feature_set.rs | 49577 | `80fded8a6c463a43277a186a8c2c4e512cb2ab036c366e1fd59e87265ea42daa` | 0 |
+| sdk/src/fee.rs | 7277 | `27c92ef535902a01677db428d81ef67a6ce24b6c1a54345caf28fb066d37b381` | 0 |
+| sdk/src/genesis_config.rs | 11616 | `cdcd6d0ea8a70cca70e0b59ccaca14d6073bebe73487f6d25c2edc7a500f435c` | 0 |
+| sdk/src/hard_forks.rs | 3129 | `ed4a7bc55b5103dddcec33c3948fa70db48430e25866b171e1a0b18876b89876` | 0 |
+| sdk/src/hash.rs | 568 | `0489cbf3488fa13a2b9b3c20a8522c71d058d161dbeec4b6795f1220501b29ea` | 0 |
+| sdk/src/inflation.rs | 3814 | `1a060a111baa4a9da167f47f4582db864f2e81d1b9ac496d416212c2f2b3413b` | 0 |
+| sdk/src/inner_instruction.rs | 728 | `03c1deb171cef55749e77283ef56c965bdef51cf8735fae019686b2acec08ec4` | 0 |
+| sdk/src/lib.rs | 6641 | `fd4e50b095453acb3d87888c927e3d374738dd41d2a5995e209c569c1d9503c2` | 0 |
+| sdk/src/log.rs | 262 | `ed94aecd34ebf638e335afb1c2cb8ee7f5ee208e3aa4a4b57bb7b28fb150cb68` | 0 |
+| sdk/src/native_loader.rs | 1078 | `5f71ce9b609bc6a305c0613ed9c45787d3670ef61beb19c18ed526af72a5adc0` | 0 |
+| sdk/src/net.rs | 95 | `1f844c5f92a3fbe022e3a069a00160691e4fbe1cec60fe2c5bafb8119a36cdb0` | 0 |
+| sdk/src/nonce_account.rs | 4556 | `de7a32ce4e4260a0961a041859e92cfe7b5772bb3453d49989bab1e421de1a83` | 0 |
+| sdk/src/nonce_info.rs | 9275 | `21689c19205671a95dc42e437d697a886a7d5b707c5f5aeefbc8c30a89b3409e` | 0 |
+| sdk/src/offchain_message.rs | 11088 | `c9aec275365bf0a69602f621f97a31a025675764a0fecdc6128e0d290cf2271e` | 0 |
+| sdk/src/packet.rs | 9941 | `d2dcfdb25baf117fa1f79ba98511628d3195a3b406b179072b464a94b43180ee` | 0 |
+| sdk/src/poh_config.rs | 1115 | `8180a00b0c52f75f2cca5bd69d7ad2cca01e4e0a2a6803e51989024b221c2888` | 0 |
+| sdk/src/precompiles.rs | 3700 | `54daa3902016b5b3ec0ce1a64992019af55ae5531c6caaac39eb5c952d0e3393` | 0 |
+| sdk/src/program_utils.rs | 1400 | `94dc1fb51af8e02db17b0d0a3d735372df8daaa16c426a150d06f859aada7bc5` | 0 |
+| sdk/src/pubkey.rs | 1415 | `ff98adb04d7998348d4eff833ba42652286bbaaf3d779a579a3f91ce75572d95` | 0 |
+| sdk/src/quic.rs | 1930 | `683ba5636878ca2b914e8c3f253c0a54b478475ace565efffc4cb87208be0451` | 0 |
+| sdk/src/recent_blockhashes_account.rs | 5464 | `3ab4fc396ad04cc22e2a4041dff9692aa842d6b3101333679fa9dc34c3dc3fd9` | 0 |
+| sdk/src/rent_collector.rs | 17881 | `c06f08445ce474518d9f910db28872f440dc0f2a3cb73a08eebedac1e4b90623` | 0 |
+| sdk/src/rent_debits.rs | 1860 | `30c143eb94b847af83ff219a7534e4c62fea82a8d337a2a10b104dffc3bc19c8` | 0 |
+| sdk/src/reserved_account_keys.rs | 10758 | `48730c10e232c0a05433aeddd04671bcd304fdf9940be39e45432ed17f946bce` | 0 |
+| sdk/src/reward_info.rs | 452 | `feb7bc6c4ce32d68a936b4627679f96980dc5709de6e39cc0bcd14c2dd33d64b` | 0 |
+| sdk/src/reward_type.rs | 603 | `56d48ddef9ab3c8c1d49ceb7b7cc4e02e712b88b55cdf9e9427c2052b0164e77` | 0 |
+| sdk/src/rpc_port.rs | 251 | `760f52b950e1dc5d75fdb82110a70e80f86009aec046188bb19b489be962598d` | 0 |
+| sdk/src/secp256k1_instruction.rs | 54159 | `c38857c4a056ce8ee87a7169aae6b6014dfc97bc6437479b9577bcaa40139fdb` | 0 |
+| sdk/src/shred_version.rs | 1984 | `5e3a1e02c5377d61445bcef1fed9f6c0e301065fb8274bcda0e3431af8144de5` | 0 |
+| sdk/src/signature.rs | 6651 | `b05d2e10627d2d748bc2e9d7ed19e0eea586c1483e1620bc470e82e731fe18b5` | 0 |
+| sdk/src/signer/keypair.rs | 12358 | `eec8f8eadb37c4398427f8c19b2d3ee3690246b636cc8625b9a31e9b2456377f` | 0 |
+| sdk/src/signer/mod.rs | 6890 | `eb73e3cbc873a2a2f0f3062a374a360f436230cc25ce25494d5551613aa25198` | 0 |
+| sdk/src/signer/null_signer.rs | 949 | `b8968e30548cf016a9f4bac8b5aed16c37f2f03799e392745f6d86b3d77f6ea5` | 0 |
+| sdk/src/signer/presigner.rs | 2443 | `1328a565fdcd85a90559a7991dfd3c9f3d773efb785da9bed16fc59b85af22fc` | 0 |
+| sdk/src/signer/signers.rs | 3566 | `6ea67f7e8af5f441ca5a68c0bfc40a670c12b41256408b1268087e4a68118a14` | 0 |
+| sdk/src/simple_vote_transaction_checker.rs | 990 | `74a50b30c4e3421d85270f63b864eeab24982fc63cac55af3544c41966bc33db` | 0 |
+| sdk/src/system_transaction.rs | 2924 | `c4508aecef472865c3c34de9b3e6f39cfee92196f9246fd4e7c072403380c504` | 0 |
+| sdk/src/timing.rs | 8481 | `79ce6e9e27059c9426f74a3690ac0435ac2675de93c769082f98fa80f2692b63` | 0 |
+| sdk/src/transaction/error.rs | 8180 | `957980fc7cdd36bd73945ef39ee7f4b424377f92377158fb7da2826cf76b7365` | 0 |
+| sdk/src/transaction/mod.rs | 62469 | `e6c453517f47e2aa9dcc94d70a4b29d3ad579425aaea2da44f702ee5f5fd1382` | 0 |
+| sdk/src/transaction/sanitized.rs | 12586 | `f8d3ff3e839da6254bfe7dac37cfc3cb3fa2e9e42b6e37f71def4c2bb5a09f00` | 0 |
+| sdk/src/transaction/versioned/mod.rs | 11760 | `ac3a48cfbb0ee2a12d05862f16e0f56008608cf9deda646f02b6dd374e6f8989` | 0 |
+| sdk/src/transaction/versioned/sanitized.rs | 2421 | `f259815e130c78b91d7b6b62e7f1ca560697193e4a4382c720324019d8a4007c` | 0 |
+| sdk/src/transaction_context.rs | 44476 | `c17bab5e2d532b3dd31a8f27b8ec71d3f588dbaba81aa3e949ea04d849cdf1ae` | 0 |
+| sdk/src/transport.rs | 728 | `7146d0197c539fcb3bc4091a5d61eb98407e8fc72a54ad627d407c8ed84ea1cc` | 0 |
+| sdk/src/wasm/keypair.rs | 935 | `84654dc99087423e91845566abd5e6fb1540e8bd2335d5b1415021a4c45046f6` | 0 |
+| sdk/src/wasm/mod.rs | 107 | `297c5213a134a61d02053a32f854232da846d07a0ad1a475574702896151dba9` | 0 |
+| sdk/src/wasm/transaction.rs | 1628 | `a93866e93d4da772042f715b960758926e0f1322e56636fa8936eaef19640b7d` | 0 |
+| send-transaction-service/Cargo.toml | 866 | `2972b8017d78c557251dbaa98bf483dce5b64badf081554d2481675c788fd256` | 0 |
+| send-transaction-service/src/lib.rs | 138 | `72d08f6a4cf9c859aec28033fcdbe337211df6719dbe6fda479684303450ca67` | 0 |
+| send-transaction-service/src/send_transaction_service.rs | 51670 | `51f9f7369936c35c3049678f594da3639056a8022a58437cc6dc7884ce81885d` | 0 |
+| send-transaction-service/src/tpu_info.rs | 845 | `515429b6e1e97338207b79dd56cad75eaffcc48f9928425e9a306c6b145085a6` | 0 |
+| stake-accounts/Cargo.toml | 917 | `b812f2b631d8844fa701dc14853ac4a5adbbd5f5655c42378b9f2bfeda162ba2` | 0 |
+| stake-accounts/src/arg_parser.rs | 14185 | `c618766b7d1fa5bf368808d0d471a6201e2f9a56f0c75d43256b6d41dd78d844` | 0 |
+| stake-accounts/src/args.rs | 9987 | `c3ba6025b7b3e1e22f29f6f7c43dcc90a202d110041725c6dd3025bbd0d81866` | 0 |
+| stake-accounts/src/main.rs | 8883 | `f42ab70fa75893e0802b3a2a596105f540e3ff0a6ff220ec80ee7bec80ab3428` | 0 |
+| stake-accounts/src/stake_accounts.rs | 23196 | `a17231a2c6e8701420a5f9c7deee7e2b258aea02c8ef43889f1125d416a1d834` | 0 |
+| storage-bigtable/Cargo.toml | 1796 | `dc4a729e1d2ea66f442f25f1a281e07c4afa8ac4fa91a678983458e942a52d85` | 0 |
+| storage-bigtable/build-proto/Cargo.toml | 529 | `9f4871f985019346132506e29dfaebc0fdb6fb02a0f25061b7a7d671d87ef43b` | 0 |
+| storage-bigtable/build-proto/src/main.rs | 773 | `527dc039ee1360fc9448ae8c3ac3eb4f0567c8d00694f701bec97f545919626a` | 0 |
+| storage-bigtable/proto/google.api.rs | 68787 | `76afcac609e5f64472c9ef1ee167db81eff55928f423861ff3195b4df4823b4b` | 0 |
+| storage-bigtable/proto/google.bigtable.v2.rs | 93158 | `08618dd9a9d7f77ba8adcaf84cb1360142f204144faf016539e0763d306536a9` | 0 |
+| storage-bigtable/proto/google.protobuf.rs | 0 | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | 0 |
+| storage-bigtable/proto/google.rpc.rs | 1290 | `5f26abc11f34b3ecdb5525f7415ec4e498331bb7da7ad6b59f89b6a27e1fb2ad` | 0 |
+| storage-bigtable/src/access_token.rs | 4838 | `be1b1270a8639834e1cd2d016b362486b545978227ead7c8be77dd4d01fa5026` | 0 |
+| storage-bigtable/src/bigtable.rs | 37855 | `1561df8cdc7e3cd3059a284c7312d431de376e20b215a24c383020d33923833b` | 0 |
+| storage-bigtable/src/compression.rs | 3233 | `43e8eb1ff82e82052c5788982bb8282fba852468b57c9797de6f4304fe48b237` | 0 |
+| storage-bigtable/src/lib.rs | 41365 | `adf41fc4b6b93864fc2c00c70744e107abf4d24e800ec547cd20b9fac73faeae` | 0 |
+| storage-bigtable/src/pki-goog-roots.pem | 72865 | `6b1ad80fb0b67022b23a965429740c7643c50583d0f16e0a9f1357cd16d2255a` | 0 |
+| storage-bigtable/src/root_ca_certificate.rs | 828 | `3d9cf5db73ea380a6112535ea46eaf8329da052940ddb311bbd1fd362ee86861` | 0 |
+| storage-proto/Cargo.toml | 1045 | `bd4d0c02899c876e1aa4618f8874f6b254431c4bda41ed8206d54c394e8dbdb7` | 0 |
+| storage-proto/build.rs | 1048 | `e1efd69e7bf1c757dbeb4ff83ace84e157509f422d7d9d66c21bbad3b5f6eafe` | 0 |
+| storage-proto/proto/confirmed_block.proto | 3255 | `fc41cf60d4a08e1aa398b6205c2fb7bf9be6b2881ac7850017c02039838b74dc` | 0 |
+| storage-proto/proto/entries.proto | 269 | `d7bd865af74fdb0bc412de83c6d5fc710f86c5330b282080bfb775af94361940` | 0 |
+| storage-proto/proto/transaction_by_addr.proto | 3981 | `613462506a866f7c2315f3f60d197d17a6e76b1a25662456f4513de34495c288` | 0 |
+| storage-proto/src/convert.rs | 79868 | `a1ea782d349290a19da6d503787360fb8d5cc7a3be2b24ada60f45012c25766b` | 0 |
+| storage-proto/src/lib.rs | 7651 | `b86392f409fd038e15e6d24ea2e220168a8dadb9c00d7ae8d26e74998dc8419d` | 0 |
+| streamer/Cargo.toml | 1309 | `0806a0e82ce90e7cab8ea410ab04080beb28bd3e541624e3aab7bce8ad8bb7b3` | 0 |
+| streamer/src/lib.rs | 265 | `66528c143257a83ad13a99056fa3e4f9af65ede352b9afd980d0a8edca1f2696` | 0 |
+| streamer/src/nonblocking/mod.rs | 71 | `f60f4b1f744503b6b3d05b3ec81bb9a8226e34a5e8b1965f59c1a563d5d7ac94` | 0 |
+| streamer/src/nonblocking/quic.rs | 75921 | `926360208be9145f0b5b76cc4a73fc32012f291dd84e6db1d50d673d620e9cfa` | 0 |
+| streamer/src/nonblocking/recvmmsg.rs | 7533 | `9059c575284c8add6be5383a2f0340a4690e8e0df4197e8c8679ffaf517a6ad9` | 0 |
+| streamer/src/nonblocking/sendmmsg.rs | 9602 | `e460368b50ff12f333955eab146e03174a3ec09f0a8e16d6c00ba5b9ecf75a1a` | 0 |
+| streamer/src/nonblocking/stream_throttle.rs | 19723 | `a8647004c5c1899290f314677e89ebd34d3df891e609d8bf04b5ae496582821f` | 0 |
+| streamer/src/packet.rs | 5907 | `89fac04b287d7641e8269015c78f9c977ecd00777d7db72a1c9310983f6884a9` | 0 |
+| streamer/src/quic.rs | 21251 | `ad29c77138bcc68ee775231aba819ba0031e5c530a81329e489709af1d7fa48e` | 0 |
+| streamer/src/recvmmsg.rs | 10338 | `5f839f17ba399d4f27bda99fafc1244e105cc26685f5dd1d4b2130b3269e5d64` | 0 |
+| streamer/src/sendmmsg.rs | 12477 | `47666bc0bfd12f26a757a1350f1709f1c10f03e5973cbc469bb3a28165dfcc18` | 0 |
+| streamer/src/socket.rs | 1115 | `b3fc71968db96d4511a5ebb5e6d425190b5ec5c424371024fddfec3cca798154` | 0 |
+| streamer/src/streamer.rs | 16551 | `555fd447e8b66d5b6faf7cd59d2a9593d4b0dc1ba4bc33d7dc20ae59b473c93b` | 0 |
+| streamer/src/tls_certificates.rs | 6215 | `98eba2c6ddec745054a63b0e9e32d60ab21a110b431382a1bb6951f9adea4247` | 0 |
+| svm/Cargo.toml | 1163 | `40002ef7fca5ca549587fcf7c8cc2a142c25cd626721d0444ecf1f2abddc30c3` | 0 |
+| svm/src/account_loader.rs | 83803 | `885966c68fe70f47ccd328bcfa2b4514afaa0e68858a5c9d4f5b1604aaf18bad` | 0 |
+| svm/src/account_overrides.rs | 2026 | `90c7756da74d7d0d2618d8de5d4cd73c31c3fd47345df8eb71320ff9d6127855` | 0 |
+| svm/src/account_rent_state.rs | 10419 | `387f10118c16e2a232fd8324fe77199e3c53a89202179233319d1c6db22a85df` | 0 |
+| svm/src/lib.rs | 422 | `6669c36c241a1b55fe3cafed643db7af8e5f92ab8bfdb9a1a1656c0b5c80ce39` | 0 |
+| svm/src/transaction_account_state_info.rs | 7973 | `4dfa1609888e6fb3f0fb7c8e1d9299689b38be844e3ff86f921c120ca6047be1` | 0 |
+| svm/src/transaction_error_metrics.rs | 6854 | `ddf64ad347b58d27f22d06186010acdc55d6411df0cb902c133728cfc522bdc1` | 0 |
+| svm/src/transaction_processor.rs | 80756 | `2f1d387df62482dc43216dc01dedec82bd310cb5978ccc0498c6c340f1ebbf28` | 0 |
+| svm/src/transaction_results.rs | 3465 | `6ecf4ea494d20abf099e665c8b03ab0bb98a1c2222de9ee52ee86c910b55f7de` | 0 |
+| thin-client/Cargo.toml | 710 | `3865a9767fe9acb99f5be390a5c1a8e7d7fc62e151a5c7aafa00ad18acc2cc5d` | 0 |
+| thin-client/src/lib.rs | 65 | `9821fb7b1df2167eecc3731767c62b14f6df3a11505641ad4a2a0894319c6f8c` | 0 |
+| thin-client/src/thin_client.rs | 22827 | `b07bf1bdeb072da16014e8fea4ac46587092197f9fca73f8cd1f3fe488740552` | 0 |
+| tokens/Cargo.toml | 1514 | `b57d58a6ffe990fc7091bc65f03db2fd965a710668b6ebfbe9d33a371937ff84` | 0 |
+| tokens/src/arg_parser.rs | 25957 | `7586f09e0ab3558f0be2d084c1a17a62d8f3411127ac911fe1f68a600d50053b` | 0 |
+| tokens/src/args.rs | 1412 | `01b2bca324445967aa8bc5bccaf6c8605e66f6dd658351a872c1a36f35808552` | 0 |
+| tokens/src/commands.rs | 97025 | `86fdfdbc62449dec7e2691b0c19025c5cbb5fd436bb91054bc60607768622010` | 0 |
+| tokens/src/db.rs | 13600 | `ddd119d470b49881a64ed80316fcbe940edf2d88e3727ea42e7eec5f088d72eb` | 0 |
+| tokens/src/lib.rs | 160 | `aed62dc5511002bbbdc957b788d7c47fdd15edab416b395fc97731395686b46b` | 0 |
+| tokens/src/main.rs | 2003 | `fe8546cfd30a0007dbf5efa9517bf0cee48dc79864be59582c15cb39b7c43baa` | 0 |
+| tokens/src/spl_token.rs | 6129 | `bea7dc761ab35167f080fd0b0b9e1ff1a88820218cceaa867d16cb46e5ac0a0a` | 0 |
+| tokens/src/stake.rs | 536 | `938cc14c982fcb23ce65f7814f137361292215ec000c4005369172e818319280` | 0 |
+| tokens/src/token_display.rs | 1788 | `70c30da1e6118498e71781af06df7c17c0c6298fd38b9348d7141c840d094737` | 0 |
+| tpu-client/Cargo.toml | 1192 | `5546f308f57df707073f060f26a743b5d96850fe87d0bc1e7193fa86367cce18` | 0 |
+| tpu-client/src/lib.rs | 115 | `d85c2d933aa3eb45f0ceeea7885a79020e3e63af829552864f11df99218e18b6` | 0 |
+| tpu-client/src/nonblocking/mod.rs | 20 | `381b22cc10e162b8da76240ee85f0a99b41dbe1873bd4d499f70e963da8189a5` | 0 |
+| tpu-client/src/nonblocking/tpu_client.rs | 32261 | `6f1e1010cdcaa571c9a87fd506bb6fd14a495bea4ad22e6c9b710cc08c5b7457` | 0 |
+| tpu-client/src/tpu_client.rs | 9911 | `eaeb2d489c1272bedb63673be33fe8b7286b03f30e7a1e95e17421dae9737c0d` | 0 |
+| transaction-dos/Cargo.toml | 1113 | `dc46cc9e515258d6615ecb9247d653aac7bb2bfcaa3c2d029a2b5c2822811e9c` | 0 |
+| transaction-dos/src/main.rs | 26065 | `4c652e55573e0cf1f534c027173151acb967f7498bf1db4df6f6baba4e806df1` | 0 |
+| transaction-status/Cargo.toml | 1258 | `6ceaf3119c58c3ef177260b8ecb0670336c99e4d8ebe1da0c493ef49d533c294` | 0 |
+| transaction-status/src/extract_memos.rs | 4380 | `358bac455c72a4f1be77eeab28b036e66a920f1544e77a54570383ae8ac33ccd` | 0 |
+| transaction-status/src/lib.rs | 55597 | `743da16247cd4ce9a18f96006a727330988e34135adcb1e32e434a559ac98d90` | 0 |
+| transaction-status/src/option_serializer.rs | 1987 | `e1318c69e8c19d6da60f9cfcc338d3cb8348c0c59f0d70a9766145e46c32ced1` | 0 |
+| transaction-status/src/parse_accounts.rs | 5825 | `a8cb8164c3dbd7e3e4cfb630ffe7f5327e263c4b724083c68ae7d03ef9fe3b13` | 0 |
+| transaction-status/src/parse_address_lookup_table.rs | 14143 | `feac71f736884463c7e865900fed04055e2d05245523f7f11ad1fe13655c46cd` | 0 |
+| transaction-status/src/parse_associated_token.rs | 12492 | `1cefda8e05b9fbc09d88e1aa807bfb86067b91aff8ce8ec13fabc137c8a609db` | 0 |
+| transaction-status/src/parse_bpf_loader.rs | 30895 | `41dd3969201379a75491efec301fa394dab1e204734ffead04595951bd05220f` | 0 |
+| transaction-status/src/parse_instruction.rs | 7823 | `b8c8f4007d1eb386e3dde645d9a6423df288321a0ee16e7c954b93ddf9d24e3b` | 0 |
+| transaction-status/src/parse_stake.rs | 47719 | `11c8bc71a717532157489b534988905d111315305615933050cfb572e16b7eaf` | 0 |
+| transaction-status/src/parse_system.rs | 26118 | `a087ff02947bbf1fa397741dfaf8f34e1d0c32a5ab513f5c968d285d063ade13` | 0 |
+| transaction-status/src/parse_token/extension/confidential_transfer.rs | 16612 | `6e14302dd97264ce4ddd1865b947ba488d948fcf62554896a240f5437b2d5c27` | 0 |
+| transaction-status/src/parse_token/extension/confidential_transfer_fee.rs | 7249 | `36145a314cd4f2e97d60ab7d0a630bdb6844ca5a01fdfc3851fbb8f34c0e90f9` | 0 |
+| transaction-status/src/parse_token/extension/cpi_guard.rs | 5494 | `c5787248a02c70bb05d889b20505441277cf3ef41410f826cc5c3da139d3cabd` | 0 |
+| transaction-status/src/parse_token/extension/default_account_state.rs | 5599 | `8cee44ee2fe1d05942879015e77a87b63c9cf7469a191d48a06fa2ec9e7a38be` | 0 |
+| transaction-status/src/parse_token/extension/group_member_pointer.rs | 6942 | `87fd6a1577c951ac1d9f128caaa3d3c3bd5a31d973bf2216fe33f3c92d7a8c9d` | 0 |
+| transaction-status/src/parse_token/extension/group_pointer.rs | 6735 | `c376e5c98bcbf3444d8cd84e9798b8fadf72929417eaa57c27d02b6c532cd7c0` | 0 |
+| transaction-status/src/parse_token/extension/interest_bearing_mint.rs | 2515 | `6d3ed32d7f0fe99640b392bd1cd2dcc1af7725d253f9eca9e6d7cab5fb948e60` | 0 |
+| transaction-status/src/parse_token/extension/memo_transfer.rs | 5881 | `d31f1422471c65b190b627ccf5305295aa365c8b6eac9cfb03b1e224871209e0` | 0 |
+| transaction-status/src/parse_token/extension/metadata_pointer.rs | 6946 | `8cbed891191b461092933f4315df0e80dc40704e00901acc46a4497416cfe3ab` | 0 |
+| transaction-status/src/parse_token/extension/mint_close_authority.rs | 2620 | `0421c2796cdefd9be6039c269ccc904e8756fb6af834741b525f9764d0b48de6` | 0 |
+| transaction-status/src/parse_token/extension/mod.rs | 485 | `795b6e603db690c03cc6858f767ea3bbd516243af998f653cec52008190bdeeb` | 0 |
+| transaction-status/src/parse_token/extension/permanent_delegate.rs | 1693 | `d11011872a70c60670baa82dcb676c8fd46b367d14dc802d9d8119c516c8dd8b` | 0 |
+| transaction-status/src/parse_token/extension/reallocate.rs | 4026 | `f6618d917edab1853909e61901754bb28d43e93327e2c205f2e34fc602e52b83` | 0 |
+| transaction-status/src/parse_token/extension/transfer_fee.rs | 21367 | `348c55387e5abd5c4f45e732b6760c26617d7a1f91bae5bee319860aa91e2a95` | 0 |
+| transaction-status/src/parse_token/extension/transfer_hook.rs | 6668 | `75e6e8f1bf0dbd06d64d1c31b7e97bd7d5bf899417634f86b8591dfece26b43f` | 0 |
+| transaction-status/src/parse_token.rs | 85509 | `1d7ed9a5ac630b21e0de77d5d0c84fafc575326db9434b86efd7ba0ef87b7c33` | 0 |
+| transaction-status/src/parse_vote.rs | 36150 | `738c443be93faed8c7bee609a85ae451dde1c862d6da33a746772c0e9fa44f68` | 0 |
+| transaction-status/src/token_balances.rs | 609 | `46ccc19fc6330178e300fe6f45ca49f228f2ed2fdf572f44323ff77af66c92e8` | 0 |
+| turbine/Cargo.toml | 1611 | `8e9d45c4b979b686ef938da594b9bd82f1733d40bc418efe157cf31596553886` | 0 |
+| turbine/src/broadcast_stage/broadcast_duplicates_run.rs | 16865 | `f9811a010f188fdb18d31e745dd101098f5a7f8392aea24ade18734620ba17c5` | 0 |
+| turbine/src/broadcast_stage/broadcast_fake_shreds_run.rs | 7305 | `1c90a3cc0d17d32372f857496df255ef24c51ee78ea4272bdbc14448515172a0` | 0 |
+| turbine/src/broadcast_stage/broadcast_metrics.rs | 13685 | `68788237fe020e649e7b5412b5ac04a724f26d436c6f9a531e58cb04b899ccfe` | 0 |
+| turbine/src/broadcast_stage/broadcast_utils.rs | 7851 | `008221bc569f77192e4c20639c2f5c68ec6159ae9c03fbd9a69a190b169dabe4` | 0 |
+| turbine/src/broadcast_stage/fail_entry_verification_broadcast_run.rs | 8025 | `14512469d574cc5058d847ad0d11da59eb168e2f1cc6b2c7e79a5d566375a9cb` | 0 |
+| turbine/src/broadcast_stage/standard_broadcast_run.rs | 34152 | `470bb014d34de2c3a8655f1aa19f0f719bb6e2d9c79d0f0748340ca9bcd10f7f` | 0 |
+| turbine/src/broadcast_stage.rs | 27386 | `cd7e09cfdc49ff982422d3f38b6ce13f8c9d9f3c6d735f291960ec7d3774b730` | 0 |
+| turbine/src/cluster_nodes.rs | 27910 | `d047ba243478704e1d997fcac2c11fe2f1400e0c54d2e19f3174b1a4ad7f2af9` | 0 |
+| turbine/src/lib.rs | 298 | `5cb0a1733385d2bac134047d3540e9d63ca627d348ac3416db4cdfba931895f2` | 0 |
+| turbine/src/quic_endpoint.rs | 29490 | `5068d5d7ad5eaed03b1aa09b576afb8b439eeb8021a1add8cc5d7d93e074d744` | 0 |
+| turbine/src/retransmit_stage.rs | 24577 | `a857a0223c534b10efaf3f2cb54e9e415825d763dde26166286432fb8263ab11` | 0 |
+| turbine/src/sigverify_shreds.rs | 11322 | `ac90073871859040c97af2840e21545ad6958c42e1d0055b3067cc7e8bbc3061` | 0 |
+| udp-client/Cargo.toml | 607 | `3aeea520df1c4879e815f32a3f83f05e2aa1cf67c2d675cb2ad99c7f47f87829` | 0 |
+| udp-client/src/lib.rs | 3325 | `498c3396061efe43d13ce24bf2cac732385dd60c00fd32fc7df4ccd00e02e9e2` | 0 |
+| udp-client/src/nonblocking/mod.rs | 20 | `86b200bfbfff6240f6c8089a77cce86e6264ef47e3cc6d7960d435808a4df7bf` | 0 |
+| udp-client/src/nonblocking/udp_client.rs | 2841 | `d8b8c2ec4f5393726cd81a4f8718c4de2fabf527122e4a5e732244e7b20af378` | 0 |
+| udp-client/src/udp_client.rs | 1602 | `b3eb2e164f52346e86b7ae425059fc63efa821492e11b1faf85dab8d5ce6a2b1` | 0 |
+| unified-scheduler-logic/Cargo.toml | 406 | `605908692c4cbcbd63ce523039e378b8f5cdcfe4013bb7183ead35d768c652c3` | 0 |
+| unified-scheduler-logic/src/lib.rs | 424 | `f2b174b75ae72cd753254357f93977a672e6a0b666511a177555a08f78bb8356` | 0 |
+| unified-scheduler-pool/Cargo.toml | 925 | `a17d4e042d84595cd9dd608f01a30272448c27b38679a7e50047dd9545802847` | 0 |
+| unified-scheduler-pool/src/lib.rs | 48790 | `0496d76bc227bb51eb0bd08ec36534e8f580b4c9d98e84bd2f2ba7209e7d2a24` | 0 |
+| upload-perf/Cargo.toml | 503 | `30c77cc9235c5f36d2ee7efc357de94c3caedf0c7a5e8ea413d33493d4480a22` | 0 |
+| upload-perf/src/upload-perf.rs | 4017 | `9fd8a3761ade8b1252ae9237f610e252e887a55a74d662e9d15f2bab320a8a1b` | 0 |
+| validator/Cargo.toml | 3022 | `2645c729f6017c4709a18d92fa177458f96d4ebbd55af8a69c53d76ac98c2873` | 0 |
+| validator/src/admin_rpc_service.rs | 51343 | `b8f8675cf0643a75ce89f9013223fcd467cad5b97011e71e319f8f56b7710560` | 0 |
+| validator/src/bin/solana-test-validator.rs | 20598 | `bb2224aeb6ef4d737bbef89c6b384990e7acef5d5ca071c417ed94636da2fbbb` | 0 |
+| validator/src/bootstrap.rs | 65717 | `6468d9d27853657f5f8e41fd1fc10fd1f230be3b80dfb60d0d12a55b7ffe9d4c` | 0 |
+| validator/src/cli.rs | 120578 | `b62cf026602a1e249c5332e790a2b294d68743b673449f94b1d9f67b80ee8cb7` | 0 |
+| validator/src/dashboard.rs | 11215 | `5a33b8b8cc7fe94dde242469bc07cfea826afaf3a0b353308711d2b409230e36` | 0 |
+| validator/src/lib.rs | 4998 | `3ab96f159a588bfb2a99fa9b95fc09f34d83ea971e687f1f8eadde3e5fdd1666` | 0 |
+| validator/src/main.rs | 83306 | `d6afe3e1a2a0dbbc7c5676c027b945ceee538a135798c2d79bcf4ea5d7cc0628` | 0 |
+| version/Cargo.toml | 757 | `e1802c418000665f8c2130486e52fbffc07ecd5f49dfa397a695fe534024bd69` | 0 |
+| version/src/legacy.rs | 2311 | `53bad78192660688dd63b599fae21cf5c01cfa8adf714742e791c6ffafdd75f6` | 0 |
+| version/src/lib.rs | 4787 | `115e8bc3916433004ffc1e6310776f7e453e59b756bf31f55a39d7c0789ac1e9` | 0 |
+| vote/Cargo.toml | 988 | `5f0ec2f076473bf1419a1e58f9621036cbb71a477846c6fd156fedbcc705a89a` | 0 |
+| vote/src/lib.rs | 302 | `86f41e5bb2454717b9614f365993245abff675ba0b56243b997ecf9420db8cf7` | 0 |
+| vote/src/vote_account.rs | 20927 | `3c12b39488a6d10aefc6d8695038f3e9ffd2197653b604374201ee9fe4943daf` | 0 |
+| vote/src/vote_parser.rs | 5023 | `79b9689643ab47d6afc54bc6af7a6202f2f1aedb1e66cd7f2cd26a37b698d0c4` | 0 |
+| vote/src/vote_sender_types.rs | 189 | `2fe78808ba282345abc35e6e3d89e2d9ab5e5100214850b871039e89e0f24a6e` | 0 |
+| vote/src/vote_transaction.rs | 2120 | `02237844cce6941b6d80a4e8ae63774ae3cecd938d2338b65ce833e7b9f58681` | 0 |
+| watchtower/Cargo.toml | 891 | `63f1e7c4652edf42ac7716b1ad92f4629164e9f42d614f22cc50512a36aa378f` | 0 |
+| watchtower/src/main.rs | 16981 | `0bef251a61018cd3cab335a580495b1c72140fde98bc3861cd1e8df6dbc6ff40` | 0 |
+| wen-restart/Cargo.toml | 1540 | `2bfb03c4a5e4decde21dde4a0df355f3acd4ca63b2e5bfbdf3e91a6967ec53e9` | 0 |
+| wen-restart/build.rs | 563 | `4d20f52b091e069fe5484746ad0b17a2e2c450832f8e3fe869f854700f9e2090` | 0 |
+| wen-restart/proto/wen_restart.proto | 725 | `723a5f3ec66fc7708d9d1fb03d201f772c29422b25111172b989638f15a96114` | 0 |
+| wen-restart/src/last_voted_fork_slots_aggregate.rs | 18323 | `09d93ca9cbe7e0cd31badd6773f23638b2200d5268283195b660cdc3a7b77044` | 0 |
+| wen-restart/src/lib.rs | 217 | `d81d911c3ccdebbce0dceb5fd63d7b2a721e06b86d2a4ff7f22d2a705162d8d2` | 0 |
+| wen-restart/src/wen_restart.rs | 42807 | `4e26ae92d9e3b76b53d0da12639abbc643eb5f5d2840bcf370d666b069053231` | 0 |
+| zk-keygen/Cargo.toml | 1249 | `c1a428606757e77876e44315c09c22e48fd9e5d2f08a6d1fa70d199c9a55fbb4` | 0 |
+| zk-keygen/src/main.rs | 16364 | `dfbb500f6a78ce616587439eda032bb83bc0bdc637e6b8b801bbd421468d62bc` | 0 |
+| zk-token-sdk/Cargo.toml | 1273 | `8f59c8d825c6a32afd878722f9bccdcae5e3d77c0bf3286908e53130da1f4d39` | 0 |
+| zk-token-sdk/src/curve25519/curve_syscall_traits.rs | 3716 | `b233fbfbb0a846708ef0fdc03e6a40ab021ff71f826bd28924e0fea01fb36fda` | 0 |
+| zk-token-sdk/src/curve25519/edwards.rs | 12683 | `1eaa3aa154a5f45e77dd740253150b56b11736f1cb01211136f36cca9459ab5e` | 0 |
+| zk-token-sdk/src/curve25519/errors.rs | 155 | `045c33ec24fa5786d47e3b12e22281806d8217eedd7809ee884368d461a56f41` | 0 |
+| zk-token-sdk/src/curve25519/mod.rs | 310 | `a7178ae96a160c454ce3de5c12d34ddce34f1d17a23ee8ccb21a3e5890655618` | 0 |
+| zk-token-sdk/src/curve25519/ristretto.rs | 12996 | `1a5a85f95cb47c8c31e2ffb2896c81725960ec8f65e5c51323e20b8092ee45fd` | 0 |
+| zk-token-sdk/src/curve25519/scalar.rs | 702 | `e2e71ab43f891306aa8c97027e230d2ffd0fa1fd5343cd5baa4dab6ab385413b` | 0 |
+| zk-token-sdk/src/encryption/auth_encryption.rs | 9723 | `174e1a75b2b70c007ac43b478b97d6f152770334e50aa63dd1362b9208b7176a` | 0 |
+| zk-token-sdk/src/encryption/discrete_log.rs | 11490 | `d15f6ab3e713cffa776884123db398fd3b699d67861e1b5997992b41753ff42f` | 0 |
+| zk-token-sdk/src/encryption/elgamal.rs | 36090 | `86bb24aa05ac08d3c6c2d33994bf09450e80d6e3eba093db81cb8e75b1f3b9b0` | 0 |
+| zk-token-sdk/src/encryption/grouped_elgamal.rs | 9813 | `38a6094207a922d35bdc53c64bd65fc29f8d2373ce8fb580745eb7819502e66e` | 0 |
+| zk-token-sdk/src/encryption/mod.rs | 839 | `29fe2fa141edb1d1c4dbd1f1ad8bc5ce7c031fba3b69f6fc6d866e017c5982ca` | 0 |
+| zk-token-sdk/src/encryption/pedersen.rs | 10244 | `d6f2258856eab766a7de5851e9712b68790d3e9f8433ae42bc0475ed4e8e638d` | 0 |
+| zk-token-sdk/src/errors.rs | 2758 | `1655b32ff65cae9f2fb94a4d341a37fdc6f8e31ac8887cd5f8d7fcfbdf144fef` | 0 |
+| zk-token-sdk/src/instruction/batched_grouped_ciphertext_validity.rs | 7710 | `213ea25f776d575f6d579e4cbaace0f8fad7c3ea856f984fabdff26ab85eeeaf` | 0 |
+| zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u128.rs | 6906 | `38185b5e816685db2bcfdbe9ebeb5e5a2f4b5d3b9ce21e3972492580fe5fdc89` | 0 |
+| zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u256.rs | 7086 | `c2c36a812d6843caa4698c23dd616f192bc9ceef946c5cb31add08bd7c3dd98d` | 0 |
+| zk-token-sdk/src/instruction/batched_range_proof/batched_range_proof_u64.rs | 6830 | `f3a54e52c2dffa598a21d2a9ff7e7c5c59284b87ed31d1c6dd5d7d3d190738c7` | 0 |
+| zk-token-sdk/src/instruction/batched_range_proof/mod.rs | 4824 | `ae96f1dcd78c60597a9f6268ac935ec09f19b59742fb820726806aed06cab65b` | 0 |
+| zk-token-sdk/src/instruction/ciphertext_ciphertext_equality.rs | 7415 | `3ffe6f8a6da40498af94cd5416e1499e4956a6cdbada0a4f6930fd384d27da08` | 0 |
+| zk-token-sdk/src/instruction/ciphertext_commitment_equality.rs | 4886 | `72bd96236974119598949991c116e2d8822889691b8568f09a29c14e6e051ec2` | 0 |
+| zk-token-sdk/src/instruction/errors.rs | 394 | `0bc1bd83ee855e6116dec4e8dca742346d563dd454918e51153fa88e57af7572` | 0 |
+| zk-token-sdk/src/instruction/fee_sigma.rs | 7215 | `564fd45660c26eff384cc0f0c336de84b63917cb4c3d74f826d1e81baff25009` | 0 |
+| zk-token-sdk/src/instruction/grouped_ciphertext_validity.rs | 5963 | `db9037192382577d4e1f2247d439c1207d6d63e556f9dd7ec3341afbfd083585` | 0 |
+| zk-token-sdk/src/instruction/mod.rs | 2678 | `956a83e159a9f955975c3d08654bf77b1caf7de77bbec3f29d9b1d1e349cedb6` | 0 |
+| zk-token-sdk/src/instruction/pubkey_validity.rs | 3247 | `0b2d4ef5ec1d6b1feae4cd76673d955742885aa2b7dd043770ecf8ff68f0cb2a` | 0 |
+| zk-token-sdk/src/instruction/range_proof.rs | 3897 | `cef4a9744026eceb366a4820f0ff233b26deaf7bc1f9a190ea8be6d779b1a3fe` | 0 |
+| zk-token-sdk/src/instruction/transfer/encryption.rs | 3046 | `e959859c11a11bea1887b66c08cf744df4b5ca037140af4d2529ed0d5cd04153` | 0 |
+| zk-token-sdk/src/instruction/transfer/mod.rs | 9480 | `722978813da87a7e7dc816870371429672ebbc87bfaf9fb93fcc1c659b790570` | 0 |
+| zk-token-sdk/src/instruction/transfer/with_fee.rs | 36533 | `74db4aea4c32973ef26c429c9276befc05f0796e08342647e4d7fb2ed93db217` | 0 |
+| zk-token-sdk/src/instruction/transfer/without_fee.rs | 21565 | `98c900e8f45c3b4f67ed2e498215058037c08aed91e69fd113a9951465a67faf` | 0 |
+| zk-token-sdk/src/instruction/withdraw.rs | 7184 | `a70130d13a975d3849a12be34bfe6568f1fafeaa315c581750b5c8268931845e` | 0 |
+| zk-token-sdk/src/instruction/zero_balance.rs | 4098 | `65f0f6fd09f4bec06df77c7a86e52bdafaeca3469df6cf0e41b188a91e0f78e9` | 0 |
+| zk-token-sdk/src/lib.rs | 1556 | `1ff2a616b03f287d620d36a9b0fdd05b85a600e1361fb70814bd3eb961d173e1` | 0 |
+| zk-token-sdk/src/macros.rs | 1922 | `3d6b42385f032070521c898f7bca21aaf91dc965039ec9002a1aa290b96a27e9` | 0 |
+| zk-token-sdk/src/range_proof/errors.rs | 1589 | `daa07b262015613476d66064ef4e19acd8de8747ee3d80c2016ed723f8d539ce` | 0 |
+| zk-token-sdk/src/range_proof/generators.rs | 4078 | `053f893abb30166919a3704804ab35efcc7b01ba1fb55c6b148260d4b419b383` | 0 |
+| zk-token-sdk/src/range_proof/inner_product.rs | 18116 | `618a2aa9a61b039f8d8092d6baea1b6b46fa00aa7d948c19e1f8656189c44b4f` | 0 |
+| zk-token-sdk/src/range_proof/mod.rs | 18034 | `c2531ba8a655b36c5482571267f802b2a5198f07d79a2042300a4a95946d3bdc` | 0 |
+| zk-token-sdk/src/range_proof/util.rs | 3914 | `8fc42314d08181aeae9f6727c26958522b678711ef04fc76180d01f57507cb84` | 0 |
+| zk-token-sdk/src/sigma_proofs/batched_grouped_ciphertext_validity_proof.rs | 6449 | `1d3d8df2937caae390a8749b8fffb2a3cc89979bc2970a1ffd750dec28755f8f` | 0 |
+| zk-token-sdk/src/sigma_proofs/ciphertext_ciphertext_equality_proof.rs | 12641 | `e1928e09fcf17825795b105b4be8ad50a8c8aaf2eca54b9938b46fa6acd757d5` | 0 |
+| zk-token-sdk/src/sigma_proofs/ciphertext_commitment_equality_proof.rs | 15431 | `5740d1a79d9befb8c48bccecdf4bbaef1292abaf353463b386589fa8148090fa` | 0 |
+| zk-token-sdk/src/sigma_proofs/errors.rs | 2080 | `7601d23de3ad18dcf35c04d4fc0d9061e50a1621871aa7b9e47fd6685bb2c72c` | 0 |
+| zk-token-sdk/src/sigma_proofs/fee_proof.rs | 24261 | `5f30badd9e5fe651a73104fc773249ad6551c03298d466f058670d6675ae999e` | 0 |
+| zk-token-sdk/src/sigma_proofs/grouped_ciphertext_validity_proof.rs | 13714 | `e4db518b43c4cb81a406379b38a4d8b356f90126338475ceeecc2a1347d92114` | 0 |
+| zk-token-sdk/src/sigma_proofs/mod.rs | 2068 | `bee420a5d554538d662c267f258f85dcd6e5b5230839d76b549254a09a8afb39` | 0 |
+| zk-token-sdk/src/sigma_proofs/pubkey_proof.rs | 5768 | `a74ff2344f18b0c50a3bce86769875cdb511b2227889b5cce9b33b74dda9f917` | 0 |
+| zk-token-sdk/src/sigma_proofs/zero_balance_proof.rs | 10436 | `58d74dfd3d787e8f9831e39a99c323710ec491d68dfd8f6965af378de8a0629c` | 0 |
+| zk-token-sdk/src/transcript.rs | 6607 | `fb496b9a95af4b8aef6aa29dfd579b509bba5535c8857dbe48ea6442ca0403a4` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/convert.rs | 4874 | `b1e0c30160e7df3cde3591bc4149c7b23f7bc9622826b2c59f7ef08640653b4f` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/decryption.rs | 1092 | `abef15e047a7c9e4164b42fa2fa3197edc2d70bd98431c9edd26532ca83f2e8a` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/mod.rs | 63 | `b5a12bb1d4e23c0f7e112dbe730d562655eda32d36e1f6bf309febd6b0c9450e` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/ops.rs | 10778 | `2d79f2da476968c7056941656d64d7e4c222b1304f20ae5b3bab2a195105147d` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/auth_encryption.rs | 2634 | `c320c9b4299a28e3bc780733145e7013b6281e6521bf3f51fbd3f63d16ca30e2` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/elgamal.rs | 5497 | `5818b3f9787559d49e48e2e7eb9e93f5c42803b3928f135a4b7260054b564080` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/grouped_elgamal.rs | 2973 | `fc58fbe7368b6266d2a25446dbd636e4076407aec9aefdd018bd957f2f8a15af` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/instruction.rs | 2508 | `55420b3ba1a47f6815d9bea549884c0ee216391394de1bc6aa875eb695058a10` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/mod.rs | 3257 | `9fe3cef2243924cfa6cb6d7afd363a0ba0b21236c63b4a8b7b9f07b12923573b` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/pedersen.rs | 1618 | `c6db4396ebe348342b818f3c3787faf66dc6b8a7029555751716e370e67b24a3` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/range_proof.rs | 6010 | `c4221b601ae30f5e19742cd5f1f44fab850881e30970de4decf6bdb155be6e11` | 0 |
+| zk-token-sdk/src/zk_token_elgamal/pod/sigma_proofs.rs | 7777 | `887515befd57875268a5b7e8112e06a980a7d233096c1de61d8e63687c6e094d` | 0 |
+| zk-token-sdk/src/zk_token_proof_instruction.rs | 19878 | `2bda86f5aa5d601a70a46aef978d55e3efb64d242141f8563d5f186cfdcee787` | 0 |
+| zk-token-sdk/src/zk_token_proof_program.rs | 579 | `5f2cb3d4656f9590426442579bbb787bd10148495d9797dd7aaa71898294ab7a` | 0 |
+| zk-token-sdk/src/zk_token_proof_state.rs | 2772 | `aa4b9ff856ee8811a8d826b86390b404a3c301aa1dcfded9b4b52c87a97cfb19` | 0 |

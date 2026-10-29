@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"7e9e1d8a-3dd1-4920-820b-36f24fab9a7b\",\"content_sha256\":\"12081a441ae15f877685ae1f00258d13f31914bf44da4ccc081d5a16ec586eb9\",\"files_sha256\":{\"html\":\"82a8e73d78e1443b6ea87279d9ca53dc745aa4a6dcccf2722cf3e04344632600\",\"json\":\"419f03d19a26825afccb9e296ae0b0b3b686fadcc23242e0fbbdca0ade1ae2e2\",\"md\":\"87ab8424a1baeb4774fd31c42c9a5088ffeafafa17367406ded9925f22fad875\",\"pdf\":\"d6a3535455652c71abb0f7e2381591e4278a01ca160a61326d05d4bad9ae4063\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"rust-bitcoin @ f127ba2ae14e\",\"report_id\":\"c8615c6c-f324-439a-b3c0-e7423fcc00da\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T19:28:11+00:00\",\"version\":1}",
+  "signature": "gKKDYWKVSulqiDZ4J/3AdwkJ4VD85rIJqsc5QxyCAmtyd0JzzYGvpLNP7WBOXqOZVHiAvV2wubiDLHZfPvvPBg=="
+}

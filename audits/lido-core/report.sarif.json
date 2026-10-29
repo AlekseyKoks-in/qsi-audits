@@ -1,0 +1,2323 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "@openzeppelin/contracts 3.4.0 затронут GHSA-fg47-3c2x-m2wr (CVE-2021-39167)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "10.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает GHSA-fg47-3c2x-m2wr (CVE-2021-39167) для пакета npm @openzeppelin/contracts версии 3.4.0: TimelockController vulnerability in OpenZeppelin Contracts. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (3.4.2, 4.3.1). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "help": {
+                "text": "OSV.dev сообщает GHSA-fg47-3c2x-m2wr (CVE-2021-39167) для пакета npm @openzeppelin/contracts версии 3.4.0: TimelockController vulnerability in OpenZeppelin Contracts. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (3.4.2, 4.3.1). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-fg47-3c2x-m2wr"
+            },
+            {
+              "id": "SOL-UNPROTECTED-INITIALIZER",
+              "name": "SolUnprotectedInitializer",
+              "shortDescription": {
+                "text": "initialize() без модификатора initializer в contracts/0.4.24/Lido.sol"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "Функция initialize в строка 276 не имеет защиты initializer/onlyInitializing. (см. SWC-118) Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "Функция initialize в строка 276 не имеет защиты initializer/onlyInitializing. (см. SWC-118) Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "SOL-OLD-COMPILER",
+              "name": "SolOldCompiler",
+              "shortDescription": {
+                "text": "Solidity < 0.8 без встроенных проверок переполнения (0.4.24) в 7 файл(ах)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "pragma 0.4.24 в 7 файл(ах), впервые в contracts/0.4.24/lib/StakeLimitUtils.sol:5; использование SafeMath: no. При SafeMath серьёзность снижена до низкой: проверки есть в коде. (см. SWC-101) Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "pragma 0.4.24 в 7 файл(ах), впервые в contracts/0.4.24/lib/StakeLimitUtils.sol:5; использование SafeMath: no. При SafeMath серьёзность снижена до низкой: проверки есть в коде. (см. SWC-101) Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "SOL-ECRECOVER",
+              "name": "SolEcrecover",
+              "shortDescription": {
+                "text": "Прямое использование ecrecover в contracts/common/lib/ECDSA.sol"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "ecrecover в строка 40. (см. SWC-117/SWC-121) Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "ecrecover в строка 40. (см. SWC-117/SWC-121) Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "2 упоминаний ECDSA в 2 файл(ах), например contracts/common/lib/ECDSA.sol:40. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "2 упоминаний ECDSA в 2 файл(ах), например contracts/common/lib/ECDSA.sol:40. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "SOL-PAIRING-QV",
+              "name": "SolPairingQv",
+              "shortDescription": {
+                "text": "Криптография на спариваниях в контракте: BLS12-381 (contracts/0.8.25/CLValidatorVerifier.sol)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "contracts/0.8.25/CLValidatorVerifier.sol использует BLS12-381 (впервые в строка 8): эллиптические кривые со спариванием (прекомпилы alt_bn128 0x06–0x08 или BLS12-381 0x0b–0x11) и/или верификатор доказательств на спариваниях. Внесите контракт в PQC-инвентаризацию и предусмотрите путь обновления (обновляемый верификатор, системы доказательств/подписи на хешах или решётках по мере их зрелости). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Обнаружение по шаблонам; используемую схему следует подтвердить по исходному коду верификатора."
+              },
+              "help": {
+                "text": "contracts/0.8.25/CLValidatorVerifier.sol использует BLS12-381 (впервые в строка 8): эллиптические кривые со спариванием (прекомпилы alt_bn128 0x06–0x08 или BLS12-381 0x0b–0x11) и/или верификатор доказательств на спариваниях. Внесите контракт в PQC-инвентаризацию и предусмотрите путь обновления (обновляемый верификатор, системы доказательств/подписи на хешах или решётках по мере их зрелости). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Обнаружение по шаблонам; используемую схему следует подтвердить по исходному коду верификатора."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "SOL-FLOATING-PRAGMA",
+              "name": "SolFloatingPragma",
+              "shortDescription": {
+                "text": "Плавающая версия компилятора (>=0.8.0) в 4 файл(ах)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "improvement"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "pragma >=0.8.0 в 4 файл(ах), впервые в contracts/0.8.25/vaults/interfaces/IPinnedBeaconProxy.sol:6. (см. SWC-103) Зафиксируйте версию компилятора, использованную при тестировании. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "pragma >=0.8.0 в 4 файл(ах), впервые в contracts/0.8.25/vaults/interfaces/IPinnedBeaconProxy.sol:6. (см. SWC-103) Зафиксируйте версию компилятора, использованную при тестировании. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "SOL-ADMIN-FUNCTIONS",
+              "name": "SolAdminFunctions",
+              "shortDescription": {
+                "text": "Привилегированные административные функции в contracts/0.4.24/template/LidoTemplate.sol: setOwner, deployLidoAPM, cancelAndTransferDomain, createStdAragonRepos, createRepos, newDAO, issueTokens, finalizeDAO"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "smart_contract",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "Функции, защищённые модификаторами владельца/ролей: setOwner, deployLidoAPM, cancelAndTransferDomain, createStdAragonRepos, createRepos, newDAO, issueTokens, finalizeDAO. (см. —) Используйте мультиподпись/таймлок для ролей администратора и документируйте их. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "help": {
+                "text": "Функции, защищённые модификаторами владельца/ролей: setOwner, deployLidoAPM, cancelAndTransferDomain, createStdAragonRepos, createRepos, newDAO, issueTokens, finalizeDAO. (см. —) Используйте мультиподпись/таймлок для ролей администратора и документируйте их. Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry)."
+              },
+              "helpUri": "https://swcregistry.io/"
+            },
+            {
+              "id": "DEP-ADVISORY-DEV",
+              "name": "DepAdvisoryDev",
+              "shortDescription": {
+                "text": "13 бюллетеней в 4 пакет(ах) PyPI, нужных только для разработки или сборки"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает 13 бюллетеней (7 с оценкой high или critical) для 4 пакет(ов) PyPI, которые подтягивают только инструменты разработки или сборки (poetry.lock): например, aiohttp@3.14.3 [dev]: GHSA-2g87-pp6c-29x5, GHSA-494j-54xm-rwp3, GHSA-5wr8-gcqf-gqf3, GHSA-6cjc-53gc-5rqm, GHSA-9xw5-w5jj-pvcg, GHSA-f9xw-jh8m-3mwq, GHSA-gx76-c99x-2c96, GHSA-pqxq-w44r-73xw; certifi@2024.8.30 [dev]: GHSA-6q48-6c7w-9gw2; urllib3@2.7.0 [dev]: GHSA-8988-9cw3-xx77, GHSA-gh4c-6fx4-qh6g, GHSA-vxq7-64xx-v4gw; web3@6.20.3 [dev]: GHSA-5hr4-253g-cpx2. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов рее…"
+              },
+              "help": {
+                "text": "OSV.dev сообщает 13 бюллетеней (7 с оценкой high или critical) для 4 пакет(ов) PyPI, которые подтягивают только инструменты разработки или сборки (poetry.lock): например, aiohttp@3.14.3 [dev]: GHSA-2g87-pp6c-29x5, GHSA-494j-54xm-rwp3, GHSA-5wr8-gcqf-gqf3, GHSA-6cjc-53gc-5rqm, GHSA-9xw5-w5jj-pvcg, GHSA-f9xw-jh8m-3mwq, GHSA-gx76-c99x-2c96, GHSA-pqxq-w44r-73xw; certifi@2024.8.30 [dev]: GHSA-6q48-6c7w-9gw2; urllib3@2.7.0 [dev]: GHSA-8988-9cw3-xx77, GHSA-gh4c-6fx4-qh6g, GHSA-vxq7-64xx-v4gw; web3@6.20.3 [dev]: GHSA-5hr4-253g-cpx2. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "helpUri": "https://osv.dev/"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "В 4 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, crypto-js, elliptic, ethers, pycryptodome, secp256k1, tweetnacl, web3), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "help": {
+                "text": "В 4 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, crypto-js, elliptic, ethers, pycryptodome, secp256k1, tweetnacl, web3), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "@openzeppelin/contracts 3.4.0 затронут GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (dependency: npm/@openzeppelin/contracts@3.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6fee61d6836f6adf8781f37e5455dc21"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06310",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "10.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "babel-traverse 6.26.0 затронут GHSA-67hx-6x53-jw92 (CVE-2023-45133) (dependency: npm/babel-traverse@6.26.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b68a40002dfb738cdd85f6b17cc9763e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06316",
+            "severity": "critical",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 3860
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "crypto-js 3.3.0 затронут GHSA-rg76-677x-56q9 (CVE-2026-71851) (dependency: npm/crypto-js@3.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "02ccb7cd6c718bae88eefd821a0fea4e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06334",
+            "severity": "critical",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4895
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "crypto-js 3.3.0 затронут GHSA-xwcq-pm8m-c4vf (CVE-2023-46233) (dependency: npm/crypto-js@3.3.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9353eab4f91708219a8ad3f8ef96ac82"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06335",
+            "severity": "critical",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4895
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "form-data 2.3.3 затронут GHSA-fjxv-7rqg-78g4 (CVE-2025-7783) (dependency: npm/form-data@2.3.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b1519b707f2cdd115dd859182109fb6a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06337",
+            "severity": "critical",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 6440
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "@openzeppelin/contracts 3.4.0 затронут GHSA-88g8-f5mf-f5rj (CVE-2021-46320, CVE-2022-39384, GHSA-9c22-pwxw-p6hx) (dependency: npm/@openzeppelin/contracts@3.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2f8dc47a38d1b78dd80fab5a607e3343"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06309",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "glob 10.4.5 затронут GHSA-5j98-mcp5-4vw2 (CVE-2025-64756) (dependency: npm/glob@10.4.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "389b30f47ec83b43df33d37a058dfc01"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06339",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 6758
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "base-x 3.0.10 затронут GHSA-xq7p-g2vc-g82p (CVE-2025-27611) (dependency: npm/base-x@3.0.10)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a71247db8fa9f59a58a7234ae95c6bf2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06317",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 3924
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d7e2af9f0fc6d67be06280b7b34f6ebc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06321",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-mh99-v99m-4gvg (CVE-2026-14257) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dfc0756ed51e6dc20e08a8b42b5f464a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06323",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a97f2c6f2d257322275f3044907e947a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06325",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-rgw5-rvv9-x895 (CVE-2026-69152) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "bb8a3ede551db629420ce2b3fbfe5793"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06326",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "browserslist 3.2.8 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088) (dependency: npm/browserslist@3.2.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dfdb327eb0089433bd79f236b9ec1767"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06328",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4106
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "browserslist 3.2.8 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089) (dependency: npm/browserslist@3.2.8)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "57ec78096290eb98dd0ebb9a977b3b6a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06329",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4106
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "browserslist 4.24.4 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088) (dependency: npm/browserslist@4.24.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dfdb327eb0089433bd79f236b9ec1767"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06330",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4118
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "browserslist 4.24.4 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089) (dependency: npm/browserslist@4.24.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "57ec78096290eb98dd0ebb9a977b3b6a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06331",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4118
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "browserslist 4.24.5 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088) (dependency: npm/browserslist@4.24.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dfdb327eb0089433bd79f236b9ec1767"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06332",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4132
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "browserslist 4.24.5 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089) (dependency: npm/browserslist@4.24.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "57ec78096290eb98dd0ebb9a977b3b6a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06333",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4132
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "form-data 2.3.3 затронут GHSA-hmw2-7cc7-3qxx (CVE-2026-12143) (dependency: npm/form-data@2.3.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ee7aa0987f88bad221956b2e57cdde20"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06338",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 6440
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "ip-address 9.0.5 затронут GHSA-mwp4-54f8-5fhr (CVE-2026-69192) (dependency: npm/ip-address@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a8dbae639736be30236857b2869fdc34"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06342",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 7537
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "json5 0.5.1 затронут GHSA-9c47-m6qq-7p4h (CVE-2022-46175) (dependency: npm/json5@0.5.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b2d3d59e3609078079b2d259704ca1d9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06346",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 8204
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "lodash 4.17.21 затронут GHSA-r5fr-rjxr-66jc (CVE-2026-4800) (dependency: npm/lodash@4.17.21)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "166a638e09af7346f01682df1797471d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06348",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 8713
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "minimatch 9.0.5 затронут GHSA-23c5-xmqv-rm74 (CVE-2026-27904) (dependency: npm/minimatch@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4d64d67838b5040403c3eb529b8e45b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06350",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 9036
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "minimatch 9.0.5 затронут GHSA-3ppc-4f35-3m26 (CVE-2026-26996) (dependency: npm/minimatch@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2b785be35f4c0056874b26c9e35c6f43"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06351",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 9036
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "minimatch 9.0.5 затронут GHSA-7r86-cg39-jmmj (CVE-2026-27903) (dependency: npm/minimatch@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "56e7029a3fb611847ac16eba073e4bea"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06352",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 9036
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "node-fetch 1.7.3 затронут GHSA-r683-j2x4-v87g (CVE-2022-0235) (dependency: npm/node-fetch@1.7.3)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e3d5a7a7332a8e3debece392199b2d6c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06353",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.8"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 9294
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-UNPROTECTED-INITIALIZER",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "initialize() без модификатора initializer в contracts/0.4.24/Lido.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4d4bad18db232de762321a956b943188"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06281",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/0.4.24/Lido.sol"
+                },
+                "region": {
+                  "startLine": 276
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-UNPROTECTED-INITIALIZER",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "initialize() без модификатора initializer в contracts/0.4.24/nos/NodeOperatorsRegistry.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "36185f552555abf92847a4dc58093c1f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06283",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/0.4.24/nos/NodeOperatorsRegistry.sol"
+                },
+                "region": {
+                  "startLine": 219
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-UNPROTECTED-INITIALIZER",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "initialize() без модификатора initializer в contracts/0.8.9/oracle/AccountingOracle.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0060dca4924c08e00d5471ccb1be3549"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06289",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/0.8.9/oracle/AccountingOracle.sol"
+                },
+                "region": {
+                  "startLine": 128
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-UNPROTECTED-INITIALIZER",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "initialize() без модификатора initializer в contracts/0.8.9/oracle/ValidatorsExitBusOracle.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2ac6aa25f7ad0e2761f7afc6c95e341e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06290",
+            "severity": "high",
+            "confidence": "low",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/0.8.9/oracle/ValidatorsExitBusOracle.sol"
+                },
+                "region": {
+                  "startLine": 57
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@openzeppelin/contracts 3.4.0 затронут GHSA-7grf-83vw-6f5x (CVE-2022-35915) (dependency: npm/@openzeppelin/contracts@3.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "be617316a8dabc84fa1c3077ef4dd07c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06308",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@openzeppelin/contracts 3.4.0 затронут GHSA-mx2q-35m2-x2rh (CVE-2023-30541) (dependency: npm/@openzeppelin/contracts@3.4.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e92db4e2f7e087a11c955029c37e1936"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06311",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "openzeppelin-solidity 2.0.0 затронут GHSA-7grf-83vw-6f5x (CVE-2022-35915) (dependency: npm/openzeppelin-solidity@2.0.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4872c71810625c224b3971876987ca18"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06312",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "setuptools 78.1.1 затронут GHSA-h35f-9h28-mq5c (CVE-2026-59890, PYSEC-2026-3447) (dependency: PyPI/setuptools@78.1.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "97a59015ffa6737256069f1126223e34"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06313",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "poetry.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-OLD-COMPILER",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Solidity < 0.8 без встроенных проверок переполнения (0.4.24) в 7 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "278d3b246058a2456694dd67ac372b9e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06282",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "SOL-OLD-COMPILER",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Solidity < 0.8 без встроенных проверок переполнения (0.6.11) в 1 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "54358a2b934cb5946248e6ed8dabc912"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06285",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "SOL-OLD-COMPILER",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Solidity < 0.8 без встроенных проверок переполнения (0.6.12) в 1 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1610118c17b176fe002e72a3db7bca8a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06286",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "SOL-ECRECOVER",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Прямое использование ecrecover в contracts/common/lib/ECDSA.sol"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "98cf709efc38495dee1c26ea0d7b1dc2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06300",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/common/lib/ECDSA.sol"
+                },
+                "region": {
+                  "startLine": 40
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06299",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06305",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый BLS12-381: роль не определена (2 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a32dc4d401fc32a953504c0a38f8d3f4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06306",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "SOL-PAIRING-QV",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Криптография на спариваниях в контракте: BLS12-381 (contracts/0.8.25/CLValidatorVerifier.sol)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9ea00d803b183b47338139d928971d60"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06287",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/0.8.25/CLValidatorVerifier.sol"
+                },
+                "region": {
+                  "startLine": 8
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-PAIRING-QV",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Криптография на спариваниях в контракте: BLS12-381 (contracts/common/lib/BLS.sol)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ff534ccd0273ef058afedf02aae26522"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06298",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/common/lib/BLS.sol"
+                },
+                "region": {
+                  "startLine": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "@babel/runtime 7.26.0 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789) (dependency: npm/@babel/runtime@7.26.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9d5b8141a4394eb3ef3d1fe620dc6ddd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06315",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 274
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "bn.js 4.12.1 затронут GHSA-378v-28hj-76wf (CVE-2026-2739) (dependency: npm/bn.js@4.12.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c5a6d11efad850d5ecfb21a5f68e0e0b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06318",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4013
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "bn.js 5.2.1 затронут GHSA-378v-28hj-76wf (CVE-2026-2739) (dependency: npm/bn.js@5.2.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c5a6d11efad850d5ecfb21a5f68e0e0b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06319",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4020
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-3jxr-9vmj-r5cp (CVE-2026-13149) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cdb8157cc53e3c64758d7fc89f0fed04"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06320",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-f886-m6hf-6m8v (CVE-2026-33750) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e87b4b68793deddc7da98352e55665cf"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06322",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d9a4face229b6e3eb187858a4f78901e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06324",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505) (dependency: npm/elliptic@6.6.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "84a7ab124d4db916ee85eea8154bac57"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06336",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.6"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 5236
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ip-address 9.0.5 затронут GHSA-h3mg-xc3c-68pw (CVE-2026-101911) (dependency: npm/ip-address@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f60accf858dc5dc061345f9c9912ca9f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06340",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 7537
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ip-address 9.0.5 затронут GHSA-j6r3-76f7-8jcv (CVE-2026-101912) (dependency: npm/ip-address@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b36522f20d5048e3e09c3fc9db8d8967"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06341",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 7537
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ip-address 9.0.5 затронут GHSA-rpw4-54j3-4h4q (CVE-2026-101913) (dependency: npm/ip-address@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "938769ac38cc88b48c8cb206da1275de"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06343",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 7537
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ip-address 9.0.5 затронут GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997) (dependency: npm/ip-address@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7a9a0e722bf8efc5a1269e081d19f5ff"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06344",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 7537
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "ip-address 9.0.5 затронут GHSA-v2v4-37r5-5v8g (CVE-2026-42338) (dependency: npm/ip-address@9.0.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aaadd1b8b73e4dbccd318a1479fbf749"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06345",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 7537
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "lodash 4.17.21 затронут GHSA-f23m-r3pf-42rh (CVE-2026-2950) (dependency: npm/lodash@4.17.21)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0d02c3dca4ecd3df70b21d51750fb66c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06347",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 8713
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "lodash 4.17.21 затронут GHSA-xxjr-mmjv-4gpg (CVE-2025-13465) (dependency: npm/lodash@4.17.21)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f3875ca376be0aab2cd5ce69bd846ec7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06349",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 8713
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "setuptools 78.1.1 затронут GHSA-xmj3-9gf7-h52w (dependency: PyPI/setuptools@78.1.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4e696f2a3252c50a8f641bb0e877d1e4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06314",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "poetry.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-OLD-COMPILER",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Solidity < 0.8 без встроенных проверок переполнения (0.4.24) в 3 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "278d3b246058a2456694dd67ac372b9e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06280",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.8.0) в 4 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "74be19e8d45860cc87734826500a497b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06288",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.4.24 <0.9.0) в 16 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f45e3c380e86a408056da0c32873d593"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06292",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.5.0) в 7 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8d830756f0a91a611fb00dc1fd662727"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06293",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.4.24) в 3 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "bac6861b817e76e9382e65a1e36786a7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06294",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.8.9 <0.9.0) в 4 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e2a642097ac21234b7ff961d488b6b7a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06295",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (>=0.8.9) в 2 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ebec529ee05d28d50c6377c3792f2d5d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06296",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.25) в 9 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6e231deb531c31dea633556c0afac1dc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06297",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.9) в 2 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1642ed1b9981d7a21fd95e7b5ffddf2e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06301",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "SOL-FLOATING-PRAGMA",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Плавающая версия компилятора (^0.8.20) в 6 файл(ах)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b5106ab77ad2ab496f2b2c3a7c47b8a3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06302",
+            "severity": "low",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "brace-expansion 2.0.1 затронут GHSA-v6h2-p8h4-qcjw (CVE-2025-5889) (dependency: npm/brace-expansion@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "98b2664d3154119b551d8bcdb0b8ba9e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06327",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                },
+                "region": {
+                  "startLine": 4053
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в contracts/0.4.24/template/LidoTemplate.sol: setOwner, deployLidoAPM, cancelAndTransferDomain, createStdAragonRepos, createRepos, newDAO, issueTokens, finalizeDAO"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2cbf1d479de0518c74f44d5abdc1b718"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06284",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/0.4.24/template/LidoTemplate.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в contracts/0.8.9/proxy/OssifiableProxy.sol: proxy__ossify, proxy__changeAdmin, proxy__upgradeTo, proxy__upgradeToAndCall"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "18a5616f856df0076b7263b5c827f601"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06291",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/0.8.9/proxy/OssifiableProxy.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в contracts/openzeppelin/5.2/upgradeable/access/Ownable2StepUpgradeable.sol: transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f11cfdf97ceccab3ed05522e14fd60ad"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06303",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/openzeppelin/5.2/upgradeable/access/Ownable2StepUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SOL-ADMIN-FUNCTIONS",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Привилегированные административные функции в contracts/openzeppelin/5.2/upgradeable/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d8c6106b885ebd58e7b69e1175b3d37c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06304",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/openzeppelin/5.2/upgradeable/access/OwnableUpgradeable.sol"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "13 бюллетеней в 4 пакет(ах) PyPI, нужных только для разработки или сборки (dependencies: PyPI:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "090734ef78b1f0fda46107c2c0bb9ca1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06354",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "poetry.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "60 бюллетеней в 19 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06355",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yarn.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-06307",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/lido-core @ 2bd532298d85/8abdf060-c96a-4135-963c-b3e114a0a16e"
+      },
+      "properties": {
+        "qsiContentSha256": "c266fde0a890e83c5e80ded8062b5964727a2b971ca6b6d0d6a81227ffa65cca",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "financial",
+        "qsiGeneratedAt": "2026-10-29T05:26:36.930769+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "2bd532298d85cdf520169fdc0c5fb0cc9baf03c3",
+          "repositoryUri": "https://github.com/lidofinance/core"
+        }
+      ]
+    }
+  ]
+}

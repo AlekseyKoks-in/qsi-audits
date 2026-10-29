@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"71e56ae6-3ab7-4092-9868-47ca2b9b929f\",\"content_sha256\":\"cd60b74a0943b30727e307a0fc9a9af47541c0b1cfff96b2f9a0db1c1fa863f7\",\"files_sha256\":{\"html\":\"c3c6944cdc02b6355c99d0e98a04b25b63d94cff717befae820f2d67635b2a3c\",\"json\":\"cfca0fc791441e2fbeca36eed6d996be1c15672f46469de1ebb8abc1d7ddb8c1\",\"md\":\"558d7207e5c76d56655f4c3fb7bbed809b0d474ad33f8cb029866e7981859ee6\",\"pdf\":\"c658311fe99af6b6a26bda9543f0e2e8f8af4879efdbbe59c286aaab10c5056d\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"coinbase-cb-mpc-en @ 0b716706f998\",\"report_id\":\"677d6e17-482d-433d-b6a3-1f75b8aa2149\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T18:56:19+00:00\",\"version\":1}",
+  "signature": "fnYVrKuIxAnOvGN4lRd43mPZ5Fvz87Q0kDCpORFchelyL4dISFGB4Dd0Pe+JBETYub9pPzugjNvcVtDYh4YPDQ=="
+}

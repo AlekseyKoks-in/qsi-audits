@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"14a011b1-0b2f-4c1c-b464-2a7b8ae42265\",\"content_sha256\":\"82414793308723f9630b1a40523260f8258d8b9c17a2b30005a7575edb8963e0\",\"files_sha256\":{\"html\":\"86d5c9b8f9a28de4edc7816f7bd278f6ce4884c7ca5156e116b52e812c88f7d7\",\"json\":\"972df319ab1909d34af79d30bf30b2e156ad1b3a671068085dec1278fabd5fd8\",\"md\":\"4b4bdc2f18409b8161ed8884397835cca1895072150d5ec73b5eee6e892c131b\",\"pdf\":\"ba6b394e5d20fb05bc353e0b5a11bb4c044671970d1e97de32c4f2e9fed16383\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"lightwalletd @ 4abfe9cd7b9b\",\"report_id\":\"70f2d4aa-03e1-437d-ad21-d8d4a73cfc4b\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-28T18:03:23+00:00\",\"version\":1}",
+  "signature": "F79pegCLAWXQBovup4dw5HA8C0KBGEaSRFmcm+i5xRNQu4RQagHzE8h7gPXbhLD+ijZYDGR33bLbSEeZjQDvCw=="
+}

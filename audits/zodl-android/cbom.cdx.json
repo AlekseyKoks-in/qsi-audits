@@ -1,0 +1,268 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:69dbfafa-839d-49a9-9ac5-60f984d34e07",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-28T13:07:22Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "QSI",
+          "version": "1.2.0"
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "name": "zodl-android @ 229dd3bff749"
+    }
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "09809c99-f2fd-41d8-8cfc-bd5aef1f0e91",
+      "name": "ChaCha20-Poly1305",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/addressbook/AddressBookEncryptor.kt:8"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/addressbook/AddressBookEncryptor.kt#L8"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "chacha20-poly1305"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "parameterSetIdentifier": "ChaCha20-Poly1305",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 256
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1480884e-7148-41f3-a2b9-7335fd340b15",
+      "name": "ChaCha20-Poly1305",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/metadata/MetadaEncryptor.kt:10"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/metadata/MetadaEncryptor.kt#L10"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "chacha20-poly1305"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "parameterSetIdentifier": "ChaCha20-Poly1305",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 256
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3eb426fb-044e-4572-8bdb-5fe6e55121ca",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "build-conventions-secant/gradle.lockfile:121"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/build-conventions-secant/gradle.lockfile#L121"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "Maven dependency; PQC: Recent releases include PQC algorithms; verify the version in use. bcprov-jdk15on is the legacy artifact."
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "org.bouncycastle:bcprov-jdk18on (Bouncy Castle)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "95701860-3334-4a3a-8575-768cd2966c27",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "buildscript-gradle.lockfile:132"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/buildscript-gradle.lockfile#L132"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "Maven dependency; PQC: Recent releases include PQC algorithms; verify the version in use. bcprov-jdk15on is the legacy artifact."
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "org.bouncycastle:bcprov-jdk18on (Bouncy Castle)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "13420638-9e49-4b7e-ada6-4d7ed1e1b326",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "feature-voting/src/main/java/co/electriccoin/zcash/ui/common/model/voting/StaticVotingConfig.kt:150"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/model/voting/StaticVotingConfig.kt#L150"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    }
+  ]
+}

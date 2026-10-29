@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отчёт об аудите безопасности и постквантовой готовности — openpgpjs @ 8bc35df48879</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "openpgpjs @ 8bc35df48879 · Отчёт об аудите безопасности и постквантовой готовности"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · b2ce41a779ab"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является ю…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Отчёт об аудите безопасности и постквантовой готовности</h1>
+    <div class="project">openpgpjs @ 8bc35df48879 · OpenPGP.js project — публичный репозиторий (пассивная проверка)</div>
+  </div>
+  <table>
+    <tr><td>Организация</td><td>QSI</td></tr>
+    <tr><td>Дата отчёта</td><td>2026-10-28 12:44 UTC</td></tr>
+    <tr><td>Версия отчёта</td><td>1</td></tr>
+    <tr><td>Запуск аудита</td><td>2b3ed4b7-2e32-4adb-8ed5-25a8c413c766 · Документальный аудит · 2026-10-28 12:44 UTC</td></tr>
+    <tr><td>Версия анализатора</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Профиль риска</td><td>Разработчик ПО безопасности</td></tr>
+    <tr><td>SHA-256 содержимого</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">b2ce41a779ab83da67c60c3d95217832c3b36f0255aef76330dcb58b2cfe65da</td></tr>
+<tr><td>Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#executive_summary">Резюме для руководства</a></li>
+    <li><a href="#scope">Область и границы проверки</a></li>
+    <li><a href="#methodology">Методология</a></li>
+    <li><a href="#assets">Проверенные и непроверенные активы</a></li>
+    <li><a href="#architecture">Краткое описание архитектуры</a></li>
+    <li><a href="#posture">Общая оценка состояния безопасности</a></li>
+    <li><a href="#summary_by_severity">Сводка находок по серьёзности</a></li>
+    <li><a href="#details">Подробное описание находок</a></li>
+    <li><a href="#evidence">Подтверждающие доказательства</a></li>
+    <li><a href="#pq">Постквантовая оценка</a></li>
+    <li><a href="#limitations">Ограничения и допущения</a></li>
+    <li><a href="#plan">План устранения проблем</a></li>
+    <li><a href="#priorities">Приоритеты на 30, 60 и 90 дней</a></li>
+    <li><a href="#retests">Проверки после устранения</a></li>
+    <li><a href="#tools">Использованные инструменты</a></li>
+    <li><a href="#references">Источники и нормативные документы</a></li>
+    <li><a href="#appendices">Приложения</a></li>
+  </ol>
+  <p class="note">Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Резюме для руководства</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">9</div><div class="l">Всего находок</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Критическая</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">Высокая</span></div></div>
+    <div class="kpi"><div class="v">7</div><div class="l"><span class="sev sev-medium">Средняя</span></div></div>
+    <div class="kpi"><div class="v">1</div><div class="l"><span class="sev sev-low">Низкая</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Классификация</th><th>Количество</th></tr>
+<tr><td>Подтверждённая техническая уязвимость</td><td>0</td></tr><tr><td>Известная уязвимая версия компонента</td><td>0</td></tr><tr><td>Подтверждённая ошибка конфигурации</td><td>0</td></tr><tr><td>Потенциальный криптографический риск</td><td>2</td></tr><tr><td>Долгосрочный постквантовый риск</td><td>6</td></tr><tr><td>Рекомендация по улучшению</td><td>1</td></tr><tr><td>Недостаточность данных</td><td>0</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Серьёзность</th><th>Подробное описание находок</th><th>Балл приоритета</th></tr>
+<tr><td>QSI-2026-04759</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (5 файл(ов)) <span class="tag pre">предварительно</span></td><td>38.0</td></tr><tr><td>QSI-2026-04764</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов)) <span class="tag pre">предварительно</span></td><td>38.0</td></tr><tr><td>QSI-2026-04762</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый ECDH: роль не определена (2 файл(ов)) <span class="tag pre">предварительно</span></td><td>35.3</td></tr><tr><td>QSI-2026-04763</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый X25519: роль не определена (5 файл(ов)) <span class="tag pre">предварительно</span></td><td>35.3</td></tr><tr><td>QSI-2026-04765</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый RSA: роль не определена (1 файл(ов)) <span class="tag pre">предварительно</span></td><td>35.3</td></tr>  </table>
+  <p class="note">Неравенство Моски (x + y &gt; z): x = 10, y = 3, z = 8 → при этом сценарии миграция завершится слишком поздно. z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+<p class="note"><strong>Постквантовая зрелость: Уровень 2 из 4 — постквантовое используется вне критичных путей.</strong> Следующий шаг: Распространите постквантовую защиту на критичные роли, которые остаются классическими, начиная с того, что можно записать уже сегодня (обёрнутые ключи, обмен ключами в канале).</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Область и границы проверки</h2>
+  <p><strong>Режим:</strong> Документальный аудит</p>
+<p><strong>Репозиторий:</strong> <a href="https://github.com/openpgpjs/openpgpjs">https://github.com/openpgpjs/openpgpjs</a> @ <span class="small">8bc35df4887933a3b2661e3741b33ba5f347b935</span> — ссылки в доказательствах открывают строки на этом коммите.</p>  <h3>Предоставленные входные данные</h3>
+  <p>108 файлов, всего 1427412 байт, редактирований: 15; список SHA-256 по файлам — в приложении C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Методология</h2>
+  <p>Аудит выполнен движком QSI 1.2.0. Каждый анализатор формирует факты (правило, параметры, доказательства); тексты находок генерируются из каталога правил. Источники методики указаны в разделе «Источники и нормативные документы».</p>
+  <p>Приоритизация: объяснимая взвешенная модель (серьёзность, вероятность эксплуатации, доступность атакующему, влияние на конфиденциальность/целостность/доступность с весами профиля «Разработчик ПО безопасности», критичность актива, срочность, простота устранения) с множителем уверенности. CVSS v3.1 применяется только к техническим уязвимостям с определённым вектором. Для долгосрочных квантовых рисков используется неравенство Моски; их серьёзность ограничена уровнем «Средняя», и они никогда не представляются как эксплуатируемые уязвимости.</p>
+  <p>Классификация находок: подтверждённая техническая уязвимость; известная уязвимая версия компонента (версия зависимости названа в бюллетене; затронутый код может не вызываться — это проверяется отдельно, а подтверждённая проверкой становится уязвимостью); подтверждённая ошибка конфигурации; потенциальный криптографический риск; долгосрочный постквантовый риск; рекомендация по улучшению; недостаточность данных. Находки на основе эвристик помечены как предварительные; решения аналитика показаны рядом с находками.</p>
+  <h3>Покрытие проверок</h3>
+  <table class="data"><tr><th>Область</th><th>Статус</th><th>Количество</th><th>Примеры</th></tr>
+<tr><td>source_code</td><td>проверено</td><td>103</td><td class="small">.jsdocrc.cjs: 28 lines scanned with 16 rule patterns and 122 registry patterns; docs/scripts/linenumber.js: 25 lines scanned with 16 rule patterns and 122 registry patterns; docs/scripts/prettify/lang-css.js: 3 lines scanned with 16 rule patterns and 122 registry patterns</td></tr><tr><td>keys</td><td>проверено</td><td>15</td><td class="small">README.md: the marker at line 238 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder); README.md: the marker at line 288 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder); README.md: the marker at line 318 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)</td></tr><tr><td>certificates_and_keys</td><td>проверено</td><td>3</td><td class="small">README.md: certificates/keys parsed; docs/index.html: certificates/keys parsed; src/encoding/armor.js: certificates/keys parsed</td></tr><tr><td>dependencies</td><td>проверено</td><td>3</td><td class="small">lightweight/package.json: 0 dependencies parsed (0 pinned); package-lock.json: 1021 dependencies parsed (1021 pinned); package.json: 50 dependencies parsed (0 pinned)</td></tr><tr><td>osv_advisories</td><td>проверено</td><td>1</td><td class="small">929 pinned packages queried at OSV.dev; 23 affected (23 of them only in development or build dependencies)</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Проверенные и непроверенные активы</h2>
+  <p><strong>Предоставленные входные данные:</strong> 109 (входные файлы: C)</p>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Краткое описание архитектуры</h2>
+  <p>Static review of the source tree openpgpjs at 8bc35df4887933a3b2661e3741b33ba5f347b935. 108 files analysed; of 241 files, 61 are test, fuzzing, benchmark or example code and were left out, 72 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Общая оценка состояния безопасности</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">94</div><div class="l">Ориентировочный индекс состояния (0–100)</div></div>
+    <div class="kpi"><div class="v">53.8%</div><div class="l">Доля квантово-уязвимых элементов инвентаризации</div></div>
+    <div class="kpi"><div class="v">65</div><div class="l">Криптографическая инвентаризация</div></div>
+  </div>
+  <p class="note">Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Сводка находок по серьёзности</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Критическая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">Высокая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Средняя</span></td><td style="width:8%">7</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Низкая</span></td><td style="width:8%">1</td>
+  <td><div class="bar"><span style="width: 14.3%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Информационная</span></td><td style="width:8%">1</td>
+  <td><div class="bar"><span style="width: 14.3%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Подробное описание находок</th><th>Классификация</th><th>Серьёзность</th><th>Уверенность</th></tr>
+<tr><td>QSI-2026-04759</td><td>Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (5 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04764</td><td>Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04762</td><td>Квантово-уязвимый ECDH: роль не определена (2 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04763</td><td>Квантово-уязвимый X25519: роль не определена (5 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04765</td><td>Квантово-уязвимый RSA: роль не определена (1 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04760</td><td>Использование MD5 в src/crypto/hash/index.js</td><td class="small">Потенциальный криптографический риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04761</td><td>Использование SHA-1 в src/crypto/hash/index.js</td><td class="small">Потенциальный криптографический риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04758</td><td>Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-low">Низкая</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-04766</td><td>71 бюллетеней в 23 пакет(ах) npm, нужных только для разработки или сборки</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Подробное описание находок</h2>
+  <article class="finding" id="QSI-2026-04759">
+    <header><span class="fid">QSI-2026-04759 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (5 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>41 упоминаний X25519 в 5 файл(ах), например src/crypto/crypto.js:67. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:X25519:key_wrapping</dd>
+      <dt>Источник данных</dt><dd>src/crypto/crypto.js</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>38.0 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=3.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте src/crypto/crypto.js:67 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-04759">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L67">src/crypto/crypto.js</a> · line 67 · SHA-256 6caf77681182d2e5… · Файл 703c5ba10d7a165b…</div>
+      <pre>   66 |     }
+   67 |     case enums.publicKey.x25519:
+   68 |     case enums.publicKey.x448: {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L126">src/crypto/crypto.js</a> · line 126 · SHA-256 97ebcbb54d2758fe… · Файл 703c5ba10d7a165b…</div>
+      <pre>  125 |     }
+  126 |     case enums.publicKey.x25519:
+  127 |     case enums.publicKey.x448: {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L202">src/crypto/crypto.js</a> · line 202 · SHA-256 7ce8a6903b931230… · Файл 703c5ba10d7a165b…</div>
+      <pre>  201 |     case enums.publicKey.ed448:
+  202 |     case enums.publicKey.x25519:
+  203 |     case enums.publicKey.x448: {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L16">src/crypto/public_key/elliptic/ecdh_x.js</a> · line 16 · SHA-256 6a8eddf288a9c2a7… · Файл 75d82a69c31dde8e…</div>
+      <pre>   15 | const HKDF_INFO = {
+   16 |   x25519: util.encodeUTF8(&#39;OpenPGP X25519&#39;),
+   17 |   x448: util.encodeUTF8(&#39;OpenPGP X448&#39;)</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L27">src/crypto/public_key/elliptic/ecdh_x.js</a> · line 27 · SHA-256 922ea9b93ea793bd… · Файл 75d82a69c31dde8e…</div>
+      <pre>   26 |   switch (algo) {
+   27 |     case enums.publicKey.x25519:
+   28 |       try {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L57">src/crypto/public_key/elliptic/ecdh_x.js</a> · line 57 · SHA-256 371ae1787aa309a6… · Файл 75d82a69c31dde8e…</div>
+      <pre>   56 |         }
+   57 |         const { default: x25519 } = await import(&#39;@openpgp/tweetnacl&#39;);
+   58 |         // k stays in little-endian, unlike legacy ECDH over curve25519</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L425">src/key/helper.js</a> · line 425 · SHA-256 59adffecad14d860… · Файл ad6b24fa9a009ce5…</div>
+      <pre>  424 |       break;
+  425 |     case &#39;ecc&#39;: // NB: this case also handles legacy eddsa and x25519 keys, based on `options.curve`
+  426 |       try {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L442">src/key/helper.js</a> · line 442 · SHA-256 0cee2e279a6b5fe6… · Файл ad6b24fa9a009ce5…</div>
+      <pre>  441 |     case &#39;curve25519&#39;:
+  442 |       options.algorithm = options.sign ? enums.publicKey.ed25519 : enums.publicKey.x25519;
+  443 |       break;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L482">src/key/helper.js</a> · line 482 · SHA-256 e5505ee4ae066a44… · Файл ad6b24fa9a009ce5…</div>
+      <pre>  481 |     case enums.publicKey.ecdh:
+  482 |     case enums.publicKey.x25519:
+  483 |     case enums.publicKey.x448:</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/message.js#L367">src/message.js</a> · line 367 · SHA-256 16b37e58a27065cc… · Файл 52f89b40657bef52…</div>
+      <pre>  366 |       .then(maybeKey =&gt; {
+  367 |         if (maybeKey &amp;&amp; (maybeKey.keyPacket.algorithm === enums.publicKey.x25519 || maybeKey.keyPacket.algorithm === enums.publicKey.x448) &amp;&amp;
+  368 |           !aeadAlgoName &amp;&amp; !util.isAES(symmetricAlgo)) { // if AEAD is defined, then PKESK v6 are used, and the algo info is encrypted</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-04764">
+    <header><span class="fid">QSI-2026-04764 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>8 упоминаний ECDH в 1 файл(ах), например src/crypto/public_key/elliptic/ecdh_x.js:69. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:ECDH:key_wrapping</dd>
+      <dt>Источник данных</dt><dd>src/crypto/public_key/elliptic/ecdh_x.js</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>38.0 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=3.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте src/crypto/public_key/elliptic/ecdh_x.js:69 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-04764">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L69">src/crypto/public_key/elliptic/ecdh_x.js</a> · line 69 · SHA-256 30222de3219cc991… · Файл 75d82a69c31dde8e…</div>
+      <pre>   68 |     default:
+   69 |       throw new Error(&#39;Unsupported ECDH algorithm&#39;);
+   70 |   }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L147">src/crypto/public_key/elliptic/ecdh_x.js</a> · line 147 · SHA-256 4fc585ad8fd85e13… · Файл 75d82a69c31dde8e…</div>
+      <pre>  146 |     default:
+  147 |       throw new Error(&#39;Unsupported ECDH algorithm&#39;);
+  148 |   }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L183">src/crypto/public_key/elliptic/ecdh_x.js</a> · line 183 · SHA-256 d1b356d9bc94caa8… · Файл 75d82a69c31dde8e…</div>
+      <pre>  182 |     default:
+  183 |       throw new Error(&#39;Unsupported ECDH algorithm&#39;);
+  184 |   }</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-04762">
+    <header><span class="fid">QSI-2026-04762 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый ECDH: роль не определена (2 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>9 упоминаний ECDH в 2 файл(ах), например src/crypto/public_key/elliptic/ecdh.js:249. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:ECDH:general</dd>
+      <dt>Источник данных</dt><dd>src/crypto/public_key/elliptic/ecdh.js</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>35.3 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=3.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте src/crypto/public_key/elliptic/ecdh.js:249 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-04762">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L249">src/crypto/public_key/elliptic/ecdh.js</a> · line 249 · SHA-256 3454cba51223c0da… · Файл a47c4f75e3480010…</div>
+      <pre>  248 |     {
+  249 |       name: &#39;ECDH&#39;,
+  250 |       namedCurve: curve.web</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L260">src/crypto/public_key/elliptic/ecdh.js</a> · line 260 · SHA-256 3e270aa8dd1322e7… · Файл a47c4f75e3480010…</div>
+      <pre>  259 |     {
+  260 |       name: &#39;ECDH&#39;,
+  261 |       namedCurve: curve.web</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L269">src/crypto/public_key/elliptic/ecdh.js</a> · line 269 · SHA-256 a4b9152c04c73f78… · Файл a47c4f75e3480010…</div>
+      <pre>  268 |     {
+  269 |       name: &#39;ECDH&#39;,
+  270 |       namedCurve: curve.web,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L324">src/crypto/public_key/elliptic/oid_curves.js</a> · line 324 · SHA-256 dbae0069b965a134… · Файл a509143ad8b8e7b7…</div>
+      <pre>  323 |   // Note: ECDSA and ECDH key generation is structurally equivalent
+  324 |   const ecdh = nodeCrypto.createECDH(nodeCurves[name]);
+  325 |   ecdh.generateKeys();</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-04763">
+    <header><span class="fid">QSI-2026-04763 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый X25519: роль не определена (5 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>11 упоминаний X25519 в 5 файл(ах), например src/crypto/public_key/elliptic/ecdh.js:92. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:X25519:general</dd>
+      <dt>Источник данных</dt><dd>src/crypto/public_key/elliptic/ecdh.js</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>35.3 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=3.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте src/crypto/public_key/elliptic/ecdh.js:92 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-04763">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L92">src/crypto/public_key/elliptic/ecdh.js</a> · line 92 · SHA-256 33754afed28e070c… · Файл a47c4f75e3480010…</div>
+      <pre>   91 |     case &#39;curve25519Legacy&#39;: {
+   92 |       const { sharedSecret: [REDACTED] ephemeralPublicKey } = await ecdhXGenerateEphemeralEncryptionMaterial(enums.publicKey.x25519, Q.subarray(1));
+   93 |       const publicKey = util.concatUint8Array([new Uint8Array([curve.wireFormatLeadingByte]), ephemeralPublicKey]);</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L158">src/crypto/public_key/elliptic/ecdh.js</a> · line 158 · SHA-256 294a3fb06da97675… · Файл a47c4f75e3480010…</div>
+      <pre>  157 |       const secretKey = [REDACTED]
+  158 |       const sharedKey = await ecdhXRecomputeSharedSecret(enums.publicKey.x25519, V.subarray(1), Q.subarray(1), secretKey);
+  159 |       return { secretKey, sharedKey }; // Note: sharedKey is little-endian here, unlike below</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L189">src/crypto/public_key/elliptic/oid_curves.js</a> · line 189 · SHA-256 085af22a63073285… · Файл a509143ad8b8e7b7…</div>
+      <pre>  188 |         // the private key must be stored in big endian and already clamped: https://www.ietf.org/archive/id/draft-ietf-openpgp-crypto-refresh-13.html#section-5.5.5.6.1.1-3
+  189 |         const { k, A } = await ecdhXGenerate(enums.publicKey.x25519);
+  190 |         const privateKey = [REDACTED]</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L263">src/crypto/public_key/elliptic/oid_curves.js</a> · line 263 · SHA-256 06a2e4b692ec06cd… · Файл a509143ad8b8e7b7…</div>
+      <pre>  262 |     }
+  263 |     return ecdhXValidateParams(enums.publicKey.x25519, Q.subarray(1), dLittleEndian);
+  264 |   }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L9">src/crypto/public_key/post_quantum/kem/ecc_kem.js</a> · line 9 · SHA-256 61f4944eac6993ac… · Файл b71fb6b416bd690e…</div>
+      <pre>    8 |     case enums.publicKey.mlkem768X25519: {
+    9 |       const { A, k } = await ecdhX.generate(enums.publicKey.x25519);
+   10 |       return {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L23">src/crypto/public_key/post_quantum/kem/ecc_kem.js</a> · line 23 · SHA-256 a072232312f37979… · Файл b71fb6b416bd690e…</div>
+      <pre>   22 |     case enums.publicKey.mlkem768X25519: {
+   23 |       const { ephemeralPublicKey: eccCipherText, sharedSecret: [REDACTED] } = await ecdhX.generateEphemeralEncryptionMaterial(enums.publicKey.x25519, eccRecipientPublicKey);
+   24 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L38">src/crypto/public_key/post_quantum/kem/ecc_kem.js</a> · line 38 · SHA-256 e24fdf348a018c86… · Файл b71fb6b416bd690e…</div>
+      <pre>   37 |     case enums.publicKey.mlkem768X25519: {
+   38 |       const eccKeyShare = await ecdhX.recomputeSharedSecret(enums.publicKey.x25519, eccCipherText, eccPublicKey, eccSecretKey);
+   39 |       return eccKeyShare;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L77">src/enums.d.ts</a> · line 77 · SHA-256 51bcc65cc5abe5fd… · Файл 0f55028f6afa996e…</div>
+      <pre>   76 | 
+   77 |   export type publicKeyNames = &#39;rsaEncryptSign&#39; | &#39;rsaEncrypt&#39; | &#39;rsaSign&#39; | &#39;elgamal&#39; | &#39;dsa&#39; | &#39;ecdh&#39; | &#39;ecdsa&#39; | &#39;eddsaLegacy&#39; | &#39;aedh&#39; | &#39;aedsa&#39; | &#39;ed25519&#39; | &#39;x25519&#39; | &#39;ed448&#39; | &#39;x448&#39; | &#39;mlkem768X25519&#39; | &#39;mldsa65Ed25519&#39;;
+   78 |   export enum publicKey {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L89">src/enums.d.ts</a> · line 89 · SHA-256 3e0f0dc265cee6d8… · Файл 0f55028f6afa996e…</div>
+      <pre>   88 |     aedsa = 24,
+   89 |     x25519 = 25,
+   90 |     x448 = 26,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.js#L93">src/enums.js</a> · line 93 · SHA-256 2abe536f7602f2ea… · Файл ef596e9696993aae…</div>
+      <pre>   92 |     /** X25519 (Encrypt only) */
+   93 |     x25519: 25,
+   94 |     /** X448 (Encrypt only) */</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-04765">
+    <header><span class="fid">QSI-2026-04765 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый RSA: роль не определена (1 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>4 упоминаний RSA в 1 файл(ах), например src/crypto/public_key/rsa.js:162. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:RSA:general</dd>
+      <dt>Источник данных</dt><dd>src/crypto/public_key/rsa.js</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>35.3 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=3.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте src/crypto/public_key/rsa.js:162 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-04765">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L162">src/crypto/public_key/rsa.js</a> · line 162 · SHA-256 b0cbb193503eeb88… · Файл 9558590f47e04e08…</div>
+      <pre>  161 |     const keyGenOpt = {
+  162 |       name: &#39;RSASSA-PKCS1-v1_5&#39;,
+  163 |       modulusLength: bits, // the specified keysize in bits</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L184">src/crypto/public_key/rsa.js</a> · line 184 · SHA-256 d75d3961fa30018d… · Файл 9558590f47e04e08…</div>
+      <pre>  183 |     const jwk = await new Promise((resolve, reject) =&gt; {
+  184 |       nodeCrypto.generateKeyPair(&#39;rsa&#39;, opts, (err, _, jwkPrivateKey) =&gt; {
+  185 |         if (err) {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L264">src/crypto/public_key/rsa.js</a> · line 264 · SHA-256 53874c8c2c39e251… · Файл 9558590f47e04e08…</div>
+      <pre>  263 |   const algo = {
+  264 |     name: &#39;RSASSA-PKCS1-v1_5&#39;,
+  265 |     hash: { name: hashName }</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-04760">
+    <header><span class="fid">QSI-2026-04760 · CODE-WEAK-HASH</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Использование MD5 в src/crypto/hash/index.js</h3>
+    <p><span class="tag">Потенциальный криптографический риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>1 мест(а) использования MD5 (первое — строка 78).</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>file:src/crypto/hash/index.js</dd>
+      <dt>Источник данных</dt><dd>src/crypto/hash/index.js</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с API конкретного языка.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>34.3 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>При использовании для подписей, хранения паролей, защиты целостности или генерации токенов возможна эксплуатация коллизий. Для несекретных контрольных сумм допустимо.</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте строка 78 в предоставленном файле src/crypto/hash/index.js и изучите приведённые строки (см. доказательство).</pre>
+    <h4 id="ev-QSI-2026-04760">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/hash/index.js#L78">src/crypto/hash/index.js</a> · line 78 · SHA-256 37bf736791dde606… · Файл 8d6b12940eb7cb6f…</div>
+      <pre>   76 |   switch (algo) {
+   77 |     case enums.hash.md5:
+   78 |       return md5(data);
+   79 |     case enums.hash.sha1:
+   80 |       return sha1(data);</pre>
+    <h4>Ограничения проверки</h4><p class="small">Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Замените на SHA-256/SHA-3 (Argon2/bcrypt для паролей) там, где это влияет на безопасность.</p>
+    <h4>Повторная проверка</h4><p>Повторно просканируйте код и проверьте места вызова из доказательства.</p>
+<p class="small muted">NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths</p>  </article>
+  <article class="finding" id="QSI-2026-04761">
+    <header><span class="fid">QSI-2026-04761 · CODE-WEAK-HASH</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Использование SHA-1 в src/crypto/hash/index.js</h3>
+    <p><span class="tag">Потенциальный криптографический риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>1 мест(а) использования SHA-1 (первое — строка 80).</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>file:src/crypto/hash/index.js</dd>
+      <dt>Источник данных</dt><dd>src/crypto/hash/index.js</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с API конкретного языка.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>34.3 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>При использовании для подписей, хранения паролей, защиты целостности или генерации токенов возможна эксплуатация коллизий. Для несекретных контрольных сумм допустимо.</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте строка 80 в предоставленном файле src/crypto/hash/index.js и изучите приведённые строки (см. доказательство).</pre>
+    <h4 id="ev-QSI-2026-04761">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/hash/index.js#L80">src/crypto/hash/index.js</a> · line 80 · SHA-256 2bb3e32df818e85c… · Файл 8d6b12940eb7cb6f…</div>
+      <pre>   78 |       return md5(data);
+   79 |     case enums.hash.sha1:
+   80 |       return sha1(data);
+   81 |     case enums.hash.ripemd:
+   82 |       return ripemd(data);</pre>
+    <h4>Ограничения проверки</h4><p class="small">Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Замените на SHA-256/SHA-3 (Argon2/bcrypt для паролей) там, где это влияет на безопасность.</p>
+    <h4>Повторная проверка</h4><p>Повторно просканируйте код и проверьте места вызова из доказательства.</p>
+<p class="small muted">NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths</p>  </article>
+  <article class="finding" id="QSI-2026-04758">
+    <header><span class="fid">QSI-2026-04758 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>13 упоминаний ECDSA в 7 файл(ах), например src/config.ts:369. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:ECDSA:general</dd>
+      <dt>Источник данных</dt><dd>src/config.ts</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>28.3 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=5.0, y=3.0, z=8.0 → запас минимален</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте src/config.ts:369 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-04758">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/config.ts#L369">src/config.ts</a> · line 369 · SHA-256 c5db59fdcbe6ed4b… · Файл 8b9ef728da3fffbd…</div>
+      <pre>  368 |    */
+  369 |   rejectCurves: new Set([enums.curve.secp256k1])
+  370 | };</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/noble_curves.js#L10">src/crypto/public_key/elliptic/noble_curves.js</a> · line 10 · SHA-256 d339484c3d24ee7f… · Файл 2a1bfa8fe6029dbb…</div>
+      <pre>    9 | import { x448, ed448 } from &#39;@noble/curves/ed448.js&#39;;
+   10 | import { secp256k1 } from &#39;@noble/curves/secp256k1.js&#39;;
+   11 | import { brainpoolP256r1, brainpoolP384r1, brainpoolP512r1 } from &#39;@noble/curves/misc.js&#39;;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/noble_curves.js#L20">src/crypto/public_key/elliptic/noble_curves.js</a> · line 20 · SHA-256 256a4ebbf585ae60… · Файл 2a1bfa8fe6029dbb…</div>
+      <pre>   19 |   brainpoolP512r1,
+   20 |   secp256k1,
+   21 |   x448,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L41">src/crypto/public_key/elliptic/oid_curves.js</a> · line 41 · SHA-256 efbb3e14bd355823… · Файл a509143ad8b8e7b7…</div>
+      <pre>   40 | const nodeCurves = nodeCrypto ? {
+   41 |   [enums.curve.secp256k1]: knownCurves.includes(&#39;secp256k1&#39;) ? &#39;secp256k1&#39; : undefined,
+   42 |   [enums.curve.nistP256]: knownCurves.includes(&#39;prime256v1&#39;) ? &#39;prime256v1&#39; : undefined,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L42">src/crypto/public_key/elliptic/oid_curves.js</a> · line 42 · SHA-256 49f43e42cd4df496… · Файл a509143ad8b8e7b7…</div>
+      <pre>   41 |   [enums.curve.secp256k1]: knownCurves.includes(&#39;secp256k1&#39;) ? &#39;secp256k1&#39; : undefined,
+   42 |   [enums.curve.nistP256]: knownCurves.includes(&#39;prime256v1&#39;) ? &#39;prime256v1&#39; : undefined,
+   43 |   [enums.curve.nistP384]: knownCurves.includes(&#39;secp384r1&#39;) ? &#39;secp384r1&#39; : undefined,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L86">src/crypto/public_key/elliptic/oid_curves.js</a> · line 86 · SHA-256 aeaa982bd5f9fbf6… · Файл a509143ad8b8e7b7…</div>
+      <pre>   85 |   },
+   86 |   [enums.curve.secp256k1]: {
+   87 |     oid: [0x06, 0x05, 0x2B, 0x81, 0x04, 0x00, 0x0A],</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L113">src/enums.d.ts</a> · line 113 · SHA-256 1e886ad8295c1de4… · Файл 0f55028f6afa996e…</div>
+      <pre>  112 |     curve25519Legacy = &#39;curve25519Legacy&#39;,
+  113 |     secp256k1 = &#39;secp256k1&#39;,
+  114 |     brainpoolP256r1 = &#39;brainpoolP256r1&#39;,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.js#L32">src/enums.js</a> · line 32 · SHA-256 45efce41a21d89e8… · Файл ef596e9696993aae…</div>
+      <pre>   31 |     /** SECG SECP256k1 Curve */
+   32 |     &#39;secp256k1&#39;:              &#39;secp256k1&#39;,
+   33 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/index.d.ts#L677">src/index.d.ts</a> · line 677 · SHA-256 79115c16a34a64e1… · Файл 4bdc54675e0aa091…</div>
+      <pre>  676 | 
+  677 | export type EllipticCurveName = &#39;ed25519Legacy&#39; | &#39;curve25519Legacy&#39; | &#39;nistP256&#39; | &#39;nistP384&#39; | &#39;nistP521&#39; | &#39;secp256k1&#39; | &#39;brainpoolP256r1&#39; | &#39;brainpoolP384r1&#39; | &#39;brainpoolP512r1&#39;;
+  678 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/type/oid.js#L43">src/type/oid.js</a> · line 43 · SHA-256 c3397494df5c3355… · Файл abeff52445230bff…</div>
+      <pre>   42 |   &#39;2b81040023&#39;: enums.curve.nistP521,
+   43 |   &#39;2b8104000a&#39;: enums.curve.secp256k1,
+   44 |   &#39;2b06010401da470f01&#39;: enums.curve.ed25519Legacy,</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-04766">
+    <header><span class="fid">QSI-2026-04766 · DEP-ADVISORY-DEV</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>71 бюллетеней в 23 пакет(ах) npm, нужных только для разработки или сборки</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает 71 бюллетеней (30 с оценкой high или critical) для 23 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895. Манифесты помечают их так (devDependencies, &#34;dev&#34;: true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies:npm:non-runtime</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-28 12:44 UTC</dd>
+      <dt>Балл приоритета</dt><dd>15.3 / 100 (Разработчик ПО безопасности)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.</p>
+    <h4>Шаги воспроизведения</h4><pre>Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в package-lock.json.</pre>
+    <h4 id="ev-QSI-2026-04766">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/">OSV.dev (npm)</a> · package-lock.json · SHA-256 04859aea607eeb6e…</div>
+      <pre>@humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g
+basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r
+brace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7
+brace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7
+brace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895
+brace-expansion@5.0.9 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7
+deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4
+deepmerge-ts@7.1.6 [dev]: GHSA-ggr8-5vv4-36mx
+diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx
+extract-zip@2.0.1 [dev]: GHSA-7pqw-9j4j-h8q3, GHSA-jmr9-qjv8-65gv
+ip-address@10.5.0 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5
+js-yaml@4.3.1 [dev]: GHSA-2883-xcg3-v3hh
+markdown-it@14.3.0 [dev]: GHSA-253c-mchw-3w2r, GHSA-gfr2-rv44-r23c, GHSA-r7fv-28h4-cvq7, GHSA-vfgh-jcmw-g37q
+pug@2.0.4 [dev]: GHSA-3965-hpx2-q597, GHSA-p493-635q-r6gr
+pug-code-gen@2.0.3 [dev]: GHSA-3965-hpx2-q597
+qs@6.15.3 [dev]: GHSA-4mjr-xmp4-gh2g, GHSA-6pq8-jhm2-2vcw, GHSA-x5fp-wj9c-mxmx
+serialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v
+serialize-javascript@7.0.5 [dev]: GHSA-m5mm-p8h7-m29v
+source-map-js@1.2.1 [dev]: GHSA-68fv-2mgg-jv7q
+undici@6.28.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-3wwx-pv8p-q78v, GHSA-4qv8-2p9j-2685, GHSA-9fm3-97px-rjf6, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-xjj6-f33q-929c
+undici@7.29.0 [dev]: GHSA-2gqq-gqf2-x968, GHSA-2jfj-6hjv-fm6j, GHSA-2m5v-pch6-74hx, GHSA-3wwx-pv8p-q78v, GHSA-3xpg-4rpp-hhhm, GHSA-4qv8-2p9j-2685, GHSA-4w7w-5xrc-9h26, GHSA-55wc-3pg8-jfw6, GHSA-8436-99hf-9mmv, GHSA-9fm3-97px-rjf6, GHSA-f72v-6w45-q472, GHSA-pmjh-fq2x-6v4x, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-rx4f-c7p8-82vq, GHSA-w293-vg96-wgc3, GHSA-xjj6-f33q-929c
+vue-template-compiler@2.7.16 [dev]: GHSA-g3ch-rx76-35fx
+zod@3.25.76 [dev]: GHSA-mrhx-c7xc-m3w5</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.</p>
+    <h4>Рекомендация</h4><p>Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV.dev — open-source vulnerability database and API</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Подтверждающие доказательства</h2>
+  <table class="data"><tr><th>ID</th><th>Тип</th><th>Источник данных</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L67">src/crypto/crypto.js</a> (line 67)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6caf77681182d2e5587208f4f2f3e2adfbe5716ca5c74635b3d4338ab32c9a72</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L126">src/crypto/crypto.js</a> (line 126)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">97ebcbb54d2758fefc29cac032c9f08d18ded0816dc1c0a8867b60c82312d138</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L202">src/crypto/crypto.js</a> (line 202)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7ce8a6903b93123062ab7128a6e668e6d2cf40ebae581e2048e2f844cd2bc378</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L16">src/crypto/public_key/elliptic/ecdh_x.js</a> (line 16)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6a8eddf288a9c2a77149db1f401d401b0b95e3d4a1215b63173ffa115a3c1d3f</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L27">src/crypto/public_key/elliptic/ecdh_x.js</a> (line 27)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">922ea9b93ea793bd820ba0ef05d8cf6ea9bda82b3587e2f71a243d89d2cb9d94</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L57">src/crypto/public_key/elliptic/ecdh_x.js</a> (line 57)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">371ae1787aa309a61d2ab90e6f937a3c82ffb06df08f86b0074baa8b7940524e</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L425">src/key/helper.js</a> (line 425)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">59adffecad14d86080d43ea51a008d5eed02ea566984f5458a383bd909e5ad53</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L442">src/key/helper.js</a> (line 442)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0cee2e279a6b5fe687f969526552efa361b0132a03e1b834689ac210cb80a418</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L482">src/key/helper.js</a> (line 482)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e5505ee4ae066a442ec272a51ad1f32a27704ddf9d13d5f4ce1205af1d8d11cf</td></tr><tr><td><a href="#ev-QSI-2026-04759">QSI-2026-04759</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/message.js#L367">src/message.js</a> (line 367)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">16b37e58a27065ccebe12db67a707b30d29ed30a225cd9e99bcd10e2b1af24ac</td></tr><tr><td><a href="#ev-QSI-2026-04764">QSI-2026-04764</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L69">src/crypto/public_key/elliptic/ecdh_x.js</a> (line 69)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">30222de3219cc99164d9b95fb8c95d2b149f5e65081439fc8f66d5ab949cf0cf</td></tr><tr><td><a href="#ev-QSI-2026-04764">QSI-2026-04764</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L147">src/crypto/public_key/elliptic/ecdh_x.js</a> (line 147)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4fc585ad8fd85e138aac18c158c73931dd6b712783d58a4bd4167814da997bd9</td></tr><tr><td><a href="#ev-QSI-2026-04764">QSI-2026-04764</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L183">src/crypto/public_key/elliptic/ecdh_x.js</a> (line 183)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d1b356d9bc94caa86cfccaa12996dbfd31b0813f90221d6728549b30f14f789f</td></tr><tr><td><a href="#ev-QSI-2026-04762">QSI-2026-04762</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L249">src/crypto/public_key/elliptic/ecdh.js</a> (line 249)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3454cba51223c0daf016a91dac4294f475ec4f66b4f481c989050ea86ad3ee90</td></tr><tr><td><a href="#ev-QSI-2026-04762">QSI-2026-04762</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L260">src/crypto/public_key/elliptic/ecdh.js</a> (line 260)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e270aa8dd1322e70e5a4ce00d678ee9e1891c5a88f54924881a592cdfcee43e</td></tr><tr><td><a href="#ev-QSI-2026-04762">QSI-2026-04762</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L269">src/crypto/public_key/elliptic/ecdh.js</a> (line 269)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a4b9152c04c73f78c219aef1b6c7e22425768c871b4ec13008e117d0efd76c1d</td></tr><tr><td><a href="#ev-QSI-2026-04762">QSI-2026-04762</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L324">src/crypto/public_key/elliptic/oid_curves.js</a> (line 324)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dbae0069b965a134528d3224723dbe1cd05dd4c423c0cd22d845e0b96c3a9996</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L92">src/crypto/public_key/elliptic/ecdh.js</a> (line 92)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">33754afed28e070c6fe889d3028e51b53ef1b222bbaf8f8fb6756bf243d4c20e</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L158">src/crypto/public_key/elliptic/ecdh.js</a> (line 158)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">294a3fb06da976751217f842b6f6103deff0a00f190f61bc434ea854ef0e4cb5</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L189">src/crypto/public_key/elliptic/oid_curves.js</a> (line 189)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">085af22a63073285f9b41c8fd1580f25e34eee786fc9c93549f81de299b1dc3a</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L263">src/crypto/public_key/elliptic/oid_curves.js</a> (line 263)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">06a2e4b692ec06cd2f2668c4defc241cabf6aa423908d36123d1b82fa220a96e</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L9">src/crypto/public_key/post_quantum/kem/ecc_kem.js</a> (line 9)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">61f4944eac6993ac9bc705985a4ca6e817fe3e097fc73a0729ec47f9df0acc31</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L23">src/crypto/public_key/post_quantum/kem/ecc_kem.js</a> (line 23)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a072232312f37979fc0f350cae28c9be08729c30e6d4b0a81c003d5a2f924fd0</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L38">src/crypto/public_key/post_quantum/kem/ecc_kem.js</a> (line 38)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e24fdf348a018c86e5ac263481e36f6c24c92db544237676c517d1bc0d7c8122</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L77">src/enums.d.ts</a> (line 77)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">51bcc65cc5abe5fd7bb19e52368c5e477cac45493cdb751d3a8e4abe399ccdb6</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L89">src/enums.d.ts</a> (line 89)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e0f0dc265cee6d852a925e4e23941bd5bae8987249ecfe7607016fe88d0fb48</td></tr><tr><td><a href="#ev-QSI-2026-04763">QSI-2026-04763</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.js#L93">src/enums.js</a> (line 93)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2abe536f7602f2ea77e7707a22b274dd3d1d46f3120d3844e4c048920a94af2e</td></tr><tr><td><a href="#ev-QSI-2026-04765">QSI-2026-04765</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L162">src/crypto/public_key/rsa.js</a> (line 162)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b0cbb193503eeb88bf6bc5592bf1fd5c47d7ad63d3c813b6cd2e4f794ff32445</td></tr><tr><td><a href="#ev-QSI-2026-04765">QSI-2026-04765</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L184">src/crypto/public_key/rsa.js</a> (line 184)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d75d3961fa30018d8b20a2bec1167b41ed845cbe35528febd5214c22eda40a26</td></tr><tr><td><a href="#ev-QSI-2026-04765">QSI-2026-04765</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L264">src/crypto/public_key/rsa.js</a> (line 264)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">53874c8c2c39e251bb82434c3249acca1da7f567fd83b00687a98795e3b3caab</td></tr><tr><td><a href="#ev-QSI-2026-04760">QSI-2026-04760</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/hash/index.js#L78">src/crypto/hash/index.js</a> (line 78)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">37bf736791dde606da49f3d3749ab6d97bbb3b0c6fc06aa5255a6610d4392a66</td></tr><tr><td><a href="#ev-QSI-2026-04761">QSI-2026-04761</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/hash/index.js#L80">src/crypto/hash/index.js</a> (line 80)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2bb3e32df818e85ca86b80b83efa65ddd49c199bade96c413185312ccd710b0e</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/config.ts#L369">src/config.ts</a> (line 369)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c5db59fdcbe6ed4bb21e923d3d013f8150ee82531432e8c501ba83aea57a06c1</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/noble_curves.js#L10">src/crypto/public_key/elliptic/noble_curves.js</a> (line 10)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d339484c3d24ee7f0a65f3f6c881ae00e7f2e5c3ea93ab621e7ffa1749003a2d</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/noble_curves.js#L20">src/crypto/public_key/elliptic/noble_curves.js</a> (line 20)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">256a4ebbf585ae607de0248487d875bff7cbc60abef68e287c9d2b026e0088b4</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L41">src/crypto/public_key/elliptic/oid_curves.js</a> (line 41)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">efbb3e14bd355823baff05fd7e74cb47297988aab466ed4e15e01f82d5bd7032</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L42">src/crypto/public_key/elliptic/oid_curves.js</a> (line 42)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">49f43e42cd4df4962d3fb7ea9ad262602f69f27be96debf7a2e0c5850b5200f3</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L86">src/crypto/public_key/elliptic/oid_curves.js</a> (line 86)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">aeaa982bd5f9fbf62cac44e5be94c099de8292755a9abb1a8b08f36492fd3dde</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L113">src/enums.d.ts</a> (line 113)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1e886ad8295c1de43a7adecc20929a406bcb5b7c9bf8d8152755b414a8565342</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.js#L32">src/enums.js</a> (line 32)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">45efce41a21d89e8da3215093aeb57cf9c1ab6d75d7ce992e3b0ca5296eaa95b</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/index.d.ts#L677">src/index.d.ts</a> (line 677)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">79115c16a34a64e10cbf419c921b1f950b76ee4ba788294e1fbe7bc747446279</td></tr><tr><td><a href="#ev-QSI-2026-04758">QSI-2026-04758</a></td><td>file_excerpt</td><td><a href="https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/type/oid.js#L43">src/type/oid.js</a> (line 43)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c3397494df5c3355f392a24b9cc3572a1eed7ea01393c68d2999992c77a5d4b2</td></tr><tr><td><a href="#ev-QSI-2026-04766">QSI-2026-04766</a></td><td>tool_output</td><td><a href="https://osv.dev/">OSV.dev (npm)</a> (package-lock.json)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">04859aea607eeb6e0eee59480e26ef786e776b704c2aa89bf4a9cb23ebcb0c63</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Постквантовая оценка</h2>
+  <table class="data">
+    <tr><th></th><th>Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом»)</th><th>Подписи (x — сколько подписи и ключи должны оставаться доверенными)</th></tr>
+    <tr><th>Срок жизни данных/ключей x</th><td>10</td><td>5</td></tr>
+    <tr><th>Время миграции y</th><td>3</td><td>3</td></tr>
+    <tr><th>Принятое число лет до CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>5 → при этом сценарии миграция завершится слишком поздно</td><td>0 → запас минимален</td></tr>
+  </table>
+<p class="note">Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Разработчик ПО безопасности», а не данные клиента; с фактическими сроками клиента вывод может измениться.</p>  <h3>Постквантовая зрелость: Уровень 2 из 4 — постквантовое используется вне критичных путей</h3>
+<ul><li>Используется: ML-DSA, ML-KEM — src/crypto/public_key/post_quantum/noble_post_quantum.ts</li><li>Есть, но не подключено: ML-KEM — src/crypto/public_key/post_quantum/kem/ml_kem.js</li><li>Есть, но не подключено: ML-DSA — src/crypto/public_key/post_quantum/signature/ml_dsa.js</li><li>Постквантовая библиотека объявлена в зависимостях</li><li>Только классика — обёртка ключей и шифрование хранимых данных: ECDH, X25519 (5 файл(ов))</li></ul>  <p><strong>Следующий шаг:</strong> Распространите постквантовую защиту на критичные роли, которые остаются классическими, начиная с того, что можно записать уже сегодня (обёрнутые ключи, обмен ключами в канале).</p>
+  <p class="note">Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам.</p>
+  <h3>Что делают квантово-уязвимые алгоритмы</h3>
+  <table class="data"><tr><th>Роль</th><th>Алгоритмы (файлы)</th><th>ID</th><th>Первый шаг</th></tr>
+<tr><td><strong>обёртка ключей и шифрование хранимых данных</strong></td><td>X25519 (5), ECDH (1)</td><td class="small"><a href="#QSI-2026-04759">QSI-2026-04759</a>, <a href="#QSI-2026-04764">QSI-2026-04764</a></td><td class="small">Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка</td></tr><tr><td><strong>роль не определена</strong></td><td>ECDSA (7), X25519 (5), ECDH (2), RSA (1)</td><td class="small"><a href="#QSI-2026-04758">QSI-2026-04758</a>, <a href="#QSI-2026-04762">QSI-2026-04762</a>, <a href="#QSI-2026-04763">QSI-2026-04763</a>, <a href="#QSI-2026-04765">QSI-2026-04765</a></td><td class="small">Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости</td></tr>  </table>
+  <p class="note">Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня.</p>
+  <p class="note">z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+  <table class="data"><tr><th>Квантовый статус</th><th>Количество</th></tr>
+<tr><td>слаб классически</td><td>10</td></tr><tr><td>сниженный запас (Гровер), одобрен</td><td>4</td></tr><tr><td>н/п</td><td>8</td></tr><tr><td>постквантовый</td><td>8</td></tr><tr><td>уязвим (Шор)</td><td>35</td></tr>  </table>
+  <p><strong>Подробное описание находок:</strong> QSI-2026-04759, QSI-2026-04764, QSI-2026-04762, QSI-2026-04763, QSI-2026-04765, QSI-2026-04758</p>
+  <h3>Анкета постквантовой готовности</h3>
+<p class="muted">Анкета готовности для проекта не заполнялась.</p>  <h3>Квантовые алгоритмы, значимые для этой инвентаризации</h3>
+  <table class="data"><tr><th>Квантовый алгоритм</th><th>Действие</th><th>Алгоритмы из инвентаризации (строк)</th><th>Что это значит для аудита</th></tr>
+<tr><td>Алгоритм Шора — факторизация<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>RSA (2)</td><td class="small">Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей.</td></tr><tr><td>Алгоритм Шора — дискретный логарифм в конечных полях<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>DSA (3), ElGamal (1)</td><td class="small">Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA.</td></tr><tr><td>Алгоритм Шора — дискретный логарифм на эллиптических кривых<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>ECDH (5), ECDSA (12), Ed25519 (2), X25519 (10)</td><td class="small">Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.</td></tr><tr><td>Алгоритм Гровера — поиск ключа и прообразов<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>3DES (2), Argon2 (1), Blowfish (2), CAST5 (4), CMAC (1), DES (1), HKDF (1), HMAC (1), IDEA (1)</td><td class="small">Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.</td></tr><tr><td>Алгоритм Саймона — суперпозиционные атаки на симметричные конструкции<br><span class="small muted">Q2: суперпозиционные запросы к ключевому примитиву жертвы</span></td><td>только при суперпозиционных запросах</td>
+    <td>GCM mode (1)</td><td class="small">Для обычного применения AES-GCM или CBC-MAC действий не требуется — модель атаки неприменима. Зафиксируйте это как допущение модели; для конструкций типа Even–Mansour см. офлайн-вариант.</td></tr><tr><td>Квантовое решетчатое просеивание<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>учтено в стандартных параметрах</td>
+    <td>ML-DSA (3), ML-KEM (3)</td><td class="small">Для ML-KEM и ML-DSA в стандартных наборах параметров ничего менять не нужно. Заявление 2024 года о полиномиальном квантовом алгоритме для LWE отозвано после обнаружения ошибки (см. заявления).</td></tr>  </table>
+  <p class="note">Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Ограничения и допущения</h2>
+  <ul>
+    <li>Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</li>
+    <li>z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>План устранения проблем</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04760 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Проверьте каждое использование MD5 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Может потребоваться миграция сохранённых хешей.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Не осталось использований MD5, влияющих на безопасность.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04761 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Проверьте каждое использование SHA-1 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Может потребоваться миграция сохранённых хешей.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Не осталось использований SHA-1, влияющих на безопасность.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04759 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04764 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04762 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04763 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04765 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04758 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04759 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04764 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04762 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04763 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04765 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04758 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-04766 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Обновите зависимости разработки и сборки из доказательства.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Обновление инструментов может изменить результат сборки; сравните релизные артефакты.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Приоритеты на 30, 60 и 90 дней</h2>
+  <h3>30 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td colspan="4" class="muted">Нет</td></tr>  </table>
+  <h3>60 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-04760</td><td>Проверьте каждое использование MD5 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей.</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-04761</td><td>Проверьте каждое использование SHA-1 в src/crypto/hash/index.js; замените влияющие на безопасность на SHA-256 или функцию хеширования паролей.</td><td class="small">устранение первопричины</td></tr>  </table>
+  <h3>90 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-04759</td><td>Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-04764</td><td>Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-04762</td><td>Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-04763</td><td>Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-04765</td><td>Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-04758</td><td>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P4</td><td>QSI-2026-04759</td><td>Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-04764</td><td>Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-04762</td><td>Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-04763</td><td>Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-04765</td><td>Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-04758</td><td>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-04766</td><td>Обновите зависимости разработки и сборки из доказательства.</td><td class="small">устранение первопричины</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Проверки после устранения</h2>
+  <table class="data"><tr><th>ID</th><th>Повторная проверка</th></tr>
+<tr><td>QSI-2026-04759</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-04764</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-04762</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-04763</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-04765</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-04760</td><td>Повторно просканируйте код и проверьте места вызова из доказательства.</td></tr><tr><td>QSI-2026-04761</td><td>Повторно просканируйте код и проверьте места вызова из доказательства.</td></tr><tr><td>QSI-2026-04758</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-04766</td><td>Повторите сканирование зависимостей после обновления.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Использованные инструменты</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Источники и нормативные документы</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>A. Becker, L. Ducas, N. Gama, T. Laarhoven — New directions in nearest neighbor searching with applications to lattice sieving (SODA 2016; IACR ePrint 2015/1128) — IACR ePrint. <a href="https://eprint.iacr.org/2015/1128">https://eprint.iacr.org/2015/1128</a> <span class="muted">(peer-reviewed article: classical sieving in 2^{0.292n + o(n)})</span></li><li>A. Chailloux, J. Loyer — Lattice sieving via quantum random walks (ASIACRYPT 2021; IACR ePrint 2021/570) — IACR ePrint. <a href="https://eprint.iacr.org/2021/570">https://eprint.iacr.org/2021/570</a> <span class="muted">(peer-reviewed article: 2^{0.2570d + o(d)}, previously 2^{0.2653d + o(d)} (Laarhoven))</span></li><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <a href="https://arxiv.org/abs/2505.15917">https://arxiv.org/abs/2505.15917</a> <span class="muted">(preprint (2025-05-21): &lt; 1 million noisy qubits, &lt; 1 week, 0.1% gate error, 1 µs surface-code cycle)</span></li><li>C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <a href="https://doi.org/10.22331/q-2021-04-15-433">https://doi.org/10.22331/q-2021-04-15-433</a> <span class="muted">(peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>CRYSTALS-Kyber — Algorithm Specifications and Supporting Documentation (round 3, 2021-08-04) — CRYSTALS team. <a href="https://pq-crystals.org/kyber/data/kyber-specification-round3-20210804.pdf">https://pq-crystals.org/kyber/data/kyber-specification-round3-20210804.pdf</a> <span class="muted">(NIST round-3 submission: core-SVP cost 2^{0.292β} classical, 2^{0.265β} quantum; Kyber768 166 quantum bits)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>D. R. Simon — On the Power of Quantum Computation (SIAM J. Comput. 26, 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539796298637">https://doi.org/10.1137/S0097539796298637</a> <span class="muted">(peer-reviewed article)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>H. Kuwakado, M. Morii — Quantum distinguisher between the 3-round Feistel cipher and the random permutation (IEEE ISIT 2010) — IEEE. <a href="https://ieeexplore.ieee.org/document/5513654">https://ieeexplore.ieee.org/document/5513654</a> <span class="muted">(peer-reviewed conference paper)</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <a href="https://arxiv.org/abs/2405.14381">https://arxiv.org/abs/2405.14381</a> <span class="muted">(preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)</span></li><li>M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <a href="https://arxiv.org/abs/1602.05973">https://arxiv.org/abs/1602.05973</a> <span class="muted">(peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <a href="https://csrc.nist.gov/pubs/sp/800/131/a/r2/final">https://csrc.nist.gov/pubs/sp/800/131/a/r2/final</a> <span class="muted">(final (2019))</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <a href="https://osv.dev/">https://osv.dev/</a> <span class="muted">(the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/&lt;id&gt;)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Приложения</h2>
+  <h3>A. Криптографическая инвентаризация</h3>
+  <table class="data"><tr><th>Алгоритм</th><th>Параметр</th><th>Квантовый статус</th><th>Классический статус</th><th>Количество</th><th>Мест</th><th>Примеры</th></tr>
+<tr><td>3DES</td><td></td><td>слаб классически</td><td>устаревший</td><td>2</td><td>2</td><td class="small">src/crypto/cipher/index.js:16; src/message.js:217</td></tr><tr><td>Blowfish</td><td></td><td>слаб классически</td><td>устаревающий</td><td>2</td><td>2</td><td class="small">src/crypto/cipher/blowfish.js; src/crypto/cipher/index.js:14</td></tr><tr><td>CAST5</td><td></td><td>слаб классически</td><td>устаревающий</td><td>4</td><td>4</td><td class="small">src/crypto/cipher/cast5.js:600; src/crypto/cipher/index.js:13; src/crypto/cipherMode/cfb.js:40</td></tr><tr><td>DES</td><td>DES</td><td>слаб классически</td><td>взломан</td><td>1</td><td>1</td><td class="small">src/crypto/cipher/des.js</td></tr><tr><td>IDEA</td><td></td><td>слаб классически</td><td>устаревающий</td><td>1</td><td>1</td><td class="small">src/crypto/cipherMode/cfb.js:38</td></tr><tr><td>Argon2</td><td></td><td>сниженный запас (Гровер), одобрен</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/type/s2k/argon2.js</td></tr><tr><td>CMAC</td><td></td><td>сниженный запас (Гровер), одобрен</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/crypto/cmac.js</td></tr><tr><td>HKDF</td><td></td><td>сниженный запас (Гровер), одобрен</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/crypto/hkdf.js:15</td></tr><tr><td>HMAC</td><td></td><td>сниженный запас (Гровер), одобрен</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/crypto/aes_kw.js:47</td></tr><tr><td>CBC mode</td><td></td><td>н/п</td><td>допустимо</td><td>2</td><td>2</td><td class="small">src/crypto/cipherMode/cfb.js:170; src/crypto/cmac.js:87</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>2.4.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>2.4.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/curves (noble-curves)</span></td><td>^2.4.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package.json</td></tr><tr><td>Crypto library<br><span class="small muted">@noble/hashes (noble-hashes)</span></td><td>^2.4.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package.json</td></tr><tr><td>GCM mode</td><td></td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/crypto/cipherMode/gcm.js:36</td></tr><tr><td>OpenPGP</td><td></td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/openpgp.js</td></tr><tr><td>ML-DSA</td><td></td><td>постквантовый</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/crypto/public_key/post_quantum/noble_post_quantum.ts:10</td></tr><tr><td>ML-DSA</td><td>ML-DSA-65</td><td>постквантовый</td><td>допустимо</td><td>2</td><td>2</td><td class="small">src/crypto/public_key/post_quantum/noble_post_quantum.ts:10; src/crypto/public_key/post_quantum/signature/ml_dsa.js:30</td></tr><tr><td>ML-KEM</td><td>ML-KEM-768</td><td>постквантовый</td><td>допустимо</td><td>2</td><td>2</td><td class="small">src/crypto/public_key/post_quantum/kem/ml_kem.js:30; src/crypto/public_key/post_quantum/noble_post_quantum.ts:9</td></tr><tr><td>ML-KEM</td><td></td><td>постквантовый</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/crypto/public_key/post_quantum/noble_post_quantum.ts:9</td></tr><tr><td>PQC library<br><span class="small muted">@noble/post-quantum (noble post-quantum)</span></td><td>0.7.1</td><td>постквантовый</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package-lock.json</td></tr><tr><td>PQC library<br><span class="small muted">@noble/post-quantum (noble post-quantum)</span></td><td>^0.7.1</td><td>постквантовый</td><td>допустимо</td><td>1</td><td>1</td><td class="small">package.json</td></tr><tr><td>DSA</td><td></td><td>уязвим (Шор)</td><td>устаревший</td><td>3</td><td>3</td><td class="small">src/crypto/public_key/dsa.js; src/crypto/public_key/post_quantum/signature/ecc_dsa.js; src/crypto/public_key/post_quantum/signature/ml_dsa.js</td></tr><tr><td>ECDH</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>5</td><td>5</td><td class="small">src/crypto/public_key/elliptic/ecdh.js:249; src/crypto/public_key/elliptic/ecdh_x.js:69; src/crypto/public_key/elliptic/oid_curves.js:324</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td>уязвим (Шор)</td><td>допустимо</td><td>7</td><td>7</td><td class="small">src/config.ts:369; src/crypto/public_key/elliptic/noble_curves.js:10; src/crypto/public_key/elliptic/oid_curves.js:41</td></tr><tr><td>ECDSA</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>4</td><td>4</td><td class="small">src/crypto/public_key/elliptic/ecdsa.js; src/crypto/public_key/elliptic/oid_curves.js:311; src/crypto/public_key/post_quantum/kem/ecc_kem.js</td></tr><tr><td>ECDSA</td><td>P-256</td><td>уязвим (Шор)</td><td>допустимо</td><td>1</td><td>1</td><td class="small">src/crypto/public_key/elliptic/oid_curves.js:42</td></tr><tr><td>Ed25519</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>2</td><td>2</td><td class="small">src/crypto/public_key/elliptic/eddsa.js; src/crypto/public_key/elliptic/eddsa_legacy.js</td></tr><tr><td>ElGamal</td><td></td><td>уязвим (Шор)</td><td>устаревший</td><td>1</td><td>1</td><td class="small">src/crypto/public_key/elgamal.js</td></tr><tr><td>RSA</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>2</td><td>2</td><td class="small">src/crypto/pkcs1.js; src/crypto/public_key/rsa.js:162</td></tr><tr><td>X25519</td><td>X25519</td><td>уязвим (Шор)</td><td>допустимо</td><td>10</td><td>10</td><td class="small">src/crypto/crypto.js:67; src/crypto/public_key/elliptic/ecdh.js:92; src/crypto/public_key/elliptic/ecdh_x.js:16</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 b2ce41a779ab83da67c60c3d95217832c3b36f0255aef76330dcb58b2cfe65da</p>
+  <h3>C. Входные файлы</h3>
+  <table class="data"><tr><th>Файл</th><th>Размер</th><th>SHA-256</th><th>Маскирования</th></tr>
+<tr><td>.jsdocrc.cjs</td><td>649</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8c230a656dc05c32569eb7c00de11413b9f13bf3f17a919f2bd5bed7632866ec</td><td>0</td></tr><tr><td>README.md</td><td>30090</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">176ee00dcebb1a4e32568659ef992f2f8ccbb9c553224c18f424b25a296ae3c6</td><td>7</td></tr><tr><td>docs/index.html</td><td>39869</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ce6de6bfc583de901f2e9877affe7fc43a503548da25f6fbed1e781b60f0a190</td><td>7</td></tr><tr><td>docs/scripts/linenumber.js</td><td>671</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">823284680b49a0137de2d1474c93bf40c5a6da264dec349763f1001ab1f3c77d</td><td>0</td></tr><tr><td>docs/scripts/prettify/lang-css.js</td><td>861</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9b6ac483033b02572714eb4d37ee199185c41008eb2b3f46a00ab0ebce6a20c5</td><td>0</td></tr><tr><td>docs/scripts/prettify/prettify.js</td><td>13632</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e2e576e3bc607cd179ff511947010f645d3441a35313aec0dbd06c4437f83b77</td><td>0</td></tr><tr><td>eslint.config.js</td><td>6916</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bb1983b1ff488d5ddb39e09685ff81eaff321237d6e58006a6a4c1d1d15961bb</td><td>0</td></tr><tr><td>lightweight/package.json</td><td>118</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">65f93c27dd99d120a293ef70f0c32760b0095cd17fafc890e4fc6297fbace460</td><td>0</td></tr><tr><td>package-lock.json</td><td>482592</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">04d6fd791775a89735de451d26f979a6b4b8b3b62b93857a5745933e3a43f0a8</td><td>0</td></tr><tr><td>package.json</td><td>5106</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ad236c803bb9bdbc88e6797de35a8a3b29a8d1c6cfb2a003b2da413ce27df4c3</td><td>0</td></tr><tr><td>rollup.config.js</td><td>7506</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">215449d44802aec637abb5da4e22d558adbc9c96c717f95f8e0b6679c427e4d3</td><td>0</td></tr><tr><td>src/cleartext.js</td><td>9763</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f1f6a4912d3b60159ca9cc6403ccfb113ac296f7a432193e106432b3837c935f</td><td>0</td></tr><tr><td>src/config.ts</td><td>18214</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8b9ef728da3fffbd26b2a40ad002ae283638675d799febcf23c3d1521dc8da18</td><td>0</td></tr><tr><td>src/crypto/aes_kw.js</td><td>4007</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">802131a5d4bdcf5291f695c2ba274860a2a7160538bc4530c9110f190de8fca0</td><td>0</td></tr><tr><td>src/crypto/biginteger.ts</td><td>5524</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a72713070d76783ccfb3f863f5df69073941c7996b66b39c2589cc7144642a36</td><td>0</td></tr><tr><td>src/crypto/cipher/blowfish.js</td><td>18036</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fd05045fee2d948ff70a3909a819947bb2a63ef2e9bd9776d89f951a1766118c</td><td>0</td></tr><tr><td>src/crypto/cipher/cast5.js</td><td>35281</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9bffb7fe602dc713b10b39f3283da5554df083fc7ccb10ba526f6f2adc0f05e5</td><td>0</td></tr><tr><td>src/crypto/cipher/des.js</td><td>19423</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">26c896c9f7554148d1359744ea1ca98902dd1732bdee42a0f781f800161c7e56</td><td>0</td></tr><tr><td>src/crypto/cipher/index.js</td><td>2058</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7c91f1d6c91eaefd459d9d1c558403cdc0d5e2942507475abb83bce87213b2d7</td><td>0</td></tr><tr><td>src/crypto/cipher/legacy_ciphers.js</td><td>558</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">33b99f86d26646b2d4a40bcdcec87ff896b0c938b42c8ba1e656a72b120c51d7</td><td>0</td></tr><tr><td>src/crypto/cipher/twofish.js</td><td>9674</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">69132c33b96b583a8438542e4cb89ac84dcd98b474058c56ca0e4772a1bf7b1a</td><td>0</td></tr><tr><td>src/crypto/cipherMode/cfb.js</td><td>13365</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f2df89a3f6fe9245ab7f85281ef933def0984b3d133adfee05b5d7012c6ea3d4</td><td>0</td></tr><tr><td>src/crypto/cipherMode/eax.js</td><td>6033</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f8b26857331f1eb665e8eef9d7a2af5fcb4eb1d9b7c1aa8865acbc09a46eb12c</td><td>0</td></tr><tr><td>src/crypto/cipherMode/gcm.js</td><td>5058</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">13ddbb873c55acbe1942ed3b72e2ca21e83fe549f4d2230fa423082e2d514636</td><td>0</td></tr><tr><td>src/crypto/cipherMode/index.js</td><td>1011</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e5ccc8fc5b484e912d96cb070b70f5ed610db663e56a12208a87fc9a3c11388</td><td>0</td></tr><tr><td>src/crypto/cipherMode/ocb.js</td><td>9154</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a7345e4507a97df867f576713c507e5b157cc80f38e4b318faefbe1621b61b94</td><td>0</td></tr><tr><td>src/crypto/cmac.js</td><td>3594</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a501a3c39ebf2f29d30ae4dbd1a33b6976e6251ac687f890a6c15ff8b04b1223</td><td>0</td></tr><tr><td>src/crypto/crypto.js</td><td>24748</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">703c5ba10d7a165bbe449b6b3ca778dd0e7711788d21d01576612ab5592609bd</td><td>0</td></tr><tr><td>src/crypto/hash/index.js</td><td>4117</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8d6b12940eb7cb6f7fbac8015b85edbef49ae21ec3f6ad0357777da6a72d8f06</td><td>0</td></tr><tr><td>src/crypto/hash/noble_hashes.js</td><td>551</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7eae04d848e75d500e4dc1ce475e13478b39cdc10cc9a48f354e39e1ee48c24f</td><td>0</td></tr><tr><td>src/crypto/hkdf.js</td><td>695</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4733faf0e6cc10941b02e1fe3215ad0a74bad6ea2a3d0110a92a689a54093f60</td><td>0</td></tr><tr><td>src/crypto/index.js</td><td>620</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b2579dba894325e11e36773a746861b40f8b052fa7e763463f0e7b83a7001f7b</td><td>0</td></tr><tr><td>src/crypto/pkcs1.js</td><td>6703</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">04255de021496e704813ce5ed566afb2fc7ac7f28a42cbbf9a3b81b08bd9eadf</td><td>0</td></tr><tr><td>src/crypto/pkcs5.js</td><td>1880</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ab120664b4e4ba1e2c3eec28bc47a0c3f434f7e60fec79982e1705e524240a68</td><td>0</td></tr><tr><td>src/crypto/public_key/dsa.js</td><td>6095</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b0b8c388f086e4c2de58a994f99fb3633668b541410929156c3ee094d566af01</td><td>0</td></tr><tr><td>src/crypto/public_key/elgamal.js</td><td>4800</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">477414bd1cfaaf81351629726deecee091c4762306d8be0d965583a396fa9381</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/ecdh.js</td><td>13028</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a47c4f75e3480010db08a67c8f6c24843f725d43d0f54b5d03e5b488112cdc86</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/ecdh_x.js</td><td>12266</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">75d82a69c31dde8ebcfe2718bbb1536d8cde0503581a40fa910a6fe5d972a801</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/ecdsa.js</td><td>9927</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">39b45979cc019ea9532ebd0a268687144f25600790efd856cf421d5566973002</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/eddsa.js</td><td>9111</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8d2826d98c570bebb8a582a924592e9bfb8ef3d0b20471ea7ecd49701b8c6c99</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/eddsa_legacy.js</td><td>3858</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cc3a8b0debac9a2b1a7d4d581bad35c3847a1919bc687161bb55e76f5417c6f2</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/index.js</td><td>1537</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">15265d4196c23c44d6b88cd4c213978b64f0c2565f822dcd8ecc9e42eed23db1</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/noble_curves.js</td><td>682</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2a1bfa8fe6029dbb5717478a4b87eed625a1c0a133f46172f67e5b0be794012c</td><td>0</td></tr><tr><td>src/crypto/public_key/elliptic/oid_curves.js</td><td>13764</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a509143ad8b8e7b725cf5be5a976a1472ab7fc083ba1aae7f300deb0f3c99d7a</td><td>0</td></tr><tr><td>src/crypto/public_key/index.js</td><td>320</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8c13b8b05bc07b38b219d5058e4b963c1b194caf8b10ec774afad6c8acd50b44</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/index.js</td><td>146</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d6095c8c994762e3b63763737f9de2041a2f96e8ce3a14228e19cf5e969f49f4</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/kem/ecc_kem.js</td><td>1555</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b71fb6b416bd690e166ffe0d1a2c174db710c090cf91093232a83ad73a80e04e</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/kem/index.js</td><td>168</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f0e8179bb4b1ce0407f13ebb16769d03d2b25cbef8556a2f205b12765d0bcd60</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/kem/kem.js</td><td>2469</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">68afe7ee8655c755f4bad6a5e03036f1515bea6d033d95c7f152b73b828b0e5b</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/kem/ml_kem.js</td><td>2484</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d67432c208c990bcd0f729282e63e13ab21f8a986129383b94096237b7c28ad5</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/noble_post_quantum.ts</td><td>418</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">246b031915f9f89fa8ee90543ee711a098bc555f78fb503c58ff3d5b65f2f08f</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/signature/ecc_dsa.js</td><td>1580</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d33e5e033d65c6070a5e719d890da65c4678fa795c0c570eb73907476cf353eb</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/signature/index.js</td><td>192</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1a96adc4ca627c7d1c3c0a27097813654b6032b71d116622eb485b42dd8a6f67</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/signature/ml_dsa.js</td><td>2375</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b6e08589e5207dbc47ada3cd13d58405b223166304aaff1238c2bb45a23a16ce</td><td>0</td></tr><tr><td>src/crypto/public_key/post_quantum/signature/signature.js</td><td>2525</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">33918216a395320c0daa0d0f45c7969ad2c00181c76f860050a98739c30b0e23</td><td>0</td></tr><tr><td>src/crypto/public_key/prime.ts</td><td>8520</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8acea275e5d6bd5f32f40cf6cb4e617dbe8c301a8428943fcb39bc40eda406de</td><td>0</td></tr><tr><td>src/crypto/public_key/rsa.js</td><td>14729</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9558590f47e04e083ac6c292710d903d8acc039b7650a359cbbea25579775133</td><td>0</td></tr><tr><td>src/crypto/random.js</td><td>2445</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">97df8098201352705b53d453b7b0da3d6c0ddeb5a283421777cd573bc8c346dd</td><td>0</td></tr><tr><td>src/crypto/signature.js</td><td>11492</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">44a9d1f67306aada76336d5ba29abac1b2f8b2fe4951367e05ec282abc795024</td><td>0</td></tr><tr><td>src/encoding/armor.js</td><td>14928</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">389cffa77b54f3e8e84d5779776fd7da62ee7984424988ef9f748802499fe68c</td><td>1</td></tr><tr><td>src/encoding/base64.js</td><td>3990</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">44684bd982f778463348271de62ef7f2b4eed8bd2b8c4d6b877a45dc2f9ad919</td><td>0</td></tr><tr><td>src/enums.d.ts</td><td>5756</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0f55028f6afa996e52c82dfb543b37dc2de7d3f35ce15e976aca1ba099542313</td><td>0</td></tr><tr><td>src/enums.js</td><td>15129</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ef596e9696993aaec65875ccd0374f47c6c1177d2d072a0d79c257ef3b5cdd8e</td><td>0</td></tr><tr><td>src/index.d.ts</td><td>35799</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4bdc54675e0aa0916483fd28c05bfc13e02e4c47580a01bff057a26691491bee</td><td>0</td></tr><tr><td>src/index.js</td><td>859</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9e33556836285817a5ec857fd92e419a4409b6dbf655c5186217d17da84fd025</td><td>0</td></tr><tr><td>src/key/factory.js</td><td>20344</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">030141c22d59ba2c519c91a68132cb3cc517c33b5a27251d2f8ccc17db34b181</td><td>0</td></tr><tr><td>src/key/helper.js</td><td>25115</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ad6b24fa9a009ce5e8dc3435ebc92514a60b72f151a08d6d3e262be0e02f1c61</td><td>0</td></tr><tr><td>src/key/index.js</td><td>635</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">128d97a529dda65a49cdb51ec1cebea1a8f54f683f9b7d6b74df11076d80e61b</td><td>0</td></tr><tr><td>src/key/key.js</td><td>32376</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b91ea74bc92d3153948e7ac0db3188a8c44fa6124700e1f489d6d5714aa67540</td><td>0</td></tr><tr><td>src/key/private_key.js</td><td>11329</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b3b3e766bc88bc9cf49e06fe41f83116ab05e115d25e2e9c9bbe90e20dc8dfdd</td><td>0</td></tr><tr><td>src/key/public_key.js</td><td>2297</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5a47c4ccfaaec14a423a8c7fd77448949eb4bb7c647d7cafdd7265f1a8b508d6</td><td>0</td></tr><tr><td>src/key/subkey.js</td><td>8378</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6be788c445b9decaa5163d473c1e9733c46a15a4ec3e435b4568ba96a1661e8f</td><td>0</td></tr><tr><td>src/key/user.js</td><td>10961</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f6cae0a64a5238faf128f08d6d7cab96dd1da1b3362a934fc8ea61b5eebdbeb4</td><td>0</td></tr><tr><td>src/message.js</td><td>45894</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">52f89b40657bef5227e9f0016e8f5ac31ee1fb0913ac31ff8b733e3d81004507</td><td>0</td></tr><tr><td>src/openpgp.js</td><td>41155</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8eeb09ac4b65bbbe129e6d178eafd707aa3520c735749b818a8dc58235677faa</td><td>0</td></tr><tr><td>src/packet/aead_encrypted_data.js</td><td>5150</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">02009ca2a904e326440365d30ade6dd121ba9237e9d352510532bc8b80643840</td><td>0</td></tr><tr><td>src/packet/all_packets.js</td><td>1418</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">377fc3e05dc1bfcd3298aaf6b5cc57d0a8ff85b73495f0e7dad362ab23e36ea1</td><td>0</td></tr><tr><td>src/packet/compressed_data.js</td><td>10985</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fc034cb055a92bf21a5f4fcfe1be68b28a605c8a67cb633ab1b308095cd98e42</td><td>0</td></tr><tr><td>src/packet/grammar.ts</td><td>6135</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b77ab2fd8b223b18d5c98760b620c5564a3de7afeff76d1cdecd94c0f31acaf5</td><td>0</td></tr><tr><td>src/packet/index.js</td><td>230</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5c9892f01d0e6be45cd6794e5cc6a3b13d771d02d1fed5174349c112b58dbb2e</td><td>0</td></tr><tr><td>src/packet/literal_data.js</td><td>5531</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0fbd61955639f7b79efaf3eaf3f763bba48b8ffdf6e9efd47f7fb15649c28b72</td><td>0</td></tr><tr><td>src/packet/marker.js</td><td>2193</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cdfe2f58ffe727925be3be132c985554f2aa5f978c7143c548b1693134fa7a5d</td><td>0</td></tr><tr><td>src/packet/one_pass_signature.js</td><td>8362</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b4688e15a30c78cd1efb0f30c45a96fbe1c5488ce6800dec1edb799fb47c3935</td><td>0</td></tr><tr><td>src/packet/packet.js</td><td>10161</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1860fee73f00729284191ce06277ed37b71f66c7fa8f1d74a1d86059ec42593f</td><td>0</td></tr><tr><td>src/packet/packetlist.js</td><td>13132</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">25440a0a4e9ca74f6b4be0a46165f5ad859ee0b54d4d74645b1eeb464f3459a4</td><td>0</td></tr><tr><td>src/packet/padding.js</td><td>2045</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">46db53004f16807ea4f4a30cdd8b120587ddac5c8d4986a44153ad4ac0b0e411</td><td>0</td></tr><tr><td>src/packet/public_key.js</td><td>9961</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2ee99e44145016ea51b84ff354fa8bb0b1beca0b0eb85f7f6ded1e17bf5aeb33</td><td>0</td></tr><tr><td>src/packet/public_key_encrypted_session_key.js</td><td>12293</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0962a8a0baca0a841dde5efe6a19fcc76b30f0f2eff7f5d03bc60e8c624aa627</td><td>0</td></tr><tr><td>src/packet/public_subkey.js</td><td>2278</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">affdecf700fd1c69bfcf32be74a9414d57ca31417e1771831ab910652d682528</td><td>0</td></tr><tr><td>src/packet/secret_key.js</td><td>22519</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6a812e7fe488b380230aca527e02d773b3d41495fc20c29e506b79fa540dc395</td><td>0</td></tr><tr><td>src/packet/secret_subkey.js</td><td>1516</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">23e8a3f41c0ba5cf0eaf4a0c0dea077cec6d0f89222c8024ffd285d09992ccd6</td><td>0</td></tr><tr><td>src/packet/signature.js</td><td>34790</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cab4afbdb7668dad2d07c43977119f1385ec082eec522b69489f65df01ab1edc</td><td>0</td></tr><tr><td>src/packet/sym_encrypted_integrity_protected_data.js</td><td>16234</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b70ceee3b93eaef8665111bae2e224a5822532361e51b30e2339f836e7a9d2d8</td><td>0</td></tr><tr><td>src/packet/sym_encrypted_session_key.js</td><td>8910</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">201c7f83ba77e5debd727e1622c867e4a0af9867767a6d5d36bcd8a1f398d790</td><td>0</td></tr><tr><td>src/packet/symmetrically_encrypted_data.js</td><td>5086</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">42811aa930e6cee3537efcbc771db78b6b170925cf21cd3ae30f7df7ba27d2ad</td><td>0</td></tr><tr><td>src/packet/trust.js</td><td>1168</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">036f6038f0878324d3080bd44cf1764d62335ce34577d7d8562c531d044631ec</td><td>0</td></tr><tr><td>src/packet/user_attribute.js</td><td>3203</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">650c793c9afe48a609cf6fc460315a677989fcb604005143003b3a47deb68397</td><td>0</td></tr><tr><td>src/packet/userid.js</td><td>4844</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c2252ac0b90f9ca7b2f8ab818f686b7e07c8cf84d1f031bb81924a296a00ef55</td><td>0</td></tr><tr><td>src/signature.js</td><td>4025</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e9708dc7d10b26d0db876b84f8ccea3cdeaca384bdc509ab86188053a6a28a22</td><td>0</td></tr><tr><td>src/type/ecdh_symkey.js</td><td>1811</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fcaaacde27d43882671a101586c69a019efe0a455596160ffe2d3364577a40ef</td><td>0</td></tr><tr><td>src/type/ecdh_x_symkey.js</td><td>1387</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">21c465dbcd71a7ee0d5c1baee645d4df1224d3801d6f228e0f80b9f978d4c4e2</td><td>0</td></tr><tr><td>src/type/kdf_params.js</td><td>2245</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fd03d0651bfe99aa97682fe3ed25433ceed502fa4a17bb2e46a0170653e6e970</td><td>0</td></tr><tr><td>src/type/keyid.js</td><td>2869</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">991daaa2d2f574b31c4f7ddd6e48927a803db8c851562e55143da9e91af7278c</td><td>0</td></tr><tr><td>src/type/oid.js</td><td>3859</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">abeff52445230bffea6cc45ae2b3c1ac7bd2a99391391ad9f8fa607bcc93b8ff</td><td>0</td></tr><tr><td>src/type/s2k/argon2.js</td><td>4963</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">40ec86165ab3455069ffc18bc0b0f9d7022c09d6aeb80e06deaf3f4f0f4c19ba</td><td>0</td></tr><tr><td>src/type/s2k/generic.js</td><td>6189</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">db69b9d4cd0adb20bb912c34ff5a748eb1863de588425997bc4178c91aa24ed1</td><td>0</td></tr><tr><td>src/type/s2k/index.js</td><td>1433</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0bd9c89caee022bd4194e57d6b2e04bb2b32ebe4816645431aa4ae8cde4fb43e</td><td>0</td></tr><tr><td>src/util.js</td><td>20979</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bf139af9304ecf67f18e706c7e3f198752389cba4f2f28c08c7a3b035ee13f36</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>

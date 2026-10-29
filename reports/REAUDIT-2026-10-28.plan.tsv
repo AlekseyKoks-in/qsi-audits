@@ -1,0 +1,34 @@
+aave-v3-origin	aave-dao/aave-v3-origin	8305565ae342f1773c42cd2e4593f175fe5968a0	financial	ru	Aave DAO	-	-
+agave	anza-xyz/agave	7700cb3128c1f19820de67b81aa45d18f73d2ac0	small_tech	en	Anza (Solana)	-	-
+bitbox02-firmware	BitBoxSwiss/bitbox02-firmware	ae548ef4e40f548a17542ba457f138db4fa0069d	crypto_exchange	ru	BitBox (Shift Crypto)	src messages	-
+bitgo-mpc	BitGo/BitGoJS	3c892fd6a388da22a046a8470f0e1f35999e4ed4	crypto_exchange	ru	BitGo	package.json modules/sdk-lib-mpc/src modules/sdk-lib-mpc/package.json modules/sdk-core/src modules/sdk-core/package.json	-
+bitwarden-sdk	bitwarden/sdk-internal	25b6c8c3860af5165ac1428c4c825ede7caa55de	security_software	ru	Bitwarden	crates Cargo.toml Cargo.lock package.json package-lock.json	-
+cairo	starkware-libs/cairo	68a61f6c6251900e0080e09c812ffaeb37fd358e	web3	en	StarkWare	-	-
+coinbase-cb-mpc	coinbase/cb-mpc	0b716706f998633912ee2be9b9bf8909aed66088	crypto_exchange	ru	Coinbase	src include include-internal CMakeLists.txt	-
+ethers-js	ethers-io/ethers.js	3ea4c226dd0b3a074abf90748de9d11192027f4f	crypto_exchange	ru	ethers.js project	-	ethers-js.yml
+fireblocks-mpc-lib	fireblocks/mpc-lib	00ae08b7f1bdbb887aedece384aca2f942aae432	crypto_exchange	ru	Fireblocks	src include CMakeLists.txt	-
+foundry	foundry-rs/foundry	7f0a409a5c2016f16cb2e8618a750cc04e13977c	security_software	en	Foundry (Paradigm)	-	-
+librustzcash	zcash/librustzcash	8672a4b2d60f432664780e6a4e85f49a36805a2a	crypto_exchange	ru	Electric Coin Company (Zcash)	-	-
+librustzcash-en	zcash/librustzcash	8672a4b2d60f432664780e6a4e85f49a36805a2a	crypto_exchange	en	Electric Coin Company (Zcash)	-	-
+lido-core	lidofinance/core	2bd532298d85cdf520169fdc0c5fb0cc9baf03c3	financial	ru	Lido	-	-
+lightwalletd	zcash/lightwalletd	4abfe9cd7b9b13f6093df59911639d1d9195dc09	small_tech	en	Electric Coin Company (Zcash)	-	lightwalletd.yaml
+matrix-js-sdk	matrix-org/matrix-js-sdk	61b08bd037a3b987f267e2e8ac47002c75d59d85	security_software	ru	Matrix.org Foundation	-	-
+metamask-extension	MetaMask/metamask-extension	d2db7ee9a19b0322105618521370ab690911209f	crypto_exchange	ru	MetaMask (Consensys)	-	-
+nitro	OffchainLabs/nitro	ccc5c828d9ea22f161efc784bac4d4a6559b7e59	web3	ru	Offchain Labs (Arbitrum)	-	-
+noir	noir-lang/noir	5c98fecd3fe6c51bd9e3a605cafe412d25ae8915	web3	ru	Aztec / Noir	-	-
+openpgpjs	openpgpjs/openpgpjs	8bc35df4887933a3b2661e3741b33ba5f347b935	security_software	ru	OpenPGP.js project	-	-
+rabby	RabbyHub/Rabby	663c0e80e9f6139cbb87932ddea909e1e4a382f1	crypto_exchange	ru	Rabby Wallet (DeBank)	-	-
+rage	str4d/rage	b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f	security_software	ru	str4d (rage / age encryption)	-	-
+reown-appkit	reown-com/appkit	8f9f39f1dfe0a21bb619dd9a33b6d7500523298b	web3	ru	Reown (ex-WalletConnect)	-	-
+rustcrypto-rsa	RustCrypto/RSA	f96c4b5d629a0aeb6f680294debfd38ec8a81f68	security_software	ru	RustCrypto project	-	-
+rustls	rustls/rustls	84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77	security_software	ru	rustls project	-	-
+safe-smart-account	safe-global/safe-smart-account	247b8ce3bdbf204a120e77f5b369d137424ddc58	financial	ru	Safe	-	-
+scroll	scroll-tech/scroll	3046bbd18a6a05bf29dd3ffef7b5676203201050	web3	en	Scroll	-	-
+signal-desktop	signalapp/Signal-Desktop	17502b9d1a9e34af689f31508c4ac4ccee5b5cb7	security_software	ru	Signal Messenger	-	-
+sigstore-js	sigstore/sigstore-js	769a53d8713248a8bf49edfc2a5d1955b0dcc24d	security_software	ru	Sigstore project	-	-
+trezor-firmware	trezor/trezor-firmware	72489948b3c44a37598de9da658be28e4fabb4ae	crypto_exchange	ru	SatoshiLabs (Trezor)	crypto core/embed/sec core/embed/projects/bootloader common/protob	-
+trustwallet-wallet-core	trustwallet/wallet-core	adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9	crypto_exchange	ru	Trust Wallet	src include rust trezor-crypto	trustwallet-wallet-core.yml
+zcash-android-wallet-sdk	zcash/zcash-android-wallet-sdk	a95780ac00e0198c111c6e701126e6688f64a12a	small_tech	en	Electric Coin Company (Zcash)	-	zcash-android-wallet-sdk.yaml
+zcash-swift-wallet-sdk	zcash/zcash-swift-wallet-sdk	4895ee058da99971057cceb80f36b8909656a8a9	small_tech	en	Electric Coin Company (Zcash)	-	-
+zebra	ZcashFoundation/zebra	147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522	small_tech	en	Zcash Foundation	-	zebra.yaml
+zodl-android	zodl-inc/zodl-android	229dd3bff7490ea90ca4d7d79f3c539d71976f66	small_tech	en	Zodl (ex-Zashi, ECC)	-	-

@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security &amp; Post-Quantum Readiness Audit Report — seedsigner @ ada81cde050e</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "seedsigner @ ada81cde050e · Security \26  Post-Quantum Readiness Audit Report"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · effe8cd836a4"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "This report presents automated and documented analysis results for the stated scope. It is not a legal opinion…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Security &amp; Post-Quantum Readiness Audit Report</h1>
+    <div class="project">seedsigner @ ada81cde050e · SeedSigner — public repository (passive review)</div>
+  </div>
+  <table>
+    <tr><td>Organization</td><td>QSI</td></tr>
+    <tr><td>Report date</td><td>2026-10-29 05:36 UTC</td></tr>
+    <tr><td>Report version</td><td>1</td></tr>
+    <tr><td>Audit run</td><td>54ad7f7a-4171-4408-aacb-3479d20b9be8 · Document audit · 2026-10-29 05:36 UTC</td></tr>
+    <tr><td>Analyzer engine</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Risk profile</td><td>Crypto exchange, custodian or wallet</td></tr>
+    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">effe8cd836a4aeb1f5d672cd26315f8ade845f2d3a8f3b60aa0ba39a6416ff83</td></tr>
+<tr><td>Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#executive_summary">Executive summary</a></li>
+    <li><a href="#scope">Scope and boundaries</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#assets">Assets examined and not examined</a></li>
+    <li><a href="#architecture">Architecture overview</a></li>
+    <li><a href="#posture">Overall security posture</a></li>
+    <li><a href="#summary_by_severity">Findings by severity</a></li>
+    <li><a href="#details">Detailed findings</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+    <li><a href="#pq">Post-quantum assessment</a></li>
+    <li><a href="#limitations">Limitations and assumptions</a></li>
+    <li><a href="#plan">Remediation plan</a></li>
+    <li><a href="#priorities">Priorities for 30, 60 and 90 days</a></li>
+    <li><a href="#retests">Verification after remediation</a></li>
+    <li><a href="#tools">Tools used</a></li>
+    <li><a href="#references">Sources and normative documents</a></li>
+    <li><a href="#appendices">Appendices</a></li>
+  </ol>
+  <p class="note">This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Executive summary</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">1</div><div class="l">Findings in total</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Critical</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">High</span></div></div>
+    <div class="kpi"><div class="v">1</div><div class="l"><span class="sev sev-medium">Medium</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-low">Low</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Classification</th><th>Count</th></tr>
+<tr><td>Confirmed technical vulnerability</td><td>0</td></tr><tr><td>Known vulnerable component</td><td>0</td></tr><tr><td>Confirmed configuration error</td><td>0</td></tr><tr><td>Potential cryptographic risk</td><td>0</td></tr><tr><td>Long-term post-quantum risk</td><td>1</td></tr><tr><td>Improvement recommendation</td><td>0</td></tr><tr><td>Insufficient data</td><td>0</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Severity</th><th>Detailed findings</th><th>Priority score</th></tr>
+<tr><td>QSI-2026-06413</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) <span class="tag">confirmed by the analyst</span></td><td>41.8</td></tr>  </table>
+  <p class="note">Mosca&#39;s inequality (x + y &gt; z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
+<p class="note">Analyst review: 1 confirmed, 0 not applicable, 0 dismissed as false positives.</p><p class="note"><strong>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.</strong> Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Scope and boundaries</h2>
+  <p><strong>Mode:</strong> Document audit</p>
+<p><strong>Repository:</strong> <a href="https://github.com/SeedSigner/seedsigner">https://github.com/SeedSigner/seedsigner</a> @ <span class="small">ada81cde050e46c19cb6e3fa73872b73955a138c</span> — evidence links open the lines at this commit.</p>  <h3>Supplied inputs</h3>
+  <p>74 files, 986658 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Methodology</h2>
+  <p>The audit was performed by the QSI engine 1.2.0. Each analyzer emits facts (rule, parameters, evidence); finding texts are generated from the rule catalog. Methodology sources are listed under "Sources and normative documents".</p>
+  <p>Prioritization uses an explainable weighted model (severity, exploitability, exposure, confidentiality/integrity/availability impact weighted by the "Crypto exchange, custodian or wallet" profile, asset criticality, urgency, ease of remediation) with a confidence multiplier. CVSS v3.1 is applied only to technical vulnerabilities with a defined vector. Long-term quantum risks use Mosca's inequality; their severity is capped at Medium and they are never presented as exploitable vulnerabilities.</p>
+  <p>Finding classes: confirmed technical vulnerability; known vulnerable component (a dependency version named in an advisory; whether the affected code is reachable is assessed separately, and a component confirmed by review becomes a vulnerability); confirmed configuration error; potential cryptographic risk; long-term post-quantum risk; improvement recommendation; insufficient data. Heuristic findings are marked preliminary; analyst decisions are shown next to the findings.</p>
+  <h3>Coverage of checks</h3>
+  <table class="data"><tr><th>Area</th><th>Status</th><th>Count</th><th>Examples</th></tr>
+<tr><td>dependencies</td><td>checked</td><td>4</td><td class="small">pyproject.toml: 0 dependencies parsed (0 pinned); requirements-raspi.txt: 4 dependencies parsed (4 pinned); requirements.txt: 6 dependencies parsed (1 pinned)</td></tr><tr><td>source_code</td><td>checked</td><td>70</td><td class="small">setup.py: 8 lines scanned with 16 rule patterns and 123 registry patterns; src/main.py: 53 lines scanned with 16 rule patterns and 123 registry patterns; src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns</td></tr><tr><td>osv_advisories</td><td>checked</td><td>1</td><td class="small">5 pinned packages queried at OSV.dev; 0 affected</td></tr>  </table>
+  <p class="note">Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Assets examined and not examined</h2>
+  <p><strong>Supplied inputs:</strong> 75 (input files: C)</p>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Architecture overview</h2>
+  <p>Static review of the source tree seedsigner at ada81cde050e46c19cb6e3fa73872b73955a138c. 74 files analysed; of 166 files, 57 are test, fuzzing, benchmark or example code and were left out, 34 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. 3 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Overall security posture</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">100</div><div class="l">Indicative posture index (0–100)</div></div>
+    <div class="kpi"><div class="v">14.3%</div><div class="l">Quantum-vulnerable share of inventory</div></div>
+    <div class="kpi"><div class="v">7</div><div class="l">Cryptographic inventory</div></div>
+  </div>
+  <p class="note">Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Findings by severity</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Critical</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">High</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Medium</span></td><td style="width:8%">1</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Low</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Info</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Detailed findings</th><th>Classification</th><th>Severity</th><th>Confidence</th></tr>
+<tr><td>QSI-2026-06413</td><td>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Detailed findings</h2>
+  <article class="finding" id="QSI-2026-06413">
+    <header><span class="fid">QSI-2026-06413 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+    <h3>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))</h3>
+    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span></p>
+<p class="triage"><strong>Analyst review (QSI review, 2026-10-29): confirmed by the analyst.</strong> Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit&#39;s, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of &#34;1 Shor-breakable row&#34; is &#34;this repository delegates its signing&#34;, not &#34;this device is nearly post-quantum&#34;. Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not &#34;when will SeedSigner adopt a post-quantum signature&#34; but &#34;when will embit&#34;, and after that, &#34;how fast can a hash-locked pin be moved&#34; — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept.</p>    <p>3 reference(s) to ECDSA across 1 file(s), e.g. src/seedsigner/helpers/embit_utils.py:10. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.</p>
+    <dl class="meta">
+      <dt>Affected asset</dt><dd>source-code:ECDSA:transaction_signing</dd>
+      <dt>Data source</dt><dd>src/seedsigner/helpers/embit_utils.py</dd>
+      <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
+      <dt>Analyzer</dt><dd>source_code 1.2.0 · 2026-10-29 05:36 UTC</dd>
+      <dt>Priority score</dt><dd>41.8 / 100 (Crypto exchange, custodian or wallet)</dd>
+      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → migration would finish too late under this scenario</dd>    </dl>
+    <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
+    <h4>Reproduction steps</h4><pre>Open src/seedsigner/helpers/embit_utils.py:10 and inspect the quoted lines; the evidence lists further files.</pre>
+    <h4 id="ev-QSI-2026-06413">Evidence</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L10">src/seedsigner/helpers/embit_utils.py</a> · line 10 · SHA-256 1e5604518dfe3ecc… · File c087d19323033176…</div>
+      <pre>    9 | from embit.networks import NETWORKS
+   10 | from embit.util import secp256k1
+   11 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L204">src/seedsigner/helpers/embit_utils.py</a> · line 204 · SHA-256 1060384364a8c023… · File c087d19323033176…</div>
+      <pre>  203 |     prv = root.derive(derivation).key
+  204 |     sig = secp256k1.ecdsa_sign_recoverable(msghash, prv._secret)
+  205 |     flag = sig[64]</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L209">src/seedsigner/helpers/embit_utils.py</a> · line 209 · SHA-256 1e4a07630105e8ba… · File c087d19323033176…</div>
+      <pre>  208 |     flag = bytes([27 + flag + c])
+  209 |     ser = flag + secp256k1.ecdsa_signature_serialize_compact(sig._sig)
+  210 |     return b2a_base64(ser).strip().decode()</pre>
+    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.</p>
+    <h4>Recommendation</h4><p>Follow each chain&#39;s post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.</p>
+    <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Evidence</h2>
+  <table class="data"><tr><th>ID</th><th>Type</th><th>Data source</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-06413">QSI-2026-06413</a></td><td>file_excerpt</td><td><a href="https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L10">src/seedsigner/helpers/embit_utils.py</a> (line 10)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1e5604518dfe3ecc40df631b9df1ab8a9e5e838974ac1c814502658edc7d3fd3</td></tr><tr><td><a href="#ev-QSI-2026-06413">QSI-2026-06413</a></td><td>file_excerpt</td><td><a href="https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L204">src/seedsigner/helpers/embit_utils.py</a> (line 204)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1060384364a8c023d525064551aeed7ece6fd577f80394a1a55de0cce5980c19</td></tr><tr><td><a href="#ev-QSI-2026-06413">QSI-2026-06413</a></td><td>file_excerpt</td><td><a href="https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/helpers/embit_utils.py#L209">src/seedsigner/helpers/embit_utils.py</a> (line 209)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1e4a07630105e8ba280ad6a4b597896533871c3bfe4f6dc7bdfcc27b6efb125e</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Post-quantum assessment</h2>
+  <table class="data">
+    <tr><th></th><th>Key establishment (x = how long data must stay confidential; harvest now, decrypt later)</th><th>Signatures (x = how long signatures/keys must stay trusted)</th></tr>
+    <tr><th>Data/key lifetime x</th><td>10</td><td>10</td></tr>
+    <tr><th>Migration time y</th><td>5</td><td>5</td></tr>
+    <tr><th>Assumed years to CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → migration would finish too late under this scenario</td><td>7 → migration would finish too late under this scenario</td></tr>
+  </table>
+<p class="note">Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client&#39;s figures; with the client&#39;s actual lifetimes the verdict can change.</p>  <h3>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography</h3>
+  <p><strong>Next step:</strong> Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p>
+  <p class="note">Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests.</p>
+  <h3>What the quantum-vulnerable algorithms do</h3>
+  <table class="data"><tr><th>Role</th><th>Algorithms (files)</th><th>ID</th><th>First step</th></tr>
+<tr><td><strong>transaction and message signing</strong></td><td>ECDSA (1)</td><td class="small"><a href="#QSI-2026-06413">QSI-2026-06413</a></td><td class="small">Follow each chain&#39;s post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them</td></tr>  </table>
+  <p class="note">Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today.</p>
+  <p class="note">z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
+  <table class="data"><tr><th>Quantum status</th><th>Count</th></tr>
+<tr><td>reduced margin (Grover), approved</td><td>2</td></tr><tr><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>4</td></tr><tr><td>vulnerable (Shor)</td><td>1</td></tr>  </table>
+  <p><strong>Detailed findings:</strong> QSI-2026-06413</p>
+  <h3>PQC readiness questionnaire</h3>
+<p class="muted">No readiness questionnaire was completed for this project.</p>  <h3>Quantum algorithms relevant to this inventory</h3>
+  <table class="data"><tr><th>Quantum algorithm</th><th>Effect</th><th>Inventoried algorithms (rows)</th><th>What it means for this audit</th></tr>
+<tr><td>Shor&#39;s algorithm — elliptic-curve discrete logarithms<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>breaks</td>
+    <td>ECDSA (1)</td><td class="small">Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime.</td></tr><tr><td>Grover&#39;s algorithm — key search and preimages<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
+    <td>PBKDF2 (1), SHA-2 (5)</td><td class="small">Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.</td></tr><tr><td>Brassard–Høyer–Tapp — collision search<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
+    <td>SHA-2 (5)</td><td class="small">256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.</td></tr>  </table>
+  <p class="note">Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Limitations and assumptions</h2>
+  <ul>
+    <li>This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</li>
+    <li>z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>Remediation plan</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-06413 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <h3>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
+      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
+      <dt>Complexity</dt><dd>medium</dd>
+<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
+      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
+      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-06413 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <h3>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <dl class="meta">
+      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
+      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
+      <dt>Complexity</dt><dd>high</dd>
+<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
+      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
+      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Priorities for 30, 60 and 90 days</h2>
+  <h3>30 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td colspan="4" class="muted">None</td></tr>  </table>
+  <h3>60 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td colspan="4" class="muted">None</td></tr>  </table>
+  <h3>90 days</h3>
+  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
+<tr><td>P3</td><td>QSI-2026-06413</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-06413</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Verification after remediation</h2>
+  <table class="data"><tr><th>ID</th><th>Retest procedure</th></tr>
+<tr><td>QSI-2026-06413</td><td>Re-run the inventory after refactoring.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Tools used</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Sources and normative documents</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <a href="https://eprint.iacr.org/2017/847">https://eprint.iacr.org/2017/847</a> <span class="muted">(peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)</span></li><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <a href="https://cr.yp.to/hash/collisioncost-20090823.pdf">https://cr.yp.to/hash/collisioncost-20090823.pdf</a> <span class="muted">(paper dated 2009-08-23)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN &#39;98; arXiv:quant-ph/9705002) — Springer / arXiv. <a href="https://arxiv.org/abs/quant-ph/9705002">https://arxiv.org/abs/quant-ph/9705002</a> <span class="muted">(peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Appendices</h2>
+  <h3>A. Cryptographic inventory</h3>
+  <table class="data"><tr><th>Algorithm</th><th>Parameter</th><th>Location</th><th>Quantum status</th><th>Classical status</th></tr>
+<tr><td>PBKDF2</td><td></td><td class="small">src/seedsigner/models/seed.py:186</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-512</td><td class="small">src/seedsigner/models/seed.py:181</td><td>reduced margin (Grover), approved</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">src/seedsigner/gui/screens/tools_screens.py:112</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">src/seedsigner/helpers/mnemonic_generation.py:74</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">src/seedsigner/helpers/ur2/xoshiro256.py:66</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">src/seedsigner/views/tools_views.py:183</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td class="small">src/seedsigner/helpers/embit_utils.py:10</td><td>vulnerable (Shor)</td><td>acceptable</td></tr>  </table>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 effe8cd836a4aeb1f5d672cd26315f8ade845f2d3a8f3b60aa0ba39a6416ff83</p>
+  <h3>C. Input files</h3>
+  <table class="data"><tr><th>File</th><th>Size</th><th>SHA-256</th><th>Redactions</th></tr>
+<tr><td>pyproject.toml</td><td>2006</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">806812aaa643b69646850af44736db858192095ae1da0dd6432fa9a52a2a9331</td><td>0</td></tr><tr><td>requirements-raspi.txt</td><td>98</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">97a87553c8c5e02b39450fd57707fef2d68d1564c89402d3d25be468eb3c8481</td><td>0</td></tr><tr><td>requirements.txt</td><td>7698</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f43fdf89d5cfe76e4f1d01d27df6c5030d6aa1767217d9d8c855e4a5fe34b45a</td><td>0</td></tr><tr><td>setup.py</td><td>181</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d79d8ecf1aa4f4e496d725ea43fa2082d91016d760ad1581aae0ca8e5be61c4b</td><td>0</td></tr><tr><td>src/main.py</td><td>1540</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0fec0abc13bf4f8d754e78ee16649b51028a85c3286f2abcb860fcc0b723bf27</td><td>0</td></tr><tr><td>src/seedsigner/__init__.py</td><td>0</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>0</td></tr><tr><td>src/seedsigner/controller.py</td><td>18529</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2b536116eb906cb6b30ef1ee0aeb85ff3b6e5dd4cb49f30ce9cf55ede4cbb97d</td><td>0</td></tr><tr><td>src/seedsigner/gui/__init__.py</td><td>30</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dbcabb7d019bd42ebf2861fff87f66cbd004a652b0f5ea912505bc3b4dbe3258</td><td>0</td></tr><tr><td>src/seedsigner/gui/components.py</td><td>79525</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9bf81d18f771279eaf856a536a59a54d9b445fb7fe777ce1a0dbf412e844af93</td><td>0</td></tr><tr><td>src/seedsigner/gui/keyboard.py</td><td>25548</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dbfa96f48aec0b0d6cf7d83f4b493aca81fa4f67fee4d7c11e310c622e393334</td><td>0</td></tr><tr><td>src/seedsigner/gui/renderer.py</td><td>4501</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">308c77a3e190df410245c7c2762e2ee7464fa73933d6da4e8acc2a936460af67</td><td>0</td></tr><tr><td>src/seedsigner/gui/screens/__init__.py</td><td>21</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a5496c911fdee0f9907e2d37723907443f11db5d81eb9559a8a527aba51a4b9f</td><td>0</td></tr><tr><td>src/seedsigner/gui/screens/psbt_screens.py</td><td>33501</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d8fae1241725686353d884bf816325bcff936d64ad831700234ecc943354063b</td><td>0</td></tr><tr><td>src/seedsigner/gui/screens/scan_screens.py</td><td>13062</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">938d846d7c518a035ab0b757fd87ee2c75cbe64b00ed5959e42592f35d460696</td><td>0</td></tr><tr><td>src/seedsigner/gui/screens/screen.py</td><td>55000</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0212127e2533cdc72d421fb0ebc58f8f3278f1d3a4960ba9941abb01051f8eff</td><td>0</td></tr><tr><td>src/seedsigner/gui/screens/seed_screens.py</td><td>70769</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c0b9eca6e4c76947997ba1352d3971ac259391f4746b19d74ba24d89bf85b17a</td><td>0</td></tr><tr><td>src/seedsigner/gui/screens/settings_screens.py</td><td>19504</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e379674269d2edcce5f794a41b05896f4b692db39d5e19e3ea774415232c9a49</td><td>0</td></tr><tr><td>src/seedsigner/gui/screens/tools_screens.py</td><td>31245</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4e407f8bfd50fe12fcd6e32037b44895abea4c2d196df6bdcaf228839bd03da4</td><td>0</td></tr><tr><td>src/seedsigner/gui/toast.py</td><td>13196</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ec4cb0206b3d3d9903be66dfedee0bf920ade3bb71fb1f8496de8988bab7b245</td><td>0</td></tr><tr><td>src/seedsigner/hardware/__init__.py</td><td>0</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>0</td></tr><tr><td>src/seedsigner/hardware/buttons.py</td><td>7931</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4471efdfa2dfd502ab17f1a0e016bacb1031060293f9fb27c00d988748f625f7</td><td>0</td></tr><tr><td>src/seedsigner/hardware/camera.py</td><td>3241</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4d1d61508ab5f83ebe23a20e2f9ea01fbd9269f3026865720d515497f717533b</td><td>0</td></tr><tr><td>src/seedsigner/hardware/displays/ST7789.py</td><td>4997</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4d43e4974a43bb8aa12f7e0697ade09894a582085dfe67eec6b9582930479a7e</td><td>0</td></tr><tr><td>src/seedsigner/hardware/displays/__init__.py</td><td>0</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>0</td></tr><tr><td>src/seedsigner/hardware/displays/display_driver.py</td><td>3068</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">99b99244032d27ce88865a1e4e5d3765e933a9b46a97e8f4ac63e4b05ca6a2d8</td><td>0</td></tr><tr><td>src/seedsigner/hardware/displays/ili9341.py</td><td>12574</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c73eb77327bb882ecc78e7e5af355af969ce09d22435d981168cdab017fad998</td><td>0</td></tr><tr><td>src/seedsigner/hardware/displays/st7789_mpy.py</td><td>32972</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">71347193cdc17edb2aa54485f38befaa827dcadc02687d826d32f1597a3ce89f</td><td>0</td></tr><tr><td>src/seedsigner/hardware/microsd.py</td><td>2389</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6b7dfe146c69b151eb4fe3dad3bd4e518875f04e30d51ec544d4d6432d317ac1</td><td>0</td></tr><tr><td>src/seedsigner/hardware/pivideostream.py</td><td>1819</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0eb5e7d8333ed7d590d79eecdadf395d1c71d77772febea413dd1f924909e51c</td><td>0</td></tr><tr><td>src/seedsigner/helpers/__init__.py</td><td>0</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>0</td></tr><tr><td>src/seedsigner/helpers/embit_utils.py</td><td>7727</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c087d1932303317654685fd24b3753429964a5b4f63c5d927f1663bc9b18c3d1</td><td>0</td></tr><tr><td>src/seedsigner/helpers/l10n.py</td><td>162</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">611cbe564315817964999f3437eecc6a988e2b968a8169066b146e0d1f784686</td><td>0</td></tr><tr><td>src/seedsigner/helpers/mnemonic_generation.py</td><td>4630</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1da00ac502a88ae77733681fd19f0fb61df03ebdee759b9ac78798fe9399c8fc</td><td>0</td></tr><tr><td>src/seedsigner/helpers/qr.py</td><td>4808</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ed12c8c01002e52af9946e2c0b579c4fd692dee81612dabbc77e73fb1f0bdca8</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/__init__.py</td><td>0</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/bytewords.py</td><td>4929</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b652f89758fb84d2beafaeb01e77a8af5f3e7a201d5b3fa1473e01ef8418bfc1</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/cbor_lite.py</td><td>11208</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">313c06f8d23542fcd7eaa0c25ccb57d568571ba7afd6e630c5d9d418c2265913</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/constants.py</td><td>179</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d7a4ccd6c624c69aec6983667399c6566dddb60134349e43443ac05b67956495</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/crc32.py</td><td>1037</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">888541118b69e5a3f587e1556f0787f6b644ff263811c6913843eb18b68513da</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/fountain_decoder.py</td><td>12114</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4285d087cb3dcfb740c9c92329c4ba805cc3044f1a874fb0daa33405ef4fec3f</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/fountain_encoder.py</td><td>5244</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">155812c2f58fc22888b6b2ec601d40fe405f6a4cbc0be58794c8052bf411b25a</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/fountain_utils.py</td><td>1597</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cbbc87708a1ad1f4e5494f04a4c29ca585946fa55fb0a4dd92711d7d40c20d42</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/random_sampler.py</td><td>1568</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dcb23762815edd2a0b0fe48fba02fac5b3aba3d67c1f27bafe6823b1dda04b59</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/ur.py</td><td>494</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b51393572a556ff4426412783b1902d1afc6241f26870ecf649eefb719880929</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/ur_decoder.py</td><td>5203</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">61fc0d5319f6915aab118bcd13e6aa25e0e021c5b4dcc6af2222ff30a14e9c6a</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/ur_encoder.py</td><td>2430</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2a05145e5961347404ccf7230727eee85efa2822f0b39890ae42e6fe47202c1b</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/utils.py</td><td>1619</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">565724921749e1ed0e92b6beb38d4f00df2ec373b105928bed1f8c30da297c6d</td><td>0</td></tr><tr><td>src/seedsigner/helpers/ur2/xoshiro256.py</td><td>4397</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d4d700a789502a4ba21f4a3a24a3c8381f13a3c7fb896b0e19dffc6948aef1d4</td><td>0</td></tr><tr><td>src/seedsigner/helpers/version.py</td><td>37956</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">70759ff9f528343912572b8ff4e1597cf08f4371029346e93b5875322ed3b7b7</td><td>0</td></tr><tr><td>src/seedsigner/models/__init__.py</td><td>0</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>0</td></tr><tr><td>src/seedsigner/models/decode_qr.py</td><td>39285</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ca35d03c9ede201893a01e5faceb96d58449e1600a28e564ae29d6a2b0248912</td><td>0</td></tr><tr><td>src/seedsigner/models/encode_qr.py</td><td>13142</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cba66b93b19ed0831e27bec44c49e6e488cf1634f2b82e5c5f3e9cffe9695957</td><td>0</td></tr><tr><td>src/seedsigner/models/psbt_parser.py</td><td>82783</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3f8cbba4d378aa4f82ac9a1d4c05b5b7017f9b720eb92c38d530f4aab3dafbe3</td><td>0</td></tr><tr><td>src/seedsigner/models/qr_type.py</td><td>930</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">56b4789b1bc55e2b129d0a1fe873f7b2ff2d7ddafe62f8fce6c0e4d3814b5230</td><td>0</td></tr><tr><td>src/seedsigner/models/seed.py</td><td>7768</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4f612eeae59dd972bd9187818c6648a70efe7e258f4d5c81662f9175060a7658</td><td>0</td></tr><tr><td>src/seedsigner/models/seed_storage.py</td><td>2957</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2c2ad94d462898ca0d83b7dc935750db96d60c173aa0422dffc41ca9b2cde686</td><td>0</td></tr><tr><td>src/seedsigner/models/settings.py</td><td>13398</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">864853cc67cd59d60c220bceb922c502fe06db3993de3de76acee11604e23c13</td><td>0</td></tr><tr><td>src/seedsigner/models/settings_definition.py</td><td>35542</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ffdefda767a713a8c7a54dffd712739daa235b01efdffa2068fbaba86b241cce</td><td>0</td></tr><tr><td>src/seedsigner/models/singleton.py</td><td>1059</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">caaa41a60af389c8b5322d510536d310664fa4ef53e8957c9fab7f021c4e71ac</td><td>0</td></tr><tr><td>src/seedsigner/models/threads.py</td><td>1079</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">678a61d601a2c8a0d5ff3b1c110f781b07b17a2f152e20a6fcf55e95f6a531ee</td><td>0</td></tr><tr><td>src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py</td><td>6279</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7a1ecba23853b008f72921dfb453b14959e35ed7d8f0ebfa906a4eb0908319f2</td><td>0</td></tr><tr><td>src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py</td><td>2700</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">df7055b2f0c8460ee5fd9f1e995cb7a8346e43af628d90a2b08b46d7766cd7ff</td><td>0</td></tr><tr><td>src/seedsigner/resources/seedsigner-translations/tools/requirements.txt</td><td>6</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">68359c38ed3bf77f71bad8d21c219fbe8c094d44374b35d2974e202f8b24472b</td><td>0</td></tr><tr><td>src/seedsigner/views/__init__.py</td><td>50</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">07d90e6e3c9bc4127568b08e5bdf2725ac093964a987c50d52efe3e4dca8d505</td><td>0</td></tr><tr><td>src/seedsigner/views/psbt_views.py</td><td>41251</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">47fff120f41e2710226560d722b70d51a8bee0ece389b9b3567092988b413750</td><td>0</td></tr><tr><td>src/seedsigner/views/scan_views.py</td><td>9526</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f49166b5417dbc649da3b2b7871308aae608f573312e105945de36568d3628d3</td><td>0</td></tr><tr><td>src/seedsigner/views/screensaver.py</td><td>9727</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3eb0f54536dcd7d02296c5e5c6aa34ffcae152e24e994cc67d1e4b626a9d3cc</td><td>0</td></tr><tr><td>src/seedsigner/views/seed_views.py</td><td>90475</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4c977bac0dbf3e893b0e58b7fabdf0ab89b141f32717e038de659a097e470d4c</td><td>0</td></tr><tr><td>src/seedsigner/views/settings_views.py</td><td>15828</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">eaaa53d1250f6ba624cbddb0a696306f08187653a598f783002e51a5c3c09797</td><td>0</td></tr><tr><td>src/seedsigner/views/tools_views.py</td><td>34242</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c9dde008d0e3565a27bb572529d6a9a23607fc9cfa1560e6d4b12ab68e11f537</td><td>0</td></tr><tr><td>src/seedsigner/views/view.py</td><td>16231</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b92cb1e521001a270d678ef7d32126c7736fecd629f781251a860a4d349d957d</td><td>0</td></tr><tr><td>tools/mnemonic.py</td><td>6971</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60</td><td>0</td></tr><tr><td>tools/seed_phrase_to_qr.py</td><td>1580</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">de71bf293c28d5c4e637c545a07685160c2aa92c9f64213d7a5259d9e91de66b</td><td>0</td></tr><tr><td>tools/write_versionfile.py</td><td>1602</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2bb499c921b6f8cf04f40f835ca3a6cd92ea445c50deb893e90d38262e19f53a</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>
