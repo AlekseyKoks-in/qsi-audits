@@ -1,5 +1,19 @@
 # Кто уже начал постквантовую миграцию, а кто нет / Who has already begun the post-quantum migration
 
+> [!note] Знаменатель на дату отчёта, пересчёт на 29.10.2026
+> Этот отчёт — снимок на 28.10.2026, когда аудировано было **33** кодовые базы. На 29.10.2026 их **43**.
+> **Числитель не изменился: по тому же критерию (`pqc` или `hybrid`) — 8**, то есть 8 из 43; по строгому
+> `pqc` — 6 из 43 (`bitwarden-sdk`, `coinbase-cb-mpc`, `openpgpjs`, `rage`, `signal-desktop`,
+> `trezor-firmware`). Гибридных строк во всём портфеле две, и обе в TLS. Пересчитать можно самому:
+> `python3 readiness.py --all` в корне репозитория.
+
+> [!note] Denominator as of the report's date, recounted on 2026-10-29
+> This report is a snapshot taken on 2026-10-28, when **33** codebases had been audited. On 2026-10-29
+> there are **43**. **The numerator is unchanged: 8 on the same criterion (`pqc` or `hybrid`)**, so 8 of
+> 43; counting `pqc` strictly it is 6 of 43. There are two hybrid rows in the whole portfolio and both
+> are TLS. Recount it yourself with `python3 readiness.py --all` at the repository root.
+
+
 Измерено 2026-10-28 по 33 уникальным подписанным аудитам (англоязычные повторы исключены, иначе семь
 репозиториев считались бы дважды). Каждая цифра воспроизводится из `report.json` соответствующего комплекта;
 подписи проверяются, расхождений с собой нет.

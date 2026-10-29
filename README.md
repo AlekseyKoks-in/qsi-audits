@@ -29,15 +29,46 @@ signature or a file is caught.
 Signing key `5b3cf9c9bd0fa544`, fingerprint
 `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`.
 
+## What BIP-360 and BIP-361 require of wallet code, and what is actually there
+
+Read from `bitcoin/bips` on 2026-10-29 rather than from secondary write-ups, which disagree even about the name.
+**BIP-360 is now titled Pay-to-Merkle-Root (P2MR)**, version 0.12.1, Status: Draft: P2TR with the key-path spend
+removed, defending against long exposure only, and saying in terms that post-quantum signatures are not in it and
+are deferred to "a separate proposal … upon further research" that is not yet written. **BIP-361, Post Quantum
+Migration and Legacy Signature Sunset** (Draft, Informational, assigned 2026-02-11) "follows the implementation
+of any post-quantum (PQ) output type", and at its Phase A non-upgraded wallets "can no longer receive from any
+other wallets".
+
+Both therefore turn on wallets being upgraded, and neither says what that means in code. `readiness.py` answers
+the part that is measurable from these bundles:
+
+```
+python3 readiness.py          # the self-custody slice
+python3 readiness.py --all    # every audited codebase
+python3 readiness.py --json
+```
+
+Schnorr/BIP-340 primitives are present in 7 of the 10 self-custody codebases, and **exactly 1 of
+the ten holds any post-quantum primitive** — Trezor, with ML-DSA and SLH-DSA, the latter in its boot header beside Ed25519.
+The three zeros are the interesting part and are not a statement about what those wallets can do: `bdk` delegates
+signing to `rust-bitcoin` and `rust-secp256k1`, `seedsigner` to a hash-locked `embit` release, and
+`rust-bitcoin` holds taproot types while the Schnorr signatures live in `rust-secp256k1`. **Readiness for a
+consensus change cannot be read off a single repository** — which is the same defect that once made a Bitcoin
+signer measure 13 inventory rows instead of 98. Presence of a primitive is necessary and not sufficient: P2MR
+also needs address encoding, descriptors and PSBT support. The full argument, with the primary quotations, is in
+`reports/BIP-360-361-READINESS-2026-10-29.md`.
+
 ## Layout
 
 ```
 PUBLIC-KEY.pem     the one key that signed every bundle
 verify.py          standalone verifier
+readiness.py       BIP-360 / BIP-361 readiness, measured from the bundles
 audits/<name>/     report.json · report.md · report.html · report.pdf · cbom.cdx.json
                    report.sarif.json · bundle.sig.json · report.sig.json · public_key.pem
                    brief.en.md · brief.ru.md (+ pdf)
-reports/           the write-ups: re-audits, triage, adoption survey, scope-and-recall study
+reports/           the write-ups: re-audits, triage, adoption survey, scope-and-recall study,
+                   and the BIP-360/361 readiness analysis
 ```
 
 `audits/` holds 51 directories but **43 distinct codebases**: 7 of them
