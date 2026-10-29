@@ -75,12 +75,51 @@ signer measure 13 inventory rows instead of 98. Presence of a primitive is neces
 also needs address encoding, descriptors and PSBT support. The full argument, with the primary quotations, is in
 `reports/BIP-360-361-READINESS-2026-10-29.md`.
 
+## A check any project can run: do your pinned submodules reach your tools?
+
+`submodule-scope.py` is the generalisable half of the defect described above, written so it has nothing to do
+with this repository or its scanner. No dependencies, no network, no `git` subprocess — it parses `.gitmodules`
+itself, so it works on an exported tree too. Exit status 0 when nothing is wrong and 1 when something is.
+
+```
+python3 submodule-scope.py                           # are the pinned submodules even populated?
+python3 submodule-scope.py --against results.sarif   # and did your tool actually read them?
+python3 submodule-scope.py --against parsed.txt --scope src include
+python3 submodule-scope.py --json
+```
+
+It catches two silent failures, both of which make a security tool report a clean result for code it never
+opened. **A shallow clone leaves submodules empty** — `git clone --depth 1` without `--recurse-submodules` gives
+you empty directories, a scanner finds nothing in them and says nothing about it, and CI is where this happens
+because CI is where shallow clones live. **And a skip list can override a declared scope**: a scanner whose
+directory-skip list contains `vendor` will skip `vendor/embit` even when the scope named it, and if it skips
+before counting, the report never mentions what it declined. The first cost this project a reading of 7
+inventory rows instead of 93; the second, 13 instead of 98.
+
+`--against` takes a SARIF file, a JSON array or object with a `files`/`inputs` list, or one path per line — so
+it works with whatever your tool already emits. In GitHub Actions:
+
+```yaml
+- uses: actions/checkout@v4
+  with:
+    submodules: recursive          # without this the next step tells you why it matters
+- run: python3 submodule-scope.py
+# after your scanner has run:
+- run: python3 submodule-scope.py --against results.sarif
+```
+
+`test-submodule-scope.sh` is its test suite, 11 cases, and two of them are not synthetic: it clones `embit` the
+way CI clones — shallow, no submodules — and requires the tool to catch the empty `secp256k1-zkp`, then
+materialises the submodules and requires it to pass.
+
 ## Layout
 
 ```
 PUBLIC-KEY.pem     the one key that signed every bundle
 verify.py          standalone verifier
 readiness.py       BIP-360 / BIP-361 readiness, measured from the bundles
+submodule-scope.py are your pinned submodules populated, and did your tools read them?
+test-submodule-scope.sh  its tests, including two against a real repository
 audits/<name>/     report.json · report.md · report.html · report.pdf · cbom.cdx.json
                    report.sarif.json · bundle.sig.json · report.sig.json · public_key.pem
                    brief.en.md · brief.ru.md (+ pdf)
