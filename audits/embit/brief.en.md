@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: embit @ 2b375a33bd89
 
-*One-page brief* · Reviewed: 2026-10-29 20:14 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: embit (SeedSigner, Krux) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-10-29 21:10 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: embit (SeedSigner, Krux) — public repository (passive review)
 
 Source: https://github.com/diybitcoinhardware/embit/tree/2b375a33bd8926caec7e53d7cfd41b165d196566
 
@@ -12,13 +12,13 @@ Source: https://github.com/diybitcoinhardware/embit/tree/2b375a33bd8926caec7e53d
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (31 file(s)) (QSI-2026-06825) · *confirmed by the analyst*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (31 file(s)) (QSI-2026-06939) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (6 file(s)) (QSI-2026-06826) · *confirmed by the analyst*\
-   What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s)) (QSI-2026-06828) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s)) (QSI-2026-06941) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-4. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-06827) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (6 file(s)) (QSI-2026-06943) · *confirmed by the analyst*\
+   What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
+4. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-06940) · *confirmed by the analyst*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
 
 ## What the quantum-vulnerable cryptography protects
@@ -35,7 +35,7 @@ Analyst review: 4 confirmed, 1 not applicable, 1 dismissed as false positives. (
 
 Static review of source code and manifests; files analysed: 142. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `14c757ffe03c6a7fe308eb8fae17fa1c4950de88a24495fe5684d5853937e12e`
+Full report, content SHA-256: `e9746bf4b6b267bdcfac6f8386056330806949cdbd324b7328f3887daf254733`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
