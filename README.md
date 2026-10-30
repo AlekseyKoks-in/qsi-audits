@@ -164,6 +164,26 @@ visited, presented as an inventory of a hardware wallet. The 98-row bundle publi
 and the `embit` it pins, within the budget, and answers the question a reader actually has. The full run is kept
 as evidence rather than published as a measurement.
 
+## A federal mandate now describes this method
+
+OMB **M-26-15** of 24 June 2026 asks agencies to build "a dynamic, continuously updated inventory of all
+cryptographic assets" using "Software Composition Analysis (SCA) to analyze Software Bills of Materials (SBOMs),
+Static/Dynamic Application Security Testing (SAST/DAST) to find cryptographic functions in code, and network
+scanners to detect protocols and cipher suites", feeding "a central Cryptographic Bill of Materials (CBOM)".
+These bundles use two of those three methods and **declare the third**: live network probing is listed under
+`not_checked` in every report, because each audit runs offline. Every bundle carries a CycloneDX `cbom.cdx.json`
+— while noting that the *minimum elements* of a CBOM are still unpublished, due from CISA and NIST around
+19 March 2027, so nobody can claim conformance to them yet.
+
+The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
+Asymmetric Algorithms". Measured here, **37% of the 1,708 Shor-breakable rows fall only under
+that catch-all**, across 15 distinct algorithms, the largest being Ed25519 — which the memorandum never
+names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
+systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
+the seventh named algorithm, which had no entry), are in
+[reports/FEDERAL-CBOM-2026-10-30.md](reports/FEDERAL-CBOM-2026-10-30.md) (also
+[in English](reports/FEDERAL-CBOM-2026-10-30.en.md)).
+
 ## A check any project can run: does your scanner have a word for this cryptography?
 
 An inventory can fail in a way that looks exactly like a clean result. Not a crash and not a parse error: the
