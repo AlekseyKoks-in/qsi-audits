@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:69dbfafa-839d-49a9-9ac5-60f984d34e07",
+  "serialNumber": "urn:uuid:48e88a7b-7681-42d7-afa5-98bd6c2f6da6",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-28T13:07:22Z",
+    "timestamp": "2026-10-29T23:19:06Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "09809c99-f2fd-41d8-8cfc-bd5aef1f0e91",
+      "bom-ref": "c78eae46-fa83-48d6-99d2-d32e2a7cc3db",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -73,7 +73,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1480884e-7148-41f3-a2b9-7335fd340b15",
+      "bom-ref": "9888b203-3415-4693-a119-62d5366e051e",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -124,7 +124,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3eb426fb-044e-4572-8bdb-5fe6e55121ca",
+      "bom-ref": "283bc1e4-326b-4807-9b12-af3c5f115f6b",
       "name": "Crypto library",
       "properties": [
         {
@@ -169,7 +169,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "95701860-3334-4a3a-8575-768cd2966c27",
+      "bom-ref": "0ee35508-5c29-46af-841e-957e4756609e",
       "name": "Crypto library",
       "properties": [
         {
@@ -214,7 +214,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "13420638-9e49-4b7e-ada6-4d7ed1e1b326",
+      "bom-ref": "77fab54c-9748-4c88-8b64-9fea8a453c5d",
       "name": "SHA-2",
       "properties": [
         {

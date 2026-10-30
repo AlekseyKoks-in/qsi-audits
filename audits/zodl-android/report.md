@@ -1,92 +1,92 @@
-# Security & Post-Quantum Readiness Audit Report
+# Отчёт об аудите безопасности и постквантовой готовности
 
-**Project:** zodl-android @ 229dd3bff749 · Zodl (ex-Zashi, ECC) — public repository (passive review)
+**Проект:** zodl-android @ 229dd3bff749 · Zodl (ex-Zashi, ECC) — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
-| Organization | QSI |
-| Report date | 2026-10-28 13:06 UTC |
-| Report version | 1 |
-| Audit run | 6b539d4a-eef3-4846-a464-de667f7610a8 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
-| Risk profile | Small technology company |
-| Content SHA-256 | `0c00bdc5593a25af9f9a0fe8c051afd695a843eb50b641638c48ceff2a06ee0d` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
-> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+| Организация | QSI |
+| Дата отчёта | 2026-10-29 23:18 UTC |
+| Версия отчёта | 1 |
+| Запуск аудита | 4d7a76e4-7215-4b07-9d88-6009bdb3d94d (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.2.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `6d6fdd62ef733486842482cec3ae478f7c091edf0805840ded02a77a558a06b6` |
+| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
-## 1. Executive summary
+## 1. Резюме для руководства
 
-- Critical: **0**
-- High: **0**
-- Medium: **0**
-- Low: **0**
-- Info: **2**
+- Критическая: **0**
+- Высокая: **0**
+- Средняя: **0**
+- Низкая: **0**
+- Информационная: **2**
 
-- Confirmed technical vulnerability: 0
-- Known vulnerable component: 0
-- Confirmed configuration error: 0
-- Potential cryptographic risk: 0
-- Long-term post-quantum risk: 0
-- Improvement recommendation: 1
-- Insufficient data: 1
+- Подтверждённая техническая уязвимость: 0
+- Известная уязвимая версия компонента: 0
+- Подтверждённая ошибка конфигурации: 0
+- Потенциальный криптографический риск: 0
+- Долгосрочный постквантовый риск: 0
+- Рекомендация по улучшению: 1
+- Недостаточность данных: 1
 
-Mosca's inequality (x + y > z): x = 5, y = 3, z = 12 → time available under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-**Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-## 2. Scope and boundaries
+## 2. Область и границы проверки
 
-Mode: Document audit
+Режим: Документальный аудит
 
-Repository: <https://github.com/zodl-inc/zodl-android> @ `229dd3bff7490ea90ca4d7d79f3c539d71976f66` — evidence links open the lines at this commit.
+Репозиторий: <https://github.com/zodl-inc/zodl-android> @ `229dd3bff7490ea90ca4d7d79f3c539d71976f66` — ссылки в доказательствах открывают строки на этом коммите.
 
-1609 files, 6646108 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+1609 файлов, всего 6646108 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.
 
-## 3. Methodology
+## 3. Методология
 
-| Area | Status | Count | Examples |
+| Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | checked | 1599 | app/build.gradle.kts: 393 lines scanned with 16 rule patterns and 122 registry patterns; app/src/main/java/co/electriccoin/zcash/app/CoroutineApplication.kt: 21 lines scanned with 16 rule patterns and 122 registry patterns; app/src/main/java/co/electriccoin/zcash/app/ZcashApplication.kt: 167 lines scanned with 16 rule patterns and 122 registry patterns |
-| dependencies | checked | 10 | build-conventions-secant/gradle.lockfile: 189 dependencies parsed (189 pinned); build-info-lib/gradle.lockfile: 49 dependencies parsed (49 pinned); buildSrc/buildscript-gradle.lockfile: 27 dependencies parsed (27 pinned) |
-| osv_advisories | checked | 1 | 340 pinned packages queried at OSV.dev; 16 affected (16 of them only in development or build dependencies) |
+| source_code | проверено | 1599 | app/build.gradle.kts: 393 lines scanned with 16 rule patterns and 127 registry patterns; app/src/main/java/co/electriccoin/zcash/app/CoroutineApplication.kt: 21 lines scanned with 16 rule patterns and 127 registry patterns; app/src/main/java/co/electriccoin/zcash/app/ZcashApplication.kt: 167 lines scanned with 16 rule patterns and 127 registry patterns |
+| dependencies | проверено | 10 | build-conventions-secant/gradle.lockfile: 189 dependencies parsed (189 pinned); build-info-lib/gradle.lockfile: 49 dependencies parsed (49 pinned); buildSrc/buildscript-gradle.lockfile: 27 dependencies parsed (27 pinned) |
+| osv_advisories | проверено | 1 | 340 pinned packages queried at OSV.dev; 16 affected (16 of them only in development or build dependencies) |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## 4. Assets examined and not examined
+## 4. Проверенные и непроверенные активы
 
-- None
+- Нет
 
-## 5. Architecture overview
+## 5. Краткое описание архитектуры
 
-Static review of the source tree zodl-android at 229dd3bff7490ea90ca4d7d79f3c539d71976f66. 1609 files analysed; of 3100 files, 462 are test, fuzzing, benchmark or example code and were left out, 1029 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree zodl-android at 229dd3bff7490ea90ca4d7d79f3c539d71976f66. 1609 files analysed; of 3100 files, 462 are test, fuzzing, benchmark or example code and were left out, 1029 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/ISSUE_TEMPLATE/app-release.md, .github/ISSUE_TEMPLATE/bug-report.md, .github/ISSUE_TEMPLATE/dependency.md, .github/ISSUE_TEMPLATE/feature-request.md, .github/ISSUE_TEMPLATE/ux-report.md. 33 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
-## 6. Overall security posture
+## 6. Общая оценка состояния безопасности
 
-- Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 0.0%
+- Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 0.0%
 
-## 7. Detailed findings
+## 7. Подробное описание находок
 
-### QSI-2026-05265 — 52 advisories in 16 development or build-only Maven package(s)
+### QSI-2026-07175 — 52 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies:Maven:non-runtime`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:06 UTC
-- Priority score: 16.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies:Maven:non-runtime`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:18 UTC
+- Балл приоритета: 15.5 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists 52 advisories (23 rated high or critical) for 16 Maven package(s) that only development or build tooling pulls in (build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile): e.g. com.google.guava:guava@33.3.1-android [build]: GHSA-xxph-c9ww-hj94; com.google.guava:guava@33.3.1-jre [build]: GHSA-xxph-c9ww-hj94; io.netty:netty-codec@4.1.110.Final [build]: GHSA-3p8m-j85q-pgmj, GHSA-558v-64gr-wgg4, GHSA-mj4r-2hfc-f8p6; io.netty:netty-codec-http@4.1.110.Final [build]: GHSA-38f8-5428-x5cv, GHSA-4mp9-239f-g9hg, GHSA-57rv-r2g8-2cj3, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w, GHSA-84h7-rjj3-6jx4, GHSA-8c42-7qj2-3j46, GHSA-f6hv-jmp6-3vwv, GHSA-fghv-69vj-qj49, GHSA-gcjf-9mgh-3p7g, GHSA-hvcg-qmg6-jm4c, GHSA-jppx-w49h-x2qq, GHSA-m4cv-j2px-7723, GHSA-mvh2-crg5-v77c, GHSA-pwqr-wmgm-9rr8, GHSA-q4f6-jm68-57ww, GHSA-v8h7-rr48-vmmv, GHSA-xxqh-mfjm-7mv9; io.netty:netty-codec-http2@4.1.110.Final [build]: GHSA-563q-j3cm-6jxm, GHSA-5x3r-wrvg-rp6q, GHSA-93wv-jw9v-4972, GHSA-c2gf-v879-257j, GHSA-c69g-56f8-xwqj, GHSA-f6hv-jmp6-3vwv, GHSA-prj3-ccx8-p6x4, GHSA-w9fj-cfpg-grvv. The manifests mark them as such (devDependencies, "dev": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships.
+OSV.dev сообщает 52 бюллетеней (23 с оценкой high или critical) для 16 пакет(ов) Maven, которые подтягивают только инструменты разработки или сборки (build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile): например, com.google.guava:guava@33.3.1-android [build]: GHSA-xxph-c9ww-hj94; com.google.guava:guava@33.3.1-jre [build]: GHSA-xxph-c9ww-hj94; io.netty:netty-codec@4.1.110.Final [build]: GHSA-3p8m-j85q-pgmj, GHSA-558v-64gr-wgg4, GHSA-mj4r-2hfc-f8p6; io.netty:netty-codec-http@4.1.110.Final [build]: GHSA-38f8-5428-x5cv, GHSA-4mp9-239f-g9hg, GHSA-57rv-r2g8-2cj3, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w, GHSA-84h7-rjj3-6jx4, GHSA-8c42-7qj2-3j46, GHSA-f6hv-jmp6-3vwv, GHSA-fghv-69vj-qj49, GHSA-gcjf-9mgh-3p7g, GHSA-hvcg-qmg6-jm4c, GHSA-jppx-w49h-x2qq, GHSA-m4cv-j2px-7723, GHSA-mvh2-crg5-v77c, GHSA-pwqr-wmgm-9rr8, GHSA-q4f6-jm68-57ww, GHSA-v8h7-rr48-vmmv, GHSA-xxqh-mfjm-7mv9; io.netty:netty-codec-http2@4.1.110.Final [build]: GHSA-563q-j3cm-6jxm, GHSA-5x3r-wrvg-rp6q, GHSA-93wv-jw9v-4972, GHSA-c2gf-v879-257j, GHSA-c69g-56f8-xwqj, GHSA-f6hv-jmp6-3vwv, GHSA-prj3-ccx8-p6x4, GHSA-w9fj-cfpg-grvv. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
-**Potential impact.** They do not reach users of the product. They can affect developer machines and CI (supply chain): a compromised or vulnerable tool can tamper with builds.
+**Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Look the packages listed in the evidence up at https://osv.dev and check their scope in build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile.
+Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev (Maven)](https://osv.dev/) · build-conventions-secant/gradle.lockfile · SHA-256 f716c4ce971d9521c9eeb0c25b40eccb632f43cc8348e8b2c9db5cf5d24d9d10_
 
@@ -109,33 +109,33 @@ org.jetbrains.kotlin:kotlin-gradle-plugin@2.0.21 [build]: GHSA-r937-wjx7-w2jp
 org.jetbrains.kotlin:kotlin-gradle-plugin@2.3.10 [build]: GHSA-r937-wjx7-w2jp
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
 
-**Recommendation.** Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts.
+**Рекомендация.** Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.
 
-**Retest procedure.** Re-run the dependency scan after updating.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05264 — No post-quantum capable cryptographic library detected
+### QSI-2026-07174 — Не обнаружено криптобиблиотек с поддержкой PQC
 
-- Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies`
-- Data source: dependency manifests
-- Detection method: Dependency name matching.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:06 UTC
-- Priority score: 13.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies`
+- Источник данных: dependency manifests
+- Метод обнаружения: Сопоставление названий зависимостей.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:18 UTC
+- Балл приоритета: 13.3 / 100
+- CVSS v3.1: неприменимо
 
-Across 10 dependency manifests, QSI found crypto libraries (org.bouncycastle:bcprov-jdk18on) but none from its PQC-capable list.
+В 10 манифестах зависимостей QSI нашёл криптобиблиотеки (org.bouncycastle:bcprov-jdk18on), но ни одной из списка поддерживающих PQC.
 
-**Potential impact.** Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.
+**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Review the dependency manifests listed in the evidence.
+Изучите перечисленные в доказательстве манифесты.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _dependency · build-conventions-secant/gradle.lockfile, build-info-lib/gradle.lockfile, buildSrc/buildscript-gradle.lockfile, buildSrc/gradle.lockfile, buildscript-gradle.lockfile, configuration-api-lib/gradle.lockfile, crash-android-lib/gradle.lockfile, crash-lib/gradle.lockfile, preference-api-lib/gradle.lockfile, spackle-lib/gradle.lockfile · SHA-256 ed23bf220f8e570503d83544d732bab69bf12e2d5e979d01f5dcb8772bdf2688_
 
@@ -143,75 +143,74 @@ _dependency · build-conventions-secant/gradle.lockfile, build-info-lib/gradle.l
 Crypto libraries: org.bouncycastle:bcprov-jdk18on. PQC support depends on the version for: org.bouncycastle:bcprov-jdk18on
 ```
 
-**Limitations of the check.** Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.
+**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
 
-**Recommendation.** Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).
+**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
 
-**Retest procedure.** Re-scan after upgrades.
+**Повторная проверка.** Повторите сканирование после обновлений.
 
 
-## 8. Post-quantum assessment
+## 8. Постквантовая оценка
 
-| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+| | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Data/key lifetime x | 5 | 5 |
-| Migration time y | 3 | 3 |
-| Assumed years to CRQC z | 12 (central) | 12 |
-| x + y − z | -4 → time available under this scenario | -4 → time available under this scenario |
-_No signature lifetime is set for the project; the data lifetime is used as an assumption._
-#### Where z comes from
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
+| Принятое число лет до CRQC z | 8 (early) | 8 |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
+#### Откуда взято z
 
-Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
 
-| Within | Likelihood | The report's wording |
+| В пределах | Вероятность | Формулировка отчёта |
 |---|---|---|
-| 5 years | ~15% | averaged estimate |
-| 10 years | 28-49% | quite possible |
-| 15 years | 51-70% | likely |
+| 5 лет | ~15% | усреднённая оценка |
+| 10 лет | 28-49% | вполне возможно |
+| 15 лет | 51-70% | вероятно |
 
-**Why this scenario (central, z = 12):** Between the 10-year band (28-49%) and the 15-year band (51-70%): roughly where the experts' averaged likelihood crosses one half. More than half of the respondents (13 of 26) already put the likelihood at 50% or more for some horizon.
-_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Small technology company”, not the client's figures; with the client's actual lifetimes the verdict can change._
+**Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
-### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
+### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
 
-**Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
-No readiness questionnaire was completed for this project.
+_Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
+Анкета готовности для проекта не заполнялась.
 
-### Quantum algorithms relevant to this inventory
+### Квантовые алгоритмы, значимые для этой инвентаризации
 
-| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+| Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | ChaCha20-Poly1305 (2), SHA-2 (1) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | SHA-2 (1) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | ChaCha20-Poly1305 (2), SHA-2 (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | SHA-2 (1) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
-_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+_Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
 
-## 9. Limitations and assumptions
+## 9. Ограничения и допущения
 
-- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
-- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
+- Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
+- z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
 
-## 10. Remediation plan / Priorities for 30, 60 and 90 days
+## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
-### 30 days
+### 30 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-### 60 days
+### 60 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-### 90 days
+### 90 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P4 | QSI-2026-05265 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
+| P4 | QSI-2026-07175 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
-## 11. Tools used
+## 11. Использованные инструменты
 
 - blockchain 1.0.0
 - certificates 1.1.0
@@ -226,7 +225,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - qsi-engine 1.2.0
 - OSV.dev API v1
 
-## 12. Sources and normative documents
+## 12. Источники и нормативные документы
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
@@ -244,19 +243,19 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 14. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
 15. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
-## Appendices: Cryptographic inventory
+## Приложения: Криптографическая инвентаризация
 
-| Algorithm | Parameter | Library | Location | Quantum status | Classical status |
+| Алгоритм | Параметр | Библиотека | Расположение | Квантовый статус | Классический статус |
 |---|---|---|---|---|---|
-| ChaCha20-Poly1305 | ChaCha20-Poly1305 |  | ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/addressbook/AddressBookEncryptor.kt:8 | reduced margin (Grover), approved | acceptable |
-| ChaCha20-Poly1305 | ChaCha20-Poly1305 |  | ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/metadata/MetadaEncryptor.kt:10 | reduced margin (Grover), approved | acceptable |
-| SHA-2 | SHA-256 |  | feature-voting/src/main/java/co/electriccoin/zcash/ui/common/model/voting/StaticVotingConfig.kt:150 | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable |
-| Crypto library | 1.79 | org.bouncycastle:bcprov-jdk18on (Bouncy Castle) | build-conventions-secant/gradle.lockfile:121 | n/a | acceptable |
-| Crypto library | 1.79 | org.bouncycastle:bcprov-jdk18on (Bouncy Castle) | buildscript-gradle.lockfile:132 | n/a | acceptable |
+| ChaCha20-Poly1305 | ChaCha20-Poly1305 |  | ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/addressbook/AddressBookEncryptor.kt:8 | сниженный запас (Гровер), одобрен | допустимо |
+| ChaCha20-Poly1305 | ChaCha20-Poly1305 |  | ui-lib/src/main/java/co/electriccoin/zcash/ui/common/serialization/metadata/MetadaEncryptor.kt:10 | сниженный запас (Гровер), одобрен | допустимо |
+| SHA-2 | SHA-256 |  | feature-voting/src/main/java/co/electriccoin/zcash/ui/common/model/voting/StaticVotingConfig.kt:150 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
+| Crypto library | 1.79 | org.bouncycastle:bcprov-jdk18on (Bouncy Castle) | build-conventions-secant/gradle.lockfile:121 | н/п | допустимо |
+| Crypto library | 1.79 | org.bouncycastle:bcprov-jdk18on (Bouncy Castle) | buildscript-gradle.lockfile:132 | н/п | допустимо |
 
-## Appendices: Input files
+## Приложения: Входные файлы
 
-| File | Size | SHA-256 | Redactions |
+| Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
 | app/build.gradle.kts | 14989 | `255547ad32a592028c134c3c82426720368b9db087cb184871d2698e96dde731` | 0 |
 | app/src/main/java/co/electriccoin/zcash/app/CoroutineApplication.kt | 590 | `b444ec80dc1324a65955b3bc943a1df783d57cd3efa5f06634791cc4712880b9` | 0 |

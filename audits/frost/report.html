@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отчёт об аудите безопасности и постквантовой готовности — frost @ 0966bd1529aa</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "frost @ 0966bd1529aa · Отчёт об аудите безопасности и постквантовой готовности"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 3b0ed30a0582"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является ю…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Отчёт об аудите безопасности и постквантовой готовности</h1>
+    <div class="project">frost @ 0966bd1529aa · Zcash Foundation — публичный репозиторий (пассивная проверка)</div>
+  </div>
+  <table>
+    <tr><td>Организация</td><td>QSI</td></tr>
+    <tr><td>Дата отчёта</td><td>2026-10-29 23:04 UTC</td></tr>
+    <tr><td>Версия отчёта</td><td>1</td></tr>
+    <tr><td>Запуск аудита</td><td>a144e0a6-7549-47f8-8732-60fef13c9d3d · Документальный аудит · 2026-10-29 23:04 UTC</td></tr>
+    <tr><td>Версия анализатора</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Профиль риска</td><td>Криптобиржа, кастодиан или кошелёк</td></tr>
+    <tr><td>SHA-256 содержимого</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">3b0ed30a05821c2b696f385188fa6f97f309e120180a06949bb6210af7e79a0e</td></tr>
+<tr><td>Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#executive_summary">Резюме для руководства</a></li>
+    <li><a href="#scope">Область и границы проверки</a></li>
+    <li><a href="#methodology">Методология</a></li>
+    <li><a href="#assets">Проверенные и непроверенные активы</a></li>
+    <li><a href="#architecture">Краткое описание архитектуры</a></li>
+    <li><a href="#posture">Общая оценка состояния безопасности</a></li>
+    <li><a href="#summary_by_severity">Сводка находок по серьёзности</a></li>
+    <li><a href="#details">Подробное описание находок</a></li>
+    <li><a href="#evidence">Подтверждающие доказательства</a></li>
+    <li><a href="#pq">Постквантовая оценка</a></li>
+    <li><a href="#limitations">Ограничения и допущения</a></li>
+    <li><a href="#plan">План устранения проблем</a></li>
+    <li><a href="#priorities">Приоритеты на 30, 60 и 90 дней</a></li>
+    <li><a href="#retests">Проверки после устранения</a></li>
+    <li><a href="#tools">Использованные инструменты</a></li>
+    <li><a href="#references">Источники и нормативные документы</a></li>
+    <li><a href="#appendices">Приложения</a></li>
+  </ol>
+  <p class="note">Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Резюме для руководства</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">9</div><div class="l">Всего находок</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Критическая</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">Высокая</span></div></div>
+    <div class="kpi"><div class="v">4</div><div class="l"><span class="sev sev-medium">Средняя</span></div></div>
+    <div class="kpi"><div class="v">3</div><div class="l"><span class="sev sev-low">Низкая</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Классификация</th><th>Количество</th></tr>
+<tr><td>Подтверждённая техническая уязвимость</td><td>0</td></tr><tr><td>Известная уязвимая версия компонента</td><td>4</td></tr><tr><td>Подтверждённая ошибка конфигурации</td><td>0</td></tr><tr><td>Потенциальный криптографический риск</td><td>0</td></tr><tr><td>Долгосрочный постквантовый риск</td><td>4</td></tr><tr><td>Рекомендация по улучшению</td><td>0</td></tr><tr><td>Недостаточность данных</td><td>1</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Серьёзность</th><th>Подробное описание находок</th><th>Балл приоритета</th></tr>
+<tr><td>QSI-2026-07007</td><td><span class="sev sev-medium">Средняя</span></td><td>Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)</td><td>41.2</td></tr><tr><td>QSI-2026-07008</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов)) <span class="tag pre">предварительно</span></td><td>35.6</td></tr><tr><td>QSI-2026-07009</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов)) <span class="tag pre">предварительно</span></td><td>35.6</td></tr><tr><td>QSI-2026-07010</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый ECDSA: роль не определена (1 файл(ов)) <span class="tag pre">предварительно</span></td><td>34.2</td></tr><tr><td>QSI-2026-07012</td><td><span class="sev sev-low">Низкая</span></td><td>crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности) <span class="tag pre">предварительно</span></td><td>20.3</td></tr>  </table>
+  <p class="note">Неравенство Моски (x + y &gt; z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+<p class="note"><strong>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.</strong> Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Область и границы проверки</h2>
+  <p><strong>Режим:</strong> Документальный аудит</p>
+<p><strong>Репозиторий:</strong> <a href="https://github.com/ZcashFoundation/frost">https://github.com/ZcashFoundation/frost</a> @ <span class="small">0966bd1529aa062ad3b621af99e277f976b1c0f0</span> — ссылки в доказательствах открывают строки на этом коммите.</p>  <h3>Предоставленные входные данные</h3>
+  <p>61 файлов, всего 514238 байт, редактирований: 2; список SHA-256 по файлам — в приложении C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Методология</h2>
+  <p>Аудит выполнен движком QSI 1.2.0. Каждый анализатор формирует факты (правило, параметры, доказательства); тексты находок генерируются из каталога правил. Источники методики указаны в разделе «Источники и нормативные документы».</p>
+  <p>Приоритизация: объяснимая взвешенная модель (серьёзность, вероятность эксплуатации, доступность атакующему, влияние на конфиденциальность/целостность/доступность с весами профиля «Криптобиржа, кастодиан или кошелёк», критичность актива, срочность, простота устранения) с множителем уверенности. CVSS v3.1 применяется только к техническим уязвимостям с определённым вектором. Для долгосрочных квантовых рисков используется неравенство Моски; их серьёзность ограничена уровнем «Средняя», и они никогда не представляются как эксплуатируемые уязвимости.</p>
+  <p>Классификация находок: подтверждённая техническая уязвимость; известная уязвимая версия компонента (версия зависимости названа в бюллетене; затронутый код может не вызываться — это проверяется отдельно, а подтверждённая проверкой становится уязвимостью); подтверждённая ошибка конфигурации; потенциальный криптографический риск; долгосрочный постквантовый риск; рекомендация по улучшению; недостаточность данных. Находки на основе эвристик помечены как предварительные; решения аналитика показаны рядом с находками.</p>
+  <h3>Покрытие проверок</h3>
+  <table class="data"><tr><th>Область</th><th>Статус</th><th>Количество</th><th>Примеры</th></tr>
+<tr><td>dependencies</td><td>проверено</td><td>11</td><td class="small">Cargo.lock: 169 dependencies parsed (169 pinned); Cargo.toml: 39 dependencies parsed (0 pinned); frost-core/Cargo.toml: 24 dependencies parsed (0 pinned)</td></tr><tr><td>tls_configuration</td><td>проверено</td><td>1</td><td class="small">book/src/zcash/server.md: nginx TLS directives parsed</td></tr><tr><td>secrets</td><td>проверено</td><td>1</td><td class="small">book/src/zcash/server.md: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)</td></tr><tr><td>source_code</td><td>проверено</td><td>49</td><td class="small">frost-core/src/batch.rs: 168 lines scanned with 16 rule patterns and 127 registry patterns; frost-core/src/error.rs: 185 lines scanned with 16 rule patterns and 127 registry patterns; frost-core/src/identifier.rs: 173 lines scanned with 16 rule patterns and 127 registry patterns</td></tr><tr><td>osv_advisories</td><td>проверено</td><td>1</td><td class="small">169 pinned packages queried at OSV.dev; 4 affected</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Проверенные и непроверенные активы</h2>
+  <p><strong>Предоставленные входные данные:</strong> 62 (входные файлы: C)</p>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Краткое описание архитектуры</h2>
+  <p>Static review of the source tree frost at 0966bd1529aa062ad3b621af99e277f976b1c0f0. 61 files analysed; of 371 files, 218 are test, fuzzing, benchmark or example code and were left out, 92 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/dependabot.yml, .github/release-drafter.yml, .github/workflows/coverage.yaml, .github/workflows/docs.yml, .github/workflows/main.yml. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Общая оценка состояния безопасности</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">97</div><div class="l">Ориентировочный индекс состояния (0–100)</div></div>
+    <div class="kpi"><div class="v">55.9%</div><div class="l">Доля квантово-уязвимых элементов инвентаризации</div></div>
+    <div class="kpi"><div class="v">59</div><div class="l">Криптографическая инвентаризация</div></div>
+  </div>
+  <p class="note">Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Сводка находок по серьёзности</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Критическая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">Высокая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Средняя</span></td><td style="width:8%">4</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Низкая</span></td><td style="width:8%">3</td>
+  <td><div class="bar"><span style="width: 75.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Информационная</span></td><td style="width:8%">2</td>
+  <td><div class="bar"><span style="width: 50.0%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Подробное описание находок</th><th>Классификация</th><th>Серьёзность</th><th>Уверенность</th></tr>
+<tr><td>QSI-2026-07007</td><td>Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя</td></tr><tr><td>QSI-2026-07008</td><td>Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07009</td><td>Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07010</td><td>Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07012</td><td>crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07013</td><td>crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07014</td><td>ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07015</td><td>tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-info">Информационная</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07011</td><td>Не обнаружено криптобиблиотек с поддержкой PQC</td><td class="small">Недостаточность данных</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Подробное описание находок</h2>
+  <article class="finding" id="QSI-2026-07007">
+    <header><span class="fid">QSI-2026-07007 · TLSCONF-NO-PQ-HYBRID</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span></p>
+    <p>Группы обмена ключами в строка 91 (X25519, prime256v1, secp384r1) не включают гибридную группу ML-KEM, например X25519MLKEM768.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>file:book/src/zcash/server.md</dd>
+      <dt>Источник данных</dt><dd>book/src/zcash/server.md</dd>
+      <dt>Метод обнаружения</dt><dd>Статический разбор директив групп обмена ключами.</dd>
+      <dt>Анализатор</dt><dd>configs 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>41.2 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Трафик, защищённый только классическим ECDHE, может быть записан сегодня и расшифрован после появления CRQC (harvest now, decrypt later). Актуально, если данные должны оставаться конфиденциальными много лет.</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте строка 91 в предоставленном файле book/src/zcash/server.md и изучите приведённые строки (см. доказательство).</pre>
+    <h4 id="ev-QSI-2026-07007">Подтверждающие доказательства</h4>
+      <div class="ev-meta">config_line · book/src/zcash/server.md · line 91 · SHA-256 b62672e65d6d90ca… · Файл 7e2a4b59e3a03468…</div>
+      <pre>   89 |     ssl_certificate_key /etc/ssl/localhost+2-key.pem;
+   90 |     ssl_protocols TLSv1.3;
+   91 |     ssl_ecdh_curve X25519:prime256v1:secp384r1;
+   92 |     ssl_prefer_server_ciphers off;
+   93 | </pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Если директива групп отсутствует, действуют значения по умолчанию TLS-библиотеки, которые не определялись.</p>
+    <h4>Рекомендация</h4><p>При OpenSSL ≥ 3.5 (или BoringSSL/rustls с ML-KEM) добавьте X25519MLKEM768 перед X25519 в список групп после тестов совместимости.</p>
+    <h4>Повторная проверка</h4><p>Проверьте согласованную группу PQ-клиентом (например, openssl s_client -groups X25519MLKEM768).</p>
+<p class="small muted">RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024); IANA — Transport Layer Security (TLS) Parameters (Supported Groups, SignatureScheme, Cipher Suites); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-07008">
+    <header><span class="fid">QSI-2026-07008 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>318 упоминаний FROST в 27 файл(ах), например frost-core/src/round2.rs:68. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:FROST:threshold_mpc</dd>
+      <dt>Источник данных</dt><dd>frost-core/src/round2.rs</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>35.6 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте frost-core/src/round2.rs:68 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-07008">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L68">frost-core/src/round2.rs</a> · line 68 · SHA-256 8651173eb9746c7a… · Файл a2d08db9973b391c…</div>
+      <pre>   67 |         group_commitment_share: &amp;round1::GroupCommitmentShare&lt;C&gt;,
+   68 |         verifying_share: &amp;frost::keys::VerifyingShare&lt;C&gt;,
+   69 |         lambda_i: Scalar&lt;C&gt;,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L128">frost-core/src/round2.rs</a> · line 128 · SHA-256 0988e24963297367… · Файл a2d08db9973b391c…</div>
+      <pre>  127 |     signer_nonces: &amp;round1::SigningNonces&lt;C&gt;,
+  128 |     key_package: &amp;frost::keys::KeyPackage&lt;C&gt;,
+  129 | ) -&gt; Result&lt;SignatureShare&lt;C&gt;, Error&lt;C&gt;&gt; {</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L152">frost-core/src/round2.rs</a> · line 152 · SHA-256 23b8babcd0d741e5… · Файл a2d08db9973b391c…</div>
+      <pre>  151 |         compute_binding_factor_list(&amp;signing_package, &amp;key_package.verifying_key, &amp;[])?;
+  152 |     let binding_factor: frost::BindingFactor&lt;C&gt; = binding_factor_list
+  153 |         .get(&amp;key_package.identifier)</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L14">frost-ed25519/src/keys/dkg.rs</a> · line 14 · SHA-256 9dfbb8854872ce3e… · Файл 3e1635cda9a61ca9…</div>
+      <pre>   13 |     /// This package MUST NOT be sent to other participants!
+   14 |     pub type SecretPackage = frost::keys::dkg::round1::SecretPackage&lt;E&gt;;
+   15 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L18">frost-ed25519/src/keys/dkg.rs</a> · line 18 · SHA-256 7b0f9fddd5c6a37d… · Файл 3e1635cda9a61ca9…</div>
+      <pre>   17 |     /// between the first and second parts of the DKG protocol (round 1).
+   18 |     pub type Package = frost::keys::dkg::round1::Package&lt;E&gt;;
+   19 | }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L31">frost-ed25519/src/keys/dkg.rs</a> · line 31 · SHA-256 3e960b2a65f69aa8… · Файл 3e1635cda9a61ca9…</div>
+      <pre>   30 |     /// This package MUST NOT be sent to other participants!
+   31 |     pub type SecretPackage = frost::keys::dkg::round2::SecretPackage&lt;E&gt;;
+   32 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L19">frost-ed25519/src/keys/refresh.rs</a> · line 19 · SHA-256 408ed7e85e3887bb… · Файл 0a79ab71158fc50f…</div>
+      <pre>   18 | ) -&gt; Result&lt;(Vec&lt;SecretShare&gt;, PublicKeyPackage), Error&gt; {
+   19 |     frost::keys::refresh::compute_refreshing_shares(old_pub_key_package, identifiers, &amp;mut rng)
+   20 | }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L27">frost-ed25519/src/keys/refresh.rs</a> · line 27 · SHA-256 d2a9190315a8d506… · Файл 0a79ab71158fc50f…</div>
+      <pre>   26 | ) -&gt; Result&lt;KeyPackage, Error&gt; {
+   27 |     frost::keys::refresh::refresh_share(zero_share, current_share)
+   28 | }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L37">frost-ed25519/src/keys/refresh.rs</a> · line 37 · SHA-256 716bc1a13f82dedd… · Файл 0a79ab71158fc50f…</div>
+      <pre>   36 | ) -&gt; Result&lt;(round1::SecretPackage, round1::Package), Error&gt; {
+   37 |     frost::keys::refresh::refresh_dkg_part1(identifier, max_signers, min_signers, &amp;mut rng)
+   38 | }</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/repairable.rs#L17">frost-ed25519/src/keys/repairable.rs</a> · line 17 · SHA-256 5a88bda2ec9ca0cf… · Файл da295baadb8e6db2…</div>
+      <pre>   16 | /// A delta value which is the output of part 1 of RTS.
+   17 | pub type Delta = frost::keys::repairable::Delta&lt;Ed25519Sha512&gt;;
+   18 | </pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-07009">
+    <header><span class="fid">QSI-2026-07009 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>2 упоминаний ECDSA в 2 файл(ах), например frost-secp256k1-tr/src/lib.rs:185. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:ECDSA:threshold_mpc</dd>
+      <dt>Источник данных</dt><dd>frost-secp256k1-tr/src/lib.rs</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>35.6 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте frost-secp256k1-tr/src/lib.rs:185 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-07009">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1-tr/src/lib.rs#L185">frost-secp256k1-tr/src/lib.rs</a> · line 185 · SHA-256 ad879255171d8734… · Файл 5ea39038f8a2419c…</div>
+      <pre>  184 | /// [spec]: https://www.ietf.org/archive/id/draft-irtf-cfrg-frost-14.html#section-6.5-1
+  185 | const CONTEXT_STRING: &amp;str = &#34;FROST-secp256k1-SHA256-TR-v1&#34;;
+  186 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1/src/lib.rs#L177">frost-secp256k1/src/lib.rs</a> · line 177 · SHA-256 81d0fa0687f87748… · Файл 71f9c9a1c7a09a6d…</div>
+      <pre>  176 | /// [spec]: https://datatracker.ietf.org/doc/html/rfc9591#section-6.5-1
+  177 | const CONTEXT_STRING: &amp;str = &#34;FROST-secp256k1-SHA256-v1&#34;;
+  178 | </pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-07010">
+    <header><span class="fid">QSI-2026-07010 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>10 упоминаний ECDSA в 1 файл(ах), например gencode/src/main.rs:294. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:ECDSA:general</dd>
+      <dt>Источник данных</dt><dd>gencode/src/main.rs</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>34.2 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте gencode/src/main.rs:294 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-07010">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L294">gencode/src/main.rs</a> · line 294 · SHA-256 3ee609c196212ca7… · Файл 9abc466ef851952a…</div>
+      <pre>  293 |         (
+  294 |             &#34;frost-secp256k1&#34;,
+  295 |             &amp;[</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L297">gencode/src/main.rs</a> · line 297 · SHA-256 6bacff1527a755d3… · Файл 9abc466ef851952a…</div>
+      <pre>  296 |                 &#34;Secp256K1Sha256&#34;,
+  297 |                 &#34;secp256k1 curve&#34;,
+  298 |                 &#34;Secp256K1&#34;,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L299">gencode/src/main.rs</a> · line 299 · SHA-256 3eda82aceab99676… · Файл 9abc466ef851952a…</div>
+      <pre>  298 |                 &#34;Secp256K1&#34;,
+  299 |                 &#34;FROST(secp256k1, SHA-256)&#34;,
+  300 |                 &#34;FROST-secp256k1-SHA256-v1&#34;,</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-07012">
+    <header><span class="fid">QSI-2026-07012 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependency:crates.io/crossbeam-epoch@0.9.18</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0204</pre>
+    <h4 id="ev-QSI-2026-07012">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0204">OSV.dev RUSTSEC-2026-0204</a> · manifest · SHA-256 87f069b4fa857d22…</div>
+      <pre>{&#34;id&#34;: &#34;RUSTSEC-2026-0204&#34;, &#34;aliases&#34;: [], &#34;modified&#34;: &#34;2026-07-06T22:30:04.159269138Z&#34;, &#34;summary&#34;: &#34;Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: false}</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.20).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV advisory RUSTSEC-2026-0204</p>  </article>
+  <article class="finding" id="QSI-2026-07013">
+    <header><span class="fid">QSI-2026-07013 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependency:crates.io/crypto-bigint@0.7.5</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387</pre>
+    <h4 id="ev-QSI-2026-07013">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0387">OSV.dev RUSTSEC-2026-0387</a> · manifest · SHA-256 eab63427da988e95…</div>
+      <pre>{&#34;id&#34;: &#34;RUSTSEC-2026-0387&#34;, &#34;aliases&#34;: [], &#34;modified&#34;: &#34;2026-10-24T03:45:02.365137418Z&#34;, &#34;summary&#34;: &#34;Multiple timing variability issues in operations intended to be constant-time&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: false}</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV advisory RUSTSEC-2026-0387</p>  </article>
+  <article class="finding" id="QSI-2026-07014">
+    <header><span class="fid">QSI-2026-07014 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependency:crates.io/ctutils@0.4.2</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0385</pre>
+    <h4 id="ev-QSI-2026-07014">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0385">OSV.dev RUSTSEC-2026-0385</a> · manifest · SHA-256 200470326c8a5ad1…</div>
+      <pre>{&#34;id&#34;: &#34;RUSTSEC-2026-0385&#34;, &#34;aliases&#34;: [], &#34;modified&#34;: &#34;2026-10-23T08:30:02.389575143Z&#34;, &#34;summary&#34;: &#34;Non-constant-time mask generation and `u128` comparisons&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: false}</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.4.4).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV advisory RUSTSEC-2026-0385</p>  </article>
+  <article class="finding" id="QSI-2026-07015">
+    <header><span class="fid">QSI-2026-07015 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.52.3: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependency:crates.io/tokio@1.52.3</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>17.8 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0386</pre>
+    <h4 id="ev-QSI-2026-07015">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0386">OSV.dev RUSTSEC-2026-0386</a> · manifest · SHA-256 1ebb594fd9923dc0…</div>
+      <pre>{&#34;id&#34;: &#34;RUSTSEC-2026-0386&#34;, &#34;aliases&#34;: [], &#34;modified&#34;: &#34;2026-10-23T14:45:03.847864944Z&#34;, &#34;summary&#34;: &#34;`AsyncFd::new` and related constructors violate I/O safety&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (1.51.6, 1.53.3).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV advisory RUSTSEC-2026-0386</p>  </article>
+  <article class="finding" id="QSI-2026-07011">
+    <header><span class="fid">QSI-2026-07011 · DEP-NO-PQC-LIBRARY</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>Не обнаружено криптобиблиотек с поддержкой PQC</h3>
+    <p><span class="tag">Недостаточность данных</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>В 11 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ed25519-dalek, ff, group, k256, p256, secp256k1), но ни одной из списка поддерживающих PQC.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies</dd>
+      <dt>Источник данных</dt><dd>dependency manifests</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление названий зависимостей.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:04 UTC</dd>
+      <dt>Балл приоритета</dt><dd>13.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.</p>
+    <h4>Шаги воспроизведения</h4><pre>Изучите перечисленные в доказательстве манифесты.</pre>
+    <h4 id="ev-QSI-2026-07011">Подтверждающие доказательства</h4>
+      <div class="ev-meta">dependency · Cargo.lock, Cargo.toml, frost-core/Cargo.toml, frost-ed25519/Cargo.toml, frost-ed448/Cargo.toml, frost-p256/Cargo.toml, frost-rerandomized/Cargo.toml, frost-ristretto255/Cargo.toml, frost-secp256k1-tr/Cargo.toml, frost-secp256k1/Cargo.toml, gencode/Cargo.toml · SHA-256 9413aa4eaf1c9436…</div>
+      <pre>Crypto libraries: curve25519-dalek, ed25519-dalek, ff, group, k256, p256, secp256k1</pre>
+    <h4>Ограничения проверки</h4><p class="small">Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.</p>
+    <h4>Рекомендация</h4><p>Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование после обновлений.</p>
+<p class="small muted">FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM); FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Подтверждающие доказательства</h2>
+  <table class="data"><tr><th>ID</th><th>Тип</th><th>Источник данных</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-07007">QSI-2026-07007</a></td><td>config_line</td><td>book/src/zcash/server.md (line 91)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b62672e65d6d90ca52b33e92ac7abb52ed2252c67a25d101f99bfba483d8cede</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L68">frost-core/src/round2.rs</a> (line 68)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8651173eb9746c7abdf62ed25f8a134f33e1fe46187927fcd5bb0513274f598a</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L128">frost-core/src/round2.rs</a> (line 128)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0988e249632973670a9ae977916740daaf706c21130a4bf77482288c3c6c9e59</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L152">frost-core/src/round2.rs</a> (line 152)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">23b8babcd0d741e51e2bd5007c78b14f48242ff3c1df81f5aae0cf016a8637a7</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L14">frost-ed25519/src/keys/dkg.rs</a> (line 14)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9dfbb8854872ce3e884af9f8eb4624c3f91e9cf2b8d29ff9b55524cb7a37a66e</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L18">frost-ed25519/src/keys/dkg.rs</a> (line 18)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7b0f9fddd5c6a37de10783667d9404a36128d6b37f8400696727dad063f87731</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L31">frost-ed25519/src/keys/dkg.rs</a> (line 31)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e960b2a65f69aa8b89b6228dcaa8cada25ed12cb8c78afe76e629d8f6006b69</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L19">frost-ed25519/src/keys/refresh.rs</a> (line 19)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">408ed7e85e3887bb040d3dfe7fd289cdef6f0bd1292f6f1b0b1e0de50856059b</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L27">frost-ed25519/src/keys/refresh.rs</a> (line 27)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d2a9190315a8d506a77bc3b8bd79e1beb2c5acb130a2095fa61a25be7a8da8fa</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L37">frost-ed25519/src/keys/refresh.rs</a> (line 37)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">716bc1a13f82dedd352d41ceb0e22b78c31a317f5a515bd2b931f4deaed0f93d</td></tr><tr><td><a href="#ev-QSI-2026-07008">QSI-2026-07008</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/repairable.rs#L17">frost-ed25519/src/keys/repairable.rs</a> (line 17)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5a88bda2ec9ca0cfa265a3bf19bf6c369997d968069f43aa48b8d087b763356c</td></tr><tr><td><a href="#ev-QSI-2026-07009">QSI-2026-07009</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1-tr/src/lib.rs#L185">frost-secp256k1-tr/src/lib.rs</a> (line 185)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ad879255171d873418b764ca76f6bc26b0fbefbe5dcad1931131f72986bd4270</td></tr><tr><td><a href="#ev-QSI-2026-07009">QSI-2026-07009</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1/src/lib.rs#L177">frost-secp256k1/src/lib.rs</a> (line 177)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">81d0fa0687f877480015ab8b8b7bffe783466c2a3995ba40d68261bb9809ae01</td></tr><tr><td><a href="#ev-QSI-2026-07010">QSI-2026-07010</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L294">gencode/src/main.rs</a> (line 294)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3ee609c196212ca75450c159926d73de8a3e2ab5a60609fab8884354e991d832</td></tr><tr><td><a href="#ev-QSI-2026-07010">QSI-2026-07010</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L297">gencode/src/main.rs</a> (line 297)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6bacff1527a755d3f68b7868603372ab97b8a8e35c9641e78a99e9875d527ae7</td></tr><tr><td><a href="#ev-QSI-2026-07010">QSI-2026-07010</a></td><td>file_excerpt</td><td><a href="https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L299">gencode/src/main.rs</a> (line 299)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3eda82aceab99676c30f6e7fba61b13a7964f4ae17509065685796c4f7358960</td></tr><tr><td><a href="#ev-QSI-2026-07012">QSI-2026-07012</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/RUSTSEC-2026-0204">OSV.dev RUSTSEC-2026-0204</a> (manifest)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95</td></tr><tr><td><a href="#ev-QSI-2026-07013">QSI-2026-07013</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/RUSTSEC-2026-0387">OSV.dev RUSTSEC-2026-0387</a> (manifest)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5</td></tr><tr><td><a href="#ev-QSI-2026-07014">QSI-2026-07014</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/RUSTSEC-2026-0385">OSV.dev RUSTSEC-2026-0385</a> (manifest)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848</td></tr><tr><td><a href="#ev-QSI-2026-07015">QSI-2026-07015</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/RUSTSEC-2026-0386">OSV.dev RUSTSEC-2026-0386</a> (manifest)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6</td></tr><tr><td><a href="#ev-QSI-2026-07011">QSI-2026-07011</a></td><td>dependency</td><td>Cargo.lock, Cargo.toml, frost-core/Cargo.toml, frost-ed25519/Cargo.toml, frost-ed448/Cargo.toml, frost-p256/Cargo.toml, frost-rerandomized/Cargo.toml, frost-ristretto255/Cargo.toml, frost-secp256k1-tr/Cargo.toml, frost-secp256k1/Cargo.toml, gencode/Cargo.toml</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9413aa4eaf1c9436374b575fb77862bfa138658bc1af6c1fd777c1dfeb7c36bd</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Постквантовая оценка</h2>
+  <table class="data">
+    <tr><th></th><th>Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом»)</th><th>Подписи (x — сколько подписи и ключи должны оставаться доверенными)</th></tr>
+    <tr><th>Срок жизни данных/ключей x</th><td>10</td><td>10</td></tr>
+    <tr><th>Время миграции y</th><td>5</td><td>5</td></tr>
+    <tr><th>Принятое число лет до CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → при этом сценарии миграция завершится слишком поздно</td><td>7 → при этом сценарии миграция завершится слишком поздно</td></tr>
+  </table>
+<p class="note">Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.</p>  <h3>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет</h3>
+  <p><strong>Следующий шаг:</strong> Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p>
+  <p class="note">Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам.</p>
+  <h3>Что делают квантово-уязвимые алгоритмы</h3>
+  <table class="data"><tr><th>Роль</th><th>Алгоритмы (файлы)</th><th>ID</th><th>Первый шаг</th></tr>
+<tr><td><strong>пороговая подпись и протоколы MPC</strong></td><td>FROST (27), ECDSA (2)</td><td class="small"><a href="#QSI-2026-07008">QSI-2026-07008</a>, <a href="#QSI-2026-07009">QSI-2026-07009</a></td><td class="small">Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли</td></tr><tr><td><strong>роль не определена</strong></td><td>ECDSA (1)</td><td class="small"><a href="#QSI-2026-07010">QSI-2026-07010</a></td><td class="small">Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости</td></tr>  </table>
+  <p class="note">Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня.</p>
+  <p class="note">z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+  <table class="data"><tr><th>Квантовый статус</th><th>Количество</th></tr>
+<tr><td>сниженный запас (Гровер), одобрен</td><td>3</td></tr><tr><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>3</td></tr><tr><td>н/п</td><td>20</td></tr><tr><td>уязвим (Шор)</td><td>33</td></tr>  </table>
+  <p><strong>Подробное описание находок:</strong> QSI-2026-07007, QSI-2026-07008, QSI-2026-07009, QSI-2026-07010</p>
+  <h3>Анкета постквантовой готовности</h3>
+<p class="muted">Анкета готовности для проекта не заполнялась.</p>  <h3>Квантовые алгоритмы, значимые для этой инвентаризации</h3>
+  <table class="data"><tr><th>Квантовый алгоритм</th><th>Действие</th><th>Алгоритмы из инвентаризации (строк)</th><th>Что это значит для аудита</th></tr>
+<tr><td>Алгоритм Шора — дискретный логарифм на эллиптических кривых<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>ECDH (1), ECDSA (4), FROST (27), X25519 (1)</td><td class="small">Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.</td></tr><tr><td>Алгоритм Гровера — поиск ключа и прообразов<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>SHA-2 (5), SHAKE (1)</td><td class="small">Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.</td></tr><tr><td>Брассар–Хойер–Тапп — поиск коллизий<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>SHA-2 (5), SHAKE (1)</td><td class="small">256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.</td></tr>  </table>
+  <p class="note">Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Ограничения и допущения</h2>
+  <ul>
+    <li>Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</li>
+    <li>z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>План устранения проблем</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07012 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07013 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07014 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07015 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07007 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования ? в ? в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07008 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования FROST в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07009 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07010 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07007 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ? или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07008 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию FROST на Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07009 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07010 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Приоритеты на 30, 60 и 90 дней</h2>
+  <h3>30 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td colspan="4" class="muted">Нет</td></tr>  </table>
+  <h3>60 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-07012</td><td>Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07013</td><td>Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07014</td><td>Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07015</td><td>Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3).</td><td class="small">устранение первопричины</td></tr>  </table>
+  <h3>90 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-07007</td><td>Внесите использования ? в ? в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-07008</td><td>Внесите использования FROST в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-07009</td><td>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-07010</td><td>Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P4</td><td>QSI-2026-07007</td><td>Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07008</td><td>Запланируйте миграцию FROST на Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07009</td><td>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07010</td><td>Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Проверки после устранения</h2>
+  <table class="data"><tr><th>ID</th><th>Повторная проверка</th></tr>
+<tr><td>QSI-2026-07007</td><td>Проверьте согласованную группу PQ-клиентом (например, openssl s_client -groups X25519MLKEM768).</td></tr><tr><td>QSI-2026-07008</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-07009</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-07010</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-07012</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07013</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07014</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07015</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07011</td><td>Повторите сканирование после обновлений.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Использованные инструменты</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Источники и нормативные документы</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <a href="https://eprint.iacr.org/2017/847">https://eprint.iacr.org/2017/847</a> <span class="muted">(peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)</span></li><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <a href="https://cr.yp.to/hash/collisioncost-20090823.pdf">https://cr.yp.to/hash/collisioncost-20090823.pdf</a> <span class="muted">(paper dated 2009-08-23)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN &#39;98; arXiv:quant-ph/9705002) — Springer / arXiv. <a href="https://arxiv.org/abs/quant-ph/9705002">https://arxiv.org/abs/quant-ph/9705002</a> <span class="muted">(peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)</span></li><li>IANA — Transport Layer Security (TLS) Parameters (Supported Groups, SignatureScheme, Cipher Suites) — IANA. <a href="https://www.iana.org/assignments/tls-parameters/">https://www.iana.org/assignments/tls-parameters/</a> <span class="muted">(living registry (checked 2026-10-13); &#39;Recommended&#39; column Y/N/D)</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>OSV advisory RUSTSEC-2026-0204 — OSV.dev. <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0204">https://osv.dev/vulnerability/RUSTSEC-2026-0204</a> <span class="muted">(modified 2026-07-06T22:30:04.159269138Z)</span></li><li>OSV advisory RUSTSEC-2026-0385 — OSV.dev. <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0385">https://osv.dev/vulnerability/RUSTSEC-2026-0385</a> <span class="muted">(modified 2026-10-23T08:30:02.389575143Z)</span></li><li>OSV advisory RUSTSEC-2026-0386 — OSV.dev. <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0386">https://osv.dev/vulnerability/RUSTSEC-2026-0386</a> <span class="muted">(modified 2026-10-23T14:45:03.847864944Z)</span></li><li>OSV advisory RUSTSEC-2026-0387 — OSV.dev. <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0387">https://osv.dev/vulnerability/RUSTSEC-2026-0387</a> <span class="muted">(modified 2026-10-24T03:45:02.365137418Z)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li><li>RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024) — IETF. <a href="https://www.rfc-editor.org/rfc/rfc10024">https://www.rfc-editor.org/rfc/rfc10024</a> <span class="muted">(standards track; checked 2026-10-13)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Приложения</h2>
+  <h3>A. Криптографическая инвентаризация</h3>
+  <table class="data"><tr><th>Алгоритм</th><th>Параметр</th><th>Квантовый статус</th><th>Классический статус</th><th>Количество</th><th>Мест</th><th>Примеры</th></tr>
+<tr><td>SHA-2</td><td>SHA-512</td><td>сниженный запас (Гровер), одобрен</td><td>допустимо</td><td>2</td><td>2</td><td class="small">frost-ed25519/src/lib.rs:145; frost-ristretto255/src/lib.rs:134</td></tr><tr><td>SHAKE</td><td>SHAKE256</td><td>сниженный запас (Гровер), одобрен</td><td>допустимо</td><td>1</td><td>1</td><td class="small">frost-ed448/src/lib.rs:134</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>допустимо</td><td>3</td><td>3</td><td class="small">frost-p256/src/lib.rs:154; frost-secp256k1-tr/src/lib.rs:161; frost-secp256k1/src/lib.rs:153</td></tr><tr><td>Crypto library<br><span class="small muted">p256 (RustCrypto elliptic curves)</span></td><td>0.14.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">group (jubjub)</span></td><td>0.14.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">ff (jubjub)</span></td><td>0.14.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">k256 (RustCrypto elliptic curves)</span></td><td>0.14.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>0.31.1</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">ed25519-dalek (ed25519-dalek)</span></td><td>3.0.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">curve25519-dalek (ed25519-dalek)</span></td><td>5.0.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">k256 (RustCrypto elliptic curves)</span></td><td>0.14</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">p256 (RustCrypto elliptic curves)</span></td><td>0.14</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>0.31</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">ed25519-dalek (ed25519-dalek)</span></td><td>3.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">curve25519-dalek (ed25519-dalek)</span></td><td>5.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">ed25519-dalek (ed25519-dalek)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">frost-ed25519/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">curve25519-dalek (ed25519-dalek)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>2</td><td>2</td><td class="small">frost-ed25519/Cargo.toml; frost-ristretto255/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">p256 (RustCrypto elliptic curves)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">frost-p256/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">k256 (RustCrypto elliptic curves)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>2</td><td>2</td><td class="small">frost-secp256k1-tr/Cargo.toml; frost-secp256k1/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">secp256k1 (secp256k1 bindings)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">frost-secp256k1-tr/Cargo.toml</td></tr><tr><td>TLS 1.3</td><td></td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">book/src/zcash/server.md (line 90)</td></tr><tr><td>ECDH</td><td>secp384r1</td><td>уязвим (Шор)</td><td>допустимо</td><td>1</td><td>1</td><td class="small">book/src/zcash/server.md (line 91)</td></tr><tr><td>ECDSA</td><td>prime256v1</td><td>уязвим (Шор)</td><td>допустимо</td><td>1</td><td>1</td><td class="small">book/src/zcash/server.md (line 91)</td></tr><tr><td>ECDSA</td><td>secp256k1</td><td>уязвим (Шор)</td><td>допустимо</td><td>3</td><td>3</td><td class="small">frost-secp256k1-tr/src/lib.rs:185; frost-secp256k1/src/lib.rs:177; gencode/src/main.rs:294</td></tr><tr><td>FROST</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>27</td><td>27</td><td class="small">frost-core/src/round2.rs:68; frost-ed25519/src/keys/dkg.rs:14; frost-ed25519/src/keys/refresh.rs:19</td></tr><tr><td>X25519</td><td>X25519</td><td>уязвим (Шор)</td><td>допустимо</td><td>1</td><td>1</td><td class="small">book/src/zcash/server.md (line 91)</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 3b0ed30a05821c2b696f385188fa6f97f309e120180a06949bb6210af7e79a0e</p>
+  <h3>C. Входные файлы</h3>
+  <table class="data"><tr><th>Файл</th><th>Размер</th><th>SHA-256</th><th>Маскирования</th></tr>
+<tr><td>Cargo.lock</td><td>41855</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e68d65a0acc1ab32c2ba0cee705bf6a85496effe76bc2a7b28670bb83f64eba5</td><td>0</td></tr><tr><td>Cargo.toml</td><td>3388</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4549e7f3684aa89813332f452aacf5800be15416755c90b88bd827fda5da8df1</td><td>0</td></tr><tr><td>book/src/zcash/server.md</td><td>10468</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7e2a4b59e3a03468d0d48e45837a0f5b5cf0f6da2df56a22d721c84c64e912f5</td><td>2</td></tr><tr><td>frost-core/Cargo.toml</td><td>2374</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">55bd71d7e7b640098f5cd7331055b75270f74be66e0704c744020aa985c5484e</td><td>0</td></tr><tr><td>frost-core/src/batch.rs</td><td>5301</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">933610841fdffd02f87f0a906a73150dc87c9d49f1497f32d0c66f794fe22e3b</td><td>0</td></tr><tr><td>frost-core/src/error.rs</td><td>7226</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">849919fb380d47446fa5a191de655afa7e5b5595e1349dab55271ecb4e38287f</td><td>0</td></tr><tr><td>frost-core/src/identifier.rs</td><td>5313</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ba22e7a409f3b55c18182fbfb4ce5d8fd88318a9351f183f3116249716330129</td><td>0</td></tr><tr><td>frost-core/src/keys.rs</td><td>35776</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">02e40c9d7398e6fcb25ac901a792fe7a5a22a0b00b922a2453ab0cfbc9864896</td><td>0</td></tr><tr><td>frost-core/src/keys/dkg.rs</td><td>24566</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c0ba36bba2164103dc9b3b23aa49a3a1a26ae3b2346c01c77457d7103947b1b9</td><td>0</td></tr><tr><td>frost-core/src/keys/refresh.rs</td><td>19148</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0fd4f72a9e003fe449434e9574f6163c6a4aca8864e91bb946810844862bc3a9</td><td>0</td></tr><tr><td>frost-core/src/keys/repairable.rs</td><td>7588</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d71a74d06c38d007e165fe7dd4d733a785627691307380263435a3dc8d96b6b6</td><td>0</td></tr><tr><td>frost-core/src/lib.rs</td><td>29588</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4f0c2b9fc7c33a1ad5261c9591b174f0da2c5b86ea6f23938d0df53e196c0e09</td><td>0</td></tr><tr><td>frost-core/src/round1.rs</td><td>14811</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">160f764fd26c68f203c9af67639c411abf19fca973f8b24e738b443cb47e39c5</td><td>0</td></tr><tr><td>frost-core/src/round2.rs</td><td>6535</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a2d08db9973b391c710322ba06ed5aac306a029437597256c2d532b10b9a0b8b</td><td>0</td></tr><tr><td>frost-core/src/scalar_mul.rs</td><td>8119</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f3b5bacb19b00a3722267c2a19267dbc0eb78436e49103f13a851f4d07adce69</td><td>0</td></tr><tr><td>frost-core/src/serialization.rs</td><td>17472</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ca2c0bd9c9c9fc50b43f93dcc053d6d82cf8393c85f0f07880b6607073ee926b</td><td>0</td></tr><tr><td>frost-core/src/signature.rs</td><td>5039</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2e6552c5f85e3c37328e9550d6428210b7c1a6e9165ea9a1d03a4fd66e03e142</td><td>0</td></tr><tr><td>frost-core/src/signing_key.rs</td><td>3348</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6f2f9c9fa71c047ef8b508a78ffa4d72559e9bd84d9b9ec795de194820a31853</td><td>0</td></tr><tr><td>frost-core/src/traits.rs</td><td>18836</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">eb3c9736a033d9e71747bbba102072389ff795095f2e3fb915a4987a19aec6fa</td><td>0</td></tr><tr><td>frost-core/src/verifying_key.rs</td><td>3924</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">774401b1656d0e9410b2be708fe502f13c41b0ae29153d04fb477474ae554493</td><td>0</td></tr><tr><td>frost-ed25519/Cargo.toml</td><td>1713</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7e2434281cda3490c2f069a164bb0a5a645b65456d3bc0bca15b33ee96f0e650</td><td>0</td></tr><tr><td>frost-ed25519/src/keys/dkg.rs</td><td>4488</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc</td><td>0</td></tr><tr><td>frost-ed25519/src/keys/refresh.rs</td><td>2197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b</td><td>0</td></tr><tr><td>frost-ed25519/src/keys/repairable.rs</td><td>3699</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">da295baadb8e6db25c3887bbbff4a8da5f18ffc26a566cf800bbbc7a78b93b82</td><td>0</td></tr><tr><td>frost-ed25519/src/lib.rs</td><td>16079</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">154e0327bcb1ccb6661cb4d6b43976ec4412cda487c347ba47a2890baed4fe65</td><td>0</td></tr><tr><td>frost-ed25519/src/rerandomized.rs</td><td>2440</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">85898043125f03f5aeb49c1c765fbd3e00544efa0f5f008405cc192e8e2d3ac6</td><td>0</td></tr><tr><td>frost-ed448/Cargo.toml</td><td>1697</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">973a56d8769bba0e17f2d409f721326f115465f84ac490bd462f117526514973</td><td>0</td></tr><tr><td>frost-ed448/src/keys/dkg.rs</td><td>4488</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc</td><td>0</td></tr><tr><td>frost-ed448/src/keys/refresh.rs</td><td>2197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b</td><td>0</td></tr><tr><td>frost-ed448/src/keys/repairable.rs</td><td>3699</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fc31feff330c79d55996afdef3f800ee508a68fa13b055fbed5c775e8a90d8a0</td><td>0</td></tr><tr><td>frost-ed448/src/lib.rs</td><td>15629</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9cbb955ef8920791072b7c6f12b74c4680c0b28e2e8fcbbb53950d3a5fa0b5a6</td><td>0</td></tr><tr><td>frost-ed448/src/rerandomized.rs</td><td>2440</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0265962a707310b3fa0d18981673b500c2219451c1327bc7e150a205be1e2ab5</td><td>0</td></tr><tr><td>frost-p256/Cargo.toml</td><td>1674</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b23db436b3de5f2c10b536bd8394c487c34e95b7cac5dd5646caf13c07ab588c</td><td>0</td></tr><tr><td>frost-p256/src/keys/dkg.rs</td><td>4488</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">08a79765a3083bdb2795fe9119c3ab5a360db82c701932f9e23a1e70621a7271</td><td>0</td></tr><tr><td>frost-p256/src/keys/refresh.rs</td><td>2197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b</td><td>0</td></tr><tr><td>frost-p256/src/keys/repairable.rs</td><td>3672</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d33ee77e967cd7fbccd24dfb7465c25af4202c986bb8efe12221a2cd3c06a16f</td><td>0</td></tr><tr><td>frost-p256/src/lib.rs</td><td>16596</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dd6dd43ebfa6fb2c6f395bbca42fb970035644c0217626e4cafc980743b444e3</td><td>0</td></tr><tr><td>frost-p256/src/rerandomized.rs</td><td>2425</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">86be59fa03d52c35021af6162314c22ec62b290120d6552c85f5dff9988177c1</td><td>0</td></tr><tr><td>frost-rerandomized/Cargo.toml</td><td>1326</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1bb201cf45ab222637b59e8a5a223a6d6846af2a61263d48bb53f7d9293ac924</td><td>0</td></tr><tr><td>frost-rerandomized/src/lib.rs</td><td>19184</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">54e4644d3f9b239c3831af6681e0f0b94c596bf9a6594222a7c766ff10a9ad98</td><td>0</td></tr><tr><td>frost-ristretto255/Cargo.toml</td><td>1835</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ad07b354fe4111c0ddc5b4ba96623a2d3c7398bff7c3ddd27a97f23b8af52b44</td><td>0</td></tr><tr><td>frost-ristretto255/src/keys/dkg.rs</td><td>4488</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d050f6eaee8e37fbaff30ae2b08ba92767d510ca36a4eb4c7e04716606351e3e</td><td>0</td></tr><tr><td>frost-ristretto255/src/keys/refresh.rs</td><td>2197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b</td><td>0</td></tr><tr><td>frost-ristretto255/src/keys/repairable.rs</td><td>3767</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">27717d2ec28e175789991d24136123d58f972c38a70880f701867e5b91ed1d77</td><td>0</td></tr><tr><td>frost-ristretto255/src/lib.rs</td><td>15401</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1f0b485f3e77604500ccc19a85221368efca024a51be8aa19c4f11a96ce1bcc3</td><td>0</td></tr><tr><td>frost-ristretto255/src/rerandomized.rs</td><td>2465</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b8d5e303a116d566e342a3833fed19308c9ffba7f1fa5a009b2ab5c9ccaab829</td><td>0</td></tr><tr><td>frost-secp256k1-tr/Cargo.toml</td><td>1733</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2c02ca2f8e5013c17e6c1742ecfe7da054e3542705a7536a0cf3b1bb05f54f23</td><td>0</td></tr><tr><td>frost-secp256k1-tr/src/keys/dkg.rs</td><td>4488</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ba4c79ae19ddd7f00348b861975a6acb620984c58d298ef0fa15434b3bdac45d</td><td>0</td></tr><tr><td>frost-secp256k1-tr/src/keys/refresh.rs</td><td>2197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b</td><td>0</td></tr><tr><td>frost-secp256k1-tr/src/keys/repairable.rs</td><td>3735</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">84d0a07e1cb504622ab1109b783d767e6de0e0cae7e42edbcd3508e0498bc2fd</td><td>0</td></tr><tr><td>frost-secp256k1-tr/src/lib.rs</td><td>33742</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5ea39038f8a2419c4a89f70918de89f8f38e31d266525ebba6ecf9087886237d</td><td>0</td></tr><tr><td>frost-secp256k1-tr/src/rerandomized.rs</td><td>2460</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">efaa56bdd54c615387d09818660d6ee7eca1dea0ca87bac89d89fc6377e7317b</td><td>0</td></tr><tr><td>frost-secp256k1/Cargo.toml</td><td>1688</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ca32dd9665dcbec4a3758a11e98444db1c39c37ea0897547ad0e25bc51f0b623</td><td>0</td></tr><tr><td>frost-secp256k1/src/keys/dkg.rs</td><td>4488</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ba4c79ae19ddd7f00348b861975a6acb620984c58d298ef0fa15434b3bdac45d</td><td>0</td></tr><tr><td>frost-secp256k1/src/keys/refresh.rs</td><td>2197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b</td><td>0</td></tr><tr><td>frost-secp256k1/src/keys/repairable.rs</td><td>3717</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fd689e8824e32b776d55ffc2f2489ca04df0d874909ee11e77b563b3eb776dd8</td><td>0</td></tr><tr><td>frost-secp256k1/src/lib.rs</td><td>16698</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">71f9c9a1c7a09a6db14ab2eaf1cfdac4223e87cc2198b4afefa48d254d21d25a</td><td>0</td></tr><tr><td>frost-secp256k1/src/rerandomized.rs</td><td>2450</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f28be9824b78b07b9b630a7d51c3bb1f5e19bf4ddad10a224d20047c8baad9ae</td><td>0</td></tr><tr><td>gencode/Cargo.toml</td><td>819</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6d667e51e6df6217840b2e4e5c093fd54b1a0df3824f4f1208bbf391863b8168</td><td>0</td></tr><tr><td>gencode/src/main.rs</td><td>13943</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9abc466ef851952a0589e67e088f1a2414a48c3efbb1ca9d8d9aafd8c0b20e4a</td><td>0</td></tr><tr><td>plot.py</td><td>6727</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">340decc4e377eee3ea11cf8d1f0524c67e394852c7808be1a281c58d54c3f7df</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>

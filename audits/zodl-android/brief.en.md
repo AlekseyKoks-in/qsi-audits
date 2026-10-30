@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: zodl-android @ 229dd3bff749
 
-*One-page brief* · Reviewed: 2026-10-28 13:06 UTC · Risk profile: Small technology company · Client: Zodl (ex-Zashi, ECC) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-10-29 23:18 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Zodl (ex-Zashi, ECC) — public repository (passive review)
 
 Source: https://github.com/zodl-inc/zodl-android/tree/229dd3bff7490ea90ca4d7d79f3c539d71976f66
 
@@ -16,7 +16,7 @@ No findings above informational.
 
 Static review of source code and manifests; files analysed: 1609. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `0c00bdc5593a25af9f9a0fe8c051afd695a843eb50b641638c48ceff2a06ee0d`
+Full report, content SHA-256: `6d6fdd62ef733486842482cec3ae478f7c091edf0805840ded02a77a558a06b6`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

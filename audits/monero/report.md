@@ -1,98 +1,143 @@
-# Security & Post-Quantum Readiness Audit Report
+# Отчёт об аудите безопасности и постквантовой готовности
 
-**Project:** monero @ 3fd0f88c20f5 · Monero — public repository (passive review)
+**Проект:** monero @ 3fd0f88c20f5 · Monero — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
-| Organization | QSI |
-| Report date | 2026-10-28 16:45 UTC |
-| Report version | 1 |
-| Audit run | 21c01b41-ab43-493f-81ae-7028dfa36d92 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
-| Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `c640f43c1f7c8aeef4a0c7208351c7fb5f0d46ab7c3a0401b7c2139ece61dd32` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
-> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+| Организация | QSI |
+| Дата отчёта | 2026-10-29 23:26 UTC |
+| Версия отчёта | 1 |
+| Запуск аудита | e425d0b6-4289-4e9c-a90f-1054ae92ae26 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.2.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `baf67d98f79b2d660cf6851c2ab260cc1d832d4825056049a72d778f6eb5536e` |
+| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
-## 1. Executive summary
+## 1. Резюме для руководства
 
-- Critical: **0**
-- High: **0**
-- Medium: **5**
-- Low: **2**
-- Info: **1**
+- Критическая: **0**
+- Высокая: **1**
+- Средняя: **41**
+- Низкая: **2**
+- Информационная: **1**
 
-- Confirmed technical vulnerability: 0
-- Known vulnerable component: 3
-- Confirmed configuration error: 0
-- Potential cryptographic risk: 0
-- Long-term post-quantum risk: 4
-- Improvement recommendation: 0
-- Insufficient data: 1
+- Подтверждённая техническая уязвимость: 0
+- Известная уязвимая версия компонента: 3
+- Подтверждённая ошибка конфигурации: 1
+- Потенциальный криптографический риск: 0
+- Долгосрочный постквантовый риск: 40
+- Рекомендация по улучшению: 0
+- Недостаточность данных: 1
 
-Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-**Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-## 2. Scope and boundaries
+## 2. Область и границы проверки
 
-Mode: Document audit
+Режим: Документальный аудит
 
-Repository: <https://github.com/monero-project/monero> @ `3fd0f88c20f559839cafb20911cb13cb45eba7bd` — evidence links open the lines at this commit.
+Репозиторий: <https://github.com/monero-project/monero> @ `3fd0f88c20f559839cafb20911cb13cb45eba7bd` — ссылки в доказательствах открывают строки на этом коммите.
 
-580 files, 7979041 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+1117 файлов, всего 18170629 байт, редактирований: 2; список SHA-256 по файлам — в приложении C.
 
-## 3. Methodology
+## 3. Методология
 
-| Area | Status | Count | Examples |
+| Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | checked | 572 | src/blockchain_db/blockchain_db.cpp: 507 lines scanned with 16 rule patterns and 122 registry patterns; src/blockchain_db/blockchain_db.h: 1920 lines scanned with 16 rule patterns and 122 registry patterns; src/blockchain_db/lmdb/db_lmdb.cpp: 5817 lines scanned with 16 rule patterns and 122 registry patterns |
-| certificates | error (not checked) | 1 | src/common/dns_utils.cpp line 79: certificate could not be parsed (ValueError) |
-| certificates_and_keys | checked | 1 | src/common/dns_utils.cpp: certificates/keys parsed |
-| chain_map | checked | 1 | src/device_trezor/trezor/protob/messages-monero.proto: Monero |
-| dependencies | checked | 2 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock: 79 dependencies parsed (79 pinned); src/fcmp_pp/fcmp_pp_rust/Cargo.toml: 7 dependencies parsed (0 pinned) |
-| tls_key_exchange_groups | Insufficient data | 1 | src/ringct/multiexp.cc line 555: not in the algorithm registry, not assessed: (groups |
-| tls_configuration | checked | 1 | src/ringct/multiexp.cc: openssl TLS directives parsed |
-| osv_advisories | checked | 1 | 79 pinned packages queried at OSV.dev; 3 affected |
+| source_code | проверено | 1075 | cmake/CheckLinkerFlag.c: 14 lines scanned with 16 rule patterns and 127 registry patterns; contrib/epee/include/byte_slice.h: 177 lines scanned with 16 rule patterns and 127 registry patterns; contrib/epee/include/byte_stream.h: 217 lines scanned with 16 rule patterns and 127 registry patterns |
+| certificates | ошибка (не проверено) | 1 | src/common/dns_utils.cpp line 79: certificate could not be parsed (ValueError) |
+| certificates_and_keys | проверено | 34 | src/common/dns_utils.cpp: certificates/keys parsed; utils/gpg_keys/0xfffc0000.asc: certificates/keys parsed; utils/gpg_keys/SNeedlewoods.asc: certificates/keys parsed |
+| chain_map | проверено | 1 | src/device_trezor/trezor/protob/messages-monero.proto: Monero |
+| dependencies | проверено | 3 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock: 79 dependencies parsed (79 pinned); src/fcmp_pp/fcmp_pp_rust/Cargo.toml: 7 dependencies parsed (0 pinned); external/rapidjson/package.json: 0 dependencies parsed (0 pinned) |
+| tls_key_exchange_groups | Недостаточность данных | 1 | src/ringct/multiexp.cc line 555: not in the algorithm registry, not assessed: (groups |
+| tls_configuration | проверено | 1 | src/ringct/multiexp.cc: openssl TLS directives parsed |
+| keys | Недостаточность данных | 4 | utils/gpg_keys/0xfffc0000.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry; utils/gpg_keys/anon.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry; utils/gpg_keys/jpk68.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry |
+| osv_advisories | проверено | 1 | 79 pinned packages queried at OSV.dev; 3 affected |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## 4. Assets examined and not examined
+## 4. Проверенные и непроверенные активы
 
-- certificates — error (not checked): src/common/dns_utils.cpp line 79: certificate could not be parsed (ValueError)
-- tls_key_exchange_groups — Insufficient data: src/ringct/multiexp.cc line 555: not in the algorithm registry, not assessed: (groups
+- certificates — ошибка (не проверено): src/common/dns_utils.cpp line 79: certificate could not be parsed (ValueError)
+- tls_key_exchange_groups — Недостаточность данных: src/ringct/multiexp.cc line 555: not in the algorithm registry, not assessed: (groups
+- keys — Недостаточность данных: utils/gpg_keys/0xfffc0000.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- keys — Недостаточность данных: utils/gpg_keys/anon.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- keys — Недостаточность данных: utils/gpg_keys/jpk68.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- keys — Недостаточность данных: external/randomx/doc/tevador.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
 
-## 5. Architecture overview
+## 5. Краткое описание архитектуры
 
-Static review of the source tree monero at 3fd0f88c20f559839cafb20911cb13cb45eba7bd. 580 files analysed; of 663 files, 1 are test, fuzzing, benchmark or example code and were left out, 82 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree monero at 3fd0f88c20f559839cafb20911cb13cb45eba7bd. 1117 files analysed; of 2668 files, 842 are test, fuzzing, benchmark or example code and were left out, 709 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/FUNDING.yml, .github/actions/set-make-job-count/action.yml, .github/workflows/build.yml, .github/workflows/depends.yml. 422 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 367 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: external/rapidjson (119), external/supercop (84), external/randomx (68), external/gtest (57). No requests were sent to the owner's systems.
 
-## 6. Overall security posture
+## 6. Общая оценка состояния безопасности
 
-- Indicative posture index: **93** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 41.2%
+- Ориентировочный индекс состояния: **86** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 68.1%
 
-## 7. Detailed findings
+## 7. Подробное описание находок
 
-### QSI-2026-05417 — Transaction signing for 1 chain(s) relies on elliptic-curve signatures
+### QSI-2026-07254 — Возможный секрет в коде utils/python-rpc/framework/wallet.py
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
-- Affected asset: `chain-map`
-- Data source: src/device_trezor/trezor/protob/messages-monero.proto
-- Detection method: Message definitions (.proto) matched to QSI's table of chain signature schemes.
-- Analyzer: chain_map 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 56.8 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Высокая** · Классификация: Подтверждённая ошибка конфигурации · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `file:utils/python-rpc/framework/wallet.py`
+- Источник данных: utils/python-rpc/framework/wallet.py
+- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
+- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 47.1 / 100
+- CVSS v3.1: неприменимо
 
-The wallet's message definitions cover Monero. These chains authorize transactions with Ed25519, which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first.
+2 значений, похожих на секреты, типа generic_assignment (первое — строка 1198). Значения замаскированы QSI.
 
-**Potential impact.** Once a CRQC exists, an attacker who sees an account's public key could derive the private key and move funds; how soon keys are exposed depends on each chain (address reuse, account model).
+**Возможные последствия.** Учётные данные в коде утекают через репозитории, сборки и журналы.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open the .proto files named in the evidence.
+Откройте строка 1198 в предоставленном файле utils/python-rpc/framework/wallet.py и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_file_excerpt · [utils/python-rpc/framework/wallet.py](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/utils/python-rpc/framework/wallet.py#L1198) · line 1198 · SHA-256 2e8c79a1511dbb04be71c5fa20632be7e0094f833cfd2dbc97a9e077e6dfaf98_
+
+```
+ 1198 |             self.reuse_password = '[REDACTED]'
+```
+
+_file_excerpt · [utils/python-rpc/framework/wallet.py](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/utils/python-rpc/framework/wallet.py#L1199) · line 1199 · SHA-256 b7c9e444260abdb6c99a4e33ed3e3789d609c0e044674721d5db5127038e0859_
+
+```
+ 1199 |             self.custom_password = '[REDACTED]'
+```
+
+**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения.
+
+**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
+
+### QSI-2026-07256 — Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `chain-map`
+- Источник данных: src/device_trezor/trezor/protob/messages-monero.proto
+- Метод обнаружения: Определения сообщений (.proto) сопоставлены с таблицей схем подписи сетей QSI.
+- Анализатор: chain_map 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 56.8 / 100
+- CVSS v3.1: неприменимо
+
+Определения сообщений кошелька охватывают сети: Monero. Эти сети авторизуют транзакции подписями Ed25519, которые алгоритм Шора взламывает на криптографически значимом квантовом компьютере. Кошелёк не может сам перевести сеть на постквантовые подписи: сначала схему должна принять сеть.
+
+**Возможные последствия.** Когда появится CRQC, атакующий, увидевший открытый ключ аккаунта, сможет вычислить закрытый ключ и вывести средства; когда ключи раскрываются, зависит от сети (повторное использование адресов, модель аккаунтов).
+
+**Шаги воспроизведения.**
+
+```
+Откройте файлы .proto, указанные в доказательствах.
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [src/device_trezor/trezor/protob/messages-monero.proto](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/device_trezor/trezor/protob/messages-monero.proto#L2) · line 2 · SHA-256 2a60fdbae9c4da472daabb0e85b95bb7592b561df57b5344c02f5d168a37c8d9_
 
@@ -100,33 +145,1447 @@ _file_excerpt · [src/device_trezor/trezor/protob/messages-monero.proto](https:/
 package hw.trezor.messages.monero;
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Chains are recognized from the names of the message definitions (.proto files and packages); the schemes are the chains' documented account signatures, not an analysis of the wallet's signing code.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Сети распознаются по именам определений сообщений (файлы .proto и пакеты); схемы — документированные подписи аккаунтов сетей, а не анализ кода подписи кошелька.
 
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it.
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Сохраняйте криптогибкость слоя подписи по каждой сети (идентификаторы алгоритмов в сообщениях и хранилище, место под более длинные ключи и подписи) и отслеживайте постквантовые предложения сетей, чтобы добавить новую схему, когда сеть её активирует.
 
-**Retest procedure.** Re-run when a chain activates a post-quantum signature scheme or the wallet adds one.
+**Повторная проверка.** Повторить, когда сеть активирует постквантовую схему подписи или кошелёк добавит её поддержку.
 
-### QSI-2026-05414 — Quantum-vulnerable Ed25519: role not determined (4 file(s))
+### QSI-2026-07220 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:Ed25519:general`
-- Data source: src/crypto/crypto_ops_builder/crypto_sign.h
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/0xfffc0000.asc#line 1`
+- Источник данных: utils/gpg_keys/0xfffc0000.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
 
-4 reference(s) to Ed25519 across 4 file(s), e.g. src/crypto/crypto_ops_builder/crypto_sign.h:10. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+Найден открытый ключ Ed25519 Ed25519 (строка 1).
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open src/crypto/crypto_ops_builder/crypto_sign.h:10 and inspect the quoted lines; the evidence lists further files.
+Откройте строка 1 в предоставленном файле utils/gpg_keys/0xfffc0000.asc и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/0xfffc0000.asc · line 1 · SHA-256 6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8_
+
+```
+OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07221 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/SNeedlewoods.asc#line 1`
+- Источник данных: utils/gpg_keys/SNeedlewoods.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/SNeedlewoods.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/SNeedlewoods.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/SNeedlewoods.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07222 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/anon.asc#line 1`
+- Источник данных: utils/gpg_keys/anon.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ Ed25519 Ed25519 (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/anon.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/anon.asc · line 1 · SHA-256 6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8_
+
+```
+OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07223 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/anonimal.asc#line 1`
+- Источник данных: utils/gpg_keys/anonimal.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/anonimal.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/anonimal.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/anonimal.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07224 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/binaryfate.asc#line 1`
+- Источник данных: utils/gpg_keys/binaryfate.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/binaryfate.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/binaryfate.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/binaryfate.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07225 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/erciccione.asc#line 1`
+- Источник данных: utils/gpg_keys/erciccione.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/erciccione.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/erciccione.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/erciccione.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07226 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/fluffypony.asc#line 1`
+- Источник данных: utils/gpg_keys/fluffypony.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/fluffypony.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/fluffypony.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/fluffypony.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07227 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/guzzi.asc#line 1`
+- Источник данных: utils/gpg_keys/guzzi.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/guzzi.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/guzzi.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/guzzi.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07228 — Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/hyc.asc#line 1`
+- Источник данных: utils/gpg_keys/hyc.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ DSA DSA (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/hyc.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/hyc.asc · line 1 · SHA-256 bd67fbaa9c5614b7ea4a953e4684b6fbf2eb0fb2f91da8ce058871948c9eaa65_
+
+```
+OpenPGP primary key: algorithm ID 17 (DSA) DSA
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07229 — Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/hyc.asc#line 1`
+- Источник данных: utils/gpg_keys/hyc.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ ElGamal ElGamal (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/hyc.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/hyc.asc · line 1 · SHA-256 657c53dc46662a421c9c6854bba4bdc6e4b6c3a3b3c47a63a1f23f751fbb45d8_
+
+```
+OpenPGP subkey: algorithm ID 16 (ElGamal) ElGamal
+```
+
+_key · utils/gpg_keys/hyc.asc · line 1 · SHA-256 657c53dc46662a421c9c6854bba4bdc6e4b6c3a3b3c47a63a1f23f751fbb45d8_
+
+```
+OpenPGP subkey: algorithm ID 16 (ElGamal) ElGamal
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07230 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/iDunk.asc#line 1`
+- Источник данных: utils/gpg_keys/iDunk.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/iDunk.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/iDunk.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/iDunk.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07231 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/jaquee.asc#line 1`
+- Источник данных: utils/gpg_keys/jaquee.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/jaquee.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/jaquee.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/jaquee.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07232 — Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/jeffro256.asc#line 1`
+- Источник данных: utils/gpg_keys/jeffro256.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/jeffro256.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/jeffro256.asc · line 1 · SHA-256 315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 3072-bit
+```
+
+_key · utils/gpg_keys/jeffro256.asc · line 1 · SHA-256 6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07233 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/jpk68.asc#line 1`
+- Источник данных: utils/gpg_keys/jpk68.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ Ed25519 Ed25519 (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/jpk68.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/jpk68.asc · line 1 · SHA-256 6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8_
+
+```
+OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07234 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/kenshi84.asc#line 1`
+- Источник данных: utils/gpg_keys/kenshi84.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/kenshi84.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/kenshi84.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/kenshi84.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07235 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/luigi1111.asc#line 1`
+- Источник данных: utils/gpg_keys/luigi1111.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/luigi1111.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/luigi1111.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/luigi1111.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07236 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/mikezackles.asc#line 1`
+- Источник данных: utils/gpg_keys/mikezackles.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/mikezackles.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/mikezackles.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/mikezackles.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07237 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/mishi_choudhary.asc#line 1`
+- Источник данных: utils/gpg_keys/mishi_choudhary.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/mishi_choudhary.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/mishi_choudhary.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/mishi_choudhary.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07238 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/mishi_choudhary.asc#line 1`
+- Источник данных: utils/gpg_keys/mishi_choudhary.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/mishi_choudhary.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/mishi_choudhary.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07239 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/mj-xmr.asc#line 1`
+- Источник данных: utils/gpg_keys/mj-xmr.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/mj-xmr.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/mj-xmr.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/mj-xmr.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07240 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/moneromooo.asc#line 1`
+- Источник данных: utils/gpg_keys/moneromooo.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/moneromooo.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/moneromooo.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/moneromooo.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07241 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/nanoakron.asc#line 1`
+- Источник данных: utils/gpg_keys/nanoakron.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/nanoakron.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/nanoakron.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/nanoakron.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07242 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/oranjuice.asc#line 1`
+- Источник данных: utils/gpg_keys/oranjuice.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/oranjuice.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/oranjuice.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/oranjuice.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07243 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/rbrunner7.asc#line 1`
+- Источник данных: utils/gpg_keys/rbrunner7.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/rbrunner7.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/rbrunner7.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/rbrunner7.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07244 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/sarang.asc#line 1`
+- Источник данных: utils/gpg_keys/sarang.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/sarang.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/sarang.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/sarang.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07245 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/selsta.asc#line 1`
+- Источник данных: utils/gpg_keys/selsta.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/selsta.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/selsta.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/selsta.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07246 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/snipa.asc#line 1`
+- Источник данных: utils/gpg_keys/snipa.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/snipa.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/snipa.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/snipa.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07247 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/stoffu.asc#line 1`
+- Источник данных: utils/gpg_keys/stoffu.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/stoffu.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/stoffu.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/stoffu.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07248 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/tewinget.asc#line 1`
+- Источник данных: utils/gpg_keys/tewinget.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/tewinget.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/tewinget.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07249 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/thecharlatan.asc#line 1`
+- Источник данных: utils/gpg_keys/thecharlatan.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/thecharlatan.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/thecharlatan.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/thecharlatan.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/thecharlatan.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/thecharlatan.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07250 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/tobtoht.asc#line 1`
+- Источник данных: utils/gpg_keys/tobtoht.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/tobtoht.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/tobtoht.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/tobtoht.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07251 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/tomerkon.asc#line 1`
+- Источник данных: utils/gpg_keys/tomerkon.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 2048-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/tomerkon.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/tomerkon.asc · line 1 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
+```
+
+_key · utils/gpg_keys/tomerkon.asc · line 1 · SHA-256 a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07252 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/warptangent.asc#line 1`
+- Источник данных: utils/gpg_keys/warptangent.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 4096-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/warptangent.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/warptangent.asc · line 1 · SHA-256 18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
+```
+
+_key · utils/gpg_keys/warptangent.asc · line 1 · SHA-256 484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07253 — Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:utils/gpg_keys/xiphon.asc#line 1`
+- Источник данных: utils/gpg_keys/xiphon.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ RSA 3072-bit (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле utils/gpg_keys/xiphon.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · utils/gpg_keys/xiphon.asc · line 1 · SHA-256 315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 3072-bit
+```
+
+_key · utils/gpg_keys/xiphon.asc · line 1 · SHA-256 6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07255 — Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:external/randomx/doc/tevador.asc#line 1`
+- Источник данных: external/randomx/doc/tevador.asc
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
+
+Найден открытый ключ Ed25519 Ed25519 (строка 1).
+
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1 в предоставленном файле external/randomx/doc/tevador.asc и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_key · external/randomx/doc/tevador.asc · line 1 · SHA-256 6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8_
+
+```
+OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
+
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Повторная проверка.** Повторный аудит после миграции.
+
+### QSI-2026-07216 — Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:RSA:channel`
+- Источник данных: contrib/epee/src/net_ssl.cpp
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
+
+2 упоминаний RSA в 1 файл(ах), например contrib/epee/src/net_ssl.cpp:101. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте contrib/epee/src/net_ssl.cpp:101 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [contrib/epee/src/net_ssl.cpp](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/contrib/epee/src/net_ssl.cpp#L101) · line 101 · SHA-256 4d50f6f14bec76d20f7716ad36b7f871e90002972fe847d7dc6d3ffc1bf8cd4e_
+
+```
+  100 | #if OPENSSL_VERSION_NUMBER >= 0x30000000L
+  101 |     return openssl_pkey{EVP_RSA_gen(rsa_bits)};
+  102 | #else
+```
+
+_file_excerpt · [contrib/epee/src/net_ssl.cpp](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/contrib/epee/src/net_ssl.cpp#L125) · line 125 · SHA-256 d08840d9938697f2919cf1a59a44c2f16d1d4224019364b4de8bc3521b725285_
+
+```
+  124 | 
+  125 |     if (RSA_generate_key_ex(rsa.get(), rsa_bits, exponent.get(), nullptr) != 1)
+  126 |     {
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise).
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-07217 — Квантово-уязвимый Ed25519: роль не определена (6 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Ed25519:general`
+- Источник данных: src/crypto/crypto_ops_builder/crypto_sign.h
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+6 упоминаний Ed25519 в 6 файл(ах), например src/crypto/crypto_ops_builder/crypto_sign.h:10. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/crypto/crypto_ops_builder/crypto_sign.h:10 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [src/crypto/crypto_ops_builder/crypto_sign.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/crypto_sign.h#L10) · line 10 · SHA-256 1633a67376543975d71960dfc141c8df6517fb680e0f0bafa39f3e8693ce6069_
 
@@ -160,33 +1619,49 @@ _file_excerpt · [src/crypto/crypto_ops_builder/ref10CommentedCombined/keypair.c
     8 | {
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-05415 — Quantum-vulnerable X25519: role not determined (2 file(s))
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:X25519:general`
-- Data source: src/crypto/crypto_ops_builder/include/sodium.h
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
-
-2 reference(s) to X25519 across 2 file(s), e.g. src/crypto/crypto_ops_builder/include/sodium.h:25. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
+_file_excerpt · [external/supercop/crypto_sign/ed25519/amd64-51-30k/keypair.c](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/external/supercop/crypto_sign/ed25519/amd64-51-30k/keypair.c#L7) · line 7 · SHA-256 7463cfd8d788a4394462333e573eb707e802d719f8151ef9326694b265e43610_
 
 ```
-Open src/crypto/crypto_ops_builder/include/sodium.h:25 and inspect the quoted lines; the evidence lists further files.
+    6 | 
+    7 | int crypto_sign_keypair(unsigned char *pk,unsigned char *sk)
+    8 | {
 ```
 
-**Evidence.**
+_file_excerpt · [external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c#L7) · line 7 · SHA-256 7463cfd8d788a4394462333e573eb707e802d719f8151ef9326694b265e43610_
+
+```
+    6 | 
+    7 | int crypto_sign_keypair(unsigned char *pk,unsigned char *sk)
+    8 | {
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-07218 — Квантово-уязвимый X25519: роль не определена (2 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:X25519:general`
+- Источник данных: src/crypto/crypto_ops_builder/include/sodium.h
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+2 упоминаний X25519 в 2 файл(ах), например src/crypto/crypto_ops_builder/include/sodium.h:25. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/crypto/crypto_ops_builder/include/sodium.h:25 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [src/crypto/crypto_ops_builder/include/sodium.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/include/sodium.h#L25) · line 25 · SHA-256 e2d333bff28206bff3400c47b5c6881b1ec65e0ebd19b05659e42ceb45f51547_
 
@@ -204,33 +1679,33 @@ _file_excerpt · [src/crypto/x25519.cpp](https://github.com/monero-project/moner
    31 | 
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility.
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05416 — Quantum-vulnerable ECDH: role not determined (2 file(s))
+### QSI-2026-07219 — Квантово-уязвимый ECDH: роль не определена (2 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDH:general`
-- Data source: src/device_trezor/trezor/protocol.cpp
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 34.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDH:general`
+- Источник данных: src/device_trezor/trezor/protocol.cpp
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
 
-3 reference(s) to ECDH across 2 file(s), e.g. src/device_trezor/trezor/protocol.cpp:699. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+3 упоминаний ECDH в 2 файл(ах), например src/device_trezor/trezor/protocol.cpp:699. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open src/device_trezor/trezor/protocol.cpp:699 and inspect the quoted lines; the evidence lists further files.
+Откройте src/device_trezor/trezor/protocol.cpp:699 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [src/device_trezor/trezor/protocol.cpp](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/device_trezor/trezor/protocol.cpp#L699) · line 699 · SHA-256 7160937a79a3a95f9c7a63fe81b770c6ed8c34318e8970a8856144860de7c98b_
 
@@ -256,33 +1731,33 @@ _file_excerpt · [src/ringct/rctSigs.cpp](https://github.com/monero-project/mone
  1575 |         addKeys2(Ctmp, mask, amount, H);
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility.
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05419 — block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7
+### QSI-2026-07258 — block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.10.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/block-buffer@0.10.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
 
@@ -290,33 +1765,33 @@ _tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05421 — keccak 0.1.5 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-07260 — keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/keccak@0.1.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 25.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/keccak@0.1.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 25.0 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) for crates.io package keccak at version 0.1.5: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. The affected code sits behind the `asm` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
+OSV.dev сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) для пакета crates.io keccak версии 0.1.5: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. Затронутый код находится за флагом Cargo `asm`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-3288-p39f-rqpv
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv) · manifest · SHA-256 d5a8f5565101ab9d60521142f31c54583db5b87e9a59fc99e1fa93d6c2e5f782_
 
@@ -324,33 +1799,33 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3288-p39f-rqpv", "aliases": ["RUSTSEC-2026-0012"], "modified": "2026-09-10T03:50:59.332505686Z", "summary": "Unsoundness in opt-in ARMv8 assembly backend for `keccak`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.1.6).
+**Рекомендация.** Обновите до исправленной версии (0.1.6).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05420 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-07259 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 20.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
 
@@ -358,130 +1833,211 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05418 — No post-quantum capable cryptographic library detected
+### QSI-2026-07257 — Не обнаружено криптобиблиотек с поддержкой PQC
 
-- Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies`
-- Data source: dependency manifests
-- Detection method: Dependency name matching.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 16:45 UTC
-- Priority score: 13.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies`
+- Источник данных: dependency manifests
+- Метод обнаружения: Сопоставление названий зависимостей.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
+- Балл приоритета: 13.3 / 100
+- CVSS v3.1: неприменимо
 
-Across 2 dependency manifests, QSI found crypto libraries (curve25519-dalek, ecdsa, k256, p256) but none from its PQC-capable list.
+В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, k256, p256), но ни одной из списка поддерживающих PQC.
 
-**Potential impact.** Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.
+**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
-**Reproduction steps.**
-
-```
-Review the dependency manifests listed in the evidence.
-```
-
-**Evidence.**
-
-_dependency · src/fcmp_pp/fcmp_pp_rust/Cargo.lock, src/fcmp_pp/fcmp_pp_rust/Cargo.toml · SHA-256 db5d4da5ee6bd5304400a63ce961218e4d81bf3dc595a99c76e75ace171c646c_
+**Шаги воспроизведения.**
 
 ```
-Crypto libraries: curve25519-dalek, ecdsa, k256, p256
+Изучите перечисленные в доказательстве манифесты.
 ```
 
-**Limitations of the check.** Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.
+**Подтверждающие доказательства.**
 
-**Recommendation.** Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).
+_dependency · src/fcmp_pp/fcmp_pp_rust/Cargo.lock, src/fcmp_pp/fcmp_pp_rust/Cargo.toml, external/rapidjson/package.json · SHA-256 46a6721e3245e7b772fdb399be86720975d85b225845f8c751236bb0d9ed1743_
 
-**Retest procedure.** Re-scan after upgrades.
+```
+Crypto libraries: curve25519-dalek, ecdsa, ff, group, k256, p256
+```
+
+**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
+
+**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
+
+**Повторная проверка.** Повторите сканирование после обновлений.
 
 
-## 8. Post-quantum assessment
+## 8. Постквантовая оценка
 
-| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+| | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Data/key lifetime x | 10 | 10 |
-| Migration time y | 5 | 5 |
-| Assumed years to CRQC z | 8 (early) | 8 |
-| x + y − z | 7 → migration would finish too late under this scenario | 7 → migration would finish too late under this scenario |
-#### Where z comes from
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
+| Принятое число лет до CRQC z | 8 (early) | 8 |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
+#### Откуда взято z
 
-Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
 
-| Within | Likelihood | The report's wording |
+| В пределах | Вероятность | Формулировка отчёта |
 |---|---|---|
-| 5 years | ~15% | averaged estimate |
-| 10 years | 28-49% | quite possible |
-| 15 years | 51-70% | likely |
+| 5 лет | ~15% | усреднённая оценка |
+| 10 лет | 28-49% | вполне возможно |
+| 15 лет | 51-70% | вероятно |
 
-**Why this scenario (early, z = 8):** Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.
-_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change._
+**Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
-### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
+### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
+- Только классика — обмен ключами в канале (TLS, Noise, рукопожатия): RSA (1 файл(ов))
 
-**Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
+_Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
 
-### What the quantum-vulnerable algorithms do
+### Что делают квантово-уязвимые алгоритмы
 
-| Role | Algorithms (files) | ID | First step |
+| Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **transaction and message signing** | Ed25519 (1) | QSI-2026-05417 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | Ed25519 (4), ECDH (2), X25519 (2) | QSI-2026-05414, QSI-2026-05415, QSI-2026-05416 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **обмен ключами в канале (TLS, Noise, рукопожатия)** | RSA (1) | QSI-2026-07216 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
+| **подпись транзакций и сообщений** | Ed25519 (1) | QSI-2026-07256 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | Ed25519 (6), ECDH (2), X25519 (2) | QSI-2026-07217, QSI-2026-07218, QSI-2026-07219 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
-_Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
-No readiness questionnaire was completed for this project.
+_Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
+Анкета готовности для проекта не заполнялась.
 
-### Quantum algorithms relevant to this inventory
+### Квантовые алгоритмы, значимые для этой инвентаризации
 
-| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+| Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | Bulletproofs (4), ECDH (2), Ed25519 (5), X25519 (3) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-128 (1), BLAKE2 (3), ChaCha20-Poly1305 (3), HMAC (2), PBKDF2 (2), SHA-2 (4), SHA-3 (1) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | BLAKE2 (3), SHA-2 (4), SHA-3 (1) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Алгоритм Шора — факторизация | взламывает | Q1 | RSA (57) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
+| Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | DSA (1), ElGamal (1) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | Bulletproofs (4), ECDH (2), Ed25519 (11), X25519 (3) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | AES-128 (1), Argon2 (6), BLAKE2 (8), ChaCha20-Poly1305 (3), HMAC (2), MD5 (1), PBKDF2 (2), SHA-2 (7), SHA-3 (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE2 (8), MD5 (1), SHA-2 (7), SHA-3 (1) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
-_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+_Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
 
-## 9. Limitations and assumptions
+## 9. Ограничения и допущения
 
-- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
-- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
+- Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
+- z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
 - certificates: src/common/dns_utils.cpp line 79: certificate could not be parsed (ValueError)
 - tls_key_exchange_groups: src/ringct/multiexp.cc line 555: not in the algorithm registry, not assessed: (groups
+- keys: utils/gpg_keys/0xfffc0000.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- keys: utils/gpg_keys/anon.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- keys: utils/gpg_keys/jpk68.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- keys: external/randomx/doc/tevador.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
 
-## 10. Remediation plan / Priorities for 30, 60 and 90 days
+## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
-### 30 days
+### 30 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-05419 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-05421 | Upgrade keccak to a fixed version (0.1.6). | root-cause fix | Dependency scan no longer reports GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-### 60 days
+| P1 | QSI-2026-07254 | Замените и удалите секреты из utils/python-rpc/framework/wallet.py. | устранение первопричины | Сканер секретов ничего не находит; старые значения отозваны. |
+| P2 | QSI-2026-07258 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-07260 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+### 60 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05420 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-### 90 days
+| P3 | QSI-2026-07259 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+### 90 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05417 | Add Ed25519 usages at the wallet's transaction signing to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05414 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05415 | Add X25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05416 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-05417 | Plan migration of Ed25519 to ? (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ? or a hybrid scheme in use. |
-| P4 | QSI-2026-05414 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-05415 | Plan migration of X25519 to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
-| P4 | QSI-2026-05416 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P3 | QSI-2026-07256 | Внесите использования Ed25519 в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07220 | Внесите использования Ed25519 в file:utils/gpg_keys/0xfffc0000.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07221 | Внесите использования RSA в file:utils/gpg_keys/SNeedlewoods.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07222 | Внесите использования Ed25519 в file:utils/gpg_keys/anon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07223 | Внесите использования RSA в file:utils/gpg_keys/anonimal.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07224 | Внесите использования RSA в file:utils/gpg_keys/binaryfate.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07225 | Внесите использования RSA в file:utils/gpg_keys/erciccione.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07226 | Внесите использования RSA в file:utils/gpg_keys/fluffypony.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07227 | Внесите использования RSA в file:utils/gpg_keys/guzzi.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07228 | Внесите использования DSA в file:utils/gpg_keys/hyc.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07229 | Внесите использования ElGamal в file:utils/gpg_keys/hyc.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07230 | Внесите использования RSA в file:utils/gpg_keys/iDunk.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07231 | Внесите использования RSA в file:utils/gpg_keys/jaquee.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07232 | Внесите использования RSA в file:utils/gpg_keys/jeffro256.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07233 | Внесите использования Ed25519 в file:utils/gpg_keys/jpk68.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07234 | Внесите использования RSA в file:utils/gpg_keys/kenshi84.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07235 | Внесите использования RSA в file:utils/gpg_keys/luigi1111.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07236 | Внесите использования RSA в file:utils/gpg_keys/mikezackles.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07237 | Внесите использования RSA в file:utils/gpg_keys/mishi_choudhary.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07238 | Внесите использования RSA в file:utils/gpg_keys/mishi_choudhary.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07239 | Внесите использования RSA в file:utils/gpg_keys/mj-xmr.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07240 | Внесите использования RSA в file:utils/gpg_keys/moneromooo.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07241 | Внесите использования RSA в file:utils/gpg_keys/nanoakron.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07242 | Внесите использования RSA в file:utils/gpg_keys/oranjuice.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07243 | Внесите использования RSA в file:utils/gpg_keys/rbrunner7.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07244 | Внесите использования RSA в file:utils/gpg_keys/sarang.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07245 | Внесите использования RSA в file:utils/gpg_keys/selsta.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07246 | Внесите использования RSA в file:utils/gpg_keys/snipa.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07247 | Внесите использования RSA в file:utils/gpg_keys/stoffu.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07248 | Внесите использования RSA в file:utils/gpg_keys/tewinget.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07249 | Внесите использования RSA в file:utils/gpg_keys/thecharlatan.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07250 | Внесите использования RSA в file:utils/gpg_keys/tobtoht.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07251 | Внесите использования RSA в file:utils/gpg_keys/tomerkon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07252 | Внесите использования RSA в file:utils/gpg_keys/warptangent.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07253 | Внесите использования RSA в file:utils/gpg_keys/xiphon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07255 | Внесите использования Ed25519 в file:external/randomx/doc/tevador.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07216 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07217 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07218 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07219 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-07256 | Запланируйте миграцию Ed25519 на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-07220 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07221 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07222 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07223 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07224 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07225 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07226 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07227 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07228 | Запланируйте миграцию DSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07229 | Запланируйте миграцию ElGamal на Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH. или гибридной схемы. |
+| P4 | QSI-2026-07230 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07231 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07232 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07233 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07234 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07235 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07236 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07237 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07238 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07239 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07240 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07241 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07242 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07243 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07244 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07245 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07246 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07247 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07248 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07249 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07250 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07251 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07252 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07253 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07255 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07216 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-07217 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-07218 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-07219 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
 
-## 11. Tools used
+## 11. Использованные инструменты
 
 - blockchain 1.0.0
 - certificates 1.1.0
@@ -496,61 +2052,206 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - qsi-engine 1.2.0
 - OSV.dev API v1
 
-## 12. Sources and normative documents
+## 12. Источники и нормативные документы
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
-3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-7. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-8. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-9. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-10. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-11. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
-18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-19. OSV advisory GHSA-3288-p39f-rqpv — OSV.dev. <https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv> (modified 2026-09-10T03:50:59.332505686Z)
-20. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
-21. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-22. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-23. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-24. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+3. C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <https://arxiv.org/abs/2505.15917> (preprint (2025-05-21): < 1 million noisy qubits, < 1 week, 0.1% gate error, 1 µs surface-code cycle)
+4. C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <https://doi.org/10.22331/q-2021-04-15-433> (peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)
+5. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
+6. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+7. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+8. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+9. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+10. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+11. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+12. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+13. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+14. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+15. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+16. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+17. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
+18. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+19. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+20. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+21. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+22. OSV advisory GHSA-3288-p39f-rqpv — OSV.dev. <https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv> (modified 2026-09-10T03:50:59.332505686Z)
+23. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
+24. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+25. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+26. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+27. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+28. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
-## Appendices: Cryptographic inventory
+## Приложения: Криптографическая инвентаризация
 
-| Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
+| Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
-| ChaCha20-Poly1305 | ChaCha20-Poly1305 |  | reduced margin (Grover), approved | acceptable | 3 | 3 | src/crypto/crypto_ops_builder/include/sodium.h:6; src/device_trezor/trezor/protocol.cpp:45; src/device_trezor/trezor/protocol.hpp:95 |
-| HMAC |  |  | reduced margin (Grover), approved | acceptable | 2 | 2 | src/crypto/hmac-keccak.c; src/crypto/hmac-keccak.h |
-| PBKDF2 |  |  | reduced margin (Grover), approved | acceptable | 2 | 2 | src/mnemonics/polyseed/pbkdf2.c; src/mnemonics/polyseed/pbkdf2.h |
-| SHA-2 | SHA-512 |  | reduced margin (Grover), approved | acceptable | 3 | 3 | src/crypto/crypto_ops_builder/sha512-blocks.c; src/crypto/crypto_ops_builder/sha512-hash.c; src/crypto/crypto_ops_builder/sha512.h |
-| AES-128 | AES-128 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | src/gen_ssl_cert/gen_ssl_cert.cpp:191 |
-| BLAKE2 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 3 | 3 | src/crypto/blake2b.c; src/crypto/blake2b.h; src/crypto/crypto_ops_builder/include/sodium.h:17 |
-| SHA-2 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | src/common/util.cpp:688 |
-| SHA-3 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | src/net/tor_address.cpp:297 |
-| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
-| Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
-| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | n/a | acceptable | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
-| Crypto library | 4.1.3 | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
-| Bulletproofs |  |  | vulnerable (Shor) | acceptable | 4 | 4 | src/ringct/bulletproofs.cc; src/ringct/bulletproofs.h; src/ringct/bulletproofs_plus.cc |
-| ECDH |  |  | vulnerable (Shor) | acceptable | 2 | 2 | src/device_trezor/trezor/protocol.cpp:699; src/ringct/rctSigs.cpp:1573 |
-| Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 4 | 4 | src/crypto/crypto_ops_builder/crypto_sign.h:10; src/crypto/crypto_ops_builder/include/sodium.h:32; src/crypto/crypto_ops_builder/ref10/keypair.c:7 |
-| Ed25519 | CLSAG ring signatures on the Ed25519 curve |  | vulnerable (Shor) | acceptable | 1 | 1 | src/device_trezor/trezor/protob/messages-monero.proto:2 |
-| X25519 | X25519 |  | vulnerable (Shor) | acceptable | 3 | 3 | src/crypto/crypto_ops_builder/include/sodium.h:25; src/crypto/x25519.cpp:30; src/crypto/x25519.h |
+| MD5 |  |  | слаб классически | взломан | 1 | 1 | contrib/epee/src/http_auth.cpp:166 |
+| Argon2 |  |  | сниженный запас (Гровер), одобрен | допустимо | 6 | 6 | external/randomx/src/argon2.h; external/randomx/src/argon2_avx2.c; external/randomx/src/argon2_core.c |
+| ChaCha20-Poly1305 | ChaCha20-Poly1305 |  | сниженный запас (Гровер), одобрен | допустимо | 3 | 3 | src/crypto/crypto_ops_builder/include/sodium.h:6; src/device_trezor/trezor/protocol.cpp:45; src/device_trezor/trezor/protocol.hpp:95 |
+| HMAC |  |  | сниженный запас (Гровер), одобрен | допустимо | 2 | 2 | src/crypto/hmac-keccak.c; src/crypto/hmac-keccak.h |
+| PBKDF2 |  |  | сниженный запас (Гровер), одобрен | допустимо | 2 | 2 | src/mnemonics/polyseed/pbkdf2.c; src/mnemonics/polyseed/pbkdf2.h |
+| SHA-2 | SHA-512 |  | сниженный запас (Гровер), одобрен | допустимо | 3 | 3 | src/crypto/crypto_ops_builder/sha512-blocks.c; src/crypto/crypto_ops_builder/sha512-hash.c; src/crypto/crypto_ops_builder/sha512.h |
+| AES-128 | AES-128 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 1 | 1 | src/gen_ssl_cert/gen_ssl_cert.cpp:191 |
+| BLAKE2 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 8 | 8 | external/randomx/src/blake2/blake2-impl.h; external/randomx/src/blake2/blake2.h; external/randomx/src/blake2/blake2b.c |
+| SHA-2 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 4 | 4 | contrib/epee/include/net/net_ssl.h:174; contrib/epee/src/http_auth.cpp:173; contrib/epee/src/net_ssl.cpp:180 |
+| SHA-3 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 1 | 1 | src/net/tor_address.cpp:297 |
+| Crypto library | 0.13.0 | group (jubjub) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
+| Crypto library | 0.13.1 | ff (jubjub) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
+| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
+| Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
+| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
+| Crypto library | 4.1.3 | curve25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
+| Bulletproofs |  |  | уязвим (Шор) | допустимо | 4 | 4 | src/ringct/bulletproofs.cc; src/ringct/bulletproofs.h; src/ringct/bulletproofs_plus.cc |
+| DSA | DSA |  | уязвим (Шор) | устаревший | 1 | 1 | utils/gpg_keys/hyc.asc (line 1) |
+| ECDH |  |  | уязвим (Шор) | допустимо | 2 | 2 | src/device_trezor/trezor/protocol.cpp:699; src/ringct/rctSigs.cpp:1573 |
+| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 10 | 10 | external/randomx/doc/tevador.asc (line 1); external/supercop/crypto_sign/ed25519/amd64-51-30k/keypair.c:7; external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c:7 |
+| Ed25519 | CLSAG ring signatures on the Ed25519 curve |  | уязвим (Шор) | допустимо | 1 | 1 | src/device_trezor/trezor/protob/messages-monero.proto:2 |
+| ElGamal | ElGamal |  | уязвим (Шор) | устаревший | 1 | 1 | utils/gpg_keys/hyc.asc (line 1) |
+| RSA |  |  | уязвим (Шор) | допустимо | 1 | 1 | contrib/epee/src/net_ssl.cpp:101 |
+| RSA | 4096-bit |  | уязвим (Шор) | допустимо | 28 | 28 | utils/gpg_keys/SNeedlewoods.asc (line 1); utils/gpg_keys/anonimal.asc (line 1); utils/gpg_keys/binaryfate.asc (line 1) |
+| RSA | 2048-bit |  | уязвим (Шор) | допустимо | 24 | 24 | utils/gpg_keys/erciccione.asc (line 1); utils/gpg_keys/fluffypony.asc (line 1); utils/gpg_keys/guzzi.asc (line 1) |
+| RSA | 3072-bit |  | уязвим (Шор) | допустимо | 4 | 4 | utils/gpg_keys/jeffro256.asc (line 1); utils/gpg_keys/xiphon.asc (line 1) |
+| X25519 | X25519 |  | уязвим (Шор) | допустимо | 3 | 3 | src/crypto/crypto_ops_builder/include/sodium.h:25; src/crypto/x25519.cpp:30; src/crypto/x25519.h |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## Appendices: Input files
+## Приложения: Входные файлы
 
-| File | Size | SHA-256 | Redactions |
+| Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
+| cmake/CheckLinkerFlag.c | 158 | `e42985c8e613e6917bd7db99f9d02484caf38dbb18f5555de922d6612d46f010` | 0 |
+| contrib/epee/include/byte_slice.h | 7217 | `ef133287573f72f38602190d1ba88cee170996158ae72259d0420158f892c05d` | 0 |
+| contrib/epee/include/byte_stream.h | 7767 | `3b05b8344d53a18dc4c264884d68e63590f12b595572b0b8ff0ec996a9192b3f` | 0 |
+| contrib/epee/include/console_handler.h | 20523 | `f80f2158f895051236f298b57e2aa32b879b1b3dd8bf437fa6873fe3c83dc968` | 0 |
+| contrib/epee/include/file_io_utils.h | 2012 | `b268d02585f612246ff3ef30889936c2116e267590019a1cf001822cb87cd3ca` | 0 |
+| contrib/epee/include/fnv1.h | 1849 | `be9acec66cb36b652d72cae20c0b536c2cbbfade85bcc63ac16f2b745c4fca58` | 0 |
+| contrib/epee/include/hex.h | 4089 | `80550c99ca12fab2c7d529a0da165fcf177ee7dd29a6533a01493c1ba7aef138` | 0 |
+| contrib/epee/include/include_base_utils.h | 1683 | `64fed2c31a0655d417935ff45962daaa0dbe5a858fb8f833e9ea882665bd6153` | 0 |
+| contrib/epee/include/int-util.h | 10340 | `70f4ac6a783585a51062ecde2ced9851708ea5507e1f7221b4bb9677da01149e` | 0 |
+| contrib/epee/include/math_helper.h | 3624 | `17c075da222002b2dd1c4cacdfcdadea7ecb5b98a6bb7c4e4b70f3217868f7dc` | 0 |
+| contrib/epee/include/memwipe.h | 2778 | `90b0ac94a826520a74971f8d3dc7ee85e412ca864e55be1df9caefb63407efe4` | 0 |
+| contrib/epee/include/misc_language.h | 2914 | `02ec915bd525b6fc3b951e7e0a5373397505dba6b89dd96724d85e35b5a30b23` | 0 |
+| contrib/epee/include/misc_log_ex.h | 9365 | `913deab194c2ca9f0e1806d0f1ae227ece66c9cd50e2847e1798e1b9749a7beb` | 0 |
+| contrib/epee/include/mlocker.h | 3031 | `99171228d50ba3396637cb0fdb7749f70a4fe8c7bda5896db748f82a17de38eb` | 0 |
+| contrib/epee/include/net/abstract_http_client.h | 4183 | `ccf2f66020dcea96e07ddfdcce18a0bfae25f087713b50c6ca82f92307aef382` | 0 |
+| contrib/epee/include/net/abstract_tcp_server2.h | 19967 | `b0c7de4970bcee4931dd8e09a8dfbb59ed679eae74d91e042df7083ac7a3988e` | 0 |
+| contrib/epee/include/net/buffer.h | 2872 | `e3a4bb9743db4c9a72c9a12e95b8d2283e70731543a642fb703ab73953f6aa3f` | 0 |
+| contrib/epee/include/net/connection_basic.hpp | 8038 | `f39e3477fb98c37df8d92dd7336c26742fc9fd3eccc91099eb118e2a008576e8` | 0 |
+| contrib/epee/include/net/enums.h | 2539 | `0e120a4b645a7faf3df9c8ece148e9988ac8708babe05e73b36aa1a8781e5c05` | 0 |
+| contrib/epee/include/net/http_auth.h | 5844 | `0ed2cdf7d355c3324de58e7e7b3793e2e4555bb986a1527e13abd5a7c784aaee` | 0 |
+| contrib/epee/include/net/http_base.h | 6193 | `af84d4b5eae17e5e5077482eb46e20ec31fa5aa83ae97009b9fcfe4d969fd2b4` | 0 |
+| contrib/epee/include/net/http_client.h | 31736 | `9f1fc94305f093d5f8963fa9c2b5b608b352da28170a5d96ad4e28b32733c7ae` | 0 |
+| contrib/epee/include/net/http_client_base.h | 2769 | `fa345a5ecc336c8556a1e43d688a9a16ad87415b3ad25bf9985802197789d623` | 0 |
+| contrib/epee/include/net/http_protocol_handler.h | 8582 | `b9bef02d66be45bf8f3ed5ac38398fb1c75c0543e81b3138ea0304fe3b89df1c` | 0 |
+| contrib/epee/include/net/http_server_handlers_map2.h | 12468 | `ea1c234d6bfc6f816dd3efceca2706b5abee0f2871844c932c67bb8be6f111b6` | 0 |
+| contrib/epee/include/net/http_server_impl_base.h | 6757 | `466df6c73f69bc6047a125e877d7d162c6a1d3e32ff2978a40f36a8f7725bd67` | 0 |
+| contrib/epee/include/net/jsonrpc_structs.h | 2301 | `e33e53d6d2196fc4efd05549b0c2d5651e9e3fb68e92a01aefd536724c1a4ef1` | 0 |
+| contrib/epee/include/net/levin_base.h | 6459 | `65e9840386a0380cd8fb3c5591142f49f69767326b0a2186fe0d8d9986e40600` | 0 |
+| contrib/epee/include/net/levin_protocol_handler_async.h | 34773 | `eb72b3ab90cd26f697d496cc2ff5620e167818e2d27f9b78aa330281a1f74693` | 0 |
+| contrib/epee/include/net/local_ip.h | 2758 | `21de745c1c69b583d4c991268420ff7c13df97ce247798fdd16592b766f30ff7` | 0 |
+| contrib/epee/include/net/net_helper.h | 23734 | `fe2631940bdf9e9d79a7c5a22267a9b2c3a7b5ead419c0d583c9fdf38beec966` | 0 |
+| contrib/epee/include/net/net_parse_helpers.h | 1961 | `92b09594cda207cc5ba28042c449180a638717bb6e59088e1d1c57128f8a4094` | 0 |
+| contrib/epee/include/net/net_ssl.h | 8570 | `6a26b6ef4792ffc2ba1a20892e3f1add5e940a5dc09a80553cacdc250ea902b6` | 0 |
+| contrib/epee/include/net/net_utils_base.h | 20592 | `7a0cd496b7500354bdf489ce4a374339effc8d9d9805608f8f615834162d3ffe` | 0 |
+| contrib/epee/include/net/network_throttle-detail.hpp | 6026 | `9dcba63c6398fd2ac441074be1c9bb78cf88a989004010082dbefd0368a73a38` | 0 |
+| contrib/epee/include/net/network_throttle.hpp | 6204 | `b51ba30e9f9a0f3645fc1bd8908b8159aa3e1b2ebff7dae2179f628e9adf5531` | 0 |
+| contrib/epee/include/profile_tools.h | 4114 | `4200838c27be5e8181b9b020c65a6f5c20f966dae5a20e0a074a862f8e53332f` | 0 |
+| contrib/epee/include/readline_buffer.h | 884 | `cfe1390cf401b73af5b637e8d42873073ac5e77d437606215863a4e055ae760d` | 0 |
+| contrib/epee/include/rolling_median.h | 6873 | `e3a9c6bf07a2eae6c521607ada01183ebf8901943357ca1e0247c550ea5bb420` | 0 |
+| contrib/epee/include/scope_guard.h | 3261 | `f6dea666f3f2dc61258dffa88530ce7a8f9d1a15d3b5fbcce9aa5221afdb0c35` | 0 |
+| contrib/epee/include/serialization/keyvalue_serialization.h | 6330 | `3f23248b85d47a04c980b50d8d4e9b91cf324693f10c497c638c550e0af08846` | 0 |
+| contrib/epee/include/serialization/keyvalue_serialization_overloads.h | 26273 | `ae78bd0a3ee49bd3ca0429ad67245ec8985a6cf6d59660d28c01a0d9f02a1421` | 0 |
+| contrib/epee/include/serialization/wire.h | 2267 | `539fb0b657f539ca7ea9fea0c40783bc7641ea7e2dbdc099d3951033180fcb3b` | 0 |
+| contrib/epee/include/serialization/wire/adapted/list.h | 1793 | `31187fdbc4643d1aa42054a46feac08f8fbe03191efdc8398120e5a32d563569` | 0 |
+| contrib/epee/include/serialization/wire/adapted/vector.h | 2377 | `68ad696760d1ddacbd79c42609cb651a1880ead6096255e60a02313d398dab3e` | 0 |
+| contrib/epee/include/serialization/wire/error.h | 5233 | `e52c5a67f97d6a57d936d7f2ca524679257f047b05a3dc4ea4f4ec4d2bd0dc8a` | 0 |
+| contrib/epee/include/serialization/wire/field.h | 5971 | `ca0cf5339cb7a0e0bb62c5a79e93af367b24deb57a10e9f7bdac3b6b20b5b1f9` | 0 |
+| contrib/epee/include/serialization/wire/fwd.h | 4763 | `5d2aec726b28b32d468c7cc606790e9417ce72869d56f714413a9908894718e3` | 0 |
+| contrib/epee/include/serialization/wire/json.h | 3023 | `daa020a03c19203c42ecb3dcd592834b5e2e0193538ac16c2b8fae848ec0c406` | 0 |
+| contrib/epee/include/serialization/wire/json/base.h | 3717 | `aa1a88d8cd2807709ad2540b087bee82cc513f0f891a6ad23dfbce9d699052af` | 0 |
+| contrib/epee/include/serialization/wire/json/fwd.h | 1937 | `33ba4824af599d620fec49a035a659f26cc3e914838064a030095ae921033614` | 0 |
+| contrib/epee/include/serialization/wire/json/write.h | 5405 | `9f4c33052efd746bb4e70030876740991a622981927c80134e922d9032578e1a` | 0 |
+| contrib/epee/include/serialization/wire/traits.h | 7113 | `ace5125e5df477d6e11af7766f3b351e9384d54816aa883a6c712d35b156e02d` | 0 |
+| contrib/epee/include/serialization/wire/wrapper/defaulted.h | 3262 | `0f6327f13df1d4a6130a21f65fb78b7deb085c58f17f886e39798db042db4265` | 0 |
+| contrib/epee/include/serialization/wire/wrapper/range.h | 2618 | `05e3f84046e444c56466b8341812d9488ac9b4ec0c4cd23044f8470d6aa92e28` | 0 |
+| contrib/epee/include/serialization/wire/write.h | 9910 | `f2cb7138c0f69ac2427e3fc963ea52e912db39bf8e842a5631c522a4ff00105e` | 0 |
+| contrib/epee/include/span.h | 7891 | `23403f5374b72143837ee5040a6fa73537be271413dc60dd1068476706619f41` | 0 |
+| contrib/epee/include/stats.h | 1788 | `ca523d58a37889d9064f478f00abf8e01d12f4406beb88efab1c9443f74adb3d` | 0 |
+| contrib/epee/include/storages/http_abstract_invoke.h | 6253 | `bbcde361367c1b8577ca6a213ad4ee5a907f0a924fee0b88d1c99c3ead5e4774` | 0 |
+| contrib/epee/include/storages/levin_abstract_invoke2.h | 10017 | `7b39f0c505cb60558aa3ceaf8a7b15615478f643cdce1a29007bca78d38f6c87` | 0 |
+| contrib/epee/include/storages/parserse_base_utils.h | 5619 | `010867b828ea839e1a0fb6a9d882f20276ad987b599c0a5ca98f0a43d28bb3d7` | 0 |
+| contrib/epee/include/storages/portable_storage.h | 13305 | `566f954a5e23ad5a1c38a7cbc627c42bdc1152e3be5336a62892e704e2e91426` | 0 |
+| contrib/epee/include/storages/portable_storage_base.h | 6042 | `0207946404f75d4ce4383c0781bd61ad2f948f6c57a88505c29e19cacfb238e3` | 0 |
+| contrib/epee/include/storages/portable_storage_bin_utils.h | 2433 | `3db24f6617ac8abc29a6ab0535b75b1950b3a61fc3e3c78860c04da2644f0db2` | 0 |
+| contrib/epee/include/storages/portable_storage_from_bin.h | 14432 | `fe2d551c6c654ed229754baa3235fc70c2760c747f6abd3edbfb9fc5c995a4f1` | 0 |
+| contrib/epee/include/storages/portable_storage_from_json.h | 18119 | `f42fe5264018ba2de39c79d445e2cc9ca872b870abb57fc7c378308aa07dcfa4` | 0 |
+| contrib/epee/include/storages/portable_storage_template_helper.h | 5994 | `4f0beae0469e487bd116d65768269ab82ac58acead3a9cb643b81cad4b9a6d62` | 0 |
+| contrib/epee/include/storages/portable_storage_to_bin.h | 9216 | `e22a90bbe49a0b074710e0e0219eec3b015c4fc8d73327aad9080d24c16ae12b` | 0 |
+| contrib/epee/include/storages/portable_storage_to_json.h | 6637 | `34a4eaef2e487214dae0b137da427e3e09ec9b7ce5d9a97980dd30c687563531` | 0 |
+| contrib/epee/include/storages/portable_storage_val_converters.h | 7070 | `2902168a047c98a3789e98d7e3ced937821bf6f7fbdd9b1cf6c82fe74590a959` | 0 |
+| contrib/epee/include/string_coding.h | 4576 | `0bf48b463869ae0a9aaffc4b5c6fd1d6cbc8ba5f1bd122499c4b0b0aa29d2ab5` | 0 |
+| contrib/epee/include/string_tools.h | 5211 | `ad40002c7e5bcf04679029871273882c65b784c06cfbe34061a0f4c1855fa57e` | 0 |
+| contrib/epee/include/string_tools_lexical.h | 3005 | `b6faff220c7949b77c9ff75e7f5227b534b1a605d75a191c6f8f2832df4b3eea` | 0 |
+| contrib/epee/include/syncobj.h | 3017 | `39c367a54c2f9092de2cf62900a6582cc9923a60500611b06ec17709f7901855` | 0 |
+| contrib/epee/include/time_helper.h | 2866 | `3413579115f5bc4bdc5b03460ce3fa7d3e63bb2a3bbd0f71634d66daf1343199` | 0 |
+| contrib/epee/include/warnings.h | 533 | `b70e9d851e3ad1835ad47cd90d3365a51982f5503421288daa2e54ce11e4b825` | 0 |
+| contrib/epee/include/wipeable_string.h | 4202 | `2f9b92d3280f0cb6130f9259f5520f5d09716e9eb302c92546e4ef88b777cb1f` | 0 |
+| contrib/epee/src/abstract_http_client.cpp | 4101 | `701c2578fbb97ede78ca0432c3edb78f19d299dd6d3044dd4c4c2756cca95634` | 0 |
+| contrib/epee/src/buffer.cpp | 3843 | `939bdfcb0bbccd678b36786aa5cfc8841a944b36a6492ffd218df069c0f0e0e5` | 0 |
+| contrib/epee/src/byte_slice.cpp | 8774 | `4fb8a50709e544d81d02055574ad66b9deb83d2cace1ef0158dd52482f893274` | 0 |
+| contrib/epee/src/byte_stream.cpp | 3143 | `9a32f87dbb161caf7ed2c0e009c829bc152f9aac435faa8a322b04f9058525f1` | 0 |
+| contrib/epee/src/connection_basic.cpp | 8076 | `c4cdf83fb7a1b86ca28b12ba2e41a389b49de8868c29c0f969d2a981e0cc7e2b` | 0 |
+| contrib/epee/src/file_io_utils.cpp | 6234 | `417de39f4001dfe1238373ca7c02a3974dfadee16c0ee9a29e8a1a30c9ee2acb` | 0 |
+| contrib/epee/src/hex.cpp | 6322 | `7144967070f0557c14d7cf75181e766e4e13842e0d24175cbd695d9c1d5da10f` | 0 |
+| contrib/epee/src/http_auth.cpp | 29998 | `9216ba0f690f020987f418e24f35aa87ee7f96235822bb5bd31d9543a4f0bb31` | 0 |
+| contrib/epee/src/http_protocol_handler.cpp | 3042 | `09905744df1b0e5af305d57b6fbcc94895e19eec6290ffd7151a75d2e6684fcc` | 0 |
+| contrib/epee/src/int-util.cpp | 2356 | `1b6dcbe8730b730c6aa92f1c60128f2fd54cd293dcb768b22ddf21d20e86dbe5` | 0 |
+| contrib/epee/src/levin_base.cpp | 4994 | `6effcc89dfc5aad1f8a594bc95ea6f494c9328c28def6eb072d67fd907b7262b` | 0 |
+| contrib/epee/src/memwipe.c | 3575 | `7fee5c371abed956a222c9cde3f9555841267c098514429004081e91650fa5af` | 0 |
+| contrib/epee/src/misc_language.cpp | 1850 | `1146168bd68afff2e8b6b31aa958b22bb0bc294f118afb5433279506f2026325` | 0 |
+| contrib/epee/src/mlocker.cpp | 5729 | `598b600dd6cdec0443a0a3c66b3e72724b04cd7cb3224c61daa84b9d5500923d` | 0 |
+| contrib/epee/src/mlog.cpp | 16058 | `09540a997a94e8c7bb7fa059491e92fa1b0a5ba0fff5a3237a63d6f6c1396194` | 0 |
+| contrib/epee/src/net_helper.cpp | 2664 | `ee1b3f0949a5d142cbf47ccbcf697cdc8cd107a6ba6fa88f2608849f5ebde45f` | 0 |
+| contrib/epee/src/net_parse_helpers.cpp | 6907 | `42cea8c55a728293b5b3a79f75afdbb6ab2a16521d73e909bf476edc68f32962` | 0 |
+| contrib/epee/src/net_ssl.cpp | 26358 | `1aa680f5e00a9f7882217858dd4028c53bf5aa23ff9099a89a9b771f8997c884` | 0 |
+| contrib/epee/src/net_utils_base.cpp | 7486 | `898000da7c41ec91ccb7c91191caf40253761c06f55f5390c6fa82012c23b2f8` | 0 |
+| contrib/epee/src/network_throttle-detail.cpp | 13278 | `dcfc7a960c9319eb02574fdaf1bed4efca155b4cb226b49d2f3fec97484c1637` | 0 |
+| contrib/epee/src/network_throttle.cpp | 4166 | `e7cfd2f7bd991443b263d53ea5cba6e4d3de1ed8922c32430c40b55061c5214e` | 0 |
+| contrib/epee/src/parserse_base_utils.cpp | 9791 | `a492d32a65c5972fa998ce45e5e610eb680212c79f5fd95941a703711c686e37` | 0 |
+| contrib/epee/src/portable_storage.cpp | 9829 | `741b8b5395812628b2945c60741b922881aea11d461d825697d53ba24cdf778e` | 0 |
+| contrib/epee/src/readline_buffer.cpp | 7360 | `5fb607b9c5c17871d19985baaa5af104e29c2fc3b2262008839415daaa7f50a5` | 0 |
+| contrib/epee/src/string_tools.cpp | 6994 | `55b42a4262f78661b67a643024db6773b23401461e9f7d0a106ad2c069461007` | 0 |
+| contrib/epee/src/wipeable_string.cpp | 6534 | `d91834bd045991de7060a44ac87f8d8c0d8e1a9d5ae597feb97ab4a1da4e878a` | 0 |
+| contrib/epee/src/wire/error.cpp | 3779 | `9f149100a5bc22ec75c9b6f11685b6324db3304a42ae7e33ad17cdcd44bb6559` | 0 |
+| contrib/epee/src/wire/json/write.cpp | 5080 | `bd26593d3d68663f4020235c6e92d6bdf53651283cdfb7855f18984cf6174972` | 0 |
+| contrib/epee/src/wire/write.cpp | 1653 | `50ea906cf7cef9da6a7277e93ad0e405dcb5768c35249f01a4b9343e3e7cc41b` | 0 |
+| external/boost/archive/portable_binary_archive.hpp | 1666 | `9a0ae7275bbfd1c00d10b36ab607c556b26e580b7dbd6ddbe4238804764e4af1` | 0 |
+| external/boost/archive/portable_binary_iarchive.hpp | 12233 | `2f7ee709e64bf3b1a4260f23858a200de17af073713ef0008d22ae36f28753c6` | 0 |
+| external/boost/archive/portable_binary_oarchive.hpp | 9738 | `7c880c21bbc5ae2a5fe3c657be4bcaf8c48819c3aa0978f7d089648e0cf1c137` | 0 |
+| external/db_drivers/liblmdb/lmdb.h | 75906 | `e4ea920cdb46a4d829f24de014556fea8fa1230eb38a4a53dde5a19c61d0418f` | 0 |
+| external/db_drivers/liblmdb/mdb.c | 319543 | `b037f2632476d1ecd86a2ecb62902056f34735c1f0971877ae13c162da8de24e` | 0 |
+| external/db_drivers/liblmdb/mdb_copy.c | 2041 | `273a93b55e9805fe8e7b94cf6592add11ea4e3ced7346db5845283ca8f508570` | 0 |
+| external/db_drivers/liblmdb/mdb_drop.c | 2811 | `63509ee7145c819b0b8e033abcd44fb6341d86910924e4b20451a9e8b47db4e5` | 0 |
+| external/db_drivers/liblmdb/mdb_dump.c | 6455 | `8d07de8656922c38942bfa423aa40cb02c24d4485bef03b749a9742880bd2bc2` | 0 |
+| external/db_drivers/liblmdb/mdb_load.c | 11541 | `fb2dfcb58ba6bfd73e0288d61e72cb84f35c65f3ec888b8c0d185abae3ca2145` | 0 |
+| external/db_drivers/liblmdb/mdb_stat.c | 6504 | `28b3d5a7fa4e0c32213c0d15b2f98604c3fef19dbbf29b57965f37e4af869f56` | 0 |
+| external/db_drivers/liblmdb/midl.c | 7577 | `1780e69390bd43bc93dc0bf0c51bf9302198a4be712c555df7082a236d88f22f` | 0 |
+| external/db_drivers/liblmdb/midl.h | 6070 | `0821aec9bb0e35f617d37fdadf91a6237be865d303bcc6d0c113d0ceda80a97d` | 0 |
+| external/db_drivers/liblmdb/mtest.c | 5552 | `89ab9ac8bf1e14a9f32a33757c4b3254e4984e0f24e5a302e2d126eb2c86f6db` | 0 |
+| external/db_drivers/liblmdb/mtest2.c | 3486 | `076b00395fe1461dd9577f7bb5567908ce50cf470efbf652787e6fe1dc2fb68c` | 0 |
+| external/db_drivers/liblmdb/mtest3.c | 3704 | `51b9a055e123bd0757ee3082cc6864c836969cf630e646a9cc34e01398c20634` | 0 |
+| external/db_drivers/liblmdb/mtest4.c | 4791 | `b0a725405d80bda6ab95b3ecf410ae330ab8df7a081ca81dd6ea1f8db87642e9` | 0 |
+| external/db_drivers/liblmdb/mtest5.c | 3793 | `7f3b06ca3833315ea4c70d5e91feb1b677f6949f105f4f89d96c3ac35e104f2f` | 0 |
+| external/db_drivers/liblmdb/mtest6.c | 3953 | `e4d7880c36547ebf33bc020046730bf2c075c53aaacd5c876152cc5ae7ab5e6c` | 0 |
+| external/easylogging++/ea_config.h | 474 | `e480f65d4cf6bddb6aedb0c7531f4dee58ba2b5fd5eb8e7c5b66205dae3c4200` | 0 |
+| external/easylogging++/easylogging++.cc | 137843 | `aa76595561a066fdbbbbad1e312c45a76177aea096783468a702bd3cce324df6` | 0 |
+| external/easylogging++/easylogging++.h | 182936 | `1a4334267321766b5017d12836a67344714cb90a054dbc1489a01cada9f182de` | 0 |
+| external/linenoise/linenoise.c | 89832 | `3afced692a52d4ce360b61e99ca980b338db74e6fa9d1aa60c223f160358dedf` | 0 |
+| external/linenoise/linenoise.h | 4914 | `5f94c6295e3b62e0f8b4b62b0a2f351433d0b6b21029607aec0c9abbc60acff7` | 0 |
+| external/qrcodegen/QrCode.cpp | 28562 | `0bc2f1d4208463156f9558520af4f00a215ee183ea9426f611ab54e7c62b5691` | 0 |
+| external/qrcodegen/QrCode.hpp | 20659 | `6961ccf04acda6dd6da2e542b28634ccab5ac8073163f9cb64e7713eb39712d5` | 0 |
 | src/blockchain_db/blockchain_db.cpp | 14998 | `890ecabf5b5b3046efc36767bebb115654e662633df252af4c5c94dbf8fa7ab0` | 0 |
 | src/blockchain_db/blockchain_db.h | 65455 | `9f95afd9ba80177d01c5ce2a38559cf8056ea2062c0971374b0e4cbcc902a1cd` | 0 |
 | src/blockchain_db/lmdb/db_lmdb.cpp | 199577 | `ddb3f55db39b117b77fae106977c1f953cc7f294ec0015cc4547a1836431181b` | 0 |
@@ -650,6 +2351,7 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/crypto/crypto_ops_builder/crypto_sign.h | 593 | `37bae804bf4516a7150f53b9ce93cc8afeea6ea0f7844e8cf1a8afe9bfcdd928` | 0 |
 | src/crypto/crypto_ops_builder/crypto_uint32.h | 93 | `13f943899ccdbaf3b50fdab4658a1ca67d59abdb17c08a6be6ed31a30378556d` | 0 |
 | src/crypto/crypto_ops_builder/crypto_verify_32.h | 175 | `bf7159913d5daf6d43841b41d48a95162137b7a76061f4d6f93d58bc003db903` | 0 |
+| src/crypto/crypto_ops_builder/include/sodium.h | 1814 | `010e58c066e38efea63848b024903cfdc5f659a8495bdc7f1c3f4a45f366dcb9` | 0 |
 | src/crypto/crypto_ops_builder/include/sodium/crypto_int32.h | 106 | `7466cd927cf8d488429f07f67d5ab4e7b44d5f03255854f5ce94e90d31f22591` | 0 |
 | src/crypto/crypto_ops_builder/include/sodium/crypto_int64.h | 106 | `84789af2e9d29ee05909fbfd4fca6e53066a99b170494d56bf40d0322f98aa67` | 0 |
 | src/crypto/crypto_ops_builder/include/sodium/crypto_uint16.h | 110 | `72c0ee8769c0be4cebed882b7daf429364be15acd3345eb489a5cefdc49a61c6` | 0 |
@@ -658,7 +2360,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/crypto/crypto_ops_builder/include/sodium/crypto_uint8.h | 106 | `dedaa634cd59ebc5db41be8ae0536114652f601df95938c96e3865d7240d81e4` | 0 |
 | src/crypto/crypto_ops_builder/include/sodium/crypto_verify_32.h | 344 | `c0027cf769c1f6a01c2df6a58cac045157f5da304974efdcecd8f000d72f422b` | 0 |
 | src/crypto/crypto_ops_builder/include/sodium/randombytes.h | 1362 | `e17ffd7744c59d66844cf0db1fdc3eb271a92b6eca82e219b3ae6e81fdf5f922` | 0 |
-| src/crypto/crypto_ops_builder/include/sodium.h | 1814 | `010e58c066e38efea63848b024903cfdc5f659a8495bdc7f1c3f4a45f366dcb9` | 0 |
 | src/crypto/crypto_ops_builder/randombytes.c | 1011 | `2f91ccc384c1f86077f1e5cea9152b23458cd4304433a8097e49c92e9af2f23c` | 0 |
 | src/crypto/crypto_ops_builder/ref10/api.h | 121 | `9d7cfd2c451dcf8ca38837dd602c8915ec246ed461a355c218a2bf9edd48ea6c` | 0 |
 | src/crypto/crypto_ops_builder/ref10/base.h | 76457 | `dac873e5965b34e29a14b56bc63f9434fbba16b3513daf53c7b0b2d07b614ac0` | 0 |
@@ -920,6 +2621,7 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/device_trezor/device_trezor.hpp | 9128 | `70c9dda60b84e55becb5111c900dced7f94d4ca3d30a43ab223335ef002ed83d` | 0 |
 | src/device_trezor/device_trezor_base.cpp | 20027 | `70484771a0f9da8a52a111f70dccfa9f84b8be564f94a380c14e0542e0052f71` | 0 |
 | src/device_trezor/device_trezor_base.hpp | 12846 | `df347e26bbe4130b99ba4ca36459fa751b8f06fb76978c6c9d90403e84c0ea4c` | 0 |
+| src/device_trezor/trezor.hpp | 1990 | `aa0be0f4131eb22e9201a899db73253851d0b1e26bfeb2d5e1d661ef2072230c` | 0 |
 | src/device_trezor/trezor/debug_link.cpp | 3123 | `1517dca749b900495fe00be101c6246fafdcfd1fbd9731b437f67d5c7a5c645c` | 0 |
 | src/device_trezor/trezor/debug_link.hpp | 3461 | `b0b35f56d320b19547e271e0889f7dbbd1d893835e7af05a469075dca0a14e1c` | 0 |
 | src/device_trezor/trezor/exceptions.hpp | 7206 | `941f49d6f71b0c7e2183bfa416cb86d7fdf8541fb72ccc398ea01724efcc9f0d` | 0 |
@@ -936,7 +2638,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/device_trezor/trezor/transport.cpp | 41677 | `d15b58f2d40646c9a6a8222cd6da75dc38304be0faff784307783511f13d8709` | 0 |
 | src/device_trezor/trezor/transport.hpp | 14295 | `bda32b96a4853236b1dde3a36a41fc2a12eaa7473d406c2ccd4dc3edec2ee6c0` | 0 |
 | src/device_trezor/trezor/trezor_defs.hpp | 2711 | `bb3cfb5dca576a61c599d5498e6caab1ef96b114f5ff9b5a7305e2aec4fef2dd` | 0 |
-| src/device_trezor/trezor.hpp | 1990 | `aa0be0f4131eb22e9201a899db73253851d0b1e26bfeb2d5e1d661ef2072230c` | 0 |
 | src/fcmp_pp/curve_trees.cpp | 49581 | `481bbba5852dfe401c5ae5146e5e12881d276fcf7f91f3fb7f3c1cc52fddc11c` | 0 |
 | src/fcmp_pp/curve_trees.h | 10640 | `4cd9e819ed3917feb9a33ef416223bb7e68a6539f2e5c9d46a4b9daf162b849f` | 0 |
 | src/fcmp_pp/fcmp_pp_crypto.cpp | 4714 | `75bf9d17c712e5ff6238745c0ca66723d0f2b2084afdac4fabc129a2aef97c34` | 0 |
@@ -1131,3 +2832,409 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/wallet/wallet_rpc_server.h | 36202 | `639ba5dfd09c9147564cc653760eb7a5bfc7832973e1b115308cffc3825ba75a` | 0 |
 | src/wallet/wallet_rpc_server_commands_defs.h | 71893 | `5994ba58923241d36314d624ace92f5c7f6f97d833806f5bcd11b28c3549a299` | 0 |
 | src/wallet/wallet_rpc_server_error_codes.h | 4733 | `79ebbf54396c0792be4beaf969587677be77cb76a33d9033f3adc6cc08d87a91` | 0 |
+| utils/gpg_keys/0xfffc0000.asc | 644 | `cf0f659615191282004df56a94297b9a254df81c27011b57075d0f3fa74511f8` | 0 |
+| utils/gpg_keys/SNeedlewoods.asc | 3147 | `f64a657294239ee52bc570808d47bc43151111dc57375cca5fa9fe6166c4693a` | 0 |
+| utils/gpg_keys/anon.asc | 628 | `1748c167e8a1d2e3fa986a75f7d3a9d946cdce0dc7203cd0652933820b99d094` | 0 |
+| utils/gpg_keys/anonimal.asc | 3924 | `1d4083c25bcabed6b48b0e438104804befbf5388e5abcc881caa06c3b60c395b` | 0 |
+| utils/gpg_keys/binaryfate.asc | 5438 | `7dcb19c87d41a4399b4877054111f7dbfd30531545678bc2be218bd56903904c` | 0 |
+| utils/gpg_keys/erciccione.asc | 1709 | `63340a7d5a92d9242e174309775bbcd50150303af1b7e8033741fe9fd14620bc` | 0 |
+| utils/gpg_keys/fluffypony.asc | 3002 | `ff561ba4b4cea730645e1717836bba1445c1e022cb2dba9f3932e44554bf16a1` | 0 |
+| utils/gpg_keys/guzzi.asc | 1706 | `5e7185b1fede4edc96922d807c640e905169f3bf2e4d251033faa9bf641c5e15` | 0 |
+| utils/gpg_keys/hyc.asc | 2572 | `d1151bc1339aeb0f6394a4b19006002d53f77b28e2458955a0bb7e1e9ae9259a` | 0 |
+| utils/gpg_keys/iDunk.asc | 3100 | `0c7e4136dc46b8e90d72619eb27fd8912985d9392f37bc8a21525b589be81389` | 0 |
+| utils/gpg_keys/jaquee.asc | 1702 | `7f96c9508d8683f76d584e635701ea4d2189eadcb6858229c3ac7eb5422c9708` | 0 |
+| utils/gpg_keys/jeffro256.asc | 2456 | `9c612a7fc887d2c126414da34b0db7d4f7432a0c9b1daf8fa6fb0840bfb02e90` | 0 |
+| utils/gpg_keys/jpk68.asc | 648 | `2effc04e539496fe74678e7b99079bd586c68a3e0d96556318cbe1fe80008e23` | 0 |
+| utils/gpg_keys/kenshi84.asc | 3086 | `a4f5dc1e36048090e411bd89f381de7673955a26230cb5459e4ae2b93b97aee5` | 0 |
+| utils/gpg_keys/luigi1111.asc | 1702 | `a46965379e6edd1ecf4f2b804e3a96e9824512b5ca8e9351ee4a1d640d02ab51` | 0 |
+| utils/gpg_keys/mikezackles.asc | 1714 | `f2cc7b7ca83853d7eeea718dac378da11f4dd6476e33da51c3d0975e790463ae` | 0 |
+| utils/gpg_keys/mishi_choudhary.asc | 7916 | `de80449d2ab16e76960a5f290745bba85d05f068f3878cb69c8578f5e7602fae` | 0 |
+| utils/gpg_keys/mj-xmr.asc | 3199 | `ba9b8b9caada3d98be552dda5486ee11c515a3bb9d46252f660172908e167304` | 0 |
+| utils/gpg_keys/moneromooo.asc | 3191 | `5d5b400087cd41084ab415a498e8d8282796469a0cf5144774b7aaacd1e498f8` | 0 |
+| utils/gpg_keys/nanoakron.asc | 1747 | `000a70d4a80164bc2ed8fd041b10ccbbfb65e3d46835ab24539b9b4c9a0b3d5a` | 0 |
+| utils/gpg_keys/oranjuice.asc | 1739 | `4dda309f25e7ebe0662545b48b45dc0697625f39dcc37fc18d18b94084ffbb90` | 0 |
+| utils/gpg_keys/rbrunner7.asc | 1769 | `ad8af90e8787eae9da7479005d1faf509af206c4c91fb33f14d5ba90404ee035` | 0 |
+| utils/gpg_keys/sarang.asc | 3108 | `90c167b43bee53547544875213278763ac8f5863d33bdbdc17794157ea574966` | 0 |
+| utils/gpg_keys/selsta.asc | 1672 | `21ec5b18eeb3e647f92338231bfb2cb9f5f9202f30226189541993078c721d80` | 0 |
+| utils/gpg_keys/snipa.asc | 3159 | `15e9bbc7d0ed6160dd0725048397cc69b4c1d2c53f453f551393806447032937` | 0 |
+| utils/gpg_keys/stoffu.asc | 3801 | `d4e8f3714c1f86a24cb5427690e73fddb18b911b838bc4bded3b3ebdd0aae849` | 0 |
+| utils/gpg_keys/tewinget.asc | 975 | `a009d80195976ef3618e83e6a18c8d4a5c1e013c3a4445855e8564e29b106b6d` | 0 |
+| utils/gpg_keys/thecharlatan.asc | 20351 | `c229c79d3677332d6eb406d406e2c7daef67fcad6439bb8224c4e3b3ccfef1e0` | 0 |
+| utils/gpg_keys/tobtoht.asc | 3130 | `724810ee65b892a4706d51c3f279d2f67727256f18150c0456590171caedd189` | 0 |
+| utils/gpg_keys/tomerkon.asc | 1702 | `bc889610f94fd022dfae94feed3df356f4b3c24952f95fe335e10ab254b8b60c` | 0 |
+| utils/gpg_keys/warptangent.asc | 3092 | `c24c127a643a6c13bb331d5b22f786ffc662c61aacdf877aa9c2e526071c7880` | 0 |
+| utils/gpg_keys/xiphon.asc | 2452 | `a6fa139506005fee0b470e8077abf26b284f7aba309af004f25213a4e2b7a874` | 0 |
+| utils/python-rpc/console.py | 2606 | `4cc220f01ab3f0a1da296204ecf0209ebbba42f33113d253257194302522eea4` | 0 |
+| utils/python-rpc/framework/__init__.py | 0 | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | 0 |
+| utils/python-rpc/framework/daemon.py | 20870 | `11dc80219349fb1ada9fd25b9b74a07c4096f755625cc0b1e89f6a3716a00826` | 0 |
+| utils/python-rpc/framework/epee_binary.py | 12875 | `c73b4efa95e7a4a390769b40cc56f9b8495ff05c116701499e1a7f80096c89cf` | 0 |
+| utils/python-rpc/framework/rpc.py | 3483 | `06e37cd42c35e58eaf95e63adde932e81e4eac5ecf493f13fe062ef88a756959` | 0 |
+| utils/python-rpc/framework/wallet.py | 41578 | `9cd51a3612102cd2b8d08d810fe8b056ce8dae36ba646bc0bae9f81c4dbdfb7d` | 2 |
+| utils/python-rpc/framework/zmq.py | 2197 | `186af68ac7bdffa33ed8259afa4c8d9d7dcdaa8334d947e25cc9291415dad733` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-actions.h | 91897 | `1bd2d71c2f6c7618d983184204428029c8a969ecd06f29af9e6a302d13dae37a` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-cardinalities.h | 6118 | `a565787f3e15f81e1873d1ff9d97888ab1e37466165258cfffd6d4bafc086214` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-function-mocker.h | 25796 | `1c7f47551aace89c30eb88563d4b1f147bdd368c25e10c1744673c4945c558c8` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-matchers.h | 221675 | `07cb048e0c8390a7d85e0d5796e90a970ebddce77392897da605d0984275d46c` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-more-actions.h | 38344 | `76db139ecd8af4272f979fa996e06ef52ba21d7cb1c6dc7f476fbbec1b3bac1f` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-more-matchers.h | 4499 | `b5dfa602f4f05a92000fffe06236cbbadb20bda8e1a4e55b1cddf27ba586232f` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-nice-strict.h | 10858 | `75324d2f796da7d611fb5d1da610c905f53e74247b02982ca63f5dcb91f4c33c` | 0 |
+| external/gtest/googlemock/include/gmock/gmock-spec-builders.h | 82086 | `9a2bc69d5de83a18d813f1134c1249c35302bc37d7f815ee49252552d6e1d2b1` | 0 |
+| external/gtest/googlemock/include/gmock/gmock.h | 3954 | `de3d73bc68ecffacc4935db34ea651b436cf4394ce61fb100b5dab1a5ff155d7` | 0 |
+| external/gtest/googlemock/include/gmock/internal/custom/gmock-generated-actions.h | 314 | `8efd16064b3e19d98726a15f8bc40daa593576e4a190b2e8b95a6fee7242c36f` | 0 |
+| external/gtest/googlemock/include/gmock/internal/custom/gmock-matchers.h | 1918 | `b6d245e95f0649a85aa7e29457f437da4c2f1fbadb0402cfc40f680159de510f` | 0 |
+| external/gtest/googlemock/include/gmock/internal/custom/gmock-port.h | 1953 | `ee2cc87202e75759cfd98a5d657c69ee864e492a2c63584586938da81ab84995` | 0 |
+| external/gtest/googlemock/include/gmock/internal/gmock-internal-utils.h | 19273 | `9b444dc928270691f5b0b92434d52ee7334bd6dcee9995db00564256ee702310` | 0 |
+| external/gtest/googlemock/include/gmock/internal/gmock-port.h | 6233 | `e726f739d0a12eddebf13c4832ab56543cb935428d309e9485626d35d0a0b539` | 0 |
+| external/gtest/googlemock/include/gmock/internal/gmock-pp.h | 13491 | `5fcdad1707b172f8000d9f419f41d44318558600b00916785516eae49843bb4f` | 0 |
+| external/gtest/googlemock/src/gmock-all.cc | 2107 | `166fc3f915d7abcb66f2b1d5cb31c13237838d3464d4de3015dcac00b9d354cd` | 0 |
+| external/gtest/googlemock/src/gmock-cardinalities.cc | 5330 | `2203e2d2a37d96a97e06a9b9c20d516fbecc964f1e37d9d3029d774dff7abc43` | 0 |
+| external/gtest/googlemock/src/gmock-internal-utils.cc | 9460 | `483c1e41ba20638c42a84f1a6ea38b53a480b020e3f79770d6f3c1d65b583045` | 0 |
+| external/gtest/googlemock/src/gmock-matchers.cc | 18644 | `3d770fbfe37641b2e9f005c7ec5ada5daa7462794f7ce70a48c23e512c262f4a` | 0 |
+| external/gtest/googlemock/src/gmock-spec-builders.cc | 29387 | `9e1b89162d6d84b4d16c39e51479004272482243392641ea6d60978dd4d7ace7` | 0 |
+| external/gtest/googlemock/src/gmock.cc | 8547 | `1376daf6387eac94b5afaf2dfbf2e3aac098b5f97985f3f5660ab3f7d4948452` | 0 |
+| external/gtest/googlemock/src/gmock_main.cc | 3092 | `6c6f3fe5baaf769d384503793c3f44a59e1796bafe58f1eb37012944eb75bc18` | 0 |
+| external/gtest/googletest/include/gtest/gtest-assertion-result.h | 8703 | `26e1b24865009327384eb87a3839bd89e73fd85e2dbb72d108361283b2710bc4` | 0 |
+| external/gtest/googletest/include/gtest/gtest-death-test.h | 14917 | `ed31824987ec67ecd85a40a1be3b26293b22e888c9b73833e4e371cfc6add0f0` | 0 |
+| external/gtest/googletest/include/gtest/gtest-matchers.h | 33085 | `608fbec1aedc6aa43a09796c5e088677d38592446625a861a668520c5248ade4` | 0 |
+| external/gtest/googletest/include/gtest/gtest-message.h | 9147 | `f31bd107af1abe237bfb85cb09966571c7aa63a6c96a06f89352f382d5e38989` | 0 |
+| external/gtest/googletest/include/gtest/gtest-param-test.h | 26376 | `7a246e017cb84010ae4bad5b6f789fb16941b4e46a130ffb8de9f328fa19ee78` | 0 |
+| external/gtest/googletest/include/gtest/gtest-printers.h | 43099 | `93038623f977ed94efde0ee7c9f5d2cfe4467cbfaf6d5acac9b95336a567a835` | 0 |
+| external/gtest/googletest/include/gtest/gtest-spi.h | 12843 | `fc0bbebaeb211b81a2ec3df388e5e5f25a7c22e90186839854d2e5b26ce226e6` | 0 |
+| external/gtest/googletest/include/gtest/gtest-test-part.h | 7164 | `2279b9bfd08aff7c0f764a2716bde0d3a61dc12573687a2cff91256b17681bf0` | 0 |
+| external/gtest/googletest/include/gtest/gtest-typed-test.h | 15793 | `c868cfd4a78ff194ffca00c66314132c0afec5869e5839b4408ce96d74a40136` | 0 |
+| external/gtest/googletest/include/gtest/gtest.h | 92503 | `3e59560cff120e73608b4192fc0bba1e465052753761829ce79a167c2db5c097` | 0 |
+| external/gtest/googletest/include/gtest/gtest_pred_impl.h | 12783 | `85e850e735a42ebb5f9a01a018708c1c0b9b7d83c94b14b7d5d29512c00b6ffd` | 0 |
+| external/gtest/googletest/include/gtest/gtest_prod.h | 2502 | `3c6301ef533db8686e474dd5a0de4d98a31cbb630e2273f712472d1be25aa261` | 0 |
+| external/gtest/googletest/include/gtest/internal/custom/gtest-port.h | 1873 | `5e06747c9e8b86e9d841fabd61c2f045b2bb1133716f127be4a963ced1c44e01` | 0 |
+| external/gtest/googletest/include/gtest/internal/custom/gtest-printers.h | 2094 | `b95afda2426e8c4f09c11d3296d522fb336b248c0da7e078388db4bb072c2166` | 0 |
+| external/gtest/googletest/include/gtest/internal/custom/gtest.h | 1858 | `21d20a1c64ea38c20c4b12337c261a1a18989d2a30710a83dfb5cd9a3bb3c55e` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-death-test-internal.h | 13854 | `7089f8bc0f0d880aa7ed99c8ba091270dc6fdc7af83f6ce2e55172ca7dc7013f` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-filepath.h | 10552 | `71c925cac74a844d5da43bdec9d4f3196cdef80df54ad13ad8dd7192587ce3ea` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-internal.h | 61548 | `f3745bd2715e459cf06dc36218fe57e217d27dfc71689fbbe2af28aed9055b17` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-param-util.h | 39712 | `4a80c7d76380d172ae2948c8ab3075ba8df6ab5eb82f44e0089ccac692c5a3bd` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-port-arch.h | 4392 | `36c1e834eef0cdb6a1c0dc69c9f6896d1b974a85c3bfd43ff8b839dc77d96e2b` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-port.h | 90471 | `231d0a7a54279d454d27de0a540e3acfac5acd0c08ce4f61eb0fcb111796e92c` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-string.h | 7323 | `0cc08c746bceb2b101c61ffbc905c598eb62fee3c262c4585c21b10d8a3e6508` | 0 |
+| external/gtest/googletest/include/gtest/internal/gtest-type-util.h | 7324 | `94336b1703807db6d9d2b729b5a30cf53016fd236b14774af118467d27f94ad8` | 0 |
+| external/gtest/googletest/src/gtest-all.cc | 2201 | `972d3016860f9aa6452e078cf77406290fb7003b66fd6c0744a030bd1c323606` | 0 |
+| external/gtest/googletest/src/gtest-assertion-result.cc | 3009 | `dbd2235676dcc0ef6409108a4041e05442fc6895735a5561d71151e6a14296bb` | 0 |
+| external/gtest/googletest/src/gtest-death-test.cc | 62728 | `2881240c49961c095505f3c044483a79ef1c32e413e19630af7508d67994f619` | 0 |
+| external/gtest/googletest/src/gtest-filepath.cc | 15726 | `b3d0011edbb81f782b88aac6ea20d04b24050e5738b3b2240a22033f675cb71f` | 0 |
+| external/gtest/googletest/src/gtest-internal-inl.h | 48421 | `08c71f523cdf25a1c8ddcab54ee4ba3821c86273903ef16c54dc1bfd953fc220` | 0 |
+| external/gtest/googletest/src/gtest-matchers.cc | 3724 | `e4ce9edf33493625353cc147a14caac14fdba7390d76166d101fa2fe9d16bbda` | 0 |
+| external/gtest/googletest/src/gtest-port.cc | 49585 | `5efb91d426e321925787a13a5915c082db6c237eda42f288bacf86a1d1ae601f` | 0 |
+| external/gtest/googletest/src/gtest-printers.cc | 18551 | `bd14e45b5cb8df8be5944a0aaeb3739c533737a183ae4ed6627f5613eea1f6c9` | 0 |
+| external/gtest/googletest/src/gtest-test-part.cc | 4028 | `b268314cbc718b485ff3e45fdeb5a1496bb8d87dadd5e824c558bf3b03e2dbf9` | 0 |
+| external/gtest/googletest/src/gtest-typed-test.cc | 3823 | `b92e70b2d7ee3b86328162cbda269a28de4ce67f0e8d9beec5ec2c73a93ba006` | 0 |
+| external/gtest/googletest/src/gtest.cc | 266604 | `59ee4e6ee5d637510633db22fecbec929644a406d5c581ac5df53de4bab1c507` | 0 |
+| external/gtest/googletest/src/gtest_main.cc | 2430 | `3836c1ce7c4829c44a30f368d888ae3bed218437d61d102c50c0db4afca33b3f` | 0 |
+| external/mx25519/include/mx25519.h | 4269 | `7252aa9a254d3f5a3e5260a4ab79d6204ddf16d39e7e9ddd8cbd09b4cf794487` | 0 |
+| external/mx25519/src/amd64/scalarmult.h | 931 | `2be79c062b260c432c1ab02f29788cade84d3eddc1d4f131e45387f95d8007d6` | 0 |
+| external/mx25519/src/arm64/scalarmult.h | 826 | `6dda4050d471f00332aa2c3071c50da7b316f2a22bf1b0915345f0b1599dfe78` | 0 |
+| external/mx25519/src/cpu.c | 1961 | `470e4e3ca3f260a9cf47fa707f7987253aaba3961759c7e3406ed68d9072d61a` | 0 |
+| external/mx25519/src/cpu.h | 928 | `e956aa5e8dfd080e0eaab1191605959597b803b9ae0bf30113333cb986bb5037` | 0 |
+| external/mx25519/src/impl.c | 1577 | `5c35f4c1be91b1eb3074011f59683b95e85e63f0f3ae7b8397c7d8fdf8f96706` | 0 |
+| external/mx25519/src/impl.h | 960 | `55d8f04a1b6ad2eb4a18568bcea8bded5e02b0227de5c8825c160cc755fa331c` | 0 |
+| external/mx25519/src/mx25519.c | 2974 | `3c93762c31112491f4626a4013d2374884246e68bb8b13eda6daa9cbb9fb5564` | 0 |
+| external/mx25519/src/platform.c | 2103 | `d9f770db4f50db0f7ce07c777319986af33226ee455fac42484bf7528e4bfffa` | 0 |
+| external/mx25519/src/platform.h | 1549 | `a78c0f0d03ccd6031e12001f667b5a3653c5f9b92217008c8f3efe5db0599079` | 0 |
+| external/mx25519/src/portable/fe.h | 30554 | `ae44fe35f4b91f02dfa4ccf16a0574abebaab7f9c200a61f107875a390c32e1a` | 0 |
+| external/mx25519/src/portable/scalarmult.c | 2780 | `592c7638e9845234e5b38c4c3f0bf5e834f7af04e134fd530ae4ee5173f573f8` | 0 |
+| external/mx25519/src/portable/scalarmult.h | 835 | `4497c6029fa1a714672230fbe164be8dc1ce38141fea2cdf2c618ee7b6de33f8` | 0 |
+| external/polyseed/include/polyseed.h | 12156 | `79b0a56a4252862af44e5cd2210c335c104f805840d9b869c829148d89c742a4` | 0 |
+| external/polyseed/src/birthday.h | 1269 | `64ecece95280bae14d0511d75555334f90cdb364bddfd957322d75d0a18d8ed7` | 0 |
+| external/polyseed/src/dependency.c | 1403 | `110664e30633d6c8a9d75d4c1879580886f5180f99f793d61f7e1c219e8ecb77` | 0 |
+| external/polyseed/src/dependency.h | 2262 | `2c96b5189627cdc097d5584ccd7191897106c9ecfa46b63ece92907948522db6` | 0 |
+| external/polyseed/src/features.c | 1199 | `08e423cf81344d71cfa11608cd72b4d9cb8b4abe629ae0c8a3ab2503f8c6c8fc` | 0 |
+| external/polyseed/src/features.h | 1319 | `b92383315f3e02295f049eb670ecfbb1f51d8ba0515e3a1ac3350d1510214a47` | 0 |
+| external/polyseed/src/gf.c | 3909 | `8a8b3bac87e42de108ce0095f0d4d115ecb0969c693770cef2538224110a7d4c` | 0 |
+| external/polyseed/src/gf.h | 1809 | `21c209a12b83549af4e6a83a2878150f888e7cf7a5340e59272439def3d99901` | 0 |
+| external/polyseed/src/lang.c | 9491 | `483899ce07dc8b996587c5ba4b358cc28a651dce4336931a9ed6aa80f40a2cab` | 0 |
+| external/polyseed/src/lang.h | 1547 | `5b2d7c6e579fcf532d4083a1b2bc0c52642d2231d0068bfdafecd75bc2bb6af6` | 0 |
+| external/polyseed/src/lang_cs.c | 38772 | `395c70fb0de3e4c9034da698c679269227c1783d0ae56617bb8bcfd950eb9cd3` | 0 |
+| external/polyseed/src/lang_en.c | 36852 | `6e32fb9d56d5c8a304d173937deec9dc9d64e52d15a9104f1c63dc45b7911f47` | 0 |
+| external/polyseed/src/lang_es.c | 41858 | `90405262a658434062b1d26cc7799c1d7fbeb11486c93a01153c733315c0cc0d` | 0 |
+| external/polyseed/src/lang_fr.c | 44613 | `0cb937a44ac79218a35e4d10f757d85dcd482cb4ed1482928644d0292ab8f0e2` | 0 |
+| external/polyseed/src/lang_it.c | 39770 | `211787e3a762b7b55e7f2f422dc16e843399697ef078b10b2773ba62972a312a` | 0 |
+| external/polyseed/src/lang_jp.c | 54279 | `c309fd0d6c435de214262dd5c96331b8a48bd9a9a3b3b6659d2817056ecc1887` | 0 |
+| external/polyseed/src/lang_ko.c | 65670 | `0b56d27f7c1d3c6d13af9248d981d90a7d515222e3858fe6eca2f1aae7ea6ac9` | 0 |
+| external/polyseed/src/lang_pt.c | 39418 | `40e9919edf8b768a12cdfc3c3cd2343fa16a628ad0e8d2749b4c026af7c9bf70` | 0 |
+| external/polyseed/src/lang_zh_s.c | 36053 | `cabe21517dcde33e517926ab29d7b58bb5e5f97b7b5a6a631e9137f256a5165b` | 0 |
+| external/polyseed/src/lang_zh_t.c | 36054 | `7ddbd0546736c7e53077b97bef5f6697f752f6a78ea7e4429987b66f14a118ba` | 0 |
+| external/polyseed/src/polyseed.c | 10799 | `937bd523a6f3a01cc9a6d385d0b1cec8736eeb2088935a73f73412f45c11f646` | 0 |
+| external/polyseed/src/storage.c | 2639 | `65114da0060a6986d2f26caed7a16dd26012b40b4b444e4c42e4c792bfe31fa3` | 0 |
+| external/polyseed/src/storage.h | 1513 | `a1c1c695ff0db3aa5aea416bf585070c31df1c1889ddf784c4e1c6f8d40be201` | 0 |
+| external/randomx/doc/tevador.asc | 647 | `4ac6623e81115d14dc67670c5a9bcd036979163aea95485a6c05931653e175f6` | 0 |
+| external/randomx/src/aes_hash.cpp | 13182 | `01901c2b7511c00547969039317ce370ebb8d75d35f55c26a3e117dbe77b063c` | 0 |
+| external/randomx/src/aes_hash.hpp | 1943 | `322ee47cf6587da3cb4648db2d7c3f14ee82e9d2b7e92030e685c3546efbfe4f` | 0 |
+| external/randomx/src/allocator.cpp | 2321 | `d78c7a28a3de027f885a99cddb0fad9a61cc49a0783f1ba367e6d3f3fda34128` | 0 |
+| external/randomx/src/allocator.hpp | 1827 | `4b8ed62b772fca75cbfe2d3a18eb1c6823576df4e9371c6988b1f0d3005f7bb8` | 0 |
+| external/randomx/src/argon2.h | 8693 | `f4a952bbdb27fd4ade4fc1c9c0128a2502c7e36bc360f458b3070efb4c56d9c8` | 0 |
+| external/randomx/src/argon2_avx2.c | 5704 | `2f92b2688de14a29a0c5778e53e19443f56b14315563d10bebaf0cd5d86705cc` | 0 |
+| external/randomx/src/argon2_core.c | 11806 | `0a61aa1a747f53ac9d108c9ad5110681bf802643f347158f414df5fac8b17fab` | 0 |
+| external/randomx/src/argon2_core.h | 5944 | `e8c7a6c0010e169d96cbc7b7116f82aa500f84bc60b05f12d2344bf7364c148e` | 0 |
+| external/randomx/src/argon2_ref.c | 6667 | `5c2f9e59e7b7f7b252a219f46dcae28f67c7e35f03a7e489eae7ed82ddffd21e` | 0 |
+| external/randomx/src/argon2_ssse3.c | 5863 | `087d0112497fdc359fed8697c8ea76e429f9910a2f3eab92d9ff398412e8e707` | 0 |
+| external/randomx/src/assembly_generator_x86.cpp | 23658 | `1d7534db165eecbbe7418389e2182754e10f61614b9f8939c9dd7a7a5e288ea8` | 0 |
+| external/randomx/src/assembly_generator_x86.hpp | 3490 | `d2243ea7e1bb10e8696dc6523ea6715f3227c144ea6ce39cede83e62e45176ef` | 0 |
+| external/randomx/src/blake2/blake2-impl.h | 2630 | `53a14224755794ab8ad8107b46c3988ef2e286cc5deae6a8e58f635c057db083` | 0 |
+| external/randomx/src/blake2/blake2.h | 4188 | `cda3a6be40c12e29bae4ee34838e887145e2524a170a51f58727f788d357f56f` | 0 |
+| external/randomx/src/blake2/blake2b.c | 12512 | `71284511ea05c25665bdd47114ff7e63a478f2773c3af557ca2fb56db29de721` | 0 |
+| external/randomx/src/blake2/blamka-round-avx2.h | 7676 | `099bd60fc5978c782b46a72acee73ff16f8b6c2c317ec77e9174d22799dde921` | 0 |
+| external/randomx/src/blake2/blamka-round-ref.h | 3819 | `fb5066c13e1144dbabcce2a813eca0d15fbb2e20b71b58b02a05602ca61a4d48` | 0 |
+| external/randomx/src/blake2/blamka-round-ssse3.h | 10029 | `48fba2c681dd8423acc1a5bad33f4e5b179e25462b3b1f53061d3054d38d2982` | 0 |
+| external/randomx/src/blake2/endian.h | 2525 | `72ec4133549838be4e0574d344fc9b57627c97060c57f9f73ddd0f4d96a2a2de` | 0 |
+| external/randomx/src/blake2_generator.cpp | 2356 | `6aba8e4565e38583fa1243d2ad75a2fcf2aea33de1350ce8b790abd5cfacd920` | 0 |
+| external/randomx/src/blake2_generator.hpp | 1814 | `a74baa4c6207d8c9e003243c930e9ad35989d95cd3afc6c8768ce36870fca0a7` | 0 |
+| external/randomx/src/bytecode_machine.cpp | 13071 | `daace726eca1e4f78b08383d613db2e5ddaa3cde860e35f93da34dd1c5da9280` | 0 |
+| external/randomx/src/bytecode_machine.hpp | 10159 | `0403c4f6c924649f7c55a2b5c18f8d3268d04a57782c94e02c058ad6fea92d0a` | 0 |
+| external/randomx/src/common.hpp | 10065 | `6c366baeb4a00290420fa61b4854966f681df8f63a50d06604a14012371596b9` | 0 |
+| external/randomx/src/configuration.h | 4612 | `637719f77c263cab40ca306ca0326ef37d6f6eb12564c7feb5c74c0426c74051` | 0 |
+| external/randomx/src/cpu.cpp | 2527 | `2f3c67316ecd9e116fdb781e842dfd0714d16a5c19fdcbfacaab06d10c5874c8` | 0 |
+| external/randomx/src/cpu.hpp | 1767 | `44e5de2d9c94b0873cb9de6c1273251dee1035262ed07db2300d33b705c3d9a3` | 0 |
+| external/randomx/src/dataset.cpp | 7277 | `a4ca8710e549002e9d27327b0b3313e89b1d99674bf914b2c47859ce2d753da6` | 0 |
+| external/randomx/src/dataset.hpp | 3906 | `45a0c981c4615a52ae16003611153793fbcf65a8aac4046afe4b9fb2433cd182` | 0 |
+| external/randomx/src/instruction.cpp | 11194 | `afe99f70c99d59021c21376ab8721c06ad543136e937092dd1559e991a36757b` | 0 |
+| external/randomx/src/instruction.hpp | 4518 | `aa66ada9914850ab00641a7fd31be02705218baa8caaa6819c9607681ecfc7d4` | 0 |
+| external/randomx/src/instruction_weights.hpp | 2810 | `cdc3025870d64d53685a434a2744ebaca6510e3bee8dc0ec8a46d6e962f06e4a` | 0 |
+| external/randomx/src/instructions_portable.cpp | 4975 | `bd2b2f8c3753b955e1932688c70c2c2966b7c467f8139ce5a53c94276404323e` | 0 |
+| external/randomx/src/intrin_portable.h | 19145 | `ce09d4406a7c4f0b70eacb3dd93fc061921cc0336dfc70253294df62efdfe353` | 0 |
+| external/randomx/src/jit_compiler.hpp | 2642 | `e05c9aa39d6fb9979297d0e543af70978fb05b22bdb60f7c747c21d1fc0aa049` | 0 |
+| external/randomx/src/jit_compiler_a64.cpp | 32388 | `ad38b975bec4fc190d3217cafa926d8295c710cf91badbe0dfc91c96dceb6958` | 0 |
+| external/randomx/src/jit_compiler_a64.hpp | 4707 | `db34c287bc63f8ed57dac6e1416579f2d2b9d7a6d2d8e7c26a266f6630fd9184` | 0 |
+| external/randomx/src/jit_compiler_a64_static.hpp | 2563 | `6450cc9f96c2a1df4e1c5f9f3a585458e1cdb87b1b22bb1bd1feb7c9b9416faa` | 0 |
+| external/randomx/src/jit_compiler_fallback.hpp | 2453 | `fb17f5f61a9c136e1f6e537bd09056a719fc6c14b02e15126876c5aaaad7ea4a` | 0 |
+| external/randomx/src/jit_compiler_rv64.cpp | 41552 | `a6f7037bdff2e91e420ffee6941af53fb9e612557b1b33bb1eabada5ccd78612` | 0 |
+| external/randomx/src/jit_compiler_rv64.hpp | 2474 | `c17087b089fa54b1e4cf9399b65ca773ea93e69ce6c688b71b77451156ddd7c2` | 0 |
+| external/randomx/src/jit_compiler_rv64_static.hpp | 2321 | `528376776d8ba68cfa7aaa001535f535e4583e3a254c1c6d8283e16c84c50be8` | 0 |
+| external/randomx/src/jit_compiler_x86.cpp | 27084 | `9122b0973a436768b709c339ae66782bef847d8c9d27542f905d2cfc0af1d83c` | 0 |
+| external/randomx/src/jit_compiler_x86.hpp | 4626 | `802e8ac6e11eab2d1bc5623a71bad800f97b6ccdda1205468fe7eb545e529e9b` | 0 |
+| external/randomx/src/jit_compiler_x86_static.hpp | 2185 | `988d5c0c7cf8dacb0732101fe07265b2fde0acda6b1c416a423e6787bd03145e` | 0 |
+| external/randomx/src/program.hpp | 2448 | `f1bb872181288c3bf4460039796f4ef708490dcf9d3cba6d0d4da00c72c1a9d4` | 0 |
+| external/randomx/src/randomx.cpp | 13886 | `beecda2d37d2963d997eb27d78210ba40265ccec3f1df3b7ee74acf982521a9d` | 0 |
+| external/randomx/src/randomx.h | 12438 | `ba6784194be25810f0c25d4b767907e9aa133cb3cf8ba605ce94ab593856f4c3` | 0 |
+| external/randomx/src/reciprocal.c | 2369 | `74ca2a807079030a66dff4399336f02bfdd012149b169669f27f12ebc1dd9b3d` | 0 |
+| external/randomx/src/reciprocal.h | 1857 | `453c067a3ea8542f1276be8bc25a89d37f52375362160d0520b7eaaf37eec90a` | 0 |
+| external/randomx/src/soft_aes.cpp | 29703 | `72fff42b099b43413e14f2b793d70f546e21a2737d67bae1311c98f0159fef36` | 0 |
+| external/randomx/src/soft_aes.h | 2005 | `91f50fa8d8a942d7fe78ad48d588f87e9eb62800ee68e1c6298cdc1c86e5fff2` | 0 |
+| external/randomx/src/superscalar.cpp | 35794 | `7640fea4dd6c7cb98913b2183a755592c7c264ebfa0d39b92074c616a918758c` | 0 |
+| external/randomx/src/superscalar.hpp | 3694 | `7c12c3c2dadcbbe37693ff3020d7d1f1e63ce5411eb95fd9ec64ada266dbe729` | 0 |
+| external/randomx/src/superscalar_program.hpp | 2492 | `741696ef4c24b222b38bfc96c23ce72f00808ec4e18fcc9194d834d64ec5fcb1` | 0 |
+| external/randomx/src/virtual_machine.cpp | 5734 | `0be785afbefcd054a6cad3c48ff13f7182bbeb7ffe8b7f5409bcc0f9125367fa` | 0 |
+| external/randomx/src/virtual_machine.hpp | 3159 | `93df7c8279dbc1942adf74473bc722234c25275e37812bc490f5e7598401c235` | 0 |
+| external/randomx/src/virtual_memory.c | 7530 | `544b6e87127c05adf3b35dcefa5967c0c76c5c7824da50121059a4cac2a4dda0` | 0 |
+| external/randomx/src/virtual_memory.h | 1895 | `2031a9b823658d40cc47bd95ec4334036f95cc2e94dca620096e56d3629dbf15` | 0 |
+| external/randomx/src/vm_compiled.cpp | 3466 | `dc49183c0b864c93e555149296f5b132f9951779a54b7291abcbe2dbace69fc9` | 0 |
+| external/randomx/src/vm_compiled.hpp | 3266 | `c75e7af8c02738e9cc13899291ed8d4add11e41c48856c1bea15190b0e2f7a51` | 0 |
+| external/randomx/src/vm_compiled_light.cpp | 3024 | `3bcce854e8c79d8fa403760c799789c758a3eed17bdb00ed0033627d1362f6d7` | 0 |
+| external/randomx/src/vm_compiled_light.hpp | 3296 | `cd01998bf897b01f2d34e5b64c8478e398ad74b2f327351c3ed56e6b68775856` | 0 |
+| external/randomx/src/vm_interpreted.cpp | 4767 | `0f87679abed6c6e6230fda7a6860775413e86f3fe5a5799d1019f50ecb181ade` | 0 |
+| external/randomx/src/vm_interpreted.hpp | 3117 | `4a69a48c264515c6febfdd11a8b919b091beade35abe0231a2ad8a90d3921bab` | 0 |
+| external/randomx/src/vm_interpreted_light.cpp | 2377 | `bdc605edd7c20612ede85a2f2fc75748a435b3342dd49bc4946ba443dde43c01` | 0 |
+| external/randomx/src/vm_interpreted_light.hpp | 2712 | `c9e17fc8e2ca933d82506fca33cf099e4e2d2396e1da62b561438e1665dc4bab` | 0 |
+| external/rapidjson/include/rapidjson/allocators.h | 22604 | `ee030597b2a6bff53f1a6b7d449e093aa5db8bed510f38ea2d943f63dbeb5aca` | 0 |
+| external/rapidjson/include/rapidjson/cursorstreamwrapper.h | 2260 | `9e619d9a57c2fdf51e89e422668d6fe3065cf227a66261ac2519f1870398fe39` | 0 |
+| external/rapidjson/include/rapidjson/document.h | 133832 | `a91f6362f11813709bf7a9810ec4886c75b7e3415c732052f79a8e656606dc52` | 0 |
+| external/rapidjson/include/rapidjson/encodedstream.h | 10660 | `394710616961270b0e4033c03a22b2e5b411958dc07eb4495ba36131648e3558` | 0 |
+| external/rapidjson/include/rapidjson/encodings.h | 29297 | `e14aaf9b77325443cb9a0ad6c234b52a88df55bf7e353d79bb87cc362b149531` | 0 |
+| external/rapidjson/include/rapidjson/error/en.h | 13025 | `3cc7a00f9252b1183f3a108a9c7ceed59e408cd7b5a04f4c202a66a84a0fb578` | 0 |
+| external/rapidjson/include/rapidjson/error/error.h | 13353 | `648743428973469227f6b419f80a979809c33bb8d66c409c8f3775f4f7381121` | 0 |
+| external/rapidjson/include/rapidjson/filereadstream.h | 2980 | `d3d2aa0540471f4e58987f2184067e7cdf229363648ebf81af43c7e659bf2a40` | 0 |
+| external/rapidjson/include/rapidjson/filewritestream.h | 3125 | `b16d4cbb8618e1b2bf58d91632f4a31a1fb2e4938b4cded365d723487792f0a5` | 0 |
+| external/rapidjson/include/rapidjson/fwd.h | 4013 | `107d783b3fa7a9c2470b734f56ca15e620f6106fd47dc8f4efdd441f75395284` | 0 |
+| external/rapidjson/include/rapidjson/internal/biginteger.h | 9292 | `f6fe43899a4ab84a94415ea08cfb6d3d72a9d86ab3158dcdfd8e78e57f8f0c20` | 0 |
+| external/rapidjson/include/rapidjson/internal/clzll.h | 2045 | `4ca3e63eaae4c67b049e8a6cbb532182e1d9c9023b7d992c556fcab0c2f4c045` | 0 |
+| external/rapidjson/include/rapidjson/internal/diyfp.h | 11580 | `b1c63c28dec8f82f7fdc2a39193d7a09a4c30343c3f008f060adc70e710e0a32` | 0 |
+| external/rapidjson/include/rapidjson/internal/dtoa.h | 8473 | `73bdbedab68a0647156c918a7c879b7b0f13b88e2de2145c05fd7c65c8970cc5` | 0 |
+| external/rapidjson/include/rapidjson/internal/ieee754.h | 2973 | `00757a3dc2aad5b90d915f9c49b378026dc612d49a7f057106d72b1ebd1a0105` | 0 |
+| external/rapidjson/include/rapidjson/internal/itoa.h | 10110 | `a0f965f33b11ce112b7bf2fbdeaf5338fca174e33f9f47608ccdd6d8559f3871` | 0 |
+| external/rapidjson/include/rapidjson/internal/meta.h | 6620 | `5fcbfd72da1732926e4d0be2a1d79dce892f98d7b66879f818c57583a82505d3` | 0 |
+| external/rapidjson/include/rapidjson/internal/pow10.h | 3574 | `74cd5ef251a854565a36abe49521be4d8ed17a76e3d27231fd119fb9374a9364` | 0 |
+| external/rapidjson/include/rapidjson/internal/regex.h | 26120 | `160f64375368b70e6611d704413432a1a3d6b582f6fbba6f01ddd07bbda94372` | 0 |
+| external/rapidjson/include/rapidjson/internal/stack.h | 7163 | `1bc01f4623d7b4ed6e890220fa9753375c0f0fb87c8a84f41cd7eecf38a38cd2` | 0 |
+| external/rapidjson/include/rapidjson/internal/strfunc.h | 2726 | `75805e1a7420e8055b28cf759d49082608993f13bf589fa514ba7dd27d304b8b` | 0 |
+| external/rapidjson/include/rapidjson/internal/strtod.h | 9046 | `bb4045b6484549988ceabd307eabf4e4dd5b7740c876a81c21bed9fb83de8c2d` | 0 |
+| external/rapidjson/include/rapidjson/internal/swap.h | 1398 | `72acfabebd33f44869e7724603e57744da33337998b32443b66eaba58d2bbbfd` | 0 |
+| external/rapidjson/include/rapidjson/istreamwrapper.h | 4061 | `662d18f16a26caec242c214c75b92394462f1e7dc10b786a61e1bf2f7e33e827` | 0 |
+| external/rapidjson/include/rapidjson/memorybuffer.h | 2539 | `6890c9bde0a0edf28406b3f5757333a578ef83e97f3ca488c3c0762eea1501af` | 0 |
+| external/rapidjson/include/rapidjson/memorystream.h | 2646 | `a7bf789978c6d7dda7bb93c0c9555b7d53b3177cbf34c3998c7e18068a3723f5` | 0 |
+| external/rapidjson/include/rapidjson/msinttypes/inttypes.h | 8372 | `78ee41fd99bcbe59ca93f6a870a83c0a90f4b179af571f6e684f2600491bbae7` | 0 |
+| external/rapidjson/include/rapidjson/msinttypes/stdint.h | 9386 | `bf2d1bc4885bc1e0720ec9af8f399477c7e105ae1e70e2863c31a8123cae1c17` | 0 |
+| external/rapidjson/include/rapidjson/ostreamwrapper.h | 2310 | `645eb8da79e36fcf0beb315a8ea336c6bd1a4db2003318b1ca68f17a167b27e6` | 0 |
+| external/rapidjson/include/rapidjson/pointer.h | 63770 | `927a2809fc88c4a0910294430e252cb72d8fdb015bd063e793d4a22ec31eaff0` | 0 |
+| external/rapidjson/include/rapidjson/prettywriter.h | 10518 | `75adaed0efd180955a44cd5322fb20f5f1b15b5ed40998fe88c50fc2ecd2c64f` | 0 |
+| external/rapidjson/include/rapidjson/rapidjson.h | 25607 | `c2ba9c671f6aae7737831ec17d9bc791f11ddae3cb9188c9f3bbae2f072c714c` | 0 |
+| external/rapidjson/include/rapidjson/reader.h | 94366 | `43cd0f9afc832c7011518f4d779022e6c3609df7918e854006252b3b24b30f87` | 0 |
+| external/rapidjson/include/rapidjson/schema.h | 147074 | `9092172876e50b714a9051e296409db4aefde8b482a2dadc1b610d94ef2cbf72` | 0 |
+| external/rapidjson/include/rapidjson/stream.h | 6732 | `a3708a941a130a5679d2302368169852e5c4ca5f54758ea0e94caf61615c8ae0` | 0 |
+| external/rapidjson/include/rapidjson/stringbuffer.h | 3972 | `4788a86bc76a2880bdefa1765b366bda2303b62c1b8de1aabb4940fe37722b88` | 0 |
+| external/rapidjson/include/rapidjson/uri.h | 19752 | `53d200ad6eae23399fab31687c50511b3a14cd32c0a36900151f34ea0bf4cde9` | 0 |
+| external/rapidjson/include/rapidjson/writer.h | 27462 | `0bac1e1cb55726baeca7e3c3cc35108b66e870e8e9881d5d51ba801a65af9e45` | 0 |
+| external/rapidjson/include_dirs.js | 94 | `54f65d80e3c9f90de66cdc1d4cdcc1c68e38b74af48d4dcf46f85fe69f9cb6b7` | 0 |
+| external/rapidjson/package.json | 561 | `3cd5bf0b2b7ab49b53588eb769f3ff1b9ef63bce70729710e91c411a8ee4bb8a` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-actions.h | 42948 | `10183fd1abb99071b06dac2c13a2361f1ca4ae42ba3db40a9b277a12a66da78d` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-cardinalities.h | 5820 | `38a158dfaa727b3cb43f7af0a2e5683a243717f6820df795a0d66a4a164b1534` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-generated-actions.h | 114405 | `12501c5b1b78ee02d6c23c5b526cb7c124452888a5b26e797ff05701f2f1cc0c` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-generated-function-mockers.h | 74779 | `cc926ef12cd46f296a90a77273d8e7683f7fa5b29eb9164ad8579ddbf46b3210` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-generated-matchers.h | 90816 | `e3295ed6615013f03810a9a8872526a1070d7a0d49e5c4f69ce6a9319c394d9c` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-generated-nice-strict.h | 18419 | `d302c4d7f8d3ef9421d4db9c7daf2c492c68949d30a534dea9cc2495cad1dcdf` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-matchers.h | 190280 | `fb3b8a021aea592e766db533704606205d82342a8079ed151787bd6d56d8ea05` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-more-actions.h | 9377 | `80e02f3ad97dad0c4064419554ef4e206eb0d7b43c0f4b642711795db0003d1e` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-more-matchers.h | 3357 | `d9efecc6d0eb15591ff54e6a291785d1befe2ae727dec13becc18256b3e043e5` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock-spec-builders.h | 72839 | `b7bd502b6676a78eb92206fbe11a5b00e1152ce24313d58c22532053b0544179` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/gmock.h | 3683 | `2f78445c2b59064b068bd206e561b9654cec276f193f12a7edad52513169e5ea` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/internal/custom/gmock-generated-actions.h | 329 | `72e5bbf6ea34842031b097067feb56b5e63b72dfab196c8e5b883e0f09bc9618` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/internal/custom/gmock-matchers.h | 2000 | `4d6e7a0fb31c69e8f32590d3168feff67f6eb0c4edf3f3d7a913e10288a94397` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/internal/custom/gmock-port.h | 2159 | `953b0b955e48db7443667a6c4a30e1f6c15ae72479f9fa12ed7def68399cb363` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/internal/gmock-generated-internal-utils.h | 11633 | `83684a27efb2e25e273abf87fa1e893f65d174ccc546605742a85b98fb03a340` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/internal/gmock-internal-utils.h | 22618 | `45a8570e50b311e60ff0e817f06b4ebaae70a67b7401dbd3e3024504d22dfd61` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/include/gmock/internal/gmock-port.h | 3867 | `ccf181c29c7f40ed9c3a8a6f93b539b34e4da7434de95cac575b89d1e98933fd` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/fuse_gmock_files.py | 8658 | `9e5db5600c0c42f7cfbc0da67634c4f5592c21c562d1d333c62c2c8ee1d3b041` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/generator/cpp/__init__.py | 0 | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/generator/cpp/ast.py | 62772 | `7db44b9b126da111abac03904964246a8d4bf46ed789a695d0970de427cc9305` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/generator/cpp/gmock_class.py | 8293 | `aa9ef51ab4102758b1b55b49649df929b4ec80b3966537138476b6fde02e7fe6` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/generator/cpp/keywords.py | 2004 | `242e8df8532021b861d32be8f1362a14e932521522081f6b4873519d82f2c3dc` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/generator/cpp/tokenize.py | 9752 | `71976494166efa92a1c470a7604bfac77afb040555a77b522265b5da8d1ca52d` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/generator/cpp/utils.py | 1153 | `d605040bb4895054abf494bbb55a09c319d0f1f8979f99c290abe6db98be96af` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/generator/gmock_gen.py | 1091 | `6ce07373ee6c850724aa065a1fd1e2f3ab86fe8a88055d8b861e87699356d368` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/gmock_doctor.py | 24131 | `a8a811029b2c856458f84d9002917f7439423b144dddf94b7ce52f1cb382178a` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/upload.py | 51024 | `f75d0712e3b13bebd8daa0a15e4eb32c9e3034a933f4fcccf65b1e999a7ae066` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/scripts/upload_gmock.py | 2833 | `24fefa07cdc859e1fe4eb42aed39a0ee9a038496d2b7a5a1ce2df06886f86a43` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/src/gmock-all.cc | 2150 | `c9f5f6c6e08815a2d7b279bd43a5207f7b2abf0bff072523669ca4710bccc081` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/src/gmock-cardinalities.cc | 5300 | `39b523cc289330f24cc1c473ee2135d7748cebee531dde9e34627873f0a72512` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/src/gmock-internal-utils.cc | 7665 | `f54e87f94bf940ee4fcf4a727f6369438a524bc7130dec5aaa46c293fceec597` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/src/gmock-matchers.cc | 21845 | `501f74c926786c50b05eb0dd1242f46b9c9383f085131da2128919f0d21e71ce` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/src/gmock-spec-builders.cc | 32771 | `fde7fe8faa47f470d75b0776a39b7e81377cd370e323291b339423f1b89f7aef` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/src/gmock.cc | 7930 | `5bce5ab4a63f236363890f656777bd9a9132f3e5e64af0f40def41f306f12b76` | 0 |
+| external/rapidjson/thirdparty/gtest/googlemock/src/gmock_main.cc | 2593 | `219c3c2ce28cf79e7fd09f3e8cf08b77b4ea2cf60a4f795e20f8249c8444017e` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/codegear/gtest_all.cc | 1903 | `c8750dc2b7b3612edb60e8d23fc2f60ae264451916c4b15f81cbf60ea30eb75d` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/codegear/gtest_link.cc | 2033 | `e5e47c086f932471e0ca748a62b3b1597e5e731f4d34fb8cb8b2ca2db7ba3ed0` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest-death-test.h | 14349 | `0164838ef367407400e598e709f22ed792405d84f9512222a5c81e8783ded328` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest-message.h | 9197 | `f65637cec7428d2605fe563c2aff12637d6c7f6c2d379e9c2b44542e7a74b754` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest-param-test.h | 77427 | `85c603f76013d1afa492e395d1f28d60a0b92acc749814ea658e46e5a392fe9d` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest-printers.h | 39278 | `d139c70130f6d624cc035ead5f06d7535452e0d4671db9611175298fdab80466` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest-spi.h | 9939 | `4414a9d19e8fe01d26b1bf0466fec9bcf5f851496b651acedbb7c7b0c0c5d571` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest-test-part.h | 6509 | `51b8aa341c0fc6676ef27c29730bfd8acb7f1151ffeb3d6259dc02f84e26d657` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest-typed-test.h | 10500 | `c0b259d0bbe3ae30a31f078ac7f3188217589c6bc4a059c39bf0a25042dcf3b4` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest.h | 88660 | `e82600f7e09fed729cb56e5aacb1d0829f552426e10b9771d8e8b1621c23dbc0` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest_pred_impl.h | 14908 | `131fe6abe3b63ce0ab8e70dd063ae6c86c93967a43559a75890c7060b075c323` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/gtest_prod.h | 2527 | `769b81376d0fe69e4aaebf38abb22015a63d0bdcd7d3c9a16b181454560623ab` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/custom/gtest-port.h | 3066 | `d6c3de0656b402411cf170eb0eb41928d64e7d05577e339e5806db144c073b19` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/custom/gtest-printers.h | 2099 | `521647f3bebb080e6d76f6ceb976937724a656ba02b2a491ea06b876b1d293bc` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/custom/gtest.h | 2192 | `7cc9548a7a580f9a964b7d158af7a927804b895f9446c6e0cd5a202f97babe0b` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-death-test-internal.h | 11192 | `6a297532642d769328e9af8ae2b727fb6eaebe551ad99ee3e1cbcf5114bc0102` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-filepath.h | 9558 | `af014c007597cdcd157727c9b77368308edf141897eb307d8a669341e44db0f4` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-internal.h | 48549 | `b9580d50ae46095ebda6387cbbfaed7cf80c7ab620baed7c4e65d41aa963a6b7` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-linked_ptr.h | 8424 | `13578d7ded49de140ebf1d799ede535f2ed7afb0c3c6151c1dea5444636313ac` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-param-util-generated.h | 192179 | `6b4e0d8527161ceee082512b0757c5a9d304d0cd96dead2fd23f8cdbd97cd871` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-param-util.h | 27669 | `cdfd6e3f0c66819fb93eacfb85a349392e127289d8f5a064ddfc1511610bb529` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-port-arch.h | 3723 | `40c1b3ead5c184f1331497b411ba149782dea7b27b36d83b75336eefb050c0b2` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-port.h | 95013 | `e32ecd3f86f6cff0542186ae2e202760b41b30ace2156c1f9848934d80b68d2f` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-string.h | 6907 | `e22050b9e734fced09f388313433766f0a81885efaea8a9ff3a12d79770f8e26` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-tuple.h | 28617 | `b56258ebffa678cc3f0cefbfc8b44aece06e099c3e99f6994011f3bcc2d614ec` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/include/gtest/internal/gtest-type-util.h | 186354 | `bdccf111c2064bb55b27773e7ebced73bfae69d72020bf754a0ffeaffd504ea7` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/scripts/common.py | 2919 | `076e2a3f5b3c59a6c63fcbbd7cbf2d35abfe2e61e3365f01678fb606f05e239d` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/scripts/fuse_gtest_files.py | 8896 | `871231f5961ad527890a41af3192d08d052ac82d4422771795c4b0a011da2839` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/scripts/gen_gtest_pred_impl.py | 21850 | `e50064fe7ec699e6a9c3e56a234745a463785d6dfd43016b85684bfe354fc463` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/scripts/pump.py | 23673 | `ef22d39da53d203cd0d519053e61c10822873bb6ce95224c304aa5800483313a` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/scripts/release_docs.py | 6132 | `404fb55a26f13ba6dc4dc337b34283056d3ed4e19c8eeae42a6afa6fde9b2638` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/scripts/upload.py | 51025 | `23b1a71b9d896efc2125555aba8562912459a0b02a7eee65a319ed35cbacf781` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/scripts/upload_gtest.py | 2851 | `6e76fc0a7a3831c01cfffd18c220d44438073a66338d91ca61fc84b924021e61` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-all.cc | 2173 | `b37dc53e8611c61a04536182ef0abbb77776a2bb6c148b35498d353d7d012ceb` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-death-test.cc | 56716 | `9fd42abeec2a9c972c00c724af71d553096f343be90ab0fdbc413fb76e69282f` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-filepath.cc | 14507 | `bfe0733093b7723f4667ea5ec66e9eb986f5e26466c4588ff331c070710481cd` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-internal-inl.h | 45140 | `9477e1d2331bbfabaf7c45df38e194c1358dd897e724b9b1507781da2614b5e5` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-port.cc | 43284 | `9d08f3941e038df386dbaaed700d1879f26b0cad4a8ca6754efb81ef494bbeb1` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-printers.cc | 15205 | `4aec94d482d90799a083ffa99c58581c1af57ccf92399cfe1cdbf0b43388fbb3` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-test-part.cc | 3831 | `e70e1ced0a7e74c52488d9d9ccd9d20c38400cae657ac6205309b05d849dfbe0` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest-typed-test.cc | 3961 | `bac91dacf553456b6f847d91af77ef449525e73e8ee37c23514d99c39b384ac8` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest.cc | 213031 | `a678dd38549a61d80c45935e1018c3df0bb53b9b59064d33c78f3ffd8633c3ff` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/src/gtest_main.cc | 1767 | `b1e42eedbc5be4bc1ef02781044a1eed83ecfdff8d3c9b2b1f33965d6091b205` | 0 |
+| external/rapidjson/thirdparty/gtest/googletest/xcode/Scripts/versiongenerate.py | 4535 | `066e22c0720be4882667f089388df8328a6ea3d608a7a5c7986b7b223f796c32` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/api.h | 121 | `9d7cfd2c451dcf8ca38837dd602c8915ec246ed461a355c218a2bf9edd48ea6c` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/batch.c | 2576 | `d59eb77028728b7c054d9348d4d5b79539f460e87e5ddf74570932dac0068b0d` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519.h | 2619 | `f527558f342010a8612277aa007780cbba85a301c892e00bd60cabc2dd2f31c6` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_add.c | 246 | `41939eb59d8167d2d2735b0c87efda7fd27ced19fa136a946e3fc4dfb5dfce20` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_getparity.c | 152 | `824a4935a767dbb5eccc0df1bf765574f5c58897cad661de5132a2d0126f848e` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_invert.c | 1710 | `b63ec489505ace93640761a002220db0c41f58d4390bd2e96c7bd627270909db` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_iseq.c | 358 | `e040536662a2192fd217566c921f24f1ea20bfadaed41923a6c121b4f97299ef` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_iszero.c | 243 | `889c772205e11df5b5095ae8357849030c52159e724cda343a96fb5577a6a23f` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_neg.c | 133 | `57f8cce587b8f4264e686eb435ac281e0c3e2b6e3ac7bf9bfc9bfc2dd53b5971` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_pack.c | 2019 | `b458056fef739a04cd3308f0117d39f5108153855239b09a299d0ca62e64692d` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_pow2523.c | 1580 | `8fd3f96bff7ae1653c9fc840a57752a63875b7d7c19530b54e64b898ea089403` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_setint.c | 149 | `177fb8f6a359f150cc9f83d55ad6db28696b52a4c08a1a20bdb5c8c08a4ba0d1` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_sub.c | 769 | `bd4e690780851a7f1a793cf7947307377f037a4810d38b2f00bcb971bc15c3d4` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519_unpack.c | 1658 | `3b87bce0133e506e9a9180995275cfe73c2b1d585ed58dc4e7ea44390b0c8ec4` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519.h | 4439 | `aba9eba86874c1d3483d13be13523569c652741da61d351d4b9c75c5e0f85dfa` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_add.c | 192 | `f82e2f19c6a405cb4d9a5cbd3c1db8b27cb3831ec048230e92d57b3355c9d944` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_base.c | 607 | `efdc6b46e14a30b39f33d0955ba0a971f28d5ea519287b48c21323e1b96f1c42` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_double.c | 185 | `9848f33c729083416d0965d9524a93b50cbe54e9bf2925d479cfa50461e44976` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_double_scalarmult.c | 2519 | `c009a356dc543bb1f6f7b833e38e24d96911a16a2f2f21394d693bafc7753889` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_isneutral.c | 209 | `695b5038c889c7a244efed10b473833cdedde1d6a3490af0496ee1179fec3139` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_multi_scalarmult.c | 2771 | `daf62274bd1895f047937f75bd1124e850d13679faf28f29b40bc07ac683e443` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_pack.c | 309 | `8893ddb92a27c2d2380f4acba993a5a34cf84e531631270e1b6e9d9b4fe45b1c` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_scalarmult_base.c | 1579 | `64a6f5d9e08a9bdb685938f00d366fac6be2511abecb79308b4c7420f7889dba` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519_unpackneg.c | 1871 | `cbb574518a7b0aaaba3ead6204451bb080b2bf4cebd48be9d0988d511ee25eaa` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/hram.c | 423 | `1743ba65350a4a3f5e0017b53679386ec481d77c515e8bfb530130f723f0838f` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/hram.h | 251 | `8af0096e8d00ad247b7a232629de2bd30e056bb2aceb9ba6f16747647f95b744` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/index_heap.c | 1661 | `7fec60cfe22673b0aa2beb5cfa0bf18e0f95e7d7c572d78991399c6a0e011f85` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/index_heap.h | 1764 | `33274e799952453e6520153207caea0750daaad6afed3c48af9a1200fd11f2ab` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/keypair.c | 492 | `8ade74fab5f4518ad280f25f7ab891caaa99e3484f2d3f6532bbbdff9ff88509` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/open.c | 1111 | `385189320f4bc3931775a531aab6f1eff58ca545922e953c5bed181ba43fdf96` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519.h | 2947 | `986dd9dc55e103170498a5577c615ec04a115d0fbb0d4a0685be9d26ecfe6d30` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_from32bytes.c | 2182 | `bf421d5e1c0035dacebcba0b3852cedad178c743b03f3b5d0c6a777efbb0af8e` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_from64bytes.c | 206 | `318a7852846c535cf3a9a8d6d5a8dbea3e51335e477b9aa25fb712a1709c2c70` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_from_shortsc.c | 159 | `4033b5c0e04cd58f2f1b8d727afb060ae776a13af62ff5649668f39c05b98071` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_iszero.c | 199 | `e162082883f5e653abce1bfb33644267fd2966d91159d0e04c9295e7ef3b2f9a` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_mul.c | 353 | `19b135e64a22390f3e92e314a5dd5e9f74ae55015b6f922b15b9595ea77c8934` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_mul_shortsc.c | 210 | `5fa43bb188c7c31858081fe137308163c1dda4c3d381c83614496faff84cfd67` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_slide.c | 1100 | `0227fe737ecabaaaf416c58a23e4697e255d5a8295f761dd70a62e3051b3b327` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_to32bytes.c | 182 | `ad84061c02cfb664ab06d15f350e255eb1979aa62bf8531f394295248240b82e` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sc25519_window4.c | 532 | `d3ffff42bdf8344b2a2edfb6a51ddc83b345df1a63b2e11c1446fbc67025102d` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-51-30k/sign.c | 1361 | `2a6a144ac02362c3d344f26c3205c973d5325ef04e4153b742fd68eb6577b75a` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/api.h | 121 | `9d7cfd2c451dcf8ca38837dd602c8915ec246ed461a355c218a2bf9edd48ea6c` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/batch.c | 2576 | `d59eb77028728b7c054d9348d4d5b79539f460e87e5ddf74570932dac0068b0d` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519.h | 2406 | `96267b1f6023cf7295d4302a9ff13b829b0231068f32388b653435bbdf9c9617` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_getparity.c | 152 | `824a4935a767dbb5eccc0df1bf765574f5c58897cad661de5132a2d0126f848e` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_invert.c | 1904 | `3a994274f3ef38b904bb14fdbb7530c598a91e7b66e56e34a21da03f3098334a` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_iseq.c | 323 | `b2e9bf2f9ec266eb5c653215895bf510451646b41959e3f8ad7c299f0562918b` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_iszero.c | 219 | `3e04069ee21af54a9246e9948c9ffaaf2df78574bd29b25cc8cc1322409650de` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_neg.c | 133 | `57f8cce587b8f4264e686eb435ac281e0c3e2b6e3ac7bf9bfc9bfc2dd53b5971` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_pack.c | 271 | `599b5e709f14cc6958a673055f220f899c876f9ccbacf7a691c9671305480401` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_pow2523.c | 1773 | `76537653d73f0d939ec9aa0381c70c7ea94c05ec2e3b4c17c5af5b308f6c56ad` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_setint.c | 134 | `a764c280047421e2fa45c60b70e11555b5f325d74eebad305b3fd1f8250c7996` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/fe25519_unpack.c | 322 | `cba5db016600e82e23b168c753e411b1598be17c737d6423684674e5fce85895` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519.h | 3521 | `723ed30cc1441caf948578839fff53059991f431bd2c738a1ee99a8fb80a49e7` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_add.c | 192 | `f82e2f19c6a405cb4d9a5cbd3c1db8b27cb3831ec048230e92d57b3355c9d944` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_base.c | 480 | `cb962b012ebe9d04c31791fce6087001934f715b667cc411dc81e047e95570c1` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_double.c | 185 | `9848f33c729083416d0965d9524a93b50cbe54e9bf2925d479cfa50461e44976` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_double_scalarmult.c | 2793 | `63686d2052354cbe5d686f252e36f9a2d80c00f26b4873fcb4c39b1ae8727ff6` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_isneutral.c | 209 | `695b5038c889c7a244efed10b473833cdedde1d6a3490af0496ee1179fec3139` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_multi_scalarmult.c | 2771 | `daf62274bd1895f047937f75bd1124e850d13679faf28f29b40bc07ac683e443` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_pack.c | 309 | `8893ddb92a27c2d2380f4acba993a5a34cf84e531631270e1b6e9d9b4fe45b1c` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_scalarmult_base.c | 2066 | `1a1771b058dea51b7a3bc9d867985f54d332a957c6a8bfd7122413ffcf9669c2` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/ge25519_unpackneg.c | 1855 | `6be13540f5496beb1903ed3b93b7a52ac4be36830d405bbbcc98f0deac3ca502` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/hram.c | 423 | `1743ba65350a4a3f5e0017b53679386ec481d77c515e8bfb530130f723f0838f` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/hram.h | 241 | `b514444e989a127fe8d4a096562a451341cdef81925fd0caae008f1b2cc8d209` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/index_heap.c | 1661 | `7fec60cfe22673b0aa2beb5cfa0bf18e0f95e7d7c572d78991399c6a0e011f85` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/index_heap.h | 1674 | `b90f41ab4d811fa15f2bf971afc33023dc52be1005c809b7c315b60a919e450a` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c | 492 | `8ade74fab5f4518ad280f25f7ab891caaa99e3484f2d3f6532bbbdff9ff88509` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/open.c | 1111 | `385189320f4bc3931775a531aab6f1eff58ca545922e953c5bed181ba43fdf96` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519.h | 2618 | `b1937dbfcbe1a56d997f03297202a7df731a2435f3b9f0545147d64358ac115f` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_from32bytes.c | 2182 | `bf421d5e1c0035dacebcba0b3852cedad178c743b03f3b5d0c6a777efbb0af8e` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_from64bytes.c | 206 | `318a7852846c535cf3a9a8d6d5a8dbea3e51335e477b9aa25fb712a1709c2c70` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_from_shortsc.c | 159 | `4033b5c0e04cd58f2f1b8d727afb060ae776a13af62ff5649668f39c05b98071` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_iszero.c | 199 | `e162082883f5e653abce1bfb33644267fd2966d91159d0e04c9295e7ef3b2f9a` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_mul.c | 343 | `0a1e0610fa31b18d10d9f7ce32d2b9c8bb7ee7fd6682de190220909a43cb2433` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_mul_shortsc.c | 210 | `5fa43bb188c7c31858081fe137308163c1dda4c3d381c83614496faff84cfd67` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_slide.c | 1100 | `0227fe737ecabaaaf416c58a23e4697e255d5a8295f761dd70a62e3051b3b327` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_to32bytes.c | 182 | `ad84061c02cfb664ab06d15f350e255eb1979aa62bf8531f394295248240b82e` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sc25519_window4.c | 532 | `d3ffff42bdf8344b2a2edfb6a51ddc83b345df1a63b2e11c1446fbc67025102d` | 0 |
+| external/supercop/crypto_sign/ed25519/amd64-64-24k/sign.c | 1361 | `2a6a144ac02362c3d344f26c3205c973d5325ef04e4153b742fd68eb6577b75a` | 0 |
+| external/supercop/include/monero/crypto/amd64-51-30k.h | 2099 | `95bdb0cc656105110bce4a302489bdb8e2fff9b2a7c62c68fd228339ed79d5a4` | 0 |
+| external/supercop/include/monero/crypto/amd64-64-24k.h | 2099 | `49da19263f70d6b4fb54aa73b50c1568f00c711ddac370ddde88269aeb723ba4` | 0 |
+| external/supercop/src/amd64/amd64-51-30k.c | 2872 | `c6b009905ba8138676a153898163f0ae5f1f1a3249cde51e8e8a50b2b02e0c9e` | 0 |
+| external/supercop/src/amd64/amd64-64-24k.c | 3251 | `a0212b9a8269c45b13f0c53883cb1469b3479b93231d6910c39e595b5e39f9e5` | 0 |
+| external/utf8proc/utf8proc.c | 33193 | `55e96117706203bdeb038933c28e712f487c240687e062f73cdf1fe2d829adb5` | 0 |
+| external/utf8proc/utf8proc.h | 34910 | `b6b63fa108af08b2d042bfb13ed5ddbe9b46a0798f0e464e40c81fca72c35260` | 0 |
+| external/utf8proc/utf8proc_data.c | 2360214 | `950e549dbfc853c4304425f3af1875e72fa9fc9697c273c763400c2da4e380a7` | 0 |

@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отчёт об аудите безопасности и постквантовой готовности — halo2 @ 3442dd33754a</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "halo2 @ 3442dd33754a · Отчёт об аудите безопасности и постквантовой готовности"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 78926dc2f6ba"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является ю…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Отчёт об аудите безопасности и постквантовой готовности</h1>
+    <div class="project">halo2 @ 3442dd33754a · Electric Coin Company (Zcash) — публичный репозиторий (пассивная проверка)</div>
+  </div>
+  <table>
+    <tr><td>Организация</td><td>QSI</td></tr>
+    <tr><td>Дата отчёта</td><td>2026-10-29 23:45 UTC</td></tr>
+    <tr><td>Версия отчёта</td><td>1</td></tr>
+    <tr><td>Запуск аудита</td><td>d67212cf-da52-4f4f-9ed8-97b7d8bd0835 · Документальный аудит · 2026-10-29 23:45 UTC</td></tr>
+    <tr><td>Версия анализатора</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Профиль риска</td><td>Криптобиржа, кастодиан или кошелёк</td></tr>
+    <tr><td>SHA-256 содержимого</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">78926dc2f6ba69925f7b5b54cd0fde297409fa72872eddb930be8eaf5f1f29da</td></tr>
+<tr><td>Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#executive_summary">Резюме для руководства</a></li>
+    <li><a href="#scope">Область и границы проверки</a></li>
+    <li><a href="#methodology">Методология</a></li>
+    <li><a href="#assets">Проверенные и непроверенные активы</a></li>
+    <li><a href="#architecture">Краткое описание архитектуры</a></li>
+    <li><a href="#posture">Общая оценка состояния безопасности</a></li>
+    <li><a href="#summary_by_severity">Сводка находок по серьёзности</a></li>
+    <li><a href="#details">Подробное описание находок</a></li>
+    <li><a href="#evidence">Подтверждающие доказательства</a></li>
+    <li><a href="#pq">Постквантовая оценка</a></li>
+    <li><a href="#limitations">Ограничения и допущения</a></li>
+    <li><a href="#plan">План устранения проблем</a></li>
+    <li><a href="#priorities">Приоритеты на 30, 60 и 90 дней</a></li>
+    <li><a href="#retests">Проверки после устранения</a></li>
+    <li><a href="#tools">Использованные инструменты</a></li>
+    <li><a href="#references">Источники и нормативные документы</a></li>
+    <li><a href="#appendices">Приложения</a></li>
+  </ol>
+  <p class="note">Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Резюме для руководства</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">5</div><div class="l">Всего находок</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Критическая</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">Высокая</span></div></div>
+    <div class="kpi"><div class="v">2</div><div class="l"><span class="sev sev-medium">Средняя</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-low">Низкая</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Классификация</th><th>Количество</th></tr>
+<tr><td>Подтверждённая техническая уязвимость</td><td>0</td></tr><tr><td>Известная уязвимая версия компонента</td><td>0</td></tr><tr><td>Подтверждённая ошибка конфигурации</td><td>0</td></tr><tr><td>Потенциальный криптографический риск</td><td>0</td></tr><tr><td>Долгосрочный постквантовый риск</td><td>2</td></tr><tr><td>Рекомендация по улучшению</td><td>2</td></tr><tr><td>Недостаточность данных</td><td>1</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Серьёзность</th><th>Подробное описание находок</th><th>Балл приоритета</th></tr>
+<tr><td>QSI-2026-07294</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов)) <span class="tag pre">предварительно</span></td><td>34.2</td></tr><tr><td>QSI-2026-07295</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов)) <span class="tag pre">предварительно</span></td><td>34.2</td></tr><tr><td>QSI-2026-07298</td><td><span class="sev sev-info">Информационная</span></td><td>3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки <span class="tag pre">предварительно</span></td><td>15.5</td></tr><tr><td>QSI-2026-07296</td><td><span class="sev sev-info">Информационная</span></td><td>Не обнаружено криптобиблиотек с поддержкой PQC <span class="tag pre">предварительно</span></td><td>13.3</td></tr><tr><td>QSI-2026-07297</td><td><span class="sev sev-info">Информационная</span></td><td>ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)</td><td>11.8</td></tr>  </table>
+  <p class="note">Неравенство Моски (x + y &gt; z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+<p class="note"><strong>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.</strong> Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Область и границы проверки</h2>
+  <p><strong>Режим:</strong> Документальный аудит</p>
+<p><strong>Репозиторий:</strong> <a href="https://github.com/zcash/halo2">https://github.com/zcash/halo2</a> @ <span class="small">3442dd33754ae0d44b8970e5a4eea79b0c3360bf</span> — ссылки в доказательствах открывают строки на этом коммите.</p>  <h3>Предоставленные входные данные</h3>
+  <p>100 файлов, всего 1451944 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Методология</h2>
+  <p>Аудит выполнен движком QSI 1.2.0. Каждый анализатор формирует факты (правило, параметры, доказательства); тексты находок генерируются из каталога правил. Источники методики указаны в разделе «Источники и нормативные документы».</p>
+  <p>Приоритизация: объяснимая взвешенная модель (серьёзность, вероятность эксплуатации, доступность атакующему, влияние на конфиденциальность/целостность/доступность с весами профиля «Криптобиржа, кастодиан или кошелёк», критичность актива, срочность, простота устранения) с множителем уверенности. CVSS v3.1 применяется только к техническим уязвимостям с определённым вектором. Для долгосрочных квантовых рисков используется неравенство Моски; их серьёзность ограничена уровнем «Средняя», и они никогда не представляются как эксплуатируемые уязвимости.</p>
+  <p>Классификация находок: подтверждённая техническая уязвимость; известная уязвимая версия компонента (версия зависимости названа в бюллетене; затронутый код может не вызываться — это проверяется отдельно, а подтверждённая проверкой становится уязвимостью); подтверждённая ошибка конфигурации; потенциальный криптографический риск; долгосрочный постквантовый риск; рекомендация по улучшению; недостаточность данных. Находки на основе эвристик помечены как предварительные; решения аналитика показаны рядом с находками.</p>
+  <h3>Покрытие проверок</h3>
+  <table class="data"><tr><th>Область</th><th>Статус</th><th>Количество</th><th>Примеры</th></tr>
+<tr><td>dependencies</td><td>проверено</td><td>6</td><td class="small">Cargo.lock: 223 dependencies parsed (223 pinned); Cargo.toml: 25 dependencies parsed (0 pinned); halo2/Cargo.toml: 1 dependencies parsed (0 pinned)</td></tr><tr><td>source_code</td><td>проверено</td><td>93</td><td class="small">halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 128 registry patterns; halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 128 registry patterns; 474 lines in #[cfg(test)] modules ignored; halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 128 registry patterns</td></tr><tr><td>osv_advisories</td><td>проверено</td><td>1</td><td class="small">223 pinned packages queried at OSV.dev; 3 affected (2 of them only in development or build dependencies)</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Проверенные и непроверенные активы</h2>
+  <p><strong>Предоставленные входные данные:</strong> 100 (входные файлы: C)</p>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Краткое описание архитектуры</h2>
+  <p>Static review of the source tree halo2 at 3442dd33754ae0d44b8970e5a4eea79b0c3360bf. 100 files analysed; of 235 files, 55 are test, fuzzing, benchmark or example code and were left out, 80 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/ISSUE_TEMPLATE/eli15.md, .github/actions/prepare/action.yml, .github/dependabot.yml, .github/workflows/bench.yml, .github/workflows/book.yml. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Общая оценка состояния безопасности</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">100</div><div class="l">Ориентировочный индекс состояния (0–100)</div></div>
+    <div class="kpi"><div class="v">61.6%</div><div class="l">Доля квантово-уязвимых элементов инвентаризации</div></div>
+    <div class="kpi"><div class="v">73</div><div class="l">Криптографическая инвентаризация</div></div>
+  </div>
+  <p class="note">Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Сводка находок по серьёзности</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Критическая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">Высокая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Средняя</span></td><td style="width:8%">2</td>
+  <td><div class="bar"><span style="width: 66.7%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Низкая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Информационная</span></td><td style="width:8%">3</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Подробное описание находок</th><th>Классификация</th><th>Серьёзность</th><th>Уверенность</th></tr>
+<tr><td>QSI-2026-07294</td><td>Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07295</td><td>Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07298</td><td>3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07296</td><td>Не обнаружено криптобиблиотек с поддержкой PQC</td><td class="small">Недостаточность данных</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07297</td><td>ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-info">Информационная</span></td><td>Низкая</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Подробное описание находок</h2>
+  <article class="finding" id="QSI-2026-07294">
+    <header><span class="fid">QSI-2026-07294 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>41 упоминаний Halo 2 (IPA) в 34 файл(ах), например halo2_gadgets/src/ecc.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:Halo 2 (IPA):general</dd>
+      <dt>Источник данных</dt><dd>halo2_gadgets/src/ecc.rs</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-29 23:45 UTC</dd>
+      <dt>Балл приоритета</dt><dd>34.2 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте halo2_gadgets/src/ecc.rs:5 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-07294">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc.rs#L5">halo2_gadgets/src/ecc.rs</a> · line 5 · SHA-256 9e744d2ffbb04848… · Файл 59b832b8e6dd618a…</div>
+      <pre>    4 | 
+    5 | use halo2_proofs::{
+    6 |     arithmetic::CurveAffine,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip.rs#L12">halo2_gadgets/src/ecc/chip.rs</a> · line 12 · SHA-256 ae82b6164e511c05… · Файл 9d001517c6028308…</div>
+      <pre>   11 | use group::CurveAffine as _;
+   12 | use halo2_proofs::{
+   13 |     circuit::{AssignedCell, Chip, Layouter, Value},</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add.rs#L4">halo2_gadgets/src/ecc/chip/add.rs</a> · line 4 · SHA-256 ba8fe6bf018f9e7f… · Файл a81bad0a96c5991a…</div>
+      <pre>    3 | use group::ff::PrimeField;
+    4 | use halo2_proofs::{
+    5 |     circuit::Region,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add_incomplete.rs#L4">halo2_gadgets/src/ecc/chip/add_incomplete.rs</a> · line 4 · SHA-256 e0b2038aa2783766… · Файл 1e0083b20f89a846…</div>
+      <pre>    3 | use super::NonIdentityEccPoint;
+    4 | use halo2_proofs::{
+    5 |     circuit::Region,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/constants.rs#L5">halo2_gadgets/src/ecc/chip/constants.rs</a> · line 5 · SHA-256 be4c7428a26ba3d0… · Файл 4598ca03006b5c00…</div>
+      <pre>    4 | use group::ff::{Field, PrimeField};
+    5 | use halo2_proofs::arithmetic::lagrange_interpolate;
+    6 | use pasta_curves::{</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L5">halo2_gadgets/src/ecc/chip/layout_dump.rs</a> · line 5 · SHA-256 26379000da5a020d… · Файл 0ddff158e1d972a0…</div>
+      <pre>    4 | use crate::utilities::lookup_range_check::{LookupRangeCheck, PallasLookupRangeCheckConfig};
+    5 | use halo2_proofs::{
+    6 |     circuit::{Layouter, SimpleFloorPlanner, Value},</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L231">halo2_gadgets/src/ecc/chip/layout_dump.rs</a> · line 231 · SHA-256 190334e42429d1f6… · Файл 0ddff158e1d972a0…</div>
+      <pre>  230 | 
+  231 | const MUL_LAYOUT_HEADER: &amp;str = &#34;-- Auto-generated by halo2 `dump_lean` (Halo2-Clean VK-matching, Phase 2 layout). Do not edit by hand.
+  232 | -- Phase 2 layout of the isolated mul chain (`configure_mul` / `MulDumpCircuit`,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L268">halo2_gadgets/src/ecc/chip/layout_dump.rs</a> · line 268 · SHA-256 01cee9ca5f2a30ba… · Файл 0ddff158e1d972a0…</div>
+      <pre>  267 | const MUL_SELMAP_HEADER: &amp;str =
+  268 |     &#34;-- Auto-generated by halo2 `dump_lean` (Halo2-Clean VK-matching). Do not edit by hand.
+  269 | -- Selector-compression map (see `compress_selectors.rs`): per selector, the packed</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul.rs#L12">halo2_gadgets/src/ecc/chip/mul.rs</a> · line 12 · SHA-256 7acb57b0c0ef4067… · Файл 5bd412ea5e8c9000…</div>
+      <pre>   11 | use ff::{Field, PrimeField};
+   12 | use halo2_proofs::{
+   13 |     circuit::{AssignedCell, Layouter, Region, Value},</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/complete.rs#L5">halo2_gadgets/src/ecc/chip/mul/complete.rs</a> · line 5 · SHA-256 a7d7ad8a617509d0… · Файл 514390b1e77f4e81…</div>
+      <pre>    4 | 
+    5 | use halo2_proofs::{
+    6 |     circuit::{Region, Value},</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-07295">
+    <header><span class="fid">QSI-2026-07295 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>173 упоминаний Sinsemilla в 9 файл(ах), например halo2_gadgets/src/ecc/chip/mul/overflow.rs:3. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:Sinsemilla:general</dd>
+      <dt>Источник данных</dt><dd>halo2_gadgets/src/ecc/chip/mul/overflow.rs</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-29 23:45 UTC</dd>
+      <dt>Балл приоритета</dt><dd>34.2 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте halo2_gadgets/src/ecc/chip/mul/overflow.rs:3 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-07295">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L3">halo2_gadgets/src/ecc/chip/mul/overflow.rs</a> · line 3 · SHA-256 61473701044b00a2… · Файл 20acfebd3f3ed5dd…</div>
+      <pre>    2 | use crate::{
+    3 |     sinsemilla::primitives as sinsemilla,
+    4 |     utilities::lookup_range_check::{PallasLookupRangeCheck, PallasLookupRangeCheckConfig},</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L196">halo2_gadgets/src/ecc/chip/mul/overflow.rs</a> · line 196 · SHA-256 d2f4cb9aa13b9f5c… · Файл 20acfebd3f3ed5dd…</div>
+      <pre>  195 |         // Number of k-bit words we can use in the lookup decomposition.
+  196 |         let num_words = 130 / sinsemilla::K;
+  197 |         assert!(num_words * sinsemilla::K == 130);</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L197">halo2_gadgets/src/ecc/chip/mul/overflow.rs</a> · line 197 · SHA-256 5bbefdc3ba4e31fe… · Файл 20acfebd3f3ed5dd…</div>
+      <pre>  196 |         let num_words = 130 / sinsemilla::K;
+  197 |         assert!(num_words * sinsemilla::K == 130);
+  198 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/lib.rs#L26">halo2_gadgets/src/lib.rs</a> · line 26 · SHA-256 7f45c76f548f2266… · Файл 4434c72bd5a92f8c…</div>
+      <pre>   25 | pub mod poseidon;
+   26 | pub mod sinsemilla;
+   27 | pub mod utilities;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L20">halo2_gadgets/src/sinsemilla.rs</a> · line 20 · SHA-256 8e138d1047bdd1d0… · Файл 99d33149e2725ac6…</div>
+      <pre>   19 | 
+   20 | pub use ::sinsemilla as primitives;
+   21 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L26">halo2_gadgets/src/sinsemilla.rs</a> · line 26 · SHA-256 99a1d2d2b6a53adc… · Файл 99d33149e2725ac6…</div>
+      <pre>   25 | /// number of words that a single hash instance can process.
+   26 | pub trait SinsemillaInstructions&lt;C: CurveAffine, const K: usize, const MAX_WORDS: usize&gt; {
+   27 |     /// A variable in the circuit.</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L121">halo2_gadgets/src/sinsemilla.rs</a> · line 121 · SHA-256 43755b6d17985b02… · Файл 99d33149e2725ac6…</div>
+      <pre>  120 | #[derive(Clone, Debug)]
+  121 | pub struct Message&lt;C: CurveAffine, SinsemillaChip, const K: usize, const MAX_WORDS: usize&gt;
+  122 | where</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L5">halo2_gadgets/src/sinsemilla/chip.rs</a> · line 5 · SHA-256 b419059e91e64743… · Файл ffb7017d18da2ec4…</div>
+      <pre>    4 |     message::{Message, MessagePiece},
+    5 |     primitives as sinsemilla, CommitDomains, HashDomains, SinsemillaInstructions,
+    6 | };</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L39">halo2_gadgets/src/sinsemilla/chip.rs</a> · line 39 · SHA-256 76d32e781d39f14f… · Файл ffb7017d18da2ec4…</div>
+      <pre>   38 | #[derive(Eq, PartialEq, Clone, Debug)]
+   39 | pub struct SinsemillaConfig&lt;Hash, Commit, F, Lookup = PallasLookupRangeCheckConfig&gt;
+   40 | where</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L76">halo2_gadgets/src/sinsemilla/chip.rs</a> · line 76 · SHA-256 b1107413b5bff308… · Файл ffb7017d18da2ec4…</div>
+      <pre>   75 | 
+   76 | impl&lt;Hash, Commit, F, Lookup&gt; SinsemillaConfig&lt;Hash, Commit, F, Lookup&gt;
+   77 | where</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-07298">
+    <header><span class="fid">QSI-2026-07298 · DEP-ADVISORY-DEV</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает 3 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, &#34;dev&#34;: true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies:crates.io:non-runtime</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:45 UTC</dd>
+      <dt>Балл приоритета</dt><dd>15.5 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.</p>
+    <h4>Шаги воспроизведения</h4><pre>Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в Cargo.lock.</pre>
+    <h4 id="ev-QSI-2026-07298">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/">OSV.dev (crates.io)</a> · Cargo.lock · SHA-256 616397a43959bf6a…</div>
+      <pre>gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214
+quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.</p>
+    <h4>Рекомендация</h4><p>Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV.dev — open-source vulnerability database and API</p>  </article>
+  <article class="finding" id="QSI-2026-07296">
+    <header><span class="fid">QSI-2026-07296 · DEP-NO-PQC-LIBRARY</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>Не обнаружено криптобиблиотек с поддержкой PQC</h3>
+    <p><span class="tag">Недостаточность данных</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies</dd>
+      <dt>Источник данных</dt><dd>dependency manifests</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление названий зависимостей.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:45 UTC</dd>
+      <dt>Балл приоритета</dt><dd>13.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.</p>
+    <h4>Шаги воспроизведения</h4><pre>Изучите перечисленные в доказательстве манифесты.</pre>
+    <h4 id="ev-QSI-2026-07296">Подтверждающие доказательства</h4>
+      <div class="ev-meta">dependency · Cargo.lock, Cargo.toml, halo2/Cargo.toml, halo2_gadgets/Cargo.toml, halo2_poseidon/Cargo.toml, halo2_proofs/Cargo.toml · SHA-256 e3f047d63f0a64fe…</div>
+      <pre>Crypto libraries: ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla</pre>
+    <h4>Ограничения проверки</h4><p class="small">Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.</p>
+    <h4>Рекомендация</h4><p>Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование после обновлений.</p>
+<p class="small muted">FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM); FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)</p>  </article>
+  <article class="finding" id="QSI-2026-07297">
+    <header><span class="fid">QSI-2026-07297 · DEP-ADVISORY-INFORMATIONAL</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Низкая</span></p>
+    <p>OSV.dev отмечает RUSTSEC-2026-0192 для пакета crates.io ttf-parser версии 0.20.0 как информационный (unmaintained): `ttf-parser` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependency:crates.io/ttf-parser@0.20.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:45 UTC</dd>
+      <dt>Балл приоритета</dt><dd>11.8 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0192</pre>
+    <h4 id="ev-QSI-2026-07297">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0192">OSV.dev RUSTSEC-2026-0192</a> · manifest · SHA-256 d3f7ce2105a490b5…</div>
+      <pre>{&#34;id&#34;: &#34;RUSTSEC-2026-0192&#34;, &#34;aliases&#34;: [], &#34;modified&#34;: &#34;2026-06-29T21:15:04.384453633Z&#34;, &#34;summary&#34;: &#34;`ttf-parser` is unmaintained&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: false}</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные получены от OSV.dev в зафиксированное время.</p>
+    <h4>Рекомендация</h4><p>Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после изменения.</p>
+<p class="small muted">OSV advisory RUSTSEC-2026-0192</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Подтверждающие доказательства</h2>
+  <table class="data"><tr><th>ID</th><th>Тип</th><th>Источник данных</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc.rs#L5">halo2_gadgets/src/ecc.rs</a> (line 5)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9e744d2ffbb0484896345bbcd45ec0752fe8a6897889f019f125dfdd1c1bc8d4</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip.rs#L12">halo2_gadgets/src/ecc/chip.rs</a> (line 12)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ae82b6164e511c052b5f66681f77f732f4d79a6a62a7990fe1f8b2a57746dfc8</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add.rs#L4">halo2_gadgets/src/ecc/chip/add.rs</a> (line 4)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ba8fe6bf018f9e7feb579efe8423698eba158ff884d9faf434822de4bc328c90</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add_incomplete.rs#L4">halo2_gadgets/src/ecc/chip/add_incomplete.rs</a> (line 4)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e0b2038aa27837669eb57d099d4381d764f3e354417ca59b395ca7b8020fefa1</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/constants.rs#L5">halo2_gadgets/src/ecc/chip/constants.rs</a> (line 5)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">be4c7428a26ba3d085a1f0820c0fd1ea0cdacd7c2ccb2e543d1e4b0a87fcdd88</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L5">halo2_gadgets/src/ecc/chip/layout_dump.rs</a> (line 5)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">26379000da5a020d9e36dd44dc3f25f2e77afe45c558c5ce0ce14e727690a68d</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L231">halo2_gadgets/src/ecc/chip/layout_dump.rs</a> (line 231)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">190334e42429d1f6b19211a6528e7cd0b73bafac8fa3ae184eab0f0d03c97009</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L268">halo2_gadgets/src/ecc/chip/layout_dump.rs</a> (line 268)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">01cee9ca5f2a30bac8a9913250ac1f295b7ee0c13cba13f7af224ed6bef62fc6</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul.rs#L12">halo2_gadgets/src/ecc/chip/mul.rs</a> (line 12)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7acb57b0c0ef4067d0352685d00d393e28cf04d42062857429e73befaa763f51</td></tr><tr><td><a href="#ev-QSI-2026-07294">QSI-2026-07294</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/complete.rs#L5">halo2_gadgets/src/ecc/chip/mul/complete.rs</a> (line 5)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a7d7ad8a617509d058101e1f6e166614219a8f55d79c054028c433fece5f4596</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L3">halo2_gadgets/src/ecc/chip/mul/overflow.rs</a> (line 3)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">61473701044b00a24e8b2948c40c32dbc3e16a230dab868526877e8a5a09db8b</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L196">halo2_gadgets/src/ecc/chip/mul/overflow.rs</a> (line 196)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d2f4cb9aa13b9f5ccf2304d9a9ee85fd54de84c51ab8c4564a2a0908e5b25cba</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L197">halo2_gadgets/src/ecc/chip/mul/overflow.rs</a> (line 197)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5bbefdc3ba4e31fe189d9510accebddf6ee3906a4ee0647237cd0fe017f4c732</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/lib.rs#L26">halo2_gadgets/src/lib.rs</a> (line 26)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7f45c76f548f226657d7df19a6981a3f52ab4069301de34bed3372100aa241ea</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L20">halo2_gadgets/src/sinsemilla.rs</a> (line 20)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8e138d1047bdd1d0ed85ffbdc93ada1a7eb922d7d4f9b76ae4173aa08ffca322</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L26">halo2_gadgets/src/sinsemilla.rs</a> (line 26)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">99a1d2d2b6a53adc468da6ef45edfd75eecc776d41d76bd2d2706e2d4bf414f9</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L121">halo2_gadgets/src/sinsemilla.rs</a> (line 121)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">43755b6d17985b02c033966cd61a74f023cb2aa64a145e7ee02fd3e05ad14292</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L5">halo2_gadgets/src/sinsemilla/chip.rs</a> (line 5)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b419059e91e6474372f4fc3227c6aff5fa80a6beab13b809d08628d36fa6314c</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L39">halo2_gadgets/src/sinsemilla/chip.rs</a> (line 39)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">76d32e781d39f14fedf833bd8677408480635d843cf59b53de8720cd674c0759</td></tr><tr><td><a href="#ev-QSI-2026-07295">QSI-2026-07295</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L76">halo2_gadgets/src/sinsemilla/chip.rs</a> (line 76)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b1107413b5bff30832ec37e0b00500bae36ef605c95fbbb9a3759062dd2fe6ab</td></tr><tr><td><a href="#ev-QSI-2026-07298">QSI-2026-07298</a></td><td>tool_output</td><td><a href="https://osv.dev/">OSV.dev (crates.io)</a> (Cargo.lock)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">616397a43959bf6a4ed1107e089d8fabf0b48f7c38a24a6c6d33520152314344</td></tr><tr><td><a href="#ev-QSI-2026-07296">QSI-2026-07296</a></td><td>dependency</td><td>Cargo.lock, Cargo.toml, halo2/Cargo.toml, halo2_gadgets/Cargo.toml, halo2_poseidon/Cargo.toml, halo2_proofs/Cargo.toml</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e3f047d63f0a64fea96d533760fe7bdaa0eb56367b01de8a327ec457c0414f85</td></tr><tr><td><a href="#ev-QSI-2026-07297">QSI-2026-07297</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/RUSTSEC-2026-0192">OSV.dev RUSTSEC-2026-0192</a> (manifest)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d3f7ce2105a490b5cc0802ff198a1ca809120d266ed32b6200a30a1ab6d06752</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Постквантовая оценка</h2>
+  <table class="data">
+    <tr><th></th><th>Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом»)</th><th>Подписи (x — сколько подписи и ключи должны оставаться доверенными)</th></tr>
+    <tr><th>Срок жизни данных/ключей x</th><td>10</td><td>10</td></tr>
+    <tr><th>Время миграции y</th><td>5</td><td>5</td></tr>
+    <tr><th>Принятое число лет до CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → при этом сценарии миграция завершится слишком поздно</td><td>7 → при этом сценарии миграция завершится слишком поздно</td></tr>
+  </table>
+<p class="note">Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.</p>  <h3>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет</h3>
+  <p><strong>Следующий шаг:</strong> Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p>
+  <p class="note">Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам.</p>
+  <h3>Что делают квантово-уязвимые алгоритмы</h3>
+  <table class="data"><tr><th>Роль</th><th>Алгоритмы (файлы)</th><th>ID</th><th>Первый шаг</th></tr>
+<tr><td><strong>роль не определена</strong></td><td>Halo 2 (IPA) (34), Sinsemilla (9)</td><td class="small"><a href="#QSI-2026-07294">QSI-2026-07294</a>, <a href="#QSI-2026-07295">QSI-2026-07295</a></td><td class="small">Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости</td></tr>  </table>
+  <p class="note">Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня.</p>
+  <p class="note">z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+  <table class="data"><tr><th>Квантовый статус</th><th>Количество</th></tr>
+<tr><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>4</td></tr><tr><td>н/п</td><td>24</td></tr><tr><td>уязвим (Шор)</td><td>45</td></tr>  </table>
+  <p><strong>Подробное описание находок:</strong> QSI-2026-07294, QSI-2026-07295</p>
+  <h3>Анкета постквантовой готовности</h3>
+<p class="muted">Анкета готовности для проекта не заполнялась.</p>  <h3>Квантовые алгоритмы, значимые для этой инвентаризации</h3>
+  <table class="data"><tr><th>Квантовый алгоритм</th><th>Действие</th><th>Алгоритмы из инвентаризации (строк)</th><th>Что это значит для аудита</th></tr>
+<tr><td>Алгоритм Шора — дискретный логарифм в конечных полях<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>PLONK (KZG) (1)</td><td class="small">Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA.</td></tr><tr><td>Алгоритм Шора — дискретный логарифм на эллиптических кривых<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>ECDSA (1), Halo 2 (IPA) (34), PLONK (KZG) (1), Sinsemilla (9)</td><td class="small">Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.</td></tr><tr><td>Алгоритм Гровера — поиск ключа и прообразов<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>Poseidon (4)</td><td class="small">Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.</td></tr><tr><td>Брассар–Хойер–Тапп — поиск коллизий<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>Poseidon (4)</td><td class="small">256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.</td></tr>  </table>
+  <p class="note">Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Ограничения и допущения</h2>
+  <ul>
+    <li>Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</li>
+    <li>z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>План устранения проблем</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07294 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07295 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07294 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование  или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07295 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование  или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07298 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Обновите зависимости разработки и сборки из доказательства.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Обновление инструментов может изменить результат сборки; сравните релизные артефакты.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07297 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Могут потребоваться изменения кода.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>ttf-parser заменён или решение зафиксировано.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Приоритеты на 30, 60 и 90 дней</h2>
+  <h3>30 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td colspan="4" class="muted">Нет</td></tr>  </table>
+  <h3>60 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td colspan="4" class="muted">Нет</td></tr>  </table>
+  <h3>90 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-07294</td><td>Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-07295</td><td>Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P4</td><td>QSI-2026-07294</td><td>Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07295</td><td>Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07298</td><td>Обновите зависимости разработки и сборки из доказательства.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07297</td><td>Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся.</td><td class="small">устранение первопричины</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Проверки после устранения</h2>
+  <table class="data"><tr><th>ID</th><th>Повторная проверка</th></tr>
+<tr><td>QSI-2026-07294</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-07295</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-07298</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07296</td><td>Повторите сканирование после обновлений.</td></tr><tr><td>QSI-2026-07297</td><td>Повторите сканирование зависимостей после изменения.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Использованные инструменты</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Источники и нормативные документы</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <a href="https://eprint.iacr.org/2017/847">https://eprint.iacr.org/2017/847</a> <span class="muted">(peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)</span></li><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <a href="https://doi.org/10.22331/q-2021-04-15-433">https://doi.org/10.22331/q-2021-04-15-433</a> <span class="muted">(peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <a href="https://cr.yp.to/hash/collisioncost-20090823.pdf">https://cr.yp.to/hash/collisioncost-20090823.pdf</a> <span class="muted">(paper dated 2009-08-23)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN &#39;98; arXiv:quant-ph/9705002) — Springer / arXiv. <a href="https://arxiv.org/abs/quant-ph/9705002">https://arxiv.org/abs/quant-ph/9705002</a> <span class="muted">(peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <a href="https://arxiv.org/abs/2405.14381">https://arxiv.org/abs/2405.14381</a> <span class="muted">(preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>OSV advisory RUSTSEC-2026-0192 — OSV.dev. <a href="https://osv.dev/vulnerability/RUSTSEC-2026-0192">https://osv.dev/vulnerability/RUSTSEC-2026-0192</a> <span class="muted">(modified 2026-06-29T21:15:04.384453633Z)</span></li><li>OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <a href="https://osv.dev/">https://osv.dev/</a> <span class="muted">(the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/&lt;id&gt;)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Приложения</h2>
+  <h3>A. Криптографическая инвентаризация</h3>
+  <table class="data"><tr><th>Алгоритм</th><th>Параметр</th><th>Квантовый статус</th><th>Классический статус</th><th>Количество</th><th>Мест</th><th>Примеры</th></tr>
+<tr><td>Poseidon</td><td></td><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>допустимо</td><td>4</td><td>4</td><td class="small">halo2_gadgets/src/lib.rs:25; halo2_gadgets/src/poseidon.rs:28; halo2_gadgets/src/poseidon/pow5.rs:15</td></tr><tr><td>Crypto library<br><span class="small muted">group (jubjub)</span></td><td>0.14.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">ff (jubjub)</span></td><td>0.14.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">sinsemilla (sinsemilla)</span></td><td>0.2.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">pasta_curves (pasta_curves (Pallas/Vesta))</span></td><td>0.6.0</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.lock</td></tr><tr><td>Crypto library<br><span class="small muted">ff (jubjub)</span></td><td>0.14</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">group (jubjub)</span></td><td>0.14</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">sinsemilla (sinsemilla)</span></td><td>0.2</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">halo2_poseidon (halo2 (Zcash))</span></td><td>0.2</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">halo2_proofs (halo2 (Zcash))</span></td><td>0.4</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">halo2_gadgets (halo2 (Zcash))</span></td><td>0.6</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">pasta_curves (pasta_curves (Pallas/Vesta))</span></td><td>0.6</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">halo2_proofs (halo2 (Zcash))</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>2</td><td>2</td><td class="small">halo2/Cargo.toml; halo2_gadgets/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">ff (jubjub)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>3</td><td>3</td><td class="small">halo2_gadgets/Cargo.toml; halo2_poseidon/Cargo.toml; halo2_proofs/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">group (jubjub)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>3</td><td>3</td><td class="small">halo2_gadgets/Cargo.toml; halo2_poseidon/Cargo.toml; halo2_proofs/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">sinsemilla (sinsemilla)</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">halo2_gadgets/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">pasta_curves (pasta_curves (Pallas/Vesta))</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>3</td><td>3</td><td class="small">halo2_gadgets/Cargo.toml; halo2_poseidon/Cargo.toml; halo2_proofs/Cargo.toml</td></tr><tr><td>Crypto library<br><span class="small muted">halo2_poseidon (halo2 (Zcash))</span></td><td>workspace</td><td>н/п</td><td>допустимо</td><td>1</td><td>1</td><td class="small">halo2_gadgets/Cargo.toml</td></tr><tr><td>ECDSA</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>1</td><td>1</td><td class="small">halo2_gadgets/src/ecc.rs</td></tr><tr><td>Halo 2 (IPA)</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>34</td><td>34</td><td class="small">halo2_gadgets/src/ecc.rs:5; halo2_gadgets/src/ecc/chip.rs:12; halo2_gadgets/src/ecc/chip/add.rs:4</td></tr><tr><td>PLONK (KZG)</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>1</td><td>1</td><td class="small">halo2_proofs/src/plonk.rs</td></tr><tr><td>Sinsemilla</td><td></td><td>уязвим (Шор)</td><td>допустимо</td><td>9</td><td>9</td><td class="small">halo2_gadgets/src/ecc/chip/mul/overflow.rs:3; halo2_gadgets/src/lib.rs:26; halo2_gadgets/src/sinsemilla.rs:20</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 78926dc2f6ba69925f7b5b54cd0fde297409fa72872eddb930be8eaf5f1f29da</p>
+  <h3>C. Входные файлы</h3>
+  <table class="data"><tr><th>Файл</th><th>Размер</th><th>SHA-256</th><th>Маскирования</th></tr>
+<tr><td>Cargo.lock</td><td>52901</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0d4591933364c0c38945a6a639e84f2697fd4d6ecb448516fae5f81147bb923f</td><td>0</td></tr><tr><td>Cargo.toml</td><td>1373</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4b5a832a64a61d476f8308e2d4fd102c05ebeabaf11e043384001de989125ee9</td><td>0</td></tr><tr><td>halo2/Cargo.toml</td><td>653</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3f91a00fb9ea69b3c120f1b15893b19aa729627c89adbb1c4c9326e16dc87294</td><td>0</td></tr><tr><td>halo2/src/lib.rs</td><td>179</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9e5d7cabd77e1c97f5e4368d38e787895144b63acabff3aa766c4079beabcf99</td><td>0</td></tr><tr><td>halo2_gadgets/Cargo.toml</td><td>2095</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b9faefa2af2f8aa2d3ca10c7ed3132a2f9fd4d941cbbb11409a759c811a5a7f2</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc.rs</td><td>38996</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">59b832b8e6dd618a572fb726f6f45b3aea939baf7b5c9398ae9cd1d4a2c6f510</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip.rs</td><td>25666</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9d001517c6028308060d635f6c10772308c2af7c2c430f6666290f4d4fc20a09</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/add.rs</td><td>16086</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a81bad0a96c5991a25f4f3d5ea24a41823cd2e1fdbd423d4ec4db16e1f421c75</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/add_incomplete.rs</td><td>6540</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1e0083b20f89a8469c42ad18d7d6915012c2132b3a86b1ab772f714b5ae98bad</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/constants.rs</td><td>11090</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4598ca03006b5c001af74425ca19f96e439a20ca7e9a573a1697656b96aa20a9</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/layout_dump.rs</td><td>13318</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul.rs</td><td>33200</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5bd412ea5e8c90006ffd3e653d92918a4a33ce58c120e7b5acec3848864b66f0</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul/complete.rs</td><td>7295</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">514390b1e77f4e81d2745418ba7209b80958ad3fe4dbc8dc0f894a8e7c8abcc3</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul/incomplete.rs</td><td>15923</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4bfadb52be382f57421201840cf295938055c482bf66e11536c0df167d0dd0f6</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul/overflow.rs</td><td>7696</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul_fixed.rs</td><td>18388</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7a2ce8d4f8b4efca580dbbaa76c0f2e583f84296d589d08078db02649d01a85b</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul_fixed/base_field_elem.rs</td><td>20665</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5d48742efdf2c656031929e640f0c64a8747dea9697428cdcdeb3bc219220d07</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul_fixed/full_width.rs</td><td>11233</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8f7b5c58b38a7f68b873c0a06e53dca6f5cba4452a865c3ff009daaa8abb5d0b</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/mul_fixed/short.rs</td><td>37451</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a656d7e876d829fa4c2629c7ec7b25f9f5106ba68e4935daab21a1ec1e172538</td><td>0</td></tr><tr><td>halo2_gadgets/src/ecc/chip/witness_point.rs</td><td>9346</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6a25767a86718b17faa506446666cd25aa6f919f2af336f81ec9c6c746e84136</td><td>0</td></tr><tr><td>halo2_gadgets/src/lib.rs</td><td>1068</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4434c72bd5a92f8cba995ec280ae3b20a25308accbf6058e411fa84988b49dac</td><td>0</td></tr><tr><td>halo2_gadgets/src/poseidon.rs</td><td>8406</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a88f1571da14aa48bd95f65e3ced755c22e41fd7c803961af0d7748af2f6a2d6</td><td>0</td></tr><tr><td>halo2_gadgets/src/poseidon/pow5.rs</td><td>32386</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6c2af6c6ce64a2b20fec991febeaf73c5d8c03d8758a0a3aed1f9983f56d485e</td><td>0</td></tr><tr><td>halo2_gadgets/src/sinsemilla.rs</td><td>34183</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e</td><td>0</td></tr><tr><td>halo2_gadgets/src/sinsemilla/chip.rs</td><td>13786</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82</td><td>0</td></tr><tr><td>halo2_gadgets/src/sinsemilla/chip/generator_table.rs</td><td>3739</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e5dea0027acc6c137914ad8264eec0013cb9b14e276ccfa235ea5d9f5bbade60</td><td>0</td></tr><tr><td>halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs</td><td>20495</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">563d89356cfaeebc511463aa39e41af4dfab33d7bf5635e7daf863fb601297d1</td><td>0</td></tr><tr><td>halo2_gadgets/src/sinsemilla/merkle.rs</td><td>22965</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">374bc76a06ebba158b966e6f565c40198870d86f0de0370dfcd6cad1d5abb321</td><td>0</td></tr><tr><td>halo2_gadgets/src/sinsemilla/merkle/chip.rs</td><td>22905</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">637f0ceda4dee675a31bfe173c1a7ebf032e99a9d173894e05928ac5933748de</td><td>0</td></tr><tr><td>halo2_gadgets/src/sinsemilla/message.rs</td><td>1899</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d6753477bd6acb43d25a666236023cc99daea2d7045dab4a4a616a9dbe3a37fd</td><td>0</td></tr><tr><td>halo2_gadgets/src/utilities.rs</td><td>16175</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c3d825adfd762fbf8dd66822c62aed4483136a15207b1463ae2e8eafc8432a8b</td><td>0</td></tr><tr><td>halo2_gadgets/src/utilities/cond_swap.rs</td><td>23059</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2c120756704aa47e35f6a3fb895849ab3db5e830a3035ae18b575f73194450d8</td><td>0</td></tr><tr><td>halo2_gadgets/src/utilities/decompose_running_sum.rs</td><td>14830</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">23e41f239fb643ba3d487a5e8b99bce21b61632b576cdd105e7a0511814c9e97</td><td>0</td></tr><tr><td>halo2_gadgets/src/utilities/lookup_range_check.rs</td><td>46351</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7128b99d319e3d9d4dd21f1b65b6b911e0812de45d67bb58a74b9845c65e27cb</td><td>0</td></tr><tr><td>halo2_poseidon/Cargo.toml</td><td>540</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">38f284c9eac342191e7649fbed8ac5272b272d9f15f193d1ad112deef20b1ab0</td><td>0</td></tr><tr><td>halo2_poseidon/src/fp.rs</td><td>40637</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b19d4e50867e67af232db34f88d2bf8629d6d7ee2496458a8e37ae758772acd5</td><td>0</td></tr><tr><td>halo2_poseidon/src/fq.rs</td><td>40404</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ae1743650291a44631323c565f71b7de8e0bca98ab4ee363f10b173ebdc575c5</td><td>0</td></tr><tr><td>halo2_poseidon/src/grain.rs</td><td>6178</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">788a280714b291ea41c991ad9ba21d8c9e6ad02d5ec52fd6ebd7fe14b478eaff</td><td>0</td></tr><tr><td>halo2_poseidon/src/lib.rs</td><td>15643</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8a6d626c5024157fc09e4e1daf811ee4d1e81acfa1ca6592e663934c13dd2d56</td><td>0</td></tr><tr><td>halo2_poseidon/src/mds.rs</td><td>4707</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">10cb39b77faf243f1e57e9813e9ee435677f1860b1b6190e6813019450da0599</td><td>0</td></tr><tr><td>halo2_poseidon/src/p128pow5t3.rs</td><td>9958</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5b46bc7ef7ee2480b85c7aeb96052301abb7dbff16f8d9d87c0c0abac3b6fc9c</td><td>0</td></tr><tr><td>halo2_proofs/Cargo.toml</td><td>2694</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">02b6eb98c619e24c023a2357d37768be75aac58f09fc18ce7666d1fddd7bdffb</td><td>0</td></tr><tr><td>halo2_proofs/src/arithmetic.rs</td><td>22070</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c344c3e01cdf17d144781dd1e8807cecef70b8460a408979222e28e533c59350</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit.rs</td><td>18063</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d031fc3532cbe7225400855aee3cd5296f6dc4490e64ac7ecb442877d9e61abb</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit/floor_planner.rs</td><td>118</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">73c23da5835a26594486155a010b48bbef7e81cf7aab3ff443e790763bcdf158</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit/floor_planner/single_pass.rs</td><td>13243</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f6f983929bbb2c37b70afddb5a1ed61ec387b9411aa297cc9ef1d565e0c9fb4e</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit/floor_planner/v1.rs</td><td>16036</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1801cbb554cc55265dea4b2865eb59c483ad64489349b03eb5823f7590c41e18</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit/floor_planner/v1/strategy.rs</td><td>9479</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">aa08a851f21b8d37b7d1bc89f0cfa1ba56f9db6cff07cf1de236d9c88cc05649</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit/layouter.rs</td><td>9182</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">be0d46973890b5557543da47ee781b384221fd5b9489d70809682a5a173f5dcc</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit/table_layouter.rs</td><td>13110</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">979e0133df95b7795d9f39cd7c0b5282f4c48242a1b98f49ece9814bb17c1cff</td><td>0</td></tr><tr><td>halo2_proofs/src/circuit/value.rs</td><td>17275</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">71efd7c047c78295b977cf9907bf192f4a00fc87273a398de71313b600a2637b</td><td>0</td></tr><tr><td>halo2_proofs/src/dev.rs</td><td>41923</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">da9ea8c560dfed04d4d183a1108c95f5b6551a1c328c0e9608aebbc3a5382b69</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/circuit_fixture.rs</td><td>20699</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ac892c9d0c640b41c004de21ded7d406c2f08fbe14984e1fd649c3af25a417bc</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/cost.rs</td><td>17485</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">db4c0bec1fea2c835d6f54bb68c4e6a5c271045330767df742597c666aeba45f</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/failure.rs</td><td>19868</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1c1aaafdec7e42c701f6d5cddfa0d1e2d748b61b130d9b283cf8b542fa3269fa</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/failure/emitter.rs</td><td>5029</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b4d30d490c6dcdf1c66b82935e9a3674aa22a7a69008067e32e053739767d8a8</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/gates.rs</td><td>9709</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e08ad44741c8df6589144fd3ab0e13bcd54c92f786de5fd4827cdde9b0dbfeb4</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/graph.rs</td><td>5268</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1f5db2a77692fdd0a0f37dba163a39665126c27b22b21446c7acc92ec87404b9</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/graph/layout.rs</td><td>11850</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f3d21cac94ad74855f8cd9f1eecdb9016053891586f848fc92c56f4a2d5c8316</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/metadata.rs</td><td>5079</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">def5eafe66b5055af7e2a19da6df4393851da0892bd9b8b813191499f12beb7e</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/tfp.rs</td><td>14735</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fc0c31b71e8d38d910be878b93ae14e28028637a9cb1410e66fdaa75d6f0612d</td><td>0</td></tr><tr><td>halo2_proofs/src/dev/util.rs</td><td>4517</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">61a315c9ef7c8c6d7d8ef70fc676664abc95d14e2b0dd1ad1ec98112de6feaf7</td><td>0</td></tr><tr><td>halo2_proofs/src/helpers.rs</td><td>549</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1b1424c2a8f8f3ade35b68849bc84bb12aaed08cf06e9d065f192f32895c1367</td><td>0</td></tr><tr><td>halo2_proofs/src/lib.rs</td><td>444</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">87ecbfa3de85666ce660fdc8bf896196b9f93585384fd6170868e84c8cf3686e</td><td>0</td></tr><tr><td>halo2_proofs/src/multicore.rs</td><td>3700</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ec65ea5a455d2c4ef12097391850af1a98f44464652d55c24bc58d8e3214e1e8</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk.rs</td><td>5277</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">12b80139f13e6d51eb5913855ec6e7de89534e43ea41f989b50ddfe02f1a9a95</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/assigned.rs</td><td>20524</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a7452e96d75956e1f47ee93373804f899eb1f69bbf970cf944148d55e2556e25</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/circuit.rs</td><td>52203</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c6efa09bdbe9081861fe2bd469b8b9b547beeee1e95c4d66e6896050d5e45db0</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/circuit/compress_selectors.rs</td><td>13724</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">95e78cb9dea30e887727a09dcf29c39fa2c9e5c6392f7c45a661ca6a9338d086</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/circuit/fixture.rs</td><td>13111</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b3df664c714babbad68664e5f0a14a1ca791ad3fdb7e6381c62ad719e5926799</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/error.rs</td><td>5214</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">088fddace0899454b6aea2ec83c5bf123e4759aa8bc0a121f10295bb7a81d0b4</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/fingerprint/mod.rs</td><td>2380</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9c0c55aa94658ae00aa2aa6cd19219f547e9c34845469129257293713482b1bf</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/fingerprint/transcript.rs</td><td>3757</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">95d66fa2ee46eeb49551cd760c26e18008adc1bb6e620181efe63029c391bcaa</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/fingerprint/vesta_lean.rs</td><td>74191</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">76d2861eef11278e774628949c3fdf34978bbd2a1f4eb3c49152d83524fafa2e</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/keygen.rs</td><td>9607</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">655240dcff4491d7adc10840831b2a57af0e1a3b64599f90f92dadc00ef8389f</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/lookup.rs</td><td>2874</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d6923b5f9f82f52a646fae18e4b512c4c6ff086c09641537434177eb2e974356</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/lookup/prover.rs</td><td>27778</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">590093529a746a23750375ca5ebc3ae379d434c47cdd03ca2d3e29f8f780e90f</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/lookup/verifier.rs</td><td>7421</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b2c7f87f441a756cac394d0fc342bdeea5d6c06eea21526eaae5194207d2b6b6</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/permutation.rs</td><td>2874</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8c12169e2fac91f4f2dd4a0a4576357b9a54dda21cd8e400ad088b0e24500410</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/permutation/keygen.rs</td><td>7093</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d8edd2203cc933a6979d58ce221cccf210f0f65ce2b2b577e3efc764fe208ce3</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/permutation/prover.rs</td><td>17191</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">005dd6ee995f825b0535168d366a193952190df35deef3dd332ec563018d0615</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/permutation/verifier.rs</td><td>9027</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">09bc9b6ac9200d1c4e3015b3ed642737375f81ddda2f38ecebec98d5a528e179</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/prover.rs</td><td>27928</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ac2307d197dd1dab34c9b07e7311f0ce02b42f068b017ee6ebaaa27a1916b512</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/vanishing.rs</td><td>197</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b664ff3220d71fb1d89d809d628e1969ff5bdd38edbba863733960a1213407bc</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/vanishing/prover.rs</td><td>5370</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c04196e395de38a0329ca42e35858939e65f1f38ddd795cb8f649fb46ba1cd9c</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/vanishing/verifier.rs</td><td>3870</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">20e0b7596ef47067849ab714e277065d87e2a7f87aaccbedddcfb00c030f2e5f</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/verifier.rs</td><td>17848</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8a3452866320e535570d78db098147838d015f985af214e6f3d60195606e2ef2</td><td>0</td></tr><tr><td>halo2_proofs/src/plonk/verifier/batch.rs</td><td>4170</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dd91b8e915794516665df699a3e8b63c81b8618d98d510ffb06d2c0b7bdd0f12</td><td>0</td></tr><tr><td>halo2_proofs/src/poly.rs</td><td>10683</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0bc0a71b19ca7dbc408a41a455d4787e3986629d1742737282cea6816d8b9998</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/commitment.rs</td><td>11738</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9e1ebff98d5e531d03485afe1d8c52bf6c291c462f6efb751f2085daa6535653</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/commitment/msm.rs</td><td>9099</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3a5b7850f8c588d4eb3d7aa4d2941c5b5ea756dbcf99adfda6aa58e94d7cbd47</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/commitment/prover.rs</td><td>6314</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4ff3438614a1766e34f21babc7d886664db736f734f524b1c5cc96062ba03e5e</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/commitment/verifier.rs</td><td>5297</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d9b79f66cdb6ee8b1e52adbc5bdcf98d133ee44e0c76e94b0728204e6de4476f</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/domain.rs</td><td>20912</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">379599939d3db1cc10ce2d4cd7cfdf3b41858421d6cc2a734b4b54989b4d105c</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/evaluator.rs</td><td>21957</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e8799c2a0cb184008f1401df7be55d23c96092aebad996e543518f81f875b53e</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/multiopen.rs</td><td>19064</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2979e465953235e186c3a69105205248dd7907a31fd5174178f986fa5b5c9861</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/multiopen/prover.rs</td><td>4907</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">383fd403995decdb7843481734fb84f2056dddf098b01b69865ce5e997471128</td><td>0</td></tr><tr><td>halo2_proofs/src/poly/multiopen/verifier.rs</td><td>5413</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">72cace4d1abfa1e1800c3bad8215f0b7b51ee49005fbf427c5be807b22a7c435</td><td>0</td></tr><tr><td>halo2_proofs/src/transcript.rs</td><td>10332</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f5dbd474c532e9355271116ab4d3d7211e93ff2f661d27bdd4a56f026412a3ad</td><td>0</td></tr><tr><td>rust-toolchain.toml</td><td>66</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fc9d487b329e61afae23a5a03c5b0097290d9c15b980233e1168e7f09cacfcd9</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>

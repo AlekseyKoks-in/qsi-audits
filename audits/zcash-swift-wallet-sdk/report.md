@@ -1,331 +1,93 @@
-# Security & Post-Quantum Readiness Audit Report
+# Отчёт об аудите безопасности и постквантовой готовности
 
-**Project:** zcash-swift-wallet-sdk @ 4895ee058da9 · Electric Coin Company (Zcash) — public repository (passive review)
+**Проект:** zcash-swift-wallet-sdk @ 4895ee058da9 · Electric Coin Company (Zcash) — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
-| Organization | QSI |
-| Report date | 2026-10-28 13:03 UTC |
-| Report version | 1 |
-| Audit run | 92a48a9c-2953-4dff-9139-91cd1aa708d4 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
-| Risk profile | Small technology company |
-| Content SHA-256 | `3f9395ecdc760e1d1fbe874a5b0e9954a776e0a678451db32e9a30253ad81a7f` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
-> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+| Организация | QSI |
+| Дата отчёта | 2026-10-29 23:53 UTC |
+| Версия отчёта | 1 |
+| Запуск аудита | 30167620-9d21-4700-bc0e-4f90dda40e70 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.2.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `d3b0854df6f1bfa469458a847c07085afd847e04e580bc9b950b6e52b6e3ac71` |
+| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
-## 1. Executive summary
+## 1. Резюме для руководства
 
-- Critical: **0**
-- High: **0**
-- Medium: **7**
-- Low: **21**
-- Info: **4**
+- Критическая: **0**
+- Высокая: **0**
+- Средняя: **8**
+- Низкая: **20**
+- Информационная: **4**
 
-- Confirmed technical vulnerability: 0
-- Known vulnerable component: 27
-- Confirmed configuration error: 0
-- Potential cryptographic risk: 0
-- Long-term post-quantum risk: 1
-- Improvement recommendation: 3
-- Insufficient data: 1
+- Подтверждённая техническая уязвимость: 0
+- Известная уязвимая версия компонента: 27
+- Подтверждённая ошибка конфигурации: 0
+- Потенциальный криптографический риск: 0
+- Долгосрочный постквантовый риск: 1
+- Рекомендация по улучшению: 3
+- Недостаточность данных: 1
 
-Mosca's inequality (x + y > z): x = 5, y = 3, z = 12 → time available under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-**Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-## 2. Scope and boundaries
+## 2. Область и границы проверки
 
-Mode: Document audit
+Режим: Документальный аудит
 
-Repository: <https://github.com/zcash/zcash-swift-wallet-sdk> @ `4895ee058da99971057cceb80f36b8909656a8a9` — evidence links open the lines at this commit.
+Репозиторий: <https://github.com/zcash/zcash-swift-wallet-sdk> @ `4895ee058da99971057cceb80f36b8909656a8a9` — ссылки в доказательствах открывают строки на этом коммите.
 
-205 files, 3130631 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+205 файлов, всего 3130631 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.
 
-## 3. Methodology
+## 3. Методология
 
-| Area | Status | Count | Examples |
+| Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | checked | 198 | .claude/skills/update-checkpoints/scripts/checkmate.py: 73 lines scanned with 16 rule patterns and 122 registry patterns; .claude/skills/update-checkpoints/scripts/fetch_checkpoints.py: 164 lines scanned with 16 rule patterns and 122 registry patterns; .claude/skills/update-checkpoints/scripts/verify_checkpoints.py: 199 lines scanned with 16 rule patterns and 122 registry patterns |
-| dependencies | checked | 3 | Cargo.lock: 679 dependencies parsed (679 pinned); Cargo.toml: 57 dependencies parsed (1 pinned); Package.resolved: 21 dependencies parsed (21 pinned) |
-| certificates_and_keys | checked | 1 | responsible_disclosure.md: certificates/keys parsed |
-| osv_advisories | checked | 1 | 679 pinned packages queried at OSV.dev; 16 affected |
+| source_code | проверено | 198 | .claude/skills/update-checkpoints/scripts/checkmate.py: 73 lines scanned with 16 rule patterns and 128 registry patterns; .claude/skills/update-checkpoints/scripts/fetch_checkpoints.py: 164 lines scanned with 16 rule patterns and 128 registry patterns; .claude/skills/update-checkpoints/scripts/verify_checkpoints.py: 199 lines scanned with 16 rule patterns and 128 registry patterns |
+| dependencies | проверено | 3 | Cargo.lock: 679 dependencies parsed (679 pinned); Cargo.toml: 57 dependencies parsed (1 pinned); Package.resolved: 21 dependencies parsed (21 pinned) |
+| certificates_and_keys | проверено | 1 | responsible_disclosure.md: certificates/keys parsed |
+| osv_advisories | проверено | 1 | 679 pinned packages queried at OSV.dev; 16 affected |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## 4. Assets examined and not examined
+## 4. Проверенные и непроверенные активы
 
-- None
+- Нет
 
-## 5. Architecture overview
+## 5. Краткое описание архитектуры
 
-Static review of the source tree zcash-swift-wallet-sdk at 4895ee058da99971057cceb80f36b8909656a8a9. 205 files analysed; of 1623 files, 178 are test, fuzzing, benchmark or example code and were left out, 1240 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree zcash-swift-wallet-sdk at 4895ee058da99971057cceb80f36b8909656a8a9. 205 files analysed; of 1623 files, 178 are test, fuzzing, benchmark or example code and were left out, 1240 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .claude/skills/update-checkpoints/SKILL.md, .github/ISSUE_TEMPLATE/bug-report.md, .github/ISSUE_TEMPLATE/feature-request.md, .github/ISSUE_TEMPLATE/ux-report.md, .github/dependabot.yml. 66 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
-## 6. Overall security posture
+## 6. Общая оценка состояния безопасности
 
-- Indicative posture index: **48** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 16.7%
+- Ориентировочный индекс состояния: **48** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 4.4%
 
-## 7. Detailed findings
+## 7. Подробное описание находок
 
-### QSI-2026-05216 — block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7
+### QSI-2026-07410 — Квантово-уязвимый ключ RSA (2048-bit) в responsible_disclosure.md
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.10.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
+- Затронутый актив: `file:responsible_disclosure.md#line 11`
+- Источник данных: responsible_disclosure.md
+- Метод обнаружения: Разбор открытого ключа.
+- Анализатор: certificates 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 50.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
+Найден открытый ключ RSA 2048-bit (строка 11).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Долгосрочный риск при появлении CRQC; для обмена ключами записанный трафик может быть расшифрован задним числом.
 
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
+**Шаги воспроизведения.**
 
 ```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+Откройте строка 11 в предоставленном файле responsible_disclosure.md и изучите приведённые строки (см. доказательство).
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-05217 — block-buffer 0.11.0-rc.3 is affected by GHSA-qwgh-2vcv-g2f7
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.11.0-rc.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.11.0-rc.3: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-05222 — rsa 0.9.10 is affected by RUSTSEC-2023-0071 (CVE-2023-49092)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rsa@0.9.10`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
-
-OSV.dev reports RUSTSEC-2023-0071 (CVE-2023-49092) for crates.io package rsa at version 0.9.10: Marvin Attack: potential key recovery through timing sidechannels. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2023-0071
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2023-0071](https://osv.dev/vulnerability/RUSTSEC-2023-0071) · manifest · SHA-256 6fcc27a80e8a30342b68a229087947db7a952d0facf3cc8d6edbd7abfd150c53_
-
-```
-{"id": "RUSTSEC-2023-0071", "aliases": ["CVE-2023-49092", "GHSA-4grx-2x9w-596c", "GHSA-c38w-74pg-36hr"], "modified": "2026-09-14T09:45:02.996132556Z", "summary": "Marvin Attack: potential key recovery through timing sidechannels", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-05223 — rustls 0.23.42 is affected by GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.42`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
-
-OSV.dev reports GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) for crates.io package rustls at version 0.23.42: Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-2mjx-qc3c-rqvc
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc) · manifest · SHA-256 f20e4b21c01d3d75460ac8d90a54d541a1a34187a4f05b501e4f46c27c564e86_
-
-```
-{"id": "GHSA-2mjx-qc3c-rqvc", "aliases": ["RUSTSEC-2026-0285"], "modified": "2026-10-27T15:30:05.509305490Z", "summary": "Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.23.45).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-05224 — rustls 0.23.42 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.42`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
-
-OSV.dev reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) for crates.io package rustls at version 0.23.42: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-c8m5-c952-6cm4
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4) · manifest · SHA-256 87554a0cce34470a221f04ad57566b2b512ff6299ad3ee95b190df659d646e3d_
-
-```
-{"id": "GHSA-c8m5-c952-6cm4", "aliases": ["RUSTSEC-2026-0346"], "modified": "2026-10-27T16:15:05.354395696Z", "summary": "Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-05227 — serde_with 3.17.0 is affected by GHSA-7gcf-g7xr-8hxj
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/serde_with@3.17.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 33.1 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-7gcf-g7xr-8hxj for crates.io package serde_with at version 3.17.0: serde_with: KeyValueMap serialization panics on empty sequence or map entries. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-7gcf-g7xr-8hxj
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj) · manifest · SHA-256 9a6efbdf7670d9ead9898fb39da9d141ceec2380712ba7d56de6b7ec07c98051_
-
-```
-{"id": "GHSA-7gcf-g7xr-8hxj", "aliases": [], "modified": "2026-09-10T03:51:10.897685062Z", "summary": "serde_with: KeyValueMap serialization panics on empty sequence or map entries", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (3.21.0).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-05228 — time 0.3.37 is affected by GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/time@0.3.37`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 28.1 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) for crates.io package time at version 0.3.37: time vulnerable to stack exhaustion Denial of Service attack. The audited code does not name the affected functions (time::Date::parse, time::OffsetDateTime::parse, time::PrimitiveDateTime::parse, time::Time::parse, time::UtcDateTime::parse, time::UtcOffset::parse …); time comes in through other dependencies, which may still call them.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-r6v5-fh4h-64xc
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc) · manifest · SHA-256 47bed44226c6f8f5c94bfd27c3dd67ade62aa708c5d61bcca37c2b8bbe9b577d_
-
-```
-{"id": "GHSA-r6v5-fh4h-64xc", "aliases": ["CVE-2026-25727", "RUSTSEC-2026-0009"], "modified": "2026-09-10T03:50:35.583241382Z", "summary": "time vulnerable to stack exhaustion Denial of Service attack", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.3.47).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-05212 — Quantum-vulnerable RSA key (2048-bit) in responsible_disclosure.md
-
-- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: High
-- Affected asset: `file:responsible_disclosure.md#line 11`
-- Data source: responsible_disclosure.md
-- Detection method: Public key parsing.
-- Analyzer: certificates 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 36.2 / 100
-- CVSS v3.1: not applicable
-
-A RSA 2048-bit public key was found (line 11).
-
-**Potential impact.** Long-term risk once a CRQC exists; for key exchange, recorded traffic could be decrypted retroactively.
-
-**Reproduction steps.**
-
-```
-Open line 11 in the supplied file responsible_disclosure.md and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _key · responsible_disclosure.md · line 11 · SHA-256 99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810_
 
@@ -339,33 +101,271 @@ _key · responsible_disclosure.md · line 11 · SHA-256 a744425426415d58dbeef862
 OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.
 
-**Recommendation.** Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+**Рекомендация.** Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
 
-**Retest procedure.** Re-audit after migration.
+**Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-05226 — rustls 0.23.42 is affected by GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-07414 — block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.42`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 28.6 / 100
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/block-buffer@0.10.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
+
+```
+{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-07415 — block-buffer 0.11.0-rc.3 затронут GHSA-qwgh-2vcv-g2f7
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/block-buffer@0.11.0-rc.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.11.0-rc.3: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
+
+```
+{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-07420 — rsa 0.9.10 затронут RUSTSEC-2023-0071 (CVE-2023-49092)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rsa@0.9.10`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
+
+OSV.dev сообщает RUSTSEC-2023-0071 (CVE-2023-49092) для пакета crates.io rsa версии 0.9.10: Marvin Attack: potential key recovery through timing sidechannels. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2023-0071
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2023-0071](https://osv.dev/vulnerability/RUSTSEC-2023-0071) · manifest · SHA-256 6fcc27a80e8a30342b68a229087947db7a952d0facf3cc8d6edbd7abfd150c53_
+
+```
+{"id": "RUSTSEC-2023-0071", "aliases": ["CVE-2023-49092", "GHSA-4grx-2x9w-596c", "GHSA-c38w-74pg-36hr"], "modified": "2026-09-14T09:45:02.996132556Z", "summary": "Marvin Attack: potential key recovery through timing sidechannels", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-07421 — rustls 0.23.42 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.42`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
+
+OSV.dev сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) для пакета crates.io rustls версии 0.23.42: Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-2mjx-qc3c-rqvc
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc) · manifest · SHA-256 f20e4b21c01d3d75460ac8d90a54d541a1a34187a4f05b501e4f46c27c564e86_
+
+```
+{"id": "GHSA-2mjx-qc3c-rqvc", "aliases": ["RUSTSEC-2026-0285"], "modified": "2026-10-27T15:30:05.509305490Z", "summary": "Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (0.23.45).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-07422 — rustls 0.23.42 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.42`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
+
+OSV.dev сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) для пакета crates.io rustls версии 0.23.42: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-c8m5-c952-6cm4
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4) · manifest · SHA-256 87554a0cce34470a221f04ad57566b2b512ff6299ad3ee95b190df659d646e3d_
+
+```
+{"id": "GHSA-c8m5-c952-6cm4", "aliases": ["RUSTSEC-2026-0346"], "modified": "2026-10-27T16:15:05.354395696Z", "summary": "Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-07425 — serde_with 3.17.0 затронут GHSA-7gcf-g7xr-8hxj
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/serde_with@3.17.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-7gcf-g7xr-8hxj для пакета crates.io serde_with версии 3.17.0: serde_with: KeyValueMap serialization panics on empty sequence or map entries. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-7gcf-g7xr-8hxj
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj) · manifest · SHA-256 9a6efbdf7670d9ead9898fb39da9d141ceec2380712ba7d56de6b7ec07c98051_
+
+```
+{"id": "GHSA-7gcf-g7xr-8hxj", "aliases": [], "modified": "2026-09-10T03:51:10.897685062Z", "summary": "serde_with: KeyValueMap serialization panics on empty sequence or map entries", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (3.21.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-07426 — time 0.3.37 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/time@0.3.37`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 28.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) для пакета crates.io time версии 0.3.37: time vulnerable to stack exhaustion Denial of Service attack. Проверенный код не упоминает затронутые функции (time::Date::parse, time::OffsetDateTime::parse, time::PrimitiveDateTime::parse, time::Time::parse, time::UtcDateTime::parse, time::UtcOffset::parse …); time приходит через другие зависимости, которые могут их вызывать.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-r6v5-fh4h-64xc
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc) · manifest · SHA-256 47bed44226c6f8f5c94bfd27c3dd67ade62aa708c5d61bcca37c2b8bbe9b577d_
+
+```
+{"id": "GHSA-r6v5-fh4h-64xc", "aliases": ["CVE-2026-25727", "RUSTSEC-2026-0009"], "modified": "2026-09-10T03:50:35.583241382Z", "summary": "time vulnerable to stack exhaustion Denial of Service attack", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:L/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (0.3.47).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-07424 — rustls 0.23.42 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.42`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) for crates.io package rustls at version 0.23.42: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) для пакета crates.io rustls версии 0.23.42: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-w44r-93j7-qv28
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28) · manifest · SHA-256 f0fcaa2fa7a56e188458f39e55b23e999d0c7da6d3c1294c014c64ab37b33dee_
 
@@ -373,33 +373,33 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w44r-93j7-qv28", "aliases": ["RUSTSEC-2026-0349"], "modified": "2026-10-27T16:15:05.340347056Z", "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05225 — rustls 0.23.42 is affected by GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
+### QSI-2026-07423 — rustls 0.23.42 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustls@0.23.42`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 24.3 / 100
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/rustls@0.23.42`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 25.0 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev reports GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) for crates.io package rustls at version 0.23.42: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. The affected code sits behind the `brotli` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
+OSV.dev сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) для пакета crates.io rustls версии 0.23.42: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. Затронутый код находится за флагом Cargo `brotli`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-h2v8-394m-p7vv
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv) · manifest · SHA-256 9118726d52fea7cee09a6b4a21a10d2a7bab860f9762fff4658cb78db0453744_
 
@@ -407,33 +407,33 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-h2v8-394m-p7vv", "aliases": ["RUSTSEC-2026-0348"], "modified": "2026-10-27T16:15:05.337819489Z", "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05218 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-07416 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
 
@@ -441,33 +441,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05219 — event-listener 5.4.1 is affected by RUSTSEC-2026-0221 (no severity rating)
+### QSI-2026-07417 — event-listener 5.4.1 затронут RUSTSEC-2026-0221 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/event-listener@5.4.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/event-listener@5.4.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0221 for crates.io package event-listener at version 5.4.1: `event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0221 для пакета crates.io event-listener версии 5.4.1: `event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0221
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0221](https://osv.dev/vulnerability/RUSTSEC-2026-0221) · manifest · SHA-256 984b4e4e87b4e2cc5992a06daf6b6466ee08279d927a38dca105b75fa8546f7c_
 
@@ -475,33 +475,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0221](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0221", "aliases": [], "modified": "2026-07-31T12:15:04.629484145Z", "summary": "`event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (5.4.2) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (5.4.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05220 — h2 0.4.15 is affected by RUSTSEC-2026-0258 (no severity rating)
+### QSI-2026-07418 — h2 0.4.15 затронут RUSTSEC-2026-0258 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/h2@0.4.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/h2@0.4.15`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0258 for crates.io package h2 at version 0.4.15: h2 unbounded empty DATA frames. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0258 для пакета crates.io h2 версии 0.4.15: h2 unbounded empty DATA frames. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0258
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0258](https://osv.dev/vulnerability/RUSTSEC-2026-0258) · manifest · SHA-256 d8694780e4da4b8ee995c62dbd89ea4aef9579bf2c51b2a4b677a2231b8d4edc_
 
@@ -509,33 +509,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0258](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0258", "aliases": ["GHSA-q83h-524g-xf6h"], "modified": "2026-10-12T18:00:10.934581734Z", "summary": "h2 unbounded empty DATA frames", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.4.16) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.4.16).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05229 — tokio 1.53.1 is affected by RUSTSEC-2026-0386 (no severity rating)
+### QSI-2026-07427 — tokio 1.53.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/tokio@1.53.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/tokio@1.53.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0386 for crates.io package tokio at version 1.53.1: `AsyncFd::new` and related constructors violate I/O safety. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest); tokio comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.53.1: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest); tokio приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0386
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSEC-2026-0386) · manifest · SHA-256 f73073a3500a8c1b126e0070756badd87c6af0a88d357d6a1e083bf4f9f96021_
 
@@ -543,33 +543,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0386", "aliases": [], "modified": "2026-10-23T14:45:03.847864944Z", "summary": "`AsyncFd::new` and related constructors violate I/O safety", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (1.51.6, 1.53.3) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (1.51.6, 1.53.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05230 — zstd 0.13.3 is affected by RUSTSEC-2026-0391 (no severity rating)
+### QSI-2026-07428 — zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd@0.13.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd@0.13.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0391 for crates.io package zstd at version 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0391 для пакета crates.io zstd версии 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0391
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0391](https://osv.dev/vulnerability/RUSTSEC-2026-0391) · manifest · SHA-256 c5a6274e5a4cfb8793fcf3f343ddadadd6d41a200d24a392d8f363faa59b0e78_
 
@@ -577,33 +577,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0391](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0391", "aliases": [], "modified": "2026-10-26T14:00:04.269245609Z", "summary": "Data from an abandoned stream leaks into the next stream on a reused context", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.14.3) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.14.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05231 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0395 (no severity rating)
+### QSI-2026-07429 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0395 for crates.io package zstd-safe at version 7.2.4: Use-after-free with `CParameter::StableInBuffer`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::set_parameter); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0395 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free with `CParameter::StableInBuffer`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::set_parameter); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSEC-2026-0395) · manifest · SHA-256 cf314e3df3f714ad17083f648e4d6822839805759c13c152cf2b2edcfbba9cdb_
 
@@ -611,33 +611,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0395", "aliases": [], "modified": "2026-10-26T14:00:06.388344282Z", "summary": "Use-after-free with `CParameter::StableInBuffer`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05232 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0396 (no severity rating)
+### QSI-2026-07430 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0396 for crates.io package zstd-safe at version 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0396 для пакета crates.io zstd-safe версии 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0396
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0396](https://osv.dev/vulnerability/RUSTSEC-2026-0396) · manifest · SHA-256 46019c3c1c8cc1772c03fcccbfa90a2b7502cdb744481795fef991bd88bf8e23_
 
@@ -645,33 +645,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0396](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0396", "aliases": [], "modified": "2026-10-26T14:00:05.789682118Z", "summary": "`Seekable` reads a NULL or out-of-bounds seek table", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05233 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0397 (no severity rating)
+### QSI-2026-07431 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0397 for crates.io package zstd-safe at version 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::OutBuffer::around_pos); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0397 для пакета crates.io zstd-safe версии 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::OutBuffer::around_pos); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSEC-2026-0397) · manifest · SHA-256 e1cc2d6a8e69a560eb15d719dcb988b36e18b940b8913145ec52a73efd0b9fcc_
 
@@ -679,33 +679,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0397", "aliases": [], "modified": "2026-10-26T14:00:05.089587004Z", "summary": "`OutBuffer::around_pos` exposes uninitialized memory", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05234 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0398 (no severity rating)
+### QSI-2026-07432 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0398 for crates.io package zstd-safe at version 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0398 для пакета crates.io zstd-safe версии 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0398
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0398](https://osv.dev/vulnerability/RUSTSEC-2026-0398) · manifest · SHA-256 01887ac4409fe66647c178d3ac91c674dafafb9134960f58c0f4ffcaa080acda_
 
@@ -713,33 +713,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0398](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0398", "aliases": [], "modified": "2026-10-26T14:00:05.092082939Z", "summary": "`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05235 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0399 (no severity rating)
+### QSI-2026-07433 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0399 for crates.io package zstd-safe at version 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0399 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSEC-2026-0399) · manifest · SHA-256 dde7c9d1fcd35a89a4e462b7b42373ae75187190ebfffa3876d9e2bba20e386a_
 
@@ -747,33 +747,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0399", "aliases": [], "modified": "2026-10-26T14:00:05.792431051Z", "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05236 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0400 (no severity rating)
+### QSI-2026-07434 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0400 for crates.io package zstd-safe at version 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0400 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSEC-2026-0400) · manifest · SHA-256 12a31cd97694259b60fd13de0204d4257a30facebdbf5eb19bc091d2b54c85f6_
 
@@ -781,33 +781,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0400", "aliases": [], "modified": "2026-10-26T14:00:05.692077560Z", "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05237 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0401 (no severity rating)
+### QSI-2026-07435 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0401 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::train_from_buffer); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0401 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::train_from_buffer); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSEC-2026-0401) · manifest · SHA-256 8f606743a027e187f8815975be52f1a4018a22a8d8cacc5d66407f974573c3a0_
 
@@ -815,33 +815,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0401", "aliases": [], "modified": "2026-10-26T14:00:04.231502512Z", "summary": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05238 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0402 (no severity rating)
+### QSI-2026-07436 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0402 for crates.io package zstd-safe at version 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0402 для пакета crates.io zstd-safe версии 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSEC-2026-0402) · manifest · SHA-256 1659ee65665b5ae755a87f2715370efa327fc3064514c61888dd4fa3a3f32642_
 
@@ -849,33 +849,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0402", "aliases": [], "modified": "2026-10-26T14:00:05.685817733Z", "summary": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05239 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0403 (no severity rating)
+### QSI-2026-07437 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0403 for crates.io package zstd-safe at version 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress_stream); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0403 для пакета crates.io zstd-safe версии 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSEC-2026-0403) · manifest · SHA-256 b1d1701270f636af5d21f2b55cbd122bcd0df90ce4dce6793aa9263b377caddb_
 
@@ -883,33 +883,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0403", "aliases": [], "modified": "2026-10-26T14:00:05.787441176Z", "summary": "Uninitialized memory exposed when streaming decompression of a legacy frame fails", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05240 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0404 (no severity rating)
+### QSI-2026-07438 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0404 for crates.io package zstd-safe at version 7.2.4: Double free in `DCtx::try_clone`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0404 для пакета crates.io zstd-safe версии 7.2.4: Double free in `DCtx::try_clone`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSEC-2026-0404) · manifest · SHA-256 7c25f3932e55150f3788cd8fcee7738d3c905758f825a562b19f78d7e041b0b2_
 
@@ -917,33 +917,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0404", "aliases": [], "modified": "2026-10-26T14:00:05.092817237Z", "summary": "Double free in `DCtx::try_clone`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05241 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0405 (no severity rating)
+### QSI-2026-07439 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0405 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0405 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0405
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0405](https://osv.dev/vulnerability/RUSTSEC-2026-0405) · manifest · SHA-256 aa7a0dd1f301f7767bcd2d2a354fda77b1e2ed887669efac9bdd2bc66db5be81_
 
@@ -951,33 +951,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0405](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0405", "aliases": [], "modified": "2026-10-26T14:00:05.680942523Z", "summary": "Out-of-bounds read with an out-of-range `InBuffer::pos`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05242 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0406 (no severity rating)
+### QSI-2026-07440 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0406 for crates.io package zstd-safe at version 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0406 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSEC-2026-0406) · manifest · SHA-256 deca0b7103bdc0c3ed051bcdb0dbd3d63e215fecdbdba6a7f24f9fb8c2e93ecd_
 
@@ -985,33 +985,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0406", "aliases": [], "modified": "2026-10-26T14:00:05.095427051Z", "summary": "Use-after-free when changing a multithreaded context with an unfinished frame", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05243 — zstd-sys 2.0.16+zstd.1.5.7 is affected by RUSTSEC-2026-0410 (no severity rating)
+### QSI-2026-07441 — zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 20.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0410 for crates.io package zstd-sys at version 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. It affects only wasm32 targets.
+OSV.dev сообщает RUSTSEC-2026-0410 для пакета crates.io zstd-sys версии 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Касается только целевых платформ wasm32.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0410
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSEC-2026-0410) · manifest · SHA-256 1e892df4ce7c9911f01547e4a80d1fb3ea5a27b8c1c89c0514917e08bbf3bdc5_
 
@@ -1019,67 +1019,67 @@ _tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0410", "aliases": [], "modified": "2026-10-26T14:00:05.788985783Z", "summary": "WebAssembly allocator shim corrupts memory on allocation failure", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (2.1.2) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (2.1.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05213 — No post-quantum capable cryptographic library detected
+### QSI-2026-07411 — Не обнаружено криптобиблиотек с поддержкой PQC
 
-- Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies`
-- Data source: dependency manifests
-- Detection method: Dependency name matching.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 13.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies`
+- Источник данных: dependency manifests
+- Метод обнаружения: Сопоставление названий зависимостей.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 13.3 / 100
+- CVSS v3.1: неприменимо
 
-Across 3 dependency manifests, QSI found crypto libraries (curve25519-dalek, ecdsa, ed25519-dalek, p256, p384, ring, rsa, rustls, secp256k1, x25519-dalek) but none from its PQC-capable list.
+В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (bellman, bls12_381, curve25519-dalek, ecdsa, ed25519-dalek, ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, p256, p384, pasta_curves), но ни одной из списка поддерживающих PQC.
 
-**Potential impact.** Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.
+**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
-**Reproduction steps.**
-
-```
-Review the dependency manifests listed in the evidence.
-```
-
-**Evidence.**
-
-_dependency · Cargo.lock, Cargo.toml, Package.resolved · SHA-256 afaf41cc18f45737a6066d3670aa5870ee2ce9f1e082d771b281af998ce72df3_
+**Шаги воспроизведения.**
 
 ```
-Crypto libraries: curve25519-dalek, ecdsa, ed25519-dalek, p256, p384, ring, rsa, rustls, secp256k1, x25519-dalek
+Изучите перечисленные в доказательстве манифесты.
 ```
 
-**Limitations of the check.** Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.
+**Подтверждающие доказательства.**
 
-**Recommendation.** Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).
+_dependency · Cargo.lock, Cargo.toml, Package.resolved · SHA-256 b99b5a2af900f746fc90533a5caa90485cae862c4d2caeaa8cb33155ed4c18fa_
 
-**Retest procedure.** Re-scan after upgrades.
+```
+Crypto libraries: bellman, bls12_381, curve25519-dalek, ecdsa, ed25519-dalek, ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, p256, p384, pasta_curves, reddsa, redjubjub, ring, rsa, rustls, sapling-crypto, secp256k1, sinsemilla, x25519-dalek, zcash_client_backend, zcash_keys, zcash_note_encryption, zcash_primitives, zcash_proofs, zcash_protocol, zcash_spec, zip32
+```
 
-### QSI-2026-05214 — atomic-polyfill 1.0.3: informational advisory RUSTSEC-2023-0089 (unmaintained)
+**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/atomic-polyfill@1.0.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 12.3 / 100
-- CVSS v3.1: not applicable
+**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
 
-OSV.dev lists RUSTSEC-2023-0089 for crates.io package atomic-polyfill at version 1.0.3 as informational (unmaintained): atomic-polyfill is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+**Повторная проверка.** Повторите сканирование после обновлений.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+### QSI-2026-07412 — atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)
 
-**Reproduction steps.**
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/atomic-polyfill@1.0.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev отмечает RUSTSEC-2023-0089 для пакета crates.io atomic-polyfill версии 1.0.3 как информационный (unmaintained): atomic-polyfill is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
+
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
+
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2023-0089
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2023-0089](https://osv.dev/vulnerability/RUSTSEC-2023-0089) · manifest · SHA-256 0fcfb6f26f61ecb982bc38b6d6f12db7c77d0fc40bf9353a089129368e765f0f_
 
@@ -1087,33 +1087,33 @@ _tool_output · [OSV.dev RUSTSEC-2023-0089](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2023-0089", "aliases": [], "modified": "2025-04-29T08:31:10Z", "summary": "atomic-polyfill is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05215 — bincode 2.0.1: informational advisory RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-07413 — bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/bincode@2.0.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 12.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/bincode@2.0.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2025-0141 for crates.io package bincode at version 2.0.1 as informational (unmaintained): Bincode is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2025-0141 для пакета crates.io bincode версии 2.0.1 как информационный (unmaintained): Bincode is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0141
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSEC-2025-0141) · manifest · SHA-256 532525d6fd3f2cb4701cae8133e80ff6557554f82b919c38fb8a089b03cf57f5_
 
@@ -1121,33 +1121,33 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2025-0141", "aliases": [], "modified": "2026-01-16T11:07:28.867553Z", "summary": "Bincode is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05221 — paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-07419 — paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/paste@1.0.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 13:03 UTC
-- Priority score: 12.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/paste@1.0.15`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-29 23:53 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0436 for crates.io package paste at version 1.0.15 as informational (unmaintained): paste - no longer maintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0436 для пакета crates.io paste версии 1.0.15 как информационный (unmaintained): paste - no longer maintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0436
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSEC-2024-0436) · manifest · SHA-256 ea867adb8ba26c96c3779becf55b3de25d46f37f23ab55131e09c98a8b0b9975_
 
@@ -1155,105 +1155,104 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0436", "aliases": [], "modified": "2026-01-27T22:03:15.694766Z", "summary": "paste - no longer maintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
 
-## 8. Post-quantum assessment
+## 8. Постквантовая оценка
 
-| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+| | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Data/key lifetime x | 5 | 5 |
-| Migration time y | 3 | 3 |
-| Assumed years to CRQC z | 12 (central) | 12 |
-| x + y − z | -4 → time available under this scenario | -4 → time available under this scenario |
-_No signature lifetime is set for the project; the data lifetime is used as an assumption._
-#### Where z comes from
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
+| Принятое число лет до CRQC z | 8 (early) | 8 |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
+#### Откуда взято z
 
-Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
 
-| Within | Likelihood | The report's wording |
+| В пределах | Вероятность | Формулировка отчёта |
 |---|---|---|
-| 5 years | ~15% | averaged estimate |
-| 10 years | 28-49% | quite possible |
-| 15 years | 51-70% | likely |
+| 5 лет | ~15% | усреднённая оценка |
+| 10 лет | 28-49% | вполне возможно |
+| 15 лет | 51-70% | вероятно |
 
-**Why this scenario (central, z = 12):** Between the 10-year band (28-49%) and the 15-year band (51-70%): roughly where the experts' averaged likelihood crosses one half. More than half of the respondents (13 of 26) already put the likelihood at 50% or more for some horizon.
-_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Small technology company”, not the client's figures; with the client's actual lifetimes the verdict can change._
+**Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
-### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
+### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
 
-**Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
-No readiness questionnaire was completed for this project.
+_Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
+Анкета готовности для проекта не заполнялась.
 
-### Quantum algorithms relevant to this inventory
+### Квантовые алгоритмы, значимые для этой инвентаризации
 
-| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+| Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Shor's algorithm — factoring | breaks | Q1 | RSA (2) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
+| Алгоритм Шора — факторизация | взламывает | Q1 | RSA (2) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
 
-_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+_Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
 
-## 9. Limitations and assumptions
+## 9. Ограничения и допущения
 
-- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
-- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
+- Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
+- z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
 
-## 10. Remediation plan / Priorities for 30, 60 and 90 days
+## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
-### 30 days
+### 30 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-05216 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-05217 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-05222 | Upgrade rsa to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports RUSTSEC-2023-0071 (CVE-2023-49092). |
-| P2 | QSI-2026-05223 | Upgrade rustls to a fixed version (0.23.45). | root-cause fix | Dependency scan no longer reports GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
-| P2 | QSI-2026-05224 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-05227 | Upgrade serde_with to a fixed version (3.21.0). | root-cause fix | Dependency scan no longer reports GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-05228 | Upgrade time to a fixed version (0.3.47). | root-cause fix | Dependency scan no longer reports GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
-| P2 | QSI-2026-05226 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-05225 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
-### 60 days
+| P2 | QSI-2026-07414 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-07415 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-07420 | Обновите rsa до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2023-0071 (CVE-2023-49092). |
+| P2 | QSI-2026-07421 | Обновите rustls до исправленной версии (0.23.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
+| P2 | QSI-2026-07422 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-07425 | Обновите serde_with до исправленной версии (3.21.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-07426 | Обновите time до исправленной версии (0.3.47). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P2 | QSI-2026-07424 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-07423 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
+### 60 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05218 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-05219 | Triage RUSTSEC-2026-0221; upgrade event-listener to a fixed version (5.4.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0221, or the triage is recorded. |
-| P3 | QSI-2026-05220 | Triage RUSTSEC-2026-0258; upgrade h2 to a fixed version (0.4.16) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0258, or the triage is recorded. |
-| P3 | QSI-2026-05229 | Triage RUSTSEC-2026-0386; upgrade tokio to a fixed version (1.51.6, 1.53.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0386, or the triage is recorded. |
-| P3 | QSI-2026-05230 | Triage RUSTSEC-2026-0391; upgrade zstd to a fixed version (0.14.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0391, or the triage is recorded. |
-| P3 | QSI-2026-05231 | Triage RUSTSEC-2026-0395; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0395, or the triage is recorded. |
-| P3 | QSI-2026-05232 | Triage RUSTSEC-2026-0396; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0396, or the triage is recorded. |
-| P3 | QSI-2026-05233 | Triage RUSTSEC-2026-0397; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0397, or the triage is recorded. |
-| P3 | QSI-2026-05234 | Triage RUSTSEC-2026-0398; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0398, or the triage is recorded. |
-| P3 | QSI-2026-05235 | Triage RUSTSEC-2026-0399; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0399, or the triage is recorded. |
-| P3 | QSI-2026-05236 | Triage RUSTSEC-2026-0400; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0400, or the triage is recorded. |
-| P3 | QSI-2026-05237 | Triage RUSTSEC-2026-0401; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0401, or the triage is recorded. |
-| P3 | QSI-2026-05238 | Triage RUSTSEC-2026-0402; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0402, or the triage is recorded. |
-| P3 | QSI-2026-05239 | Triage RUSTSEC-2026-0403; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0403, or the triage is recorded. |
-| P3 | QSI-2026-05240 | Triage RUSTSEC-2026-0404; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0404, or the triage is recorded. |
-| P3 | QSI-2026-05241 | Triage RUSTSEC-2026-0405; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0405, or the triage is recorded. |
-| P3 | QSI-2026-05242 | Triage RUSTSEC-2026-0406; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0406, or the triage is recorded. |
-| P3 | QSI-2026-05243 | Triage RUSTSEC-2026-0410; upgrade zstd-sys to a fixed version (2.1.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0410, or the triage is recorded. |
-### 90 days
+| P3 | QSI-2026-07416 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-07417 | Разберите RUSTSEC-2026-0221; при необходимости обновите event-listener до исправленной версии (5.4.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0221 или результат разбора записан. |
+| P3 | QSI-2026-07418 | Разберите RUSTSEC-2026-0258; при необходимости обновите h2 до исправленной версии (0.4.16). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0258 или результат разбора записан. |
+| P3 | QSI-2026-07427 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+| P3 | QSI-2026-07428 | Разберите RUSTSEC-2026-0391; при необходимости обновите zstd до исправленной версии (0.14.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0391 или результат разбора записан. |
+| P3 | QSI-2026-07429 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
+| P3 | QSI-2026-07430 | Разберите RUSTSEC-2026-0396; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0396 или результат разбора записан. |
+| P3 | QSI-2026-07431 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
+| P3 | QSI-2026-07432 | Разберите RUSTSEC-2026-0398; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0398 или результат разбора записан. |
+| P3 | QSI-2026-07433 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
+| P3 | QSI-2026-07434 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
+| P3 | QSI-2026-07435 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
+| P3 | QSI-2026-07436 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
+| P3 | QSI-2026-07437 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
+| P3 | QSI-2026-07438 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
+| P3 | QSI-2026-07439 | Разберите RUSTSEC-2026-0405; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0405 или результат разбора записан. |
+| P3 | QSI-2026-07440 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
+| P3 | QSI-2026-07441 | Разберите RUSTSEC-2026-0410; при необходимости обновите zstd-sys до исправленной версии (2.1.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан. |
+### 90 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05212 | Add RSA usages at file:responsible_disclosure.md to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-05212 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-05214 | Replace atomic-polyfill with a maintained alternative or record why it stays. | root-cause fix | atomic-polyfill replaced, or the decision recorded. |
-| P4 | QSI-2026-05215 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
-| P4 | QSI-2026-05221 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P3 | QSI-2026-07410 | Внесите использования RSA в file:responsible_disclosure.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-07410 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-07412 | Замените atomic-polyfill поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atomic-polyfill заменён или решение зафиксировано. |
+| P4 | QSI-2026-07413 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-07419 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
 
-## 11. Tools used
+## 11. Использованные инструменты
 
 - blockchain 1.0.0
 - certificates 1.1.0
@@ -1268,7 +1267,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - qsi-engine 1.2.0
 - OSV.dev API v1
 
-## 12. Sources and normative documents
+## 12. Источники и нормативные документы
 
 1. C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <https://arxiv.org/abs/2505.15917> (preprint (2025-05-21): < 1 million noisy qubits, < 1 week, 0.1% gate error, 1 µs surface-code cycle)
 2. C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <https://doi.org/10.22331/q-2021-04-15-433> (peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)
@@ -1310,26 +1309,59 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 38. OSV advisory RUSTSEC-2026-0410 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0410> (modified 2026-10-26T14:00:05.788985783Z)
 39. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
 
-## Appendices: Cryptographic inventory
+## Приложения: Криптографическая инвентаризация
 
-| Algorithm | Parameter | Library | Location | Quantum status | Classical status |
-|---|---|---|---|---|---|
-| Crypto library | 0.13.1 | p384 (RustCrypto elliptic curves) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.17.14 | ring (ring (Rust)) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.23.42 | rustls (rustls) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.29.1 | secp256k1 (secp256k1 bindings) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.9.10 | rsa (RustCrypto rsa) | Cargo.lock | n/a | acceptable |
-| Crypto library | 2.0.1 | x25519-dalek (ed25519-dalek) | Cargo.lock | n/a | acceptable |
-| Crypto library | 2.2.0 | ed25519-dalek (ed25519-dalek) | Cargo.lock | n/a | acceptable |
-| Crypto library | 4.1.3 | curve25519-dalek (ed25519-dalek) | Cargo.lock | n/a | acceptable |
-| RSA | 2048-bit |  | responsible_disclosure.md (line 11) | vulnerable (Shor) | acceptable |
-| RSA | 2048-bit |  | responsible_disclosure.md (line 11) | vulnerable (Shor) | acceptable |
+| Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
+|---|---|---|---|---|---|---|---|
+| Crypto library | 0.1.0 | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.1.0 | halo2_poseidon (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.10.0 | jubjub (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.10.4 | zcash_protocol (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.1 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.1 | p384 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.14.0 | bellman (bellman) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.15.4 | orchard (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.16.1 | zcash_keys (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.17.14 | ring (ring (Rust)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.2.1 | zip32 (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.2.1 | zcash_spec (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.23.42 | rustls (rustls) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.24.0-rc.7 | zcash_client_backend (Zcash protocol crates) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
+| Crypto library | 0.29.1 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.3.4 | halo2_proofs (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.30.0 | zcash_primitives (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.30.0 | zcash_proofs (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.4.2 | zcash_note_encryption (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.5.0 | halo2_gadgets (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.5.2 | reddsa (reddsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.5.2 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.7.0 | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.8.0 | redjubjub (reddsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.8.0 | bls12_381 (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.9.10 | rsa (RustCrypto rsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 2.0.1 | x25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 2.2.0 | ed25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 4.1.3 | curve25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.10.2 | zcash_protocol (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.13 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.15 | orchard (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.16.0 | zcash_keys (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.2 | zip32 (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.30 | zcash_proofs (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.30 | zcash_primitives (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.4.1 | zcash_note_encryption (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.5 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.7 | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| RSA | 2048-bit |  | уязвим (Шор) | допустимо | 2 | 2 | responsible_disclosure.md (line 11) |
 
-## Appendices: Input files
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-| File | Size | SHA-256 | Redactions |
+## Приложения: Входные файлы
+
+| Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
 | .claude/skills/update-checkpoints/scripts/checkmate.py | 2829 | `9064ba49433d036798a3ff0601c4a0a8ee6528abcd30de90412d76e818a33c94` | 0 |
 | .claude/skills/update-checkpoints/scripts/fetch_checkpoints.py | 6046 | `b792994b0a8546d09b69d45b82512a8b8864b228e6a04fb7c420b0d3e694cd0c` | 0 |
@@ -1463,12 +1495,12 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | Sources/ZcashLightClientKit/Rust/ZcashKeyDerivationBackendWelding.swift | 6186 | `f8093a864248e30e6baa2a8243a56c6b20ad972ff47d363b59a67cb25de3002a` | 0 |
 | Sources/ZcashLightClientKit/Rust/ZcashRustBackend.swift | 132298 | `38a33feabbdb9e8582d5a5e534e8cb4136198c08eff9ace8aaec7bef3a086c1e` | 0 |
 | Sources/ZcashLightClientKit/Rust/ZcashRustBackendWelding.swift | 54802 | `28b7a1c0a670fe465be318f953ebe042493e468f62f636842ff30d3379287cde` | 0 |
+| Sources/ZcashLightClientKit/Synchronizer.swift | 104332 | `007180ca59b48c4faaa3ce9d70901fb9645c302573e6370d84cb7de53bedfaac` | 0 |
 | Sources/ZcashLightClientKit/Synchronizer/ClosureSDKSynchronizer.swift | 11863 | `9f7ec07ee3b7d5d1332e1807969bd6d70dd1548c8ac7ee5e31d59760a06d1313` | 0 |
 | Sources/ZcashLightClientKit/Synchronizer/CombineSDKSynchronizer.swift | 11147 | `37d73afbe787719085f8ce32ba33fae21cd8f19cec331ff56bed6d12f6cbd119` | 0 |
 | Sources/ZcashLightClientKit/Synchronizer/Dependencies.swift | 10448 | `de55bf712b05843abfa762de4151f23d60a40140a0dbb57446444f7c8b59fb6c` | 0 |
 | Sources/ZcashLightClientKit/Synchronizer/SDKBroadcaster.swift | 7785 | `09e6eee11a4568367ba62a90b188354ed1b42324b4f273f528466f300b82f1af` | 0 |
 | Sources/ZcashLightClientKit/Synchronizer/SDKSynchronizer.swift | 66783 | `f69a0d0de236f53869c831111a71281bff3f8ddf8c1bc3261162c51619412e2a` | 0 |
-| Sources/ZcashLightClientKit/Synchronizer.swift | 104332 | `007180ca59b48c4faaa3ce9d70901fb9645c302573e6370d84cb7de53bedfaac` | 0 |
 | Sources/ZcashLightClientKit/Tool/DerivationTool.swift | 13683 | `95034aa99c12335a9270b713b2e6fd62639389995bdc40170501b1c0c3eb2104` | 0 |
 | Sources/ZcashLightClientKit/Tor/TorClient.swift | 18296 | `1004871c74d77bb58fd18878cce2710aff6989dbf1b23e155d4512a1490d527a` | 0 |
 | Sources/ZcashLightClientKit/Transaction/EndpointSubmitter.swift | 2521 | `399533ac3047859c8ea1be5a3ad1a110a358f75de7f2620e8ef29e71e0466632` | 0 |
@@ -1503,8 +1535,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | rust/src/eip681.rs | 17307 | `1ffdce28a5180709863f6055cfa9b1da2e2d5a8541440bb1845c035b4079f3f6` | 0 |
 | rust/src/error_report.rs | 22607 | `3300906616d2bd81f3e098d1564c7c3976a0add7d2b1332b52b8130bbf82034f` | 0 |
 | rust/src/ext_schema.rs | 2703 | `78c735696386d4f577fdea09b3c28686c8ad40f8472f1ccf37c9667ae9925af9` | 0 |
-| rust/src/ffi/sys.rs | 119 | `16c6b95133b0dd82837ec3d098e637bcae957aab180bebe37c697ad42a88c66f` | 0 |
 | rust/src/ffi.rs | 49683 | `3cfcb04dfabb39544f28faba641523b7028e521da82ec11dfa3b8184df26c8eb` | 0 |
+| rust/src/ffi/sys.rs | 119 | `16c6b95133b0dd82837ec3d098e637bcae957aab180bebe37c697ad42a88c66f` | 0 |
 | rust/src/lib.rs | 208268 | `afc4b32a0843665f4022b976de0b9664f0e020c159692503976fc2b5e0088bfd` | 0 |
 | rust/src/migration.rs | 532046 | `e614bf9f2de830fe338a26ae55c9be82ead182ff0dfd7d35be8da41af9ac7663` | 0 |
 | rust/src/migration_engine.rs | 7679 | `6f486536fcb33419ed2c2a1692ad4042f54e76d24c7ae1fb7f4e9ac68b5c05f1` | 0 |
@@ -1512,11 +1544,12 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | rust/src/migration_keystone.rs | 27554 | `3745f20c7ad10878b32a7bf8285b9a562a0b5c02605f9e62418c862fd7fb1ec8` | 0 |
 | rust/src/migration_plan_cache.rs | 6391 | `dab3c8fe290705fc52b8be473a1f4d774e3d53734eb2194b30ebb94b7b49789b` | 0 |
 | rust/src/migration_turnstile.rs | 4462 | `cc33f903018993bfd8618ba94f7cceabadd3f0045d5c82f56626fedf15ef63d2` | 0 |
+| rust/src/os_log.rs | 2216 | `e1f1be0bf4d4b1cbfa6c5c4ab3a1da082a7f27e6d41251882213648ddcddedbd` | 0 |
 | rust/src/os_log/layer.rs | 871 | `bdb7e530c379bf4f3c0b134fe20c34c29553467a10c0d211c34fa1d441c06acf` | 0 |
 | rust/src/os_log/signpost.rs | 2643 | `d2c814fafdea8dba57fde91b32b4728ca404db9bd1a792234728ac8a1431b087` | 0 |
 | rust/src/os_log/writer.rs | 2215 | `f7f85b1e75b6f34bb9653a71f75ed79a21d773a7fa8eaa97f8a115bfd134f6ef` | 0 |
-| rust/src/os_log.rs | 2216 | `e1f1be0bf4d4b1cbfa6c5c4ab3a1da082a7f27e6d41251882213648ddcddedbd` | 0 |
 | rust/src/tor.rs | 9927 | `b4fb708571b1779bc2b9bdaddc640204f26e50de99e6bf7aba4db02b1d335bd4` | 0 |
+| rust/src/voting.rs | 784 | `fda5fcd11bfa1c705e1151f4fce52474bd35ddfee4e08025aa11df1b28e43c5b` | 0 |
 | rust/src/voting/confirmation.rs | 2756 | `663e7c0a08585a1f755ed4f60a2f085a07a6587266186b15172cb6e5b2a005d4` | 0 |
 | rust/src/voting/constants.rs | 2100 | `9577388b6831849edae435d202303b7140873d05be3d5122467dcccb09cdda18` | 0 |
 | rust/src/voting/db.rs | 7533 | `0b8d71ed8e6802d2add5a166890f9ae81033d707daf7ae7a709a581d18f1c80e` | 0 |
@@ -1533,6 +1566,5 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | rust/src/voting/tree.rs | 3800 | `d4409c4a543592d6c1fd2ae4bff8ecd9b0407639038bd021fc2f015b6728a666` | 0 |
 | rust/src/voting/util.rs | 24536 | `905651b85dc1fa229641b84226bf1a388aea577723ea1763e6a881c181e7110c` | 0 |
 | rust/src/voting/vote.rs | 12732 | `745787066754dc8eed0680b92d1c1e03acd2d01f81c69f6b095c4b5ba2936570` | 0 |
-| rust/src/voting.rs | 784 | `fda5fcd11bfa1c705e1151f4fce52474bd35ddfee4e08025aa11df1b28e43c5b` | 0 |
 | rust/wrapper.c | 573 | `36ae07d00d702e2db37417af79637dc86964657d730a9b200040e91d4ac61768` | 0 |
 | rust/wrapper.h | 375 | `449d05440894d5e11a82bc7c010a6021146edc440a981fb90522b8e9f5dd2791` | 0 |

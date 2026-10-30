@@ -1,0 +1,3814 @@
+{
+  "content_sha256": "78926dc2f6ba69925f7b5b54cd0fde297409fa72872eddb930be8eaf5f1f29da",
+  "schema": "qsi.report/1",
+  "language": "ru",
+  "generated_at": "2026-10-29T23:45:52.129553+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "c2146954-b9d2-4777-8c53-a23eaa6cfc23",
+    "name": "halo2 @ 3442dd33754a",
+    "client_name": "Electric Coin Company (Zcash)",
+    "description": "Static review of the source tree halo2 at 3442dd33754ae0d44b8970e5a4eea79b0c3360bf. 100 files analysed; of 235 files, 55 are test, fuzzing, benchmark or example code and were left out, 80 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/ISSUE_TEMPLATE/eli15.md, .github/actions/prepare/action.yml, .github/dependabot.yml, .github/workflows/bench.yml, .github/workflows/book.yml. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "d67212cf-da52-4f4f-9ed8-97b7d8bd0835",
+    "mode": "document",
+    "title": "Document audit: halo2",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-29T23:45:27.422406+00:00",
+    "finished_at": "2026-10-29T23:45:51.447930+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
+    "parameters": {
+      "ref": "3442dd33754ae0d44b8970e5a4eea79b0c3360bf",
+      "language": "ru",
+      "repo_url": "https://github.com/zcash/halo2",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "Cargo.lock",
+      "size": 52901,
+      "sha256": "0d4591933364c0c38945a6a639e84f2697fd4d6ecb448516fae5f81147bb923f",
+      "redactions": 0
+    },
+    {
+      "name": "Cargo.toml",
+      "size": 1373,
+      "sha256": "4b5a832a64a61d476f8308e2d4fd102c05ebeabaf11e043384001de989125ee9",
+      "redactions": 0
+    },
+    {
+      "name": "halo2/Cargo.toml",
+      "size": 653,
+      "sha256": "3f91a00fb9ea69b3c120f1b15893b19aa729627c89adbb1c4c9326e16dc87294",
+      "redactions": 0
+    },
+    {
+      "name": "halo2/src/lib.rs",
+      "size": 179,
+      "sha256": "9e5d7cabd77e1c97f5e4368d38e787895144b63acabff3aa766c4079beabcf99",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/Cargo.toml",
+      "size": 2095,
+      "sha256": "b9faefa2af2f8aa2d3ca10c7ed3132a2f9fd4d941cbbb11409a759c811a5a7f2",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc.rs",
+      "size": 38996,
+      "sha256": "59b832b8e6dd618a572fb726f6f45b3aea939baf7b5c9398ae9cd1d4a2c6f510",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip.rs",
+      "size": 25666,
+      "sha256": "9d001517c6028308060d635f6c10772308c2af7c2c430f6666290f4d4fc20a09",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/add.rs",
+      "size": 16086,
+      "sha256": "a81bad0a96c5991a25f4f3d5ea24a41823cd2e1fdbd423d4ec4db16e1f421c75",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/add_incomplete.rs",
+      "size": 6540,
+      "sha256": "1e0083b20f89a8469c42ad18d7d6915012c2132b3a86b1ab772f714b5ae98bad",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/constants.rs",
+      "size": 11090,
+      "sha256": "4598ca03006b5c001af74425ca19f96e439a20ca7e9a573a1697656b96aa20a9",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/layout_dump.rs",
+      "size": 13318,
+      "sha256": "0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul.rs",
+      "size": 33200,
+      "sha256": "5bd412ea5e8c90006ffd3e653d92918a4a33ce58c120e7b5acec3848864b66f0",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul/complete.rs",
+      "size": 7295,
+      "sha256": "514390b1e77f4e81d2745418ba7209b80958ad3fe4dbc8dc0f894a8e7c8abcc3",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul/incomplete.rs",
+      "size": 15923,
+      "sha256": "4bfadb52be382f57421201840cf295938055c482bf66e11536c0df167d0dd0f6",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul/overflow.rs",
+      "size": 7696,
+      "sha256": "20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul_fixed.rs",
+      "size": 18388,
+      "sha256": "7a2ce8d4f8b4efca580dbbaa76c0f2e583f84296d589d08078db02649d01a85b",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul_fixed/base_field_elem.rs",
+      "size": 20665,
+      "sha256": "5d48742efdf2c656031929e640f0c64a8747dea9697428cdcdeb3bc219220d07",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul_fixed/full_width.rs",
+      "size": 11233,
+      "sha256": "8f7b5c58b38a7f68b873c0a06e53dca6f5cba4452a865c3ff009daaa8abb5d0b",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/mul_fixed/short.rs",
+      "size": 37451,
+      "sha256": "a656d7e876d829fa4c2629c7ec7b25f9f5106ba68e4935daab21a1ec1e172538",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/ecc/chip/witness_point.rs",
+      "size": 9346,
+      "sha256": "6a25767a86718b17faa506446666cd25aa6f919f2af336f81ec9c6c746e84136",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/lib.rs",
+      "size": 1068,
+      "sha256": "4434c72bd5a92f8cba995ec280ae3b20a25308accbf6058e411fa84988b49dac",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/poseidon.rs",
+      "size": 8406,
+      "sha256": "a88f1571da14aa48bd95f65e3ced755c22e41fd7c803961af0d7748af2f6a2d6",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/poseidon/pow5.rs",
+      "size": 32386,
+      "sha256": "6c2af6c6ce64a2b20fec991febeaf73c5d8c03d8758a0a3aed1f9983f56d485e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/sinsemilla.rs",
+      "size": 34183,
+      "sha256": "99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/sinsemilla/chip.rs",
+      "size": 13786,
+      "sha256": "ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/sinsemilla/chip/generator_table.rs",
+      "size": 3739,
+      "sha256": "e5dea0027acc6c137914ad8264eec0013cb9b14e276ccfa235ea5d9f5bbade60",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs",
+      "size": 20495,
+      "sha256": "563d89356cfaeebc511463aa39e41af4dfab33d7bf5635e7daf863fb601297d1",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/sinsemilla/merkle.rs",
+      "size": 22965,
+      "sha256": "374bc76a06ebba158b966e6f565c40198870d86f0de0370dfcd6cad1d5abb321",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/sinsemilla/merkle/chip.rs",
+      "size": 22905,
+      "sha256": "637f0ceda4dee675a31bfe173c1a7ebf032e99a9d173894e05928ac5933748de",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/sinsemilla/message.rs",
+      "size": 1899,
+      "sha256": "d6753477bd6acb43d25a666236023cc99daea2d7045dab4a4a616a9dbe3a37fd",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/utilities.rs",
+      "size": 16175,
+      "sha256": "c3d825adfd762fbf8dd66822c62aed4483136a15207b1463ae2e8eafc8432a8b",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/utilities/cond_swap.rs",
+      "size": 23059,
+      "sha256": "2c120756704aa47e35f6a3fb895849ab3db5e830a3035ae18b575f73194450d8",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/utilities/decompose_running_sum.rs",
+      "size": 14830,
+      "sha256": "23e41f239fb643ba3d487a5e8b99bce21b61632b576cdd105e7a0511814c9e97",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_gadgets/src/utilities/lookup_range_check.rs",
+      "size": 46351,
+      "sha256": "7128b99d319e3d9d4dd21f1b65b6b911e0812de45d67bb58a74b9845c65e27cb",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_poseidon/Cargo.toml",
+      "size": 540,
+      "sha256": "38f284c9eac342191e7649fbed8ac5272b272d9f15f193d1ad112deef20b1ab0",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_poseidon/src/fp.rs",
+      "size": 40637,
+      "sha256": "b19d4e50867e67af232db34f88d2bf8629d6d7ee2496458a8e37ae758772acd5",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_poseidon/src/fq.rs",
+      "size": 40404,
+      "sha256": "ae1743650291a44631323c565f71b7de8e0bca98ab4ee363f10b173ebdc575c5",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_poseidon/src/grain.rs",
+      "size": 6178,
+      "sha256": "788a280714b291ea41c991ad9ba21d8c9e6ad02d5ec52fd6ebd7fe14b478eaff",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_poseidon/src/lib.rs",
+      "size": 15643,
+      "sha256": "8a6d626c5024157fc09e4e1daf811ee4d1e81acfa1ca6592e663934c13dd2d56",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_poseidon/src/mds.rs",
+      "size": 4707,
+      "sha256": "10cb39b77faf243f1e57e9813e9ee435677f1860b1b6190e6813019450da0599",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_poseidon/src/p128pow5t3.rs",
+      "size": 9958,
+      "sha256": "5b46bc7ef7ee2480b85c7aeb96052301abb7dbff16f8d9d87c0c0abac3b6fc9c",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/Cargo.toml",
+      "size": 2694,
+      "sha256": "02b6eb98c619e24c023a2357d37768be75aac58f09fc18ce7666d1fddd7bdffb",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/arithmetic.rs",
+      "size": 22070,
+      "sha256": "c344c3e01cdf17d144781dd1e8807cecef70b8460a408979222e28e533c59350",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit.rs",
+      "size": 18063,
+      "sha256": "d031fc3532cbe7225400855aee3cd5296f6dc4490e64ac7ecb442877d9e61abb",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit/floor_planner.rs",
+      "size": 118,
+      "sha256": "73c23da5835a26594486155a010b48bbef7e81cf7aab3ff443e790763bcdf158",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit/floor_planner/single_pass.rs",
+      "size": 13243,
+      "sha256": "f6f983929bbb2c37b70afddb5a1ed61ec387b9411aa297cc9ef1d565e0c9fb4e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit/floor_planner/v1.rs",
+      "size": 16036,
+      "sha256": "1801cbb554cc55265dea4b2865eb59c483ad64489349b03eb5823f7590c41e18",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit/floor_planner/v1/strategy.rs",
+      "size": 9479,
+      "sha256": "aa08a851f21b8d37b7d1bc89f0cfa1ba56f9db6cff07cf1de236d9c88cc05649",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit/layouter.rs",
+      "size": 9182,
+      "sha256": "be0d46973890b5557543da47ee781b384221fd5b9489d70809682a5a173f5dcc",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit/table_layouter.rs",
+      "size": 13110,
+      "sha256": "979e0133df95b7795d9f39cd7c0b5282f4c48242a1b98f49ece9814bb17c1cff",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/circuit/value.rs",
+      "size": 17275,
+      "sha256": "71efd7c047c78295b977cf9907bf192f4a00fc87273a398de71313b600a2637b",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev.rs",
+      "size": 41923,
+      "sha256": "da9ea8c560dfed04d4d183a1108c95f5b6551a1c328c0e9608aebbc3a5382b69",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/circuit_fixture.rs",
+      "size": 20699,
+      "sha256": "ac892c9d0c640b41c004de21ded7d406c2f08fbe14984e1fd649c3af25a417bc",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/cost.rs",
+      "size": 17485,
+      "sha256": "db4c0bec1fea2c835d6f54bb68c4e6a5c271045330767df742597c666aeba45f",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/failure.rs",
+      "size": 19868,
+      "sha256": "1c1aaafdec7e42c701f6d5cddfa0d1e2d748b61b130d9b283cf8b542fa3269fa",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/failure/emitter.rs",
+      "size": 5029,
+      "sha256": "b4d30d490c6dcdf1c66b82935e9a3674aa22a7a69008067e32e053739767d8a8",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/gates.rs",
+      "size": 9709,
+      "sha256": "e08ad44741c8df6589144fd3ab0e13bcd54c92f786de5fd4827cdde9b0dbfeb4",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/graph.rs",
+      "size": 5268,
+      "sha256": "1f5db2a77692fdd0a0f37dba163a39665126c27b22b21446c7acc92ec87404b9",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/graph/layout.rs",
+      "size": 11850,
+      "sha256": "f3d21cac94ad74855f8cd9f1eecdb9016053891586f848fc92c56f4a2d5c8316",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/metadata.rs",
+      "size": 5079,
+      "sha256": "def5eafe66b5055af7e2a19da6df4393851da0892bd9b8b813191499f12beb7e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/tfp.rs",
+      "size": 14735,
+      "sha256": "fc0c31b71e8d38d910be878b93ae14e28028637a9cb1410e66fdaa75d6f0612d",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/dev/util.rs",
+      "size": 4517,
+      "sha256": "61a315c9ef7c8c6d7d8ef70fc676664abc95d14e2b0dd1ad1ec98112de6feaf7",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/helpers.rs",
+      "size": 549,
+      "sha256": "1b1424c2a8f8f3ade35b68849bc84bb12aaed08cf06e9d065f192f32895c1367",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/lib.rs",
+      "size": 444,
+      "sha256": "87ecbfa3de85666ce660fdc8bf896196b9f93585384fd6170868e84c8cf3686e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/multicore.rs",
+      "size": 3700,
+      "sha256": "ec65ea5a455d2c4ef12097391850af1a98f44464652d55c24bc58d8e3214e1e8",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk.rs",
+      "size": 5277,
+      "sha256": "12b80139f13e6d51eb5913855ec6e7de89534e43ea41f989b50ddfe02f1a9a95",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/assigned.rs",
+      "size": 20524,
+      "sha256": "a7452e96d75956e1f47ee93373804f899eb1f69bbf970cf944148d55e2556e25",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/circuit.rs",
+      "size": 52203,
+      "sha256": "c6efa09bdbe9081861fe2bd469b8b9b547beeee1e95c4d66e6896050d5e45db0",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/circuit/compress_selectors.rs",
+      "size": 13724,
+      "sha256": "95e78cb9dea30e887727a09dcf29c39fa2c9e5c6392f7c45a661ca6a9338d086",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/circuit/fixture.rs",
+      "size": 13111,
+      "sha256": "b3df664c714babbad68664e5f0a14a1ca791ad3fdb7e6381c62ad719e5926799",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/error.rs",
+      "size": 5214,
+      "sha256": "088fddace0899454b6aea2ec83c5bf123e4759aa8bc0a121f10295bb7a81d0b4",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/fingerprint/mod.rs",
+      "size": 2380,
+      "sha256": "9c0c55aa94658ae00aa2aa6cd19219f547e9c34845469129257293713482b1bf",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/fingerprint/transcript.rs",
+      "size": 3757,
+      "sha256": "95d66fa2ee46eeb49551cd760c26e18008adc1bb6e620181efe63029c391bcaa",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/fingerprint/vesta_lean.rs",
+      "size": 74191,
+      "sha256": "76d2861eef11278e774628949c3fdf34978bbd2a1f4eb3c49152d83524fafa2e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/keygen.rs",
+      "size": 9607,
+      "sha256": "655240dcff4491d7adc10840831b2a57af0e1a3b64599f90f92dadc00ef8389f",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/lookup.rs",
+      "size": 2874,
+      "sha256": "d6923b5f9f82f52a646fae18e4b512c4c6ff086c09641537434177eb2e974356",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/lookup/prover.rs",
+      "size": 27778,
+      "sha256": "590093529a746a23750375ca5ebc3ae379d434c47cdd03ca2d3e29f8f780e90f",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/lookup/verifier.rs",
+      "size": 7421,
+      "sha256": "b2c7f87f441a756cac394d0fc342bdeea5d6c06eea21526eaae5194207d2b6b6",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/permutation.rs",
+      "size": 2874,
+      "sha256": "8c12169e2fac91f4f2dd4a0a4576357b9a54dda21cd8e400ad088b0e24500410",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/permutation/keygen.rs",
+      "size": 7093,
+      "sha256": "d8edd2203cc933a6979d58ce221cccf210f0f65ce2b2b577e3efc764fe208ce3",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/permutation/prover.rs",
+      "size": 17191,
+      "sha256": "005dd6ee995f825b0535168d366a193952190df35deef3dd332ec563018d0615",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/permutation/verifier.rs",
+      "size": 9027,
+      "sha256": "09bc9b6ac9200d1c4e3015b3ed642737375f81ddda2f38ecebec98d5a528e179",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/prover.rs",
+      "size": 27928,
+      "sha256": "ac2307d197dd1dab34c9b07e7311f0ce02b42f068b017ee6ebaaa27a1916b512",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/vanishing.rs",
+      "size": 197,
+      "sha256": "b664ff3220d71fb1d89d809d628e1969ff5bdd38edbba863733960a1213407bc",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/vanishing/prover.rs",
+      "size": 5370,
+      "sha256": "c04196e395de38a0329ca42e35858939e65f1f38ddd795cb8f649fb46ba1cd9c",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/vanishing/verifier.rs",
+      "size": 3870,
+      "sha256": "20e0b7596ef47067849ab714e277065d87e2a7f87aaccbedddcfb00c030f2e5f",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/verifier.rs",
+      "size": 17848,
+      "sha256": "8a3452866320e535570d78db098147838d015f985af214e6f3d60195606e2ef2",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/plonk/verifier/batch.rs",
+      "size": 4170,
+      "sha256": "dd91b8e915794516665df699a3e8b63c81b8618d98d510ffb06d2c0b7bdd0f12",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly.rs",
+      "size": 10683,
+      "sha256": "0bc0a71b19ca7dbc408a41a455d4787e3986629d1742737282cea6816d8b9998",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/commitment.rs",
+      "size": 11738,
+      "sha256": "9e1ebff98d5e531d03485afe1d8c52bf6c291c462f6efb751f2085daa6535653",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/commitment/msm.rs",
+      "size": 9099,
+      "sha256": "3a5b7850f8c588d4eb3d7aa4d2941c5b5ea756dbcf99adfda6aa58e94d7cbd47",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/commitment/prover.rs",
+      "size": 6314,
+      "sha256": "4ff3438614a1766e34f21babc7d886664db736f734f524b1c5cc96062ba03e5e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/commitment/verifier.rs",
+      "size": 5297,
+      "sha256": "d9b79f66cdb6ee8b1e52adbc5bdcf98d133ee44e0c76e94b0728204e6de4476f",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/domain.rs",
+      "size": 20912,
+      "sha256": "379599939d3db1cc10ce2d4cd7cfdf3b41858421d6cc2a734b4b54989b4d105c",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/evaluator.rs",
+      "size": 21957,
+      "sha256": "e8799c2a0cb184008f1401df7be55d23c96092aebad996e543518f81f875b53e",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/multiopen.rs",
+      "size": 19064,
+      "sha256": "2979e465953235e186c3a69105205248dd7907a31fd5174178f986fa5b5c9861",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/multiopen/prover.rs",
+      "size": 4907,
+      "sha256": "383fd403995decdb7843481734fb84f2056dddf098b01b69865ce5e997471128",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/poly/multiopen/verifier.rs",
+      "size": 5413,
+      "sha256": "72cace4d1abfa1e1800c3bad8215f0b7b51ee49005fbf427c5be807b22a7c435",
+      "redactions": 0
+    },
+    {
+      "name": "halo2_proofs/src/transcript.rs",
+      "size": 10332,
+      "sha256": "f5dbd474c532e9355271116ab4d3d7211e93ff2f661d27bdd4a56f026412a3ad",
+      "redactions": 0
+    },
+    {
+      "name": "rust-toolchain.toml",
+      "size": 66,
+      "sha256": "fc9d487b329e61afae23a5a03c5b0097290d9c15b980233e1168e7f09cacfcd9",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 100,
+    "bytes": 1451944,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "dependencies",
+      "detail": "Cargo.lock: 223 dependencies parsed (223 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "Cargo.toml: 25 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "halo2/Cargo.toml: 1 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "halo2_gadgets/Cargo.toml: 20 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 128 registry patterns; 474 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/add.rs: 440 lines scanned with 16 rule patterns and 128 registry patterns; 115 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/add_incomplete.rs: 191 lines scanned with 16 rule patterns and 128 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/constants.rs: 280 lines scanned with 16 rule patterns and 128 registry patterns; 52 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/layout_dump.rs: 355 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul.rs: 863 lines scanned with 16 rule patterns and 128 registry patterns; 403 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul/complete.rs: 193 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul/incomplete.rs: 401 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul/overflow.rs: 209 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed.rs: 488 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/base_field_elem.rs: 528 lines scanned with 16 rule patterns and 128 registry patterns; 148 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/full_width.rs: 319 lines scanned with 16 rule patterns and 128 registry patterns; 140 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/short.rs: 968 lines scanned with 16 rule patterns and 128 registry patterns; 660 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/ecc/chip/witness_point.rs: 275 lines scanned with 16 rule patterns and 128 registry patterns; 63 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/lib.rs: 30 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/poseidon.rs: 286 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/poseidon/pow5.rs: 912 lines scanned with 16 rule patterns and 128 registry patterns; 323 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/sinsemilla.rs: 936 lines scanned with 16 rule patterns and 128 registry patterns; 403 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/sinsemilla/chip.rs: 376 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/sinsemilla/chip/generator_table.rs: 96 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs: 594 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/sinsemilla/merkle.rs: 636 lines scanned with 16 rule patterns and 128 registry patterns; 464 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/sinsemilla/merkle/chip.rs: 582 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/sinsemilla/message.rs: 65 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/utilities.rs: 497 lines scanned with 16 rule patterns and 128 registry patterns; 258 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/utilities/cond_swap.rs: 649 lines scanned with 16 rule patterns and 128 registry patterns; 352 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/utilities/decompose_running_sum.rs: 416 lines scanned with 16 rule patterns and 128 registry patterns; 182 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_gadgets/src/utilities/lookup_range_check.rs: 1258 lines scanned with 16 rule patterns and 128 registry patterns; 394 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "halo2_poseidon/Cargo.toml: 4 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_poseidon/src/fp.rs: 1431 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_poseidon/src/fq.rs: 1431 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_poseidon/src/grain.rs: 195 lines scanned with 16 rule patterns and 128 registry patterns; 12 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_poseidon/src/lib.rs: 502 lines scanned with 16 rule patterns and 128 registry patterns; 23 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_poseidon/src/mds.rs: 131 lines scanned with 16 rule patterns and 128 registry patterns; 26 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_poseidon/src/p128pow5t3.rs: 322 lines scanned with 16 rule patterns and 128 registry patterns; 254 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "halo2_proofs/Cargo.toml: 18 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/arithmetic.rs: 733 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit.rs: 597 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit/floor_planner.rs: 6 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit/floor_planner/single_pass.rs: 418 lines scanned with 16 rule patterns and 128 registry patterns; 54 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit/floor_planner/v1.rs: 531 lines scanned with 16 rule patterns and 128 registry patterns; 53 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit/floor_planner/v1/strategy.rs: 282 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit/layouter.rs: 285 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit/table_layouter.rs: 407 lines scanned with 16 rule patterns and 128 registry patterns; 256 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/circuit/value.rs: 717 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev.rs: 1146 lines scanned with 16 rule patterns and 128 registry patterns; 216 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/circuit_fixture.rs: 613 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/cost.rs: 549 lines scanned with 16 rule patterns and 128 registry patterns; 34 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/failure.rs: 561 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/failure/emitter.rs: 163 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/gates.rs: 278 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/graph.rs: 189 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/graph/layout.rs: 320 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/metadata.rs: 175 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/tfp.rs: 483 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/dev/util.rs: 161 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/helpers.rs: 16 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/lib.rs: 20 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/multicore.rs: 120 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk.rs: 179 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/assigned.rs: 693 lines scanned with 16 rule patterns and 128 registry patterns; 298 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/circuit.rs: 1547 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/circuit/compress_selectors.rs: 351 lines scanned with 16 rule patterns and 128 registry patterns; 123 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/circuit/fixture.rs: 350 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/error.rs: 140 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/fingerprint/mod.rs: 72 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/fingerprint/transcript.rs: 98 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/fingerprint/vesta_lean.rs: 1538 lines scanned with 16 rule patterns and 128 registry patterns; 65 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/keygen.rs: 341 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/lookup.rs: 72 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/lookup/prover.rs: 649 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/lookup/verifier.rs: 209 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/permutation.rs: 92 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/permutation/keygen.rs: 210 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/permutation/prover.rs: 432 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/permutation/verifier.rs: 241 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/prover.rs: 813 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/vanishing.rs: 11 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/vanishing/prover.rs: 173 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/vanishing/verifier.rs: 140 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/verifier.rs: 503 lines scanned with 16 rule patterns and 128 registry patterns; 126 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/plonk/verifier/batch.rs: 125 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly.rs: 365 lines scanned with 16 rule patterns and 128 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/commitment.rs: 404 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/commitment/msm.rs: 267 lines scanned with 16 rule patterns and 128 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/commitment/prover.rs: 161 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/commitment/verifier.rs: 169 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/domain.rs: 617 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/evaluator.rs: 663 lines scanned with 16 rule patterns and 128 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/multiopen.rs: 603 lines scanned with 16 rule patterns and 128 registry patterns; 119 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/multiopen/prover.rs: 161 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/poly/multiopen/verifier.rs: 150 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "halo2_proofs/src/transcript.rs: 305 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "223 pinned packages queried at OSV.dev; 3 affected (2 of them only in development or build dependencies)",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 6,
+      "rows": 6,
+      "examples": [
+        "Cargo.lock: 223 dependencies parsed (223 pinned)",
+        "Cargo.toml: 25 dependencies parsed (0 pinned)",
+        "halo2/Cargo.toml: 1 dependencies parsed (0 pinned)"
+      ]
+    },
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 93,
+      "rows": 93,
+      "examples": [
+        "halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 128 registry patterns",
+        "halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 128 registry patterns; 474 lines in #[cfg(test)] modules ignored",
+        "halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 128 registry patterns"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "223 pinned packages queried at OSV.dev; 3 affected (2 of them only in development or build dependencies)"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "223 pinned packages queried at OSV.dev; 3 affected (2 of them only in development or build dependencies)",
+      "Cargo.lock",
+      "Cargo.toml",
+      "halo2/Cargo.toml",
+      "halo2/src/lib.rs",
+      "halo2_gadgets/Cargo.toml",
+      "halo2_gadgets/src/ecc.rs",
+      "halo2_gadgets/src/ecc/chip.rs",
+      "halo2_gadgets/src/ecc/chip/add.rs",
+      "halo2_gadgets/src/ecc/chip/add_incomplete.rs",
+      "halo2_gadgets/src/ecc/chip/constants.rs",
+      "halo2_gadgets/src/ecc/chip/layout_dump.rs",
+      "halo2_gadgets/src/ecc/chip/mul.rs",
+      "halo2_gadgets/src/ecc/chip/mul/complete.rs",
+      "halo2_gadgets/src/ecc/chip/mul/incomplete.rs",
+      "halo2_gadgets/src/ecc/chip/mul/overflow.rs",
+      "halo2_gadgets/src/ecc/chip/mul_fixed.rs",
+      "halo2_gadgets/src/ecc/chip/mul_fixed/base_field_elem.rs",
+      "halo2_gadgets/src/ecc/chip/mul_fixed/full_width.rs",
+      "halo2_gadgets/src/ecc/chip/mul_fixed/short.rs",
+      "halo2_gadgets/src/ecc/chip/witness_point.rs",
+      "halo2_gadgets/src/lib.rs",
+      "halo2_gadgets/src/poseidon.rs",
+      "halo2_gadgets/src/poseidon/pow5.rs",
+      "halo2_gadgets/src/sinsemilla.rs",
+      "halo2_gadgets/src/sinsemilla/chip.rs",
+      "halo2_gadgets/src/sinsemilla/chip/generator_table.rs",
+      "halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs",
+      "halo2_gadgets/src/sinsemilla/merkle.rs",
+      "halo2_gadgets/src/sinsemilla/merkle/chip.rs",
+      "halo2_gadgets/src/sinsemilla/message.rs",
+      "halo2_gadgets/src/utilities.rs",
+      "halo2_gadgets/src/utilities/cond_swap.rs",
+      "halo2_gadgets/src/utilities/decompose_running_sum.rs",
+      "halo2_gadgets/src/utilities/lookup_range_check.rs",
+      "halo2_poseidon/Cargo.toml",
+      "halo2_poseidon/src/fp.rs",
+      "halo2_poseidon/src/fq.rs",
+      "halo2_poseidon/src/grain.rs",
+      "halo2_poseidon/src/lib.rs",
+      "halo2_poseidon/src/mds.rs",
+      "halo2_poseidon/src/p128pow5t3.rs",
+      "halo2_proofs/Cargo.toml",
+      "halo2_proofs/src/arithmetic.rs",
+      "halo2_proofs/src/circuit.rs",
+      "halo2_proofs/src/circuit/floor_planner.rs",
+      "halo2_proofs/src/circuit/floor_planner/single_pass.rs",
+      "halo2_proofs/src/circuit/floor_planner/v1.rs",
+      "halo2_proofs/src/circuit/floor_planner/v1/strategy.rs",
+      "halo2_proofs/src/circuit/layouter.rs",
+      "halo2_proofs/src/circuit/table_layouter.rs",
+      "halo2_proofs/src/circuit/value.rs",
+      "halo2_proofs/src/dev.rs",
+      "halo2_proofs/src/dev/circuit_fixture.rs",
+      "halo2_proofs/src/dev/cost.rs",
+      "halo2_proofs/src/dev/failure.rs",
+      "halo2_proofs/src/dev/failure/emitter.rs",
+      "halo2_proofs/src/dev/gates.rs",
+      "halo2_proofs/src/dev/graph.rs",
+      "halo2_proofs/src/dev/graph/layout.rs",
+      "halo2_proofs/src/dev/metadata.rs",
+      "halo2_proofs/src/dev/tfp.rs",
+      "halo2_proofs/src/dev/util.rs",
+      "halo2_proofs/src/helpers.rs",
+      "halo2_proofs/src/lib.rs",
+      "halo2_proofs/src/multicore.rs",
+      "halo2_proofs/src/plonk.rs",
+      "halo2_proofs/src/plonk/assigned.rs",
+      "halo2_proofs/src/plonk/circuit.rs",
+      "halo2_proofs/src/plonk/circuit/compress_selectors.rs",
+      "halo2_proofs/src/plonk/circuit/fixture.rs",
+      "halo2_proofs/src/plonk/error.rs",
+      "halo2_proofs/src/plonk/fingerprint/mod.rs",
+      "halo2_proofs/src/plonk/fingerprint/transcript.rs",
+      "halo2_proofs/src/plonk/fingerprint/vesta_lean.rs",
+      "halo2_proofs/src/plonk/keygen.rs",
+      "halo2_proofs/src/plonk/lookup.rs",
+      "halo2_proofs/src/plonk/lookup/prover.rs",
+      "halo2_proofs/src/plonk/lookup/verifier.rs",
+      "halo2_proofs/src/plonk/permutation.rs",
+      "halo2_proofs/src/plonk/permutation/keygen.rs",
+      "halo2_proofs/src/plonk/permutation/prover.rs",
+      "halo2_proofs/src/plonk/permutation/verifier.rs",
+      "halo2_proofs/src/plonk/prover.rs",
+      "halo2_proofs/src/plonk/vanishing.rs",
+      "halo2_proofs/src/plonk/vanishing/prover.rs",
+      "halo2_proofs/src/plonk/vanishing/verifier.rs",
+      "halo2_proofs/src/plonk/verifier.rs",
+      "halo2_proofs/src/plonk/verifier/batch.rs",
+      "halo2_proofs/src/poly.rs",
+      "halo2_proofs/src/poly/commitment.rs",
+      "halo2_proofs/src/poly/commitment/msm.rs",
+      "halo2_proofs/src/poly/commitment/prover.rs",
+      "halo2_proofs/src/poly/commitment/verifier.rs",
+      "halo2_proofs/src/poly/domain.rs",
+      "halo2_proofs/src/poly/evaluator.rs",
+      "halo2_proofs/src/poly/multiopen.rs",
+      "halo2_proofs/src/poly/multiopen/prover.rs",
+      "halo2_proofs/src/poly/multiopen/verifier.rs",
+      "halo2_proofs/src/transcript.rs"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 2,
+      "low": 0,
+      "info": 3
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 2,
+      "improvement": 2,
+      "insufficient_data": 1
+    },
+    "total": 5,
+    "posture_index": 100,
+    "pq_vulnerable_share": 61.6,
+    "inventory_total": 73,
+    "inventory_by_quantum_status": {
+      "grover_reduced": 4,
+      "not_applicable": 24,
+      "vulnerable_shor": 45
+    }
+  },
+  "findings": [
+    {
+      "id": "0aa4958b-a2f2-4cf0-ada0-6bbf675234e6",
+      "public_id": "QSI-2026-07294",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))",
+      "description": "41 упоминаний Halo 2 (IPA) в 34 файл(ах), например halo2_gadgets/src/ecc.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте halo2_gadgets/src/ecc.rs:5 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Halo 2 (IPA):general",
+      "data_source": "halo2_gadgets/src/ecc.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-29T23:45:51.260118+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "unspecified",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc.rs",
+          "location": "line 5",
+          "content": "    4 | \n    5 | use halo2_proofs::{\n    6 |     arithmetic::CurveAffine,",
+          "content_sha256": "9e744d2ffbb0484896345bbcd45ec0752fe8a6897889f019f125dfdd1c1bc8d4",
+          "source_sha256": "59b832b8e6dd618a572fb726f6f45b3aea939baf7b5c9398ae9cd1d4a2c6f510",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312547+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc.rs#L5"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip.rs",
+          "location": "line 12",
+          "content": "   11 | use group::CurveAffine as _;\n   12 | use halo2_proofs::{\n   13 |     circuit::{AssignedCell, Chip, Layouter, Value},",
+          "content_sha256": "ae82b6164e511c052b5f66681f77f732f4d79a6a62a7990fe1f8b2a57746dfc8",
+          "source_sha256": "9d001517c6028308060d635f6c10772308c2af7c2c430f6666290f4d4fc20a09",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312558+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip.rs#L12"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/add.rs",
+          "location": "line 4",
+          "content": "    3 | use group::ff::PrimeField;\n    4 | use halo2_proofs::{\n    5 |     circuit::Region,",
+          "content_sha256": "ba8fe6bf018f9e7feb579efe8423698eba158ff884d9faf434822de4bc328c90",
+          "source_sha256": "a81bad0a96c5991a25f4f3d5ea24a41823cd2e1fdbd423d4ec4db16e1f421c75",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312562+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add.rs#L4"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/add_incomplete.rs",
+          "location": "line 4",
+          "content": "    3 | use super::NonIdentityEccPoint;\n    4 | use halo2_proofs::{\n    5 |     circuit::Region,",
+          "content_sha256": "e0b2038aa27837669eb57d099d4381d764f3e354417ca59b395ca7b8020fefa1",
+          "source_sha256": "1e0083b20f89a8469c42ad18d7d6915012c2132b3a86b1ab772f714b5ae98bad",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312566+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add_incomplete.rs#L4"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/constants.rs",
+          "location": "line 5",
+          "content": "    4 | use group::ff::{Field, PrimeField};\n    5 | use halo2_proofs::arithmetic::lagrange_interpolate;\n    6 | use pasta_curves::{",
+          "content_sha256": "be4c7428a26ba3d085a1f0820c0fd1ea0cdacd7c2ccb2e543d1e4b0a87fcdd88",
+          "source_sha256": "4598ca03006b5c001af74425ca19f96e439a20ca7e9a573a1697656b96aa20a9",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312570+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/constants.rs#L5"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/layout_dump.rs",
+          "location": "line 5",
+          "content": "    4 | use crate::utilities::lookup_range_check::{LookupRangeCheck, PallasLookupRangeCheckConfig};\n    5 | use halo2_proofs::{\n    6 |     circuit::{Layouter, SimpleFloorPlanner, Value},",
+          "content_sha256": "26379000da5a020d9e36dd44dc3f25f2e77afe45c558c5ce0ce14e727690a68d",
+          "source_sha256": "0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312573+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L5"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/layout_dump.rs",
+          "location": "line 231",
+          "content": "  230 | \n  231 | const MUL_LAYOUT_HEADER: &str = \"-- Auto-generated by halo2 `dump_lean` (Halo2-Clean VK-matching, Phase 2 layout). Do not edit by hand.\n  232 | -- Phase 2 layout of the isolated mul chain (`configure_mul` / `MulDumpCircuit`,",
+          "content_sha256": "190334e42429d1f6b19211a6528e7cd0b73bafac8fa3ae184eab0f0d03c97009",
+          "source_sha256": "0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312577+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L231"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/layout_dump.rs",
+          "location": "line 268",
+          "content": "  267 | const MUL_SELMAP_HEADER: &str =\n  268 |     \"-- Auto-generated by halo2 `dump_lean` (Halo2-Clean VK-matching). Do not edit by hand.\n  269 | -- Selector-compression map (see `compress_selectors.rs`): per selector, the packed",
+          "content_sha256": "01cee9ca5f2a30bac8a9913250ac1f295b7ee0c13cba13f7af224ed6bef62fc6",
+          "source_sha256": "0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312580+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L268"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/mul.rs",
+          "location": "line 12",
+          "content": "   11 | use ff::{Field, PrimeField};\n   12 | use halo2_proofs::{\n   13 |     circuit::{AssignedCell, Layouter, Region, Value},",
+          "content_sha256": "7acb57b0c0ef4067d0352685d00d393e28cf04d42062857429e73befaa763f51",
+          "source_sha256": "5bd412ea5e8c90006ffd3e653d92918a4a33ce58c120e7b5acec3848864b66f0",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312584+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul.rs#L12"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/mul/complete.rs",
+          "location": "line 5",
+          "content": "    4 | \n    5 | use halo2_proofs::{\n    6 |     circuit::{Region, Value},",
+          "content_sha256": "a7d7ad8a617509d058101e1f6e166614219a8f55d79c054028c433fece5f4596",
+          "source_sha256": "514390b1e77f4e81d2745418ba7209b80958ad3fe4dbc8dc0f894a8e7c8abcc3",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.312587+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/complete.rs#L5"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "df8ad475-a944-453b-a439-58481e7a1141",
+      "public_id": "QSI-2026-07295",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))",
+      "description": "173 упоминаний Sinsemilla в 9 файл(ах), например halo2_gadgets/src/ecc/chip/mul/overflow.rs:3. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте halo2_gadgets/src/ecc/chip/mul/overflow.rs:3 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Sinsemilla:general",
+      "data_source": "halo2_gadgets/src/ecc/chip/mul/overflow.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-29T23:45:51.281902+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "unspecified",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/mul/overflow.rs",
+          "location": "line 3",
+          "content": "    2 | use crate::{\n    3 |     sinsemilla::primitives as sinsemilla,\n    4 |     utilities::lookup_range_check::{PallasLookupRangeCheck, PallasLookupRangeCheckConfig},",
+          "content_sha256": "61473701044b00a24e8b2948c40c32dbc3e16a230dab868526877e8a5a09db8b",
+          "source_sha256": "20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380717+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L3"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/mul/overflow.rs",
+          "location": "line 196",
+          "content": "  195 |         // Number of k-bit words we can use in the lookup decomposition.\n  196 |         let num_words = 130 / sinsemilla::K;\n  197 |         assert!(num_words * sinsemilla::K == 130);",
+          "content_sha256": "d2f4cb9aa13b9f5ccf2304d9a9ee85fd54de84c51ab8c4564a2a0908e5b25cba",
+          "source_sha256": "20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380726+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L196"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/ecc/chip/mul/overflow.rs",
+          "location": "line 197",
+          "content": "  196 |         let num_words = 130 / sinsemilla::K;\n  197 |         assert!(num_words * sinsemilla::K == 130);\n  198 | ",
+          "content_sha256": "5bbefdc3ba4e31fe189d9510accebddf6ee3906a4ee0647237cd0fe017f4c732",
+          "source_sha256": "20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380730+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L197"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/lib.rs",
+          "location": "line 26",
+          "content": "   25 | pub mod poseidon;\n   26 | pub mod sinsemilla;\n   27 | pub mod utilities;",
+          "content_sha256": "7f45c76f548f226657d7df19a6981a3f52ab4069301de34bed3372100aa241ea",
+          "source_sha256": "4434c72bd5a92f8cba995ec280ae3b20a25308accbf6058e411fa84988b49dac",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380733+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/lib.rs#L26"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/sinsemilla.rs",
+          "location": "line 20",
+          "content": "   19 | \n   20 | pub use ::sinsemilla as primitives;\n   21 | ",
+          "content_sha256": "8e138d1047bdd1d0ed85ffbdc93ada1a7eb922d7d4f9b76ae4173aa08ffca322",
+          "source_sha256": "99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380737+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L20"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/sinsemilla.rs",
+          "location": "line 26",
+          "content": "   25 | /// number of words that a single hash instance can process.\n   26 | pub trait SinsemillaInstructions<C: CurveAffine, const K: usize, const MAX_WORDS: usize> {\n   27 |     /// A variable in the circuit.",
+          "content_sha256": "99a1d2d2b6a53adc468da6ef45edfd75eecc776d41d76bd2d2706e2d4bf414f9",
+          "source_sha256": "99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380740+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L26"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/sinsemilla.rs",
+          "location": "line 121",
+          "content": "  120 | #[derive(Clone, Debug)]\n  121 | pub struct Message<C: CurveAffine, SinsemillaChip, const K: usize, const MAX_WORDS: usize>\n  122 | where",
+          "content_sha256": "43755b6d17985b02c033966cd61a74f023cb2aa64a145e7ee02fd3e05ad14292",
+          "source_sha256": "99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380743+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L121"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/sinsemilla/chip.rs",
+          "location": "line 5",
+          "content": "    4 |     message::{Message, MessagePiece},\n    5 |     primitives as sinsemilla, CommitDomains, HashDomains, SinsemillaInstructions,\n    6 | };",
+          "content_sha256": "b419059e91e6474372f4fc3227c6aff5fa80a6beab13b809d08628d36fa6314c",
+          "source_sha256": "ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380746+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L5"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/sinsemilla/chip.rs",
+          "location": "line 39",
+          "content": "   38 | #[derive(Eq, PartialEq, Clone, Debug)]\n   39 | pub struct SinsemillaConfig<Hash, Commit, F, Lookup = PallasLookupRangeCheckConfig>\n   40 | where",
+          "content_sha256": "76d32e781d39f14fedf833bd8677408480635d843cf59b53de8720cd674c0759",
+          "source_sha256": "ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380749+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L39"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "halo2_gadgets/src/sinsemilla/chip.rs",
+          "location": "line 76",
+          "content": "   75 | \n   76 | impl<Hash, Commit, F, Lookup> SinsemillaConfig<Hash, Commit, F, Lookup>\n   77 | where",
+          "content_sha256": "b1107413b5bff30832ec37e0b00500bae36ef605c95fbbb9a3759062dd2fe6ab",
+          "source_sha256": "ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.380753+00:00",
+          "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L76"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "7da08c12-92b0-4262-ae13-b43401656ef0",
+      "public_id": "QSI-2026-07298",
+      "rule_id": "DEP-ADVISORY-DEV",
+      "title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 3 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
+      "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.",
+      "method": "Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.",
+      "repro": "Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в Cargo.lock.",
+      "category": "dependencies",
+      "classification": "improvement",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies:crates.io:non-runtime",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-29T23:45:51.404994+00:00",
+      "risk_score": 15.5,
+      "risk_breakdown": {
+        "score": 15.5,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.23,
+          "urgency": 0.6,
+          "exposure": 0.2,
+          "severity": 0.05,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 22.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.6,
+          "urgency": 6.0,
+          "exposure": 3.0,
+          "severity": 1.25,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "OSV-DEV",
+          "url": "https://osv.dev/",
+          "title": "OSV.dev — open-source vulnerability database and API",
+          "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+          "publisher": "Open Source Security Foundation"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev (crates.io)",
+          "location": "Cargo.lock",
+          "content": "gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214\nquick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195",
+          "content_sha256": "616397a43959bf6a4ed1107e089d8fabf0b48f7c38a24a6c6d33520152314344",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.671198+00:00",
+          "url": "https://osv.dev/"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите зависимости разработки и сборки из доказательства.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "6bea7b89-98bd-42a0-affe-391bc7e7cf92",
+      "public_id": "QSI-2026-07296",
+      "rule_id": "DEP-NO-PQC-LIBRARY",
+      "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
+      "description": "В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC.",
+      "impact": "Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.",
+      "recommendation": "Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).",
+      "retest": "Повторите сканирование после обновлений.",
+      "limitations": "Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.",
+      "method": "Сопоставление названий зависимостей.",
+      "repro": "Изучите перечисленные в доказательстве манифесты.",
+      "category": "post_quantum",
+      "classification": "insufficient_data",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies",
+      "data_source": "dependency manifests",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-29T23:45:51.361734+00:00",
+      "risk_score": 13.3,
+      "risk_breakdown": {
+        "score": 13.3,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.24,
+          "urgency": 0.3,
+          "exposure": 0.3,
+          "severity": 0.05,
+          "exploitability": 0.0
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 19.55,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.8,
+          "urgency": 3.0,
+          "exposure": 4.5,
+          "severity": 1.25,
+          "exploitability": 0.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "FIPS203",
+          "url": "https://csrc.nist.gov/pubs/fips/203/final",
+          "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        },
+        {
+          "key": "FIPS204",
+          "url": "https://csrc.nist.gov/pubs/fips/204/final",
+          "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "dependency",
+          "source": "Cargo.lock, Cargo.toml, halo2/Cargo.toml, halo2_gadgets/Cargo.toml, halo2_poseidon/Cargo.toml, halo2_proofs/Cargo.toml",
+          "location": null,
+          "content": "Crypto libraries: ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla",
+          "content_sha256": "e3f047d63f0a64fea96d533760fe7bdaa0eb56367b01de8a327ec457c0414f85",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.399842+00:00",
+          "url": null
+        }
+      ],
+      "remediation": []
+    },
+    {
+      "id": "b542871a-54ec-46e7-8fd2-8af070f43747",
+      "public_id": "QSI-2026-07297",
+      "rule_id": "DEP-ADVISORY-INFORMATIONAL",
+      "title": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)",
+      "description": "OSV.dev отмечает RUSTSEC-2026-0192 для пакета crates.io ttf-parser версии 0.20.0 как информационный (unmaintained): `ttf-parser` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
+      "impact": "Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.",
+      "recommendation": "Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.",
+      "retest": "Повторите сканирование зависимостей после изменения.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0192",
+      "category": "dependencies",
+      "classification": "improvement",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "reachability": "unknown",
+      "affected_asset": "dependency:crates.io/ttf-parser@0.20.0",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-29T23:45:51.393439+00:00",
+      "risk_score": 11.8,
+      "risk_breakdown": {
+        "score": 11.8,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.15,
+          "urgency": 0.3,
+          "exposure": 0.3,
+          "severity": 0.05,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 19.75,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 3.0,
+          "urgency": 3.0,
+          "exposure": 4.5,
+          "severity": 1.25,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.6
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "RUSTSEC-2026-0192",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0192",
+          "title": "OSV advisory RUSTSEC-2026-0192",
+          "status": "modified 2026-06-29T21:15:04.384453633Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev RUSTSEC-2026-0192",
+          "location": "manifest",
+          "content": "{\"id\": \"RUSTSEC-2026-0192\", \"aliases\": [], \"modified\": \"2026-06-29T21:15:04.384453633Z\", \"summary\": \"`ttf-parser` is unmaintained\", \"severity\": null, \"declared_in_manifest\": false}",
+          "content_sha256": "d3f7ce2105a490b5cc0802ff198a1ca809120d266ed32b6200a30a1ab6d06752",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-29T23:45:51.410854+00:00",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0192"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Могут потребоваться изменения кода.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "ttf-parser заменён или решение зафиксировано.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
+    "pq_findings": [
+      "QSI-2026-07294",
+      "QSI-2026-07295"
+    ],
+    "roles": [
+      {
+        "role": "general",
+        "label": "роль не определена",
+        "action": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "Halo 2 (IPA)",
+            "files": 34
+          },
+          {
+            "algorithm": "Sinsemilla",
+            "files": 9
+          }
+        ],
+        "findings": [
+          "QSI-2026-07294",
+          "QSI-2026-07295"
+        ],
+        "files": 43
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "постквантовой криптографии нет",
+      "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-dlog",
+        "name": "Алгоритм Шора — дискретный логарифм в конечных полях",
+        "effect": "breaks",
+        "effect_label": "взламывает",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "PLONK (KZG)",
+            "rows": 1
+          }
+        ],
+        "audit": "Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA.",
+        "practicality": "Гидни–Экеро (2021) оценивают RSA и дискретный логарифм в конечных полях вместе; ресурсы одного порядка. Экеро–Гертнер (2024) сравнивают современные варианты алгоритмов для групп безопасных простых и групп Шнорра.",
+        "sources": [
+          "SHOR1997",
+          "GIDNEY-EKERA2021",
+          "EKERA-GARTNER2024"
+        ]
+      },
+      {
+        "id": "shor-ecdlp",
+        "name": "Алгоритм Шора — дискретный логарифм на эллиптических кривых",
+        "effect": "breaks",
+        "effect_label": "взламывает",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "ECDSA",
+            "rows": 1
+          },
+          {
+            "algorithm": "Halo 2 (IPA)",
+            "rows": 34
+          },
+          {
+            "algorithm": "PLONK (KZG)",
+            "rows": 1
+          },
+          {
+            "algorithm": "Sinsemilla",
+            "rows": 9
+          }
+        ],
+        "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
+        "practicality": "Оценки 2026 года для 256-битной кривой: менее 1200 логических кубитов и 90 млн вентилей Тоффоли, менее полумиллиона физических сверхпроводниковых кубитов и минуты работы (Баббуш и др.); 1193 логических кубита при большем числе вентилей (Шевиньяр–Фук–Шроттенлохер); P-256 за несколько дней на 26 000 кубитов на нейтральных атомах (Кейн и др.). Сценарии при заявленных допущениях, а не прогнозы.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "grover",
+        "name": "Алгоритм Гровера — поиск ключа и прообразов",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Poseidon",
+            "rows": 4
+          }
+        ],
+        "audit": "Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.",
+        "practicality": "Поиск долгий и последовательный: NIST оценивает поиск ключа AES-128 в 2^170/MAXDEPTH квантовых вентилей при MAXDEPTH от 2^40 до 2^96 и использует его как эталон категории стойкости 1; прообраз SHA-256 оценён примерно в 2^153,8 циклов поверхностного кода на 2^12,6 логических кубитах (Эми и др., 2016).",
+        "sources": [
+          "GROVER1996",
+          "ZALKA1999",
+          "NIST-PQC-SEC",
+          "JAQUES2020",
+          "AMY2016"
+        ]
+      },
+      {
+        "id": "bht-collision",
+        "name": "Брассар–Хойер–Тапп — поиск коллизий",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Poseidon",
+            "rows": 4
+          }
+        ],
+        "audit": "256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.",
+        "practicality": "Бернштейн (2009) показал, что с учётом стоимости оборудования этот поиск не дешевле классического параллельного поиска коллизий; NIST определяет категорию стойкости 2 через поиск коллизий SHA3-256 в классических вентилях (2^146).",
+        "sources": [
+          "BHT-COLLISION1998",
+          "CNS2017",
+          "BERNSTEIN2009-COLLISION",
+          "NIST-PQC-SEC"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "усреднённая оценка"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "вполне возможно"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "вероятно"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-07294",
+        "finding_title": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-07295",
+        "finding_title": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-07294",
+        "finding_title": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-07295",
+        "finding_title": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите зависимости разработки и сборки из доказательства.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+        "status": "todo",
+        "finding": "QSI-2026-07298",
+        "finding_title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
+        "severity": "info"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Могут потребоваться изменения кода.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "ttf-parser заменён или решение зафиксировано.",
+        "status": "todo",
+        "finding": "QSI-2026-07297",
+        "finding_title": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)",
+        "severity": "info"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CNS2017",
+      "title": "A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2017/847",
+      "status": "peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory"
+    },
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "GIDNEY-EKERA2021",
+      "title": "C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433)",
+      "publisher": "Quantum",
+      "url": "https://doi.org/10.22331/q-2021-04-15-433",
+      "status": "peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time"
+    },
+    {
+      "key": "ZALKA1999",
+      "title": "C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070)",
+      "publisher": "APS",
+      "url": "https://doi.org/10.1103/PhysRevA.60.2746",
+      "status": "peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "BERNSTEIN2009-COLLISION",
+      "title": "D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009)",
+      "publisher": "cr.yp.to",
+      "url": "https://cr.yp.to/hash/collisioncost-20090823.pdf",
+      "status": "paper dated 2009-08-23"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "BHT-COLLISION1998",
+      "title": "G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/quant-ph/9705002",
+      "status": "peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "GROVER1996",
+      "title": "L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996)",
+      "publisher": "ACM",
+      "url": "https://doi.org/10.1145/237814.237866",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "AMY2016",
+      "title": "M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1603.09383",
+      "status": "peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "EKERA-GARTNER2024",
+      "title": "M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2405.14381",
+      "status": "preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "NIST-PQC-SEC",
+      "title": "NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)",
+      "status": "security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96"
+    },
+    {
+      "key": "RUSTSEC-2026-0192",
+      "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0192",
+      "title": "OSV advisory RUSTSEC-2026-0192",
+      "status": "modified 2026-06-29T21:15:04.384453633Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "OSV-DEV",
+      "url": "https://osv.dev/",
+      "title": "OSV.dev — open-source vulnerability database and API",
+      "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+      "publisher": "Open Source Security Foundation"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    },
+    {
+      "key": "JAQUES2020",
+      "title": "S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1910.01700",
+      "status": "peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/lib.rs:25",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (37 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/poseidon.rs:28",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 37
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/poseidon/pow5.rs:15",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (4 reference(s))",
+      "library": "",
+      "location": "halo2_poseidon/src/lib.rs:162",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 4
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14.0",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14.0",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.2.0",
+      "usage": "crates.io dependency",
+      "library": "sinsemilla (sinsemilla)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.6.0",
+      "usage": "crates.io dependency",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.2",
+      "usage": "crates.io dependency",
+      "library": "sinsemilla (sinsemilla)",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.2",
+      "usage": "crates.io dependency",
+      "library": "halo2_poseidon (halo2 (Zcash))",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.4",
+      "usage": "crates.io dependency",
+      "library": "halo2_proofs (halo2 (Zcash))",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.6",
+      "usage": "crates.io dependency",
+      "library": "halo2_gadgets (halo2 (Zcash))",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.6",
+      "usage": "crates.io dependency",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "halo2_proofs (halo2 (Zcash))",
+      "location": "halo2/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "halo2_gadgets/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "halo2_gadgets/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "sinsemilla (sinsemilla)",
+      "location": "halo2_gadgets/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "location": "halo2_gadgets/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "halo2_proofs (halo2 (Zcash))",
+      "location": "halo2_gadgets/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "halo2_poseidon (halo2 (Zcash))",
+      "location": "halo2_gadgets/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "halo2_poseidon/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "location": "halo2_poseidon/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "halo2_poseidon/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "location": "halo2_proofs/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "halo2_proofs/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "halo2_proofs/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc.rs",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc.rs:5",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip.rs:12",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/add.rs:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/add_incomplete.rs:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/constants.rs:5",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/layout_dump.rs:5",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul.rs:12",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul/complete.rs:5",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul/incomplete.rs:6",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul/overflow.rs:8",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul_fixed.rs:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul_fixed/base_field_elem.rs:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul_fixed/full_width.rs:6",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul_fixed/short.rs:6",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/witness_point.rs:5",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/poseidon.rs:7",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/poseidon/pow5.rs:5",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla.rs:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/chip.rs:16",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/chip/generator_table.rs:3",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/merkle.rs:3",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/merkle/chip.rs:3",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/message.rs:3",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/utilities.rs:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/utilities/cond_swap.rs:7",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/utilities/decompose_running_sum.rs:38",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/utilities/lookup_range_check.rs:4",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_proofs/src/circuit/layouter.rs:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_proofs/src/plonk.rs:81",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_proofs/src/plonk/circuit/fixture.rs:122",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "halo2_proofs/src/plonk/fingerprint/vesta_lean.rs:920",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "halo2_proofs/src/poly/commitment.rs:52",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "halo2_proofs/src/transcript.rs:78",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "PLONK (KZG)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "halo2_proofs/src/plonk.rs",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/ecc/chip/mul/overflow.rs:3",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/lib.rs:26",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (74 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla.rs:20",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 74
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (15 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/chip.rs:5",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 15
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/chip/generator_table.rs:11",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (22 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs:1",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 22
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/merkle.rs:9",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (47 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/sinsemilla/merkle/chip.rs:13",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 47
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (6 reference(s))",
+      "library": "",
+      "location": "halo2_gadgets/src/utilities/lookup_range_check.rs:13",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 6
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "Poseidon",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 4,
+      "rows": 4,
+      "examples": [
+        "halo2_gadgets/src/lib.rs:25",
+        "halo2_gadgets/src/poseidon.rs:28",
+        "halo2_gadgets/src/poseidon/pow5.rs:15"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14.0",
+      "library": "group (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14.0",
+      "library": "ff (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.2.0",
+      "library": "sinsemilla (sinsemilla)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.6.0",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14",
+      "library": "ff (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14",
+      "library": "group (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.2",
+      "library": "sinsemilla (sinsemilla)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.2",
+      "library": "halo2_poseidon (halo2 (Zcash))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.4",
+      "library": "halo2_proofs (halo2 (Zcash))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.6",
+      "library": "halo2_gadgets (halo2 (Zcash))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.6",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "halo2_proofs (halo2 (Zcash))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "halo2/Cargo.toml",
+        "halo2_gadgets/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "ff (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "halo2_gadgets/Cargo.toml",
+        "halo2_poseidon/Cargo.toml",
+        "halo2_proofs/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "group (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "halo2_gadgets/Cargo.toml",
+        "halo2_poseidon/Cargo.toml",
+        "halo2_proofs/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "sinsemilla (sinsemilla)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "halo2_gadgets/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "halo2_gadgets/Cargo.toml",
+        "halo2_poseidon/Cargo.toml",
+        "halo2_proofs/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "workspace",
+      "library": "halo2_poseidon (halo2 (Zcash))",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "halo2_gadgets/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "ECDSA",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "halo2_gadgets/src/ecc.rs"
+      ]
+    },
+    {
+      "algorithm": "Halo 2 (IPA)",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 34,
+      "rows": 34,
+      "examples": [
+        "halo2_gadgets/src/ecc.rs:5",
+        "halo2_gadgets/src/ecc/chip.rs:12",
+        "halo2_gadgets/src/ecc/chip/add.rs:4"
+      ]
+    },
+    {
+      "algorithm": "PLONK (KZG)",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "halo2_proofs/src/plonk.rs"
+      ]
+    },
+    {
+      "algorithm": "Sinsemilla",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 9,
+      "rows": 9,
+      "examples": [
+        "halo2_gadgets/src/ecc/chip/mul/overflow.rs:3",
+        "halo2_gadgets/src/lib.rs:26",
+        "halo2_gadgets/src/sinsemilla.rs:20"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "41 упоминаний Halo 2 (IPA) в 34 файл(ах), например halo2_gadgets/src/ecc.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "41 упоминаний Halo 2 (IPA) в 34 файл(ах), например halo2_gadgets/src/ecc.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-ADVISORY-DEV",
+              "name": "DepAdvisoryDev",
+              "shortDescription": {
+                "text": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает 3 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "help": {
+                "text": "OSV.dev сообщает 3 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "helpUri": "https://osv.dev/"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "help": {
+                "text": "В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            },
+            {
+              "id": "DEP-ADVISORY-INFORMATIONAL",
+              "name": "DepAdvisoryInformational",
+              "shortDescription": {
+                "text": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev отмечает RUSTSEC-2026-0192 для пакета crates.io ttf-parser версии 0.20.0 как информационный (unmaintained): `ttf-parser` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
+              },
+              "help": {
+                "text": "OSV.dev отмечает RUSTSEC-2026-0192 для пакета crates.io ttf-parser версии 0.20.0 как информационный (unmaintained): `ttf-parser` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0192"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "16060ad406fc8c2f23d4ba7828093154"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07294",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c1f1dad8ce42830902b853f9b1f9e5de"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07295",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки (dependencies: crates.io:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07298",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07296",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained) (dependency: crates.io/ttf-parser@0.20.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6cf4e0de09edb42b6561b25cd12f51fa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07297",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/halo2 @ 3442dd33754a/d67212cf-da52-4f4f-9ed8-97b7d8bd0835"
+      },
+      "properties": {
+        "qsiContentSha256": "78926dc2f6ba69925f7b5b54cd0fde297409fa72872eddb930be8eaf5f1f29da",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-10-29T23:45:52.129553+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "3442dd33754ae0d44b8970e5a4eea79b0c3360bf",
+          "repositoryUri": "https://github.com/zcash/halo2"
+        }
+      ]
+    }
+  ]
+}

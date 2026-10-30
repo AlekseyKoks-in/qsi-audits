@@ -14,7 +14,7 @@
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "52 advisories in 16 development or build-only Maven package(s)"
+                "text": "52 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -28,10 +28,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev lists 52 advisories (23 rated high or critical) for 16 Maven package(s) that only development or build tooling pulls in (build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile): e.g. com.google.guava:guava@33.3.1-android [build]: GHSA-xxph-c9ww-hj94; com.google.guava:guava@33.3.1-jre [build]: GHSA-xxph-c9ww-hj94; io.netty:netty-codec@4.1.110.Final [build]: GHSA-3p8m-j85q-pgmj, GHSA-558v-64gr-wgg4, GHSA-mj4r-2hfc-f8p6; io.netty:netty-codec-http@4.1.110.Final [build]: GHSA-38f8-5428-x5cv, GHSA-4mp9-239f-g9hg, GHSA-57rv-r2g8-2cj3, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w, GHSA-84h7-rjj3-6jx4, GHSA-8c42-7qj2-3j46, GHSA-f6hv-jmp6-3vwv, GHSA-fghv-69vj-qj49, GHSA-gcjf-9mgh-3p7g, GHSA-hvcg-qmg6-jm4c, GHSA-jppx-w49h-x2qq, GHSA-m4cv-j2px-7723, GHSA-mvh2-crg5-v77c, GHSA-pwqr-wmgm-9rr8, GHSA-q4f6-jm68-57ww, GHSA-v8h7-rr48-vmmv, GHSA-xxqh-mfjm-7mv9; io.netty:netty-codec-http2@4.1.110.Final [build]: GHSA-563q-j3cm-6jxm, GHSA-5x3r-wrvg-rp6q, GHSA-93wv-jw9v-4972, GHSA-…"
+                "text": "OSV.dev сообщает 52 бюллетеней (23 с оценкой high или critical) для 16 пакет(ов) Maven, которые подтягивают только инструменты разработки или сборки (build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile): например, com.google.guava:guava@33.3.1-android [build]: GHSA-xxph-c9ww-hj94; com.google.guava:guava@33.3.1-jre [build]: GHSA-xxph-c9ww-hj94; io.netty:netty-codec@4.1.110.Final [build]: GHSA-3p8m-j85q-pgmj, GHSA-558v-64gr-wgg4, GHSA-mj4r-2hfc-f8p6; io.netty:netty-codec-http@4.1.110.Final [build]: GHSA-38f8-5428-x5cv, GHSA-4mp9-239f-g9hg, GHSA-57rv-r2g8-2cj3, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w, GHSA-84h7-rjj3-6jx4, GHSA-8c42-7qj2-3j46, GHSA-f6hv-jmp6-3vwv, GHSA-fghv-69vj-qj49, GHSA-gcjf-9mgh-3p7g, GHSA-hvcg-qmg6-jm4c, GHSA-jppx-w49h-x2qq, GHSA-m4cv-j2px-7723, GHSA-mvh2-crg5-v77c, GHSA-pwqr-wmgm-9rr8, GHSA-q4f6-jm68-57ww, GHSA-v8h7-rr48-vmmv, GHSA-xxqh-mfjm-7mv9; io.netty:netty-codec-http2@4.1.110.Final [build]: GHSA-563q-j3cm-6jxm, GHSA-5x3r-wrvg-rp6q,…"
               },
               "help": {
-                "text": "OSV.dev lists 52 advisories (23 rated high or critical) for 16 Maven package(s) that only development or build tooling pulls in (build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile): e.g. com.google.guava:guava@33.3.1-android [build]: GHSA-xxph-c9ww-hj94; com.google.guava:guava@33.3.1-jre [build]: GHSA-xxph-c9ww-hj94; io.netty:netty-codec@4.1.110.Final [build]: GHSA-3p8m-j85q-pgmj, GHSA-558v-64gr-wgg4, GHSA-mj4r-2hfc-f8p6; io.netty:netty-codec-http@4.1.110.Final [build]: GHSA-38f8-5428-x5cv, GHSA-4mp9-239f-g9hg, GHSA-57rv-r2g8-2cj3, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w, GHSA-84h7-rjj3-6jx4, GHSA-8c42-7qj2-3j46, GHSA-f6hv-jmp6-3vwv, GHSA-fghv-69vj-qj49, GHSA-gcjf-9mgh-3p7g, GHSA-hvcg-qmg6-jm4c, GHSA-jppx-w49h-x2qq, GHSA-m4cv-j2px-7723, GHSA-mvh2-crg5-v77c, GHSA-pwqr-wmgm-9rr8, GHSA-q4f6-jm68-57ww, GHSA-v8h7-rr48-vmmv, GHSA-xxqh-mfjm-7mv9; io.netty:netty-codec-http2@4.1.110.Final [build]: GHSA-563q-j3cm-6jxm, GHSA-5x3r-wrvg-rp6q, GHSA-93wv-jw9v-4972, GHSA-c2gf-v879-257j, GHSA-c69g-56f8-xwqj, GHSA-f6hv-jmp6-3vwv, GHSA-prj3-ccx8-p6x4, GHSA-w9fj-cfpg-grvv. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships. Update the tooling during routine maintenance; prioritise packages that run in CI with secrets or that produce release artefacts. Advisory data comes from OSV.dev at the recorded time. Scopes come from the manifests; a registry crate's own build dependencies cannot be told apart in Cargo.lock, so the runtime set may be larger than reality, never smaller."
+                "text": "OSV.dev сообщает 52 бюллетеней (23 с оценкой high или critical) для 16 пакет(ов) Maven, которые подтягивают только инструменты разработки или сборки (build-conventions-secant/gradle.lockfile, buildSrc/buildscript-gradle.lockfile): например, com.google.guava:guava@33.3.1-android [build]: GHSA-xxph-c9ww-hj94; com.google.guava:guava@33.3.1-jre [build]: GHSA-xxph-c9ww-hj94; io.netty:netty-codec@4.1.110.Final [build]: GHSA-3p8m-j85q-pgmj, GHSA-558v-64gr-wgg4, GHSA-mj4r-2hfc-f8p6; io.netty:netty-codec-http@4.1.110.Final [build]: GHSA-38f8-5428-x5cv, GHSA-4mp9-239f-g9hg, GHSA-57rv-r2g8-2cj3, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w, GHSA-84h7-rjj3-6jx4, GHSA-8c42-7qj2-3j46, GHSA-f6hv-jmp6-3vwv, GHSA-fghv-69vj-qj49, GHSA-gcjf-9mgh-3p7g, GHSA-hvcg-qmg6-jm4c, GHSA-jppx-w49h-x2qq, GHSA-m4cv-j2px-7723, GHSA-mvh2-crg5-v77c, GHSA-pwqr-wmgm-9rr8, GHSA-q4f6-jm68-57ww, GHSA-v8h7-rr48-vmmv, GHSA-xxqh-mfjm-7mv9; io.netty:netty-codec-http2@4.1.110.Final [build]: GHSA-563q-j3cm-6jxm, GHSA-5x3r-wrvg-rp6q, GHSA-93wv-jw9v-4972, GHSA-c2gf-v879-257j, GHSA-c69g-56f8-xwqj, GHSA-f6hv-jmp6-3vwv, GHSA-prj3-ccx8-p6x4, GHSA-w9fj-cfpg-grvv. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
             },
@@ -39,7 +39,7 @@
               "id": "DEP-NO-PQC-LIBRARY",
               "name": "DepNoPqcLibrary",
               "shortDescription": {
-                "text": "No post-quantum capable cryptographic library detected"
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -53,10 +53,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "Across 10 dependency manifests, QSI found crypto libraries (org.bouncycastle:bcprov-jdk18on) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+                "text": "В 10 манифестах зависимостей QSI нашёл криптобиблиотеки (org.bouncycastle:bcprov-jdk18on), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "Across 10 dependency manifests, QSI found crypto libraries (org.bouncycastle:bcprov-jdk18on) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+                "text": "В 10 манифестах зависимостей QSI нашёл криптобиблиотеки (org.bouncycastle:bcprov-jdk18on), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -69,13 +69,13 @@
           "ruleIndex": 0,
           "level": "note",
           "message": {
-            "text": "52 advisories in 16 development or build-only Maven package(s) (dependencies: Maven:non-runtime)"
+            "text": "52 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки (dependencies: Maven:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "6f89f0407e6a493a1e36119717c018de"
           },
           "properties": {
-            "qsiId": "QSI-2026-05265",
+            "qsiId": "QSI-2026-07175",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -96,13 +96,13 @@
           "ruleIndex": 1,
           "level": "note",
           "message": {
-            "text": "No post-quantum capable cryptographic library detected"
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-05264",
+            "qsiId": "QSI-2026-07174",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -111,13 +111,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/zodl-android @ 229dd3bff749/6b539d4a-eef3-4846-a464-de667f7610a8"
+        "id": "qsi/zodl-android @ 229dd3bff749/4d7a76e4-7215-4b07-9d88-6009bdb3d94d"
       },
       "properties": {
-        "qsiContentSha256": "0c00bdc5593a25af9f9a0fe8c051afd695a843eb50b641638c48ceff2a06ee0d",
+        "qsiContentSha256": "6d6fdd62ef733486842482cec3ae478f7c091edf0805840ded02a77a558a06b6",
         "qsiReportVersion": 1,
-        "qsiRiskProfile": "small_tech",
-        "qsiGeneratedAt": "2026-10-28T13:06:57.512715+00:00",
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-10-29T23:18:24.160381+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

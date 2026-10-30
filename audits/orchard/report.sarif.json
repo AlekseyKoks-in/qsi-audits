@@ -1,0 +1,564 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
+          "version": "1.2.0",
+          "rules": [
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (14 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "98 упоминаний Pedersen commitment в 14 файл(ах), например src/action.rs:12. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "98 упоминаний Pedersen commitment в 14 файл(ах), например src/action.rs:12. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "rustix 0.38.11 затронут GHSA-c827-hfw6-qwvm (CVE-2024-43806)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "6.5"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает GHSA-c827-hfw6-qwvm (CVE-2024-43806) для пакета crates.io rustix версии 0.38.11: rustix's `rustix::fs::Dir` iterator with the `linux_raw` backend can cause memory explosion. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (0.35.15, 0.36.16, 0.37.25, 0.38.19). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "help": {
+                "text": "OSV.dev сообщает GHSA-c827-hfw6-qwvm (CVE-2024-43806) для пакета crates.io rustix версии 0.38.11: rustix's `rustix::fs::Dir` iterator with the `linux_raw` backend can cause memory explosion. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (0.35.15, 0.36.16, 0.37.25, 0.38.19). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-c827-hfw6-qwvm"
+            },
+            {
+              "id": "DEP-ADVISORY-UNRATED",
+              "name": "DepAdvisoryUnrated",
+              "shortDescription": {
+                "text": "anyhow 1.0.75 затронут RUSTSEC-2026-0190 (без оценки серьёзности)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает RUSTSEC-2026-0190 для пакета crates.io anyhow версии 1.0.75: Unsoundness in `Error::downcast_mut()`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (anyhow::Error::downcast_mut); anyhow приходит через другие зависимости, которые могут их вызывать. Разберите бюллетень; если он применим, обновите до исправленной версии (1.0.103). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "help": {
+                "text": "OSV.dev сообщает RUSTSEC-2026-0190 для пакета crates.io anyhow версии 1.0.75: Unsoundness in `Error::downcast_mut()`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (anyhow::Error::downcast_mut); anyhow приходит через другие зависимости, которые могут их вызывать. Разберите бюллетень; если он применим, обновите до исправленной версии (1.0.103). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0190"
+            },
+            {
+              "id": "DEP-ADVISORY-DEV",
+              "name": "DepAdvisoryDev",
+              "shortDescription": {
+                "text": "4 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev сообщает 4 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "help": {
+                "text": "OSV.dev сообщает 4 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+              },
+              "helpUri": "https://osv.dev/"
+            },
+            {
+              "id": "DEP-NO-PQC-LIBRARY",
+              "name": "DepNoPqcLibrary",
+              "shortDescription": {
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "insufficient_data"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, pasta_curves, reddsa, sinsemilla, zcash_note_encryption, zcash_spec, zip32), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "help": {
+                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, pasta_curves, reddsa, sinsemilla, zcash_note_encryption, zcash_spec, zip32), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
+            },
+            {
+              "id": "DEP-ADVISORY-INFORMATIONAL",
+              "name": "DepAdvisoryInformational",
+              "shortDescription": {
+                "text": "adler 1.0.2: информационный бюллетень RUSTSEC-2025-0056 (unmaintained)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "improvement"
+                ],
+                "security-severity": "1.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev отмечает RUSTSEC-2025-0056 для пакета crates.io adler версии 1.0.2 как информационный (unmaintained): adler crate is unmaintained, use adler2 instead. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
+              },
+              "help": {
+                "text": "OSV.dev отмечает RUSTSEC-2025-0056 для пакета crates.io adler версии 1.0.2 как информационный (unmaintained): adler crate is unmaintained, use adler2 instead. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей. Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет. Данные получены от OSV.dev в зафиксированное время."
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2025-0056"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (14 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07278",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Halo 2 (IPA): роль не определена (16 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "16060ad406fc8c2f23d4ba7828093154"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07279",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый RedDSA: роль не определена (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8523edb9ce7f414dc285e274554d2cfa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07280",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c1f1dad8ce42830902b853f9b1f9e5de"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07281",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "456f634943fc1707e18c94639d3e1722"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07282",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "rustix 0.38.11 затронут GHSA-c827-hfw6-qwvm (CVE-2024-43806) (dependency: crates.io/rustix@0.38.11)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d428d012e45c1a1cbd8cc8d27b607ade"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07291",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "rand 0.8.5 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097) (dependency: crates.io/rand@0.8.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07290",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "anyhow 1.0.75 затронут RUSTSEC-2026-0190 (без оценки серьёзности) (dependency: crates.io/anyhow@1.0.75)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07285",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "crossbeam-epoch 0.9.15 затронут RUSTSEC-2026-0204 (без оценки серьёзности) (dependency: crates.io/crossbeam-epoch@0.9.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "448a6164ab26507814c597ba435e2257"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07286",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности) (dependency: crates.io/ctutils@0.4.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07287",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "4 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки (dependencies: crates.io:non-runtime)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07293",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07283",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "insufficient_data",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "adler 1.0.2: информационный бюллетень RUSTSEC-2025-0056 (unmaintained) (dependency: crates.io/adler@1.0.2)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d5bac48d64a6bf2f66ad3ad87972b471"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07284",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained) (dependency: crates.io/paste@1.0.15)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07288",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained) (dependency: crates.io/proc-macro-error2@2.0.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8412cde0bf828d754dd3b306bfe8c506"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07289",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-INFORMATIONAL",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained) (dependency: crates.io/ttf-parser@0.20.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6cf4e0de09edb42b6561b25cd12f51fa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07292",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "improvement",
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/orchard @ 616a669df8c9/0cc500f4-9a7d-4d9d-946a-1fe4829c79a6"
+      },
+      "properties": {
+        "qsiContentSha256": "638cc4f1f581e5f8f4b801f9303b6938cf0c446fb09c5fc6e07d71953fd31043",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-10-29T23:44:30.847175+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "616a669df8c9a59c33d47064d3ce04b25d026b2e",
+          "repositoryUri": "https://github.com/zcash/orchard"
+        }
+      ]
+    }
+  ]
+}

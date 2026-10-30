@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"907f372d-4e25-4107-9fa1-dea317171002\",\"content_sha256\":\"121c19c60c0efe8d69737aefe8bbd6df5eb0867316cb975e81ab39f95de3b3c2\",\"files_sha256\":{\"html\":\"3d9a367dea685b0814ecf4592a1e07f2929c0cfcbd2a5762e514a9fb929818fd\",\"json\":\"356634377ad5e144e3da351b81a3af519556f3535c8f458ce7a874e52bd6eba9\",\"md\":\"0814b3b82c6e3462fa050884bdd43ed662f9b15cbeaead6b4143b7a2c93cd025\",\"pdf\":\"3fcdba314927fd0a1c56c53eee8be38daad7398e16e425e63efdf5b182925270\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"ru\",\"organization\":\"QSI\",\"project\":\"sapling-crypto @ 88a7946b4a30\",\"report_id\":\"73c2a8c5-7226-4459-a055-bcb4fbb5d5b3\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-10-29T23:02:29+00:00\",\"version\":1}",
+  "signature": "yF/my5wh7MSzSmAIAglCfVKcjyAyxDgWbKn0hjGmXuetD0Plm1p2tBZLUJIt2Lso6qS0IP/KvVoQM5mMP43iDA=="
+}

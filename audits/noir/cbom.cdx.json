@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:5ee734a1-20f1-4a40-89ba-9223d1197e4d",
+  "serialNumber": "urn:uuid:e3bf605b-06b4-476e-a86e-e6514db6e2e9",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-28T12:43:23Z",
+    "timestamp": "2026-10-29T23:31:18Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "68f75c6d-22be-4291-aec7-88b8e92b6aa8",
+      "bom-ref": "6d14596a-f861-4ac2-84cd-7b2e4bb2b919",
       "name": "AES-128",
       "properties": [
         {
@@ -71,7 +71,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5a850dd9-46ed-45ab-bcc7-724d00ea753b",
+      "bom-ref": "84efbec5-c2a9-4d1b-812f-08b7960fd218",
       "name": "AES-128",
       "properties": [
         {
@@ -124,7 +124,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a50f73d1-5432-436f-965c-66d306983031",
+      "bom-ref": "15c14335-b469-4b02-997c-5ac8e89496ec",
       "name": "BLAKE3",
       "properties": [
         {
@@ -172,7 +172,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a5a0a8ac-a464-4375-b17f-e9faf7f3756b",
+      "bom-ref": "057cdcae-0c04-4ae6-af5c-2b739c8c9503",
       "name": "BLS12-381",
       "properties": [
         {
@@ -218,7 +218,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c6e305a9-80e5-494e-8548-2a5bbd926064",
+      "bom-ref": "77b16181-d161-4b17-8a85-2495a6dfb4af",
       "name": "BLS12-381",
       "properties": [
         {
@@ -264,171 +264,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "192dce47-4bb4-4cb8-941e-32d39a3cbcdc",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "ecdsa (python-ecdsa)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "7a470d47-3932-4fc0-ae77-64e72c0f8b8d",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "rustls (rustls)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "e838cb9c-1ad3-46a4-8643-6f40b660be50",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "p256 (RustCrypto elliptic curves)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "3caaa208-5edd-4306-b64a-bc4454f3aceb",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "k256 (RustCrypto elliptic curves)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "84097fe1-b741-4b70-ad57-d3fb11e27a51",
+      "bom-ref": "be1cef8a-fb6b-4b35-8a83-a75f451173d0",
       "name": "Crypto library",
       "properties": [
         {
@@ -469,7 +305,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "df4177b1-6122-4b45-89a3-18ef5d5b34d8",
+      "bom-ref": "e97f3a45-83d4-4b09-9f1f-e8bad494a083",
       "name": "Crypto library",
       "properties": [
         {
@@ -482,7 +318,130 @@
         },
         {
           "name": "qsi:location",
-          "value": "Cargo.toml"
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "rustls (rustls)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c5811f2a-e7b5-435e-b956-7283f54c0bc2",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "ecdsa (python-ecdsa)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e83b9e17-a26a-4cd7-9bb9-b7b33e9eec47",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "ff (jubjub)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8e10758a-2086-4670-b28e-a4066701dc18",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
         },
         {
           "name": "qsi:usage",
@@ -510,7 +469,89 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fc67760c-888d-46bd-a3dc-da73eea5ce9e",
+      "bom-ref": "4f46d249-8b79-4dfa-a75e-e03ef1b83a06",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "group (jubjub)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "80eb0821-ca45-4145-b719-e1a5d7f40a2f",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "k256 (RustCrypto elliptic curves)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "90a1216c-f199-454d-9ee9-fc1938cada65",
       "name": "Crypto library",
       "properties": [
         {
@@ -551,7 +592,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "92719578-3e82-4ffa-a23a-89fdde37a5a9",
+      "bom-ref": "b8c0e56d-0584-4604-a8a3-6b060ae2a430",
       "name": "Crypto library",
       "properties": [
         {
@@ -564,7 +605,7 @@
         },
         {
           "name": "qsi:location",
-          "value": "acvm-repo/blackbox_solver/Cargo.toml"
+          "value": "Cargo.toml"
         },
         {
           "name": "qsi:usage",
@@ -580,7 +621,7 @@
         },
         {
           "name": "qsi:library",
-          "value": "k256 (RustCrypto elliptic curves)"
+          "value": "p256 (RustCrypto elliptic curves)"
         }
       ],
       "cryptoProperties": {
@@ -592,7 +633,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "50665c94-7dad-417c-ae12-48c44db4b5ec",
+      "bom-ref": "5785c32b-5d53-483f-a0cf-a977e8f2e768",
       "name": "Crypto library",
       "properties": [
         {
@@ -633,7 +674,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cce38a15-4347-4c15-a54f-3dfd93785e1d",
+      "bom-ref": "4eebd0d6-a689-4623-adf3-c8711fbd7c72",
       "name": "Crypto library",
       "properties": [
         {
@@ -674,7 +715,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2aca0e80-236e-4524-8ecb-92dcd87a9982",
+      "bom-ref": "a2ed7d25-6abd-43e1-8928-ea7fc21835ce",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/blackbox_solver/Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "k256 (RustCrypto elliptic curves)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5912e1fc-ba1e-4124-95ab-a7c04d3f49a1",
       "name": "Crypto library",
       "properties": [
         {
@@ -719,7 +801,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a8a842da-cbc7-449b-a2b5-71efb3a40a0a",
+      "bom-ref": "cc67ac43-b819-4f2b-8966-fc193dd2a30d",
       "name": "Crypto library",
       "properties": [
         {
@@ -764,7 +846,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "465dd1eb-bed2-4d52-acfd-dd5e2cbaa4f3",
+      "bom-ref": "b90fb717-8d94-4b44-a1bf-ddf6c93807ac",
       "name": "Crypto library",
       "properties": [
         {
@@ -809,7 +891,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "55016606-bc14-4d20-8f9d-a832a6fc7237",
+      "bom-ref": "6a32bf7a-ff07-4921-bd64-374acdafd171",
       "name": "Crypto library",
       "properties": [
         {
@@ -854,7 +936,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "17421822-54a7-4507-a6ff-f9f7e205f97d",
+      "bom-ref": "b98ce574-e8bd-46db-b571-f8d07f15497e",
       "name": "Crypto library",
       "properties": [
         {
@@ -899,7 +981,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "77418041-6392-4704-b3b5-6553a13753c4",
+      "bom-ref": "f1908f15-eb34-4320-8b03-527e60bb1b9a",
       "name": "Crypto library",
       "properties": [
         {
@@ -944,7 +1026,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "364cfe98-1bfa-4ab2-9ec8-aa7931ddec62",
+      "bom-ref": "455c889d-0a0f-4cd0-a770-793be242a14f",
       "name": "Crypto library",
       "properties": [
         {
@@ -989,7 +1071,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fea6b679-8deb-45a8-8e3c-ae48df09af17",
+      "bom-ref": "c38b2f64-1461-4275-aa9a-d5caea7f39e3",
       "name": "Crypto library",
       "properties": [
         {
@@ -1034,7 +1116,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "65f6039e-8393-47a4-9fe8-bbe1ee3fb71f",
+      "bom-ref": "e522b22c-1066-4848-9b81-615bbf77ef10",
       "name": "Crypto library",
       "properties": [
         {
@@ -1079,7 +1161,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "115eab67-fc7f-46a4-9889-7dcea898162b",
+      "bom-ref": "7da5f6f1-ed0f-4e3e-adbf-625a63982fa0",
       "name": "Crypto library",
       "properties": [
         {
@@ -1124,7 +1206,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "98d694bd-9c38-45e4-a5d1-3d794aad63d6",
+      "bom-ref": "2ecf5e8e-e9ec-42e4-8a85-7a121352a816",
       "name": "Crypto library",
       "properties": [
         {
@@ -1169,7 +1251,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d45311b2-5c9d-4595-ab6c-1a467147fe2b",
+      "bom-ref": "f9ca9c16-0ab1-4d49-9b12-ec894a2fb8e3",
       "name": "Crypto library",
       "properties": [
         {
@@ -1214,7 +1296,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3f1846b6-013c-4779-a54e-62bde9d64539",
+      "bom-ref": "c3caba09-fe2f-411c-b74d-661b3314efb0",
       "name": "Crypto library",
       "properties": [
         {
@@ -1259,7 +1341,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "009f8e97-157d-4f16-8685-6ca1ebe2e512",
+      "bom-ref": "7304be86-357b-4e1d-b87b-56935c2141ad",
       "name": "Crypto library",
       "properties": [
         {
@@ -1304,7 +1386,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ce57d6b5-3dae-4ba0-9cfc-8ef8178e0139",
+      "bom-ref": "2d9bdd50-c356-4c7d-b7f5-affdea1d8099",
       "name": "Crypto library",
       "properties": [
         {
@@ -1349,7 +1431,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b8b9e961-eff1-4b43-ad63-5739fd93b45e",
+      "bom-ref": "62bbcec9-35bc-4e0f-b7bf-aea69cacbd4b",
       "name": "Crypto library",
       "properties": [
         {
@@ -1394,7 +1476,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7ec59a88-4f05-40db-855a-83a8643ab4db",
+      "bom-ref": "c3055fe8-0473-460b-911b-aca2cdf5884b",
       "name": "Crypto library",
       "properties": [
         {
@@ -1439,7 +1521,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7421d0f3-9c08-4d7f-bbf7-8aea42a1b420",
+      "bom-ref": "702414bb-2412-495e-8a4b-4ebc9385f017",
       "name": "ECDSA",
       "properties": [
         {
@@ -1486,7 +1568,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d0536678-60b7-4dfb-bf8b-a3b47e7d4d9a",
+      "bom-ref": "4ac18c38-6305-490f-85d8-2dfc8a7c9520",
       "name": "ECDSA",
       "properties": [
         {
@@ -1540,7 +1622,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "092aea9a-55b5-4f18-804f-2541a615e332",
+      "bom-ref": "7a7b527f-0c8f-476c-b7cd-e0ac3307b626",
       "name": "ECDSA",
       "properties": [
         {
@@ -1594,7 +1676,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "10a850f9-a4c6-4982-b106-44968c54f49f",
+      "bom-ref": "794da962-b5af-4ac0-841c-7b8ddbc3f2ff",
       "name": "ECDSA",
       "properties": [
         {
@@ -1648,7 +1730,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fd2efaab-582c-4fdd-a105-5dc8fee625be",
+      "bom-ref": "06db1bcf-1edc-45da-b329-eafd6e84a354",
       "name": "ECDSA",
       "properties": [
         {
@@ -1702,7 +1784,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ee1e9090-1326-418f-9173-33a955a8e541",
+      "bom-ref": "a059e616-05ab-4c39-ae23-77cf33f04987",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1720,6 +1802,52 @@
         {
           "name": "qsi:url",
           "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/noir_stdlib/docs/search-index.js#L747"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ac6588d7-b7f6-4813-9f0c-8ae6928bc432",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "tooling/nargo_cli/build.rs:197"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/tooling/nargo_cli/build.rs#L197"
         },
         {
           "name": "qsi:usage",
@@ -1748,12 +1876,12 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2f36bed2-7bfa-49cf-b1c1-33a868fa8cb5",
-      "name": "Pedersen commitment",
+      "bom-ref": "0c452b52-c87c-431e-85a1-4d49722c9d61",
+      "name": "Poseidon",
       "properties": [
         {
           "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
+          "value": "grover_reduced"
         },
         {
           "name": "qsi:classical_status",
@@ -1761,11 +1889,203 @@
         },
         {
           "name": "qsi:location",
-          "value": "tooling/nargo_cli/build.rs:198"
+          "value": "acvm-repo/acir/codegen/acir.cpp:1706"
         },
         {
           "name": "qsi:url",
-          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/tooling/nargo_cli/build.rs#L198"
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acir/codegen/acir.cpp#L1706"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (30 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "210dc71a-5d9e-40aa-bd87-c9c7356d421c",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/acir/src/circuit/black_box_functions.rs:40"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acir/src/circuit/black_box_functions.rs#L40"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3d8ce528-d694-4237-9787-1fe90d3c29bc",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/acir/src/circuit/opcodes/black_box_function_call.rs:366"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acir/src/circuit/opcodes/black_box_function_call.rs#L366"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (7 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0cffad57-5154-4761-8f18-c837dfc5272f",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/acir/src/parser/mod.rs:559"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acir/src/parser/mod.rs#L559"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "fd459bd1-cbf8-4a60-9ab4-e47450f2b991",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/acvm/src/compiler/optimizers/common_subexpression/mod.rs:495"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acvm/src/compiler/optimizers/common_subexpression/mod.rs#L495"
         },
         {
           "name": "qsi:usage",
@@ -1781,14 +2101,1264 @@
         },
         {
           "name": "qsi:registry_id",
-          "value": "pedersen-commitment"
+          "value": "poseidon"
         }
       ],
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "other",
-          "nistQuantumSecurityLevel": 0
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "35341946-8941-4ee4-a801-9106dbb17449",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/acvm/src/compiler/validator.rs:335"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acvm/src/compiler/validator.rs#L335"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "26bc25c1-46c2-47ea-8593-5ac10bb84522",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/acvm/src/pwg/blackbox/hash.rs:134"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acvm/src/pwg/blackbox/hash.rs#L134"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5a2f67c4-66be-4121-986c-1994d0b29641",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/acvm/src/pwg/blackbox/mod.rs:157"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/acvm/src/pwg/blackbox/mod.rs#L157"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f7be45a7-a3b4-473a-b7fe-3718a1c2df19",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/blackbox_solver/src/curve_specific_solver.rs:27"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/blackbox_solver/src/curve_specific_solver.rs#L27"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "fd4bd914-8034-4484-97df-647285693230",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/bn254_blackbox_solver/src/lib.rs:8"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/bn254_blackbox_solver/src/lib.rs#L8"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (5 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0fb1c017-8400-436a-a81d-26a53d2d849e",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/bn254_blackbox_solver/src/poseidon2.rs:6"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/bn254_blackbox_solver/src/poseidon2.rs#L6"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (10 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "96457fef-19e1-49f1-87ac-daafc933abf6",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/bn254_blackbox_solver/src/poseidon2_constants.rs:10"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/bn254_blackbox_solver/src/poseidon2_constants.rs#L10"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6fed069f-e53e-49ae-9fa0-9814be35f2c5",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/brillig/src/black_box.rs:103"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/brillig/src/black_box.rs#L103"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ea5ad65b-7d87-448a-86c6-80177e9edb6c",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "acvm-repo/brillig_vm/src/black_box.rs:231"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/acvm-repo/brillig_vm/src/black_box.rs#L231"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4b8cb398-16c3-40be-8c37-9b0e1d8734d1",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/acir/acir_context/black_box.rs:135"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/acir/acir_context/black_box.rs#L135"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5d8ba987-1b1b-4d74-8f57-e093479096b1",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/acir/acir_context/generated_acir/mod.rs:368"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/acir/acir_context/generated_acir/mod.rs#L368"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7a7b5f63-9aa3-4c06-9fc1-84a25dcdb454",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/acir/mod.rs:1000"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/acir/mod.rs#L1000"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f8fce383-a264-464d-9893-9f8de245536a",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/brillig/brillig_check.rs:664"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/brillig/brillig_check.rs#L664"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6a337cb3-97ff-479f-9e84-78a9633017ec",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/brillig/brillig_gen/brillig_call/brillig_black_box.rs:199"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/brillig/brillig_gen/brillig_call/brillig_black_box.rs#L199"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0aad2d37-f5c1-4473-823a-c441038b1167",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/brillig/brillig_ir/debug_show.rs:159"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/brillig/brillig_ir/debug_show.rs#L159"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8036246f-445b-4cba-ae5b-6fada9b4c9ee",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/ssa/interpreter/intrinsics.rs:230"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/ssa/interpreter/intrinsics.rs#L230"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f84d8a88-34d8-4d3c-b47b-d9d6c349d10f",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/ssa/ir/dfg/simplify/call.rs:935"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/ssa/ir/dfg/simplify/call.rs#L935"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c6845fa4-97b0-4bf1-b67e-f29a5e08f898",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/ssa/ir/dfg/simplify/call/blackbox.rs:227"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/ssa/ir/dfg/simplify/call/blackbox.rs#L227"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "50323fca-bdfb-44db-911c-821564071091",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/ssa/opt/flatten_cfg.rs:1746"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/ssa/opt/flatten_cfg.rs#L1746"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f3760bc2-bd36-4930-8e72-9317e50a3342",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_evaluator/src/ssa/validation/mod.rs:1048"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_evaluator/src/ssa/validation/mod.rs#L1048"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "db137a9e-4c81-4d14-9a60-5f61bcf33c7e",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_frontend/src/hir/comptime/interpreter/foreign.rs:73"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_frontend/src/hir/comptime/interpreter/foreign.rs#L73"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (7 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "769b56ee-c625-4cba-940e-197561903f47",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_frontend/src/monomorphization/builtin.rs:30"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_frontend/src/monomorphization/builtin.rs#L30"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (7 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f8478bb9-42f7-42b7-8ffc-4303eb61a3d6",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "compiler/noirc_frontend/src/shared/builtin.rs:189"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/compiler/noirc_frontend/src/shared/builtin.rs#L189"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "16c76d00-3a31-4fba-9a1d-32569605edef",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "noir_stdlib/docs/search-index.js:755"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/noir_stdlib/docs/search-index.js#L755"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ccd96f62-d6bb-4911-985f-9a4884f497f8",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "tooling/lsp/src/solver.rs:30"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/tooling/lsp/src/solver.rs#L30"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "234c8314-cb90-462a-af14-3aca6489102e",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "tooling/profiler/src/opcode_formatter.rs:19"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/noir-lang/noir/blob/5c98fecd3fe6c51bd9e3a605cafe412d25ae8915/tooling/profiler/src/opcode_formatter.rs#L19"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
         }
       }
     }

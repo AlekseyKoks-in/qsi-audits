@@ -1,0 +1,7 @@
+# Recovered from zcash-android-wallet-sdk/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-23"
+decisions:
+  - match: {rule: "CODE-WEAK-HASH", algorithm: "SHA-1"}
+    decision: confirmed
+    note: "The finding anchors at the helper, File.getSha1Hash() in backend-lib/src/main/java/cash/z/ecc/android/sdk/internal/ext/FileExt.kt; the use that matters is SaplingParamTool, which downloads the Sapling spend and output parameters from download.z.cash and verifies them against two hard-coded SHA-1 digests (SPEND_PARAM_FILE_SHA1_HASH, OUTPUT_PARAM_FILE_SHA1_HASH). Stated precisely: the property relied on here is second-preimage resistance, which SHA-1 still has — only its collision resistance is broken, and that is not what this check uses. So this is not exploitable as it stands and must not be described as such. It is still the wrong primitive for an integrity check on security-critical cryptographic material, and it is directly relevant to post-quantum readiness: Grover halves preimage security, taking SHA-1 from 160 bits to about 80, below any acceptable margin for parameters with this lifetime. SHA-256 is the correct replacement."

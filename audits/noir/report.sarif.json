@@ -53,10 +53,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "3 упоминаний Pedersen commitment в 2 файл(ах), например noir_stdlib/docs/search-index.js:747. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "6 упоминаний Pedersen commitment в 2 файл(ах), например noir_stdlib/docs/search-index.js:747. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "3 упоминаний Pedersen commitment в 2 файл(ах), например noir_stdlib/docs/search-index.js:747. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+                "text": "6 упоминаний Pedersen commitment в 2 файл(ах), например noir_stdlib/docs/search-index.js:747. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра. Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -128,10 +128,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, ff, group, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, ff, group, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -150,7 +150,7 @@
             "qsiFindingKey/v1": "31cd59e242ba5b36198477bc18b8151f"
           },
           "properties": {
-            "qsiId": "QSI-2026-04754",
+            "qsiId": "QSI-2026-07270",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -177,7 +177,7 @@
             "qsiFindingKey/v1": "f916efd99a9f509598476a2500b055db"
           },
           "properties": {
-            "qsiId": "QSI-2026-04755",
+            "qsiId": "QSI-2026-07271",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -204,7 +204,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-04747",
+            "qsiId": "QSI-2026-07263",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -222,7 +222,7 @@
             "qsiFindingKey/v1": "a32dc4d401fc32a953504c0a38f8d3f4"
           },
           "properties": {
-            "qsiId": "QSI-2026-04745",
+            "qsiId": "QSI-2026-07261",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -240,7 +240,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-04746",
+            "qsiId": "QSI-2026-07262",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -258,7 +258,7 @@
             "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-04750",
+            "qsiId": "QSI-2026-07266",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -285,7 +285,7 @@
             "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-04751",
+            "qsiId": "QSI-2026-07267",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -312,7 +312,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-04749",
+            "qsiId": "QSI-2026-07265",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -339,7 +339,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-04752",
+            "qsiId": "QSI-2026-07268",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -366,7 +366,7 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-04753",
+            "qsiId": "QSI-2026-07269",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -393,7 +393,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-04756",
+            "qsiId": "QSI-2026-07272",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -420,7 +420,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-04757",
+            "qsiId": "QSI-2026-07273",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -447,7 +447,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-04748",
+            "qsiId": "QSI-2026-07264",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -456,13 +456,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/noir @ 5c98fecd3fe6/0108930a-6e1d-4e97-9cb8-4ce727b1eddd"
+        "id": "qsi/noir @ 5c98fecd3fe6/177d4646-b61a-4188-92b6-2d817866ed5a"
       },
       "properties": {
-        "qsiContentSha256": "2512370e8b29a06abeaab2de23760dd081e1e98edb7e4afa39272d2dc1a07889",
+        "qsiContentSha256": "17cd881ba9e20eda513e64681b825364b14550dccc60390ccf8aa21bdbb1e807",
         "qsiReportVersion": 1,
-        "qsiRiskProfile": "web3",
-        "qsiGeneratedAt": "2026-10-28T12:43:08.734123+00:00",
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-10-29T23:30:40.933322+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

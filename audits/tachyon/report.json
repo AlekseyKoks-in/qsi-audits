@@ -1,0 +1,2918 @@
+{
+  "content_sha256": "b4a5fab2bdec6a0f10dffb9b2bac126760c1defa80e6e0498eabf8830d661237",
+  "schema": "qsi.report/1",
+  "language": "ru",
+  "generated_at": "2026-10-29T23:54:20.603174+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "08a12b34-364f-4397-928a-73b132f89f2a",
+    "name": "tachyon @ 6cdaebccf147",
+    "client_name": "Tachyon (Zcash)",
+    "description": "Static review of the source tree tachyon at 6cdaebccf147c5a013d212f9d7302924a9570626. 58 files analysed; of 138 files, 9 are test, fuzzing, benchmark or example code and were left out, 71 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/actions/rust-nightly-setup/action.yml, .github/actions/rust-setup/action.yml, .github/workflows/book.yml, .github/workflows/rust.yml, .github/workflows/zizmor.yml. 29 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "3dca0edb-a9ff-49e8-9044-0602c74aebf8",
+    "mode": "document",
+    "title": "Document audit: tachyon",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-29T23:54:04.021367+00:00",
+    "finished_at": "2026-10-29T23:54:20.401735+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
+    "parameters": {
+      "ref": "6cdaebccf147c5a013d212f9d7302924a9570626",
+      "language": "ru",
+      "repo_url": "https://github.com/tachyon-zcash/tachyon",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": ".cargo/config.toml",
+      "size": 52,
+      "sha256": "428938c0741ca2a18a8203d557a18b08225f3d9d4df9cdf03791e5b57cb9893c",
+      "redactions": 0
+    },
+    {
+      "name": "Cargo.lock",
+      "size": 23377,
+      "sha256": "b67aefb4e4da4534279c4f4936d58a13893ac693574966a10722db4b85e1b291",
+      "redactions": 0
+    },
+    {
+      "name": "Cargo.toml",
+      "size": 7786,
+      "sha256": "1fca0bda74e9127531bbe858d3e3fa24659c430054f5269c093a1c9f3ae48bcf",
+      "redactions": 0
+    },
+    {
+      "name": "book/mermaid-init.js",
+      "size": 1262,
+      "sha256": "ccf746f10c0a71bd34799867d2f9860dddb5fc6efc6c50d1ea55a1eb1a7bd406",
+      "redactions": 0
+    },
+    {
+      "name": "book/mermaid.min.js",
+      "size": 2667011,
+      "sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/Cargo.toml",
+      "size": 3113,
+      "sha256": "bf28d8b3bd41d2d14e91d7321cb30a44b0a74357233aae213d89b0d565c941e1",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/action.rs",
+      "size": 9008,
+      "sha256": "e44def1c1daed39201890625a754c686e2787b110cdf178f912efc6ca31b54c9",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/bundle/mod.rs",
+      "size": 45384,
+      "sha256": "89739155e7e88dfdb57d2c662377599e2bd86e302c44614e3e9d6ecf3a429f82",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/collections/indexed_multiset.rs",
+      "size": 5220,
+      "sha256": "f5575e48ecefda1fef1ee4bb63c5bdb6ec839d00b0f48628325688d35bfda6a2",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/collections/mod.rs",
+      "size": 3151,
+      "sha256": "35d6ad8a0197d0827629457b5c8d5f80acea275548da9a11ae415206afdca707",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/collections/multiset.rs",
+      "size": 423,
+      "sha256": "22a8dcdf5f31a2c52df2b2edcb1d23db9fbf846385526ef5b7042f7a6d51c508",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/collections/qr.rs",
+      "size": 16544,
+      "sha256": "15456586329a2eb7c432a89ad6e23db031bac087789bb4b6a1856e902be1aba2",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/constants.rs",
+      "size": 850,
+      "sha256": "4b998e60e05da28da9d042c0f0b8ca44793591e4b9d581389cff3762012ead0b",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/digest/blake2b.rs",
+      "size": 9025,
+      "sha256": "777db0305807af132b4a0a90dde2bfe2889ec3eb02e5735490d45dd050529ab1",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/digest/mod.rs",
+      "size": 294,
+      "sha256": "672e241df48535eb0339a0caf1401a7bf986e243c277174c6ef838adbdd120ef",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/digest/poseidon.rs",
+      "size": 9073,
+      "sha256": "9f822d99a1d7185b52485e10ec3da43496353d985e9c55305937f9ec656288dd",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/entropy.rs",
+      "size": 6263,
+      "sha256": "e56db1c8b9ccf7cd2b0647574dde253442aa57550cebb7e03d8fab95397d7101",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/fee.rs",
+      "size": 1867,
+      "sha256": "4868083f2b7d2ba5fbfc94ab2250062e568587287b7420edfc1b18ca529aef6a",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/keys/master.rs",
+      "size": 3142,
+      "sha256": "00836539de80b74d3467b34763ed90e13fe1f309231bbf91fded3135b1e9ea24",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/keys/mod.rs",
+      "size": 8008,
+      "sha256": "973b459e39dbcab74e5260a6411f8af08049313ae0ca5700a0371645417e1039",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/keys/note.rs",
+      "size": 6248,
+      "sha256": "a51c30cf8f6d04763baac65ae26af61433c5d8e3ab3a61d75f1334a05c16db5c",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/keys/private.rs",
+      "size": 11035,
+      "sha256": "d14059dbeff2c2b5aef4a26967e86cdcfbd7a21e9de8be695718fd58d0ae9935",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/keys/proof.rs",
+      "size": 3069,
+      "sha256": "f177d7eaecd09ddb2e0a1849eba276a2004b1a7f0cff95019e61753c65b3e53e",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/keys/public.rs",
+      "size": 5658,
+      "sha256": "a2b330c55873c67c258ab44395e78044d450cd1415b63473aa53ae6c17175411",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/lib.rs",
+      "size": 987,
+      "sha256": "47b57a395c75eaddfe3d5284eac64a7e25fe2d9bca8d51dd6ff1fd768bbef6c3",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/note.rs",
+      "size": 5343,
+      "sha256": "361d20b7ebffaa92a36ba83f361ba865d0bc4f2a143909ae086fcda5300c32e4",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/nullifier/mod.rs",
+      "size": 1896,
+      "sha256": "f50d9be8e47cfd49620de661ef51bde8b9a1e17ff06c911a03b690fd85e8cc71",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/action_digest.rs",
+      "size": 3998,
+      "sha256": "0e3ded8378b19d4c44d81157f5ca23d9749b3d57ab2495e7f2d7563062f17a1e",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/anchor.rs",
+      "size": 5272,
+      "sha256": "1e5b9553a9d2168d9878289e08460876033e79e3b23d82999b6d3b3c92d5a8a8",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/block_height.rs",
+      "size": 2348,
+      "sha256": "47de268427c9dfa9bb90bf32e2023508ace29707bcb9bd1c0cf53d74765ab4a5",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/effect.rs",
+      "size": 2052,
+      "sha256": "f69dcfddd89110b70e9d08aff9ed2d15a381ad339a8a421f6a08a68a016574d8",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/epoch.rs",
+      "size": 4011,
+      "sha256": "26f93e49de8b801f8c28ed5d7c04e1f2410ecf4bcf1ea60245df2019e1bd7eac",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/evidence.rs",
+      "size": 365,
+      "sha256": "468098d982be84be6b9f6a8b3b55171bfe20e54d5358756210e5b6d45c60bbb4",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/mod.rs",
+      "size": 702,
+      "sha256": "2f8ec1a4f18b62fdacd7c40721b9c23cb22111a908422b3418aa698b4061144b",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/qr.rs",
+      "size": 9049,
+      "sha256": "66fb158bad16bea5a28dec2353847b07fd6f8792fa2ef2a7ddbd153f9c9c56a6",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/seq.rs",
+      "size": 1911,
+      "sha256": "348cd8b4eadaa5025db4cba9d2b8b7d55448dede3bb7fe2e6c1ba12dd8e141fb",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/sets.rs",
+      "size": 5897,
+      "sha256": "12099f6c23382cc169e0e68b49937013de8b8e96f8ded33f11c9656d8ae6bab3",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/primitives/tachygram.rs",
+      "size": 2285,
+      "sha256": "6a1b5faac4ffd142d79996a8055edeb6c8a751299bcaea7c399e83da6322621f",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/ragu_constraint.rs",
+      "size": 1895,
+      "sha256": "933ff2698dbb28adb1121237ab7818cb8ba38e3f05b9931bd4c198fd71c524c5",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/reddsa.rs",
+      "size": 664,
+      "sha256": "383bf0dab67da97d8c05c3d17810cc82560faba6c8960541aa56c4b62c8680ff",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/relations/enforce.rs",
+      "size": 6181,
+      "sha256": "6969f2838db81f394e4394a44be0fa68f7f86c7a3bd75c754232a045ed2d9ece",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/relations/mod.rs",
+      "size": 278,
+      "sha256": "5b63b54412f40b975e095ca60e3727316afd0b9e7a6efacf61b0a27b929af4e2",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/serialization/compactsize.rs",
+      "size": 17214,
+      "sha256": "384b1ffd39a70173b9f2c0870172b16ef6907d0b91d4d3afd383c2d2b2c186b4",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/serialization/mod.rs",
+      "size": 4732,
+      "sha256": "4c5d40d9da4cbfaa6360fbeb1df898773a7f1df0805f917c3eee89fabeaff06c",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/mod.rs",
+      "size": 41833,
+      "sha256": "57bd4d85c56a49e1558d21ef78131dd1006bd34a1e29a0bcd678b16defbddd01",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/delegation.rs",
+      "size": 11915,
+      "sha256": "bc295aceaf1d0a2aa0c5e0296fd37d2ee5f07b1537fc8cebbae0d8410d04f524",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/evidence.rs",
+      "size": 18911,
+      "sha256": "98181f231fb7ec28063ffcd3b208ed0b5bc2a3e80e2806f6039c237e5a731ab2",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/mod.rs",
+      "size": 3089,
+      "sha256": "c2c68afbd41046fba0ac5e7903c50722721936258f75b130c515e52540e8dba0",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/output.rs",
+      "size": 2897,
+      "sha256": "3067f8f9a16dea2e609f06d66d9ccaef0d6159593600523022a57f1f0bb9a4e8",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/pool.rs",
+      "size": 21575,
+      "sha256": "e3adec9456045e58575bacc1502fef2ea85acf3b0fb83ad8b3fcd7aa6b88eaf1",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/qr.rs",
+      "size": 30724,
+      "sha256": "e2d3f5048ff20818a445e6ea2c22dabf5745c9cfc1b5f8698abb42cec2f065b9",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/spend.rs",
+      "size": 5019,
+      "sha256": "c32b5ec9af52c23ed7ef2ed8e7b7a9447ca5816cb45087759a88ea6826ef81d1",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/spendable.rs",
+      "size": 10176,
+      "sha256": "f2bde364fa9b7a360434fa748b53b8a750d82b3a13ffedc50d25eca6b0ee52ea",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/stamp.rs",
+      "size": 26299,
+      "sha256": "13de79e7b476999fe8363a66299e32d608641f6093d0fb15a3ba5f4e1c2e4821",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/stamp/proof/summary.rs",
+      "size": 4533,
+      "sha256": "051856e8dd8c680bfd3b392085bc651525e201160e87d0a04f22351d20ab5f69",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/value.rs",
+      "size": 9043,
+      "sha256": "5bc365a663432264e7c4c995a3474ad5a4796b7c8759bfbe4e1418120e0f69d6",
+      "redactions": 0
+    },
+    {
+      "name": "crates/tachyon/src/witness.rs",
+      "size": 20784,
+      "sha256": "56cbfdcf9b3dc1565ff2cfa687c5407f444d8acef1afe7e90d8d95e3116b3f0d",
+      "redactions": 0
+    },
+    {
+      "name": "rust-toolchain.toml",
+      "size": 115,
+      "sha256": "c54d9d27dffd85dc7b368bc6c85376b99a6ccb54b44f6a0a0c1a511d9ce35e41",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 58,
+    "bytes": 3130856,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "dependencies",
+      "detail": "Cargo.lock: 98 dependencies parsed (98 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "Cargo.toml: 0 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "book/mermaid.min.js: 2609 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "crates/tachyon/Cargo.toml: 16 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/bundle/mod.rs: 1237 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/collections/indexed_multiset.rs: 182 lines scanned with 16 rule patterns and 128 registry patterns; 60 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/collections/mod.rs: 96 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/collections/multiset.rs: 13 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/collections/qr.rs: 453 lines scanned with 16 rule patterns and 128 registry patterns; 297 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/constants.rs: 26 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/digest/blake2b.rs: 295 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/digest/mod.rs: 8 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/digest/poseidon.rs: 283 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/entropy.rs: 172 lines scanned with 16 rule patterns and 128 registry patterns; 98 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/fee.rs: 64 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/keys/master.rs: 81 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/keys/mod.rs: 211 lines scanned with 16 rule patterns and 128 registry patterns; 116 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/keys/note.rs: 170 lines scanned with 16 rule patterns and 128 registry patterns; 55 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/keys/private.rs: 287 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/keys/proof.rs: 84 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/keys/public.rs: 154 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/lib.rs: 44 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/note.rs: 174 lines scanned with 16 rule patterns and 128 registry patterns; 53 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/nullifier/mod.rs: 56 lines scanned with 16 rule patterns and 128 registry patterns; 13 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/action_digest.rs: 119 lines scanned with 16 rule patterns and 128 registry patterns; 71 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/anchor.rs: 169 lines scanned with 16 rule patterns and 128 registry patterns; 67 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/block_height.rs: 87 lines scanned with 16 rule patterns and 128 registry patterns; 20 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/effect.rs: 66 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/epoch.rs: 134 lines scanned with 16 rule patterns and 128 registry patterns; 41 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/evidence.rs: 9 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/mod.rs: 27 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/qr.rs: 272 lines scanned with 16 rule patterns and 128 registry patterns; 114 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/seq.rs: 67 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/sets.rs: 193 lines scanned with 16 rule patterns and 128 registry patterns; 16 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/primitives/tachygram.rs: 71 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/ragu_constraint.rs: 47 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/reddsa.rs: 16 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/relations/enforce.rs: 127 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/relations/mod.rs: 7 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/serialization/compactsize.rs: 472 lines scanned with 16 rule patterns and 128 registry patterns; 157 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/serialization/mod.rs: 131 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/mod.rs: 1197 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/delegation.rs: 325 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/evidence.rs: 544 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/mod.rs: 85 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/output.rs: 92 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/pool.rs: 561 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/qr.rs: 841 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/spend.rs: 145 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/spendable.rs: 250 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/stamp.rs: 728 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/stamp/proof/summary.rs: 132 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/value.rs: 301 lines scanned with 16 rule patterns and 128 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "crates/tachyon/src/witness.rs: 630 lines scanned with 16 rule patterns and 128 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "98 pinned packages queried at OSV.dev; 2 affected",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "Cargo.lock: 98 dependencies parsed (98 pinned)",
+        "Cargo.toml: 0 dependencies parsed (0 pinned)",
+        "crates/tachyon/Cargo.toml: 16 dependencies parsed (0 pinned)"
+      ]
+    },
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 53,
+      "rows": 53,
+      "examples": [
+        "book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 128 registry patterns",
+        "book/mermaid.min.js: 2609 lines scanned with 16 rule patterns and 128 registry patterns",
+        "crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 128 registry patterns"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "98 pinned packages queried at OSV.dev; 2 affected"
+      ]
+    }
+  ],
+  "not_checked": [],
+  "not_checked_grouped": [],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "98 pinned packages queried at OSV.dev; 2 affected",
+      "Cargo.lock",
+      "Cargo.toml",
+      "book/mermaid-init.js",
+      "book/mermaid.min.js",
+      "crates/tachyon/Cargo.toml",
+      "crates/tachyon/src/action.rs",
+      "crates/tachyon/src/bundle/mod.rs",
+      "crates/tachyon/src/collections/indexed_multiset.rs",
+      "crates/tachyon/src/collections/mod.rs",
+      "crates/tachyon/src/collections/multiset.rs",
+      "crates/tachyon/src/collections/qr.rs",
+      "crates/tachyon/src/constants.rs",
+      "crates/tachyon/src/digest/blake2b.rs",
+      "crates/tachyon/src/digest/mod.rs",
+      "crates/tachyon/src/digest/poseidon.rs",
+      "crates/tachyon/src/entropy.rs",
+      "crates/tachyon/src/fee.rs",
+      "crates/tachyon/src/keys/master.rs",
+      "crates/tachyon/src/keys/mod.rs",
+      "crates/tachyon/src/keys/note.rs",
+      "crates/tachyon/src/keys/private.rs",
+      "crates/tachyon/src/keys/proof.rs",
+      "crates/tachyon/src/keys/public.rs",
+      "crates/tachyon/src/lib.rs",
+      "crates/tachyon/src/note.rs",
+      "crates/tachyon/src/nullifier/mod.rs",
+      "crates/tachyon/src/primitives/action_digest.rs",
+      "crates/tachyon/src/primitives/anchor.rs",
+      "crates/tachyon/src/primitives/block_height.rs",
+      "crates/tachyon/src/primitives/effect.rs",
+      "crates/tachyon/src/primitives/epoch.rs",
+      "crates/tachyon/src/primitives/evidence.rs",
+      "crates/tachyon/src/primitives/mod.rs",
+      "crates/tachyon/src/primitives/qr.rs",
+      "crates/tachyon/src/primitives/seq.rs",
+      "crates/tachyon/src/primitives/sets.rs",
+      "crates/tachyon/src/primitives/tachygram.rs",
+      "crates/tachyon/src/ragu_constraint.rs",
+      "crates/tachyon/src/reddsa.rs",
+      "crates/tachyon/src/relations/enforce.rs",
+      "crates/tachyon/src/relations/mod.rs",
+      "crates/tachyon/src/serialization/compactsize.rs",
+      "crates/tachyon/src/serialization/mod.rs",
+      "crates/tachyon/src/stamp/mod.rs",
+      "crates/tachyon/src/stamp/proof/delegation.rs",
+      "crates/tachyon/src/stamp/proof/evidence.rs",
+      "crates/tachyon/src/stamp/proof/mod.rs",
+      "crates/tachyon/src/stamp/proof/output.rs",
+      "crates/tachyon/src/stamp/proof/pool.rs",
+      "crates/tachyon/src/stamp/proof/qr.rs",
+      "crates/tachyon/src/stamp/proof/spend.rs",
+      "crates/tachyon/src/stamp/proof/spendable.rs",
+      "crates/tachyon/src/stamp/proof/stamp.rs",
+      "crates/tachyon/src/stamp/proof/summary.rs",
+      "crates/tachyon/src/value.rs",
+      "crates/tachyon/src/witness.rs"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 4,
+      "low": 1,
+      "info": 2
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 1,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 1,
+      "pq_long_term_risk": 3,
+      "improvement": 1,
+      "insufficient_data": 1
+    },
+    "total": 7,
+    "posture_index": 96,
+    "pq_vulnerable_share": 34.5,
+    "inventory_total": 29,
+    "inventory_by_quantum_status": {
+      "grover_reduced": 15,
+      "not_applicable": 4,
+      "vulnerable_shor": 10
+    }
+  },
+  "findings": [
+    {
+      "id": "e0f81ddc-1292-4fda-9b6b-37a2f6efd389",
+      "public_id": "QSI-2026-07445",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))",
+      "description": "3 упоминаний Pedersen commitment в 1 файл(ах), например crates/tachyon/src/value.rs:18. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте crates/tachyon/src/value.rs:18 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
+      "data_source": "crates/tachyon/src/value.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-29T23:54:20.353776+00:00",
+      "risk_score": 35.6,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 35.6,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.8,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 52.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 8.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/value.rs",
+          "location": "line 18",
+          "content": "   17 | /// Alias for [`ValueCommitment`].\n   18 | pub type Commitment = ValueCommitment;\n   19 | ",
+          "content_sha256": "9ff0ec5ef69430ebe9a6c4b3b79ee6e5250d9fcac040615717f1d682c5490930",
+          "source_sha256": "5bc365a663432264e7c4c995a3474ad5a4796b7c8759bfbe4e1418120e0f69d6",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.370283+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/value.rs#L18"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/value.rs",
+          "location": "line 79",
+          "content": "   78 |         let commit_trapdoor = *VALUE_COMMIT_R * self.0;\n   79 |         ValueCommitment(commit_value + commit_trapdoor)\n   80 |     }",
+          "content_sha256": "f1812189e951dd7c0b54be48946948862b7c298c797f8073ddeb42dec03b9189",
+          "source_sha256": "5bc365a663432264e7c4c995a3474ad5a4796b7c8759bfbe4e1418120e0f69d6",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.370292+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/value.rs#L79"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/value.rs",
+          "location": "line 93",
+          "content": "   92 | #[expect(clippy::module_name_repetitions, reason = \"deliberate name\")]\n   93 | pub struct ValueCommitment(#[debug(skip)] Ep);\n   94 | ",
+          "content_sha256": "599fff9d6a98290efca0ab16885161a6bc8f04a94d51fc6cd9fb2dbcac1895b5",
+          "source_sha256": "5bc365a663432264e7c4c995a3474ad5a4796b7c8759bfbe4e1418120e0f69d6",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.370296+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/value.rs#L93"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "5678fab3-69ab-44d7-b17a-61bbda3e2da5",
+      "public_id": "QSI-2026-07443",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))",
+      "description": "24 упоминаний RedDSA в 6 файл(ах), например crates/tachyon/src/action.rs:267. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте crates/tachyon/src/action.rs:267 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:RedDSA:general",
+      "data_source": "crates/tachyon/src/action.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-29T23:54:20.319735+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/action.rs",
+          "location": "line 267",
+          "content": "  266 | #[display(\"Signature({:?})\", self.0)]\n  267 | pub struct Signature(pub(crate) reddsa::Signature<reddsa::ActionAuth>);\n  268 | ",
+          "content_sha256": "665b8939749dc8191eb086848a64e3e5f20038a1d4ed0cd282fafe9b5d480ec5",
+          "source_sha256": "e44def1c1daed39201890625a754c686e2787b110cdf178f912efc6ca31b54c9",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341332+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/action.rs#L267"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/bundle/mod.rs",
+          "location": "line 1215",
+          "content": " 1214 | #[derive(Clone, Copy, Debug, PartialEq, TotalEq)]\n 1215 | pub struct Signature(pub(crate) reddsa::Signature<reddsa::BindingAuth>);\n 1216 | ",
+          "content_sha256": "60e1af3bbf6b5ab3ceb775dc6a92938642e8b6b2d4daf43fbd19721ec7d0aca7",
+          "source_sha256": "89739155e7e88dfdb57d2c662377599e2bd86e302c44614e3e9d6ecf3a429f82",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341341+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/bundle/mod.rs#L1215"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/keys/proof.rs",
+          "location": "line 60",
+          "content": "   59 | pub struct SpendValidatingKey(\n   60 |     #[debug(skip)] pub(crate) reddsa::VerificationKey<reddsa::ActionAuth>,\n   61 | );",
+          "content_sha256": "42275e11e48ddc762025e9716308a53fc22c29e8c9e19365cd392e20089b0a34",
+          "source_sha256": "f177d7eaecd09ddb2e0a1849eba276a2004b1a7f0cff95019e61753c65b3e53e",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341346+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/proof.rs#L60"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/keys/public.rs",
+          "location": "line 27",
+          "content": "   26 | #[derive(Clone, Copy, Debug, Display)]\n   27 | #[display(\"ActionVerificationKey({:?})\", reddsa::VerificationKeyBytes::from(self.0))]\n   28 | pub struct ActionVerificationKey(pub(crate) reddsa::VerificationKey<reddsa::ActionAuth>);",
+          "content_sha256": "f2e806a6896e88ca2dd32fa70a75bcc42c3c4b0b797dc53f5cab00e499e34851",
+          "source_sha256": "a2b330c55873c67c258ab44395e78044d450cd1415b63473aa53ae6c17175411",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341350+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/public.rs#L27"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/keys/public.rs",
+          "location": "line 28",
+          "content": "   27 | #[display(\"ActionVerificationKey({:?})\", reddsa::VerificationKeyBytes::from(self.0))]\n   28 | pub struct ActionVerificationKey(pub(crate) reddsa::VerificationKey<reddsa::ActionAuth>);\n   29 | ",
+          "content_sha256": "0fe24d0700a23e727cdd92a3075ce1e5d47345bd712bea8ed8caf7252dde4fb8",
+          "source_sha256": "a2b330c55873c67c258ab44395e78044d450cd1415b63473aa53ae6c17175411",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341353+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/public.rs#L28"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/keys/public.rs",
+          "location": "line 46",
+          "content": "   45 |     /// key for that sighash.\n   46 |     pub fn verify(&self, sighash: &[u8; 32], sig: &action::Signature) -> Result<(), reddsa::Error> {\n   47 |         self.0.verify(sighash, &sig.0)",
+          "content_sha256": "e53bb10a3849ab6c1aa1cdede1370153eafe5cbd06594d238b360386fe4646f3",
+          "source_sha256": "a2b330c55873c67c258ab44395e78044d450cd1415b63473aa53ae6c17175411",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341356+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/public.rs#L46"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/reddsa.rs",
+          "location": "line 7",
+          "content": "    6 | \n    7 | use ::reddsa::orchard;\n    8 | pub(crate) use ::reddsa::{Error, Signature, SigningKey, VerificationKey, VerificationKeyBytes};",
+          "content_sha256": "6d4ccd8d10424d3d378a9a7e88892d8bc25ae06e9f350b6bf4c022f6172af00d",
+          "source_sha256": "383bf0dab67da97d8c05c3d17810cc82560faba6c8960541aa56c4b62c8680ff",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341360+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/reddsa.rs#L7"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/reddsa.rs",
+          "location": "line 8",
+          "content": "    7 | use ::reddsa::orchard;\n    8 | pub(crate) use ::reddsa::{Error, Signature, SigningKey, VerificationKey, VerificationKeyBytes};\n    9 | ",
+          "content_sha256": "77eeae14bf7b8f347d48553bd3036a1dbf5076b9b6a91017473345c2668b0dcb",
+          "source_sha256": "383bf0dab67da97d8c05c3d17810cc82560faba6c8960541aa56c4b62c8680ff",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341363+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/reddsa.rs#L8"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/serialization/mod.rs",
+          "location": "line 79",
+          "content": "   78 |     mut reader: R,\n   79 | ) -> io::Result<reddsa::VerificationKey<reddsa::ActionAuth>> {\n   80 |     let mut bytes = [0u8; 32];",
+          "content_sha256": "79c1e52cddc7e58d0fee89c204f80be9de528bc26eeef673e55a8df88ec638c8",
+          "source_sha256": "4c5d40d9da4cbfaa6360fbeb1df898773a7f1df0805f917c3eee89fabeaff06c",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341367+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/serialization/mod.rs#L79"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/serialization/mod.rs",
+          "location": "line 82",
+          "content": "   81 |     reader.read_exact(&mut bytes)?;\n   82 |     reddsa::VerificationKey::<reddsa::ActionAuth>::try_from(bytes).map_err(|_err| {\n   83 |         io::Error::new(",
+          "content_sha256": "1cf340d889c5613d44c473cb72b2e4e3372a6fd1c50b2550c07ef0a465a6cc18",
+          "source_sha256": "4c5d40d9da4cbfaa6360fbeb1df898773a7f1df0805f917c3eee89fabeaff06c",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.341370+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/serialization/mod.rs#L82"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "06b3a48b-612d-47d5-8faa-80a2bcebe9ad",
+      "public_id": "QSI-2026-07444",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
+      "description": "16 упоминаний RedDSA в 1 файл(ах), например crates/tachyon/src/keys/private.rs:95. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте crates/tachyon/src/keys/private.rs:95 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:RedDSA:authentication",
+      "data_source": "crates/tachyon/src/keys/private.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-29T23:54:20.336593+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "signature",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project signature lifetime",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/keys/private.rs",
+          "location": "line 95",
+          "content": "   94 |         // the y-sign bit (byte 31, bit 7 of the compressed encoding).\n   95 |         let ak: [u8; 32] = reddsa::VerificationKey::from(\n   96 |             &reddsa::SigningKey::<reddsa::ActionAuth>::try_from(ask.to_repr())",
+          "content_sha256": "e1d11199ceccc6f1c27e4c457f1441994aa647da905f30db1592d61987b2f3dc",
+          "source_sha256": "d14059dbeff2c2b5aef4a26967e86cdcfbd7a21e9de8be695718fd58d0ae9935",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.358049+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/private.rs#L95"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/keys/private.rs",
+          "location": "line 96",
+          "content": "   95 |         let ak: [u8; 32] = reddsa::VerificationKey::from(\n   96 |             &reddsa::SigningKey::<reddsa::ActionAuth>::try_from(ask.to_repr())\n   97 |                 .expect(\"PRF-derived ask should be a valid RedPallas scalar\"),",
+          "content_sha256": "d516b781a8f2f8dbce8d5cfa82f44e4f864ca9f0b882d7462edb8e615fbf862f",
+          "source_sha256": "d14059dbeff2c2b5aef4a26967e86cdcfbd7a21e9de8be695718fd58d0ae9935",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.358059+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/private.rs#L96"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "crates/tachyon/src/keys/private.rs",
+          "location": "line 97",
+          "content": "   96 |             &reddsa::SigningKey::<reddsa::ActionAuth>::try_from(ask.to_repr())\n   97 |                 .expect(\"PRF-derived ask should be a valid RedPallas scalar\"),\n   98 |         )",
+          "content_sha256": "8c3d41d1466260fe9cbf9603ba9f9b83fbe6fd57fdff0118f14b2fa9a9fd9d26",
+          "source_sha256": "d14059dbeff2c2b5aef4a26967e86cdcfbd7a21e9de8be695718fd58d0ae9935",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.358063+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/private.rs#L97"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "3a7c647a-a9c2-40dd-ac3f-368a62b5bee3",
+      "public_id": "QSI-2026-07442",
+      "rule_id": "CODE-INSECURE-RANDOM",
+      "title": "Некриптографический ГСЧ рядом с чувствительными идентификаторами в book/mermaid.min.js",
+      "description": "«Math.random()» в строка 352 в строке, упоминающей key/token/secret/password/nonce.",
+      "impact": "Предсказуемые значения могут позволить угадать токен или ключ.",
+      "recommendation": "Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand).",
+      "retest": "Повторно просканируйте код и проверьте места вызова из доказательства.",
+      "limitations": "Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с API конкретного языка.",
+      "repro": "Откройте строка 352 в предоставленном файле book/mermaid.min.js и изучите приведённые строки (см. доказательство).",
+      "category": "source_code",
+      "classification": "potential_crypto_risk",
+      "severity": "medium",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "file:book/mermaid.min.js",
+      "data_source": "book/mermaid.min.js",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-29T23:54:20.305799+00:00",
+      "risk_score": 25.2,
+      "risk_breakdown": {
+        "score": 25.2,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.35,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.5,
+          "exploitability": 0.4
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 49.5,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 7.0,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 12.5,
+          "exploitability": 8.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SP800-90A-R1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/90/a/r1/final",
+          "title": "NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators",
+          "status": "final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not",
+          "publisher": "NIST"
+        },
+        {
+          "key": "CWE-338",
+          "url": "https://cwe.mitre.org/data/definitions/338.html",
+          "title": "CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)",
+          "status": "weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable",
+          "publisher": "MITRE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "book/mermaid.min.js",
+          "location": "line 352",
+          "content": "  350 |   ${e}\n  351 | `},\"getStyles\"),$G=o((t,e)=>{e!==void 0&&(S3[t]=e)},\"addStylesForDiagram\"),zG=o3e});var qy={};hr(qy,{clear:()=>Ar,getAccDescription:()=>Mr,getAccTitle:()=>Rr,getDiagramTitle:()=>Ir,setAccDescription:()=>Nr,setAccTitle:()=>Lr,setDiagramTitle:()=>$r});var rA,nA,iA,aA,Ar,Lr,Rr,Nr,Mr,$r,Ir,mi=N(()=>{\"us\n  352 | `)},\"setAccDescription\"),Mr=o(()=>iA,\"getAccDescription\"),$r=o(t=>{nA=aA(t)},\"setDiagramTitle\"),Ir=o(()=>nA,\"getDiagramTitle\")});var GG,l3e,me,Yy,A3,Xy,oA,c3e,C3,ad,jy,sA,zt=N(()=>{\"use strict\";Xf();vt();ji();gr();Ei();tA();mi();GG=Y,l3e=wy,me=cr,Yy=X4,A3=lh,Xy=o(t=>Tr(t,me()),\"sanitizeText\"),oA=Ao,\n  353 | `,\"ig\");t=t.trim().replace(r,\"\").replace(/'/gm,'\"'),Y.debug(`Detecting diagram directive${e!==null?\" type:\"+e:\"\"} based on the text:${t}`);let n,i=[];for(;(n=qf.exec(t))!==null;)if(n.index===qf.lastIndex&&qf.lastIndex++,n&&!e||e&&n[1]?.match(e)||e&&n[2]?.match(e)){let a=n[1]?n[1]:n[2],s=n[3]?n[3].tr\n  354 |     stroke: ${t.personBorder};",
+          "content_sha256": "0a166ec7b7340affea55f1d46f9a6b8a35148aa284cf5021408ce34377c27062",
+          "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.323722+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L352"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "book/mermaid.min.js",
+          "location": "line 1951",
+          "content": " 1949 | In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`)}function XHe(){throw new TypeError(`Invalid attempt to destructure non-iterable instance.\n 1950 | In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`)}function mo(t,e){var r=typeof Symbol<\"u\"&&t[Symbol.iterator]||t[\"@@iterator\"];if(!r){if(Array.isArray(t)||(r=ZP(t))||e&&t&&typeof t.length==\"number\"){r&&(t=r);var n=0,i=o(function(){},\"F\");return{s:i,n:o(function(){\n 1951 | In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`)}var a=!0,s=!1,l;return{s:o(function(){r=r.call(t)},\"s\"),n:o(function(){var u=r.next();return a=u.done,u},\"n\"),e:o(function(u){s=!0,l=u},\"e\"),f:o(function(){try{!a&&r.return!=null&&r.return()}finally{if(s)throw l}},\"\n 1952 | `),d=t.pstyle(\"text-max-width\").pfValue,p=t.pstyle(\"text-overflow-wrap\").value,m=p===\"anywhere\",g=[],y=/[\\s\\u200b]+|$/g,v=0;v<f.length;v++){var x=f[v],b=this.calculateLabelDimensions(t,x),w=b.width;if(m){var C=x.split(\"\").join(h);x=C}if(w>d){var T=x.matchAll(y),E=\"\",A=0,S=mo(T),_;try{for(S.s();!(_=S\n 1953 | `)),s(\"labelWrapKey\",u)}else if(l===\"ellipsis\"){var M=t.pstyle(\"text-max-width\").p",
+          "content_sha256": "2f2f528b3a65b223875635a470b7c0eb9fa999193c3dbf26c34952a3b8de34db",
+          "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.323731+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L1951"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "book/mermaid.min.js",
+          "location": "line 2410",
+          "content": " 2408 | `+this.showPosition(),{text:\"\",token:[REDACTED] this},\"reject\"),less:o(function(C){this.unput(this.match.slice(C))},\"less\"),pastInput:o(function(){var C=this.matched.substr(0,this.matched.length-this.match.length);return(C.length>20?\"...\":\"\")+C.substr(-20).replace(/\\n/g,\"\")},\"p\n 2409 | `+T+\"^\"},\"showPosition\"),test_match:o(function(C,T){var E,A,S;if(this.options.backtrack_lexer&&(S={yylineno:this.yylineno,yylloc:{first_line:this.yylloc.first_line,last_line:this.last_line,first_column:this.yylloc.first_column,last_column:this.yylloc.last_column},yytext:this.yytext,match:this.match,\n 2410 | `+this.showPosition(),{text:\"\",token:[REDACTED]\"next\"),lex:o(function(){var T=this.next();return T||this.lex()},\"lex\"),begin:o(function(T){this.conditionStack.push(T)},\"begin\"),popState:o(function(){var T=this.conditionStack.length-1;return T>0?this.conditionStack.pop():this.conditi\n 2411 |     font-family: ${t.fontFamily};\n 2412 |     color: ${t.nodeTextColor||t.textColor};",
+          "content_sha256": "bacb8676b0f1607b62d68cfc323bf7e32a125394031d8e722e91c305ef2186fa",
+          "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.323735+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L2410"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "book/mermaid.min.js",
+          "location": "line 2556",
+          "content": " 2554 |     -webkit-box-orient: vertical;\n 2555 |   }\n 2556 | `,\"getStyles\"),Ive=Ert});var dF=Mi((T4,fF)=>{\"use strict\";o(function(e,r){typeof T4==\"object\"&&typeof fF==\"object\"?fF.exports=r():typeof define==\"function\"&&define.amd?define([],r):typeof T4==\"object\"?T4.layoutBase=r():e.layoutBase=r()},\"webpackUniversalModuleDefinition\")(T4,function(){return functi\n 2557 |                 translate(${w}, ${C-L.height/2})\n 2558 |                 translate(${R*M.width/2}, ${O*M.height/2})",
+          "content_sha256": "0c31f030fdf110d12ba6b7477c3d005215bae838a804f575e97593ccb10bfa8d",
+          "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.323739+00:00",
+          "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L2556"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand).",
+          "rationale": "Предсказуемые значения могут позволить угадать токен или ключ.",
+          "expected_outcome": "Повторно просканируйте код и проверьте места вызова из доказательства.",
+          "priority": "P2",
+          "horizon_days": 60,
+          "complexity": "medium",
+          "dependencies": "",
+          "side_effects": "",
+          "pre_tests": "Откройте строка 352 в предоставленном файле book/mermaid.min.js и изучите приведённые строки (см. доказательство).",
+          "post_tests": "Повторно просканируйте код и проверьте места вызова из доказательства.",
+          "closure_criteria": "Повторно просканируйте код и проверьте места вызова из доказательства.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "497563b5-d892-4b3e-95b9-5a43eed3e508",
+      "public_id": "QSI-2026-07448",
+      "rule_id": "DEP-ADVISORY-UNRATED",
+      "title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
+      "description": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
+      "impact": "Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.",
+      "recommendation": "Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.20).",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0204",
+      "category": "dependencies",
+      "classification": "known_vulnerable_component",
+      "severity": "low",
+      "confidence": "low",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "reachability": "unknown",
+      "affected_asset": "dependency:crates.io/crossbeam-epoch@0.9.18",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-29T23:54:20.390425+00:00",
+      "risk_score": 20.3,
+      "risk_breakdown": {
+        "score": 20.3,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.28,
+          "urgency": 1.0,
+          "exposure": 0.4,
+          "severity": 0.25,
+          "exploitability": 0.3
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 39.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 5.6,
+          "urgency": 10.0,
+          "exposure": 6.0,
+          "severity": 6.25,
+          "exploitability": 6.0
+        },
+        "confidence_multiplier": 0.51
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "RUSTSEC-2026-0204",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0204",
+          "title": "OSV advisory RUSTSEC-2026-0204",
+          "status": "modified 2026-07-06T22:30:04.159269138Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev RUSTSEC-2026-0204",
+          "location": "manifest",
+          "content": "{\"id\": \"RUSTSEC-2026-0204\", \"aliases\": [], \"modified\": \"2026-07-06T22:30:04.159269138Z\", \"summary\": \"Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid\", \"severity\": null, \"declared_in_manifest\": false}",
+          "content_sha256": "87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.427089+00:00",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0204"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20).",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P3",
+          "horizon_days": 60,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Возможны изменения API.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "bd00a861-03e3-4116-b129-88c1fc6b8f06",
+      "public_id": "QSI-2026-07446",
+      "rule_id": "DEP-NO-PQC-LIBRARY",
+      "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
+      "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group), но ни одной из списка поддерживающих PQC.",
+      "impact": "Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.",
+      "recommendation": "Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).",
+      "retest": "Повторите сканирование после обновлений.",
+      "limitations": "Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.",
+      "method": "Сопоставление названий зависимостей.",
+      "repro": "Изучите перечисленные в доказательстве манифесты.",
+      "category": "post_quantum",
+      "classification": "insufficient_data",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies",
+      "data_source": "dependency manifests",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-29T23:54:20.367226+00:00",
+      "risk_score": 13.3,
+      "risk_breakdown": {
+        "score": 13.3,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.24,
+          "urgency": 0.3,
+          "exposure": 0.3,
+          "severity": 0.05,
+          "exploitability": 0.0
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 19.55,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.8,
+          "urgency": 3.0,
+          "exposure": 4.5,
+          "severity": 1.25,
+          "exploitability": 0.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "FIPS203",
+          "url": "https://csrc.nist.gov/pubs/fips/203/final",
+          "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        },
+        {
+          "key": "FIPS204",
+          "url": "https://csrc.nist.gov/pubs/fips/204/final",
+          "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "dependency",
+          "source": "Cargo.lock, Cargo.toml, crates/tachyon/Cargo.toml",
+          "location": null,
+          "content": "Crypto libraries: ff, group",
+          "content_sha256": "8394c464da802a3186151760bcefdd3dd06a8ad0e233375abbe28269a50aa4c6",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.385529+00:00",
+          "url": null
+        }
+      ],
+      "remediation": []
+    },
+    {
+      "id": "441e8d74-3c40-4640-87b8-b88c43b1ff41",
+      "public_id": "QSI-2026-07447",
+      "rule_id": "DEP-ADVISORY-INFORMATIONAL",
+      "title": "atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)",
+      "description": "OSV.dev отмечает RUSTSEC-2023-0089 для пакета crates.io atomic-polyfill версии 1.0.3 как информационный (unmaintained): atomic-polyfill is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
+      "impact": "Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.",
+      "recommendation": "Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.",
+      "retest": "Повторите сканирование зависимостей после изменения.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время.",
+      "method": "Запрос OSV.dev querybatch для точной объявленной версии.",
+      "repro": "curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2023-0089",
+      "category": "dependencies",
+      "classification": "improvement",
+      "severity": "info",
+      "confidence": "low",
+      "preliminary": false,
+      "status": "open",
+      "triage": null,
+      "reachability": "unknown",
+      "affected_asset": "dependency:crates.io/atomic-polyfill@1.0.3",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-29T23:54:20.381157+00:00",
+      "risk_score": 11.8,
+      "risk_breakdown": {
+        "score": 11.8,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.15,
+          "urgency": 0.3,
+          "exposure": 0.3,
+          "severity": 0.05,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 19.75,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 3.0,
+          "urgency": 3.0,
+          "exposure": 4.5,
+          "severity": 1.25,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.6
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "RUSTSEC-2023-0089",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0089",
+          "title": "OSV advisory RUSTSEC-2023-0089",
+          "status": "modified 2025-04-29T08:31:10Z",
+          "publisher": "OSV.dev"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev RUSTSEC-2023-0089",
+          "location": "manifest",
+          "content": "{\"id\": \"RUSTSEC-2023-0089\", \"aliases\": [], \"modified\": \"2025-04-29T08:31:10Z\", \"summary\": \"atomic-polyfill is unmaintained\", \"severity\": null, \"declared_in_manifest\": false}",
+          "content_sha256": "0fcfb6f26f61ecb982bc38b6d6f12db7c77d0fc40bf9353a089129368e765f0f",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-29T23:54:20.396094+00:00",
+          "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0089"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Замените atomic-polyfill поддерживаемой альтернативой или зафиксируйте, почему он остаётся.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Могут потребоваться изменения кода.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "atomic-polyfill заменён или решение зафиксировано.",
+          "status": "todo"
+        }
+      ]
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
+    "pq_findings": [
+      "QSI-2026-07445",
+      "QSI-2026-07443",
+      "QSI-2026-07444"
+    ],
+    "roles": [
+      {
+        "role": "threshold_mpc",
+        "label": "пороговая подпись и протоколы MPC",
+        "action": "Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли",
+        "criticality": 4,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "Pedersen commitment",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-07445"
+        ],
+        "files": 1
+      },
+      {
+        "role": "authentication",
+        "label": "аутентификация и идентификация (сертификаты, токены, аттестация устройств)",
+        "action": "Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "RedDSA",
+            "files": 1
+          }
+        ],
+        "findings": [
+          "QSI-2026-07444"
+        ],
+        "files": 1
+      },
+      {
+        "role": "general",
+        "label": "роль не определена",
+        "action": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "RedDSA",
+            "files": 6
+          }
+        ],
+        "findings": [
+          "QSI-2026-07443"
+        ],
+        "files": 6
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "постквантовой криптографии нет",
+      "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Алгоритм Шора — дискретный логарифм на эллиптических кривых",
+        "effect": "breaks",
+        "effect_label": "взламывает",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Pedersen commitment",
+            "rows": 1
+          },
+          {
+            "algorithm": "RedDSA",
+            "rows": 9
+          }
+        ],
+        "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
+        "practicality": "Оценки 2026 года для 256-битной кривой: менее 1200 логических кубитов и 90 млн вентилей Тоффоли, менее полумиллиона физических сверхпроводниковых кубитов и минуты работы (Баббуш и др.); 1193 логических кубита при большем числе вентилей (Шевиньяр–Фук–Шроттенлохер); P-256 за несколько дней на 26 000 кубитов на нейтральных атомах (Кейн и др.). Сценарии при заявленных допущениях, а не прогнозы.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      },
+      {
+        "id": "grover",
+        "name": "Алгоритм Гровера — поиск ключа и прообразов",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "BLAKE2",
+            "rows": 1
+          },
+          {
+            "algorithm": "Poseidon",
+            "rows": 14
+          }
+        ],
+        "audit": "Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.",
+        "practicality": "Поиск долгий и последовательный: NIST оценивает поиск ключа AES-128 в 2^170/MAXDEPTH квантовых вентилей при MAXDEPTH от 2^40 до 2^96 и использует его как эталон категории стойкости 1; прообраз SHA-256 оценён примерно в 2^153,8 циклов поверхностного кода на 2^12,6 логических кубитах (Эми и др., 2016).",
+        "sources": [
+          "GROVER1996",
+          "ZALKA1999",
+          "NIST-PQC-SEC",
+          "JAQUES2020",
+          "AMY2016"
+        ]
+      },
+      {
+        "id": "bht-collision",
+        "name": "Брассар–Хойер–Тапп — поиск коллизий",
+        "effect": "weakens",
+        "effect_label": "ослабляет (более длинные ключи восстанавливают запас)",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "BLAKE2",
+            "rows": 1
+          },
+          {
+            "algorithm": "Poseidon",
+            "rows": 14
+          }
+        ],
+        "audit": "256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.",
+        "practicality": "Бернштейн (2009) показал, что с учётом стоимости оборудования этот поиск не дешевле классического параллельного поиска коллизий; NIST определяет категорию стойкости 2 через поиск коллизий SHA3-256 в классических вентилях (2^146).",
+        "sources": [
+          "BHT-COLLISION1998",
+          "CNS2017",
+          "BERNSTEIN2009-COLLISION",
+          "NIST-PQC-SEC"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "усреднённая оценка"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "вполне возможно"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "вероятно"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [
+      {
+        "kind": "root_cause",
+        "action": "Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand).",
+        "rationale": "Предсказуемые значения могут позволить угадать токен или ключ.",
+        "expected_outcome": "Повторно просканируйте код и проверьте места вызова из доказательства.",
+        "priority": "P2",
+        "horizon_days": 60,
+        "complexity": "medium",
+        "dependencies": "",
+        "side_effects": "",
+        "pre_tests": "Откройте строка 352 в предоставленном файле book/mermaid.min.js и изучите приведённые строки (см. доказательство).",
+        "post_tests": "Повторно просканируйте код и проверьте места вызова из доказательства.",
+        "closure_criteria": "Повторно просканируйте код и проверьте места вызова из доказательства.",
+        "status": "todo",
+        "finding": "QSI-2026-07442",
+        "finding_title": "Некриптографический ГСЧ рядом с чувствительными идентификаторами в book/mermaid.min.js",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20).",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P3",
+        "horizon_days": 60,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Возможны изменения API.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан.",
+        "status": "todo",
+        "finding": "QSI-2026-07448",
+        "finding_title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
+        "severity": "low"
+      }
+    ],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-07445",
+        "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-07443",
+        "finding_title": "Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-07444",
+        "finding_title": "Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-07445",
+        "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-07443",
+        "finding_title": "Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-07444",
+        "finding_title": "Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Замените atomic-polyfill поддерживаемой альтернативой или зафиксируйте, почему он остаётся.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Могут потребоваться изменения кода.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "atomic-polyfill заменён или решение зафиксировано.",
+        "status": "todo",
+        "finding": "QSI-2026-07447",
+        "finding_title": "atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)",
+        "severity": "info"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CNS2017",
+      "title": "A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2017/847",
+      "status": "peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory"
+    },
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "ZALKA1999",
+      "title": "C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070)",
+      "publisher": "APS",
+      "url": "https://doi.org/10.1103/PhysRevA.60.2746",
+      "status": "peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space"
+    },
+    {
+      "key": "CWE-338",
+      "url": "https://cwe.mitre.org/data/definitions/338.html",
+      "title": "CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)",
+      "status": "weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable",
+      "publisher": "MITRE"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "BERNSTEIN2009-COLLISION",
+      "title": "D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009)",
+      "publisher": "cr.yp.to",
+      "url": "https://cr.yp.to/hash/collisioncost-20090823.pdf",
+      "status": "paper dated 2009-08-23"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "BHT-COLLISION1998",
+      "title": "G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/quant-ph/9705002",
+      "status": "peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "GROVER1996",
+      "title": "L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996)",
+      "publisher": "ACM",
+      "url": "https://doi.org/10.1145/237814.237866",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "AMY2016",
+      "title": "M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1603.09383",
+      "status": "peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "SP800-90A-R1",
+      "url": "https://csrc.nist.gov/pubs/sp/800/90/a/r1/final",
+      "title": "NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators",
+      "status": "final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not",
+      "publisher": "NIST"
+    },
+    {
+      "key": "NIST-PQC-SEC",
+      "title": "NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)",
+      "status": "security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96"
+    },
+    {
+      "key": "RUSTSEC-2023-0089",
+      "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0089",
+      "title": "OSV advisory RUSTSEC-2023-0089",
+      "status": "modified 2025-04-29T08:31:10Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "RUSTSEC-2026-0204",
+      "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0204",
+      "title": "OSV advisory RUSTSEC-2026-0204",
+      "status": "modified 2026-07-06T22:30:04.159269138Z",
+      "publisher": "OSV.dev"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    },
+    {
+      "key": "JAQUES2020",
+      "title": "S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700)",
+      "publisher": "Springer / arXiv",
+      "url": "https://arxiv.org/abs/1910.01700",
+      "status": "peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "BLAKE2",
+      "family": "hash",
+      "parameter": "",
+      "usage": "implemented in a file of this name",
+      "library": "",
+      "location": "crates/tachyon/src/digest/blake2b.rs",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "low",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/digest/mod.rs:8",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (7 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/digest/poseidon.rs:14",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 7
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/fee.rs:10",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (11 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/keys/master.rs:7",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 11
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/keys/note.rs:8",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/note.rs:41",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/primitives/action_digest.rs:4",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (4 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/primitives/anchor.rs:9",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 4
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/primitives/effect.rs:12",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/stamp/proof/delegation.rs:17",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (7 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/stamp/proof/evidence.rs:26",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 7
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/stamp/proof/output.rs:11",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/stamp/proof/qr.rs:36",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "Poseidon",
+      "family": "hash",
+      "parameter": "",
+      "usage": "source code (7 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/stamp/proof/stamp.rs:15",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 7
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14.0",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14.0",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "crates/tachyon/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "crates/tachyon/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Pedersen commitment",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/value.rs:18",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/action.rs:267",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/bundle/mod.rs:1215",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (11 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/keys/private.rs:95",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 11
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "RedPallas",
+      "usage": "source code (5 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/keys/private.rs:97",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 5
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/keys/proof.rs:60",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "RedPallas",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/keys/public.rs:151",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (9 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/keys/public.rs:27",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 9
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/reddsa.rs:7",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "RedDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "source code (9 reference(s))",
+      "library": "",
+      "location": "crates/tachyon/src/serialization/mod.rs:79",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 9
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "BLAKE2",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "crates/tachyon/src/digest/blake2b.rs"
+      ]
+    },
+    {
+      "algorithm": "Poseidon",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 14,
+      "rows": 14,
+      "examples": [
+        "crates/tachyon/src/digest/mod.rs:8",
+        "crates/tachyon/src/digest/poseidon.rs:14",
+        "crates/tachyon/src/fee.rs:10"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14.0",
+      "library": "ff (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14.0",
+      "library": "group (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14",
+      "library": "group (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "crates/tachyon/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14",
+      "library": "ff (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "crates/tachyon/Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Pedersen commitment",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "crates/tachyon/src/value.rs:18"
+      ]
+    },
+    {
+      "algorithm": "RedDSA",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 7,
+      "rows": 7,
+      "examples": [
+        "crates/tachyon/src/action.rs:267",
+        "crates/tachyon/src/bundle/mod.rs:1215",
+        "crates/tachyon/src/keys/private.rs:95"
+      ]
+    },
+    {
+      "algorithm": "RedDSA",
+      "parameter": "RedPallas",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 2,
+      "rows": 2,
+      "examples": [
+        "crates/tachyon/src/keys/private.rs:97",
+        "crates/tachyon/src/keys/public.rs:151"
+      ]
+    }
+  ]
+}

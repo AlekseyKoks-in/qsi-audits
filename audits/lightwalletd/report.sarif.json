@@ -14,10 +14,10 @@
               "id": "CERT-QV-KEY",
               "name": "CertQvKey",
               "shortDescription": {
-                "text": "Quantum-vulnerable RSA key in certificate (lightwalletd.testnet.local)"
+                "text": "Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)"
               },
               "defaultConfiguration": {
-                "level": "note"
+                "level": "warning"
               },
               "properties": {
                 "tags": [
@@ -25,13 +25,13 @@
                   "post_quantum",
                   "pq_long_term_risk"
                 ],
-                "security-severity": "3.0"
+                "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "The certificate lightwalletd.testnet.local uses a RSA 2048-bit public key, valid until 2029-12-15. RSA is broken by Shor's algorithm on a CRQC. Track in the PQC inventory; prefer short certificate lifetimes; follow CA/Browser Forum and NIST PQC transition guidance for ML-DSA certificates. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability."
+                "text": "Сертификат lightwalletd.testnet.local использует открытый ключ RSA 2048-bit, действителен до 2029-12-15. RSA взламывается алгоритмом Шора на CRQC. Учитывайте в PQC-инвентаризации; используйте короткие сроки действия; следуйте рекомендациям CA/Browser Forum и NIST по переходу на сертификаты ML-DSA. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
               },
               "help": {
-                "text": "The certificate lightwalletd.testnet.local uses a RSA 2048-bit public key, valid until 2029-12-15. RSA is broken by Shor's algorithm on a CRQC. Track in the PQC inventory; prefer short certificate lifetimes; follow CA/Browser Forum and NIST PQC transition guidance for ML-DSA certificates. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability."
+                "text": "Сертификат lightwalletd.testnet.local использует открытый ключ RSA 2048-bit, действителен до 2029-12-15. RSA взламывается алгоритмом Шора на CRQC. Учитывайте в PQC-инвентаризации; используйте короткие сроки действия; следуйте рекомендациям CA/Browser Forum и NIST по переходу на сертификаты ML-DSA. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -39,10 +39,10 @@
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable RSA: role not determined (1 file(s))"
+                "text": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))"
               },
               "defaultConfiguration": {
-                "level": "note"
+                "level": "warning"
               },
               "properties": {
                 "tags": [
@@ -50,13 +50,13 @@
                   "post_quantum",
                   "pq_long_term_risk"
                 ],
-                "security-severity": "3.0"
+                "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "2 reference(s) to RSA across 1 file(s), e.g. common/generatecerts.go:8. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority. Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "2 упоминаний RSA в 1 файл(ах), например common/generatecerts.go:8. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "help": {
-                "text": "2 reference(s) to RSA across 1 file(s), e.g. common/generatecerts.go:8. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority. Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "2 упоминаний RSA в 1 файл(ах), например common/generatecerts.go:8. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -64,7 +64,7 @@
               "id": "DEP-ADVISORY-UNRATED",
               "name": "DepAdvisoryUnrated",
               "shortDescription": {
-                "text": "golang.org/x/crypto v0.55.0 is affected by GO-2026-5932 (no severity rating)"
+                "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности)"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -78,10 +78,10 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GO-2026-5932"
             },
@@ -89,7 +89,7 @@
               "id": "KEY-PRIVATE-IN-INPUT",
               "name": "KeyPrivateInInput",
               "shortDescription": {
-                "text": "Private key material present in docker/cert.key"
+                "text": "Закрытый ключ присутствует в docker/cert.key"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -103,10 +103,10 @@
                 "security-severity": "8.1"
               },
               "fullDescription": {
-                "text": "A 'PRIVATE KEY' block was found at line 1 of docker/cert.key. QSI redacted the key before storage; the original file still contains it. Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets manager/HSM. QSI cannot determine whether this key is in production use. The key value was not retained."
+                "text": "Блок «PRIVATE KEY» найден в строке 1 файла docker/cert.key. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
               },
               "help": {
-                "text": "A 'PRIVATE KEY' block was found at line 1 of docker/cert.key. QSI redacted the key before storage; the original file still contains it. Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets manager/HSM. QSI cannot determine whether this key is in production use. The key value was not retained."
+                "text": "Блок «PRIVATE KEY» найден в строке 1 файла docker/cert.key. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
               },
               "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
             },
@@ -114,7 +114,7 @@
               "id": "DEP-NO-PQC-LIBRARY",
               "name": "DepNoPqcLibrary",
               "shortDescription": {
-                "text": "No post-quantum capable cryptographic library detected"
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -128,10 +128,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "Across 1 dependency manifests, QSI found crypto libraries (golang.org/x/crypto) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+                "text": "В 1 манифестах зависимостей QSI нашёл криптобиблиотеки (golang.org/x/crypto), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "Across 1 dependency manifests, QSI found crypto libraries (golang.org/x/crypto) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+                "text": "В 1 манифестах зависимостей QSI нашёл криптобиблиотеки (golang.org/x/crypto), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -142,19 +142,19 @@
         {
           "ruleId": "CERT-QV-KEY",
           "ruleIndex": 0,
-          "level": "note",
+          "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable RSA key in certificate (lightwalletd.testnet.local)"
+            "text": "Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "77376b17760f0bd734d35835f428f011"
           },
           "properties": {
-            "qsiId": "QSI-2026-05532",
-            "severity": "low",
+            "qsiId": "QSI-2026-07097",
+            "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
-            "security-severity": "3.0"
+            "security-severity": "5.0"
           },
           "locations": [
             {
@@ -172,19 +172,19 @@
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
           "ruleIndex": 1,
-          "level": "note",
+          "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable RSA: role not determined (1 file(s))"
+            "text": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-05530",
-            "severity": "low",
+            "qsiId": "QSI-2026-07095",
+            "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
-            "security-severity": "3.0"
+            "security-severity": "5.0"
           }
         },
         {
@@ -192,13 +192,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/crypto v0.55.0 is affected by GO-2026-5932 (no severity rating) (dependency: Go/golang.org/x/crypto@v0.55.0)"
+            "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.55.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
           },
           "properties": {
-            "qsiId": "QSI-2026-05534",
+            "qsiId": "QSI-2026-07099",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -222,13 +222,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/crypto v0.55.0 is affected by GO-2026-6354 (CVE-2026-78662) (no severity rating) (dependency: Go/golang.org/x/crypto@v0.55.0)"
+            "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.55.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "79a4e71ca0cc9cb4bf47ce78bf674bdc"
           },
           "properties": {
-            "qsiId": "QSI-2026-05535",
+            "qsiId": "QSI-2026-07100",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -252,13 +252,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/crypto v0.55.0 is affected by GO-2026-6355 (CVE-2026-56855) (no severity rating) (dependency: Go/golang.org/x/crypto@v0.55.0)"
+            "text": "golang.org/x/crypto v0.55.0 затронут GO-2026-6355 (CVE-2026-56855) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.55.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "c8622f739268e0accd76421999e40824"
           },
           "properties": {
-            "qsiId": "QSI-2026-05536",
+            "qsiId": "QSI-2026-07101",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -282,13 +282,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating) (dependency: Go/golang.org/x/net@v0.58.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
           },
           "properties": {
-            "qsiId": "QSI-2026-05537",
+            "qsiId": "QSI-2026-07102",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -312,13 +312,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating) (dependency: Go/golang.org/x/net@v0.58.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
           },
           "properties": {
-            "qsiId": "QSI-2026-05539",
+            "qsiId": "QSI-2026-07104",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -342,13 +342,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating) (dependency: Go/golang.org/x/net@v0.58.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
           },
           "properties": {
-            "qsiId": "QSI-2026-05540",
+            "qsiId": "QSI-2026-07105",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -372,13 +372,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating) (dependency: Go/golang.org/x/net@v0.58.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
           },
           "properties": {
-            "qsiId": "QSI-2026-05541",
+            "qsiId": "QSI-2026-07106",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -402,13 +402,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating) (dependency: Go/golang.org/x/net@v0.58.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
           },
           "properties": {
-            "qsiId": "QSI-2026-05542",
+            "qsiId": "QSI-2026-07107",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -432,13 +432,13 @@
           "ruleIndex": 3,
           "level": "note",
           "message": {
-            "text": "Private key material present in docker/cert.key"
+            "text": "Закрытый ключ присутствует в docker/cert.key"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "f820eb2fee5050a6c79b4f50f505762a"
           },
           "properties": {
-            "qsiId": "QSI-2026-05531",
+            "qsiId": "QSI-2026-07096",
             "severity": "info",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -462,13 +462,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating) (dependency: Go/golang.org/x/net@v0.58.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
           },
           "properties": {
-            "qsiId": "QSI-2026-05538",
+            "qsiId": "QSI-2026-07103",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -492,13 +492,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating) (dependency: Go/golang.org/x/net@v0.58.0)"
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6866 (CVE-2026-97045) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
           },
           "properties": {
-            "qsiId": "QSI-2026-05543",
+            "qsiId": "QSI-2026-07108",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -522,13 +522,13 @@
           "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "No post-quantum capable cryptographic library detected"
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-05533",
+            "qsiId": "QSI-2026-07098",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -537,13 +537,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/14a011b1-0b2f-4c1c-b464-2a7b8ae42265"
+        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/f9b43ee1-df86-4cae-992a-c23d240bcdbc"
       },
       "properties": {
-        "qsiContentSha256": "82414793308723f9630b1a40523260f8258d8b9c17a2b30005a7575edb8963e0",
+        "qsiContentSha256": "ee01be5a6a668e45f80173febb444271441656e5c2f98f8ad60408f1e35ec330",
         "qsiReportVersion": 1,
-        "qsiRiskProfile": "small_tech",
-        "qsiGeneratedAt": "2026-10-28T18:03:17.612558+00:00",
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-10-29T23:10:01.950700+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.bundle-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"files_sha256\":{\"brief.en.md\":\"4a095c18f6226406db65e069cf3da3965b2e397c2097324cec25a6cafa552372\",\"brief.en.pdf\":\"334cbd7b8dc3e1fc13a6636e9cb9f26266d3f739cbe95b0a28a82ebee02dc2ca\",\"brief.ru.md\":\"da8435f44b4651d46fd2d41ba5e5657cf7fabf78a2464dc4b0b09cda45b5b593\",\"brief.ru.pdf\":\"43b199e9abbc47bc0859e4c6f6d036ebed4e059c2ea845fc44c829335ecc052b\",\"cbom.cdx.json\":\"a82e91c88b3c3883cdacd425dc8e843e5e3e58bcc629e38c49608683e378f823\",\"public_key.pem\":\"2a85f785e826c5077328b2d60b2e60bbf881e9343b30ec8d7271ade2f72b0484\",\"report.html\":\"d8976f497b316c91d46c23a421433be97078a49a6b6b981646e4fc8e78821df1\",\"report.json\":\"1bb209c06f3ab92b60facc757a9a2d66f158489639f2f2e0d1e397197b53aa5b\",\"report.md\":\"ce52ae44011b47fe83d3ebdbac347582fa022593d6921edd6ca594346cbf97f6\",\"report.pdf\":\"f5940058cf02d254f7711a6b82fbd0a3627bff1a02b4ea5198fce1b48bfa8345\",\"report.sarif.json\":\"ede3e8fd33106699bf01ed4d3e20361758fbb74f4f98292ab3c2701e1a4f29b5\",\"report.sig.json\":\"da20d648c05f91936570d91d91ce557ef2780e056fff59d949b63d493655bc13\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"report_id\":\"5982115a-aaf1-49e7-851f-5f081f3e36b6\",\"schema\":\"qsi.bundle-signature/1\",\"signed_at\":\"2026-10-29T23:43:16+00:00\",\"signer\":\"QSI installation 5b3cf9c9bd0fa544\"}",
+  "signature": "4vk4EtaHBSka8Z77gZoX4aX+QUedwot2/PgIspsc//gTN+MTxn7qEAYRBJzG52DqSO7P72yM128Gsr09NVj6Dw=="
+}

@@ -1,24 +1,24 @@
 # Post-quantum cryptography review: openpgpjs @ 8bc35df48879
 
-*One-page brief* · Reviewed: 2026-10-28 12:44 UTC · Risk profile: Security software vendor · Client: OpenPGP.js project — public repository (passive review)
+*One-page brief* · Reviewed: 2026-10-29 23:21 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: OpenPGP.js project — public repository (passive review)
 
 Source: https://github.com/openpgpjs/openpgpjs/tree/8bc35df4887933a3b2661e3741b33ba5f347b935
 
 **Post-quantum maturity:** Level 2 of 4 — post-quantum in use outside the critical paths. **Next step:** Extend post-quantum protection to the critical roles that stay classical, starting with what can be recorded today (wrapped keys, channel key exchange).
 
-**Findings:** Critical 0 · High 0 · Medium 7 · Low 1 · Info 1
+**Findings:** Critical 0 · High 0 · Medium 8 · Low 0 · Info 1
 
-**Quantum timeline (Mosca: x + y − z):** Key establishment 10 + 3 − 8 = 5 → too late; Signatures 5 + 3 − 8 = 0 → tight
+**Quantum timeline (Mosca: x + y − z):** Key establishment 10 + 5 − 8 = 7 → too late; Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable X25519: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-04759) · *preliminary*\
+1. **Medium** · Quantum-vulnerable X25519: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-07208) · *preliminary*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-2. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-04764) · *preliminary*\
+2. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-07213) · *preliminary*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-3. **Medium** · Quantum-vulnerable ECDH: role not determined (2 file(s)) (QSI-2026-04762) · *preliminary*\
-   What to do: Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in…
-4. **Medium** · Quantum-vulnerable X25519: role not determined (5 file(s)) (QSI-2026-04763) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDSA: role not determined (7 file(s)) (QSI-2026-07207) · *preliminary*\
+   What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
+4. **Medium** · Quantum-vulnerable ECDH: role not determined (2 file(s)) (QSI-2026-07211) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in…
 
 4 more in the full report.
@@ -28,13 +28,13 @@ Source: https://github.com/openpgpjs/openpgpjs/tree/8bc35df4887933a3b2661e3741b3
 | Role | Algorithms | What to do |
 |---|---|---|
 | **Medium** · key wrapping and data encryption at rest | X25519, ECDH | Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may… |
-| **Medium** · role not determined | ECDSA, X25519, ECDH, RSA | Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS… |
+| **Medium** · role not determined | ECDSA, X25519, ECDH, RSA | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205)… |
 
 ---
 
 Static review of source code and manifests; files analysed: 108. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `b2ce41a779ab83da67c60c3d95217832c3b36f0255aef76330dcb58b2cfe65da`
+Full report, content SHA-256: `51c76f4947c45fca86f01b8d92427866b15d600f9551fdc9a0e629f0fb1ea52d`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

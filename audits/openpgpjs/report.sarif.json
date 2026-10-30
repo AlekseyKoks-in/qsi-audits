@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
           },
           "properties": {
-            "qsiId": "QSI-2026-04759",
+            "qsiId": "QSI-2026-07208",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,25 @@
             "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
           },
           "properties": {
-            "qsiId": "QSI-2026-04764",
+            "qsiId": "QSI-2026-07213",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07207",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +154,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-04762",
+            "qsiId": "QSI-2026-07211",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -154,7 +172,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-04763",
+            "qsiId": "QSI-2026-07212",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -172,7 +190,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-04765",
+            "qsiId": "QSI-2026-07214",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -190,7 +208,7 @@
             "qsiFindingKey/v1": "0727dd8f3744802a88ffb0947694bd7f"
           },
           "properties": {
-            "qsiId": "QSI-2026-04760",
+            "qsiId": "QSI-2026-07209",
             "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -220,7 +238,7 @@
             "qsiFindingKey/v1": "0727dd8f3744802a88ffb0947694bd7f"
           },
           "properties": {
-            "qsiId": "QSI-2026-04761",
+            "qsiId": "QSI-2026-07210",
             "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -240,24 +258,6 @@
           ]
         },
         {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-04758",
-            "severity": "low",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "3.0"
-          }
-        },
-        {
           "ruleId": "DEP-ADVISORY-DEV",
           "ruleIndex": 2,
           "level": "note",
@@ -268,7 +268,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-04766",
+            "qsiId": "QSI-2026-07215",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -286,13 +286,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/openpgpjs @ 8bc35df48879/2b3ed4b7-2e32-4adb-8ed5-25a8c413c766"
+        "id": "qsi/openpgpjs @ 8bc35df48879/cf79ae89-9985-47f6-81a2-a8dbfdf2b41b"
       },
       "properties": {
-        "qsiContentSha256": "b2ce41a779ab83da67c60c3d95217832c3b36f0255aef76330dcb58b2cfe65da",
+        "qsiContentSha256": "51c76f4947c45fca86f01b8d92427866b15d600f9551fdc9a0e629f0fb1ea52d",
         "qsiReportVersion": 1,
-        "qsiRiskProfile": "security_software",
-        "qsiGeneratedAt": "2026-10-28T12:44:05.980154+00:00",
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-10-29T23:21:57.451141+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

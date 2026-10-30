@@ -1,0 +1,7 @@
+# Recovered from zebra/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-23"
+decisions:
+  - match: {rule: "CODE-INSECURE-RANDOM", asset: "file:book/*"}
+    decision: false_positive
+    note: "book/mermaid.min.js is the minified Mermaid diagram library bundled into the mdBook documentation output. It is third-party code vendored for rendering docs, never runs in the node, and the Math.random calls are Mermaid's own layout code rather than anything security-sensitive in Zebra."

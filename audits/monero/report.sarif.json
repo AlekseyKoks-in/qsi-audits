@@ -11,10 +11,35 @@
           "version": "1.2.0",
           "rules": [
             {
+              "id": "CODE-HARDCODED-SECRET",
+              "name": "CodeHardcodedSecret",
+              "shortDescription": {
+                "text": "Возможный секрет в коде utils/python-rpc/framework/wallet.py"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "2 значений, похожих на секреты, типа generic_assignment (первое — строка 1198). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "2 значений, похожих на секреты, типа generic_assignment (первое — строка 1198). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
               "id": "CHAINMAP-QV",
               "name": "ChainmapQv",
               "shortDescription": {
-                "text": "Transaction signing for 1 chain(s) relies on elliptic-curve signatures"
+                "text": "Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -28,18 +53,18 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "The wallet's message definitions cover Monero. These chains authorize transactions with Ed25519, which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Chains are recognized from the names of the message definitions (.proto files and…"
+                "text": "Определения сообщений кошелька охватывают сети: Monero. Эти сети авторизуют транзакции подписями Ed25519, которые алгоритм Шора взламывает на криптографически значимом квантовом компьютере. Кошелёк не может сам перевести сеть на постквантовые подписи: сначала схему должна принять сеть. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Сохраняйте криптогибкость слоя подписи по каждой сети (идентификаторы алгоритмов в сообщениях и хранилище, место под более длинные ключи и подписи) и отслеживайте постквантовые предложения сетей, чтобы добавить новую схему, когда сеть её активирует. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Сети распознаются по именам определений сообщений (файлы .proto и пакеты); схемы — документир…"
               },
               "help": {
-                "text": "The wallet's message definitions cover Monero. These chains authorize transactions with Ed25519, which Shor's algorithm breaks on a cryptographically relevant quantum computer. A wallet cannot move a chain to post-quantum signatures on its own: the chain has to adopt a scheme first. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. Keep the signing layer crypto-agile per chain (algorithm identifiers in messages and storage, room for larger keys and signatures) and track each chain's post-quantum proposals, so that a new scheme can be added when a chain activates it. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Chains are recognized from the names of the message definitions (.proto files and packages); the schemes are the chains' documented account signatures, not an analysis of the wallet's signing code."
+                "text": "Определения сообщений кошелька охватывают сети: Monero. Эти сети авторизуют транзакции подписями Ed25519, которые алгоритм Шора взламывает на криптографически значимом квантовом компьютере. Кошелёк не может сам перевести сеть на постквантовые подписи: сначала схему должна принять сеть. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Сохраняйте криптогибкость слоя подписи по каждой сети (идентификаторы алгоритмов в сообщениях и хранилище, место под более длинные ключи и подписи) и отслеживайте постквантовые предложения сетей, чтобы добавить новую схему, когда сеть её активирует. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Сети распознаются по именам определений сообщений (файлы .proto и пакеты); схемы — документированные подписи аккаунтов сетей, а не анализ кода подписи кошелька."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
             {
-              "id": "CODE-QV-ASYMMETRIC",
-              "name": "CodeQvAsymmetric",
+              "id": "KEY-QV-PUBLIC",
+              "name": "KeyQvPublic",
               "shortDescription": {
-                "text": "Quantum-vulnerable Ed25519: role not determined (4 file(s))"
+                "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -53,10 +78,35 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "4 reference(s) to Ed25519 across 4 file(s), e.g. src/crypto/crypto_ops_builder/crypto_sign.h:10. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority. Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "Найден открытый ключ Ed25519 Ed25519 (строка 1). Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
               },
               "help": {
-                "text": "4 reference(s) to Ed25519 across 4 file(s), e.g. src/crypto/crypto_ops_builder/crypto_sign.h:10. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority. Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "Найден открытый ключ Ed25519 Ed25519 (строка 1). Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "2 упоминаний RSA в 1 файл(ах), например contrib/epee/src/net_ssl.cpp:101. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "2 упоминаний RSA в 1 файл(ах), например contrib/epee/src/net_ssl.cpp:101. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые. Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise). Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -64,7 +114,7 @@
               "id": "DEP-KNOWN-ADVISORY",
               "name": "DepKnownAdvisory",
               "shortDescription": {
-                "text": "block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7"
+                "text": "block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -78,10 +128,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (none published yet; see the advisory for mitigations). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (none published yet; see the advisory for mitigations). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7"
             },
@@ -89,7 +139,7 @@
               "id": "DEP-ADVISORY-UNRATED",
               "name": "DepAdvisoryUnrated",
               "shortDescription": {
-                "text": "crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)"
+                "text": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -103,10 +153,10 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
+                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
             },
@@ -114,7 +164,7 @@
               "id": "DEP-NO-PQC-LIBRARY",
               "name": "DepNoPqcLibrary",
               "shortDescription": {
-                "text": "No post-quantum capable cryptographic library detected"
+                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -128,10 +178,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "Across 2 dependency manifests, QSI found crypto libraries (curve25519-dalek, ecdsa, k256, p256) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, k256, p256), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "Across 2 dependency manifests, QSI found crypto libraries (curve25519-dalek, ecdsa, k256, p256) but none from its PQC-capable list. Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade). Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed."
+                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, k256, p256), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -140,17 +190,677 @@
       },
       "results": [
         {
-          "ruleId": "CHAINMAP-QV",
+          "ruleId": "CODE-HARDCODED-SECRET",
           "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Возможный секрет в коде utils/python-rpc/framework/wallet.py"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4e602c71984f8b1763de2505920986e1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07254",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "utils/python-rpc/framework/wallet.py"
+                },
+                "region": {
+                  "startLine": 1198
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CHAINMAP-QV",
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Transaction signing for 1 chain(s) relies on elliptic-curve signatures"
+            "text": "Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-05417",
+            "qsiId": "QSI-2026-07256",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "015c728a7b05fe74261e6f59612b1eb6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07220",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b12bab5b4fcec97809f148c2ccd35365"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07221",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "75393f3cdc1eab22ef35b9abf88f1e67"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07222",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e2560b07f3b7dddd247ddcd1bff81018"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07223",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "693c8a4581240af84c97fe48a8a045a2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07224",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "39876601a46f9efd20118a2ff5315e4d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07225",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a7abc8f810ff44aa937409257b0a2f5b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07226",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d6e0a2c05f1f2c1826a4504ca7debf66"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07227",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "34cdca4f058e479c0480c8f535d19dee"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07228",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "34cdca4f058e479c0480c8f535d19dee"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07229",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8254787fcd78054683581a27383b2404"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07230",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "153cf810fe559c2813a270d0628dc15a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07231",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8940dac20b1d1647dd751d55a8f107e3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07232",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f86943d0da1b3519143a73c5e14d36b6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07233",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3f0fd07b430ad99892a1ae0a00ad399a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07234",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "79a3456aed575de3453fe0e231cd46e3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07235",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "342127b97fa2b33249e0bcae0f3cafe2"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07236",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a94624cf79d17c205e4b0653aae7e20c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07237",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a94624cf79d17c205e4b0653aae7e20c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07238",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a0e870bfa631df925420ca02d5dc581e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07239",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9caeea58dd44e018e453af082fa31d26"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07240",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2a952e368effdb02e4e83e7d8a19d423"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07241",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "39e0f4431cf5269386c4d653512c48f3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07242",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7c64da19d4accbb07dc5ca0984c90706"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07243",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "298f07c620330c4e37d8b5627e041344"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07244",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "da541a0f2e63b7c61292bc154a322a11"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07245",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "91c4b0470647d500c27b92c8ad350507"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07246",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c3a1ac8083cf84a063219e219d14fd32"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07247",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "34c2c5407c2ad05433faadc865488adc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07248",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4539c8f6ef7878635258c2b4a500d81a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07249",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "29b13d204922281d1fee4cc1a295be0c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07250",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "34024143d99d59ef31fe4745adb36be3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07251",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ff1d82467acd02c0802273971bb0a79b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07252",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "df76359cc24e86d59756379cbe462e45"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07253",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1e18a834cbd109930f2377214cde3a59"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07255",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -159,16 +869,34 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Ed25519: role not determined (4 file(s))"
+            "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cb7dd5d879e7ccc6fbf842f8dd2da6e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-07216",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Ed25519: роль не определена (6 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-05414",
+            "qsiId": "QSI-2026-07217",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -177,16 +905,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable X25519: role not determined (2 file(s))"
+            "text": "Квантово-уязвимый X25519: роль не определена (2 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-05415",
+            "qsiId": "QSI-2026-07218",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -195,16 +923,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 1,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDH: role not determined (2 file(s))"
+            "text": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-05416",
+            "qsiId": "QSI-2026-07219",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -213,16 +941,16 @@
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 2,
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
-            "text": "block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.10.4)"
+            "text": "block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.10.4)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-05419",
+            "qsiId": "QSI-2026-07258",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -240,16 +968,16 @@
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 2,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "keccak 0.1.5 is affected by GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) (dependency: crates.io/keccak@0.1.5)"
+            "text": "keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) (dependency: crates.io/keccak@0.1.5)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-05421",
+            "qsiId": "QSI-2026-07260",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -267,16 +995,16 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 3,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
-            "text": "crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating) (dependency: crates.io/crypto-bigint@0.5.5)"
+            "text": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности) (dependency: crates.io/crypto-bigint@0.5.5)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-05420",
+            "qsiId": "QSI-2026-07259",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -294,16 +1022,16 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 4,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
-            "text": "No post-quantum capable cryptographic library detected"
+            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-05418",
+            "qsiId": "QSI-2026-07257",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -312,13 +1040,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/monero @ 3fd0f88c20f5/21c01b41-ab43-493f-81ae-7028dfa36d92"
+        "id": "qsi/monero @ 3fd0f88c20f5/e425d0b6-4289-4e9c-a90f-1054ae92ae26"
       },
       "properties": {
-        "qsiContentSha256": "c640f43c1f7c8aeef4a0c7208351c7fb5f0d46ab7c3a0401b7c2139ece61dd32",
+        "qsiContentSha256": "baf67d98f79b2d660cf6851c2ab260cc1d832d4825056049a72d778f6eb5536e",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-28T16:45:41.922647+00:00",
+        "qsiGeneratedAt": "2026-10-29T23:26:08.797898+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-28 12:28 UTC |
+| Дата отчёта | 2026-10-30 00:13 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | a1f0ee03-8b01-482a-99a8-9d5b1a5ed07d (Документальный аудит) |
+| Запуск аудита | eeafaa62-023c-4463-ba69-6cc641c1beb4 (Документальный аудит) |
 | Версия анализатора | qsi-engine 1.2.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `81ab30c80d5b748a201294a9babfd1a7209fb108ef54f431fd522308b135270a` |
+| SHA-256 содержимого | `2067f3243e2369935d24cf68a0c3ac722f9a8d4e819bd2211c6bcafbb8a5e36b` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,7 +17,7 @@
 
 - Критическая: **0**
 - Высокая: **2**
-- Средняя: **10**
+- Средняя: **11**
 - Низкая: **32**
 - Информационная: **7**
 
@@ -25,7 +25,7 @@
 - Известная уязвимая версия компонента: 43
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 2
+- Долгосрочный постквантовый риск: 3
 - Рекомендация по улучшению: 5
 - Недостаточность данных: 1
 
@@ -45,10 +45,10 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 307 | .github/helpers/check-dep-graph.py: 115 lines scanned with 16 rule patterns and 122 registry patterns; .github/helpers/check-release-tags.py: 167 lines scanned with 16 rule patterns and 122 registry patterns; components/eip681/src/error.rs: 290 lines scanned with 16 rule patterns and 122 registry patterns |
+| source_code | проверено | 307 | .github/helpers/check-dep-graph.py: 115 lines scanned with 16 rule patterns and 128 registry patterns; .github/helpers/check-release-tags.py: 167 lines scanned with 16 rule patterns and 128 registry patterns; components/eip681/src/error.rs: 290 lines scanned with 16 rule patterns and 128 registry patterns |
 | dependencies | проверено | 21 | Cargo.lock: 690 dependencies parsed (690 pinned); Cargo.toml: 101 dependencies parsed (10 pinned); components/eip681/Cargo.toml: 11 dependencies parsed (0 pinned) |
 | secrets | проверено | 1 | components/eip681/src/request.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| tls_code | проверено | 2 | zcash_client_backend/src/tor/http.rs: TLS key-exchange settings read; zcash_client_backend/src/tor.rs: TLS key-exchange settings read |
+| tls_code | проверено | 2 | zcash_client_backend/src/tor.rs: TLS key-exchange settings read; zcash_client_backend/src/tor/http.rs: TLS key-exchange settings read |
 | osv_advisories | проверено | 1 | 700 pinned packages queried at OSV.dev; 28 affected (2 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -59,22 +59,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree librustzcash at 8672a4b2d60f432664780e6a4e85f49a36805a2a. 333 files analysed; of 484 files, 54 are test, fuzzing, benchmark or example code and were left out, 97 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree librustzcash at 8672a4b2d60f432664780e6a4e85f49a36805a2a. 333 files analysed; of 484 files, 54 are test, fuzzing, benchmark or example code and were left out, 97 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .editorconfig, .gitattributes, .github/actions/prepare/action.yml, .github/dependabot.yml, .github/workflows/aggregate-audits.yml. 103 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **1** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 41.3%
+- Доля квантово-уязвимых элементов инвентаризации: 14.7%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-04498 — rustls-webpki 0.101.7 затронут GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104)
+### QSI-2026-07531 — rustls-webpki 0.101.7 затронут GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -102,13 +102,13 @@ _tool_output · [OSV.dev GHSA-82j2-j2ch-gfr8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04502 — rustls-webpki 0.103.3 затронут GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104)
+### QSI-2026-07535 — rustls-webpki 0.103.3 затронут GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -136,13 +136,13 @@ _tool_output · [OSV.dev GHSA-82j2-j2ch-gfr8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04507 — serde_with 3.16.0 затронут GHSA-7gcf-g7xr-8hxj
+### QSI-2026-07540 — serde_with 3.16.0 затронут GHSA-7gcf-g7xr-8hxj
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/serde_with@3.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -170,13 +170,121 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04471 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (15 файл(ов))
+### QSI-2026-07503 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Pedersen commitment:threshold_mpc`
+- Источник данных: pczt/src/orchard.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 00:13 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
+
+13 упоминаний Pedersen commitment в 4 файл(ах), например pczt/src/orchard.rs:23. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте pczt/src/orchard.rs:23 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [pczt/src/orchard.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/pczt/src/orchard.rs#L23) · line 23 · SHA-256 ceab0b6e960329ba36b083a225009b5f573bb5a46353fd5bc02ebee6c199063e_
+
+```
+   22 |         },
+   23 |         value::{NoteValue, ValueCommitTrapdoor, ValueCommitment},
+   24 |     },
+```
+
+_file_excerpt · [pczt/src/orchard.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/pczt/src/orchard.rs#L2161) · line 2161 · SHA-256 6b6748f70bf576cd97e6461d8a6c1dfc5e0cd8335a7a03c4379d504ff3287943_
+
+```
+ 2160 |         );
+ 2161 |         let rcv = ValueCommitTrapdoor::from_bytes(
+ 2162 |             self.rcv
+```
+
+_file_excerpt · [pczt/src/orchard.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/pczt/src/orchard.rs#L2168) · line 2168 · SHA-256 14e2a787d8c57b11ecb388d872ab15526a24526cbad0174a72c6e99de4057bce_
+
+```
+ 2167 | 
+ 2168 |         self.cv_net = Some(ValueCommitment::derive(spend_value - output_value, rcv).to_bytes());
+ 2169 |         Ok(())
+```
+
+_file_excerpt · [zcash_primitives/src/transaction/components/orchard.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_primitives/src/transaction/components/orchard.rs#L17) · line 17 · SHA-256 b898fb36dbfe34ab7cb1b164bb079efb5379f9fbfa5c96a4e7ec555300893dfe_
+
+```
+   16 |     primitives::redpallas::{self, SigType, Signature, SpendAuth, VerificationKey},
+   17 |     value::ValueCommitment,
+   18 | };
+```
+
+_file_excerpt · [zcash_primitives/src/transaction/components/orchard.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_primitives/src/transaction/components/orchard.rs#L237) · line 237 · SHA-256 98f5867a31e27597c3c01fb15d4bff203c7c50e97aeb84452538a6608187c620_
+
+```
+  236 | 
+  237 | pub fn read_value_commitment<R: Read>(mut reader: R) -> io::Result<ValueCommitment> {
+  238 |     let mut bytes = [0u8; 32];
+```
+
+_file_excerpt · [zcash_primitives/src/transaction/components/orchard.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_primitives/src/transaction/components/orchard.rs#L240) · line 240 · SHA-256 4273fe713482d561f58f7ead2f139ac70d03ea9dbad8e017bd7461264afd750f_
+
+```
+  239 |     reader.read_exact(&mut bytes)?;
+  240 |     let cv = ValueCommitment::from_bytes(&bytes);
+  241 | 
+```
+
+_file_excerpt · [zcash_primitives/src/transaction/components/sapling.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_primitives/src/transaction/components/sapling.rs#L14) · line 14 · SHA-256 92e6baa4894cf218ffaee5a99ea7a496207f7809ceb7dd93bdad9617eac9e172_
+
+```
+   13 |     note_encryption::{ENC_CIPHERTEXT_SIZE, Zip212Enforcement},
+   14 |     value::ValueCommitment,
+   15 | };
+```
+
+_file_excerpt · [zcash_primitives/src/transaction/components/sapling.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_primitives/src/transaction/components/sapling.rs#L145) · line 145 · SHA-256 74cbf5fd547cd286f9ab13c63b7ff0d2a3e65edce93bf842d9941a5de530c7c6_
+
+```
+  144 | /// - "Not small order" is enforced here.
+  145 | fn read_value_commitment<R: Read>(mut reader: R) -> io::Result<ValueCommitment> {
+  146 |     let mut bytes = [0u8; 32];
+```
+
+_file_excerpt · [zcash_primitives/src/transaction/components/sapling.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_primitives/src/transaction/components/sapling.rs#L148) · line 148 · SHA-256 7d95f61598851f8f97630b7d4273b0d979553c0dd4163a84350ec07504f8e373_
+
+```
+  147 |     reader.read_exact(&mut bytes)?;
+  148 |     let cv = ValueCommitment::from_bytes_not_small_order(&bytes);
+  149 | 
+```
+
+_file_excerpt · [zcash_proofs/src/prover.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_proofs/src/prover.rs#L13) · line 13 · SHA-256 9157c5336593c406d960a2e8c63876e8949011faf52f1090e1a110015c78ccd0_
+
+```
+   12 |     prover::{OutputProver, SpendProver},
+   13 |     value::{NoteValue, ValueCommitTrapdoor},
+   14 | };
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-07504 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (15 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: pczt/src/roles/signer/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -208,22 +316,6 @@ _file_excerpt · [pczt/src/roles/signer/mod.rs](https://github.com/zcash/librust
   300 |     ) -> Result<(), Error> {
 ```
 
-_file_excerpt · [zcash_client_backend/src/data_api/wallet.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_client_backend/src/data_api/wallet.rs#L1380) · line 1380 · SHA-256 3b9d26a9135dd6c0de7940c206e5fe0f7700515582a4903f60cef7b3fbe84335_
-
-```
- 1379 |     #[cfg(feature = "transparent-key-import")]
- 1380 |     standalone_transparent_keys: HashMap<TransparentAddress, Vec<secp256k1::SecretKey>>,
- 1381 | }
-```
-
-_file_excerpt · [zcash_client_backend/src/data_api/wallet.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_client_backend/src/data_api/wallet.rs#L1389) · line 1389 · SHA-256 9aa484cc95bda86ba52610e3ef95bd1009860a3b691a37e0f12d6aae37e82724_
-
-```
- 1388 |             TransparentAddress,
- 1389 |             Vec<secp256k1::SecretKey>,
- 1390 |         >,
-```
-
 _file_excerpt · [zcash_client_backend/src/data_api.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_client_backend/src/data_api.rs#L3935) · line 3935 · SHA-256 96b89b202e7e6ba5fb6a218ecdfd6e64c4c7f004c23a197ce1a7c0e358fc6d20_
 
 ```
@@ -238,6 +330,22 @@ _file_excerpt · [zcash_client_backend/src/data_api.rs](https://github.com/zcash
  3955 |         account: <Self as WalletRead>::AccountId,
  3956 |         pubkeys: &[secp256k1::PublicKey],
  3957 |     ) -> Result<(), <Self as WalletRead>::Error> {
+```
+
+_file_excerpt · [zcash_client_backend/src/data_api/wallet.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_client_backend/src/data_api/wallet.rs#L1380) · line 1380 · SHA-256 3b9d26a9135dd6c0de7940c206e5fe0f7700515582a4903f60cef7b3fbe84335_
+
+```
+ 1379 |     #[cfg(feature = "transparent-key-import")]
+ 1380 |     standalone_transparent_keys: HashMap<TransparentAddress, Vec<secp256k1::SecretKey>>,
+ 1381 | }
+```
+
+_file_excerpt · [zcash_client_backend/src/data_api/wallet.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_client_backend/src/data_api/wallet.rs#L1389) · line 1389 · SHA-256 9aa484cc95bda86ba52610e3ef95bd1009860a3b691a37e0f12d6aae37e82724_
+
+```
+ 1388 |             TransparentAddress,
+ 1389 |             Vec<secp256k1::SecretKey>,
+ 1390 |         >,
 ```
 
 _file_excerpt · [zcash_client_backend/src/wallet.rs](https://github.com/zcash/librustzcash/blob/8672a4b2d60f432664780e6a4e85f49a36805a2a/zcash_client_backend/src/wallet.rs#L1093) · line 1093 · SHA-256 a2be08c32d9b6f7fab6974e5d502963b486a999af71b05061fca62ffb95d5a70_
@@ -278,13 +386,13 @@ _file_excerpt · [zcash_client_sqlite/src/lib.rs](https://github.com/zcash/libru
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-04472 — Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (4 файл(ов))
+### QSI-2026-07505 — Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:BLS12-381:transaction_signing`
 - Источник данных: zcash_proofs/src/circuit/sprout/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -346,13 +454,13 @@ _file_excerpt · [zcash_proofs/src/sprout.rs](https://github.com/zcash/librustzc
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-04477 — block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7
+### QSI-2026-07510 — block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/block-buffer@0.10.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -380,13 +488,13 @@ _tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04478 — bytes 1.10.1 затронут GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
+### QSI-2026-07511 — bytes 1.10.1 затронут GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/bytes@1.10.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -414,13 +522,13 @@ _tool_output · [OSV.dev GHSA-434x-w66g-qw3r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04489 — rsa 0.9.6 затронут GHSA-4grx-2x9w-596c (CVE-2023-49092, GHSA-c38w-74pg-36hr, RUSTSEC-2023-0071)
+### QSI-2026-07522 — rsa 0.9.6 затронут GHSA-4grx-2x9w-596c (CVE-2023-49092, GHSA-c38w-74pg-36hr, RUSTSEC-2023-0071)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rsa@0.9.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -448,13 +556,13 @@ _tool_output · [OSV.dev GHSA-4grx-2x9w-596c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04491 — rustls 0.21.12 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+### QSI-2026-07524 — rustls 0.21.12 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.21.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -482,13 +590,13 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04494 — rustls 0.23.25 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
+### QSI-2026-07527 — rustls 0.23.25 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.23.25`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -516,13 +624,13 @@ _tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04495 — rustls 0.23.25 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+### QSI-2026-07528 — rustls 0.23.25 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.23.25`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -550,13 +658,13 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04504 — rustls-webpki 0.103.3 затронут GHSA-pwjx-qhcg-rvj4 (CVE-2026-93602, RUSTSEC-2026-0049)
+### QSI-2026-07537 — rustls-webpki 0.103.3 затронут GHSA-pwjx-qhcg-rvj4 (CVE-2026-93602, RUSTSEC-2026-0049)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.4 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -584,13 +692,13 @@ _tool_output · [OSV.dev GHSA-pwjx-qhcg-rvj4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04487 — rand 0.8.5 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-07520 — rand 0.8.5 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rand@0.8.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -618,13 +726,13 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04488 — rand 0.9.2 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-07521 — rand 0.9.2 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rand@0.9.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -652,13 +760,13 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04490 — rsa 0.9.6 затронут GHSA-9c48-w39g-hm26 (CVE-2026-21895)
+### QSI-2026-07523 — rsa 0.9.6 затронут GHSA-9c48-w39g-hm26 (CVE-2026-21895)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rsa@0.9.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -686,13 +794,13 @@ _tool_output · [OSV.dev GHSA-9c48-w39g-hm26](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04492 — rustls 0.21.12 затронут GHSA-h2v8-394m-p7vv
+### QSI-2026-07525 — rustls 0.21.12 затронут GHSA-h2v8-394m-p7vv
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.21.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -720,13 +828,13 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04493 — rustls 0.21.12 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-07526 — rustls 0.21.12 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.21.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -754,13 +862,13 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04497 — rustls 0.23.25 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-07530 — rustls 0.23.25 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls@0.23.25`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -788,13 +896,13 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04499 — rustls-webpki 0.101.7 затронут GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098)
+### QSI-2026-07532 — rustls-webpki 0.101.7 затронут GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -822,13 +930,13 @@ _tool_output · [OSV.dev GHSA-965h-392x-2mh5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04500 — rustls-webpki 0.101.7 затронут GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099)
+### QSI-2026-07533 — rustls-webpki 0.101.7 затронут GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -856,13 +964,13 @@ _tool_output · [OSV.dev GHSA-xgp8-3hg3-c2mh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04503 — rustls-webpki 0.103.3 затронут GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098)
+### QSI-2026-07536 — rustls-webpki 0.103.3 затронут GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -890,13 +998,13 @@ _tool_output · [OSV.dev GHSA-965h-392x-2mh5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04505 — rustls-webpki 0.103.3 затронут GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099)
+### QSI-2026-07538 — rustls-webpki 0.103.3 затронут GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -924,13 +1032,13 @@ _tool_output · [OSV.dev GHSA-xgp8-3hg3-c2mh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04483 — keccak 0.1.4 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-07516 — keccak 0.1.4 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/keccak@0.1.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 25.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -958,13 +1066,13 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04496 — rustls 0.23.25 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
+### QSI-2026-07529 — rustls 0.23.25 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls@0.23.25`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 25.0 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -992,13 +1100,13 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04475 — anyhow 1.0.100 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
+### QSI-2026-07508 — anyhow 1.0.100 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/anyhow@1.0.100`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1026,13 +1134,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04479 — crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)
+### QSI-2026-07512 — crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/crossbeam-epoch@0.9.18`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1060,13 +1168,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0204](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04480 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
+### QSI-2026-07513 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1094,13 +1202,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04481 — ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)
+### QSI-2026-07514 — ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/ctutils@0.4.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1128,13 +1236,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04482 — event-listener 5.3.1 затронут RUSTSEC-2026-0221 (без оценки серьёзности)
+### QSI-2026-07515 — event-listener 5.3.1 затронут RUSTSEC-2026-0221 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/event-listener@5.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1162,13 +1270,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0221](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04484 — memmap2 0.9.4 затронут RUSTSEC-2026-0186 (без оценки серьёзности)
+### QSI-2026-07517 — memmap2 0.9.4 затронут RUSTSEC-2026-0186 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/memmap2@0.9.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1196,13 +1304,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0186](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04501 — rustls-webpki 0.101.7 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-07534 — rustls-webpki 0.101.7 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1218,10 +1326,10 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 9111e73d752392534752d5ea5c9da4ec9a422a29c088531d446d16b27a016fa8_
+_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 4c972eb1d77abf0d1c39f2b402c5fea32a5dacf7dbbeac638e7549ce780805d1_
 
 ```
-{"id": "RUSTSEC-2026-0382", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-21T00:55:56.763143468Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0382", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -1230,13 +1338,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04506 — rustls-webpki 0.103.3 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-07539 — rustls-webpki 0.103.3 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1252,10 +1360,10 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 9111e73d752392534752d5ea5c9da4ec9a422a29c088531d446d16b27a016fa8_
+_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 4c972eb1d77abf0d1c39f2b402c5fea32a5dacf7dbbeac638e7549ce780805d1_
 
 ```
-{"id": "RUSTSEC-2026-0382", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-21T00:55:56.763143468Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0382", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -1264,13 +1372,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04509 — webpki-roots 0.25.4 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-07542 — webpki-roots 0.25.4 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-roots@0.25.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1286,10 +1394,10 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 84386cc71af18532954507e93f61ab89f75129504ee4bce760620f3be59234ef_
+_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 34a59ae82e2e8e2cde2fe94cd0e4c1ee7c6bd3656c3229fa2fa49bb4c3c4a2a4_
 
 ```
-{"id": "RUSTSEC-2026-0381", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-21T06:30:02.818201920Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": true}
+{"id": "RUSTSEC-2026-0381", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": true}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -1298,13 +1406,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04510 — webpki-roots 1.0.3 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-07543 — webpki-roots 1.0.3 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-roots@1.0.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1320,10 +1428,10 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 84386cc71af18532954507e93f61ab89f75129504ee4bce760620f3be59234ef_
+_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 34a59ae82e2e8e2cde2fe94cd0e4c1ee7c6bd3656c3229fa2fa49bb4c3c4a2a4_
 
 ```
-{"id": "RUSTSEC-2026-0381", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-21T06:30:02.818201920Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": true}
+{"id": "RUSTSEC-2026-0381", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": true}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -1332,13 +1440,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04511 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
+### QSI-2026-07544 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1366,13 +1474,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04512 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
+### QSI-2026-07545 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1400,13 +1508,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04513 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
+### QSI-2026-07546 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1434,13 +1542,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04514 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
+### QSI-2026-07547 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1468,13 +1576,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04515 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
+### QSI-2026-07548 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1502,13 +1610,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04516 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
+### QSI-2026-07549 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1536,13 +1644,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04517 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
+### QSI-2026-07550 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1570,13 +1678,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04518 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
+### QSI-2026-07551 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1604,13 +1712,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04519 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
+### QSI-2026-07552 — zstd-safe 7.1.0 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@7.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1638,13 +1746,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04520 — zstd-sys 2.0.10+zstd.1.5.6 затронут RUSTSEC-2026-0410 (без оценки серьёзности)
+### QSI-2026-07553 — zstd-sys 2.0.10+zstd.1.5.6 затронут RUSTSEC-2026-0410 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-sys@2.0.10+zstd.1.5.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1672,13 +1780,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04508 — tokio 1.50.0 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
+### QSI-2026-07541 — tokio 1.50.0 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/tokio@1.50.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1706,13 +1814,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04521 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
+### QSI-2026-07554 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:crates.io:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -1741,17 +1849,17 @@ quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04473 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-07506 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
-В 21 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ed25519-dalek, p256, p384, ring, rsa, rustls, secp256k1, x25519-dalek), но ни одной из списка поддерживающих PQC.
+В 21 манифестах зависимостей QSI нашёл криптобиблиотеки (bellman, bls12_381, curve25519-dalek, ecdsa, ed25519-dalek, ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, p256, p384, pasta_curves), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -1763,10 +1871,10 @@ quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195
 
 **Подтверждающие доказательства.**
 
-_dependency · Cargo.lock, Cargo.toml, components/eip681/Cargo.toml, components/equihash/Cargo.toml, components/f4jumble/Cargo.toml, components/payment_uri/Cargo.toml, components/zcash_address/Cargo.toml, components/zcash_encoding/Cargo.toml, components/zcash_protocol/Cargo.toml, components/zip321/Cargo.toml, pczt/Cargo.toml, zcash/Cargo.toml, zcash_client_backend/Cargo.toml, zcash_client_sqlite/Cargo.toml, zcash_history/Cargo.toml, zcash_keys/Cargo.toml, zcash_pool_migration/Cargo.toml, zcash_pool_migration_m · SHA-256 afaf41cc18f45737a6066d3670aa5870ee2ce9f1e082d771b281af998ce72df3_
+_dependency · Cargo.lock, Cargo.toml, components/eip681/Cargo.toml, components/equihash/Cargo.toml, components/f4jumble/Cargo.toml, components/payment_uri/Cargo.toml, components/zcash_address/Cargo.toml, components/zcash_encoding/Cargo.toml, components/zcash_protocol/Cargo.toml, components/zip321/Cargo.toml, pczt/Cargo.toml, zcash/Cargo.toml, zcash_client_backend/Cargo.toml, zcash_client_sqlite/Cargo.toml, zcash_history/Cargo.toml, zcash_keys/Cargo.toml, zcash_pool_migration/Cargo.toml, zcash_pool_migration_m · SHA-256 b99b5a2af900f746fc90533a5caa90485cae862c4d2caeaa8cb33155ed4c18fa_
 
 ```
-Crypto libraries: curve25519-dalek, ecdsa, ed25519-dalek, p256, p384, ring, rsa, rustls, secp256k1, x25519-dalek
+Crypto libraries: bellman, bls12_381, curve25519-dalek, ecdsa, ed25519-dalek, ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, p256, p384, pasta_curves, reddsa, redjubjub, ring, rsa, rustls, sapling-crypto, secp256k1, sinsemilla, x25519-dalek, zcash_client_backend, zcash_keys, zcash_note_encryption, zcash_primitives, zcash_proofs, zcash_protocol, zcash_spec, zip32
 ```
 
 **Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
@@ -1775,13 +1883,13 @@ Crypto libraries: curve25519-dalek, ecdsa, ed25519-dalek, p256, p384, ring, rsa,
 
 **Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-04474 — adler 1.0.2: информационный бюллетень RUSTSEC-2025-0056 (unmaintained)
+### QSI-2026-07507 — adler 1.0.2: информационный бюллетень RUSTSEC-2025-0056 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/adler@1.0.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1809,13 +1917,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0056](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-04476 — bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-07509 — bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/bincode@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1843,13 +1951,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-04485 — paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-07518 — paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/paste@1.0.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1877,13 +1985,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-04486 — proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)
+### QSI-2026-07519 — proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/proc-macro-error2@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:28 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 00:13 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1944,7 +2052,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (15), BLS12-381 (4) | QSI-2026-04471, QSI-2026-04472 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **пороговая подпись и протоколы MPC** | Pedersen commitment (4) | QSI-2026-07503 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **подпись транзакций и сообщений** | ECDSA (15), BLS12-381 (4) | QSI-2026-07504, QSI-2026-07505 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -1954,7 +2063,7 @@ _Роль определяется по путям файлов, именам ф
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
 | Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BLS12-381 (4) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BLS12-381 (4), ECDSA (15) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BLS12-381 (4), ECDSA (15), Pedersen commitment (4) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE2 (2), Keccak-256 (1), RIPEMD-160 (2), SHA-2 (4) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE2 (2), Keccak-256 (1), RIPEMD-160 (2), SHA-2 (4) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -1972,66 +2081,68 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-04498 | Обновите rustls-webpki до исправленной версии (0.103.13, 0.104.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104). |
-| P2 | QSI-2026-04502 | Обновите rustls-webpki до исправленной версии (0.103.13, 0.104.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104). |
-| P2 | QSI-2026-04507 | Обновите serde_with до исправленной версии (3.21.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-04477 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-04478 | Обновите bytes до исправленной версии (1.11.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
-| P2 | QSI-2026-04489 | Обновите rsa до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4grx-2x9w-596c (CVE-2023-49092, GHSA-c38w-74pg-36hr, RUSTSEC-2023-0071). |
-| P2 | QSI-2026-04491 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-04494 | Обновите rustls до исправленной версии (0.23.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
-| P2 | QSI-2026-04495 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-04504 | Обновите rustls-webpki до исправленной версии (0.103.10, 0.104.0-alpha.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pwjx-qhcg-rvj4 (CVE-2026-93602, RUSTSEC-2026-0049). |
-| P2 | QSI-2026-04487 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-04488 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-04490 | Обновите rsa до исправленной версии (0.9.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9c48-w39g-hm26 (CVE-2026-21895). |
-| P2 | QSI-2026-04492 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv. |
-| P2 | QSI-2026-04493 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-04497 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-04499 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098). |
-| P2 | QSI-2026-04500 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099). |
-| P2 | QSI-2026-04503 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098). |
-| P2 | QSI-2026-04505 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099). |
-| P2 | QSI-2026-04483 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-| P2 | QSI-2026-04496 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
+| P2 | QSI-2026-07531 | Обновите rustls-webpki до исправленной версии (0.103.13, 0.104.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104). |
+| P2 | QSI-2026-07535 | Обновите rustls-webpki до исправленной версии (0.103.13, 0.104.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104). |
+| P2 | QSI-2026-07540 | Обновите serde_with до исправленной версии (3.21.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-07510 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-07511 | Обновите bytes до исправленной версии (1.11.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
+| P2 | QSI-2026-07522 | Обновите rsa до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4grx-2x9w-596c (CVE-2023-49092, GHSA-c38w-74pg-36hr, RUSTSEC-2023-0071). |
+| P2 | QSI-2026-07524 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-07527 | Обновите rustls до исправленной версии (0.23.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
+| P2 | QSI-2026-07528 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-07537 | Обновите rustls-webpki до исправленной версии (0.103.10, 0.104.0-alpha.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pwjx-qhcg-rvj4 (CVE-2026-93602, RUSTSEC-2026-0049). |
+| P2 | QSI-2026-07520 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-07521 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-07523 | Обновите rsa до исправленной версии (0.9.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9c48-w39g-hm26 (CVE-2026-21895). |
+| P2 | QSI-2026-07525 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv. |
+| P2 | QSI-2026-07526 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-07530 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-07532 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098). |
+| P2 | QSI-2026-07533 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099). |
+| P2 | QSI-2026-07536 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098). |
+| P2 | QSI-2026-07538 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099). |
+| P2 | QSI-2026-07516 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-07529 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-04475 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
-| P3 | QSI-2026-04479 | Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан. |
-| P3 | QSI-2026-04480 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
-| P3 | QSI-2026-04481 | Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан. |
-| P3 | QSI-2026-04482 | Разберите RUSTSEC-2026-0221; при необходимости обновите event-listener до исправленной версии (5.4.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0221 или результат разбора записан. |
-| P3 | QSI-2026-04484 | Разберите RUSTSEC-2026-0186; при необходимости обновите memmap2 до исправленной версии (0.9.11). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0186 или результат разбора записан. |
-| P3 | QSI-2026-04501 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-04506 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-04509 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-04510 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-04511 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
-| P3 | QSI-2026-04512 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
-| P3 | QSI-2026-04513 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
-| P3 | QSI-2026-04514 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
-| P3 | QSI-2026-04515 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
-| P3 | QSI-2026-04516 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
-| P3 | QSI-2026-04517 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
-| P3 | QSI-2026-04518 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
-| P3 | QSI-2026-04519 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
-| P3 | QSI-2026-04520 | Разберите RUSTSEC-2026-0410; при необходимости обновите zstd-sys до исправленной версии (2.1.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан. |
-| P3 | QSI-2026-04508 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+| P3 | QSI-2026-07508 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
+| P3 | QSI-2026-07512 | Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан. |
+| P3 | QSI-2026-07513 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-07514 | Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан. |
+| P3 | QSI-2026-07515 | Разберите RUSTSEC-2026-0221; при необходимости обновите event-listener до исправленной версии (5.4.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0221 или результат разбора записан. |
+| P3 | QSI-2026-07517 | Разберите RUSTSEC-2026-0186; при необходимости обновите memmap2 до исправленной версии (0.9.11). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0186 или результат разбора записан. |
+| P3 | QSI-2026-07534 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-07539 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-07542 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-07543 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-07544 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
+| P3 | QSI-2026-07545 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
+| P3 | QSI-2026-07546 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
+| P3 | QSI-2026-07547 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
+| P3 | QSI-2026-07548 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
+| P3 | QSI-2026-07549 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
+| P3 | QSI-2026-07550 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
+| P3 | QSI-2026-07551 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
+| P3 | QSI-2026-07552 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
+| P3 | QSI-2026-07553 | Разберите RUSTSEC-2026-0410; при необходимости обновите zstd-sys до исправленной версии (2.1.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан. |
+| P3 | QSI-2026-07541 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-04471 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-04472 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-04471 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-04472 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-04521 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
-| P4 | QSI-2026-04474 | Замените adler поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | adler заменён или решение зафиксировано. |
-| P4 | QSI-2026-04476 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
-| P4 | QSI-2026-04485 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
-| P4 | QSI-2026-04486 | Замените proc-macro-error2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error2 заменён или решение зафиксировано. |
+| P3 | QSI-2026-07503 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07504 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-07505 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-07503 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-07504 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-07505 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-07554 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-07507 | Замените adler поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | adler заменён или решение зафиксировано. |
+| P4 | QSI-2026-07509 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-07518 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
+| P4 | QSI-2026-07519 | Замените proc-macro-error2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error2 заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
@@ -2093,8 +2204,8 @@ _Действие: взламывает — алгоритм нужно заме
 41. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
 42. OSV advisory RUSTSEC-2026-0204 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0204> (modified 2026-07-06T22:30:04.159269138Z)
 43. OSV advisory RUSTSEC-2026-0221 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0221> (modified 2026-07-31T12:15:04.629484145Z)
-44. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-21T06:30:02.818201920Z)
-45. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-21T00:55:56.763143468Z)
+44. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
+45. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
 46. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
 47. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
 48. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
@@ -2121,21 +2232,73 @@ _Действие: взламывает — алгоритм нужно заме
 | BLAKE2 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 2 | 2 | components/equihash/src/blake2b.rs; components/equihash/tromp/blake2b.h |
 | Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 1 | 1 | components/eip681/src/parse.rs:15 |
 | SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 4 | 4 | zcash_primitives/src/block.rs:124; zcash_transparent/src/pczt/updater.rs:98; zcash_transparent/src/util/hash160.rs:29 |
+| Crypto library | 0.11.1 | jubjub (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.13.0 | p384 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.0 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.14.0 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.14.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.15.0 | bellman (bellman) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.16.0 | orchard (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.17.14 | ring (ring (Rust)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.2.0 | halo2_poseidon (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.2.0 | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.2.1 | zcash_spec (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.21.12 | rustls (rustls) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.23.25 | rustls (rustls) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.3.0 | zip32 (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.33.1 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.4.0 | halo2_proofs (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.5.1 | zcash_note_encryption (Zcash protocol crates) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
+| Crypto library | 0.6.0 | halo2_gadgets (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.6.0 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.6.1 | reddsa (reddsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.9.0 | bls12_381 (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.9.0 | redjubjub (reddsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.9.0 | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.9.6 | rsa (RustCrypto rsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 2.0.1 | x25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 2.2.0 | ed25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 4.1.3 | curve25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.11 | jubjub (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.14 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.14 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.15 | bellman (bellman) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.16 | orchard (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.2 | zcash_spec (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.3 | zip32 (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.33 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.6 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.9 | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.9 | bls12_381 (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.9 | redjubjub (reddsa) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | =0.11.0-pre.1 | zcash_protocol (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | =0.17.0-pre.2 | zcash_keys (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | =0.25.0-pre.2 | zcash_client_backend (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | =0.31.0-pre.2 | zcash_primitives (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | =0.31.0-pre.2 | zcash_proofs (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | workspace | zcash_protocol (Zcash protocol crates) | н/п | допустимо | 10 | 10 | components/zcash_address/Cargo.toml; components/zip321/Cargo.toml; pczt/Cargo.toml |
+| Crypto library | workspace | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 3 | 3 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | zip32 (Zcash protocol crates) | н/п | допустимо | 8 | 8 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | zcash_note_encryption (Zcash protocol crates) | н/п | допустимо | 4 | 4 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | zcash_proofs (Zcash protocol crates) | н/п | допустимо | 3 | 3 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | zcash_primitives (Zcash protocol crates) | н/п | допустимо | 6 | 6 | pczt/Cargo.toml; zcash/Cargo.toml; zcash_client_backend/Cargo.toml |
+| Crypto library | workspace | jubjub (jubjub) | н/п | допустимо | 6 | 6 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | orchard (Zcash protocol crates) | н/п | допустимо | 7 | 7 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | ff (jubjub) | н/п | допустимо | 2 | 2 | pczt/Cargo.toml; zcash_primitives/Cargo.toml |
+| Crypto library | workspace | bls12_381 (jubjub) | н/п | допустимо | 6 | 6 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | redjubjub (reddsa) | н/п | допустимо | 4 | 4 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_primitives/Cargo.toml |
 | Crypto library | workspace | secp256k1 (secp256k1 bindings) | н/п | допустимо | 6 | 6 | pczt/Cargo.toml; zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml |
+| Crypto library | workspace | zcash_keys (Zcash protocol crates) | н/п | допустимо | 3 | 3 | zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml; zcash_pool_migration/Cargo.toml |
+| Crypto library | workspace | group (jubjub) | н/п | допустимо | 4 | 4 | zcash_client_backend/Cargo.toml; zcash_client_sqlite/Cargo.toml; zcash_keys/Cargo.toml |
+| Crypto library | workspace | zcash_client_backend (Zcash protocol crates) | н/п | допустимо | 2 | 2 | zcash_client_sqlite/Cargo.toml; zcash_pool_migration/Cargo.toml |
+| Crypto library | workspace | bellman (bellman) | н/п | допустимо | 1 | 1 | zcash_proofs/Cargo.toml |
+| Crypto library | workspace | zcash_spec (Zcash protocol crates) | н/п | допустимо | 1 | 1 | zcash_transparent/Cargo.toml |
 | BLS12-381 |  |  | уязвим (Шор) | допустимо | 4 | 4 | zcash_proofs/src/circuit/sprout/mod.rs:340; zcash_proofs/src/lib.rs:15; zcash_proofs/src/prover.rs:3 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 15 | 15 | pczt/src/roles/signer/mod.rs:278; zcash_client_backend/src/data_api.rs:3935; zcash_client_backend/src/data_api/wallet.rs:1380 |
+| Pedersen commitment |  |  | уязвим (Шор) | допустимо | 4 | 4 | pczt/src/orchard.rs:23; zcash_primitives/src/transaction/components/orchard.rs:17; zcash_primitives/src/transaction/components/sapling.rs:14 |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -2175,21 +2338,21 @@ _Длинные списки здесь сгруппированы; полный
 | components/zcash_address/src/constants.rs | 15691 | `542102eb1f87bc3746fdfc1f5d85fc3f26dafcec4ef32ec00e76655a9c3e09fe` | 0 |
 | components/zcash_address/src/convert.rs | 12197 | `460a92b779817ceb1e51b8b4acbfcdc9e1d807f60a9284c5c042f8620827a14b` | 0 |
 | components/zcash_address/src/encoding.rs | 14821 | `d2df7640e37fd24677ff5ab31245507380f1ce876a71f00f927b6afe03c644ad` | 0 |
+| components/zcash_address/src/kind.rs | 17 | `1e1cac26248df3cbe9959d287d59160893b5b7ae273e76d9e344d2947b0d1417` | 0 |
+| components/zcash_address/src/kind/unified.rs | 48512 | `edfa017f1b7534670be00d0f76bfc44666399678f000b62985c35938433491bc` | 0 |
 | components/zcash_address/src/kind/unified/address.rs | 35355 | `8e22fd18ac1afd1a2688b2a6cb0bb36f74385d3226dff5d92d046b7ca8e08645` | 0 |
 | components/zcash_address/src/kind/unified/fvk.rs | 28030 | `cc3974080fe53b2974f98354902d11804d2f621395a1a0154546e47f41187365` | 0 |
 | components/zcash_address/src/kind/unified/ivk.rs | 23102 | `29d5c6ddfb5f57caa3e4659b02d0c1776c1f02851f9b291b970b9cfb94207012` | 0 |
 | components/zcash_address/src/kind/unified/revision.rs | 2363 | `15376624d2ee7decca87551d9f7e467b1e36ed5b15afa9311efea146fe9abdfb` | 0 |
-| components/zcash_address/src/kind/unified.rs | 48512 | `edfa017f1b7534670be00d0f76bfc44666399678f000b62985c35938433491bc` | 0 |
-| components/zcash_address/src/kind.rs | 17 | `1e1cac26248df3cbe9959d287d59160893b5b7ae273e76d9e344d2947b0d1417` | 0 |
 | components/zcash_address/src/lib.rs | 16793 | `a8ab232c059b661a295b258a132d9788952cf1806d83f75ff3bbef96031bc1b8` | 0 |
 | components/zcash_encoding/Cargo.toml | 896 | `59fad1e11bce86da49aa97cc8b3ea7930f9cfe666d277deb7ae61051cd0a15cd` | 0 |
 | components/zcash_encoding/src/lib.rs | 19244 | `79cd47d3d73370fff5745c3e2efaeebc0104c0ec96aaf20cb085670829459d31` | 0 |
 | components/zcash_protocol/Cargo.toml | 1605 | `fd684937f5ed041aea5c6b4e5f0562860a28b0a3598dcc713006adaba17dafce` | 0 |
 | components/zcash_protocol/src/consensus.rs | 48506 | `004f0da79523cbe407a477cb7cc3abf0735f72946defd61176ef1dde6fd7aeaf` | 0 |
+| components/zcash_protocol/src/constants.rs | 2645 | `92bf49080134e943f100280f4046684734be9b652f1fc4f1a7fa4c7a1862b785` | 0 |
 | components/zcash_protocol/src/constants/mainnet.rs | 4714 | `bc5ec2e50adf3945f3d2a846d4b9922cd53de08ec5a9d7a1d2764624dbe044e8` | 0 |
 | components/zcash_protocol/src/constants/regtest.rs | 5099 | `db11b07c4b20e28901fe7018ad513d24a645c271c4d441e8d9c21b373ad3e5c0` | 0 |
 | components/zcash_protocol/src/constants/testnet.rs | 4774 | `a4a154d59cab94159754c42305419af94edbffc10b2fa2212b21806b675e4dbf` | 0 |
-| components/zcash_protocol/src/constants.rs | 2645 | `92bf49080134e943f100280f4046684734be9b652f1fc4f1a7fa4c7a1862b785` | 0 |
 | components/zcash_protocol/src/lib.rs | 2867 | `9def3b5138d0eae8153fc730cb4f033b75b8a8db00313062d7cf470b03d5ba23` | 0 |
 | components/zcash_protocol/src/local_consensus.rs | 10334 | `05bb22840ac92f141fb5c8cfba7a77c0c53116a6f767ebb77f9a358475092ff8` | 0 |
 | components/zcash_protocol/src/memo.rs | 18347 | `24a4f6444e20add60ec0b558a52125b38f161c394e64b6b07f44757426af076d` | 0 |
@@ -2202,6 +2365,7 @@ _Длинные списки здесь сгруппированы; полный
 | pczt/src/common.rs | 22186 | `a58ee6e362805bf1f5534b5768639d9073b3f7798e73e49e9aa1554b1842eeac` | 0 |
 | pczt/src/lib.rs | 39598 | `e5547e561f4f22fd0bdb931b90f4728006b24a4eee2b45114a47290250f6f37a` | 0 |
 | pczt/src/orchard.rs | 103702 | `483324d3e983919c48ae0b7a94cbc7aec49d908fb328f4ea7a20210b4e66f8ac` | 0 |
+| pczt/src/roles.rs | 20952 | `9cbf3067639b2a801f0fd8a3bba4a9c708a4041a337032923fa23b28fc3f522d` | 0 |
 | pczt/src/roles/combiner/mod.rs | 3166 | `c44b30771ae5f2dd3ecf3ce1785fd50f9def83e6cb440d7c68ed89d708fa76f0` | 0 |
 | pczt/src/roles/creator/mod.rs | 16763 | `e5593763da9d0668322d4e68eabeb94012ea4a130bbf49f9576b8bebff8c7752` | 0 |
 | pczt/src/roles/io_finalizer/mod.rs | 4820 | `8b706b8b04db961ba551c330127f0991bff99cb6a5a1d14c00c486aa86b524f4` | 0 |
@@ -2228,7 +2392,6 @@ _Длинные списки здесь сгруппированы; полный
 | pczt/src/roles/verifier/orchard.rs | 2527 | `f2c1e65e15176decca66927cbcaa3a38c3a09df08f78c4dc31f6f2d8682ca434` | 0 |
 | pczt/src/roles/verifier/sapling.rs | 1310 | `818fb4ca3d242b4e35b55d8d26fb97b49879d12915e1cf8a432c70bb586f431b` | 0 |
 | pczt/src/roles/verifier/transparent.rs | 1251 | `343696b07768a50068d924730e8869289f5489e04548e325060a0536de6e820c` | 0 |
-| pczt/src/roles.rs | 20952 | `9cbf3067639b2a801f0fd8a3bba4a9c708a4041a337032923fa23b28fc3f522d` | 0 |
 | pczt/src/sapling.rs | 33117 | `404edf4e4b86fd4273e4dd092e899698c035dc381929388965246de9e7fe9479` | 0 |
 | pczt/src/transparent.rs | 18048 | `c78e8f88ae58b2bb8fa91dcdb2ca35dbe3b964d6413e557e1a39a7963717e9f4` | 0 |
 | rust-toolchain.toml | 66 | `33770f77c5cb48a231ed517388b85dda27873fceceaa52b18a06108af4fd879f` | 0 |
@@ -2239,44 +2402,47 @@ _Длинные списки здесь сгруппированы; полный
 | zcash_client_backend/lightwallet-protocol/walletrpc/compact_formats.proto | 6490 | `d8d0c8aaa5ceec7d5dcc188ef25b04011df2ec0254901620fce982fc13aeb32d` | 0 |
 | zcash_client_backend/lightwallet-protocol/walletrpc/service.proto | 15232 | `80575dbe59a9bf2e6b79e2391eb78679c453f1a0477292eb97ea3b58bb6c8b10` | 0 |
 | zcash_client_backend/proto/proposal.proto | 7211 | `f72aeefdee46bc9b42504faf0b3f811b736289ca9f1812ee0230428e7e371e44` | 0 |
+| zcash_client_backend/src/data_api.rs | 245109 | `c0000e72322a214d7eba1d298a1b1c349f0c37b305de02515389be22d35de441` | 0 |
 | zcash_client_backend/src/data_api/anchor_retention.rs | 18296 | `f9fe8ec75a850be553a2188601665a956d2f0ad7646892c65a1efbac0a1d2dd1` | 0 |
-| zcash_client_backend/src/data_api/chain/error.rs | 1953 | `cfae1c314f0abf4a41b9c78e3e0055e87777bebdd1616be1e26de216912084a1` | 0 |
 | zcash_client_backend/src/data_api/chain.rs | 29089 | `9626e0dd1824ed8d7a10d94fdedab843fa456703df8ed22908c1167c58dc349a` | 0 |
+| zcash_client_backend/src/data_api/chain/error.rs | 1953 | `cfae1c314f0abf4a41b9c78e3e0055e87777bebdd1616be1e26de216912084a1` | 0 |
 | zcash_client_backend/src/data_api/defaults.rs | 5487 | `a3d26ae57343909dbcc21dfe352200c7a0b1e4755cf78358f81982327c9f1a27` | 0 |
 | zcash_client_backend/src/data_api/error.rs | 24427 | `2056fc5d453204b6819866625a69e729e5ddb723545fec8660240ef1cfcf78da` | 0 |
-| zcash_client_backend/src/data_api/ll/wallet.rs | 87759 | `4dae07184069adcc411e3a05761c2989f1280140466c6dde7fe21e202ed4c890` | 0 |
 | zcash_client_backend/src/data_api/ll.rs | 42402 | `62df4bc82b5bcc7e0f48c0c6541ee1e917a97d201072b805ed7ad6cc5fe12b31` | 0 |
+| zcash_client_backend/src/data_api/ll/wallet.rs | 87759 | `4dae07184069adcc411e3a05761c2989f1280140466c6dde7fe21e202ed4c890` | 0 |
 | zcash_client_backend/src/data_api/locking.rs | 25153 | `11ee7c5309193cada1774298165df61b984265735844066f923c66d205ba7aca` | 0 |
-| zcash_client_backend/src/data_api/scanning/spanning_tree.rs | 27619 | `01e603b5a42b5fe7387782571bb5e6ede18b078f6479b4db83f41a4c97a1e225` | 0 |
 | zcash_client_backend/src/data_api/scanning.rs | 6652 | `e65da16c7f09a9d70e93cba3c9a7773edd3d85a190b8e84d8033a2d4340b1f33` | 0 |
-| zcash_client_backend/src/data_api/wallet/input_selection.rs | 139583 | `fd057ab405a33ac03b81a6c7e69dc91739e8263b75cfb415831d22382575b4d4` | 0 |
+| zcash_client_backend/src/data_api/scanning/spanning_tree.rs | 27619 | `01e603b5a42b5fe7387782571bb5e6ede18b078f6479b4db83f41a4c97a1e225` | 0 |
 | zcash_client_backend/src/data_api/wallet.rs | 183539 | `ae75d6dfecc19bc4941254734822cab1b9bbf982c175257f61c6dea7f578f616` | 0 |
+| zcash_client_backend/src/data_api/wallet/input_selection.rs | 139583 | `fd057ab405a33ac03b81a6c7e69dc91739e8263b75cfb415831d22382575b4d4` | 0 |
 | zcash_client_backend/src/data_api/zip318.rs | 6604 | `f9c191c87e6c196b7d09c7f318e583e58604e421282de05826f9e4d860e2232c` | 0 |
-| zcash_client_backend/src/data_api.rs | 245109 | `c0000e72322a214d7eba1d298a1b1c349f0c37b305de02515389be22d35de441` | 0 |
 | zcash_client_backend/src/decrypt.rs | 32717 | `b160542f3aae544086c06aa66f59a5cef4ec2edf3743dde57effa6f8a4198ca3` | 0 |
+| zcash_client_backend/src/fees.rs | 33472 | `8744c008a8eded3dc0d0698ca970f7438f21ef0494faaf07a7e604ca29c3cbc2` | 0 |
 | zcash_client_backend/src/fees/common.rs | 59203 | `45b6e67e13bc3ba691169b60a156cdbce2fa66091ac1726e991075441a8eb48f` | 0 |
 | zcash_client_backend/src/fees/fixed.rs | 10048 | `c937b76e00627ab3a0f11a99d808c896d408278a9cefc9b57fa54c90549f59ac` | 0 |
 | zcash_client_backend/src/fees/orchard.rs | 3398 | `a25ca7f8f8abef02ac9e65a07e3537dfebca881a8b44876180a5621f20fd38a5` | 0 |
 | zcash_client_backend/src/fees/sapling.rs | 2984 | `a32db08a0e1e0e8ded64f1565122b0b35325c3e6ebc2452119dcc3cfe462f2c9` | 0 |
 | zcash_client_backend/src/fees/standard.rs | 949 | `941ad20e3bb39396b7c215a817ff8c12b9c195627b8d131d61a69810528f2d40` | 0 |
 | zcash_client_backend/src/fees/zip317.rs | 85127 | `6a371e5dbe1e623f38f823962b575d04b80b2070c959dc1df7279ec4ac3cbc9f` | 0 |
-| zcash_client_backend/src/fees.rs | 33472 | `8744c008a8eded3dc0d0698ca970f7438f21ef0494faaf07a7e604ca29c3cbc2` | 0 |
 | zcash_client_backend/src/lib.rs | 5709 | `13a038a66f74ce48ae05234e5e2a257fcbef8e7819c3749380d89b739b0b2f07` | 0 |
 | zcash_client_backend/src/proposal.rs | 118472 | `e29c30b0ad345264d476cccd0922c90d40197de0c2184b4bbcc19e8cba86863b` | 0 |
+| zcash_client_backend/src/proto.rs | 51915 | `e2b4494c29458019254d1ae59691db454e99ee4f67bf9407d82abc8d066631b1` | 0 |
 | zcash_client_backend/src/proto/compact_formats.rs | 8097 | `d6672eb5c49b158bbe0614f161f4be292d3203fc3fe56dcda503e5c2769f5a6c` | 0 |
 | zcash_client_backend/src/proto/proposal.rs | 11947 | `ec6933e5bf85f4492aaba37b0c7fddd6ae9d61c211fdd5d08bd21cfde5f94488` | 0 |
 | zcash_client_backend/src/proto/service.rs | 45200 | `f5058c7c262ba409fba58d27afd78e1ad7fe371b3834c72e2a18ef39d291a1fd` | 0 |
-| zcash_client_backend/src/proto.rs | 51915 | `e2b4494c29458019254d1ae59691db454e99ee4f67bf9407d82abc8d066631b1` | 0 |
 | zcash_client_backend/src/scan.rs | 21712 | `c68b7bec12c77989eb688d7b04b1a861406d5c43aba5121b260d36e897862c6a` | 0 |
+| zcash_client_backend/src/scanning.rs | 49247 | `ec0b5539e04cf07377f3b850c6fa47aa70aaf8b3d7b3af40e39888127cac5dc8` | 0 |
 | zcash_client_backend/src/scanning/compact.rs | 52785 | `3a4d174fb58bf31bd66f18b1c1cd4f848469ddef7fc462315546cadc765d8fb8` | 0 |
 | zcash_client_backend/src/scanning/full.rs | 46459 | `137dc8301d07063ccb5c652e6e603498e10cb64eb64d4ff0d5f94740a0d1cff8` | 0 |
-| zcash_client_backend/src/scanning.rs | 49247 | `ec0b5539e04cf07377f3b850c6fa47aa70aaf8b3d7b3af40e39888127cac5dc8` | 0 |
-| zcash_client_backend/src/serialization/shardtree.rs | 4157 | `5a428a638ac0e4675380527143aacee09882b1302d51921675cdcdcea1548fbf` | 0 |
 | zcash_client_backend/src/serialization.rs | 19 | `5aa43d739cce707b80c859f04cbe56d453d2eef47fbb15701ab261d980b49eb4` | 0 |
-| zcash_client_backend/src/sync/decryptor.rs | 19471 | `e3b92c0069d6ff8af8926746e2e61308ce03c65e5eba51a650ba826744f8a81a` | 0 |
+| zcash_client_backend/src/serialization/shardtree.rs | 4157 | `5a428a638ac0e4675380527143aacee09882b1302d51921675cdcdcea1548fbf` | 0 |
 | zcash_client_backend/src/sync.rs | 25733 | `5acf93c423c9ceab91d72e4569b41c77daa01a2faa17f1d102899661eadc0d45` | 0 |
+| zcash_client_backend/src/sync/decryptor.rs | 19471 | `e3b92c0069d6ff8af8926746e2e61308ce03c65e5eba51a650ba826744f8a81a` | 0 |
 | zcash_client_backend/src/task.rs | 737 | `8018642f411bba591196f3235d0eaa8bb2b38f3fa6624a144bbc07ab392397ee` | 0 |
+| zcash_client_backend/src/tor.rs | 10717 | `9635522697a2597655e9edbf3642de711edb6b74939904a7a3b48cf7ce100cb2` | 0 |
 | zcash_client_backend/src/tor/grpc.rs | 5346 | `ebe82a7c198de14a7aa1b5a2a0378ef9b27abb8997b30134808f2344193b38cd` | 0 |
+| zcash_client_backend/src/tor/http.rs | 33664 | `95865c533750a44b372ac1f4c9c4c238524ed37b0ec0b22c0469412ba0df527e` | 0 |
+| zcash_client_backend/src/tor/http/cryptex.rs | 8862 | `949045023c6219c056af17492297ca16fdf2e4477cf456eae9db54457d0938d9` | 0 |
 | zcash_client_backend/src/tor/http/cryptex/binance.rs | 1677 | `bd7a0ab892ac86cb794c02ca5555259cd8d7bc92281f597b5b4411b45ff2c9c2` | 0 |
 | zcash_client_backend/src/tor/http/cryptex/coin_ex.rs | 1990 | `2c8aa1ea109d607595a2abdfb04098db1c93362f413a924591ccaa6a67eae22c` | 0 |
 | zcash_client_backend/src/tor/http/cryptex/coinbase.rs | 1390 | `986ebfdb3397eb380b9eeba9378ddf3e20a33eb4270bd9d36902d7403d4aa3f3` | 0 |
@@ -2286,27 +2452,27 @@ _Длинные списки здесь сгруппированы; полный
 | zcash_client_backend/src/tor/http/cryptex/ku_coin.rs | 1652 | `50b04fa066a23dcfaf32b6c95077adf9e8666ed5413bd4f02a018779e3e4bd52` | 0 |
 | zcash_client_backend/src/tor/http/cryptex/mexc.rs | 1544 | `b523ae37dd21910cb8af633f5cbbb6df6e7c2096b65bbbbfb226c4a023a444b4` | 0 |
 | zcash_client_backend/src/tor/http/cryptex/xt.rs | 1349 | `baab400a2acda0cfa68fe36671181a6bc40bdd3e6d02f5e5b685b1438585f4c6` | 0 |
-| zcash_client_backend/src/tor/http/cryptex.rs | 8862 | `949045023c6219c056af17492297ca16fdf2e4477cf456eae9db54457d0938d9` | 0 |
-| zcash_client_backend/src/tor/http.rs | 33664 | `95865c533750a44b372ac1f4c9c4c238524ed37b0ec0b22c0469412ba0df527e` | 0 |
-| zcash_client_backend/src/tor.rs | 10717 | `9635522697a2597655e9edbf3642de711edb6b74939904a7a3b48cf7ce100cb2` | 0 |
 | zcash_client_backend/src/util.rs | 2217 | `33b077d3b3b477696da054899610e02e20a9a30f5ce775d14deefdcbc8e81aaf` | 0 |
 | zcash_client_backend/src/wallet.rs | 52615 | `41e038af8afcdd9d7028619aa97c009c6be2ee08123a2d530b19f477b273e523` | 0 |
 | zcash_client_sqlite/Cargo.toml | 8738 | `e004fc75fa8f0ca57c2b8697697409f9021faf01694992173b8bcd71ae59f890` | 0 |
-| zcash_client_sqlite/src/chain/init.rs | 2034 | `e5494c0db48acfc86b71f8c2ad1519e0fbae9efc867fe999f68c368cbbb29c04` | 0 |
-| zcash_client_sqlite/src/chain/migrations/blockmeta.rs | 1811 | `b8225c4718f9b8aa4cc49c29f70b1f5d8134a57570e22cd34c7e7f4971bb550c` | 0 |
-| zcash_client_sqlite/src/chain/migrations.rs | 74 | `130503e1c24a905ecc03e0adbebf703e751eb2b3a7120ade154e6d85cd5d2b59` | 0 |
 | zcash_client_sqlite/src/chain.rs | 17888 | `448782a4c5939dfd1b09e820c38ddd5bd72a918117795c849cecd5f18fdb79b9` | 0 |
+| zcash_client_sqlite/src/chain/init.rs | 2034 | `e5494c0db48acfc86b71f8c2ad1519e0fbae9efc867fe999f68c368cbbb29c04` | 0 |
+| zcash_client_sqlite/src/chain/migrations.rs | 74 | `130503e1c24a905ecc03e0adbebf703e751eb2b3a7120ade154e6d85cd5d2b59` | 0 |
+| zcash_client_sqlite/src/chain/migrations/blockmeta.rs | 1811 | `b8225c4718f9b8aa4cc49c29f70b1f5d8134a57570e22cd34c7e7f4971bb550c` | 0 |
 | zcash_client_sqlite/src/error.rs | 28283 | `13be30df8619098d188304fc908b5b01a30fc33f0c6edfcd822041ed1460c2cf` | 0 |
 | zcash_client_sqlite/src/lib.rs | 215065 | `c2517b23d072ff310ba22625dd394dc368f8549a1d9a1a279cf4553e221933c8` | 0 |
+| zcash_client_sqlite/src/pool_migration.rs | 11321 | `64b16b055bb1c906722adea4c76ae069c4d19d92f156d6fd1880075266ab7b56` | 0 |
 | zcash_client_sqlite/src/pool_migration/error.rs | 6722 | `83a237affd5a30d98ff5a83af8b508151804fbee26876fa6db9334dd447b76f8` | 0 |
 | zcash_client_sqlite/src/pool_migration/orchard_ironwood.rs | 165551 | `f73e38bee4cf695144e7666e24c968505a1311eb9647a2a10c54412d7a171f20` | 0 |
 | zcash_client_sqlite/src/pool_migration/store.rs | 100536 | `2db199ae15a7a84926abbb8e8e317cc00ce2ee76ba339a70c988649b82558ad7` | 0 |
-| zcash_client_sqlite/src/pool_migration.rs | 11321 | `64b16b055bb1c906722adea4c76ae069c4d19d92f156d6fd1880075266ab7b56` | 0 |
 | zcash_client_sqlite/src/util.rs | 387 | `19e90bdf9de56be56cf2a6a00479e9856f78b674ad30e79954546874108f15d1` | 0 |
+| zcash_client_sqlite/src/wallet.rs | 349453 | `759b0d6c6a568b2a01a48049dddc38a06f1611e1dba52aded65232bcc14b0fbf` | 0 |
 | zcash_client_sqlite/src/wallet/commitment_tree.rs | 79912 | `59ae465458b052defaf9684e1934c462211fb49a1f2f161cda59f3ffccac714d` | 0 |
 | zcash_client_sqlite/src/wallet/common.rs | 53887 | `862e4652305a488cf95a41ba7912ef8729b90c0ff8b8bdffce307bf9c19f85d9` | 0 |
 | zcash_client_sqlite/src/wallet/db.rs | 102081 | `2adf12f943266a11f64bc908b3970c2d3bd6c8ead2e6947d763b0f2dad5a0fd5` | 0 |
 | zcash_client_sqlite/src/wallet/encoding.rs | 13943 | `8e4d77d8bcc541be8653c238873ec8e5c64ed0c69cdda89cbd8738b9e5d7537e` | 0 |
+| zcash_client_sqlite/src/wallet/init.rs | 67895 | `3c7f94680655eebc5d3a479826ba349f230986741ee5a3d1e1672a18a28887c8` | 0 |
+| zcash_client_sqlite/src/wallet/init/migrations.rs | 55309 | `9c15a8cb6bd81699461a87c39365f4634d8f10437945579c9b0b45a86c6088ce` | 0 |
 | zcash_client_sqlite/src/wallet/init/migrations/account_delete_cascade.rs | 31296 | `fa1c1ca1a2cbba3d5a3e0b03c0e0e829d27569816d479bb6c962dd114b72a9bb` | 0 |
 | zcash_client_sqlite/src/wallet/init/migrations/add_account_birthdays.rs | 4347 | `310e3f68b83705ed58d9ec9a00f0085e8a3a382555b0874acc857ed80d0c6091` | 0 |
 | zcash_client_sqlite/src/wallet/init/migrations/add_account_uuids.rs | 16228 | `131531f5d60981c620570d298093a7eae5cbfdc1cef6822a71c72c4b399356e7` | 0 |
@@ -2382,15 +2548,12 @@ _Длинные списки здесь сгруппированы; полный
 | zcash_client_sqlite/src/wallet/init/migrations/wallet_summaries.rs | 3511 | `de375722dfdad7f620e5de700f1255395fda97cc5ccc6139e45b40cbe7d60e4e` | 0 |
 | zcash_client_sqlite/src/wallet/init/migrations/witness_stabilized_notes.rs | 29059 | `edd790e468f9fdbfc798d06dd83f5d7a54b196df2fa6c768a139f9800d640831` | 0 |
 | zcash_client_sqlite/src/wallet/init/migrations/zip318_classification.rs | 4375 | `055cf111a46c29af1b26ca308e97e1da3672d7188235cf2991e1a1548442594e` | 0 |
-| zcash_client_sqlite/src/wallet/init/migrations.rs | 55309 | `9c15a8cb6bd81699461a87c39365f4634d8f10437945579c9b0b45a86c6088ce` | 0 |
-| zcash_client_sqlite/src/wallet/init.rs | 67895 | `3c7f94680655eebc5d3a479826ba349f230986741ee5a3d1e1672a18a28887c8` | 0 |
 | zcash_client_sqlite/src/wallet/locking.rs | 56118 | `fc5469bec5281ee88a9170bcb7a8c08ba5a7fd491b2aa5f3e07380b9bab3f97e` | 0 |
 | zcash_client_sqlite/src/wallet/orchard.rs | 127938 | `3c4e95f7dde5d47f588df147e99a6f7e65198a3f3e5cc1a6f832c414e95e118e` | 0 |
 | zcash_client_sqlite/src/wallet/sapling.rs | 28207 | `60316cab5d6cd516b120e02f3016dd65a488050010d8db58d35056252816e1db` | 0 |
 | zcash_client_sqlite/src/wallet/scanning.rs | 106495 | `fecf821f993583cd5dd916291a237e7ba90b19aade4f5ecd6a78bd802db76374` | 0 |
-| zcash_client_sqlite/src/wallet/transparent/ephemeral.rs | 8865 | `1c31f267a81867448f336ff5d2aa95009d133891666a736c62c77c9af303883a` | 0 |
 | zcash_client_sqlite/src/wallet/transparent.rs | 214071 | `84e2f48cd5852a7eab8a7ce8abefda436fe9b4c88357c7ea7b98ec0d557ef0ff` | 0 |
-| zcash_client_sqlite/src/wallet.rs | 349453 | `759b0d6c6a568b2a01a48049dddc38a06f1611e1dba52aded65232bcc14b0fbf` | 0 |
+| zcash_client_sqlite/src/wallet/transparent/ephemeral.rs | 8865 | `1c31f267a81867448f336ff5d2aa95009d133891666a736c62c77c9af303883a` | 0 |
 | zcash_client_sqlite/src/zewif.rs | 120590 | `60953a37840964dab7212eff27a39ea44b5d6f0ab5890fa826d88dfc0dfeb8ca` | 0 |
 | zcash_history/Cargo.toml | 737 | `007d33a003baaf37bd7525a23b872279f717f0a63593ff67364b1852593305dc` | 0 |
 | zcash_history/src/entry.rs | 4261 | `bfc5efe75f619147426eaee8351316702a90ab9c7ab230f17a12e4350f7d8394` | 0 |
@@ -2402,22 +2565,22 @@ _Длинные списки здесь сгруппированы; полный
 | zcash_keys/src/address.rs | 50294 | `52e47576d0a2a94be1b549a55010b4e0ac784cab23d461121340971f394bdca9` | 0 |
 | zcash_keys/src/constants.rs | 5910 | `3b7682d90f0dfbb8010aba93716e2d7476f7ab00abe7231c3a1575144b1905ac` | 0 |
 | zcash_keys/src/encoding.rs | 25472 | `2be659e2ef6fc9782ae538c17f52b7ddda7714fe61008d67e7f0255138e37590` | 0 |
-| zcash_keys/src/keys/transparent/gap_limits.rs | 12352 | `7a648ae18f271410a5aea6721db339a5a25ab7f537f3b4d9679a6af0e5cc4f5c` | 0 |
-| zcash_keys/src/keys/transparent.rs | 18488 | `856dc76b2357dbcf0ab84b3e498152a00571b654bb1f2bd19b9501f8224fbe5a` | 0 |
-| zcash_keys/src/keys/zcashd.rs | 9900 | `ec4e74fcfee42cc53f9213c854457f9ebf9b5755d8364af5852a0aaf2b1d97b8` | 0 |
 | zcash_keys/src/keys.rs | 141099 | `bd0082831768f382b2fb6d33c41403b7c8730d6e0a2453bf63a7ea741beba354` | 0 |
+| zcash_keys/src/keys/transparent.rs | 18488 | `856dc76b2357dbcf0ab84b3e498152a00571b654bb1f2bd19b9501f8224fbe5a` | 0 |
+| zcash_keys/src/keys/transparent/gap_limits.rs | 12352 | `7a648ae18f271410a5aea6721db339a5a25ab7f537f3b4d9679a6af0e5cc4f5c` | 0 |
+| zcash_keys/src/keys/zcashd.rs | 9900 | `ec4e74fcfee42cc53f9213c854457f9ebf9b5755d8364af5852a0aaf2b1d97b8` | 0 |
 | zcash_keys/src/lib.rs | 752 | `7dc430b8e92e66884febbff95df313fcf7f2e6cea2f2c2ed0cbeae7ce0d7031d` | 0 |
 | zcash_pool_migration/Cargo.toml | 4427 | `84cb4c233c4b280b29b93c2c23d43d05d20ecee6fdd7a3e195301e7f75f0810a` | 0 |
 | zcash_pool_migration/src/build.rs | 12554 | `22819e71f25e0bd91ff799c2c8b00c4c917a40bd9603cbf39dfaaabc8e780118` | 0 |
-| zcash_pool_migration/src/denomination/strategies.rs | 47233 | `a78c67da51660b13097869dd8666491c200384ac76697772cf1cd0f9771fabf1` | 0 |
 | zcash_pool_migration/src/denomination.rs | 21724 | `38609669ae371eb784956a7693a2bab0cd86e6326d601fec088707dd9e549b07` | 0 |
+| zcash_pool_migration/src/denomination/strategies.rs | 47233 | `a78c67da51660b13097869dd8666491c200384ac76697772cf1cd0f9771fabf1` | 0 |
 | zcash_pool_migration/src/engine.rs | 383516 | `aee6f68d4539cd01414db1c7427da14c31ac7c63410d233a62a75c39c38b40be` | 0 |
 | zcash_pool_migration/src/lib.rs | 1710 | `9b116e1efff4dce35229cad7b271893ee3010bfc1695bc95416c59f9d1ba69b8` | 0 |
 | zcash_pool_migration/src/pczt_spends.rs | 3970 | `9803b7ee1f23669c57340ec3b2655baff6b78340c4251852e70e2a69f1a64cfe` | 0 |
 | zcash_pool_migration/src/pczt_txid.rs | 3430 | `10679e58849c4bd6f76b37cb8d2c1e44054f1208d5553d60c8b01cec8725444b` | 0 |
+| zcash_pool_migration/src/preparation.rs | 44456 | `41b9d6cce1bae5f5e40d3e20e4bfda2c24b7e0a10a4c60d28f97e79cf869df3c` | 0 |
 | zcash_pool_migration/src/preparation/first_fit_decreasing.rs | 11773 | `7660be41f417f9f78f852897194fb9ceb934c12cf5893d3e0962178ae8d411b7` | 0 |
 | zcash_pool_migration/src/preparation/layered_greedy.rs | 53089 | `b03646d4c86b870fbf0fb3cd9c6a76d1d7485536e5ed449603a06d75611acf9d` | 0 |
-| zcash_pool_migration/src/preparation.rs | 44456 | `41b9d6cce1bae5f5e40d3e20e4bfda2c24b7e0a10a4c60d28f97e79cf869df3c` | 0 |
 | zcash_pool_migration/src/satisfiability.rs | 146836 | `575f140a8c640fe9222a4e343c9c28a3bb9300f39432ee7cae3fd547563b6fa6` | 0 |
 | zcash_pool_migration/src/scheduling.rs | 113722 | `8026c5943974240474c06d942bc4c0f9307359945f8039d2b10e274f8654f5e8` | 0 |
 | zcash_pool_migration/src/signing_rounds.rs | 42189 | `3721e27617e658af99ab33823b59f4639a6d8acd3de7eb22f3d23dc3a829ad25` | 0 |
@@ -2431,14 +2594,14 @@ _Длинные списки здесь сгруппированы; полный
 | zcash_primitives/src/lib.rs | 779 | `c98e5f8821a7a621efb81686391d09f33a215e7ca5df05972017d2b076110fd6` | 0 |
 | zcash_primitives/src/merkle_tree.rs | 115486 | `364243f99d68009602c14be8c5543fabb04fa1e49be166e7ce3b8859692b726b` | 0 |
 | zcash_primitives/src/transaction/builder.rs | 128016 | `56b71d41eee531b8ddbd13ab856c2d3654b19042051091b364722eb949f63298` | 0 |
+| zcash_primitives/src/transaction/components.rs | 228 | `01ded28e2e67b2a3420dc7b20ad6e785b3e4a77c44e2a976421feb54d9f39c91` | 0 |
 | zcash_primitives/src/transaction/components/orchard.rs | 24336 | `bf0f5a8044330d1c8eb55c3fefbe28b66cf3d502222ea1c65a30171589614a55` | 0 |
 | zcash_primitives/src/transaction/components/sapling.rs | 25048 | `ec8e4d0d81abadf1d86b01394c00710f27d187c9fd9ef1e794ba8865cf53426d` | 0 |
 | zcash_primitives/src/transaction/components/sprout.rs | 8128 | `6b70b0178ea3334a46daf7e6071dfe237b0b91be931be74883a5793010b64cf4` | 0 |
-| zcash_primitives/src/transaction/components.rs | 228 | `01ded28e2e67b2a3420dc7b20ad6e785b3e4a77c44e2a976421feb54d9f39c91` | 0 |
+| zcash_primitives/src/transaction/fees.rs | 1339 | `e85c578cbc2916338cec03d1a378167d25dfb66003771f1f4b296c215ddf53be` | 0 |
 | zcash_primitives/src/transaction/fees/fixed.rs | 1231 | `d95362cfd01c55cce089d826d05f15ea18efd05ae8bf0fd1ab3091485809a320` | 0 |
 | zcash_primitives/src/transaction/fees/transparent.rs | 3878 | `531200a6aab1a990c335af28cb880f2751a17132e5d84848440b840cd3a7bca7` | 0 |
 | zcash_primitives/src/transaction/fees/zip317.rs | 8832 | `45758141236b7745977bd95191dfab619d6588310720652a8af0cbdf0d1d926d` | 0 |
-| zcash_primitives/src/transaction/fees.rs | 1339 | `e85c578cbc2916338cec03d1a378167d25dfb66003771f1f4b296c215ddf53be` | 0 |
 | zcash_primitives/src/transaction/mod.rs | 56478 | `39fcd714c806fcd1b4120536040153518177896823eca2f94a72a7ec89494456` | 0 |
 | zcash_primitives/src/transaction/sighash.rs | 1908 | `6ee5ca91695de9095fe174265ade901703470a88544fe8825089d1eab585be2f` | 0 |
 | zcash_primitives/src/transaction/sighash_v4.rs | 8975 | `59239c04ed59d0d5d19c58274524eeb0f588a4f690154d344ae880fa5f72183a` | 0 |
@@ -2446,12 +2609,12 @@ _Длинные списки здесь сгруппированы; полный
 | zcash_primitives/src/transaction/sighash_v6.rs | 1126 | `76aa108bca4d920e5d889fe22318398b260b15a55ab5979bb71a228de9ba3b67` | 0 |
 | zcash_primitives/src/transaction/txid.rs | 23942 | `7dd5b8d891270f207d7e6e0aee8681d2d7d38e77b74e9772267ee55c3e1f8af0` | 0 |
 | zcash_proofs/Cargo.toml | 2551 | `b8a713169619b05777a544e928f72be5caeae02743683b36bd93d8e6c104ff2c` | 0 |
+| zcash_proofs/src/circuit.rs | 87 | `b31c395401ea947e59c9779188267592ff37bf90deed3f92cdf1c3d56c861691` | 0 |
 | zcash_proofs/src/circuit/sprout/commitment.rs | 1004 | `c90b73fdd046ca818bc80b92606e6a5a210e0fa809c09ba09f322655565d79c3` | 0 |
 | zcash_proofs/src/circuit/sprout/input.rs | 5966 | `f488b72238ef3959b0686b25212ab35d44c050267062416e92f5b41989b4e30f` | 0 |
 | zcash_proofs/src/circuit/sprout/mod.rs | 14049 | `2ef74af1024fb6cc5584eb781e52016032aa305d09db36950c56ddf39e079b4b` | 0 |
 | zcash_proofs/src/circuit/sprout/output.rs | 1102 | `6139da53aaf18f813592752f245700acad467354f2482359997fc37f853092bc` | 0 |
 | zcash_proofs/src/circuit/sprout/prfs.rs | 1939 | `cb836c15cb412fdc73b77c2a9eb9d91fc6846e20b5438c1545e37ac01b7f8106` | 0 |
-| zcash_proofs/src/circuit.rs | 87 | `b31c395401ea947e59c9779188267592ff37bf90deed3f92cdf1c3d56c861691` | 0 |
 | zcash_proofs/src/downloadreader.rs | 2893 | `4ae40df29495f54106dad9bd07d29293d313f0d1cf34964fc6e29dbd675e745e` | 0 |
 | zcash_proofs/src/hashreader.rs | 1560 | `ed234ce00866121eba96024416e37341e265727612c46ec111c51e3b7a81626f` | 0 |
 | zcash_proofs/src/lib.rs | 17442 | `c2050f2e89d86a3c7a4624a144b88599d2520d68e38e62664c5636ce2a02664e` | 0 |
@@ -2464,13 +2627,13 @@ _Длинные списки здесь сгруппированы; полный
 | zcash_transparent/src/coinbase.rs | 2327 | `aa3ba16769a0377c6616e2de244f707a12c3ca5ca20ca71003f9028586039404` | 0 |
 | zcash_transparent/src/keys.rs | 34597 | `7f85ab00e7e7ea2e3f53d141d4c6376704c012ccc25a928bb5149ba2745db050` | 0 |
 | zcash_transparent/src/lib.rs | 514 | `6143fcd0e33c0d4978931c1dbe09cfa21d01c33880511a0fd0c31314e83304e0` | 0 |
+| zcash_transparent/src/pczt.rs | 15104 | `c98366910ea2df8ffbe9356fe62e10d9bdb71a94e535fd98bc93ce376dbd5ef0` | 0 |
 | zcash_transparent/src/pczt/parse.rs | 7146 | `180d4cf4eef89d24e87d30a90fb84f2ca68479eab8c3c0e4152ad8f57f8c65cc` | 0 |
 | zcash_transparent/src/pczt/signer.rs | 22060 | `7634be395365abd176a608264c15fef69e68584b1c952f6ecca08dacd45c3859` | 0 |
 | zcash_transparent/src/pczt/spend_finalizer.rs | 17700 | `2dfb9441411641a48fc898ea0a5548e6a6ae3255e2d195ad9554fd614b298684` | 0 |
 | zcash_transparent/src/pczt/tx_extractor.rs | 3441 | `fbc34ffca7f11fc41da31bf32afc4b87bf26d5eb55d5922961081f5695c060a5` | 0 |
 | zcash_transparent/src/pczt/updater.rs | 5807 | `5451e8746f1a5108d7facedd6bb372978c671918c150f9b8ccf9814e5bbc789d` | 0 |
 | zcash_transparent/src/pczt/verify.rs | 2297 | `9045b2585a927470ba9502cadb711076af10e2ac1aaa3dedab74a061c427fbac` | 0 |
-| zcash_transparent/src/pczt.rs | 15104 | `c98366910ea2df8ffbe9356fe62e10d9bdb71a94e535fd98bc93ce376dbd5ef0` | 0 |
 | zcash_transparent/src/sighash.rs | 9614 | `4417b5e6a2cbfb68448fa7fec432b9a30849b78fafdb545ba192a55845a360fd` | 0 |
 | zcash_transparent/src/util/hash160.rs | 2086 | `a813a76278afe5125733f3219585270fb88521cfbc061554d8f938fa3e923dc5` | 0 |
 | zcash_transparent/src/util/mod.rs | 94 | `f59746e68267b6ce74ba40c9971820cfb3384f9884f77a4a25173a1222137e69` | 0 |

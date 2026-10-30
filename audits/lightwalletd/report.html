@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Security &amp; Post-Quantum Readiness Audit Report — lightwalletd @ 4abfe9cd7b9b</title>
+<title>Отчёт об аудите безопасности и постквантовой готовности — lightwalletd @ 4abfe9cd7b9b</title>
 <style>
   :root {
     --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
@@ -11,10 +11,10 @@
   }
   @page {
     size: A4; margin: 22mm 18mm 20mm 18mm;
-    @top-left { content: "lightwalletd @ 4abfe9cd7b9b · Security \26  Post-Quantum Readiness Audit Report"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
-    @top-right { content: "v1 · 824147933087"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-left { content: "lightwalletd @ 4abfe9cd7b9b · Отчёт об аудите безопасности и постквантовой готовности"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · ee01be5a6a66"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
     @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
-    @bottom-left { content: "This report presents automated and documented analysis results for the stated scope. It is not a legal opinion…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+    @bottom-left { content: "Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является ю…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
   }
   @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
   * { box-sizing: border-box; }
@@ -77,138 +77,138 @@
 <div class="cover">
   <div>
     <div class="brand">Quantum Security Intelligence</div>
-    <h1>Security &amp; Post-Quantum Readiness Audit Report</h1>
-    <div class="project">lightwalletd @ 4abfe9cd7b9b · Electric Coin Company (Zcash) — public repository (passive review)</div>
+    <h1>Отчёт об аудите безопасности и постквантовой готовности</h1>
+    <div class="project">lightwalletd @ 4abfe9cd7b9b · Electric Coin Company (Zcash) — публичный репозиторий (пассивная проверка)</div>
   </div>
   <table>
-    <tr><td>Organization</td><td>QSI</td></tr>
-    <tr><td>Report date</td><td>2026-10-28 18:03 UTC</td></tr>
-    <tr><td>Report version</td><td>1</td></tr>
-    <tr><td>Audit run</td><td>14a011b1-0b2f-4c1c-b464-2a7b8ae42265 · Document audit · 2026-10-28 18:03 UTC</td></tr>
-    <tr><td>Analyzer engine</td><td>qsi-engine 1.2.0</td></tr>
-    <tr><td>Risk profile</td><td>Small technology company</td></tr>
-    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">82414793308723f9630b1a40523260f8258d8b9c17a2b30005a7575edb8963e0</td></tr>
-<tr><td>Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+    <tr><td>Организация</td><td>QSI</td></tr>
+    <tr><td>Дата отчёта</td><td>2026-10-29 23:10 UTC</td></tr>
+    <tr><td>Версия отчёта</td><td>1</td></tr>
+    <tr><td>Запуск аудита</td><td>f9b43ee1-df86-4cae-992a-c23d240bcdbc · Документальный аудит · 2026-10-29 23:10 UTC</td></tr>
+    <tr><td>Версия анализатора</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Профиль риска</td><td>Криптобиржа, кастодиан или кошелёк</td></tr>
+    <tr><td>SHA-256 содержимого</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">ee01be5a6a668e45f80173febb444271441656e5c2f98f8ad60408f1e35ec330</td></tr>
+<tr><td>Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
 </div>
 
 <section class="toc chapter">
-  <h2>Contents</h2>
+  <h2>Содержание</h2>
   <ol>
-    <li><a href="#executive_summary">Executive summary</a></li>
-    <li><a href="#scope">Scope and boundaries</a></li>
-    <li><a href="#methodology">Methodology</a></li>
-    <li><a href="#assets">Assets examined and not examined</a></li>
-    <li><a href="#architecture">Architecture overview</a></li>
-    <li><a href="#posture">Overall security posture</a></li>
-    <li><a href="#summary_by_severity">Findings by severity</a></li>
-    <li><a href="#details">Detailed findings</a></li>
-    <li><a href="#evidence">Evidence</a></li>
-    <li><a href="#pq">Post-quantum assessment</a></li>
-    <li><a href="#limitations">Limitations and assumptions</a></li>
-    <li><a href="#plan">Remediation plan</a></li>
-    <li><a href="#priorities">Priorities for 30, 60 and 90 days</a></li>
-    <li><a href="#retests">Verification after remediation</a></li>
-    <li><a href="#tools">Tools used</a></li>
-    <li><a href="#references">Sources and normative documents</a></li>
-    <li><a href="#appendices">Appendices</a></li>
+    <li><a href="#executive_summary">Резюме для руководства</a></li>
+    <li><a href="#scope">Область и границы проверки</a></li>
+    <li><a href="#methodology">Методология</a></li>
+    <li><a href="#assets">Проверенные и непроверенные активы</a></li>
+    <li><a href="#architecture">Краткое описание архитектуры</a></li>
+    <li><a href="#posture">Общая оценка состояния безопасности</a></li>
+    <li><a href="#summary_by_severity">Сводка находок по серьёзности</a></li>
+    <li><a href="#details">Подробное описание находок</a></li>
+    <li><a href="#evidence">Подтверждающие доказательства</a></li>
+    <li><a href="#pq">Постквантовая оценка</a></li>
+    <li><a href="#limitations">Ограничения и допущения</a></li>
+    <li><a href="#plan">План устранения проблем</a></li>
+    <li><a href="#priorities">Приоритеты на 30, 60 и 90 дней</a></li>
+    <li><a href="#retests">Проверки после устранения</a></li>
+    <li><a href="#tools">Использованные инструменты</a></li>
+    <li><a href="#references">Источники и нормативные документы</a></li>
+    <li><a href="#appendices">Приложения</a></li>
   </ol>
-  <p class="note">This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</p>
+  <p class="note">Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</p>
 </section>
 
 <section class="chapter" id="executive_summary">
-  <h2>Executive summary</h2>
+  <h2>Резюме для руководства</h2>
   <div class="kpis">
-    <div class="kpi"><div class="v">14</div><div class="l">Findings in total</div></div>
-    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Critical</span></div></div>
-    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">High</span></div></div>
-    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-medium">Medium</span></div></div>
-    <div class="kpi"><div class="v">10</div><div class="l"><span class="sev sev-low">Low</span></div></div>
+    <div class="kpi"><div class="v">14</div><div class="l">Всего находок</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Критическая</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">Высокая</span></div></div>
+    <div class="kpi"><div class="v">2</div><div class="l"><span class="sev sev-medium">Средняя</span></div></div>
+    <div class="kpi"><div class="v">8</div><div class="l"><span class="sev sev-low">Низкая</span></div></div>
   </div>
   <table class="data">
-    <tr><th>Classification</th><th>Count</th></tr>
-<tr><td>Confirmed technical vulnerability</td><td>1</td></tr><tr><td>Known vulnerable component</td><td>10</td></tr><tr><td>Confirmed configuration error</td><td>0</td></tr><tr><td>Potential cryptographic risk</td><td>0</td></tr><tr><td>Long-term post-quantum risk</td><td>2</td></tr><tr><td>Improvement recommendation</td><td>0</td></tr><tr><td>Insufficient data</td><td>1</td></tr>  </table>
+    <tr><th>Классификация</th><th>Количество</th></tr>
+<tr><td>Подтверждённая техническая уязвимость</td><td>1</td></tr><tr><td>Известная уязвимая версия компонента</td><td>10</td></tr><tr><td>Подтверждённая ошибка конфигурации</td><td>0</td></tr><tr><td>Потенциальный криптографический риск</td><td>0</td></tr><tr><td>Долгосрочный постквантовый риск</td><td>2</td></tr><tr><td>Рекомендация по улучшению</td><td>0</td></tr><tr><td>Недостаточность данных</td><td>1</td></tr>  </table>
   <h3>Top 5</h3>
   <table class="data">
-    <tr><th>ID</th><th>Severity</th><th>Detailed findings</th><th>Priority score</th></tr>
-<tr><td>QSI-2026-05532</td><td><span class="sev sev-low">Low</span></td><td>Quantum-vulnerable RSA key in certificate (lightwalletd.testnet.local)</td><td>36.2</td></tr><tr><td>QSI-2026-05530</td><td><span class="sev sev-low">Low</span></td><td>Quantum-vulnerable RSA: role not determined (1 file(s)) <span class="tag pre">preliminary</span></td><td>23.6</td></tr><tr><td>QSI-2026-05534</td><td><span class="sev sev-low">Low</span></td><td>golang.org/x/crypto v0.55.0 is affected by GO-2026-5932 (no severity rating) <span class="tag pre">preliminary</span></td><td>20.2</td></tr><tr><td>QSI-2026-05535</td><td><span class="sev sev-low">Low</span></td><td>golang.org/x/crypto v0.55.0 is affected by GO-2026-6354 (CVE-2026-78662) (no severity rating) <span class="tag pre">preliminary</span></td><td>20.2</td></tr><tr><td>QSI-2026-05536</td><td><span class="sev sev-low">Low</span></td><td>golang.org/x/crypto v0.55.0 is affected by GO-2026-6355 (CVE-2026-56855) (no severity rating) <span class="tag pre">preliminary</span></td><td>20.2</td></tr>  </table>
-  <p class="note">Mosca&#39;s inequality (x + y &gt; z): x = 5, y = 3, z = 12 → time available under this scenario. z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
-<p class="note">Analyst review: 0 confirmed, 1 not applicable, 0 dismissed as false positives.</p><p class="note"><strong>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.</strong> Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p></section>
+    <tr><th>ID</th><th>Серьёзность</th><th>Подробное описание находок</th><th>Балл приоритета</th></tr>
+<tr><td>QSI-2026-07097</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)</td><td>50.3</td></tr><tr><td>QSI-2026-07095</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый RSA: роль не определена (1 файл(ов)) <span class="tag pre">предварительно</span></td><td>34.2</td></tr><tr><td>QSI-2026-07099</td><td><span class="sev sev-low">Низкая</span></td><td>golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности) <span class="tag pre">предварительно</span></td><td>20.3</td></tr><tr><td>QSI-2026-07100</td><td><span class="sev sev-low">Низкая</span></td><td>golang.org/x/crypto v0.55.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности) <span class="tag pre">предварительно</span></td><td>20.3</td></tr><tr><td>QSI-2026-07101</td><td><span class="sev sev-low">Низкая</span></td><td>golang.org/x/crypto v0.55.0 затронут GO-2026-6355 (CVE-2026-56855) (без оценки серьёзности) <span class="tag pre">предварительно</span></td><td>20.3</td></tr>  </table>
+  <p class="note">Неравенство Моски (x + y &gt; z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+<p class="note">Проверка аналитика: подтверждено — 0, не применимо — 1, отклонено как ложные срабатывания — 0.</p><p class="note"><strong>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.</strong> Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p></section>
 
 <section class="chapter" id="scope">
-  <h2>Scope and boundaries</h2>
-  <p><strong>Mode:</strong> Document audit</p>
-<p><strong>Repository:</strong> <a href="https://github.com/zcash/lightwalletd">https://github.com/zcash/lightwalletd</a> @ <span class="small">4abfe9cd7b9b13f6093df59911639d1d9195dc09</span> — evidence links open the lines at this commit.</p>  <h3>Supplied inputs</h3>
-  <p>34 files, 458533 bytes in total, 1 redaction(s); the per-file SHA-256 list is in appendix C.</p>
+  <h2>Область и границы проверки</h2>
+  <p><strong>Режим:</strong> Документальный аудит</p>
+<p><strong>Репозиторий:</strong> <a href="https://github.com/zcash/lightwalletd">https://github.com/zcash/lightwalletd</a> @ <span class="small">4abfe9cd7b9b13f6093df59911639d1d9195dc09</span> — ссылки в доказательствах открывают строки на этом коммите.</p>  <h3>Предоставленные входные данные</h3>
+  <p>34 файлов, всего 458533 байт, редактирований: 1; список SHA-256 по файлам — в приложении C.</p>
 </section>
 
 <section class="chapter" id="methodology">
-  <h2>Methodology</h2>
-  <p>The audit was performed by the QSI engine 1.2.0. Each analyzer emits facts (rule, parameters, evidence); finding texts are generated from the rule catalog. Methodology sources are listed under "Sources and normative documents".</p>
-  <p>Prioritization uses an explainable weighted model (severity, exploitability, exposure, confidentiality/integrity/availability impact weighted by the "Small technology company" profile, asset criticality, urgency, ease of remediation) with a confidence multiplier. CVSS v3.1 is applied only to technical vulnerabilities with a defined vector. Long-term quantum risks use Mosca's inequality; their severity is capped at Medium and they are never presented as exploitable vulnerabilities.</p>
-  <p>Finding classes: confirmed technical vulnerability; known vulnerable component (a dependency version named in an advisory; whether the affected code is reachable is assessed separately, and a component confirmed by review becomes a vulnerability); confirmed configuration error; potential cryptographic risk; long-term post-quantum risk; improvement recommendation; insufficient data. Heuristic findings are marked preliminary; analyst decisions are shown next to the findings.</p>
-  <h3>Coverage of checks</h3>
-  <table class="data"><tr><th>Area</th><th>Status</th><th>Count</th><th>Examples</th></tr>
-<tr><td>source_code</td><td>checked</td><td>28</td><td class="small">cmd/connstats.go: 39 lines scanned with 16 rule patterns and 122 registry patterns; cmd/root.go: 535 lines scanned with 16 rule patterns and 122 registry patterns; cmd/version.go: 22 lines scanned with 16 rule patterns and 122 registry patterns</td></tr><tr><td>tls_code</td><td>checked</td><td>2</td><td class="small">common/generatecerts.go: TLS key-exchange settings read; frontend/rawrequest.go: TLS key-exchange settings read</td></tr><tr><td>certificates_and_keys</td><td>checked</td><td>2</td><td class="small">docker/cert.key: certificates/keys parsed; docker/cert.pem: certificates/keys parsed</td></tr><tr><td>dependencies</td><td>checked</td><td>1</td><td class="small">go.mod: 48 dependencies parsed (48 pinned)</td></tr><tr><td>osv_advisories</td><td>checked</td><td>1</td><td class="small">48 pinned packages queried at OSV.dev; 2 affected</td></tr>  </table>
-  <p class="note">Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key.</p>
+  <h2>Методология</h2>
+  <p>Аудит выполнен движком QSI 1.2.0. Каждый анализатор формирует факты (правило, параметры, доказательства); тексты находок генерируются из каталога правил. Источники методики указаны в разделе «Источники и нормативные документы».</p>
+  <p>Приоритизация: объяснимая взвешенная модель (серьёзность, вероятность эксплуатации, доступность атакующему, влияние на конфиденциальность/целостность/доступность с весами профиля «Криптобиржа, кастодиан или кошелёк», критичность актива, срочность, простота устранения) с множителем уверенности. CVSS v3.1 применяется только к техническим уязвимостям с определённым вектором. Для долгосрочных квантовых рисков используется неравенство Моски; их серьёзность ограничена уровнем «Средняя», и они никогда не представляются как эксплуатируемые уязвимости.</p>
+  <p>Классификация находок: подтверждённая техническая уязвимость; известная уязвимая версия компонента (версия зависимости названа в бюллетене; затронутый код может не вызываться — это проверяется отдельно, а подтверждённая проверкой становится уязвимостью); подтверждённая ошибка конфигурации; потенциальный криптографический риск; долгосрочный постквантовый риск; рекомендация по улучшению; недостаточность данных. Находки на основе эвристик помечены как предварительные; решения аналитика показаны рядом с находками.</p>
+  <h3>Покрытие проверок</h3>
+  <table class="data"><tr><th>Область</th><th>Статус</th><th>Количество</th><th>Примеры</th></tr>
+<tr><td>source_code</td><td>проверено</td><td>28</td><td class="small">cmd/connstats.go: 39 lines scanned with 16 rule patterns and 127 registry patterns; cmd/root.go: 535 lines scanned with 16 rule patterns and 127 registry patterns; cmd/version.go: 22 lines scanned with 16 rule patterns and 127 registry patterns</td></tr><tr><td>tls_code</td><td>проверено</td><td>2</td><td class="small">common/generatecerts.go: TLS key-exchange settings read; frontend/rawrequest.go: TLS key-exchange settings read</td></tr><tr><td>certificates_and_keys</td><td>проверено</td><td>2</td><td class="small">docker/cert.key: certificates/keys parsed; docker/cert.pem: certificates/keys parsed</td></tr><tr><td>dependencies</td><td>проверено</td><td>1</td><td class="small">go.mod: 48 dependencies parsed (48 pinned)</td></tr><tr><td>osv_advisories</td><td>проверено</td><td>1</td><td class="small">48 pinned packages queried at OSV.dev; 2 affected</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
 </section>
 
 <section class="chapter" id="assets">
-  <h2>Assets examined and not examined</h2>
-  <p><strong>Supplied inputs:</strong> 32 (input files: C)</p>
+  <h2>Проверенные и непроверенные активы</h2>
+  <p><strong>Предоставленные входные данные:</strong> 32 (входные файлы: C)</p>
 </section>
 
 <section class="chapter" id="architecture">
-  <h2>Architecture overview</h2>
-  <p>Static review of the source tree lightwalletd at 4abfe9cd7b9b13f6093df59911639d1d9195dc09. 34 files analysed; of 121 files, 24 are test, fuzzing, benchmark or example code and were left out, 63 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner&#39;s systems.</p>
+  <h2>Краткое описание архитектуры</h2>
+  <p>Static review of the source tree lightwalletd at 4abfe9cd7b9b13f6093df59911639d1d9195dc09. 34 files analysed; of 121 files, 24 are test, fuzzing, benchmark or example code and were left out, 63 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .codecov.yml, .env.template, .github/ISSUE_TEMPLATE/bug-report.md, .github/ISSUE_TEMPLATE/feature-request.md, .github/pull_request_template.md. 41 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner&#39;s systems.</p>
 </section>
 
 <section class="chapter" id="posture">
-  <h2>Overall security posture</h2>
+  <h2>Общая оценка состояния безопасности</h2>
   <div class="kpis">
-    <div class="kpi"><div class="v">93</div><div class="l">Indicative posture index (0–100)</div></div>
-    <div class="kpi"><div class="v">37.5%</div><div class="l">Quantum-vulnerable share of inventory</div></div>
-    <div class="kpi"><div class="v">8</div><div class="l">Cryptographic inventory</div></div>
+    <div class="kpi"><div class="v">93</div><div class="l">Ориентировочный индекс состояния (0–100)</div></div>
+    <div class="kpi"><div class="v">37.5%</div><div class="l">Доля квантово-уязвимых элементов инвентаризации</div></div>
+    <div class="kpi"><div class="v">8</div><div class="l">Криптографическая инвентаризация</div></div>
   </div>
-  <p class="note">Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits.</p>
+  <p class="note">Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью.</p>
 </section>
 
 <section class="chapter" id="summary_by_severity">
-  <h2>Findings by severity</h2>
+  <h2>Сводка находок по серьёзности</h2>
   <table class="data">
-  <tr><td style="width:22%"><span class="sev sev-critical">Critical</span></td><td style="width:8%">0</td>
+  <tr><td style="width:22%"><span class="sev sev-critical">Критическая</span></td><td style="width:8%">0</td>
   <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
-  <tr><td style="width:22%"><span class="sev sev-high">High</span></td><td style="width:8%">0</td>
+  <tr><td style="width:22%"><span class="sev sev-high">Высокая</span></td><td style="width:8%">0</td>
   <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
-  <tr><td style="width:22%"><span class="sev sev-medium">Medium</span></td><td style="width:8%">0</td>
-  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
-  <tr><td style="width:22%"><span class="sev sev-low">Low</span></td><td style="width:8%">10</td>
+  <tr><td style="width:22%"><span class="sev sev-medium">Средняя</span></td><td style="width:8%">2</td>
+  <td><div class="bar"><span style="width: 25.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Низкая</span></td><td style="width:8%">8</td>
   <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
-  <tr><td style="width:22%"><span class="sev sev-info">Info</span></td><td style="width:8%">4</td>
-  <td><div class="bar"><span style="width: 40.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Информационная</span></td><td style="width:8%">4</td>
+  <td><div class="bar"><span style="width: 50.0%"></span></div></td></tr>
   </table>
-  <table class="data"><tr><th>ID</th><th>Detailed findings</th><th>Classification</th><th>Severity</th><th>Confidence</th></tr>
-<tr><td>QSI-2026-05532</td><td>Quantum-vulnerable RSA key in certificate (lightwalletd.testnet.local)</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-low">Low</span></td><td>High</td></tr><tr><td>QSI-2026-05530</td><td>Quantum-vulnerable RSA: role not determined (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-low">Low</span></td><td>Medium, preliminary</td></tr><tr><td>QSI-2026-05534</td><td>golang.org/x/crypto v0.55.0 is affected by GO-2026-5932 (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05535</td><td>golang.org/x/crypto v0.55.0 is affected by GO-2026-6354 (CVE-2026-78662) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05536</td><td>golang.org/x/crypto v0.55.0 is affected by GO-2026-6355 (CVE-2026-56855) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05537</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05539</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05540</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05541</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05542</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-low">Low</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05531</td><td>Private key material present in docker/cert.key</td><td class="small">Confirmed technical vulnerability</td><td><span class="sev sev-info">Info</span></td><td>High</td></tr><tr><td>QSI-2026-05538</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05543</td><td>golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)</td><td class="small">Known vulnerable component</td><td><span class="sev sev-info">Info</span></td><td>Low, preliminary</td></tr><tr><td>QSI-2026-05533</td><td>No post-quantum capable cryptographic library detected</td><td class="small">Insufficient data</td><td><span class="sev sev-info">Info</span></td><td>Medium, preliminary</td></tr>  </table>
+  <table class="data"><tr><th>ID</th><th>Подробное описание находок</th><th>Классификация</th><th>Серьёзность</th><th>Уверенность</th></tr>
+<tr><td>QSI-2026-07097</td><td>Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Высокая</td></tr><tr><td>QSI-2026-07095</td><td>Квантово-уязвимый RSA: роль не определена (1 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07099</td><td>golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07100</td><td>golang.org/x/crypto v0.55.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07101</td><td>golang.org/x/crypto v0.55.0 затронут GO-2026-6355 (CVE-2026-56855) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07102</td><td>golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07104</td><td>golang.org/x/net v0.58.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07105</td><td>golang.org/x/net v0.58.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07106</td><td>golang.org/x/net v0.58.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07107</td><td>golang.org/x/net v0.58.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-low">Низкая</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07096</td><td>Закрытый ключ присутствует в docker/cert.key</td><td class="small">Подтверждённая техническая уязвимость</td><td><span class="sev sev-info">Информационная</span></td><td>Высокая</td></tr><tr><td>QSI-2026-07103</td><td>golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-info">Информационная</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07108</td><td>golang.org/x/net v0.58.0 затронут GO-2026-6866 (CVE-2026-97045) (без оценки серьёзности)</td><td class="small">Известная уязвимая версия компонента</td><td><span class="sev sev-info">Информационная</span></td><td>Низкая, предварительно</td></tr><tr><td>QSI-2026-07098</td><td>Не обнаружено криптобиблиотек с поддержкой PQC</td><td class="small">Недостаточность данных</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr>  </table>
 </section>
 
 <section class="chapter" id="details">
-  <h2>Detailed findings</h2>
-  <article class="finding" id="QSI-2026-05532">
-    <header><span class="fid">QSI-2026-05532 · CERT-QV-KEY</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>Quantum-vulnerable RSA key in certificate (lightwalletd.testnet.local)</h3>
-    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: High</span></p>
-    <p>The certificate lightwalletd.testnet.local uses a RSA 2048-bit public key, valid until 2029-12-15. RSA is broken by Shor&#39;s algorithm on a CRQC.</p>
+  <h2>Подробное описание находок</h2>
+  <article class="finding" id="QSI-2026-07097">
+    <header><span class="fid">QSI-2026-07097 · CERT-QV-KEY</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый ключ RSA в сертификате (lightwalletd.testnet.local)</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Высокая</span></p>
+    <p>Сертификат lightwalletd.testnet.local использует открытый ключ RSA 2048-bit, действителен до 2029-12-15. RSA взламывается алгоритмом Шора на CRQC.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>certificate:lightwalletd.testnet.local</dd>
-      <dt>Data source</dt><dd>docker/cert.pem</dd>
-      <dt>Detection method</dt><dd>X.509 public key algorithm identification.</dd>
-      <dt>Analyzer</dt><dd>certificates 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>36.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
-<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=3.13, y=3.0, z=12.0 → time available under this scenario</dd>    </dl>
-    <h4>Potential impact</h4><p>For authentication, risk materializes only once a CRQC exists while the key/certificate is still trusted. Certificates are short-lived, so the main concern is the PKI and long-lived roots/intermediates.</p>
-    <h4>Reproduction steps</h4><pre>openssl x509 -in docker/cert.pem -noout -text | grep -A2 &#39;Public Key Algorithm&#39;</pre>
-    <h4 id="ev-QSI-2026-05532">Evidence</h4>
-      <div class="ev-meta">certificate · docker/cert.pem · line 1 · SHA-256 4cd9b3240260015c… · File 8d44580bca050fd5…</div>
+      <dt>Затронутый актив</dt><dd>certificate:lightwalletd.testnet.local</dd>
+      <dt>Источник данных</dt><dd>docker/cert.pem</dd>
+      <dt>Метод обнаружения</dt><dd>Определение алгоритма открытого ключа X.509.</dd>
+      <dt>Анализатор</dt><dd>certificates 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>50.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=3.13, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Для аутентификации риск реализуется только если CRQC появится, пока ключ/сертификат ещё доверенный. Сертификаты короткоживущие, поэтому основной вопрос — PKI и долгоживущие корневые/промежуточные сертификаты.</p>
+    <h4>Шаги воспроизведения</h4><pre>openssl x509 -in docker/cert.pem -noout -text | grep -A2 &#39;Public Key Algorithm&#39;</pre>
+    <h4 id="ev-QSI-2026-07097">Подтверждающие доказательства</h4>
+      <div class="ev-meta">certificate · docker/cert.pem · line 1 · SHA-256 4cd9b3240260015c… · Файл 8d44580bca050fd5…</div>
       <pre>Subject: CN=lightwalletd.testnet.local,O=MyOrg\, Inc.,ST=CA,C=US
 Issuer: CN=lightwalletd.testnet.local,O=MyOrg\, Inc.,ST=CA,C=US
 Serial: 7af3c04cf3fbe2a63724f13ab376b1c670bcaf1c
@@ -220,583 +220,583 @@ Signature hash: sha256
 CA: True
 SAN: -
 SHA-256 fingerprint: 907548fce41ead924e1a866da5bb154a58b5b7e503443babd2da3e6d597341c4</pre>
-    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.</p>
-    <h4>Recommendation</h4><p>Track in the PQC inventory; prefer short certificate lifetimes; follow CA/Browser Forum and NIST PQC transition guidance for ML-DSA certificates.</p>
-    <h4>Retest procedure</h4><p>Re-audit once PQC or hybrid certificates are deployed.</p>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня.</p>
+    <h4>Рекомендация</h4><p>Учитывайте в PQC-инвентаризации; используйте короткие сроки действия; следуйте рекомендациям CA/Browser Forum и NIST по переходу на сертификаты ML-DSA.</p>
+    <h4>Повторная проверка</h4><p>Повторите аудит после внедрения PQC или гибридных сертификатов.</p>
 <p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
-  <article class="finding" id="QSI-2026-05530">
-    <header><span class="fid">QSI-2026-05530 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>Quantum-vulnerable RSA: role not determined (1 file(s))</h3>
-    <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>2 reference(s) to RSA across 1 file(s), e.g. common/generatecerts.go:8. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.</p>
+  <article class="finding" id="QSI-2026-07095">
+    <header><span class="fid">QSI-2026-07095 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый RSA: роль не определена (1 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>2 упоминаний RSA в 1 файл(ах), например common/generatecerts.go:8. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>source-code:RSA:general</dd>
-      <dt>Data source</dt><dd>common/generatecerts.go</dd>
-      <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
-      <dt>Analyzer</dt><dd>source_code 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>23.6 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
-<dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=5.0, y=3.0, z=12.0 → time available under this scenario</dd>    </dl>
-    <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
-    <h4>Reproduction steps</h4><pre>Open common/generatecerts.go:8 and inspect the quoted lines; the evidence lists further files.</pre>
-    <h4 id="ev-QSI-2026-05530">Evidence</h4>
-      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L8">common/generatecerts.go</a> · line 8 · SHA-256 9b1ce2f208b801d0… · File 010d1a90f0fea3ba…</div>
+      <dt>Затронутый актив</dt><dd>source-code:RSA:general</dd>
+      <dt>Источник данных</dt><dd>common/generatecerts.go</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>34.2 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте common/generatecerts.go:8 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-07095">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L8">common/generatecerts.go</a> · line 8 · SHA-256 9b1ce2f208b801d0… · Файл 010d1a90f0fea3ba…</div>
       <pre>    7 | 	&#34;crypto/rand&#34;
     8 | 	&#34;crypto/rsa&#34;
     9 | 	&#34;crypto/tls&#34;</pre>
-      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L21">common/generatecerts.go</a> · line 21 · SHA-256 7bc59a5974adbfd5… · File 010d1a90f0fea3ba…</div>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L21">common/generatecerts.go</a> · line 21 · SHA-256 7bc59a5974adbfd5… · Файл 010d1a90f0fea3ba…</div>
       <pre>   20 | 
    21 | 	privKey, err := rsa.GenerateKey(rand.Reader, 2048)
    22 | 	if err != nil {</pre>
-    <h4>Limitations of the check</h4><p class="small">This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.</p>
-    <h4>Recommendation</h4><p>Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.</p>
-    <h4>Retest procedure</h4><p>Re-run the inventory after refactoring.</p>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
 <p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
-  <article class="finding" id="QSI-2026-05534">
-    <header><span class="fid">QSI-2026-05534 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/crypto v0.55.0 is affected by GO-2026-5932 (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-5932 for Go package golang.org/x/crypto at version v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.</p>
+  <article class="finding" id="QSI-2026-07099">
+    <header><span class="fid">QSI-2026-07099 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/crypto v0.55.0 затронут GO-2026-5932 (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/crypto@v0.55.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/crypto@v0.55.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-5932</pre>
-    <h4 id="ev-QSI-2026-05534">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-5932</pre>
+    <h4 id="ev-QSI-2026-07099">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-5932">OSV.dev GO-2026-5932</a> · line 53 · SHA-256 ccbd80f24a2d759e…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-5932&#34;, &#34;aliases&#34;: [], &#34;modified&#34;: &#34;2026-07-10T05:44:31.101996029Z&#34;, &#34;summary&#34;: &#34;The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-5932</p>  </article>
-  <article class="finding" id="QSI-2026-05535">
-    <header><span class="fid">QSI-2026-05535 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/crypto v0.55.0 is affected by GO-2026-6354 (CVE-2026-78662) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6354 (CVE-2026-78662) for Go package golang.org/x/crypto at version v0.55.0: Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names golang.org/x/crypto/ssh.Dial: the affected code may be reachable.</p>
+  <article class="finding" id="QSI-2026-07100">
+    <header><span class="fid">QSI-2026-07100 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/crypto v0.55.0 затронут GO-2026-6354 (CVE-2026-78662) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6354 (CVE-2026-78662) для пакета Go golang.org/x/crypto версии v0.55.0: Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет golang.org/x/crypto/ssh.Dial: затронутый код может быть достижим.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/crypto@v0.55.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/crypto@v0.55.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6354</pre>
-    <h4 id="ev-QSI-2026-05535">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6354</pre>
+    <h4 id="ev-QSI-2026-07100">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6354">OSV.dev GO-2026-6354</a> · line 53 · SHA-256 fb187877ccc7bca3…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6354&#34;, &#34;aliases&#34;: [&#34;CVE-2026-78662&#34;], &#34;modified&#34;: &#34;2026-09-03T10:10:55.147673102Z&#34;, &#34;summary&#34;: &#34;Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.56.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.56.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6354</p>  </article>
-  <article class="finding" id="QSI-2026-05536">
-    <header><span class="fid">QSI-2026-05536 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/crypto v0.55.0 is affected by GO-2026-6355 (CVE-2026-56855) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6355 (CVE-2026-56855) for Go package golang.org/x/crypto at version v0.55.0: Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names golang.org/x/crypto/ssh.Dial: the affected code may be reachable.</p>
+  <article class="finding" id="QSI-2026-07101">
+    <header><span class="fid">QSI-2026-07101 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/crypto v0.55.0 затронут GO-2026-6355 (CVE-2026-56855) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6355 (CVE-2026-56855) для пакета Go golang.org/x/crypto версии v0.55.0: Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет golang.org/x/crypto/ssh.Dial: затронутый код может быть достижим.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/crypto@v0.55.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/crypto@v0.55.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6355</pre>
-    <h4 id="ev-QSI-2026-05536">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6355</pre>
+    <h4 id="ev-QSI-2026-07101">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6355">OSV.dev GO-2026-6355</a> · line 53 · SHA-256 4e6adace91e1ca1e…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6355&#34;, &#34;aliases&#34;: [&#34;CVE-2026-56855&#34;], &#34;modified&#34;: &#34;2026-09-24T10:41:42.556134596Z&#34;, &#34;summary&#34;: &#34;Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.56.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.56.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6355</p>  </article>
-  <article class="finding" id="QSI-2026-05537">
-    <header><span class="fid">QSI-2026-05537 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6603 (CVE-2026-78659) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6603 (CVE-2026-78659) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: the affected code may be reachable.</p>
+  <article class="finding" id="QSI-2026-07102">
+    <header><span class="fid">QSI-2026-07102 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/net v0.58.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6603 (CVE-2026-78659) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server memory exhaustion due to Trailer headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: затронутый код может быть достижим.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6603</pre>
-    <h4 id="ev-QSI-2026-05537">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6603</pre>
+    <h4 id="ev-QSI-2026-07102">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6603">OSV.dev GO-2026-6603</a> · line 54 · SHA-256 9e43850e0da48e9d…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6603&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78659&#34;, &#34;CVE-2026-78659&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:47.068117441Z&#34;, &#34;summary&#34;: &#34;HTTP/2 server memory exhaustion due to Trailer headers in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6603</p>  </article>
-  <article class="finding" id="QSI-2026-05539">
-    <header><span class="fid">QSI-2026-05539 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6611 (CVE-2026-78669) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6611 (CVE-2026-78669) for Go package golang.org/x/net at version v0.58.0: Excessive CPU consumption from repeated initial window changes in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: the affected code may be reachable.</p>
+  <article class="finding" id="QSI-2026-07104">
+    <header><span class="fid">QSI-2026-07104 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/net v0.58.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6611 (CVE-2026-78669) для пакета Go golang.org/x/net версии v0.58.0: Excessive CPU consumption from repeated initial window changes in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: затронутый код может быть достижим.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6611</pre>
-    <h4 id="ev-QSI-2026-05539">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6611</pre>
+    <h4 id="ev-QSI-2026-07104">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6611">OSV.dev GO-2026-6611</a> · line 54 · SHA-256 c9b9f78637131224…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6611&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78669&#34;, &#34;CVE-2026-78669&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:38.952277866Z&#34;, &#34;summary&#34;: &#34;Excessive CPU consumption from repeated initial window changes in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6611</p>  </article>
-  <article class="finding" id="QSI-2026-05540">
-    <header><span class="fid">QSI-2026-05540 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6612 (CVE-2026-78663) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6612 (CVE-2026-78663) for Go package golang.org/x/net at version v0.58.0: Double flow control refund on HTTP/2 server streams in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: the affected code may be reachable.</p>
+  <article class="finding" id="QSI-2026-07105">
+    <header><span class="fid">QSI-2026-07105 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/net v0.58.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6612 (CVE-2026-78663) для пакета Go golang.org/x/net версии v0.58.0: Double flow control refund on HTTP/2 server streams in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: затронутый код может быть достижим.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6612</pre>
-    <h4 id="ev-QSI-2026-05540">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6612</pre>
+    <h4 id="ev-QSI-2026-07105">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6612">OSV.dev GO-2026-6612</a> · line 54 · SHA-256 1471910f88c9bbf8…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6612&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78663&#34;, &#34;CVE-2026-78663&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:54.129082194Z&#34;, &#34;summary&#34;: &#34;Double flow control refund on HTTP/2 server streams in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6612</p>  </article>
-  <article class="finding" id="QSI-2026-05541">
-    <header><span class="fid">QSI-2026-05541 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6617 (CVE-2026-97032) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6617 (CVE-2026-97032) for Go package golang.org/x/net at version v0.58.0: HTTP/2 server crash due to HPACK encoder race in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: the affected code may be reachable.</p>
+  <article class="finding" id="QSI-2026-07106">
+    <header><span class="fid">QSI-2026-07106 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/net v0.58.0 затронут GO-2026-6617 (CVE-2026-97032) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6617 (CVE-2026-97032) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 server crash due to HPACK encoder race in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет golang.org/x/net/http2.ClientConn.Ping, golang.org/x/net/http2.connError.Error, golang.org/x/net/http2.duplicatePseudoHeaderError.Error, golang.org/x/net/http2.headerFieldNameError.Error …: затронутый код может быть достижим.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6617</pre>
-    <h4 id="ev-QSI-2026-05541">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6617</pre>
+    <h4 id="ev-QSI-2026-07106">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6617">OSV.dev GO-2026-6617</a> · line 54 · SHA-256 b948c88d959bc789…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6617&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-97032&#34;, &#34;CVE-2026-97032&#34;], &#34;modified&#34;: &#34;2026-10-16T09:55:57.350751224Z&#34;, &#34;summary&#34;: &#34;HTTP/2 server crash due to HPACK encoder race in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6617</p>  </article>
-  <article class="finding" id="QSI-2026-05542">
-    <header><span class="fid">QSI-2026-05542 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Low</span></span></header>
-    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6860 (CVE-2026-78661) for Go package golang.org/x/net at version v0.58.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code names golang.org/x/net/html.parser.parse: the affected code may be reachable.</p>
+  <article class="finding" id="QSI-2026-07107">
+    <header><span class="fid">QSI-2026-07107 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-low">Низкая</span></span></header>
+    <h3>golang.org/x/net v0.58.0 затронут GO-2026-6860 (CVE-2026-78661) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6860 (CVE-2026-78661) для пакета Go golang.org/x/net версии v0.58.0: Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код называет golang.org/x/net/html.parser.parse: затронутый код может быть достижим.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>20.2 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>20.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6860</pre>
-    <h4 id="ev-QSI-2026-05542">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6860</pre>
+    <h4 id="ev-QSI-2026-07107">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6860">OSV.dev GO-2026-6860</a> · line 54 · SHA-256 1f106c45371219ba…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6860&#34;, &#34;aliases&#34;: [&#34;CVE-2026-78661&#34;], &#34;modified&#34;: &#34;2026-10-27T21:30:04.890809062Z&#34;, &#34;summary&#34;: &#34;Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.62.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6860</p>  </article>
-  <article class="finding" id="QSI-2026-05531">
-    <header><span class="fid">QSI-2026-05531 · KEY-PRIVATE-IN-INPUT</span><span><span class="sev sev-info">Info</span></span></header>
-    <h3>Private key material present in docker/cert.key</h3>
-    <p><span class="tag">Confirmed technical vulnerability</span><span class="tag">Confidence: High</span></p>
-<p class="triage"><strong>Analyst review (QSI review, 2026-10-23): not applicable to this code.</strong> Self-signed development certificate generated by gen_cert.sh beside it: CN=lightwalletd.testnet.local with subjectAltName covering only localhost and 127.0.0.1. The key really is committed, so the rule is right, but it authenticates no real domain and is not a production credential. Hygiene for the maintainers rather than a vulnerability; deleting it and relying on gen_cert.sh would close it. <span class="small muted">automated severity: High.</span></p>    <p>A &#39;PRIVATE KEY&#39; block was found at line 1 of docker/cert.key. QSI redacted the key before storage; the original file still contains it.</p>
+  <article class="finding" id="QSI-2026-07096">
+    <header><span class="fid">QSI-2026-07096 · KEY-PRIVATE-IN-INPUT</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>Закрытый ключ присутствует в docker/cert.key</h3>
+    <p><span class="tag">Подтверждённая техническая уязвимость</span><span class="tag">Уверенность: Высокая</span></p>
+<p class="triage"><strong>Проверка аналитика (QSI review, 2026-10-23): не применимо к этому коду.</strong> Self-signed development certificate generated by gen_cert.sh beside it: CN=lightwalletd.testnet.local with subjectAltName covering only localhost and 127.0.0.1. The key really is committed, so the rule is right, but it authenticates no real domain and is not a production credential. Hygiene for the maintainers rather than a vulnerability; deleting it and relying on gen_cert.sh would close it. <span class="small muted">автоматическая серьёзность: Высокая.</span></p>    <p>Блок «PRIVATE KEY» найден в строке 1 файла docker/cert.key. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>file:docker/cert.key</dd>
-      <dt>Data source</dt><dd>docker/cert.key</dd>
-      <dt>Detection method</dt><dd>PEM header detection.</dd>
-      <dt>Analyzer</dt><dd>certificates 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>51.5 / 100 (Small technology company)</dd>
+      <dt>Затронутый актив</dt><dd>file:docker/cert.key</dd>
+      <dt>Источник данных</dt><dd>docker/cert.key</dd>
+      <dt>Метод обнаружения</dt><dd>Обнаружение PEM-заголовков.</dd>
+      <dt>Анализатор</dt><dd>certificates 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>58.0 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
       <dt>CVSS v3.1</dt><dd>8.1 — <span class="small">CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N</span></dd>
     </dl>
-    <h4>Potential impact</h4><p>Anyone with access to this file (repository, backups, CI logs) can impersonate the key owner or decrypt protected data.</p>
-    <h4>Reproduction steps</h4><pre>grep -n &#39;PRIVATE KEY-----&#39; docker/cert.key</pre>
-    <h4 id="ev-QSI-2026-05531">Evidence</h4>
-      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/docker/cert.key#L1">docker/cert.key</a> · line 1 · SHA-256 8ff5675e3f073e63… · File 4d417087d1f50763…</div>
+    <h4>Возможные последствия</h4><p>Любой, кто имеет доступ к файлу (репозиторий, резервные копии, журналы CI), может выдать себя за владельца ключа или расшифровать данные.</p>
+    <h4>Шаги воспроизведения</h4><pre>grep -n &#39;PRIVATE KEY-----&#39; docker/cert.key</pre>
+    <h4 id="ev-QSI-2026-07096">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/docker/cert.key#L1">docker/cert.key</a> · line 1 · SHA-256 8ff5675e3f073e63… · Файл 4d417087d1f50763…</div>
       <pre>Line 1: -----BEGIN PRIVATE KEY----- … [REDACTED BY QSI] … -----END …</pre>
-    <h4>Limitations of the check</h4><p class="small">QSI cannot determine whether this key is in production use. The key value was not retained.</p>
-    <h4>Recommendation</h4><p>Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets manager/HSM.</p>
-    <h4>Retest procedure</h4><p>Search the repository and its history for private key headers; confirm the old key is revoked.</p>
+    <h4>Ограничения проверки</h4><p class="small">QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось.</p>
+    <h4>Рекомендация</h4><p>Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM.</p>
+    <h4>Повторная проверка</h4><p>Найдите заголовки закрытых ключей в репозитории и его истории; убедитесь, что старый ключ отозван.</p>
 <p class="small muted">OWASP Application Security Verification Standard</p>  </article>
-  <article class="finding" id="QSI-2026-05538">
-    <header><span class="fid">QSI-2026-05538 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
-    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6610 (CVE-2026-78660) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6610 (CVE-2026-78660) for Go package golang.org/x/net at version v0.58.0: HTTP/2 transport accepts malformed framing-related headers in net/http. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+  <article class="finding" id="QSI-2026-07103">
+    <header><span class="fid">QSI-2026-07103 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6610 (CVE-2026-78660) для пакета Go golang.org/x/net версии v0.58.0: HTTP/2 transport accepts malformed framing-related headers in net/http. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/http2.Transport.NewClientConn, golang.org/x/net/http2.Transport.RoundTrip, golang.org/x/net/http2.Transport.RoundTripOpt, golang.org/x/net/http2.clientConnPool.GetClientConn, golang.org/x/net/http2.clientConnReadLoop.handleResponse, golang.org/x/net/http2.noDialClientConnPool.GetClientConn …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>17.1 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>17.8 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6610</pre>
-    <h4 id="ev-QSI-2026-05538">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6610</pre>
+    <h4 id="ev-QSI-2026-07103">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6610">OSV.dev GO-2026-6610</a> · line 54 · SHA-256 1b823e53f2709379…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6610&#34;, &#34;aliases&#34;: [&#34;BIT-golang-2026-78660&#34;, &#34;CVE-2026-78660&#34;], &#34;modified&#34;: &#34;2026-10-16T09:56:04.364467528Z&#34;, &#34;summary&#34;: &#34;HTTP/2 transport accepts malformed framing-related headers in net/http&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.60.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.60.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6610</p>  </article>
-  <article class="finding" id="QSI-2026-05543">
-    <header><span class="fid">QSI-2026-05543 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Info</span></span></header>
-    <h3>golang.org/x/net v0.58.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating)</h3>
-    <p><span class="tag">Known vulnerable component</span><span class="tag">Confidence: Low</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>OSV.dev reports GO-2026-6866 (CVE-2026-97045) for Go package golang.org/x/net at version v0.58.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).</p>
+  <article class="finding" id="QSI-2026-07108">
+    <header><span class="fid">QSI-2026-07108 · DEP-ADVISORY-UNRATED</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>golang.org/x/net v0.58.0 затронут GO-2026-6866 (CVE-2026-97045) (без оценки серьёзности)</h3>
+    <p><span class="tag">Известная уязвимая версия компонента</span><span class="tag">Уверенность: Низкая</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает GO-2026-6866 (CVE-2026-97045) для пакета Go golang.org/x/net версии v0.58.0: Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (golang.org/x/net/html.Render, golang.org/x/net/html.childTextNodesAreLiteral) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
-      <dt>Data source</dt><dd>OSV.dev</dd>
-      <dt>Detection method</dt><dd>OSV.dev querybatch API lookup of the exact declared version.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>17.1 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependency:Go/golang.org/x/net@v0.58.0</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch для точной объявленной версии.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>17.8 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Unknown without triage: read the advisory and check whether the affected code is reachable in your build.</p>
-    <h4>Reproduction steps</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6866</pre>
-    <h4 id="ev-QSI-2026-05543">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.</p>
+    <h4>Шаги воспроизведения</h4><pre>curl -s https://api.osv.dev/v1/vulns/GO-2026-6866</pre>
+    <h4 id="ev-QSI-2026-07108">Подтверждающие доказательства</h4>
       <div class="ev-meta">tool_output · <a href="https://osv.dev/vulnerability/GO-2026-6866">OSV.dev GO-2026-6866</a> · line 54 · SHA-256 102267a016bc5eef…</div>
       <pre>{&#34;id&#34;: &#34;GO-2026-6866&#34;, &#34;aliases&#34;: [&#34;CVE-2026-97045&#34;], &#34;modified&#34;: &#34;2026-10-27T21:45:08.978077289Z&#34;, &#34;summary&#34;: &#34;Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net&#34;, &#34;severity&#34;: null, &#34;declared_in_manifest&#34;: true}</pre>
-    <h4>Limitations of the check</h4><p class="small">Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.</p>
-    <h4>Recommendation</h4><p>Triage the advisory; upgrade to a fixed version (0.62.0) if it applies.</p>
-    <h4>Retest procedure</h4><p>Re-run the dependency scan after upgrading.</p>
+    <h4>Ограничения проверки</h4><p class="small">Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.</p>
+    <h4>Рекомендация</h4><p>Разберите бюллетень; если он применим, обновите до исправленной версии (0.62.0).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
 <p class="small muted">OSV advisory GO-2026-6866</p>  </article>
-  <article class="finding" id="QSI-2026-05533">
-    <header><span class="fid">QSI-2026-05533 · DEP-NO-PQC-LIBRARY</span><span><span class="sev sev-info">Info</span></span></header>
-    <h3>No post-quantum capable cryptographic library detected</h3>
-    <p><span class="tag">Insufficient data</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
-    <p>Across 1 dependency manifests, QSI found crypto libraries (golang.org/x/crypto) but none from its PQC-capable list.</p>
+  <article class="finding" id="QSI-2026-07098">
+    <header><span class="fid">QSI-2026-07098 · DEP-NO-PQC-LIBRARY</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>Не обнаружено криптобиблиотек с поддержкой PQC</h3>
+    <p><span class="tag">Недостаточность данных</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>В 1 манифестах зависимостей QSI нашёл криптобиблиотеки (golang.org/x/crypto), но ни одной из списка поддерживающих PQC.</p>
     <dl class="meta">
-      <dt>Affected asset</dt><dd>dependencies</dd>
-      <dt>Data source</dt><dd>dependency manifests</dd>
-      <dt>Detection method</dt><dd>Dependency name matching.</dd>
-      <dt>Analyzer</dt><dd>dependencies 1.2.0 · 2026-10-28 18:03 UTC</dd>
-      <dt>Priority score</dt><dd>13.4 / 100 (Small technology company)</dd>
-      <dt>CVSS v3.1</dt><dd>not applicable</dd>
+      <dt>Затронутый актив</dt><dd>dependencies</dd>
+      <dt>Источник данных</dt><dd>dependency manifests</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление названий зависимостей.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-29 23:10 UTC</dd>
+      <dt>Балл приоритета</dt><dd>13.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
     </dl>
-    <h4>Potential impact</h4><p>Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.</p>
-    <h4>Reproduction steps</h4><pre>Review the dependency manifests listed in the evidence.</pre>
-    <h4 id="ev-QSI-2026-05533">Evidence</h4>
+    <h4>Возможные последствия</h4><p>Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.</p>
+    <h4>Шаги воспроизведения</h4><pre>Изучите перечисленные в доказательстве манифесты.</pre>
+    <h4 id="ev-QSI-2026-07098">Подтверждающие доказательства</h4>
       <div class="ev-meta">dependency · go.mod · SHA-256 08e31f77129cdbad…</div>
       <pre>Crypto libraries: golang.org/x/crypto</pre>
-    <h4>Limitations of the check</h4><p class="small">Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.</p>
-    <h4>Recommendation</h4><p>Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).</p>
-    <h4>Retest procedure</h4><p>Re-scan after upgrades.</p>
+    <h4>Ограничения проверки</h4><p class="small">Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.</p>
+    <h4>Рекомендация</h4><p>Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование после обновлений.</p>
 <p class="small muted">FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM); FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)</p>  </article>
 </section>
 
 <section class="chapter" id="evidence">
-  <h2>Evidence</h2>
-  <table class="data"><tr><th>ID</th><th>Type</th><th>Data source</th><th>SHA-256</th></tr>
-<tr><td><a href="#ev-QSI-2026-05532">QSI-2026-05532</a></td><td>certificate</td><td>docker/cert.pem (line 1)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4cd9b3240260015c81d32a7359585aeb0a8fc54aafe812cd312f2fa3b2bc2e7a</td></tr><tr><td><a href="#ev-QSI-2026-05530">QSI-2026-05530</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L8">common/generatecerts.go</a> (line 8)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9b1ce2f208b801d04fec37816b6888e4ae8b469d0344091f5c8a837ee93158f9</td></tr><tr><td><a href="#ev-QSI-2026-05530">QSI-2026-05530</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L21">common/generatecerts.go</a> (line 21)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7bc59a5974adbfd5570196de74190cfdee0b2b136760fe696a10a96bbe4f03d0</td></tr><tr><td><a href="#ev-QSI-2026-05534">QSI-2026-05534</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-5932">OSV.dev GO-2026-5932</a> (line 53)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ccbd80f24a2d759ed3db1ed22b247aaeb8d2704fa45844ff83df82b05bff5e93</td></tr><tr><td><a href="#ev-QSI-2026-05535">QSI-2026-05535</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6354">OSV.dev GO-2026-6354</a> (line 53)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fb187877ccc7bca3e1e620fe5ac478176b0bfa60d40289c6b8513c063eaec76c</td></tr><tr><td><a href="#ev-QSI-2026-05536">QSI-2026-05536</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6355">OSV.dev GO-2026-6355</a> (line 53)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4e6adace91e1ca1e94bf05a7bfb237f4851e56b8c982501612e1583273e4073e</td></tr><tr><td><a href="#ev-QSI-2026-05537">QSI-2026-05537</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6603">OSV.dev GO-2026-6603</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9e43850e0da48e9d00589cc2bffb372f39ec5e5a280f2f4b04520a91328fd703</td></tr><tr><td><a href="#ev-QSI-2026-05539">QSI-2026-05539</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6611">OSV.dev GO-2026-6611</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c9b9f78637131224c5d4073e44c47b7cce490fc5526e3d6b0697b43bc85cab2f</td></tr><tr><td><a href="#ev-QSI-2026-05540">QSI-2026-05540</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6612">OSV.dev GO-2026-6612</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1471910f88c9bbf8395a304fd82510f61567373756002de8bcdc3fbe305890cb</td></tr><tr><td><a href="#ev-QSI-2026-05541">QSI-2026-05541</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6617">OSV.dev GO-2026-6617</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b948c88d959bc78948c7e3b7a746ac4da179933798e9735d02870080906cfc96</td></tr><tr><td><a href="#ev-QSI-2026-05542">QSI-2026-05542</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6860">OSV.dev GO-2026-6860</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28</td></tr><tr><td><a href="#ev-QSI-2026-05531">QSI-2026-05531</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/docker/cert.key#L1">docker/cert.key</a> (line 1)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441</td></tr><tr><td><a href="#ev-QSI-2026-05538">QSI-2026-05538</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6610">OSV.dev GO-2026-6610</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1b823e53f27093797b8a7909032006e1f0f818f04118ad593a4641236392faa9</td></tr><tr><td><a href="#ev-QSI-2026-05543">QSI-2026-05543</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6866">OSV.dev GO-2026-6866</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42</td></tr><tr><td><a href="#ev-QSI-2026-05533">QSI-2026-05533</a></td><td>dependency</td><td>go.mod</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">08e31f77129cdbad6d0a0f04c40df31cd6fe947d800a44bd559bcbe68f820e1b</td></tr>  </table>
+  <h2>Подтверждающие доказательства</h2>
+  <table class="data"><tr><th>ID</th><th>Тип</th><th>Источник данных</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-07097">QSI-2026-07097</a></td><td>certificate</td><td>docker/cert.pem (line 1)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4cd9b3240260015c81d32a7359585aeb0a8fc54aafe812cd312f2fa3b2bc2e7a</td></tr><tr><td><a href="#ev-QSI-2026-07095">QSI-2026-07095</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L8">common/generatecerts.go</a> (line 8)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9b1ce2f208b801d04fec37816b6888e4ae8b469d0344091f5c8a837ee93158f9</td></tr><tr><td><a href="#ev-QSI-2026-07095">QSI-2026-07095</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/common/generatecerts.go#L21">common/generatecerts.go</a> (line 21)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7bc59a5974adbfd5570196de74190cfdee0b2b136760fe696a10a96bbe4f03d0</td></tr><tr><td><a href="#ev-QSI-2026-07099">QSI-2026-07099</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-5932">OSV.dev GO-2026-5932</a> (line 53)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ccbd80f24a2d759ed3db1ed22b247aaeb8d2704fa45844ff83df82b05bff5e93</td></tr><tr><td><a href="#ev-QSI-2026-07100">QSI-2026-07100</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6354">OSV.dev GO-2026-6354</a> (line 53)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fb187877ccc7bca3e1e620fe5ac478176b0bfa60d40289c6b8513c063eaec76c</td></tr><tr><td><a href="#ev-QSI-2026-07101">QSI-2026-07101</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6355">OSV.dev GO-2026-6355</a> (line 53)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4e6adace91e1ca1e94bf05a7bfb237f4851e56b8c982501612e1583273e4073e</td></tr><tr><td><a href="#ev-QSI-2026-07102">QSI-2026-07102</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6603">OSV.dev GO-2026-6603</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9e43850e0da48e9d00589cc2bffb372f39ec5e5a280f2f4b04520a91328fd703</td></tr><tr><td><a href="#ev-QSI-2026-07104">QSI-2026-07104</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6611">OSV.dev GO-2026-6611</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c9b9f78637131224c5d4073e44c47b7cce490fc5526e3d6b0697b43bc85cab2f</td></tr><tr><td><a href="#ev-QSI-2026-07105">QSI-2026-07105</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6612">OSV.dev GO-2026-6612</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1471910f88c9bbf8395a304fd82510f61567373756002de8bcdc3fbe305890cb</td></tr><tr><td><a href="#ev-QSI-2026-07106">QSI-2026-07106</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6617">OSV.dev GO-2026-6617</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b948c88d959bc78948c7e3b7a746ac4da179933798e9735d02870080906cfc96</td></tr><tr><td><a href="#ev-QSI-2026-07107">QSI-2026-07107</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6860">OSV.dev GO-2026-6860</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1f106c45371219bac0158f7ce44e57c439f50f0c32898616d1563f14cadb1b28</td></tr><tr><td><a href="#ev-QSI-2026-07096">QSI-2026-07096</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/lightwalletd/blob/4abfe9cd7b9b13f6093df59911639d1d9195dc09/docker/cert.key#L1">docker/cert.key</a> (line 1)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441</td></tr><tr><td><a href="#ev-QSI-2026-07103">QSI-2026-07103</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6610">OSV.dev GO-2026-6610</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1b823e53f27093797b8a7909032006e1f0f818f04118ad593a4641236392faa9</td></tr><tr><td><a href="#ev-QSI-2026-07108">QSI-2026-07108</a></td><td>tool_output</td><td><a href="https://osv.dev/vulnerability/GO-2026-6866">OSV.dev GO-2026-6866</a> (line 54)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">102267a016bc5eef7979a90b1ddd2288ff36b09ab6fa040c808e62f3b55c1f42</td></tr><tr><td><a href="#ev-QSI-2026-07098">QSI-2026-07098</a></td><td>dependency</td><td>go.mod</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">08e31f77129cdbad6d0a0f04c40df31cd6fe947d800a44bd559bcbe68f820e1b</td></tr>  </table>
 </section>
 
 <section class="chapter" id="pq">
-  <h2>Post-quantum assessment</h2>
+  <h2>Постквантовая оценка</h2>
   <table class="data">
-    <tr><th></th><th>Key establishment (x = how long data must stay confidential; harvest now, decrypt later)</th><th>Signatures (x = how long signatures/keys must stay trusted)</th></tr>
-    <tr><th>Data/key lifetime x</th><td>5</td><td>5</td></tr>
-    <tr><th>Migration time y</th><td>3</td><td>3</td></tr>
-    <tr><th>Assumed years to CRQC z</th><td>12 (central)</td><td>12</td></tr>
-    <tr><th>x + y − z</th><td>-4 → time available under this scenario</td><td>-4 → time available under this scenario</td></tr>
+    <tr><th></th><th>Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом»)</th><th>Подписи (x — сколько подписи и ключи должны оставаться доверенными)</th></tr>
+    <tr><th>Срок жизни данных/ключей x</th><td>10</td><td>10</td></tr>
+    <tr><th>Время миграции y</th><td>5</td><td>5</td></tr>
+    <tr><th>Принятое число лет до CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → при этом сценарии миграция завершится слишком поздно</td><td>7 → при этом сценарии миграция завершится слишком поздно</td></tr>
   </table>
-<p class="note">No signature lifetime is set for the project; the data lifetime is used as an assumption.</p><p class="note">Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Small technology company”, not the client&#39;s figures; with the client&#39;s actual lifetimes the verdict can change.</p>  <h3>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography</h3>
-  <p><strong>Next step:</strong> Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p>
-  <p class="note">Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests.</p>
-  <h3>What the quantum-vulnerable algorithms do</h3>
-  <table class="data"><tr><th>Role</th><th>Algorithms (files)</th><th>ID</th><th>First step</th></tr>
-<tr><td><strong>role not determined</strong></td><td>RSA (1)</td><td class="small"><a href="#QSI-2026-05530">QSI-2026-05530</a></td><td class="small">Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility</td></tr>  </table>
-  <p class="note">Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today.</p>
-  <p class="note">z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
-  <table class="data"><tr><th>Quantum status</th><th>Count</th></tr>
-<tr><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>4</td></tr><tr><td>n/a</td><td>1</td></tr><tr><td>vulnerable (Shor)</td><td>3</td></tr>  </table>
-  <p><strong>Detailed findings:</strong> QSI-2026-05532, QSI-2026-05530</p>
-  <h3>PQC readiness questionnaire</h3>
-<p class="muted">No readiness questionnaire was completed for this project.</p>  <h3>Quantum algorithms relevant to this inventory</h3>
-  <table class="data"><tr><th>Quantum algorithm</th><th>Effect</th><th>Inventoried algorithms (rows)</th><th>What it means for this audit</th></tr>
-<tr><td>Shor&#39;s algorithm — factoring<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>breaks</td>
-    <td>RSA (3)</td><td class="small">Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures.</td></tr><tr><td>Grover&#39;s algorithm — key search and preimages<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
-    <td>SHA-2 (4)</td><td class="small">Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.</td></tr><tr><td>Brassard–Høyer–Tapp — collision search<br><span class="small muted">Q1: quantum computation offline, classical access to the victim</span></td><td>weakens (larger keys restore the margin)</td>
-    <td>SHA-2 (4)</td><td class="small">256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.</td></tr>  </table>
-  <p class="note">Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments.</p>
+<p class="note">Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.</p>  <h3>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет</h3>
+  <p><strong>Следующий шаг:</strong> Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p>
+  <p class="note">Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам.</p>
+  <h3>Что делают квантово-уязвимые алгоритмы</h3>
+  <table class="data"><tr><th>Роль</th><th>Алгоритмы (файлы)</th><th>ID</th><th>Первый шаг</th></tr>
+<tr><td><strong>роль не определена</strong></td><td>RSA (1)</td><td class="small"><a href="#QSI-2026-07095">QSI-2026-07095</a></td><td class="small">Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости</td></tr>  </table>
+  <p class="note">Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня.</p>
+  <p class="note">z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+  <table class="data"><tr><th>Квантовый статус</th><th>Количество</th></tr>
+<tr><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>4</td></tr><tr><td>н/п</td><td>1</td></tr><tr><td>уязвим (Шор)</td><td>3</td></tr>  </table>
+  <p><strong>Подробное описание находок:</strong> QSI-2026-07097, QSI-2026-07095</p>
+  <h3>Анкета постквантовой готовности</h3>
+<p class="muted">Анкета готовности для проекта не заполнялась.</p>  <h3>Квантовые алгоритмы, значимые для этой инвентаризации</h3>
+  <table class="data"><tr><th>Квантовый алгоритм</th><th>Действие</th><th>Алгоритмы из инвентаризации (строк)</th><th>Что это значит для аудита</th></tr>
+<tr><td>Алгоритм Шора — факторизация<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>RSA (3)</td><td class="small">Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей.</td></tr><tr><td>Алгоритм Гровера — поиск ключа и прообразов<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>SHA-2 (4)</td><td class="small">Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно.</td></tr><tr><td>Брассар–Хойер–Тапп — поиск коллизий<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>ослабляет (более длинные ключи восстанавливают запас)</td>
+    <td>SHA-2 (4)</td><td class="small">256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.</td></tr>  </table>
+  <p class="note">Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо.</p>
 </section>
 
 <section class="chapter" id="limitations">
-  <h2>Limitations and assumptions</h2>
+  <h2>Ограничения и допущения</h2>
   <ul>
-    <li>This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.</li>
-    <li>z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</li>
+    <li>Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</li>
+    <li>z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</li>
   </ul>
 </section>
 
 <section class="chapter" id="plan">
-  <h2>Remediation plan</h2>
+  <h2>План устранения проблем</h2>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05531 · P1 · 30 days</span><span class="tag">short-term risk reduction</span></header>
-    <h3>Revoke/rotate the key found in docker/cert.key immediately and restrict access to the file.</h3>
+    <header><span class="fid">QSI-2026-07096 · P1 · 30 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Немедленно отзовите/замените ключ из docker/cert.key и ограничьте доступ к файлу.</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Limits the window of misuse.</dd>
-      <dt>Expected outcome</dt><dd>The exposed key is no longer trusted.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Key owner, CA access.</dd><dt>Side effects</dt><dd>Services using the key must be redeployed.</dd>      <dt>Tests before change</dt><dd>Identify all systems using the key (fingerprint).</dd>
-      <dt>Tests after change</dt><dd>Confirm revocation (CRL/OCSP) and new key in use.</dd>
-      <dt>Closure criteria</dt><dd>Old key revoked, new key deployed.</dd>
+      <dt>Обоснование</dt><dd>Сокращает окно злоупотребления.</dd>
+      <dt>Ожидаемый результат</dt><dd>Раскрытый ключ больше не является доверенным.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Владелец ключа, доступ к УЦ.</dd><dt>Побочные эффекты</dt><dd>Сервисы, использующие ключ, потребуют передеплоя.</dd>      <dt>Тесты до изменения</dt><dd>Определите все системы, использующие ключ (по отпечатку).</dd>
+      <dt>Тесты после изменения</dt><dd>Подтвердите отзыв (CRL/OCSP) и использование нового ключа.</dd>
+      <dt>Условие закрытия</dt><dd>Старый ключ отозван, новый развёрнут.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05531 · P1 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Move key storage to a secrets manager or HSM; add secret scanning to CI and pre-commit; purge history.</h3>
+    <header><span class="fid">QSI-2026-07096 · P1 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Перенесите хранение ключей в менеджер секретов или HSM; добавьте сканирование секретов в CI и pre-commit; очистите историю.</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Prevents recurrence.</dd>
-      <dt>Expected outcome</dt><dd>Keys are never committed.</dd>
-      <dt>Complexity</dt><dd>medium</dd>
-<dt>Dependencies</dt><dd>Secrets manager.</dd><dt>Side effects</dt><dd>History rewrite affects clones.</dd>      <dt>Tests before change</dt><dd>Run a secret scanner over the repository.</dd>
-      <dt>Tests after change</dt><dd>Scanner reports no private keys; CI blocks new ones.</dd>
-      <dt>Closure criteria</dt><dd>Secret scanning enforced in CI; no keys in history.</dd>
+      <dt>Обоснование</dt><dd>Предотвращает повторение.</dd>
+      <dt>Ожидаемый результат</dt><dd>Ключи не попадают в репозиторий.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Менеджер секретов.</dd><dt>Побочные эффекты</dt><dd>Переписывание истории затронет клоны.</dd>      <dt>Тесты до изменения</dt><dd>Запустите сканер секретов по репозиторию.</dd>
+      <dt>Тесты после изменения</dt><dd>Сканер не находит закрытых ключей; CI блокирует новые.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование секретов обязательно в CI; ключей в истории нет.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05534 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (none published yet; see the advisory for mitigations) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07099 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-5932; при необходимости обновите golang.org/x/crypto до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-5932, or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-5932 или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05535 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6354 (CVE-2026-78662); upgrade golang.org/x/crypto to a fixed version (0.56.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07100 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6354 (CVE-2026-78662); при необходимости обновите golang.org/x/crypto до исправленной версии (0.56.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6354 (CVE-2026-78662), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6354 (CVE-2026-78662) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05536 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6355 (CVE-2026-56855); upgrade golang.org/x/crypto to a fixed version (0.56.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07101 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6355 (CVE-2026-56855); при необходимости обновите golang.org/x/crypto до исправленной версии (0.56.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6355 (CVE-2026-56855), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6355 (CVE-2026-56855) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05537 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07102 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6603 (CVE-2026-78659); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6603 (CVE-2026-78659), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6603 (CVE-2026-78659) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05539 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07104 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6611 (CVE-2026-78669); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6611 (CVE-2026-78669), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6611 (CVE-2026-78669) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05540 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07105 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6612 (CVE-2026-78663); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6612 (CVE-2026-78663), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6612 (CVE-2026-78663) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05541 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07106 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6617 (CVE-2026-97032); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6617 (CVE-2026-97032), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6617 (CVE-2026-97032) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05542 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07107 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6860 (CVE-2026-78661); при необходимости обновите golang.org/x/net до исправленной версии (0.62.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6860 (CVE-2026-78661), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6860 (CVE-2026-78661) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05538 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07103 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6610 (CVE-2026-78660); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6610 (CVE-2026-78660), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6610 (CVE-2026-78660) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05543 · P3 · 60 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</h3>
+    <header><span class="fid">QSI-2026-07108 · P3 · 60 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Разберите GO-2026-6866 (CVE-2026-97045); при необходимости обновите golang.org/x/net до исправленной версии (0.62.0).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Eliminates the root cause described in the finding.</dd>
-      <dt>Expected outcome</dt><dd>The weakness is no longer present on re-test.</dd>
-      <dt>Complexity</dt><dd>low</dd>
-<dt>Dependencies</dt><dd>Change window and owner approval.</dd><dt>Side effects</dt><dd>Possible API changes.</dd>      <dt>Tests before change</dt><dd>Reproduce the finding using the documented steps.</dd>
-      <dt>Tests after change</dt><dd>Re-run the retest procedure from the finding.</dd>
-      <dt>Closure criteria</dt><dd>Dependency scan no longer reports GO-2026-6866 (CVE-2026-97045), or the triage is recorded.</dd>
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Возможны изменения API.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование больше не сообщает GO-2026-6866 (CVE-2026-97045) или результат разбора записан.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05532 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
-    <h3>Add RSA usages at certificate:lightwalletd.testnet.local to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <header><span class="fid">QSI-2026-07097 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования RSA в certificate:lightwalletd.testnet.local в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
-      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
-      <dt>Complexity</dt><dd>medium</dd>
-<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
-      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
-      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05530 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
-    <h3>Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
+    <header><span class="fid">QSI-2026-07095 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
-      <dt>Expected outcome</dt><dd>Every usage has an owner, a lifetime and a migration path.</dd>
-      <dt>Complexity</dt><dd>medium</dd>
-<dt>Dependencies</dt><dd>Access to system owners.</dd><dt>Side effects</dt><dd>None (documentation and design work).</dd>      <dt>Tests before change</dt><dd>Confirm the inventory entry matches the deployed configuration.</dd>
-      <dt>Tests after change</dt><dd>Inventory review signed off by the system owner.</dd>
-      <dt>Closure criteria</dt><dd>Inventory entry with owner, lifetime and target algorithm exists.</dd>
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05532 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <header><span class="fid">QSI-2026-07097 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
-      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
-      <dt>Complexity</dt><dd>high</dd>
-<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
-      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
-      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use.</dd>
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.</dd>
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-05530 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
-    <h3>Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
+    <header><span class="fid">QSI-2026-07095 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
     <dl class="meta">
-      <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
-      <dt>Expected outcome</dt><dd>The asset uses a NIST-standardized post-quantum or hybrid algorithm.</dd>
-      <dt>Complexity</dt><dd>high</dd>
-<dt>Dependencies</dt><dd>Library/protocol support (e.g. OpenSSL ≥ 3.5, HSM firmware), interoperability with peers.</dd><dt>Side effects</dt><dd>Larger keys/signatures, possible performance and compatibility impact.</dd>      <dt>Tests before change</dt><dd>Interoperability tests in a staging environment.</dd>
-      <dt>Tests after change</dt><dd>Verify the negotiated/used algorithm on the production asset.</dd>
-      <dt>Closure criteria</dt><dd>Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.</dd>
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.</dd>
     </dl>
   </article>
 </section>
 
 <section class="chapter" id="priorities">
-  <h2>Priorities for 30, 60 and 90 days</h2>
-  <h3>30 days</h3>
-  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
-<tr><td>P1</td><td>QSI-2026-05531</td><td>Revoke/rotate the key found in docker/cert.key immediately and restrict access to the file.</td><td class="small">short-term risk reduction</td></tr>  </table>
-  <h3>60 days</h3>
-  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
-<tr><td>P1</td><td>QSI-2026-05531</td><td>Move key storage to a secrets manager or HSM; add secret scanning to CI and pre-commit; purge history.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05534</td><td>Triage GO-2026-5932; upgrade golang.org/x/crypto to a fixed version (none published yet; see the advisory for mitigations) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05535</td><td>Triage GO-2026-6354 (CVE-2026-78662); upgrade golang.org/x/crypto to a fixed version (0.56.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05536</td><td>Triage GO-2026-6355 (CVE-2026-56855); upgrade golang.org/x/crypto to a fixed version (0.56.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05537</td><td>Triage GO-2026-6603 (CVE-2026-78659); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05539</td><td>Triage GO-2026-6611 (CVE-2026-78669); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05540</td><td>Triage GO-2026-6612 (CVE-2026-78663); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05541</td><td>Triage GO-2026-6617 (CVE-2026-97032); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05542</td><td>Triage GO-2026-6860 (CVE-2026-78661); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05538</td><td>Triage GO-2026-6610 (CVE-2026-78660); upgrade golang.org/x/net to a fixed version (0.60.0) if it applies.</td><td class="small">root-cause fix</td></tr><tr><td>P3</td><td>QSI-2026-05543</td><td>Triage GO-2026-6866 (CVE-2026-97045); upgrade golang.org/x/net to a fixed version (0.62.0) if it applies.</td><td class="small">root-cause fix</td></tr>  </table>
-  <h3>90 days</h3>
-  <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
-<tr><td>P3</td><td>QSI-2026-05532</td><td>Add RSA usages at certificate:lightwalletd.testnet.local to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P3</td><td>QSI-2026-05530</td><td>Add RSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-05532</td><td>Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr><tr><td>P4</td><td>QSI-2026-05530</td><td>Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr>  </table>
+  <h2>Приоритеты на 30, 60 и 90 дней</h2>
+  <h3>30 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P1</td><td>QSI-2026-07096</td><td>Немедленно отзовите/замените ключ из docker/cert.key и ограничьте доступ к файлу.</td><td class="small">краткосрочное снижение риска</td></tr>  </table>
+  <h3>60 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P1</td><td>QSI-2026-07096</td><td>Перенесите хранение ключей в менеджер секретов или HSM; добавьте сканирование секретов в CI и pre-commit; очистите историю.</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07099</td><td>Разберите GO-2026-5932; при необходимости обновите golang.org/x/crypto до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07100</td><td>Разберите GO-2026-6354 (CVE-2026-78662); при необходимости обновите golang.org/x/crypto до исправленной версии (0.56.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07101</td><td>Разберите GO-2026-6355 (CVE-2026-56855); при необходимости обновите golang.org/x/crypto до исправленной версии (0.56.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07102</td><td>Разберите GO-2026-6603 (CVE-2026-78659); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07104</td><td>Разберите GO-2026-6611 (CVE-2026-78669); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07105</td><td>Разберите GO-2026-6612 (CVE-2026-78663); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07106</td><td>Разберите GO-2026-6617 (CVE-2026-97032); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07107</td><td>Разберите GO-2026-6860 (CVE-2026-78661); при необходимости обновите golang.org/x/net до исправленной версии (0.62.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07103</td><td>Разберите GO-2026-6610 (CVE-2026-78660); при необходимости обновите golang.org/x/net до исправленной версии (0.60.0).</td><td class="small">устранение первопричины</td></tr><tr><td>P3</td><td>QSI-2026-07108</td><td>Разберите GO-2026-6866 (CVE-2026-97045); при необходимости обновите golang.org/x/net до исправленной версии (0.62.0).</td><td class="small">устранение первопричины</td></tr>  </table>
+  <h3>90 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-07097</td><td>Внесите использования RSA в certificate:lightwalletd.testnet.local в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P3</td><td>QSI-2026-07095</td><td>Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P4</td><td>QSI-2026-07097</td><td>Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07095</td><td>Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr>  </table>
 </section>
 
 <section class="chapter" id="retests">
-  <h2>Verification after remediation</h2>
-  <table class="data"><tr><th>ID</th><th>Retest procedure</th></tr>
-<tr><td>QSI-2026-05532</td><td>Re-audit once PQC or hybrid certificates are deployed.</td></tr><tr><td>QSI-2026-05530</td><td>Re-run the inventory after refactoring.</td></tr><tr><td>QSI-2026-05534</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05535</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05536</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05537</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05539</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05540</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05541</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05542</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05531</td><td>Search the repository and its history for private key headers; confirm the old key is revoked.</td></tr><tr><td>QSI-2026-05538</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05543</td><td>Re-run the dependency scan after upgrading.</td></tr><tr><td>QSI-2026-05533</td><td>Re-scan after upgrades.</td></tr>  </table>
+  <h2>Проверки после устранения</h2>
+  <table class="data"><tr><th>ID</th><th>Повторная проверка</th></tr>
+<tr><td>QSI-2026-07097</td><td>Повторите аудит после внедрения PQC или гибридных сертификатов.</td></tr><tr><td>QSI-2026-07095</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-07099</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07100</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07101</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07102</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07104</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07105</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07106</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07107</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07096</td><td>Найдите заголовки закрытых ключей в репозитории и его истории; убедитесь, что старый ключ отозван.</td></tr><tr><td>QSI-2026-07103</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07108</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07098</td><td>Повторите сканирование после обновлений.</td></tr>  </table>
 </section>
 
 <section class="chapter" id="tools">
-  <h2>Tools used</h2>
+  <h2>Использованные инструменты</h2>
   <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
 </section>
 
 <section class="chapter" id="references">
-  <h2>Sources and normative documents</h2>
+  <h2>Источники и нормативные документы</h2>
   <p class="small muted">Reviewed: 2026-10-13</p>
   <ol class="small"><li>A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <a href="https://eprint.iacr.org/2017/847">https://eprint.iacr.org/2017/847</a> <span class="muted">(peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)</span></li><li>C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <a href="https://arxiv.org/abs/2505.15917">https://arxiv.org/abs/2505.15917</a> <span class="muted">(preprint (2025-05-21): &lt; 1 million noisy qubits, &lt; 1 week, 0.1% gate error, 1 µs surface-code cycle)</span></li><li>C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <a href="https://doi.org/10.22331/q-2021-04-15-433">https://doi.org/10.22331/q-2021-04-15-433</a> <span class="muted">(peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)</span></li><li>C. Zalka — Grover&#39;s quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <a href="https://doi.org/10.1103/PhysRevA.60.2746">https://doi.org/10.1103/PhysRevA.60.2746</a> <span class="muted">(peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <a href="https://cr.yp.to/hash/collisioncost-20090823.pdf">https://cr.yp.to/hash/collisioncost-20090823.pdf</a> <span class="muted">(paper dated 2009-08-23)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN &#39;98; arXiv:quant-ph/9705002) — Springer / arXiv. <a href="https://arxiv.org/abs/quant-ph/9705002">https://arxiv.org/abs/quant-ph/9705002</a> <span class="muted">(peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)</span></li><li>L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <a href="https://doi.org/10.1145/237814.237866">https://doi.org/10.1145/237814.237866</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <a href="https://arxiv.org/abs/1603.09383">https://arxiv.org/abs/1603.09383</a> <span class="muted">(peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <a href="https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)">https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)</a> <span class="muted">(security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)</span></li><li>OSV advisory GO-2026-5932 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-5932">https://osv.dev/vulnerability/GO-2026-5932</a> <span class="muted">(modified 2026-07-10T05:44:31.101996029Z)</span></li><li>OSV advisory GO-2026-6354 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6354">https://osv.dev/vulnerability/GO-2026-6354</a> <span class="muted">(modified 2026-09-03T10:10:55.147673102Z)</span></li><li>OSV advisory GO-2026-6355 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6355">https://osv.dev/vulnerability/GO-2026-6355</a> <span class="muted">(modified 2026-09-24T10:41:42.556134596Z)</span></li><li>OSV advisory GO-2026-6603 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6603">https://osv.dev/vulnerability/GO-2026-6603</a> <span class="muted">(modified 2026-10-16T09:55:47.068117441Z)</span></li><li>OSV advisory GO-2026-6610 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6610">https://osv.dev/vulnerability/GO-2026-6610</a> <span class="muted">(modified 2026-10-16T09:56:04.364467528Z)</span></li><li>OSV advisory GO-2026-6611 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6611">https://osv.dev/vulnerability/GO-2026-6611</a> <span class="muted">(modified 2026-10-16T09:55:38.952277866Z)</span></li><li>OSV advisory GO-2026-6612 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6612">https://osv.dev/vulnerability/GO-2026-6612</a> <span class="muted">(modified 2026-10-16T09:55:54.129082194Z)</span></li><li>OSV advisory GO-2026-6617 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6617">https://osv.dev/vulnerability/GO-2026-6617</a> <span class="muted">(modified 2026-10-16T09:55:57.350751224Z)</span></li><li>OSV advisory GO-2026-6860 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6860">https://osv.dev/vulnerability/GO-2026-6860</a> <span class="muted">(modified 2026-10-27T21:30:04.890809062Z)</span></li><li>OSV advisory GO-2026-6866 — OSV.dev. <a href="https://osv.dev/vulnerability/GO-2026-6866">https://osv.dev/vulnerability/GO-2026-6866</a> <span class="muted">(modified 2026-10-27T21:45:08.978077289Z)</span></li><li>OWASP Application Security Verification Standard — OWASP. <a href="https://owasp.org/www-project-application-security-verification-standard/">https://owasp.org/www-project-application-security-verification-standard/</a> <span class="muted">(living standard — check the project page for the current version)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <a href="https://arxiv.org/abs/1910.01700">https://arxiv.org/abs/1910.01700</a> <span class="muted">(peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)</span></li></ol>
 </section>
 
 <section class="chapter" id="appendices">
-  <h2>Appendices</h2>
-  <h3>A. Cryptographic inventory</h3>
-  <table class="data"><tr><th>Algorithm</th><th>Parameter</th><th>Location</th><th>Quantum status</th><th>Classical status</th></tr>
-<tr><td>SHA-2</td><td>SHA-256</td><td class="small">common/darkside.go:6</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">docker/cert.pem (line 1)</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">parser/block_header.go:10</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">testtools/genblocks/main.go:28</td><td>Grover: acceptable to NIST, below ECCG/ANSSI guidance</td><td>acceptable</td></tr><tr><td>Crypto library<br><span class="small muted">golang.org/x/crypto (Go x/crypto)</span></td><td>v0.55.0</td><td class="small">go.mod:53</td><td>n/a</td><td>acceptable</td></tr><tr><td>RSA</td><td>2048-bit</td><td class="small">common/generatecerts.go:21</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>RSA</td><td></td><td class="small">common/generatecerts.go:8</td><td>vulnerable (Shor)</td><td>acceptable</td></tr><tr><td>RSA</td><td>2048-bit</td><td class="small">docker/cert.pem (line 1) — lightwalletd.testnet.local</td><td>vulnerable (Shor)</td><td>acceptable</td></tr>  </table>
+  <h2>Приложения</h2>
+  <h3>A. Криптографическая инвентаризация</h3>
+  <table class="data"><tr><th>Алгоритм</th><th>Параметр</th><th>Расположение</th><th>Квантовый статус</th><th>Классический статус</th></tr>
+<tr><td>SHA-2</td><td>SHA-256</td><td class="small">common/darkside.go:6</td><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>допустимо</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">docker/cert.pem (line 1)</td><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>допустимо</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">parser/block_header.go:10</td><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>допустимо</td></tr><tr><td>SHA-2</td><td>SHA-256</td><td class="small">testtools/genblocks/main.go:28</td><td>Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI</td><td>допустимо</td></tr><tr><td>Crypto library<br><span class="small muted">golang.org/x/crypto (Go x/crypto)</span></td><td>v0.55.0</td><td class="small">go.mod:53</td><td>н/п</td><td>допустимо</td></tr><tr><td>RSA</td><td>2048-bit</td><td class="small">common/generatecerts.go:21</td><td>уязвим (Шор)</td><td>допустимо</td></tr><tr><td>RSA</td><td></td><td class="small">common/generatecerts.go:8</td><td>уязвим (Шор)</td><td>допустимо</td></tr><tr><td>RSA</td><td>2048-bit</td><td class="small">docker/cert.pem (line 1) — lightwalletd.testnet.local</td><td>уязвим (Шор)</td><td>допустимо</td></tr>  </table>
   <h3>B. JSON</h3>
-  <p class="small">qsi.report/1 · SHA-256 82414793308723f9630b1a40523260f8258d8b9c17a2b30005a7575edb8963e0</p>
-  <h3>C. Input files</h3>
-  <table class="data"><tr><th>File</th><th>Size</th><th>SHA-256</th><th>Redactions</th></tr>
+  <p class="small">qsi.report/1 · SHA-256 ee01be5a6a668e45f80173febb444271441656e5c2f98f8ad60408f1e35ec330</p>
+  <h3>C. Входные файлы</h3>
+  <table class="data"><tr><th>Файл</th><th>Размер</th><th>SHA-256</th><th>Маскирования</th></tr>
 <tr><td>cmd/connstats.go</td><td>1196</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">47405d57d1b057faf3be41fdcc1227795319cdcdfee56629c630e66953351311</td><td>0</td></tr><tr><td>cmd/root.go</td><td>20101</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e6152b83ea0eb6273e64456e350279e7be0268da4c136648d4afeaf3e2a1cf9c</td><td>0</td></tr><tr><td>cmd/version.go</td><td>517</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">33979cac0db08986defae5ac62072805d733c30dd303540733b17277616d10cd</td><td>0</td></tr><tr><td>common/cache.go</td><td>11643</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ba5f9da3c1492a90d48c20c15256a1bf6e354ba8bb1b58cd2fd62d9b4ddcd2a7</td><td>0</td></tr><tr><td>common/common.go</td><td>25507</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c8f7603b7d32f5b076d1d61bce1be524acbe7ef20bfd35007978e638a04e9d75</td><td>0</td></tr><tr><td>common/darkside.go</td><td>33254</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">129a6d62e78a2bfaf78eaf34fc5fd29cadb5d074de1907669c4c63921e7dd30a</td><td>0</td></tr><tr><td>common/generatecerts.go</td><td>2135</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">010d1a90f0fea3babe111d4e2d463b754c4d574a16ff2840e69b6f6ef92dc19b</td><td>0</td></tr><tr><td>common/logging/logging.go</td><td>1036</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5478a895e3bdb5f83bc14e71d715e55d325ceaae9030e6e00a3655460bf1f307</td><td>0</td></tr><tr><td>common/mempool.go</td><td>4431</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">13def4c96768f0e46aaeec5b248b801c1c267e4f6f4adc4d94ea49f7f9cc5ef2</td><td>0</td></tr><tr><td>docker/cert.key</td><td>97</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4d417087d1f5076360d4260961ed5c29a58fa722450b20caf8d68765c54ab3c4</td><td>1</td></tr><tr><td>docker/cert.pem</td><td>1289</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8d44580bca050fd5b3a266b8e9c102a88cbdd88c5996c342b4ab8757b94d720c</td><td>0</td></tr><tr><td>frontend/rawrequest.go</td><td>4645</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fad7ec20c623c12a517ca838059b1f6f99d76b971c42204a9c168db3cc562efb</td><td>0</td></tr><tr><td>frontend/rpc_client.go</td><td>3780</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dd87e4a43595a01119338a5cbc010134af1eae4c90a3857ba8527deeeaec8583</td><td>0</td></tr><tr><td>frontend/service.go</td><td>51588</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">33abee53b15eece3dadbd2193eadd7c39815b8fedec4c0d589764223fcb78d47</td><td>0</td></tr><tr><td>go.mod</td><td>2431</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2c741f2d97ee03e96e8afbeaacc5f3c7ab44cb73af859d3ad4c99930d595c108</td><td>0</td></tr><tr><td>hash32/hash32.go</td><td>1527</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">961a695822b5bc76ff5decfebc65cfab1fbbb4aada7097177ba9d3d76082c5fa</td><td>0</td></tr><tr><td>lightwallet-protocol/walletrpc/compact_formats.proto</td><td>6490</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d8d0c8aaa5ceec7d5dcc188ef25b04011df2ec0254901620fce982fc13aeb32d</td><td>0</td></tr><tr><td>lightwallet-protocol/walletrpc/service.proto</td><td>16054</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9352e90977cfd55ead3a0b97048c40d673ad0024d33882ae89e15727fad19138</td><td>0</td></tr><tr><td>main.go</td><td>89</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ec16ed2f1a286086fd738c4cbb990cd6790116a39711c6a35fa405ad888a116e</td><td>0</td></tr><tr><td>parser/block.go</td><td>4546</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3b21fb1aaf2d4d1737325894d4d2ccbff6013a29257170c67548326884a096a5</td><td>0</td></tr><tr><td>parser/block_header.go</td><td>8236</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9fc7957a45629ec9dbadca29fee6ac6527c71a155d123c32bacf743f021a66b2</td><td>0</td></tr><tr><td>parser/bounds.go</td><td>3289</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4303340054eaed723ee8da6e0dd6bf431d7cedb4fa9e7bf45691780ad0c7d731</td><td>0</td></tr><tr><td>parser/fuzz.go</td><td>354</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d18aa41f9e4f215c8499d4e48add2b3075a481ab746f7f6af4144bdc19994d34</td><td>0</td></tr><tr><td>parser/internal/bytestring/bytestring.go</td><td>6427</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cb01a5a03292979ae9d055e1ce37a137fc1c9af4f8a32b8f762040e18fe2719a</td><td>0</td></tr><tr><td>parser/transaction.go</td><td>24187</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ff9c519ffdad866ec1ca573f742f2081df7f67c8ace42299f13513c714428265</td><td>0</td></tr><tr><td>testclient/main.go</td><td>4293</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3f607912b23700a153a32c0f4ac95f3bb1c353a358ccf5ed2db5979f2f97eb35</td><td>0</td></tr><tr><td>testtools/genblocks/main.go</td><td>4934</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6a7eca671d69272de2ba5471acf4d4007fbf1d6289153474360c77ba108048cc</td><td>0</td></tr><tr><td>testtools/zap/main.go</td><td>764</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fc24949d4b8271fb936e68aeb6e6240fb258bab038a29a7eef91f615c5607de2</td><td>0</td></tr><tr><td>walletrpc/compact_formats.pb.go</td><td>25356</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5ad9198be37bcab74f36ccbc7dca5d891632d03635f65bd70a559b46e74d04ed</td><td>0</td></tr><tr><td>walletrpc/darkside.pb.go</td><td>24975</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">51100120dc12c58486ad0eff68f564e93d70bbb2096521bef2bb5d59fa8f9b14</td><td>0</td></tr><tr><td>walletrpc/darkside.proto</td><td>7344</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8d3582ed9efaaefeb44c2ee432191127339154b677b253350fd8ff85befff5d2</td><td>0</td></tr><tr><td>walletrpc/darkside_grpc.pb.go</td><td>42355</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8dd2070e114aeb584628b082dce641654fb7157d4bdac5900e4ab640eb04d740</td><td>0</td></tr><tr><td>walletrpc/service.pb.go</td><td>62312</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">79749fecb58b41f9c762c374d2e4c4889665c9e450862b2a882061770b00c734</td><td>0</td></tr><tr><td>walletrpc/service_grpc.pb.go</td><td>51351</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d5ec3b07634d3b8bbc83bb0981fc370c62b7bd24080b28d44ecc9f8f54cccd43</td><td>0</td></tr>  </table>
 </section>
 </body>

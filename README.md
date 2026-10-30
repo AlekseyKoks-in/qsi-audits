@@ -1,9 +1,44 @@
 # Cryptographic inventories of open-source code, signed and reproducible
 
-53 audit bundles over **45 codebases**: a machine-readable inventory of every cryptographic
+60 audit bundles over **52 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**2,888 inventory rows**, of which **1,402 fall to Shor's algorithm** and **27 are already
-post-quantum**, from **27,785 parsed files**.
+**3,745 inventory rows**, of which **1,708 fall to Shor's algorithm**, **28 are post-quantum** and
+**4 are hybrid** (post-quantum combined with classical), from **30,771 parsed files**. Those last two
+are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
+28+4-style addition of the two, which is why one number appeared in two different places.
+
+### What those rows rest on
+
+A single "inventory rows" total mixes evidence of very different strength, so here it is split. This is the one
+table to read before quoting any other number in this repository.
+
+| what the row rests on | rows | Shor-breakable |
+|---|---:|---:|
+| a line of source code | 1,987 | 1,243 |
+| name of a dependency in a manifest | 911 | 0 |
+| name of a source file (low confidence) | 384 | 180 |
+| a deployed smart contract | 126 | 3 |
+| OpenPGP key committed to the repository | 117 | 117 |
+| a certificate or key file | 112 | 59 |
+| the chain a wallet supports | 105 | 105 |
+| other | 3 | 1 |
+
+Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
+
+**180 of the 1,708 Shor-breakable rows rest on the name of a source file**, not on a line of
+code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
+call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
+telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
+headline figure silently promotes it to the same standing as the rest. Now it does not.
+
+**117 rows are cryptography the projects did not write**: OpenPGP primary keys and subkeys committed to the
+repositories — maintainers' release-signing keys, in `bitbox02-firmware`, `jade`, `libwally-core`, `monero`, `zcash-android-wallet-sdk`, `zcash-swift-wallet-sdk`, `zebra`. They belong in an
+inventory, because a quantum computer forges a release signature as readily as a transaction one, but a reader who
+saw only the Shor total would take them for implemented cryptography. Every one carries `usage: OpenPGP primary
+key` or `OpenPGP subkey`, so one filter removes them from any figure here.
+
+The 911 manifest rows carry no quantum status at all —
+a dependency's name is not an algorithm — which is why they add to the row count and nothing to the Shor count.
 
 Every bundle is pinned to an upstream commit, carries an Ed25519 signature and a CycloneDX CBOM, and was produced
 before anyone paid for it. The point of publishing them is that you do not have to believe any of the numbers
@@ -15,7 +50,7 @@ No dependencies, no network, nothing to install:
 
 ```
 python3 verify.py --self-test     # test the verifier before trusting what it says
-python3 verify.py                 # verify all 53 bundles
+python3 verify.py                 # verify all 60 bundles
 python3 verify.py audits/secp256k1
 ```
 
@@ -97,18 +132,37 @@ Five codebases were re-audited at their original commits with their analyst deci
 **`bitcoin-core/secp256k1` is therefore 32 of 32, not 38 of 38.** The ratio and the argument are untouched —
 still every row, still zero post-quantum — and the count is smaller and truer. Figures quoted in letters and
 write-ups dated before 2026-10-29 use the earlier numbers, including a ten-codebase slice of 629 rows and 440
-Shor-breakable; the same ten measure **632 and 434** today, the small net difference being Jade's own code
-arriving as the benchmarks left.
+Shor-breakable. The same ten measured 632 and 434 after the benchmark fix — the small net difference being Jade's
+own code arriving as the benchmarks left — and measure **693 and 448** now that `bitbox02-firmware` is
+read to 2,645 files instead of 721. Every letter that quotes 629/440 carries a link to this
+repository, so the figure is checkable here; it moved upward each time, and the reason for each move is in this
+section.
 
-**Two codebases were deliberately left at their earlier bundles**, because re-auditing them produced a worse
-result rather than a better one. `krux` and `bitbox02-firmware` pin large vendored dependencies — MaixPy, lvgl,
-optiga-trust-m, cryptoauthlib — and with those materialised the tree exceeds the runner's total-size limit, which
-dropped **1,749 and 556 files respectively**, among them the projects' own source: `src/boot.py` and
-`src/krux/auto_shutdown.py` for Krux, `src/rust/bitbox-aes` for BitBox02. The report states how many files did not
-fit but not which, so the result would have been an inventory of a vendored GUI and TLS stack presented as an
-inventory of a hardware wallet. **That is a real defect and it is open, recorded here rather than worked around:**
-when the limit binds, the order of dropping must prefer the project's own tree, and the report must name what it
-dropped.
+**The byte-budget defect described in earlier versions of this file is now fixed.** It read: when the limit
+binds, the order of dropping must prefer the project's own tree, and the report must name what it dropped.
+`krux` and `bitbox02-firmware` pin large vendored dependencies — MaixPy, lvgl, optiga-trust-m, cryptoauthlib — and
+with those materialised the tree exceeded the runner's total-size limit, dropping **1,749 and 556 files
+respectively**, among them the projects' own source: `src/boot.py` and `src/krux/auto_shutdown.py` for Krux,
+`src/rust/bitbox-aes` for BitBox02. Both halves are now done: the budget is spent on the project's own tree before
+the directories a `.gitmodules` pins, the report names the files that did not fit and the ones no analyzer reads,
+and it attributes the files it did read to the submodules they came from. When a project's own source is dropped
+the description says so as an explicit warning rather than leaving a reader to infer it from a count.
+
+**`bitbox02-firmware` is therefore re-audited here**, at the same commit as before. It reads
+2,645 files where it previously read 721 — of 8,952 files in the tree, after setting
+aside test, fuzzing, benchmark and example code and the files no analyzer reads, that is 84% of what
+could be read — and the 518 that still did not fit are named in the report and are every one of them
+`optiga-trust-m`'s vendored mbedtls headers. The bundle goes from 136 rows and 90
+Shor-breakable to **197 and 104**. 44 of the added rows are committed OpenPGP keys rather than
+implemented cryptography, which the breakdown above separates, so the honest statement of the improvement is
+136 → 153 rows of cryptography this project actually contains.
+
+**`krux` is still left at its earlier bundle**, and the reason is narrower than a size limit. Re-read at full
+depth it yields 248 inventory rows — but **230 of them come from `firmware/MaixPy` and 11 from `src/krux`**, with
+1,677 files still not fitting. That is a 23% sample of the tree whose composition depends on the order files are
+visited, presented as an inventory of a hardware wallet. The 98-row bundle published here covers Krux's own code
+and the `embit` it pins, within the budget, and answers the question a reader actually has. The full run is kept
+as evidence rather than published as a measurement.
 
 ## A check any project can run: do your pinned submodules reach your tools?
 
@@ -162,19 +216,19 @@ reports/           the write-ups: re-audits, triage, adoption survey, scope-and-
                    and the BIP-360/361 readiness analysis
 ```
 
-`audits/` holds 53 directories but **45 distinct codebases**: 7 of them
+`audits/` holds 60 directories but **52 distinct codebases**: 7 of them
 (`bitbox02-firmware-en`, `bitgo-mpc-en`, `coinbase-cb-mpc-en`, `fireblocks-mpc-lib-en`, `librustzcash-en`, `trezor-firmware-en`, `trustwallet-wallet-core-en`) are English renderings of an audit also present in Russian, and
 `trezor-vendored-crypto` is a sub-audit of a vendored directory inside `trezor-firmware`. Totals on this page
 exclude all 8 so nothing is counted twice.
 
 ## The Bitcoin self-custody slice
 
-Ten codebases, **632 inventory rows, 434 Shor-breakable**. This is the slice cited in grant
+Ten codebases, **693 inventory rows, 448 Shor-breakable**. This is the slice cited in grant
 applications, so it is here in full.
 
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 721 | 136 | 90 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 197 | 104 | 0 |
 | `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 110 | 74 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 111 | 73 | 7 |
 | `krux` | Krux (selfcustody) | `9b3a4314a205` | 257 | 98 | 64 | 0 |
@@ -197,9 +251,12 @@ none.
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
 | `trustwallet-wallet-core` | Trust Wallet | `adf80f8bac98` | 1695 | 355 | 254 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 197 | 104 | 0 |
 | `agave` | Anza (Solana) | `7700cb3128c1` | 1293 | 189 | 103 | 0 |
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 721 | 136 | 90 | 0 |
+| `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 156 | 23 | 0 |
+| `zebra` | Zcash Foundation | `147a6a8bf7d3` | 439 | 148 | 65 | 0 |
 | `bitwarden-sdk` | Bitwarden | `25b6c8c3860a` | 1625 | 119 | 12 | 5 |
+| `monero` | Monero | `3fd0f88c20f5` | 1117 | 116 | 79 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 111 | 73 | 7 |
 | `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 110 | 74 | 0 |
 | `nitro` | Offchain Labs (Arbitrum) | `ccc5c828d9ea` | 1038 | 108 | 13 | 0 |
@@ -211,27 +268,31 @@ none.
 | `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 91 | 66 | 0 |
 | `aave-v3-origin` | Aave DAO | `8305565ae342` | 645 | 89 | 2 | 0 |
 | `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 89 | 87 | 0 |
+| `zingolib` | Zingo Labs | `81d799775f11` | 205 | 86 | 3 | 1 |
 | `scroll` | Scroll | `3046bbd18a6a` | 387 | 78 | 7 | 0 |
 | `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 142 | 77 | 55 | 0 |
 | `libwally-core` | Blockstream (libwally) | `374df231d054` | 249 | 77 | 56 | 0 |
+| `halo2` | Electric Coin Company (Zcash) | `3442dd33754a` | 100 | 73 | 45 | 0 |
+| `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 72 | 9 | 0 |
 | `lido-core` | Lido | `2bd532298d85` | 267 | 69 | 7 | 0 |
+| `orchard` | Electric Coin Company (Zcash) | `616a669df8c9` | 49 | 69 | 41 | 0 |
 | `rabby` | Rabby Wallet (DeBank) | `663c0e80e9f6` | 1694 | 66 | 29 | 0 |
 | `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 66 | 16 | 0 |
 | `openpgpjs` | OpenPGP.js project | `8bc35df48879` | 108 | 65 | 35 | 8 |
+| `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 59 | 33 | 0 |
+| `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 57 | 36 | 0 |
 | `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4873 | 50 | 12 | 0 |
-| `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 46 | 19 | 0 |
+| `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 46 | 2 | 0 |
+| `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 45 | 2 | 0 |
 | `rage` | str4d (rage / age encryption) | `b5b68c4f4f7e` | 54 | 43 | 13 | 3 |
-| `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 39 | 9 | 0 |
-| `monero` | Monero | `3fd0f88c20f5` | 580 | 34 | 14 | 0 |
 | `safe-smart-account` | Safe | `247b8ce3bdbf` | 77 | 33 | 5 | 0 |
 | `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 118 | 32 | 32 | 0 |
 | `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 90 | 32 | 32 | 0 |
+| `tachyon` | Tachyon (Zcash) | `6cdaebccf147` | 58 | 29 | 10 | 0 |
 | `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 28 | 11 | 0 |
-| `zebra` | Zcash Foundation | `147a6a8bf7d3` | 439 | 27 | 14 | 0 |
 | `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2202 | 22 | 0 | 2 |
 | `cairo` | StarkWare | `68a61f6c6251` | 567 | 18 | 10 | 0 |
-| `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 14 | 2 | 0 |
-| `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 12 | 2 | 0 |
+| `reddsa` | Zcash Foundation | `04e973bcf8d4` | 15 | 12 | 4 | 0 |
 | `rustcrypto-rsa` | RustCrypto project | `f96c4b5d629a` | 35 | 11 | 6 | 0 |
 | `bdk-wallet` | Bitcoin Dev Kit (bdk_wallet) | `09c677305139` | 28 | 10 | 7 | 0 |
 | `sigstore-js` | Sigstore project | `769a53d87132` | 180 | 10 | 3 | 0 |
@@ -295,10 +356,10 @@ that is the most useful message I can get — the two corrections above both beg
 
 # По-русски
 
-53 подписанных комплектов аудита по **45 кодовым базам**: машиночитаемая инвентаризация
+60 подписанных комплектов аудита по **52 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**2,888 строк инвентаризации**, из них **1,402 ломает алгоритм Шора**, и **27 уже
-постквантовых**; разобрано **27,785 файлов**.
+**3,745 строк инвентаризации**, из них **1,708 ломает алгоритм Шора**, и **28 уже
+постквантовых**; разобрано **30,771 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -310,11 +371,11 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 Самопроверка показывает, что настоящая подпись проходит, реализации согласны, а перевёрнутый байт payload,
 подписи или файла обнаруживается.
 
-В `audits/` 53 каталогов, но **45 разных кодовых баз**: 7 из них — англоязычные
+В `audits/` 60 каталогов, но **52 разных кодовых баз**: 7 из них — англоязычные
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 
-**Срез самостоятельного хранения биткоина:** десять кодовых баз, **632 строк, 434 ломает Шор**. Та же
+**Срез самостоятельного хранения биткоина:** десять кодовых баз, **693 строк, 448 ломает Шор**. Та же
 криптография лежит в трёх разных местах — Jade вносит исходники libwally в своё дерево, Krux подключает `embit`
 как git-подмодуль, SeedSigner — тот же `embit` как релиз с PyPI с замком по хешу, — поэтому аудит, не прошедший
 по закреплению, объявляет биткоин-подписанта чистым. И три самых рекомендуемых аппаратных кошелька разошлись: у
