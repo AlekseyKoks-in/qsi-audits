@@ -164,6 +164,40 @@ visited, presented as an inventory of a hardware wallet. The 98-row bundle publi
 and the `embit` it pins, within the budget, and answers the question a reader actually has. The full run is kept
 as evidence rather than published as a measurement.
 
+## A check any project can run: does your scanner have a word for this cryptography?
+
+An inventory can fail in a way that looks exactly like a clean result. Not a crash and not a parse error: the
+scanner opens every file, recognises nothing, and reports that the code holds no quantum-vulnerable cryptography.
+
+That happened here, on the worst possible target. `zcash/orchard` — the protocol whose Balance property rests
+entirely on discrete logarithms in the Pallas group — measured **one inventory row (AES-256) and zero
+Shor-breakable rows**. The registry had no entry for Sinsemilla, RedDSA, Halo 2 or Poseidon, so there was no word
+in the vocabulary for any of it. With four entries added the same commit measures 69 rows and 41.
+
+`zk-vocabulary.py` is the generalisable half, carrying that vocabulary and nothing else of this project. No
+dependencies, no network, no `git`.
+
+```
+python3 zk-vocabulary.py --repo /path/to/checkout     # what is actually in this tree
+python3 zk-vocabulary.py --against results.sarif      # ...and what your scanner failed to report
+python3 zk-vocabulary.py --self-test                  # check the patterns before trusting their silence
+```
+
+It is careful about two things that a grep is not. It says **what** a quantum adversary breaks: for a commitment
+that is *binding*, not hiding — a Pedersen commitment hides amounts information-theoretically, so committed values
+stay secret against any computer, while a quantum adversary can open one to a different value, which is forged
+supply rather than lost privacy. For a proof system it is *soundness*: accepted proofs of false statements. And it
+reports **Poseidon as not Shor-breakable**, because its hardness is not group hardness; filing it under Shor would
+overstate the risk as badly as missing Sinsemilla understated it.
+
+Exit status 1 when the tree holds a primitive your tool did not report. `test-zk-vocabulary.sh` runs 14 cases,
+four against freshly cloned real repositories, including the one that matters: fed the literal output this
+scanner produced for `zcash/orchard` — `["AES-256"]` — it names all five primitives that were missed.
+
+The defects behind every figure in this file, with the before-state archived, are in
+[reports/FIXES-2026-10-30.md](reports/FIXES-2026-10-30.md) (also
+[in English](reports/FIXES-2026-10-30.en.md)).
+
 ## A check any project can run: do your pinned submodules reach your tools?
 
 `submodule-scope.py` is the generalisable half of the defect described above, written so it has nothing to do
