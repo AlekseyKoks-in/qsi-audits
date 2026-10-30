@@ -82,12 +82,26 @@ the lead-byte `0x03` note plaintext ZIP 2005 specifies; `librustzcash` carries a
 crate and PCZT roles with `create_ironwood_proof` and `sign_ironwood`. The migration is being built broadly, not by
 one team.
 
-One observation, scoped carefully. ZIP 326 "NU6.3 Consequences for Wallets" — the document that tells wallets how
-to handle the upgrade — is still a **Draft**, three months after the consensus change it describes went live. The
-`use_qsk` key distinction it names, which decides whether an account's notes are recoverable at all, does not
-appear under that identifier anywhere in the code I read. That is consistent with the ZIP still being a Draft and
-is not by itself a defect in any implementation. It is the kind of gap between a shipped consensus rule and
-settled wallet guidance that an inventory is for, and it is worth someone's attention before it becomes one.
+One observation, and one correction to an earlier version of this document. ZIP 326 "NU6.3 Consequences for
+Wallets" — the document that tells wallets how to handle the upgrade — is still a **Draft**, three months after the
+consensus change it describes went live. That part stands.
+
+What I got wrong was the significance of its `use_qsk` key distinction. An earlier version of this report said
+`use_qsk` "decides whether an account's notes are recoverable at all" and treated its absence from the code as a
+gap. Both halves were wrong. **Recoverability comes from the note plaintext format**, which ZIP 2005 defines as
+"a new note plaintext format to be used for recoverable notes (that is, those in the Ironwood pool), with lead
+byte `0x03`", computing `pre_rcm` over all the note fields — and that is implemented: `orchard` ships
+`NoteVersion::V3` and `IronwoodDomain`. `use_qsk` is a separate, optional key-derivation path, and what it buys is
+stated plainly in the ZIP: when it is used "it is possible for the Recovery Protocol to support spend
+authorization using a **simpler statement**". ZIP 326 allows `use_qsk = false` keys for Ironwood notes explicitly,
+"for interoperability with existing addresses".
+
+So its absence is expected rather than a gap, and for a sound reason: the Recovery Protocol is itself, in ZIP
+2005's words, "to be introduced, potentially, in a future upgrade". An optimisation for a protocol that does not
+exist yet has nothing to optimise. Measured, for anyone who wants to check: `use_qsk`, `rivk_ext` and `qk` return
+zero hits across `orchard` and `librustzcash`; the three `qsk` matches are coincidental substrings inside base58
+and bech32 test vectors; the 164 `rivk` hits are the pre-ZIP-2005 `rivk` of protocol specification § 4.2.3, and
+`CommitIvkRandomness::from(&SpendingKey)` takes no variant parameter.
 
 ## What the code contains
 
