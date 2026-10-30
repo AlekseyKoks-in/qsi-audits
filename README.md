@@ -1,9 +1,9 @@
 # Cryptographic inventories of open-source code, signed and reproducible
 
-60 audit bundles over **52 codebases**: a machine-readable inventory of every cryptographic
+61 audit bundles over **53 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**3,745 inventory rows**, of which **1,708 fall to Shor's algorithm**, **28 are post-quantum** and
-**4 are hybrid** (post-quantum combined with classical), from **30,771 parsed files**. Those last two
+**3,754 inventory rows**, of which **1,713 fall to Shor's algorithm**, **28 are post-quantum** and
+**4 are hybrid** (post-quantum combined with classical), from **30,806 parsed files**. Those last two
 are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
 28+4-style addition of the two, which is why one number appeared in two different places.
 
@@ -14,8 +14,8 @@ table to read before quoting any other number in this repository.
 
 | what the row rests on | rows | Shor-breakable |
 |---|---:|---:|
-| a line of source code | 1,987 | 1,243 |
-| name of a dependency in a manifest | 911 | 0 |
+| a line of source code | 1,992 | 1,248 |
+| name of a dependency in a manifest | 915 | 0 |
 | name of a source file (low confidence) | 384 | 180 |
 | a deployed smart contract | 126 | 3 |
 | OpenPGP key committed to the repository | 117 | 117 |
@@ -25,7 +25,7 @@ table to read before quoting any other number in this repository.
 
 Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
 
-**180 of the 1,708 Shor-breakable rows rest on the name of a source file**, not on a line of
+**180 of the 1,713 Shor-breakable rows rest on the name of a source file**, not on a line of
 code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
 call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
 telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
@@ -37,7 +37,7 @@ inventory, because a quantum computer forges a release signature as readily as a
 saw only the Shor total would take them for implemented cryptography. Every one carries `usage: OpenPGP primary
 key` or `OpenPGP subkey`, so one filter removes them from any figure here.
 
-The 911 manifest rows carry no quantum status at all —
+The 915 manifest rows carry no quantum status at all —
 a dependency's name is not an algorithm — which is why they add to the row count and nothing to the Shor count.
 
 Every bundle is pinned to an upstream commit, carries an Ed25519 signature and a CycloneDX CBOM, and was produced
@@ -50,7 +50,7 @@ No dependencies, no network, nothing to install:
 
 ```
 python3 verify.py --self-test     # test the verifier before trusting what it says
-python3 verify.py                 # verify all 60 bundles
+python3 verify.py                 # verify all 61 bundles
 python3 verify.py audits/secp256k1
 ```
 
@@ -176,8 +176,8 @@ These bundles use two of those three methods and **declare the third**: live net
 19 March 2027, so nobody can claim conformance to them yet.
 
 The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
-Asymmetric Algorithms". Measured here, **37% of the 1,708 Shor-breakable rows fall only under
-that catch-all**, across 15 distinct algorithms, the largest being Ed25519 — which the memorandum never
+Asymmetric Algorithms". Measured here, **37% of the 1,713 Shor-breakable rows fall only under
+that catch-all**, across 16 distinct algorithms, the largest being Ed25519 — which the memorandum never
 names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
 systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
 the seventh named algorithm, which had no entry), are in
@@ -270,7 +270,7 @@ reports/           the write-ups: re-audits, triage, adoption survey, scope-and-
                    and the BIP-360/361 readiness analysis
 ```
 
-`audits/` holds 60 directories but **52 distinct codebases**: 7 of them
+`audits/` holds 61 directories but **53 distinct codebases**: 7 of them
 (`bitbox02-firmware-en`, `bitgo-mpc-en`, `coinbase-cb-mpc-en`, `fireblocks-mpc-lib-en`, `librustzcash-en`, `trezor-firmware-en`, `trustwallet-wallet-core-en`) are English renderings of an audit also present in Russian, and
 `trezor-vendored-crypto` is a sub-audit of a vendored directory inside `trezor-firmware`. Totals on this page
 exclude all 8 so nothing is counted twice.
@@ -350,6 +350,7 @@ none.
 | `rustcrypto-rsa` | RustCrypto project | `f96c4b5d629a` | 35 | 11 | 6 | 0 |
 | `bdk-wallet` | Bitcoin Dev Kit (bdk_wallet) | `09c677305139` | 28 | 10 | 7 | 0 |
 | `sigstore-js` | Sigstore project | `769a53d87132` | 180 | 10 | 3 | 0 |
+| `pasta-curves` | Electric Coin Company (Zcash) | `e3c0f0246f56` | 35 | 9 | 5 | 0 |
 | `lightwalletd` | Electric Coin Company (Zcash) | `4abfe9cd7b9b` | 34 | 8 | 3 | 0 |
 | `seedsigner` | SeedSigner | `ada81cde050e` | 74 | 7 | 1 | 0 |
 | `matrix-js-sdk` | Matrix.org Foundation | `61b08bd037a3` | 240 | 6 | 1 | 0 |
@@ -410,10 +411,10 @@ that is the most useful message I can get — the two corrections above both beg
 
 # По-русски
 
-60 подписанных комплектов аудита по **52 кодовым базам**: машиночитаемая инвентаризация
+61 подписанных комплектов аудита по **53 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**3,745 строк инвентаризации**, из них **1,708 ломает алгоритм Шора**, и **28 уже
-постквантовых**; разобрано **30,771 файлов**.
+**3,754 строк инвентаризации**, из них **1,713 ломает алгоритм Шора**, и **28 уже
+постквантовых**; разобрано **30,806 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -425,7 +426,7 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 Самопроверка показывает, что настоящая подпись проходит, реализации согласны, а перевёрнутый байт payload,
 подписи или файла обнаруживается.
 
-В `audits/` 60 каталогов, но **52 разных кодовых баз**: 7 из них — англоязычные
+В `audits/` 61 каталогов, но **53 разных кодовых баз**: 7 из них — англоязычные
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 

@@ -1,0 +1,1547 @@
+{
+  "content_sha256": "2919c46477b0ece07cb139e575e93a0c5fa3adc70e68306085e2b990adc39eba",
+  "schema": "qsi.report/1",
+  "language": "ru",
+  "generated_at": "2026-10-30T20:59:34.768606+00:00",
+  "report_version": 1,
+  "organization": {
+    "name": "QSI"
+  },
+  "project": {
+    "id": "ef649641-0655-47fc-a9ea-c9cf3384e4c7",
+    "name": "pasta-curves @ e3c0f0246f56",
+    "client_name": "Electric Coin Company (Zcash)",
+    "description": "Static review of the source tree pasta-curves at e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9. 35 files analysed; of 180 files, 38 are test, fuzzing, benchmark or example code and were left out, 107 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/ISSUE_TEMPLATE/eli15.md, .github/dependabot.yml, .github/workflows/asm.yml, .github/workflows/book.yml. 29 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "is_demo": false
+  },
+  "audit": {
+    "id": "ebc4cacf-0b49-4605-b458-daffef75c78e",
+    "mode": "document",
+    "title": "Document audit: pasta-curves",
+    "status": "completed",
+    "engine_version": "1.2.0",
+    "started_at": "2026-10-30T20:59:25.918799+00:00",
+    "finished_at": "2026-10-30T20:59:33.618505+00:00",
+    "risk_profile": "crypto_exchange",
+    "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
+    "parameters": {
+      "ref": "e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9",
+      "language": "ru",
+      "repo_url": "https://github.com/zcash/pasta_curves",
+      "osv_lookup": true,
+      "public_review": true,
+      "mosca_defaults": [
+        "data_life",
+        "signature_life",
+        "migration_years"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "name": "Cargo.lock",
+      "size": 25638,
+      "sha256": "4f191ee7c7affbd7f07521144b7b270b024b8ee35b15d09da475f81b057a91a7",
+      "redactions": 0
+    },
+    {
+      "name": "Cargo.toml",
+      "size": 2858,
+      "sha256": "0a6cc95e94695197e703e438a9c031a4cc3333cd4b17562f75337a52d00621dc",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/asm_source.py",
+      "size": 32332,
+      "sha256": "3cf7d6b80731ea5106751bf6f85af948549058c5b4aa871e752b4cec6d889101",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/check_export_axioms.py",
+      "size": 23429,
+      "sha256": "f00f566828797565e1cb14514db76b607552f507a0b833fcc80db948bc73c867",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/check_export_coverage.py",
+      "size": 1877,
+      "sha256": "4e8e7984a90ceb8d67f7b08dda80d462664771bc353d7b0c2d0bfb1d36d848b4",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/gen.py",
+      "size": 47849,
+      "sha256": "ebd255b8d63e7114b7ee373c3197b774b3df6d6f88e0e8d4c8923262788eb0ab",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/gen_aarch64.py",
+      "size": 50971,
+      "sha256": "b2bf02c086e2861eccc5c476e6f545f5e33b85951c4b0a6e24472c2843d72d56",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/gen_hull.py",
+      "size": 8333,
+      "sha256": "c024bdcc3e54fb4056b2fa261fa44fd077bfc3554284aeda20e1f0f6d1c439f9",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/gen_x86_64.py",
+      "size": 43299,
+      "sha256": "f438270507fa060f98817bdba303722b84385fc33e0c93bbda97875153199340",
+      "redactions": 0
+    },
+    {
+      "name": "lean/scripts/verify_hull_certificate.py",
+      "size": 15751,
+      "sha256": "af5a5bc8c134cf841c0643196f2963ce04dc6cebcffdc12b76dc35452daccf3f",
+      "redactions": 0
+    },
+    {
+      "name": "rust-toolchain.toml",
+      "size": 68,
+      "sha256": "0e85702dd92c5c86fbcb0b22e4331af26dd90d4cb8749227d143b067f3706276",
+      "redactions": 0
+    },
+    {
+      "name": "sage/pyproject.toml",
+      "size": 390,
+      "sha256": "92c0ff03772029814b3402227905ca7f2dd13dd67b9050bfcccea6db8f1149be",
+      "redactions": 0
+    },
+    {
+      "name": "src/arithmetic.rs",
+      "size": 354,
+      "sha256": "cd8e62310ca4253e9e65d06356829e23dac2586d20062c62ac2eab748dbb3297",
+      "redactions": 0
+    },
+    {
+      "name": "src/arithmetic/curves.rs",
+      "size": 11009,
+      "sha256": "cdb939cc833d58693261949057782935814dc4ff69db3e35304b9b53e1c4841f",
+      "redactions": 0
+    },
+    {
+      "name": "src/arithmetic/fields.rs",
+      "size": 16708,
+      "sha256": "45d7a8a77b6f6ebb9ad2d8b275752d913cf649272ed8353ba75fc958e61cd368",
+      "redactions": 0
+    },
+    {
+      "name": "src/asm/aarch64.rs",
+      "size": 61946,
+      "sha256": "5c69fadf8594f173eec8c38c9c5e329bf0dc58de088768a4ac92fdec1c41b34f",
+      "redactions": 0
+    },
+    {
+      "name": "src/asm/entry.rs",
+      "size": 9979,
+      "sha256": "a5a1df9c77f976406641317a14799d54406a72f751db2a8cde8b74293a623a1c",
+      "redactions": 0
+    },
+    {
+      "name": "src/asm/mod.rs",
+      "size": 6527,
+      "sha256": "21a051ece5eedac74de9c074946ac2007a10e521d050d8f082663ee25668b582",
+      "redactions": 0
+    },
+    {
+      "name": "src/asm/x86_64.rs",
+      "size": 36656,
+      "sha256": "e9ffdf5638b187f53cf5a7ac909117933e7444697c3e86755ceb301535c8a3f6",
+      "redactions": 0
+    },
+    {
+      "name": "src/curves.rs",
+      "size": 48594,
+      "sha256": "91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8",
+      "redactions": 0
+    },
+    {
+      "name": "src/deferred.rs",
+      "size": 10710,
+      "sha256": "d1b1a6707e446618d3bedb1b2b74e15f8f669e58b0b44c79fe3484cb21f081e0",
+      "redactions": 0
+    },
+    {
+      "name": "src/fields.rs",
+      "size": 1113,
+      "sha256": "a2df1a34bfb6ea442317639f8a9dbc081aff86de7de83b5d851bfb18ac99ef44",
+      "redactions": 0
+    },
+    {
+      "name": "src/fields/fp.rs",
+      "size": 48780,
+      "sha256": "22e857ffb73dd92dbaf60fc0f618c3c663580b5f0cb3b681c7446fb1cba5db2b",
+      "redactions": 0
+    },
+    {
+      "name": "src/fields/fq.rs",
+      "size": 48429,
+      "sha256": "1a713f5e9d3b4d39edbe2fbc3e25d3ca63047f27592f62e20f29e4c19ab15408",
+      "redactions": 0
+    },
+    {
+      "name": "src/fields/modinv62.rs",
+      "size": 71527,
+      "sha256": "ca55e6944a2437d0d7fd5f6ea8f2de320455774ad99b59e1c88ea62c27794308",
+      "redactions": 0
+    },
+    {
+      "name": "src/glv.rs",
+      "size": 36917,
+      "sha256": "a18beefb7c9b222772fa456d5fbb7d52c16c33894db27655293bae455d127eb4",
+      "redactions": 0
+    },
+    {
+      "name": "src/hashtocurve.rs",
+      "size": 10528,
+      "sha256": "1dcda56f13b037ef170a043b576932b40cc1a6dc0415d0c79682b145b7694196",
+      "redactions": 0
+    },
+    {
+      "name": "src/inversion.rs",
+      "size": 54489,
+      "sha256": "d0fbb178a40f98c91e6097a08f0a28227e2ffce1d02343c24e3a4e58c47c2873",
+      "redactions": 0
+    },
+    {
+      "name": "src/inversion/portable.rs",
+      "size": 13092,
+      "sha256": "4a81b25e4998791aedd5950b9e0a59bedd5e37d2b82c700cbec26ba722d0d739",
+      "redactions": 0
+    },
+    {
+      "name": "src/lib.rs",
+      "size": 3474,
+      "sha256": "bf59271f6794fa7fad77adc3921e296f56cda92f57dbe6106647d72d56be4eb4",
+      "redactions": 0
+    },
+    {
+      "name": "src/limbs.rs",
+      "size": 2508,
+      "sha256": "7d41fc79396b8e292d073ab33fb29c30662ceea42dab757e0f54f234d92be4a9",
+      "redactions": 0
+    },
+    {
+      "name": "src/macros.rs",
+      "size": 4230,
+      "sha256": "9292c7aff80448b3149934c28da525d477b7acdc2d4d2623c75c110e7dcd922f",
+      "redactions": 0
+    },
+    {
+      "name": "src/pallas.rs",
+      "size": 5320,
+      "sha256": "b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d",
+      "redactions": 0
+    },
+    {
+      "name": "src/serde_impl.rs",
+      "size": 13003,
+      "sha256": "63eb918536ee8df39f7f1ce21ed85118193735900f9b85ad305fc799138fba3b",
+      "redactions": 0
+    },
+    {
+      "name": "src/vesta.rs",
+      "size": 2424,
+      "sha256": "76dab33aa7bc55ae409c5711cc263e1fd46726575922ca636c41a35779364bde",
+      "redactions": 0
+    }
+  ],
+  "inputs_total": {
+    "files": 35,
+    "bytes": 771112,
+    "redactions": 0
+  },
+  "coverage": [
+    {
+      "area": "dependencies",
+      "detail": "Cargo.lock: 111 dependencies parsed (111 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "Cargo.toml: 17 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/asm_source.py: 800 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/check_export_axioms.py: 516 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/check_export_coverage.py: 54 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/gen.py: 1134 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "tls_key_exchange_groups",
+      "detail": "lean/scripts/gen_aarch64.py line 767: not in the algorithm registry, not assessed: []",
+      "status": "insufficient_data"
+    },
+    {
+      "area": "tls_configuration",
+      "detail": "lean/scripts/gen_aarch64.py: openssl TLS directives parsed",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/gen_aarch64.py: 1232 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/gen_hull.py: 221 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/gen_x86_64.py: 1061 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "lean/scripts/verify_hull_certificate.py: 400 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "dependencies",
+      "detail": "sage/pyproject.toml: 2 dependencies parsed (0 pinned)",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/arithmetic.rs: 12 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/arithmetic/curves.rs: 314 lines scanned with 16 rule patterns and 130 registry patterns; 73 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/arithmetic/fields.rs: 462 lines scanned with 16 rule patterns and 130 registry patterns; 82 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/asm/aarch64.rs: 1323 lines scanned with 16 rule patterns and 130 registry patterns; 111 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/asm/entry.rs: 247 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/asm/mod.rs: 150 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/asm/x86_64.rs: 856 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/curves.rs: 1494 lines scanned with 16 rule patterns and 130 registry patterns; 161 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/deferred.rs: 285 lines scanned with 16 rule patterns and 130 registry patterns; 154 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/fields.rs: 40 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/fields/fp.rs: 1483 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/fields/fq.rs: 1477 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/fields/modinv62.rs: 1805 lines scanned with 16 rule patterns and 130 registry patterns; 1008 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/glv.rs: 959 lines scanned with 16 rule patterns and 130 registry patterns; 539 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/hashtocurve.rs: 279 lines scanned with 16 rule patterns and 130 registry patterns; 78 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/inversion.rs: 1643 lines scanned with 16 rule patterns and 130 registry patterns; 1490 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/inversion/portable.rs: 342 lines scanned with 16 rule patterns and 130 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/lib.rs: 127 lines scanned with 16 rule patterns and 130 registry patterns; 23 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/limbs.rs: 59 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/macros.rs: 163 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/pallas.rs: 164 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/serde_impl.rs: 447 lines scanned with 16 rule patterns and 130 registry patterns; 315 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/vesta.rs: 72 lines scanned with 16 rule patterns and 130 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "osv_advisories",
+      "detail": "111 pinned packages queried at OSV.dev; 2 affected (2 of them only in development or build dependencies)",
+      "status": "checked"
+    }
+  ],
+  "coverage_grouped": [
+    {
+      "area": "dependencies",
+      "status": "checked",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "Cargo.lock: 111 dependencies parsed (111 pinned)",
+        "Cargo.toml: 17 dependencies parsed (0 pinned)",
+        "sage/pyproject.toml: 2 dependencies parsed (0 pinned)"
+      ]
+    },
+    {
+      "area": "source_code",
+      "status": "checked",
+      "count": 31,
+      "rows": 31,
+      "examples": [
+        "lean/scripts/asm_source.py: 800 lines scanned with 16 rule patterns and 130 registry patterns",
+        "lean/scripts/check_export_axioms.py: 516 lines scanned with 16 rule patterns and 130 registry patterns",
+        "lean/scripts/check_export_coverage.py: 54 lines scanned with 16 rule patterns and 130 registry patterns"
+      ]
+    },
+    {
+      "area": "tls_key_exchange_groups",
+      "status": "insufficient_data",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "lean/scripts/gen_aarch64.py line 767: not in the algorithm registry, not assessed: []"
+      ]
+    },
+    {
+      "area": "tls_configuration",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "lean/scripts/gen_aarch64.py: openssl TLS directives parsed"
+      ]
+    },
+    {
+      "area": "osv_advisories",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "111 pinned packages queried at OSV.dev; 2 affected (2 of them only in development or build dependencies)"
+      ]
+    }
+  ],
+  "not_checked": [
+    {
+      "area": "tls_key_exchange_groups",
+      "detail": "lean/scripts/gen_aarch64.py line 767: not in the algorithm registry, not assessed: []",
+      "status": "insufficient_data"
+    }
+  ],
+  "not_checked_grouped": [
+    {
+      "area": "tls_key_exchange_groups",
+      "status": "insufficient_data",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "lean/scripts/gen_aarch64.py line 767: not in the algorithm registry, not assessed: []"
+      ]
+    }
+  ],
+  "compact_at": 30,
+  "authorization": null,
+  "assets": {
+    "registered": [],
+    "examined_inputs": [
+      "111 pinned packages queried at OSV.dev; 2 affected (2 of them only in development or build dependencies)",
+      "Cargo.lock",
+      "Cargo.toml",
+      "lean/scripts/asm_source.py",
+      "lean/scripts/check_export_axioms.py",
+      "lean/scripts/check_export_coverage.py",
+      "lean/scripts/gen.py",
+      "lean/scripts/gen_aarch64.py",
+      "lean/scripts/gen_hull.py",
+      "lean/scripts/gen_x86_64.py",
+      "lean/scripts/verify_hull_certificate.py",
+      "sage/pyproject.toml",
+      "src/arithmetic.rs",
+      "src/arithmetic/curves.rs",
+      "src/arithmetic/fields.rs",
+      "src/asm/aarch64.rs",
+      "src/asm/entry.rs",
+      "src/asm/mod.rs",
+      "src/asm/x86_64.rs",
+      "src/curves.rs",
+      "src/deferred.rs",
+      "src/fields.rs",
+      "src/fields/fp.rs",
+      "src/fields/fq.rs",
+      "src/fields/modinv62.rs",
+      "src/glv.rs",
+      "src/hashtocurve.rs",
+      "src/inversion.rs",
+      "src/inversion/portable.rs",
+      "src/lib.rs",
+      "src/limbs.rs",
+      "src/macros.rs",
+      "src/pallas.rs",
+      "src/serde_impl.rs",
+      "src/vesta.rs"
+    ]
+  },
+  "dismissed": [],
+  "triage": null,
+  "summary": {
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 0,
+      "info": 2
+    },
+    "by_classification": {
+      "confirmed_vulnerability": 0,
+      "known_vulnerable_component": 0,
+      "confirmed_misconfiguration": 0,
+      "potential_crypto_risk": 0,
+      "pq_long_term_risk": 1,
+      "improvement": 1,
+      "insufficient_data": 1
+    },
+    "total": 3,
+    "posture_index": 100,
+    "pq_vulnerable_share": 55.6,
+    "inventory_total": 9,
+    "inventory_by_quantum_status": {
+      "not_applicable": 4,
+      "vulnerable_shor": 5
+    }
+  },
+  "findings": [
+    {
+      "id": "eaf28799-c374-4c60-82b4-8afcaa4eef97",
+      "public_id": "QSI-2026-07555",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))",
+      "description": "21 упоминаний Pasta curves (Pallas/Vesta) в 4 файл(ах), например src/curves.rs:1066. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте src/curves.rs:1066 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "source-code:Pasta curves (Pallas/Vesta):general",
+      "data_source": "src/curves.rs",
+      "analyzer": "source_code 1.2.0",
+      "detected_at": "2026-10-30T20:59:33.386947+00:00",
+      "risk_score": 34.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "unspecified",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life",
+          "margin_years": 7.0
+        },
+        "score": 34.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "src/curves.rs",
+          "location": "line 1066",
+          "content": " 1065 | \n 1066 | new_curve_impl!(\n 1067 |     (pub),",
+          "content_sha256": "83fde1e70d213628f3c9976ebe67c2fc74436f36ef46ec926e4a9a6d8c655713",
+          "source_sha256": "91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490156+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1066"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/curves.rs",
+          "location": "line 1070",
+          "content": " 1069 |     EpAffine,\n 1070 |     IsoEp,\n 1071 |     Fp,",
+          "content_sha256": "253bef6339b63f0bb960716cecb41d520c6abeaf222cd184554270b0b2b32254",
+          "source_sha256": "91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490165+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1070"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/curves.rs",
+          "location": "line 1080",
+          "content": " 1079 | );\n 1080 | new_curve_impl!(\n 1081 |     (pub),",
+          "content_sha256": "5cd0058ebbc73509bd9582c2a6387318e3915238dafa8a023b6305bc4534afb5",
+          "source_sha256": "91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490168+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1080"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/lib.rs",
+          "location": "line 45",
+          "content": "   44 | pub mod deferred;\n   45 | pub mod pallas;\n   46 | pub mod vesta;",
+          "content_sha256": "d613a2d1a40df0eefae7099af56302a158e0b43c5aaee481a42a9a5ae4969f68",
+          "source_sha256": "bf59271f6794fa7fad77adc3921e296f56cda92f57dbe6106647d72d56be4eb4",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490171+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L45"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/lib.rs",
+          "location": "line 46",
+          "content": "   45 | pub mod pallas;\n   46 | pub mod vesta;\n   47 | ",
+          "content_sha256": "8e4a619713e5ddc491f9bf374652eaf2bd71bdb26e86c1080c230108f94ae670",
+          "source_sha256": "bf59271f6794fa7fad77adc3921e296f56cda92f57dbe6106647d72d56be4eb4",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490175+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L46"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/pallas.rs",
+          "location": "line 27",
+          "content": "   26 |     // implement Shake128 any more but that's fine.\n   27 |     let r = super::IsoEp::new_jacobian(\n   28 |         Base::from_raw([",
+          "content_sha256": "574f80fe0cb9f247fda677dce82366e1f115a07dde50d6e1251558bcde6a769f",
+          "source_sha256": "b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490178+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L27"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/pallas.rs",
+          "location": "line 48",
+          "content": "   47 |     .unwrap();\n   48 |     let p = super::hashtocurve::iso_map::<_, Point, super::IsoEp>(&r, &Ep::ISOGENY_CONSTANTS);\n   49 |     let (x, y, z) = p.jacobian_coordinates();",
+          "content_sha256": "219f417612949fbca47e488784fe57ec076287462f01e56410b5316be29e1ad2",
+          "source_sha256": "b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490181+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L48"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/pallas.rs",
+          "location": "line 63",
+          "content": "   62 |     assert!(bool::from(r2.is_on_curve()));\n   63 |     let p2 = super::hashtocurve::iso_map::<_, Point, super::IsoEp>(&r2, &Ep::ISOGENY_CONSTANTS);\n   64 |     assert!(bool::from(p2.is_on_curve()));",
+          "content_sha256": "ea70784da2cdf3146cf852d890a5d602b3f61f9968c725d74d46e929ff137966",
+          "source_sha256": "b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490184+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L63"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/vesta.rs",
+          "location": "line 21",
+          "content": "   20 |     use crate::arithmetic::CurveExt;\n   21 |     use crate::curves::IsoEq;\n   22 |     use crate::hashtocurve::map_to_curve_simple_swu;",
+          "content_sha256": "bea22f200f9dd677668e3ace45534bf3c4dcba72ef012b13f32e79a555a8c70f",
+          "source_sha256": "76dab33aa7bc55ae409c5711cc263e1fd46726575922ca636c41a35779364bde",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490188+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L21"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/vesta.rs",
+          "location": "line 25",
+          "content": "   24 |     // The zero input is a special case.\n   25 |     let p: IsoEq = map_to_curve_simple_swu::<Fq, Eq, IsoEq>(&Fq::zero(), Eq::THETA, Eq::Z);\n   26 |     let (x, y, z) = p.jacobian_coordinates();",
+          "content_sha256": "177934d421270aecd9abe365658eb2b9f729d8eb4998339b2dee10bdc7fd1a38",
+          "source_sha256": "76dab33aa7bc55ae409c5711cc263e1fd46726575922ca636c41a35779364bde",
+          "collector": "source_code 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.490191+00:00",
+          "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L25"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования Pasta curves (Pallas/Vesta) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию Pasta curves (Pallas/Vesta) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "69eeb0a3-27a2-4fff-a825-d2d7496669fd",
+      "public_id": "QSI-2026-07557",
+      "rule_id": "DEP-ADVISORY-DEV",
+      "title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 3 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375; bincode@1.3.3 [dev]: RUSTSEC-2025-0141. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
+      "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
+      "retest": "Повторите сканирование зависимостей после обновления.",
+      "limitations": "Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.",
+      "method": "Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.",
+      "repro": "Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в Cargo.lock.",
+      "category": "dependencies",
+      "classification": "improvement",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies:crates.io:non-runtime",
+      "data_source": "OSV.dev",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-30T20:59:33.570483+00:00",
+      "risk_score": 15.5,
+      "risk_breakdown": {
+        "score": 15.5,
+        "factors": {
+          "ease": 1.0,
+          "asset": 0.6,
+          "impact": 0.23,
+          "urgency": 0.6,
+          "exposure": 0.2,
+          "severity": 0.05,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 22.85,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.6,
+          "urgency": 6.0,
+          "exposure": 3.0,
+          "severity": 1.25,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "OSV-DEV",
+          "url": "https://osv.dev/",
+          "title": "OSV.dev — open-source vulnerability database and API",
+          "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+          "publisher": "Open Source Security Foundation"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "tool_output",
+          "source": "OSV.dev (crates.io)",
+          "location": "Cargo.lock",
+          "content": "atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375\nbincode@1.3.3 [dev]: RUSTSEC-2025-0141",
+          "content_sha256": "a929489dbe602baa22761100a6619ac454c7430823f7fe7c7e96022bb2fefb48",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.757553+00:00",
+          "url": "https://osv.dev/"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "root_cause",
+          "action": "Обновите зависимости разработки и сборки из доказательства.",
+          "rationale": "Устраняет первопричину, описанную в находке.",
+          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "low",
+          "dependencies": "Окно изменений и согласование владельца.",
+          "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+          "pre_tests": "Воспроизведите находку по описанным шагам.",
+          "post_tests": "Выполните процедуру повторной проверки из находки.",
+          "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "3cfa4d34-d268-41df-874a-8877c40461fd",
+      "public_id": "QSI-2026-07556",
+      "rule_id": "DEP-NO-PQC-LIBRARY",
+      "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
+      "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group), но ни одной из списка поддерживающих PQC.",
+      "impact": "Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.",
+      "recommendation": "Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).",
+      "retest": "Повторите сканирование после обновлений.",
+      "limitations": "Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.",
+      "method": "Сопоставление названий зависимостей.",
+      "repro": "Изучите перечисленные в доказательстве манифесты.",
+      "category": "post_quantum",
+      "classification": "insufficient_data",
+      "severity": "info",
+      "confidence": "medium",
+      "preliminary": true,
+      "status": "open",
+      "triage": null,
+      "affected_asset": "dependencies",
+      "data_source": "dependency manifests",
+      "analyzer": "dependencies 1.2.0",
+      "detected_at": "2026-10-30T20:59:33.466053+00:00",
+      "risk_score": 13.3,
+      "risk_breakdown": {
+        "score": 13.3,
+        "factors": {
+          "ease": 0.6,
+          "asset": 0.6,
+          "impact": 0.24,
+          "urgency": 0.3,
+          "exposure": 0.3,
+          "severity": 0.05,
+          "exploitability": 0.0
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 19.55,
+        "references": [],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 4.8,
+          "urgency": 3.0,
+          "exposure": 4.5,
+          "severity": 1.25,
+          "exploitability": 0.0
+        },
+        "confidence_multiplier": 0.68
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "FIPS203",
+          "url": "https://csrc.nist.gov/pubs/fips/203/final",
+          "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        },
+        {
+          "key": "FIPS204",
+          "url": "https://csrc.nist.gov/pubs/fips/204/final",
+          "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+          "status": "final (August 2024)",
+          "publisher": "NIST"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "dependency",
+          "source": "Cargo.lock, Cargo.toml, sage/pyproject.toml",
+          "location": null,
+          "content": "Crypto libraries: ff, group",
+          "content_sha256": "8394c464da802a3186151760bcefdd3dd06a8ad0e233375abbe28269a50aa4c6",
+          "source_sha256": null,
+          "collector": "dependencies 1.2.0",
+          "collected_at": "2026-10-30T20:59:33.576291+00:00",
+          "url": null
+        }
+      ],
+      "remediation": []
+    }
+  ],
+  "pq": {
+    "mosca": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "scenario": "early",
+      "kind": "key_establishment"
+    },
+    "mosca_signature": {
+      "x": 10,
+      "y": 5,
+      "z": 8,
+      "margin": 7,
+      "verdict": "migration_late_under_scenario",
+      "kind": "signature",
+      "x_assumed": false
+    },
+    "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
+    "pq_findings": [
+      "QSI-2026-07555"
+    ],
+    "roles": [
+      {
+        "role": "general",
+        "label": "роль не определена",
+        "action": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости",
+        "criticality": 3,
+        "severity": "medium",
+        "algorithms": [
+          {
+            "algorithm": "Pasta curves (Pallas/Vesta)",
+            "files": 4
+          }
+        ],
+        "findings": [
+          "QSI-2026-07555"
+        ],
+        "files": 4
+      }
+    ],
+    "maturity": {
+      "level": 0,
+      "label": "постквантовой криптографии нет",
+      "next": "Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.",
+      "facts": []
+    },
+    "quantum_algorithms": [
+      {
+        "id": "shor-ecdlp",
+        "name": "Алгоритм Шора — дискретный логарифм на эллиптических кривых",
+        "effect": "breaks",
+        "effect_label": "взламывает",
+        "model": "Q1",
+        "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
+        "affected": [
+          {
+            "algorithm": "Pasta curves (Pallas/Vesta)",
+            "rows": 5
+          }
+        ],
+        "audit": "Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.",
+        "practicality": "Оценки 2026 года для 256-битной кривой: менее 1200 логических кубитов и 90 млн вентилей Тоффоли, менее полумиллиона физических сверхпроводниковых кубитов и минуты работы (Баббуш и др.); 1193 логических кубита при большем числе вентилей (Шевиньяр–Фук–Шроттенлохер); P-256 за несколько дней на 26 000 кубитов на нейтральных атомах (Кейн и др.). Сценарии при заявленных допущениях, а не прогнозы.",
+        "sources": [
+          "PROOS-ZALKA2003",
+          "ROETTELER2017",
+          "LITINSKI2023",
+          "CFS2026",
+          "BABBUSH2026",
+          "CAIN2026"
+        ]
+      }
+    ],
+    "crqc_basis": {
+      "likelihood": [
+        {
+          "years": 5,
+          "likelihood": "~15%",
+          "ref": "GRI-QTT",
+          "wording": "усреднённая оценка"
+        },
+        {
+          "years": 10,
+          "likelihood": "28-49%",
+          "ref": "GRI-QTT",
+          "wording": "вполне возможно"
+        },
+        {
+          "years": 15,
+          "likelihood": "51-70%",
+          "ref": "GRI-QTT",
+          "wording": "вероятно"
+        }
+      ],
+      "scenario": {
+        "key": "early",
+        "years": 8,
+        "rationale": "Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.",
+        "refs": [
+          "GRI-QTT",
+          "BSI-CRQC"
+        ]
+      }
+    },
+    "readiness": null
+  },
+  "plan": {
+    "30": [],
+    "60": [],
+    "90": [
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования Pasta curves (Pallas/Vesta) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-07555",
+        "finding_title": "Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию Pasta curves (Pallas/Vesta) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-07555",
+        "finding_title": "Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Обновите зависимости разработки и сборки из доказательства.",
+        "rationale": "Устраняет первопричину, описанную в находке.",
+        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "low",
+        "dependencies": "Окно изменений и согласование владельца.",
+        "side_effects": "Обновление инструментов может изменить результат сборки; сравните релизные артефакты.",
+        "pre_tests": "Воспроизведите находку по описанным шагам.",
+        "post_tests": "Выполните процедуру повторной проверки из находки.",
+        "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
+        "status": "todo",
+        "finding": "QSI-2026-07557",
+        "finding_title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
+        "severity": "info"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "blockchain",
+      "version": "1.0.0"
+    },
+    {
+      "name": "certificates",
+      "version": "1.1.0"
+    },
+    {
+      "name": "chain_map",
+      "version": "1.0.0"
+    },
+    {
+      "name": "configs",
+      "version": "1.1.0"
+    },
+    {
+      "name": "dependencies",
+      "version": "1.2.0"
+    },
+    {
+      "name": "inventory_document",
+      "version": "1.1.0"
+    },
+    {
+      "name": "solidity",
+      "version": "1.2.0"
+    },
+    {
+      "name": "source_code",
+      "version": "1.3.0"
+    },
+    {
+      "name": "tls_code",
+      "version": "1.1.0"
+    },
+    {
+      "name": "tls_live",
+      "version": "1.0.0"
+    },
+    {
+      "name": "qsi-engine",
+      "version": "1.2.0"
+    },
+    {
+      "name": "OSV.dev API",
+      "version": "v1"
+    }
+  ],
+  "references": [
+    {
+      "key": "CFS2026",
+      "title": "C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280)",
+      "publisher": "IACR ePrint",
+      "url": "https://eprint.iacr.org/2026/280",
+      "status": "revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates"
+    },
+    {
+      "key": "CVSS31",
+      "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+      "publisher": "FIRST",
+      "url": "https://www.first.org/cvss/v3.1/specification-document",
+      "status": "final"
+    },
+    {
+      "key": "LITINSKI2023",
+      "title": "D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2306.08585",
+      "status": "preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions"
+    },
+    {
+      "key": "FIPS203",
+      "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS204",
+      "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "FIPS205",
+      "title": "FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "status": "final (August 2024)"
+    },
+    {
+      "key": "PROOS-ZALKA2003",
+      "title": "J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141)",
+      "publisher": "Quantum Information & Computation",
+      "url": "https://doi.org/10.26421/QIC3.4-3",
+      "status": "peer-reviewed article"
+    },
+    {
+      "key": "CAIN2026",
+      "title": "M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28627",
+      "status": "preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer"
+    },
+    {
+      "key": "MOSCA2018",
+      "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+      "publisher": "IEEE",
+      "url": "https://doi.org/10.1109/MSP.2018.3761723",
+      "status": "peer-reviewed article; source of the x + y > z migration inequality"
+    },
+    {
+      "key": "ROETTELER2017",
+      "title": "M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017)",
+      "publisher": "IACR / arXiv",
+      "url": "https://arxiv.org/abs/1706.06752",
+      "status": "peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates"
+    },
+    {
+      "key": "NISTIR8547",
+      "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+      "publisher": "NIST",
+      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+    },
+    {
+      "key": "OSV-DEV",
+      "url": "https://osv.dev/",
+      "title": "OSV.dev — open-source vulnerability database and API",
+      "status": "the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>",
+      "publisher": "Open Source Security Foundation"
+    },
+    {
+      "key": "SHOR1997",
+      "url": "https://doi.org/10.1137/S0097539795293172",
+      "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+      "status": "peer-reviewed article",
+      "publisher": "SIAM"
+    },
+    {
+      "key": "BABBUSH2026",
+      "title": "R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2603.28846",
+      "status": "preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes"
+    }
+  ],
+  "references_reviewed": "2026-10-13",
+  "inventory": [
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14.0",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14.0",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14",
+      "usage": "crates.io dependency",
+      "library": "ff (jubjub)",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14",
+      "usage": "crates.io dependency",
+      "library": "group (jubjub)",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (8 reference(s))",
+      "library": "",
+      "location": "src/curves.rs:1066",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 8
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "family": "zk_proof",
+      "parameter": "Pallas",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/lib.rs:45",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "family": "zk_proof",
+      "parameter": "Vesta",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/lib.rs:46",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (8 reference(s))",
+      "library": "",
+      "location": "src/pallas.rs:27",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 8
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "family": "zk_proof",
+      "parameter": "",
+      "usage": "source code (3 reference(s))",
+      "library": "",
+      "location": "src/vesta.rs:21",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 3
+    }
+  ],
+  "inventory_grouped": [
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14.0",
+      "library": "ff (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14.0",
+      "library": "group (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14",
+      "library": "ff (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Crypto library",
+      "parameter": "0.14",
+      "library": "group (jubjub)",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "Cargo.toml"
+      ]
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "parameter": "",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 3,
+      "rows": 3,
+      "examples": [
+        "src/curves.rs:1066",
+        "src/pallas.rs:27",
+        "src/vesta.rs:21"
+      ]
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "parameter": "Pallas",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/lib.rs:45"
+      ]
+    },
+    {
+      "algorithm": "Pasta curves (Pallas/Vesta)",
+      "parameter": "Vesta",
+      "library": "",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "src/lib.rs:46"
+      ]
+    }
+  ]
+}

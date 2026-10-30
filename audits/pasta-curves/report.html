@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отчёт об аудите безопасности и постквантовой готовности — pasta-curves @ e3c0f0246f56</title>
+<style>
+  :root {
+    --ink: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --soft: #f5f5f7; --accent: #0a66c2;
+    --critical: #b42318; --high: #d1440c; --medium: #b54708; --low: #2e7d32; --info: #475467;
+  }
+  @page {
+    size: A4; margin: 22mm 18mm 20mm 18mm;
+    @top-left { content: "pasta-curves @ e3c0f0246f56 · Отчёт об аудите безопасности и постквантовой готовности"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 2919c46477b0"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @bottom-left { content: "Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является ю…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
+  }
+  @page cover { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-right { content: none } @bottom-left { content: none } }
+  * { box-sizing: border-box; }
+  html { font-family: Inter, "DejaVu Sans", -apple-system, "Segoe UI", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+  body { margin: 0; background: #fff; }
+  @media screen { body { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; } }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-top: 4pt; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h4 { font-size: 10pt; margin: 10pt 0 4pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  section.chapter { break-before: page; }
+  @media screen { section.chapter { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 24px; } }
+  .cover { page: cover; height: 297mm; padding: 32mm 22mm; display: flex; flex-direction: column; justify-content: space-between;
+           background: linear-gradient(160deg, #0b1220 0%, #12223f 55%, #1b3a6b 100%); color: #f5f5f7; }
+  @media screen { .cover { height: auto; min-height: 520px; border-radius: 20px; padding: 48px; } }
+  .cover .brand { font-size: 10pt; letter-spacing: 0.18em; text-transform: uppercase; color: #9fb4d9; }
+  .cover h1 { font-size: 28pt; font-weight: 700; margin: 14mm 0 6mm; max-width: 150mm; }
+  .cover .project { font-size: 16pt; color: #dbe5f5; }
+  .cover table { color: #dbe5f5; font-size: 9pt; border-collapse: collapse; }
+  .cover td { padding: 3pt 14pt 3pt 0; vertical-align: top; }
+  .cover td:first-child { color: #9fb4d9; }
+  .triage { border-left: 3pt solid var(--accent); background: var(--soft); padding: 6pt 9pt; border-radius: 4pt; }
+  .demo { display: inline-block; margin-top: 6mm; padding: 3pt 8pt; border: 1px solid #f5c26b; color: #f5c26b; border-radius: 6pt; font-size: 9pt; }
+  .toc ol { padding-left: 16pt; columns: 2; column-gap: 24pt; }
+  .toc li { margin-bottom: 3pt; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  table.data { width: 100%; border-collapse: collapse; margin: 6pt 0 12pt; font-size: 8.6pt; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding: 4pt 6pt; }
+  table.data td { border-bottom: 1px solid var(--line); padding: 4pt 6pt; vertical-align: top; word-break: break-word; }
+  table.data tr { break-inside: avoid; }
+  .kpis { display: flex; gap: 8pt; margin: 8pt 0 14pt; flex-wrap: wrap; }
+  .kpi { flex: 1 1 0; min-width: 70pt; background: var(--soft); border-radius: 10pt; padding: 9pt 10pt; }
+  .kpi .v { font-size: 18pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  .sev { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; font-weight: 600; color: #fff; white-space: nowrap; }
+  .sev-critical { background: var(--critical); } .sev-high { background: var(--high); } .sev-medium { background: var(--medium); }
+  .sev-low { background: var(--low); } .sev-info { background: var(--info); }
+  .tag { display: inline-block; padding: 1pt 6pt; border-radius: 10pt; font-size: 7.6pt; background: var(--soft); color: var(--muted); margin-right: 3pt; }
+  .tag.pre { background: #fff4e5; color: #8a4b00; }
+  .bar { height: 6pt; background: var(--soft); border-radius: 3pt; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .finding { border: 1px solid var(--line); border-radius: 12pt; padding: 10pt 12pt; margin: 0 0 12pt; break-inside: auto; }
+  .finding header { display: flex; justify-content: space-between; gap: 8pt; align-items: baseline; break-after: avoid; }
+  .finding .fid { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; color: var(--muted); }
+  .finding h3 { margin: 2pt 0 6pt; font-size: 11.5pt; }
+  dl.meta { display: grid; grid-template-columns: 30% 70%; gap: 2pt 8pt; margin: 0 0 8pt; font-size: 8.6pt; }
+  dl.meta dt { color: var(--muted); } dl.meta dd { margin: 0; word-break: break-word; }
+  pre { background: #0f172a; color: #e2e8f0; font-family: "DejaVu Sans Mono", monospace; font-size: 7.4pt; padding: 7pt 9pt; border-radius: 8pt;
+        white-space: pre-wrap; word-break: break-all; margin: 4pt 0 8pt; }
+  .ev-meta { font-size: 7.4pt; color: var(--muted); }
+  .note { background: var(--soft); border-radius: 10pt; padding: 8pt 10pt; font-size: 8.8pt; color: #3a3a3c; margin: 8pt 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">Quantum Security Intelligence</div>
+    <h1>Отчёт об аудите безопасности и постквантовой готовности</h1>
+    <div class="project">pasta-curves @ e3c0f0246f56 · Electric Coin Company (Zcash) — публичный репозиторий (пассивная проверка)</div>
+  </div>
+  <table>
+    <tr><td>Организация</td><td>QSI</td></tr>
+    <tr><td>Дата отчёта</td><td>2026-10-30 20:59 UTC</td></tr>
+    <tr><td>Версия отчёта</td><td>1</td></tr>
+    <tr><td>Запуск аудита</td><td>ebc4cacf-0b49-4605-b458-daffef75c78e · Документальный аудит · 2026-10-30 20:59 UTC</td></tr>
+    <tr><td>Версия анализатора</td><td>qsi-engine 1.2.0</td></tr>
+    <tr><td>Профиль риска</td><td>Криптобиржа, кастодиан или кошелёк</td></tr>
+    <tr><td>SHA-256 содержимого</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">2919c46477b0ece07cb139e575e93a0c5fa3adc70e68306085e2b990adc39eba</td></tr>
+<tr><td>Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
+</div>
+
+<section class="toc chapter">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#executive_summary">Резюме для руководства</a></li>
+    <li><a href="#scope">Область и границы проверки</a></li>
+    <li><a href="#methodology">Методология</a></li>
+    <li><a href="#assets">Проверенные и непроверенные активы</a></li>
+    <li><a href="#architecture">Краткое описание архитектуры</a></li>
+    <li><a href="#posture">Общая оценка состояния безопасности</a></li>
+    <li><a href="#summary_by_severity">Сводка находок по серьёзности</a></li>
+    <li><a href="#details">Подробное описание находок</a></li>
+    <li><a href="#evidence">Подтверждающие доказательства</a></li>
+    <li><a href="#pq">Постквантовая оценка</a></li>
+    <li><a href="#limitations">Ограничения и допущения</a></li>
+    <li><a href="#plan">План устранения проблем</a></li>
+    <li><a href="#priorities">Приоритеты на 30, 60 и 90 дней</a></li>
+    <li><a href="#retests">Проверки после устранения</a></li>
+    <li><a href="#tools">Использованные инструменты</a></li>
+    <li><a href="#references">Источники и нормативные документы</a></li>
+    <li><a href="#appendices">Приложения</a></li>
+  </ol>
+  <p class="note">Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</p>
+</section>
+
+<section class="chapter" id="executive_summary">
+  <h2>Резюме для руководства</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">3</div><div class="l">Всего находок</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-critical">Критическая</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-high">Высокая</span></div></div>
+    <div class="kpi"><div class="v">1</div><div class="l"><span class="sev sev-medium">Средняя</span></div></div>
+    <div class="kpi"><div class="v">0</div><div class="l"><span class="sev sev-low">Низкая</span></div></div>
+  </div>
+  <table class="data">
+    <tr><th>Классификация</th><th>Количество</th></tr>
+<tr><td>Подтверждённая техническая уязвимость</td><td>0</td></tr><tr><td>Известная уязвимая версия компонента</td><td>0</td></tr><tr><td>Подтверждённая ошибка конфигурации</td><td>0</td></tr><tr><td>Потенциальный криптографический риск</td><td>0</td></tr><tr><td>Долгосрочный постквантовый риск</td><td>1</td></tr><tr><td>Рекомендация по улучшению</td><td>1</td></tr><tr><td>Недостаточность данных</td><td>1</td></tr>  </table>
+  <h3>Top 5</h3>
+  <table class="data">
+    <tr><th>ID</th><th>Серьёзность</th><th>Подробное описание находок</th><th>Балл приоритета</th></tr>
+<tr><td>QSI-2026-07555</td><td><span class="sev sev-medium">Средняя</span></td><td>Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов)) <span class="tag pre">предварительно</span></td><td>34.2</td></tr><tr><td>QSI-2026-07557</td><td><span class="sev sev-info">Информационная</span></td><td>3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки <span class="tag pre">предварительно</span></td><td>15.5</td></tr><tr><td>QSI-2026-07556</td><td><span class="sev sev-info">Информационная</span></td><td>Не обнаружено криптобиблиотек с поддержкой PQC <span class="tag pre">предварительно</span></td><td>13.3</td></tr>  </table>
+  <p class="note">Неравенство Моски (x + y &gt; z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+<p class="note"><strong>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.</strong> Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p></section>
+
+<section class="chapter" id="scope">
+  <h2>Область и границы проверки</h2>
+  <p><strong>Режим:</strong> Документальный аудит</p>
+<p><strong>Репозиторий:</strong> <a href="https://github.com/zcash/pasta_curves">https://github.com/zcash/pasta_curves</a> @ <span class="small">e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9</span> — ссылки в доказательствах открывают строки на этом коммите.</p>  <h3>Предоставленные входные данные</h3>
+  <p>35 файлов, всего 771112 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.</p>
+</section>
+
+<section class="chapter" id="methodology">
+  <h2>Методология</h2>
+  <p>Аудит выполнен движком QSI 1.2.0. Каждый анализатор формирует факты (правило, параметры, доказательства); тексты находок генерируются из каталога правил. Источники методики указаны в разделе «Источники и нормативные документы».</p>
+  <p>Приоритизация: объяснимая взвешенная модель (серьёзность, вероятность эксплуатации, доступность атакующему, влияние на конфиденциальность/целостность/доступность с весами профиля «Криптобиржа, кастодиан или кошелёк», критичность актива, срочность, простота устранения) с множителем уверенности. CVSS v3.1 применяется только к техническим уязвимостям с определённым вектором. Для долгосрочных квантовых рисков используется неравенство Моски; их серьёзность ограничена уровнем «Средняя», и они никогда не представляются как эксплуатируемые уязвимости.</p>
+  <p>Классификация находок: подтверждённая техническая уязвимость; известная уязвимая версия компонента (версия зависимости названа в бюллетене; затронутый код может не вызываться — это проверяется отдельно, а подтверждённая проверкой становится уязвимостью); подтверждённая ошибка конфигурации; потенциальный криптографический риск; долгосрочный постквантовый риск; рекомендация по улучшению; недостаточность данных. Находки на основе эвристик помечены как предварительные; решения аналитика показаны рядом с находками.</p>
+  <h3>Покрытие проверок</h3>
+  <table class="data"><tr><th>Область</th><th>Статус</th><th>Количество</th><th>Примеры</th></tr>
+<tr><td>dependencies</td><td>проверено</td><td>3</td><td class="small">Cargo.lock: 111 dependencies parsed (111 pinned); Cargo.toml: 17 dependencies parsed (0 pinned); sage/pyproject.toml: 2 dependencies parsed (0 pinned)</td></tr><tr><td>source_code</td><td>проверено</td><td>31</td><td class="small">lean/scripts/asm_source.py: 800 lines scanned with 16 rule patterns and 130 registry patterns; lean/scripts/check_export_axioms.py: 516 lines scanned with 16 rule patterns and 130 registry patterns; lean/scripts/check_export_coverage.py: 54 lines scanned with 16 rule patterns and 130 registry patterns</td></tr><tr><td>tls_key_exchange_groups</td><td>Недостаточность данных</td><td>1</td><td class="small">lean/scripts/gen_aarch64.py line 767: not in the algorithm registry, not assessed: []</td></tr><tr><td>tls_configuration</td><td>проверено</td><td>1</td><td class="small">lean/scripts/gen_aarch64.py: openssl TLS directives parsed</td></tr><tr><td>osv_advisories</td><td>проверено</td><td>1</td><td class="small">111 pinned packages queried at OSV.dev; 2 affected (2 of them only in development or build dependencies)</td></tr>  </table>
+  <p class="note">Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом.</p>
+</section>
+
+<section class="chapter" id="assets">
+  <h2>Проверенные и непроверенные активы</h2>
+  <p><strong>Предоставленные входные данные:</strong> 35 (входные файлы: C)</p>
+  <h3>Не проверено</h3>
+  <ul><li>tls_key_exchange_groups: lean/scripts/gen_aarch64.py line 767: not in the algorithm registry, not assessed: []</li></ul>
+</section>
+
+<section class="chapter" id="architecture">
+  <h2>Краткое описание архитектуры</h2>
+  <p>Static review of the source tree pasta-curves at e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9. 35 files analysed; of 180 files, 38 are test, fuzzing, benchmark or example code and were left out, 107 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/ISSUE_TEMPLATE/eli15.md, .github/dependabot.yml, .github/workflows/asm.yml, .github/workflows/book.yml. 29 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner&#39;s systems.</p>
+</section>
+
+<section class="chapter" id="posture">
+  <h2>Общая оценка состояния безопасности</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">100</div><div class="l">Ориентировочный индекс состояния (0–100)</div></div>
+    <div class="kpi"><div class="v">55.6%</div><div class="l">Доля квантово-уязвимых элементов инвентаризации</div></div>
+    <div class="kpi"><div class="v">9</div><div class="l">Криптографическая инвентаризация</div></div>
+  </div>
+  <p class="note">Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью.</p>
+</section>
+
+<section class="chapter" id="summary_by_severity">
+  <h2>Сводка находок по серьёзности</h2>
+  <table class="data">
+  <tr><td style="width:22%"><span class="sev sev-critical">Критическая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-high">Высокая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-medium">Средняя</span></td><td style="width:8%">1</td>
+  <td><div class="bar"><span style="width: 50.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-low">Низкая</span></td><td style="width:8%">0</td>
+  <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
+  <tr><td style="width:22%"><span class="sev sev-info">Информационная</span></td><td style="width:8%">2</td>
+  <td><div class="bar"><span style="width: 100.0%"></span></div></td></tr>
+  </table>
+  <table class="data"><tr><th>ID</th><th>Подробное описание находок</th><th>Классификация</th><th>Серьёзность</th><th>Уверенность</th></tr>
+<tr><td>QSI-2026-07555</td><td>Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))</td><td class="small">Долгосрочный постквантовый риск</td><td><span class="sev sev-medium">Средняя</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07557</td><td>3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки</td><td class="small">Рекомендация по улучшению</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr><tr><td>QSI-2026-07556</td><td>Не обнаружено криптобиблиотек с поддержкой PQC</td><td class="small">Недостаточность данных</td><td><span class="sev sev-info">Информационная</span></td><td>Средняя, предварительно</td></tr>  </table>
+</section>
+
+<section class="chapter" id="details">
+  <h2>Подробное описание находок</h2>
+  <article class="finding" id="QSI-2026-07555">
+    <header><span class="fid">QSI-2026-07555 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Средняя</span></span></header>
+    <h3>Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))</h3>
+    <p><span class="tag">Долгосрочный постквантовый риск</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>21 упоминаний Pasta curves (Pallas/Vesta) в 4 файл(ах), например src/curves.rs:1066. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>source-code:Pasta curves (Pallas/Vesta):general</dd>
+      <dt>Источник данных</dt><dd>src/curves.rs</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.</dd>
+      <dt>Анализатор</dt><dd>source_code 1.2.0 · 2026-10-30 20:59 UTC</dd>
+      <dt>Балл приоритета</dt><dd>34.2 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+<dt>Неравенство Моски (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → при этом сценарии миграция завершится слишком поздно</dd>    </dl>
+    <h4>Возможные последствия</h4><p>Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).</p>
+    <h4>Шаги воспроизведения</h4><pre>Откройте src/curves.rs:1066 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.</pre>
+    <h4 id="ev-QSI-2026-07555">Подтверждающие доказательства</h4>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1066">src/curves.rs</a> · line 1066 · SHA-256 83fde1e70d213628… · Файл 91d74885713c0303…</div>
+      <pre> 1065 | 
+ 1066 | new_curve_impl!(
+ 1067 |     (pub),</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1070">src/curves.rs</a> · line 1070 · SHA-256 253bef6339b63f0b… · Файл 91d74885713c0303…</div>
+      <pre> 1069 |     EpAffine,
+ 1070 |     IsoEp,
+ 1071 |     Fp,</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1080">src/curves.rs</a> · line 1080 · SHA-256 5cd0058ebbc73509… · Файл 91d74885713c0303…</div>
+      <pre> 1079 | );
+ 1080 | new_curve_impl!(
+ 1081 |     (pub),</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L45">src/lib.rs</a> · line 45 · SHA-256 d613a2d1a40df0ee… · Файл bf59271f6794fa7f…</div>
+      <pre>   44 | pub mod deferred;
+   45 | pub mod pallas;
+   46 | pub mod vesta;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L46">src/lib.rs</a> · line 46 · SHA-256 8e4a619713e5ddc4… · Файл bf59271f6794fa7f…</div>
+      <pre>   45 | pub mod pallas;
+   46 | pub mod vesta;
+   47 | </pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L27">src/pallas.rs</a> · line 27 · SHA-256 574f80fe0cb9f247… · Файл b76caee73b607aab…</div>
+      <pre>   26 |     // implement Shake128 any more but that&#39;s fine.
+   27 |     let r = super::IsoEp::new_jacobian(
+   28 |         Base::from_raw([</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L48">src/pallas.rs</a> · line 48 · SHA-256 219f417612949fbc… · Файл b76caee73b607aab…</div>
+      <pre>   47 |     .unwrap();
+   48 |     let p = super::hashtocurve::iso_map::&lt;_, Point, super::IsoEp&gt;(&amp;r, &amp;Ep::ISOGENY_CONSTANTS);
+   49 |     let (x, y, z) = p.jacobian_coordinates();</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L63">src/pallas.rs</a> · line 63 · SHA-256 ea70784da2cdf314… · Файл b76caee73b607aab…</div>
+      <pre>   62 |     assert!(bool::from(r2.is_on_curve()));
+   63 |     let p2 = super::hashtocurve::iso_map::&lt;_, Point, super::IsoEp&gt;(&amp;r2, &amp;Ep::ISOGENY_CONSTANTS);
+   64 |     assert!(bool::from(p2.is_on_curve()));</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L21">src/vesta.rs</a> · line 21 · SHA-256 bea22f200f9dd677… · Файл 76dab33aa7bc55ae…</div>
+      <pre>   20 |     use crate::arithmetic::CurveExt;
+   21 |     use crate::curves::IsoEq;
+   22 |     use crate::hashtocurve::map_to_curve_simple_swu;</pre>
+      <div class="ev-meta">file_excerpt · <a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L25">src/vesta.rs</a> · line 25 · SHA-256 177934d421270aec… · Файл 76dab33aa7bc55ae…</div>
+      <pre>   24 |     // The zero input is a special case.
+   25 |     let p: IsoEq = map_to_curve_simple_swu::&lt;Fq, Eq, IsoEq&gt;(&amp;Fq::zero(), Eq::THETA, Eq::Z);
+   26 |     let (x, y, z) = p.jacobian_coordinates();</pre>
+    <h4>Ограничения проверки</h4><p class="small">Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.</p>
+    <h4>Рекомендация</h4><p>Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.</p>
+    <h4>Повторная проверка</h4><p>Повторите инвентаризацию после рефакторинга.</p>
+<p class="small muted">P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997); NIST IR 8547 — Transition to Post-Quantum Cryptography Standards; M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018)</p>  </article>
+  <article class="finding" id="QSI-2026-07557">
+    <header><span class="fid">QSI-2026-07557 · DEP-ADVISORY-DEV</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки</h3>
+    <p><span class="tag">Рекомендация по улучшению</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>OSV.dev сообщает 3 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375; bincode@1.3.3 [dev]: RUSTSEC-2025-0141. Манифесты помечают их так (devDependencies, &#34;dev&#34;: true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies:crates.io:non-runtime</dd>
+      <dt>Источник данных</dt><dd>OSV.dev</dd>
+      <dt>Метод обнаружения</dt><dd>Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-30 20:59 UTC</dd>
+      <dt>Балл приоритета</dt><dd>15.5 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.</p>
+    <h4>Шаги воспроизведения</h4><pre>Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в Cargo.lock.</pre>
+    <h4 id="ev-QSI-2026-07557">Подтверждающие доказательства</h4>
+      <div class="ev-meta">tool_output · <a href="https://osv.dev/">OSV.dev (crates.io)</a> · Cargo.lock · SHA-256 a929489dbe602baa…</div>
+      <pre>atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375
+bincode@1.3.3 [dev]: RUSTSEC-2025-0141</pre>
+    <h4>Ограничения проверки</h4><p class="small">Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.</p>
+    <h4>Рекомендация</h4><p>Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование зависимостей после обновления.</p>
+<p class="small muted">OSV.dev — open-source vulnerability database and API</p>  </article>
+  <article class="finding" id="QSI-2026-07556">
+    <header><span class="fid">QSI-2026-07556 · DEP-NO-PQC-LIBRARY</span><span><span class="sev sev-info">Информационная</span></span></header>
+    <h3>Не обнаружено криптобиблиотек с поддержкой PQC</h3>
+    <p><span class="tag">Недостаточность данных</span><span class="tag">Уверенность: Средняя</span><span class="tag pre">предварительно — требует дополнительной проверки</span></p>
+    <p>В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group), но ни одной из списка поддерживающих PQC.</p>
+    <dl class="meta">
+      <dt>Затронутый актив</dt><dd>dependencies</dd>
+      <dt>Источник данных</dt><dd>dependency manifests</dd>
+      <dt>Метод обнаружения</dt><dd>Сопоставление названий зависимостей.</dd>
+      <dt>Анализатор</dt><dd>dependencies 1.2.0 · 2026-10-30 20:59 UTC</dd>
+      <dt>Балл приоритета</dt><dd>13.3 / 100 (Криптобиржа, кастодиан или кошелёк)</dd>
+      <dt>CVSS v3.1</dt><dd>неприменимо</dd>
+    </dl>
+    <h4>Возможные последствия</h4><p>Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.</p>
+    <h4>Шаги воспроизведения</h4><pre>Изучите перечисленные в доказательстве манифесты.</pre>
+    <h4 id="ev-QSI-2026-07556">Подтверждающие доказательства</h4>
+      <div class="ev-meta">dependency · Cargo.lock, Cargo.toml, sage/pyproject.toml · SHA-256 8394c464da802a31…</div>
+      <pre>Crypto libraries: ff, group</pre>
+    <h4>Ограничения проверки</h4><p class="small">Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.</p>
+    <h4>Рекомендация</h4><p>Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).</p>
+    <h4>Повторная проверка</h4><p>Повторите сканирование после обновлений.</p>
+<p class="small muted">FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM); FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)</p>  </article>
+</section>
+
+<section class="chapter" id="evidence">
+  <h2>Подтверждающие доказательства</h2>
+  <table class="data"><tr><th>ID</th><th>Тип</th><th>Источник данных</th><th>SHA-256</th></tr>
+<tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1066">src/curves.rs</a> (line 1066)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">83fde1e70d213628f3c9976ebe67c2fc74436f36ef46ec926e4a9a6d8c655713</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1070">src/curves.rs</a> (line 1070)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">253bef6339b63f0bb960716cecb41d520c6abeaf222cd184554270b0b2b32254</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1080">src/curves.rs</a> (line 1080)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5cd0058ebbc73509bd9582c2a6387318e3915238dafa8a023b6305bc4534afb5</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L45">src/lib.rs</a> (line 45)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d613a2d1a40df0eefae7099af56302a158e0b43c5aaee481a42a9a5ae4969f68</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L46">src/lib.rs</a> (line 46)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8e4a619713e5ddc491f9bf374652eaf2bd71bdb26e86c1080c230108f94ae670</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L27">src/pallas.rs</a> (line 27)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">574f80fe0cb9f247fda677dce82366e1f115a07dde50d6e1251558bcde6a769f</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L48">src/pallas.rs</a> (line 48)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">219f417612949fbca47e488784fe57ec076287462f01e56410b5316be29e1ad2</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L63">src/pallas.rs</a> (line 63)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ea70784da2cdf3146cf852d890a5d602b3f61f9968c725d74d46e929ff137966</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L21">src/vesta.rs</a> (line 21)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bea22f200f9dd677668e3ace45534bf3c4dcba72ef012b13f32e79a555a8c70f</td></tr><tr><td><a href="#ev-QSI-2026-07555">QSI-2026-07555</a></td><td>file_excerpt</td><td><a href="https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L25">src/vesta.rs</a> (line 25)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">177934d421270aecd9abe365658eb2b9f729d8eb4998339b2dee10bdc7fd1a38</td></tr><tr><td><a href="#ev-QSI-2026-07557">QSI-2026-07557</a></td><td>tool_output</td><td><a href="https://osv.dev/">OSV.dev (crates.io)</a> (Cargo.lock)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a929489dbe602baa22761100a6619ac454c7430823f7fe7c7e96022bb2fefb48</td></tr><tr><td><a href="#ev-QSI-2026-07556">QSI-2026-07556</a></td><td>dependency</td><td>Cargo.lock, Cargo.toml, sage/pyproject.toml</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8394c464da802a3186151760bcefdd3dd06a8ad0e233375abbe28269a50aa4c6</td></tr>  </table>
+</section>
+
+<section class="chapter" id="pq">
+  <h2>Постквантовая оценка</h2>
+  <table class="data">
+    <tr><th></th><th>Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом»)</th><th>Подписи (x — сколько подписи и ключи должны оставаться доверенными)</th></tr>
+    <tr><th>Срок жизни данных/ключей x</th><td>10</td><td>10</td></tr>
+    <tr><th>Время миграции y</th><td>5</td><td>5</td></tr>
+    <tr><th>Принятое число лет до CRQC z</th><td>8 (early)</td><td>8</td></tr>
+    <tr><th>x + y − z</th><td>7 → при этом сценарии миграция завершится слишком поздно</td><td>7 → при этом сценарии миграция завершится слишком поздно</td></tr>
+  </table>
+<p class="note">Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.</p>  <h3>Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет</h3>
+  <p><strong>Следующий шаг:</strong> Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.</p>
+  <p class="note">Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам.</p>
+  <h3>Что делают квантово-уязвимые алгоритмы</h3>
+  <table class="data"><tr><th>Роль</th><th>Алгоритмы (файлы)</th><th>ID</th><th>Первый шаг</th></tr>
+<tr><td><strong>роль не определена</strong></td><td>Pasta curves (Pallas/Vesta) (4)</td><td class="small"><a href="#QSI-2026-07555">QSI-2026-07555</a></td><td class="small">Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости</td></tr>  </table>
+  <p class="note">Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня.</p>
+  <p class="note">z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</p>
+  <table class="data"><tr><th>Квантовый статус</th><th>Количество</th></tr>
+<tr><td>н/п</td><td>4</td></tr><tr><td>уязвим (Шор)</td><td>5</td></tr>  </table>
+  <p><strong>Подробное описание находок:</strong> QSI-2026-07555</p>
+  <h3>Анкета постквантовой готовности</h3>
+<p class="muted">Анкета готовности для проекта не заполнялась.</p>  <h3>Квантовые алгоритмы, значимые для этой инвентаризации</h3>
+  <table class="data"><tr><th>Квантовый алгоритм</th><th>Действие</th><th>Алгоритмы из инвентаризации (строк)</th><th>Что это значит для аудита</th></tr>
+<tr><td>Алгоритм Шора — дискретный логарифм на эллиптических кривых<br><span class="small muted">Q1: квантовые вычисления офлайн, классический доступ к жертве</span></td><td>взламывает</td>
+    <td>Pasta curves (Pallas/Vesta) (5)</td><td class="small">Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей.</td></tr>  </table>
+  <p class="note">Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо.</p>
+</section>
+
+<section class="chapter" id="limitations">
+  <h2>Ограничения и допущения</h2>
+  <ul>
+    <li>Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.</li>
+    <li>z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.</li>
+<li>tls_key_exchange_groups — Недостаточность данных: lean/scripts/gen_aarch64.py line 767: not in the algorithm registry, not assessed: []</li>  </ul>
+</section>
+
+<section class="chapter" id="plan">
+  <h2>План устранения проблем</h2>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07555 · P3 · 90 дн.</span><span class="tag">краткосрочное снижение риска</span></header>
+    <h3>Внесите использования Pasta curves (Pallas/Vesta) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.</dd>
+      <dt>Ожидаемый результат</dt><dd>У каждого использования есть владелец, срок жизни и путь миграции.</dd>
+      <dt>Сложность</dt><dd>medium</dd>
+<dt>Зависимости</dt><dd>Доступ к владельцам систем.</dd><dt>Побочные эффекты</dt><dd>Нет (документация и проектирование).</dd>      <dt>Тесты до изменения</dt><dd>Подтвердите соответствие записи развёрнутой конфигурации.</dd>
+      <dt>Тесты после изменения</dt><dd>Инвентаризация согласована владельцем системы.</dd>
+      <dt>Условие закрытия</dt><dd>Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07555 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Запланируйте миграцию Pasta curves (Pallas/Vesta) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.</dd>
+      <dt>Ожидаемый результат</dt><dd>Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.</dd>
+      <dt>Сложность</dt><dd>high</dd>
+<dt>Зависимости</dt><dd>Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.</dd><dt>Побочные эффекты</dt><dd>Больший размер ключей/подписей, возможное влияние на производительность и совместимость.</dd>      <dt>Тесты до изменения</dt><dd>Тесты совместимости на стенде.</dd>
+      <dt>Тесты после изменения</dt><dd>Проверьте фактически используемый алгоритм на рабочем активе.</dd>
+      <dt>Условие закрытия</dt><dd>Повторный аудит показывает использование  или гибридной схемы.</dd>
+    </dl>
+  </article>
+  <article class="finding">
+    <header><span class="fid">QSI-2026-07557 · P4 · 90 дн.</span><span class="tag">устранение первопричины</span></header>
+    <h3>Обновите зависимости разработки и сборки из доказательства.</h3>
+    <dl class="meta">
+      <dt>Обоснование</dt><dd>Устраняет первопричину, описанную в находке.</dd>
+      <dt>Ожидаемый результат</dt><dd>При повторной проверке слабость не обнаруживается.</dd>
+      <dt>Сложность</dt><dd>low</dd>
+<dt>Зависимости</dt><dd>Окно изменений и согласование владельца.</dd><dt>Побочные эффекты</dt><dd>Обновление инструментов может изменить результат сборки; сравните релизные артефакты.</dd>      <dt>Тесты до изменения</dt><dd>Воспроизведите находку по описанным шагам.</dd>
+      <dt>Тесты после изменения</dt><dd>Выполните процедуру повторной проверки из находки.</dd>
+      <dt>Условие закрытия</dt><dd>Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="chapter" id="priorities">
+  <h2>Приоритеты на 30, 60 и 90 дней</h2>
+  <h3>30 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td colspan="4" class="muted">Нет</td></tr>  </table>
+  <h3>60 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td colspan="4" class="muted">Нет</td></tr>  </table>
+  <h3>90 дн.</h3>
+  <table class="data"><tr><th>Приоритет</th><th>ID</th><th>Действие</th><th>Тип</th></tr>
+<tr><td>P3</td><td>QSI-2026-07555</td><td>Внесите использования Pasta curves (Pallas/Vesta) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).</td><td class="small">краткосрочное снижение риска</td></tr><tr><td>P4</td><td>QSI-2026-07555</td><td>Запланируйте миграцию Pasta curves (Pallas/Vesta) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.</td><td class="small">устранение первопричины</td></tr><tr><td>P4</td><td>QSI-2026-07557</td><td>Обновите зависимости разработки и сборки из доказательства.</td><td class="small">устранение первопричины</td></tr>  </table>
+</section>
+
+<section class="chapter" id="retests">
+  <h2>Проверки после устранения</h2>
+  <table class="data"><tr><th>ID</th><th>Повторная проверка</th></tr>
+<tr><td>QSI-2026-07555</td><td>Повторите инвентаризацию после рефакторинга.</td></tr><tr><td>QSI-2026-07557</td><td>Повторите сканирование зависимостей после обновления.</td></tr><tr><td>QSI-2026-07556</td><td>Повторите сканирование после обновлений.</td></tr>  </table>
+</section>
+
+<section class="chapter" id="tools">
+  <h2>Использованные инструменты</h2>
+  <table class="data"><tr><th>Tool</th><th>Version</th></tr><tr><td>blockchain</td><td>1.0.0</td></tr><tr><td>certificates</td><td>1.1.0</td></tr><tr><td>chain_map</td><td>1.0.0</td></tr><tr><td>configs</td><td>1.1.0</td></tr><tr><td>dependencies</td><td>1.2.0</td></tr><tr><td>inventory_document</td><td>1.1.0</td></tr><tr><td>solidity</td><td>1.2.0</td></tr><tr><td>source_code</td><td>1.3.0</td></tr><tr><td>tls_code</td><td>1.1.0</td></tr><tr><td>tls_live</td><td>1.0.0</td></tr><tr><td>qsi-engine</td><td>1.2.0</td></tr><tr><td>OSV.dev API</td><td>v1</td></tr></table>
+</section>
+
+<section class="chapter" id="references">
+  <h2>Источники и нормативные документы</h2>
+  <p class="small muted">Reviewed: 2026-10-13</p>
+  <ol class="small"><li>C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <a href="https://eprint.iacr.org/2026/280">https://eprint.iacr.org/2026/280</a> <span class="muted">(revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)</span></li><li>Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <a href="https://www.first.org/cvss/v3.1/specification-document">https://www.first.org/cvss/v3.1/specification-document</a> <span class="muted">(final)</span></li><li>D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <a href="https://arxiv.org/abs/2306.08585">https://arxiv.org/abs/2306.08585</a> <span class="muted">(preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)</span></li><li>FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <a href="https://csrc.nist.gov/pubs/fips/203/final">https://csrc.nist.gov/pubs/fips/203/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/204/final">https://csrc.nist.gov/pubs/fips/204/final</a> <span class="muted">(final (August 2024))</span></li><li>FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <a href="https://csrc.nist.gov/pubs/fips/205/final">https://csrc.nist.gov/pubs/fips/205/final</a> <span class="muted">(final (August 2024))</span></li><li>J. Proos, C. Zalka — Shor&#39;s discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information &amp; Computation. <a href="https://doi.org/10.26421/QIC3.4-3">https://doi.org/10.26421/QIC3.4-3</a> <span class="muted">(peer-reviewed article)</span></li><li>M. Cain et al. — Shor&#39;s algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <a href="https://arxiv.org/abs/2603.28627">https://arxiv.org/abs/2603.28627</a> <span class="muted">(preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)</span></li><li>M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security &amp; Privacy, 2018) — IEEE. <a href="https://doi.org/10.1109/MSP.2018.3761723">https://doi.org/10.1109/MSP.2018.3761723</a> <span class="muted">(peer-reviewed article; source of the x + y &gt; z migration inequality)</span></li><li>M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <a href="https://arxiv.org/abs/1706.06752">https://arxiv.org/abs/1706.06752</a> <span class="muted">(peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)</span></li><li>NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <a href="https://csrc.nist.gov/pubs/ir/8547/ipd">https://csrc.nist.gov/pubs/ir/8547/ipd</a> <span class="muted">(initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)</span></li><li>OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <a href="https://osv.dev/">https://osv.dev/</a> <span class="muted">(the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/&lt;id&gt;)</span></li><li>P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <a href="https://doi.org/10.1137/S0097539795293172">https://doi.org/10.1137/S0097539795293172</a> <span class="muted">(peer-reviewed article)</span></li><li>R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <a href="https://arxiv.org/abs/2603.28846">https://arxiv.org/abs/2603.28846</a> <span class="muted">(preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with &lt; 1200 logical qubits and &lt; 90 M Toffoli gates (or &lt; 1450 and &lt; 70 M); &lt; 500,000 physical qubits at 10^-3 error, minutes)</span></li></ol>
+</section>
+
+<section class="chapter" id="appendices">
+  <h2>Приложения</h2>
+  <h3>A. Криптографическая инвентаризация</h3>
+  <table class="data"><tr><th>Алгоритм</th><th>Параметр</th><th>Расположение</th><th>Квантовый статус</th><th>Классический статус</th></tr>
+<tr><td>Crypto library<br><span class="small muted">ff (jubjub)</span></td><td>0.14.0</td><td class="small">Cargo.lock</td><td>н/п</td><td>допустимо</td></tr><tr><td>Crypto library<br><span class="small muted">group (jubjub)</span></td><td>0.14.0</td><td class="small">Cargo.lock</td><td>н/п</td><td>допустимо</td></tr><tr><td>Crypto library<br><span class="small muted">ff (jubjub)</span></td><td>0.14</td><td class="small">Cargo.toml</td><td>н/п</td><td>допустимо</td></tr><tr><td>Crypto library<br><span class="small muted">group (jubjub)</span></td><td>0.14</td><td class="small">Cargo.toml</td><td>н/п</td><td>допустимо</td></tr><tr><td>Pasta curves (Pallas/Vesta)</td><td></td><td class="small">src/curves.rs:1066</td><td>уязвим (Шор)</td><td>допустимо</td></tr><tr><td>Pasta curves (Pallas/Vesta)</td><td>Pallas</td><td class="small">src/lib.rs:45</td><td>уязвим (Шор)</td><td>допустимо</td></tr><tr><td>Pasta curves (Pallas/Vesta)</td><td>Vesta</td><td class="small">src/lib.rs:46</td><td>уязвим (Шор)</td><td>допустимо</td></tr><tr><td>Pasta curves (Pallas/Vesta)</td><td></td><td class="small">src/pallas.rs:27</td><td>уязвим (Шор)</td><td>допустимо</td></tr><tr><td>Pasta curves (Pallas/Vesta)</td><td></td><td class="small">src/vesta.rs:21</td><td>уязвим (Шор)</td><td>допустимо</td></tr>  </table>
+  <h3>B. JSON</h3>
+  <p class="small">qsi.report/1 · SHA-256 2919c46477b0ece07cb139e575e93a0c5fa3adc70e68306085e2b990adc39eba</p>
+  <h3>C. Входные файлы</h3>
+  <table class="data"><tr><th>Файл</th><th>Размер</th><th>SHA-256</th><th>Маскирования</th></tr>
+<tr><td>Cargo.lock</td><td>25638</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4f191ee7c7affbd7f07521144b7b270b024b8ee35b15d09da475f81b057a91a7</td><td>0</td></tr><tr><td>Cargo.toml</td><td>2858</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a6cc95e94695197e703e438a9c031a4cc3333cd4b17562f75337a52d00621dc</td><td>0</td></tr><tr><td>lean/scripts/asm_source.py</td><td>32332</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3cf7d6b80731ea5106751bf6f85af948549058c5b4aa871e752b4cec6d889101</td><td>0</td></tr><tr><td>lean/scripts/check_export_axioms.py</td><td>23429</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f00f566828797565e1cb14514db76b607552f507a0b833fcc80db948bc73c867</td><td>0</td></tr><tr><td>lean/scripts/check_export_coverage.py</td><td>1877</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4e8e7984a90ceb8d67f7b08dda80d462664771bc353d7b0c2d0bfb1d36d848b4</td><td>0</td></tr><tr><td>lean/scripts/gen.py</td><td>47849</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ebd255b8d63e7114b7ee373c3197b774b3df6d6f88e0e8d4c8923262788eb0ab</td><td>0</td></tr><tr><td>lean/scripts/gen_aarch64.py</td><td>50971</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b2bf02c086e2861eccc5c476e6f545f5e33b85951c4b0a6e24472c2843d72d56</td><td>0</td></tr><tr><td>lean/scripts/gen_hull.py</td><td>8333</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c024bdcc3e54fb4056b2fa261fa44fd077bfc3554284aeda20e1f0f6d1c439f9</td><td>0</td></tr><tr><td>lean/scripts/gen_x86_64.py</td><td>43299</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f438270507fa060f98817bdba303722b84385fc33e0c93bbda97875153199340</td><td>0</td></tr><tr><td>lean/scripts/verify_hull_certificate.py</td><td>15751</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">af5a5bc8c134cf841c0643196f2963ce04dc6cebcffdc12b76dc35452daccf3f</td><td>0</td></tr><tr><td>rust-toolchain.toml</td><td>68</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0e85702dd92c5c86fbcb0b22e4331af26dd90d4cb8749227d143b067f3706276</td><td>0</td></tr><tr><td>sage/pyproject.toml</td><td>390</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">92c0ff03772029814b3402227905ca7f2dd13dd67b9050bfcccea6db8f1149be</td><td>0</td></tr><tr><td>src/arithmetic.rs</td><td>354</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cd8e62310ca4253e9e65d06356829e23dac2586d20062c62ac2eab748dbb3297</td><td>0</td></tr><tr><td>src/arithmetic/curves.rs</td><td>11009</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">cdb939cc833d58693261949057782935814dc4ff69db3e35304b9b53e1c4841f</td><td>0</td></tr><tr><td>src/arithmetic/fields.rs</td><td>16708</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">45d7a8a77b6f6ebb9ad2d8b275752d913cf649272ed8353ba75fc958e61cd368</td><td>0</td></tr><tr><td>src/asm/aarch64.rs</td><td>61946</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5c69fadf8594f173eec8c38c9c5e329bf0dc58de088768a4ac92fdec1c41b34f</td><td>0</td></tr><tr><td>src/asm/entry.rs</td><td>9979</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a5a1df9c77f976406641317a14799d54406a72f751db2a8cde8b74293a623a1c</td><td>0</td></tr><tr><td>src/asm/mod.rs</td><td>6527</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">21a051ece5eedac74de9c074946ac2007a10e521d050d8f082663ee25668b582</td><td>0</td></tr><tr><td>src/asm/x86_64.rs</td><td>36656</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e9ffdf5638b187f53cf5a7ac909117933e7444697c3e86755ceb301535c8a3f6</td><td>0</td></tr><tr><td>src/curves.rs</td><td>48594</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8</td><td>0</td></tr><tr><td>src/deferred.rs</td><td>10710</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d1b1a6707e446618d3bedb1b2b74e15f8f669e58b0b44c79fe3484cb21f081e0</td><td>0</td></tr><tr><td>src/fields.rs</td><td>1113</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a2df1a34bfb6ea442317639f8a9dbc081aff86de7de83b5d851bfb18ac99ef44</td><td>0</td></tr><tr><td>src/fields/fp.rs</td><td>48780</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">22e857ffb73dd92dbaf60fc0f618c3c663580b5f0cb3b681c7446fb1cba5db2b</td><td>0</td></tr><tr><td>src/fields/fq.rs</td><td>48429</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1a713f5e9d3b4d39edbe2fbc3e25d3ca63047f27592f62e20f29e4c19ab15408</td><td>0</td></tr><tr><td>src/fields/modinv62.rs</td><td>71527</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">ca55e6944a2437d0d7fd5f6ea8f2de320455774ad99b59e1c88ea62c27794308</td><td>0</td></tr><tr><td>src/glv.rs</td><td>36917</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a18beefb7c9b222772fa456d5fbb7d52c16c33894db27655293bae455d127eb4</td><td>0</td></tr><tr><td>src/hashtocurve.rs</td><td>10528</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1dcda56f13b037ef170a043b576932b40cc1a6dc0415d0c79682b145b7694196</td><td>0</td></tr><tr><td>src/inversion.rs</td><td>54489</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">d0fbb178a40f98c91e6097a08f0a28227e2ffce1d02343c24e3a4e58c47c2873</td><td>0</td></tr><tr><td>src/inversion/portable.rs</td><td>13092</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4a81b25e4998791aedd5950b9e0a59bedd5e37d2b82c700cbec26ba722d0d739</td><td>0</td></tr><tr><td>src/lib.rs</td><td>3474</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bf59271f6794fa7fad77adc3921e296f56cda92f57dbe6106647d72d56be4eb4</td><td>0</td></tr><tr><td>src/limbs.rs</td><td>2508</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">7d41fc79396b8e292d073ab33fb29c30662ceea42dab757e0f54f234d92be4a9</td><td>0</td></tr><tr><td>src/macros.rs</td><td>4230</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9292c7aff80448b3149934c28da525d477b7acdc2d4d2623c75c110e7dcd922f</td><td>0</td></tr><tr><td>src/pallas.rs</td><td>5320</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d</td><td>0</td></tr><tr><td>src/serde_impl.rs</td><td>13003</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">63eb918536ee8df39f7f1ce21ed85118193735900f9b85ad305fc799138fba3b</td><td>0</td></tr><tr><td>src/vesta.rs</td><td>2424</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">76dab33aa7bc55ae409c5711cc263e1fd46726575922ca636c41a35779364bde</td><td>0</td></tr>  </table>
+</section>
+</body>
+</html>
