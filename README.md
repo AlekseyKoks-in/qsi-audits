@@ -2,7 +2,7 @@
 
 61 audit bundles over **53 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**3,834 inventory rows**, of which **1,735 fall to Shor's algorithm**, **28 are post-quantum** and
+**3,828 inventory rows**, of which **1,729 fall to Shor's algorithm**, **28 are post-quantum** and
 **12 are hybrid** (post-quantum combined with classical), from **30,802 parsed files**. Those last two
 are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
 28+12-style addition of the two, which is why one number appeared in two different places.
@@ -14,7 +14,7 @@ table to read before quoting any other number in this repository.
 
 | what the row rests on | rows | Shor-breakable |
 |---|---:|---:|
-| a line of source code | 2,053 | 1,269 |
+| a line of source code | 2,047 | 1,263 |
 | name of a dependency in a manifest | 933 | 0 |
 | name of a source file (low confidence) | 385 | 181 |
 | a deployed smart contract | 126 | 3 |
@@ -25,7 +25,7 @@ table to read before quoting any other number in this repository.
 
 Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
 
-**181 of the 1,735 Shor-breakable rows rest on the name of a source file**, not on a line of
+**181 of the 1,729 Shor-breakable rows rest on the name of a source file**, not on a line of
 code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
 call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
 telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
@@ -176,7 +176,7 @@ These bundles use two of those three methods and **declare the third**: live net
 19 March 2027, so nobody can claim conformance to them yet.
 
 The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
-Asymmetric Algorithms". Measured here, **38% of the 1,735 Shor-breakable rows fall only under
+Asymmetric Algorithms". Measured here, **38% of the 1,729 Shor-breakable rows fall only under
 that catch-all**, across 16 distinct algorithms, the largest being Ed25519 — which the memorandum never
 names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
 systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
@@ -188,7 +188,7 @@ On 27 October 2026 NIST published **IR 8547 in final form**, stricter than its 2
 Diffie-Hellman are now deprecated after 2030 at every key size, not only at 112 bits. Measured here, that puts a
 2030 milestone on **281 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
 and up — and says nothing at all about the 470 secp256k1 rows, a curve NIST never approved; with the
-463 rows in families no NIST standard covers, more than half of the exposure here sits outside NIST's dates.
+457 rows in families no NIST standard covers, more than half of the exposure here sits outside NIST's dates.
 The split is section 3 of the same report.
 
 ## A check any project can run: does your scanner have a word for this cryptography?
@@ -346,8 +346,8 @@ none.
 | `lido-core` | Lido | `2bd532298d85` | 267 | 69 | 7 | 0 |
 | `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 67 | 16 | 0 |
 | `rabby` | Rabby Wallet (DeBank) | `663c0e80e9f6` | 1694 | 66 | 29 | 0 |
-| `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 65 | 39 | 0 |
 | `openpgpjs` | OpenPGP.js project | `8bc35df48879` | 108 | 65 | 35 | 8 |
+| `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 59 | 33 | 0 |
 | `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 58 | 37 | 0 |
 | `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 51 | 7 | 0 |
 | `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 50 | 12 | 0 |
@@ -427,7 +427,7 @@ that is the most useful message I can get — the two corrections above both beg
 
 61 подписанных комплектов аудита по **53 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**3,834 строк инвентаризации**, из них **1,735 ломает алгоритм Шора**, и **28 уже
+**3,828 строк инвентаризации**, из них **1,729 ломает алгоритм Шора**, и **28 уже
 постквантовых**; разобрано **30,802 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,

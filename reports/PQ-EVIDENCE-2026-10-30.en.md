@@ -96,7 +96,7 @@ rows really are a manifest and a single provider line.
 | `bitgo-mpc` | 66 |
 | `zebra` | 65 |
 
-Across all 53 codebases, 1 735 inventory rows fall to Shor's algorithm. The point of grading the other
+Across all 53 codebases, 1 729 inventory rows fall to Shor's algorithm. The point of grading the other
 column is that "has started" and "is protected" are different questions, and only the first one is measurable
 from source at all.
 

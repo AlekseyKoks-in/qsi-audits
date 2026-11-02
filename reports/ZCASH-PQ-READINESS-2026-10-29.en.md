@@ -192,6 +192,42 @@ Kotlin wallet whose cryptography lives in the Rust SDK it depends on, which is w
 not. Neither contains Sinsemilla, RedDSA or Halo 2 to find. Those two are the control that tells me the new
 patterns are reading the code rather than firing on everything.
 
+## Update, 2 November 2026
+
+The table and totals above are the measurement of 29 October and stay as published. Re-measured on 2 November
+on the same commits and the same trees — the same parsed-file counts — with the registry as it then stood,
+6 of these codebases moved:
+
+| Codebase | 29 October rows / Shor | 2 November rows / Shor | The new rows |
+|---|---:|---:|---|
+| `orchard` | 69/41 | 70/42 | RedDSA: `MissingSpendAuthSig`, in the PCZT transaction extractor |
+| `sapling-crypto` | 57/36 | 58/37 | RedDSA: the same, in Sapling's PCZT transaction extractor |
+| `halo2` | 73/45 | 74/46 | Pasta: the Vesta curve, recognised by the file that implements it |
+| `zcash-android-wallet-sdk` | 46/2 | 51/7 | RedDSA: spend-authorization signatures in the voting API |
+| `zcash-swift-wallet-sdk` | 45/2 | 46/3 | RedDSA: the same, in the Swift voting backend |
+| `zodl-android` | 5/0 | 8/3 | RedDSA: the voting module extracts and decodes spend-authorization signatures from signed PCZTs |
+
+Two registry changes made after 29 October account for every row. On 30 October the RedDSA name pattern lost its
+leading word boundary, a side effect of making it prefilterable, so `SpendAuthSig` is now found inside identifiers
+such as `extractSpendAuthSig`. Every added row was read on 2 November, and each is code carrying a RedPallas
+spend-authorization signature, so the broader pattern is kept on purpose and pinned by a test. And an entry for
+the Pasta curves, added on 30 October, recognises the curve implementation by the file that holds it.
+
+**This retracts one sentence above.** "Neither contains Sinsemilla, RedDSA or Halo 2 to find" was wrong for
+`zodl-android`: its voting module, present at the same commit on 29 October, handles RedPallas
+spend-authorization signatures — produced by the Rust SDK or a hardware wallet, carried by the Kotlin code. The
+pattern of that day required a word boundary before `SpendAuthSig` and could not see `extractSpendAuthSig`. The
+conclusion the controls supported, that the new patterns read the code rather than firing on everything, now
+rests on `lightwalletd`, still at 8 rows.
+
+The same review caught a false positive before this update. A RedDSA declaration pattern, `pub type Randomizer`,
+also fired on the FROST library's re-randomized ciphersuites over Ed25519, Ed448, P-256, Ristretto255 and
+secp256k1, which alias another crate's `Randomizer` and are not RedDSA. It added six rows to `frost` in a
+re-measurement published earlier on 2 November; the pattern now excludes such aliases, and `frost` measures
+59 rows again.
+
+Stack totals, 29 October → 2 November: **793 / 267 → 805 / 279**.
+
 ## Method
 
 Each audit runs offline against a pinned commit with submodules materialised — a shallow clone leaves submodules

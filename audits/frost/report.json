@@ -1,8 +1,8 @@
 {
-  "content_sha256": "58a7a08c895960a650138e494c874d062a1f0407e7503763db5e25263c72a421",
+  "content_sha256": "4dc3828f1ac8cedb6a249c231399617ea2860a0ca6eca71d5cee0b230c305b67",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-30T22:48:36.904170+00:00",
+  "generated_at": "2026-11-02T15:19:11.288907+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "3ebc6e70-0dff-4d64-a96f-898b7839a1e1",
+    "id": "09f203d9-ae7b-40d8-8729-f7a6b7f8303b",
     "mode": "document",
     "title": "Document audit: frost",
     "status": "completed",
     "engine_version": "1.2.0",
-    "started_at": "2026-10-30T22:48:30.682739+00:00",
-    "finished_at": "2026-10-30T22:48:36.780380+00:00",
+    "started_at": "2026-11-02T15:19:01.041439+00:00",
+    "finished_at": "2026-11-02T15:19:10.683755+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -855,7 +855,7 @@
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 5,
+      "medium": 4,
       "low": 3,
       "info": 2
     },
@@ -864,25 +864,25 @@
       "known_vulnerable_component": 4,
       "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
-      "pq_long_term_risk": 5,
+      "pq_long_term_risk": 4,
       "improvement": 0,
       "insufficient_data": 1
     },
-    "total": 10,
+    "total": 9,
     "posture_index": 97,
-    "pq_vulnerable_share": 60.0,
-    "inventory_total": 65,
+    "pq_vulnerable_share": 55.9,
+    "inventory_total": 59,
     "inventory_by_quantum_status": {
       "grover_margin": 3,
       "grover_reduced": 3,
       "not_applicable": 20,
-      "vulnerable_shor": 39
+      "vulnerable_shor": 33
     }
   },
   "findings": [
     {
-      "id": "1b2145c9-42c2-47ac-9e64-6f153bc0c7cf",
-      "public_id": "QSI-2026-08318",
+      "id": "3928a2d4-afc8-4afb-ab79-775f0279396a",
+      "public_id": "QSI-2026-09733",
       "rule_id": "TLSCONF-NO-PQ-HYBRID",
       "title": "Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)",
       "description": "Группы обмена ключами в строка 91 (X25519, prime256v1, secp384r1) не включают гибридную группу ML-KEM, например X25519MLKEM768.",
@@ -902,7 +902,7 @@
       "affected_asset": "file:book/src/zcash/server.md",
       "data_source": "book/src/zcash/server.md",
       "analyzer": "configs 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.384700+00:00",
+      "detected_at": "2026-11-02T15:19:10.152554+00:00",
       "risk_score": 41.2,
       "risk_breakdown": {
         "mosca": {
@@ -984,9 +984,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1006,7 +1006,7 @@
           "content_sha256": "b62672e65d6d90ca52b33e92ac7abb52ed2252c67a25d101f99bfba483d8cede",
           "source_sha256": "7e2a4b59e3a03468d0d48e45837a0f5b5cf0f6da2df56a22d721c84c64e912f5",
           "collector": "configs 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.467064+00:00",
+          "collected_at": "2026-11-02T15:19:10.236109+00:00",
           "url": null
         }
       ],
@@ -1044,8 +1044,8 @@
       ]
     },
     {
-      "id": "97c390b3-1f73-48c8-bd1d-05add96a0afa",
-      "public_id": "QSI-2026-08319",
+      "id": "fb47687a-3899-487a-b4e1-8b1d547749a1",
+      "public_id": "QSI-2026-09734",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))",
       "description": "318 упоминаний FROST в 27 файл(ах), например frost-core/src/round2.rs:68. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -1065,7 +1065,7 @@
       "affected_asset": "source-code:FROST:threshold_mpc",
       "data_source": "frost-core/src/round2.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.435826+00:00",
+      "detected_at": "2026-11-02T15:19:10.197098+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -1140,9 +1140,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1162,7 +1162,7 @@
           "content_sha256": "8651173eb9746c7abdf62ed25f8a134f33e1fe46187927fcd5bb0513274f598a",
           "source_sha256": "a2d08db9973b391c710322ba06ed5aac306a029437597256c2d532b10b9a0b8b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544546+00:00",
+          "collected_at": "2026-11-02T15:19:10.369389+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L68"
         },
         {
@@ -1173,7 +1173,7 @@
           "content_sha256": "0988e249632973670a9ae977916740daaf706c21130a4bf77482288c3c6c9e59",
           "source_sha256": "a2d08db9973b391c710322ba06ed5aac306a029437597256c2d532b10b9a0b8b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544554+00:00",
+          "collected_at": "2026-11-02T15:19:10.369397+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L128"
         },
         {
@@ -1184,7 +1184,7 @@
           "content_sha256": "23b8babcd0d741e51e2bd5007c78b14f48242ff3c1df81f5aae0cf016a8637a7",
           "source_sha256": "a2d08db9973b391c710322ba06ed5aac306a029437597256c2d532b10b9a0b8b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544557+00:00",
+          "collected_at": "2026-11-02T15:19:10.369400+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-core/src/round2.rs#L152"
         },
         {
@@ -1195,7 +1195,7 @@
           "content_sha256": "9dfbb8854872ce3e884af9f8eb4624c3f91e9cf2b8d29ff9b55524cb7a37a66e",
           "source_sha256": "3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544561+00:00",
+          "collected_at": "2026-11-02T15:19:10.369404+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L14"
         },
         {
@@ -1206,7 +1206,7 @@
           "content_sha256": "7b0f9fddd5c6a37de10783667d9404a36128d6b37f8400696727dad063f87731",
           "source_sha256": "3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544564+00:00",
+          "collected_at": "2026-11-02T15:19:10.369407+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L18"
         },
         {
@@ -1217,7 +1217,7 @@
           "content_sha256": "3e960b2a65f69aa8b89b6228dcaa8cada25ed12cb8c78afe76e629d8f6006b69",
           "source_sha256": "3e1635cda9a61ca9349f1818ccce62403fd91d8891f1847fb30faa07c206dffc",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544567+00:00",
+          "collected_at": "2026-11-02T15:19:10.369410+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/dkg.rs#L31"
         },
         {
@@ -1228,7 +1228,7 @@
           "content_sha256": "408ed7e85e3887bb040d3dfe7fd289cdef6f0bd1292f6f1b0b1e0de50856059b",
           "source_sha256": "0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544571+00:00",
+          "collected_at": "2026-11-02T15:19:10.369413+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L19"
         },
         {
@@ -1239,7 +1239,7 @@
           "content_sha256": "d2a9190315a8d506a77bc3b8bd79e1beb2c5acb130a2095fa61a25be7a8da8fa",
           "source_sha256": "0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544574+00:00",
+          "collected_at": "2026-11-02T15:19:10.369416+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L27"
         },
         {
@@ -1250,7 +1250,7 @@
           "content_sha256": "716bc1a13f82dedd352d41ceb0e22b78c31a317f5a515bd2b931f4deaed0f93d",
           "source_sha256": "0a79ab71158fc50f278ef48adc59114259aee58a04fd3e37cf781c2cfaa3279b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544577+00:00",
+          "collected_at": "2026-11-02T15:19:10.369420+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/refresh.rs#L37"
         },
         {
@@ -1261,7 +1261,7 @@
           "content_sha256": "5a88bda2ec9ca0cfa265a3bf19bf6c369997d968069f43aa48b8d087b763356c",
           "source_sha256": "da295baadb8e6db25c3887bbbff4a8da5f18ffc26a566cf800bbbc7a78b93b82",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.544580+00:00",
+          "collected_at": "2026-11-02T15:19:10.369423+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/keys/repairable.rs#L17"
         }
       ],
@@ -1299,219 +1299,8 @@
       ]
     },
     {
-      "id": "49f8e63f-0723-416b-b3d3-80f9c7f865ac",
-      "public_id": "QSI-2026-08320",
-      "rule_id": "CODE-QV-ASYMMETRIC",
-      "title": "Квантово-уязвимый RedDSA: пороговая подпись и протоколы MPC (6 файл(ов))",
-      "description": "6 упоминаний RedDSA в 6 файл(ах), например frost-ed25519/src/rerandomized.rs:62. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
-      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
-      "recommendation": "Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли.",
-      "retest": "Повторите инвентаризацию после рефакторинга.",
-      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
-      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
-      "repro": "Откройте frost-ed25519/src/rerandomized.rs:62 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
-      "category": "post_quantum",
-      "classification": "pq_long_term_risk",
-      "severity": "medium",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "source-code:RedDSA:threshold_mpc",
-      "data_source": "frost-ed25519/src/rerandomized.rs",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.530921+00:00",
-      "risk_score": 35.6,
-      "risk_breakdown": {
-        "mosca": {
-          "x": 10.0,
-          "y": 5.0,
-          "z": 8.0,
-          "kind": "signature",
-          "note": "z is an assumed planning scenario, not a forecast",
-          "urgency": 1.0,
-          "verdict": "migration_late_under_scenario",
-          "scenario": "early",
-          "x_source": "project signature lifetime",
-          "margin_years": 7.0
-        },
-        "score": 35.6,
-        "factors": {
-          "ease": 0.3,
-          "asset": 0.8,
-          "impact": 0.54,
-          "urgency": 1.0,
-          "exposure": 0.6,
-          "severity": 0.5,
-          "exploitability": 0.1
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 52.3,
-        "references": [
-          {
-            "key": "CVSS31",
-            "url": "https://www.first.org/cvss/v3.1/specification-document",
-            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
-            "status": "final",
-            "publisher": "FIRST"
-          },
-          {
-            "key": "MOSCA2018",
-            "url": "https://doi.org/10.1109/MSP.2018.3761723",
-            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
-            "status": "peer-reviewed article; source of the x + y > z migration inequality",
-            "publisher": "IEEE"
-          }
-        ],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 8.0,
-          "impact": 10.8,
-          "urgency": 10.0,
-          "exposure": 9.0,
-          "severity": 12.5,
-          "exploitability": 2.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "SHOR1997",
-          "url": "https://doi.org/10.1137/S0097539795293172",
-          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
-          "status": "peer-reviewed article",
-          "publisher": "SIAM"
-        },
-        {
-          "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
-          "publisher": "NIST"
-        },
-        {
-          "key": "MOSCA2018",
-          "url": "https://doi.org/10.1109/MSP.2018.3761723",
-          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
-          "status": "peer-reviewed article; source of the x + y > z migration inequality",
-          "publisher": "IEEE"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "frost-ed25519/src/rerandomized.rs",
-          "location": "line 62",
-          "content": "   61 | /// A randomizer. A random scalar which is used to randomize the key.\n   62 | pub type Randomizer = frost_rerandomized::Randomizer<crate::Ed25519Sha512>;\n   63 | ",
-          "content_sha256": "51f6f50e5f0bc0d771ed63528318e36b07cdf70db954bd8c297b539aa5593d48",
-          "source_sha256": "85898043125f03f5aeb49c1c765fbd3e00544efa0f5f008405cc192e8e2d3ac6",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.564962+00:00",
-          "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed25519/src/rerandomized.rs#L62"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "frost-ed448/src/rerandomized.rs",
-          "location": "line 62",
-          "content": "   61 | /// A randomizer. A random scalar which is used to randomize the key.\n   62 | pub type Randomizer = frost_rerandomized::Randomizer<crate::Ed448Shake256>;\n   63 | ",
-          "content_sha256": "e6a5fae649fc35f69e338715dec229390a26d0ba5cbed0a5e915ccceeba86da1",
-          "source_sha256": "0265962a707310b3fa0d18981673b500c2219451c1327bc7e150a205be1e2ab5",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.564971+00:00",
-          "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ed448/src/rerandomized.rs#L62"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "frost-p256/src/rerandomized.rs",
-          "location": "line 62",
-          "content": "   61 | /// A randomizer. A random scalar which is used to randomize the key.\n   62 | pub type Randomizer = frost_rerandomized::Randomizer<crate::P256Sha256>;\n   63 | ",
-          "content_sha256": "516f4e6645d513db1acdf13326c2d9d85cd06ddddbff8a9e322455067e5b85d4",
-          "source_sha256": "86be59fa03d52c35021af6162314c22ec62b290120d6552c85f5dff9988177c1",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.564975+00:00",
-          "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-p256/src/rerandomized.rs#L62"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "frost-ristretto255/src/rerandomized.rs",
-          "location": "line 62",
-          "content": "   61 | /// A randomizer. A random scalar which is used to randomize the key.\n   62 | pub type Randomizer = frost_rerandomized::Randomizer<crate::Ristretto255Sha512>;\n   63 | ",
-          "content_sha256": "5876acd0b2b3703de6f44befe3371f19b0609a7bb77179ebb3623a639b0a43ad",
-          "source_sha256": "b8d5e303a116d566e342a3833fed19308c9ffba7f1fa5a009b2ab5c9ccaab829",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.564978+00:00",
-          "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-ristretto255/src/rerandomized.rs#L62"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "frost-secp256k1-tr/src/rerandomized.rs",
-          "location": "line 62",
-          "content": "   61 | /// A randomizer. A random scalar which is used to randomize the key.\n   62 | pub type Randomizer = frost_rerandomized::Randomizer<crate::Secp256K1Sha256TR>;\n   63 | ",
-          "content_sha256": "cf6d53fe44ff651231b4babebc6edb20d2258ea32503b189a9396d96eb609f9d",
-          "source_sha256": "efaa56bdd54c615387d09818660d6ee7eca1dea0ca87bac89d89fc6377e7317b",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.564982+00:00",
-          "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1-tr/src/rerandomized.rs#L62"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "frost-secp256k1/src/rerandomized.rs",
-          "location": "line 62",
-          "content": "   61 | /// A randomizer. A random scalar which is used to randomize the key.\n   62 | pub type Randomizer = frost_rerandomized::Randomizer<crate::Secp256K1Sha256>;\n   63 | ",
-          "content_sha256": "767ea64a933b2be2857377466423faefaa65535a3363f8ba46eb7eb9df7eab91",
-          "source_sha256": "f28be9824b78b07b9b630a7d51c3bb1f5e19bf4ddad10a224d20047c8baad9ae",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.564985+00:00",
-          "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1/src/rerandomized.rs#L62"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "mitigation",
-          "action": "Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
-          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
-          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
-          "priority": "P3",
-          "horizon_days": 90,
-          "complexity": "medium",
-          "dependencies": "Доступ к владельцам систем.",
-          "side_effects": "Нет (документация и проектирование).",
-          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
-          "post_tests": "Инвентаризация согласована владельцем системы.",
-          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
-          "status": "todo"
-        },
-        {
-          "kind": "root_cause",
-          "action": "Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
-          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
-          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
-          "priority": "P4",
-          "horizon_days": 90,
-          "complexity": "high",
-          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
-          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
-          "pre_tests": "Тесты совместимости на стенде.",
-          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
-          "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "feb48d99-3130-4602-962e-0871f3e37799",
-      "public_id": "QSI-2026-08321",
+      "id": "6117a46b-b7a7-42e9-92ac-aebb97561eba",
+      "public_id": "QSI-2026-09735",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
       "description": "2 упоминаний ECDSA в 2 файл(ах), например frost-secp256k1-tr/src/lib.rs:185. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -1531,7 +1320,7 @@
       "affected_asset": "source-code:ECDSA:threshold_mpc",
       "data_source": "frost-secp256k1-tr/src/lib.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.559249+00:00",
+      "detected_at": "2026-11-02T15:19:10.325619+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -1606,9 +1395,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1628,7 +1417,7 @@
           "content_sha256": "ad879255171d873418b764ca76f6bc26b0fbefbe5dcad1931131f72986bd4270",
           "source_sha256": "5ea39038f8a2419c4a89f70918de89f8f38e31d266525ebba6ecf9087886237d",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.579949+00:00",
+          "collected_at": "2026-11-02T15:19:10.460987+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1-tr/src/lib.rs#L185"
         },
         {
@@ -1639,7 +1428,7 @@
           "content_sha256": "81d0fa0687f877480015ab8b8b7bffe783466c2a3995ba40d68261bb9809ae01",
           "source_sha256": "71f9c9a1c7a09a6db14ab2eaf1cfdac4223e87cc2198b4afefa48d254d21d25a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.579957+00:00",
+          "collected_at": "2026-11-02T15:19:10.460996+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/frost-secp256k1/src/lib.rs#L177"
         }
       ],
@@ -1677,8 +1466,8 @@
       ]
     },
     {
-      "id": "e3b93518-0561-46d2-9fc6-3c34778a5f03",
-      "public_id": "QSI-2026-08322",
+      "id": "23a13af9-9b8e-49b2-b5df-256db051ea8a",
+      "public_id": "QSI-2026-09736",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
       "description": "10 упоминаний ECDSA в 1 файл(ах), например gencode/src/main.rs:294. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1698,7 +1487,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "gencode/src/main.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.576637+00:00",
+      "detected_at": "2026-11-02T15:19:10.450485+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1773,9 +1562,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1795,7 +1584,7 @@
           "content_sha256": "3ee609c196212ca75450c159926d73de8a3e2ab5a60609fab8884354e991d832",
           "source_sha256": "9abc466ef851952a0589e67e088f1a2414a48c3efbb1ca9d8d9aafd8c0b20e4a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.605824+00:00",
+          "collected_at": "2026-11-02T15:19:10.495671+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L294"
         },
         {
@@ -1806,7 +1595,7 @@
           "content_sha256": "6bacff1527a755d3f68b7868603372ab97b8a8e35c9641e78a99e9875d527ae7",
           "source_sha256": "9abc466ef851952a0589e67e088f1a2414a48c3efbb1ca9d8d9aafd8c0b20e4a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.605832+00:00",
+          "collected_at": "2026-11-02T15:19:10.495680+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L297"
         },
         {
@@ -1817,7 +1606,7 @@
           "content_sha256": "3eda82aceab99676c30f6e7fba61b13a7964f4ae17509065685796c4f7358960",
           "source_sha256": "9abc466ef851952a0589e67e088f1a2414a48c3efbb1ca9d8d9aafd8c0b20e4a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.605836+00:00",
+          "collected_at": "2026-11-02T15:19:10.495683+00:00",
           "url": "https://github.com/ZcashFoundation/frost/blob/0966bd1529aa062ad3b621af99e277f976b1c0f0/gencode/src/main.rs#L299"
         }
       ],
@@ -1855,8 +1644,8 @@
       ]
     },
     {
-      "id": "c2800c74-1c92-4114-9698-a3eae00081e9",
-      "public_id": "QSI-2026-08324",
+      "id": "d435077d-07ac-437b-a4cb-e3922ed88a4c",
+      "public_id": "QSI-2026-09738",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1877,7 +1666,7 @@
       "affected_asset": "dependency:crates.io/crossbeam-epoch@0.9.18",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.646488+00:00",
+      "detected_at": "2026-11-02T15:19:10.514541+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -1933,7 +1722,7 @@
           "content_sha256": "87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.728435+00:00",
+          "collected_at": "2026-11-02T15:19:10.548396+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0204"
         }
       ],
@@ -1956,8 +1745,8 @@
       ]
     },
     {
-      "id": "22925c8c-3c73-4058-8325-03ac25d2b830",
-      "public_id": "QSI-2026-08325",
+      "id": "a274bd6c-3954-4233-a6f6-f65035a01729",
+      "public_id": "QSI-2026-09739",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1978,7 +1767,7 @@
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.706734+00:00",
+      "detected_at": "2026-11-02T15:19:10.545576+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2034,7 +1823,7 @@
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.759506+00:00",
+          "collected_at": "2026-11-02T15:19:10.591669+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -2057,8 +1846,8 @@
       ]
     },
     {
-      "id": "f6f27f90-1666-4214-b958-477043ea0444",
-      "public_id": "QSI-2026-08326",
+      "id": "3f330f05-c8bd-464c-b580-b40e9ad88d1e",
+      "public_id": "QSI-2026-09740",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -2079,7 +1868,7 @@
       "affected_asset": "dependency:crates.io/ctutils@0.4.2",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.756734+00:00",
+      "detected_at": "2026-11-02T15:19:10.571698+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2135,7 +1924,7 @@
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.770134+00:00",
+          "collected_at": "2026-11-02T15:19:10.649943+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -2158,8 +1947,8 @@
       ]
     },
     {
-      "id": "8619743f-6d94-477c-bafc-2fd4e13b8136",
-      "public_id": "QSI-2026-08327",
+      "id": "a81d1a9d-3ea6-46a5-87e2-866cf8cf167d",
+      "public_id": "QSI-2026-09741",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.52.3: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -2180,7 +1969,7 @@
       "affected_asset": "dependency:crates.io/tokio@1.52.3",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.767309+00:00",
+      "detected_at": "2026-11-02T15:19:10.632440+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -2236,7 +2025,7 @@
           "content_sha256": "1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.812614+00:00",
+          "collected_at": "2026-11-02T15:19:10.733502+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0386"
         }
       ],
@@ -2259,8 +2048,8 @@
       ]
     },
     {
-      "id": "c3db9529-b3ac-4087-ba38-73a95cc89d86",
-      "public_id": "QSI-2026-08323",
+      "id": "e788473a-9d8e-44e1-a3aa-d5c37e4883ea",
+      "public_id": "QSI-2026-09737",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 11 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ed25519-dalek, ff, group, k256, p256, secp256k1), но ни одной из списка поддерживающих PQC.",
@@ -2280,7 +2069,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:48:36.587392+00:00",
+      "detected_at": "2026-11-02T15:19:10.479010+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2343,7 +2132,7 @@
           "content_sha256": "9413aa4eaf1c9436374b575fb77862bfa138658bc1af6c1fd777c1dfeb7c36bd",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:48:36.664914+00:00",
+          "collected_at": "2026-11-02T15:19:10.523716+00:00",
           "url": null
         }
       ],
@@ -2371,11 +2160,10 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-08318",
-      "QSI-2026-08319",
-      "QSI-2026-08320",
-      "QSI-2026-08321",
-      "QSI-2026-08322"
+      "QSI-2026-09733",
+      "QSI-2026-09734",
+      "QSI-2026-09735",
+      "QSI-2026-09736"
     ],
     "roles": [
       {
@@ -2390,20 +2178,15 @@
             "files": 27
           },
           {
-            "algorithm": "RedDSA",
-            "files": 6
-          },
-          {
             "algorithm": "ECDSA",
             "files": 2
           }
         ],
         "findings": [
-          "QSI-2026-08319",
-          "QSI-2026-08320",
-          "QSI-2026-08321"
+          "QSI-2026-09734",
+          "QSI-2026-09735"
         ],
-        "files": 35
+        "files": 29
       },
       {
         "role": "general",
@@ -2418,7 +2201,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-08322"
+          "QSI-2026-09736"
         ],
         "files": 1
       }
@@ -2449,10 +2232,6 @@
           {
             "algorithm": "FROST",
             "rows": 27
-          },
-          {
-            "algorithm": "RedDSA",
-            "rows": 6
           },
           {
             "algorithm": "X25519",
@@ -2574,7 +2353,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-08324",
+        "finding": "QSI-2026-09738",
         "finding_title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -2592,7 +2371,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-08325",
+        "finding": "QSI-2026-09739",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -2610,7 +2389,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-08326",
+        "finding": "QSI-2026-09740",
         "finding_title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -2628,7 +2407,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-08327",
+        "finding": "QSI-2026-09741",
         "finding_title": "tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
         "severity": "info"
       }
@@ -2648,7 +2427,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08318",
+        "finding": "QSI-2026-09733",
         "finding_title": "Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)",
         "severity": "medium"
       },
@@ -2666,26 +2445,8 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08319",
+        "finding": "QSI-2026-09734",
         "finding_title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))",
-        "severity": "medium"
-      },
-      {
-        "kind": "mitigation",
-        "action": "Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
-        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
-        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
-        "priority": "P3",
-        "horizon_days": 90,
-        "complexity": "medium",
-        "dependencies": "Доступ к владельцам систем.",
-        "side_effects": "Нет (документация и проектирование).",
-        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
-        "post_tests": "Инвентаризация согласована владельцем системы.",
-        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
-        "status": "todo",
-        "finding": "QSI-2026-08320",
-        "finding_title": "Квантово-уязвимый RedDSA: пороговая подпись и протоколы MPC (6 файл(ов))",
         "severity": "medium"
       },
       {
@@ -2702,7 +2463,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08321",
+        "finding": "QSI-2026-09735",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       },
@@ -2720,7 +2481,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08322",
+        "finding": "QSI-2026-09736",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -2738,7 +2499,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ? или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08318",
+        "finding": "QSI-2026-09733",
         "finding_title": "Не настроен гибридный постквантовый обмен ключами (book/src/zcash/server.md)",
         "severity": "medium"
       },
@@ -2756,26 +2517,8 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08319",
+        "finding": "QSI-2026-09734",
         "finding_title": "Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (27 файл(ов))",
-        "severity": "medium"
-      },
-      {
-        "kind": "root_cause",
-        "action": "Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
-        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
-        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
-        "priority": "P4",
-        "horizon_days": 90,
-        "complexity": "high",
-        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
-        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
-        "pre_tests": "Тесты совместимости на стенде.",
-        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
-        "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
-        "status": "todo",
-        "finding": "QSI-2026-08320",
-        "finding_title": "Квантово-уязвимый RedDSA: пороговая подпись и протоколы MPC (6 файл(ов))",
         "severity": "medium"
       },
       {
@@ -2792,7 +2535,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08321",
+        "finding": "QSI-2026-09735",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (2 файл(ов))",
         "severity": "medium"
       },
@@ -2810,7 +2553,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08322",
+        "finding": "QSI-2026-09736",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       }
@@ -2990,8 +2733,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "NIST-PQC-SEC",
@@ -3136,7 +2879,7 @@
       "family": "library",
       "parameter": "0.14.0",
       "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
+      "library": "group (jubjub)",
       "location": "Cargo.lock",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3148,7 +2891,7 @@
       "family": "library",
       "parameter": "0.14.0",
       "usage": "crates.io dependency",
-      "library": "group (jubjub)",
+      "library": "ff (jubjub)",
       "location": "Cargo.lock",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3220,7 +2963,7 @@
       "family": "library",
       "parameter": "0.14",
       "usage": "crates.io dependency",
-      "library": "k256 (RustCrypto elliptic curves)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "location": "Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3232,7 +2975,7 @@
       "family": "library",
       "parameter": "0.14",
       "usage": "crates.io dependency",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "k256 (RustCrypto elliptic curves)",
       "location": "Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3756,78 +3499,6 @@
       "occurrences": 10
     },
     {
-      "algorithm": "RedDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "frost-ed25519/src/rerandomized.rs:62",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RedDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "frost-ed448/src/rerandomized.rs:62",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RedDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "frost-p256/src/rerandomized.rs:62",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RedDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "frost-ristretto255/src/rerandomized.rs:62",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RedDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "frost-secp256k1-tr/src/rerandomized.rs:62",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RedDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "source code (1 reference(s))",
-      "library": "",
-      "location": "frost-secp256k1/src/rerandomized.rs:62",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "medium",
-      "occurrences": 1
-    },
-    {
       "algorithm": "X25519",
       "family": "key_exchange",
       "parameter": "X25519",
@@ -3883,7 +3554,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14.0",
-      "library": "ff (jubjub)",
+      "library": "group (jubjub)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3895,7 +3566,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14.0",
-      "library": "group (jubjub)",
+      "library": "ff (jubjub)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3967,7 +3638,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14",
-      "library": "k256 (RustCrypto elliptic curves)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3979,7 +3650,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "k256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -4148,20 +3819,6 @@
         "frost-core/src/round2.rs:68",
         "frost-ed25519/src/keys/dkg.rs:14",
         "frost-ed25519/src/keys/refresh.rs:19"
-      ]
-    },
-    {
-      "algorithm": "RedDSA",
-      "parameter": "",
-      "library": "",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "count": 6,
-      "rows": 6,
-      "examples": [
-        "frost-ed25519/src/rerandomized.rs:62",
-        "frost-ed448/src/rerandomized.rs:62",
-        "frost-p256/src/rerandomized.rs:62"
       ]
     },
     {

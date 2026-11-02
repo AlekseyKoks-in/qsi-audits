@@ -42,7 +42,7 @@ M-26-15 tabulates the quantum-vulnerable algorithms: ECDH, MQV, ECDSA, Diffie-He
 signatures, RSA key establishment, DSA — and then **"Other non-PQC Asymmetric Algorithms: Remaining asymmetric
 algorithms not enumerated in the list above."**
 
-That last row is doing most of the work. Of the **1 735 Shor-breakable rows** in this portfolio:
+That last row is doing most of the work. Of the **1 729 Shor-breakable rows** in this portfolio:
 
 | Algorithm, as M-26-15 names it | Shor-breakable rows found |
 |---|---:|
@@ -52,7 +52,7 @@ That last row is doing most of the work. Of the **1 735 Shor-breakable rows** 
 | DH key exchange and variants | 3 |
 | DSA | 4 |
 | MQV key exchange | 0 |
-| **Other non-PQC Asymmetric Algorithms** (the catch-all) | **660** |
+| **Other non-PQC Asymmetric Algorithms** (the catch-all) | **654** |
 
 **62% fall under one of the seven named algorithms, and 38% fall only under the catch-all** —
 16 distinct algorithms that a checklist built from the seven would never look for:
@@ -63,9 +63,9 @@ That last row is doing most of the work. Of the **1 735 Shor-breakable rows** 
 | Pedersen commitment | 103 |
 | Halo 2 (IPA) | 72 |
 | Paillier | 59 |
-| RedDSA | 44 |
 | FROST | 42 |
 | Schnorr (BIP-340) | 38 |
+| RedDSA | 38 |
 | BLS12-381 | 32 |
 | Sinsemilla | 24 |
 | BN254 (alt_bn128) | 18 |
@@ -98,7 +98,7 @@ signatures, finite-field and elliptic-curve Diffie-Hellman and MQV, and RSA key 
 > use under NIST standards and guidelines after 2035.
 
 NIST's schedule governs approved parameter sets, and much of this portfolio is not on them, so the
-1 735 Shor-breakable rows are split by the parameter each inventory row records:
+1 729 Shor-breakable rows are split by the parameter each inventory row records:
 
 | Shor-breakable rows | rows | Draft, Nov 2024 | Final, Oct 2026 |
 |---|---:|---|---|
@@ -108,7 +108,7 @@ NIST's schedule governs approved parameter sets, and much of this portfolio is n
 | secp256k1, which is not a NIST-approved curve | 470 | not approved | not approved |
 | X25519, NIST approval for key establishment not confirmed here | 68 | not confirmed | not confirmed |
 | EdDSA variants outside FIPS 186-5, mixed secp256k1/P-256, RSA-1024 | 13 | — | — |
-| Families no NIST standard approves | 463 | — | — |
+| Families no NIST standard approves | 457 | — | — |
 
 Two results. **The final puts a 2030 milestone on 281 rows that the draft left alone until
 2035** — standard Ed25519, P-256, P-384, RSA-3072 and up — against 60 RSA-2048 rows that had
@@ -119,10 +119,10 @@ the memorandum never names — is in the final's Table 2; 148 of its 201 rows he
 Ed25519 and carry the new milestone.
 
 The largest single block, **470 secp256k1 rows** — the curve of Bitcoin and Ethereum — was never
-on a NIST-approved curve, so neither version of the schedule governs it. With the 463 rows in
+on a NIST-approved curve, so neither version of the schedule governs it. With the 457 rows in
 families no NIST standard approves — Pedersen commitments, Halo 2, Paillier, FROST, BLS12-381, BIP-340 Schnorr and
 the rest, plus DSA, which FIPS 186-5 no longer allows for signature generation and the final tables do not list —
-that is **933 of 1 735 rows (54%) about which NIST's transition dates say nothing**. For a
+that is **927 of 1 729 rows (54%) about which NIST's transition dates say nothing**. For a
 blockchain codebase, the deadline is whatever its own protocol decides.
 
 For federal high-value assets and high-impact systems the earlier deadlines still govern, and IR 8547 repeats
