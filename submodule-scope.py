@@ -27,8 +27,10 @@ code it never opened.
    report never mentions the files it declined. A Bitcoin hardware wallet measured 13 inventory rows and a single
    ECDSA row that way; read correctly it is 98 rows and 64 Shor-breakable.
 
-Mode 1 catches the first and needs nothing but the checkout. Mode 2 catches the second: give it the list of files
-your tool says it parsed and it will tell you which pinned, in-scope submodules are missing from that list.
+Mode 1 catches the first and needs nothing but the checkout. A submodule the project declares `update = none` is
+the exception: git itself leaves it out of a default checkout, so an empty one is reported but is not a failure.
+Mode 2 catches the second: give it the list of files your tool says it parsed and it will tell you which pinned,
+in-scope submodules are missing from that list.
 
 Nothing here is specific to any one scanner. `--against` accepts a SARIF file, a JSON array of paths, a JSON
 object with a "files" or "inputs" list, or a plain text file with one path per line.
@@ -42,7 +44,7 @@ import sys
 
 
 def parse_gitmodules(text: str) -> list[dict]:
-    """Minimal .gitmodules reader: INI-ish sections, `path` and `url` keys. No git required."""
+    """Minimal .gitmodules reader: INI-ish sections; `path`, `url`, `branch` and `update` keys. No git required."""
     mods: list[dict] = []
     cur: dict | None = None
     for raw in text.splitlines():
@@ -59,7 +61,9 @@ def parse_gitmodules(text: str) -> list[dict]:
             continue
         k, _, v = line.partition("=")
         k, v = k.strip().lower(), v.strip()
-        if k in ("path", "url", "branch"):
+        if len(v) >= 2 and v[0] == v[-1] == '"':
+            v = v[1:-1]
+        if k in ("path", "url", "branch", "update"):
             cur[k] = v
     if cur and cur.get("path"):
         mods.append(cur)
@@ -136,7 +140,7 @@ def main(argv: list[str] | None = None) -> int:
     excluded = {e.strip().strip("/") for e in a.exclude}
     parsed = load_parsed_paths(pathlib.Path(a.against)) if a.against else None
 
-    empty, unread, fine, out_of_scope, skipped = [], [], [], [], []
+    empty, unread, fine, out_of_scope, skipped, not_default = [], [], [], [], [], []
     for m in mods:
         path = m["path"].strip().strip("/")
         d = repo / path
@@ -147,7 +151,16 @@ def main(argv: list[str] | None = None) -> int:
             out_of_scope.append(path)
             continue
         if not d.is_dir() or not any(d.iterdir()):
-            empty.append(path)
+            # `update = none` is the project saying "do not check this out by default", and both
+            # `git clone --recurse-submodules` and `git submodule update --init --recursive` honour it, so the fix
+            # this tool prints for an empty submodule would not populate it. Empty is the declared state there,
+            # not a shallow clone. Only the empty case is excused: once someone checks such a submodule out it is
+            # part of the tree and gets the same checks as any other. Until 2026-11-02 this tool called
+            # SeedSigner's screenshots submodule EMPTY and failed CI for it.
+            if m.get("update") == "none":
+                not_default.append(path)
+            else:
+                empty.append(path)
             continue
         if parsed is not None:
             if any(p == path or p.startswith(path + "/") for p in parsed):
@@ -161,7 +174,8 @@ def main(argv: list[str] | None = None) -> int:
     if a.json:
         print(json.dumps({"ok": problems == 0, "declared": len(mods), "empty": empty, "unread": unread,
                           "populated_and_read" if parsed is not None else "populated": fine,
-                          "out_of_scope": out_of_scope, "excluded": skipped}, indent=2))
+                          "out_of_scope": out_of_scope, "excluded": skipped,
+                          "not_checked_out_by_default": not_default}, indent=2))
         return 1 if problems else 0
 
     print(f"{len(mods)} submodule(s) declared in .gitmodules")
@@ -171,6 +185,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  skipped  {p}  (outside the declared scope, so expected to be absent)")
     for p in skipped:
         print(f"  excluded {p}  (excluded by request)")
+    for p in not_default:
+        print(f"  skipped  {p}  (empty, and declared update = none: git leaves it out of a default checkout)")
     for p in empty:
         print(f"  EMPTY    {p}  <- pinned but the directory has nothing in it")
     for p in unread:

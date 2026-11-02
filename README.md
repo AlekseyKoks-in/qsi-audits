@@ -251,9 +251,16 @@ it works with whatever your tool already emits. In GitHub Actions:
 - run: python3 submodule-scope.py --against results.sarif
 ```
 
-`test-submodule-scope.sh` is its test suite, 11 cases, and two of them are not synthetic: it clones `embit` the
-way CI clones — shallow, no submodules — and requires the tool to catch the empty `secp256k1-zkp`, then
-materialises the submodules and requires it to pass.
+One exception, which the first published version got wrong: a submodule the project declares `update = none`
+is one git itself leaves out of a default checkout — `git clone --recurse-submodules` skips it — so an empty one
+is reported but is not a failure. Until 2026-11-02 the tool called SeedSigner's `seedsigner-screenshots` EMPTY
+and would have failed CI for a checkout that was exactly as its maintainers intended. Only the empty case is
+excused: once such a submodule is checked out, it gets the same checks as any other.
+
+`test-submodule-scope.sh` is its test suite, 19 cases, and six of them are not synthetic. Two clone `embit` the
+way CI clones — shallow, no submodules — and require the tool to catch the empty `secp256k1-zkp`, then
+materialise the submodules and require it to pass. Four build a superproject with real git, offline, and hold
+the tool to what git actually does with `update = none`.
 
 ## Layout
 
@@ -262,7 +269,7 @@ PUBLIC-KEY.pem     the one key that signed every bundle
 verify.py          standalone verifier
 readiness.py       BIP-360 / BIP-361 readiness, measured from the bundles
 submodule-scope.py are your pinned submodules populated, and did your tools read them?
-test-submodule-scope.sh  its tests, including two against a real repository
+test-submodule-scope.sh  its tests, including two against a real repository and four against git
 audits/<name>/     report.json · report.md · report.html · report.pdf · cbom.cdx.json
                    report.sarif.json · bundle.sig.json · report.sig.json · public_key.pem
                    brief.en.md · brief.ru.md (+ pdf)

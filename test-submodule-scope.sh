@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Tests for submodule-scope.py. The important one is case 3: a real repository cloned the way CI clones it,
-# which is exactly how Jade came to measure 7 inventory rows instead of 93.
+# which is exactly how Jade came to measure 7 inventory rows instead of 93. Case 8 holds the tool to what git
+# itself does with `update = none`, offline, because getting that wrong failed CI on SeedSigner.
 set -u
 T="$(mktemp -d "${TMPDIR:-/tmp}/sms-test-XXXXXX")"
 TOOL="$(cd "$(dirname "$0")" && pwd)/submodule-scope.py"
@@ -69,6 +70,62 @@ check "SARIF input parsed, submodule unread" 1 "UNREAD   vendor/dep" \
 
 # 6. JSON output stays machine-readable and carries the verdict.
 check "--json reports ok:false" 1 '"ok": false' python3 -I "$TOOL" --repo "$T/synthetic" --json
+
+# 7. `update = none`: the project's own declaration that a submodule is not part of a default checkout. Empty is
+#    then the declared state, not a defect — but it must not mask a real empty submodule beside it.
+mkdir -p "$T/upd/shots" "$T/upd/vendor/dep"
+cat > "$T/upd/.gitmodules" <<'EOF'
+[submodule "shots"]
+	path = shots
+	url = https://example.invalid/shots.git
+	update = none
+EOF
+check "empty update=none submodule is not a failure" 0 "declared update = none" python3 -I "$TOOL" --repo "$T/upd"
+check "--json lists it apart from the empty ones" 0 '"not_checked_out_by_default"' \
+  python3 -I "$TOOL" --repo "$T/upd" --json
+sed -i 's/update = none/update = "none"/' "$T/upd/.gitmodules"
+check "a quoted value means the same, as it does to git" 0 "declared update = none" python3 -I "$TOOL" --repo "$T/upd"
+cat >> "$T/upd/.gitmodules" <<'EOF'
+[submodule "dep"]
+	path = vendor/dep
+	url = https://example.invalid/dep.git
+EOF
+check "update=none does not mask a real empty submodule" 1 "EMPTY    vendor/dep" python3 -I "$TOOL" --repo "$T/upd"
+
+# 8. The same against git itself, offline. Build a superproject with one ordinary and one `update = none`
+#    submodule, clone it the way CI clones with submodules on, and require that git really left the second one
+#    empty (the premise), that the tool accepts it, and that the tool checks it again once someone checks it out.
+g() { git -c protocol.file.allow=always -c user.name=test -c user.email=test@example.invalid \
+          -c init.defaultBranch=main -c commit.gpgsign=false "$@"; }
+if command -v git >/dev/null 2>&1; then
+  for r in lib shots; do
+    mkdir -p "$T/git/$r" && echo "int $r(void) { return 0; }" > "$T/git/$r/$r.c"
+    g -C "$T/git/$r" init -q && g -C "$T/git/$r" add . && g -C "$T/git/$r" commit -qm "$r"
+  done
+  mkdir -p "$T/git/super" && echo "int main(void) { return 0; }" > "$T/git/super/main.c"
+  g -C "$T/git/super" init -q
+  g -C "$T/git/super" submodule add -q "$T/git/lib" vendor/lib
+  g -C "$T/git/super" submodule add -q "$T/git/shots" shots
+  g -C "$T/git/super" config -f .gitmodules submodule.shots.update none
+  g -C "$T/git/super" add -A && g -C "$T/git/super" commit -qm super
+  g clone -q --recurse-submodules "$T/git/super" "$T/git/clone" 2>/dev/null
+  if [ -n "$(ls -A "$T/git/clone/vendor/lib" 2>/dev/null)" ] && [ -d "$T/git/clone/shots" ] \
+     && [ -z "$(ls -A "$T/git/clone/shots")" ]; then
+    printf '  ok    %s\n' "GIT: --recurse-submodules filled vendor/lib and left shots empty"; pass=$((pass+1))
+  else
+    printf '  FAIL  %s\n' "GIT: git did not do what the tool assumes"; fail=$((fail+1))
+  fi
+  check "GIT: the tool accepts what git did" 0 "declared update = none" python3 -I "$TOOL" --repo "$T/git/clone"
+  rm -rf "$T/git/clone/vendor/lib" && mkdir "$T/git/clone/vendor/lib"
+  check "GIT: and still catches the ordinary one emptied" 1 "EMPTY    vendor/lib" \
+    python3 -I "$TOOL" --repo "$T/git/clone"
+  g -C "$T/git/clone" submodule update -q --init --checkout -- vendor/lib shots
+  (cd "$T/git/clone" && find . -name '*.c' -not -path './shots/*' | sed 's|^\./||' > "$T/git-noshots.txt")
+  check "GIT: once checked out, an unread update=none submodule is UNREAD" 1 "UNREAD   shots" \
+    python3 -I "$TOOL" --repo "$T/git/clone" --against "$T/git-noshots.txt"
+else
+  printf '  skip  GIT: git is not installed\n'
+fi
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 [ "$fail" -eq 0 ]
