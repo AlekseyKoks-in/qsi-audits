@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 21:07 UTC |
+| Дата отчёта | 2026-10-30 22:30 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 882ca3ae-fad1-4229-865a-9a11ad5e8585 (Документальный аудит) |
+| Запуск аудита | 4eae5de9-89e2-4613-9859-5f69345efaab (Документальный аудит) |
 | Версия анализатора | qsi-engine 1.2.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `e5697285d21aad4283fd8ec1366faa0baad4b8e6f794b6459f1d7678347d9cb4` |
+| SHA-256 содержимого | `094d496757f98295e90898cf93671f7daf92a08b708a527dbda4f4d3ab418d4a` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -19,10 +19,10 @@
 - Высокая: **11**
 - Средняя: **56**
 - Низкая: **3**
-- Информационная: **7**
+- Информационная: **6**
 
 - Подтверждённая техническая уязвимость: 1
-- Известная уязвимая версия компонента: 33
+- Известная уязвимая версия компонента: 32
 - Подтверждённая ошибка конфигурации: 1
 - Потенциальный криптографический риск: 3
 - Долгосрочный постквантовый риск: 38
@@ -31,7 +31,7 @@
 
 Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-Проверка аналитика: подтверждено — 13, не применимо — 6, отклонено как ложные срабатывания — 0.
+Проверка аналитика: подтверждено — 13, не применимо — 5, отклонено как ложные срабатывания — 0.
 
 **Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -47,7 +47,7 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 2556 | external/CMSIS/Include/cmsis_armclang.h: 707 lines scanned with 16 rule patterns and 123 registry patterns; external/CMSIS/Include/cmsis_clang.h: 708 lines scanned with 16 rule patterns and 123 registry patterns; external/CMSIS/Include/cmsis_compiler.h: 292 lines scanned with 16 rule patterns and 123 registry patterns |
+| source_code | проверено | 2556 | external/CMSIS/Include/cmsis_armclang.h: 707 lines scanned with 16 rule patterns and 136 registry patterns; external/CMSIS/Include/cmsis_clang.h: 708 lines scanned with 16 rule patterns and 136 registry patterns; external/CMSIS/Include/cmsis_compiler.h: 292 lines scanned with 16 rule patterns and 136 registry patterns |
 | chain_map | проверено | 3 | messages/btc.proto: Bitcoin; messages/cardano.proto: Cardano; messages/eth.proto: Ethereum and EVM chains |
 | dependencies | проверено | 48 | py/pyproject.toml: 0 dependencies parsed (0 pinned); py/requirements.txt: 8 dependencies parsed (0 pinned); src/rust/Cargo.lock: 135 dependencies parsed (135 pinned) |
 | certificates_and_keys | проверено | 23 | releases/pubkeys/JuliusWiedemann.asc: certificates/keys parsed; releases/pubkeys/JunghoonLee.asc: certificates/keys parsed; releases/pubkeys/My1.asc: certificates/keys parsed |
@@ -57,7 +57,7 @@
 | certificates | ошибка (не проверено) | 1 | external/cryptoauthlib/lib/atcacert/atcacert_pem.h line 37: certificate could not be parsed (ValueError) |
 | tls_key_exchange_groups | Недостаточность данных | 4 | external/lvgl/docs/doxygen_xml.py line 349: not in the algorithm registry, not assessed: {}; external/lvgl/docs/src/details/main-modules/indev/groups.rst line 4: not in the algorithm registry, not assessed: =====; external/lvgl/scripts/generate_lv_conf.py line 67: not in the algorithm registry, not assessed: re.search(r'([A-Z0-9_]+)\s+(.+)' |
 | tls_configuration | проверено | 4 | external/lvgl/docs/doxygen_xml.py: openssl TLS directives parsed; external/lvgl/docs/src/details/main-modules/indev/groups.rst: openssl TLS directives parsed; external/lvgl/scripts/generate_lv_conf.py: openssl TLS directives parsed |
-| osv_advisories | проверено | 1 | 207 pinned packages queried at OSV.dev; 15 affected |
+| osv_advisories | проверено | 1 | 207 pinned packages queried at OSV.dev; 14 affected |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -73,22 +73,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree bitbox02-firmware at ae548ef4e40f548a17542ba457f138db4fa0069d. 2645 files analysed; of 8952 files, 4270 are test, fuzzing, benchmark or example code and were left out, 1518 are not read by any analyzer, 1 exceed the per-file limit and 518 did not fit the total limit. Files the total limit could not fit include: external/optiga-trust-m/external/mbedtls/include/mbedtls/compat-1.3.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/config.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/debug.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/des.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/dhm.h. 15718 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 1543 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.
+Static review of the source tree bitbox02-firmware at ae548ef4e40f548a17542ba457f138db4fa0069d. 2645 files analysed; of 8952 files, 4270 are test, fuzzing, benchmark or example code and were left out, 1518 are not read by any analyzer, 1 exceed the per-file limit and 518 did not fit the total limit. Files no analyzer reads include: .ci/README.md, .ci/check-container-sources-modified, .ci/check-container-version-published, .ci/check-hashes, .ci/check-pep8. Because the total limit bound, this inventory covers 2645 of 8952 candidate files (29%) and is a sample of the tree rather than a reading of it; a different limit gives a different figure. Files it could not fit include: external/optiga-trust-m/external/mbedtls/include/mbedtls/compat-1.3.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/config.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/debug.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/des.h, external/optiga-trust-m/external/mbedtls/include/mbedtls/dhm.h. 15718 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 1543 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: external/lvgl (1223), external/cryptoauthlib (240), external/optiga-trust-m (67), external/embedded-swd (12). No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **0** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 52.8%
+- Доля квантово-уязвимых элементов инвентаризации: 52.3%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-06913 — certifi 2022.12.7 затронут GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320)
+### QSI-2026-08155 — certifi 2022.12.7 затронут GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/certifi@2022.12.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 54.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -116,13 +116,13 @@ _tool_output · [OSV.dev GHSA-6q48-6c7w-9gw2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06890 — Проверка TLS-сертификата отключена в scripts/generate_version_headers.py
+### QSI-2026-08133 — Проверка TLS-сертификата отключена в scripts/generate_version_headers.py
 
 - Серьёзность: **Высокая** · Классификация: Подтверждённая ошибка конфигурации · Уверенность: Высокая
 - Затронутый актив: `file:scripts/generate_version_headers.py`
 - Источник данных: scripts/generate_version_headers.py
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 70.4 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -154,13 +154,13 @@ _file_excerpt · [scripts/generate_version_headers.py](https://github.com/BitBox
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-06914 — certifi 2022.12.7 затронут GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135)
+### QSI-2026-08156 — certifi 2022.12.7 затронут GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/certifi@2022.12.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
@@ -188,13 +188,13 @@ _tool_output · [OSV.dev GHSA-xqr8-7jwr-rhp7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06918 — jinja2 3.1.2 затронут GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472)
+### QSI-2026-08160 — jinja2 3.1.2 затронут GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/jinja2@3.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.8 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -222,13 +222,13 @@ _tool_output · [OSV.dev GHSA-gmj6-6f8f-6699](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06921 — jinja2 3.1.2 затронут GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475)
+### QSI-2026-08163 — jinja2 3.1.2 затронут GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/jinja2@3.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.8 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H`)
 
@@ -256,13 +256,13 @@ _tool_output · [OSV.dev GHSA-q2x7-8rv6-6q7h](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06928 — urllib3 1.26.15 затронут GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994)
+### QSI-2026-08170 — urllib3 1.26.15 затронут GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -290,13 +290,13 @@ _tool_output · [OSV.dev GHSA-2xpw-w6gg-jr37](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06930 — urllib3 1.26.15 затронут GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996)
+### QSI-2026-08172 — urllib3 1.26.15 затронут GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -324,13 +324,13 @@ _tool_output · [OSV.dev GHSA-38jv-5279-wg99](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06931 — urllib3 1.26.15 затронут GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175)
+### QSI-2026-08173 — urllib3 1.26.15 затронут GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -358,13 +358,13 @@ _tool_output · [OSV.dev GHSA-8988-9cw3-xx77](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06933 — urllib3 1.26.15 затронут GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998)
+### QSI-2026-08175 — urllib3 1.26.15 затронут GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -392,13 +392,13 @@ _tool_output · [OSV.dev GHSA-gm62-xv2j-4w53](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06937 — urllib3 1.26.15 затронут GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177)
+### QSI-2026-08179 — urllib3 1.26.15 затронут GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -426,13 +426,13 @@ _tool_output · [OSV.dev GHSA-vxq7-64xx-v4gw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06861 — Режим ECB блочного шифра в external/samd51a-ds/include/component/aes.h
+### QSI-2026-08104 — Режим ECB блочного шифра в external/samd51a-ds/include/component/aes.h
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:external/samd51a-ds/include/component/aes.h`
 - Источник данных: external/samd51a-ds/include/component/aes.h
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 38.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -464,13 +464,13 @@ _file_excerpt · [external/samd51a-ds/include/component/aes.h](https://github.co
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-06901 — Режим ECB блочного шифра в external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h
+### QSI-2026-08144 — Режим ECB блочного шифра в external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h`
 - Источник данных: external/optiga-trust-m/external/mbedtls/include/mbedtls/cipher.h
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 38.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -502,14 +502,14 @@ _file_excerpt · [external/optiga-trust-m/external/mbedtls/include/mbedtls/ciphe
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-06902 — Подпись транзакций для сетей (3) основана на подписях на эллиптических кривых
+### QSI-2026-08145 — Подпись транзакций для сетей (3) основана на подписях на эллиптических кривых
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** True by construction. messages/btc.proto, cardano.proto and eth.proto define the supported chains, whose signature schemes are set by consensus rather than by the wallet. The wallet cannot migrate them unilaterally, so this is a readiness map rather than a defect.
 - Затронутый актив: `chain-map`
 - Источник данных: messages/btc.proto
 - Метод обнаружения: Определения сообщений (.proto) сопоставлены с таблицей схем подписи сетей QSI.
-- Анализатор: chain_map 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: chain_map 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 56.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -549,13 +549,13 @@ package shiftcrypto.bitbox02;
 
 **Повторная проверка.** Повторить, когда сеть активирует постквантовую схему подписи или кошелёк добавит её поддержку.
 
-### QSI-2026-06864 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/JuliusWiedemann.asc
+### QSI-2026-08107 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/JuliusWiedemann.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/JuliusWiedemann.asc#line 1`
 - Источник данных: releases/pubkeys/JuliusWiedemann.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -589,13 +589,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06865 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/JunghoonLee.asc
+### QSI-2026-08108 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/JunghoonLee.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/JunghoonLee.asc#line 1`
 - Источник данных: releases/pubkeys/JunghoonLee.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -629,13 +629,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06866 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/My1.asc
+### QSI-2026-08109 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/My1.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/My1.asc#line 1`
 - Источник данных: releases/pubkeys/My1.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -663,13 +663,13 @@ OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06867 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/My1.asc
+### QSI-2026-08110 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/My1.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/My1.asc#line 1`
 - Источник данных: releases/pubkeys/My1.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -703,13 +703,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06868 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/TheCharlatan.asc
+### QSI-2026-08111 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/TheCharlatan.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/TheCharlatan.asc#line 1`
 - Источник данных: releases/pubkeys/TheCharlatan.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -755,13 +755,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06869 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/beerosagos.asc
+### QSI-2026-08112 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/beerosagos.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/beerosagos.asc#line 1`
 - Источник данных: releases/pubkeys/beerosagos.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -795,13 +795,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06870 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/benma.asc
+### QSI-2026-08113 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/benma.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/benma.asc#line 1`
 - Источник данных: releases/pubkeys/benma.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -841,13 +841,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06871 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/brianddk.asc
+### QSI-2026-08114 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/brianddk.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/brianddk.asc#line 1`
 - Источник данных: releases/pubkeys/brianddk.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -887,13 +887,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06872 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/cstenglein.asc
+### QSI-2026-08115 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/cstenglein.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/cstenglein.asc#line 1`
 - Источник данных: releases/pubkeys/cstenglein.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -927,13 +927,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06873 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/frknakk.asc
+### QSI-2026-08116 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/frknakk.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/frknakk.asc#line 1`
 - Источник данных: releases/pubkeys/frknakk.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -967,13 +967,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06874 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/guggerf.asc
+### QSI-2026-08117 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/guggerf.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/guggerf.asc#line 1`
 - Источник данных: releases/pubkeys/guggerf.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1007,13 +1007,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06875 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/jonathancross.asc
+### QSI-2026-08118 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/jonathancross.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/jonathancross.asc#line 1`
 - Источник данных: releases/pubkeys/jonathancross.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1041,13 +1041,13 @@ OpenPGP primary key: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06876 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/jonathancross.asc
+### QSI-2026-08119 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/jonathancross.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/jonathancross.asc#line 1`
 - Источник данных: releases/pubkeys/jonathancross.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1087,13 +1087,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06877 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/nickez.asc
+### QSI-2026-08120 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/nickez.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/nickez.asc#line 1`
 - Источник данных: releases/pubkeys/nickez.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1157,13 +1157,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06878 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/offbyn.asc
+### QSI-2026-08121 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/offbyn.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/offbyn.asc#line 1`
 - Источник данных: releases/pubkeys/offbyn.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1209,13 +1209,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06879 — Квантово-уязвимый ключ Ed25519 (Ed25519) в releases/pubkeys/psteiger.asc
+### QSI-2026-08122 — Квантово-уязвимый ключ Ed25519 (Ed25519) в releases/pubkeys/psteiger.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/psteiger.asc#line 1`
 - Источник данных: releases/pubkeys/psteiger.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1243,13 +1243,13 @@ OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06880 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/stadicus.asc
+### QSI-2026-08123 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/stadicus.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/stadicus.asc#line 1`
 - Источник данных: releases/pubkeys/stadicus.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1295,13 +1295,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06881 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/strnbrg.asc
+### QSI-2026-08124 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/strnbrg.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/strnbrg.asc#line 1`
 - Источник данных: releases/pubkeys/strnbrg.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1335,13 +1335,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06882 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/sutterseba.asc
+### QSI-2026-08125 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/sutterseba.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/sutterseba.asc#line 1`
 - Источник данных: releases/pubkeys/sutterseba.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1375,13 +1375,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06883 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/tomasvrba.asc
+### QSI-2026-08126 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/tomasvrba.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/tomasvrba.asc#line 1`
 - Источник данных: releases/pubkeys/tomasvrba.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1445,13 +1445,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06884 — Квантово-уязвимый ключ RSA (3072-bit) в releases/pubkeys/userofreddit44.asc
+### QSI-2026-08127 — Квантово-уязвимый ключ RSA (3072-bit) в releases/pubkeys/userofreddit44.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/userofreddit44.asc#line 1`
 - Источник данных: releases/pubkeys/userofreddit44.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1485,13 +1485,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06885 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/x1ddos.asc
+### QSI-2026-08128 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/x1ddos.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/x1ddos.asc#line 1`
 - Источник данных: releases/pubkeys/x1ddos.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1525,13 +1525,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06886 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/x1ddos.asc
+### QSI-2026-08129 — Квантово-уязвимый ключ RSA (2048-bit) в releases/pubkeys/x1ddos.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/x1ddos.asc#line 1`
 - Источник данных: releases/pubkeys/x1ddos.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1565,13 +1565,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06887 — Квантово-уязвимый ключ RSA (3072-bit) в releases/pubkeys/x1ddos.asc
+### QSI-2026-08130 — Квантово-уязвимый ключ RSA (3072-bit) в releases/pubkeys/x1ddos.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/x1ddos.asc#line 1`
 - Источник данных: releases/pubkeys/x1ddos.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1599,13 +1599,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06888 — Квантово-уязвимый ключ Ed25519 (Ed25519) в releases/pubkeys/yaziza.asc
+### QSI-2026-08131 — Квантово-уязвимый ключ Ed25519 (Ed25519) в releases/pubkeys/yaziza.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/yaziza.asc#line 1`
 - Источник данных: releases/pubkeys/yaziza.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1639,13 +1639,13 @@ OpenPGP subkey: algorithm ID 22 (Ed25519) Ed25519
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06889 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/yaziza.asc
+### QSI-2026-08132 — Квантово-уязвимый ключ RSA (4096-bit) в releases/pubkeys/yaziza.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:releases/pubkeys/yaziza.asc#line 1`
 - Источник данных: releases/pubkeys/yaziza.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1673,13 +1673,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06896 — Квантово-уязвимый ключ ECDSA (secp256r1) в external/cryptoauthlib/app/pkcs11/README.md
+### QSI-2026-08139 — Квантово-уязвимый ключ ECDSA (secp256r1) в external/cryptoauthlib/app/pkcs11/README.md
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:external/cryptoauthlib/app/pkcs11/README.md#line 280`
 - Источник данных: external/cryptoauthlib/app/pkcs11/README.md
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: certificates 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1707,13 +1707,13 @@ ECDSA public key, secp256r1
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06915 — idna 3.4 затронут GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215)
+### QSI-2026-08157 — idna 3.4 затронут GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/idna@3.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -1741,13 +1741,13 @@ _tool_output · [OSV.dev GHSA-65pc-fj4g-8rjx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06916 — idna 3.4 затронут GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60)
+### QSI-2026-08158 — idna 3.4 затронут GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/idna@3.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1775,13 +1775,13 @@ _tool_output · [OSV.dev GHSA-jjg7-2v4v-x38h](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06917 — jinja2 3.1.2 затронут GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471)
+### QSI-2026-08159 — jinja2 3.1.2 затронут GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/jinja2@3.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1809,13 +1809,13 @@ _tool_output · [OSV.dev GHSA-cpwx-vrp4-4pq7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06919 — jinja2 3.1.2 затронут GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473)
+### QSI-2026-08161 — jinja2 3.1.2 затронут GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/jinja2@3.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -1843,13 +1843,13 @@ _tool_output · [OSV.dev GHSA-h5c8-rqwp-cp95](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06920 — jinja2 3.1.2 затронут GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474)
+### QSI-2026-08162 — jinja2 3.1.2 затронут GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/jinja2@3.1.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.4 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N`)
 
@@ -1877,13 +1877,13 @@ _tool_output · [OSV.dev GHSA-h75v-3vvj-5mfj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06923 — pygments 2.14.0 затронут GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117)
+### QSI-2026-08165 — pygments 2.14.0 затронут GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/pygments@2.14.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.5 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H`)
 
@@ -1911,13 +1911,13 @@ _tool_output · [OSV.dev GHSA-mrwq-x4v8-fh7p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06924 — requests 2.28.2 затронут GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872)
+### QSI-2026-08166 — requests 2.28.2 затронут GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/requests@2.28.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -1945,13 +1945,13 @@ _tool_output · [OSV.dev GHSA-9hjg-9r4m-mvj7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06925 — requests 2.28.2 затронут GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873)
+### QSI-2026-08167 — requests 2.28.2 затронут GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/requests@2.28.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.6 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -1979,13 +1979,13 @@ _tool_output · [OSV.dev GHSA-9wx4-h78v-vm56](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06926 — requests 2.28.2 затронут GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275)
+### QSI-2026-08168 — requests 2.28.2 затронут GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/requests@2.28.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.4 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N`)
 
@@ -2013,13 +2013,13 @@ _tool_output · [OSV.dev GHSA-gc5v-m9x4-r6x2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06927 — requests 2.28.2 затронут GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74)
+### QSI-2026-08169 — requests 2.28.2 затронут GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/requests@2.28.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N`)
 
@@ -2047,13 +2047,13 @@ _tool_output · [OSV.dev GHSA-j8r2-6x86-q33q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06929 — urllib3 1.26.15 затронут GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995)
+### QSI-2026-08171 — urllib3 1.26.15 затронут GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.4 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2081,13 +2081,13 @@ _tool_output · [OSV.dev GHSA-34jh-p97f-mpxf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06932 — urllib3 1.26.15 затронут GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212)
+### QSI-2026-08174 — urllib3 1.26.15 затронут GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.2 (`CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2115,13 +2115,13 @@ _tool_output · [OSV.dev GHSA-g4mx-q9vg-27p4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06934 — urllib3 1.26.15 затронут GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999)
+### QSI-2026-08176 — urllib3 1.26.15 затронут GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -2149,13 +2149,13 @@ _tool_output · [OSV.dev GHSA-pq67-6m6q-mj2v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06935 — urllib3 1.26.15 затронут GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141)
+### QSI-2026-08177 — urllib3 1.26.15 затронут GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -2183,13 +2183,13 @@ _tool_output · [OSV.dev GHSA-qccp-gfcp-xxvc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06936 — urllib3 1.26.15 затронут GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192)
+### QSI-2026-08178 — urllib3 1.26.15 затронут GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/urllib3@1.26.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N`)
 
@@ -2217,13 +2217,13 @@ _tool_output · [OSV.dev GHSA-v845-jxx5-vc9f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06938 — zipp 3.15.0 затронут GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074)
+### QSI-2026-08180 — zipp 3.15.0 затронут GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/zipp@3.15.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -2251,14 +2251,14 @@ _tool_output · [OSV.dev GHSA-jfmj-5v4g-7637](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06891 — Квантово-уязвимый ECDSA: проверка прошивки и загрузки (корень доверия) (3 файл(ов))
+### QSI-2026-08134 — Квантово-уязвимый ECDSA: проверка прошивки и загрузки (корень доверия) (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:ECDSA:root_of_trust`
 - Источник данных: src/bootloader/bootloader.c
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 43.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -2328,14 +2328,14 @@ _file_excerpt · [src/rust/bitbox02-rust-c/src/firmware_c_api.rs](https://github
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06893 — Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (1 файл(ов))
+### QSI-2026-08136 — Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:X25519:key_wrapping`
 - Источник данных: src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 43.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -2381,14 +2381,14 @@ _file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://gith
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06898 — Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))
+### QSI-2026-08141 — Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:ECDH:key_wrapping`
 - Источник данных: external/cryptoauthlib/python/cryptoauthlib/atcab.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 43.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -2434,14 +2434,14 @@ _file_excerpt · [external/cryptoauthlib/python/cryptoauthlib/atcab.py](https://
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06863 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (14 файл(ов))
+### QSI-2026-08106 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (14 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: py/bitbox02/bitbox02/bitbox02/secp256k1.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -2543,14 +2543,14 @@ _file_excerpt · [src/rust/bitbox02-rust-c/src/secp256k1.rs](https://github.com/
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06892 — Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (5 файл(ов))
+### QSI-2026-08135 — Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (5 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:X25519:channel`
 - Источник данных: src/rust/bitbox-noise/src/lib.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -2652,14 +2652,14 @@ _file_excerpt · [external/optiga-trust-m/external/mbedtls/3rdparty/everest/libr
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06895 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))
+### QSI-2026-08138 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:Ed25519:transaction_signing`
 - Источник данных: src/rust/bitbox02-rust/src/keystore/ed25519.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -2697,14 +2697,14 @@ _file_excerpt · [src/rust/bitbox02-rust/src/keystore/ed25519.rs](https://github
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06862 — Квантово-уязвимый ECDSA: роль не определена (10 файл(ов))
+### QSI-2026-08105 — Квантово-уязвимый ECDSA: роль не определена (10 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Role resolved for all six files, and they are three different roles rather than one. src/pukcc/pukcc.c:181 is pukcc_ecdsa_verify, the ATSAM PUKCC hardware public-key controller performing ECDSA *verification* — the bootloader's signature check, so a root-of-trust item, and verification uses public keys only, which puts it outside any timing concern. src/rust/streaming-silent-payments/{lib,hash}.rs is BIP-352 silent payments, i.e. address derivation on secp256k1. src/rust/util/src/p256.rs is the U2F/FIDO P-256 signing described in the crypto-bigint decision above. Each has a different migration deadline, which is why leaving them merged as "role not determined" would be the wrong input to a plan.
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: py/bitbox02/bitbox02/bitbox02/bitbox02.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2806,14 +2806,14 @@ _file_excerpt · [external/cryptoauthlib/lib/mbedtls/atca_mbedtls_ecdsa.c](https
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06894 — Квантово-уязвимый Ed25519: роль не определена (1 файл(ов))
+### QSI-2026-08137 — Квантово-уязвимый Ed25519: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Role resolved: the single anchor is src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs:11, the same file that carries the X25519 at-rest row. BitBoxSync wraps synchronised data to a recipient public key, so this is key wrapping and encryption at rest, and harvest-now-decrypt-later applies: anything copied today is readable once a CRQC exists. Highest-urgency class in this repository, because unlike signing it cannot be fixed retroactively.
 - Затронутый актив: `source-code:Ed25519:general`
 - Источник данных: src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2843,14 +2843,14 @@ _file_excerpt · [src/rust/bitbox02-rust/src/hww/api/bitboxsync.rs](https://gith
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06897 — Квантово-уязвимый ECDH: роль не определена (4 файл(ов))
+### QSI-2026-08140 — Квантово-уязвимый ECDH: роль не определена (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:ECDH:general`
 - Источник данных: external/cryptoauthlib/lib/calib/calib_command.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2920,14 +2920,14 @@ _file_excerpt · [external/cryptoauthlib/python/setup.py](https://github.com/Bit
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06900 — Квантово-уязвимый X25519: роль не определена (6 файл(ов))
+### QSI-2026-08143 — Квантово-уязвимый X25519: роль не определена (6 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** The remaining rows carry roles the engine determined and review agrees with, each checked against the cited file. ECDSA at src/bootloader/bootloader.c:537 and stage0/stage1_sigcheck.c is firmware and boot verification, with the public keys fixed in the bootloader: the hardest item to migrate, because it needs new hardware or a signed transition path. X25519 at bitbox-noise/{lib,noise_xx,x25519}.rs is the Noise channel to the host — recordable now, decryptable later, answered by a hybrid exchange. X25519 at bitboxsync.rs is key wrapping at rest. ECDSA across bitbox-secp256k1 and bitbox02-rust (bip32.rs, bip39.rs, hww/api/bitcoin/signmsg.rs) is transaction and message signing on secp256k1. Ed25519 at bitbox02-rust/src/keystore/ed25519.rs is transaction signing on the Cardano path.
 - Затронутый актив: `source-code:X25519:general`
 - Источник данных: external/optiga-trust-m/external/mbedtls/3rdparty/everest/include/everest/Hacl_Curve25519.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2996,13 +2996,13 @@ _file_excerpt · [external/optiga-trust-m/external/mbedtls/3rdparty/everest/libr
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06911 — bytes 1.5.0 затронут GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
+### QSI-2026-08153 — bytes 1.5.0 затронут GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/bytes@1.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -3030,13 +3030,13 @@ _tool_output · [OSV.dev GHSA-434x-w66g-qw3r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06899 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в external/lvgl/docs/src/_static/jquery.js
+### QSI-2026-08142 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в external/lvgl/docs/src/_static/jquery.js
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:external/lvgl/docs/src/_static/jquery.js`
 - Источник данных: external/lvgl/docs/src/_static/jquery.js
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 25.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -3065,13 +3065,13 @@ _file_excerpt · [external/lvgl/docs/src/_static/jquery.js](https://github.com/B
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-06912 — certifi 2022.12.7 затронут GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230)
+### QSI-2026-08154 — certifi 2022.12.7 затронут GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/certifi@2022.12.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -3099,13 +3099,13 @@ _tool_output · [OSV.dev GHSA-248v-346w-9cwc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06922 — pygments 2.14.0 затронут GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987)
+### QSI-2026-08164 — pygments 2.14.0 затронут GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/pygments@2.14.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -3133,14 +3133,14 @@ _tool_output · [OSV.dev GHSA-5239-wwwm-4pmq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06907 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
+### QSI-2026-08149 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Подтверждённая техническая уязвимость · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** crypto-bigint 0.5.5 (multiple timing variability issues in operations intended to be constant-time) is reachable in shipped firmware, and the path is worth stating exactly because it is narrower than it looks. src/rust/util/Cargo.toml:17 takes p256 as an *optional* dependency with features ["arithmetic", "ecdsa"], and lib.rs guards it with #[cfg(feature = "p256")]. That feature is switched on in exactly one place: src/rust/bitbox02-rust-c/Cargo.toml, inside the app-u2f feature block ("util/p256"). So p256 -> elliptic-curve -> crypto-bigint is compiled in whenever the U2F/FIDO app is built — the Multi edition — and is absent from a Bitcoin-only build. What it does there is secret-dependent: util/src/p256.rs exports rust_p256_sign, which calls SigningKey::sign_prehash with a private key over the C FFI, i.e. U2F authentication signatures on NIST P-256. The keys at stake are therefore FIDO credentials, NOT bitcoin spending keys: those go through bitbox-secp256k1 (libsecp256k1 in C), which this advisory does not touch. Stated precisely: no exploit is demonstrated, and the attacker model is physical possession plus timing measurement, which is the threat a hardware wallet exists to resist — hence medium rather than low. Fix available in crypto-bigint 0.7.6; maintainers should match the advisory's named operations against p256's scalar arithmetic.
 - Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 23.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -3168,14 +3168,14 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06908 — keccak 0.1.4 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-08150 — keccak 0.1.4 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** keccak 0.1.4's unsoundness is in the opt-in ARMv8 assembly backend behind the asm Cargo feature, which is off by default and which no manifest in src/rust enables. Its consumers are bitbox02-rust and sha3, both using the portable implementation. Upgrading to 0.1.6 is still the cheap move during routine maintenance.
 - Затронутый актив: `dependency:crates.io/keccak@0.1.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 35.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -3203,14 +3203,14 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06909 — time 0.3.44 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+### QSI-2026-08151 — time 0.3.44 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** time 0.3.44's stack-exhaustion issue is in the RFC 2822 and RFC 3339 parsing entry points (time::Date::parse, time::OffsetDateTime::parse and friends). time is pulled in by the workspace's own util crate, which uses it for datetime formatting in util/src/datetime.rs, not for parsing attacker-supplied strings, and no audited file names the affected functions. _автоматическая серьёзность: Средняя._
 - Затронутый актив: `dependency:crates.io/time@0.3.44`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 35.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -3238,49 +3238,14 @@ _tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06906 — block-buffer 0.10.3 затронут GHSA-qwgh-2vcv-g2f7
-
-- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-> **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** block-buffer 0.10.3 reaches this tree through digest, so every hash in it (sha2, sha3, blake2, hmac, ripemd, the dalek curves) sits above it and the dependency really is there. But the advisory is that a panic leaves the inline buffer position corrupted, which only matters if the panic is caught and the same buffer is then reused. This is no_std firmware on Cortex-M: std::panic::catch_unwind does not exist in that build. Checked rather than assumed — of 30 catch_unwind occurrences in the repository, 26 are in external/vendor third-party crates and the 4 under src/ are all test code: a #[cfg(test)] mod in bitbox-executor/src/lib.rs, two TestingHal tests in bitbox02-rust/src/hww.rs and async_usb.rs, and the integration test bitbox-secp256k1/tests/context.rs. The precondition cannot occur on the device. _автоматическая серьёзность: Средняя._
-- Затронутый актив: `dependency:crates.io/block-buffer@0.10.3`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
-- Балл приоритета: 26.4 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.3: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-06904 — anyhow 1.0.31 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
+### QSI-2026-08147 — anyhow 1.0.31 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** anyhow 1.0.31 (unsoundness in Error::downcast_mut) enters only through prost-derive, which is a proc-macro crate, so it runs in the code generator at build time and is never linked into the firmware image. Traced in src/rust/Cargo.lock: anyhow <- prost-derive <- prost <- bitbox-proto <- bitbox02-rust <- bitbox02-rust-c. Error::downcast_mut is not called anywhere in the audited tree. _автоматическая серьёзность: Низкая._
 - Затронутый актив: `dependency:crates.io/anyhow@1.0.31`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 20.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -3308,14 +3273,14 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06910 — anyhow 1.0.75 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
+### QSI-2026-08152 — anyhow 1.0.75 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** anyhow 1.0.31 (unsoundness in Error::downcast_mut) enters only through prost-derive, which is a proc-macro crate, so it runs in the code generator at build time and is never linked into the firmware image. Traced in src/rust/Cargo.lock: anyhow <- prost-derive <- prost <- bitbox-proto <- bitbox02-rust <- bitbox02-rust-c. Error::downcast_mut is not called anywhere in the audited tree. _автоматическая серьёзность: Низкая._
 - Затронутый актив: `dependency:crates.io/anyhow@1.0.75`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 20.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -3343,18 +3308,18 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06903 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-08146 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-28): подтверждено аналитиком.** Accurate and the single most quotable row for a migration budget: across 40 dependency manifests the tree declares curve25519-dalek, ecdsa, ed25519-dalek, p256, secp256k1 and x25519-dalek, and nothing PQC-capable. On a Cortex-M target that is not an oversight — ML-DSA and SLH-DSA signature and key sizes are the constraint, and a no_std PQ implementation that fits the flash and RAM budget is itself the engineering problem. Worth stating as a finding precisely because the fix is not "add a crate".
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 15.0 / 100
 - CVSS v3.1: неприменимо
 
-В 48 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ed25519-dalek, p256, secp256k1, x25519-dalek), но ни одной из списка поддерживающих PQC.
+В 48 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ed25519-dalek, ff, group, p256, secp256k1, x25519-dalek), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -3366,10 +3331,10 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Подтверждающие доказательства.**
 
-_dependency · py/pyproject.toml, py/requirements.txt, src/rust/Cargo.lock, src/rust/Cargo.toml, src/rust/bins/bitbox03-boot0/Cargo.toml, src/rust/bins/bitbox03-boot1/Cargo.toml, src/rust/bins/bitbox03-factorysetup/Cargo.toml, src/rust/bins/bitbox03-firmware/Cargo.toml, src/rust/bitbox-aes/Cargo.toml, src/rust/bitbox-board-stm32u5a9j-dk-build/Cargo.toml, src/rust/bitbox-board-stm32u5a9j-dk-sys/Cargo.toml, src/rust/bitbox-board-stm32u5a9j-dk/Cargo.toml, src/rust/bitbox-boot-utils/Cargo.toml, src/rust/bitbox-byt · SHA-256 bf8c520f29fbbee5a6f56af359cab24476ceec5fc694f1dd615a03d9b2a066fd_
+_dependency · py/pyproject.toml, py/requirements.txt, src/rust/Cargo.lock, src/rust/Cargo.toml, src/rust/bins/bitbox03-boot0/Cargo.toml, src/rust/bins/bitbox03-boot1/Cargo.toml, src/rust/bins/bitbox03-factorysetup/Cargo.toml, src/rust/bins/bitbox03-firmware/Cargo.toml, src/rust/bitbox-aes/Cargo.toml, src/rust/bitbox-board-stm32u5a9j-dk-build/Cargo.toml, src/rust/bitbox-board-stm32u5a9j-dk-sys/Cargo.toml, src/rust/bitbox-board-stm32u5a9j-dk/Cargo.toml, src/rust/bitbox-boot-utils/Cargo.toml, src/rust/bitbox-byt · SHA-256 df9cdfde0a47e297432ab3a89beea9d4bc391323e27d05a8505eb9c6ca6a99aa_
 
 ```
-Crypto libraries: curve25519-dalek, ecdsa, ed25519-dalek, p256, secp256k1, x25519-dalek
+Crypto libraries: curve25519-dalek, ecdsa, ed25519-dalek, ff, group, p256, secp256k1, x25519-dalek
 ```
 
 **Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
@@ -3378,14 +3343,14 @@ Crypto libraries: curve25519-dalek, ecdsa, ed25519-dalek, p256, secp256k1, x2551
 
 **Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-06905 — bare-metal 0.2.5: информационный бюллетень RUSTSEC-2026-0110 (unmaintained)
+### QSI-2026-08148 — bare-metal 0.2.5: информационный бюллетень RUSTSEC-2026-0110 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 > **Проверка аналитика (QSI review, 2026-10-28): не применимо к этому коду.** bare-metal 0.2.5 is flagged as deprecated, not vulnerable; the advisory reports no defect. Recording the decision to keep it, which is what an informational advisory asks for. It is relevant to post-quantum readiness only in the weak sense that an unmaintained crate will not gain PQ support, and this one carries no cryptography at all.
 - Затронутый актив: `dependency:crates.io/bare-metal@0.2.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:30 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3449,11 +3414,11 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **проверка прошивки и загрузки (корень доверия)** | ECDSA (3) | QSI-2026-06891 | Запланируйте гибридную подпись прошивки (классическая плюс ML-DSA или SLH-DSA, обе обязательны) и способ доставить новые ключи обновлением загрузчика |
-| **обёртка ключей и шифрование хранимых данных** | ECDH (1), X25519 (1) | QSI-2026-06893, QSI-2026-06898 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
-| **обмен ключами в канале (TLS, Noise, рукопожатия)** | X25519 (5) | QSI-2026-06892 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
-| **подпись транзакций и сообщений** | ECDSA (17), Ed25519 (4), Schnorr (BIP-340) (3) | QSI-2026-06863, QSI-2026-06895, QSI-2026-06902 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (10), X25519 (6), ECDH (4), Ed25519 (1) | QSI-2026-06862, QSI-2026-06894, QSI-2026-06897, QSI-2026-06900 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **проверка прошивки и загрузки (корень доверия)** | ECDSA (3) | QSI-2026-08134 | Запланируйте гибридную подпись прошивки (классическая плюс ML-DSA или SLH-DSA, обе обязательны) и способ доставить новые ключи обновлением загрузчика |
+| **обёртка ключей и шифрование хранимых данных** | ECDH (1), X25519 (1) | QSI-2026-08136, QSI-2026-08141 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
+| **обмен ключами в канале (TLS, Noise, рукопожатия)** | X25519 (5) | QSI-2026-08135 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
+| **подпись транзакций и сообщений** | ECDSA (17), Ed25519 (4), Schnorr (BIP-340) (3) | QSI-2026-08106, QSI-2026-08138, QSI-2026-08145 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDSA (10), X25519 (6), ECDH (4), Ed25519 (1) | QSI-2026-08105, QSI-2026-08137, QSI-2026-08140, QSI-2026-08143 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -3489,129 +3454,128 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-06890 | Удалите отключение проверки сертификатов в scripts/generate_version_headers.py. | устранение первопричины | Отключений проверки не осталось вне явно помеченного тестового кода. |
-| P1 | QSI-2026-06861 | Используйте AEAD-режим (GCM) с уникальными nonce. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
-| P1 | QSI-2026-06901 | Используйте AEAD-режим (GCM) с уникальными nonce. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
-| P2 | QSI-2026-06913 | Обновите certifi до исправленной версии (2026.10.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320). |
-| P2 | QSI-2026-06914 | Обновите certifi до исправленной версии (2023.7.22). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135). |
-| P2 | QSI-2026-06918 | Обновите jinja2 до исправленной версии (3.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472). |
-| P2 | QSI-2026-06921 | Обновите jinja2 до исправленной версии (3.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475). |
-| P2 | QSI-2026-06928 | Обновите urllib3 до исправленной версии (2.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994). |
-| P2 | QSI-2026-06930 | Обновите urllib3 до исправленной версии (2.6.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996). |
-| P2 | QSI-2026-06931 | Обновите urllib3 до исправленной версии (2.8.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175). |
-| P2 | QSI-2026-06933 | Обновите urllib3 до исправленной версии (2.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998). |
-| P2 | QSI-2026-06937 | Обновите urllib3 до исправленной версии (2.8.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177). |
-| P2 | QSI-2026-06915 | Обновите idna до исправленной версии (3.15). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215). |
-| P2 | QSI-2026-06916 | Обновите idna до исправленной версии (3.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60). |
-| P2 | QSI-2026-06917 | Обновите jinja2 до исправленной версии (3.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471). |
-| P2 | QSI-2026-06919 | Обновите jinja2 до исправленной версии (3.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473). |
-| P2 | QSI-2026-06920 | Обновите jinja2 до исправленной версии (3.1.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474). |
-| P2 | QSI-2026-06923 | Обновите pygments до исправленной версии (2.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117). |
-| P2 | QSI-2026-06924 | Обновите requests до исправленной версии (2.32.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872). |
-| P2 | QSI-2026-06925 | Обновите requests до исправленной версии (2.32.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873). |
-| P2 | QSI-2026-06926 | Обновите requests до исправленной версии (2.33.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275). |
-| P2 | QSI-2026-06927 | Обновите requests до исправленной версии (2.31.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74). |
-| P2 | QSI-2026-06929 | Обновите urllib3 до исправленной версии (1.26.19, 2.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995). |
-| P2 | QSI-2026-06932 | Обновите urllib3 до исправленной версии (1.26.18, 2.0.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212). |
-| P2 | QSI-2026-06934 | Обновите urllib3 до исправленной версии (2.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999). |
-| P2 | QSI-2026-06935 | Обновите urllib3 до исправленной версии (2.7.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141). |
-| P2 | QSI-2026-06936 | Обновите urllib3 до исправленной версии (1.26.17, 2.0.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192). |
-| P2 | QSI-2026-06938 | Обновите zipp до исправленной версии (3.19.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074). |
-| P2 | QSI-2026-06911 | Обновите bytes до исправленной версии (1.11.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
-| P2 | QSI-2026-06912 | Обновите certifi до исправленной версии (2024.7.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230). |
-| P2 | QSI-2026-06922 | Обновите pygments до исправленной версии (2.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987). |
-| P2 | QSI-2026-06908 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-| P2 | QSI-2026-06909 | Обновите time до исправленной версии (0.3.47). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
-| P2 | QSI-2026-06906 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P1 | QSI-2026-08133 | Удалите отключение проверки сертификатов в scripts/generate_version_headers.py. | устранение первопричины | Отключений проверки не осталось вне явно помеченного тестового кода. |
+| P1 | QSI-2026-08104 | Используйте AEAD-режим (GCM) с уникальными nonce. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P1 | QSI-2026-08144 | Используйте AEAD-режим (GCM) с уникальными nonce. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P2 | QSI-2026-08155 | Обновите certifi до исправленной версии (2026.10.18). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320). |
+| P2 | QSI-2026-08156 | Обновите certifi до исправленной версии (2023.7.22). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135). |
+| P2 | QSI-2026-08160 | Обновите jinja2 до исправленной версии (3.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472). |
+| P2 | QSI-2026-08163 | Обновите jinja2 до исправленной версии (3.1.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q2x7-8rv6-6q7h (CVE-2024-56326, PYSEC-2026-1475). |
+| P2 | QSI-2026-08170 | Обновите urllib3 до исправленной версии (2.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2xpw-w6gg-jr37 (CVE-2025-66471, PYSEC-2026-1994). |
+| P2 | QSI-2026-08172 | Обновите urllib3 до исправленной версии (2.6.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-38jv-5279-wg99 (CVE-2026-21441, PYSEC-2026-1996). |
+| P2 | QSI-2026-08173 | Обновите urllib3 до исправленной версии (2.8.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8988-9cw3-xx77 (CVE-2026-97687, PYSEC-2026-4175). |
+| P2 | QSI-2026-08175 | Обновите urllib3 до исправленной версии (2.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gm62-xv2j-4w53 (CVE-2025-66418, PYSEC-2026-1998). |
+| P2 | QSI-2026-08179 | Обновите urllib3 до исправленной версии (2.8.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vxq7-64xx-v4gw (CVE-2026-97689, PYSEC-2026-4177). |
+| P2 | QSI-2026-08157 | Обновите idna до исправленной версии (3.15). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-65pc-fj4g-8rjx (CVE-2026-45409, PYSEC-2026-215). |
+| P2 | QSI-2026-08158 | Обновите idna до исправленной версии (3.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jjg7-2v4v-x38h (CVE-2024-3651, PYSEC-2024-60). |
+| P2 | QSI-2026-08159 | Обновите jinja2 до исправленной версии (3.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cpwx-vrp4-4pq7 (CVE-2025-27516, PYSEC-2026-1471). |
+| P2 | QSI-2026-08161 | Обновите jinja2 до исправленной версии (3.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h5c8-rqwp-cp95 (CVE-2024-22195, PYSEC-2026-1473). |
+| P2 | QSI-2026-08162 | Обновите jinja2 до исправленной версии (3.1.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h75v-3vvj-5mfj (CVE-2024-34064, PYSEC-2026-1474). |
+| P2 | QSI-2026-08165 | Обновите pygments до исправленной версии (2.15.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrwq-x4v8-fh7p (CVE-2022-40896, PYSEC-2023-117). |
+| P2 | QSI-2026-08166 | Обновите requests до исправленной версии (2.32.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9hjg-9r4m-mvj7 (CVE-2024-47081, PYSEC-2026-1872). |
+| P2 | QSI-2026-08167 | Обновите requests до исправленной версии (2.32.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9wx4-h78v-vm56 (CVE-2024-35195, PYSEC-2026-1873). |
+| P2 | QSI-2026-08168 | Обновите requests до исправленной версии (2.33.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gc5v-m9x4-r6x2 (CVE-2026-25645, PYSEC-2026-2275). |
+| P2 | QSI-2026-08169 | Обновите requests до исправленной версии (2.31.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j8r2-6x86-q33q (CVE-2023-32681, PYSEC-2023-74). |
+| P2 | QSI-2026-08171 | Обновите urllib3 до исправленной версии (1.26.19, 2.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-34jh-p97f-mpxf (CVE-2024-37891, PYSEC-2026-1995). |
+| P2 | QSI-2026-08174 | Обновите urllib3 до исправленной версии (1.26.18, 2.0.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g4mx-q9vg-27p4 (CVE-2023-45803, PYSEC-2023-212). |
+| P2 | QSI-2026-08176 | Обновите urllib3 до исправленной версии (2.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pq67-6m6q-mj2v (CVE-2025-50181, PYSEC-2026-1999). |
+| P2 | QSI-2026-08177 | Обновите urllib3 до исправленной версии (2.7.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qccp-gfcp-xxvc (CVE-2026-44431, PYSEC-2026-141). |
+| P2 | QSI-2026-08178 | Обновите urllib3 до исправленной версии (1.26.17, 2.0.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v845-jxx5-vc9f (CVE-2023-43804, PYSEC-2023-192). |
+| P2 | QSI-2026-08180 | Обновите zipp до исправленной версии (3.19.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-jfmj-5v4g-7637 (CVE-2024-5569, PYSEC-2026-2074). |
+| P2 | QSI-2026-08153 | Обновите bytes до исправленной версии (1.11.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
+| P2 | QSI-2026-08154 | Обновите certifi до исправленной версии (2024.7.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-248v-346w-9cwc (CVE-2024-39689, PYSEC-2024-230). |
+| P2 | QSI-2026-08164 | Обновите pygments до исправленной версии (2.20.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5239-wwwm-4pmq (CVE-2026-4539, PYSEC-2026-2987). |
+| P2 | QSI-2026-08150 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-08151 | Обновите time до исправленной версии (0.3.47). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-06899 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
-| P3 | QSI-2026-06907 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
-| P3 | QSI-2026-06904 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
-| P3 | QSI-2026-06910 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
+| P2 | QSI-2026-08142 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P3 | QSI-2026-08149 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-08147 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
+| P3 | QSI-2026-08152 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06902 | Внесите использования ECDSA, Ed25519, Schnorr (BIP-340) в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06864 | Внесите использования RSA в file:releases/pubkeys/JuliusWiedemann.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06865 | Внесите использования RSA в file:releases/pubkeys/JunghoonLee.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06866 | Внесите использования RSA в file:releases/pubkeys/My1.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06867 | Внесите использования RSA в file:releases/pubkeys/My1.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06868 | Внесите использования RSA в file:releases/pubkeys/TheCharlatan.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06869 | Внесите использования RSA в file:releases/pubkeys/beerosagos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06870 | Внесите использования RSA в file:releases/pubkeys/benma.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06871 | Внесите использования RSA в file:releases/pubkeys/brianddk.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06872 | Внесите использования RSA в file:releases/pubkeys/cstenglein.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06873 | Внесите использования RSA в file:releases/pubkeys/frknakk.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06874 | Внесите использования RSA в file:releases/pubkeys/guggerf.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06875 | Внесите использования RSA в file:releases/pubkeys/jonathancross.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06876 | Внесите использования RSA в file:releases/pubkeys/jonathancross.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06877 | Внесите использования RSA в file:releases/pubkeys/nickez.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06878 | Внесите использования RSA в file:releases/pubkeys/offbyn.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06879 | Внесите использования Ed25519 в file:releases/pubkeys/psteiger.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06880 | Внесите использования RSA в file:releases/pubkeys/stadicus.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06881 | Внесите использования RSA в file:releases/pubkeys/strnbrg.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06882 | Внесите использования RSA в file:releases/pubkeys/sutterseba.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06883 | Внесите использования RSA в file:releases/pubkeys/tomasvrba.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06884 | Внесите использования RSA в file:releases/pubkeys/userofreddit44.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06885 | Внесите использования RSA в file:releases/pubkeys/x1ddos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06886 | Внесите использования RSA в file:releases/pubkeys/x1ddos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06887 | Внесите использования RSA в file:releases/pubkeys/x1ddos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06888 | Внесите использования Ed25519 в file:releases/pubkeys/yaziza.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06889 | Внесите использования RSA в file:releases/pubkeys/yaziza.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06896 | Внесите использования ECDSA в file:external/cryptoauthlib/app/pkcs11/README.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06891 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06893 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06898 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06863 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06892 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06895 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06862 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06894 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06897 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06900 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-06902 | Запланируйте миграцию ECDSA, Ed25519, Schnorr (BIP-340) на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
-| P4 | QSI-2026-06864 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06865 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06866 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06867 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06868 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06869 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06870 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06871 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06872 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06873 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06874 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06875 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06876 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06877 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06878 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06879 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06880 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06881 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06882 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06883 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06884 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06885 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06886 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06887 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06888 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06889 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06896 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06891 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06893 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-06898 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-06863 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06892 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-06895 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06862 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06894 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06897 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-06900 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-06905 | Замените bare-metal поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bare-metal заменён или решение зафиксировано. |
+| P3 | QSI-2026-08145 | Внесите использования ECDSA, Ed25519, Schnorr (BIP-340) в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08107 | Внесите использования RSA в file:releases/pubkeys/JuliusWiedemann.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08108 | Внесите использования RSA в file:releases/pubkeys/JunghoonLee.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08109 | Внесите использования RSA в file:releases/pubkeys/My1.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08110 | Внесите использования RSA в file:releases/pubkeys/My1.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08111 | Внесите использования RSA в file:releases/pubkeys/TheCharlatan.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08112 | Внесите использования RSA в file:releases/pubkeys/beerosagos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08113 | Внесите использования RSA в file:releases/pubkeys/benma.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08114 | Внесите использования RSA в file:releases/pubkeys/brianddk.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08115 | Внесите использования RSA в file:releases/pubkeys/cstenglein.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08116 | Внесите использования RSA в file:releases/pubkeys/frknakk.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08117 | Внесите использования RSA в file:releases/pubkeys/guggerf.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08118 | Внесите использования RSA в file:releases/pubkeys/jonathancross.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08119 | Внесите использования RSA в file:releases/pubkeys/jonathancross.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08120 | Внесите использования RSA в file:releases/pubkeys/nickez.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08121 | Внесите использования RSA в file:releases/pubkeys/offbyn.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08122 | Внесите использования Ed25519 в file:releases/pubkeys/psteiger.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08123 | Внесите использования RSA в file:releases/pubkeys/stadicus.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08124 | Внесите использования RSA в file:releases/pubkeys/strnbrg.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08125 | Внесите использования RSA в file:releases/pubkeys/sutterseba.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08126 | Внесите использования RSA в file:releases/pubkeys/tomasvrba.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08127 | Внесите использования RSA в file:releases/pubkeys/userofreddit44.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08128 | Внесите использования RSA в file:releases/pubkeys/x1ddos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08129 | Внесите использования RSA в file:releases/pubkeys/x1ddos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08130 | Внесите использования RSA в file:releases/pubkeys/x1ddos.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08131 | Внесите использования Ed25519 в file:releases/pubkeys/yaziza.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08132 | Внесите использования RSA в file:releases/pubkeys/yaziza.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08139 | Внесите использования ECDSA в file:external/cryptoauthlib/app/pkcs11/README.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08134 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08136 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08141 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08106 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08135 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08138 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08105 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08137 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08140 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08143 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-08145 | Запланируйте миграцию ECDSA, Ed25519, Schnorr (BIP-340) на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-08107 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08108 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08109 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08110 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08111 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08112 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08113 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08114 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08115 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08116 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08117 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08118 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08119 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08120 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08121 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08122 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08123 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08124 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08125 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08126 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08127 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08128 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08129 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08130 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08131 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08132 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08139 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-08134 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08136 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-08141 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-08106 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08135 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-08138 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08105 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08137 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08140 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-08143 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-08148 | Замените bare-metal поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bare-metal заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
@@ -3682,18 +3646,17 @@ _Действие: взламывает — алгоритм нужно заме
 50. OSV advisory GHSA-pq67-6m6q-mj2v — OSV.dev. <https://osv.dev/vulnerability/GHSA-pq67-6m6q-mj2v> (modified 2026-09-10T03:50:25.299291456Z)
 51. OSV advisory GHSA-q2x7-8rv6-6q7h — OSV.dev. <https://osv.dev/vulnerability/GHSA-q2x7-8rv6-6q7h> (modified 2026-09-10T03:50:21.662855250Z)
 52. OSV advisory GHSA-qccp-gfcp-xxvc — OSV.dev. <https://osv.dev/vulnerability/GHSA-qccp-gfcp-xxvc> (modified 2026-09-10T03:50:47.272765640Z)
-53. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
-54. OSV advisory GHSA-r6v5-fh4h-64xc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc> (modified 2026-09-10T03:50:35.583241382Z)
-55. OSV advisory GHSA-v845-jxx5-vc9f — OSV.dev. <https://osv.dev/vulnerability/GHSA-v845-jxx5-vc9f> (modified 2026-09-10T03:49:24.753610811Z)
-56. OSV advisory GHSA-vxq7-64xx-v4gw — OSV.dev. <https://osv.dev/vulnerability/GHSA-vxq7-64xx-v4gw> (modified 2026-10-01T17:55:57.514829071Z)
-57. OSV advisory GHSA-xqr8-7jwr-rhp7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xqr8-7jwr-rhp7> (modified 2026-09-10T03:50:08.653753752Z)
-58. OSV advisory RUSTSEC-2026-0110 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0110> (modified 2026-04-24T09:45:08.136572Z)
-59. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
-60. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-61. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-62. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-63. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-64. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+53. OSV advisory GHSA-r6v5-fh4h-64xc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc> (modified 2026-09-10T03:50:35.583241382Z)
+54. OSV advisory GHSA-v845-jxx5-vc9f — OSV.dev. <https://osv.dev/vulnerability/GHSA-v845-jxx5-vc9f> (modified 2026-09-10T03:49:24.753610811Z)
+55. OSV advisory GHSA-vxq7-64xx-v4gw — OSV.dev. <https://osv.dev/vulnerability/GHSA-vxq7-64xx-v4gw> (modified 2026-10-01T17:55:57.514829071Z)
+56. OSV advisory GHSA-xqr8-7jwr-rhp7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xqr8-7jwr-rhp7> (modified 2026-09-10T03:50:08.653753752Z)
+57. OSV advisory RUSTSEC-2026-0110 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0110> (modified 2026-04-24T09:45:08.136572Z)
+58. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
+59. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+60. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+61. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+62. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+63. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -3718,6 +3681,8 @@ _Действие: взламывает — алгоритм нужно заме
 | CBC mode |  |  | н/п | допустимо | 1 | 1 | external/cryptoauthlib/lib/crypto/atca_crypto_hw_aes_cbc.c |
 | CCM mode |  |  | н/п | допустимо | 4 | 4 | external/cryptoauthlib/lib/crypto/atca_crypto_hw_aes_ccm.c; external/optiga-trust-m/external/mbedtls/configs/config-ccm-psk-dtls1_2.h; external/optiga-trust-m/external/mbedtls/configs/config-ccm-psk-tls1_2.h |
 | CTR mode |  |  | н/п | допустимо | 2 | 2 | external/cryptoauthlib/lib/crypto/atca_crypto_hw_aes_ctr.c; external/optiga-trust-m/external/mbedtls/include/mbedtls/ctr_drbg.h |
+| Crypto library | 0.13.0 | ff (jubjub) | н/п | допустимо | 1 | 1 | src/rust/Cargo.lock |
+| Crypto library | 0.13.0 | group (jubjub) | н/п | допустимо | 1 | 1 | src/rust/Cargo.lock |
 | Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 2 | 2 | src/rust/Cargo.lock; src/rust/util/Cargo.toml |
 | Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | src/rust/Cargo.lock |
 | Crypto library | 0.29.0 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | src/rust/Cargo.lock |

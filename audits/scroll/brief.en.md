@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: scroll @ 3046bbd18a6a
 
-*One-page brief* · Reviewed: 2026-10-29 06:18 UTC · Risk profile: Web3 project · Client: Scroll — public repository (passive review)
+*One-page brief* · Reviewed: 2026-10-30 23:51 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Scroll — public repository (passive review)
 
 Source: https://github.com/scroll-tech/scroll/tree/3046bbd18a6a05bf29dd3ffef7b5676203201050
 
 **Post-quantum maturity:** Level 0 of 4 — no post-quantum cryptography. **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
-**Findings:** Critical 1 · High 9 · Medium 13 · Low 35 · Info 57
+**Findings:** Critical 1 · High 9 · Medium 11 · Low 36 · Info 57
 
-**Quantum timeline (Mosca: x + y − z):** Signatures 10 + 5 − 12 = 3 → too late
+**Quantum timeline (Mosca: x + y − z):** Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **Critical** · github.com/gin-contrib/cors v1.5.0 is affected by GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) (QSI-2026-06635)\
+1. **Critical** · github.com/gin-contrib/cors v1.5.0 is affected by GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) (QSI-2026-09219)\
    What to do: Upgrade to a fixed version (1.6.0).
-2. **High** · TLS certificate verification disabled in bridge-history-api/cmd/api/app/app.go (QSI-2026-06538)\
+2. **High** · TLS certificate verification disabled in bridge-history-api/cmd/api/app/app.go (QSI-2026-09123)\
    What to do: Remove the override; use a proper CA bundle or pinning.
-3. **High** · github.com/btcsuite/btcd v0.20.1-beta is affected by GHSA-27vh-h6mc-q6g8 (CVE-2024-38365… (QSI-2026-06636)\
+3. **High** · github.com/btcsuite/btcd v0.20.1-beta is affected by GHSA-27vh-h6mc-q6g8 (CVE-2024-38365… (QSI-2026-09220)\
    What to do: Upgrade to a fixed version (0.24.2-beta.rc1).
-4. **High** · Possible reentrancy (external call before state update) in… (QSI-2026-06547) · *preliminary*\
-   What to do: Apply checks-effects-interactions and/or ReentrancyGuard.
+4. **High** · quinn-proto 0.11.16 is affected by RUSTSEC-2026-0340 (QSI-2026-09193)\
+   What to do: Upgrade to a fixed version (0.11.18).
 
-54 more in the full report.
+53 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -33,13 +33,13 @@ Source: https://github.com/scroll-tech/scroll/tree/3046bbd18a6a05bf29dd3ffef7b56
 
 ## Known vulnerable components
 
-Advisories for the versions in use: 57; unlikely to apply to this build: 29 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 28.
+Advisories for the versions in use: 56; unlikely to apply to this build: 29 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 27.
 
 ---
 
 Static review of source code and manifests; files analysed: 387. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `bfe57c31bc57c669da6e4a7cee997a8bd19fd26d0a62a5decfc2255b7452d9bb`
+Full report, content SHA-256: `2ba03a86d58a4d1243d2942f3659345ecc600994baf0104b133b23a18e89dfb6`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

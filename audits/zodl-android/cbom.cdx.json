@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:48e88a7b-7681-42d7-afa5-98bd6c2f6da6",
+  "serialNumber": "urn:uuid:ea00e695-f69a-4740-8a77-1995bfc830ce",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-29T23:19:06Z",
+    "timestamp": "2026-10-31T00:31:32Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c78eae46-fa83-48d6-99d2-d32e2a7cc3db",
+      "bom-ref": "2e18aad3-8173-41c2-8d95-4620f47d954a",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -73,7 +73,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9888b203-3415-4693-a119-62d5366e051e",
+      "bom-ref": "66da4e31-6c5b-4440-a077-7ace1c7289dc",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -124,7 +124,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "283bc1e4-326b-4807-9b12-af3c5f115f6b",
+      "bom-ref": "4c57b84e-99b8-46c9-a063-3b677889c717",
       "name": "Crypto library",
       "properties": [
         {
@@ -169,7 +169,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0ee35508-5c29-46af-841e-957e4756609e",
+      "bom-ref": "781d6f89-b8db-410e-a230-0658d9273469",
       "name": "Crypto library",
       "properties": [
         {
@@ -214,7 +214,157 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "77fab54c-9748-4c88-8b64-9fea8a453c5d",
+      "bom-ref": "6b4f1f79-c1e7-47e7-9e39-910341c71f45",
+      "name": "RedDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt:375"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt#L375"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "reddsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c561247f-7d60-4c5e-aa8d-c6023f04a6d1",
+      "name": "RedDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingKeystoneRepository.kt:285"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingKeystoneRepository.kt#L285"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "reddsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4f64aaa0-9745-422f-89de-e7fdd349977c",
+      "name": "RedDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingRecoveryRepository.kt:40"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingRecoveryRepository.kt#L40"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "reddsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "8c3bfe72-a661-4d35-b8c8-49f42be95d73",
       "name": "SHA-2",
       "properties": [
         {

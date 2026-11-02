@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 23:18 UTC |
+| Дата отчёта | 2026-10-31 00:31 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 4d7a76e4-7215-4b07-9d88-6009bdb3d94d (Документальный аудит) |
+| Запуск аудита | 600742a1-15ef-473c-b9d0-39cd806ddd7c (Документальный аудит) |
 | Версия анализатора | qsi-engine 1.2.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `6d6fdd62ef733486842482cec3ae478f7c091edf0805840ded02a77a558a06b6` |
+| SHA-256 содержимого | `8eea8c0c8001ff235d046a1fdb90474ae9e705ba0c51b46e1e09f69ef09005b2` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,7 +17,7 @@
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **0**
+- Средняя: **1**
 - Низкая: **0**
 - Информационная: **2**
 
@@ -25,7 +25,7 @@
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 0
+- Долгосрочный постквантовый риск: 1
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 1
 
@@ -45,7 +45,7 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 1599 | app/build.gradle.kts: 393 lines scanned with 16 rule patterns and 127 registry patterns; app/src/main/java/co/electriccoin/zcash/app/CoroutineApplication.kt: 21 lines scanned with 16 rule patterns and 127 registry patterns; app/src/main/java/co/electriccoin/zcash/app/ZcashApplication.kt: 167 lines scanned with 16 rule patterns and 127 registry patterns |
+| source_code | проверено | 1599 | app/build.gradle.kts: 393 lines scanned with 16 rule patterns and 136 registry patterns; app/src/main/java/co/electriccoin/zcash/app/CoroutineApplication.kt: 21 lines scanned with 16 rule patterns and 136 registry patterns; app/src/main/java/co/electriccoin/zcash/app/ZcashApplication.kt: 167 lines scanned with 16 rule patterns and 136 registry patterns |
 | dependencies | проверено | 10 | build-conventions-secant/gradle.lockfile: 189 dependencies parsed (189 pinned); build-info-lib/gradle.lockfile: 49 dependencies parsed (49 pinned); buildSrc/buildscript-gradle.lockfile: 27 dependencies parsed (27 pinned) |
 | osv_advisories | проверено | 1 | 340 pinned packages queried at OSV.dev; 16 affected (16 of them only in development or build dependencies) |
 
@@ -62,17 +62,85 @@ Static review of the source tree zodl-android at 229dd3bff7490ea90ca4d7d79f3c539
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 0.0%
+- Доля квантово-уязвимых элементов инвентаризации: 37.5%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-07175 — 52 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки
+### QSI-2026-09629 — Квантово-уязвимый RedDSA: подпись транзакций и сообщений (3 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:RedDSA:transaction_signing`
+- Источник данных: feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-31 00:31 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
+
+5 упоминаний RedDSA в 3 файл(ах), например feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt:375. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt:375 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt](https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt#L375) · line 375 · SHA-256 b7d02a73e93f8ee2dc66f7964ab07914161b6d5399a84a4965f8a493b3961e03_
+
+```
+  374 |     @Throws(RuntimeException::class)
+  375 |     suspend fun extractSpendAuthSig(
+  376 |         signedPcztBytes: ByteArray,
+```
+
+_file_excerpt · [feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt](https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt#L740) · line 740 · SHA-256 4ccbb4af280217f40315dd60e6cbb6a7d76a2b7b300c319293e7b7efea7f1be3_
+
+```
+  739 | 
+  740 |     override suspend fun extractSpendAuthSig(
+  741 |         signedPcztBytes: ByteArray,
+```
+
+_file_excerpt · [feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt](https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt#L745) · line 745 · SHA-256 f787a3c12e0d5fe888086ef57dda2c2f0aff4bc5997de85a54a118ee90c47763_
+
+```
+  744 |         withContext(Dispatchers.IO) {
+  745 |             votingSdk().extractSpendAuthSig(signedPcztBytes, actionIndex)
+  746 |         }
+```
+
+_file_excerpt · [feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingKeystoneRepository.kt](https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingKeystoneRepository.kt#L285) · line 285 · SHA-256 f1f21eb3f5a82e4d22686fe9f05be8ebeb90679c03eca7b29531284baeebae74_
+
+```
+  284 |         val spendAuthSig =
+  285 |             votingCryptoClient.extractSpendAuthSig(
+  286 |                 signedPcztBytes = signedPcztBytes,
+```
+
+_file_excerpt · [feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingRecoveryRepository.kt](https://github.com/zodl-inc/zodl-android/blob/229dd3bff7490ea90ca4d7d79f3c539d71976f66/feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingRecoveryRepository.kt#L40) · line 40 · SHA-256 5a4fe774c8756d39c81fb8cf5422bc4b8b3071a98c83d8d4ea431fa933ed2373_
+
+```
+   39 | ) {
+   40 |     fun decodeSpendAuthSig(): ByteArray = Base64.getDecoder().decode(spendAuthSigBase64)
+   41 | 
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-09631 — 52 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:Maven:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:18 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-31 00:31 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -115,13 +183,13 @@ org.jetbrains.kotlin:kotlin-gradle-plugin@2.3.10 [build]: GHSA-r937-wjx7-w2jp
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07174 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-09630 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:18 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-31 00:31 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -177,12 +245,21 @@ _Допущения планирования: x для обмена ключам
 **Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
 _Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
+
+### Что делают квантово-уязвимые алгоритмы
+
+| Роль | Алгоритмы (файлы) | ID | Первый шаг |
+|---|---|---|---|
+| **подпись транзакций и сообщений** | RedDSA (3) | QSI-2026-09629 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+
+_Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
 
 ### Квантовые алгоритмы, значимые для этой инвентаризации
 
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | RedDSA (3) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | ChaCha20-Poly1305 (2), SHA-2 (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | SHA-2 (1) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -208,7 +285,9 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P4 | QSI-2026-07175 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-09629 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-09629 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-09631 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -228,20 +307,27 @@ _Действие: взламывает — алгоритм нужно заме
 ## 12. Источники и нормативные документы
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
-2. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-3. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-4. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-5. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-6. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-7. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-8. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-9. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-10. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-11. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-12. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
-13. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-14. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-15. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
+3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
+4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+7. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+8. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+9. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+10. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+11. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+21. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+22. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -252,6 +338,9 @@ _Действие: взламывает — алгоритм нужно заме
 | SHA-2 | SHA-256 |  | feature-voting/src/main/java/co/electriccoin/zcash/ui/common/model/voting/StaticVotingConfig.kt:150 | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо |
 | Crypto library | 1.79 | org.bouncycastle:bcprov-jdk18on (Bouncy Castle) | build-conventions-secant/gradle.lockfile:121 | н/п | допустимо |
 | Crypto library | 1.79 | org.bouncycastle:bcprov-jdk18on (Bouncy Castle) | buildscript-gradle.lockfile:132 | н/п | допустимо |
+| RedDSA |  |  | feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt:375 | уязвим (Шор) | допустимо |
+| RedDSA |  |  | feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingKeystoneRepository.kt:285 | уязвим (Шор) | допустимо |
+| RedDSA |  |  | feature-voting/src/main/java/co/electriccoin/zcash/ui/common/repository/VotingRecoveryRepository.kt:40 | уязвим (Шор) | допустимо |
 
 ## Приложения: Входные файлы
 

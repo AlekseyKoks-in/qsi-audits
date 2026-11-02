@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-28 18:07 UTC |
+| Дата отчёта | 2026-10-30 23:11 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 2b564562-2bc4-4f4d-91d3-d1e7df3224a0 (Документальный аудит) |
+| Запуск аудита | cbd9e904-6251-4924-9149-9e1b6a17c295 (Документальный аудит) |
 | Версия анализатора | qsi-engine 1.2.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `3e15a6641b388b9e7614f91ad6e3c8e06e6e7466bceec4cd6c98668bd45c47ca` |
+| SHA-256 содержимого | `166a64df90a460c39d5a1bebd48c401f7946e546851c3fb21b4fae2ca0ffd337` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,12 +17,12 @@
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **4**
+- Средняя: **5**
 - Низкая: **0**
 - Информационная: **2**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 0
+- Известная уязвимая версия компонента: 1
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 2
 - Долгосрочный постквантовый риск: 2
@@ -39,16 +39,16 @@
 
 Репозиторий: <https://github.com/MetaMask/metamask-extension> @ `d2db7ee9a19b0322105618521370ab690911209f` — ссылки в доказательствах открывают строки на этом коммите.
 
-4873 файлов, всего 20146931 байт, редактирований: 18; список SHA-256 по файлам — в приложении C.
+4870 файлов, всего 20084733 байт, редактирований: 18; список SHA-256 по файлам — в приложении C.
 
 ## 3. Методология
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 4869 | .devcontainer/launch-firefox.ts: 10 lines scanned with 16 rule patterns and 122 registry patterns; .devcontainer/setup-browsers.ts: 27 lines scanned with 16 rule patterns and 122 registry patterns; .eslintrc.babel.js: 16 lines scanned with 16 rule patterns and 122 registry patterns |
+| source_code | проверено | 4866 | .devcontainer/launch-firefox.ts: 10 lines scanned with 16 rule patterns and 136 registry patterns; .devcontainer/setup-browsers.ts: 27 lines scanned with 16 rule patterns and 136 registry patterns; .eslintrc.babel.js: 16 lines scanned with 16 rule patterns and 136 registry patterns |
 | secrets | проверено | 13 | app/scripts/constants/on-ramp.ts: value(s) at line(s) 1, 2, 3 are not reported as secrets because the source annotates them as published (publishable, search-only, safe to commit); that is the project's own decision, recorded here rather than raised against it; app/scripts/constants/on-ramp.ts: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); app/scripts/lib/money/pay/test-mocks.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | dependencies | проверено | 4 | development/generate-attributions/package.json: 3 dependencies parsed (0 pinned); development/generate-attributions/yarn.lock: 229 dependencies parsed (229 pinned); package.json: 506 dependencies parsed (29 pinned) |
-| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 10 affected (10 of them only in development or build dependencies) |
+| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 10 affected (9 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -58,22 +58,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree metamask-extension at d2db7ee9a19b0322105618521370ab690911209f. 4873 files analysed; of 10787 files, 4498 are test, fuzzing, benchmark or example code and were left out, 1413 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree metamask-extension at d2db7ee9a19b0322105618521370ab690911209f. 4870 files analysed; of 10787 files, 4501 are test, fuzzing, benchmark or example code and were left out, 1413 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .browserslistrc, .cursor/BUGBOT.md, .cursor/commands/CODEBOT.md, .cursor/commands/add-non-evm-swaps-bridge-network.md, .depcheckrc.yml. 52 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **94** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Ориентировочный индекс состояния: **89** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
 - Доля квантово-уязвимых элементов инвентаризации: 24.0%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-05545 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))
+### QSI-2026-08539 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: app/scripts/lib/offscreen-bridge/trezor-offscreen-bridge.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:11 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -103,13 +103,13 @@ _file_excerpt · [app/scripts/lib/offscreen-bridge/trezor-offscreen-bridge.ts](h
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05544 — Квантово-уязвимый ECDSA: роль не определена (10 файл(ов))
+### QSI-2026-08538 — Квантово-уязвимый ECDSA: роль не определена (10 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: app/offscreen/hardware-wallets/ledger-dmk-handler.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:11 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -211,13 +211,47 @@ _file_excerpt · [shared/constants/offscreen-communication.ts](https://github.co
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05546 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в app/scripts/sidepanel/background.ts
+### QSI-2026-08543 — @hono/node-server 2.1.1 затронут GHSA-rmxm-3fg6-px4f (CVE-2026-118663)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:npm/@hono/node-server@2.1.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:11 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
+
+OSV.dev сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663) для пакета npm @hono/node-server версии 2.1.1: @hono/node-server: `serveStatic` decodes the request path a second time, leading to bypass of middleware on static paths. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-rmxm-3fg6-px4f
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-rmxm-3fg6-px4f](https://osv.dev/vulnerability/GHSA-rmxm-3fg6-px4f) · line 5315 · SHA-256 f0834150583f0114d883aba69bd10938963aabb7b26c39c07a0e065720a240e4_
+
+```
+{"id": "GHSA-rmxm-3fg6-px4f", "aliases": ["CVE-2026-118663"], "modified": "2026-10-28T21:15:04.153052864Z", "summary": "@hono/node-server: `serveStatic` decodes the request path a second time, leading to bypass of middleware on static paths", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (2.1.3).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-08540 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в app/scripts/sidepanel/background.ts
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:app/scripts/sidepanel/background.ts`
 - Источник данных: app/scripts/sidepanel/background.ts
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:11 UTC
 - Балл приоритета: 25.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -249,13 +283,13 @@ _file_excerpt · [app/scripts/sidepanel/background.ts](https://github.com/MetaMa
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-05547 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в shared/lib/delegation/delegation.ts
+### QSI-2026-08541 — Некриптографический ГСЧ рядом с чувствительными идентификаторами в shared/lib/delegation/delegation.ts
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:shared/lib/delegation/delegation.ts`
 - Источник данных: shared/lib/delegation/delegation.ts
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:07 UTC
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:11 UTC
 - Балл приоритета: 25.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -287,17 +321,17 @@ _file_excerpt · [shared/lib/delegation/delegation.ts](https://github.com/MetaMa
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-05549 — 46 бюллетеней в 10 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-08544 — 45 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:11 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 46 бюллетеней (30 с оценкой high или critical) для 10 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (development/generate-attributions/yarn.lock): например, brace-expansion@1.1.11 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; brace-expansion@2.0.1 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; glob@10.4.1 [dev]: GHSA-5j98-mcp5-4vw2; http-cache-semantics@4.1.1 [dev]: GHSA-ch52-4w7c-c8xp. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 45 бюллетеней (29 с оценкой high или critical) для 9 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (development/generate-attributions/yarn.lock): например, brace-expansion@1.1.11 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; brace-expansion@2.0.1 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; glob@10.4.1 [dev]: GHSA-5j98-mcp5-4vw2; ip-address@9.0.5 [dev]: GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-mwp4-54f8-5fhr, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5, GHSA-v2v4-37r5-5v8g. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -309,14 +343,13 @@ OSV.dev сообщает 46 бюллетеней (30 с оценкой high ил
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (npm)](https://osv.dev/) · development/generate-attributions/yarn.lock · SHA-256 ea815aecf77c154e5ac292055228b04d72b9ccc95eeaffb1718857363184f5b2_
+_tool_output · [OSV.dev (npm)](https://osv.dev/) · development/generate-attributions/yarn.lock · SHA-256 a6e73ed10ecec1baa4cef064be4c332514e81763c9b328f3793d7b7a62a6bd13_
 
 ```
 brace-expansion@1.1.11 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw
 brace-expansion@2.0.1 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw
 cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275
 glob@10.4.1 [dev]: GHSA-5j98-mcp5-4vw2
-http-cache-semantics@4.1.1 [dev]: GHSA-ch52-4w7c-c8xp
 ip-address@9.0.5 [dev]: GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-mwp4-54f8-5fhr, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5, GHSA-v2v4-37r5-5v8g
 minimatch@3.1.2 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
 minimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
@@ -330,13 +363,13 @@ tar@6.2.1 [dev]: GHSA-23hp-3jrh-7fpw, GHSA-34x7-hfp2-rc4v, GHSA-83g3-92jg-28cx, 
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05548 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-08542 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:07 UTC
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:11 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -397,8 +430,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (1) | QSI-2026-05545 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (10) | QSI-2026-05544 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (1) | QSI-2026-08539 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDSA (10) | QSI-2026-08538 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -425,21 +458,22 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
+| P2 | QSI-2026-08543 | Обновите @hono/node-server до исправленной версии (2.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rmxm-3fg6-px4f (CVE-2026-118663). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-05546 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
-| P2 | QSI-2026-05547 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P2 | QSI-2026-08540 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P2 | QSI-2026-08541 | Используйте CSPRNG (secrets, crypto.getRandomValues, crypto/rand). | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05545 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05544 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-05545 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05544 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05549 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-08539 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08538 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-08539 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08538 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08544 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
@@ -478,10 +512,11 @@ _Действие: взламывает — алгоритм нужно заме
 18. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
 19. NIST SP 800-90A Rev. 1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators — NIST. <https://csrc.nist.gov/pubs/sp/800/90/a/r1/final> (final (June 2015; supersedes SP 800-90A of 2012): which constructions count as a cryptographically secure generator, and why a general-purpose PRNG does not)
 20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-21. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-22. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-23. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-24. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+21. OSV advisory GHSA-rmxm-3fg6-px4f — OSV.dev. <https://osv.dev/vulnerability/GHSA-rmxm-3fg6-px4f> (modified 2026-10-28T21:15:04.153052864Z)
+22. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+23. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+24. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+25. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -756,11 +791,11 @@ _Длинные списки здесь сгруппированы; полный
 | app/scripts/lib/ppom/security-alerts-api.ts | 1771 | `afba0c1d75d6a53ffb038cb18ee2b1f0bd16242dbb68c6177e6c904719266843` | 0 |
 | app/scripts/lib/ppom/types.ts | 1179 | `8e301f690cf06b32c767cda1058a5ddb203efa40fc0c2bad8b854839e770fa10` | 0 |
 | app/scripts/lib/qr-keyring-builder-factory.ts | 870 | `56f97032472d2246918cd45a8ca7979ef7f4190cc6250e057e947f38e1ee06ae` | 0 |
+| app/scripts/lib/ramps-stale-order-cleanup.ts | 2362 | `fdf63abcf45440b9d13422b54b9ac717adefa26443c629f4c9acc57cd1938ca1` | 0 |
 | app/scripts/lib/ramps/buildRampsTransactionCompletedProperties.ts | 5463 | `6d101f4917aeb395768c2ca67ef6e29b9f90504f053a584516c99e98749f1669` | 0 |
 | app/scripts/lib/ramps/checkout-watch.ts | 11160 | `9294115260468ecafe6b37f2a0dc209341f91fe97f34367f8d69d0132154d6e3` | 0 |
 | app/scripts/lib/ramps/handleRampsOrderStatusChanged.ts | 7909 | `9267a36bdb0ae20c511c0f87de2790bd12014f93833acc0a6fdd4c5e43c6558d` | 0 |
 | app/scripts/lib/ramps/trackRampsCheckoutAnalytics.ts | 3110 | `e99d524696b719202e69c55efe3b987ac8b1f50287a2d2627016b5817528ec04` | 0 |
-| app/scripts/lib/ramps-stale-order-cleanup.ts | 2362 | `fdf63abcf45440b9d13422b54b9ac717adefa26443c629f4c9acc57cd1938ca1` | 0 |
 | app/scripts/lib/repair.ts | 917 | `7ac67808e8cb9ab8abfe09b3019d1466f4f786cf0d5196e8f8dd7880e6c5bfea` | 0 |
 | app/scripts/lib/rpc-method-middleware/createUnsupportedMethodMiddleware.ts | 762 | `290eb57943f0535c74f79312e819170dfb79ca6f738e9b6e70ba05d9369449a8` | 0 |
 | app/scripts/lib/rpc-method-middleware/handlers/add-ethereum-chain.ts | 9600 | `6b16b89891bfecbe068eec2f0bdd90d6f47466bfe18458a240d7c5861d155b58` | 0 |
@@ -802,9 +837,9 @@ _Длинные списки здесь сгруппированы; полный
 | app/scripts/lib/snap-keyring/snap-keyring-v2.ts | 3912 | `e7800dd6a2d0a0a5e5be907b76fe3145836b45ed9c6b5a1bba007192c0f3eead` | 0 |
 | app/scripts/lib/snap-keyring/snap-keyring.ts | 17137 | `fa9f7c08fae30fe96cf1183e508d9b35c8b0374d80a16dbef1df3d63779af844` | 0 |
 | app/scripts/lib/snap-keyring/types.ts | 2560 | `b30176804eb0ffe3bb6d5dfde0a63d09588186659e6552f3dede1bae0aa8bf78` | 0 |
+| app/scripts/lib/snap-keyring/utils.ts | 1314 | `e6cc3363df1d46f96543d5f5478828b53d9c9405bc4646119f6deabc19d9be1e` | 0 |
 | app/scripts/lib/snap-keyring/utils/isBlockedUrl.ts | 1202 | `ff025c09fb0b92b17238d03addde8d9b7bcbd9721bafbc5da3b10e522af84454` | 0 |
 | app/scripts/lib/snap-keyring/utils/showResult.ts | 2843 | `225f8717a67d7125438e3b240eae14b03053eb91cbd843b7553d6a0a2816a46f` | 0 |
-| app/scripts/lib/snap-keyring/utils.ts | 1314 | `e6cc3363df1d46f96543d5f5478828b53d9c9405bc4646119f6deabc19d9be1e` | 0 |
 | app/scripts/lib/start-up-errors/start-up-errors.ts | 1095 | `d4957725449a0c28bf655b7bdefb87a6ad6ec0724549a43d0485ba371f22cd24` | 0 |
 | app/scripts/lib/startup/load-state-from-persistence.ts | 14046 | `40efe0613ae2bc2f9e5643b44884f77f7a91729c94effbcf128a796421c1184b` | 0 |
 | app/scripts/lib/startup/wire-state-persistence.ts | 6537 | `f980b75b3bfbac8e0c902223f8517aa7f4fd1ec8cfd2c044ce06895e39e9e2c6` | 0 |
@@ -1433,13 +1468,13 @@ _Длинные списки здесь сгруппированы; полный
 | development/generate-attributions/unset-postinstall.js | 778 | `978eb21a13dd4d2278728a4a0f878edfa689c3bcda5db98a2ad9ea320f6a97f0` | 0 |
 | development/generate-attributions/yarn.lock | 75020 | `6d496bd5217907e1934e3b91a170f601004b7394ede5ee7ff28157be20925a53` | 0 |
 | development/generate-beta-commit.js | 1418 | `8329ac84a4b28f5169e13238e823455b147e81b03a5c1d5f4ba3b30bc0f2ee5e` | 0 |
+| development/legacy-background-api.ts | 398 | `cda1c556063adedea0ca8f3761c344675df52f25b93709e534f75d3f6edc0bbe` | 0 |
 | development/legacy-background-api/check.ts | 7397 | `1867950fed390b1162e8bb1a18fe49a5fd3fef6876e485ad4a33b4cc579dbd92` | 0 |
 | development/legacy-background-api/command-error.ts | 423 | `30bd8325ec44a9025b9f4ee2739add3be6b84104cd420042d46c72606eba1421` | 0 |
 | development/legacy-background-api/constants.ts | 155 | `1dd1c19f68ab06a022198dc3931327bb5cfa074250417fdd23807b150fa01537` | 0 |
 | development/legacy-background-api/legacy-apis.ts | 8060 | `7f3e48c54d9a6e9e7841c142bc027d7b7d1fbbc67166d3372f636da29287e9c2` | 0 |
 | development/legacy-background-api/main.ts | 2132 | `9e38761cdc47bfb3e168ab4a4f390b30c17521fcc14a0d93bafd91873819fac2` | 0 |
 | development/legacy-background-api/update.ts | 1100 | `164ededf8136c00e0d7ed30aa6fd7337fd546f52bc2965b84a0865c8dafd3955` | 0 |
-| development/legacy-background-api.ts | 398 | `cda1c556063adedea0ca8f3761c344675df52f25b93709e534f75d3f6edc0bbe` | 0 |
 | development/lib/build-type.ts | 6636 | `96979d1a6a82b40c96d078172460d8c2f7ce7c583c6cda1d83fac43e7b93320d` | 0 |
 | development/lib/create-segment-server.js | 2806 | `f7d846297df51218de62bce1a69b642376dcfe72fe6d9a971f91d8f06d11da83` | 0 |
 | development/lib/exit-with-error.js | 880 | `ca06cd03158987d26aa9cfae2e1f832fa5b9d80e2f654722065f86b52d350fc5` | 0 |
@@ -1454,11 +1489,9 @@ _Длинные списки здесь сгруппированы; полный
 | development/metamaskbot-build-announce/build-links.ts | 2364 | `4036de6299084a8cd9199ace1decf37f06e5ae7c2a42b63887a4c6e83522e8b5` | 0 |
 | development/metamaskbot-build-announce/bundle-size.ts | 9869 | `1cdb3327afb2052ed3b6faceed53a7cc1a45b9661bf57283c742949d23fe0c20` | 0 |
 | development/metamaskbot-build-announce/cherry-picks-section.ts | 9205 | `b9af661d14dcf1d17a221e3570fb5d574d87e847e7b176727c81e67fb4a2c296` | 0 |
-| development/metamaskbot-build-announce/compare-benchmarks.ts | 13389 | `9ba81472e1c93d57bc6fcb76d2fd8d4bd21a10ff210de9485edacbe32892c2ce` | 0 |
 | development/metamaskbot-build-announce/comparison-utils.ts | 12066 | `ef2d7dd6fe1a2dca24045a6e4735f71fa8b8d946a3b79cd13d8d8012d148ab4d` | 0 |
 | development/metamaskbot-build-announce/historical-comparison.ts | 7111 | `f6858f424112a503b7aad642622a24342e2079a7878093d4a752b1411063a2e5` | 0 |
 | development/metamaskbot-build-announce/index.ts | 3000 | `db403e2aeda6a403c17cb5116c6f4f65784bb3ca8290a706d2e8c7181e830a1f` | 0 |
-| development/metamaskbot-build-announce/performance-benchmarks.ts | 41802 | `a7c4763f4d73b04da877dd97b99b8944128409f82d72cb1da22a67437aa01c28` | 0 |
 | development/metamaskbot-build-announce/sentry-utils.ts | 3932 | `9e5d463107be7b1e0edee086dd87a5d26c909f827e19e6299159d52da92f125a` | 0 |
 | development/metamaskbot-build-announce/test-plan.ts | 7734 | `d6e85a389b81fa217c81e59269c535a8baa4c5db720a3865f0916e3579b07c53` | 0 |
 | development/metamaskbot-build-announce/utils.ts | 10509 | `9b2ec3901c127751c6bf171ec0268c7ffe6e470770754c14e4110ac07415b8ac` | 0 |
@@ -1534,7 +1567,6 @@ _Длинные списки здесь сгруппированы; полный
 | shared/constants/app-state.ts | 1496 | `06b7a6bdf586f59dd589e5858f159cdf998c1e11272e9ec129a213a42a1b90d2` | 0 |
 | shared/constants/app.ts | 8829 | `16ccd9cfff7c9019b069ba0cb28d440b67297c1a75f74f6aff50803bed7c202b` | 0 |
 | shared/constants/batch-sell.ts | 2635 | `c2198e214ca83070d30c1ceddf2fc94c8490ab57bf30dba1b49c4b0ee0e0fa95` | 0 |
-| shared/constants/benchmarks.ts | 7007 | `d73f6b238dded67f5676a8bd2a0f4850e9389f2b5ee8a6994a6ff15ec9010088` | 0 |
 | shared/constants/bridge.ts | 12263 | `f1f0d8501d1829ac8ea2298ac2eb9b2ad00cfd9c5e3d863835de155cff20c3af` | 0 |
 | shared/constants/build.ts | 183 | `536381004514676a0713839a60ba6496a2fd018f192a484586db97efcd63a8b2` | 0 |
 | shared/constants/chain-ids.ts | 3225 | `c10e968647414cac15979d8e37a48e2ee08307203a9d156dc2b6aaac555038e6` | 0 |
@@ -1604,23 +1636,23 @@ _Длинные списки здесь сгруппированы; полный
 | shared/lib/activity/label-keys.ts | 405 | `8c7a562c4e198c76d98e176a29ce25175e2203d41f3ae14abc483086729f5bf1` | 0 |
 | shared/lib/activity/types.ts | 1134 | `b215cef2ed888dcdd542edd24e1fae32cbc580ab8c94b08e25bc15560e87a2a5` | 0 |
 | shared/lib/add-hex-prefix.ts | 442 | `ccde6e79f7b44377ca4665a4b3e3b04b7a53e6d2c8febeca84043cb9fdab7b78` | 0 |
-| shared/lib/analytics/create-event-builder.ts | 3799 | `9aa68a44b0234cc2777acfbc97f4a1c9b1f5c6b59f0ce74d715943f7548ec432` | 0 |
 | shared/lib/analytics.ts | 589 | `4dbe420e30aad1764ce3543d459b1e57a3e6882d4bf7192271faef530449c85c` | 0 |
+| shared/lib/analytics/create-event-builder.ts | 3799 | `9aa68a44b0234cc2777acfbc97f4a1c9b1f5c6b59f0ce74d715943f7548ec432` | 0 |
 | shared/lib/asset-conversion-rates.ts | 1191 | `cc8f117c9c3805aa423c322e496449a7b3ebed844476dd1be5c2136969e2ae9b` | 0 |
 | shared/lib/asset-route.ts | 3430 | `bf59bd232ab3fa3faf0c2290ec1d60446c213cb6cdf3e476ad80b75e583a70be` | 0 |
 | shared/lib/asset-utils.ts | 12992 | `0cbcf5412797b49e7242d508c0503ad80539fde0c1cf41859fe7c58e7a45fc57` | 0 |
+| shared/lib/assets-unify-state/remote-feature-flag.ts | 2910 | `5ae5d1186e913e95aca835b23a856f33e27ee7abc6eaadf8c12d74cbb7b1175f` | 0 |
 | shared/lib/assets/advanced-charts-feature-flags.ts | 274 | `115d8532c96a6000d3892ab232e177f88f3badf133e5c0f22c1feda11de49822` | 0 |
 | shared/lib/assets/enablement/tempo.ts | 2258 | `7cb67157d8515ac93a2dec8f95a4a5b95a7bcad076777a4155d171186b115761` | 0 |
 | shared/lib/assets/security-trust-feature-flags.ts | 284 | `81e9ba9910ae7481d6844891a7714e822ecc557ceb5f11c537fef76bbcd886c3` | 0 |
-| shared/lib/assets-unify-state/remote-feature-flag.ts | 2910 | `5ae5d1186e913e95aca835b23a856f33e27ee7abc6eaadf8c12d74cbb7b1175f` | 0 |
 | shared/lib/authentication/config.ts | 949 | `cdda131748a4f08b9dfbc66f62db455ea568990448d26555552720e7dd296a36` | 0 |
 | shared/lib/authentication/dev-api-env.ts | 1004 | `92cf8fda7cded3ffb9c292de83136f83510a963334b512905c4b7a800288348e` | 0 |
 | shared/lib/authentication/index.ts | 57 | `564f07cbeb3de3381652c7c849ee530e93349dbe953f1e5d46486fe8964c4873` | 0 |
 | shared/lib/basic-functionality-consolidation-gate.ts | 2490 | `9aa64ecf8ab2ddbe1ef253a49153f5f4c550385745a72f97cdd135e50f63bc7e` | 0 |
 | shared/lib/basic-functionality-consolidation.ts | 5309 | `86ed4d0fe81d1d9ae22f216c1012eb5ff991417e2b370479ec619d7a7f74922f` | 0 |
-| shared/lib/bridge/chain-value-order.ts | 3608 | `8e8ae6196d0fbde26723c69a582c072170df4c351853869a2eb7be523d68ebcb` | 0 |
 | shared/lib/bridge-status/utils.ts | 789 | `8ff9ad556bc4749215b447969c6ad111f535fc19fd847d07101704c17699df53` | 0 |
 | shared/lib/bridge-utils/security-alerts-api.util.ts | 7563 | `9abb99a7843d219a2b2e1283d8261e323dab2c591674a8e1f8a593e7c049720d` | 0 |
+| shared/lib/bridge/chain-value-order.ts | 3608 | `8e8ae6196d0fbde26723c69a582c072170df4c351853869a2eb7be523d68ebcb` | 0 |
 | shared/lib/browser-runtime.utils.ts | 5348 | `be17b8064ff8139ec59e0359df898a8e403fbdd81a0115d2d4d872ccb1ca831c` | 0 |
 | shared/lib/build-support-link.ts | 1038 | `0bea2d63e8d11002ef0845f5229dbd3267ca516d568685363e9bb78eceeb3f56` | 0 |
 | shared/lib/build-types.ts | 1017 | `9a426d681abc92d6285694fa0259ff530e2d89a098b39e499c16f6f70cb32c35` | 0 |
@@ -1683,8 +1715,8 @@ _Длинные списки здесь сгруппированы; полный
 | shared/lib/error-like.ts | 3032 | `2aa1a8ff38a74733fb9a14f2b8a15aacb55bd7d48778fe333ee1580e6324d1e9` | 0 |
 | shared/lib/error-utils.ts | 19631 | `5f05ed34fec269b3bec537a033c4ec1952501b069078876e5e32d67affac64ba` | 0 |
 | shared/lib/error.ts | 7248 | `eac2293f2a56dd9779acf61d7541f226eaddd2bcb59e5df019d39ce43099029a` | 0 |
-| shared/lib/feature-flags/version-gating.ts | 1348 | `68ec53e04913102f9795819ba02130f2be06652ff9229994607b8858b5565ab8` | 0 |
 | shared/lib/feature-flags.ts | 1377 | `b1063a38a750997fbbc46f7ac47d094045b8cc392518fa9fb84817c97e9a66a5` | 0 |
+| shared/lib/feature-flags/version-gating.ts | 1348 | `68ec53e04913102f9795819ba02130f2be06652ff9229994607b8858b5565ab8` | 0 |
 | shared/lib/fetch-with-cache.ts | 3086 | `014503a71001900d77c08ad4557c3162af366a094e122de9e21b7e6edbdfbde3` | 0 |
 | shared/lib/fetch-with-timeout.ts | 1658 | `4f358989afd6379d0d39c9416f2ad51f4e4e9a4fc346dccd9d7d12310265cf5e` | 0 |
 | shared/lib/format-amount.ts | 4863 | `be577df7960a813e547382be8ffa4e2502d389b9ec3228b7ecdbd0d9d002a108` | 0 |
@@ -1732,6 +1764,8 @@ _Длинные списки здесь сгруппированы; полный
 | shared/lib/money/vault-config.ts | 229 | `06d7f8693cbccc757fffe59cdc90f622dad086f0499ea864d1d154db068dd5e6` | 0 |
 | shared/lib/money/withdraw-amount-commit.ts | 361 | `157c4981459331cd569aabbfb241b90631feb4928d43fb40c50463fbc0f5606b` | 0 |
 | shared/lib/money/withdrawable-balance.ts | 921 | `45661c09476190fc0e3fd2af5182218e1032ac99d2e3f8379af530e71ce737a9` | 0 |
+| shared/lib/multichain-accounts/remote-feature-flag.ts | 782 | `d0951c187a62ab5a776f1b2ea726f3244b108f14d0dd99e3b263166744512344` | 0 |
+| shared/lib/multichain-feature-flags.ts | 1609 | `ab8b9b6dd55743cbdf931508c19e1610090f66e9ae895024865d9c4d21712a60` | 0 |
 | shared/lib/multichain/accounts.ts | 2905 | `98b6e67bab04a0f9e90bd922f5eb0481d45608368b50f329333f228b4a7a4e34` | 0 |
 | shared/lib/multichain/address.ts | 1362 | `27fa866f00d3b001a7d53850fc76cd0cdb9a63a44ce8c97a990625dac4f9c593` | 0 |
 | shared/lib/multichain/addresses/tron.ts | 3033 | `ec356063dec6828638d1880791c5f330027cb619b7d40197e4b2284b735da24a` | 0 |
@@ -1740,8 +1774,6 @@ _Длинные списки здесь сгруппированы; полный
 | shared/lib/multichain/scope-utils.ts | 5969 | `8a83ba29ef889203f0f7d1450f3bf8c9e88128aa67b8b3aa528b92869d5def07` | 0 |
 | shared/lib/multichain/transformations.ts | 2229 | `87d62ff2a9f900029ab16b4b98e7e931b1f9470a4e3bae9c2a5b68bf3203fef5` | 0 |
 | shared/lib/multichain/types.ts | 518 | `d16c286af9fc970d6415ab51dc84cff83f9ee0102c317e4ae7a4db3e1ea1b04b` | 0 |
-| shared/lib/multichain-accounts/remote-feature-flag.ts | 782 | `d0951c187a62ab5a776f1b2ea726f3244b108f14d0dd99e3b263166744512344` | 0 |
-| shared/lib/multichain-feature-flags.ts | 1609 | `ab8b9b6dd55743cbdf931508c19e1610090f66e9ae895024865d9c4d21712a60` | 0 |
 | shared/lib/mv3.utils.ts | 1638 | `dcc702e16372d41d0bdca7475c6baf6ed55c0a510283054e3b1ef726fc5bb202` | 0 |
 | shared/lib/network-utils.ts | 2381 | `c59d16848865a6c4b23f9fedc1104ca5a5e2acbd8e31e90e4a829ffbc88085b6` | 0 |
 | shared/lib/network.utils.ts | 8398 | `886010a7f0e1354ae282309b536a59784d8f21bb22d1e99ec15cfb54e65a8caa` | 0 |
@@ -1811,15 +1843,15 @@ _Длинные списки здесь сгруппированы; полный
 | shared/lib/token-search/types.ts | 341 | `0e60252a9c4730dbf009c5ad68842a16208d92c143820f7cc7faa5d8846fa480` | 0 |
 | shared/lib/token-util.ts | 2546 | `4f76a6fdb75b1b918c1ecd46a85ba6e5a7c98164e450441bb029852853f44ba5` | 0 |
 | shared/lib/trace.ts | 32130 | `6907a944524d8165490200d95205cd43f361a60afe9606b9bdff312ec2db3f43` | 0 |
-| shared/lib/transaction/enforced-simulations.ts | 12232 | `503034c546096f4f1558d3fa77fe4fa9909bd9ff83e1f66c4fcb6de0a7a285fa` | 0 |
-| shared/lib/transaction/pay-prefill.ts | 1632 | `977f64cc1721fba76df886544890cf0fd4d112f1a014cad87c3685bd8af7ae64` | 0 |
-| shared/lib/transaction/pay-rpc.ts | 3924 | `0a841d7e2fd72f3847fa49916435d44a73c46f73800c04735d30726be44fd77b` | 0 |
 | shared/lib/transaction-breakdown-utils.ts | 1296 | `c4b311a4793face9e87b3e9e1e01201de0f3947ff679b4a7add0bf3f6a0caaf6` | 0 |
 | shared/lib/transaction-gas-fee.utils.ts | 1280 | `28732e6afae8af7e3ccc3ba06562627da2c50ef5234738299d5c10ce8ad891ae` | 0 |
 | shared/lib/transaction.utils.ts | 18691 | `5c366d1637acfed7fec355abcb8eea0569441b8e60604c2fb6e1c5247fbf8516` | 0 |
-| shared/lib/transactions/approvals.ts | 1454 | `720eea0028f6c2d5f9d5971ffa57c801dd10e5f67aa40da46b02618dabb35f44` | 0 |
+| shared/lib/transaction/enforced-simulations.ts | 12232 | `503034c546096f4f1558d3fa77fe4fa9909bd9ff83e1f66c4fcb6de0a7a285fa` | 0 |
+| shared/lib/transaction/pay-prefill.ts | 1632 | `977f64cc1721fba76df886544890cf0fd4d112f1a014cad87c3685bd8af7ae64` | 0 |
+| shared/lib/transaction/pay-rpc.ts | 3924 | `0a841d7e2fd72f3847fa49916435d44a73c46f73800c04735d30726be44fd77b` | 0 |
 | shared/lib/transactions-controller-utils.ts | 6127 | `e89afbf33019a40c81c63ed3be6ab0f9a4ae5709e262ea1010502910f7b96cb5` | 0 |
 | shared/lib/transactions.utils.ts | 5273 | `e04a35650ccf4b9e129dac903e433ba7e88802c122bc283a64fbb2ba33952c71` | 0 |
+| shared/lib/transactions/approvals.ts | 1454 | `720eea0028f6c2d5f9d5971ffa57c801dd10e5f67aa40da46b02618dabb35f44` | 0 |
 | shared/lib/translate.ts | 938 | `f2cbbb73bbde2ae8f8187fec3b4bcdb620cad974653c077a24c33b19a0807933` | 0 |
 | shared/lib/tron-resources.ts | 5062 | `c7799ffa598677a25415cd8f66a2204bbb7464717691a4e960d910322139c592` | 0 |
 | shared/lib/trust-signals.ts | 881 | `1e8057a9dd2b2e47f4fecb083597d4c48d29d4d839ed6ae6a45254c08c8925df` | 0 |
@@ -1887,10 +1919,10 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/arc-usage-notice-toast/index.ts | 64 | `26730627e90a8c3f4a9847cd9810428ccafcf6845b87b645a44d1471343aa1ba` | 0 |
 | ui/components/app/arc-usage-notice-toast/selectors.ts | 934 | `815193e4ea6491d93b6bc022d057406d6597b7639358eb040ac8b8280373b920` | 0 |
 | ui/components/app/asset-picker/index.ts | 265 | `c104f342ebab64c52ac7c0bbc82eedae9b6a7de4b28190428330a31c564c9c92` | 0 |
-| ui/components/app/assets/account-group-balance/account-group-balance.tsx | 6509 | `0dfee2192314b68a1295aa2c7e0f5bbedf3edd22e651b9d807018645bcb2ec99` | 0 |
 | ui/components/app/assets/account-group-balance-change/account-group-balance-change.tsx | 2191 | `fbefdaca12ede7372acdeebfc68250076949495f1b9b52ee7b8139d70c54e521` | 0 |
 | ui/components/app/assets/account-group-balance-change/get-display-balance.ts | 581 | `10f227b8f4ae6751cd6ed1752c23d51421aa0985f317f7e4285a7e2a5c1cba8d` | 0 |
 | ui/components/app/assets/account-group-balance-change/useAccountGroupBalanceDisplay.ts | 1762 | `3611cef38074df8e32d314d565e2e0f1bc63bd0410810ee8d6736561888996ca` | 0 |
+| ui/components/app/assets/account-group-balance/account-group-balance.tsx | 6509 | `0dfee2192314b68a1295aa2c7e0f5bbedf3edd22e651b9d807018645bcb2ec99` | 0 |
 | ui/components/app/assets/asset-inactive-badge/asset-inactive-badge.tsx | 692 | `0e201343d646c0e77932dfd1f8a5e0952a190db3f5f33e69d24fab525e1690ff` | 0 |
 | ui/components/app/assets/asset-list/asset-list-control-bar/asset-list-control-bar.tsx | 20932 | `863c8236be1e74f45c9a48fefac14e218b7876e6603a8291d8b895eb2b56ba8c` | 0 |
 | ui/components/app/assets/asset-list/asset-list-control-bar/home-network-filter-modal.tsx | 20404 | `e87144562b105df75df39dba418f7c8f8496f1de97d69487e4dc98eaaf662e41` | 0 |
@@ -2206,9 +2238,9 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/perps/close-position/close-position-modal.tsx | 33769 | `756ac1d0e00e662e7d3df12d06971506b7cc92092df00e5ecb8ba0eabb4c417b` | 0 |
 | ui/components/app/perps/close-position/close-position-utils.ts | 2558 | `7db2ac200af2de9752c4f4f615046c8de6daf9106e5af7e72830df65934ea8c3` | 0 |
 | ui/components/app/perps/close-position/index.ts | 282 | `9bb7fbe5433f0ff11eff67178c48ccb9caf317e03fb04098220f252e97a9855e` | 0 |
+| ui/components/app/perps/constants.ts | 6862 | `05a4cb1ad37a6ebd43211ad05881a1f602f849a339f0ad4aeddb78228e4cc2af` | 0 |
 | ui/components/app/perps/constants/chartConfig.ts | 5586 | `b28a5cf369575b4d188f5770e153d00e6eae3ea6d7b7fc487911eca00c50bcd5` | 0 |
 | ui/components/app/perps/constants/slippageConfig.ts | 955 | `d4ca52f9d80825fca52d5c96b9ea02b394f8214fa7a64b2f5154475cf9c05422` | 0 |
-| ui/components/app/perps/constants.ts | 6862 | `05a4cb1ad37a6ebd43211ad05881a1f602f849a339f0ad4aeddb78228e4cc2af` | 0 |
 | ui/components/app/perps/dropdown/dropdown.tsx | 9783 | `3ebef6876783d1f83c2ccb30388ee456bef5384539fc0545e817f354b9930d36` | 0 |
 | ui/components/app/perps/dropdown/index.ts | 80 | `c2be33177549b22224747495ca4785ca5ab43453e343d790bd7d71a1084f43d7` | 0 |
 | ui/components/app/perps/edit-margin/edit-margin-expandable.tsx | 4724 | `30e0740286ab2c744338c648448e440806ce8654ad6332aa718bf6e5f855942a` | 0 |
@@ -2369,6 +2401,7 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/perps/update-tpsl/index.ts | 298 | `1b121ceb761ca569851598e80d28e32cc1ed02df2b4f5feb330c8f22fe52fd30` | 0 |
 | ui/components/app/perps/update-tpsl/update-tpsl-modal-content.tsx | 33978 | `b42087c2f91480187d10fcdf12effad74ad7c8abdfc91974fbdf5b47dfc6d8ca` | 0 |
 | ui/components/app/perps/update-tpsl/update-tpsl-modal.tsx | 3125 | `34a0895debc20775d1bdff9973ff2295fc6e15177530e09e503503f65739d15e` | 0 |
+| ui/components/app/perps/utils.ts | 20508 | `d474517855732e264876df2b4bae3afb08bbb9a3d39ed2c8ead328746db33a45` | 0 |
 | ui/components/app/perps/utils/deriveTradeAction.ts | 2906 | `8586a6dc1b6778ff483f4730a863f719d8807b54846533838d9b53e2429e7415` | 0 |
 | ui/components/app/perps/utils/formatPerpsDisplayPrice.ts | 1330 | `23b3f77663209119b6ddd8736e2d3dfeca295cd130955af4a338bedba8e274aa` | 0 |
 | ui/components/app/perps/utils/formatPerpsPrice.ts | 292 | `3e0276e905f83fd815ad0c987741d4d92ef89a50a38fade8515ffd3dfbf00380` | 0 |
@@ -2382,7 +2415,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/perps/utils/transactionTransforms.ts | 30791 | `af809b89c02d1b88e18f2ac975cd0c4bc039d13b7490102300e9e3ce5bc8de01` | 0 |
 | ui/components/app/perps/utils/translate-perps-error.ts | 19663 | `08c37580c0f7dd38d14cc91b35509f7a809ceddc9bcc783a8d08442a3a7c98b2` | 0 |
 | ui/components/app/perps/utils/unfunded-deposit-funnel.ts | 4741 | `892e5137c206eb62c764c9ceedd348f10503f307bb6377282b06cec55d0b3b29` | 0 |
-| ui/components/app/perps/utils.ts | 20508 | `d474517855732e264876df2b4bae3afb08bbb9a3d39ed2c8ead328746db33a45` | 0 |
 | ui/components/app/preferred-avatar/index.ts | 54 | `cc664f4258968e00156cdb96621987255c001d78acfcf6558dab59c408871873` | 0 |
 | ui/components/app/preferred-avatar/preferred-avatar.tsx | 936 | `5893e4df114dd451a9c592034a6c3520b18b4508266b77e0cdd0e447d02bf640` | 0 |
 | ui/components/app/product-safety/scam-questionnaire/question-screen.tsx | 3662 | `cea14bbb30914e897bea14c383c18b8d545fe83efa19898e2cb5591397cb212e` | 0 |
@@ -2509,10 +2541,10 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/snaps/snap-settings-page/snap-settings-renderer.tsx | 2239 | `1d8b0ed5a0a8b7864dcbdcdb5f4c6cde36490fbc069a08de8960d31f74a38bd8` | 0 |
 | ui/components/app/snaps/snap-ui-account-selector/index.ts | 44 | `f734d67229cc18fd4df999b1870c05ef8d319c738efbd7afab7dcc109187b87f` | 0 |
 | ui/components/app/snaps/snap-ui-account-selector/snap-ui-account-selector.tsx | 4656 | `09fd3e92be0acc933b39777d5a62f59049660a5dfb87e44e48f9dc83f80f3463` | 0 |
-| ui/components/app/snaps/snap-ui-address/index.ts | 35 | `e3a65988b9eba64152832579aa32a16b8f630c3c8721c9a2e168f1c42fee3c91` | 0 |
-| ui/components/app/snaps/snap-ui-address/snap-ui-address.tsx | 2259 | `d14b7de4030642230a2ae2472a2eea6d454f432e86eca65f3985d152965979d4` | 0 |
 | ui/components/app/snaps/snap-ui-address-input/index.ts | 41 | `070573584f96a9cabad923a0d01d37d13e7772c79a0855c095f3a66cb8493e63` | 0 |
 | ui/components/app/snaps/snap-ui-address-input/snap-ui-address-input.tsx | 7127 | `b047793f09be52c36f1cecf8cd28f5a8e9be25fdbb40f77021c49dcc60ddbae1` | 0 |
+| ui/components/app/snaps/snap-ui-address/index.ts | 35 | `e3a65988b9eba64152832579aa32a16b8f630c3c8721c9a2e168f1c42fee3c91` | 0 |
+| ui/components/app/snaps/snap-ui-address/snap-ui-address.tsx | 2259 | `d14b7de4030642230a2ae2472a2eea6d454f432e86eca65f3985d152965979d4` | 0 |
 | ui/components/app/snaps/snap-ui-asset-selector/index.ts | 42 | `924d0d156d4c151d3797513da58064b99534add8c813b6b48594f0d54bf0f25e` | 0 |
 | ui/components/app/snaps/snap-ui-asset-selector/snap-ui-asset-selector.tsx | 3887 | `c3fd2ae02c56e5ee5e9e23e8a0c8f957669aeb97364c3b21d1b2f0377742bd19` | 0 |
 | ui/components/app/snaps/snap-ui-asset-selector/useSnapAssetDisplay.tsx | 4526 | `e91a5dc7275fa35c8b39005c64354cbfab9d13c4d4bfe36c4d56a3f5501df510` | 0 |
@@ -2603,12 +2635,12 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/snaps/update-snap-permission-list/update-snap-permission-list.js | 5431 | `f99369be2e5dbf17080b0b8809137ad51fb87712c16a3137c8209cdf1b696f71` | 0 |
 | ui/components/app/srp-details-modal/index.ts | 47 | `9d469e98f2a24529fdaec8e1dd99f0ce90d40209700a2111290d10cfaea90ce1` | 0 |
 | ui/components/app/srp-details-modal/srp-details-modal.tsx | 2758 | `e83e9c98fa25253b471a5240ae09a3cce37bdc9cb6cf43d3db1a8aae000c85f5` | 0 |
-| ui/components/app/srp-input/index.js | 39 | `2e6c9cae98db28be3a8f59a0e5394bfaa3f69dbf091b1b67535fdd96d29f6ac8` | 0 |
-| ui/components/app/srp-input/parse-secret-recovery-phrase.js | 132 | `bc0266e12c7cb36e4bb7a36a044592f97f16c5ab4d88d9b9b53665a84f21f1a0` | 0 |
-| ui/components/app/srp-input/srp-input.js | 8165 | `962603e1a43e70a20da0bdc4b1841d6ace4121519fc227de8ad265d2070c7bc5` | 0 |
 | ui/components/app/srp-input-import/index.ts | 46 | `7ee3664d118b66246b9e683b9907cec8f99be527f7e5d7818f06466d91cbfb7c` | 0 |
 | ui/components/app/srp-input-import/parse-secret-recovery-phrase.ts | 140 | `9e32d21f0eafc7ac8654820464f494ee069dbb3b8966ebe9a8ae09d414539fcf` | 0 |
 | ui/components/app/srp-input-import/srp-input-import.tsx | 16494 | `9b54b47620a4503d529aa723d7d3348505fd31d6d97c9a613507c2fdadfaf80a` | 0 |
+| ui/components/app/srp-input/index.js | 39 | `2e6c9cae98db28be3a8f59a0e5394bfaa3f69dbf091b1b67535fdd96d29f6ac8` | 0 |
+| ui/components/app/srp-input/parse-secret-recovery-phrase.js | 132 | `bc0266e12c7cb36e4bb7a36a044592f97f16c5ab4d88d9b9b53665a84f21f1a0` | 0 |
+| ui/components/app/srp-input/srp-input.js | 8165 | `962603e1a43e70a20da0bdc4b1841d6ace4121519fc227de8ad265d2070c7bc5` | 0 |
 | ui/components/app/srp-quiz-modal/QuizContent/QuizContent.tsx | 1922 | `77a6c540dd63ee56f3488c6b447c18527593318349d3d02d6a9cfa3ca7709dd0` | 0 |
 | ui/components/app/srp-quiz-modal/QuizContent/index.ts | 41 | `9a78f19b06fff9b84b43983d85f7eb2fd510b0b288b01a1f6783a214bbfd9006` | 0 |
 | ui/components/app/srp-quiz-modal/SRPQuiz/SRPQuiz.tsx | 10272 | `f72ed71130df967393fa796740b01c99fe2382ba12a0a2151ab7870c66c7c4f7` | 0 |
@@ -2633,13 +2665,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/toast-master/utils.ts | 2418 | `43d6926a4fa56d69f541e42bc940846deec3603b2829b1e1f315e98308448ba5` | 0 |
 | ui/components/app/token-icon/index.ts | 109 | `e662a02991f7127f6c4002794bb56792a179502bb9a8179e48f838fd668562ae` | 0 |
 | ui/components/app/token-icon/token-icon.tsx | 3311 | `5f3f73ad02c2cfd9188edb0d8aa9aa2ea5660bff52f3ec65fab64921aa839109` | 0 |
-| ui/components/app/transaction/account-name.tsx | 1410 | `0f65b22eb24a0c8f033edcb2e6e3a283914c61edcfc39cac7e1bf3009ec93b21` | 0 |
-| ui/components/app/transaction/network-name.tsx | 1085 | `da8aa5f739e15a2bb4884745440330d49738c0cad0e0d224943b400d3f348e65` | 0 |
-| ui/components/app/transaction/readable-address-label.tsx | 854 | `9ba3cefff02ef79365da7ddebc50d327d94f7241aca0b3bed6010511373cd90b` | 0 |
-| ui/components/app/transaction/token-fiat-value.tsx | 2684 | `fd11bf325f9ca41ec1994b39de4f809b8121070ebfcbd2e1fa3d2d641ad91476` | 0 |
-| ui/components/app/transaction/token-label.tsx | 906 | `34351c17c387767f1e598832a0b60e12a0294bbe06f76d5a381ca8cbb34efb97` | 0 |
-| ui/components/app/transaction/transaction-id.tsx | 1478 | `c9bec1e4671bb67460c7656888c9b54ebec42461f20f41c4cef9e8f3bb715db6` | 0 |
-| ui/components/app/transaction/transaction-status.tsx | 2133 | `654e09fe5dc19720d3423e247494d2ccd7807cb094f6e0875f1fec23b93567a0` | 0 |
 | ui/components/app/transaction-activity-empty-state/index.ts | 178 | `c0b909c8b36dddd7607cf84cb46de0bf489e5453162dc4c4daa7c3014941c55a` | 0 |
 | ui/components/app/transaction-activity-empty-state/transaction-activity-empty-state.tsx | 4799 | `ab855115f17e709ea4e15014481954636d5295c2da2589bea11b194fde39f46c` | 0 |
 | ui/components/app/transaction-breakdown/index.js | 61 | `a699b7a02da77f657e4b50735040df543bc15479723fbe9b272c0f31a3c39430` | 0 |
@@ -2652,6 +2677,13 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/app/transaction-icon/transaction-icon.js | 3790 | `6fbb4d7e4adf76c1022a92f29512e91a9d0f4ede60b84e611798e8b028960460` | 0 |
 | ui/components/app/transaction-status-label/index.js | 122 | `15a35895a1f1d2ff58472c55dfec4f307400c1a76aac18fae70698f733c7f4ee` | 0 |
 | ui/components/app/transaction-status-label/transaction-status-label.js | 2766 | `2db940b421ae6ded5a9a6f850d3a368ea2df688491327f5229ec345c09aed351` | 0 |
+| ui/components/app/transaction/account-name.tsx | 1410 | `0f65b22eb24a0c8f033edcb2e6e3a283914c61edcfc39cac7e1bf3009ec93b21` | 0 |
+| ui/components/app/transaction/network-name.tsx | 1085 | `da8aa5f739e15a2bb4884745440330d49738c0cad0e0d224943b400d3f348e65` | 0 |
+| ui/components/app/transaction/readable-address-label.tsx | 854 | `9ba3cefff02ef79365da7ddebc50d327d94f7241aca0b3bed6010511373cd90b` | 0 |
+| ui/components/app/transaction/token-fiat-value.tsx | 2684 | `fd11bf325f9ca41ec1994b39de4f809b8121070ebfcbd2e1fa3d2d641ad91476` | 0 |
+| ui/components/app/transaction/token-label.tsx | 906 | `34351c17c387767f1e598832a0b60e12a0294bbe06f76d5a381ca8cbb34efb97` | 0 |
+| ui/components/app/transaction/transaction-id.tsx | 1478 | `c9bec1e4671bb67460c7656888c9b54ebec42461f20f41c4cef9e8f3bb715db6` | 0 |
+| ui/components/app/transaction/transaction-status.tsx | 2133 | `654e09fe5dc19720d3423e247494d2ccd7807cb094f6e0875f1fec23b93567a0` | 0 |
 | ui/components/app/trust-signal-modal/trust-signal-modal.tsx | 2366 | `0de220f849c2043be455c2c3dcdf2ff689fd85b70faf3de569c01657734e0945` | 0 |
 | ui/components/app/trust-signal-pill/trust-signal-pill.tsx | 2224 | `23c195fdc72783d5d19bd532dcf0b46a4308fdccda2de3e977384afe443ce7c8` | 0 |
 | ui/components/app/update-modal/update-modal-container.tsx | 377 | `e1c6c3ed23f62337373ee2359cef527134e8a5c495908d70e19e1669306ca2c7` | 0 |
@@ -2700,9 +2732,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/component-library/box/box.tsx | 9431 | `5f1976e12bab8408a36985ce0be8d94d6cb2f018940dd1f60018c3ffcf014513` | 0 |
 | ui/components/component-library/box/box.types.ts | 13218 | `95c14e46d8fc46651ce04a75a619d263c403b7cab8f9b18def72df87463a0c58` | 0 |
 | ui/components/component-library/box/index.ts | 167 | `675f19b406a42471aa891f1424b58f7220d00428287541dcc5313b20553eadcc` | 0 |
-| ui/components/component-library/button/button.tsx | 1852 | `ec77a12f88a24ec35cb0d66fcc3e4f4330139144c13e1a3463922f99aecf9d06` | 0 |
-| ui/components/component-library/button/button.types.ts | 2092 | `d7c57b1592fcb66224f1b3420dd1970806426cad5e2dcae2065fa17c193c3998` | 0 |
-| ui/components/component-library/button/index.ts | 769 | `1a267e9f1942069ff84d05fc926ee10a718da96469d598cf3d750c6c95704e3a` | 0 |
 | ui/components/component-library/button-base/button-base.tsx | 4297 | `3ebef5948e3bbb9b50e254bff6507ee5021a164911ab736a81212550f9e4f18e` | 0 |
 | ui/components/component-library/button-base/button-base.types.ts | 3584 | `73da286ee47aa6f2fdbe6d75553ce203eb688d8a35794714c02b83bd3763e853` | 0 |
 | ui/components/component-library/button-base/index.ts | 158 | `d5abca110f019af847c00e4a7166a9abd11ee3886e8d9d57a27141ee97a77071` | 0 |
@@ -2718,6 +2747,9 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/component-library/button-secondary/button-secondary.tsx | 1742 | `5a7c536fa3bef48e999a87fa477fe25499e2479762bc3ea12de1ce594618d25f` | 0 |
 | ui/components/component-library/button-secondary/button-secondary.types.ts | 1616 | `1dfd953607995d2d8989357307de9f11287d7aa9dadbe92270b5fca3176e7de7` | 0 |
 | ui/components/component-library/button-secondary/index.ts | 188 | `940ba792ca3d1d7afdbb7404f37aa7f38bc758994a37c41dc6fbe1513ef0eec0` | 0 |
+| ui/components/component-library/button/button.tsx | 1852 | `ec77a12f88a24ec35cb0d66fcc3e4f4330139144c13e1a3463922f99aecf9d06` | 0 |
+| ui/components/component-library/button/button.types.ts | 2092 | `d7c57b1592fcb66224f1b3420dd1970806426cad5e2dcae2065fa17c193c3998` | 0 |
+| ui/components/component-library/button/index.ts | 769 | `1a267e9f1942069ff84d05fc926ee10a718da96469d598cf3d750c6c95704e3a` | 0 |
 | ui/components/component-library/container/container.tsx | 849 | `51fa298affb52c503748e7cdd7ca894698407f9ef82849e9a0e721367c771e54` | 0 |
 | ui/components/component-library/container/container.types.ts | 1163 | `14f00cbc5fccca88d0db98e29e711960024610f872770d12c5381e0d4d2ca33a` | 0 |
 | ui/components/component-library/container/index.ts | 153 | `c90527088c6b006628790002ab6cba66a0a354d9850bc2087efb12125323574b` | 0 |
@@ -2750,10 +2782,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/component-library/label/label.types.ts | 1172 | `e62f681d94d5fa2314041c562f8103da996b5935dac203a1e3bcab19fe2ba0cb` | 0 |
 | ui/components/component-library/lottie-animation/index.ts | 118 | `0cd8d55867527554e5644cb54a89c33961bafc11560550f8e4044a2f731b1373` | 0 |
 | ui/components/component-library/lottie-animation/lottie-animation.tsx | 2141 | `116c1a90eb1e827fc5e21cdc1904b69c57d5aa6370013cc35cde85eeccadd06f` | 0 |
-| ui/components/component-library/modal/index.ts | 133 | `8e157c717bcc52a1a4545ad0edc2077f84855a330faaa397426d159c973ca612` | 0 |
-| ui/components/component-library/modal/modal.context.ts | 525 | `329e69798b51e04e10310ced6c77dd1a86fecf7c8bc32fda6d72c21688256caa` | 0 |
-| ui/components/component-library/modal/modal.tsx | 1747 | `a410a8e8353b4d49aaa290a78eae4849f788315a9dd0261e224f0ad1ed8fdb5b` | 0 |
-| ui/components/component-library/modal/modal.types.ts | 1098 | `34f5359798709cc3048a37ca0344accebed0ddb7db5d34cd484671bf099a1eca` | 0 |
 | ui/components/component-library/modal-body/index.ts | 155 | `4c90462a7fae28dfa1df461fdeb31076f06f3198288ce5c4c13222a888201161` | 0 |
 | ui/components/component-library/modal-body/modal-body.tsx | 1419 | `bbe3f36b513edc7201a6d6e9d0ff86894a2986ad8904477d5fede5aca77da00b` | 0 |
 | ui/components/component-library/modal-body/modal-body.types.ts | 1022 | `58cbd6fe916f2230cbda4065cbb9a8e68277bf51b84e870b01222bffdd6f7f05` | 0 |
@@ -2776,15 +2804,19 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/component-library/modal-overlay/index.ts | 173 | `d1af2c4922e61d0863068dd5fad6c897891b09a305ff1487a0968ccb7ccb82ce` | 0 |
 | ui/components/component-library/modal-overlay/modal-overlay.tsx | 1643 | `5b33b3e0add2ed200e44244a30d31596cfa1118cd05925e9735450b5014990b4` | 0 |
 | ui/components/component-library/modal-overlay/modal-overlay.types.ts | 1158 | `654eb891652ceadb03aa77e81ad40f87e40fd9d08c8861ba32903e4d671ccb4c` | 0 |
+| ui/components/component-library/modal/index.ts | 133 | `8e157c717bcc52a1a4545ad0edc2077f84855a330faaa397426d159c973ca612` | 0 |
+| ui/components/component-library/modal/modal.context.ts | 525 | `329e69798b51e04e10310ced6c77dd1a86fecf7c8bc32fda6d72c21688256caa` | 0 |
+| ui/components/component-library/modal/modal.tsx | 1747 | `a410a8e8353b4d49aaa290a78eae4849f788315a9dd0261e224f0ad1ed8fdb5b` | 0 |
+| ui/components/component-library/modal/modal.types.ts | 1098 | `34f5359798709cc3048a37ca0344accebed0ddb7db5d34cd484671bf099a1eca` | 0 |
 | ui/components/component-library/picker-network/index.ts | 145 | `57f98d8a4670adea649b365807592d730369bb9b08a62ffbcd0f4c443e407f19` | 0 |
 | ui/components/component-library/picker-network/picker-network.tsx | 2171 | `5a55561794937a7adf642d5a07aeca69f73e8449df3c0b4c4986e63ce516a43e` | 0 |
 | ui/components/component-library/picker-network/picker-network.types.ts | 1802 | `69663cf0e73eac9de4c0e12a9e37a6425541b31906f27db4cd504380ef0e619a` | 0 |
-| ui/components/component-library/popover/index.ts | 205 | `87ae77910f2ddaecdb44e4e1790cb0b6afee61899a10e4622a5000c2e706ca95` | 0 |
-| ui/components/component-library/popover/popover.tsx | 5964 | `60808589876a4fcf9c1e4f986057c7aaf1adc693dd72b886c2e9caa10a8ba121` | 0 |
-| ui/components/component-library/popover/popover.types.ts | 3671 | `0858b61900883201d0f1b82cc920ea96d5a2ba6ef3b7a990c20e38c1f2035ae8` | 0 |
 | ui/components/component-library/popover-header/index.ts | 116 | `72eea93efc9f343c7e2938e2ebc17e721c1a91b3d12a14fca6f215390f877f76` | 0 |
 | ui/components/component-library/popover-header/popover-header.tsx | 2691 | `69b5b2888bf2fad0cdb2a5d371b0602e4f97c076001ee4cf20bb9243633737be` | 0 |
 | ui/components/component-library/popover-header/popover-header.types.ts | 1571 | `9c0e9f402e8191365e8e9d65c0e306ddd306ee60de9f6d18bed68e23c7204ff9` | 0 |
+| ui/components/component-library/popover/index.ts | 205 | `87ae77910f2ddaecdb44e4e1790cb0b6afee61899a10e4622a5000c2e706ca95` | 0 |
+| ui/components/component-library/popover/popover.tsx | 5964 | `60808589876a4fcf9c1e4f986057c7aaf1adc693dd72b886c2e9caa10a8ba121` | 0 |
+| ui/components/component-library/popover/popover.types.ts | 3671 | `0858b61900883201d0f1b82cc920ea96d5a2ba6ef3b7a990c20e38c1f2035ae8` | 0 |
 | ui/components/component-library/select-button/index.ts | 170 | `8451d8fe3ba13ea3295ad2ceacc0702fbaf4d2b7566c55f83c538266de4ab6fa` | 0 |
 | ui/components/component-library/select-button/select-button.tsx | 5587 | `7c4dd7329fc69b2f59927131402210f6b94e924409400621c24f8075f31bc826` | 0 |
 | ui/components/component-library/select-button/select-button.types.ts | 4745 | `f69eda1a7f3436b1159ae5f0461f1781fb3688992fccc82b81e1b18181b2e5cd` | 0 |
@@ -2807,20 +2839,92 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/component-library/tag/index.ts | 74 | `b49313013e516dc02f46f648f460142331534be548e4512728f503f45f49150c` | 0 |
 | ui/components/component-library/tag/tag.tsx | 4889 | `76964118f64682b82d8040d339b2d48e1492cdfbe3101ccf40f1a157c41745a1` | 0 |
 | ui/components/component-library/tag/tag.types.ts | 2881 | `d66995f00eb74edd7b62efcceb55a2cd6c184670c1aecdbb3db6c2775f31bdb7` | 0 |
-| ui/components/component-library/text/index.ts | 198 | `8540173362de70ad11175e930eabf49b6c587b80bc32740f75f2380932895ced` | 0 |
-| ui/components/component-library/text/text.tsx | 3133 | `06669bb8002c990484874132e8dfb29ada1084f159219349affa0c0435d80ec9` | 0 |
-| ui/components/component-library/text/text.types.ts | 4298 | `9c417fd6b713ddd17440ed36978225d3ed2392e388b304a458601a7fe02acb88` | 0 |
 | ui/components/component-library/text-field/index.ts | 200 | `963b20711fab7a469aa85248492d0f67db0343875bad705d9f187c29360b7216` | 0 |
 | ui/components/component-library/text-field/text-field.tsx | 5438 | `d32cb54e2a4dbf3fa24102fe88b1047e5922e05a48888a41288b20a77054c501` | 0 |
 | ui/components/component-library/text-field/text-field.types.ts | 4282 | `095751e7033c0bc86b38a94907b4506d9034a9ff312070de3db7808a1aeab004` | 1 |
+| ui/components/component-library/text/index.ts | 198 | `8540173362de70ad11175e930eabf49b6c587b80bc32740f75f2380932895ced` | 0 |
+| ui/components/component-library/text/text.tsx | 3133 | `06669bb8002c990484874132e8dfb29ada1084f159219349affa0c0435d80ec9` | 0 |
+| ui/components/component-library/text/text.types.ts | 4298 | `9c417fd6b713ddd17440ed36978225d3ed2392e388b304a458601a7fe02acb88` | 0 |
 | ui/components/component-library/textarea/index.ts | 198 | `135e2d60b0e438883aa01560be1db0cafebc2192c436d7508479b5315d405861` | 0 |
 | ui/components/component-library/textarea/textarea.tsx | 3299 | `4654dbc3e28fa919329437b6ff4e52c4476795b570375086d0f88a2cc2201b89` | 0 |
 | ui/components/component-library/textarea/textarea.types.ts | 3140 | `02ebc2941baa75d3288b3361bb410239dba4a9676d618ad1a7c12b53902e359f` | 0 |
+| ui/components/multichain-accounts/account-delete-confirm-modal/account-delete-confirm-modal.tsx | 3124 | `d2a2396656913a86c2f126d5723600e6b797eb8f97c50b7a660017bb1e1f324c` | 0 |
+| ui/components/multichain-accounts/account-delete-confirm-modal/index.ts | 162 | `bc39758b12d8a4a12ba9ee1d25d6c18910d324939a06152f6b42ef83c9fabe97` | 0 |
+| ui/components/multichain-accounts/account-details-row/account-details-row.tsx | 2120 | `4cf7b784ed9bc68aa112c9c05f3717ce125cccbe97414b6b919fbf347a24e712` | 0 |
+| ui/components/multichain-accounts/account-details-row/index.ts | 59 | `db96b9f5e90897218008ab86680b25a627a21056503bc4380c4edf205507f5d1` | 0 |
+| ui/components/multichain-accounts/account-remove-modal/account-remove-modal.tsx | 2268 | `e2ce5623d0886393f289702266e3ba1e00180b87571dd2f2a76b2705c589d038` | 0 |
+| ui/components/multichain-accounts/account-remove-modal/index.ts | 61 | `9c93ddd4803bafaea13ed81ece738370796d6f3709449ebbf2455e0beebe54cc` | 0 |
+| ui/components/multichain-accounts/account-show-srp-row/account-show-srp-row.tsx | 2926 | `4e19789a66de3410df9bfce3350f8ae656b179fd0a3a7f332bf6127a74051b82` | 0 |
+| ui/components/multichain-accounts/account-type-label/account-type-label.tsx | 796 | `e2e8eb79d3213ad8821c9f974ff661068a6a8b6f08d44f505ddc72a0d03088c2` | 0 |
+| ui/components/multichain-accounts/add-multichain-account/add-multichain-account.tsx | 3739 | `b35f439b97e9f54fb72cd0a56de8afd2d1cf030a91afee39bd3de10284d4da05` | 0 |
+| ui/components/multichain-accounts/add-multichain-account/index.ts | 65 | `8fd8fe8b66fa0ac5b9316cde80d7509adfb68e252c7e2eff17b4d306295531b8` | 0 |
+| ui/components/multichain-accounts/address-qr-code-modal/address-qr-code-modal.tsx | 8550 | `b100513da2aea5d99abfa65d4702fcc05a9fa83543cb054e390093eb660d0096` | 0 |
+| ui/components/multichain-accounts/address-qr-code-modal/index.ts | 134 | `6043b8079eac757dd423cb176443a422e25e1cc6ace0f1d8d6874f6f52d52a5c` | 0 |
+| ui/components/multichain-accounts/hardware-account-address-row/hardware-account-address-row.tsx | 2331 | `790e3f9c7a4f798b829cdff9669bdcbe6531b44d3c49d4acbd053716a7c6dbc4` | 0 |
+| ui/components/multichain-accounts/hardware-account-address-row/hardware-account-address-row.types.ts | 375 | `0345c76a20e546df735b0867ae97d7a0ee6fd14e28c67129ee6a435cbfefa44e` | 0 |
+| ui/components/multichain-accounts/hardware-account-address-row/index.ts | 203 | `b1ce0295855e6d6af5b106093fb504914b4da6257e377292ebf205640053d97a` | 0 |
+| ui/components/multichain-accounts/hardware-account-card/hardware-account-card.tsx | 3373 | `27e2e590bf9cfe8f30de2a00fb7c8323c5bd471652ec81ba857d38fb760343aa` | 0 |
+| ui/components/multichain-accounts/hardware-account-card/hardware-account-card.types.ts | 519 | `08ee90b643d4741a46ce12f26e29d790c59f1c54ab328eac86948a0d2eb8dda8` | 0 |
+| ui/components/multichain-accounts/hardware-account-card/index.ts | 170 | `9567c9bfe3aa36c1d1083825e2f5a817e83cc5f86e400106f316ff74208266dd` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/index.ts | 937 | `081cdf30f88740877f67997dab034b9a01681247c1c057c26fd2182bd4011f9b` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-device-selector/index.ts | 214 | `e85bc8b177c962e7430dba1f9753fc1d3d37ccb7bc6bb519797d6a3ab043fc49` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-device-selector/ledger-connection-status-device-selector.tsx | 2036 | `895d251ece3c5ba9e07cb3712699083f484d2498967bc3d181515538dcc666ae` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-device-selector/ledger-connection-status-device-selector.types.ts | 464 | `d73b5bb20c85c1536dd48342107582f3284370c731b8b408ddaa50d1e310a926` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-illustration/index.ts | 204 | `f4d04fdc59b6c0fd5a6a46bef34a1c6cfe468c4ce2e8b821eed175d947a5d71c` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-illustration/ledger-connection-status-illustration.tsx | 1055 | `14329aa19fb5679f2b00b0e2c60577a07ac4b451f39a0ef1f585cfa6c22da577` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-illustration/ledger-connection-status-illustration.types.ts | 217 | `dd451157cb235f662638217d71fa668182354cd4445569c07e3a4537965480cc` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-instructions/index.ts | 204 | `12ae2f82811cfae1da2b258128eb7aa33d1c8407dc1b48b21da865d2c41eeba4` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-instructions/ledger-connection-status-instructions.tsx | 1824 | `6af94b5e1e3656d4e34211b6801b27b4211232769d9f4d37845dc115c01cc2f7` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-instructions/ledger-connection-status-instructions.types.ts | 285 | `8dd1199f3e34d4ebf698cb54cf9558127395fea41a733aefeae005b383bbb943` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status.constants.ts | 3730 | `546dff70f898b9471ac0cde73cb64aa351cf4e2f4197e75fcded4a97c3f83f38` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status/index.ts | 452 | `21ed5ca311fba1bc370e868c1f8dadd6f01b76d012a85c0eb3d0b5abe19a778b` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status/ledger-connection-status.tsx | 4239 | `9047a445978ab7bd037ddc1e0e5be397b4904eff7aa4f4481b46a6500e9d623d` | 0 |
+| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status/ledger-connection-status.types.ts | 733 | `dca66590c6f84f5669525300b2e2f0ca30ff74a4a4f33d2966ae1d8eb55fbf81` | 0 |
+| ui/components/multichain-accounts/hooks/index.ts | 57 | `68a3977de4472f1e0a14d60739534d0c25223b2247967b7ebaf7c4882b7fee10` | 0 |
+| ui/components/multichain-accounts/hooks/useAccountListSearch.ts | 1837 | `fb8891d6001ffdf4af739756d0929de71b72cb01455fe741c7bfd0667d17227c` | 0 |
+| ui/components/multichain-accounts/hooks/useDefaultAddress.ts | 1703 | `4928b2805fcf1168a6f54ebea4b8b1a2b4dc8e881512e62c357f36289a24cee9` | 0 |
+| ui/components/multichain-accounts/multichain-account-cell-default-address/index.ts | 59 | `07faa978d771fb5fa01dec129d29d15c13b99b40b8a723af1d2f7b60b5d72da1` | 0 |
+| ui/components/multichain-accounts/multichain-account-cell-default-address/multichain-account-cell-default-address.tsx | 4195 | `610615e4d59f1132b01677cf7a7d3a12d12c58a8cf9c0ba723be4b5691a076ad` | 0 |
+| ui/components/multichain-accounts/multichain-account-cell/index.ts | 67 | `aa19da720bed6a403a97f69cc268c8727f204c2e9bec4900088da42feac23b50` | 0 |
+| ui/components/multichain-accounts/multichain-account-cell/multichain-account-cell.tsx | 12279 | `9232da6077f73ef44930f08d049e8b3a166dfc1358f52426ba28c4a3c48309e0` | 0 |
+| ui/components/multichain-accounts/multichain-account-edit-modal/index.ts | 78 | `e18a42386c46e3779f5913dbe2489d171bab5161ba612c823bcb3f478782493a` | 0 |
+| ui/components/multichain-accounts/multichain-account-edit-modal/multichain-account-edit-modal.tsx | 3227 | `093e00cc2ce9949c3828ef66e4832fa00e95fc29cfc591c7015f4dc9c080f010` | 0 |
+| ui/components/multichain-accounts/multichain-account-list/index.ts | 67 | `5b6f4c9983060c0fbfbdd1b634261945c905a6e519762ba7345add3fcb5df8aa` | 0 |
+| ui/components/multichain-accounts/multichain-account-list/multichain-account-list.tsx | 27158 | `96a58b81d58615b4a07d4b2382b02b6c1dba1907071f25783044862554b1e908` | 0 |
+| ui/components/multichain-accounts/multichain-account-menu-items/multichain-account-menu-items.tsx | 1927 | `65e7d015e7f993405c8673127ce9783a950f977a07db3c18246a343fe808bebc` | 0 |
+| ui/components/multichain-accounts/multichain-account-menu-items/multichain-account-menu-items.types.ts | 717 | `b05ede37c4025e6cfcce75b9f03097e1497ebdf9329d8732356cb2d281809afa` | 0 |
+| ui/components/multichain-accounts/multichain-account-menu/index.ts | 67 | `954d4c0adef9d7c8b833d3aba09d90815e6dfaa64e923f04e27eb62208db71c7` | 0 |
+| ui/components/multichain-accounts/multichain-account-menu/multichain-account-menu.tsx | 9835 | `9c4d88cc2d427428afdb28441f2097190b8550580588e7b6e5fea6073b778238` | 0 |
+| ui/components/multichain-accounts/multichain-account-menu/multichain-account-menu.types.ts | 810 | `5af26559c6ce392644795800d992dad612a4dc45092d97bd378163a43fca6087` | 0 |
+| ui/components/multichain-accounts/multichain-account-network-group-with-copy-icon/index.ts | 232 | `a5f0d4a6ec917daa51077599da486517859bb1f3bd85a56de9a379802806105d` | 0 |
+| ui/components/multichain-accounts/multichain-account-network-group-with-copy-icon/multichain-account-network-group-with-copy-icon.tsx | 2998 | `8f7e0ad9f58eea966faec7fc8affc90ee3fb6b9ac9e2072a94c9d1058e4086ef` | 0 |
+| ui/components/multichain-accounts/multichain-account-network-group/index.ts | 178 | `fcb01e3eb8630c4c4beb8cae1f796a2e529156e7afb4a7eaa718f8f68d9ee57a` | 0 |
+| ui/components/multichain-accounts/multichain-account-network-group/multichain-account-network-group.tsx | 5827 | `48ccf3d674d17dd05ea533b2bc1dde478b95be0e157bf7793be66c58ea808750` | 0 |
+| ui/components/multichain-accounts/multichain-address-row/index.ts | 65 | `64cad10335e285dc3e86a67784ec0b19b849ce15baabaea3ef169e6ee9b39505` | 0 |
+| ui/components/multichain-accounts/multichain-address-row/multichain-address-row.tsx | 6943 | `e044c5a108ba28e1cb08faa8f641ae0e6a595723321ed5232131853c0b30ab39` | 0 |
+| ui/components/multichain-accounts/multichain-address-rows-list/index.ts | 76 | `0a782f1465dbff80d2f066be29347992940c8d114900abce8f70479e59ddd3bc` | 0 |
+| ui/components/multichain-accounts/multichain-address-rows-list/multichain-address-rows-list.tsx | 5894 | `cda95cc3316ccc275d489810db43b5348402ad2fbb2def34dd0d3d7ec3278298` | 0 |
+| ui/components/multichain-accounts/multichain-address-rows-triggered-list/default-address.tsx | 4140 | `e7df7376b80334d185db0019ff894d549b7c642589409576cb9e0cb042fde457` | 0 |
+| ui/components/multichain-accounts/multichain-address-rows-triggered-list/index.ts | 182 | `fef83d542f7a65c5a7ce92e00498f16c5a1de629748aa02ac1966cd3b602ecb3` | 0 |
+| ui/components/multichain-accounts/multichain-address-rows-triggered-list/multichain-aggregated-list-row.tsx | 5370 | `af1e6e8e0f2806672fdc5bcf950a4e36c260fef2d600e14013fd03f225408c91` | 0 |
+| ui/components/multichain-accounts/multichain-address-rows-triggered-list/multichain-triggered-address-rows-list.tsx | 13959 | `5b40b1aa625e5c68ea0febe3d9110ca46202fd539871062f3e887548d98c1ffd` | 0 |
+| ui/components/multichain-accounts/multichain-private-key-list/index.ts | 74 | `1f7f3d006b4f038b20844116e256bd2ec6009ce3107d721c23e4bce28b816ddc` | 0 |
+| ui/components/multichain-accounts/multichain-private-key-list/multichain-private-key-list.tsx | 17010 | `7c2423e75a6375011e310c6543bd7c5cb1a62a8955ce833d9777b76d167e5239` | 0 |
+| ui/components/multichain-accounts/multichain-private-key-list/multichain-private-key-row.tsx | 6377 | `44e5e196a442e35c85cfa4cfe10850bbe6b98397a66603bf2033b464f607879f` | 0 |
+| ui/components/multichain-accounts/multichain-srp-backup/index.ts | 63 | `197fea8ae74d360ce58d6d084d84e99d81ff2a52bcf2925946d6972990cb508c` | 0 |
+| ui/components/multichain-accounts/multichain-srp-backup/multichain-srp-backup.tsx | 2921 | `9de96a4fdb4ab9a1726f4a8505583538776218c8d0b01bed29371a0ff54c88dc` | 0 |
+| ui/components/multichain-accounts/permissions/multichain-edit-accounts-page/multichain-edit-account-wrapper.tsx | 3147 | `3fe38770a6c01523f9ed2729125cab3c180813c24de481b08bf8ab2bd6374674` | 0 |
+| ui/components/multichain-accounts/permissions/multichain-edit-accounts-page/multichain-edit-accounts-page.tsx | 9971 | `6629acc0181c0908e09cf1a424a17f7d4ec466946fa087d8a48b1e7eddeff43a` | 0 |
+| ui/components/multichain-accounts/permissions/permission-review-page/multichain-review-permissions-page.tsx | 9430 | `a06dc4f2cbcbe1a66738441362af8def5be11d304b2d407c82aadd76f28e4265` | 0 |
+| ui/components/multichain-accounts/smart-contract-account-toggle-section/index.ts | 93 | `26799e18c5f6fd2fd57716223d60128387e20150cc2802b4ba99c26b43708d19` | 0 |
+| ui/components/multichain-accounts/smart-contract-account-toggle-section/smart-contract-account-toggle-section.tsx | 2876 | `186c3e115c1ee71db9e2f4cf498045f067b8f4971ab8c41d86767efce17a4787` | 0 |
+| ui/components/multichain-accounts/smart-contract-account-toggle/index.ts | 78 | `d7f8997f83daa7e52b748507c2ad2eb2fa996fe274bfa0a317f5708f80a63cab` | 0 |
+| ui/components/multichain-accounts/smart-contract-account-toggle/smart-contract-account-toggle.tsx | 6914 | `6a5d62113fe1f36d78011d8ec80e2da92f0381349e4cae05c34396c92c787a60` | 0 |
+| ui/components/multichain/account-list-item-menu/account-list-item-menu.js | 6853 | `f920f4fb4dae42d8b0e9827c634833de1b172b310c50b5f7cc62eb1da77514af` | 0 |
+| ui/components/multichain/account-list-item-menu/index.js | 64 | `81a85743f3da87ea4247ad5aa92cf96445cc9cb1309e847bf67b98e786348f8b` | 0 |
 | ui/components/multichain/account-list-item/account-list-item.js | 15816 | `62db1408f6393b9fc00a2a839489455d6d8fee6de84d1864a56529089d07cae7` | 0 |
 | ui/components/multichain/account-list-item/account-list-item.types.js | 111 | `b3dc041930cdeb1d05fd4f2de10c74bc147f8d348a95ba2433efb6e73000c598` | 0 |
 | ui/components/multichain/account-list-item/index.js | 136 | `f373b991f37ea944d6922ee6146b8558864da6b093502a8f3a90180779ea8a43` | 0 |
-| ui/components/multichain/account-list-item-menu/account-list-item-menu.js | 6853 | `f920f4fb4dae42d8b0e9827c634833de1b172b310c50b5f7cc62eb1da77514af` | 0 |
-| ui/components/multichain/account-list-item-menu/index.js | 64 | `81a85743f3da87ea4247ad5aa92cf96445cc9cb1309e847bf67b98e786348f8b` | 0 |
 | ui/components/multichain/account-network-indicator/account-network-indicator.tsx | 3652 | `ee31c4f0edd64a9860aea33fcf2a46aed5e66092186fa77683da52a6ca465bd6` | 0 |
 | ui/components/multichain/account-network-indicator/index.ts | 71 | `1a0879fd1884e5ffd1a8fb92441c21780fe9b8a7d017215eb3c5e4e608119fd3` | 0 |
 | ui/components/multichain/account-overview/account-overview-eth.tsx | 445 | `557b28da160f2506c03fd67ed13bb99118084c9f63c48c21d96fd79eb9bc5136` | 0 |
@@ -2867,12 +2971,12 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/multichain/carousel/constants.ts | 1135 | `48c563eac69460401c720f6f566fc668019e90f8ca1188b556065101a24cae11` | 0 |
 | ui/components/multichain/carousel/index.ts | 627 | `a7a7257c069405707f12e5b494ec9242d342ae215c9b5839a0e66d6d60a416e0` | 0 |
 | ui/components/multichain/carousel/resolve-carousel-href.ts | 141 | `2972c08e7bd8abaa1cd7d2ef45840bfd0766c0eee4296d9ef28bf1690f9f7619` | 0 |
-| ui/components/multichain/carousel/stack-card/index.ts | 100 | `89f75b6f2e57a3b7f2618073b256492d05bd793fce8bd7ca4f55b3c9acef52a5` | 0 |
-| ui/components/multichain/carousel/stack-card/stack-card.tsx | 3565 | `7077c84a5db1713eb01c7df69708fdc4c45fea98d24d79c4a02218ef5460eb8a` | 0 |
-| ui/components/multichain/carousel/stack-card/stack-card.types.ts | 451 | `89fdf1d7f704f0b775cc82fb01fdda9509be5f0957102ce68d5d416b97ba58a6` | 0 |
 | ui/components/multichain/carousel/stack-card-empty/index.ts | 174 | `be0acbdc1de33a95c605a59e469d08ad18513b90667b60302ae6fdca9d436673` | 0 |
 | ui/components/multichain/carousel/stack-card-empty/stack-card-empty.tsx | 2930 | `e72ca5f95a3ec17433cd67fc7894e34aeb01068f76167301ad91e32822ede98e` | 0 |
 | ui/components/multichain/carousel/stack-card-empty/stack-card-empty.types.ts | 184 | `72bfbdb025e8c57a5a92215cffe89e5be4d8f3a221bc0d062fc6e384ac8514ca` | 0 |
+| ui/components/multichain/carousel/stack-card/index.ts | 100 | `89f75b6f2e57a3b7f2618073b256492d05bd793fce8bd7ca4f55b3c9acef52a5` | 0 |
+| ui/components/multichain/carousel/stack-card/stack-card.tsx | 3565 | `7077c84a5db1713eb01c7df69708fdc4c45fea98d24d79c4a02218ef5460eb8a` | 0 |
+| ui/components/multichain/carousel/stack-card/stack-card.types.ts | 451 | `89fdf1d7f704f0b775cc82fb01fdda9509be5f0957102ce68d5d416b97ba58a6` | 0 |
 | ui/components/multichain/carousel/types.ts | 804 | `d16da79b7c034890bde1b24fb2c75429b31d533687c42209a64b4313cd0824c1` | 0 |
 | ui/components/multichain/connected-status/connected-status.tsx | 3850 | `5ecd0ea6df4be87b55b0cf26223dd524bb223dd2269bfa1a000040dfec09930d` | 0 |
 | ui/components/multichain/connected-status/index.ts | 54 | `913ffc3099e8b5aa08e373f203b7409809aa7aa2fd25562a38c6847c462be2fb` | 0 |
@@ -2892,14 +2996,14 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/multichain/funding-method-modal/funding-method-item.tsx | 1148 | `85303895b4e1a88f0775a776cab1141bbaff9fa0f97001e0158431af43df41b9` | 0 |
 | ui/components/multichain/funding-method-modal/funding-method-modal.tsx | 5827 | `48c0fdd98987068fd84335b01eb4986764f712b7ef6b2333316c14802edd07af` | 0 |
 | ui/components/multichain/funding-method-modal/index.ts | 61 | `dc3821452166664ad5f8043202fe3458217f7e019d51e3c54f97299af827a4e2` | 0 |
-| ui/components/multichain/global-menu/global-menu-list.tsx | 4437 | `350b39e6d855e52f5798ec7f3efb6c7567919f84f491f5e723cea619c09d8c1b` | 0 |
-| ui/components/multichain/global-menu/global-menu-list.types.ts | 3238 | `76f8eb4a2386a5e90573b5a5c3e5ba5acf131c22084f21485ded70ee5397ad51` | 0 |
-| ui/components/multichain/global-menu/index.ts | 188 | `7d273c0d29c2cc556d31281033049b6a0429fa6c6a4411e303f7b3c2779d400c` | 0 |
 | ui/components/multichain/global-menu-drawer/global-menu-drawer-with-list.tsx | 633 | `6650eeec0c13a250008d5125385a3de03981af527a738e3a65888fda5b62818e` | 0 |
 | ui/components/multichain/global-menu-drawer/global-menu-drawer.tsx | 6140 | `5f8ec1e38bbe83ecc07fec3b66ead82650502c6fb8113838639954ac03bcf99e` | 0 |
 | ui/components/multichain/global-menu-drawer/global-menu-drawer.types.ts | 687 | `779978736df040e2b9b17acc36c9bee36c2355ee3cb48baa2947c39023d47712` | 0 |
 | ui/components/multichain/global-menu-drawer/index.ts | 270 | `91c625c4dbfa4043ebbdbb8bc16e0343708de8c93e6a0c8380e8ced5e377d1dd` | 0 |
 | ui/components/multichain/global-menu-drawer/useGlobalMenuSections.tsx | 15885 | `3ea37d981129b1bcbb726ae279504807c55e5b8b4117a0a19405b957a01ad3b7` | 0 |
+| ui/components/multichain/global-menu/global-menu-list.tsx | 4437 | `350b39e6d855e52f5798ec7f3efb6c7567919f84f491f5e723cea619c09d8c1b` | 0 |
+| ui/components/multichain/global-menu/global-menu-list.types.ts | 3238 | `76f8eb4a2386a5e90573b5a5c3e5ba5acf131c22084f21485ded70ee5397ad51` | 0 |
+| ui/components/multichain/global-menu/index.ts | 188 | `7d273c0d29c2cc556d31281033049b6a0429fa6c6a4411e303f7b3c2779d400c` | 0 |
 | ui/components/multichain/import-account/bottom-buttons.js | 1600 | `1f19e96381077a1e85bc838f77df8d9b2d2dc5508e8e8afbd83ef092bfc51a65` | 0 |
 | ui/components/multichain/import-account/import-account.js | 7691 | `30ebca9cfe883cd4a8e21de9a809bd516dea324c3cf66d266b66f4625ed5ee62` | 0 |
 | ui/components/multichain/import-account/index.js | 50 | `a655b0d7b448885aeca890877d185c9839fa84b52f37011f1f0928cd97c4c6f7` | 0 |
@@ -2919,10 +3023,10 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/multichain/multi-srp/srp-list/srp-card.tsx | 5665 | `51aaf3c101238596401c30b243eb4f33e0529bbd32df182bfe122a9e4c1a5c76` | 0 |
 | ui/components/multichain/multi-srp/srp-list/srp-list-item.tsx | 1466 | `72db5381416e427f6b052e2e46ee2f71326776dd395a2cd8e64d542666b051e3` | 0 |
 | ui/components/multichain/multi-srp/srp-list/srp-list.tsx | 1845 | `d02fef1240af55bcf07abfaa8ea35dfba4eb39738ab373f4c1b4baf1e4fe40e8` | 0 |
-| ui/components/multichain/network-list-item/index.js | 55 | `e77b237fd9ca2a8866f84f2daab731bb2ebdb170322100ea9996748550cc2473` | 0 |
-| ui/components/multichain/network-list-item/network-list-item.tsx | 11375 | `a48ff0c71753b76195c8b2d2f76aa27ff3e25f45fbe3f03aed002bcc7a028ac4` | 0 |
 | ui/components/multichain/network-list-item-menu/index.js | 64 | `a34220046b973f540c16fecc4d2f9eff67042fbb0768a9b8ca81c2d8431b6a22` | 0 |
 | ui/components/multichain/network-list-item-menu/network-list-item-menu.js | 4743 | `37a571387594efebce65427f939ef34fdf0477c4e65a71ef1ccc925bc12994cd` | 0 |
+| ui/components/multichain/network-list-item/index.js | 55 | `e77b237fd9ca2a8866f84f2daab731bb2ebdb170322100ea9996748550cc2473` | 0 |
+| ui/components/multichain/network-list-item/network-list-item.tsx | 11375 | `a48ff0c71753b76195c8b2d2f76aa27ff3e25f45fbe3f03aed002bcc7a028ac4` | 0 |
 | ui/components/multichain/network-list-menu/add-block-explorer-modal/add-block-explorer-modal.tsx | 2199 | `96058303260fa0f3800d50592740606b851217eb38eba0e19f7b2af8daec4f8b` | 0 |
 | ui/components/multichain/network-list-menu/add-rpc-url-modal/add-rpc-url-modal.tsx | 3078 | `93c72100391cfc4d78c645bfb0252a95aaefa81d4d55c0b124ee601a712f2980` | 0 |
 | ui/components/multichain/network-list-menu/index.js | 55 | `26b27a90619208fca8655f9b848209e1c77ff36626529cd7ebd70eb435009001` | 0 |
@@ -2954,8 +3058,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/multichain/networks-form/use-safe-chains.ts | 4225 | `09b304ee07081aec225582eccb77d2324de81184ac3584725889a6476c93bb92` | 0 |
 | ui/components/multichain/nft-item/index.ts | 38 | `ad50aabe482b67e075c7f3dc9420347ead3fb68917f1b2125b2453e7c25283e6` | 0 |
 | ui/components/multichain/nft-item/nft-item.tsx | 5351 | `eeba2e60913cb7ea4e513ffcea442e5305152c4221d6e91469c836f1bdad6ef1` | 0 |
-| ui/components/multichain/notification-detail/index.ts | 60 | `a7b91adac943f5abbef8e5f3e1226945ab3319ca3e29d48dc370533f2af89881` | 0 |
-| ui/components/multichain/notification-detail/notification-detail.tsx | 2678 | `ce3172af6c7471d0d7bb7cd3f7d609635cb322e8bffbcd2f50b87d29ba97b1f1` | 0 |
 | ui/components/multichain/notification-detail-address/index.ts | 75 | `ccd27216e54de0ce1d375a751443d17a88e7cbc8d5f92769b33a98330da1e446` | 0 |
 | ui/components/multichain/notification-detail-address/notification-detail-address.tsx | 1508 | `209a224a2888cb4451d3f8895c4ce3cef0462fb5e6908cb70706f262588e362a` | 0 |
 | ui/components/multichain/notification-detail-asset/index.ts | 71 | `5dcd4a64cb96786907af85c8460f71ff5ba03c68403ba661e5c0b1dbfb285609` | 0 |
@@ -2977,14 +3079,16 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/multichain/notification-detail-nft/notification-detail-nft.tsx | 1248 | `0876d2ca4d8b5cba1ad879fa27502f51e8cf2f8474fca3096e161bbc1e310ed4` | 0 |
 | ui/components/multichain/notification-detail-title/index.ts | 71 | `c2c39198f3811b78ff57ecfb881f7c6a6cf53da2aa43f68dec2e7ef9e56c55e8` | 0 |
 | ui/components/multichain/notification-detail-title/notification-detail-title.tsx | 1321 | `c91029e1cc2b9afdd02871705b16fcfa6bb7cfe7801e459e3a3d7262c7b6bf80` | 0 |
-| ui/components/multichain/notification-list-item/index.ts | 65 | `8a1284e57057f6afb9d6b49fa71574881d0a954d6dc1654fbad1abf9565de72f` | 0 |
-| ui/components/multichain/notification-list-item/notification-list-item.tsx | 5303 | `6ff87e985bd94ccb40d0e4518b66b3bbddd938377449ce9e8b59eba33dbaa339` | 0 |
+| ui/components/multichain/notification-detail/index.ts | 60 | `a7b91adac943f5abbef8e5f3e1226945ab3319ca3e29d48dc370533f2af89881` | 0 |
+| ui/components/multichain/notification-detail/notification-detail.tsx | 2678 | `ce3172af6c7471d0d7bb7cd3f7d609635cb322e8bffbcd2f50b87d29ba97b1f1` | 0 |
 | ui/components/multichain/notification-list-item-icon/index.js | 74 | `e1787865f8a24f6afbdc7890dfbac43ad3182df24613fc3f1b375e55f2e25c63` | 0 |
 | ui/components/multichain/notification-list-item-icon/notification-list-item-icon.tsx | 4161 | `51475078811aa766e4ea0ab3dc3ef62510a13c2dd56c10415f6cf552e5c5889e` | 0 |
 | ui/components/multichain/notification-list-item-snap/index.ts | 74 | `892de67634947e0ed46531775897868aa1962fe588a2e54eafbfe46b8fadf5f2` | 0 |
 | ui/components/multichain/notification-list-item-snap/notification-list-item-snap.tsx | 5094 | `80efd4381b9dac42102ea587f7f5e6d2d8bd3d13c9b21aad2458c5c419683847` | 0 |
 | ui/components/multichain/notification-list-item-text/index.ts | 74 | `debdaaa9cfd0b467610032bd76f7846e636ada008bd3b02998ed8d81147427ce` | 0 |
 | ui/components/multichain/notification-list-item-text/notification-list-item-text.tsx | 1518 | `b8a061676eed82444211b0dbfebf692515b5dee1034ea23fcf62e1c6046e97f2` | 0 |
+| ui/components/multichain/notification-list-item/index.ts | 65 | `8a1284e57057f6afb9d6b49fa71574881d0a954d6dc1654fbad1abf9565de72f` | 0 |
+| ui/components/multichain/notification-list-item/notification-list-item.tsx | 5303 | `6ff87e985bd94ccb40d0e4518b66b3bbddd938377449ce9e8b59eba33dbaa339` | 0 |
 | ui/components/multichain/notifications-settings-account/index.ts | 81 | `57aa0919c5c00c4fa77e5a58e6c87806254a4c01c07b1b5c39bd46c08d92bbea` | 0 |
 | ui/components/multichain/notifications-settings-account/notifications-settings-account.tsx | 1600 | `1e0090c19b0dff0942881b5df5c5d4e4f75560893ae7d80950a6f50d3fb92a79` | 0 |
 | ui/components/multichain/notifications-settings-box/index.ts | 73 | `cbb6dcddd7e3e5c6d0590c66a8b5f6a673f64fdb7b232291181010f7273dcd35` | 0 |
@@ -3034,78 +3138,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/multichain/token-list-item/token-list-item.tsx | 19478 | `e496338055d9e867b8fef7f55c53454863a2a8cca40a745f8bb616a0d5d505ca` | 0 |
 | ui/components/multichain/token-management-cell/index.ts | 99 | `50e4375d2f9251cbb65dcfb45d32d10e10c40e0a80bf47293fe14a49cdbd91f0` | 0 |
 | ui/components/multichain/token-management-cell/token-management-cell.tsx | 6558 | `71c7c417814f50463fab9ae10e3ecc6cb4489fff3642f99a9ae581172c89d3ee` | 0 |
-| ui/components/multichain-accounts/account-delete-confirm-modal/account-delete-confirm-modal.tsx | 3124 | `d2a2396656913a86c2f126d5723600e6b797eb8f97c50b7a660017bb1e1f324c` | 0 |
-| ui/components/multichain-accounts/account-delete-confirm-modal/index.ts | 162 | `bc39758b12d8a4a12ba9ee1d25d6c18910d324939a06152f6b42ef83c9fabe97` | 0 |
-| ui/components/multichain-accounts/account-details-row/account-details-row.tsx | 2120 | `4cf7b784ed9bc68aa112c9c05f3717ce125cccbe97414b6b919fbf347a24e712` | 0 |
-| ui/components/multichain-accounts/account-details-row/index.ts | 59 | `db96b9f5e90897218008ab86680b25a627a21056503bc4380c4edf205507f5d1` | 0 |
-| ui/components/multichain-accounts/account-remove-modal/account-remove-modal.tsx | 2268 | `e2ce5623d0886393f289702266e3ba1e00180b87571dd2f2a76b2705c589d038` | 0 |
-| ui/components/multichain-accounts/account-remove-modal/index.ts | 61 | `9c93ddd4803bafaea13ed81ece738370796d6f3709449ebbf2455e0beebe54cc` | 0 |
-| ui/components/multichain-accounts/account-show-srp-row/account-show-srp-row.tsx | 2926 | `4e19789a66de3410df9bfce3350f8ae656b179fd0a3a7f332bf6127a74051b82` | 0 |
-| ui/components/multichain-accounts/account-type-label/account-type-label.tsx | 796 | `e2e8eb79d3213ad8821c9f974ff661068a6a8b6f08d44f505ddc72a0d03088c2` | 0 |
-| ui/components/multichain-accounts/add-multichain-account/add-multichain-account.tsx | 3739 | `b35f439b97e9f54fb72cd0a56de8afd2d1cf030a91afee39bd3de10284d4da05` | 0 |
-| ui/components/multichain-accounts/add-multichain-account/index.ts | 65 | `8fd8fe8b66fa0ac5b9316cde80d7509adfb68e252c7e2eff17b4d306295531b8` | 0 |
-| ui/components/multichain-accounts/address-qr-code-modal/address-qr-code-modal.tsx | 8550 | `b100513da2aea5d99abfa65d4702fcc05a9fa83543cb054e390093eb660d0096` | 0 |
-| ui/components/multichain-accounts/address-qr-code-modal/index.ts | 134 | `6043b8079eac757dd423cb176443a422e25e1cc6ace0f1d8d6874f6f52d52a5c` | 0 |
-| ui/components/multichain-accounts/hardware-account-address-row/hardware-account-address-row.tsx | 2331 | `790e3f9c7a4f798b829cdff9669bdcbe6531b44d3c49d4acbd053716a7c6dbc4` | 0 |
-| ui/components/multichain-accounts/hardware-account-address-row/hardware-account-address-row.types.ts | 375 | `0345c76a20e546df735b0867ae97d7a0ee6fd14e28c67129ee6a435cbfefa44e` | 0 |
-| ui/components/multichain-accounts/hardware-account-address-row/index.ts | 203 | `b1ce0295855e6d6af5b106093fb504914b4da6257e377292ebf205640053d97a` | 0 |
-| ui/components/multichain-accounts/hardware-account-card/hardware-account-card.tsx | 3373 | `27e2e590bf9cfe8f30de2a00fb7c8323c5bd471652ec81ba857d38fb760343aa` | 0 |
-| ui/components/multichain-accounts/hardware-account-card/hardware-account-card.types.ts | 519 | `08ee90b643d4741a46ce12f26e29d790c59f1c54ab328eac86948a0d2eb8dda8` | 0 |
-| ui/components/multichain-accounts/hardware-account-card/index.ts | 170 | `9567c9bfe3aa36c1d1083825e2f5a817e83cc5f86e400106f316ff74208266dd` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/index.ts | 937 | `081cdf30f88740877f67997dab034b9a01681247c1c057c26fd2182bd4011f9b` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status/index.ts | 452 | `21ed5ca311fba1bc370e868c1f8dadd6f01b76d012a85c0eb3d0b5abe19a778b` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status/ledger-connection-status.tsx | 4239 | `9047a445978ab7bd037ddc1e0e5be397b4904eff7aa4f4481b46a6500e9d623d` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status/ledger-connection-status.types.ts | 733 | `dca66590c6f84f5669525300b2e2f0ca30ff74a4a4f33d2966ae1d8eb55fbf81` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-device-selector/index.ts | 214 | `e85bc8b177c962e7430dba1f9753fc1d3d37ccb7bc6bb519797d6a3ab043fc49` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-device-selector/ledger-connection-status-device-selector.tsx | 2036 | `895d251ece3c5ba9e07cb3712699083f484d2498967bc3d181515538dcc666ae` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-device-selector/ledger-connection-status-device-selector.types.ts | 464 | `d73b5bb20c85c1536dd48342107582f3284370c731b8b408ddaa50d1e310a926` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-illustration/index.ts | 204 | `f4d04fdc59b6c0fd5a6a46bef34a1c6cfe468c4ce2e8b821eed175d947a5d71c` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-illustration/ledger-connection-status-illustration.tsx | 1055 | `14329aa19fb5679f2b00b0e2c60577a07ac4b451f39a0ef1f585cfa6c22da577` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-illustration/ledger-connection-status-illustration.types.ts | 217 | `dd451157cb235f662638217d71fa668182354cd4445569c07e3a4537965480cc` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-instructions/index.ts | 204 | `12ae2f82811cfae1da2b258128eb7aa33d1c8407dc1b48b21da865d2c41eeba4` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-instructions/ledger-connection-status-instructions.tsx | 1824 | `6af94b5e1e3656d4e34211b6801b27b4211232769d9f4d37845dc115c01cc2f7` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status-instructions/ledger-connection-status-instructions.types.ts | 285 | `8dd1199f3e34d4ebf698cb54cf9558127395fea41a733aefeae005b383bbb943` | 0 |
-| ui/components/multichain-accounts/hardware-wallets/ledger/ledger-connection-status.constants.ts | 3730 | `546dff70f898b9471ac0cde73cb64aa351cf4e2f4197e75fcded4a97c3f83f38` | 0 |
-| ui/components/multichain-accounts/hooks/index.ts | 57 | `68a3977de4472f1e0a14d60739534d0c25223b2247967b7ebaf7c4882b7fee10` | 0 |
-| ui/components/multichain-accounts/hooks/useAccountListSearch.ts | 1837 | `fb8891d6001ffdf4af739756d0929de71b72cb01455fe741c7bfd0667d17227c` | 0 |
-| ui/components/multichain-accounts/hooks/useDefaultAddress.ts | 1703 | `4928b2805fcf1168a6f54ebea4b8b1a2b4dc8e881512e62c357f36289a24cee9` | 0 |
-| ui/components/multichain-accounts/multichain-account-cell/index.ts | 67 | `aa19da720bed6a403a97f69cc268c8727f204c2e9bec4900088da42feac23b50` | 0 |
-| ui/components/multichain-accounts/multichain-account-cell/multichain-account-cell.tsx | 12279 | `9232da6077f73ef44930f08d049e8b3a166dfc1358f52426ba28c4a3c48309e0` | 0 |
-| ui/components/multichain-accounts/multichain-account-cell-default-address/index.ts | 59 | `07faa978d771fb5fa01dec129d29d15c13b99b40b8a723af1d2f7b60b5d72da1` | 0 |
-| ui/components/multichain-accounts/multichain-account-cell-default-address/multichain-account-cell-default-address.tsx | 4195 | `610615e4d59f1132b01677cf7a7d3a12d12c58a8cf9c0ba723be4b5691a076ad` | 0 |
-| ui/components/multichain-accounts/multichain-account-edit-modal/index.ts | 78 | `e18a42386c46e3779f5913dbe2489d171bab5161ba612c823bcb3f478782493a` | 0 |
-| ui/components/multichain-accounts/multichain-account-edit-modal/multichain-account-edit-modal.tsx | 3227 | `093e00cc2ce9949c3828ef66e4832fa00e95fc29cfc591c7015f4dc9c080f010` | 0 |
-| ui/components/multichain-accounts/multichain-account-list/index.ts | 67 | `5b6f4c9983060c0fbfbdd1b634261945c905a6e519762ba7345add3fcb5df8aa` | 0 |
-| ui/components/multichain-accounts/multichain-account-list/multichain-account-list.tsx | 27158 | `96a58b81d58615b4a07d4b2382b02b6c1dba1907071f25783044862554b1e908` | 0 |
-| ui/components/multichain-accounts/multichain-account-menu/index.ts | 67 | `954d4c0adef9d7c8b833d3aba09d90815e6dfaa64e923f04e27eb62208db71c7` | 0 |
-| ui/components/multichain-accounts/multichain-account-menu/multichain-account-menu.tsx | 9835 | `9c4d88cc2d427428afdb28441f2097190b8550580588e7b6e5fea6073b778238` | 0 |
-| ui/components/multichain-accounts/multichain-account-menu/multichain-account-menu.types.ts | 810 | `5af26559c6ce392644795800d992dad612a4dc45092d97bd378163a43fca6087` | 0 |
-| ui/components/multichain-accounts/multichain-account-menu-items/multichain-account-menu-items.tsx | 1927 | `65e7d015e7f993405c8673127ce9783a950f977a07db3c18246a343fe808bebc` | 0 |
-| ui/components/multichain-accounts/multichain-account-menu-items/multichain-account-menu-items.types.ts | 717 | `b05ede37c4025e6cfcce75b9f03097e1497ebdf9329d8732356cb2d281809afa` | 0 |
-| ui/components/multichain-accounts/multichain-account-network-group/index.ts | 178 | `fcb01e3eb8630c4c4beb8cae1f796a2e529156e7afb4a7eaa718f8f68d9ee57a` | 0 |
-| ui/components/multichain-accounts/multichain-account-network-group/multichain-account-network-group.tsx | 5827 | `48ccf3d674d17dd05ea533b2bc1dde478b95be0e157bf7793be66c58ea808750` | 0 |
-| ui/components/multichain-accounts/multichain-account-network-group-with-copy-icon/index.ts | 232 | `a5f0d4a6ec917daa51077599da486517859bb1f3bd85a56de9a379802806105d` | 0 |
-| ui/components/multichain-accounts/multichain-account-network-group-with-copy-icon/multichain-account-network-group-with-copy-icon.tsx | 2998 | `8f7e0ad9f58eea966faec7fc8affc90ee3fb6b9ac9e2072a94c9d1058e4086ef` | 0 |
-| ui/components/multichain-accounts/multichain-address-row/index.ts | 65 | `64cad10335e285dc3e86a67784ec0b19b849ce15baabaea3ef169e6ee9b39505` | 0 |
-| ui/components/multichain-accounts/multichain-address-row/multichain-address-row.tsx | 6943 | `e044c5a108ba28e1cb08faa8f641ae0e6a595723321ed5232131853c0b30ab39` | 0 |
-| ui/components/multichain-accounts/multichain-address-rows-list/index.ts | 76 | `0a782f1465dbff80d2f066be29347992940c8d114900abce8f70479e59ddd3bc` | 0 |
-| ui/components/multichain-accounts/multichain-address-rows-list/multichain-address-rows-list.tsx | 5894 | `cda95cc3316ccc275d489810db43b5348402ad2fbb2def34dd0d3d7ec3278298` | 0 |
-| ui/components/multichain-accounts/multichain-address-rows-triggered-list/default-address.tsx | 4140 | `e7df7376b80334d185db0019ff894d549b7c642589409576cb9e0cb042fde457` | 0 |
-| ui/components/multichain-accounts/multichain-address-rows-triggered-list/index.ts | 182 | `fef83d542f7a65c5a7ce92e00498f16c5a1de629748aa02ac1966cd3b602ecb3` | 0 |
-| ui/components/multichain-accounts/multichain-address-rows-triggered-list/multichain-aggregated-list-row.tsx | 5370 | `af1e6e8e0f2806672fdc5bcf950a4e36c260fef2d600e14013fd03f225408c91` | 0 |
-| ui/components/multichain-accounts/multichain-address-rows-triggered-list/multichain-triggered-address-rows-list.tsx | 13959 | `5b40b1aa625e5c68ea0febe3d9110ca46202fd539871062f3e887548d98c1ffd` | 0 |
-| ui/components/multichain-accounts/multichain-private-key-list/index.ts | 74 | `1f7f3d006b4f038b20844116e256bd2ec6009ce3107d721c23e4bce28b816ddc` | 0 |
-| ui/components/multichain-accounts/multichain-private-key-list/multichain-private-key-list.tsx | 17010 | `7c2423e75a6375011e310c6543bd7c5cb1a62a8955ce833d9777b76d167e5239` | 0 |
-| ui/components/multichain-accounts/multichain-private-key-list/multichain-private-key-row.tsx | 6377 | `44e5e196a442e35c85cfa4cfe10850bbe6b98397a66603bf2033b464f607879f` | 0 |
-| ui/components/multichain-accounts/multichain-srp-backup/index.ts | 63 | `197fea8ae74d360ce58d6d084d84e99d81ff2a52bcf2925946d6972990cb508c` | 0 |
-| ui/components/multichain-accounts/multichain-srp-backup/multichain-srp-backup.tsx | 2921 | `9de96a4fdb4ab9a1726f4a8505583538776218c8d0b01bed29371a0ff54c88dc` | 0 |
-| ui/components/multichain-accounts/permissions/multichain-edit-accounts-page/multichain-edit-account-wrapper.tsx | 3147 | `3fe38770a6c01523f9ed2729125cab3c180813c24de481b08bf8ab2bd6374674` | 0 |
-| ui/components/multichain-accounts/permissions/multichain-edit-accounts-page/multichain-edit-accounts-page.tsx | 9971 | `6629acc0181c0908e09cf1a424a17f7d4ec466946fa087d8a48b1e7eddeff43a` | 0 |
-| ui/components/multichain-accounts/permissions/permission-review-page/multichain-review-permissions-page.tsx | 9430 | `a06dc4f2cbcbe1a66738441362af8def5be11d304b2d407c82aadd76f28e4265` | 0 |
-| ui/components/multichain-accounts/smart-contract-account-toggle/index.ts | 78 | `d7f8997f83daa7e52b748507c2ad2eb2fa996fe274bfa0a317f5708f80a63cab` | 0 |
-| ui/components/multichain-accounts/smart-contract-account-toggle/smart-contract-account-toggle.tsx | 6914 | `6a5d62113fe1f36d78011d8ec80e2da92f0381349e4cae05c34396c92c787a60` | 0 |
-| ui/components/multichain-accounts/smart-contract-account-toggle-section/index.ts | 93 | `26799e18c5f6fd2fd57716223d60128387e20150cc2802b4ba99c26b43708d19` | 0 |
-| ui/components/multichain-accounts/smart-contract-account-toggle-section/smart-contract-account-toggle-section.tsx | 2876 | `186c3e115c1ee71db9e2f4cf498045f067b8f4971ab8c41d86767efce17a4787` | 0 |
 | ui/components/ui/account-mismatch-warning/account-mismatch-warning.component.js | 1146 | `8d3e85a73c901a2261ddeeedd49466e360d4197e78410bc2b33acac6aaa766f7` | 0 |
 | ui/components/ui/actionable-message/actionable-message.js | 6552 | `4fb14e612305c769da32c599e355c9ffb5cd962f53e9e936c2b78b23f68c3008` | 0 |
 | ui/components/ui/actionable-message/index.js | 48 | `37a012ad79b58af466e97c63c750092d0af66a2c55d0d962458d12a1b99528c0` | 0 |
@@ -3114,10 +3146,10 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/ui/box/box.d.ts | 12314 | `578242bc39c29b009c7eccd3385147e7f2ae6b0deae17b266e3f7972b6b5424d` | 0 |
 | ui/components/ui/box/box.js | 14115 | `4db9480f4d7a00b0336a6c49852fefd11b28c21bea0b613dc5b165d174d092a2` | 0 |
 | ui/components/ui/box/index.js | 122 | `9bff6ba377515dd1d4875114ef6d4840fef9e5643b4019a4f26e7d354d0af1fe` | 0 |
-| ui/components/ui/button/button.component.js | 3739 | `5e557a404ebcb50d3c9ea8305512cb64881963f4f91c36b83549c181e58b3a90` | 0 |
-| ui/components/ui/button/index.js | 65 | `cf26ac7bb6dc2e7c91dc9cfd789c874da75b0fbb7480fab60fc4ca5f76ce13e4` | 0 |
 | ui/components/ui/button-group/button-group.component.js | 2512 | `ba1ca101a8d9b5b21be0e0de152596e81bfe8abb9da77646c6942ee2062506ba` | 0 |
 | ui/components/ui/button-group/index.js | 52 | `e975a71b438489e221342b7a74bef726d6b15d17a4e97cca05a426910a59d323` | 0 |
+| ui/components/ui/button/button.component.js | 3739 | `5e557a404ebcb50d3c9ea8305512cb64881963f4f91c36b83549c181e58b3a90` | 0 |
+| ui/components/ui/button/index.js | 65 | `cf26ac7bb6dc2e7c91dc9cfd789c874da75b0fbb7480fab60fc4ca5f76ce13e4` | 0 |
 | ui/components/ui/callout/callout.js | 2663 | `08f0c7a9484ff92fcb1d500bf08166ba3e8264118beafb3a761a487a9f30a6e0` | 0 |
 | ui/components/ui/callout/index.js | 37 | `7359afd8d90b69006b305c1b6155fb1ed6c55de181b8381a3c61ed4841c2966d` | 0 |
 | ui/components/ui/card/card.js | 998 | `30f2278c328c06d560bd5741c7adc9e4ebdfcca303a1525b62b92fe7f3a463bf` | 0 |
@@ -3151,6 +3183,12 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/ui/form-field/index.js | 40 | `a3e760ed16be8cbe194cb657fd014abc997bf38e0aff8f328dea2817b3b0daa3` | 0 |
 | ui/components/ui/hex-to-decimal/hex-to-decimal.component.js | 475 | `603ef1f6c92077bde0b296fdf040ca0813630a97090dc4c4b8291361546f331e` | 0 |
 | ui/components/ui/hex-to-decimal/index.js | 54 | `d894a7ba55c4156e40a8fd64d75b41fa2454b5a93a4b1a91b9eab9e2ea2eea3e` | 0 |
+| ui/components/ui/icon-border/icon-border.js | 1051 | `82585be764cadc6d1feff28625ac7a5be97f6a78e776580225fe651ae22ad9de` | 0 |
+| ui/components/ui/icon-border/index.js | 41 | `2d86013aae0a6a2bdb000bbbc72e8a28fb73cf1797375f5c34531a05975f87b3` | 0 |
+| ui/components/ui/icon-button/icon-button.tsx | 2604 | `79e2e4704276d2d3e480b72251ad38bc8b9e595cee93f83ce38df348f806f36a` | 0 |
+| ui/components/ui/icon-button/index.ts | 41 | `fddd52638ca04534dd0b9473e2d703dc855ee8afea6347e99c6246482a1b0c2d` | 0 |
+| ui/components/ui/icon-with-fallback/icon-with-fallback.component.js | 2449 | `9d8f847a886f1aaf3a2e8fe039baa7e5fc8233729435993f2b7313ad323cc16c` | 0 |
+| ui/components/ui/icon-with-fallback/index.js | 58 | `68884e39134dbfc3b0cf3fd03adbfdebc44f2a512d3d4603b7215867fec04e12` | 0 |
 | ui/components/ui/icon/approve-icon.component.js | 2077 | `3ae02115f88abcd8965af886a9de8311b340c9df9a6f84b9d492c9cee618407d` | 0 |
 | ui/components/ui/icon/icon-eye-slash.js | 1953 | `872bc90862a5bbb8bf8485df0a4701985e9c2baea1f95941f7fcb759fa58dbb4` | 0 |
 | ui/components/ui/icon/icon-eye.js | 1574 | `89771018c9c67a8b50c3a4b3e6d924ea48f14aef3ae15d32d5f9333c61dee21c` | 0 |
@@ -3168,12 +3206,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/components/ui/icon/sign-icon.component.js | 2000 | `d74f348e6d2d568db55be1a3c3661c0e2648fb5588ecdc359c3c21d67baea8b4` | 0 |
 | ui/components/ui/icon/sun-check-icon.component.js | 2544 | `d0a6d9cb831ba8307bfee5998fcd297e112fe6bc31eb8c1606cc8a405e0ce614` | 0 |
 | ui/components/ui/icon/swap-icon-for-list.component.js | 2206 | `a89829475ecbc9f37d303009f821e4d41dbbe0e24306cd70ae99efb404e54ef0` | 0 |
-| ui/components/ui/icon-border/icon-border.js | 1051 | `82585be764cadc6d1feff28625ac7a5be97f6a78e776580225fe651ae22ad9de` | 0 |
-| ui/components/ui/icon-border/index.js | 41 | `2d86013aae0a6a2bdb000bbbc72e8a28fb73cf1797375f5c34531a05975f87b3` | 0 |
-| ui/components/ui/icon-button/icon-button.tsx | 2604 | `79e2e4704276d2d3e480b72251ad38bc8b9e595cee93f83ce38df348f806f36a` | 0 |
-| ui/components/ui/icon-button/index.ts | 41 | `fddd52638ca04534dd0b9473e2d703dc855ee8afea6347e99c6246482a1b0c2d` | 0 |
-| ui/components/ui/icon-with-fallback/icon-with-fallback.component.js | 2449 | `9d8f847a886f1aaf3a2e8fe039baa7e5fc8233729435993f2b7313ad323cc16c` | 0 |
-| ui/components/ui/icon-with-fallback/index.js | 58 | `68884e39134dbfc3b0cf3fd03adbfdebc44f2a512d3d4603b7215867fec04e12` | 0 |
 | ui/components/ui/info-tooltip/index.js | 42 | `a5f03ac2863a5e1917ee0bbca7441dd2e4151358f632aa2c98f94690177be837` | 0 |
 | ui/components/ui/info-tooltip/info-tooltip-icon.js | 495 | `9130be51f58421c7fc059ac5a0761f7504e548d4c7085246a69a3743c7f5571b` | 0 |
 | ui/components/ui/info-tooltip/info-tooltip.js | 1687 | `c6ac2dac9ec3c6fd29b3777f3be0f1152b8b36162616f2ec46b3d0c65952bc72` | 0 |
@@ -3328,6 +3360,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/ducks/batch-sell/actions.ts | 1661 | `2c4e6ab71aa08b01ab7562f8d7a559c6c8bcdc0a01c134142b842be5cc6419b6` | 0 |
 | ui/ducks/batch-sell/selectors.ts | 12971 | `77bfcb583cf020714bcce609122b088188a367f719b61335037895c5c2798a60` | 0 |
 | ui/ducks/batch-sell/types.ts | 157 | `17f547d7f5310ba830428b1af321dbf7763201355652360a1c9f99f391ffad58` | 0 |
+| ui/ducks/bridge-status/actions.ts | 5585 | `3504876232c6efe607f4a3c0c914a8cc790e4d7a41367f6aeff708e8a0741f99` | 0 |
+| ui/ducks/bridge-status/selectors.ts | 9857 | `9fbd11dadca2bcfe8948648156f83722f773239e96b01db0048fcdc0dda4e60d` | 0 |
 | ui/ducks/bridge/actions.ts | 9137 | `334651980d17267cdeb235e696cb93b93b90ae163a3842af9e346466624a75d1` | 0 |
 | ui/ducks/bridge/asset-selectors.ts | 14307 | `e7d419229f94bd8cbe3683e38f8c5e8e5ee494a8973a626210f99fe6457f9826` | 0 |
 | ui/ducks/bridge/bridge.ts | 11514 | `52fa6870101439d462c0daf781dff815a6243f850b5babdf7988631e37fb63f9` | 0 |
@@ -3335,8 +3369,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/ducks/bridge/selectors.ts | 48282 | `b894d788962fc5ccbd6b601100530a22ccdfbba24bfcbb0eabc38d76a14deb6e` | 0 |
 | ui/ducks/bridge/types.ts | 2541 | `0178e6310b4e0e4a93472557e104e4b0b7a92a93ba2725dde841c7e760cd725b` | 0 |
 | ui/ducks/bridge/utils.ts | 8981 | `622a564ec11eab761b0fcdde6b7f3efb960538947f2be0d4f0f57f42014320ac` | 0 |
-| ui/ducks/bridge-status/actions.ts | 5585 | `3504876232c6efe607f4a3c0c914a8cc790e4d7a41367f6aeff708e8a0741f99` | 0 |
-| ui/ducks/bridge-status/selectors.ts | 9857 | `9fbd11dadca2bcfe8948648156f83722f773239e96b01db0048fcdc0dda4e60d` | 0 |
 | ui/ducks/confirm-alerts/confirm-alerts.ts | 5770 | `32c151fa5c53394f13861a9d3fe4ca09c1392a0ffbdfb81c21d194228371a1d6` | 0 |
 | ui/ducks/confirm-transaction/confirm-transaction.duck.js | 8704 | `c199d2bdd3d492ebe2914019c43eb8b1d15d8b39e97dfcf7bcc05fda93ba2675` | 0 |
 | ui/ducks/domains.js | 7858 | `a760dc69144ae36c4884da6d6cdb6691b8372229ef3dacbb42461d8db38f52ba` | 0 |
@@ -4041,8 +4073,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/activity/block-explorer-link/block-explorer-link.tsx | 2193 | `74da5c63191c26f95f617f30cdd53e4720e2b443361b052234014fab0206b3ad` | 0 |
 | ui/pages/confirmations/components/activity/block-explorer-link/index.ts | 59 | `c011d16b132bd195a7716cf106e096dfed94cba379c599f09526648c4e7db010` | 0 |
 | ui/pages/confirmations/components/activity/index.ts | 111 | `a7ad000b19dbb3ea630bd6f64791ab7ac7690fc843539e0de18bd509692fbf68` | 0 |
-| ui/pages/confirmations/components/activity/transaction-details/index.ts | 60 | `efb18fc8847d61700bff22e3d125e551d60d24b4a5cb302df23ba4e1389ffe56` | 0 |
-| ui/pages/confirmations/components/activity/transaction-details/transaction-details.tsx | 2952 | `449d2d997cb897a16c0d94bd067d79ad4b074c20041ae4069b02090ec2b9a1f7` | 0 |
 | ui/pages/confirmations/components/activity/transaction-details-account-row/index.ts | 82 | `1443758c07f4ee643e29decefebb7417d288fa54f05396f37f1ea9bfea019881` | 0 |
 | ui/pages/confirmations/components/activity/transaction-details-account-row/transaction-details-account-row.tsx | 3449 | `3d5ad7a2e2d05d59a46befd8c4cedf5622c33fe2575c067f50615e3c4b219dc3` | 0 |
 | ui/pages/confirmations/components/activity/transaction-details-bridge-fee-row/index.ts | 87 | `c5e3d9170dd9789177760995c86648c98108ebdbc94323c4f1682634c2d8a61c` | 0 |
@@ -4067,6 +4097,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/activity/transaction-details-summary/transaction-details-summary.tsx | 11130 | `9d4530c4ed7dab4188dc11cff18ab0e30fba11b3ca0e1c5e14dda8b243d5c6f0` | 0 |
 | ui/pages/confirmations/components/activity/transaction-details-total-row/index.ts | 78 | `831cb0bd11ee114dc2dbe8ec0158ecb381f1f6352f258264f4e6af809a5f9f32` | 0 |
 | ui/pages/confirmations/components/activity/transaction-details-total-row/transaction-details-total-row.tsx | 1764 | `44511102f4b175abb70f95c6c4410b427fcf9d0cd961db0a08d5ffdab80b21f9` | 0 |
+| ui/pages/confirmations/components/activity/transaction-details/index.ts | 60 | `efb18fc8847d61700bff22e3d125e551d60d24b4a5cb302df23ba4e1389ffe56` | 0 |
+| ui/pages/confirmations/components/activity/transaction-details/transaction-details.tsx | 2952 | `449d2d997cb897a16c0d94bd067d79ad4b074c20041ae4069b02090ec2b9a1f7` | 0 |
 | ui/pages/confirmations/components/activity/transaction-status-icon/index.ts | 67 | `c79bd054d606f344ce3005928229d76e0026b2edda9a716a30ed6b29c5deb444` | 0 |
 | ui/pages/confirmations/components/activity/transaction-status-icon/transaction-status-icon.tsx | 1247 | `20f32e331260c6c6ca5bbdf6b06c921e79a8c1e05145465b25a292fe81bf9658` | 0 |
 | ui/pages/confirmations/components/activity/utils/index.ts | 53 | `e5848c436916666799393c8a06ad8d3e1d88f6657a2237d02c70f7fc1dc42b09` | 0 |
@@ -4165,8 +4197,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/confirm/info/shared/selected-gas-fee-token/index.ts | 42 | `976a2bb244080c6e11c1fbfec8847adcd65cd38c907900a484b849e02edb0e72` | 0 |
 | ui/pages/confirmations/components/confirm/info/shared/selected-gas-fee-token/selected-gas-fee-token.tsx | 3569 | `734bf79ac358912ed0d9dd048a7ce156c9982f8c6ead4a5f4153a47b58632251` | 0 |
 | ui/pages/confirmations/components/confirm/info/shared/selected-token.ts | 128 | `869470467375972a162dd9a9813a7750d23dde04f993c355e6728206b6125c4d` | 0 |
-| ui/pages/confirmations/components/confirm/info/shared/send-heading/send-heading.tsx | 3629 | `ae4f199b1dbb51edd182db8f8101395686f5117cfd5c47501de247a748b19217` | 0 |
 | ui/pages/confirmations/components/confirm/info/shared/send-heading-layout/send-heading-layout.tsx | 1124 | `f8dc03e715aed6e4982613071e51b080f38ae465fc74b1719ec8ed9c2b1bd8bc` | 0 |
+| ui/pages/confirmations/components/confirm/info/shared/send-heading/send-heading.tsx | 3629 | `ae4f199b1dbb51edd182db8f8101395686f5117cfd5c47501de247a748b19217` | 0 |
 | ui/pages/confirmations/components/confirm/info/shared/sign-in-with-row/sign-in-with-row.tsx | 1428 | `4b50c1cd15bbe160a3d394af0f83f0fea747f4055e7f0a571c3ac381d80ca523` | 0 |
 | ui/pages/confirmations/components/confirm/info/shared/static-simulation/static-simulation.tsx | 1499 | `1b39a4e517f79d4d66970c9ef2ec7c52dec7be8f25a3992fadf6f363dad5d813` | 0 |
 | ui/pages/confirmations/components/confirm/info/shared/transaction-data/transaction-data.tsx | 9503 | `8e5bdfbccdc4c68a6cd9e3adc0f393b5062fd190c940597119a922176d6ff499` | 0 |
@@ -4180,6 +4212,7 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/confirm/info/token-transfer/token-details-section.tsx | 2086 | `36b2f9633f310608a24cb934653fd8f3ed837936b296dd936754ce2deb7c67d2` | 0 |
 | ui/pages/confirmations/components/confirm/info/token-transfer/token-transfer.tsx | 1635 | `30a154844dd12a2bedfc51041e46c53d3819ad04043c17274dcba44ddef59a6e` | 0 |
 | ui/pages/confirmations/components/confirm/info/token-transfer/transaction-flow-section.tsx | 3019 | `6fd28fbf9371954c18a8062bc84cb432d80e7bc7e98474de644e655c97d5fb69` | 0 |
+| ui/pages/confirmations/components/confirm/info/typed-sign-v1/typed-sign-v1.tsx | 2312 | `2800a04d0421daa8ad96914c6a9bb316684b7166421669629782edac2903b1d6` | 0 |
 | ui/pages/confirmations/components/confirm/info/typed-sign/typed-sign-permission/date-and-time-row.tsx | 1660 | `31f6785a8fc01df19ee70c3bb8fd2e2fc296a48530ebdbd7c1f20761b4b4e485` | 0 |
 | ui/pages/confirmations/components/confirm/info/typed-sign/typed-sign-permission/expiry.tsx | 1078 | `9c077a206da66ba51a7b3b04e04b06acaba57cad31b5093dc71655e19d00e630` | 0 |
 | ui/pages/confirmations/components/confirm/info/typed-sign/typed-sign-permission/index.ts | 51 | `797de389273e44e32a5d03b00f591af088e488694e5b2b854172d984b28ac919` | 0 |
@@ -4198,7 +4231,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/confirm/info/typed-sign/typed-sign-v4-simulation/typed-sign-v4-simulation.tsx | 1199 | `3ab8b7b6cfa7a081b260e48b51e1999a7d5afda77d17e02176008e51ab22c46f` | 0 |
 | ui/pages/confirmations/components/confirm/info/typed-sign/typed-sign-v4-simulation/value-display/value-display.tsx | 7308 | `0701570c2516beed7d3b09d2bd7d6dd12976255d597fab75e172d546f8649686` | 0 |
 | ui/pages/confirmations/components/confirm/info/typed-sign/typed-sign.tsx | 4763 | `0465884c6ea887e03e7cc44c8093c5d8320c192f743984fecceda51ca308b00a` | 0 |
-| ui/pages/confirmations/components/confirm/info/typed-sign-v1/typed-sign-v1.tsx | 2312 | `2800a04d0421daa8ad96914c6a9bb316684b7166421669629782edac2903b1d6` | 0 |
 | ui/pages/confirmations/components/confirm/info/utils.ts | 3436 | `f0d3f9d41759ce5215430131b218fe0cdc2cd8445c56a293bf34182351b3a9f3` | 0 |
 | ui/pages/confirmations/components/confirm/ledger-info/index.ts | 55 | `634f58b7e7a69f74db5c9c97e0128aa726f765aef14474d13f9b658f6469332f` | 0 |
 | ui/pages/confirmations/components/confirm/ledger-info/ledger-info.tsx | 4365 | `3f72df4b0acf88017237b4cdc40a16ccba622d0151db00a3d8a0820775b307f0` | 0 |
@@ -4207,8 +4239,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/confirm/pluggable-section/index.ts | 67 | `0629bc4a33f95facfd5924da5ec9c4d8ffb560899bbf7f6fee940dc14c0464b1` | 0 |
 | ui/pages/confirmations/components/confirm/pluggable-section/pluggable-section.tsx | 1029 | `e9a51459d251d1d8cca45cc1ce9253e9ffeb82c32ff74371de11c320590e2787` | 0 |
 | ui/pages/confirmations/components/confirm/row/dataTree.tsx | 5917 | `cdfef180a23628747d39ea193f9f7e05de424ed373c9fa65b072ffa7f6551646` | 0 |
-| ui/pages/confirmations/components/confirm/row/typed-sign-data/typedSignData.tsx | 1333 | `00391bee1d47e73b213ffb65f94f0106668e737d8f5739f1971fe35a7a74caa2` | 0 |
 | ui/pages/confirmations/components/confirm/row/typed-sign-data-v1/typedSignDataV1.tsx | 744 | `a24bc48d69b88c85ae554f82707e4d2f04483620d517017bec876a91ed46013d` | 0 |
+| ui/pages/confirmations/components/confirm/row/typed-sign-data/typedSignData.tsx | 1333 | `00391bee1d47e73b213ffb65f94f0106668e737d8f5739f1971fe35a7a74caa2` | 0 |
 | ui/pages/confirmations/components/confirm/scroll-to-bottom/index.ts | 46 | `299f3931e60f213972e67f6196c1d370b8a8c739ac96b8c9c663f3b2405d58c4` | 0 |
 | ui/pages/confirmations/components/confirm/scroll-to-bottom/scroll-to-bottom.tsx | 4276 | `65f64bab63c786966b7bad07e34360c3d2c00cf85fb2f61dda882d86ae787738` | 0 |
 | ui/pages/confirmations/components/confirm/smart-account-tab/account-network/account-network.tsx | 3760 | `85443baa490b96ed9586f0f57fdc850c94a53b8910055bcaebdda0e3cc95f3b5` | 0 |
@@ -4257,6 +4289,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/gas-price-input/gas-price-input.tsx | 2113 | `93c1b0f2c9cc901acde0953f32ef52f7a517b5b21c5bfc4e9d3258fdbf3fc552` | 0 |
 | ui/pages/confirmations/components/gas-timing/gas-timing.component.js | 7521 | `3699a4dfe13adb0a7956e4ae873c08ed5f01948d2b36aef3d770f6621a5dc1c2` | 0 |
 | ui/pages/confirmations/components/gas-timing/index.js | 50 | `f7c11957cd6518148675e1cd9c2b2c84afc65c2c0ee8f939e60f068ac4a787ba` | 0 |
+| ui/pages/confirmations/components/info-popover-tooltip/index.ts | 61 | `0f0b18517945e4bb54290f5e1d3bd059023a594bd60e45f0bab96a605e1889e5` | 0 |
+| ui/pages/confirmations/components/info-popover-tooltip/info-popover-tooltip.tsx | 3342 | `fab04b874ec1f1caee116b92a2072be7a44daca159bd221a02101cb94d81be7e` | 0 |
 | ui/pages/confirmations/components/info/custom-amount-info/custom-amount-info.tsx | 18031 | `fc77dd2dc0ef2c77acc8562f85e05d74050edf6076915e776759bab5385caa64` | 0 |
 | ui/pages/confirmations/components/info/custom-amount-info/index.ts | 155 | `12845d7eee23ff681fe7593fd5e1c12e2f31c6ff4b0308465c465b3d2de5c00c` | 0 |
 | ui/pages/confirmations/components/info/money-account-deposit-info/index.ts | 72 | `4a20620a2e793bbd98b5e3c1fb408e12309bf03ec649943ad5206cdc4f3d8534` | 0 |
@@ -4268,8 +4302,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/info/musd-conversion-info/musd-conversion-info.tsx | 6004 | `6d735fb024e1b4a5cae9bd0e304e0bf7329ed145eefc4c0c0af51e2d348e8946` | 0 |
 | ui/pages/confirmations/components/info/musd-conversion-info/musd-override-content.tsx | 1607 | `e53077d3d061babc818bb9a0975d92f03e057f384cb17532ad61fed48fe38d44` | 0 |
 | ui/pages/confirmations/components/info/musd-conversion-info/output-amount-tag.tsx | 2010 | `885b70407d077cbfd40dcb833f1815d9ebaa2045bf9925bc86d5f230038d8451` | 0 |
-| ui/pages/confirmations/components/info-popover-tooltip/index.ts | 61 | `0f0b18517945e4bb54290f5e1d3bd059023a594bd60e45f0bab96a605e1889e5` | 0 |
-| ui/pages/confirmations/components/info-popover-tooltip/info-popover-tooltip.tsx | 3342 | `fab04b874ec1f1caee116b92a2072be7a44daca159bd221a02101cb94d81be7e` | 0 |
 | ui/pages/confirmations/components/max-base-fee-input/max-base-fee-input.tsx | 3749 | `108323dfd6505fd771865ddd98326a4105faec595b78d446a14d531c3cc3a0f2` | 0 |
 | ui/pages/confirmations/components/modals/advanced-eip1559-modal/advanced-eip1559-modal.tsx | 6167 | `ae6b9d0b1fbea72f81d2b07f79f286b3b6395b145ed4fa9063102cc8180159df` | 0 |
 | ui/pages/confirmations/components/modals/advanced-gas-fee-modal/advanced-gas-fee-modal.tsx | 3036 | `799b8e24775501cb4afd4046e45752e6f7cd0cf8ab9d97f1f4dba3036ba9a843` | 0 |
@@ -4315,16 +4347,16 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/rows/transaction-pay-section/index.ts | 67 | `527f93c06d27ef182852462b14eeb6ab2f8494c946731c57737708eef0d0f64b` | 0 |
 | ui/pages/confirmations/components/rows/transaction-pay-section/transaction-pay-section.tsx | 1557 | `d5dca0a8336d8aee1eef2851ebae555acb0f53a358973ef532393e63489abadc` | 0 |
 | ui/pages/confirmations/components/send/address-poisoning-alert-content/address-poisoning-alert-content.tsx | 1458 | `e300d725caebce92153a6bc8b070548fee95ca97c1bd18726f240f70a7caadd5` | 0 |
-| ui/pages/confirmations/components/send/amount/amount.tsx | 6292 | `85b73ee0ee0d406388faff25ca92e7a0bd05f69dd70546b7ac31f93ad2381ac8` | 0 |
-| ui/pages/confirmations/components/send/amount/index.ts | 35 | `6baa175bd26c371b9b7b99805bf3cb88d82717a58b31cdde0bfd36e9deef7ed0` | 0 |
 | ui/pages/confirmations/components/send/amount-recipient/amount-recipient.tsx | 5711 | `313963f18d3b2fa5f3658f1cc3c023ccad4c4c6e6b0db4e465f993085972e74b` | 0 |
 | ui/pages/confirmations/components/send/amount-recipient/index.ts | 54 | `abe6dd7f1032ec9041a507776d0a857f77f1bae97c8a2730739b99e5de5e2d3f` | 0 |
-| ui/pages/confirmations/components/send/asset/asset.tsx | 6656 | `d5143657fe8159361b6386e6546aaa371df90c5a091a4d62b1cd29706c774e3f` | 0 |
-| ui/pages/confirmations/components/send/asset/index.ts | 76 | `3377c424972bb77f0acd6f300df8deb49af291e4489eb250289d772c2a9c29f4` | 0 |
+| ui/pages/confirmations/components/send/amount/amount.tsx | 6292 | `85b73ee0ee0d406388faff25ca92e7a0bd05f69dd70546b7ac31f93ad2381ac8` | 0 |
+| ui/pages/confirmations/components/send/amount/index.ts | 35 | `6baa175bd26c371b9b7b99805bf3cb88d82717a58b31cdde0bfd36e9deef7ed0` | 0 |
 | ui/pages/confirmations/components/send/asset-filter-input/asset-filter-input.tsx | 1010 | `16511868982887a07b90a3464b3861b1d9b108aafca3b65b355bdf213794bcf2` | 0 |
 | ui/pages/confirmations/components/send/asset-filter-input/index.ts | 38 | `a8cc9cb5fe5074234f9b3bce3e0e88998def0156a93b71356cad99ead48a9016` | 0 |
 | ui/pages/confirmations/components/send/asset-list/asset-list.tsx | 7540 | `e63c3eb9fadf4e7ac157cf8f05940cd2d3744ec3a3de117bd3f93f1436b72e16` | 0 |
 | ui/pages/confirmations/components/send/asset-list/index.ts | 30 | `514038e681cf5f099fad59fcbe2463afc4492533798f02469165fb3b0d029f7b` | 0 |
+| ui/pages/confirmations/components/send/asset/asset.tsx | 6656 | `d5143657fe8159361b6386e6546aaa371df90c5a091a4d62b1cd29706c774e3f` | 0 |
+| ui/pages/confirmations/components/send/asset/index.ts | 76 | `3377c424972bb77f0acd6f300df8deb49af291e4489eb250289d772c2a9c29f4` | 0 |
 | ui/pages/confirmations/components/send/diff-highlighted-address/diff-highlighted-address.tsx | 2539 | `39d6f8dbc12a88cd2d678c912935eab38be6106423b7ff0277fc379bccb710a7` | 0 |
 | ui/pages/confirmations/components/send/header/header.tsx | 1207 | `c9d90dc3499c4de0613d620aac1972890d0fae178ff081e72a2af787b2e8da8f` | 0 |
 | ui/pages/confirmations/components/send/header/index.ts | 35 | `8b60704283b68500e8f0235cdaf3bb9274033ccfe1f2207fdbe0ba9ee27ef781` | 0 |
@@ -4334,8 +4366,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/send/loader/loader.tsx | 1230 | `130ad2a9d7c8e7ef191ccd299074541bb500f52529e14afaaef1cf6d1f89c6f5` | 0 |
 | ui/pages/confirmations/components/send/network-filter/index.ts | 34 | `c949d1529603938e2be3ec525923ca8030e5d3ea476dc8317ca324dedb896647` | 0 |
 | ui/pages/confirmations/components/send/network-filter/network-filter.tsx | 8090 | `5cccb12735b455d6399975cf39a9b72305f8571a110b98cbdd590f4ca54cbd29` | 0 |
-| ui/pages/confirmations/components/send/recipient/index.ts | 41 | `742504b361740bc16f855babc17b1cd11e3d8e65f45bc192aebaa59736dfc031` | 0 |
-| ui/pages/confirmations/components/send/recipient/recipient.tsx | 6193 | `e72542eac93c78e6ec990b196c44a00d861e5d07294b02eb86b518f5501fc6d7` | 0 |
 | ui/pages/confirmations/components/send/recipient-filter-input/index.ts | 42 | `52afbb99fb8701aea6d9b02a3433607bdedd45aa4d63d3391a3018d95fe48af4` | 0 |
 | ui/pages/confirmations/components/send/recipient-filter-input/recipient-filter-input.tsx | 942 | `7afad9af6944f08c9527d736816a07b7fb02b579f64bb3174140aedebf96e9e5` | 0 |
 | ui/pages/confirmations/components/send/recipient-input/confusable-recipient-name.tsx | 3111 | `461e885fcc360049c5cd18f4e742038796d97d8d06f51888a843770651384e24` | 0 |
@@ -4343,6 +4373,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/send/recipient-input/recipient-input.tsx | 5997 | `872955ac8af224ab3bf535c6b68ada3cfbac574d4ed1ca907b658edfc6aae006` | 0 |
 | ui/pages/confirmations/components/send/recipient-list/index.ts | 34 | `21793f0ab3b4b877be54ff60b3f7b76b5993303e298fb8f4d6539ba443d12fe1` | 0 |
 | ui/pages/confirmations/components/send/recipient-list/recipient-list.tsx | 3854 | `ac8dbd7de16e0120acd21be823391de7335eadf1ab3c75a2c7a263881fcd0a06` | 0 |
+| ui/pages/confirmations/components/send/recipient/index.ts | 41 | `742504b361740bc16f855babc17b1cd11e3d8e65f45bc192aebaa59736dfc031` | 0 |
+| ui/pages/confirmations/components/send/recipient/recipient.tsx | 6193 | `e72542eac93c78e6ec990b196c44a00d861e5d07294b02eb86b518f5501fc6d7` | 0 |
 | ui/pages/confirmations/components/send/send-alert-modal/index.ts | 122 | `6fec051a1dce3e6e63187d3d72cb469b6b97cbff9ba55c10d2225fc14cbf3836` | 0 |
 | ui/pages/confirmations/components/send/send-alert-modal/send-alert-modal.tsx | 7392 | `e195135c731e573ef64cf818dd8a12ae3ebb38333b726fffae428e0fcd10b3ad` | 0 |
 | ui/pages/confirmations/components/send/send-alert-modal/send-alert-modal.types.ts | 256 | `c932cd622715196aec0fef20f0e552ffaa291d281ba5b721c032efb80e30b194` | 0 |
@@ -4373,19 +4405,19 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/components/snap-account-success-message/SnapAccountSuccessMessage.tsx | 1108 | `6aa1c440030a22206e287b7997d2d7649c5fd4d1853592f6fe12a5f3acc84d90` | 0 |
 | ui/pages/confirmations/components/snap-account-success-message/index.tsx | 84 | `6a0f02a96b17c7ae96421d93edfd934bf6113e0b9e54b765d6b44eecda285850` | 0 |
 | ui/pages/confirmations/components/token-icon/index.ts | 164 | `b044412cb4b0bf73a4b9f9e6ace9e951a13dff908a8d99b3e3fed32bfe249164` | 0 |
-| ui/pages/confirmations/components/transaction-detail/index.js | 58 | `65bfbfcc019cdee3777c9aaf5502b1512d08fc126c7def9c35862f92779b2f97` | 0 |
-| ui/pages/confirmations/components/transaction-detail/transaction-detail.component.js | 1105 | `019f2931fc82b1a8c6254c98d5bca951037fe76ab3ca1efc4b45f5ad4de49624` | 0 |
 | ui/pages/confirmations/components/transaction-detail-item/index.js | 63 | `c47609bcf94c3b970384f5d50070137b863ad9e3daaceba8b6ecfcea6ee785b4` | 0 |
 | ui/pages/confirmations/components/transaction-detail-item/transaction-detail-item.component.js | 3473 | `99092159270918a1fa7549751acb7af21c2f1ab190dc6d3aaea3a3469a4d9de2` | 0 |
+| ui/pages/confirmations/components/transaction-detail/index.js | 58 | `65bfbfcc019cdee3777c9aaf5502b1512d08fc126c7def9c35862f92779b2f97` | 0 |
+| ui/pages/confirmations/components/transaction-detail/transaction-detail.component.js | 1105 | `019f2931fc82b1a8c6254c98d5bca951037fe76ab3ca1efc4b45f5ad4de49624` | 0 |
 | ui/pages/confirmations/components/transactions/custom-amount/custom-amount.tsx | 5470 | `c5f5fecc4923a173f3d8162ded17510df227d79ba0b10a578f9aa3b58f977e66` | 0 |
 | ui/pages/confirmations/components/transactions/custom-amount/index.ts | 33 | `859bf602b7cf879ac195f6084aecc2aaa73db604cc1ac593a63bd9e2eab6b6b2` | 0 |
 | ui/pages/confirmations/components/transactions/nested-transaction-tag/index.ts | 65 | `d698c2008826e8bc3fa9c14b8f6554cd0b1a874686afc9feb796cc436c9f9c42` | 0 |
 | ui/pages/confirmations/components/transactions/nested-transaction-tag/nested-transaction-tag.tsx | 2643 | `380b4993ea0c94f7e6a8043e21420d369988b01967e23a14af49534679966306` | 0 |
 | ui/pages/confirmations/components/transactions/quote-swap-simulation-details/quote-swap-simulation-details.tsx | 5553 | `e7d234083554d96d4e5d034c7561982d20c28e09fb4ebc31ed8078c15a58e871` | 0 |
+| ui/pages/confirmations/confirm-approve/confirm-approve.util.js | 1867 | `687674838208549f747ffe14f631ed38f1dc6920e3206ebb4bb488fdbe0024b4` | 0 |
 | ui/pages/confirmations/confirm/confirm.tsx | 2433 | `b79614af4a47a08280133841450cb6cd2c57d3544bcd5d9ebb03fbadb30e745d` | 0 |
 | ui/pages/confirmations/confirm/index.ts | 48 | `7c3ab6c367a5b051edd541710e29b8cfe885ebc6a5aa48dcd5a44ea50cc5022f` | 0 |
 | ui/pages/confirmations/confirm/stories/utils.tsx | 1371 | `3a955ab2b6909d65e1617d3f5d3769988296ac19412c495019556b3b81b7120c` | 0 |
-| ui/pages/confirmations/confirm-approve/confirm-approve.util.js | 1867 | `687674838208549f747ffe14f631ed38f1dc6920e3206ebb4bb488fdbe0024b4` | 0 |
 | ui/pages/confirmations/confirmation/ResultTemplate.ts | 4808 | `6841af0be6bbd7fb0d43846fcf9184c395cd92728f2268ed2e41d05a65d250af` | 0 |
 | ui/pages/confirmations/confirmation/alerts/TemplateAlertContext.tsx | 3321 | `a32766322dffe3c36c463b7e1f7ed31b8e9c7291eb710b0f33d50645be87b20c` | 0 |
 | ui/pages/confirmations/confirmation/alerts/useAlertsActions.tsx | 1646 | `4e15cd7a33041bb4f51d7a89c8354915b67c62d4b41667ca152e0ca32e21956f` | 0 |
@@ -4426,8 +4458,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/context/confirm/index.tsx | 6619 | `55b107a5f5674f2113a3606aec58557ef6b80efa306a8949deb65d923cf381bc` | 0 |
 | ui/pages/confirmations/context/dapp-swap/index.tsx | 3548 | `f5de8a7b0f0e22fcbe887f08ca3eea42c5ab9626743581b16e151f352f8d5ada` | 0 |
 | ui/pages/confirmations/context/gas-fee-modal/index.tsx | 3149 | `266c1db9b879dca4ef3efe929136bdb070c760495850099266676c8bf478162e` | 0 |
-| ui/pages/confirmations/context/send/index.tsx | 5161 | `39efe54572ebc0270856bfaf20a6e1fcaf5db5cc5b7f91120d99348c27397008` | 0 |
 | ui/pages/confirmations/context/send-metrics/index.tsx | 3670 | `119fa8323e57592909119debab96f00d65b3d31b498ed680cd3f0b0b71f907d3` | 0 |
+| ui/pages/confirmations/context/send/index.tsx | 5161 | `39efe54572ebc0270856bfaf20a6e1fcaf5db5cc5b7f91120d99348c27397008` | 0 |
 | ui/pages/confirmations/external/add-ethereum-chain/add-ethereum-chain.tsx | 4198 | `4ebff0d502cdd3ce01767f9bcd13d0819bb0ae6fb62a0d7d2b81e56e4da93c77` | 0 |
 | ui/pages/confirmations/external/add-ethereum-chain/types.ts | 407 | `05d8f02f9e71f62c3d308fcb6bff050738d1fdeef4a94a5ded2cfe0b27df2f1b` | 0 |
 | ui/pages/confirmations/hooks/alerts/constants.ts | 4343 | `80f67336b42b964acb85e4d9e315e6dcab3a60540109b73861b99eced3b3a172` | 0 |
@@ -4632,14 +4664,14 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/confirmations/selectors/feature-flags.ts | 17564 | `5005e0ad96db2893407b1543d4e3dd643e038525d715419aa4e6b3afb73ae930` | 0 |
 | ui/pages/confirmations/selectors/index.ts | 27 | `bc6331aa8f900a8732405f0a3cd7d9b13eeda9fac42f39b4b6fe7c4d6b2330d4` | 0 |
 | ui/pages/confirmations/selectors/preferences.ts | 700 | `5e839ccd0368e573dabf97e4fe7db1639afee6c6877eb504051e3ce4e5786781` | 0 |
-| ui/pages/confirmations/send/index.ts | 31 | `43eb5819a96f196241731639c696131c0ef006265bd352210301277c62bab409` | 0 |
-| ui/pages/confirmations/send/send-inner.tsx | 2576 | `efc9930013eb29cc1d7a4b4121707a320401c9755bc2f0f67d990a7966fdb7dd` | 0 |
-| ui/pages/confirmations/send/send.tsx | 389 | `b81a570dfa95817aa6abb1c92a34ac766633a953f750b1ec27aac06a2f191f40` | 0 |
 | ui/pages/confirmations/send-utils/send-content/add-recipient/domain-input.component.tsx | 5635 | `a38b5c953a58c64cad40fe8e8bf4a7f12568d8075f00c4f113caf21e829ee1ef` | 0 |
 | ui/pages/confirmations/send-utils/send-content/add-recipient/domain-input.container.js | 649 | `2eb684b24b68c349b2663519180fa0bab97104ce56980864d20881f7b9ebcd08` | 0 |
 | ui/pages/confirmations/send-utils/send-content/add-recipient/domain-input.js | 52 | `97c41b075fe7cfd549a5786b74a0266b093e911f3afcfe392c4c721b82cf8025` | 0 |
 | ui/pages/confirmations/send-utils/send.constants.js | 1938 | `054a922137990b87be5c3bdda95b712cac04b36255116fa5861ce98086db0c99` | 0 |
 | ui/pages/confirmations/send-utils/send.utils.js | 5397 | `3e6fe61bd7eb72b96d23dcdd20a1521bd1b5e321d8ba2d7092f4b2987b65ab06` | 0 |
+| ui/pages/confirmations/send/index.ts | 31 | `43eb5819a96f196241731639c696131c0ef006265bd352210301277c62bab409` | 0 |
+| ui/pages/confirmations/send/send-inner.tsx | 2576 | `efc9930013eb29cc1d7a4b4121707a320401c9755bc2f0f67d990a7966fdb7dd` | 0 |
+| ui/pages/confirmations/send/send.tsx | 389 | `b81a570dfa95817aa6abb1c92a34ac766633a953f750b1ec27aac06a2f191f40` | 0 |
 | ui/pages/confirmations/types/confirm.ts | 2001 | `39c18ee2311bb1ad5a2f6cbfab45678bdc8d3ce338a5e02806b16268c463b6e4` | 0 |
 | ui/pages/confirmations/types/gas.ts | 401 | `6826db107be0aa544c834870443a14b565fb266fe0d97eb82bf3684b797d6147` | 0 |
 | ui/pages/confirmations/types/send.ts | 1337 | `03e1a9fe726693e160c0a04b4098fff04663e3969a019d13c121199ec3a5f48c` | 0 |
@@ -4913,6 +4945,13 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/notification-details/notification-details-header/notification-details-header.tsx | 656 | `aba06c9bedce5dc6aabfaeeab8907ff02afe8b07d1310dbc4e904ccd71f69b9b` | 0 |
 | ui/pages/notification-details/notification-details.tsx | 3623 | `0681ebb450ee0c8a57e87e153af7863c884a80cb2b24706ed3d1ecf6cc995ca6` | 0 |
 | ui/pages/notification-details/utils/utils.ts | 526 | `fd1897562ee777957a6baf16de3d69e5e746dc8fedfd0a90915e2575e5429059` | 0 |
+| ui/pages/notifications-settings/index.js | 87 | `9173fd07b0e29dc90b7bbf36802d5cd55d710f9e2edd42193dc622f0fc751ba9` | 0 |
+| ui/pages/notifications-settings/notification-settings-section.tsx | 16521 | `90d92f69189ed8d1ee09fbe2d69f981513d28f24de6586644e108f733ef571f9` | 0 |
+| ui/pages/notifications-settings/notifications-settings-allow-notifications.tsx | 5533 | `c879b40fb9e46e12fcf4d6ea2ae2d5d4f86f5a9373aafa8be862c7dc2b20e96b` | 0 |
+| ui/pages/notifications-settings/notifications-settings-helpers.ts | 1949 | `5b527cd3fa3b2c6a844627fe58ea4b98de29c82cb77fd1d53ab68c9d13dd04d8` | 0 |
+| ui/pages/notifications-settings/notifications-settings-per-account.tsx | 1324 | `8c05c84a0d0afcc0ebb010b2f9b54c76c7c30d1438a695ed3e6be2cfdf2a6e82` | 0 |
+| ui/pages/notifications-settings/notifications-settings-types.tsx | 3768 | `b8a0c74f6d7cb707310aa68181621624a7ea3a4dab4f8219c619ca56edbdf17a` | 0 |
+| ui/pages/notifications-settings/notifications-settings.tsx | 3844 | `b7a47b3dcfc549414dbb58035ada8e65c115ee0010ba355b281b5dc2010f4883` | 0 |
 | ui/pages/notifications/NewFeatureTag.tsx | 1021 | `a15083ecf382deb8ebf55da854b4345b7b551abdbd10307ea30846df35ee76fd` | 0 |
 | ui/pages/notifications/index.js | 43 | `f7ef4bb1098472ad15b86ee56fd7dea3ee84d92398025fabcd8881ac861d0515` | 0 |
 | ui/pages/notifications/notification-components/erc1155-sent-received/erc1155-sent-received.tsx | 6047 | `cbd7a714328eb9c2023e5ae0e6ce4e13259a7111c92c0e7b1936720b166609e5` | 0 |
@@ -4940,13 +4979,6 @@ _Длинные списки здесь сгруппированы; полный
 | ui/pages/notifications/notifications-list-read-all-button.tsx | 2790 | `b5fc79a9c5b34863ab72940202ebb4f756a764fec1409f576f96ac76c00f8685` | 0 |
 | ui/pages/notifications/notifications-list.tsx | 4036 | `7bc764d6d60039275223e9b0a92e32b7bd694f5e320f44d886520fa705ae256e` | 0 |
 | ui/pages/notifications/notifications.tsx | 8668 | `ccdf1c4fc8c23a487fce76c39e8e29a51994e3bf880b64dc5a7d46160c9996f7` | 0 |
-| ui/pages/notifications-settings/index.js | 87 | `9173fd07b0e29dc90b7bbf36802d5cd55d710f9e2edd42193dc622f0fc751ba9` | 0 |
-| ui/pages/notifications-settings/notification-settings-section.tsx | 16521 | `90d92f69189ed8d1ee09fbe2d69f981513d28f24de6586644e108f733ef571f9` | 0 |
-| ui/pages/notifications-settings/notifications-settings-allow-notifications.tsx | 5533 | `c879b40fb9e46e12fcf4d6ea2ae2d5d4f86f5a9373aafa8be862c7dc2b20e96b` | 0 |
-| ui/pages/notifications-settings/notifications-settings-helpers.ts | 1949 | `5b527cd3fa3b2c6a844627fe58ea4b98de29c82cb77fd1d53ab68c9d13dd04d8` | 0 |
-| ui/pages/notifications-settings/notifications-settings-per-account.tsx | 1324 | `8c05c84a0d0afcc0ebb010b2f9b54c76c7c30d1438a695ed3e6be2cfdf2a6e82` | 0 |
-| ui/pages/notifications-settings/notifications-settings-types.tsx | 3768 | `b8a0c74f6d7cb707310aa68181621624a7ea3a4dab4f8219c619ca56edbdf17a` | 0 |
-| ui/pages/notifications-settings/notifications-settings.tsx | 3844 | `b7a47b3dcfc549414dbb58035ada8e65c115ee0010ba355b281b5dc2010f4883` | 0 |
 | ui/pages/onboarding-flow/account-exist/account-exist.tsx | 2546 | `f95ae4354728990c8d983d3e1f8f297fcc2cef210de1ce503930f15f01a026d8` | 0 |
 | ui/pages/onboarding-flow/account-not-found/account-not-found.tsx | 2493 | `2f81ff9f7023189746ad2f35ee25aafbc316f23a0bfda1208956dc2a6c69ed02` | 0 |
 | ui/pages/onboarding-flow/account-status-layout/account-status-layout.tsx | 2626 | `7e43e2f725d072c29f8fc34c6d7a119a8747ebc18a53524c26dbf3824e9abc45` | 0 |
@@ -5307,18 +5339,18 @@ _Длинные списки здесь сгруппированы; полный
 | ui/providers/perps/PerpsAttributionContext.tsx | 17122 | `0aee36d60d339ec3e91f8a2e6c1a709926652dbef151428db314ebacf5b269ab` | 0 |
 | ui/providers/perps/PerpsControllerProvider.mock.tsx | 5690 | `383892b8900df7c9850ab7e96dcc1b1b4e043f4a6a38e47c0797a7468876e07d` | 0 |
 | ui/providers/perps/PerpsDataChannel.ts | 6363 | `73214e281470f083374a86ff86ca2ee740b8d15c780e402339879e1ce0bf44f1` | 0 |
+| ui/providers/perps/PerpsStreamManager.ts | 37638 | `9f52d3d715c3a86de9a4e423cf548c1ceaa650db625d2c624c3df2e46049dc8b` | 0 |
 | ui/providers/perps/PerpsStreamManager/index.mock.ts | 9985 | `e26231b40443515070a13bda06522d76a922cffaef4e356b0007c119208fb817` | 0 |
 | ui/providers/perps/PerpsStreamManager/index.ts | 211 | `345708b0769e70b34670efc63d79771d7ce09004eff642bb7a024c6a8f04a6ca` | 0 |
-| ui/providers/perps/PerpsStreamManager.ts | 37638 | `9f52d3d715c3a86de9a4e423cf548c1ceaa650db625d2c624c3df2e46049dc8b` | 0 |
 | ui/providers/perps/getPerpsController.mock.ts | 15891 | `29008467187979516250d91fe06c7ce992cc85414d534006c8e77d651232ae6c` | 0 |
 | ui/providers/perps/index.mock.ts | 827 | `70725d917379a86a1b4afcbb6b766bd6219d797dd8b9b1e7c418741dd007f57f` | 0 |
 | ui/providers/perps/index.ts | 1779 | `94ae6a0ed36363432bce96ae0aeab2cd6ef4a488c88d5e081983e8e1f506d983` | 0 |
 | ui/providers/perps/perps-cache.ts | 5964 | `1d6b7cfc185a0c28d7abd3ac99fffe073d670825e4af55daaec014e1b776c7b7` | 0 |
 | ui/selectors/account-abstraction.ts | 1808 | `8d7df22cfb2c87ca30f081e3a797c677b1163f3423b05f207fe02f9ac1e0e7cb` | 0 |
 | ui/selectors/accounts.ts | 4491 | `aa289c5d2f20aea24aa2ef54763b86deef006d8ccb97b0104a9ef991ce76b9c3` | 0 |
+| ui/selectors/activity.ts | 22014 | `849eaf9f0b10b93faedd85a308399ae04c344b3518320bf97aac1fb71a8687d5` | 0 |
 | ui/selectors/activity/enrich-local-activity.ts | 7783 | `22534210e02f8f0b7f98ca7d6b6acbf51a9a7690984a89a64e4d5029ec305743` | 0 |
 | ui/selectors/activity/enrich-local-musd-claim.ts | 4423 | `83dd10bf408ba039bd341958df420d28017d9a27bf2e8ffdb09e22bab11c8508` | 0 |
-| ui/selectors/activity.ts | 22014 | `849eaf9f0b10b93faedd85a308399ae04c344b3518320bf97aac1fb71a8687d5` | 0 |
 | ui/selectors/alerts.ts | 1023 | `352e4328e4a7ef45706382917d783a355695034b9b33f2816e7a53cc1685196c` | 0 |
 | ui/selectors/approvals.ts | 4327 | `0de0f1ca80f364fbc27a4e1a67dd8389c291e6f999a979a3276d49f55f26c4c9` | 0 |
 | ui/selectors/assets-unify-state/asset-preferences.ts | 3902 | `09cfb656cb605e47395d310ea27ea182a9ecda21dfbe09e8b2109c93eb256c03` | 0 |
@@ -5342,20 +5374,20 @@ _Длинные списки здесь сгруппированы; полный
 | ui/selectors/index.js | 450 | `e7e15b71aa2a175aa4a43b6bfab6ca23e3c3abad4bb52f64c81fc75d519055e5` | 0 |
 | ui/selectors/metamask-notifications/metamask-notifications.ts | 11378 | `785d6c4fed255abecac8ce5f8d9a20e13b125dda324e771556c889c5dcc4c44f` | 0 |
 | ui/selectors/metametrics.js | 728 | `4ad59e60358a392db4feef17b886cc6d59f3902126d3d32cae4a585017ee15f1` | 0 |
+| ui/selectors/money-account.ts | 2613 | `968607971fa5d4a5cb51b758edc2bb361a8b43be83dba52013392a00014e5b60` | 0 |
 | ui/selectors/money/money-account-feature-flags.ts | 7766 | `c2cdfeb9197d7986c486035cdab4ef418cf9038705c37b15a95ae934d929218c` | 0 |
 | ui/selectors/money/money-funding-account.ts | 4925 | `6ade9857949f086474bf69214b488e4ab172f2ca7a82d1c605a65fdeee9f66c7` | 0 |
 | ui/selectors/money/persisted-state.ts | 535 | `ed8aeedb3b495efb3a7bbbd36ce9ce52ea8d887659cd73c7b283bdf42b926145` | 0 |
-| ui/selectors/money-account.ts | 2613 | `968607971fa5d4a5cb51b758edc2bb361a8b43be83dba52013392a00014e5b60` | 0 |
 | ui/selectors/multi-srp/multi-srp.ts | 3619 | `4872841748c55fbf57a0e60adbb6cf296bfc6cb822c81b752e56924d9605c008` | 0 |
-| ui/selectors/multichain/basic-functionality.ts | 4807 | `112027afba5127663a88415d6279f5b5de9b5e9537da392dd50343f9f4e01216` | 0 |
-| ui/selectors/multichain/feature-flags.ts | 7232 | `603aa0a9df9b2bff371a79db71a823d80cc7bba717cb1ad9b8ef873b0c8edadf` | 0 |
-| ui/selectors/multichain/networks.ts | 20334 | `0269618b6505c4ea5fc7f4a88c6fa14f79841e506e526a70e48c82ed438c9c85` | 0 |
 | ui/selectors/multichain-accounts/account-tree.ts | 31117 | `df7e3add9667992f24965a508c6ce88391c3c0deecc2dba05eef4863aea80d62` | 0 |
 | ui/selectors/multichain-accounts/account-tree.types.ts | 2315 | `6e6da11bb7ea35f9887bfcbca59f393ad14e5ff86ece41f5a885d3d847d5734f` | 0 |
 | ui/selectors/multichain-accounts/test-utils.ts | 1868 | `0c6493ba7e6b70cadf79b1e2a5dc94e5999f95411e6db43537ba113f339a6f44` | 0 |
 | ui/selectors/multichain-accounts/utils.ts | 1314 | `27a3d1c75b91ef1fcba9f2f58d9f55011e1a72a3a09a86ecc9b0cb4322e96fc5` | 0 |
 | ui/selectors/multichain-transactions.ts | 1557 | `a94cae9398967423e9e7e65276faecab1b82abb73729344edb12f799ebe94e61` | 0 |
 | ui/selectors/multichain.ts | 16347 | `f754288482ec39ecc2d2edd8333a411d0c0e7346cb164afcdc7afa74f819f3ab` | 0 |
+| ui/selectors/multichain/basic-functionality.ts | 4807 | `112027afba5127663a88415d6279f5b5de9b5e9537da392dd50343f9f4e01216` | 0 |
+| ui/selectors/multichain/feature-flags.ts | 7232 | `603aa0a9df9b2bff371a79db71a823d80cc7bba717cb1ad9b8ef873b0c8edadf` | 0 |
+| ui/selectors/multichain/networks.ts | 20334 | `0269618b6505c4ea5fc7f4a88c6fa14f79841e506e526a70e48c82ed438c9c85` | 0 |
 | ui/selectors/musd/constants.ts | 2132 | `9bb2f637bd1510412d979848bc7b394f9280e5df4d004e26db2c343b2d3501c6` | 0 |
 | ui/selectors/musd/feature-flags.ts | 7879 | `df95bda4b69063f2ed964ee16cbf4c3adedaa045940437f71e1102b834aeeed9` | 0 |
 | ui/selectors/musd/index.ts | 688 | `d6957c1df23633767159b881841a57a22e2273ab403a8db2acefd2b04f8b4ef2` | 0 |
@@ -5365,10 +5397,10 @@ _Длинные списки здесь сгруппированы; полный
 | ui/selectors/onboarding/index.ts | 30 | `d6a7791090996054f57da8a431a1a2402ebb6946ff64d460195510f9f7b2d27e` | 0 |
 | ui/selectors/onboarding/onboarding.ts | 3898 | `50e3654459b7148cb5a871a55e627bd636fffd05ccbe732b0a66ce68a3dbd620` | 0 |
 | ui/selectors/origin-throttling.ts | 256 | `987f31a07b26b886ddc74bf7a8275cadbf3df320483e7c261af272032665cf24` | 0 |
+| ui/selectors/perps-controller.ts | 12549 | `51dd6795ecb99fb56c66b518c2cac1aa01dd2f911b9b8e3519d98fd0d40cf4a1` | 0 |
 | ui/selectors/perps/feature-flags.ts | 7098 | `67378c551f14bd4f597628d4d46facba75ac4119e1f03cb2aba1eb12482cab56` | 0 |
 | ui/selectors/perps/index.ts | 401 | `3a3a1fae14be62dca791578c071447d804d5a339b912215f8858ab430b62b213` | 0 |
 | ui/selectors/perps/persisted-state.ts | 484 | `addc25c0867db639a953fbb3c2710cb9f00abe09ae53f68f99a309a48114868a` | 0 |
-| ui/selectors/perps-controller.ts | 12549 | `51dd6795ecb99fb56c66b518c2cac1aa01dd2f911b9b8e3519d98fd0d40cf4a1` | 0 |
 | ui/selectors/qr-sync/qr-sync.ts | 1215 | `376f6db50d7ae49cb4bbffd43899685d9b204eaa823e466bce514e0f19ed7830` | 0 |
 | ui/selectors/ramps-feature-flags.ts | 1088 | `0e8ea501c6038a6383fc14e8115dbe5ea7fcde4db01a28b1612eef2a935768f8` | 0 |
 | ui/selectors/ramps.ts | 582 | `7f6b849716fb6b5236011c266bc464ac2af0b16b6f1b2367585f93710c33d43c` | 0 |
@@ -5392,8 +5424,8 @@ _Длинные списки здесь сгруппированы; полный
 | ui/selectors/transactionPayController.ts | 2693 | `c16346f9f8349c4346c99b96b49e6c152279767344f331bab0b4a45784ced11a` | 0 |
 | ui/selectors/transactions.js | 28458 | `15a71afcc420905d99b52fcc2c8fc0d8a6d3d3235c12230037240bb9a2144444` | 0 |
 | ui/store/actionConstants.ts | 6930 | `92a8a4e6aeee62f71f81a2ec8979cc1dc2baa2205aa475aa05ba5b9058989bb5` | 1 |
-| ui/store/actions/update-transaction-gas-fees.ts | 975 | `ac7dded400dbebdb4c2a0b28c87a4231279ccdc38c2b09f879896f7d0cbb78c8` | 0 |
 | ui/store/actions.ts | 230037 | `215675670a71eb76480e35c9b9e6bffca7b4ec5dc13c887626de62b36170db2c` | 0 |
+| ui/store/actions/update-transaction-gas-fees.ts | 975 | `ac7dded400dbebdb4c2a0b28c87a4231279ccdc38c2b09f879896f7d0cbb78c8` | 0 |
 | ui/store/background-connection.ts | 8590 | `9685bb23d23bfe6c9560134f6e685822174f9d982a27441a753a6f0ff56cf74c` | 0 |
 | ui/store/controller-actions/bridge-controller.ts | 339 | `51aa8de259fe150819552687adf3809d026b5e469f8c698b1b4eb573143647a9` | 0 |
 | ui/store/controller-actions/delegation-controller.ts | 429 | `4cfc091a7feed720e6c763d8e7530a09039bbe6122fce749cdcbd5e518422b2d` | 0 |

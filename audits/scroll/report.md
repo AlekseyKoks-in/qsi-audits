@@ -1,97 +1,97 @@
-# Security & Post-Quantum Readiness Audit Report
+# Отчёт об аудите безопасности и постквантовой готовности
 
-**Project:** scroll @ 3046bbd18a6a · Scroll — public repository (passive review)
+**Проект:** scroll @ 3046bbd18a6a · Scroll — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
-| Organization | QSI |
-| Report date | 2026-10-29 06:18 UTC |
-| Report version | 1 |
-| Audit run | dc77e591-28df-4e0e-aec7-f047b3208f63 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
-| Risk profile | Web3 project |
-| Content SHA-256 | `bfe57c31bc57c669da6e4a7cee997a8bd19fd26d0a62a5decfc2255b7452d9bb` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
-> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+| Организация | QSI |
+| Дата отчёта | 2026-10-30 23:51 UTC |
+| Версия отчёта | 1 |
+| Запуск аудита | c69e1f34-353d-49b8-8de3-4ff0b67f4ee6 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.2.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `2ba03a86d58a4d1243d2942f3659345ecc600994baf0104b133b23a18e89dfb6` |
+| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
-## 1. Executive summary
+## 1. Резюме для руководства
 
-- Critical: **1**
-- High: **9**
-- Medium: **13**
-- Low: **35**
-- Info: **57**
+- Критическая: **1**
+- Высокая: **9**
+- Средняя: **11**
+- Низкая: **36**
+- Информационная: **57**
 
-- Confirmed technical vulnerability: 0
-- Known vulnerable component: 57
-- Confirmed configuration error: 1
-- Potential cryptographic risk: 6
-- Long-term post-quantum risk: 4
-- Improvement recommendation: 46
-- Insufficient data: 1
+- Подтверждённая техническая уязвимость: 0
+- Известная уязвимая версия компонента: 56
+- Подтверждённая ошибка конфигурации: 1
+- Потенциальный криптографический риск: 6
+- Долгосрочный постквантовый риск: 4
+- Рекомендация по улучшению: 46
+- Недостаточность данных: 1
 
-Mosca's inequality (x + y > z): x = 5, y = 5, z = 12 → tight margin. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-**Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-## 2. Scope and boundaries
+## 2. Область и границы проверки
 
-Mode: Document audit
+Режим: Документальный аудит
 
-Repository: <https://github.com/scroll-tech/scroll> @ `3046bbd18a6a05bf29dd3ffef7b5676203201050` — evidence links open the lines at this commit.
+Репозиторий: <https://github.com/scroll-tech/scroll> @ `3046bbd18a6a05bf29dd3ffef7b5676203201050` — ссылки в доказательствах открывают строки на этом коммите.
 
-387 files, 2800964 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+387 файлов, всего 2800964 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.
 
-## 3. Methodology
+## 3. Методология
 
-| Area | Status | Count | Examples |
+| Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | checked | 218 | .github/scripts/bump_version_dot_go.mjs: 37 lines scanned with 16 rule patterns and 123 registry patterns; bridge-history-api/abi/backend_abi.go: 344 lines scanned with 16 rule patterns and 123 registry patterns; bridge-history-api/cmd/api/app/app.go: 114 lines scanned with 16 rule patterns and 123 registry patterns |
-| dependencies | checked | 16 | Cargo.lock: 938 dependencies parsed (938 pinned); Cargo.toml: 29 dependencies parsed (7 pinned); bridge-history-api/go.mod: 111 dependencies parsed (111 pinned) |
-| tls_code | checked | 1 | bridge-history-api/cmd/api/app/app.go: TLS key-exchange settings read |
-| tls_code | Insufficient data | 5 | bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS |
-| smart_contracts | checked | 152 | scroll-contracts/lib/solmate/src/auth/Auth.sol: built-in Solidity pattern checks; scroll-contracts/lib/solmate/src/auth/Owned.sol: built-in Solidity pattern checks; scroll-contracts/lib/solmate/src/auth/authorities/MultiRolesAuthority.sol: built-in Solidity pattern checks |
-| slither | not checked | 152 | slither is not installed on the server (pip install slither-analyzer + solc) |
-| osv_advisories | checked | 1 | 1000 pinned packages queried at OSV.dev; 37 affected |
+| source_code | проверено | 218 | .github/scripts/bump_version_dot_go.mjs: 37 lines scanned with 16 rule patterns and 136 registry patterns; bridge-history-api/abi/backend_abi.go: 344 lines scanned with 16 rule patterns and 136 registry patterns; bridge-history-api/cmd/api/app/app.go: 114 lines scanned with 16 rule patterns and 136 registry patterns |
+| dependencies | проверено | 16 | Cargo.lock: 938 dependencies parsed (938 pinned); Cargo.toml: 29 dependencies parsed (7 pinned); bridge-history-api/go.mod: 111 dependencies parsed (111 pinned) |
+| tls_code | проверено | 1 | bridge-history-api/cmd/api/app/app.go: TLS key-exchange settings read |
+| tls_code | Недостаточность данных | 5 | bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS |
+| smart_contracts | проверено | 152 | scroll-contracts/lib/solmate/src/auth/Auth.sol: built-in Solidity pattern checks; scroll-contracts/lib/solmate/src/auth/Owned.sol: built-in Solidity pattern checks; scroll-contracts/lib/solmate/src/auth/authorities/MultiRolesAuthority.sol: built-in Solidity pattern checks |
+| slither | не проверено | 152 | slither is not installed on the server (pip install slither-analyzer + solc) |
+| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 36 affected |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## 4. Assets examined and not examined
+## 4. Проверенные и непроверенные активы
 
-- tls_code — Insufficient data: 5 (examples: bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS)
-- slither — not checked: 152 (examples: slither is not installed on the server (pip install slither-analyzer + solc))
+- tls_code — Недостаточность данных: 5 (примеры: bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS)
+- slither — не проверено: 152 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 
-## 5. Architecture overview
+## 5. Краткое описание архитектуры
 
-Static review of the source tree scroll at 3046bbd18a6a05bf29dd3ffef7b5676203201050. 387 files analysed; of 883 files, 311 are test, fuzzing, benchmark or example code and were left out, 185 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 33 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 163 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.
+Static review of the source tree scroll at 3046bbd18a6a05bf29dd3ffef7b5676203201050. 387 files analysed; of 883 files, 311 are test, fuzzing, benchmark or example code and were left out, 185 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .claude/agents/local-e2e-tester.md, .claude/agents/skill-tester.md, .claude/agents/zkvm-prover-runner.md, .claude/settings.json, .claude/skills/agent-memory/SKILL.md. 380 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 163 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: scroll-contracts (163). No requests were sent to the owner's systems.
 
-## 6. Overall security posture
+## 6. Общая оценка состояния безопасности
 
-- Indicative posture index: **0** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 9.0%
+- Ориентировочный индекс состояния: **0** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 7.6%
 
-## 7. Detailed findings
+## 7. Подробное описание находок
 
-### QSI-2026-06635 — github.com/gin-contrib/cors v1.5.0 is affected by GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955)
+### QSI-2026-09219 — github.com/gin-contrib/cors v1.5.0 затронут GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955)
 
-- Severity: **Critical** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:Go/github.com/gin-contrib/cors@v1.5.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 54.0 / 100
+- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:Go/github.com/gin-contrib/cors@v1.5.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 54.2 / 100
 - CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
-OSV.dev reports GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) for Go package github.com/gin-contrib/cors at version v1.5.0: Gin mishandles a wildcard at the end of an origin string. The audited code names github.com/gin-contrib/cors.New: the affected code may be reachable.
+OSV.dev сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) для пакета Go github.com/gin-contrib/cors версии v1.5.0: Gin mishandles a wildcard at the end of an origin string. Проверенный код называет github.com/gin-contrib/cors.New: затронутый код может быть достижим.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-869c-j7wc-8jqv
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-869c-j7wc-8jqv](https://osv.dev/vulnerability/GHSA-869c-j7wc-8jqv) · line 8 · SHA-256 dc496aa23daf62242a3c7d40b2e031e7ee93e0af363e203c2866389d3a5c53cc_
 
@@ -99,33 +99,33 @@ _tool_output · [OSV.dev GHSA-869c-j7wc-8jqv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-869c-j7wc-8jqv", "aliases": ["CVE-2019-25211", "GO-2024-2955"], "modified": "2025-11-03T22:47:01Z", "summary": "Gin mishandles a wildcard at the end of an origin string", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (1.6.0).
+**Рекомендация.** Обновите до исправленной версии (1.6.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06538 — TLS certificate verification disabled in bridge-history-api/cmd/api/app/app.go
+### QSI-2026-09123 — Проверка TLS-сертификата отключена в bridge-history-api/cmd/api/app/app.go
 
-- Severity: **High** · Classification: Confirmed configuration error · Confidence: High
-- Affected asset: `file:bridge-history-api/cmd/api/app/app.go`
-- Data source: bridge-history-api/cmd/api/app/app.go
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 68.3 / 100
+- Серьёзность: **Высокая** · Классификация: Подтверждённая ошибка конфигурации · Уверенность: Высокая
+- Затронутый актив: `file:bridge-history-api/cmd/api/app/app.go`
+- Источник данных: bridge-history-api/cmd/api/app/app.go
+- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 70.4 / 100
 - CVSS v3.1: 6.8 (`CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
-1 occurrence(s) of disabled verification (InsecureSkipVerify: true), first at line 69.
+1 случаев отключения проверки (InsecureSkipVerify: true), первый — строка 69.
 
-**Potential impact.** Connections are open to man-in-the-middle interception.
+**Возможные последствия.** Соединения уязвимы к перехвату «человек посередине».
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 69 in the supplied file bridge-history-api/cmd/api/app/app.go and inspect the quoted lines (see evidence).
+Откройте строка 69 в предоставленном файле bridge-history-api/cmd/api/app/app.go и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [bridge-history-api/cmd/api/app/app.go](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/bridge-history-api/cmd/api/app/app.go#L69) · line 69 · SHA-256 edce4750653abe234eb4418e449aa04c9c36023fa0403f3bf0c6aa2b163c64c7_
 
@@ -137,33 +137,33 @@ _file_excerpt · [bridge-history-api/cmd/api/app/app.go](https://github.com/scro
    71 | 	}
 ```
 
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Remove the override; use a proper CA bundle or pinning.
+**Рекомендация.** Удалите отключение; используйте корректный набор УЦ или пиннинг.
 
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-06636 — github.com/btcsuite/btcd v0.20.1-beta is affected by GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189)
+### QSI-2026-09220 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189)
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 49.2 / 100
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H`)
 
-OSV.dev reports GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189) for Go package github.com/btcsuite/btcd at version v0.20.1-beta: btcd did not correctly re-implement Bitcoin Core's "FindAndDelete()" functionality. The audited code names github.com/btcsuite/btcd/txscript.Engine.Step: the affected code may be reachable.
+OSV.dev сообщает GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189) для пакета Go github.com/btcsuite/btcd версии v0.20.1-beta: btcd did not correctly re-implement Bitcoin Core's "FindAndDelete()" functionality. Проверенный код называет github.com/btcsuite/btcd/txscript.Engine.Step: затронутый код может быть достижим.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-27vh-h6mc-q6g8
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-27vh-h6mc-q6g8](https://osv.dev/vulnerability/GHSA-27vh-h6mc-q6g8) · line 26 · SHA-256 ff74528063f3adda5c06b22b192859164e12b45da07b71183a0e524bc21207b8_
 
@@ -171,33 +171,101 @@ _tool_output · [OSV.dev GHSA-27vh-h6mc-q6g8](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-27vh-h6mc-q6g8", "aliases": ["CVE-2024-38365", "GO-2024-3189"], "modified": "2025-08-21T04:05:13Z", "summary": "btcd did not correctly re-implement Bitcoin Core's \"FindAndDelete()\" functionality", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:H/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.24.2-beta.rc1).
+**Рекомендация.** Обновите до исправленной версии (0.24.2-beta.rc1).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06547 — Possible reentrancy (external call before state update) in scroll-contracts/src/L1/L1ScrollMessenger.sol
+### QSI-2026-09193 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0340
 
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
-- Data source: scroll-contracts/src/L1/L1ScrollMessenger.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.6 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-In function relayMessageWithProof, an external call at line 192 is followed by a state write at line 194. (related: SWC-107)
+OSV.dev сообщает RUSTSEC-2026-0340 для пакета crates.io quinn-proto версии 0.11.16: Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** An attacker contract may re-enter before state is updated and drain funds.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 192 in the supplied file scroll-contracts/src/L1/L1ScrollMessenger.sol and inspect the quoted lines (see evidence).
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0340
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0340](https://osv.dev/vulnerability/RUSTSEC-2026-0340) · manifest · SHA-256 20321fd13a708b936ab6ccc115a6ed97f9b78eb43a4e76d134ec1664a5fc8feb_
+
+```
+{"id": "RUSTSEC-2026-0340", "aliases": ["GHSA-3g6h-r5qx-f6hq"], "modified": "2026-10-12T18:15:01.975478256Z", "summary": "Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (0.11.18).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-09194 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0341
+
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.6 / 100
+- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+
+OSV.dev сообщает RUSTSEC-2026-0341 для пакета crates.io quinn-proto версии 0.11.16: Stream reassembly memory-exhaustion guard in quinn-proto can be bypassed. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0341
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0341](https://osv.dev/vulnerability/RUSTSEC-2026-0341) · manifest · SHA-256 843224ae2e1a0c898b003d66aa1610a8f10928c662ad0f000421250465a638ae_
+
+```
+{"id": "RUSTSEC-2026-0341", "aliases": ["GHSA-qfwj-vfxf-92j2"], "modified": "2026-10-12T18:15:01.969505433Z", "summary": "Stream reassembly memory-exhaustion guard in quinn-proto can be bypassed", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (0.11.17).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-09132 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol
+
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
+- Источник данных: scroll-contracts/src/L1/L1ScrollMessenger.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 36.5 / 100
+- CVSS v3.1: неприменимо
+
+В функции relayMessageWithProof внешний вызов в строка 192 предшествует записи состояния в строке 194. (см. SWC-107)
+
+**Возможные последствия.** Контракт атакующего может выполнить повторный вход до обновления состояния и вывести средства.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 192 в предоставленном файле scroll-contracts/src/L1/L1ScrollMessenger.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/L1ScrollMessenger.sol#L192) · line 192 · SHA-256 f4f1b0112884e9b3d0e334f42c4814dc01366df462038674f7f86449d010bc2a_
 
@@ -209,33 +277,33 @@ _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.
   194 |         xDomainMessageSender = ScrollConstants.DEFAULT_XDOMAIN_MESSAGE_SENDER;
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Apply checks-effects-interactions and/or ReentrancyGuard.
+**Рекомендация.** Примените шаблон checks-effects-interactions и/или ReentrancyGuard.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06548 — Possible reentrancy (external call before state update) in scroll-contracts/src/L1/L1ScrollMessenger.sol
+### QSI-2026-09133 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L1/L1ScrollMessenger.sol
 
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
-- Data source: scroll-contracts/src/L1/L1ScrollMessenger.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
+- Источник данных: scroll-contracts/src/L1/L1ScrollMessenger.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 36.5 / 100
+- CVSS v3.1: неприменимо
 
-In function replayMessage, an external call at line 231 is followed by a state write at line 244. (related: SWC-107)
+В функции replayMessage внешний вызов в строка 231 предшествует записи состояния в строке 244. (см. SWC-107)
 
-**Potential impact.** An attacker contract may re-enter before state is updated and drain funds.
+**Возможные последствия.** Контракт атакующего может выполнить повторный вход до обновления состояния и вывести средства.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 231 in the supplied file scroll-contracts/src/L1/L1ScrollMessenger.sol and inspect the quoted lines (see evidence).
+Откройте строка 231 в предоставленном файле scroll-contracts/src/L1/L1ScrollMessenger.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/L1ScrollMessenger.sol#L231) · line 231 · SHA-256 da026ca30bc15720b495ea1fae4875e46ecf02996c36ba2e5fedfda59cdee030_
 
@@ -247,33 +315,33 @@ _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.
   233 |         }
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Apply checks-effects-interactions and/or ReentrancyGuard.
+**Рекомендация.** Примените шаблон checks-effects-interactions и/или ReentrancyGuard.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06562 — Possible reentrancy (external call before state update) in scroll-contracts/src/L2/L2ScrollMessenger.sol
+### QSI-2026-09147 — Возможный повторный вход (внешний вызов до изменения состояния) в scroll-contracts/src/L2/L2ScrollMessenger.sol
 
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:scroll-contracts/src/L2/L2ScrollMessenger.sol`
-- Data source: scroll-contracts/src/L2/L2ScrollMessenger.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/src/L2/L2ScrollMessenger.sol`
+- Источник данных: scroll-contracts/src/L2/L2ScrollMessenger.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 36.5 / 100
+- CVSS v3.1: неприменимо
 
-In function _executeMessage, an external call at line 159 is followed by a state write at line 161. (related: SWC-107)
+В функции _executeMessage внешний вызов в строка 159 предшествует записи состояния в строке 161. (см. SWC-107)
 
-**Potential impact.** An attacker contract may re-enter before state is updated and drain funds.
+**Возможные последствия.** Контракт атакующего может выполнить повторный вход до обновления состояния и вывести средства.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 159 in the supplied file scroll-contracts/src/L2/L2ScrollMessenger.sol and inspect the quoted lines (see evidence).
+Откройте строка 159 в предоставленном файле scroll-contracts/src/L2/L2ScrollMessenger.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/L2ScrollMessenger.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/L2ScrollMessenger.sol#L159) · line 159 · SHA-256 2649304147ef4bd103508a6b49910d52ccbcc418a86182fd2f053184a509b5b5_
 
@@ -285,33 +353,33 @@ _file_excerpt · [scroll-contracts/src/L2/L2ScrollMessenger.sol](https://github.
   161 |         xDomainMessageSender = ScrollConstants.DEFAULT_XDOMAIN_MESSAGE_SENDER;
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Apply checks-effects-interactions and/or ReentrancyGuard.
+**Рекомендация.** Примените шаблон checks-effects-interactions и/или ReentrancyGuard.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06568 — initialize() without initializer modifier in scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
+### QSI-2026-09153 — initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
 
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:scroll-contracts/src/L2/predeploys/L1BlockContainer.sol`
-- Data source: scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L1BlockContainer.sol`
+- Источник данных: scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 36.5 / 100
+- CVSS v3.1: неприменимо
 
-function initialize at line 63 lacks an initializer/onlyInitializing guard. (related: SWC-118)
+Функция initialize в строка 63 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
 
-**Potential impact.** In upgradeable proxies anyone may (re)initialize and take ownership.
+**Возможные последствия.** В обновляемых прокси кто угодно может (пере)инициализировать контракт и стать владельцем.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 63 in the supplied file scroll-contracts/src/L2/predeploys/L1BlockContainer.sol and inspect the quoted lines (see evidence).
+Откройте строка 63 в предоставленном файле scroll-contracts/src/L2/predeploys/L1BlockContainer.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/L1BlockContainer.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/L1BlockContainer.sol#L63) · line 63 · SHA-256 4b809c2dc16a948ad7a1ea666c1f698b6114eaf7d2c6c125beec3119b0a7a9d6_
 
@@ -323,33 +391,33 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L1BlockContainer.sol](https
    65 |         uint64 _startBlockHeight,
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use OpenZeppelin Initializable (initializer modifier) and disable initializers in the implementation constructor.
+**Рекомендация.** Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06571 — initialize() without initializer modifier in scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
+### QSI-2026-09156 — initialize() без модификатора initializer в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
 
-- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `contract:scroll-contracts/src/L2/predeploys/L2MessageQueue.sol`
-- Data source: scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 37.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L2MessageQueue.sol`
+- Источник данных: scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 36.5 / 100
+- CVSS v3.1: неприменимо
 
-function initialize at line 42 lacks an initializer/onlyInitializing guard. (related: SWC-118)
+Функция initialize в строка 42 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
 
-**Potential impact.** In upgradeable proxies anyone may (re)initialize and take ownership.
+**Возможные последствия.** В обновляемых прокси кто угодно может (пере)инициализировать контракт и стать владельцем.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 42 in the supplied file scroll-contracts/src/L2/predeploys/L2MessageQueue.sol and inspect the quoted lines (see evidence).
+Откройте строка 42 в предоставленном файле scroll-contracts/src/L2/predeploys/L2MessageQueue.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/L2MessageQueue.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/L2MessageQueue.sol#L42) · line 42 · SHA-256 815138f70b3bbcc59e47c256deb7ece3f85abf2abaa459387fcd0deb8aab58cb_
 
@@ -361,101 +429,135 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L2MessageQueue.sol](https:/
    44 | 
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use OpenZeppelin Initializable (initializer modifier) and disable initializers in the implementation constructor.
+**Рекомендация.** Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06609 — quinn-proto 0.11.16 is affected by RUSTSEC-2026-0340
+### QSI-2026-09222 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818)
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.16`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 36.9 / 100
-- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0340 for crates.io package quinn-proto at version 0.11.16: Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818) для пакета Go github.com/btcsuite/btcd версии v0.20.1-beta: btcd susceptible to consensus failures. Проверенный код называет github.com/btcsuite/btcd/blockchain.txValidator.Validate, github.com/btcsuite/btcd/txscript.Engine.Step: затронутый код может быть достижим.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0340
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0340](https://osv.dev/vulnerability/RUSTSEC-2026-0340) · manifest · SHA-256 20321fd13a708b936ab6ccc115a6ed97f9b78eb43a4e76d134ec1664a5fc8feb_
+**Шаги воспроизведения.**
 
 ```
-{"id": "RUSTSEC-2026-0340", "aliases": ["GHSA-3g6h-r5qx-f6hq"], "modified": "2026-10-12T18:15:01.975478256Z", "summary": "Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
+curl -s https://api.osv.dev/v1/vulns/GHSA-3jgf-r68h-xfqm
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Подтверждающие доказательства.**
 
-**Recommendation.** Upgrade to a fixed version (0.11.18).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-06610 — quinn-proto 0.11.16 is affected by RUSTSEC-2026-0341
-
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.16`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 36.9 / 100
-- CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
-
-OSV.dev reports RUSTSEC-2026-0341 for crates.io package quinn-proto at version 0.11.16: Stream reassembly memory-exhaustion guard in quinn-proto can be bypassed. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
+_tool_output · [OSV.dev GHSA-3jgf-r68h-xfqm](https://osv.dev/vulnerability/GHSA-3jgf-r68h-xfqm) · line 26 · SHA-256 c535e168fc079608620751f63c2950e5391c783db799b2e67d203eba75220946_
 
 ```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0341
+{"id": "GHSA-3jgf-r68h-xfqm", "aliases": ["CVE-2024-34478", "GO-2024-2818"], "modified": "2024-08-07T19:55:49Z", "summary": "btcd susceptible to consensus failures", "severity": null, "declared_in_manifest": true}
 ```
 
-**Evidence.**
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-_tool_output · [OSV.dev RUSTSEC-2026-0341](https://osv.dev/vulnerability/RUSTSEC-2026-0341) · manifest · SHA-256 843224ae2e1a0c898b003d66aa1610a8f10928c662ad0f000421250465a638ae_
+**Рекомендация.** Обновите до исправленной версии (0.24.0).
 
-```
-{"id": "RUSTSEC-2026-0341", "aliases": ["GHSA-qfwj-vfxf-92j2"], "modified": "2026-10-12T18:15:01.969505433Z", "summary": "Stream reassembly memory-exhaustion guard in quinn-proto can be bypassed", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
-```
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+### QSI-2026-09226 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883)
 
-**Recommendation.** Upgrade to a fixed version (0.11.17).
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+OSV.dev сообщает GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Moby has an Off-by-one error in its plugin privilege validation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-### QSI-2026-06544 — Raw ecrecover usage in scroll-contracts/lib/solmate/src/tokens/ERC20.sol
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-- Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `contract:scroll-contracts/lib/solmate/src/tokens/ERC20.sol`
-- Data source: scroll-contracts/lib/solmate/src/tokens/ERC20.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 43.2 / 100
-- CVSS v3.1: not applicable
-
-ecrecover at line 130. (related: SWC-117/SWC-121)
-
-**Potential impact.** Without s-value/zero-address checks and nonces, signatures may be malleable or replayable. ecrecover relies on secp256k1 ECDSA (quantum-vulnerable long-term).
-
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open line 130 in the supplied file scroll-contracts/lib/solmate/src/tokens/ERC20.sol and inspect the quoted lines (see evidence).
+curl -s https://api.osv.dev/v1/vulns/GHSA-pxq6-2prw-chj9
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-pxq6-2prw-chj9](https://osv.dev/vulnerability/GHSA-pxq6-2prw-chj9) · line 39 · SHA-256 a1f97854af5b75958bb95b60d587d295c47edf095a7267badd9405b3c80f7afb_
+
+```
+{"id": "GHSA-pxq6-2prw-chj9", "aliases": ["CVE-2026-33997", "GO-2026-4883"], "modified": "2026-09-10T03:50:40.571293679Z", "summary": "Moby has an Off-by-one error in its plugin privilege validation", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-09232 — github.com/gorilla/websocket v1.5.0 затронут GHSA-w67g-5rqw-f597 (GO-2026-6278)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:Go/github.com/gorilla/websocket@v1.5.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-w67g-5rqw-f597 (GO-2026-6278) для пакета Go github.com/gorilla/websocket версии v1.5.0: Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key. Проверенный код называет github.com/gorilla/websocket.Conn.Close, github.com/gorilla/websocket.NewClient, github.com/gorilla/websocket.httpProxyDialer.Dial, github.com/gorilla/websocket.netDialerFunc.Dial …: затронутый код может быть достижим.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-w67g-5rqw-f597
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-w67g-5rqw-f597](https://osv.dev/vulnerability/GHSA-w67g-5rqw-f597) · line 56 · SHA-256 3fee799e1426dfa658884e378d6f3bcd030db0c65d802c9625786e69e373c51b_
+
+```
+{"id": "GHSA-w67g-5rqw-f597", "aliases": ["GO-2026-6278"], "modified": "2026-09-10T03:50:54.128553228Z", "summary": "Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (1.5.3).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-09129 — Прямое использование ecrecover в scroll-contracts/lib/solmate/src/tokens/ERC20.sol
+
+- Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/lib/solmate/src/tokens/ERC20.sol`
+- Источник данных: scroll-contracts/lib/solmate/src/tokens/ERC20.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 43.6 / 100
+- CVSS v3.1: неприменимо
+
+ecrecover в строка 130. (см. SWC-117/SWC-121)
+
+**Возможные последствия.** Без проверок s-значения/нулевого адреса и nonce подписи могут быть изменяемыми или повторно используемыми. ecrecover основан на secp256k1 ECDSA (долгосрочно квантово-уязвим).
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 130 в предоставленном файле scroll-contracts/lib/solmate/src/tokens/ERC20.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/lib/solmate/src/tokens/ERC20.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/lib/solmate/src/tokens/ERC20.sol#L130) · line 130 · SHA-256 d41f7bb35e5522e67c7809f4b8f088dcccb35a08f1c232db2eb54370446601e2_
 
@@ -467,173 +569,33 @@ _file_excerpt · [scroll-contracts/lib/solmate/src/tokens/ERC20.sol](https://git
   132 |                     abi.encodePacked(
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces.
+**Рекомендация.** Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06638 — github.com/btcsuite/btcd v0.20.1-beta is affected by GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818)
+### QSI-2026-09126 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 42.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:transaction_signing`
+- Источник данных: rollup/internal/controller/sender/kms_signer.go
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818) for Go package github.com/btcsuite/btcd at version v0.20.1-beta: btcd susceptible to consensus failures. The audited code names github.com/btcsuite/btcd/blockchain.txValidator.Validate, github.com/btcsuite/btcd/txscript.Engine.Step: the affected code may be reachable.
+5 упоминаний ECDSA в 2 файл(ах), например rollup/internal/controller/sender/kms_signer.go:5. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-3jgf-r68h-xfqm
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-3jgf-r68h-xfqm](https://osv.dev/vulnerability/GHSA-3jgf-r68h-xfqm) · line 26 · SHA-256 c535e168fc079608620751f63c2950e5391c783db799b2e67d203eba75220946_
+**Шаги воспроизведения.**
 
 ```
-{"id": "GHSA-3jgf-r68h-xfqm", "aliases": ["CVE-2024-34478", "GO-2024-2818"], "modified": "2024-08-07T19:55:49Z", "summary": "btcd susceptible to consensus failures", "severity": null, "declared_in_manifest": true}
+Откройте rollup/internal/controller/sender/kms_signer.go:5 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (0.24.0).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-06642 — github.com/docker/docker v26.1.0+incompatible is affected by GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 42.0 / 100
-- CVSS v3.1: 6.8 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N`)
-
-OSV.dev reports GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883) for Go package github.com/docker/docker at version v26.1.0+incompatible: Moby has an Off-by-one error in its plugin privilege validation. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-pxq6-2prw-chj9
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-pxq6-2prw-chj9](https://osv.dev/vulnerability/GHSA-pxq6-2prw-chj9) · line 39 · SHA-256 a1f97854af5b75958bb95b60d587d295c47edf095a7267badd9405b3c80f7afb_
-
-```
-{"id": "GHSA-pxq6-2prw-chj9", "aliases": ["CVE-2026-33997", "GO-2026-4883"], "modified": "2026-09-10T03:50:40.571293679Z", "summary": "Moby has an Off-by-one error in its plugin privilege validation", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N"}], "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-06648 — github.com/gorilla/websocket v1.5.0 is affected by GHSA-w67g-5rqw-f597 (GO-2026-6278)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:Go/github.com/gorilla/websocket@v1.5.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 42.0 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-w67g-5rqw-f597 (GO-2026-6278) for Go package github.com/gorilla/websocket at version v1.5.0: Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key. The audited code names github.com/gorilla/websocket.Conn.Close, github.com/gorilla/websocket.NewClient, github.com/gorilla/websocket.httpProxyDialer.Dial, github.com/gorilla/websocket.netDialerFunc.Dial …: the affected code may be reachable.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-w67g-5rqw-f597
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-w67g-5rqw-f597](https://osv.dev/vulnerability/GHSA-w67g-5rqw-f597) · line 56 · SHA-256 3fee799e1426dfa658884e378d6f3bcd030db0c65d802c9625786e69e373c51b_
-
-```
-{"id": "GHSA-w67g-5rqw-f597", "aliases": ["GO-2026-6278"], "modified": "2026-09-10T03:50:54.128553228Z", "summary": "Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (1.5.3).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-06580 — Pairing-based cryptography on chain: BN254 (alt_bn128) (scroll-contracts/src/libraries/verifier/RollupVerifier.sol)
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `contract:scroll-contracts/src/libraries/verifier/RollupVerifier.sol`
-- Data source: scroll-contracts/src/libraries/verifier/RollupVerifier.sol
-- Detection method: Comment-aware pattern matching with the registry's detection patterns.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.3 / 100
-- CVSS v3.1: not applicable
-
-scroll-contracts/src/libraries/verifier/RollupVerifier.sol uses BN254 (alt_bn128) (first at line 24): pairing-friendly elliptic curves (alt_bn128 precompiles 0x06–0x08 or BLS12-381 precompiles 0x0b–0x11) and/or a pairing-based proof verifier.
-
-**Potential impact.** These rely on elliptic-curve discrete logarithms, which Shor's algorithm solves on a CRQC; proofs or aggregate signatures accepted by the contract could then be forged. Not exploitable today.
-
-**Reproduction steps.**
-
-```
-Open line 24 in the supplied file scroll-contracts/src/libraries/verifier/RollupVerifier.sol and inspect the quoted lines (see evidence).
-```
-
-**Evidence.**
-
-_file_excerpt · [scroll-contracts/src/libraries/verifier/RollupVerifier.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/libraries/verifier/RollupVerifier.sol#L24) · line 24 · SHA-256 1c7f6da98e4391b6498b701ef8d1a7980da16b77df27cb41791a84d92b444db4_
-
-```
-   22 | 
-   23 |         assembly {
-   24 |             ret := staticcall(gas(), 8, add(input, 0x20), mul(length, 0x20), result, 0x20)
-   25 |         }
-   26 |         require(ret);
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Pattern-based detection; the scheme in use should be confirmed from the verifier's source.
-
-**Recommendation.** Record the contract in the PQC inventory and plan an upgrade path (upgradeable verifier, hash-based or lattice-based proof systems/signatures once mature).
-
-**Retest procedure.** Re-audit after a verifier upgrade.
-
-### QSI-2026-06541 — Quantum-vulnerable ECDSA: transaction and message signing (2 file(s))
-
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:transaction_signing`
-- Data source: rollup/internal/controller/sender/kms_signer.go
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.0 / 100
-- CVSS v3.1: not applicable
-
-5 reference(s) to ECDSA across 2 file(s), e.g. rollup/internal/controller/sender/kms_signer.go:5. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open rollup/internal/controller/sender/kms_signer.go:5 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [rollup/internal/controller/sender/kms_signer.go](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/rollup/internal/controller/sender/kms_signer.go#L5) · line 5 · SHA-256 a946707a5431416fc04c9ea88c7fce501e1976d756266d0bb50f3c6fed6d6353_
 
@@ -669,33 +631,33 @@ _file_excerpt · [scroll-contracts/lib/solmate/src/tokens/ERC20.sol](https://git
   132 |                     abi.encodePacked(
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06539 — Quantum-vulnerable ECDSA: role not determined (2 file(s))
+### QSI-2026-09124 — Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:general`
-- Data source: common/utils/keystore.go
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.7 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:general`
+- Источник данных: common/utils/keystore.go
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
 
-2 reference(s) to ECDSA across 2 file(s), e.g. common/utils/keystore.go:4. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+2 упоминаний ECDSA в 2 файл(ах), например common/utils/keystore.go:4. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open common/utils/keystore.go:4 and inspect the quoted lines; the evidence lists further files.
+Откройте common/utils/keystore.go:4 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [common/utils/keystore.go](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/common/utils/keystore.go#L4) · line 4 · SHA-256 477db8762fa92569d31b62e6d7466b65eb650a0935e45eefac93b4cc01ba4e3d_
 
@@ -713,33 +675,33 @@ _file_excerpt · [coordinator/internal/controller/proxy/client_manager.go](https
     6 | 	"fmt"
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06540 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
+### QSI-2026-09125 — Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:authentication`
-- Data source: coordinator/internal/types/auth.go
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.7 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:authentication`
+- Источник данных: coordinator/internal/types/auth.go
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
 
-1 reference(s) to ECDSA across 1 file(s), e.g. coordinator/internal/types/auth.go:4. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier.
+1 упоминаний ECDSA в 1 файл(ах), например coordinator/internal/types/auth.go:4. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open coordinator/internal/types/auth.go:4 and inspect the quoted lines; the evidence lists further files.
+Откройте coordinator/internal/types/auth.go:4 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [coordinator/internal/types/auth.go](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/coordinator/internal/types/auth.go#L4) · line 4 · SHA-256 754608aa95082d2e114584f2a6d68378067ee8d9ecbeea560d49878e38dece03_
 
@@ -749,135 +711,105 @@ _file_excerpt · [coordinator/internal/types/auth.go](https://github.com/scroll-
     5 | 	"encoding/hex"
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them.
+**Рекомендация.** Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06590 — block-buffer 0.9.0 is affected by GHSA-qwgh-2vcv-g2f7
+### QSI-2026-09165 — Криптография на спариваниях в контракте: BN254 (alt_bn128) (scroll-contracts/src/libraries/verifier/RollupVerifier.sol)
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.9.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.5 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:scroll-contracts/src/libraries/verifier/RollupVerifier.sol`
+- Источник данных: scroll-contracts/src/libraries/verifier/RollupVerifier.sol
+- Метод обнаружения: Сопоставление шаблонов реестра с учётом комментариев.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 33.7 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.9.0: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
+scroll-contracts/src/libraries/verifier/RollupVerifier.sol использует BN254 (alt_bn128) (впервые в строка 24): эллиптические кривые со спариванием (прекомпилы alt_bn128 0x06–0x08 или BLS12-381 0x0b–0x11) и/или верификатор доказательств на спариваниях.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Они опираются на дискретный логарифм в группах эллиптических кривых, который алгоритм Шора решает на CRQC; доказательства или агрегированные подписи, принимаемые контрактом, тогда можно будет подделать. Сегодня не эксплуатируется.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
+
+```
+Откройте строка 24 в предоставленном файле scroll-contracts/src/libraries/verifier/RollupVerifier.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [scroll-contracts/src/libraries/verifier/RollupVerifier.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/libraries/verifier/RollupVerifier.sol#L24) · line 24 · SHA-256 1c7f6da98e4391b6498b701ef8d1a7980da16b77df27cb41791a84d92b444db4_
+
+```
+   22 | 
+   23 |         assembly {
+   24 |             ret := staticcall(gas(), 8, add(input, 0x20), mul(length, 0x20), result, 0x20)
+   25 |         }
+   26 |         require(ret);
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Обнаружение по шаблонам; используемую схему следует подтвердить по исходному коду верификатора.
+
+**Рекомендация.** Внесите контракт в PQC-инвентаризацию и предусмотрите путь обновления (обновляемый верификатор, системы доказательств/подписи на хешах или решётках по мере их зрелости).
+
+**Повторная проверка.** Повторите аудит после обновления верификатора.
+
+### QSI-2026-09175 — block-buffer 0.11.0 затронут GHSA-qwgh-2vcv-g2f7
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/block-buffer@0.11.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.11.0: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-06591 — block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.10.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.5 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
+_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 7591b0713b64478fa8ad16a5dd54163bfd64b0d142da6666684f3debae896c25_
 
 ```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
+{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-10-30T15:45:11.580215361Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
-**Evidence.**
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+### QSI-2026-09197 — rustls 0.23.41 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-06592 — block-buffer 0.11.0 is affected by GHSA-qwgh-2vcv-g2f7
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.11.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.5 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.11.0: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-06613 — rustls 0.23.41 is affected by GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.41`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.5 / 100
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.41`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev reports GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) for crates.io package rustls at version 0.23.41: Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) для пакета crates.io rustls версии 0.23.41: Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-2mjx-qc3c-rqvc
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc) · manifest · SHA-256 f20e4b21c01d3d75460ac8d90a54d541a1a34187a4f05b501e4f46c27c564e86_
 
@@ -885,33 +817,33 @@ _tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-2mjx-qc3c-rqvc", "aliases": ["RUSTSEC-2026-0285"], "modified": "2026-10-27T15:30:05.509305490Z", "summary": "Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.45).
+**Рекомендация.** Обновите до исправленной версии (0.23.45).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06614 — rustls 0.23.41 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+### QSI-2026-09198 — rustls 0.23.41 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.41`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.5 / 100
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.41`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
-OSV.dev reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) for crates.io package rustls at version 0.23.41: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) для пакета crates.io rustls версии 0.23.41: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-c8m5-c952-6cm4
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4) · manifest · SHA-256 87554a0cce34470a221f04ad57566b2b512ff6299ad3ee95b190df659d646e3d_
 
@@ -919,33 +851,33 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-c8m5-c952-6cm4", "aliases": ["RUSTSEC-2026-0346"], "modified": "2026-10-27T16:15:05.354395696Z", "summary": "Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06619 — tracing-subscriber 0.2.25 is affected by GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
+### QSI-2026-09203 — tracing-subscriber 0.2.25 затронут GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:crates.io/tracing-subscriber@0.2.25`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 36.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:crates.io/tracing-subscriber@0.2.25`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 39.2 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055) for crates.io package tracing-subscriber at version 0.2.25: Tracing logging user input may result in poisoning logs with ANSI escape sequences. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055) для пакета crates.io tracing-subscriber версии 0.2.25: Tracing logging user input may result in poisoning logs with ANSI escape sequences. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-xwfj-jgwm-7wp5
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-xwfj-jgwm-7wp5](https://osv.dev/vulnerability/GHSA-xwfj-jgwm-7wp5) · manifest · SHA-256 a3249213cfcaf11938eca6db0ff56d5636ca4a09bf8ea0cca9f92a52b2e4c20f_
 
@@ -953,33 +885,33 @@ _tool_output · [OSV.dev GHSA-xwfj-jgwm-7wp5](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-xwfj-jgwm-7wp5", "aliases": ["CVE-2025-58160", "RUSTSEC-2025-0055"], "modified": "2026-09-10T03:50:27.766863705Z", "summary": " Tracing logging user input may result in poisoning logs with ANSI escape sequences", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.3.20).
+**Рекомендация.** Обновите до исправленной версии (0.3.20).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06641 — github.com/docker/docker v26.1.0+incompatible is affected by GHSA-4vq8-7jfc-9cvp (CVE-2025-54410)
+### QSI-2026-09225 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-4vq8-7jfc-9cvp (CVE-2025-54410)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 36.0 / 100
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.3 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N`)
 
-OSV.dev reports GHSA-4vq8-7jfc-9cvp (CVE-2025-54410) for Go package github.com/docker/docker at version v26.1.0+incompatible: Moby firewalld reload removes bridge network isolation. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-4vq8-7jfc-9cvp (CVE-2025-54410) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Moby firewalld reload removes bridge network isolation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-4vq8-7jfc-9cvp
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-4vq8-7jfc-9cvp](https://osv.dev/vulnerability/GHSA-4vq8-7jfc-9cvp) · line 39 · SHA-256 dee43ec41d2fe7fef219613e010a0504110ce6e3a02652085adb3b1cb64a5334_
 
@@ -987,33 +919,33 @@ _tool_output · [OSV.dev GHSA-4vq8-7jfc-9cvp](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-4vq8-7jfc-9cvp", "aliases": ["CVE-2025-54410", "GO-2025-3829"], "modified": "2026-09-10T03:50:25.738441655Z", "summary": "Moby firewalld reload removes bridge network isolation", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (25.0.13, 28.0.0).
+**Рекомендация.** Обновите до исправленной версии (25.0.13, 28.0.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06542 — Floating pragma (>=0.8.0) in 20 file(s)
+### QSI-2026-09127 — Плавающая версия компилятора (>=0.8.0) в 20 файл(ах)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `solidity:pragma:>=0.8.0`
-- Data source: scroll-contracts/lib/solmate/src/auth/Auth.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.6 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:>=0.8.0`
+- Источник данных: scroll-contracts/lib/solmate/src/auth/Auth.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
 
-pragma >=0.8.0 in 20 file(s), first at scroll-contracts/lib/solmate/src/auth/Auth.sol:2. (related: SWC-103)
+pragma >=0.8.0 в 20 файл(ах), впервые в scroll-contracts/lib/solmate/src/auth/Auth.sol:2. (см. SWC-103)
 
-**Potential impact.** Contracts may be deployed with untested compiler versions. The compiler actually used is set by the build configuration, which this check does not read.
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open scroll-contracts/lib/solmate/src/auth/Auth.sol:2 and inspect the quoted lines; the evidence lists further files.
+Откройте scroll-contracts/lib/solmate/src/auth/Auth.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/lib/solmate/src/auth/Auth.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/lib/solmate/src/auth/Auth.sol#L2) · line 2 · SHA-256 9498e7a7f87af2cd59e0fa5f1e66710f854cb43557c82a40cef5bed6669ed818_
 
@@ -1105,33 +1037,33 @@ _file_excerpt · [scroll-contracts/lib/solmate/src/tokens/WETH.sol](https://gith
     4 | import {ERC20} from "./ERC20.sol";
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Pin the compiler version used in testing.
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06545 — Floating pragma (^0.8.10) in 1 file(s)
+### QSI-2026-09130 — Плавающая версия компилятора (^0.8.10) в 1 файл(ах)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `solidity:pragma:^0.8.10`
-- Data source: scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.6 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:^0.8.10`
+- Источник данных: scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
 
-pragma ^0.8.10 in 1 file(s), first at scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol:2. (related: SWC-103)
+pragma ^0.8.10 в 1 файл(ах), впервые в scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol:2. (см. SWC-103)
 
-**Potential impact.** Contracts may be deployed with untested compiler versions. The compiler actually used is set by the build configuration, which this check does not read.
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol:2 and inspect the quoted lines; the evidence lists further files.
+Откройте scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol#L2) · line 2 · SHA-256 9f5e4972786d80906fd7ad2fb04b6aeda51d41ab5ff6d37a63bda80cc583ef08_
 
@@ -1142,33 +1074,33 @@ _file_excerpt · [scroll-contracts/scripts/foundry/DeployLidoGateway.s.sol](http
     4 | import {Script} from "forge-std/Script.sol";
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Pin the compiler version used in testing.
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06546 — Floating pragma (^0.8.24) in 58 file(s)
+### QSI-2026-09131 — Плавающая версия компилятора (^0.8.24) в 58 файл(ах)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `solidity:pragma:^0.8.24`
-- Data source: scroll-contracts/src/L1/IL1ScrollMessenger.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.6 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:^0.8.24`
+- Источник данных: scroll-contracts/src/L1/IL1ScrollMessenger.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
 
-pragma ^0.8.24 in 58 file(s), first at scroll-contracts/src/L1/IL1ScrollMessenger.sol:3. (related: SWC-103)
+pragma ^0.8.24 в 58 файл(ах), впервые в scroll-contracts/src/L1/IL1ScrollMessenger.sol:3. (см. SWC-103)
 
-**Potential impact.** Contracts may be deployed with untested compiler versions. The compiler actually used is set by the build configuration, which this check does not read.
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open scroll-contracts/src/L1/IL1ScrollMessenger.sol:3 and inspect the quoted lines; the evidence lists further files.
+Откройте scroll-contracts/src/L1/IL1ScrollMessenger.sol:3 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/IL1ScrollMessenger.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/IL1ScrollMessenger.sol#L3) · line 3 · SHA-256 e237fc6f80bcc953a42e21073a458e9e61aa51047216453dd436eb1a0b3b2a13_
 
@@ -1270,33 +1202,33 @@ _file_excerpt · [scroll-contracts/src/L1/rollup/IL2GasPriceOracle.sol](https://
     5 | interface IL2GasPriceOracle {
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Pin the compiler version used in testing.
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06575 — Floating pragma (^0.8.0) in 5 file(s)
+### QSI-2026-09160 — Плавающая версия компилятора (^0.8.0) в 5 файл(ах)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `solidity:pragma:^0.8.0`
-- Data source: scroll-contracts/src/L2/predeploys/WrappedEther.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 31.6 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:^0.8.0`
+- Источник данных: scroll-contracts/src/L2/predeploys/WrappedEther.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
 
-pragma ^0.8.0 in 5 file(s), first at scroll-contracts/src/L2/predeploys/WrappedEther.sol:3. (related: SWC-103)
+pragma ^0.8.0 в 5 файл(ах), впервые в scroll-contracts/src/L2/predeploys/WrappedEther.sol:3. (см. SWC-103)
 
-**Potential impact.** Contracts may be deployed with untested compiler versions. The compiler actually used is set by the build configuration, which this check does not read.
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open scroll-contracts/src/L2/predeploys/WrappedEther.sol:3 and inspect the quoted lines; the evidence lists further files.
+Откройте scroll-contracts/src/L2/predeploys/WrappedEther.sol:3 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/WrappedEther.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/WrappedEther.sol#L3) · line 3 · SHA-256 b4d288526b881ed29c412a0ced5eb78877e76329149168e465a25562e763071a_
 
@@ -1348,33 +1280,33 @@ _file_excerpt · [scroll-contracts/src/libraries/token/IScrollERC721Extension.so
     5 | // Functions needed on top of the ERC721 standard to be compliant with the Scroll bridge
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Pin the compiler version used in testing.
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06600 — lru 0.12.5 is affected by GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
+### QSI-2026-09184 — lru 0.12.5 затронут GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/lru@0.12.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 27.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/lru@0.12.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.4 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002) for crates.io package lru at version 0.12.5: `IterMut` violates Stacked Borrows by invalidating internal pointer. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002) для пакета crates.io lru версии 0.12.5: `IterMut` violates Stacked Borrows by invalidating internal pointer. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-rhfx-m35p-ff5j
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA-rhfx-m35p-ff5j) · manifest · SHA-256 74c3e26941575e818cf192f0511138a6719b2124292f8348b2d299a631095b03_
 
@@ -1382,33 +1314,33 @@ _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-rhfx-m35p-ff5j", "aliases": ["RUSTSEC-2026-0002"], "modified": "2026-09-10T03:50:59.064354050Z", "summary": "`IterMut` violates Stacked Borrows by invalidating internal pointer", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.16.3).
+**Рекомендация.** Обновите до исправленной версии (0.16.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06602 — lru 0.13.0 is affected by GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
+### QSI-2026-09186 — lru 0.13.0 затронут GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/lru@0.13.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 27.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/lru@0.13.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.4 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002) for crates.io package lru at version 0.13.0: `IterMut` violates Stacked Borrows by invalidating internal pointer. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002) для пакета crates.io lru версии 0.13.0: `IterMut` violates Stacked Borrows by invalidating internal pointer. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-rhfx-m35p-ff5j
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA-rhfx-m35p-ff5j) · manifest · SHA-256 74c3e26941575e818cf192f0511138a6719b2124292f8348b2d299a631095b03_
 
@@ -1416,33 +1348,33 @@ _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-rhfx-m35p-ff5j", "aliases": ["RUSTSEC-2026-0002"], "modified": "2026-09-10T03:50:59.064354050Z", "summary": "`IterMut` violates Stacked Borrows by invalidating internal pointer", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.16.3).
+**Рекомендация.** Обновите до исправленной версии (0.16.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06604 — p3-symmetric 0.4.3 is affected by GHSA-3g92-f9ch-qjcm
+### QSI-2026-09188 — p3-symmetric 0.4.3 затронут GHSA-3g92-f9ch-qjcm
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/p3-symmetric@0.4.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 27.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/p3-symmetric@0.4.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.4 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-3g92-f9ch-qjcm for crates.io package p3-symmetric at version 0.4.3: Plonky3: The sponge construction used to get a hash function from a cryptographic permutation is not collision resistant for inputs of different lengths. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-3g92-f9ch-qjcm для пакета crates.io p3-symmetric версии 0.4.3: Plonky3: The sponge construction used to get a hash function from a cryptographic permutation is not collision resistant for inputs of different lengths. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-3g92-f9ch-qjcm
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-3g92-f9ch-qjcm](https://osv.dev/vulnerability/GHSA-3g92-f9ch-qjcm) · manifest · SHA-256 a27fd662d8b302d27a961e04dc71b7a4ef49c239577a1f90a03d0b1035ef7366_
 
@@ -1450,33 +1382,33 @@ _tool_output · [OSV.dev GHSA-3g92-f9ch-qjcm](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-3g92-f9ch-qjcm", "aliases": [], "modified": "2026-04-16T23:04:45.978452Z", "summary": "Plonky3: The sponge construction used to get a hash function from a cryptographic permutation is not collision resistant for inputs of different lengths", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:P"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06616 — rustls 0.23.41 is affected by GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-09200 — rustls 0.23.41 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.41`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 27.0 / 100
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.41`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) for crates.io package rustls at version 0.23.41: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) для пакета crates.io rustls версии 0.23.41: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-w44r-93j7-qv28
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28) · manifest · SHA-256 f0fcaa2fa7a56e188458f39e55b23e999d0c7da6d3c1294c014c64ab37b33dee_
 
@@ -1484,33 +1416,33 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w44r-93j7-qv28", "aliases": ["RUSTSEC-2026-0349"], "modified": "2026-10-27T16:15:05.340347056Z", "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06615 — rustls 0.23.41 is affected by GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
+### QSI-2026-09199 — rustls 0.23.41 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustls@0.23.41`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 22.9 / 100
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/rustls@0.23.41`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 25.0 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev reports GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) for crates.io package rustls at version 0.23.41: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. The affected code sits behind the `brotli` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
+OSV.dev сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) для пакета crates.io rustls версии 0.23.41: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. Затронутый код находится за флагом Cargo `brotli`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-h2v8-394m-p7vv
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv) · manifest · SHA-256 9118726d52fea7cee09a6b4a21a10d2a7bab860f9762fff4658cb78db0453744_
 
@@ -1518,33 +1450,33 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-h2v8-394m-p7vv", "aliases": ["RUSTSEC-2026-0348"], "modified": "2026-10-27T16:15:05.337819489Z", "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06593 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-09176 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
 
@@ -1552,33 +1484,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06597 — h2 0.4.15 is affected by RUSTSEC-2026-0258 (no severity rating)
+### QSI-2026-09180 — h2 0.4.15 затронут RUSTSEC-2026-0258 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/h2@0.4.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/h2@0.4.15`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0258 for crates.io package h2 at version 0.4.15: h2 unbounded empty DATA frames. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0258 для пакета crates.io h2 версии 0.4.15: h2 unbounded empty DATA frames. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0258
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0258](https://osv.dev/vulnerability/RUSTSEC-2026-0258) · manifest · SHA-256 d8694780e4da4b8ee995c62dbd89ea4aef9579bf2c51b2a4b677a2231b8d4edc_
 
@@ -1586,33 +1518,67 @@ _tool_output · [OSV.dev RUSTSEC-2026-0258](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0258", "aliases": ["GHSA-q83h-524g-xf6h"], "modified": "2026-10-12T18:00:10.934581734Z", "summary": "h2 unbounded empty DATA frames", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.4.16) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.4.16).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06601 — lru 0.12.5 is affected by RUSTSEC-2026-0253 (no severity rating)
+### QSI-2026-09183 — libz-sys 1.1.29 затронут RUSTSEC-2026-0418 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/lru@0.12.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/libz-sys@1.1.29`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0253 for crates.io package lru at version 0.12.5: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0418 для пакета crates.io libz-sys версии 1.1.29: libz-sys build script leaks environment variables in the build directory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0418
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev RUSTSEC-2026-0418](https://osv.dev/vulnerability/RUSTSEC-2026-0418) · manifest · SHA-256 c5853994609eb6005df3fdabfd8d90722c9213a6b6ddc9f03b43ae0e4a747b57_
+
+```
+{"id": "RUSTSEC-2026-0418", "aliases": ["GHSA-8p3x-q3q3-q3v5"], "modified": "2026-10-29T14:15:02.333141406Z", "summary": "libz-sys build script leaks environment variables in the build directory", "severity": null, "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (1.1.31).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-09185 — lru 0.12.5 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/lru@0.12.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает RUSTSEC-2026-0253 для пакета crates.io lru версии 0.12.5: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
+
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0253
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSEC-2026-0253) · manifest · SHA-256 06df98c5350689983b2fda96297e3527fd26f472c5d474c041975b220e7ffc2c_
 
@@ -1620,33 +1586,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0253", "aliases": [], "modified": "2026-08-11T11:15:06.101553049Z", "summary": "Potential use-after-free due to lack of panic safety in `LruCache::pop()`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.18.2) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.18.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06603 — lru 0.13.0 is affected by RUSTSEC-2026-0253 (no severity rating)
+### QSI-2026-09187 — lru 0.13.0 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/lru@0.13.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/lru@0.13.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0253 for crates.io package lru at version 0.13.0: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0253 для пакета crates.io lru версии 0.13.0: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0253
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSEC-2026-0253) · manifest · SHA-256 06df98c5350689983b2fda96297e3527fd26f472c5d474c041975b220e7ffc2c_
 
@@ -1654,33 +1620,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0253", "aliases": [], "modified": "2026-08-11T11:15:06.101553049Z", "summary": "Potential use-after-free due to lack of panic safety in `LruCache::pop()`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.18.2) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.18.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06607 — quinn-proto 0.11.16 is affected by RUSTSEC-2026-0338 (no severity rating)
+### QSI-2026-09191 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.16`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0338 for crates.io package quinn-proto at version 0.11.16: Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0338 для пакета crates.io quinn-proto версии 0.11.16: Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0338
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSEC-2026-0338) · manifest · SHA-256 2d8a96c1ccb5782dfd51ab6c6bfc548092df0a416eb5a7c29ca5b5ffdce603ea_
 
@@ -1688,33 +1654,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0338", "aliases": ["GHSA-465w-v9q3-7j98"], "modified": "2026-10-12T18:15:01.969514645Z", "summary": "Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.18) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.11.18).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06608 — quinn-proto 0.11.16 is affected by RUSTSEC-2026-0339 (no severity rating)
+### QSI-2026-09192 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0339 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.16`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0339 for crates.io package quinn-proto at version 0.11.16: Unbounded growth of pending connection ID retirements in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0339 для пакета crates.io quinn-proto версии 0.11.16: Unbounded growth of pending connection ID retirements in quinn-proto. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0339
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSEC-2026-0339) · manifest · SHA-256 b5c8da254e3051004bc694e865ed6cf27e63c10cddc5641f13f42bd290bdb54a_
 
@@ -1722,33 +1688,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0339", "aliases": ["GHSA-hmxj-32vh-65vr"], "modified": "2026-10-12T18:15:01.956822776Z", "summary": "Unbounded growth of pending connection ID retirements in quinn-proto", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.11.17).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06611 — quinn-proto 0.11.16 is affected by RUSTSEC-2026-0342 (no severity rating)
+### QSI-2026-09195 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0342 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.16`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0342 for crates.io package quinn-proto at version 0.11.16: Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0342 для пакета crates.io quinn-proto версии 0.11.16: Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0342
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSEC-2026-0342) · manifest · SHA-256 41dfd63166e25757cdb189c219a98c5e4b8d6b2e389f484cc583556a378073e4_
 
@@ -1756,33 +1722,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0342", "aliases": ["GHSA-2hv7-gw8g-gpq5"], "modified": "2026-10-12T18:15:01.956681478Z", "summary": "Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.17) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.11.17).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06612 — ruint 1.19.0 is affected by RUSTSEC-2026-0220 (no severity rating)
+### QSI-2026-09196 — ruint 1.19.0 затронут RUSTSEC-2026-0220 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/ruint@1.19.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/ruint@1.19.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0220 for crates.io package ruint at version 1.19.0: Uint shift operations: incorrect overflow flags and truncated shift amounts. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (ruint::Uint::checked_shl, ruint::Uint::checked_shr, ruint::Uint::overflowing_shl, ruint::Uint::overflowing_shr, ruint::Uint::saturating_shl, ruint::Uint::saturating_shr …); ruint comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0220 для пакета crates.io ruint версии 1.19.0: Uint shift operations: incorrect overflow flags and truncated shift amounts. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (ruint::Uint::checked_shl, ruint::Uint::checked_shr, ruint::Uint::overflowing_shl, ruint::Uint::overflowing_shr, ruint::Uint::saturating_shl, ruint::Uint::saturating_shr …); ruint приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0220
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0220](https://osv.dev/vulnerability/RUSTSEC-2026-0220) · manifest · SHA-256 f42394932e247da212898e7d0d34cec3f04961c857380e305a289974569d677f_
 
@@ -1790,101 +1756,101 @@ _tool_output · [OSV.dev RUSTSEC-2026-0220](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0220", "aliases": [], "modified": "2026-07-30T19:15:04.025918010Z", "summary": "Uint shift operations: incorrect overflow flags and truncated shift amounts", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (1.20.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (1.20.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06617 — rustls-webpki 0.103.13 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating)
+### QSI-2026-09201 — rustls-webpki 0.103.13 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustls-webpki@0.103.13`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.13`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0382 (CVE-2026-111943) for crates.io package rustls-webpki at version 0.103.13: Certificate verification may accept distrusted intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0382 (CVE-2026-111943) для пакета crates.io rustls-webpki версии 0.103.13: Certificate verification may accept distrusted intermediates. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 9111e73d752392534752d5ea5c9da4ec9a422a29c088531d446d16b27a016fa8_
+_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 4c972eb1d77abf0d1c39f2b402c5fea32a5dacf7dbbeac638e7549ce780805d1_
 
 ```
-{"id": "RUSTSEC-2026-0382", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-21T00:55:56.763143468Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0382", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.103.16, 0.104.0-alpha.8).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06620 — webpki-roots 1.0.8 is affected by RUSTSEC-2026-0381 (CVE-2026-111943) (no severity rating)
+### QSI-2026-09204 — webpki-roots 1.0.8 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/webpki-roots@1.0.8`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/webpki-roots@1.0.8`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0381 (CVE-2026-111943) for crates.io package webpki-roots at version 1.0.8: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0381 (CVE-2026-111943) для пакета crates.io webpki-roots версии 1.0.8: Bundled root certificates allow trust in distrusted emSign intermediates. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 a97aff76592b60902cd4b16acc1ea2e7be27cd23fb1cd59575028f4953d51114_
+_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 fe0730fa87c619c62bf0bee198d2f7f275186863690454c8ae7e45848f4db031_
 
 ```
-{"id": "RUSTSEC-2026-0381", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-21T06:30:02.818201920Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0381", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.26.11, 1.0.10).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06621 — zstd 0.13.3 is affected by RUSTSEC-2026-0391 (no severity rating)
+### QSI-2026-09205 — zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd@0.13.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd@0.13.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0391 for crates.io package zstd at version 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0391 для пакета crates.io zstd версии 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0391
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0391](https://osv.dev/vulnerability/RUSTSEC-2026-0391) · manifest · SHA-256 c5a6274e5a4cfb8793fcf3f343ddadadd6d41a200d24a392d8f363faa59b0e78_
 
@@ -1892,33 +1858,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0391](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0391", "aliases": [], "modified": "2026-10-26T14:00:04.269245609Z", "summary": "Data from an abandoned stream leaks into the next stream on a reused context", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.14.3) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.14.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06622 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0395 (no severity rating)
+### QSI-2026-09206 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0395 for crates.io package zstd-safe at version 7.2.4: Use-after-free with `CParameter::StableInBuffer`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::set_parameter); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0395 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free with `CParameter::StableInBuffer`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::set_parameter); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSEC-2026-0395) · manifest · SHA-256 cf314e3df3f714ad17083f648e4d6822839805759c13c152cf2b2edcfbba9cdb_
 
@@ -1926,33 +1892,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0395", "aliases": [], "modified": "2026-10-26T14:00:06.388344282Z", "summary": "Use-after-free with `CParameter::StableInBuffer`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06623 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0396 (no severity rating)
+### QSI-2026-09207 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0396 for crates.io package zstd-safe at version 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0396 для пакета crates.io zstd-safe версии 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0396
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0396](https://osv.dev/vulnerability/RUSTSEC-2026-0396) · manifest · SHA-256 46019c3c1c8cc1772c03fcccbfa90a2b7502cdb744481795fef991bd88bf8e23_
 
@@ -1960,33 +1926,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0396](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0396", "aliases": [], "modified": "2026-10-26T14:00:05.789682118Z", "summary": "`Seekable` reads a NULL or out-of-bounds seek table", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06624 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0397 (no severity rating)
+### QSI-2026-09208 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0397 for crates.io package zstd-safe at version 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::OutBuffer::around_pos); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0397 для пакета crates.io zstd-safe версии 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::OutBuffer::around_pos); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSEC-2026-0397) · manifest · SHA-256 e1cc2d6a8e69a560eb15d719dcb988b36e18b940b8913145ec52a73efd0b9fcc_
 
@@ -1994,33 +1960,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0397", "aliases": [], "modified": "2026-10-26T14:00:05.089587004Z", "summary": "`OutBuffer::around_pos` exposes uninitialized memory", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06625 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0398 (no severity rating)
+### QSI-2026-09209 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0398 for crates.io package zstd-safe at version 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0398 для пакета crates.io zstd-safe версии 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0398
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0398](https://osv.dev/vulnerability/RUSTSEC-2026-0398) · manifest · SHA-256 01887ac4409fe66647c178d3ac91c674dafafb9134960f58c0f4ffcaa080acda_
 
@@ -2028,33 +1994,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0398](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0398", "aliases": [], "modified": "2026-10-26T14:00:05.092082939Z", "summary": "`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06626 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0399 (no severity rating)
+### QSI-2026-09210 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0399 for crates.io package zstd-safe at version 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0399 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSEC-2026-0399) · manifest · SHA-256 dde7c9d1fcd35a89a4e462b7b42373ae75187190ebfffa3876d9e2bba20e386a_
 
@@ -2062,33 +2028,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0399", "aliases": [], "modified": "2026-10-26T14:00:05.792431051Z", "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06627 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0400 (no severity rating)
+### QSI-2026-09211 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0400 for crates.io package zstd-safe at version 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0400 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSEC-2026-0400) · manifest · SHA-256 12a31cd97694259b60fd13de0204d4257a30facebdbf5eb19bc091d2b54c85f6_
 
@@ -2096,33 +2062,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0400", "aliases": [], "modified": "2026-10-26T14:00:05.692077560Z", "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06628 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0401 (no severity rating)
+### QSI-2026-09212 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0401 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::train_from_buffer); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0401 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::train_from_buffer); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSEC-2026-0401) · manifest · SHA-256 8f606743a027e187f8815975be52f1a4018a22a8d8cacc5d66407f974573c3a0_
 
@@ -2130,33 +2096,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0401", "aliases": [], "modified": "2026-10-26T14:00:04.231502512Z", "summary": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06629 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0402 (no severity rating)
+### QSI-2026-09213 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0402 for crates.io package zstd-safe at version 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0402 для пакета crates.io zstd-safe версии 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSEC-2026-0402) · manifest · SHA-256 1659ee65665b5ae755a87f2715370efa327fc3064514c61888dd4fa3a3f32642_
 
@@ -2164,33 +2130,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0402", "aliases": [], "modified": "2026-10-26T14:00:05.685817733Z", "summary": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06630 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0403 (no severity rating)
+### QSI-2026-09214 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0403 for crates.io package zstd-safe at version 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::decompress_stream); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0403 для пакета crates.io zstd-safe версии 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSEC-2026-0403) · manifest · SHA-256 b1d1701270f636af5d21f2b55cbd122bcd0df90ce4dce6793aa9263b377caddb_
 
@@ -2198,33 +2164,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0403", "aliases": [], "modified": "2026-10-26T14:00:05.787441176Z", "summary": "Uninitialized memory exposed when streaming decompression of a legacy frame fails", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06631 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0404 (no severity rating)
+### QSI-2026-09215 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0404 for crates.io package zstd-safe at version 7.2.4: Double free in `DCtx::try_clone`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::DCtx::try_clone); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0404 для пакета crates.io zstd-safe версии 7.2.4: Double free in `DCtx::try_clone`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSEC-2026-0404) · manifest · SHA-256 7c25f3932e55150f3788cd8fcee7738d3c905758f825a562b19f78d7e041b0b2_
 
@@ -2232,33 +2198,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0404", "aliases": [], "modified": "2026-10-26T14:00:05.092817237Z", "summary": "Double free in `DCtx::try_clone`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06632 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0405 (no severity rating)
+### QSI-2026-09216 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0405 for crates.io package zstd-safe at version 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0405 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0405
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0405](https://osv.dev/vulnerability/RUSTSEC-2026-0405) · manifest · SHA-256 aa7a0dd1f301f7767bcd2d2a354fda77b1e2ed887669efac9bdd2bc66db5be81_
 
@@ -2266,33 +2232,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0405](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0405", "aliases": [], "modified": "2026-10-26T14:00:05.680942523Z", "summary": "Out-of-bounds read with an out-of-range `InBuffer::pos`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06633 — zstd-safe 7.2.4 is affected by RUSTSEC-2026-0406 (no severity rating)
+### QSI-2026-09217 — zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-safe@7.2.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-safe@7.2.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0406 for crates.io package zstd-safe at version 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The audited code does not name the affected functions (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe comes in through other dependencies, which may still call them.
+OSV.dev сообщает RUSTSEC-2026-0406 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe приходит через другие зависимости, которые могут их вызывать.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSEC-2026-0406) · manifest · SHA-256 deca0b7103bdc0c3ed051bcdb0dbd3d63e215fecdbdba6a7f24f9fb8c2e93ecd_
 
@@ -2300,33 +2266,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0406", "aliases": [], "modified": "2026-10-26T14:00:05.095427051Z", "summary": "Use-after-free when changing a multithreaded context with an unfinished frame", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (8.2.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06647 — github.com/docker/docker v26.1.0+incompatible is affected by GO-2026-4887 (CVE-2026-34040) (no severity rating)
+### QSI-2026-09231 — github.com/docker/docker v26.1.0+incompatible затронут GO-2026-4887 (CVE-2026-34040) (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GO-2026-4887 (CVE-2026-34040) for Go package github.com/docker/docker at version v26.1.0+incompatible: Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GO-2026-4887 (CVE-2026-34040) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GO-2026-4887
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GO-2026-4887](https://osv.dev/vulnerability/GO-2026-4887) · line 39 · SHA-256 b0413de8db38a9ae7e52f49ec09801d729ca5107accd4bd112b3ae32be052e95_
 
@@ -2334,33 +2300,33 @@ _tool_output · [OSV.dev GO-2026-4887](https://osv.dev/vulnerability/GO-2026-488
 {"id": "GO-2026-4887", "aliases": ["CVE-2026-34040", "GHSA-x744-4wpc-v9h2"], "modified": "2026-04-03T20:59:19.226161232Z", "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker", "severity": null, "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06543 — Privileged administrative functions in scroll-contracts/lib/solmate/src/auth/Owned.sol: transferOwnership
+### QSI-2026-09128 — Привилегированные административные функции в scroll-contracts/lib/solmate/src/auth/Owned.sol: transferOwnership
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/lib/solmate/src/auth/Owned.sol`
-- Data source: scroll-contracts/lib/solmate/src/auth/Owned.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/lib/solmate/src/auth/Owned.sol`
+- Источник данных: scroll-contracts/lib/solmate/src/auth/Owned.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: transferOwnership. (related: —)
+Функции, защищённые модификаторами владельца/ролей: transferOwnership. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/lib/solmate/src/auth/Owned.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/lib/solmate/src/auth/Owned.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/lib/solmate/src/auth/Owned.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/lib/solmate/src/auth/Owned.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
 
@@ -2368,33 +2334,33 @@ _file_excerpt · [scroll-contracts/lib/solmate/src/auth/Owned.sol](https://githu
 Privileged functions: transferOwnership
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06549 — Privileged administrative functions in scroll-contracts/src/L1/L1ScrollMessenger.sol: updateMaxReplayTimes
+### QSI-2026-09134 — Привилегированные административные функции в scroll-contracts/src/L1/L1ScrollMessenger.sol: updateMaxReplayTimes
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
-- Data source: scroll-contracts/src/L1/L1ScrollMessenger.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/L1ScrollMessenger.sol`
+- Источник данных: scroll-contracts/src/L1/L1ScrollMessenger.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateMaxReplayTimes. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateMaxReplayTimes. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/L1ScrollMessenger.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/L1ScrollMessenger.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/L1ScrollMessenger.sol) · multiple · SHA-256 e0ee97f1849f91b3f6e72d51e254baa56f2b56e5cfb2c0d09755fe89b4e782c5_
 
@@ -2402,33 +2368,33 @@ _file_excerpt · [scroll-contracts/src/L1/L1ScrollMessenger.sol](https://github.
 Privileged functions: updateMaxReplayTimes
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06550 — Privileged administrative functions in scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol: updateFeeVault, setPause
+### QSI-2026-09135 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol: updateFeeVault, setPause
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol`
-- Data source: scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol`
+- Источник данных: scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateFeeVault, setPause. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateFeeVault, setPause. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol) · multiple · SHA-256 0bc53cba0e646a9050b16b3b4b5df422672d2e8175f2e4faeb2c9a66035002d9_
 
@@ -2436,33 +2402,33 @@ _file_excerpt · [scroll-contracts/src/L1/gateways/EnforcedTxGateway.sol](https:
 Privileged functions: updateFeeVault, setPause
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06551 — Privileged administrative functions in scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol: updateTokenMapping
+### QSI-2026-09136 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol: updateTokenMapping
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol`
-- Data source: scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol`
+- Источник данных: scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateTokenMapping. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateTokenMapping. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol) · multiple · SHA-256 567d5823d91cba01d4a889468f89c726bb465044004c517c148ce8cd3d1fafa7_
 
@@ -2470,33 +2436,33 @@ _file_excerpt · [scroll-contracts/src/L1/gateways/L1CustomERC20Gateway.sol](htt
 Privileged functions: updateTokenMapping
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06552 — Privileged administrative functions in scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol: updateTokenMapping
+### QSI-2026-09137 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol: updateTokenMapping
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol`
-- Data source: scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol`
+- Источник данных: scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateTokenMapping. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateTokenMapping. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol) · multiple · SHA-256 567d5823d91cba01d4a889468f89c726bb465044004c517c148ce8cd3d1fafa7_
 
@@ -2504,33 +2470,33 @@ _file_excerpt · [scroll-contracts/src/L1/gateways/L1ERC1155Gateway.sol](https:/
 Privileged functions: updateTokenMapping
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06553 — Privileged administrative functions in scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol: updateTokenMapping
+### QSI-2026-09138 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol: updateTokenMapping
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol`
-- Data source: scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol`
+- Источник данных: scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateTokenMapping. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateTokenMapping. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol) · multiple · SHA-256 567d5823d91cba01d4a889468f89c726bb465044004c517c148ce8cd3d1fafa7_
 
@@ -2538,33 +2504,33 @@ _file_excerpt · [scroll-contracts/src/L1/gateways/L1ERC721Gateway.sol](https://
 Privileged functions: updateTokenMapping
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06554 — Privileged administrative functions in scroll-contracts/src/L1/gateways/L1GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
+### QSI-2026-09139 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/L1GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/gateways/L1GatewayRouter.sol`
-- Data source: scroll-contracts/src/L1/gateways/L1GatewayRouter.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/gateways/L1GatewayRouter.sol`
+- Источник данных: scroll-contracts/src/L1/gateways/L1GatewayRouter.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: setETHGateway, setDefaultERC20Gateway, setERC20Gateway. (related: —)
+Функции, защищённые модификаторами владельца/ролей: setETHGateway, setDefaultERC20Gateway, setERC20Gateway. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/gateways/L1GatewayRouter.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/gateways/L1GatewayRouter.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/gateways/L1GatewayRouter.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/gateways/L1GatewayRouter.sol) · multiple · SHA-256 0ba5b5898f9bf7cc74eff33ce5345afae100dbe0cb78eed820313e5d279abbb6_
 
@@ -2572,33 +2538,33 @@ _file_excerpt · [scroll-contracts/src/L1/gateways/L1GatewayRouter.sol](https://
 Privileged functions: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06555 — Privileged administrative functions in scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
+### QSI-2026-09140 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol`
-- Data source: scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol`
+- Источник данных: scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateCircleCaller, pauseDeposit, pauseWithdraw. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateCircleCaller, pauseDeposit, pauseWithdraw. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol) · multiple · SHA-256 76008f6dc4b691df13710a02121b96b76410e9863a09e512b2c81c014dc85fd1_
 
@@ -2606,33 +2572,33 @@ _file_excerpt · [scroll-contracts/src/L1/gateways/usdc/L1USDCGateway.sol](https
 Privileged functions: updateCircleCaller, pauseDeposit, pauseWithdraw
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06556 — Privileged administrative functions in scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol: updateCCTPContracts
+### QSI-2026-09141 — Привилегированные административные функции в scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol: updateCCTPContracts
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol`
-- Data source: scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol`
+- Источник данных: scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateCCTPContracts. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateCCTPContracts. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.sol) · multiple · SHA-256 927a9a131474771e7a6025b058886c146d56b8594bfb46b0ff92124a3d41459a_
 
@@ -2640,33 +2606,33 @@ _file_excerpt · [scroll-contracts/src/L1/gateways/usdc/draft-L1USDCGatewayCCTP.
 Privileged functions: updateCCTPContracts
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06557 — Privileged administrative functions in scroll-contracts/src/L1/rollup/L1MessageQueue.sol: updateGasOracle, updateMaxGasLimit
+### QSI-2026-09142 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueue.sol: updateGasOracle, updateMaxGasLimit
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/rollup/L1MessageQueue.sol`
-- Data source: scroll-contracts/src/L1/rollup/L1MessageQueue.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/rollup/L1MessageQueue.sol`
+- Источник данных: scroll-contracts/src/L1/rollup/L1MessageQueue.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateGasOracle, updateMaxGasLimit. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateGasOracle, updateMaxGasLimit. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/rollup/L1MessageQueue.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/rollup/L1MessageQueue.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/rollup/L1MessageQueue.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/rollup/L1MessageQueue.sol) · multiple · SHA-256 abc3ca57c063b06e3357f32e9853f137df9b7d34269ed773e60736cbb9cd03eb_
 
@@ -2674,33 +2640,33 @@ _file_excerpt · [scroll-contracts/src/L1/rollup/L1MessageQueue.sol](https://git
 Privileged functions: updateGasOracle, updateMaxGasLimit
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06558 — Privileged administrative functions in scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol: updateWhitelistChecker
+### QSI-2026-09143 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol: updateWhitelistChecker
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol`
-- Data source: scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol`
+- Источник данных: scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateWhitelistChecker. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateWhitelistChecker. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracle.sol) · multiple · SHA-256 44324bf7f526384bee7d9b7420069abf57e78176be87c8f8c7bbdbb9e5206240_
 
@@ -2708,33 +2674,33 @@ _file_excerpt · [scroll-contracts/src/L1/rollup/L1MessageQueueWithGasPriceOracl
 Privileged functions: updateWhitelistChecker
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06559 — Privileged administrative functions in scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol: updateWhitelist, setIntrinsicParams
+### QSI-2026-09144 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol: updateWhitelist, setIntrinsicParams
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol`
-- Data source: scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol`
+- Источник данных: scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateWhitelist, setIntrinsicParams. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateWhitelist, setIntrinsicParams. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol) · multiple · SHA-256 6b172d915567b07a4372e2adab3671bf1b00c11817c0193da6496e8317a735fc_
 
@@ -2742,33 +2708,33 @@ _file_excerpt · [scroll-contracts/src/L1/rollup/L2GasPriceOracle.sol](https://g
 Privileged functions: updateWhitelist, setIntrinsicParams
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06560 — Privileged administrative functions in scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol: updateVerifier
+### QSI-2026-09145 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol: updateVerifier
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol`
-- Data source: scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol`
+- Источник данных: scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateVerifier. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateVerifier. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.sol) · multiple · SHA-256 309bc55aa192b32f088e252a0e07c64d7600dcb4636af440ecb00b4e24dc4c72_
 
@@ -2776,33 +2742,33 @@ _file_excerpt · [scroll-contracts/src/L1/rollup/MultipleVersionRollupVerifier.s
 Privileged functions: updateVerifier
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06561 — Privileged administrative functions in scroll-contracts/src/L1/rollup/ScrollChain.sol: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause
+### QSI-2026-09146 — Привилегированные административные функции в scroll-contracts/src/L1/rollup/ScrollChain.sol: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L1/rollup/ScrollChain.sol`
-- Data source: scroll-contracts/src/L1/rollup/ScrollChain.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L1/rollup/ScrollChain.sol`
+- Источник данных: scroll-contracts/src/L1/rollup/ScrollChain.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause. (related: —)
+Функции, защищённые модификаторами владельца/ролей: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L1/rollup/ScrollChain.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L1/rollup/ScrollChain.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L1/rollup/ScrollChain.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L1/rollup/ScrollChain.sol) · multiple · SHA-256 a10806b8e8f277e558509fe1076d3280f0b4723e358bc94f5382be15fdd03fe3_
 
@@ -2810,33 +2776,33 @@ _file_excerpt · [scroll-contracts/src/L1/rollup/ScrollChain.sol](https://github
 Privileged functions: revertBatch, finalizeEuclidInitialBatch, addSequencer, removeSequencer, addProver, removeProver, updateMaxNumTxInChunk, setPause
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06563 — Privileged administrative functions in scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol: updateTokenMapping
+### QSI-2026-09148 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol: updateTokenMapping
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol`
-- Data source: scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol`
+- Источник данных: scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateTokenMapping. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateTokenMapping. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol) · multiple · SHA-256 567d5823d91cba01d4a889468f89c726bb465044004c517c148ce8cd3d1fafa7_
 
@@ -2844,33 +2810,33 @@ _file_excerpt · [scroll-contracts/src/L2/gateways/L2ERC1155Gateway.sol](https:/
 Privileged functions: updateTokenMapping
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06564 — Privileged administrative functions in scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol: updateTokenMapping
+### QSI-2026-09149 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol: updateTokenMapping
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol`
-- Data source: scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol`
+- Источник данных: scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateTokenMapping. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateTokenMapping. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol) · multiple · SHA-256 567d5823d91cba01d4a889468f89c726bb465044004c517c148ce8cd3d1fafa7_
 
@@ -2878,33 +2844,33 @@ _file_excerpt · [scroll-contracts/src/L2/gateways/L2ERC721Gateway.sol](https://
 Privileged functions: updateTokenMapping
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06565 — Privileged administrative functions in scroll-contracts/src/L2/gateways/L2GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
+### QSI-2026-09150 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/L2GatewayRouter.sol: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/gateways/L2GatewayRouter.sol`
-- Data source: scroll-contracts/src/L2/gateways/L2GatewayRouter.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/gateways/L2GatewayRouter.sol`
+- Источник данных: scroll-contracts/src/L2/gateways/L2GatewayRouter.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: setETHGateway, setDefaultERC20Gateway, setERC20Gateway. (related: —)
+Функции, защищённые модификаторами владельца/ролей: setETHGateway, setDefaultERC20Gateway, setERC20Gateway. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/gateways/L2GatewayRouter.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/gateways/L2GatewayRouter.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/gateways/L2GatewayRouter.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/gateways/L2GatewayRouter.sol) · multiple · SHA-256 0ba5b5898f9bf7cc74eff33ce5345afae100dbe0cb78eed820313e5d279abbb6_
 
@@ -2912,33 +2878,33 @@ _file_excerpt · [scroll-contracts/src/L2/gateways/L2GatewayRouter.sol](https://
 Privileged functions: setETHGateway, setDefaultERC20Gateway, setERC20Gateway
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06566 — Privileged administrative functions in scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
+### QSI-2026-09151 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol: updateCircleCaller, pauseDeposit, pauseWithdraw
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol`
-- Data source: scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol`
+- Источник данных: scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateCircleCaller, pauseDeposit, pauseWithdraw. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateCircleCaller, pauseDeposit, pauseWithdraw. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol) · multiple · SHA-256 76008f6dc4b691df13710a02121b96b76410e9863a09e512b2c81c014dc85fd1_
 
@@ -2946,33 +2912,33 @@ _file_excerpt · [scroll-contracts/src/L2/gateways/usdc/L2USDCGateway.sol](https
 Privileged functions: updateCircleCaller, pauseDeposit, pauseWithdraw
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06567 — Privileged administrative functions in scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol: updateCCTPContracts
+### QSI-2026-09152 — Привилегированные административные функции в scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol: updateCCTPContracts
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol`
-- Data source: scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol`
+- Источник данных: scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateCCTPContracts. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateCCTPContracts. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.sol) · multiple · SHA-256 927a9a131474771e7a6025b058886c146d56b8594bfb46b0ff92124a3d41459a_
 
@@ -2980,33 +2946,33 @@ _file_excerpt · [scroll-contracts/src/L2/gateways/usdc/draft-L2USDCGatewayCCTP.
 Privileged functions: updateCCTPContracts
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06569 — Privileged administrative functions in scroll-contracts/src/L2/predeploys/L1BlockContainer.sol: initialize, updateWhitelist
+### QSI-2026-09154 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1BlockContainer.sol: initialize, updateWhitelist
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/predeploys/L1BlockContainer.sol`
-- Data source: scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L1BlockContainer.sol`
+- Источник данных: scroll-contracts/src/L2/predeploys/L1BlockContainer.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: initialize, updateWhitelist. (related: —)
+Функции, защищённые модификаторами владельца/ролей: initialize, updateWhitelist. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/predeploys/L1BlockContainer.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/predeploys/L1BlockContainer.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/L1BlockContainer.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/L1BlockContainer.sol) · multiple · SHA-256 cff0c68f0fd06e1f3a4ee54f3445c04164d2782e0ca86268f4a07efa7dace055_
 
@@ -3014,33 +2980,33 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L1BlockContainer.sol](https
 Privileged functions: initialize, updateWhitelist
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06570 — Privileged administrative functions in scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie
+### QSI-2026-09155 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol`
-- Data source: scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol`
+- Источник данных: scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie. (related: —)
+Функции, защищённые модификаторами владельца/ролей: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol) · multiple · SHA-256 f51c35bb04fbd70c342ae93dbf5d235ff8535e18e3eb065cdfde3f4e141acdc7_
 
@@ -3048,33 +3014,33 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L1GasPriceOracle.sol](https
 Privileged functions: setOverhead, setScalar, setCommitScalar, setBlobScalar, updateWhitelist, enableCurie
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06572 — Privileged administrative functions in scroll-contracts/src/L2/predeploys/L2MessageQueue.sol: initialize
+### QSI-2026-09157 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2MessageQueue.sol: initialize
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/predeploys/L2MessageQueue.sol`
-- Data source: scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L2MessageQueue.sol`
+- Источник данных: scroll-contracts/src/L2/predeploys/L2MessageQueue.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: initialize. (related: —)
+Функции, защищённые модификаторами владельца/ролей: initialize. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/predeploys/L2MessageQueue.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/predeploys/L2MessageQueue.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/L2MessageQueue.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/L2MessageQueue.sol) · multiple · SHA-256 e4ca59164f6e3ff1d9e10ad8a622313b85edf2aadad2678eaefa6a16425e39d7_
 
@@ -3082,33 +3048,33 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L2MessageQueue.sol](https:/
 Privileged functions: initialize
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06573 — Privileged administrative functions in scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol: updateMessenger, updateRecipient, updateMinWithdrawAmount
+### QSI-2026-09158 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol: updateMessenger, updateRecipient, updateMinWithdrawAmount
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol`
-- Data source: scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol`
+- Источник данных: scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateMessenger, updateRecipient, updateMinWithdrawAmount. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateMessenger, updateRecipient, updateMinWithdrawAmount. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol) · multiple · SHA-256 9b6a64a9f27391ea141163a1e7ced8c2fe432a22fa8fbad9a3e8440d4c9c1c59_
 
@@ -3116,33 +3082,33 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/L2TxFeeVault.sol](https://g
 Privileged functions: updateMessenger, updateRecipient, updateMinWithdrawAmount
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06574 — Privileged administrative functions in scroll-contracts/src/L2/predeploys/Whitelist.sol: updateWhitelistStatus
+### QSI-2026-09159 — Привилегированные административные функции в scroll-contracts/src/L2/predeploys/Whitelist.sol: updateWhitelistStatus
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/L2/predeploys/Whitelist.sol`
-- Data source: scroll-contracts/src/L2/predeploys/Whitelist.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/L2/predeploys/Whitelist.sol`
+- Источник данных: scroll-contracts/src/L2/predeploys/Whitelist.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateWhitelistStatus. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateWhitelistStatus. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/L2/predeploys/Whitelist.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/L2/predeploys/Whitelist.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/L2/predeploys/Whitelist.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/L2/predeploys/Whitelist.sol) · multiple · SHA-256 b618c4ce5d2a585fe810fba8f3f2d5cd292b3697b149e1fc02d693c9fc47eb53_
 
@@ -3150,33 +3116,33 @@ _file_excerpt · [scroll-contracts/src/L2/predeploys/Whitelist.sol](https://gith
 Privileged functions: updateWhitelistStatus
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06576 — Privileged administrative functions in scroll-contracts/src/gas-swap/GasSwap.sol: withdraw, updateFeeRatio, updateApprovedTarget
+### QSI-2026-09161 — Привилегированные административные функции в scroll-contracts/src/gas-swap/GasSwap.sol: withdraw, updateFeeRatio, updateApprovedTarget
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/gas-swap/GasSwap.sol`
-- Data source: scroll-contracts/src/gas-swap/GasSwap.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/gas-swap/GasSwap.sol`
+- Источник данных: scroll-contracts/src/gas-swap/GasSwap.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: withdraw, updateFeeRatio, updateApprovedTarget. (related: —)
+Функции, защищённые модификаторами владельца/ролей: withdraw, updateFeeRatio, updateApprovedTarget. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/gas-swap/GasSwap.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/gas-swap/GasSwap.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/gas-swap/GasSwap.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/gas-swap/GasSwap.sol) · multiple · SHA-256 e2050d93291c41fb274d2dc7c6e1f2ee3fecbd3d6e20a867023e5bdacaff2a06_
 
@@ -3184,33 +3150,33 @@ _file_excerpt · [scroll-contracts/src/gas-swap/GasSwap.sol](https://github.com/
 Privileged functions: withdraw, updateFeeRatio, updateApprovedTarget
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06577 — Privileged administrative functions in scroll-contracts/src/libraries/ScrollMessengerBase.sol: updateFeeVault, setPause
+### QSI-2026-09162 — Привилегированные административные функции в scroll-contracts/src/libraries/ScrollMessengerBase.sol: updateFeeVault, setPause
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/libraries/ScrollMessengerBase.sol`
-- Data source: scroll-contracts/src/libraries/ScrollMessengerBase.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/libraries/ScrollMessengerBase.sol`
+- Источник данных: scroll-contracts/src/libraries/ScrollMessengerBase.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateFeeVault, setPause. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateFeeVault, setPause. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/libraries/ScrollMessengerBase.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/libraries/ScrollMessengerBase.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/libraries/ScrollMessengerBase.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/libraries/ScrollMessengerBase.sol) · multiple · SHA-256 0bc53cba0e646a9050b16b3b4b5df422672d2e8175f2e4faeb2c9a66035002d9_
 
@@ -3218,33 +3184,33 @@ _file_excerpt · [scroll-contracts/src/libraries/ScrollMessengerBase.sol](https:
 Privileged functions: updateFeeVault, setPause
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06578 — Privileged administrative functions in scroll-contracts/src/libraries/common/OwnableBase.sol: renounceOwnership, transferOwnership
+### QSI-2026-09163 — Привилегированные административные функции в scroll-contracts/src/libraries/common/OwnableBase.sol: renounceOwnership, transferOwnership
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/libraries/common/OwnableBase.sol`
-- Data source: scroll-contracts/src/libraries/common/OwnableBase.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/libraries/common/OwnableBase.sol`
+- Источник данных: scroll-contracts/src/libraries/common/OwnableBase.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: renounceOwnership, transferOwnership. (related: —)
+Функции, защищённые модификаторами владельца/ролей: renounceOwnership, transferOwnership. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/libraries/common/OwnableBase.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/libraries/common/OwnableBase.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/libraries/common/OwnableBase.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/libraries/common/OwnableBase.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
 
@@ -3252,33 +3218,33 @@ _file_excerpt · [scroll-contracts/src/libraries/common/OwnableBase.sol](https:/
 Privileged functions: renounceOwnership, transferOwnership
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06579 — Privileged administrative functions in scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol: deployL2Token
+### QSI-2026-09164 — Привилегированные административные функции в scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol: deployL2Token
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol`
-- Data source: scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol`
+- Источник данных: scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: deployL2Token. (related: —)
+Функции, защищённые модификаторами владельца/ролей: deployL2Token. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/libraries/token/ScrollStandardERC20Factory.sol) · multiple · SHA-256 fde0c93920eae0f64b7046c86bd2511daef797adfae7878fd43b6c17036aeb1d_
 
@@ -3286,33 +3252,33 @@ _file_excerpt · [scroll-contracts/src/libraries/token/ScrollStandardERC20Factor
 Privileged functions: deployL2Token
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06581 — Privileged administrative functions in scroll-contracts/src/lido/LidoGatewayManager.sol: grantRole, revokeRole
+### QSI-2026-09166 — Привилегированные административные функции в scroll-contracts/src/lido/LidoGatewayManager.sol: grantRole, revokeRole
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/lido/LidoGatewayManager.sol`
-- Data source: scroll-contracts/src/lido/LidoGatewayManager.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/lido/LidoGatewayManager.sol`
+- Источник данных: scroll-contracts/src/lido/LidoGatewayManager.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: grantRole, revokeRole. (related: —)
+Функции, защищённые модификаторами владельца/ролей: grantRole, revokeRole. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/lido/LidoGatewayManager.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/lido/LidoGatewayManager.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/lido/LidoGatewayManager.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/lido/LidoGatewayManager.sol) · multiple · SHA-256 4a2ad8b435792e795c4d4a91364ba673646d967d0f6d0166280410436b889be6_
 
@@ -3320,33 +3286,33 @@ _file_excerpt · [scroll-contracts/src/lido/LidoGatewayManager.sol](https://gith
 Privileged functions: grantRole, revokeRole
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06582 — Privileged administrative functions in scroll-contracts/src/misc/Fallback.sol: withdraw, execute
+### QSI-2026-09167 — Привилегированные административные функции в scroll-contracts/src/misc/Fallback.sol: withdraw, execute
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/misc/Fallback.sol`
-- Data source: scroll-contracts/src/misc/Fallback.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/misc/Fallback.sol`
+- Источник данных: scroll-contracts/src/misc/Fallback.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: withdraw, execute. (related: —)
+Функции, защищённые модификаторами владельца/ролей: withdraw, execute. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/misc/Fallback.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/misc/Fallback.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/misc/Fallback.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/misc/Fallback.sol) · multiple · SHA-256 ba80cb3fc345c9c268fb142dc621dbde8a20e93b38d439f2fd72bf79ef8a4437_
 
@@ -3354,33 +3320,33 @@ _file_excerpt · [scroll-contracts/src/misc/Fallback.sol](https://github.com/scr
 Privileged functions: withdraw, execute
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06583 — Privileged administrative functions in scroll-contracts/src/rate-limiter/ETHRateLimiter.sol: updateTotalLimit
+### QSI-2026-09168 — Привилегированные административные функции в scroll-contracts/src/rate-limiter/ETHRateLimiter.sol: updateTotalLimit
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `contract:scroll-contracts/src/rate-limiter/ETHRateLimiter.sol`
-- Data source: scroll-contracts/src/rate-limiter/ETHRateLimiter.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 33.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:scroll-contracts/src/rate-limiter/ETHRateLimiter.sol`
+- Источник данных: scroll-contracts/src/rate-limiter/ETHRateLimiter.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
 
-Functions guarded by owner/role modifiers: updateTotalLimit. (related: —)
+Функции, защищённые модификаторами владельца/ролей: updateTotalLimit. (см. —)
 
-**Potential impact.** Centralization risk: compromise of the admin key compromises the protocol.
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open contract in the supplied file scroll-contracts/src/rate-limiter/ETHRateLimiter.sol and inspect the quoted lines (see evidence).
+Откройте contract в предоставленном файле scroll-contracts/src/rate-limiter/ETHRateLimiter.sol и изучите приведённые строки (см. доказательство).
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [scroll-contracts/src/rate-limiter/ETHRateLimiter.sol](https://github.com/scroll-tech/scroll/blob/3046bbd18a6a05bf29dd3ffef7b5676203201050/scroll-contracts/src/rate-limiter/ETHRateLimiter.sol) · multiple · SHA-256 e3534e87c12567c01be52d05897cdb34730e50ce0f8bf08d67330ffa7745cf95_
 
@@ -3388,33 +3354,33 @@ _file_excerpt · [scroll-contracts/src/rate-limiter/ETHRateLimiter.sol](https://
 Privileged functions: updateTotalLimit
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Use a multisig/timelock for admin roles and document them.
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06637 — github.com/btcsuite/btcd v0.20.1-beta is affected by GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098)
+### QSI-2026-09221 — github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/btcsuite/btcd@v0.20.1-beta`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
-OSV.dev reports GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098) for Go package github.com/btcsuite/btcd at version v0.20.1-beta: btcd mishandles witness size checking. None of the affected functions (github.com/btcsuite/btcd/wire.MsgBlock.BtcDecode, github.com/btcsuite/btcd/wire.MsgBlock.Deserialize, github.com/btcsuite/btcd/wire.MsgBlock.DeserializeNoWitness, github.com/btcsuite/btcd/wire.MsgBlock.DeserializeTxLoc, github.com/btcsuite/btcd/wire.MsgTx.BtcDecode, github.com/btcsuite/btcd/wire.MsgTx.Deserialize …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098) для пакета Go github.com/btcsuite/btcd версии v0.20.1-beta: btcd mishandles witness size checking. Ни одна из затронутых функций (github.com/btcsuite/btcd/wire.MsgBlock.BtcDecode, github.com/btcsuite/btcd/wire.MsgBlock.Deserialize, github.com/btcsuite/btcd/wire.MsgBlock.DeserializeNoWitness, github.com/btcsuite/btcd/wire.MsgBlock.DeserializeTxLoc, github.com/btcsuite/btcd/wire.MsgTx.BtcDecode, github.com/btcsuite/btcd/wire.MsgTx.Deserialize …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-2chg-86hq-7w38
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-2chg-86hq-7w38](https://osv.dev/vulnerability/GHSA-2chg-86hq-7w38) · line 26 · SHA-256 28eb7bd6b28f9fe087095a5d3cdea6c2e8334b9e816c8e69f1cb613d0f143917_
 
@@ -3422,33 +3388,33 @@ _tool_output · [OSV.dev GHSA-2chg-86hq-7w38](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-2chg-86hq-7w38", "aliases": ["CVE-2022-44797", "GO-2022-1098"], "modified": "2024-05-20T21:36:55Z", "summary": "btcd mishandles witness size checking", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06639 — github.com/consensys/gnark-crypto v0.16.0 is affected by GHSA-fj2x-735w-74vq (GO-2025-4087)
+### QSI-2026-09223 — github.com/consensys/gnark-crypto v0.16.0 затронут GHSA-fj2x-735w-74vq (GO-2025-4087)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/consensys/gnark-crypto@v0.16.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/consensys/gnark-crypto@v0.16.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev reports GHSA-fj2x-735w-74vq (GO-2025-4087) for Go package github.com/consensys/gnark-crypto at version v0.16.0: gnark-crypto allows unchecked memory allocation during vector deserialization. None of the affected functions (github.com/consensys/gnark-crypto/ecc/secp256k1/fr.Vector.AsyncReadFrom, github.com/consensys/gnark-crypto/ecc/secp256k1/fr.Vector.ReadFrom, github.com/consensys/gnark-crypto/ecc/secp256k1/fr.Vector.UnmarshalBinary, github.com/consensys/gnark-crypto/ecc/bw6-633/fp.Vector.AsyncReadFrom, github.com/consensys/gnark-crypto/ecc/bw6-633/fp.Vector.ReadFrom, github.com/consensys/gnark-crypto/ecc/bw6-633/fp.Vector.UnmarshalBinary …) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-fj2x-735w-74vq (GO-2025-4087) для пакета Go github.com/consensys/gnark-crypto версии v0.16.0: gnark-crypto allows unchecked memory allocation during vector deserialization. Ни одна из затронутых функций (github.com/consensys/gnark-crypto/ecc/secp256k1/fr.Vector.AsyncReadFrom, github.com/consensys/gnark-crypto/ecc/secp256k1/fr.Vector.ReadFrom, github.com/consensys/gnark-crypto/ecc/secp256k1/fr.Vector.UnmarshalBinary, github.com/consensys/gnark-crypto/ecc/bw6-633/fp.Vector.AsyncReadFrom, github.com/consensys/gnark-crypto/ecc/bw6-633/fp.Vector.ReadFrom, github.com/consensys/gnark-crypto/ecc/bw6-633/fp.Vector.UnmarshalBinary …) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-fj2x-735w-74vq
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-fj2x-735w-74vq](https://osv.dev/vulnerability/GHSA-fj2x-735w-74vq) · line 32 · SHA-256 7b4771c79cb8a0f08814dbf3793abb7c4b41d6f7d5951179fce2f230ab9707b0_
 
@@ -3456,33 +3422,33 @@ _tool_output · [OSV.dev GHSA-fj2x-735w-74vq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-fj2x-735w-74vq", "aliases": ["GO-2025-4087"], "modified": "2026-09-10T03:50:29.734008925Z", "summary": "gnark-crypto allows unchecked memory allocation during vector deserialization", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.18.1, 0.19.2).
+**Рекомендация.** Обновите до исправленной версии (0.18.1, 0.19.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06640 — github.com/docker/cli v25.0.4-0.20240305161310-2bf4225ad269+incompatible is affected by GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610)
+### QSI-2026-09224 — github.com/docker/cli v25.0.4-0.20240305161310-2bf4225ad269+incompatible затронут GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/docker/cli@v25.0.4-0.20240305161310-2bf4225ad269+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/cli@v25.0.4-0.20240305161310-2bf4225ad269+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610) for Go package github.com/docker/cli at version v25.0.4-0.20240305161310-2bf4225ad269+incompatible: Docker CLI Plugins: Uncontrolled Search Path Element Leads to Local Privilege Escalation on Windows. None of the affected functions (github.com/docker/cli/cli-plugins/manager.defaultSystemPluginDirs) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610) для пакета Go github.com/docker/cli версии v25.0.4-0.20240305161310-2bf4225ad269+incompatible: Docker CLI Plugins: Uncontrolled Search Path Element Leads to Local Privilege Escalation on Windows. Ни одна из затронутых функций (github.com/docker/cli/cli-plugins/manager.defaultSystemPluginDirs) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-p436-gjf2-799p
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-p436-gjf2-799p](https://osv.dev/vulnerability/GHSA-p436-gjf2-799p) · line 38 · SHA-256 2f7237556abb24430f3781ebb08f5844efe5c4d2fb42168e3ae41ee89acd1feb_
 
@@ -3490,33 +3456,33 @@ _tool_output · [OSV.dev GHSA-p436-gjf2-799p](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-p436-gjf2-799p", "aliases": ["BIT-docker-cli-2025-15558", "CVE-2025-15558", "GO-2026-4610"], "modified": "2026-09-10T03:50:39.956404854Z", "summary": "Docker CLI Plugins: Uncontrolled Search Path Element Leads to Local Privilege Escalation on Windows", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (29.2.0).
+**Рекомендация.** Обновите до исправленной версии (29.2.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06643 — github.com/docker/docker v26.1.0+incompatible is affected by GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617)
+### QSI-2026-09227 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.2 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H`)
 
-OSV.dev reports GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) for Go package github.com/docker/docker at version v26.1.0+incompatible: Docker: Race condition in docker cp allows bind mount redirection to host path. None of the affected functions (github.com/docker/docker/daemon.Daemon.openContainerFS) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: Race condition in docker cp allows bind mount redirection to host path. Ни одна из затронутых функций (github.com/docker/docker/daemon.Daemon.openContainerFS) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-rg2x-37c3-w2rh
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-rg2x-37c3-w2rh](https://osv.dev/vulnerability/GHSA-rg2x-37c3-w2rh) · line 39 · SHA-256 1e37c034d0c067cb8cd66e219cb54fb68eb260f0ad00b3cc8953501288ec0324_
 
@@ -3524,33 +3490,33 @@ _tool_output · [OSV.dev GHSA-rg2x-37c3-w2rh](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-rg2x-37c3-w2rh", "aliases": ["CVE-2026-42306", "GO-2026-5617"], "modified": "2026-09-10T03:50:47.528575532Z", "summary": "Docker: Race condition in docker cp allows bind mount redirection to host path", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06644 — github.com/docker/docker v26.1.0+incompatible is affected by GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005)
+### QSI-2026-09228 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.9 (`CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H`)
 
-OSV.dev reports GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005) for Go package github.com/docker/docker at version v26.1.0+incompatible: Authz zero length regression. None of the affected functions (github.com/docker/docker/pkg/authorization.Ctx.AuthZRequest, github.com/docker/docker/pkg/authorization.Ctx.AuthZResponse, github.com/docker/docker/pkg/authorization.sendBody) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Authz zero length regression. Ни одна из затронутых функций (github.com/docker/docker/pkg/authorization.Ctx.AuthZRequest, github.com/docker/docker/pkg/authorization.Ctx.AuthZResponse, github.com/docker/docker/pkg/authorization.sendBody) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-v23v-6jw2-98fq
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-v23v-6jw2-98fq](https://osv.dev/vulnerability/GHSA-v23v-6jw2-98fq) · line 39 · SHA-256 7390f2eb685de469a6fab83459f3e95e4bf8b0fa74deee29cd2fdebb4493beeb_
 
@@ -3558,33 +3524,33 @@ _tool_output · [OSV.dev GHSA-v23v-6jw2-98fq](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-v23v-6jw2-98fq", "aliases": ["CVE-2024-41110", "GO-2024-3005"], "modified": "2026-09-10T03:50:16.900418046Z", "summary": "Authz zero length regression", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (23.0.15, 25.0.6, 26.1.5, 27.1.1).
+**Рекомендация.** Обновите до исправленной версии (23.0.15, 25.0.6, 26.1.5, 27.1.1).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06645 — github.com/docker/docker v26.1.0+incompatible is affected by GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668)
+### QSI-2026-09229 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H`)
 
-OSV.dev reports GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) for Go package github.com/docker/docker at version v26.1.0+incompatible: Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap. None of the affected functions (github.com/docker/docker/daemon.Daemon.createIfNotExists, github.com/docker/docker/daemon.Daemon.openContainerFS) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap. Ни одна из затронутых функций (github.com/docker/docker/daemon.Daemon.createIfNotExists, github.com/docker/docker/daemon.Daemon.openContainerFS) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-vp62-88p7-qqf5
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-vp62-88p7-qqf5](https://osv.dev/vulnerability/GHSA-vp62-88p7-qqf5) · line 39 · SHA-256 ebf7b606499a4435f059ad63b1893b11c29261567570d083a5aff397fdb23f99_
 
@@ -3592,33 +3558,33 @@ _tool_output · [OSV.dev GHSA-vp62-88p7-qqf5](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-vp62-88p7-qqf5", "aliases": ["CVE-2026-41568", "GO-2026-5668"], "modified": "2026-09-10T03:51:07.017544565Z", "summary": "Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06646 — github.com/docker/docker v26.1.0+incompatible is affected by GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746)
+### QSI-2026-09230 — github.com/docker/docker v26.1.0+incompatible затронут GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/docker/docker@v26.1.0+incompatible`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.2 (`CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N`)
 
-OSV.dev reports GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) for Go package github.com/docker/docker at version v26.1.0+incompatible: Docker: `PUT /containers/{id}/archive` executes container binary on the host. None of the affected functions (github.com/docker/docker/daemon.Daemon.containerExtractToDir) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) для пакета Go github.com/docker/docker версии v26.1.0+incompatible: Docker: `PUT /containers/{id}/archive` executes container binary on the host. Ни одна из затронутых функций (github.com/docker/docker/daemon.Daemon.containerExtractToDir) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-x86f-5xw2-fm2r
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-x86f-5xw2-fm2r](https://osv.dev/vulnerability/GHSA-x86f-5xw2-fm2r) · line 39 · SHA-256 5bc10da6eec232c1f263d2cf4ba5656f8695307a0c4ad5bd13ee536999509f78_
 
@@ -3626,33 +3592,33 @@ _tool_output · [OSV.dev GHSA-x86f-5xw2-fm2r](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-x86f-5xw2-fm2r", "aliases": ["CVE-2026-41567", "GO-2026-5746"], "modified": "2026-09-10T03:50:47.998689316Z", "summary": "Docker: `PUT /containers/{id}/archive` executes container binary on the host", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06649 — github.com/jackc/pgx/v5 v5.5.4 is affected by GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772)
+### QSI-2026-09233 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
-OSV.dev reports GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772) for Go package github.com/jackc/pgx/v5 at version v5.5.4: Memory-safety vulnerability in github.com/jackc/pgx/v5. None of the affected functions (github.com/jackc/pgx/v5/pgproto3.Backend.Receive, github.com/jackc/pgx/v5/pgproto3.FunctionCall.Decode) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772) для пакета Go github.com/jackc/pgx/v5 версии v5.5.4: Memory-safety vulnerability in github.com/jackc/pgx/v5. Ни одна из затронутых функций (github.com/jackc/pgx/v5/pgproto3.Backend.Receive, github.com/jackc/pgx/v5/pgproto3.FunctionCall.Decode) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-9jj7-4m8r-rfcm
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-9jj7-4m8r-rfcm](https://osv.dev/vulnerability/GHSA-9jj7-4m8r-rfcm) · line 63 · SHA-256 7a0b31d7d1db8544206a5adb2d42c055d0bd19b4d22bec4feecfab5ab9aff27b_
 
@@ -3660,33 +3626,33 @@ _tool_output · [OSV.dev GHSA-9jj7-4m8r-rfcm](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-9jj7-4m8r-rfcm", "aliases": ["CVE-2026-33816", "GO-2026-4772"], "modified": "2026-09-10T03:50:43.842159740Z", "summary": "Memory-safety vulnerability in github.com/jackc/pgx/v5.", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (5.9.0).
+**Рекомендация.** Обновите до исправленной версии (5.9.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06650 — github.com/jackc/pgx/v5 v5.5.4 is affected by GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004)
+### QSI-2026-09234 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004) for Go package github.com/jackc/pgx/v5 at version v5.5.4: pgx: SQL Injection via placeholder confusion with dollar quoted string literals. None of the affected functions (github.com/jackc/pgx/v5/internal/sanitize.Query.Sanitize, github.com/jackc/pgx/v5/internal/sanitize.SanitizeSQL) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004) для пакета Go github.com/jackc/pgx/v5 версии v5.5.4: pgx: SQL Injection via placeholder confusion with dollar quoted string literals. Ни одна из затронутых функций (github.com/jackc/pgx/v5/internal/sanitize.Query.Sanitize, github.com/jackc/pgx/v5/internal/sanitize.SanitizeSQL) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-j88v-2chj-qfwx
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-j88v-2chj-qfwx](https://osv.dev/vulnerability/GHSA-j88v-2chj-qfwx) · line 63 · SHA-256 51d4ffce36c02ebf4fc4e684785597c5615f1b4a246bb2dcf589a2afe1405744_
 
@@ -3694,33 +3660,33 @@ _tool_output · [OSV.dev GHSA-j88v-2chj-qfwx](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-j88v-2chj-qfwx", "aliases": ["CVE-2026-41889", "GO-2026-5004"], "modified": "2026-09-10T03:51:02.204456790Z", "summary": "pgx: SQL Injection via placeholder confusion with dollar quoted string literals", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:H/AT:P/PR:L/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (5.9.2).
+**Рекомендация.** Обновите до исправленной версии (5.9.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06651 — github.com/jackc/pgx/v5 v5.5.4 is affected by GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771)
+### QSI-2026-09235 — github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/jackc/pgx/v5@v5.5.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 9.8 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
-OSV.dev reports GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771) for Go package github.com/jackc/pgx/v5 at version v5.5.4: pgx contains memory-safety vulnerability. None of the affected functions (github.com/jackc/pgx/v5/pgproto3.Backend.Receive, github.com/jackc/pgx/v5/pgproto3.Bind.Decode) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771) для пакета Go github.com/jackc/pgx/v5 версии v5.5.4: pgx contains memory-safety vulnerability. Ни одна из затронутых функций (github.com/jackc/pgx/v5/pgproto3.Backend.Receive, github.com/jackc/pgx/v5/pgproto3.Bind.Decode) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-xgrm-4fwx-7qm8
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-xgrm-4fwx-7qm8](https://osv.dev/vulnerability/GHSA-xgrm-4fwx-7qm8) · line 63 · SHA-256 d767e8df58c71c89100e456cbaa841a2ce73eaefe6275f6ccfe808edc242b19d_
 
@@ -3728,33 +3694,33 @@ _tool_output · [OSV.dev GHSA-xgrm-4fwx-7qm8](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-xgrm-4fwx-7qm8", "aliases": ["CVE-2026-33815", "GO-2026-4771"], "modified": "2026-09-10T03:50:44.892822027Z", "summary": "pgx contains memory-safety vulnerability", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (5.9.0).
+**Рекомендация.** Обновите до исправленной версии (5.9.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06652 — github.com/klauspost/compress v1.17.9 is affected by GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841)
+### QSI-2026-09236 — github.com/klauspost/compress v1.17.9 затронут GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependency:Go/github.com/klauspost/compress@v1.17.9`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 26.5 / 100
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:Go/github.com/klauspost/compress@v1.17.9`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev reports GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841) for Go package github.com/klauspost/compress at version v1.17.9: Compress/s2: Integer Overflow or Wraparound and Out-of-bounds Write in compress. None of the affected functions (github.com/klauspost/compress/s2.NewDict) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841) для пакета Go github.com/klauspost/compress версии v1.17.9: Compress/s2: Integer Overflow or Wraparound and Out-of-bounds Write in compress. Ни одна из затронутых функций (github.com/klauspost/compress/s2.NewDict) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-259r-337f-4rfw
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-259r-337f-4rfw](https://osv.dev/vulnerability/GHSA-259r-337f-4rfw) · line 68 · SHA-256 b415f1a2f3e954680bf032db6b47454a035b6a2af6b7a5a152588cc24bafce59_
 
@@ -3762,33 +3728,33 @@ _tool_output · [OSV.dev GHSA-259r-337f-4rfw](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-259r-337f-4rfw", "aliases": ["CVE-2026-63209", "GO-2026-5841"], "modified": "2026-10-20T14:45:03.782718646Z", "summary": "Compress/s2: Integer Overflow or Wraparound and Out-of-bounds Write in compress", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (1.18.7).
+**Рекомендация.** Обновите до исправленной версии (1.18.7).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06586 — atty 0.2.14 is affected by GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145)
+### QSI-2026-09171 — atty 0.2.14 затронут GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/atty@0.2.14`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 19.9 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/atty@0.2.14`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 22.4 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145) for crates.io package atty at version 0.2.14: atty potential unaligned read. The advisory affects only windows targets; the repository declares the Rust targets riscv32im-unknown-none-elf, x86_64-unknown-linux-gnu.
+OSV.dev сообщает GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145) для пакета crates.io atty версии 0.2.14: atty potential unaligned read. Бюллетень касается только целевых платформ windows; репозиторий объявляет цели сборки Rust riscv32im-unknown-none-elf, x86_64-unknown-linux-gnu.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-g98v-hv3f-hcfr
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-g98v-hv3f-hcfr](https://osv.dev/vulnerability/GHSA-g98v-hv3f-hcfr) · manifest · SHA-256 9228a57a9a8b7f41b438674902973bd538b3153409c5cadbe3da3a6d7bda8588_
 
@@ -3796,33 +3762,33 @@ _tool_output · [OSV.dev GHSA-g98v-hv3f-hcfr](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-g98v-hv3f-hcfr", "aliases": ["RUSTSEC-2021-0145"], "modified": "2026-09-10T03:49:53.897184297Z", "summary": "atty potential unaligned read", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
+**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06588 — bincode 1.3.3: informational advisory RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-09173 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `dependency:crates.io/bincode@1.3.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.7 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `dependency:crates.io/bincode@1.3.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 19.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2025-0141 for crates.io package bincode at version 1.3.3 as informational (unmaintained): Bincode is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2025-0141 для пакета crates.io bincode версии 1.3.3 как информационный (unmaintained): Bincode is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0141
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSEC-2025-0141) · manifest · SHA-256 2d4ec91d374dc1d163952a86f9da46edd4e89ca1a0fd828fd523b2b1dcfe3a14_
 
@@ -3830,33 +3796,33 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2025-0141", "aliases": [], "modified": "2026-01-16T11:07:28.867553Z", "summary": "Bincode is unmaintained", "severity": null, "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06589 — bincode 2.0.1: informational advisory RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-09174 — bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `dependency:crates.io/bincode@2.0.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 18.7 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `dependency:crates.io/bincode@2.0.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 19.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2025-0141 for crates.io package bincode at version 2.0.1 as informational (unmaintained): Bincode is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2025-0141 для пакета crates.io bincode версии 2.0.1 как информационный (unmaintained): Bincode is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0141
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSEC-2025-0141) · manifest · SHA-256 2d4ec91d374dc1d163952a86f9da46edd4e89ca1a0fd828fd523b2b1dcfe3a14_
 
@@ -3864,33 +3830,33 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2025-0141", "aliases": [], "modified": "2026-01-16T11:07:28.867553Z", "summary": "Bincode is unmaintained", "severity": null, "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06618 — tokio 1.52.3 is affected by RUSTSEC-2026-0386 (no severity rating)
+### QSI-2026-09202 — tokio 1.52.3 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/tokio@1.52.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 15.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/tokio@1.52.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0386 for crates.io package tokio at version 1.52.3: `AsyncFd::new` and related constructors violate I/O safety. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.52.3: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0386
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSEC-2026-0386) · manifest · SHA-256 1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6_
 
@@ -3898,33 +3864,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0386", "aliases": [], "modified": "2026-10-23T14:45:03.847864944Z", "summary": "`AsyncFd::new` and related constructors violate I/O safety", "severity": null, "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (1.51.6, 1.53.3) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (1.51.6, 1.53.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06634 — zstd-sys 2.0.16+zstd.1.5.7 is affected by RUSTSEC-2026-0410 (no severity rating)
+### QSI-2026-09218 — zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 15.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0410 for crates.io package zstd-sys at version 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory affects only wasm32 targets; the repository declares the Rust targets riscv32im-unknown-none-elf, x86_64-unknown-linux-gnu.
+OSV.dev сообщает RUSTSEC-2026-0410 для пакета crates.io zstd-sys версии 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень касается только целевых платформ wasm32; репозиторий объявляет цели сборки Rust riscv32im-unknown-none-elf, x86_64-unknown-linux-gnu.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0410
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSEC-2026-0410) · manifest · SHA-256 1e892df4ce7c9911f01547e4a80d1fb3ea5a27b8c1c89c0514917e08bbf3bdc5_
 
@@ -3932,67 +3898,67 @@ _tool_output · [OSV.dev RUSTSEC-2026-0410](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0410", "aliases": [], "modified": "2026-10-26T14:00:05.788985783Z", "summary": "WebAssembly allocator shim corrupts memory on allocation failure", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (2.1.2) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (2.1.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06584 — No post-quantum capable cryptographic library detected
+### QSI-2026-09169 — Не обнаружено криптобиблиотек с поддержкой PQC
 
-- Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies`
-- Data source: dependency manifests
-- Detection method: Dependency name matching.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 12.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies`
+- Источник данных: dependency manifests
+- Метод обнаружения: Сопоставление названий зависимостей.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 13.3 / 100
+- CVSS v3.1: неприменимо
 
-Across 16 dependency manifests, QSI found crypto libraries (@noble/curves, @noble/hashes, @noble/secp256k1, ecdsa, elliptic, ethers, golang.org/x/crypto, k256, openssl, p256, ring, rustls, secp256k1, tweetnacl, web3) but none from its PQC-capable list.
+В 16 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, bls12_381, ecdsa, elliptic, ethers, ff, golang.org/x/crypto, group, halo2, halo2_proofs, jubjub, k256, openssl), но ни одной из списка поддерживающих PQC.
 
-**Potential impact.** Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.
+**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
-**Reproduction steps.**
-
-```
-Review the dependency manifests listed in the evidence.
-```
-
-**Evidence.**
-
-_dependency · Cargo.lock, Cargo.toml, bridge-history-api/go.mod, common/go.mod, coordinator/go.mod, crates/l2geth/Cargo.toml, crates/libzkp/Cargo.toml, crates/libzkp_c/Cargo.toml, crates/prover-bin/Cargo.toml, database/go.mod, rollup/go.mod, scroll-contracts/lib/solmate/package-lock.json, scroll-contracts/lib/solmate/package.json, scroll-contracts/package.json, scroll-contracts/src/package.json, scroll-contracts/yarn.lock · SHA-256 6dc4820b03b33ecd755a71f9fc07e04c0cfd322fb796f7cd9d969897e277deaa_
+**Шаги воспроизведения.**
 
 ```
-Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, ecdsa, elliptic, ethers, golang.org/x/crypto, k256, openssl, p256, ring, rustls, secp256k1, tweetnacl, web3. PQC support depends on the version for: openssl
+Изучите перечисленные в доказательстве манифесты.
 ```
 
-**Limitations of the check.** Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.
+**Подтверждающие доказательства.**
 
-**Recommendation.** Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).
+_dependency · Cargo.lock, Cargo.toml, bridge-history-api/go.mod, common/go.mod, coordinator/go.mod, crates/l2geth/Cargo.toml, crates/libzkp/Cargo.toml, crates/libzkp_c/Cargo.toml, crates/prover-bin/Cargo.toml, database/go.mod, rollup/go.mod, scroll-contracts/lib/solmate/package-lock.json, scroll-contracts/lib/solmate/package.json, scroll-contracts/package.json, scroll-contracts/src/package.json, scroll-contracts/yarn.lock · SHA-256 ef277622fb248d216b2888b625b3f7717bf1d6447d41b0de6d0d8739e3eade2d_
 
-**Retest procedure.** Re-scan after upgrades.
+```
+Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, bls12_381, ecdsa, elliptic, ethers, ff, golang.org/x/crypto, group, halo2, halo2_proofs, jubjub, k256, openssl, p256, pasta_curves, ring, rustls, secp256k1, tweetnacl, web3. PQC support depends on the version for: openssl
+```
 
-### QSI-2026-06585 — ansi_term 0.12.1: informational advisory RUSTSEC-2021-0139 (unmaintained)
+**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/ansi_term@0.12.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
 
-OSV.dev lists RUSTSEC-2021-0139 for crates.io package ansi_term at version 0.12.1 as informational (unmaintained): ansi_term is Unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+**Повторная проверка.** Повторите сканирование после обновлений.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+### QSI-2026-09170 — ansi_term 0.12.1: информационный бюллетень RUSTSEC-2021-0139 (unmaintained)
 
-**Reproduction steps.**
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/ansi_term@0.12.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev отмечает RUSTSEC-2021-0139 для пакета crates.io ansi_term версии 0.12.1 как информационный (unmaintained): ansi_term is Unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
+
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
+
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2021-0139
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2021-0139](https://osv.dev/vulnerability/RUSTSEC-2021-0139) · manifest · SHA-256 de5d4542b27afa47634a32a636aaf6122580e13132fee8a7d4fc9eec3cbb2e7f_
 
@@ -4000,33 +3966,33 @@ _tool_output · [OSV.dev RUSTSEC-2021-0139](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2021-0139", "aliases": [], "modified": "2023-09-06T22:52:31Z", "summary": "ansi_term is Unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06587 — atty 0.2.14: informational advisory RUSTSEC-2024-0375 (unmaintained)
+### QSI-2026-09172 — atty 0.2.14: информационный бюллетень RUSTSEC-2024-0375 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/atty@0.2.14`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/atty@0.2.14`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0375 for crates.io package atty at version 0.2.14 as informational (unmaintained): `atty` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0375 для пакета crates.io atty версии 0.2.14 как информационный (unmaintained): `atty` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0375
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0375](https://osv.dev/vulnerability/RUSTSEC-2024-0375) · manifest · SHA-256 39d224b85bb38fb881a0b8e5f3a7a1bf4bfbc155c7be81a36b13991da6de9490_
 
@@ -4034,33 +4000,33 @@ _tool_output · [OSV.dev RUSTSEC-2024-0375](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0375", "aliases": [], "modified": "2024-09-26T12:26:22Z", "summary": "`atty` is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06594 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-09177 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/derivative@2.2.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/derivative@2.2.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0388 for crates.io package derivative at version 2.2.0 as informational (unmaintained): `derivative` is unmaintained; consider using an alternative. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0388 для пакета crates.io derivative версии 2.2.0 как информационный (unmaintained): `derivative` is unmaintained; consider using an alternative. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0388
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSEC-2024-0388) · manifest · SHA-256 3438f6c3cab3309fb6388762a19097619076b18baff08e3e9ab34fa969478d55_
 
@@ -4068,33 +4034,33 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0388", "aliases": [], "modified": "2024-11-10T13:34:40Z", "summary": "`derivative` is unmaintained; consider using an alternative", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06595 — fxhash 0.2.1: informational advisory RUSTSEC-2025-0057 (unmaintained)
+### QSI-2026-09178 — fxhash 0.2.1: информационный бюллетень RUSTSEC-2025-0057 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/fxhash@0.2.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/fxhash@0.2.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2025-0057 for crates.io package fxhash at version 0.2.1 as informational (unmaintained): fxhash - no longer maintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2025-0057 для пакета crates.io fxhash версии 0.2.1 как информационный (unmaintained): fxhash - no longer maintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0057
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2025-0057](https://osv.dev/vulnerability/RUSTSEC-2025-0057) · manifest · SHA-256 c45d3d45f6cc6072f9f3ea781a96fb14cfe9cb6b704b66765b32d3eb712a646e_
 
@@ -4102,33 +4068,33 @@ _tool_output · [OSV.dev RUSTSEC-2025-0057](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2025-0057", "aliases": [], "modified": "2025-09-05T19:09:01Z", "summary": "fxhash - no longer maintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06596 — generational-arena 0.2.9: informational advisory RUSTSEC-2024-0014 (unmaintained)
+### QSI-2026-09179 — generational-arena 0.2.9: информационный бюллетень RUSTSEC-2024-0014 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/generational-arena@0.2.9`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/generational-arena@0.2.9`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0014 for crates.io package generational-arena at version 0.2.9 as informational (unmaintained): `generational-arena` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0014 для пакета crates.io generational-arena версии 0.2.9 как информационный (unmaintained): `generational-arena` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0014
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0014](https://osv.dev/vulnerability/RUSTSEC-2024-0014) · manifest · SHA-256 6de48eaa3191b0b0ab99e1d0875c9a8fc60eb7a93700f740cc02617df7efd54b_
 
@@ -4136,33 +4102,33 @@ _tool_output · [OSV.dev RUSTSEC-2024-0014](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0014", "aliases": [], "modified": "2024-02-18T04:06:15Z", "summary": "`generational-arena` is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06598 — instant 0.1.13: informational advisory RUSTSEC-2024-0384 (unmaintained)
+### QSI-2026-09181 — instant 0.1.13: информационный бюллетень RUSTSEC-2024-0384 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/instant@0.1.13`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/instant@0.1.13`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0384 for crates.io package instant at version 0.1.13 as informational (unmaintained): `instant` is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0384 для пакета crates.io instant версии 0.1.13 как информационный (unmaintained): `instant` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0384
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0384](https://osv.dev/vulnerability/RUSTSEC-2024-0384) · manifest · SHA-256 7f4b719b4e4bb232235b9d7f05f5a0b3918208f119164caa2133d8b6ed869cee_
 
@@ -4170,33 +4136,33 @@ _tool_output · [OSV.dev RUSTSEC-2024-0384](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0384", "aliases": [], "modified": "2024-11-10T13:10:28Z", "summary": "`instant` is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06599 — libsecp256k1 0.7.2: informational advisory RUSTSEC-2025-0161 (unmaintained)
+### QSI-2026-09182 — libsecp256k1 0.7.2: информационный бюллетень RUSTSEC-2025-0161 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/libsecp256k1@0.7.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/libsecp256k1@0.7.2`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2025-0161 for crates.io package libsecp256k1 at version 0.7.2 as informational (unmaintained): libsecp256k1 is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2025-0161 для пакета crates.io libsecp256k1 версии 0.7.2 как информационный (unmaintained): libsecp256k1 is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2025-0161
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2025-0161](https://osv.dev/vulnerability/RUSTSEC-2025-0161) · manifest · SHA-256 5a68aff0a0c8df7049664eab824bf743ee2c13e46cc82b6b7741a61779b10920_
 
@@ -4204,33 +4170,33 @@ _tool_output · [OSV.dev RUSTSEC-2025-0161](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2025-0161", "aliases": [], "modified": "2026-04-14T11:30:08.962845Z", "summary": "libsecp256k1 is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06605 — paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-09189 — paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/paste@1.0.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/paste@1.0.15`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0436 for crates.io package paste at version 1.0.15 as informational (unmaintained): paste - no longer maintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0436 для пакета crates.io paste версии 1.0.15 как информационный (unmaintained): paste - no longer maintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0436
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSEC-2024-0436) · manifest · SHA-256 ea867adb8ba26c96c3779becf55b3de25d46f37f23ab55131e09c98a8b0b9975_
 
@@ -4238,33 +4204,33 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0436", "aliases": [], "modified": "2026-01-27T22:03:15.694766Z", "summary": "paste - no longer maintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-06606 — proc-macro-error2 2.0.1: informational advisory RUSTSEC-2026-0173 (unmaintained)
+### QSI-2026-09190 — proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/proc-macro-error2@2.0.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 06:18 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/proc-macro-error2@2.0.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 23:51 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2026-0173 for crates.io package proc-macro-error2 at version 2.0.1 as informational (unmaintained): proc-macro-error2 is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2026-0173 для пакета crates.io proc-macro-error2 версии 2.0.1 как информационный (unmaintained): proc-macro-error2 is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0173
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0173](https://osv.dev/vulnerability/RUSTSEC-2026-0173) · manifest · SHA-256 0ecc182141bd9effc6d35bc24dc20c57e6473fb3877ad59a5fbdb1cd55b56528_
 
@@ -4272,205 +4238,204 @@ _tool_output · [OSV.dev RUSTSEC-2026-0173](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0173", "aliases": [], "modified": "2026-06-07T21:00:04.318567692Z", "summary": "proc-macro-error2 is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
 
-## 8. Post-quantum assessment
+## 8. Постквантовая оценка
 
-| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+| | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Data/key lifetime x | 5 | 10 |
-| Migration time y | 5 | 5 |
-| Assumed years to CRQC z | 12 (central) | 12 |
-| x + y − z | -2 → tight margin | 3 → migration would finish too late under this scenario |
-#### Where z comes from
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
+| Принятое число лет до CRQC z | 8 (early) | 8 |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
+#### Откуда взято z
 
-Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
 
-| Within | Likelihood | The report's wording |
+| В пределах | Вероятность | Формулировка отчёта |
 |---|---|---|
-| 5 years | ~15% | averaged estimate |
-| 10 years | 28-49% | quite possible |
-| 15 years | 51-70% | likely |
+| 5 лет | ~15% | усреднённая оценка |
+| 10 лет | 28-49% | вполне возможно |
+| 15 лет | 51-70% | вероятно |
 
-**Why this scenario (central, z = 12):** Between the 10-year band (28-49%) and the 15-year band (51-70%): roughly where the experts' averaged likelihood crosses one half. More than half of the respondents (13 of 26) already put the likelihood at 50% or more for some horizon.
-_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Web3 project”, not the client's figures; with the client's actual lifetimes the verdict can change._
+**Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
-### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
+### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
 
-**Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
+_Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
 
-### What the quantum-vulnerable algorithms do
+### Что делают квантово-уязвимые алгоритмы
 
-| Role | Algorithms (files) | ID | First step |
+| Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (2) | QSI-2026-06541 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1) | QSI-2026-06540 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | ECDSA (2) | QSI-2026-06539 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-09126 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | ECDSA (1) | QSI-2026-09125 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
+| **роль не определена** | ECDSA (2) | QSI-2026-09124 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
-_Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
-No readiness questionnaire was completed for this project.
+_Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
+Анкета готовности для проекта не заполнялась.
 
-### Quantum algorithms relevant to this inventory
+### Квантовые алгоритмы, значимые для этой инвентаризации
 
-| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+| Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | BN254 (alt_bn128) (1) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BN254 (alt_bn128) (1), ECDSA (6) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | Keccak-256 (36), SHA-2 (1), STARK (FRI) (7) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | Keccak-256 (36), SHA-2 (1), STARK (FRI) (7) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BN254 (alt_bn128) (1) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BN254 (alt_bn128) (1), ECDSA (6) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (36), Poseidon (4), SHA-2 (1), STARK (FRI) (7) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (36), Poseidon (4), SHA-2 (1), STARK (FRI) (7) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
-_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+_Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
 
-## 9. Limitations and assumptions
+## 9. Ограничения и допущения
 
-- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
-- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
-- tls_code: 5 (examples: bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS)
-- slither: 152 (examples: slither is not installed on the server (pip install slither-analyzer + solc))
+- Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
+- z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
+- tls_code: 5 (примеры: bridge-history-api/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; common/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS; coordinator/go.mod: go 1.22 — before Go 1.24 crypto/tls offers no X25519MLKEM768 by default; relevant if the module uses TLS)
+- slither: 152 (примеры: slither is not installed on the server (pip install slither-analyzer + solc))
 
-## 10. Remediation plan / Priorities for 30, 60 and 90 days
+## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
-### 30 days
+### 30 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-06538 | Remove certificate-verification overrides in bridge-history-api/cmd/api/app/app.go. | root-cause fix | No verification overrides remain outside explicitly marked test code. |
-| P1 | QSI-2026-06547 | Apply checks-effects-interactions and/or ReentrancyGuard. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P1 | QSI-2026-06548 | Apply checks-effects-interactions and/or ReentrancyGuard. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P1 | QSI-2026-06562 | Apply checks-effects-interactions and/or ReentrancyGuard. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P1 | QSI-2026-06568 | Use OpenZeppelin Initializable (initializer modifier) and disable initializers in the implementation constructor. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P1 | QSI-2026-06571 | Use OpenZeppelin Initializable (initializer modifier) and disable initializers in the implementation constructor. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P2 | QSI-2026-06635 | Upgrade github.com/gin-contrib/cors to a fixed version (1.6.0). | root-cause fix | Dependency scan no longer reports GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955). |
-| P2 | QSI-2026-06636 | Upgrade github.com/btcsuite/btcd to a fixed version (0.24.2-beta.rc1). | root-cause fix | Dependency scan no longer reports GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189). |
-| P2 | QSI-2026-06609 | Upgrade quinn-proto to a fixed version (0.11.18). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0340. |
-| P2 | QSI-2026-06610 | Upgrade quinn-proto to a fixed version (0.11.17). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0341. |
-| P2 | QSI-2026-06638 | Upgrade github.com/btcsuite/btcd to a fixed version (0.24.0). | root-cause fix | Dependency scan no longer reports GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818). |
-| P2 | QSI-2026-06642 | Upgrade github.com/docker/docker to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883). |
-| P2 | QSI-2026-06648 | Upgrade github.com/gorilla/websocket to a fixed version (1.5.3). | root-cause fix | Dependency scan no longer reports GHSA-w67g-5rqw-f597 (GO-2026-6278). |
-| P2 | QSI-2026-06590 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-06591 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-06592 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-06613 | Upgrade rustls to a fixed version (0.23.45). | root-cause fix | Dependency scan no longer reports GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
-| P2 | QSI-2026-06614 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-06619 | Upgrade tracing-subscriber to a fixed version (0.3.20). | root-cause fix | Dependency scan no longer reports GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
-| P2 | QSI-2026-06641 | Upgrade github.com/docker/docker to a fixed version (25.0.13, 28.0.0). | root-cause fix | Dependency scan no longer reports GHSA-4vq8-7jfc-9cvp (CVE-2025-54410). |
-| P2 | QSI-2026-06600 | Upgrade lru to a fixed version (0.16.3). | root-cause fix | Dependency scan no longer reports GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
-| P2 | QSI-2026-06602 | Upgrade lru to a fixed version (0.16.3). | root-cause fix | Dependency scan no longer reports GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
-| P2 | QSI-2026-06604 | Upgrade p3-symmetric to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-3g92-f9ch-qjcm. |
-| P2 | QSI-2026-06616 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-06615 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
-| P2 | QSI-2026-06637 | Upgrade github.com/btcsuite/btcd to a fixed version (0.23.2). | root-cause fix | Dependency scan no longer reports GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098). |
-| P2 | QSI-2026-06639 | Upgrade github.com/consensys/gnark-crypto to a fixed version (0.18.1, 0.19.2). | root-cause fix | Dependency scan no longer reports GHSA-fj2x-735w-74vq (GO-2025-4087). |
-| P2 | QSI-2026-06640 | Upgrade github.com/docker/cli to a fixed version (29.2.0). | root-cause fix | Dependency scan no longer reports GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610). |
-| P2 | QSI-2026-06643 | Upgrade github.com/docker/docker to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617). |
-| P2 | QSI-2026-06644 | Upgrade github.com/docker/docker to a fixed version (23.0.15, 25.0.6, 26.1.5, 27.1.1). | root-cause fix | Dependency scan no longer reports GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005). |
-| P2 | QSI-2026-06645 | Upgrade github.com/docker/docker to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668). |
-| P2 | QSI-2026-06646 | Upgrade github.com/docker/docker to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746). |
-| P2 | QSI-2026-06649 | Upgrade github.com/jackc/pgx/v5 to a fixed version (5.9.0). | root-cause fix | Dependency scan no longer reports GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772). |
-| P2 | QSI-2026-06650 | Upgrade github.com/jackc/pgx/v5 to a fixed version (5.9.2). | root-cause fix | Dependency scan no longer reports GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004). |
-| P2 | QSI-2026-06651 | Upgrade github.com/jackc/pgx/v5 to a fixed version (5.9.0). | root-cause fix | Dependency scan no longer reports GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771). |
-| P2 | QSI-2026-06652 | Upgrade github.com/klauspost/compress to a fixed version (1.18.7). | root-cause fix | Dependency scan no longer reports GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841). |
-| P2 | QSI-2026-06586 | Upgrade atty to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145). |
-### 60 days
+| P1 | QSI-2026-09123 | Удалите отключение проверки сертификатов в bridge-history-api/cmd/api/app/app.go. | устранение первопричины | Отключений проверки не осталось вне явно помеченного тестового кода. |
+| P1 | QSI-2026-09132 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-09133 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-09147 | Примените шаблон checks-effects-interactions и/или ReentrancyGuard. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-09153 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-09156 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-09219 | Обновите github.com/gin-contrib/cors до исправленной версии (1.6.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955). |
+| P2 | QSI-2026-09220 | Обновите github.com/btcsuite/btcd до исправленной версии (0.24.2-beta.rc1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189). |
+| P2 | QSI-2026-09193 | Обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0340. |
+| P2 | QSI-2026-09194 | Обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0341. |
+| P2 | QSI-2026-09222 | Обновите github.com/btcsuite/btcd до исправленной версии (0.24.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818). |
+| P2 | QSI-2026-09226 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883). |
+| P2 | QSI-2026-09232 | Обновите github.com/gorilla/websocket до исправленной версии (1.5.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w67g-5rqw-f597 (GO-2026-6278). |
+| P2 | QSI-2026-09175 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-09197 | Обновите rustls до исправленной версии (0.23.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
+| P2 | QSI-2026-09198 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-09203 | Обновите tracing-subscriber до исправленной версии (0.3.20). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
+| P2 | QSI-2026-09225 | Обновите github.com/docker/docker до исправленной версии (25.0.13, 28.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4vq8-7jfc-9cvp (CVE-2025-54410). |
+| P2 | QSI-2026-09184 | Обновите lru до исправленной версии (0.16.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
+| P2 | QSI-2026-09186 | Обновите lru до исправленной версии (0.16.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
+| P2 | QSI-2026-09188 | Обновите p3-symmetric до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g92-f9ch-qjcm. |
+| P2 | QSI-2026-09200 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-09199 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
+| P2 | QSI-2026-09221 | Обновите github.com/btcsuite/btcd до исправленной версии (0.23.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098). |
+| P2 | QSI-2026-09223 | Обновите github.com/consensys/gnark-crypto до исправленной версии (0.18.1, 0.19.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fj2x-735w-74vq (GO-2025-4087). |
+| P2 | QSI-2026-09224 | Обновите github.com/docker/cli до исправленной версии (29.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610). |
+| P2 | QSI-2026-09227 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617). |
+| P2 | QSI-2026-09228 | Обновите github.com/docker/docker до исправленной версии (23.0.15, 25.0.6, 26.1.5, 27.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v23v-6jw2-98fq (CVE-2024-41110, GO-2024-3005). |
+| P2 | QSI-2026-09229 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668). |
+| P2 | QSI-2026-09230 | Обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746). |
+| P2 | QSI-2026-09233 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9jj7-4m8r-rfcm (CVE-2026-33816, GO-2026-4772). |
+| P2 | QSI-2026-09234 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004). |
+| P2 | QSI-2026-09235 | Обновите github.com/jackc/pgx/v5 до исправленной версии (5.9.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgrm-4fwx-7qm8 (CVE-2026-33815, GO-2026-4771). |
+| P2 | QSI-2026-09236 | Обновите github.com/klauspost/compress до исправленной версии (1.18.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841). |
+| P2 | QSI-2026-09171 | Обновите atty до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145). |
+### 60 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-06544 | Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-06593 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-06597 | Triage RUSTSEC-2026-0258; upgrade h2 to a fixed version (0.4.16) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0258, or the triage is recorded. |
-| P3 | QSI-2026-06601 | Triage RUSTSEC-2026-0253; upgrade lru to a fixed version (0.18.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0253, or the triage is recorded. |
-| P3 | QSI-2026-06603 | Triage RUSTSEC-2026-0253; upgrade lru to a fixed version (0.18.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0253, or the triage is recorded. |
-| P3 | QSI-2026-06607 | Triage RUSTSEC-2026-0338; upgrade quinn-proto to a fixed version (0.11.18) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0338, or the triage is recorded. |
-| P3 | QSI-2026-06608 | Triage RUSTSEC-2026-0339; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0339, or the triage is recorded. |
-| P3 | QSI-2026-06611 | Triage RUSTSEC-2026-0342; upgrade quinn-proto to a fixed version (0.11.17) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0342, or the triage is recorded. |
-| P3 | QSI-2026-06612 | Triage RUSTSEC-2026-0220; upgrade ruint to a fixed version (1.20.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0220, or the triage is recorded. |
-| P3 | QSI-2026-06617 | Triage RUSTSEC-2026-0382 (CVE-2026-111943); upgrade rustls-webpki to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0382 (CVE-2026-111943), or the triage is recorded. |
-| P3 | QSI-2026-06620 | Triage RUSTSEC-2026-0381 (CVE-2026-111943); upgrade webpki-roots to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0381 (CVE-2026-111943), or the triage is recorded. |
-| P3 | QSI-2026-06621 | Triage RUSTSEC-2026-0391; upgrade zstd to a fixed version (0.14.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0391, or the triage is recorded. |
-| P3 | QSI-2026-06622 | Triage RUSTSEC-2026-0395; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0395, or the triage is recorded. |
-| P3 | QSI-2026-06623 | Triage RUSTSEC-2026-0396; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0396, or the triage is recorded. |
-| P3 | QSI-2026-06624 | Triage RUSTSEC-2026-0397; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0397, or the triage is recorded. |
-| P3 | QSI-2026-06625 | Triage RUSTSEC-2026-0398; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0398, or the triage is recorded. |
-| P3 | QSI-2026-06626 | Triage RUSTSEC-2026-0399; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0399, or the triage is recorded. |
-| P3 | QSI-2026-06627 | Triage RUSTSEC-2026-0400; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0400, or the triage is recorded. |
-| P3 | QSI-2026-06628 | Triage RUSTSEC-2026-0401; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0401, or the triage is recorded. |
-| P3 | QSI-2026-06629 | Triage RUSTSEC-2026-0402; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0402, or the triage is recorded. |
-| P3 | QSI-2026-06630 | Triage RUSTSEC-2026-0403; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0403, or the triage is recorded. |
-| P3 | QSI-2026-06631 | Triage RUSTSEC-2026-0404; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0404, or the triage is recorded. |
-| P3 | QSI-2026-06632 | Triage RUSTSEC-2026-0405; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0405, or the triage is recorded. |
-| P3 | QSI-2026-06633 | Triage RUSTSEC-2026-0406; upgrade zstd-safe to a fixed version (8.2.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0406, or the triage is recorded. |
-| P3 | QSI-2026-06647 | Triage GO-2026-4887 (CVE-2026-34040); upgrade github.com/docker/docker to a fixed version (none published yet; see the advisory for mitigations) if it applies. | root-cause fix | Dependency scan no longer reports GO-2026-4887 (CVE-2026-34040), or the triage is recorded. |
-| P3 | QSI-2026-06618 | Triage RUSTSEC-2026-0386; upgrade tokio to a fixed version (1.51.6, 1.53.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0386, or the triage is recorded. |
-| P3 | QSI-2026-06634 | Triage RUSTSEC-2026-0410; upgrade zstd-sys to a fixed version (2.1.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0410, or the triage is recorded. |
-### 90 days
+| P2 | QSI-2026-09129 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-09176 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-09180 | Разберите RUSTSEC-2026-0258; при необходимости обновите h2 до исправленной версии (0.4.16). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0258 или результат разбора записан. |
+| P3 | QSI-2026-09183 | Разберите RUSTSEC-2026-0418; при необходимости обновите libz-sys до исправленной версии (1.1.31). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0418 или результат разбора записан. |
+| P3 | QSI-2026-09185 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
+| P3 | QSI-2026-09187 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
+| P3 | QSI-2026-09191 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
+| P3 | QSI-2026-09192 | Разберите RUSTSEC-2026-0339; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0339 или результат разбора записан. |
+| P3 | QSI-2026-09195 | Разберите RUSTSEC-2026-0342; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0342 или результат разбора записан. |
+| P3 | QSI-2026-09196 | Разберите RUSTSEC-2026-0220; при необходимости обновите ruint до исправленной версии (1.20.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0220 или результат разбора записан. |
+| P3 | QSI-2026-09201 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-09204 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-09205 | Разберите RUSTSEC-2026-0391; при необходимости обновите zstd до исправленной версии (0.14.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0391 или результат разбора записан. |
+| P3 | QSI-2026-09206 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
+| P3 | QSI-2026-09207 | Разберите RUSTSEC-2026-0396; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0396 или результат разбора записан. |
+| P3 | QSI-2026-09208 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
+| P3 | QSI-2026-09209 | Разберите RUSTSEC-2026-0398; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0398 или результат разбора записан. |
+| P3 | QSI-2026-09210 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
+| P3 | QSI-2026-09211 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
+| P3 | QSI-2026-09212 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
+| P3 | QSI-2026-09213 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
+| P3 | QSI-2026-09214 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
+| P3 | QSI-2026-09215 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
+| P3 | QSI-2026-09216 | Разберите RUSTSEC-2026-0405; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0405 или результат разбора записан. |
+| P3 | QSI-2026-09217 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
+| P3 | QSI-2026-09231 | Разберите GO-2026-4887 (CVE-2026-34040); при необходимости обновите github.com/docker/docker до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает GO-2026-4887 (CVE-2026-34040) или результат разбора записан. |
+| P3 | QSI-2026-09202 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+| P3 | QSI-2026-09218 | Разберите RUSTSEC-2026-0410; при необходимости обновите zstd-sys до исправленной версии (2.1.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан. |
+### 90 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06580 | Add ? usages at contract:scroll-contracts/src/libraries/verifier/RollupVerifier.sol to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06541 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06539 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06540 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06542 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-06545 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-06546 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-06575 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06580 | Plan migration of ? to ? (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ? or a hybrid scheme in use. |
-| P4 | QSI-2026-06541 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06539 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06540 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06543 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06549 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06550 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06551 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06552 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06553 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06554 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06555 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06556 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06557 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06558 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06559 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06560 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06561 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06563 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06564 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06565 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06566 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06567 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06569 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06570 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06572 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06573 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06574 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06576 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06577 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06578 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06579 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06581 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06582 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06583 | Use a multisig/timelock for admin roles and document them. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P4 | QSI-2026-06588 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
-| P4 | QSI-2026-06589 | Replace bincode with a maintained alternative or record why it stays. | root-cause fix | bincode replaced, or the decision recorded. |
-| P4 | QSI-2026-06585 | Replace ansi_term with a maintained alternative or record why it stays. | root-cause fix | ansi_term replaced, or the decision recorded. |
-| P4 | QSI-2026-06587 | Replace atty with a maintained alternative or record why it stays. | root-cause fix | atty replaced, or the decision recorded. |
-| P4 | QSI-2026-06594 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
-| P4 | QSI-2026-06595 | Replace fxhash with a maintained alternative or record why it stays. | root-cause fix | fxhash replaced, or the decision recorded. |
-| P4 | QSI-2026-06596 | Replace generational-arena with a maintained alternative or record why it stays. | root-cause fix | generational-arena replaced, or the decision recorded. |
-| P4 | QSI-2026-06598 | Replace instant with a maintained alternative or record why it stays. | root-cause fix | instant replaced, or the decision recorded. |
-| P4 | QSI-2026-06599 | Replace libsecp256k1 with a maintained alternative or record why it stays. | root-cause fix | libsecp256k1 replaced, or the decision recorded. |
-| P4 | QSI-2026-06605 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
-| P4 | QSI-2026-06606 | Replace proc-macro-error2 with a maintained alternative or record why it stays. | root-cause fix | proc-macro-error2 replaced, or the decision recorded. |
+| P3 | QSI-2026-09126 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-09124 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-09125 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-09165 | Внесите использования ? в contract:scroll-contracts/src/libraries/verifier/RollupVerifier.sol в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-09127 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-09130 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-09131 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-09160 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09126 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-09124 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-09125 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-09165 | Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-09128 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09134 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09135 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09136 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09137 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09138 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09139 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09140 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09141 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09142 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09143 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09144 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09145 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09146 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09148 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09149 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09150 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09151 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09152 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09154 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09155 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09157 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09158 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09159 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09161 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09162 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09163 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09164 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09166 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09167 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09168 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-09173 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-09174 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-09170 | Замените ansi_term поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ansi_term заменён или решение зафиксировано. |
+| P4 | QSI-2026-09172 | Замените atty поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atty заменён или решение зафиксировано. |
+| P4 | QSI-2026-09177 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
+| P4 | QSI-2026-09178 | Замените fxhash поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | fxhash заменён или решение зафиксировано. |
+| P4 | QSI-2026-09179 | Замените generational-arena поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | generational-arena заменён или решение зафиксировано. |
+| P4 | QSI-2026-09181 | Замените instant поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | instant заменён или решение зафиксировано. |
+| P4 | QSI-2026-09182 | Замените libsecp256k1 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | libsecp256k1 заменён или решение зафиксировано. |
+| P4 | QSI-2026-09189 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
+| P4 | QSI-2026-09190 | Замените proc-macro-error2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error2 заменён или решение зафиксировано. |
 
-## 11. Tools used
+## 11. Использованные инструменты
 
 - blockchain 1.0.0
 - certificates 1.1.0
@@ -4485,7 +4450,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - qsi-engine 1.2.0
 - OSV.dev API v1
 
-## 12. Sources and normative documents
+## 12. Источники и нормативные документы
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
@@ -4526,7 +4491,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 37. OSV advisory GHSA-j88v-2chj-qfwx — OSV.dev. <https://osv.dev/vulnerability/GHSA-j88v-2chj-qfwx> (modified 2026-09-10T03:51:02.204456790Z)
 38. OSV advisory GHSA-p436-gjf2-799p — OSV.dev. <https://osv.dev/vulnerability/GHSA-p436-gjf2-799p> (modified 2026-09-10T03:50:39.956404854Z)
 39. OSV advisory GHSA-pxq6-2prw-chj9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-pxq6-2prw-chj9> (modified 2026-09-10T03:50:40.571293679Z)
-40. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
+40. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-10-30T15:45:11.580215361Z)
 41. OSV advisory GHSA-rg2x-37c3-w2rh — OSV.dev. <https://osv.dev/vulnerability/GHSA-rg2x-37c3-w2rh> (modified 2026-09-10T03:50:47.528575532Z)
 42. OSV advisory GHSA-rhfx-m35p-ff5j — OSV.dev. <https://osv.dev/vulnerability/GHSA-rhfx-m35p-ff5j> (modified 2026-09-10T03:50:59.064354050Z)
 43. OSV advisory GHSA-v23v-6jw2-98fq — OSV.dev. <https://osv.dev/vulnerability/GHSA-v23v-6jw2-98fq> (modified 2026-09-10T03:50:16.900418046Z)
@@ -4555,8 +4520,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 66. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
 67. OSV advisory RUSTSEC-2026-0341 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0341> (modified 2026-10-12T18:15:01.969505433Z)
 68. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
-69. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-21T06:30:02.818201920Z)
-70. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-21T00:55:56.763143468Z)
+69. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
+70. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
 71. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
 72. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
 73. OSV advisory RUSTSEC-2026-0391 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0391> (modified 2026-10-26T14:00:04.269245609Z)
@@ -4573,53 +4538,65 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 84. OSV advisory RUSTSEC-2026-0405 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0405> (modified 2026-10-26T14:00:05.680942523Z)
 85. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-10-26T14:00:05.095427051Z)
 86. OSV advisory RUSTSEC-2026-0410 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0410> (modified 2026-10-26T14:00:05.788985783Z)
-87. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-88. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-89. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-90. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
-91. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
+87. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
+88. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+89. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+90. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+91. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+92. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
 
-## Appendices: Cryptographic inventory
+## Приложения: Криптографическая инвентаризация
 
-| Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
+| Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
-| Keccak-256 | Keccak-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 36 | 36 | bridge-history-api/internal/logic/l1_event_parser.go:417; bridge-history-api/internal/logic/l2_fetcher.go:178; bridge-history-api/internal/utils/utils.go:27 |
-| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | common/utils/blob.go:4 |
-| STARK (FRI) |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 7 | 7 | common/types/message/message.go:189; coordinator/internal/logic/submitproof/proof_receiver.go:234; coordinator/internal/logic/verifier/mock.go:24 |
-| Crypto library | 0.10.81 | openssl (OpenSSL) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.17.14 | ring (ring (Rust)) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.23.41 | rustls (rustls) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.30.0 | secp256k1 (secp256k1 bindings) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.31.1 | secp256k1 (secp256k1 bindings) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | v0.32.0 | golang.org/x/crypto (Go x/crypto) | n/a | acceptable | 4 | 4 | bridge-history-api/go.mod:111; common/go.mod:239; coordinator/go.mod:104 |
-| Crypto library | ^6.11.1 | ethers (ethers.js) | n/a | acceptable | 1 | 1 | scroll-contracts/package.json |
-| Crypto library | 0.14.5 | tweetnacl (TweetNaCl) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:10334 |
-| Crypto library | 1.0.3 | tweetnacl (TweetNaCl) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:10339 |
-| Crypto library | 1.2.11 | web3 (web3) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:11003 |
-| Crypto library | 6.5.4 | elliptic (elliptic (Node)) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:3853 |
-| Crypto library | 4.0.49 | ethers (ethers.js) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:4771 |
-| Crypto library | 5.6.4 | ethers (ethers.js) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:4786 |
-| Crypto library | 6.11.1 | ethers (ethers.js) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:4822 |
-| Crypto library | 1.2.0 | @noble/curves (noble-curves) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:736 |
-| Crypto library | 1.3.0 | @noble/curves (noble-curves) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:743 |
-| Crypto library | 1.0.0 | @noble/hashes (noble-hashes) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:750 |
-| Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:755 |
-| Crypto library | 1.3.3 | @noble/hashes (noble-hashes) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:760 |
-| Crypto library | 1.5.5 | @noble/secp256k1 (noble-curves) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:765 |
-| Crypto library | 4.0.3 | secp256k1 (secp256k1 bindings) | n/a | acceptable | 1 | 1 | scroll-contracts/yarn.lock:9225 |
-| BN254 (alt_bn128) |  |  | vulnerable (Shor) | acceptable | 1 | 1 | scroll-contracts/src/libraries/verifier/RollupVerifier.sol:24 |
-| ECDSA |  |  | vulnerable (Shor) | acceptable | 4 | 4 | common/utils/keystore.go:4; coordinator/internal/controller/proxy/client_manager.go:5; coordinator/internal/types/auth.go:4 |
-| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 1 | 1 | rollup/internal/controller/sender/kms_signer.go:64 |
-| ECDSA | secp256k1 (ecrecover) |  | vulnerable (Shor) | acceptable | 1 | 1 | scroll-contracts/lib/solmate/src/tokens/ERC20.sol:130 |
+| Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 36 | 36 | bridge-history-api/internal/logic/l1_event_parser.go:417; bridge-history-api/internal/logic/l2_fetcher.go:178; bridge-history-api/internal/utils/utils.go:27 |
+| Poseidon |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 4 | 4 | crates/prover-bin/src/deferral.rs:58; scroll-contracts/circomlib.d.ts:2; scroll-contracts/scripts/hardhat/ScrollChainCommitmentVerifier.deploy.ts:5 |
+| SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 1 | 1 | common/utils/blob.go:4 |
+| STARK (FRI) |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 7 | 7 | common/types/message/message.go:189; coordinator/internal/logic/submitproof/proof_receiver.go:234; coordinator/internal/logic/verifier/mock.go:24 |
+| Crypto library | 0.1.0 | halo2_proofs (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.1.0-beta.2 | halo2 (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.10.81 | openssl (OpenSSL) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.12.1 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.12.1 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.1 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.17.14 | ring (ring (Rust)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.23.41 | rustls (rustls) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.30.0 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.31.1 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.4.1 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.5.1 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.7.1 | bls12_381 (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.9.0 | jubjub (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | v0.32.0 | golang.org/x/crypto (Go x/crypto) | н/п | допустимо | 4 | 4 | bridge-history-api/go.mod:111; common/go.mod:239; coordinator/go.mod:104 |
+| Crypto library | ^6.11.1 | ethers (ethers.js) | н/п | допустимо | 1 | 1 | scroll-contracts/package.json |
+| Crypto library | 0.14.5 | tweetnacl (TweetNaCl) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:10334 |
+| Crypto library | 1.0.3 | tweetnacl (TweetNaCl) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:10339 |
+| Crypto library | 1.2.11 | web3 (web3) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:11003 |
+| Crypto library | 6.5.4 | elliptic (elliptic (Node)) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:3853 |
+| Crypto library | 4.0.49 | ethers (ethers.js) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:4771 |
+| Crypto library | 5.6.4 | ethers (ethers.js) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:4786 |
+| Crypto library | 6.11.1 | ethers (ethers.js) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:4822 |
+| Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:736 |
+| Crypto library | 1.3.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:743 |
+| Crypto library | 1.0.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:750 |
+| Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:755 |
+| Crypto library | 1.3.3 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:760 |
+| Crypto library | 1.5.5 | @noble/secp256k1 (noble-curves) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:765 |
+| Crypto library | 4.0.3 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | scroll-contracts/yarn.lock:9225 |
+| BN254 (alt_bn128) |  |  | уязвим (Шор) | допустимо | 1 | 1 | scroll-contracts/src/libraries/verifier/RollupVerifier.sol:24 |
+| ECDSA |  |  | уязвим (Шор) | допустимо | 4 | 4 | common/utils/keystore.go:4; coordinator/internal/controller/proxy/client_manager.go:5; coordinator/internal/types/auth.go:4 |
+| ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 1 | 1 | rollup/internal/controller/sender/kms_signer.go:64 |
+| ECDSA | secp256k1 (ecrecover) |  | уязвим (Шор) | допустимо | 1 | 1 | scroll-contracts/lib/solmate/src/tokens/ERC20.sol:130 |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## Appendices: Input files
+## Приложения: Входные файлы
 
-| File | Size | SHA-256 | Redactions |
+| Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
 | .github/scripts/bump_version_dot_go.mjs | 1016 | `f5d1c54556940092885bcc1c919b9983bcf7c52b6cbc0ee6031d2574908e732f` | 0 |
 | Cargo.lock | 265985 | `e4d0bf99df000206317c1f2fd9085488f72d05272a8cedfab99fb63e1555b5e7` | 0 |
@@ -4761,15 +4738,15 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/libzkp/Cargo.toml | 1024 | `f8ef67039067d615caec5bdbc9e288258185f71370848dc02bb3659522f0591a` | 0 |
 | crates/libzkp/src/lib.rs | 8329 | `f001ec684cb816ffeb9270ebf058aa834598bd78d6e14f2dd78eaea90aa5c3fb` | 0 |
 | crates/libzkp/src/proofs.rs | 11108 | `22cef48ed3e7b3dbf4e9e4002085a859c3e1814aca7f8d72cd61fd6941371bde` | 0 |
-| crates/libzkp/src/tasks/batch/utils.rs | 2791 | `586e0f7ef7d919d9839bb4bf363a5d258d9160d4714484a256fde64d489eec28` | 0 |
+| crates/libzkp/src/tasks.rs | 2737 | `ba4ac32fa9d4a011e1bc226bb8fcafdc8277a1cf84b10c1ed753c9bae218b8d6` | 0 |
 | crates/libzkp/src/tasks/batch.rs | 14493 | `4ab53753c791a6a70d607ac86abb07b82d58996425d4fccda9cf0e69c1c0177d` | 0 |
+| crates/libzkp/src/tasks/batch/utils.rs | 2791 | `586e0f7ef7d919d9839bb4bf363a5d258d9160d4714484a256fde64d489eec28` | 0 |
 | crates/libzkp/src/tasks/bundle.rs | 3225 | `b0d80c6862f6b8bec236afffe1cd11b2e2e192c642d65826aa565ead6be4a652` | 0 |
 | crates/libzkp/src/tasks/chunk.rs | 8334 | `4e36824012d46d19fef2afddb024cd75d41892323f2cc1bf35bf04a2149888ef` | 0 |
 | crates/libzkp/src/tasks/chunk_interpreter.rs | 1035 | `897a8681e18706869cb7db8b56ca73059966538733406259948657cd1fa0d4d2` | 0 |
-| crates/libzkp/src/tasks.rs | 2737 | `ba4ac32fa9d4a011e1bc226bb8fcafdc8277a1cf84b10c1ed753c9bae218b8d6` | 0 |
 | crates/libzkp/src/utils.rs | 1717 | `49175f6a0562d93fccd83436470a32d16cd4cdc15a9223537c7db0769430cdd0` | 0 |
-| crates/libzkp/src/verifier/universal.rs | 3189 | `30f2f35e49fffe20d1e5eafc33fdbf4103a08664084cc4c0d135f5975f94ac55` | 0 |
 | crates/libzkp/src/verifier.rs | 2656 | `b274fedd3ad57bf0f7c15700415a3166768c7ffe2ed6a200a53161724620574d` | 0 |
+| crates/libzkp/src/verifier/universal.rs | 3189 | `30f2f35e49fffe20d1e5eafc33fdbf4103a08664084cc4c0d135f5975f94ac55` | 0 |
 | crates/libzkp_c/Cargo.toml | 391 | `eeba46d38a48d9e75b9867de29a4a6d5fff751f7cc95482457c08570bb63802f` | 0 |
 | crates/libzkp_c/src/lib.rs | 8056 | `db7f054b496c45cd459a23954c45343c07eadbcd823a041b51d310b535b8f371` | 0 |
 | crates/libzkp_c/src/utils.rs | 314 | `99f7f4db572ff4e42fa21e5fac43919e9379d7273b41af842e41ce6c3c31d068` | 0 |
@@ -4779,8 +4756,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/prover-bin/src/main.rs | 4735 | `a48fd9df899d98c6f537f12deeb6d845c888098ca6481b142d10792a14ff7218` | 0 |
 | crates/prover-bin/src/prover.rs | 19934 | `806101996a2b1c3b54d5af3af401861653eea686f21b40843a67758c1c044e01` | 0 |
 | crates/prover-bin/src/types.rs | 2292 | `eb924bd75fe68dff788b598fda2e9c2682a465e0257e542c149d6fb8c684bdf1` | 0 |
-| crates/prover-bin/src/zk_circuits_handler/universal.rs | 4774 | `d306308a66b19e1cb37700cdc01534b16ebeb6539c0a802d37931641f2a6539d` | 0 |
 | crates/prover-bin/src/zk_circuits_handler.rs | 63 | `d8149a08fbf6293bf47e563930c310acf91517261aee1f5b7fb045d903809399` | 0 |
+| crates/prover-bin/src/zk_circuits_handler/universal.rs | 4774 | `d306308a66b19e1cb37700cdc01534b16ebeb6539c0a802d37931641f2a6539d` | 0 |
 | database/cmd/app/app.go | 1691 | `87f8cb8c8357791c3397747fffac015092d81caedef57c0af41499be91a40cb1` | 0 |
 | database/cmd/app/client.go | 2078 | `c81824348ccdd096303fc1aba678565152e569e24df1657e3c48a1797ebba192` | 0 |
 | database/cmd/main.go | 85 | `5a9652c7be8f3127fc57941573577b919f40bf82bd852835e3b80c9867152e26` | 0 |

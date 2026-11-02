@@ -1,92 +1,126 @@
-# Security & Post-Quantum Readiness Audit Report
+# Отчёт об аудите безопасности и постквантовой готовности
 
-**Project:** cairo @ 68a61f6c6251 · StarkWare — public repository (passive review)
+**Проект:** cairo @ 68a61f6c6251 · StarkWare — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
-| Organization | QSI |
-| Report date | 2026-10-28 12:22 UTC |
-| Report version | 1 |
-| Audit run | 3ee51131-9f40-4430-8d6c-442a9bdfd05e (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
-| Risk profile | Web3 project |
-| Content SHA-256 | `18d87b68c3d7d5ee5324566405f8f401703b54def1529b72cf769a0cbf89aa4a` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
-> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+| Организация | QSI |
+| Дата отчёта | 2026-10-30 22:40 UTC |
+| Версия отчёта | 1 |
+| Запуск аудита | cbad3716-5158-4c66-8da6-965fcbff2c93 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.2.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `0cede3410ee055ef6b93e3929d0ef3eaf01d8d91a4c591065d7bd91e370d0a45` |
+| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
-## 1. Executive summary
+## 1. Резюме для руководства
 
-- Critical: **1**
-- High: **4**
-- Medium: **5**
-- Low: **10**
-- Info: **4**
+- Критическая: **2**
+- Высокая: **4**
+- Средняя: **6**
+- Низкая: **10**
+- Информационная: **4**
 
-- Confirmed technical vulnerability: 0
-- Known vulnerable component: 19
-- Confirmed configuration error: 0
-- Potential cryptographic risk: 0
-- Long-term post-quantum risk: 2
-- Improvement recommendation: 2
-- Insufficient data: 1
+- Подтверждённая техническая уязвимость: 0
+- Известная уязвимая версия компонента: 20
+- Подтверждённая ошибка конфигурации: 0
+- Потенциальный криптографический риск: 0
+- Долгосрочный постквантовый риск: 3
+- Рекомендация по улучшению: 2
+- Недостаточность данных: 1
 
-Mosca's inequality (x + y > z): x = 5, y = 5, z = 12 → tight margin. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-**Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-## 2. Scope and boundaries
+## 2. Область и границы проверки
 
-Mode: Document audit
+Режим: Документальный аудит
 
-Repository: <https://github.com/starkware-libs/cairo> @ `68a61f6c6251900e0080e09c812ffaeb37fd358e` — evidence links open the lines at this commit.
+Репозиторий: <https://github.com/starkware-libs/cairo> @ `68a61f6c6251900e0080e09c812ffaeb37fd358e` — ссылки в доказательствах открывают строки на этом коммите.
 
-567 files, 8154078 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+567 файлов, всего 8154078 байт, редактирований: 0; список SHA-256 по файлам — в приложении C.
 
-## 3. Methodology
+## 3. Методология
 
-| Area | Status | Count | Examples |
+| Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| dependencies | checked | 50 | Cargo.lock: 453 dependencies parsed (453 pinned); Cargo.toml: 63 dependencies parsed (1 pinned); crates/bin/cairo-compile/Cargo.toml: 9 dependencies parsed (3 pinned) |
-| source_code | checked | 516 | crates/bin/cairo-compile/src/main.rs: 86 lines scanned with 16 rule patterns and 122 registry patterns; crates/bin/cairo-execute/src/main.rs: 452 lines scanned with 16 rule patterns and 122 registry patterns; crates/bin/cairo-format/src/main.rs: 232 lines scanned with 16 rule patterns and 122 registry patterns |
-| osv_advisories | checked | 1 | 485 pinned packages queried at OSV.dev; 13 affected |
+| dependencies | проверено | 50 | Cargo.lock: 453 dependencies parsed (453 pinned); Cargo.toml: 63 dependencies parsed (1 pinned); crates/bin/cairo-compile/Cargo.toml: 9 dependencies parsed (3 pinned) |
+| source_code | проверено | 516 | crates/bin/cairo-compile/src/main.rs: 86 lines scanned with 16 rule patterns and 136 registry patterns; crates/bin/cairo-execute/src/main.rs: 452 lines scanned with 16 rule patterns and 136 registry patterns; crates/bin/cairo-format/src/main.rs: 232 lines scanned with 16 rule patterns and 136 registry patterns |
+| osv_advisories | проверено | 1 | 485 pinned packages queried at OSV.dev; 12 affected |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## 4. Assets examined and not examined
+## 4. Проверенные и непроверенные активы
 
-- None
+- Нет
 
-## 5. Architecture overview
+## 5. Краткое описание архитектуры
 
-Static review of the source tree cairo at 68a61f6c6251900e0080e09c812ffaeb37fd358e. 567 files analysed; of 1762 files, 855 are test, fuzzing, benchmark or example code and were left out, 340 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree cairo at 68a61f6c6251900e0080e09c812ffaeb37fd358e. 567 files analysed; of 1762 files, 855 are test, fuzzing, benchmark or example code and were left out, 340 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .claude/skills/orizi-review/SKILL.md, .claude/skills/prepush/SKILL.md, .claude/skills/prepush/pre_push.sh, .editorconfig, .github/ISSUE_TEMPLATE/01_BUG_REPORT.md. 36 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
-## 6. Overall security posture
+## 6. Общая оценка состояния безопасности
 
-- Indicative posture index: **2** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 55.6%
+- Ориентировочный индекс состояния: **0** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 36.8%
 
-## 7. Detailed findings
+## 7. Подробное описание находок
 
-### QSI-2026-04420 — zip 0.6.6 is affected by RUSTSEC-2026-0369
+### QSI-2026-08258 — zip 0.6.6 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905)
 
-- Severity: **Critical** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/zip@0.6.6`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 40.5 / 100
+- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/zip@0.6.6`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 40.6 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905) для пакета crates.io zip версии 0.6.6: zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-m665-v7pm-7grj
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-m665-v7pm-7grj](https://osv.dev/vulnerability/GHSA-m665-v7pm-7grj) · manifest · SHA-256 4007d25ef3eca5d1f409a4bf4833aa559c9b19abdebdf0e9ba1e7070de8c9fc5_
+
+```
+{"id": "GHSA-m665-v7pm-7grj", "aliases": ["CVE-2026-115905"], "modified": "2026-10-28T21:30:05.902127150Z", "summary": "zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:L"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (9.0.5).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-08261 — zip 0.6.6 затронут RUSTSEC-2026-0369
+
+- Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/zip@0.6.6`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 40.6 / 100
 - CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H`)
 
-OSV.dev reports RUSTSEC-2026-0369 for crates.io package zip at version 0.6.6: ZipStreamReader::extract() and ZipArchive::extract() apply Unix permissions through symlinks without confining the target. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0369 для пакета crates.io zip версии 0.6.6: ZipStreamReader::extract() and ZipArchive::extract() apply Unix permissions through symlinks without confining the target. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0369
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0369](https://osv.dev/vulnerability/RUSTSEC-2026-0369) · manifest · SHA-256 889fd754651c2317ee1367e6b79afa5c8dc85363614c3ddf017e6e7118c949ce_
 
@@ -94,33 +128,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0369](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0369", "aliases": ["GHSA-4684-h2q9-2vcp"], "modified": "2026-10-16T23:30:02.387698467Z", "summary": "ZipStreamReader::extract() and ZipArchive::extract() apply Unix permissions through symlinks without confining the target", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (9.0.0).
+**Рекомендация.** Обновите до исправленной версии (9.0.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04406 — pulldown-cmark 0.13.4 is affected by RUSTSEC-2026-0414
+### QSI-2026-08245 — pulldown-cmark 0.13.4 затронут RUSTSEC-2026-0414
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Medium
-- Affected asset: `dependency:crates.io/pulldown-cmark@0.13.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 49.2 / 100
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:crates.io/pulldown-cmark@0.13.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev reports RUSTSEC-2026-0414 for crates.io package pulldown-cmark at version 0.13.4: Exponential event growth with `ENABLE_WIKILINKS`. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0414 для пакета crates.io pulldown-cmark версии 0.13.4: Exponential event growth with `ENABLE_WIKILINKS`. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0414
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0414](https://osv.dev/vulnerability/RUSTSEC-2026-0414) · manifest · SHA-256 84141280a223372225a976433f4a051a0f151b4a2d3daaa5d454b3808029c61e_
 
@@ -128,33 +162,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0414](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0414", "aliases": [], "modified": "2026-10-28T09:00:02.341043798Z", "summary": "Exponential event growth with `ENABLE_WIKILINKS`", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.13.5).
+**Рекомендация.** Обновите до исправленной версии (0.13.5).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04408 — quinn-proto 0.11.17 is affected by RUSTSEC-2026-0340
+### QSI-2026-08247 — quinn-proto 0.11.17 затронут RUSTSEC-2026-0340
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.17`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 36.9 / 100
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev reports RUSTSEC-2026-0340 for crates.io package quinn-proto at version 0.11.17: Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0340 для пакета crates.io quinn-proto версии 0.11.17: Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0340
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0340](https://osv.dev/vulnerability/RUSTSEC-2026-0340) · manifest · SHA-256 20321fd13a708b936ab6ccc115a6ed97f9b78eb43a4e76d134ec1664a5fc8feb_
 
@@ -162,33 +196,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0340](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0340", "aliases": ["GHSA-3g6h-r5qx-f6hq"], "modified": "2026-10-12T18:15:01.975478256Z", "summary": "Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.11.18).
+**Рекомендация.** Обновите до исправленной версии (0.11.18).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04409 — quinn-proto 0.11.17 is affected by RUSTSEC-2026-0343
+### QSI-2026-08248 — quinn-proto 0.11.17 затронут RUSTSEC-2026-0343
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.17`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 36.9 / 100
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev reports RUSTSEC-2026-0343 for crates.io package quinn-proto at version 0.11.17: Outgoing datagram buffer accounting can panic the sender in quinn-proto. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0343 для пакета crates.io quinn-proto версии 0.11.17: Outgoing datagram buffer accounting can panic the sender in quinn-proto. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0343
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0343](https://osv.dev/vulnerability/RUSTSEC-2026-0343) · manifest · SHA-256 8038e96bc82cf763be522e034a1baf7a01bd0b6523ae60faa215d96e1fd3adc3_
 
@@ -196,33 +230,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0343](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0343", "aliases": ["GHSA-ppcp-v39w-8jq2"], "modified": "2026-10-12T18:15:01.961745820Z", "summary": "Outgoing datagram buffer accounting can panic the sender in quinn-proto", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.11.18).
+**Рекомендация.** Обновите до исправленной версии (0.11.18).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04418 — zip 0.6.6 is affected by RUSTSEC-2026-0367
+### QSI-2026-08259 — zip 0.6.6 затронут RUSTSEC-2026-0367
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/zip@0.6.6`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 36.9 / 100
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/zip@0.6.6`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.3 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H`)
 
-OSV.dev reports RUSTSEC-2026-0367 for crates.io package zip at version 0.6.6: Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0367 для пакета crates.io zip версии 0.6.6: Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0367
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0367](https://osv.dev/vulnerability/RUSTSEC-2026-0367) · manifest · SHA-256 db37f0f24f5796f64e8d2e96846b7cf21dd61e1b0a4c7de21b8268aa1a29a3c7_
 
@@ -230,33 +264,109 @@ _tool_output · [OSV.dev RUSTSEC-2026-0367](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0367", "aliases": ["GHSA-vv5m-jxxh-4627"], "modified": "2026-10-16T23:30:02.392172556Z", "summary": " Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (9.0.0).
+**Рекомендация.** Обновите до исправленной версии (9.0.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04398 — Quantum-vulnerable ECDSA: transaction and message signing (2 file(s))
+### QSI-2026-08237 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:transaction_signing`
-- Data source: crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 33.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Pedersen commitment:threshold_mpc`
+- Источник данных: crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
 
-3 reference(s) to ECDSA across 2 file(s), e.g. crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:24. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+6 упоминаний Pedersen commitment в 4 файл(ах), например crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs:328. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:24 and inspect the quoted lines; the evidence lists further files.
+Откройте crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs:328 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
+
+_file_excerpt · [crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs#L328) · line 328 · SHA-256 d5106d047adac7dac48feaecb3275c0b5f50e7479d8cefc500be59a2860cdeb1_
+
+```
+  327 |         Pedersen(libfunc) => match libfunc {
+  328 |             PedersenConcreteLibfunc::PedersenHash(_) => vec![ApChange::Known(0)],
+  329 |         },
+```
+
+_file_excerpt · [crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs#L446) · line 446 · SHA-256 e1296afcd622852bab9b205931d518176856a23c8f11a07c19e9bb4a3f7d6f17_
+
+```
+  445 |         Pedersen(libfunc) => match libfunc {
+  446 |             PedersenConcreteLibfunc::PedersenHash(_) => {
+  447 |                 vec![BranchCost::Regular {
+```
+
+_file_excerpt · [crates/cairo-lang-sierra-to-casm/src/invocations/pedersen.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-to-casm/src/invocations/pedersen.rs#L18) · line 18 · SHA-256 b3a0e2d62ea189e87791e06b1387eb3de14709132ef36bd5f1047210cb7cfa88_
+
+```
+   17 |     match libfunc {
+   18 |         PedersenConcreteLibfunc::PedersenHash(_) => build_pedersen_hash(builder),
+   19 |     }
+```
+
+_file_excerpt · [crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs#L26) · line 26 · SHA-256 11e7c90ee4e2bcb97636a037a48bebce3cfb665251e1a2f13c2ebe5b18293671_
+
+```
+   25 |     pub enum PedersenLibfunc {
+   26 |         PedersenHash(PedersenHashLibfunc),
+   27 |     }, PedersenConcreteLibfunc
+```
+
+_file_excerpt · [crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs#L33) · line 33 · SHA-256 5534bffc790c2842d16c77da94144ead8723d8391852cdf775294d4f50bfba62_
+
+```
+   32 | #[derive(Default)]
+   33 | pub struct PedersenHashLibfunc {}
+   34 | impl NoGenericArgsGenericLibfunc for PedersenHashLibfunc {
+```
+
+_file_excerpt · [crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs#L34) · line 34 · SHA-256 a5f2fc8d152463a6d730dfc0a86090080fac41d89824578c5d7e6769e8b436f0_
+
+```
+   33 | pub struct PedersenHashLibfunc {}
+   34 | impl NoGenericArgsGenericLibfunc for PedersenHashLibfunc {
+   35 |     const STR_ID: &'static str = "pedersen";
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-08238 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:transaction_signing`
+- Источник данных: crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
+
+3 упоминаний ECDSA в 2 файл(ах), например crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:24. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:24 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · [crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs#L24) · line 24 · SHA-256 114a4f0ae1d810207edaf43599b7cc9c2dd4f7800eb06b14137002a53c4d3aaa_
 
@@ -282,33 +392,33 @@ _file_excerpt · [crates/cairo-lang-sierra/src/extensions/modules/starknet/secp2
    25 | }
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-04397 — Quantum-vulnerable ECDSA: role not determined (4 file(s))
+### QSI-2026-08236 — Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:general`
-- Data source: crates/cairo-lang-runner/src/casm_run/mod.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 31.7 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:general`
+- Источник данных: crates/cairo-lang-runner/src/casm_run/mod.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
 
-7 reference(s) to ECDSA across 4 file(s), e.g. crates/cairo-lang-runner/src/casm_run/mod.rs:41. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+7 упоминаний ECDSA в 4 файл(ах), например crates/cairo-lang-runner/src/casm_run/mod.rs:41. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open crates/cairo-lang-runner/src/casm_run/mod.rs:41 and inspect the quoted lines; the evidence lists further files.
+Откройте crates/cairo-lang-runner/src/casm_run/mod.rs:41 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [crates/cairo-lang-runner/src/casm_run/mod.rs](https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-runner/src/casm_run/mod.rs#L41) · line 41 · SHA-256 0e71c46f74a3ab0591cba43edd9de9663e8a101e5386eebba48bc383848c95de_
 
@@ -366,67 +476,33 @@ _file_excerpt · [crates/cairo-lang-starknet-classes/src/felt252_serde.rs](https
    13 | use cairo_lang_sierra::extensions::starknet::storage::{
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
 
-**Retest procedure.** Re-run the inventory after refactoring.
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-04401 — block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7
+### QSI-2026-08249 — rustls 0.23.43 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.10.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 31.5 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-04410 — rustls 0.23.43 is affected by GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.43`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 31.5 / 100
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.43`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev reports GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) for crates.io package rustls at version 0.23.43: Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) для пакета crates.io rustls версии 0.23.43: Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-2mjx-qc3c-rqvc
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc) · manifest · SHA-256 f20e4b21c01d3d75460ac8d90a54d541a1a34187a4f05b501e4f46c27c564e86_
 
@@ -434,33 +510,33 @@ _tool_output · [OSV.dev GHSA-2mjx-qc3c-rqvc](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-2mjx-qc3c-rqvc", "aliases": ["RUSTSEC-2026-0285"], "modified": "2026-10-27T15:30:05.509305490Z", "summary": "Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.45).
+**Рекомендация.** Обновите до исправленной версии (0.23.45).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04411 — rustls 0.23.43 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+### QSI-2026-08250 — rustls 0.23.43 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.43`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 31.5 / 100
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.43`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
-OSV.dev reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) for crates.io package rustls at version 0.23.43: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) для пакета crates.io rustls версии 0.23.43: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-c8m5-c952-6cm4
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4) · manifest · SHA-256 87554a0cce34470a221f04ad57566b2b512ff6299ad3ee95b190df659d646e3d_
 
@@ -468,33 +544,67 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-c8m5-c952-6cm4", "aliases": ["RUSTSEC-2026-0346"], "modified": "2026-10-27T16:15:05.354395696Z", "summary": "Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04404 — lru 0.12.5 is affected by GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
+### QSI-2026-08257 — zip 0.6.6 затронут GHSA-8hxf-qr8p-62x4 (CVE-2026-115906)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/lru@0.12.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 27.0 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/zip@0.6.6`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N`)
 
-OSV.dev reports GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002) for crates.io package lru at version 0.12.5: `IterMut` violates Stacked Borrows by invalidating internal pointer. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-8hxf-qr8p-62x4 (CVE-2026-115906) для пакета crates.io zip версии 0.6.6: zip: AES Entry HMAC Authentication Bypass on Premature EOF. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-8hxf-qr8p-62x4
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-8hxf-qr8p-62x4](https://osv.dev/vulnerability/GHSA-8hxf-qr8p-62x4) · manifest · SHA-256 1a19dc643fd9aea5666e0a7c31930327d23773509283e1f56a109e5885af0831_
+
+```
+{"id": "GHSA-8hxf-qr8p-62x4", "aliases": ["CVE-2026-115906"], "modified": "2026-10-29T17:00:04.188177718Z", "summary": "zip: AES Entry HMAC Authentication Bypass on Premature EOF", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (9.0.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-08243 — lru 0.12.5 затронут GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002)
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/lru@0.12.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 29.4 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002) для пакета crates.io lru версии 0.12.5: `IterMut` violates Stacked Borrows by invalidating internal pointer. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-rhfx-m35p-ff5j
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA-rhfx-m35p-ff5j) · manifest · SHA-256 74c3e26941575e818cf192f0511138a6719b2124292f8348b2d299a631095b03_
 
@@ -502,33 +612,33 @@ _tool_output · [OSV.dev GHSA-rhfx-m35p-ff5j](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-rhfx-m35p-ff5j", "aliases": ["RUSTSEC-2026-0002"], "modified": "2026-09-10T03:50:59.064354050Z", "summary": "`IterMut` violates Stacked Borrows by invalidating internal pointer", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.16.3).
+**Рекомендация.** Обновите до исправленной версии (0.16.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04413 — rustls 0.23.43 is affected by GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-08252 — rustls 0.23.43 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/rustls@0.23.43`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 27.0 / 100
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/rustls@0.23.43`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
-OSV.dev reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) for crates.io package rustls at version 0.23.43: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) для пакета crates.io rustls версии 0.23.43: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-w44r-93j7-qv28
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28) · manifest · SHA-256 f0fcaa2fa7a56e188458f39e55b23e999d0c7da6d3c1294c014c64ab37b33dee_
 
@@ -536,33 +646,33 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-w44r-93j7-qv28", "aliases": ["RUSTSEC-2026-0349"], "modified": "2026-10-27T16:15:05.340347056Z", "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04412 — rustls 0.23.43 is affected by GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
+### QSI-2026-08251 — rustls 0.23.43 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustls@0.23.43`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 22.9 / 100
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/rustls@0.23.43`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 25.0 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
-OSV.dev reports GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) for crates.io package rustls at version 0.23.43: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. The affected code sits behind the `brotli` Cargo feature, off by default, which no audited manifest enables: the advisory does not apply unless another dependency enables it.
+OSV.dev сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) для пакета crates.io rustls версии 0.23.43: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. Затронутый код находится за флагом Cargo `brotli`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/GHSA-h2v8-394m-p7vv
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv) · manifest · SHA-256 9118726d52fea7cee09a6b4a21a10d2a7bab860f9762fff4658cb78db0453744_
 
@@ -570,33 +680,33 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 {"id": "GHSA-h2v8-394m-p7vv", "aliases": ["RUSTSEC-2026-0348"], "modified": "2026-10-27T16:15:05.337819489Z", "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
+**Рекомендация.** Обновите до исправленной версии (0.23.46, 0.24.0-dev.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04402 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-08241 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
 
@@ -604,33 +714,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04405 — lru 0.12.5 is affected by RUSTSEC-2026-0253 (no severity rating)
+### QSI-2026-08244 — lru 0.12.5 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/lru@0.12.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/lru@0.12.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0253 for crates.io package lru at version 0.12.5: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0253 для пакета crates.io lru версии 0.12.5: Potential use-after-free due to lack of panic safety in `LruCache::pop()`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0253
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSEC-2026-0253) · manifest · SHA-256 06df98c5350689983b2fda96297e3527fd26f472c5d474c041975b220e7ffc2c_
 
@@ -638,33 +748,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0253", "aliases": [], "modified": "2026-08-11T11:15:06.101553049Z", "summary": "Potential use-after-free due to lack of panic safety in `LruCache::pop()`", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.18.2) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.18.2).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04407 — quinn-proto 0.11.17 is affected by RUSTSEC-2026-0338 (no severity rating)
+### QSI-2026-08246 — quinn-proto 0.11.17 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/quinn-proto@0.11.17`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/quinn-proto@0.11.17`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0338 for crates.io package quinn-proto at version 0.11.17: Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0338 для пакета crates.io quinn-proto версии 0.11.17: Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0338
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSEC-2026-0338) · manifest · SHA-256 2d8a96c1ccb5782dfd51ab6c6bfc548092df0a416eb5a7c29ca5b5ffdce603ea_
 
@@ -672,67 +782,67 @@ _tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0338", "aliases": ["GHSA-465w-v9q3-7j98"], "modified": "2026-10-12T18:15:01.969514645Z", "summary": "Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.11.18) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.11.18).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04414 — rustls-webpki 0.103.14 is affected by RUSTSEC-2026-0382 (CVE-2026-111943) (no severity rating)
+### QSI-2026-08253 — rustls-webpki 0.103.14 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/rustls-webpki@0.103.14`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.14`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0382 (CVE-2026-111943) for crates.io package rustls-webpki at version 0.103.14: Certificate verification may accept distrusted intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0382 (CVE-2026-111943) для пакета crates.io rustls-webpki версии 0.103.14: Certificate verification may accept distrusted intermediates. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 9111e73d752392534752d5ea5c9da4ec9a422a29c088531d446d16b27a016fa8_
+_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 4c972eb1d77abf0d1c39f2b402c5fea32a5dacf7dbbeac638e7549ce780805d1_
 
 ```
-{"id": "RUSTSEC-2026-0382", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-21T00:55:56.763143468Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0382", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.103.16, 0.104.0-alpha.8).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04415 — salsa 0.28.2 is affected by RUSTSEC-2026-0308 (no severity rating)
+### QSI-2026-08254 — salsa 0.28.2 затронут RUSTSEC-2026-0308 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/salsa@0.28.2`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/salsa@0.28.2`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0308 for crates.io package salsa at version 0.28.2: Use-after-free in interned values and cached function results. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0308 для пакета crates.io salsa версии 0.28.2: Use-after-free in interned values and cached function results. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0308
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0308](https://osv.dev/vulnerability/RUSTSEC-2026-0308) · manifest · SHA-256 580ef2afe3fb4006afc362c0b351c3c07e95f925e97e474f8909ed94a7cbe4b5_
 
@@ -740,67 +850,67 @@ _tool_output · [OSV.dev RUSTSEC-2026-0308](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0308", "aliases": ["GHSA-xc3w-55vh-cw3w"], "modified": "2026-09-24T14:45:04.873565398Z", "summary": "Use-after-free in interned values and cached function results", "severity": null, "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.28.5) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.28.5).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04417 — webpki-root-certs 1.0.9 is affected by RUSTSEC-2026-0383 (CVE-2026-111943) (no severity rating)
+### QSI-2026-08256 — webpki-root-certs 1.0.9 затронут RUSTSEC-2026-0383 (CVE-2026-111943) (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/webpki-root-certs@1.0.9`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/webpki-root-certs@1.0.9`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0383 (CVE-2026-111943) for crates.io package webpki-root-certs at version 1.0.9: Bundled root certificates allow trust in distrusted emSign intermediates. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0383 (CVE-2026-111943) для пакета crates.io webpki-root-certs версии 1.0.9: Bundled root certificates allow trust in distrusted emSign intermediates. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0383
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSEC-2026-0383) · manifest · SHA-256 5020317ed72c7e0cbf2d22efcc385ee146b42c336ffbeb3bf453e64cec1e9d3d_
+_tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSEC-2026-0383) · manifest · SHA-256 3246026933edff30d4662b8425596fe73691a2ab5c886d1d7d3a6808822713fb_
 
 ```
-{"id": "RUSTSEC-2026-0383", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0382"], "modified": "2026-10-21T06:30:02.691648061Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0383", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0382"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.26.11, 1.0.10) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.26.11, 1.0.10).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04419 — zip 0.6.6 is affected by RUSTSEC-2026-0368 (no severity rating)
+### QSI-2026-08260 — zip 0.6.6 затронут RUSTSEC-2026-0368 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/zip@0.6.6`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/zip@0.6.6`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0368 for crates.io package zip at version 0.6.6: zip: `ZipArchive::extract` creates symbolic links whose attacker-controlled targets are outside the destination directory. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0368 для пакета crates.io zip версии 0.6.6: zip: `ZipArchive::extract` creates symbolic links whose attacker-controlled targets are outside the destination directory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0368
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0368](https://osv.dev/vulnerability/RUSTSEC-2026-0368) · manifest · SHA-256 77cc28045dc809d16dfd7075061aa99e7aa21d64c6bf6d60981905302d10a02d_
 
@@ -808,33 +918,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0368](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0368", "aliases": ["GHSA-4v9h-p7m9-rh26"], "modified": "2026-10-16T23:30:02.383750571Z", "summary": "zip: `ZipArchive::extract` creates symbolic links whose attacker-controlled targets are outside the destination directory", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (9.0.0) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (9.0.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04403 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-08242 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `dependency:crates.io/derivative@2.2.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 18.7 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `dependency:crates.io/derivative@2.2.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 19.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0388 for crates.io package derivative at version 2.2.0 as informational (unmaintained): `derivative` is unmaintained; consider using an alternative. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0388 для пакета crates.io derivative версии 2.2.0 как информационный (unmaintained): `derivative` is unmaintained; consider using an alternative. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0388
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSEC-2024-0388) · manifest · SHA-256 0624a2acbe96d2e8c44b2e7c9e0253aa4d99e8e969cd062a4b077f6a30749e57_
 
@@ -842,33 +952,33 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0388", "aliases": [], "modified": "2024-11-10T13:34:40Z", "summary": "`derivative` is unmaintained; consider using an alternative", "severity": null, "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-04416 — tokio 1.53.1 is affected by RUSTSEC-2026-0386 (no severity rating)
+### QSI-2026-08255 — tokio 1.53.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
 
-- Severity: **Info** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/tokio@1.53.1`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 15.3 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/tokio@1.53.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 17.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0386 for crates.io package tokio at version 1.53.1: `AsyncFd::new` and related constructors violate I/O safety. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. None of the affected functions (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) is named in the audited code: the advisory does not apply unless they are reached indirectly (traits, macros, other dependencies).
+OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.53.1: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0386
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSEC-2026-0386) · manifest · SHA-256 1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6_
 
@@ -876,33 +986,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0386", "aliases": [], "modified": "2026-10-23T14:45:03.847864944Z", "summary": "`AsyncFd::new` and related constructors violate I/O safety", "severity": null, "declared_in_manifest": true}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (1.51.6, 1.53.3) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (1.51.6, 1.53.3).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04399 — No post-quantum capable cryptographic library detected
+### QSI-2026-08239 — Не обнаружено криптобиблиотек с поддержкой PQC
 
-- Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies`
-- Data source: dependency manifests
-- Detection method: Dependency name matching.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 12.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies`
+- Источник данных: dependency manifests
+- Метод обнаружения: Сопоставление названий зависимостей.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 13.3 / 100
+- CVSS v3.1: неприменимо
 
-Across 50 dependency manifests, QSI found crypto libraries (openssl, ring, rustls) but none from its PQC-capable list.
+В 50 манифестах зависимостей QSI нашёл криптобиблиотеки (openssl, ring, rustls), но ни одной из списка поддерживающих PQC.
 
-**Potential impact.** Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.
+**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Review the dependency manifests listed in the evidence.
+Изучите перечисленные в доказательстве манифесты.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _dependency · Cargo.lock, Cargo.toml, crates/bin/cairo-compile/Cargo.toml, crates/bin/cairo-execute/Cargo.toml, crates/bin/cairo-format/Cargo.toml, crates/bin/cairo-run/Cargo.toml, crates/bin/cairo-size-profiler/Cargo.toml, crates/bin/generate-syntax/Cargo.toml, crates/bin/get-lowering/Cargo.toml, crates/bin/sierra-compile/Cargo.toml, crates/bin/starknet-compile/Cargo.toml, crates/bin/starknet-sierra-compile/Cargo.toml, crates/bin/starknet-sierra-extract-code/Cargo.toml, crates/bin/starknet-sierra-upgrade-val · SHA-256 1980ed6357825cc444a27bc1b98985b873318b59d5a5fa25de06c96d7c8ef037_
 
@@ -910,33 +1020,33 @@ _dependency · Cargo.lock, Cargo.toml, crates/bin/cairo-compile/Cargo.toml, crat
 Crypto libraries: openssl, ring, rustls. PQC support depends on the version for: openssl
 ```
 
-**Limitations of the check.** Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.
+**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
 
-**Recommendation.** Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).
+**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
 
-**Retest procedure.** Re-scan after upgrades.
+**Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-04400 — atomic-polyfill 1.0.3: informational advisory RUSTSEC-2023-0089 (unmaintained)
+### QSI-2026-08240 — atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/atomic-polyfill@1.0.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:22 UTC
-- Priority score: 11.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/atomic-polyfill@1.0.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:40 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2023-0089 for crates.io package atomic-polyfill at version 1.0.3 as informational (unmaintained): atomic-polyfill is unmaintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2023-0089 для пакета crates.io atomic-polyfill версии 1.0.3 как информационный (unmaintained): atomic-polyfill is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2023-0089
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2023-0089](https://osv.dev/vulnerability/RUSTSEC-2023-0089) · manifest · SHA-256 0fcfb6f26f61ecb982bc38b6d6f12db7c77d0fc40bf9353a089129368e765f0f_
 
@@ -944,108 +1054,112 @@ _tool_output · [OSV.dev RUSTSEC-2023-0089](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2023-0089", "aliases": [], "modified": "2025-04-29T08:31:10Z", "summary": "atomic-polyfill is unmaintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
 
-## 8. Post-quantum assessment
+## 8. Постквантовая оценка
 
-| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+| | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Data/key lifetime x | 5 | 10 |
-| Migration time y | 5 | 5 |
-| Assumed years to CRQC z | 12 (central) | 12 |
-| x + y − z | -2 → tight margin | 3 → migration would finish too late under this scenario |
-#### Where z comes from
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
+| Принятое число лет до CRQC z | 8 (early) | 8 |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
+#### Откуда взято z
 
-Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
 
-| Within | Likelihood | The report's wording |
+| В пределах | Вероятность | Формулировка отчёта |
 |---|---|---|
-| 5 years | ~15% | averaged estimate |
-| 10 years | 28-49% | quite possible |
-| 15 years | 51-70% | likely |
+| 5 лет | ~15% | усреднённая оценка |
+| 10 лет | 28-49% | вполне возможно |
+| 15 лет | 51-70% | вероятно |
 
-**Why this scenario (central, z = 12):** Between the 10-year band (28-49%) and the 15-year band (51-70%): roughly where the experts' averaged likelihood crosses one half. More than half of the respondents (13 of 26) already put the likelihood at 50% or more for some horizon.
-_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Web3 project”, not the client's figures; with the client's actual lifetimes the verdict can change._
+**Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
-### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
+### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
 
-**Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
+**Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
-_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
+_Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
 
-### What the quantum-vulnerable algorithms do
+### Что делают квантово-уязвимые алгоритмы
 
-| Role | Algorithms (files) | ID | First step |
+| Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (2) | QSI-2026-04398 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDSA (4) | QSI-2026-04397 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **пороговая подпись и протоколы MPC** | Pedersen commitment (4) | QSI-2026-08237 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-08238 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDSA (4) | QSI-2026-08236 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
-_Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
-No readiness questionnaire was completed for this project.
+_Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
+Анкета готовности для проекта не заполнялась.
 
-### Quantum algorithms relevant to this inventory
+### Квантовые алгоритмы, значимые для этой инвентаризации
 
-| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+| Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (10) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | Keccak-256 (3) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | Keccak-256 (3) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (10), Pedersen commitment (4) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (3), Poseidon (16) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (3), Poseidon (16) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
-_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+_Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
 
-## 9. Limitations and assumptions
+## 9. Ограничения и допущения
 
-- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
-- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
+- Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
+- z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
 
-## 10. Remediation plan / Priorities for 30, 60 and 90 days
+## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
-### 30 days
+### 30 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-04420 | Upgrade zip to a fixed version (9.0.0). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0369. |
-| P2 | QSI-2026-04406 | Upgrade pulldown-cmark to a fixed version (0.13.5). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0414. |
-| P2 | QSI-2026-04408 | Upgrade quinn-proto to a fixed version (0.11.18). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0340. |
-| P2 | QSI-2026-04409 | Upgrade quinn-proto to a fixed version (0.11.18). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0343. |
-| P2 | QSI-2026-04418 | Upgrade zip to a fixed version (9.0.0). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0367. |
-| P2 | QSI-2026-04401 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-04410 | Upgrade rustls to a fixed version (0.23.45). | root-cause fix | Dependency scan no longer reports GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
-| P2 | QSI-2026-04411 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-04404 | Upgrade lru to a fixed version (0.16.3). | root-cause fix | Dependency scan no longer reports GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
-| P2 | QSI-2026-04413 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-04412 | Upgrade rustls to a fixed version (0.23.46, 0.24.0-dev.2). | root-cause fix | Dependency scan no longer reports GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
-### 60 days
+| P2 | QSI-2026-08258 | Обновите zip до исправленной версии (9.0.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905). |
+| P2 | QSI-2026-08261 | Обновите zip до исправленной версии (9.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0369. |
+| P2 | QSI-2026-08245 | Обновите pulldown-cmark до исправленной версии (0.13.5). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0414. |
+| P2 | QSI-2026-08247 | Обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0340. |
+| P2 | QSI-2026-08248 | Обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0343. |
+| P2 | QSI-2026-08259 | Обновите zip до исправленной версии (9.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0367. |
+| P2 | QSI-2026-08249 | Обновите rustls до исправленной версии (0.23.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285). |
+| P2 | QSI-2026-08250 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-08257 | Обновите zip до исправленной версии (9.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8hxf-qr8p-62x4 (CVE-2026-115906). |
+| P2 | QSI-2026-08243 | Обновите lru до исправленной версии (0.16.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rhfx-m35p-ff5j (RUSTSEC-2026-0002). |
+| P2 | QSI-2026-08252 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-08251 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
+### 60 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-04402 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-04405 | Triage RUSTSEC-2026-0253; upgrade lru to a fixed version (0.18.2) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0253, or the triage is recorded. |
-| P3 | QSI-2026-04407 | Triage RUSTSEC-2026-0338; upgrade quinn-proto to a fixed version (0.11.18) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0338, or the triage is recorded. |
-| P3 | QSI-2026-04414 | Triage RUSTSEC-2026-0382 (CVE-2026-111943); upgrade rustls-webpki to a fixed version (0.103.16, 0.104.0-alpha.8) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0382 (CVE-2026-111943), or the triage is recorded. |
-| P3 | QSI-2026-04415 | Triage RUSTSEC-2026-0308; upgrade salsa to a fixed version (0.28.5) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0308, or the triage is recorded. |
-| P3 | QSI-2026-04417 | Triage RUSTSEC-2026-0383 (CVE-2026-111943); upgrade webpki-root-certs to a fixed version (0.26.11, 1.0.10) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0383 (CVE-2026-111943), or the triage is recorded. |
-| P3 | QSI-2026-04419 | Triage RUSTSEC-2026-0368; upgrade zip to a fixed version (9.0.0) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0368, or the triage is recorded. |
-| P3 | QSI-2026-04416 | Triage RUSTSEC-2026-0386; upgrade tokio to a fixed version (1.51.6, 1.53.3) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0386, or the triage is recorded. |
-### 90 days
+| P3 | QSI-2026-08241 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-08244 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
+| P3 | QSI-2026-08246 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
+| P3 | QSI-2026-08253 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-08254 | Разберите RUSTSEC-2026-0308; при необходимости обновите salsa до исправленной версии (0.28.5). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0308 или результат разбора записан. |
+| P3 | QSI-2026-08256 | Разберите RUSTSEC-2026-0383 (CVE-2026-111943); при необходимости обновите webpki-root-certs до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0383 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-08260 | Разберите RUSTSEC-2026-0368; при необходимости обновите zip до исправленной версии (9.0.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0368 или результат разбора записан. |
+| P3 | QSI-2026-08255 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+### 90 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-04398 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-04397 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-04398 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-04397 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-04403 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
-| P4 | QSI-2026-04400 | Replace atomic-polyfill with a maintained alternative or record why it stays. | root-cause fix | atomic-polyfill replaced, or the decision recorded. |
+| P3 | QSI-2026-08237 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08238 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08236 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-08237 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-08238 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08236 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08242 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
+| P4 | QSI-2026-08240 | Замените atomic-polyfill поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atomic-polyfill заменён или решение зафиксировано. |
 
-## 11. Tools used
+## 11. Использованные инструменты
 
 - blockchain 1.0.0
 - certificates 1.1.0
@@ -1060,7 +1174,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - qsi-engine 1.2.0
 - OSV.dev API v1
 
-## 12. Sources and normative documents
+## 12. Источники и нормативные документы
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
@@ -1081,56 +1195,51 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
 18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 19. OSV advisory GHSA-2mjx-qc3c-rqvc — OSV.dev. <https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc> (modified 2026-10-27T15:30:05.509305490Z)
-20. OSV advisory GHSA-c8m5-c952-6cm4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4> (modified 2026-10-27T16:15:05.354395696Z)
-21. OSV advisory GHSA-h2v8-394m-p7vv — OSV.dev. <https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv> (modified 2026-10-27T16:15:05.337819489Z)
-22. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
-23. OSV advisory GHSA-rhfx-m35p-ff5j — OSV.dev. <https://osv.dev/vulnerability/GHSA-rhfx-m35p-ff5j> (modified 2026-09-10T03:50:59.064354050Z)
-24. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-10-27T16:15:05.340347056Z)
-25. OSV advisory RUSTSEC-2023-0089 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0089> (modified 2025-04-29T08:31:10Z)
-26. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
-27. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
-28. OSV advisory RUSTSEC-2026-0308 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0308> (modified 2026-09-24T14:45:04.873565398Z)
-29. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
-30. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
-31. OSV advisory RUSTSEC-2026-0343 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0343> (modified 2026-10-12T18:15:01.961745820Z)
-32. OSV advisory RUSTSEC-2026-0367 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0367> (modified 2026-10-16T23:30:02.392172556Z)
-33. OSV advisory RUSTSEC-2026-0368 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0368> (modified 2026-10-16T23:30:02.383750571Z)
-34. OSV advisory RUSTSEC-2026-0369 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0369> (modified 2026-10-16T23:30:02.387698467Z)
-35. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-21T00:55:56.763143468Z)
-36. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-21T06:30:02.691648061Z)
-37. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
-38. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-39. OSV advisory RUSTSEC-2026-0414 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0414> (modified 2026-10-28T09:00:02.341043798Z)
-40. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-41. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-42. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+20. OSV advisory GHSA-8hxf-qr8p-62x4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-8hxf-qr8p-62x4> (modified 2026-10-29T17:00:04.188177718Z)
+21. OSV advisory GHSA-c8m5-c952-6cm4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4> (modified 2026-10-27T16:15:05.354395696Z)
+22. OSV advisory GHSA-h2v8-394m-p7vv — OSV.dev. <https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv> (modified 2026-10-27T16:15:05.337819489Z)
+23. OSV advisory GHSA-m665-v7pm-7grj — OSV.dev. <https://osv.dev/vulnerability/GHSA-m665-v7pm-7grj> (modified 2026-10-28T21:30:05.902127150Z)
+24. OSV advisory GHSA-rhfx-m35p-ff5j — OSV.dev. <https://osv.dev/vulnerability/GHSA-rhfx-m35p-ff5j> (modified 2026-09-10T03:50:59.064354050Z)
+25. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-10-27T16:15:05.340347056Z)
+26. OSV advisory RUSTSEC-2023-0089 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0089> (modified 2025-04-29T08:31:10Z)
+27. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
+28. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
+29. OSV advisory RUSTSEC-2026-0308 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0308> (modified 2026-09-24T14:45:04.873565398Z)
+30. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
+31. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
+32. OSV advisory RUSTSEC-2026-0343 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0343> (modified 2026-10-12T18:15:01.961745820Z)
+33. OSV advisory RUSTSEC-2026-0367 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0367> (modified 2026-10-16T23:30:02.392172556Z)
+34. OSV advisory RUSTSEC-2026-0368 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0368> (modified 2026-10-16T23:30:02.383750571Z)
+35. OSV advisory RUSTSEC-2026-0369 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0369> (modified 2026-10-16T23:30:02.387698467Z)
+36. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
+37. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-29T10:55:54.096394276Z)
+38. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
+39. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+40. OSV advisory RUSTSEC-2026-0414 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0414> (modified 2026-10-28T09:00:02.341043798Z)
+41. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+42. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+43. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
-## Appendices: Cryptographic inventory
+## Приложения: Криптографическая инвентаризация
 
-| Algorithm | Parameter | Library | Location | Quantum status | Classical status |
-|---|---|---|---|---|---|
-| Keccak-256 | Keccak-256 |  | crates/cairo-lang-semantic/src/types.rs:23 | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable |
-| Keccak-256 | Keccak-256 |  | crates/cairo-lang-sierra/src/ids.rs:4 | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable |
-| Keccak-256 | Keccak-256 |  | crates/cairo-lang-starknet-classes/src/keccak.rs:2 | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable |
-| Crypto library | 0.10.81 | openssl (OpenSSL) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.17.14 | ring (ring (Rust)) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.23.43 | rustls (rustls) | Cargo.lock | n/a | acceptable |
-| Crypto library | 0.10.73 | openssl (OpenSSL) | Cargo.toml | n/a | acceptable |
-| Crypto library | workspace | openssl (OpenSSL) | crates/bin/starknet-sierra-upgrade-validate/Cargo.toml | n/a | acceptable |
-| ECDSA | secp256k1 |  | crates/cairo-lang-runner/src/casm_run/mod.rs:41 | vulnerable (Shor) | acceptable |
-| ECDSA | P-256 |  | crates/cairo-lang-runner/src/casm_run/mod.rs:42 | vulnerable (Shor) | acceptable |
-| ECDSA | secp256k1 |  | crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:24 | vulnerable (Shor) | acceptable |
-| ECDSA | P-256 |  | crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:25 | vulnerable (Shor) | acceptable |
-| ECDSA | secp256k1 |  | crates/cairo-lang-sierra/src/extensions/modules/starknet/secp256.rs:3 | vulnerable (Shor) | acceptable |
-| ECDSA | P-256 |  | crates/cairo-lang-sierra/src/extensions/modules/starknet/secp256.rs:4 | vulnerable (Shor) | acceptable |
-| ECDSA | secp256k1 |  | crates/cairo-lang-sierra/src/extensions/modules/starknet/secp256k1.rs:24 | vulnerable (Shor) | acceptable |
-| ECDSA | P-256 |  | crates/cairo-lang-sierra/src/extensions/modules/starknet/secp256r1.rs:24 | vulnerable (Shor) | acceptable |
-| ECDSA | secp256k1 |  | crates/cairo-lang-starknet-classes/src/felt252_serde.rs:11 | vulnerable (Shor) | acceptable |
-| ECDSA | P-256 |  | crates/cairo-lang-starknet-classes/src/felt252_serde.rs:12 | vulnerable (Shor) | acceptable |
+| Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
+|---|---|---|---|---|---|---|---|
+| Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 3 | 3 | crates/cairo-lang-semantic/src/types.rs:23; crates/cairo-lang-sierra/src/ids.rs:4; crates/cairo-lang-starknet-classes/src/keccak.rs:2 |
+| Poseidon |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 16 | 16 | crates/bin/get-lowering/src/main.rs:61; crates/cairo-lang-executable-plugin/src/lib.rs:37; crates/cairo-lang-runnable-utils/src/builder.rs:13 |
+| Crypto library | 0.10.81 | openssl (OpenSSL) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.17.14 | ring (ring (Rust)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.23.43 | rustls (rustls) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.10.73 | openssl (OpenSSL) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | workspace | openssl (OpenSSL) | н/п | допустимо | 1 | 1 | crates/bin/starknet-sierra-upgrade-validate/Cargo.toml |
+| ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 5 | 5 | crates/cairo-lang-runner/src/casm_run/mod.rs:41; crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:24; crates/cairo-lang-sierra/src/extensions/modules/starknet/secp256.rs:3 |
+| ECDSA | P-256 |  | уязвим (Шор) | допустимо | 5 | 5 | crates/cairo-lang-runner/src/casm_run/mod.rs:42; crates/cairo-lang-sierra/src/extensions/modules/starknet/mod.rs:25; crates/cairo-lang-sierra/src/extensions/modules/starknet/secp256.rs:4 |
+| Pedersen commitment |  |  | уязвим (Шор) | допустимо | 4 | 4 | crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs:328; crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs:446; crates/cairo-lang-sierra-to-casm/src/invocations/pedersen.rs:18 |
 
-## Appendices: Input files
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-| File | Size | SHA-256 | Redactions |
+## Приложения: Входные файлы
+
+| Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
 | Cargo.lock | 125405 | `afaf48f30a42c610b766e6dcb06e68203d45e43c2f339bb882e0c6a03c2895f3` | 0 |
 | Cargo.toml | 5333 | `4df1342b05c0d893010469be852f60c02d3829234da4e047393f1a4a89c76a02` | 0 |
@@ -1204,13 +1313,13 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | crates/cairo-lang-eq-solver/Cargo.toml | 473 | `6497a4901045844f2596e6807dfebcf429bfa1dd357da105306d8cb33b5fffb0` | 0 |
 | crates/cairo-lang-eq-solver/src/expr.rs | 2023 | `ee026898443d81881f9537402b1fc05ac4081e50497ee1fbae103a15a64280c6` | 0 |
 | crates/cairo-lang-eq-solver/src/lib.rs | 4380 | `7f062f8b517c533bb1e665f6055948168f720856b88bf796ed2250ea78fcd1e8` | 0 |
+| crates/cairo-lang-executable-plugin/Cargo.toml | 1086 | `5658a87167a22cd18bc848be57f3c04ae851ec8a2cfb791fa93727f845575571` | 0 |
+| crates/cairo-lang-executable-plugin/src/lib.rs | 9302 | `391107d0bca32107336a7988582cf84c70d9d580fc70548ea63d8774e343fe6c` | 0 |
 | crates/cairo-lang-executable/Cargo.toml | 1772 | `d1531c4e88f054b937b9cb7e503af83125c65645691de6613d70f45ea4b51a50` | 0 |
 | crates/cairo-lang-executable/src/compile.rs | 10178 | `04cbd281e177bb6a0abf6a0ad7f5967eddd40ba8646c507e7e5991b9360f5adc` | 0 |
 | crates/cairo-lang-executable/src/debug_info.rs | 2341 | `cf9161042c88e723361772cfbaa765724d85c372eee3708286706c5ae4999405` | 0 |
 | crates/cairo-lang-executable/src/executable.rs | 3255 | `f29282d4022b9bc221ec2977b0e5acf7326d79f8b082e667f00fa93d6605be4d` | 0 |
 | crates/cairo-lang-executable/src/lib.rs | 78 | `f90f222945c23a9ed5cf6fa81e612514fe592b434b78bd6687354a7fd35f7be1` | 0 |
-| crates/cairo-lang-executable-plugin/Cargo.toml | 1086 | `5658a87167a22cd18bc848be57f3c04ae851ec8a2cfb791fa93727f845575571` | 0 |
-| crates/cairo-lang-executable-plugin/src/lib.rs | 9302 | `391107d0bca32107336a7988582cf84c70d9d580fc70548ea63d8774e343fe6c` | 0 |
 | crates/cairo-lang-execute-utils/Cargo.toml | 643 | `ba24ec61910b15a0c6473ef3fd1d0498a277858ad3f2d85d3d79c15484c66232` | 0 |
 | crates/cairo-lang-execute-utils/src/lib.rs | 2728 | `a3328710869fc4071cb96292eb220a134784af68e08c6e935ba182d2bb18f08b` | 0 |
 | crates/cairo-lang-filesystem/Cargo.toml | 957 | `64c4de286eee1585a0677f5b4b5c71a3e523524a142a0f7cfd7ebc3fd9a97b7e` | 0 |
@@ -1259,21 +1368,21 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | crates/cairo-lang-lowering/src/lower/block_builder.rs | 24323 | `78e2e096e120a396c5627ec16349feedfcb40ee3bdb5194be6000de0cd64e729` | 0 |
 | crates/cairo-lang-lowering/src/lower/context.rs | 20019 | `0132d0571e95ac27ebd8da8d276e79bdde2c8a1da1f10a1041d45756980c2e31` | 0 |
 | crates/cairo-lang-lowering/src/lower/external.rs | 1904 | `113ba121828e68edc3b44818ce641a13b744c7a8ae238c8d8a1cb8e3b95c0bb6` | 0 |
+| crates/cairo-lang-lowering/src/lower/flow_control/create_graph.rs | 10966 | `be3372a9795ced5aca33701e141978c3c4fba413500f6d4e2bea2ea4fcdb2b83` | 0 |
 | crates/cairo-lang-lowering/src/lower/flow_control/create_graph/cache.rs | 1341 | `f0de5627e4a05cac42c852a76fd370a7e9e81423940425554acd88cd6118a931` | 0 |
 | crates/cairo-lang-lowering/src/lower/flow_control/create_graph/filtered_patterns.rs | 5881 | `dd755be7b3df06c042c0a8ab3211d29cbdcb7e950e58fad011927b360c697cb4` | 0 |
 | crates/cairo-lang-lowering/src/lower/flow_control/create_graph/patterns.rs | 42185 | `7a91e3f2276a94e2ba28991076c6fae7ebd1f93bc78f0947f82c6fb028271288` | 0 |
-| crates/cairo-lang-lowering/src/lower/flow_control/create_graph.rs | 10966 | `be3372a9795ced5aca33701e141978c3c4fba413500f6d4e2bea2ea4fcdb2b83` | 0 |
 | crates/cairo-lang-lowering/src/lower/flow_control/graph.rs | 18163 | `358bc820ba4be18eb2517a6950813993e34f1976a7132afd34791a3dc9ad5ea6` | 0 |
-| crates/cairo-lang-lowering/src/lower/flow_control/lower_graph/lower_node.rs | 25960 | `1ccf7d7eebb63b5a06231cd3369cce4f6330c111cfbec94e3a16273f680537a4` | 0 |
 | crates/cairo-lang-lowering/src/lower/flow_control/lower_graph.rs | 11142 | `b8e1a4a2d10142014311eed4de567ca2fe706acb983cc7966ccb61bced1a59f0` | 0 |
+| crates/cairo-lang-lowering/src/lower/flow_control/lower_graph/lower_node.rs | 25960 | `1ccf7d7eebb63b5a06231cd3369cce4f6330c111cfbec94e3a16273f680537a4` | 0 |
 | crates/cairo-lang-lowering/src/lower/flow_control/mod.rs | 84 | `f476c1199d0a460d721205320a51d0baf042da8fa17ce40094f1766f3e7290c4` | 0 |
 | crates/cairo-lang-lowering/src/lower/generators.rs | 10428 | `10ed00c9417e32c382e41425f5e3f0aecef7027670899c6e5ff59cc097c18703` | 0 |
 | crates/cairo-lang-lowering/src/lower/logical_op.rs | 3947 | `1e6c50dccd144076624233641b69ccb8a53af2f4c48e2da0be6ed0660d25d48b` | 0 |
 | crates/cairo-lang-lowering/src/lower/lower_let_else.rs | 3781 | `a077e0507a2259c128af6eb31247d0723fba24a589713708ee92a16065701d3f` | 0 |
 | crates/cairo-lang-lowering/src/lower/mod.rs | 93437 | `3a8d54ef9d1287bcc9dbe78595b290ebad631bf56a8e9d42db10a504011e8af7` | 0 |
 | crates/cairo-lang-lowering/src/lower/refs.rs | 19875 | `e203fec60a9f53178234d222f64c257aeabd19ab7851df8fcbc433953e578fe1` | 0 |
-| crates/cairo-lang-lowering/src/objects/blocks.rs | 4492 | `a54bd1e77c6720a7e753e7a6fe68c8ba15c2383d5a404da351ab3e5cc9c86fff` | 0 |
 | crates/cairo-lang-lowering/src/objects.rs | 23944 | `e71434d45e4d5400ac352cef7b493ca4bd7e88894421fdfe68236e1c9bf83cb3` | 0 |
+| crates/cairo-lang-lowering/src/objects/blocks.rs | 4492 | `a54bd1e77c6720a7e753e7a6fe68c8ba15c2383d5a404da351ab3e5cc9c86fff` | 0 |
 | crates/cairo-lang-lowering/src/optimizations/branch_inversion.rs | 2446 | `da9b78a2ada7d8a22b907011a650feb3195cc26d174360e0016caa5a5f7b88a8` | 0 |
 | crates/cairo-lang-lowering/src/optimizations/config.rs | 4299 | `4cbb181749bffa80e954c8828d6ceb60a9973aee8cf58ae3daa9f8c33b88b2e6` | 0 |
 | crates/cairo-lang-lowering/src/optimizations/const_folding.rs | 89030 | `f963183d32de175aff907ee71c5a7f1a55d99a8bb775faa15ca76002b5bee8ea` | 0 |
@@ -1359,11 +1468,11 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | crates/cairo-lang-semantic/src/diagnostic.rs | 98540 | `c7fb4d4bd18844371dec6bdc0f8dbb8f9a2d900fc5515a670aa3b4f5b3f07cc5` | 0 |
 | crates/cairo-lang-semantic/src/expr/compute.rs | 216662 | `9eebf2350067bc86ba420d527c206657455cafde1a7a8455b4fe993b68979fee` | 0 |
 | crates/cairo-lang-semantic/src/expr/fmt.rs | 1439 | `d4b19b1f258c95339a9decd384c286dc2ccb3307ce31c49a5073e4192920a3fa` | 0 |
+| crates/cairo-lang-semantic/src/expr/inference.rs | 79595 | `70307c92bd3a0d208eccecbac8a05a045c346f45ab69eb7267ba36c436293f3e` | 0 |
 | crates/cairo-lang-semantic/src/expr/inference/canonic.rs | 24736 | `fd01ec1cb77ab0fe9852687e9c185bdd5f02fda9a308ae01ca9521c736c9ea6f` | 0 |
 | crates/cairo-lang-semantic/src/expr/inference/conform.rs | 38910 | `a18f97d20506855ead0224e909edb019022d2e8a8605cec38e356b13395540db` | 0 |
 | crates/cairo-lang-semantic/src/expr/inference/infers.rs | 23418 | `d183dfe2cefc48ef7e75dd2aa3301f8a5dbea740eaccb98ae0e38b9f92653b26` | 0 |
 | crates/cairo-lang-semantic/src/expr/inference/solver.rs | 40404 | `1ef34a75a622f8a8cbddc6382b136f88637ed76a1e31ef9212cb903657a19426` | 0 |
-| crates/cairo-lang-semantic/src/expr/inference.rs | 79595 | `70307c92bd3a0d208eccecbac8a05a045c346f45ab69eb7267ba36c436293f3e` | 0 |
 | crates/cairo-lang-semantic/src/expr/mod.rs | 199 | `ac6f699225cd3b8ad1fc1b95655e8f49e2039991b198a7572b7df928eff117a2` | 0 |
 | crates/cairo-lang-semantic/src/expr/objects.rs | 21703 | `c62fcd0440687f6d25c0c6812f3eb1974ea5120cc835f39d23e73fe575d77b42` | 0 |
 | crates/cairo-lang-semantic/src/expr/pattern.rs | 10217 | `b7ce9ec9bf8129a6a2aeceda0b20c64229e32bbcc3b9f96bb6a5c6ab31f6d965` | 0 |
@@ -1416,6 +1525,111 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | crates/cairo-lang-semantic/src/substitution.rs | 31195 | `9b91cc49df741a83a84b417ada612e98165e42a610a532ab3b4ca341b747b3a4` | 0 |
 | crates/cairo-lang-semantic/src/types.rs | 60452 | `5dd49c5dc049efb3118d3939833e7b4d1b9c7e9d44fb6ed7a87c459aa1536536` | 0 |
 | crates/cairo-lang-semantic/src/usage/mod.rs | 19323 | `78b5d62e717d7ae881238318284278c99c7aa085e6856c21e5bce08d912ef727` | 0 |
+| crates/cairo-lang-sierra-ap-change/Cargo.toml | 764 | `c256bc01e51113db81d81a7c992770c596c5868e9e4c885dd74df2dbc8cd9268` | 0 |
+| crates/cairo-lang-sierra-ap-change/src/ap_change_info.rs | 1108 | `6b60014bd489270fc85a15996accdd093b551614a1142118d2ae3143aeb19879` | 0 |
+| crates/cairo-lang-sierra-ap-change/src/compute.rs | 14627 | `e821f794a050e9e2269ff4638e818f639a2a11a973f8211186310fcd594dee0e` | 0 |
+| crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs | 28543 | `b177577c0c6dfcd9e5270c469952a60740138411084aaa0105f30191ffa23674` | 0 |
+| crates/cairo-lang-sierra-ap-change/src/generate_equations.rs | 7565 | `bef7f8441314d81daffb80d695364b6da54ae2c3af3a0c364cbe7bce6e2dc8f1` | 0 |
+| crates/cairo-lang-sierra-ap-change/src/lib.rs | 5075 | `47d6d60b61ae21a30a20b44da94269d5469a3eec1928bb5ac6dc62651e72fef0` | 0 |
+| crates/cairo-lang-sierra-gas/Cargo.toml | 923 | `776cc01650253808ccc98e9ed1608f01a334d11b1428b557da709c54b5acce99` | 0 |
+| crates/cairo-lang-sierra-gas/src/compute_costs.rs | 36226 | `10f38295ddf6515479a5e296f9fefcffce37fce1caad1e07487ccec421626c23` | 0 |
+| crates/cairo-lang-sierra-gas/src/core_libfunc_cost.rs | 1993 | `f650dd5e2973da809018bfc7a9484eab8164326637aaadfb23429705bd7a5f3f` | 0 |
+| crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs | 47737 | `38f0fb987f353da00e402943ee3d9700a86a59e06d20c7273ff1d904f2d6c0ab` | 0 |
+| crates/cairo-lang-sierra-gas/src/core_libfunc_cost_expr.rs | 3068 | `f5224549eff968f358e87c21f030af438b0d6f5920b908d4737cb98d76b4d54d` | 0 |
+| crates/cairo-lang-sierra-gas/src/cost_expr.rs | 971 | `70a854d5b5c545ae8bb22a9296f826605759bc57beabda29e8a1b2bbe2af1e49` | 0 |
+| crates/cairo-lang-sierra-gas/src/gas_info.rs | 4793 | `3a8bf4e33b70532ba47de755759ae8618eba021b0710c85e4fc12acca36d07b2` | 0 |
+| crates/cairo-lang-sierra-gas/src/generate_equations.rs | 4897 | `70f7904c4e67c38b816f489cf400a07e85cce85a4c399ba677cdeda334608b5b` | 0 |
+| crates/cairo-lang-sierra-gas/src/lib.rs | 16437 | `4f8f46b37b13092382ffe15f93136da42ff43f0953c2f95c26c256bb6b701413` | 0 |
+| crates/cairo-lang-sierra-gas/src/objects.rs | 5491 | `f9e472e895b22ab9c7222ddc962ade1133c1d73704847b216de30d0f79e3052d` | 0 |
+| crates/cairo-lang-sierra-gas/src/starknet_libfunc_cost_base.rs | 4871 | `08ef9e2aa171bbeaebc229d784387a00f475155a690310bdeee9e0a869e9e053` | 0 |
+| crates/cairo-lang-sierra-generator/Cargo.toml | 1907 | `2b139c3e1340cb3c0e78c8021cc432674a7e33498fea4a6ca37787bba2d8ac6d` | 0 |
+| crates/cairo-lang-sierra-generator/src/ap_change.rs | 886 | `06770faa7c040d81cb929c80704e5173d4502a49b060e29a652477aa57550ad0` | 0 |
+| crates/cairo-lang-sierra-generator/src/ap_tracking.rs | 6177 | `720c2e182891e8401115ea80872ad4c45caad28f93768fd15b86c4539283ec23` | 0 |
+| crates/cairo-lang-sierra-generator/src/block_generator.rs | 31097 | `8ddbd2678b7a5330bb31fcfb360190e970a58cad4e5f1d8ed58748162d1b555e` | 0 |
+| crates/cairo-lang-sierra-generator/src/canonical_id_replacer.rs | 2557 | `8a6c5d15b3f898ad9d23f9a887940ec915c45a884940f85b4ea05473f89b2ac4` | 0 |
+| crates/cairo-lang-sierra-generator/src/db.rs | 20338 | `7855cb358f28f73beb12f6420266649c0b7a7c06655d43d15bef3789c455b8fc` | 0 |
+| crates/cairo-lang-sierra-generator/src/debug_info/function_debug_info.rs | 23491 | `e5faa7ef511ff77c8398c0ec920457b80e6aaa619b7fbca4f224cc37ca01ded0` | 0 |
+| crates/cairo-lang-sierra-generator/src/debug_info/function_debug_info/serializable.rs | 2542 | `1822da65544d402d0a95b5a1c4767d7cc04593cc62d775ec31f0671579fbee53` | 0 |
+| crates/cairo-lang-sierra-generator/src/debug_info/mod.rs | 3116 | `a58306571f877f52c55d2b3359711eb716fa0b748e61eb8edd25c16d1bbdaa0e` | 0 |
+| crates/cairo-lang-sierra-generator/src/debug_info/statements_locations.rs | 4898 | `b98770f292a5178a497c2c72f91913963a3185ef8a1dfe87d3e55037d4983914` | 0 |
+| crates/cairo-lang-sierra-generator/src/debug_info/statements_locations/statements_code_locations.rs | 1327 | `9d7c37340f33502715e68fe85fd9ed29937cc771e3f5679777e34875ce838e9b` | 0 |
+| crates/cairo-lang-sierra-generator/src/debug_info/statements_locations/statements_functions.rs | 7285 | `56bb45cf9e8e67cd4a8efb8bb848e3e95aa6b5e7a5efb40ccb59b79eda9b2544` | 0 |
+| crates/cairo-lang-sierra-generator/src/debug_info/type_names.rs | 9028 | `1020d9f056137423deff4eade77c6993154be7a756e4acafa666f4864a115d7a` | 0 |
+| crates/cairo-lang-sierra-generator/src/executables.rs | 4940 | `ddd4cbf099fcf21e66c1d55270e8f558420e265d473f09869d5392f71087fe34` | 0 |
+| crates/cairo-lang-sierra-generator/src/expr_generator_context.rs | 9927 | `c564c130ae08b7d1c8660032c926dc6c5265ea002a7d5316fc1738d4e2718bab` | 0 |
+| crates/cairo-lang-sierra-generator/src/extra_sierra_info.rs | 825 | `2ce4a506e83bc4589a43ce2cad0e792ec80c23b5a51299766e4f51818e8eff63` | 0 |
+| crates/cairo-lang-sierra-generator/src/function_generator.rs | 8852 | `c273ebf8b59c9899860f8bdfcafc567c34585a3a8fc5989a4b6c7be7c6d629af` | 0 |
+| crates/cairo-lang-sierra-generator/src/function_generator_test_utils.rs | 2081 | `f7ae0d5d27adcd4f88ce655b6d86b33bfc07659720398d511c57caa9c4370829` | 0 |
+| crates/cairo-lang-sierra-generator/src/id_allocator.rs | 304 | `e0e8ef751ebc59bbf12ebbf8783b020b48c9d6cafba4435eb85a9211d876c009` | 0 |
+| crates/cairo-lang-sierra-generator/src/lib.rs | 702 | `c5043b9ef18b32ec91085543a38e17e672ba1bd7ecb36f15ec2702e68ed59ed8` | 0 |
+| crates/cairo-lang-sierra-generator/src/lifetime.rs | 10318 | `fd2afc2ec06d45113b72732e5cff2f7cfd4d5187904be23cfef0146e7a630cfc` | 0 |
+| crates/cairo-lang-sierra-generator/src/local_variables.rs | 19715 | `edee41829621a172824da9795b5fb9679a0c2522625e13a41fced5cbe9161b9b` | 0 |
+| crates/cairo-lang-sierra-generator/src/next_statement_index_fetch.rs | 1900 | `43bd8b05acb6781c9348963e6292f87f5b2cf0e5a97f02b1d381aebc2a3be2ca` | 0 |
+| crates/cairo-lang-sierra-generator/src/pre_sierra.rs | 5826 | `1158fa380f4ae04d546ebdd3d95a2f95ef51993015ab6c0390f1edb336dfee1f` | 0 |
+| crates/cairo-lang-sierra-generator/src/program_generator.rs | 18258 | `dba4aeaf736264f736d2b91f3264de5abe1c4b18eb553b632f349218a8d90a3b` | 0 |
+| crates/cairo-lang-sierra-generator/src/replace_ids.rs | 8790 | `67df8f245c5a65cc484a1154d0ab6d8902864de6c007e936a65404ca2ab1af85` | 0 |
+| crates/cairo-lang-sierra-generator/src/resolve_labels.rs | 4078 | `e744e0badaccc514d36bf9bdef6ed3466d9ec097ec888297c7b076e0d91b34cb` | 0 |
+| crates/cairo-lang-sierra-generator/src/specialization_context.rs | 2235 | `9575217c3536ed0e1b8bfcfa93eaf4ceed8d264366d6a3461bc320f8882e484e` | 0 |
+| crates/cairo-lang-sierra-generator/src/store_variables/known_stack.rs | 6986 | `ef9501a884d1ae60a22092d9eecd7abc27c9688d8d9c1487480ac084e9e3e378` | 0 |
+| crates/cairo-lang-sierra-generator/src/store_variables/mod.rs | 25303 | `3b295e91b0571f98b89f0d2667c9c02ae7ef4eb4e58ef8cd3b7dc8a7a1946c53` | 0 |
+| crates/cairo-lang-sierra-generator/src/store_variables/state.rs | 7846 | `e94c9d536cb09d5107d00c2e813c6e61e01a6ec384141aeee2e7c5a06463d203` | 0 |
+| crates/cairo-lang-sierra-generator/src/types.rs | 11635 | `7f0d066312cbb9c4d674745adf2b2d571e66663fec4a773bffcfa2e1edb67915` | 0 |
+| crates/cairo-lang-sierra-generator/src/utils.rs | 20935 | `d0bdd34307a0e9e353c2e13acf085ba0e5b51160da58af2f14432dea13a2927b` | 0 |
+| crates/cairo-lang-sierra-to-casm/Cargo.toml | 1283 | `47b9bf575d4e324120770b608e0f2efe131a66dbddf161cd33a9708e0c69da1c` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/annotations.rs | 22289 | `06c81b0cafa2b83981c8e0a1f1e7e30bae6dd07fdb003f60484ae1730b2142fb` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/circuit.rs | 1229 | `fcffe45b5ef74d257a389035f1bf7ea4e57bd5eecd84d45dca09db53eef53544` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/compiler.rs | 30215 | `522cf0dbbd91b98908869825591bad9a6d018323f3216012098482174383a08d` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/environment/ap_tracking.rs | 616 | `2272a16ed69e1c5c46efe6d1f8513084d37be31a5979116fb2fd9805cc07a1d0` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/environment/frame_state.rs | 4596 | `0ab90267afa318932ebfa12d5f2ed21a21c458d37951d9b769677a7d127e79f6` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/environment/gas_wallet.rs | 2105 | `b6a75149eca42f911674f17b3a8d4777eb8fe3c3d02393203acaaff665685137` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/environment/mod.rs | 2584 | `0a911694273206a60eab82e02800137e8d5b4eb32727b5b67dbe9827fe753256` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/array.rs | 20140 | `4aea928916df27b75544bdf8e32024133ce0d19571afb7a0b351759c6a733acc` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/bitwise.rs | 1229 | `d51477ade4fce34c37bf3c9f5a4c245b15627a29bca94110fe59d969a6880e98` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/blake.rs | 1914 | `8aca5d84230addba16cd17de3a36390c8742003aaaef38d0c15665d0af670833` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/boolean.rs | 3251 | `775505bcc7867d91a2c3fc764f2a6cf05f6a1977c7fb43786d1cba93845c59d9` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/boxing.rs | 4097 | `8e54f54a8ebfdfde62f97418096eb4bf7c9a17773e0b40fb3296ac05d5868080` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/bytes31.rs | 940 | `9cdb770b0670b77c3364db2c824aece01ef9383455dc61e41f0d33525efa2955` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/casts.rs | 9079 | `c739825160e22ab33135211361cd9fc64944f89eccc31a56e4ced4fb3c201760` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/circuit.rs | 23950 | `436195e40b5b63e50a8e53ce03f6f20f55e7026173c8e998694482cd32f9e724` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/const_type.rs | 2512 | `ef1a24e051a0b694543b2a979ab2511a1cd459ca5ca819b4dd3782152bea1804` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/debug.rs | 1299 | `d35e3fe54d20b1bd69dc2644e9a7af5f716f3cbcc473a74779bea6a9e62702c9` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/ec.rs | 16612 | `a15f1d89b8045571643e2ff737b6c3fef5ac70f324c2d9cbffb482f852ddca72` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/enm.rs | 20273 | `9329d25f4d185b9117af3c35a5ce5c252cbaba3b5d47a3a8b8ddfd4865b79257` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/felt252.rs | 3992 | `ec63ad1f7cc35827639011f34cca26796cfc3d5c870274f75328558daed3b747` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/felt252_dict.rs | 34762 | `44d344bba719872a599fd73167947f9a5f299f515277286199266d22035faad8` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/function_call.rs | 1726 | `146f1bd5558bd7a16b73e2b64d36eedb829cab5c536fe51fb1a1455470c47a61` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/gas.rs | 12880 | `33683e857d4103801b3e52ae0844e2ccc805f42a1c6a326347045e8b0c8b208f` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/gas_reserve.rs | 1848 | `aa9244587acf95abe808d6b37cba1710338aa82dacfbac389c111cfbac065fbf` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/bounded.rs | 13336 | `10ea21047b19bed493e13c02ecd1c258813ce028ed8b218fae04c1fa040076e1` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/mod.rs | 5810 | `162f4afcc9dab40c0ee01f5c0dfa48be905bfdfa51e99279c06dfeb6c90d7c0b` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/signed.rs | 6707 | `e37e3610c8f846b872a899e3491b6240ce135d28b0c864ad6ce1e42fd9498272` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/signed128.rs | 1081 | `0e6d441c1f95af91ee11fca7eda31f01f8a2215fa11f5efa1c9d3f36d0ebe250` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned.rs | 6742 | `e34bc55fb3b0806ed0dc70b54e108505ccfc1388e4f2ba8b3a1e1f6e2c80cb30` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned128.rs | 16361 | `ebcbd7b7c0f00386ee8692c9b91377e79164390c611468762f5953d59f99ad3f` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned256.rs | 22425 | `cadf78a5c6351cc79cc7a14129990ef78a21e55b93651358ccab989ebf47b500` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned512.rs | 8351 | `9c671e0073fa695cd8841002e6c45aff7eb594f6f50b1f2803cebef1cb562441` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/mem.rs | 6406 | `b9a48d9e7bf8113819d43465bde6e8db5d4f9c842422c97bc5ec5b8945dc31d8` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/misc.rs | 11998 | `38b4d607e5034490df23fcb069a3d49cc2ae065e00d6f6a9b4f5847667894b78` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/mod.rs | 33234 | `627df5e90a44cd2c8ae5f826b2139db1c2b304b36598135f41513847d53f275e` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/nullable.rs | 2132 | `fff675671e7e1db055d6f044ba099386baffed86d49f21a809365de5065e1d75` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/pedersen.rs | 1374 | `c80ee865cc8aca9e24bcdc73c0aaa34dd75987c0941e44870f113de91c2cdc52` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/poseidon.rs | 1476 | `c8d3efa310a6e3a90b827a01a78ecb061993dfe928a4d41d8df95206e3477561` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/qm31.rs | 6768 | `cc48e6d879ceb7ec85cd69d19ac735bcc7d3cc6ed76b143fa567b4ff0e584416` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/range.rs | 3388 | `ad97da4048ea0c37ba113aed1f6cc196439c334a6e67f549dcd610954be937e1` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/range_reduction.rs | 4930 | `d5fcf66b9e18fbe2437b0dd28ac51be757964a8d928a4f30a681244114cb3da7` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/squashed_felt252_dict.rs | 541 | `b0660d114e0d9feec38c8d4b8bda36f6c1069984de64451d1dce85722a21dd76` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/starknet/mod.rs | 8819 | `6777a75df5be190a86110e9a38d138aa0c668766dae38dd6c194ba6e4cba7556` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/starknet/secp256.rs | 1966 | `0bae520e54dfa5e86c20df4cd3ebe6feb96be67c71fd89b0ce43cfc4547a20f3` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/starknet/storage.rs | 3021 | `149a0623dc70d52ac813f420759ce7b8f72405f39622629ace2a22a064fce9d4` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/structure.rs | 4193 | `80a8d0fa76c6938e69a94874754eb629ac953e4c561580c9ca7dfb7f4748adb1` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/trace.rs | 876 | `765e19ebf445c4a3e70739ff101746435b186a6e10063c85f05661f879139982` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/invocations/unsafe_panic.rs | 562 | `fd644ddc10b083c4b7a556baa3119daed4014bb163b5935db6594f8400983d5b` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/lib.rs | 317 | `3a6d2b2e4cdb08b80214a495270ffc17f8eeda8a980a73105238a037f078976f` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/metadata.rs | 6255 | `72e7d5a09bbcddf2836fd0f720cd0688cf99bb59bc885e58fefe764c50639e31` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/references.rs | 7424 | `72acc4d75f259468939f68df9cc79307e69ea6ba59866fa69eaf3a38e184729e` | 0 |
+| crates/cairo-lang-sierra-to-casm/src/relocations.rs | 6266 | `c0ff6f1b2ffc92e74328d662a1d454d85e43252b72cd30d344eea3ee8636d180` | 0 |
+| crates/cairo-lang-sierra-type-size/Cargo.toml | 366 | `240984359ba8a1e4f73a9305df42751d97ac326c34f45f4e64b39d356ad56d16` | 0 |
+| crates/cairo-lang-sierra-type-size/src/lib.rs | 7592 | `db78a7ef6c705b0d45ba782b576550ff092be1b1094b93458b0967d6f09b6ac4` | 0 |
 | crates/cairo-lang-sierra/Cargo.toml | 1245 | `6da6c0ad10e09b2fa3f650b9e064b6ee05f2ee169c78db55bc86ffae24f42cfe` | 0 |
 | crates/cairo-lang-sierra/src/algorithm/mod.rs | 27 | `635616f226b407b7a76f148a524510171a12788a88881c22905148868311e535` | 0 |
 | crates/cairo-lang-sierra/src/algorithm/topological_order.rs | 3750 | `9b68085c090bff1854fc79857629377c6a12c927ec14772506dc4354da9a93a6` | 0 |
@@ -1498,111 +1712,17 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | crates/cairo-lang-sierra/src/simulation/core.rs | 33654 | `6674a9db10d3103dc87a89e46d25c4d0b80dbbb36e6a88b0bc2ea75336d45913` | 0 |
 | crates/cairo-lang-sierra/src/simulation/mod.rs | 6015 | `1e742c8715edfe3b3111411209c8b02294e7c24b13100d18b64295909c611565` | 0 |
 | crates/cairo-lang-sierra/src/simulation/value.rs | 734 | `3dc76e0ab0f29e0377dd547bbc1b604a42250fa316189baf768813f76cea1cfb` | 0 |
-| crates/cairo-lang-sierra-ap-change/Cargo.toml | 764 | `c256bc01e51113db81d81a7c992770c596c5868e9e4c885dd74df2dbc8cd9268` | 0 |
-| crates/cairo-lang-sierra-ap-change/src/ap_change_info.rs | 1108 | `6b60014bd489270fc85a15996accdd093b551614a1142118d2ae3143aeb19879` | 0 |
-| crates/cairo-lang-sierra-ap-change/src/compute.rs | 14627 | `e821f794a050e9e2269ff4638e818f639a2a11a973f8211186310fcd594dee0e` | 0 |
-| crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs | 28543 | `b177577c0c6dfcd9e5270c469952a60740138411084aaa0105f30191ffa23674` | 0 |
-| crates/cairo-lang-sierra-ap-change/src/generate_equations.rs | 7565 | `bef7f8441314d81daffb80d695364b6da54ae2c3af3a0c364cbe7bce6e2dc8f1` | 0 |
-| crates/cairo-lang-sierra-ap-change/src/lib.rs | 5075 | `47d6d60b61ae21a30a20b44da94269d5469a3eec1928bb5ac6dc62651e72fef0` | 0 |
-| crates/cairo-lang-sierra-gas/Cargo.toml | 923 | `776cc01650253808ccc98e9ed1608f01a334d11b1428b557da709c54b5acce99` | 0 |
-| crates/cairo-lang-sierra-gas/src/compute_costs.rs | 36226 | `10f38295ddf6515479a5e296f9fefcffce37fce1caad1e07487ccec421626c23` | 0 |
-| crates/cairo-lang-sierra-gas/src/core_libfunc_cost.rs | 1993 | `f650dd5e2973da809018bfc7a9484eab8164326637aaadfb23429705bd7a5f3f` | 0 |
-| crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs | 47737 | `38f0fb987f353da00e402943ee3d9700a86a59e06d20c7273ff1d904f2d6c0ab` | 0 |
-| crates/cairo-lang-sierra-gas/src/core_libfunc_cost_expr.rs | 3068 | `f5224549eff968f358e87c21f030af438b0d6f5920b908d4737cb98d76b4d54d` | 0 |
-| crates/cairo-lang-sierra-gas/src/cost_expr.rs | 971 | `70a854d5b5c545ae8bb22a9296f826605759bc57beabda29e8a1b2bbe2af1e49` | 0 |
-| crates/cairo-lang-sierra-gas/src/gas_info.rs | 4793 | `3a8bf4e33b70532ba47de755759ae8618eba021b0710c85e4fc12acca36d07b2` | 0 |
-| crates/cairo-lang-sierra-gas/src/generate_equations.rs | 4897 | `70f7904c4e67c38b816f489cf400a07e85cce85a4c399ba677cdeda334608b5b` | 0 |
-| crates/cairo-lang-sierra-gas/src/lib.rs | 16437 | `4f8f46b37b13092382ffe15f93136da42ff43f0953c2f95c26c256bb6b701413` | 0 |
-| crates/cairo-lang-sierra-gas/src/objects.rs | 5491 | `f9e472e895b22ab9c7222ddc962ade1133c1d73704847b216de30d0f79e3052d` | 0 |
-| crates/cairo-lang-sierra-gas/src/starknet_libfunc_cost_base.rs | 4871 | `08ef9e2aa171bbeaebc229d784387a00f475155a690310bdeee9e0a869e9e053` | 0 |
-| crates/cairo-lang-sierra-generator/Cargo.toml | 1907 | `2b139c3e1340cb3c0e78c8021cc432674a7e33498fea4a6ca37787bba2d8ac6d` | 0 |
-| crates/cairo-lang-sierra-generator/src/ap_change.rs | 886 | `06770faa7c040d81cb929c80704e5173d4502a49b060e29a652477aa57550ad0` | 0 |
-| crates/cairo-lang-sierra-generator/src/ap_tracking.rs | 6177 | `720c2e182891e8401115ea80872ad4c45caad28f93768fd15b86c4539283ec23` | 0 |
-| crates/cairo-lang-sierra-generator/src/block_generator.rs | 31097 | `8ddbd2678b7a5330bb31fcfb360190e970a58cad4e5f1d8ed58748162d1b555e` | 0 |
-| crates/cairo-lang-sierra-generator/src/canonical_id_replacer.rs | 2557 | `8a6c5d15b3f898ad9d23f9a887940ec915c45a884940f85b4ea05473f89b2ac4` | 0 |
-| crates/cairo-lang-sierra-generator/src/db.rs | 20338 | `7855cb358f28f73beb12f6420266649c0b7a7c06655d43d15bef3789c455b8fc` | 0 |
-| crates/cairo-lang-sierra-generator/src/debug_info/function_debug_info/serializable.rs | 2542 | `1822da65544d402d0a95b5a1c4767d7cc04593cc62d775ec31f0671579fbee53` | 0 |
-| crates/cairo-lang-sierra-generator/src/debug_info/function_debug_info.rs | 23491 | `e5faa7ef511ff77c8398c0ec920457b80e6aaa619b7fbca4f224cc37ca01ded0` | 0 |
-| crates/cairo-lang-sierra-generator/src/debug_info/mod.rs | 3116 | `a58306571f877f52c55d2b3359711eb716fa0b748e61eb8edd25c16d1bbdaa0e` | 0 |
-| crates/cairo-lang-sierra-generator/src/debug_info/statements_locations/statements_code_locations.rs | 1327 | `9d7c37340f33502715e68fe85fd9ed29937cc771e3f5679777e34875ce838e9b` | 0 |
-| crates/cairo-lang-sierra-generator/src/debug_info/statements_locations/statements_functions.rs | 7285 | `56bb45cf9e8e67cd4a8efb8bb848e3e95aa6b5e7a5efb40ccb59b79eda9b2544` | 0 |
-| crates/cairo-lang-sierra-generator/src/debug_info/statements_locations.rs | 4898 | `b98770f292a5178a497c2c72f91913963a3185ef8a1dfe87d3e55037d4983914` | 0 |
-| crates/cairo-lang-sierra-generator/src/debug_info/type_names.rs | 9028 | `1020d9f056137423deff4eade77c6993154be7a756e4acafa666f4864a115d7a` | 0 |
-| crates/cairo-lang-sierra-generator/src/executables.rs | 4940 | `ddd4cbf099fcf21e66c1d55270e8f558420e265d473f09869d5392f71087fe34` | 0 |
-| crates/cairo-lang-sierra-generator/src/expr_generator_context.rs | 9927 | `c564c130ae08b7d1c8660032c926dc6c5265ea002a7d5316fc1738d4e2718bab` | 0 |
-| crates/cairo-lang-sierra-generator/src/extra_sierra_info.rs | 825 | `2ce4a506e83bc4589a43ce2cad0e792ec80c23b5a51299766e4f51818e8eff63` | 0 |
-| crates/cairo-lang-sierra-generator/src/function_generator.rs | 8852 | `c273ebf8b59c9899860f8bdfcafc567c34585a3a8fc5989a4b6c7be7c6d629af` | 0 |
-| crates/cairo-lang-sierra-generator/src/function_generator_test_utils.rs | 2081 | `f7ae0d5d27adcd4f88ce655b6d86b33bfc07659720398d511c57caa9c4370829` | 0 |
-| crates/cairo-lang-sierra-generator/src/id_allocator.rs | 304 | `e0e8ef751ebc59bbf12ebbf8783b020b48c9d6cafba4435eb85a9211d876c009` | 0 |
-| crates/cairo-lang-sierra-generator/src/lib.rs | 702 | `c5043b9ef18b32ec91085543a38e17e672ba1bd7ecb36f15ec2702e68ed59ed8` | 0 |
-| crates/cairo-lang-sierra-generator/src/lifetime.rs | 10318 | `fd2afc2ec06d45113b72732e5cff2f7cfd4d5187904be23cfef0146e7a630cfc` | 0 |
-| crates/cairo-lang-sierra-generator/src/local_variables.rs | 19715 | `edee41829621a172824da9795b5fb9679a0c2522625e13a41fced5cbe9161b9b` | 0 |
-| crates/cairo-lang-sierra-generator/src/next_statement_index_fetch.rs | 1900 | `43bd8b05acb6781c9348963e6292f87f5b2cf0e5a97f02b1d381aebc2a3be2ca` | 0 |
-| crates/cairo-lang-sierra-generator/src/pre_sierra.rs | 5826 | `1158fa380f4ae04d546ebdd3d95a2f95ef51993015ab6c0390f1edb336dfee1f` | 0 |
-| crates/cairo-lang-sierra-generator/src/program_generator.rs | 18258 | `dba4aeaf736264f736d2b91f3264de5abe1c4b18eb553b632f349218a8d90a3b` | 0 |
-| crates/cairo-lang-sierra-generator/src/replace_ids.rs | 8790 | `67df8f245c5a65cc484a1154d0ab6d8902864de6c007e936a65404ca2ab1af85` | 0 |
-| crates/cairo-lang-sierra-generator/src/resolve_labels.rs | 4078 | `e744e0badaccc514d36bf9bdef6ed3466d9ec097ec888297c7b076e0d91b34cb` | 0 |
-| crates/cairo-lang-sierra-generator/src/specialization_context.rs | 2235 | `9575217c3536ed0e1b8bfcfa93eaf4ceed8d264366d6a3461bc320f8882e484e` | 0 |
-| crates/cairo-lang-sierra-generator/src/store_variables/known_stack.rs | 6986 | `ef9501a884d1ae60a22092d9eecd7abc27c9688d8d9c1487480ac084e9e3e378` | 0 |
-| crates/cairo-lang-sierra-generator/src/store_variables/mod.rs | 25303 | `3b295e91b0571f98b89f0d2667c9c02ae7ef4eb4e58ef8cd3b7dc8a7a1946c53` | 0 |
-| crates/cairo-lang-sierra-generator/src/store_variables/state.rs | 7846 | `e94c9d536cb09d5107d00c2e813c6e61e01a6ec384141aeee2e7c5a06463d203` | 0 |
-| crates/cairo-lang-sierra-generator/src/types.rs | 11635 | `7f0d066312cbb9c4d674745adf2b2d571e66663fec4a773bffcfa2e1edb67915` | 0 |
-| crates/cairo-lang-sierra-generator/src/utils.rs | 20935 | `d0bdd34307a0e9e353c2e13acf085ba0e5b51160da58af2f14432dea13a2927b` | 0 |
-| crates/cairo-lang-sierra-to-casm/Cargo.toml | 1283 | `47b9bf575d4e324120770b608e0f2efe131a66dbddf161cd33a9708e0c69da1c` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/annotations.rs | 22289 | `06c81b0cafa2b83981c8e0a1f1e7e30bae6dd07fdb003f60484ae1730b2142fb` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/circuit.rs | 1229 | `fcffe45b5ef74d257a389035f1bf7ea4e57bd5eecd84d45dca09db53eef53544` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/compiler.rs | 30215 | `522cf0dbbd91b98908869825591bad9a6d018323f3216012098482174383a08d` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/environment/ap_tracking.rs | 616 | `2272a16ed69e1c5c46efe6d1f8513084d37be31a5979116fb2fd9805cc07a1d0` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/environment/frame_state.rs | 4596 | `0ab90267afa318932ebfa12d5f2ed21a21c458d37951d9b769677a7d127e79f6` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/environment/gas_wallet.rs | 2105 | `b6a75149eca42f911674f17b3a8d4777eb8fe3c3d02393203acaaff665685137` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/environment/mod.rs | 2584 | `0a911694273206a60eab82e02800137e8d5b4eb32727b5b67dbe9827fe753256` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/array.rs | 20140 | `4aea928916df27b75544bdf8e32024133ce0d19571afb7a0b351759c6a733acc` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/bitwise.rs | 1229 | `d51477ade4fce34c37bf3c9f5a4c245b15627a29bca94110fe59d969a6880e98` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/blake.rs | 1914 | `8aca5d84230addba16cd17de3a36390c8742003aaaef38d0c15665d0af670833` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/boolean.rs | 3251 | `775505bcc7867d91a2c3fc764f2a6cf05f6a1977c7fb43786d1cba93845c59d9` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/boxing.rs | 4097 | `8e54f54a8ebfdfde62f97418096eb4bf7c9a17773e0b40fb3296ac05d5868080` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/bytes31.rs | 940 | `9cdb770b0670b77c3364db2c824aece01ef9383455dc61e41f0d33525efa2955` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/casts.rs | 9079 | `c739825160e22ab33135211361cd9fc64944f89eccc31a56e4ced4fb3c201760` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/circuit.rs | 23950 | `436195e40b5b63e50a8e53ce03f6f20f55e7026173c8e998694482cd32f9e724` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/const_type.rs | 2512 | `ef1a24e051a0b694543b2a979ab2511a1cd459ca5ca819b4dd3782152bea1804` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/debug.rs | 1299 | `d35e3fe54d20b1bd69dc2644e9a7af5f716f3cbcc473a74779bea6a9e62702c9` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/ec.rs | 16612 | `a15f1d89b8045571643e2ff737b6c3fef5ac70f324c2d9cbffb482f852ddca72` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/enm.rs | 20273 | `9329d25f4d185b9117af3c35a5ce5c252cbaba3b5d47a3a8b8ddfd4865b79257` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/felt252.rs | 3992 | `ec63ad1f7cc35827639011f34cca26796cfc3d5c870274f75328558daed3b747` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/felt252_dict.rs | 34762 | `44d344bba719872a599fd73167947f9a5f299f515277286199266d22035faad8` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/function_call.rs | 1726 | `146f1bd5558bd7a16b73e2b64d36eedb829cab5c536fe51fb1a1455470c47a61` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/gas.rs | 12880 | `33683e857d4103801b3e52ae0844e2ccc805f42a1c6a326347045e8b0c8b208f` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/gas_reserve.rs | 1848 | `aa9244587acf95abe808d6b37cba1710338aa82dacfbac389c111cfbac065fbf` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/bounded.rs | 13336 | `10ea21047b19bed493e13c02ecd1c258813ce028ed8b218fae04c1fa040076e1` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/mod.rs | 5810 | `162f4afcc9dab40c0ee01f5c0dfa48be905bfdfa51e99279c06dfeb6c90d7c0b` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/signed.rs | 6707 | `e37e3610c8f846b872a899e3491b6240ce135d28b0c864ad6ce1e42fd9498272` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/signed128.rs | 1081 | `0e6d441c1f95af91ee11fca7eda31f01f8a2215fa11f5efa1c9d3f36d0ebe250` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned.rs | 6742 | `e34bc55fb3b0806ed0dc70b54e108505ccfc1388e4f2ba8b3a1e1f6e2c80cb30` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned128.rs | 16361 | `ebcbd7b7c0f00386ee8692c9b91377e79164390c611468762f5953d59f99ad3f` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned256.rs | 22425 | `cadf78a5c6351cc79cc7a14129990ef78a21e55b93651358ccab989ebf47b500` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/int/unsigned512.rs | 8351 | `9c671e0073fa695cd8841002e6c45aff7eb594f6f50b1f2803cebef1cb562441` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/mem.rs | 6406 | `b9a48d9e7bf8113819d43465bde6e8db5d4f9c842422c97bc5ec5b8945dc31d8` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/misc.rs | 11998 | `38b4d607e5034490df23fcb069a3d49cc2ae065e00d6f6a9b4f5847667894b78` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/mod.rs | 33234 | `627df5e90a44cd2c8ae5f826b2139db1c2b304b36598135f41513847d53f275e` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/nullable.rs | 2132 | `fff675671e7e1db055d6f044ba099386baffed86d49f21a809365de5065e1d75` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/pedersen.rs | 1374 | `c80ee865cc8aca9e24bcdc73c0aaa34dd75987c0941e44870f113de91c2cdc52` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/poseidon.rs | 1476 | `c8d3efa310a6e3a90b827a01a78ecb061993dfe928a4d41d8df95206e3477561` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/qm31.rs | 6768 | `cc48e6d879ceb7ec85cd69d19ac735bcc7d3cc6ed76b143fa567b4ff0e584416` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/range.rs | 3388 | `ad97da4048ea0c37ba113aed1f6cc196439c334a6e67f549dcd610954be937e1` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/range_reduction.rs | 4930 | `d5fcf66b9e18fbe2437b0dd28ac51be757964a8d928a4f30a681244114cb3da7` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/squashed_felt252_dict.rs | 541 | `b0660d114e0d9feec38c8d4b8bda36f6c1069984de64451d1dce85722a21dd76` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/starknet/mod.rs | 8819 | `6777a75df5be190a86110e9a38d138aa0c668766dae38dd6c194ba6e4cba7556` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/starknet/secp256.rs | 1966 | `0bae520e54dfa5e86c20df4cd3ebe6feb96be67c71fd89b0ce43cfc4547a20f3` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/starknet/storage.rs | 3021 | `149a0623dc70d52ac813f420759ce7b8f72405f39622629ace2a22a064fce9d4` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/structure.rs | 4193 | `80a8d0fa76c6938e69a94874754eb629ac953e4c561580c9ca7dfb7f4748adb1` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/trace.rs | 876 | `765e19ebf445c4a3e70739ff101746435b186a6e10063c85f05661f879139982` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/invocations/unsafe_panic.rs | 562 | `fd644ddc10b083c4b7a556baa3119daed4014bb163b5935db6594f8400983d5b` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/lib.rs | 317 | `3a6d2b2e4cdb08b80214a495270ffc17f8eeda8a980a73105238a037f078976f` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/metadata.rs | 6255 | `72e7d5a09bbcddf2836fd0f720cd0688cf99bb59bc885e58fefe764c50639e31` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/references.rs | 7424 | `72acc4d75f259468939f68df9cc79307e69ea6ba59866fa69eaf3a38e184729e` | 0 |
-| crates/cairo-lang-sierra-to-casm/src/relocations.rs | 6266 | `c0ff6f1b2ffc92e74328d662a1d454d85e43252b72cd30d344eea3ee8636d180` | 0 |
-| crates/cairo-lang-sierra-type-size/Cargo.toml | 366 | `240984359ba8a1e4f73a9305df42751d97ac326c34f45f4e64b39d356ad56d16` | 0 |
-| crates/cairo-lang-sierra-type-size/src/lib.rs | 7592 | `db78a7ef6c705b0d45ba782b576550ff092be1b1094b93458b0967d6f09b6ac4` | 0 |
+| crates/cairo-lang-starknet-classes/Cargo.toml | 1430 | `dbaa0518f6a005070eccfeef8e20dc4703f55edd1d7bc2afb52009038f883d19` | 0 |
+| crates/cairo-lang-starknet-classes/src/abi.rs | 6334 | `239701f9af14e798d7652ce509adb8c9663b16de1aba4087f2b0232910834a90` | 0 |
+| crates/cairo-lang-starknet-classes/src/allowed_libfuncs.rs | 5759 | `f04ae3fa8baaff30672e1fe397b9c6c764b9e646d73efea19bfe381a9e9afaac` | 0 |
+| crates/cairo-lang-starknet-classes/src/casm_contract_class.rs | 27208 | `bbf1f0e9d0cff5d47002a5efbea90b42d0933cc24a742895777423f9f2a53532` | 0 |
+| crates/cairo-lang-starknet-classes/src/compiler_version.rs | 1496 | `47ed2a5b52f0e682d83edccdd06f78cda603fa2f754f16285739fd42c7cd4a74` | 0 |
+| crates/cairo-lang-starknet-classes/src/contract_class.rs | 6618 | `126d7933e29c75ee15e9887cd6fe1904e2a7e5fbf38e624c105fcdb0fc3e3da1` | 0 |
+| crates/cairo-lang-starknet-classes/src/contract_segmentation.rs | 7240 | `8fed6d566fc8b705c938cdf113af1f026f1c13d6b4db6fcca3121552550e4abf` | 0 |
+| crates/cairo-lang-starknet-classes/src/felt252_serde.rs | 24171 | `4d25743988ab34f0859ca27de6c9cabbad4a446cd8be244119e0e1bf9dc65a9b` | 0 |
+| crates/cairo-lang-starknet-classes/src/felt252_vec_compression.rs | 3910 | `7d5de620428ea451b8d3097003e25594c9db2a5edb6d7aab8369db8826d85c67` | 0 |
+| crates/cairo-lang-starknet-classes/src/keccak.rs | 445 | `5c1f594e59fc02b0ed542f735856072afb4f72f139faa6b81fce5f295a5e6f84` | 0 |
+| crates/cairo-lang-starknet-classes/src/lib.rs | 570 | `b521745e338003fb09016ab7de0cca3c78154897741907c2f751a6c5c187bc7f` | 0 |
 | crates/cairo-lang-starknet/Cargo.toml | 2142 | `6a1360c1cca1097b573b751d708918ff71fa8092c1b17dadb8ec8cfdfbef7ea5` | 0 |
 | crates/cairo-lang-starknet/src/abi.rs | 41779 | `381a37251032046c995613128b75696940e06343ed8415a25fc2aca474ea86ad` | 0 |
 | crates/cairo-lang-starknet/src/aliased.rs | 649 | `38da360be02f8e593caaf6b3e2fd9c120040cddfa7e43bdb5a0f95d73289b937` | 0 |
@@ -1630,17 +1750,11 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | crates/cairo-lang-starknet/src/plugin/storage.rs | 9473 | `6e1536d861dd31cef2eaeb8af42cab2972afaef82538fac551434b9b146f62d6` | 0 |
 | crates/cairo-lang-starknet/src/plugin/storage_interfaces.rs | 36520 | `762e142ff07dee6f49a887c2c7e12f03683af522b5c263485fe3528693a20291` | 0 |
 | crates/cairo-lang-starknet/src/plugin/utils.rs | 8745 | `8a48739b3844d3f6466d5daf32b0337e93856427ee94b4ebf371d948fe914ec6` | 0 |
-| crates/cairo-lang-starknet-classes/Cargo.toml | 1430 | `dbaa0518f6a005070eccfeef8e20dc4703f55edd1d7bc2afb52009038f883d19` | 0 |
-| crates/cairo-lang-starknet-classes/src/abi.rs | 6334 | `239701f9af14e798d7652ce509adb8c9663b16de1aba4087f2b0232910834a90` | 0 |
-| crates/cairo-lang-starknet-classes/src/allowed_libfuncs.rs | 5759 | `f04ae3fa8baaff30672e1fe397b9c6c764b9e646d73efea19bfe381a9e9afaac` | 0 |
-| crates/cairo-lang-starknet-classes/src/casm_contract_class.rs | 27208 | `bbf1f0e9d0cff5d47002a5efbea90b42d0933cc24a742895777423f9f2a53532` | 0 |
-| crates/cairo-lang-starknet-classes/src/compiler_version.rs | 1496 | `47ed2a5b52f0e682d83edccdd06f78cda603fa2f754f16285739fd42c7cd4a74` | 0 |
-| crates/cairo-lang-starknet-classes/src/contract_class.rs | 6618 | `126d7933e29c75ee15e9887cd6fe1904e2a7e5fbf38e624c105fcdb0fc3e3da1` | 0 |
-| crates/cairo-lang-starknet-classes/src/contract_segmentation.rs | 7240 | `8fed6d566fc8b705c938cdf113af1f026f1c13d6b4db6fcca3121552550e4abf` | 0 |
-| crates/cairo-lang-starknet-classes/src/felt252_serde.rs | 24171 | `4d25743988ab34f0859ca27de6c9cabbad4a446cd8be244119e0e1bf9dc65a9b` | 0 |
-| crates/cairo-lang-starknet-classes/src/felt252_vec_compression.rs | 3910 | `7d5de620428ea451b8d3097003e25594c9db2a5edb6d7aab8369db8826d85c67` | 0 |
-| crates/cairo-lang-starknet-classes/src/keccak.rs | 445 | `5c1f594e59fc02b0ed542f735856072afb4f72f139faa6b81fce5f295a5e6f84` | 0 |
-| crates/cairo-lang-starknet-classes/src/lib.rs | 570 | `b521745e338003fb09016ab7de0cca3c78154897741907c2f751a6c5c187bc7f` | 0 |
+| crates/cairo-lang-syntax-codegen/Cargo.toml | 560 | `6465f50eb26d90b340b11173ddc19772a701df2c7e32dccdd43c33e2173f9f7d` | 0 |
+| crates/cairo-lang-syntax-codegen/src/cairo_spec.rs | 51368 | `d679af4a2baf50c791a1d34c71935f63367c1f0cb059b2d5e6af4038b59900d8` | 0 |
+| crates/cairo-lang-syntax-codegen/src/generator.rs | 31277 | `14a8766462d4ed9152b796a4cca8dcd5241b3128201ddd931814fd8db43b23aa` | 0 |
+| crates/cairo-lang-syntax-codegen/src/lib.rs | 128 | `d8aa0047699da6e84a71b30f660d2f7333793f8d86250f1a93d3bf238f990ca2` | 0 |
+| crates/cairo-lang-syntax-codegen/src/spec.rs | 7992 | `3338b1ad4c56675835596855e8eb055754652ec3b64a586b08d1e41751f769c0` | 0 |
 | crates/cairo-lang-syntax/Cargo.toml | 1035 | `eda9a67c2b8c7ca4134d9c76b36546df594a16886a8302ac79dcc2c7f2f2d556` | 0 |
 | crates/cairo-lang-syntax/src/attribute/consts.rs | 3199 | `ecc03a3bd97576d00dcf18379d29f6239ccda22ea79fd24c42798f43d82aa48f` | 0 |
 | crates/cairo-lang-syntax/src/attribute/mod.rs | 36 | `6616808eb02f9517ce92123f6af2c82fb04de0badf90321190bc7961e22f9943` | 0 |
@@ -1659,11 +1773,6 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | crates/cairo-lang-syntax/src/node/mod.rs | 36780 | `5397d59a3439cf29c5540c0d840c4785401e179a87aa30f3ffa541a872d3c766` | 0 |
 | crates/cairo-lang-syntax/src/node/stable_ptr.rs | 962 | `c5bd56f99e85bcd2b0a503a1aaa82b2428a09543fea1ee722e927c13e755b3a9` | 0 |
 | crates/cairo-lang-syntax/src/node/with_db.rs | 4853 | `3a56dca38c04674b5dfed9d43f512c9a907b25732da969313d5e255f3db33b7b` | 0 |
-| crates/cairo-lang-syntax-codegen/Cargo.toml | 560 | `6465f50eb26d90b340b11173ddc19772a701df2c7e32dccdd43c33e2173f9f7d` | 0 |
-| crates/cairo-lang-syntax-codegen/src/cairo_spec.rs | 51368 | `d679af4a2baf50c791a1d34c71935f63367c1f0cb059b2d5e6af4038b59900d8` | 0 |
-| crates/cairo-lang-syntax-codegen/src/generator.rs | 31277 | `14a8766462d4ed9152b796a4cca8dcd5241b3128201ddd931814fd8db43b23aa` | 0 |
-| crates/cairo-lang-syntax-codegen/src/lib.rs | 128 | `d8aa0047699da6e84a71b30f660d2f7333793f8d86250f1a93d3bf238f990ca2` | 0 |
-| crates/cairo-lang-syntax-codegen/src/spec.rs | 7992 | `3338b1ad4c56675835596855e8eb055754652ec3b64a586b08d1e41751f769c0` | 0 |
 | crates/cairo-lang-test-plugin/Cargo.toml | 1581 | `b1056e8fb5df40d95dbc246d3bb01613699f18993930fb4645718063a6296f15` | 0 |
 | crates/cairo-lang-test-plugin/src/inline_macros/assert.rs | 10538 | `6e130200a84abf3ded29ccf89ee9a1783a3c0eb19b7d88a14af894b8b0dc9deb` | 0 |
 | crates/cairo-lang-test-plugin/src/inline_macros/mod.rs | 16 | `f8d0c219a61c7f7865511f7b329744702d7cc68aaf1200449a0a86770386b4a7` | 0 |

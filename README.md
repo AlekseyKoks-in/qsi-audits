@@ -2,10 +2,10 @@
 
 61 audit bundles over **53 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**3,754 inventory rows**, of which **1,713 fall to Shor's algorithm**, **28 are post-quantum** and
-**4 are hybrid** (post-quantum combined with classical), from **30,806 parsed files**. Those last two
+**3,834 inventory rows**, of which **1,735 fall to Shor's algorithm**, **28 are post-quantum** and
+**12 are hybrid** (post-quantum combined with classical), from **30,802 parsed files**. Those last two
 are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
-28+4-style addition of the two, which is why one number appeared in two different places.
+28+12-style addition of the two, which is why one number appeared in two different places.
 
 ### What those rows rest on
 
@@ -14,9 +14,9 @@ table to read before quoting any other number in this repository.
 
 | what the row rests on | rows | Shor-breakable |
 |---|---:|---:|
-| a line of source code | 1,992 | 1,248 |
-| name of a dependency in a manifest | 915 | 0 |
-| name of a source file (low confidence) | 384 | 180 |
+| a line of source code | 2,053 | 1,269 |
+| name of a dependency in a manifest | 933 | 0 |
+| name of a source file (low confidence) | 385 | 181 |
 | a deployed smart contract | 126 | 3 |
 | OpenPGP key committed to the repository | 117 | 117 |
 | a certificate or key file | 112 | 59 |
@@ -25,7 +25,7 @@ table to read before quoting any other number in this repository.
 
 Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
 
-**180 of the 1,713 Shor-breakable rows rest on the name of a source file**, not on a line of
+**181 of the 1,735 Shor-breakable rows rest on the name of a source file**, not on a line of
 code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
 call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
 telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
@@ -37,7 +37,7 @@ inventory, because a quantum computer forges a release signature as readily as a
 saw only the Shor total would take them for implemented cryptography. Every one carries `usage: OpenPGP primary
 key` or `OpenPGP subkey`, so one filter removes them from any figure here.
 
-The 915 manifest rows carry no quantum status at all —
+The 933 manifest rows carry no quantum status at all —
 a dependency's name is not an algorithm — which is why they add to the row count and nothing to the Shor count.
 
 Every bundle is pinned to an upstream commit, carries an Ed25519 signature and a CycloneDX CBOM, and was produced
@@ -133,7 +133,7 @@ Five codebases were re-audited at their original commits with their analyst deci
 still every row, still zero post-quantum — and the count is smaller and truer. Figures quoted in letters and
 write-ups dated before 2026-10-29 use the earlier numbers, including a ten-codebase slice of 629 rows and 440
 Shor-breakable. The same ten measured 632 and 434 after the benchmark fix — the small net difference being Jade's
-own code arriving as the benchmarks left — and measure **693 and 448** now that `bitbox02-firmware` is
+own code arriving as the benchmarks left — and measure **695 and 448** now that `bitbox02-firmware` is
 read to 2,645 files instead of 721. Every letter that quotes 629/440 carries a link to this
 repository, so the figure is checkable here; it moved upward each time, and the reason for each move is in this
 section.
@@ -153,9 +153,9 @@ the description says so as an explicit warning rather than leaving a reader to i
 aside test, fuzzing, benchmark and example code and the files no analyzer reads, that is 84% of what
 could be read — and the 518 that still did not fit are named in the report and are every one of them
 `optiga-trust-m`'s vendored mbedtls headers. The bundle goes from 136 rows and 90
-Shor-breakable to **197 and 104**. 44 of the added rows are committed OpenPGP keys rather than
+Shor-breakable to **199 and 104**. 44 of the added rows are committed OpenPGP keys rather than
 implemented cryptography, which the breakdown above separates, so the honest statement of the improvement is
-136 → 153 rows of cryptography this project actually contains.
+136 → 155 rows of cryptography this project actually contains.
 
 **`krux` is still left at its earlier bundle**, and the reason is narrower than a size limit. Re-read at full
 depth it yields 248 inventory rows — but **230 of them come from `firmware/MaixPy` and 11 from `src/krux`**, with
@@ -176,7 +176,7 @@ These bundles use two of those three methods and **declare the third**: live net
 19 March 2027, so nobody can claim conformance to them yet.
 
 The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
-Asymmetric Algorithms". Measured here, **37% of the 1,713 Shor-breakable rows fall only under
+Asymmetric Algorithms". Measured here, **38% of the 1,735 Shor-breakable rows fall only under
 that catch-all**, across 16 distinct algorithms, the largest being Ed25519 — which the memorandum never
 names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
 systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
@@ -277,12 +277,12 @@ exclude all 8 so nothing is counted twice.
 
 ## The Bitcoin self-custody slice
 
-Ten codebases, **693 inventory rows, 448 Shor-breakable**. This is the slice cited in grant
+Ten codebases, **695 inventory rows, 448 Shor-breakable**. This is the slice cited in grant
 applications, so it is here in full.
 
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 197 | 104 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 199 | 104 | 0 |
 | `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 110 | 74 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 111 | 73 | 7 |
 | `krux` | Krux (selfcustody) | `9b3a4314a205` | 257 | 98 | 64 | 0 |
@@ -305,56 +305,56 @@ none.
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
 | `trustwallet-wallet-core` | Trust Wallet | `adf80f8bac98` | 1695 | 355 | 254 | 0 |
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 197 | 104 | 0 |
-| `agave` | Anza (Solana) | `7700cb3128c1` | 1293 | 189 | 103 | 0 |
+| `agave` | Anza (Solana) | `7700cb3128c1` | 1293 | 200 | 103 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 199 | 104 | 0 |
 | `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 156 | 23 | 0 |
 | `zebra` | Zcash Foundation | `147a6a8bf7d3` | 439 | 148 | 65 | 0 |
 | `bitwarden-sdk` | Bitwarden | `25b6c8c3860a` | 1625 | 119 | 12 | 5 |
 | `monero` | Monero | `3fd0f88c20f5` | 1117 | 116 | 79 | 0 |
+| `rustls` | rustls project | `84bf9eaa9857` | 137 | 111 | 29 | 0 |
 | `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 111 | 73 | 7 |
 | `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 110 | 74 | 0 |
 | `nitro` | Offchain Labs (Arbitrum) | `ccc5c828d9ea` | 1038 | 108 | 13 | 0 |
 | `coinbase-cb-mpc` | Coinbase | `0b716706f998` | 174 | 103 | 88 | 2 |
-| `rustls` | rustls project | `84bf9eaa9857` | 137 | 103 | 29 | 0 |
+| `foundry` | Foundry (Paradigm) | `7f0a409a5c20` | 760 | 103 | 16 | 0 |
 | `ethers-js` | ethers.js project | `3ea4c226dd0b` | 759 | 100 | 29 | 0 |
-| `foundry` | Foundry (Paradigm) | `7f0a409a5c20` | 761 | 100 | 16 | 0 |
 | `krux` | Krux (selfcustody) | `9b3a4314a205` | 257 | 98 | 64 | 0 |
+| `scroll` | Scroll | `3046bbd18a6a` | 387 | 92 | 7 | 0 |
 | `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 91 | 66 | 0 |
 | `aave-v3-origin` | Aave DAO | `8305565ae342` | 645 | 89 | 2 | 0 |
 | `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 89 | 87 | 0 |
 | `zingolib` | Zingo Labs | `81d799775f11` | 205 | 86 | 3 | 1 |
-| `scroll` | Scroll | `3046bbd18a6a` | 387 | 78 | 7 | 0 |
 | `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 142 | 77 | 55 | 0 |
 | `libwally-core` | Blockstream (libwally) | `374df231d054` | 249 | 77 | 56 | 0 |
-| `halo2` | Electric Coin Company (Zcash) | `3442dd33754a` | 100 | 73 | 45 | 0 |
-| `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 72 | 9 | 0 |
+| `halo2` | Electric Coin Company (Zcash) | `3442dd33754a` | 100 | 74 | 46 | 0 |
+| `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 73 | 9 | 0 |
+| `orchard` | Electric Coin Company (Zcash) | `616a669df8c9` | 49 | 70 | 42 | 0 |
 | `lido-core` | Lido | `2bd532298d85` | 267 | 69 | 7 | 0 |
-| `orchard` | Electric Coin Company (Zcash) | `616a669df8c9` | 49 | 69 | 41 | 0 |
+| `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 67 | 16 | 0 |
 | `rabby` | Rabby Wallet (DeBank) | `663c0e80e9f6` | 1694 | 66 | 29 | 0 |
-| `reown-appkit` | Reown (ex-WalletConnect) | `8f9f39f1dfe0` | 1249 | 66 | 16 | 0 |
+| `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 65 | 39 | 0 |
 | `openpgpjs` | OpenPGP.js project | `8bc35df48879` | 108 | 65 | 35 | 8 |
-| `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 59 | 33 | 0 |
-| `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 57 | 36 | 0 |
-| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4873 | 50 | 12 | 0 |
-| `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 46 | 2 | 0 |
-| `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 45 | 2 | 0 |
-| `rage` | str4d (rage / age encryption) | `b5b68c4f4f7e` | 54 | 43 | 13 | 3 |
+| `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 58 | 37 | 0 |
+| `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 51 | 7 | 0 |
+| `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 50 | 12 | 0 |
+| `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 46 | 3 | 0 |
+| `rage` | str4d (rage / age encryption) | `b5b68c4f4f7e` | 54 | 45 | 13 | 3 |
+| `cairo` | StarkWare | `68a61f6c6251` | 567 | 38 | 14 | 0 |
 | `safe-smart-account` | Safe | `247b8ce3bdbf` | 77 | 33 | 5 | 0 |
 | `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 118 | 32 | 32 | 0 |
 | `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 90 | 32 | 32 | 0 |
 | `tachyon` | Tachyon (Zcash) | `6cdaebccf147` | 58 | 29 | 10 | 0 |
 | `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 28 | 11 | 0 |
 | `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2202 | 22 | 0 | 2 |
-| `cairo` | StarkWare | `68a61f6c6251` | 567 | 18 | 10 | 0 |
 | `reddsa` | Zcash Foundation | `04e973bcf8d4` | 15 | 12 | 4 | 0 |
 | `rustcrypto-rsa` | RustCrypto project | `f96c4b5d629a` | 35 | 11 | 6 | 0 |
 | `bdk-wallet` | Bitcoin Dev Kit (bdk_wallet) | `09c677305139` | 28 | 10 | 7 | 0 |
 | `sigstore-js` | Sigstore project | `769a53d87132` | 180 | 10 | 3 | 0 |
 | `pasta-curves` | Electric Coin Company (Zcash) | `e3c0f0246f56` | 35 | 9 | 5 | 0 |
 | `lightwalletd` | Electric Coin Company (Zcash) | `4abfe9cd7b9b` | 34 | 8 | 3 | 0 |
+| `zodl-android` | Zodl (ex-Zashi, ECC) | `229dd3bff749` | 1609 | 8 | 3 | 0 |
 | `seedsigner` | SeedSigner | `ada81cde050e` | 74 | 7 | 1 | 0 |
 | `matrix-js-sdk` | Matrix.org Foundation | `61b08bd037a3` | 240 | 6 | 1 | 0 |
-| `zodl-android` | Zodl (ex-Zashi, ECC) | `229dd3bff749` | 1609 | 5 | 0 | 0 |
 | `bdk` | Bitcoin Dev Kit | `f2528da88b10` | 45 | 1 | 1 | 0 |
 | `lottery-demo` | Демо-клиент | — | 1 | 1 | 0 | 0 |
 
@@ -413,8 +413,8 @@ that is the most useful message I can get — the two corrections above both beg
 
 61 подписанных комплектов аудита по **53 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**3,754 строк инвентаризации**, из них **1,713 ломает алгоритм Шора**, и **28 уже
-постквантовых**; разобрано **30,806 файлов**.
+**3,834 строк инвентаризации**, из них **1,735 ломает алгоритм Шора**, и **28 уже
+постквантовых**; разобрано **30,802 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -430,7 +430,7 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 
-**Срез самостоятельного хранения биткоина:** десять кодовых баз, **693 строк, 448 ломает Шор**. Та же
+**Срез самостоятельного хранения биткоина:** десять кодовых баз, **695 строк, 448 ломает Шор**. Та же
 криптография лежит в трёх разных местах — Jade вносит исходники libwally в своё дерево, Krux подключает `embit`
 как git-подмодуль, SeedSigner — тот же `embit` как релиз с PyPI с замком по хешу, — поэтому аудит, не прошедший
 по закреплению, объявляет биткоин-подписанта чистым. И три самых рекомендуемых аппаратных кошелька разошлись: у

@@ -18,7 +18,7 @@ Two things in it matter to anyone doing cryptographic inventory work, and both a
 
 Three discovery methods. **These bundles use two of them and declare the third rather than quietly omitting it.**
 Across the 53 codebases here, the reports record 804 coverage entries for dependency
-manifests (the SCA path) and 28 817 for source code (the SAST path), plus
+manifests (the SCA path) and 28 813 for source code (the SAST path), plus
 115 for certificate and key material and
 111 for TLS settings read out of code and configuration. Live
 network probing is the third method, and it is **declared not performed**:
@@ -37,7 +37,7 @@ M-26-15 tabulates the quantum-vulnerable algorithms: ECDH, MQV, ECDSA, Diffie-He
 signatures, RSA key establishment, DSA — and then **"Other non-PQC Asymmetric Algorithms: Remaining asymmetric
 algorithms not enumerated in the list above."**
 
-That last row is doing most of the work. Of the **1 713 Shor-breakable rows** in this portfolio:
+That last row is doing most of the work. Of the **1 735 Shor-breakable rows** in this portfolio:
 
 | Algorithm, as M-26-15 names it | Shor-breakable rows found |
 |---|---:|
@@ -47,21 +47,21 @@ That last row is doing most of the work. Of the **1 713 Shor-breakable rows** 
 | DH key exchange and variants | 3 |
 | DSA | 4 |
 | MQV key exchange | 0 |
-| **Other non-PQC Asymmetric Algorithms** (the catch-all) | **638** |
+| **Other non-PQC Asymmetric Algorithms** (the catch-all) | **660** |
 
-**63% fall under one of the seven named algorithms, and 37% fall only under the catch-all** —
+**62% fall under one of the seven named algorithms, and 38% fall only under the catch-all** —
 16 distinct algorithms that a checklist built from the seven would never look for:
 
 | In the catch-all | rows |
 |---|---:|
 | Ed25519 | 201 |
-| Pedersen commitment | 99 |
+| Pedersen commitment | 103 |
 | Halo 2 (IPA) | 72 |
 | Paillier | 59 |
+| RedDSA | 44 |
 | FROST | 42 |
 | Schnorr (BIP-340) | 38 |
 | BLS12-381 | 32 |
-| RedDSA | 27 |
 | Sinsemilla | 24 |
 | BN254 (alt_bn128) | 18 |
 | ElGamal | 10 |
@@ -98,7 +98,7 @@ This is not a federal compliance artefact and it is not offered as one. The memo
 agencies and, through OMB's contractor provisions, to their suppliers; it explicitly **does not apply to national
 security systems**. The minimum CBOM elements are unpublished. These are audits of public open-source code,
 performed offline, signed, and verifiable — a demonstration that the method the memorandum describes produces
-something checkable, measured on 30 806 parsed files across 53 codebases.
+something checkable, measured on 30 802 parsed files across 53 codebases.
 
 Every figure above is computed from the 61 bundles in this repository and can be recomputed from them.
 `verify.py` checks all of them with no network access and no trust in me.

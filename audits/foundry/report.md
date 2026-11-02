@@ -1,109 +1,143 @@
-# Security & Post-Quantum Readiness Audit Report
+# Отчёт об аудите безопасности и постквантовой готовности
 
-**Project:** foundry @ 7f0a409a5c20 · Foundry (Paradigm) — public repository (passive review)
+**Проект:** foundry @ 7f0a409a5c20 · Foundry (Paradigm) — публичный репозиторий (пассивная проверка)
 | | |
 |---|---|
-| Organization | QSI |
-| Report date | 2026-10-28 12:26 UTC |
-| Report version | 1 |
-| Audit run | 0faa8d96-4d0e-46ac-8957-54843d2a3625 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
-| Risk profile | Security software vendor |
-| Content SHA-256 | `37dc71482c0ac19cdfddf6850b40a433a909c798e26a1f8725c5dfb354258319` |
-| Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
-> This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
+| Организация | QSI |
+| Дата отчёта | 2026-10-30 22:47 UTC |
+| Версия отчёта | 1 |
+| Запуск аудита | 0c6141c2-4fd0-44c7-b500-7bbfb2f554cd (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.2.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `4c2814ec4811a0b100b4bd581ffd88153f82c782ed6f80376a4b86d99dcf982b` |
+| Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
+> Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
-## 1. Executive summary
+## 1. Резюме для руководства
 
-- Critical: **0**
-- High: **2**
-- Medium: **3**
-- Low: **10**
-- Info: **3**
+- Критическая: **0**
+- Высокая: **3**
+- Средняя: **6**
+- Низкая: **5**
+- Информационная: **3**
 
-- Confirmed technical vulnerability: 0
-- Known vulnerable component: 7
-- Confirmed configuration error: 0
-- Potential cryptographic risk: 0
-- Long-term post-quantum risk: 6
-- Improvement recommendation: 4
-- Insufficient data: 1
+- Подтверждённая техническая уязвимость: 0
+- Известная уязвимая версия компонента: 5
+- Подтверждённая ошибка конфигурации: 1
+- Потенциальный криптографический риск: 0
+- Долгосрочный постквантовый риск: 6
+- Рекомендация по улучшению: 4
+- Недостаточность данных: 1
 
-Mosca's inequality (x + y > z): x = 10, y = 3, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-**Post-quantum maturity: Level 4 of 4 — post-quantum by default in the critical paths.** Next step: Keep the inventory current and review new code paths before release.
+**Постквантовая зрелость: Уровень 4 из 4 — постквантовое по умолчанию в критичных путях.** Следующий шаг: Поддерживайте инвентарь в актуальном состоянии и проверяйте новые пути кода перед выпуском.
 
-## 2. Scope and boundaries
+## 2. Область и границы проверки
 
-Mode: Document audit
+Режим: Документальный аудит
 
-Repository: <https://github.com/foundry-rs/foundry> @ `7f0a409a5c2016f16cb2e8618a750cc04e13977c` — evidence links open the lines at this commit.
+Репозиторий: <https://github.com/foundry-rs/foundry> @ `7f0a409a5c2016f16cb2e8618a750cc04e13977c` — ссылки в доказательствах открывают строки на этом коммите.
 
-761 files, 13820446 bytes in total, 17 redaction(s); the per-file SHA-256 list is in appendix C.
+760 файлов, всего 13799659 байт, редактирований: 18; список SHA-256 по файлам — в приложении C.
 
-## 3. Methodology
+## 3. Методология
 
-| Area | Status | Count | Examples |
+| Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | checked | 705 | .github/scripts/benchmark_clickhouse.py: 477 lines scanned with 16 rule patterns and 122 registry patterns; .github/scripts/compare-benchmark-thresholds.py: 141 lines scanned with 16 rule patterns and 122 registry patterns; .github/scripts/finalize-release.py: 313 lines scanned with 16 rule patterns and 122 registry patterns |
-| smart_contracts | checked | 14 | .github/scripts/contracts/BatchCounter.sol: built-in Solidity pattern checks; .github/scripts/contracts/CounterWithRequire.sol: built-in Solidity pattern checks; .github/scripts/contracts/DeployAndCall.s.sol: built-in Solidity pattern checks |
-| slither | not checked | 14 | slither is not installed on the server (pip install slither-analyzer + solc) |
-| dependencies | checked | 41 | Cargo.lock: 1180 dependencies parsed (1180 pinned); Cargo.toml: 156 dependencies parsed (7 pinned); crates/anvil/Cargo.toml: 81 dependencies parsed (0 pinned) |
-| secrets | checked | 8 | crates/cast/src/cmd/keychain.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); crates/cheatcodes/src/toml.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); crates/common/fmt/src/ui.rs: 8 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| tls_code | checked | 1 | crates/cli/src/utils/mod.rs: TLS key-exchange settings read |
-| osv_advisories | checked | 1 | 1000 pinned packages queried at OSV.dev; 8 affected |
+| source_code | проверено | 704 | .github/scripts/compare-benchmark-thresholds.py: 141 lines scanned with 16 rule patterns and 136 registry patterns; .github/scripts/finalize-release.py: 313 lines scanned with 16 rule patterns and 136 registry patterns; .github/scripts/matrices.py: 141 lines scanned with 16 rule patterns and 136 registry patterns |
+| smart_contracts | проверено | 14 | .github/scripts/contracts/BatchCounter.sol: built-in Solidity pattern checks; .github/scripts/contracts/CounterWithRequire.sol: built-in Solidity pattern checks; .github/scripts/contracts/DeployAndCall.s.sol: built-in Solidity pattern checks |
+| slither | не проверено | 14 | slither is not installed on the server (pip install slither-analyzer + solc) |
+| dependencies | проверено | 41 | Cargo.lock: 1180 dependencies parsed (1180 pinned); Cargo.toml: 156 dependencies parsed (7 pinned); crates/anvil/Cargo.toml: 81 dependencies parsed (0 pinned) |
+| secrets | проверено | 8 | crates/cast/src/cmd/keychain.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); crates/cheatcodes/src/toml.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); crates/common/fmt/src/ui.rs: 8 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| tls_code | проверено | 1 | crates/cli/src/utils/mod.rs: TLS key-exchange settings read |
+| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 6 affected |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## 4. Assets examined and not examined
+## 4. Проверенные и непроверенные активы
 
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
-- slither — not checked: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
+- slither — не проверено: slither is not installed on the server (pip install slither-analyzer + solc)
 
-## 5. Architecture overview
+## 5. Краткое описание архитектуры
 
-Static review of the source tree foundry at 7f0a409a5c2016f16cb2e8618a750cc04e13977c. 761 files analysed; of 2104 files, 1113 are test, fuzzing, benchmark or example code and were left out, 230 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree foundry at 7f0a409a5c2016f16cb2e8618a750cc04e13977c. 760 files analysed; of 2104 files, 1115 are test, fuzzing, benchmark or example code and were left out, 229 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .config/nextest.toml, .dockerignore, .git-blame-ignore-revs, .gitattributes, .github/CODEOWNERS. 39 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
-## 6. Overall security posture
+## 6. Общая оценка состояния безопасности
 
-- Indicative posture index: **63** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 16.0%
+- Ориентировочный индекс состояния: **66** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 15.5%
 
-## 7. Detailed findings
+## 7. Подробное описание находок
 
-### QSI-2026-04469 — quick-xml 0.39.4 is affected by RUSTSEC-2026-0194
+### QSI-2026-08308 — Возможный секрет в коде crates/evm/symbolic/src/runtime/solver/mod.rs
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/quick-xml@0.39.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 37.7 / 100
+- Серьёзность: **Высокая** · Классификация: Подтверждённая ошибка конфигурации · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `file:crates/evm/symbolic/src/runtime/solver/mod.rs`
+- Источник данных: crates/evm/symbolic/src/runtime/solver/mod.rs
+- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 47.1 / 100
+- CVSS v3.1: неприменимо
+
+1 значений, похожих на секреты, типа generic_assignment (первое — строка 1685). Значения замаскированы QSI.
+
+**Возможные последствия.** Учётные данные в коде утекают через репозитории, сборки и журналы.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 1685 в предоставленном файле crates/evm/symbolic/src/runtime/solver/mod.rs и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [crates/evm/symbolic/src/runtime/solver/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/symbolic/src/runtime/solver/mod.rs#L1685) · line 1685 · SHA-256 1e5b0b9c59f38f6ec4fb4bf42d919a5ef5c7de450a6ab294e4d8e3ab195ddee1_
+
+```
+ 1685 |         if token == "[REDACTED]" {
+```
+
+**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения.
+
+**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
+
+### QSI-2026-08316 — quick-xml 0.39.4 затронут RUSTSEC-2026-0194
+
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/quick-xml@0.39.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev reports RUSTSEC-2026-0194 for crates.io package quick-xml at version 0.39.4: Quadratic run time when checking a start tag for duplicate attribute names. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0194 для пакета crates.io quick-xml версии 0.39.4: Quadratic run time when checking a start tag for duplicate attribute names. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0194
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0194](https://osv.dev/vulnerability/RUSTSEC-2026-0194) · manifest · SHA-256 028cd2f8044c5c52031532eb91141d581476948b4fd115c63b565c4f52398450_
 
@@ -111,33 +145,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0194](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0194", "aliases": [], "modified": "2026-07-02T08:00:03.849273679Z", "summary": "Quadratic run time when checking a start tag for duplicate attribute names", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.41.0).
+**Рекомендация.** Обновите до исправленной версии (0.41.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04470 — quick-xml 0.39.4 is affected by RUSTSEC-2026-0195
+### QSI-2026-08317 — quick-xml 0.39.4 затронут RUSTSEC-2026-0195
 
-- Severity: **High** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/quick-xml@0.39.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 37.7 / 100
+- Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/quick-xml@0.39.4`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
-OSV.dev reports RUSTSEC-2026-0195 for crates.io package quick-xml at version 0.39.4: Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0195 для пакета crates.io quick-xml версии 0.39.4: Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0195
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0195](https://osv.dev/vulnerability/RUSTSEC-2026-0195) · manifest · SHA-256 7934c935f3154b61c623e871c948769f40fd83ae102d44328fbedb576471f986_
 
@@ -145,33 +179,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0195](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0195", "aliases": [], "modified": "2026-07-02T09:00:04.037478193Z", "summary": "Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}], "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Upgrade to a fixed version (0.41.0).
+**Рекомендация.** Обновите до исправленной версии (0.41.0).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04456 — TLS without a post-quantum key exchange: rustls with the ring crypto provider
+### QSI-2026-08304 — TLS без постквантового обмена ключами: rustls с криптопровайдером ring
 
-- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `tls-code:rustls`
-- Data source: crates/cli/src/utils/mod.rs
-- Detection method: Static reading of TLS library configuration in code and manifests: crypto provider, group and curve lists, GODEBUG.
-- Analyzer: tls_code 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 38.1 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `tls-code:rustls`
+- Источник данных: crates/cli/src/utils/mod.rs
+- Метод обнаружения: Статическое чтение настроек TLS-библиотек в коде и манифестах: криптопровайдер, списки групп и кривых, GODEBUG.
+- Анализатор: tls_code 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 36.4 / 100
+- CVSS v3.1: неприменимо
 
-rustls with the ring crypto provider at crates/cli/src/utils/mod.rs:260: the configured key exchange (ring) has no hybrid ML-KEM group such as X25519MLKEM768 (RFC 10024), so the handshake cannot negotiate one.
+rustls с криптопровайдером ring в crates/cli/src/utils/mod.rs:260: настроенный обмен ключами (ring) не содержит гибридной группы ML-KEM, например X25519MLKEM768 (RFC 10024), поэтому рукопожатие не может её согласовать.
 
-**Potential impact.** Traffic protected only by classical ECDHE could be recorded today and decrypted once a CRQC exists (harvest now, decrypt later). Relevant when transmitted data must stay confidential for many years.
+**Возможные последствия.** Трафик, защищённый только классическим ECDHE, может быть записан сегодня и расшифрован после появления CRQC (harvest now, decrypt later). Актуально, если данные должны оставаться конфиденциальными много лет.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open crates/cli/src/utils/mod.rs:260 and inspect the quoted lines; the evidence lists further files.
+Откройте crates/cli/src/utils/mod.rs:260 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [crates/cli/src/utils/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cli/src/utils/mod.rs#L260) · line 260 · SHA-256 0084c5a919bee6778c8436c47d41f06240827ab128eb7ef31339267091e759cf_
 
@@ -181,101 +215,389 @@ _file_excerpt · [crates/cli/src/utils/mod.rs](https://github.com/foundry-rs/fou
   261 |         .install_default()
 ```
 
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Read from code and manifests only: the library versions deployed and settings made outside the code (environment, launch flags) were not determined.
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Прочитаны только код и манифесты: развёрнутые версии библиотек и настройки вне кода (окружение, флаги запуска) не определялись.
 
-**Recommendation.** Build rustls with the aws-lc-rs provider (rustls::crypto::aws_lc_rs) and the prefer-post-quantum feature, which puts X25519MLKEM768 first.
+**Рекомендация.** Соберите rustls с провайдером aws-lc-rs (rustls::crypto::aws_lc_rs) и функцией prefer-post-quantum, которая ставит X25519MLKEM768 первым.
 
-**Retest procedure.** Connect with a client that offers X25519MLKEM768 (openssl s_client -groups X25519MLKEM768 with OpenSSL 3.5+, or a Go 1.24+ client) and confirm the negotiated group.
+**Повторная проверка.** Подключитесь клиентом, предлагающим X25519MLKEM768 (openssl s_client -groups X25519MLKEM768 с OpenSSL 3.5+ или клиент на Go 1.24+), и проверьте согласованную группу.
 
-### QSI-2026-04462 — block-buffer 0.9.0 is affected by GHSA-qwgh-2vcv-g2f7
+### QSI-2026-08302 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))
 
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.9.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 33.2 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:transaction_signing`
+- Источник данных: crates/anvil/src/eth/backend/cheats.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.9.0: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
+13 упоминаний ECDSA в 9 файл(ах), например crates/anvil/src/eth/backend/cheats.rs:11. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
-**Reproduction steps.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
+**Шаги воспроизведения.**
 
 ```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+Откройте crates/anvil/src/eth/backend/cheats.rs:11 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Подтверждающие доказательства.**
 
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-04463 — block-buffer 0.10.4 is affected by GHSA-qwgh-2vcv-g2f7
-
-- Severity: **Medium** · Classification: Known vulnerable component · Confidence: Low
-- Affected asset: `dependency:crates.io/block-buffer@0.10.4`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 33.2 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports GHSA-qwgh-2vcv-g2f7 for crates.io package block-buffer at version 0.10.4: block_buffer: panic corrupts inline buffer position. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Depends on whether the vulnerable code path is reachable in your application.
-
-**Reproduction steps.**
+_file_excerpt · [crates/anvil/src/eth/backend/cheats.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/cheats.rs#L11) · line 11 · SHA-256 e08fa6015cef9b6d59779c9f3e7c25ea0e325b4424289d7c3b847ae6965911a8_
 
 ```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
+   10 |     PrecompileHalt, PrecompileId, PrecompileOutput, PrecompileResult, call_eth_precompile,
+   11 |     secp256k1::ec_recover_run, utilities::right_pad,
+   12 | };
 ```
 
-**Evidence.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
+_file_excerpt · [crates/anvil/src/eth/backend/tempo.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/tempo.rs#L271) · line 271 · SHA-256 52f153efb18e17109443cc34089b5a89d1a1b4c83b8f5e68fba410ec9d1fcb2a_
 
 ```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+  270 |                 account, // msg_sender (root account authorizes its own key)
+  271 |                 account, // key ID = account address for secp256k1
+  272 |                 SignatureType::Secp256k1,
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
-
-**Recommendation.** Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-
-**Retest procedure.** Re-run the dependency scan after upgrading.
-
-### QSI-2026-04453 — Floating pragma (^0.8.13) in 12 file(s)
-
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `solidity:pragma:^0.8.13`
-- Data source: .github/scripts/contracts/BatchCounter.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 33.5 / 100
-- CVSS v3.1: not applicable
-
-pragma ^0.8.13 in 12 file(s), first at .github/scripts/contracts/BatchCounter.sol:2. (related: SWC-103)
-
-**Potential impact.** Contracts may be deployed with untested compiler versions. The compiler actually used is set by the build configuration, which this check does not read.
-
-**Reproduction steps.**
+_file_excerpt · [crates/cast/src/cmd/keychain.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L153) · line 153 · SHA-256 5d58b11e699bbe1d28e4a75b890106a088de2218bba25f8fb944230db03ba773_
 
 ```
-Open .github/scripts/contracts/BatchCounter.sol:2 and inspect the quoted lines; the evidence lists further files.
+  152 |         /// Signature type: secp256k1, p256, or webauthn.
+  153 |         #[arg(default_value = "secp256k1", value_parser = parse_signature_type)]
+  154 |         key_type: SignatureType,
 ```
 
-**Evidence.**
+_file_excerpt · [crates/cast/src/cmd/keychain.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L462) · line 462 · SHA-256 b07c462df7c1e73749099155ee6aaeaa1569cdd4568e13a1e1317ebef0fcc659_
+
+```
+  461 |     /// The root signature type is determined by the configured signer.
+  462 |     #[arg(long, default_value = "secp256k1", value_parser = parse_auth_signature_type)]
+  463 |     key_type: AuthSignatureType,
+```
+
+_file_excerpt · [crates/cast/src/cmd/keychain.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L578) · line 578 · SHA-256 4a236801a5d76ecf75ecddf66d49cbadc28fe918e5218ae8bcbf2b0ab0c9523f_
+
+```
+  577 |     match s.to_lowercase().as_str() {
+  578 |         "secp256k1" => Ok(AuthSignatureType::Secp256k1),
+  579 |         "p256" => Ok(AuthSignatureType::P256),
+```
+
+_file_excerpt · [crates/cast/src/cmd/tempo/zone/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/tempo/zone/mod.rs#L221) · line 221 · SHA-256 46a53d505e0d3369700709c58dabf91c816e81e59906959d5af8ac3fc7670469_
+
+```
+  220 |                     && k256::PublicKey::from_sec1_bytes(&self.reveal_to).is_ok(),
+  221 |                 "--reveal-to must be a compressed secp256k1 public key"
+  222 |             );
+```
+
+_file_excerpt · [crates/cheatcodes/src/error.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/error.rs#L10) · line 10 · SHA-256 3c595041c68eace648d774f0f69f05dd96ce13575114ecabcc71e2b3e835359a_
+
+```
+    9 | use foundry_wallets::error::WalletSignerError;
+   10 | use k256::ecdsa::signature::Error as SignatureError;
+   11 | use revm::context_interface::result::EVMError;
+```
+
+_file_excerpt · [crates/common/src/tempo/session.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/session.rs#L321) · line 321 · SHA-256 de4949f2f75dc96d7fa04e685806f1689470b0efacc7d096b13a61c80c782761_
+
+```
+  320 |         .ok_or_else(|| eyre::eyre!("managed access key has no local signing material"))?;
+  321 |     ensure!(key.key_type == KeyType::Secp256k1, "only secp256k1 managed access keys are supported");
+  322 |     let signer = foundry_wallets::utils::create_local_signer(&key.key)?;
+```
+
+_file_excerpt · [crates/evm/networks/src/lib.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/networks/src/lib.rs#L29) · line 29 · SHA-256 c1eed0230f405adbff40033b2879b8000d521e302866b4850d9ad7705f2634a4_
+
+```
+   28 |     Precompile as RevmPrecompile,
+   29 |     secp256r1::{P256VERIFY, P256VERIFY_OSAKA},
+   30 | };
+```
+
+_file_excerpt · [crates/evm/symbolic/src/lib.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/symbolic/src/lib.rs#L28) · line 28 · SHA-256 8a680edc9e74629b043692fee273270f039ea08b7aea8752cfa55e855b9a4100_
+
+```
+   27 |         database::DatabaseRef,
+   28 |         precompile::{blake2, bn254, hash, identity, kzg_point_evaluation, modexp, secp256k1},
+   29 |         primitives::hardfork::SpecId,
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-08307 — Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:BLS12-381:transaction_signing`
+- Источник данных: crates/evm/core/src/precompiles.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
+
+39 упоминаний BLS12-381 в 3 файл(ах), например crates/evm/core/src/precompiles.rs:34. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте crates/evm/core/src/precompiles.rs:34 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [crates/evm/core/src/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L34) · line 34 · SHA-256 e9d6760e61c5d95615b59c481b236749a952ceda871fa5873803470b529b91ee_
+
+```
+   33 | /// The BLS12-381 G1ADD precompile address.
+   34 | pub const BLS12_G1ADD: Address = Address::with_last_byte(0x0b);
+   35 | 
+```
+
+_file_excerpt · [crates/evm/core/src/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L37) · line 37 · SHA-256 cc66a9c2775894a525021ffc6fe4d347f52ebe34064d82f6e4400f828c654b67_
+
+```
+   36 | /// The BLS12-381 G1MSM precompile address.
+   37 | pub const BLS12_G1MSM: Address = Address::with_last_byte(0x0c);
+   38 | 
+```
+
+_file_excerpt · [crates/evm/core/src/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L40) · line 40 · SHA-256 f64918fb0a20f796360c240232d3a80a6b804fce081c3effd117316c46a55719_
+
+```
+   39 | /// The BLS12-381 G2ADD precompile address.
+   40 | pub const BLS12_G2ADD: Address = Address::with_last_byte(0x0d);
+   41 | 
+```
+
+_file_excerpt · [crates/evm/traces/src/decoder/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L28) · line 28 · SHA-256 851a2373c0ad3c5e1fd446403193f757e5c833428427e332fc9ae97a7b32bf56_
+
+```
+   27 |     precompiles::{
+   28 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
+   29 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
+```
+
+_file_excerpt · [crates/evm/traces/src/decoder/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L29) · line 29 · SHA-256 8f52a29c8533dabc5a48d03c5d190efe2583470180e7a803d173c4a93d64c42a_
+
+```
+   28 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
+   29 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
+   30 |         EC_RECOVER, IDENTITY, MOD_EXP, POINT_EVALUATION, RIPEMD_160, SHA_256,
+```
+
+_file_excerpt · [crates/evm/traces/src/decoder/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L424) · line 424 · SHA-256 2dd54823637c9ad3500d6cdd67ea43a290e670e39a2ada89aacfa0b0c28aefc6_
+
+```
+  423 |             (POINT_EVALUATION, "PointEvaluation".to_string()),
+  424 |             (BLS12_G1ADD, "BLS12_G1ADD".to_string()),
+  425 |             (BLS12_G1MSM, "BLS12_G1MSM".to_string()),
+```
+
+_file_excerpt · [crates/evm/traces/src/decoder/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L7) · line 7 · SHA-256 6a45e6e6e64988c4d23c76ecc0727fe03dd6eb0a7a8f7f864be6f51f820b5017_
+
+```
+    6 |     precompiles::{
+    7 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
+    8 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
+```
+
+_file_excerpt · [crates/evm/traces/src/decoder/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L8) · line 8 · SHA-256 1cbc4db457becceed23c646a85a2191cb78062453411a6177172fa8e5e173bf5_
+
+```
+    7 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
+    8 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
+    9 |         EC_RECOVER, IDENTITY, MOD_EXP, P256_VERIFY, POINT_EVALUATION, RIPEMD_160, SHA_256,
+```
+
+_file_excerpt · [crates/evm/traces/src/decoder/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L332) · line 332 · SHA-256 8ab37a93305db1d491ed6efe32d5e924492f9493e2c298523b61abac7d4b3b2d_
+
+```
+  331 |     fn address(&self) -> Address {
+  332 |         BLS12_G1ADD
+  333 |     }
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-08303 — Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:general`
+- Источник данных: crates/cheatcodes/src/crypto.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+4 упоминаний ECDSA в 1 файл(ах), например crates/cheatcodes/src/crypto.rs:26. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте crates/cheatcodes/src/crypto.rs:26 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [crates/cheatcodes/src/crypto.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L26) · line 26 · SHA-256 a551137cff41361990a5981742fde03e462e2a4e7b40a49fba299d7f1e749358_
+
+```
+   25 | 
+   26 | use p256::ecdsa::{
+   27 |     Signature as P256Signature, SigningKey as P256SigningKey, signature::hazmat::PrehashSigner,
+```
+
+_file_excerpt · [crates/cheatcodes/src/crypto.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L526) · line 526 · SHA-256 2d2ae3b338f8f2b933a2a78de2bb94bc04717a27b2ef71b413d6c154c3dabd1c_
+
+```
+  525 |         .into_option()
+  526 |         .ok_or_else(|| fmt_err!("invalid secp256k1 {name}"))
+  527 | }
+```
+
+_file_excerpt · [crates/cheatcodes/src/crypto.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L537) · line 537 · SHA-256 7c1a1c232d462506831f9bb7247a932ae80cf42f2152bf84d0ef117aa4f141da_
+
+```
+  536 |             bool::from(x_field.is_zero()) && !bool::from(y_field.is_zero()),
+  537 |             "invalid secp256k1 {name}"
+  538 |         );
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-08305 — Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:authentication`
+- Источник данных: crates/common/src/tempo/auth.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+2 упоминаний ECDSA в 1 файл(ах), например crates/common/src/tempo/auth.rs:115. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте crates/common/src/tempo/auth.rs:115 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [crates/common/src/tempo/auth.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L115) · line 115 · SHA-256 e8866289afb498a1ad1214bcef2aa268e90cbd3b50ca37d9682ea1fb0df87f5f_
+
+```
+  114 |         code_challenge: sha256_b64url(&code_verifier),
+  115 |         key_type: "secp256k1",
+  116 |         pub_key: pub_key_hex,
+```
+
+_file_excerpt · [crates/common/src/tempo/auth.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L191) · line 191 · SHA-256 54ee92aeb19ba7eadea1ba0f5101140294f899f35d74cd9254d58fb4aff93353_
+
+```
+  190 |                     eyre::bail!(
+  191 |                         "wallet returned keyType {:?} but secp256k1 was requested",
+  192 |                         signed.authorization.key_type,
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-08306 — Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:BLS12-381:general`
+- Источник данных: crates/debugger/src/node.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+7 упоминаний BLS12-381 в 1 файл(ах), например crates/debugger/src/node.rs:291. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте crates/debugger/src/node.rs:291 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [crates/debugger/src/node.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L291) · line 291 · SHA-256 b5a33afbc110921885d6fdc2b239b77fa64c68479bad7f0654313bd4f95988a9_
+
+```
+  290 |         precompiles::POINT_EVALUATION => Some("pointEvaluation"),
+  291 |         precompiles::BLS12_G1ADD => Some("bls12G1Add"),
+  292 |         precompiles::BLS12_G1MSM => Some("bls12G1Msm"),
+```
+
+_file_excerpt · [crates/debugger/src/node.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L292) · line 292 · SHA-256 7f2d22ce6fc44deb9ea5a0267f4ae6d9e169b33af3f20db693583e3c0a1aabff_
+
+```
+  291 |         precompiles::BLS12_G1ADD => Some("bls12G1Add"),
+  292 |         precompiles::BLS12_G1MSM => Some("bls12G1Msm"),
+  293 |         precompiles::BLS12_G2ADD => Some("bls12G2Add"),
+```
+
+_file_excerpt · [crates/debugger/src/node.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L293) · line 293 · SHA-256 cb4c72ccdcd20bf16e22255941bc70ae5baacd7ea1ae3ca30e0d13cb5f106be7_
+
+```
+  292 |         precompiles::BLS12_G1MSM => Some("bls12G1Msm"),
+  293 |         precompiles::BLS12_G2ADD => Some("bls12G2Add"),
+  294 |         precompiles::BLS12_G2MSM => Some("bls12G2Msm"),
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-08301 — Плавающая версия компилятора (^0.8.13) в 12 файл(ах)
+
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:^0.8.13`
+- Источник данных: .github/scripts/contracts/BatchCounter.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
+
+pragma ^0.8.13 в 12 файл(ах), впервые в .github/scripts/contracts/BatchCounter.sol:2. (см. SWC-103)
+
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
+
+**Шаги воспроизведения.**
+
+```
+Откройте .github/scripts/contracts/BatchCounter.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
 
 _file_excerpt · .github/scripts/contracts/BatchCounter.sol · line 2 · SHA-256 7c3708d9069ee80391b81af25f28478d8257cfe3f51a51b01be9827555524d9a_
 
@@ -367,33 +689,33 @@ _file_excerpt · [crates/forge/assets/vyper/CounterTemplate.s.sol](https://githu
     4 | import {Script} from "forge-std/Script.sol";
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Pin the compiler version used in testing.
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-04460 — Floating pragma (>=0.8.13 <0.9.0) in 2 file(s)
+### QSI-2026-08309 — Плавающая версия компилятора (>=0.8.13 <0.9.0) в 2 файл(ах)
 
-- Severity: **Low** · Classification: Improvement recommendation · Confidence: High
-- Affected asset: `solidity:pragma:>=0.8.13 <0.9.0`
-- Data source: crates/evm/traces/src/decoder/monad/IMonadStaking.sol
-- Detection method: Solidity source pattern analysis.
-- Analyzer: solidity 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 33.5 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:>=0.8.13 <0.9.0`
+- Источник данных: crates/evm/traces/src/decoder/monad/IMonadStaking.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
 
-pragma >=0.8.13 <0.9.0 in 2 file(s), first at crates/evm/traces/src/decoder/monad/IMonadStaking.sol:2. (related: SWC-103)
+pragma >=0.8.13 <0.9.0 в 2 файл(ах), впервые в crates/evm/traces/src/decoder/monad/IMonadStaking.sol:2. (см. SWC-103)
 
-**Potential impact.** Contracts may be deployed with untested compiler versions. The compiler actually used is set by the build configuration, which this check does not read.
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
-Open crates/evm/traces/src/decoder/monad/IMonadStaking.sol:2 and inspect the quoted lines; the evidence lists further files.
+Откройте crates/evm/traces/src/decoder/monad/IMonadStaking.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _file_excerpt · [crates/evm/traces/src/decoder/monad/IMonadStaking.sol](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/monad/IMonadStaking.sol#L2) · line 2 · SHA-256 0966fab580a62d690b1abff6275e91d132627c82ac011aa8596cc8723b757f4f_
 
@@ -413,389 +735,33 @@ _file_excerpt · [crates/evm/traces/src/decoder/monad/IReserveBalance.sol](https
     4 | // Mirrors category-labs/monad-std/src/interfaces/IReserveBalance.sol for trace decoding.
 ```
 
-**Limitations of the check.** Lightweight static pattern analysis of Solidity source without compilation or symbolic execution. It does not replace a full smart-contract audit; confirm manually or with dedicated tools (Slither, Foundry tests).
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
 
-**Recommendation.** Pin the compiler version used in testing.
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
 
-**Retest procedure.** Re-run static analysis and add a unit/fuzz test that exercises the pattern.
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-04454 — Quantum-vulnerable ECDSA: transaction and message signing (9 file(s))
+### QSI-2026-08311 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:transaction_signing`
-- Data source: crates/anvil/src/eth/backend/cheats.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 29.7 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-13 reference(s) to ECDSA across 9 file(s), e.g. crates/anvil/src/eth/backend/cheats.rs:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
-
-```
-Open crates/anvil/src/eth/backend/cheats.rs:11 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [crates/anvil/src/eth/backend/cheats.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/cheats.rs#L11) · line 11 · SHA-256 e08fa6015cef9b6d59779c9f3e7c25ea0e325b4424289d7c3b847ae6965911a8_
-
-```
-   10 |     PrecompileHalt, PrecompileId, PrecompileOutput, PrecompileResult, call_eth_precompile,
-   11 |     secp256k1::ec_recover_run, utilities::right_pad,
-   12 | };
-```
-
-_file_excerpt · [crates/anvil/src/eth/backend/tempo.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/tempo.rs#L271) · line 271 · SHA-256 52f153efb18e17109443cc34089b5a89d1a1b4c83b8f5e68fba410ec9d1fcb2a_
-
-```
-  270 |                 account, // msg_sender (root account authorizes its own key)
-  271 |                 account, // key ID = account address for secp256k1
-  272 |                 SignatureType::Secp256k1,
-```
-
-_file_excerpt · [crates/cast/src/cmd/keychain.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L153) · line 153 · SHA-256 5d58b11e699bbe1d28e4a75b890106a088de2218bba25f8fb944230db03ba773_
-
-```
-  152 |         /// Signature type: secp256k1, p256, or webauthn.
-  153 |         #[arg(default_value = "secp256k1", value_parser = parse_signature_type)]
-  154 |         key_type: SignatureType,
-```
-
-_file_excerpt · [crates/cast/src/cmd/keychain.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L462) · line 462 · SHA-256 b07c462df7c1e73749099155ee6aaeaa1569cdd4568e13a1e1317ebef0fcc659_
-
-```
-  461 |     /// The root signature type is determined by the configured signer.
-  462 |     #[arg(long, default_value = "secp256k1", value_parser = parse_auth_signature_type)]
-  463 |     key_type: AuthSignatureType,
-```
-
-_file_excerpt · [crates/cast/src/cmd/keychain.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L578) · line 578 · SHA-256 4a236801a5d76ecf75ecddf66d49cbadc28fe918e5218ae8bcbf2b0ab0c9523f_
-
-```
-  577 |     match s.to_lowercase().as_str() {
-  578 |         "secp256k1" => Ok(AuthSignatureType::Secp256k1),
-  579 |         "p256" => Ok(AuthSignatureType::P256),
-```
-
-_file_excerpt · [crates/cast/src/cmd/tempo/zone/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/tempo/zone/mod.rs#L221) · line 221 · SHA-256 46a53d505e0d3369700709c58dabf91c816e81e59906959d5af8ac3fc7670469_
-
-```
-  220 |                     && k256::PublicKey::from_sec1_bytes(&self.reveal_to).is_ok(),
-  221 |                 "--reveal-to must be a compressed secp256k1 public key"
-  222 |             );
-```
-
-_file_excerpt · [crates/cheatcodes/src/error.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/error.rs#L10) · line 10 · SHA-256 3c595041c68eace648d774f0f69f05dd96ce13575114ecabcc71e2b3e835359a_
-
-```
-    9 | use foundry_wallets::error::WalletSignerError;
-   10 | use k256::ecdsa::signature::Error as SignatureError;
-   11 | use revm::context_interface::result::EVMError;
-```
-
-_file_excerpt · [crates/common/src/tempo/session.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/session.rs#L321) · line 321 · SHA-256 de4949f2f75dc96d7fa04e685806f1689470b0efacc7d096b13a61c80c782761_
-
-```
-  320 |         .ok_or_else(|| eyre::eyre!("managed access key has no local signing material"))?;
-  321 |     ensure!(key.key_type == KeyType::Secp256k1, "only secp256k1 managed access keys are supported");
-  322 |     let signer = foundry_wallets::utils::create_local_signer(&key.key)?;
-```
-
-_file_excerpt · [crates/evm/networks/src/lib.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/networks/src/lib.rs#L29) · line 29 · SHA-256 c1eed0230f405adbff40033b2879b8000d521e302866b4850d9ad7705f2634a4_
-
-```
-   28 |     Precompile as RevmPrecompile,
-   29 |     secp256r1::{P256VERIFY, P256VERIFY_OSAKA},
-   30 | };
-```
-
-_file_excerpt · [crates/evm/symbolic/src/lib.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/symbolic/src/lib.rs#L28) · line 28 · SHA-256 8a680edc9e74629b043692fee273270f039ea08b7aea8752cfa55e855b9a4100_
-
-```
-   27 |         database::DatabaseRef,
-   28 |         precompile::{blake2, bn254, hash, identity, kzg_point_evaluation, modexp, secp256k1},
-   29 |         primitives::hardfork::SpecId,
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-04459 — Quantum-vulnerable BLS12-381: transaction and message signing (3 file(s))
-
-- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:BLS12-381:transaction_signing`
-- Data source: crates/evm/core/src/precompiles.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 29.7 / 100
-- CVSS v3.1: not applicable
-
-39 reference(s) to BLS12-381 across 3 file(s), e.g. crates/evm/core/src/precompiles.rs:34. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open crates/evm/core/src/precompiles.rs:34 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [crates/evm/core/src/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L34) · line 34 · SHA-256 e9d6760e61c5d95615b59c481b236749a952ceda871fa5873803470b529b91ee_
-
-```
-   33 | /// The BLS12-381 G1ADD precompile address.
-   34 | pub const BLS12_G1ADD: Address = Address::with_last_byte(0x0b);
-   35 | 
-```
-
-_file_excerpt · [crates/evm/core/src/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L37) · line 37 · SHA-256 cc66a9c2775894a525021ffc6fe4d347f52ebe34064d82f6e4400f828c654b67_
-
-```
-   36 | /// The BLS12-381 G1MSM precompile address.
-   37 | pub const BLS12_G1MSM: Address = Address::with_last_byte(0x0c);
-   38 | 
-```
-
-_file_excerpt · [crates/evm/core/src/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L40) · line 40 · SHA-256 f64918fb0a20f796360c240232d3a80a6b804fce081c3effd117316c46a55719_
-
-```
-   39 | /// The BLS12-381 G2ADD precompile address.
-   40 | pub const BLS12_G2ADD: Address = Address::with_last_byte(0x0d);
-   41 | 
-```
-
-_file_excerpt · [crates/evm/traces/src/decoder/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L28) · line 28 · SHA-256 851a2373c0ad3c5e1fd446403193f757e5c833428427e332fc9ae97a7b32bf56_
-
-```
-   27 |     precompiles::{
-   28 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
-   29 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
-```
-
-_file_excerpt · [crates/evm/traces/src/decoder/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L29) · line 29 · SHA-256 8f52a29c8533dabc5a48d03c5d190efe2583470180e7a803d173c4a93d64c42a_
-
-```
-   28 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
-   29 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
-   30 |         EC_RECOVER, IDENTITY, MOD_EXP, POINT_EVALUATION, RIPEMD_160, SHA_256,
-```
-
-_file_excerpt · [crates/evm/traces/src/decoder/mod.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L424) · line 424 · SHA-256 2dd54823637c9ad3500d6cdd67ea43a290e670e39a2ada89aacfa0b0c28aefc6_
-
-```
-  423 |             (POINT_EVALUATION, "PointEvaluation".to_string()),
-  424 |             (BLS12_G1ADD, "BLS12_G1ADD".to_string()),
-  425 |             (BLS12_G1MSM, "BLS12_G1MSM".to_string()),
-```
-
-_file_excerpt · [crates/evm/traces/src/decoder/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L7) · line 7 · SHA-256 6a45e6e6e64988c4d23c76ecc0727fe03dd6eb0a7a8f7f864be6f51f820b5017_
-
-```
-    6 |     precompiles::{
-    7 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
-    8 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
-```
-
-_file_excerpt · [crates/evm/traces/src/decoder/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L8) · line 8 · SHA-256 1cbc4db457becceed23c646a85a2191cb78062453411a6177172fa8e5e173bf5_
-
-```
-    7 |         BLAKE_2F, BLS12_G1ADD, BLS12_G1MSM, BLS12_G2ADD, BLS12_G2MSM, BLS12_MAP_FP_TO_G1,
-    8 |         BLS12_MAP_FP2_TO_G2, BLS12_PAIRING_CHECK, CELO_TRANSFER, EC_ADD, EC_MUL, EC_PAIRING,
-    9 |         EC_RECOVER, IDENTITY, MOD_EXP, P256_VERIFY, POINT_EVALUATION, RIPEMD_160, SHA_256,
-```
-
-_file_excerpt · [crates/evm/traces/src/decoder/precompiles.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L332) · line 332 · SHA-256 8ab37a93305db1d491ed6efe32d5e924492f9493e2c298523b61abac7d4b3b2d_
-
-```
-  331 |     fn address(&self) -> Address {
-  332 |         BLS12_G1ADD
-  333 |     }
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-04455 — Quantum-vulnerable ECDSA: role not determined (1 file(s))
-
-- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:general`
-- Data source: crates/cheatcodes/src/crypto.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 28.3 / 100
-- CVSS v3.1: not applicable
-
-4 reference(s) to ECDSA across 1 file(s), e.g. crates/cheatcodes/src/crypto.rs:26. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open crates/cheatcodes/src/crypto.rs:26 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [crates/cheatcodes/src/crypto.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L26) · line 26 · SHA-256 a551137cff41361990a5981742fde03e462e2a4e7b40a49fba299d7f1e749358_
-
-```
-   25 | 
-   26 | use p256::ecdsa::{
-   27 |     Signature as P256Signature, SigningKey as P256SigningKey, signature::hazmat::PrehashSigner,
-```
-
-_file_excerpt · [crates/cheatcodes/src/crypto.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L526) · line 526 · SHA-256 2d2ae3b338f8f2b933a2a78de2bb94bc04717a27b2ef71b413d6c154c3dabd1c_
-
-```
-  525 |         .into_option()
-  526 |         .ok_or_else(|| fmt_err!("invalid secp256k1 {name}"))
-  527 | }
-```
-
-_file_excerpt · [crates/cheatcodes/src/crypto.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L537) · line 537 · SHA-256 7c1a1c232d462506831f9bb7247a932ae80cf42f2152bf84d0ef117aa4f141da_
-
-```
-  536 |             bool::from(x_field.is_zero()) && !bool::from(y_field.is_zero()),
-  537 |             "invalid secp256k1 {name}"
-  538 |         );
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-04457 — Quantum-vulnerable ECDSA: authentication and identity (certificates, tokens, device attestation) (1 file(s))
-
-- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:ECDSA:authentication`
-- Data source: crates/common/src/tempo/auth.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 28.3 / 100
-- CVSS v3.1: not applicable
-
-2 reference(s) to ECDSA across 1 file(s), e.g. crates/common/src/tempo/auth.rs:115. Role, judged from paths, function names and nearby code: authentication and identity (certificates, tokens, device attestation). Short-lived authentication stays safe until a CRQC exists; long-lived identities (device attestation, CA and SSH keys) need a plan earlier.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open crates/common/src/tempo/auth.rs:115 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [crates/common/src/tempo/auth.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L115) · line 115 · SHA-256 e8866289afb498a1ad1214bcef2aa268e90cbd3b50ca37d9682ea1fb0df87f5f_
-
-```
-  114 |         code_challenge: sha256_b64url(&code_verifier),
-  115 |         key_type: "secp256k1",
-  116 |         pub_key: pub_key_hex,
-```
-
-_file_excerpt · [crates/common/src/tempo/auth.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L191) · line 191 · SHA-256 54ee92aeb19ba7eadea1ba0f5101140294f899f35d74cd9254d58fb4aff93353_
-
-```
-  190 |                     eyre::bail!(
-  191 |                         "wallet returned keyType {:?} but secp256k1 was requested",
-  192 |                         signed.authorization.key_type,
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-04458 — Quantum-vulnerable BLS12-381: role not determined (1 file(s))
-
-- Severity: **Low** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `source-code:BLS12-381:general`
-- Data source: crates/debugger/src/node.rs
-- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 28.3 / 100
-- CVSS v3.1: not applicable
-
-7 reference(s) to BLS12-381 across 1 file(s), e.g. crates/debugger/src/node.rs:291. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
-
-**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
-
-**Reproduction steps.**
-
-```
-Open crates/debugger/src/node.rs:291 and inspect the quoted lines; the evidence lists further files.
-```
-
-**Evidence.**
-
-_file_excerpt · [crates/debugger/src/node.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L291) · line 291 · SHA-256 b5a33afbc110921885d6fdc2b239b77fa64c68479bad7f0654313bd4f95988a9_
-
-```
-  290 |         precompiles::POINT_EVALUATION => Some("pointEvaluation"),
-  291 |         precompiles::BLS12_G1ADD => Some("bls12G1Add"),
-  292 |         precompiles::BLS12_G1MSM => Some("bls12G1Msm"),
-```
-
-_file_excerpt · [crates/debugger/src/node.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L292) · line 292 · SHA-256 7f2d22ce6fc44deb9ea5a0267f4ae6d9e169b33af3f20db693583e3c0a1aabff_
-
-```
-  291 |         precompiles::BLS12_G1ADD => Some("bls12G1Add"),
-  292 |         precompiles::BLS12_G1MSM => Some("bls12G1Msm"),
-  293 |         precompiles::BLS12_G2ADD => Some("bls12G2Add"),
-```
-
-_file_excerpt · [crates/debugger/src/node.rs](https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L293) · line 293 · SHA-256 cb4c72ccdcd20bf16e22255941bc70ae5baacd7ea1ae3ca30e0d13cb5f106be7_
-
-```
-  292 |         precompiles::BLS12_G1MSM => Some("bls12G1Msm"),
-  293 |         precompiles::BLS12_G2ADD => Some("bls12G2Add"),
-  294 |         precompiles::BLS12_G2MSM => Some("bls12G2Msm"),
-```
-
-**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
-
-**Recommendation.** Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for crypto-agility.
-
-**Retest procedure.** Re-run the inventory after refactoring.
-
-### QSI-2026-04464 — crypto-bigint 0.5.5 is affected by RUSTSEC-2026-0387 (no severity rating)
-
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/crypto-bigint@0.5.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 20.4 / 100
-- CVSS v3.1: not applicable
-
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
-
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
-
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
 
@@ -803,33 +769,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04465 — crypto-bigint 0.7.5 is affected by RUSTSEC-2026-0387 (no severity rating)
+### QSI-2026-08312 — crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/crypto-bigint@0.7.5`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 20.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/crypto-bigint@0.7.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.7.5: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
 
@@ -837,33 +803,33 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04466 — ctutils 0.4.3 is affected by RUSTSEC-2026-0385 (no severity rating)
+### QSI-2026-08313 — ctutils 0.4.3 затронут RUSTSEC-2026-0385 (без оценки серьёзности)
 
-- Severity: **Low** · Classification: Known vulnerable component · Confidence: Low · _preliminary — requires further verification_
-- Affected asset: `dependency:crates.io/ctutils@0.4.3`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 20.4 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependency:crates.io/ctutils@0.4.3`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 20.3 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev reports RUSTSEC-2026-0385 for crates.io package ctutils at version 0.4.3: Non-constant-time mask generation and `u128` comparisons. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined.
+OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.3: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
-**Potential impact.** Unknown without triage: read the advisory and check whether the affected code is reachable in your build.
+**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0385
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSEC-2026-0385) · manifest · SHA-256 200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848_
 
@@ -871,67 +837,67 @@ _tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2026-0385", "aliases": [], "modified": "2026-10-23T08:30:02.389575143Z", "summary": "Non-constant-time mask generation and `u128` comparisons", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed.
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Recommendation.** Triage the advisory; upgrade to a fixed version (0.4.4) if it applies.
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.4.4).
 
-**Retest procedure.** Re-run the dependency scan after upgrading.
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-04461 — No post-quantum capable cryptographic library detected
+### QSI-2026-08310 — Не обнаружено криптобиблиотек с поддержкой PQC
 
-- Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
-- Affected asset: `dependencies`
-- Data source: dependency manifests
-- Detection method: Dependency name matching.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 13.5 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies`
+- Источник данных: dependency manifests
+- Метод обнаружения: Сопоставление названий зависимостей.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 13.3 / 100
+- CVSS v3.1: неприменимо
 
-Across 41 dependency manifests, QSI found crypto libraries (curve25519-dalek, ecdsa, jsonwebtoken, k256, p256, ring, rustls, secp256k1, x25519-dalek) but none from its PQC-capable list.
+В 41 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, jsonwebtoken, k256, p256, ring, rustls, secp256k1, x25519-dalek), но ни одной из списка поддерживающих PQC.
 
-**Potential impact.** Readiness indicator only: PQC support may come from the platform (OpenSSL, OS, cloud KMS) rather than application dependencies.
+**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
-**Reproduction steps.**
-
-```
-Review the dependency manifests listed in the evidence.
-```
-
-**Evidence.**
-
-_dependency · Cargo.lock, Cargo.toml, crates/anvil/Cargo.toml, crates/anvil/core/Cargo.toml, crates/anvil/rpc/Cargo.toml, crates/anvil/server/Cargo.toml, crates/cast/Cargo.toml, crates/cheatcodes/Cargo.toml, crates/chisel/Cargo.toml, crates/cli/Cargo.toml, crates/cli-markdown/Cargo.toml, crates/common/Cargo.toml, crates/common/fmt/Cargo.toml, crates/config/Cargo.toml, crates/debugger/Cargo.toml, crates/doc/Cargo.toml, crates/evm/abi/Cargo.toml, crates/evm/core/Cargo.toml, crates/evm/coverage/Cargo.toml, crate · SHA-256 9ef612a016445014f08d85cc3387a0a580edeb71639dbaf41d6ca6d92c8daf57_
+**Шаги воспроизведения.**
 
 ```
-Crypto libraries: curve25519-dalek, ecdsa, jsonwebtoken, k256, p256, ring, rustls, secp256k1, x25519-dalek
+Изучите перечисленные в доказательстве манифесты.
 ```
 
-**Limitations of the check.** Absence of evidence is not evidence of absence: system libraries and transitive dependencies may not be listed.
+**Подтверждающие доказательства.**
 
-**Recommendation.** Confirm where PQC support will come from (TLS terminator, KMS/HSM, library upgrade).
+_dependency · Cargo.lock, Cargo.toml, crates/anvil/Cargo.toml, crates/anvil/core/Cargo.toml, crates/anvil/rpc/Cargo.toml, crates/anvil/server/Cargo.toml, crates/cast/Cargo.toml, crates/cheatcodes/Cargo.toml, crates/chisel/Cargo.toml, crates/cli-markdown/Cargo.toml, crates/cli/Cargo.toml, crates/common/Cargo.toml, crates/common/fmt/Cargo.toml, crates/config/Cargo.toml, crates/debugger/Cargo.toml, crates/doc/Cargo.toml, crates/evm/abi/Cargo.toml, crates/evm/core/Cargo.toml, crates/evm/coverage/Cargo.toml, crate · SHA-256 026c023d3656248a1b40b42b344711de11348879e2c078d6608b3e22fe48aa37_
 
-**Retest procedure.** Re-scan after upgrades.
+```
+Crypto libraries: curve25519-dalek, ecdsa, ff, group, jsonwebtoken, k256, p256, ring, rustls, secp256k1, x25519-dalek
+```
 
-### QSI-2026-04467 — derivative 2.2.0: informational advisory RUSTSEC-2024-0388 (unmaintained)
+**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/derivative@2.2.0`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 11.6 / 100
-- CVSS v3.1: not applicable
+**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
 
-OSV.dev lists RUSTSEC-2024-0388 for crates.io package derivative at version 2.2.0 as informational (unmaintained): `derivative` is unmaintained; consider using an alternative. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+**Повторная проверка.** Повторите сканирование после обновлений.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+### QSI-2026-08314 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
 
-**Reproduction steps.**
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/derivative@2.2.0`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev отмечает RUSTSEC-2024-0388 для пакета crates.io derivative версии 2.2.0 как информационный (unmaintained): `derivative` is unmaintained; consider using an alternative. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
+
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
+
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0388
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSEC-2024-0388) · manifest · SHA-256 3438f6c3cab3309fb6388762a19097619076b18baff08e3e9ab34fa969478d55_
 
@@ -939,33 +905,33 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0388", "aliases": [], "modified": "2024-11-10T13:34:40Z", "summary": "`derivative` is unmaintained; consider using an alternative", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-04468 — paste 1.0.15: informational advisory RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-08315 — paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
 
-- Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
-- Affected asset: `dependency:crates.io/paste@1.0.15`
-- Data source: OSV.dev
-- Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.2.0 · 2026-10-28 12:26 UTC
-- Priority score: 11.6 / 100
-- CVSS v3.1: not applicable
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
+- Затронутый актив: `dependency:crates.io/paste@1.0.15`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.2.0 · 2026-10-30 22:47 UTC
+- Балл приоритета: 11.8 / 100
+- CVSS v3.1: неприменимо
 
-OSV.dev lists RUSTSEC-2024-0436 for crates.io package paste at version 1.0.15 as informational (unmaintained): paste - no longer maintained. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.
+OSV.dev отмечает RUSTSEC-2024-0436 для пакета crates.io paste версии 1.0.15 как информационный (unmaintained): paste - no longer maintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.
 
-**Potential impact.** No known vulnerability. Future security fixes may not be released.
+**Возможные последствия.** Известной уязвимости нет. Исправления безопасности в будущем могут не выйти.
 
-**Reproduction steps.**
+**Шаги воспроизведения.**
 
 ```
 curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2024-0436
 ```
 
-**Evidence.**
+**Подтверждающие доказательства.**
 
 _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSEC-2024-0436) · manifest · SHA-256 ea867adb8ba26c96c3779becf55b3de25d46f37f23ab55131e09c98a8b0b9975_
 
@@ -973,72 +939,72 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 {"id": "RUSTSEC-2024-0436", "aliases": [], "modified": "2026-01-27T22:03:15.694766Z", "summary": "paste - no longer maintained", "severity": null, "declared_in_manifest": false}
 ```
 
-**Limitations of the check.** Advisory data comes from OSV.dev at the recorded time.
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время.
 
-**Recommendation.** Plan a move to a maintained alternative, or record the decision to keep it.
+**Рекомендация.** Запланируйте переход на поддерживаемую альтернативу или зафиксируйте решение оставить пакет.
 
-**Retest procedure.** Re-run the dependency scan after the change.
+**Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
 
-## 8. Post-quantum assessment
+## 8. Постквантовая оценка
 
-| | Key establishment (x = how long data must stay confidential; harvest now, decrypt later) | Signatures (x = how long signatures/keys must stay trusted) |
+| | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Data/key lifetime x | 10 | 5 |
-| Migration time y | 3 | 3 |
-| Assumed years to CRQC z | 8 (early) | 8 |
-| x + y − z | 5 → migration would finish too late under this scenario | 0 → tight margin |
-#### Where z comes from
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
+| Принятое число лет до CRQC z | 8 (early) | 8 |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
+#### Откуда взято z
 
-Averaged expert likelihood that a CRQC exists within each horizon, from the annual survey published by the author of this inequality. Likelihood estimates, not predictions of a date.
+Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
 
-| Within | Likelihood | The report's wording |
+| В пределах | Вероятность | Формулировка отчёта |
 |---|---|---|
-| 5 years | ~15% | averaged estimate |
-| 10 years | 28-49% | quite possible |
-| 15 years | 51-70% | likely |
+| 5 лет | ~15% | усреднённая оценка |
+| 10 лет | 28-49% | вполне возможно |
+| 15 лет | 51-70% | вероятно |
 
-**Why this scenario (early, z = 8):** Inside the 10-year horizon the survey puts at 28-49% ('quite possible'), and consistent with the BSI estimate of 15 years that 'could shrink to 10 or even less'. Use it for data that must stay confidential for decades, where being wrong is expensive.
-_Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Security software vendor”, not the client's figures; with the client's actual lifetimes the verdict can change._
+**Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
-### Post-quantum maturity: Level 4 of 4 — post-quantum by default in the critical paths
+### Постквантовая зрелость: Уровень 4 из 4 — постквантовое по умолчанию в критичных путях
 
-- Hybrid — channel key exchange (TLS, Noise, handshakes): Cargo.toml (classical group + X25519MLKEM768)
-- In use: X25519MLKEM768 — Cargo.toml
+- Гибрид — обмен ключами в канале (TLS, Noise, рукопожатия): Cargo.toml (классическая группа + X25519MLKEM768)
+- Используется: X25519MLKEM768 — Cargo.toml
 
-**Next step:** Keep the inventory current and review new code paths before release.
+**Следующий шаг:** Поддерживайте инвентарь в актуальном состоянии и проверяйте новые пути кода перед выпуском.
 
-_Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests._
+_Уровни: 0 — нет; 1 — есть, но не подключено; 2 — используется вне критичных путей; 3 — гибрид в критичном пути; 4 — постквантовое по умолчанию в критичных путях (корень доверия, обёртка ключей, обмен ключами в канале). Оценка по коду и манифестам._
 
-### What the quantum-vulnerable algorithms do
+### Что делают квантово-уязвимые алгоритмы
 
-| Role | Algorithms (files) | ID | First step |
+| Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **channel key exchange (TLS, Noise, handshakes)** | TLS ECDHE (1) | QSI-2026-04456 | Move the handshake to a hybrid key exchange (X25519MLKEM768 in TLS 1.3; a hybrid KEM in Noise-based protocols) |
-| **transaction and message signing** | ECDSA (9), BLS12-381 (3) | QSI-2026-04454, QSI-2026-04459 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **authentication and identity (certificates, tokens, device attestation)** | ECDSA (1) | QSI-2026-04457 | Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them |
-| **role not determined** | BLS12-381 (1), ECDSA (1) | QSI-2026-04455, QSI-2026-04458 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **обмен ключами в канале (TLS, Noise, рукопожатия)** | TLS ECDHE (1) | QSI-2026-08304 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
+| **подпись транзакций и сообщений** | ECDSA (9), BLS12-381 (3) | QSI-2026-08302, QSI-2026-08307 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | ECDSA (1) | QSI-2026-08305 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
+| **роль не определена** | BLS12-381 (1), ECDSA (1) | QSI-2026-08303, QSI-2026-08306 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
-_Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
-No readiness questionnaire was completed for this project.
+_Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
+Анкета готовности для проекта не заполнялась.
 
-### Quantum algorithms relevant to this inventory
+### Квантовые алгоритмы, значимые для этой инвентаризации
 
-| Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
+| Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Shor's algorithm — discrete logarithms in finite fields | breaks | Q1 | BLS12-381 (4) | Breaks finite-field Diffie–Hellman and DSA at every size. Move key establishment to ML-KEM (hybrid with X25519 or ECDH during the transition) and signatures to ML-DSA or SLH-DSA. |
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | BLS12-381 (4), ECDSA (12), X25519MLKEM768 (1) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (1), HKDF (1), Keccak-256 (55), RIPEMD-160 (1), SHA-2 (4) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | Keccak-256 (55), RIPEMD-160 (1), SHA-2 (4) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
-| Quantum lattice sieving | included in standard parameters | Q1 | X25519MLKEM768 (1) | No change for ML-KEM or ML-DSA at the standard parameter sets. A 2024 claim of a polynomial-time quantum LWE algorithm was withdrawn after a bug was found (see claims). |
+| Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BLS12-381 (4) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BLS12-381 (4), ECDSA (12), X25519MLKEM768 (1) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | AES-256 (1), HKDF (1), Keccak-256 (55), RIPEMD-160 (1), SHA-2 (3) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
+| Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (55), RIPEMD-160 (1), SHA-2 (3) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
+| Квантовое решетчатое просеивание | учтено в стандартных параметрах | Q1 | X25519MLKEM768 (1) | Для ML-KEM и ML-DSA в стандартных наборах параметров ничего менять не нужно. Заявление 2024 года о полиномиальном квантовом алгоритме для LWE отозвано после обнаружения ошибки (см. заявления). |
 
-_Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
+_Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
 
-## 9. Limitations and assumptions
+## 9. Ограничения и допущения
 
-- This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
-- z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.
+- Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
+- z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
 - slither: slither is not installed on the server (pip install slither-analyzer + solc)
 - slither: slither is not installed on the server (pip install slither-analyzer + solc)
 - slither: slither is not installed on the server (pip install slither-analyzer + solc)
@@ -1054,44 +1020,43 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - slither: slither is not installed on the server (pip install slither-analyzer + solc)
 - slither: slither is not installed on the server (pip install slither-analyzer + solc)
 
-## 10. Remediation plan / Priorities for 30, 60 and 90 days
+## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
-### 30 days
+### 30 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-04469 | Upgrade quick-xml to a fixed version (0.41.0). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0194. |
-| P2 | QSI-2026-04470 | Upgrade quick-xml to a fixed version (0.41.0). | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0195. |
-| P2 | QSI-2026-04462 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-04463 | Upgrade block-buffer to a fixed version (none published yet; see the advisory for mitigations). | root-cause fix | Dependency scan no longer reports GHSA-qwgh-2vcv-g2f7. |
-### 60 days
+| P1 | QSI-2026-08308 | Замените и удалите секреты из crates/evm/symbolic/src/runtime/solver/mod.rs. | устранение первопричины | Сканер секретов ничего не находит; старые значения отозваны. |
+| P2 | QSI-2026-08316 | Обновите quick-xml до исправленной версии (0.41.0). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0194. |
+| P2 | QSI-2026-08317 | Обновите quick-xml до исправленной версии (0.41.0). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0195. |
+### 60 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-04456 | Build rustls with the aws-lc-rs provider (rustls::crypto::aws_lc_rs) and the prefer-post-quantum feature, which puts X25519MLKEM768 first. | root-cause fix | A PQ-capable client negotiates X25519MLKEM768. |
-| P3 | QSI-2026-04464 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-04465 | Triage RUSTSEC-2026-0387; upgrade crypto-bigint to a fixed version (0.7.6) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0387, or the triage is recorded. |
-| P3 | QSI-2026-04466 | Triage RUSTSEC-2026-0385; upgrade ctutils to a fixed version (0.4.4) if it applies. | root-cause fix | Dependency scan no longer reports RUSTSEC-2026-0385, or the triage is recorded. |
-### 90 days
+| P2 | QSI-2026-08304 | Соберите rustls с провайдером aws-lc-rs (rustls::crypto::aws_lc_rs) и функцией prefer-post-quantum, которая ставит X25519MLKEM768 первым. | устранение первопричины | PQ-клиент согласует X25519MLKEM768. |
+| P3 | QSI-2026-08311 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-08312 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-08313 | Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан. |
+### 90 дн.
 
-| Priority | ID | Action | Type | Closure criteria |
+| Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-04453 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-04460 | Pin the compiler version used in testing. | root-cause fix | Re-run static analysis and add a unit/fuzz test that exercises the pattern. |
-| P3 | QSI-2026-04454 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-04459 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-04455 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-04457 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-04458 | Add BLS12-381 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-04454 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-04459 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-04455 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-04457 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-04458 | Plan migration of BLS12-381 to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-04467 | Replace derivative with a maintained alternative or record why it stays. | root-cause fix | derivative replaced, or the decision recorded. |
-| P4 | QSI-2026-04468 | Replace paste with a maintained alternative or record why it stays. | root-cause fix | paste replaced, or the decision recorded. |
+| P3 | QSI-2026-08302 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08307 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08303 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08305 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08306 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-08301 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-08309 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-08302 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08307 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-08303 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08305 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-08306 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-08314 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
+| P4 | QSI-2026-08315 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
 
-## 11. Tools used
+## 11. Использованные инструменты
 
 - blockchain 1.0.0
 - certificates 1.1.0
@@ -1106,7 +1071,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 - qsi-engine 1.2.0
 - OSV.dev API v1
 
-## 12. Sources and normative documents
+## 12. Источники и нормативные документы
 
 1. A. Becker, L. Ducas, N. Gama, T. Laarhoven — New directions in nearest neighbor searching with applications to lattice sieving (SODA 2016; IACR ePrint 2015/1128) — IACR ePrint. <https://eprint.iacr.org/2015/1128> (peer-reviewed article: classical sieving in 2^{0.292n + o(n)})
 2. A. Chailloux, J. Loyer — Lattice sieving via quantum random walks (ASIACRYPT 2021; IACR ePrint 2021/570) — IACR ePrint. <https://eprint.iacr.org/2021/570> (peer-reviewed article: 2^{0.2570d + o(d)}, previously 2^{0.2653d + o(d)} (Laarhoven))
@@ -1132,59 +1097,62 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 22. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
 23. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
 24. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-25. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
-26. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
-27. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
-28. OSV advisory RUSTSEC-2026-0194 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0194> (modified 2026-07-02T08:00:03.849273679Z)
-29. OSV advisory RUSTSEC-2026-0195 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0195> (modified 2026-07-02T09:00:04.037478193Z)
-30. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
-31. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+25. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
+26. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
+27. OSV advisory RUSTSEC-2026-0194 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0194> (modified 2026-07-02T08:00:03.849273679Z)
+28. OSV advisory RUSTSEC-2026-0195 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0195> (modified 2026-07-02T09:00:04.037478193Z)
+29. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
+30. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+31. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
 32. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
 33. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
 34. RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024) — IETF. <https://www.rfc-editor.org/rfc/rfc10024> (standards track; checked 2026-10-13)
 35. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 36. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
 
-## Appendices: Cryptographic inventory
+## Приложения: Криптографическая инвентаризация
 
-| Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
+| Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
-| RIPEMD-160 | RIPEMD-160 |  | weak classically | legacy | 1 | 1 | crates/evm/traces/src/decoder/precompiles.rs:78 |
-| AES-256 | AES-256 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | crates/cast/src/cmd/tempo/zone/encryption.rs:6 |
-| HKDF |  |  | reduced margin (Grover), approved | acceptable | 1 | 1 | crates/cast/src/cmd/tempo/zone/encryption.rs:9 |
-| Keccak-256 | Keccak-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 55 | 55 | crates/anvil/core/src/eth/transaction/mod.rs:82; crates/anvil/src/config.rs:222; crates/anvil/src/eth/api.rs:964 |
-| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 4 | 4 | .github/scripts/benchmark_clickhouse.py:170; crates/cast/src/cmd/tempo/zone/encryption.rs:13; crates/common/src/external_compiler.rs:276 |
-| X25519MLKEM768 |  |  | hybrid | acceptable | 1 | 1 | Cargo.toml:494 |
-| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.14.0 | p256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.17.0 | ecdsa (python-ecdsa) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.17.14 | ring (ring (Rust)) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.23.46 | rustls (rustls) | n/a | acceptable | 2 | 2 | Cargo.lock; Cargo.toml |
-| Crypto library | 0.30.0 | secp256k1 (secp256k1 bindings) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.31.1 | secp256k1 (secp256k1 bindings) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 10.4.0 | jsonwebtoken (jsonwebtoken (Node)) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 3.0.0 | x25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 5.0.0 | curve25519-dalek (ed25519-dalek) | n/a | acceptable | 1 | 1 | Cargo.lock |
-| Crypto library | 0.13 | k256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | Cargo.toml |
-| Crypto library | workspace | k256 (RustCrypto elliptic curves) | n/a | acceptable | 3 | 3 | crates/cast/Cargo.toml; crates/cheatcodes/Cargo.toml; crates/common/Cargo.toml |
-| Crypto library | 0.13 | p256 (RustCrypto elliptic curves) | n/a | acceptable | 1 | 1 | crates/cheatcodes/Cargo.toml |
-| Crypto library | 0.16 | ecdsa (python-ecdsa) | n/a | acceptable | 1 | 1 | crates/cheatcodes/Cargo.toml |
-| Crypto library | workspace | rustls (rustls) | n/a | acceptable | 1 | 1 | crates/cli/Cargo.toml |
-| Crypto library | 9.0.3 | jsonwebtoken (jsonwebtoken (Node)) | n/a | acceptable | 1 | 1 | editors/vscode/package-lock.json |
-| BLS12-381 |  |  | vulnerable (Shor) | acceptable | 4 | 4 | crates/debugger/src/node.rs:291; crates/evm/core/src/precompiles.rs:34; crates/evm/traces/src/decoder/mod.rs:28 |
-| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 10 | 10 | crates/anvil/src/eth/backend/cheats.rs:11; crates/anvil/src/eth/backend/tempo.rs:271; crates/cast/src/cmd/keychain.rs:153 |
-| ECDSA | P-256 |  | vulnerable (Shor) | acceptable | 2 | 2 | crates/cheatcodes/src/crypto.rs:26; crates/evm/networks/src/lib.rs:29 |
+| RIPEMD-160 | RIPEMD-160 |  | слаб классически | устаревающий | 1 | 1 | crates/evm/traces/src/decoder/precompiles.rs:78 |
+| AES-256 | AES-256 |  | сниженный запас (Гровер), одобрен | допустимо | 1 | 1 | crates/cast/src/cmd/tempo/zone/encryption.rs:6 |
+| HKDF |  |  | сниженный запас (Гровер), одобрен | допустимо | 1 | 1 | crates/cast/src/cmd/tempo/zone/encryption.rs:9 |
+| Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 55 | 55 | crates/anvil/core/src/eth/transaction/mod.rs:82; crates/anvil/src/config.rs:222; crates/anvil/src/eth/api.rs:964 |
+| SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 3 | 3 | crates/cast/src/cmd/tempo/zone/encryption.rs:13; crates/common/src/external_compiler.rs:276; crates/common/src/tempo/auth.rs:277 |
+| X25519MLKEM768 |  |  | гибрид | допустимо | 1 | 1 | Cargo.toml:494 |
+| Crypto library | 0.13.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.1 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.14.0 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.14.0 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.14.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.17.0 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.17.14 | ring (ring (Rust)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.23.46 | rustls (rustls) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
+| Crypto library | 0.30.0 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.31.1 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 10.4.0 | jsonwebtoken (jsonwebtoken (Node)) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 3.0.0 | x25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 5.0.0 | curve25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.13 | k256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | workspace | k256 (RustCrypto elliptic curves) | н/п | допустимо | 3 | 3 | crates/cast/Cargo.toml; crates/cheatcodes/Cargo.toml; crates/common/Cargo.toml |
+| Crypto library | 0.13 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | crates/cheatcodes/Cargo.toml |
+| Crypto library | 0.16 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | crates/cheatcodes/Cargo.toml |
+| Crypto library | workspace | rustls (rustls) | н/п | допустимо | 1 | 1 | crates/cli/Cargo.toml |
+| Crypto library | 9.0.3 | jsonwebtoken (jsonwebtoken (Node)) | н/п | допустимо | 1 | 1 | editors/vscode/package-lock.json |
+| BLS12-381 |  |  | уязвим (Шор) | допустимо | 4 | 4 | crates/debugger/src/node.rs:291; crates/evm/core/src/precompiles.rs:34; crates/evm/traces/src/decoder/mod.rs:28 |
+| ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 10 | 10 | crates/anvil/src/eth/backend/cheats.rs:11; crates/anvil/src/eth/backend/tempo.rs:271; crates/cast/src/cmd/keychain.rs:153 |
+| ECDSA | P-256 |  | уязвим (Шор) | допустимо | 2 | 2 | crates/cheatcodes/src/crypto.rs:26; crates/evm/networks/src/lib.rs:29 |
 
-_Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
+_Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
-## Appendices: Input files
+## Приложения: Входные файлы
 
-| File | Size | SHA-256 | Redactions |
+| Файл | Размер | SHA-256 | Маскирования |
 |---|---|---|---|
 | .cargo/config.toml | 496 | `e1030cf1b1c221476b21cf0b0693491fc8b8506f4eb9be92fbf5af210b9779b1` | 0 |
-| .github/scripts/benchmark_clickhouse.py | 20787 | `ecf2466268d103c6477f39bd2ab08d4f837d428fdd133e11612982328a492794` | 0 |
 | .github/scripts/compare-benchmark-thresholds.py | 4807 | `1c6d4ebf60a43f16347f9199ea7c2df73a9da4649857d30b48e41c62ba3a1622` | 0 |
 | .github/scripts/contracts/BatchCounter.sol | 343 | `d573ae940de4141c483f0e933d27ee0c40754f72ccf07f144dc5e3499faaa320` | 0 |
 | .github/scripts/contracts/CounterWithRequire.sol | 306 | `427bf1ddf5d91be68251f54ce74ae541ed241e8014b70a98c656a511a6ecea95` | 0 |
@@ -1224,8 +1192,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/anvil/src/eth/api.rs | 248171 | `ce3cefe14f2f4ee30f2f6bf352a242cf3b3617ea32e14fa25f4f01c7792e2ec0` | 0 |
 | crates/anvil/src/eth/backend/cheats.rs | 9880 | `31fbcf6016a3810cdacd6adcabaa8b97bbeeba80a7ad238e7ae8f16670bdfeb1` | 0 |
 | crates/anvil/src/eth/backend/db.rs | 42307 | `dcc44889732e1bd639c87574758c3612aa784797fa566f713bdef489e4256f32` | 0 |
-| crates/anvil/src/eth/backend/executor/optimism.rs | 5280 | `e2aee0089311395d1467e6ab15546083cad392a8b4da7ff64ad57fbe546c9321` | 0 |
 | crates/anvil/src/eth/backend/executor.rs | 38017 | `a579a3f9044fd24a19e4ee0a8033833c44a7de2107d9fe030185cd5389ba679b` | 0 |
+| crates/anvil/src/eth/backend/executor/optimism.rs | 5280 | `e2aee0089311395d1467e6ab15546083cad392a8b4da7ff64ad57fbe546c9321` | 0 |
 | crates/anvil/src/eth/backend/fork.rs | 39449 | `993c58ae6204d61590ee662e4f4f3e092f973b2c762c16c810410fd8da524f86` | 0 |
 | crates/anvil/src/eth/backend/genesis.rs | 2518 | `b07487534afa0fd47a7addbc326a73db065cb9368acf1e05b5f8b3e57b64d6f0` | 0 |
 | crates/anvil/src/eth/backend/info.rs | 1968 | `870024ae660d4134c0252413e91bcf0f8145beba826ad8777480f4cf52f12935` | 0 |
@@ -1248,8 +1216,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/anvil/src/eth/error/base.rs | 1467 | `708c91e8951c2e1fe93fb133da1dba29f61dc10826385f130b0775c47a1bda0a` | 0 |
 | crates/anvil/src/eth/error/mod.rs | 31831 | `d235fb662e2a6fd58d4d7c10592b61013a8bbec58152078d3ae2a76bdc8b66f0` | 0 |
 | crates/anvil/src/eth/error/optimism.rs | 2497 | `3008e7f4efbbe68c145081bef46584aa039f76736d9e3de3ada3b04033901242` | 0 |
-| crates/anvil/src/eth/fees/optimism.rs | 7290 | `08ecff4d5409341afa440e5a8c3a8e6fde35325be29dfd37abc2870adf991755` | 0 |
 | crates/anvil/src/eth/fees.rs | 33508 | `b6cc86328fcd56c7cdd9ac919fa835dcad1241da1ede6319d43130ec19ea82e6` | 0 |
+| crates/anvil/src/eth/fees/optimism.rs | 7290 | `08ecff4d5409341afa440e5a8c3a8e6fde35325be29dfd37abc2870adf991755` | 0 |
 | crates/anvil/src/eth/macros.rs | 247 | `de8b7226023fb194a25d89452be5620967b3c09f1ae0cba80350d16405ba6c64` | 0 |
 | crates/anvil/src/eth/miner.rs | 26629 | `eb4b67b8f240ba87f9069cb514667c2668befbd76ecc99f3b515ad4ef9a2d580` | 0 |
 | crates/anvil/src/eth/mod.rs | 999 | `9b5dfb5c833aa43dde23a15ccf5f3356af7e97284dd43ed266c8917789638464` | 0 |
@@ -1295,8 +1263,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/cast/src/cmd/create2.rs | 20350 | `bac819f47cbdeeba4f46e5c215d9cde4c4e8fab71b586cd3f3ca96db65d8c26a` | 0 |
 | crates/cast/src/cmd/creation_code.rs | 11427 | `062e8c967e136a5bdbd7e2ee29f421cf4ca55661ef8c984e8da659f79d63cd98` | 0 |
 | crates/cast/src/cmd/da_estimate.rs | 2982 | `9e1cafc7caecf6fc2c65256875f9dfacb3865c0354399f9b8d9858926cc8638b` | 0 |
-| crates/cast/src/cmd/erc20/permit.rs | 14413 | `0a02c7d223092c61b07876b9e025ca5875a71bf5a2233737681a33818b8185c6` | 0 |
 | crates/cast/src/cmd/erc20.rs | 11822 | `10410c587cf31fc50fa233f108a757db70adb690f77a4c6a574c395d408ce7af` | 0 |
+| crates/cast/src/cmd/erc20/permit.rs | 14413 | `0a02c7d223092c61b07876b9e025ca5875a71bf5a2233737681a33818b8185c6` | 0 |
 | crates/cast/src/cmd/erc4626.rs | 55984 | `cb89bfe514ccb60e5da588e679fa32c664bbd7828deb497c9ca362f5ed8be34c` | 0 |
 | crates/cast/src/cmd/estimate.rs | 5046 | `f097a07634fbef9dbafb24dfc8f891fd3bc8c90dced13ac06c5d71c1443d6602` | 0 |
 | crates/cast/src/cmd/events.rs | 15605 | `3aaaf2f27bbdd4e623448aa1d50a8bc86cce8b7ad5e059ac64f27191d3f0854c` | 0 |
@@ -1323,13 +1291,13 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/cast/src/cmd/send.rs | 28845 | `297e1b3886e561c598acd49ab55216efe295b13e5b2ce02194fe6180f0edd064` | 0 |
 | crates/cast/src/cmd/storage.rs | 31224 | `7efd4535605a6ab3ee6e31a77eb43822cc78b2c331121a0fac648be664bae1ce` | 0 |
 | crates/cast/src/cmd/storage_credits.rs | 6818 | `010043901ef1936cdc66bc4cc3375019c86a5674bca67120400efdb81d52683d` | 0 |
+| crates/cast/src/cmd/tempo.rs | 3705 | `84305c59dc4af281ebce79b80f3c0cc88b2cbc26f492cadc475b7506b83530a4` | 0 |
 | crates/cast/src/cmd/tempo/zone/abi.rs | 2437 | `5ab4bcad72b7f804f0754cc8dfe350752fe46891a4c91eade8032e0ad84ab908` | 0 |
 | crates/cast/src/cmd/tempo/zone/auth.rs | 2881 | `ef249ddc1ce411691a05416e2659cb979f2bafd2d154032a1eeaa57f55c74c31` | 0 |
 | crates/cast/src/cmd/tempo/zone/earn.rs | 9842 | `51760e61efd583a3849f9962a84a5617f212cbee62a8ca90355e01b71e9a5fb0` | 0 |
 | crates/cast/src/cmd/tempo/zone/encryption.rs | 5890 | `d326aa419e0cb53c2f23d07643bb792dc029b82b750a17f24beb265c3d8ae82e` | 0 |
 | crates/cast/src/cmd/tempo/zone/l1.rs | 10500 | `e03ce5109285eed7fd0f3fc7e94d5319327daba5a180ac1f23c5efbe31edf734` | 0 |
 | crates/cast/src/cmd/tempo/zone/mod.rs | 15457 | `3534969a0c0a712a3fb5e627499da2fc24f9dd4b0f868f43e9356e4e92125a57` | 0 |
-| crates/cast/src/cmd/tempo.rs | 3705 | `84305c59dc4af281ebce79b80f3c0cc88b2cbc26f492cadc475b7506b83530a4` | 0 |
 | crates/cast/src/cmd/tempo_policy_args.rs | 11137 | `7e387203b06d5b81eea31a2671f93ae76d6d4313a2d31f9158cd258bcc24820b` | 0 |
 | crates/cast/src/cmd/tip20/create.rs | 4118 | `65b045ea40bd4057bf53a5f9cdb684fe0528b51f57b68a9eb4bd4a684a2b7370` | 0 |
 | crates/cast/src/cmd/tip20/logo.rs | 1368 | `aa5dfc587af46b8e36f2b761f052bcf46dab3929abd2530c822690dd63fa863d` | 0 |
@@ -1363,19 +1331,19 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/cheatcodes/src/crypto.rs | 42870 | `194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e` | 0 |
 | crates/cheatcodes/src/env.rs | 12371 | `2218b98ee5bb8aa766834e76e60291566d043b963eb35aee932182fd917dfd52` | 0 |
 | crates/cheatcodes/src/error.rs | 9026 | `c181922ad0f3e4d3be9338e219cf23d17a29f21236fa565ba54530a27af735c9` | 0 |
+| crates/cheatcodes/src/evm.rs | 100856 | `0af2787598ba83b4573effcab5a13cd919cb8f1a357c945e5650fe1178d58ea3` | 0 |
 | crates/cheatcodes/src/evm/fork.rs | 24858 | `21abacd1ec20d2bcf1d1894f6bdb32a4ebf1b1ff6dc67af97dc3b29857ac2006` | 0 |
 | crates/cheatcodes/src/evm/mapping.rs | 2414 | `0cac4b7bd9771d48e6afc2685cbc3a5fc0480f82109ef4ad22cffeca986560aa` | 0 |
 | crates/cheatcodes/src/evm/mock.rs | 12035 | `1ffbf33788161d3638fc8eb046828bcba650bd2eb151f045c7a01916906cf2a3` | 0 |
 | crates/cheatcodes/src/evm/prank.rs | 8121 | `37ea89631b241377ba3342f99f7b21ec6eda7b2b91629bf83e354e654708b4cd` | 0 |
 | crates/cheatcodes/src/evm/record_debug_step.rs | 6045 | `f7c9e16a101d1352ce124375734f9960a65bb9794bb1682eb65634b35fbda3f6` | 0 |
-| crates/cheatcodes/src/evm.rs | 100856 | `0af2787598ba83b4573effcab5a13cd919cb8f1a357c945e5650fe1178d58ea3` | 0 |
 | crates/cheatcodes/src/expected_emit.rs | 39131 | `947622bbe4aecb0379bcc97b6ed48ca6abd6d4407729ba74a4757c2cea61a479` | 0 |
 | crates/cheatcodes/src/external_storage.rs | 3300 | `d891e5f55f6778328ebb31b3ac5dee2ccda255c2cabd6fd5a14655947ea9081b` | 0 |
 | crates/cheatcodes/src/fs.rs | 65434 | `ec82c8a9ad24a7131dbc95463e9dbe679aef826ee98ac7cec4ff28040d0ff551` | 0 |
+| crates/cheatcodes/src/inspector.rs | 169792 | `ec08c2c28e80041c877312283085a630206dc19f57ab9e54115d6caa9ae91dc7` | 0 |
 | crates/cheatcodes/src/inspector/analysis.rs | 6331 | `04b4fbbbdb1a01d8361b1e6b62ddbd897f9cb73d814a4792e6c71b96b429241e` | 0 |
 | crates/cheatcodes/src/inspector/env_overrides.rs | 13056 | `5508036f0c5ff183e841eb0b080324efac9916f53a7e6fd9171d094423483d16` | 0 |
 | crates/cheatcodes/src/inspector/utils.rs | 2394 | `acbdc5355e2c66a7b14c042842281448216dd4c5ff974077f823d30776e0f04e` | 0 |
-| crates/cheatcodes/src/inspector.rs | 169792 | `ec08c2c28e80041c877312283085a630206dc19f57ab9e54115d6caa9ae91dc7` | 0 |
 | crates/cheatcodes/src/json.rs | 52852 | `fb51bf4aa7a5a11424c56ea455485f5553ae548792b93048c1361a23fb88a5e5` | 0 |
 | crates/cheatcodes/src/lib.rs | 7224 | `f7f77e10a95d9f1c67b2c242a36eeb71616536c381c6f7f096ea9edc765cdd0d` | 0 |
 | crates/cheatcodes/src/monad.rs | 8225 | `538f2016e405f4f145de5e5637a1bce2bfcbf30f633a57dfeaffb50cc943072f` | 0 |
@@ -1398,6 +1366,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/chisel/src/session.rs | 35471 | `c8e6b667f7764edbead6f820cbfc7b9530736061dc2910c77ebb6ec1d5232e11` | 0 |
 | crates/chisel/src/solidity_helper.rs | 11593 | `c0d10afac440fa805d69d6e7e2f4a1028df44d203664b7a579d7c71b18477998` | 0 |
 | crates/chisel/src/source.rs | 46688 | `98c1e3348a506b5de0b085605e4cd63f7f3b35584578fac3339fc999af5e7721` | 0 |
+| crates/cli-markdown/Cargo.toml | 465 | `5dc57e7ff5b7ae9c1caf938df1b551878ec67ceb74ab5e7c2bb4a8f881919c58` | 0 |
+| crates/cli-markdown/src/lib.rs | 18718 | `f0296ed3066add3bdcdea489a4d9b50964707efeaff93b24a98fa468990462a7` | 0 |
 | crates/cli/Cargo.toml | 2509 | `6e26830fa7cf2ae6141c4cd678be7adc2c5a627b440596125f8992f2ff4582e4` | 0 |
 | crates/cli/src/clap.rs | 1397 | `6fd145a77df4c1c4966294cb381ee37b25d630236d5a79566abd94ec6b00b829` | 0 |
 | crates/cli/src/handler.rs | 2970 | `2d72596a0633cdc60b7a96f50496e794cdd68157acf605b184fb40d5f588abee` | 0 |
@@ -1412,8 +1382,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/cli/src/opts/mod.rs | 321 | `5b286e48d0e12db1b03808a65ec4d2474fd5ad53ca7111633e50f93a3bfe2a10` | 0 |
 | crates/cli/src/opts/rpc.rs | 9036 | `80c432665d0166b324673fbbea56dc9152630175d11f957876b98fd1c050f588` | 0 |
 | crates/cli/src/opts/rpc_common.rs | 4510 | `015e34b778b445339ec59a78546bbd8e04249224c446818b6457d2cc9fb40dac` | 0 |
-| crates/cli/src/opts/tempo/session.rs | 16768 | `8b6c5f40bfeb15e73bc73307a6c2c007d55a5abe67eaf7350b1975982102aceb` | 0 |
 | crates/cli/src/opts/tempo.rs | 20485 | `674cbd3ef8b8fa658be12349ba241195472f72ac7775c405bf1db488a344379a` | 0 |
+| crates/cli/src/opts/tempo/session.rs | 16768 | `8b6c5f40bfeb15e73bc73307a6c2c007d55a5abe67eaf7350b1975982102aceb` | 0 |
 | crates/cli/src/opts/tracing.rs | 5457 | `52b337f47c04f2f486f6c83c9b43c86c5ff8aa7748e041cf2a4dac0e7c0fed7a` | 0 |
 | crates/cli/src/opts/transaction.rs | 5225 | `7d42a9bee15422d872c4e4b3002913bf3d0fd7c5027188c59964b8d62f39548a` | 0 |
 | crates/cli/src/utils/abi.rs | 2565 | `1e598a53aa3c73cb0cce60f467181c37c42296ebe7b23b5aa7bc0020a884ff21` | 0 |
@@ -1422,8 +1392,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/cli/src/utils/mod.rs | 59134 | `0784360683f1c5dcc8fe0cc9fb581d1761f3bb6baa9df157d849695cd49235dc` | 0 |
 | crates/cli/src/utils/suggestions.rs | 1471 | `b20278c3806021a5b013e799d8545546374333ff0fc787305616b31221e0396f` | 0 |
 | crates/cli/src/utils/tempo.rs | 8697 | `15a82cc4b43725650fa92d37580f039132daad4b8682113678eae87b41a9a387` | 0 |
-| crates/cli-markdown/Cargo.toml | 465 | `5dc57e7ff5b7ae9c1caf938df1b551878ec67ceb74ab5e7c2bb4a8f881919c58` | 0 |
-| crates/cli-markdown/src/lib.rs | 18718 | `f0296ed3066add3bdcdea489a4d9b50964707efeaff93b24a98fa468990462a7` | 0 |
 | crates/common/Cargo.toml | 3294 | `7e2925e1957925ea894da1472118155a5ca4c5bdd6788d6a69080007bf7814d0` | 0 |
 | crates/common/build.rs | 4046 | `888378e236140116b10efa7d5be3a82a9c89f22b955f9091bacb051d663dfcdf` | 0 |
 | crates/common/fmt/Cargo.toml | 1348 | `aec0ad33f396623ffde835f84eaf4322dd66b652ae807c0b91878127a8b799fd` | 0 |
@@ -1538,10 +1506,10 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/doc/src/utils.rs | 5653 | `e5d2cdd2cbc77be33c3eeb5eb38fd8d9280e456fdf92265b8be110d16a81a097` | 0 |
 | crates/doc/src/vocs.rs | 27555 | `05894a78ec1f7e162897ecd069daad51455905d67f38617b9b145d419850fcb6` | 0 |
 | crates/evm/abi/Cargo.toml | 551 | `e973759dbb0dd69a72c30c5c03ad12171740404b254c44b912684a91908a19cb` | 0 |
+| crates/evm/abi/src/console.py | 1327 | `5a1e8b94614e3ed414f60dd7bba1c4c4a990d7259bf5a1c32c221a2090122436` | 0 |
 | crates/evm/abi/src/console/ds.rs | 2584 | `fcc02485bc12bbf6e62531d6995816347aee260c8cdb924b4cc573f2ab09fdc5` | 0 |
 | crates/evm/abi/src/console/hh.rs | 232 | `f63076167f92e37280fc9fb7fbf875c909285d2470e8f634b77bd7d3475afb72` | 0 |
 | crates/evm/abi/src/console/mod.rs | 500 | `d05bbe627bb3ab10777eb52ceb2c7809a39e2c8be768102f6632211caa77585a` | 0 |
-| crates/evm/abi/src/console.py | 1327 | `5a1e8b94614e3ed414f60dd7bba1c4c4a990d7259bf5a1c32c221a2090122436` | 0 |
 | crates/evm/abi/src/lib.rs | 198 | `6a981e6116475c0cbbba4222d40b8fde059e7f2f401d1aed6e78232a8f83c114` | 0 |
 | crates/evm/core/Cargo.toml | 4210 | `01a5a1ce771123b5e153b8a267603b484049b1e714be7df0da63ddbee6247421` | 0 |
 | crates/evm/core/src/backend/bal.rs | 1895 | `da3a14f7c0b3cead54859f9ea35999249e4ec4e6118ff9339fe444c5bf4e911c` | 0 |
@@ -1635,6 +1603,7 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/evm/symbolic/src/executor/opcodes.rs | 67382 | `d681b897105b70ff92f3f3e5e6c670fc511d7b48f498138c1e0f53ddf543ed48` | 0 |
 | crates/evm/symbolic/src/executor/run.rs | 36276 | `d198feffae2abdce5f934512e5d90397b76a4e08e77f693c1281a3eef3d0cdd8` | 0 |
 | crates/evm/symbolic/src/lib.rs | 16557 | `15cac19e5476b5c4aaf6741ae3f2f957081dfdb01dbdcc2794e6f48fffc18b1f` | 0 |
+| crates/evm/symbolic/src/runtime.rs | 6387 | `688982ec092475eb64b862099f2f95732d2d4002de961289c8e1d5517d0a450d` | 0 |
 | crates/evm/symbolic/src/runtime/address.rs | 4950 | `8e26d99f7af5685d34f4744512e88abff7ae78bcd25cca103b1f3f2b91111921` | 0 |
 | crates/evm/symbolic/src/runtime/bytes.rs | 23308 | `8c7e5eabeae27a5c459ef778b9896666d77bef2350f99206453d1eacc27b0eda` | 0 |
 | crates/evm/symbolic/src/runtime/calldata.rs | 2978 | `37e26a1c8858fa1fcfafefe3b42c42067e4d6d8e43c31d704fb9fedfb2208df6` | 0 |
@@ -1649,7 +1618,7 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/evm/symbolic/src/runtime/memory.rs | 39350 | `d986bb43a8f068b2cf46d9ea1a3657f5c6d1702d2071852af73d7f1f7afb88ad` | 0 |
 | crates/evm/symbolic/src/runtime/precompiles.rs | 10537 | `4ae57d2dd902566267083f141ae31eb68c45efba84b8272dddd41be8ef769e38` | 0 |
 | crates/evm/symbolic/src/runtime/solver/fallback/mod.rs | 38131 | `46e7eb0c8feee6ae6fd6811837b73db70f7700e33b23f656c46b71d44c33ab41` | 0 |
-| crates/evm/symbolic/src/runtime/solver/mod.rs | 65338 | `af6910f69cea376402bde9e9d5ae2c1f47b156cbf88cf2c02e5222b71861e800` | 0 |
+| crates/evm/symbolic/src/runtime/solver/mod.rs | 65338 | `af6910f69cea376402bde9e9d5ae2c1f47b156cbf88cf2c02e5222b71861e800` | 1 |
 | crates/evm/symbolic/src/runtime/solver/normalize/mod.rs | 87294 | `b0a2ec5b99d9a78b4c9aeb1706df80c4c6754d7bf9bf7d7361fc9fb3bac59320` | 0 |
 | crates/evm/symbolic/src/runtime/solver/normalize/polynomial.rs | 8689 | `e09bd17036a1f3336fb6d2a8bde4acfd40ed7f8f572b8f84b99c0a1ca276bd8c` | 0 |
 | crates/evm/symbolic/src/runtime/solver/normalize/rounding.rs | 6741 | `a164890836daaeab8495e25d96f2425794c5c824f61be6657c0d81b0b06b3847` | 0 |
@@ -1658,7 +1627,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/evm/symbolic/src/runtime/solver/smt/mod.rs | 11757 | `0c98d7f51899e09965007e189a11088f2bdef039d5c43af9695a2ced09dfcf0e` | 0 |
 | crates/evm/symbolic/src/runtime/state.rs | 92778 | `89a35a2102909fa9601cba4971bfb8d96d27d47245eb64e9e08d8b4f6620e773` | 0 |
 | crates/evm/symbolic/src/runtime/symbols.rs | 1254 | `131d0defb8beca0476834d5bdb51383a0a2682103fd6eda02c3f5aed5ac2f59a` | 0 |
-| crates/evm/symbolic/src/runtime.rs | 6387 | `688982ec092475eb64b862099f2f95732d2d4002de961289c8e1d5517d0a450d` | 0 |
 | crates/evm/traces/Cargo.toml | 2128 | `66e07791ef76b70839b84e52386fa9fa1dc795a63baa6aab35b6ad166d5286aa` | 0 |
 | crates/evm/traces/src/backtrace/mod.rs | 14299 | `92c3643d9b7c45c698eeda5a04ec8a3b24573fd897de18e8c497e084bd442fbf` | 0 |
 | crates/evm/traces/src/backtrace/source_map.rs | 6699 | `98d5e6855a2b0bfd4f1898ff884900eff76a724497d68e953397f397b59154f8` | 0 |
@@ -1666,9 +1634,9 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/evm/traces/src/debug/sources.rs | 22367 | `9c032a89efae721e725784b0129500a909c21886b4180e6cfda9d9327459354e` | 0 |
 | crates/evm/traces/src/decoder/base.rs | 28618 | `3d5a6fbcfac44b6ed38329c3dcc1044558a33bae092fe05fdad70e0ea63f7e36` | 0 |
 | crates/evm/traces/src/decoder/mod.rs | 191894 | `9a1d93e87fc5f3d58e01e88de0ddb2f089a1c2a6bcdec33302b8464e1acb427a` | 2 |
+| crates/evm/traces/src/decoder/monad.rs | 589 | `3b552e8d8e51eb6eb050be21697a16e697a6e2a14a047cf75fd134bf019792c4` | 0 |
 | crates/evm/traces/src/decoder/monad/IMonadStaking.sol | 3926 | `04c61cabeb2fe14ca7eebfc4f1ce0e8bc23eac4fc3f2296b0e6f1f77d5081d20` | 0 |
 | crates/evm/traces/src/decoder/monad/IReserveBalance.sol | 251 | `7479aa5f41b8ce3110a42256d44aa0cf35f6e6d33c224d3d782f50ef35e91c7f` | 0 |
-| crates/evm/traces/src/decoder/monad.rs | 589 | `3b552e8d8e51eb6eb050be21697a16e697a6e2a14a047cf75fd134bf019792c4` | 0 |
 | crates/evm/traces/src/decoder/precompiles.rs | 24685 | `939dd5d3921de298f94d61d0e833dea91a8414137910920fa0f9fd2f26cae7a1` | 0 |
 | crates/evm/traces/src/erc8021.rs | 6335 | `abbabfc9e9a47ab5d82c01e1fbc496c380dc553403fbe5a50c663d518bccea9b` | 0 |
 | crates/evm/traces/src/folded_stack_trace.rs | 14230 | `88264c2f13ed3b1ac8e4e23b9065fc4b98cdeaa5d4cb560bbde5be1e261a2e6b` | 0 |
@@ -1725,8 +1693,8 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/forge/src/cmd/init.rs | 14115 | `4b0acf3cd2891e424ada6e1da2528d2ba13ecbf75f1230d505ff5749db03550b` | 0 |
 | crates/forge/src/cmd/inspect.rs | 33168 | `42768daa24bd610b84f7245de034b79278e5d6c2bce379d83e06fb4ea61c3f25` | 0 |
 | crates/forge/src/cmd/lint.rs | 6539 | `b4ce97823e012caf422067a11ba0599df50ec718f37f052ccec585815cc99c82` | 0 |
-| crates/forge/src/cmd/lsp/editor.rs | 17053 | `39b237cdba5b6e54baa1151ecf5399934168239c6990a6378cf8fb9979495acf` | 0 |
 | crates/forge/src/cmd/lsp.rs | 3701 | `17b7fa4e2e0eba19538ef1270bfddd717891fe202bee84c97cbbf8e76a0ef625` | 0 |
+| crates/forge/src/cmd/lsp/editor.rs | 17053 | `39b237cdba5b6e54baa1151ecf5399934168239c6990a6378cf8fb9979495acf` | 0 |
 | crates/forge/src/cmd/mod.rs | 815 | `88bd365f09cb497a166da975d68387017748d53e1e5147aebadf506af8baa541` | 0 |
 | crates/forge/src/cmd/reinit.rs | 993 | `0b5fff6d2dcd6f145f9b2c4dda3b5366528eaddd7b80e07542cfa5d859de1dd0` | 0 |
 | crates/forge/src/cmd/remappings.rs | 1563 | `f36c986444d391c93226a28d5ed8af10d0d1f8c06287bda8c664d5a396a029b7` | 0 |
@@ -1889,6 +1857,11 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/primitives/src/transaction/optimism.rs | 7483 | `123c255b82617d3af7e62141017f69aa67dba2d0ec63435f99e9ab4655e23aae` | 0 |
 | crates/primitives/src/transaction/receipt.rs | 33561 | `e1a0fb900c4edec1d904925cf5c0d72c62a743d23eeee2cf537a8d25757343bc` | 0 |
 | crates/primitives/src/transaction/request.rs | 44400 | `6975b0c2021a0648c3095372ac6e3ab904537857510923032c324786227482c9` | 0 |
+| crates/script-sequence/Cargo.toml | 766 | `e74f225bc1a0fe0fbfe8ca2b61c60b5c60150ffc823201b036d544818ae65fbe` | 0 |
+| crates/script-sequence/src/lib.rs | 260 | `f652ab0fd28980c616becb2cc357c1693616378fb130eec2f135714d5e957bee` | 0 |
+| crates/script-sequence/src/reader.rs | 11123 | `eb8e4d54cb9aec43e40e3cc143c93520c6d31ad2db495c2067713d4ff04ef6d7` | 0 |
+| crates/script-sequence/src/sequence.rs | 14333 | `7bf6e2e60cb6ac2adbc18d0ad1987b22bdd6a67293d7912f74983738d36b4afc` | 0 |
+| crates/script-sequence/src/transaction.rs | 3955 | `76799914b6eef6385eb8a49378be60d5b8a914224d2619f8cc2d9b578bdf818c` | 0 |
 | crates/script/Cargo.toml | 2715 | `21461a0c8a597c68fe5b3ea6b8856565d6a40768176ab03025bd5d855bbde83c` | 0 |
 | crates/script/src/broadcast.rs | 107821 | `bc2cc6769473e19373ef4dfc5693f11a76bc48ff92bf0bb4c934f2281dfb5855` | 0 |
 | crates/script/src/build.rs | 23553 | `904676a22d95ab9ff1016978a233fa3ff85564fa96d81956be6053e957757620` | 0 |
@@ -1903,17 +1876,12 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | crates/script/src/runner.rs | 27220 | `dbfa6a9029371d7660ae99ee1c1b3e82c38e16eac83e1a5e2e5761d6465c1b8a` | 0 |
 | crates/script/src/sequence.rs | 27247 | `8104240aca0b00dd08ce62cbf33e30e2bc8a33d5028aded379bb1a2f9655fc86` | 0 |
 | crates/script/src/session.rs | 5796 | `c8c0602a5b677e135e54299e2de050bb89fec9079af8b916b24e430502b4c0c4` | 0 |
-| crates/script/src/simulate/monad.rs | 19523 | `8fee6c5e8597eb5fd5c74ef8b340a59db3c518042206361a9e1ffa67db5ffd2a` | 0 |
 | crates/script/src/simulate.rs | 37200 | `0365eb393ef9cf149fb09d5c5ee0fffe1fade44ecfba32b42fabc5a44a2ec2a8` | 0 |
+| crates/script/src/simulate/monad.rs | 19523 | `8fee6c5e8597eb5fd5c74ef8b340a59db3c518042206361a9e1ffa67db5ffd2a` | 0 |
 | crates/script/src/transaction.rs | 12527 | `aa94e4081143353566a037e89ef193e027d3c772d25b995e4b507ffc2d418bda` | 0 |
-| crates/script/src/verify/external.rs | 58203 | `392679e795e700b5882f603654a14da6c9a565683509a4c517a074e3617bbe93` | 0 |
 | crates/script/src/verify.rs | 32812 | `847b8a04da7c039f77bfe264abb8a8d31eb7e30370b15f27561889d176c1e709` | 0 |
+| crates/script/src/verify/external.rs | 58203 | `392679e795e700b5882f603654a14da6c9a565683509a4c517a074e3617bbe93` | 0 |
 | crates/script/src/wallet_session.rs | 29277 | `6baae13c8664cb4a3e39f9cf8458c88bd470a49778cd349bfecbdd4e401a0cb9` | 0 |
-| crates/script-sequence/Cargo.toml | 766 | `e74f225bc1a0fe0fbfe8ca2b61c60b5c60150ffc823201b036d544818ae65fbe` | 0 |
-| crates/script-sequence/src/lib.rs | 260 | `f652ab0fd28980c616becb2cc357c1693616378fb130eec2f135714d5e957bee` | 0 |
-| crates/script-sequence/src/reader.rs | 11123 | `eb8e4d54cb9aec43e40e3cc143c93520c6d31ad2db495c2067713d4ff04ef6d7` | 0 |
-| crates/script-sequence/src/sequence.rs | 14333 | `7bf6e2e60cb6ac2adbc18d0ad1987b22bdd6a67293d7912f74983738d36b4afc` | 0 |
-| crates/script-sequence/src/transaction.rs | 3955 | `76799914b6eef6385eb8a49378be60d5b8a914224d2619f8cc2d9b578bdf818c` | 0 |
 | crates/sol-macro-gen/Cargo.toml | 816 | `47c8ee55ac9c87a14b1b748d236800595aeb4c258df94c1b2fa2206c608e68d7` | 0 |
 | crates/sol-macro-gen/src/lib.rs | 195 | `c0f12be28450e726aa8940f4bcec1526323ff839fd41947a4ce35014467874d3` | 0 |
 | crates/sol-macro-gen/src/sol_macro_gen.rs | 21388 | `5e44967fe23257f390a3dd5757e9275fd7635eb87618699d7a5c0d789045456a` | 0 |

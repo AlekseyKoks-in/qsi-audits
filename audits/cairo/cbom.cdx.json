@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:3b1d685e-0f2c-416c-94b6-b218fc152722",
+  "serialNumber": "urn:uuid:8775cea9-2b7e-4ee2-90ed-6c587dd8f7b6",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-28T12:22:26Z",
+    "timestamp": "2026-10-30T22:40:54Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "717b8331-fadf-45d7-8356-a89f430446be",
+      "bom-ref": "709a02bb-9fbb-4b70-968c-f1eaf2670d8a",
       "name": "Crypto library",
       "properties": [
         {
@@ -63,7 +63,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "94909535-a951-47ed-be37-0f64b5fe6ccb",
+      "bom-ref": "fdd0f537-4979-4392-a026-3d4d213bb509",
       "name": "Crypto library",
       "properties": [
         {
@@ -104,7 +104,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cd45a799-a60d-4ffc-9cd8-5ca3a194ba13",
+      "bom-ref": "36195912-7fce-47be-920f-5e28e93103ef",
       "name": "Crypto library",
       "properties": [
         {
@@ -145,7 +145,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ca1a183d-b490-4262-8f1c-577a2df5a873",
+      "bom-ref": "67e73b3f-d6ec-4c4a-a637-4121a0db68c6",
       "name": "Crypto library",
       "properties": [
         {
@@ -186,7 +186,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "af848deb-edee-42d9-8d18-168d5f8b1a3e",
+      "bom-ref": "edb15da3-6d11-44aa-ae72-282e0a2002ab",
       "name": "Crypto library",
       "properties": [
         {
@@ -227,7 +227,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8f6f6adc-448b-4ebc-aa11-c415e3d32ee2",
+      "bom-ref": "ab1daf44-f6f3-44a2-abd7-392de1eaae7f",
       "name": "ECDSA",
       "properties": [
         {
@@ -281,7 +281,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0ca96dc1-41ac-4c36-b338-d452759775a5",
+      "bom-ref": "748f65fb-5766-43ce-a8bb-0332f18aed69",
       "name": "ECDSA",
       "properties": [
         {
@@ -335,7 +335,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dc563e07-1fc5-4b08-90f2-095d5c6b292b",
+      "bom-ref": "f97fca12-0430-4ddc-bdc1-81ebe7f74c05",
       "name": "ECDSA",
       "properties": [
         {
@@ -389,7 +389,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "96618c1b-7365-49c6-a04b-5c63cf861642",
+      "bom-ref": "06b358e4-8d39-4a47-8e25-897250300171",
       "name": "ECDSA",
       "properties": [
         {
@@ -443,7 +443,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b6cd2b5a-133c-4979-89c3-2d6a6fea1dcd",
+      "bom-ref": "068e2ee6-00d3-4a90-9bbb-4e6bf70dda01",
       "name": "ECDSA",
       "properties": [
         {
@@ -497,7 +497,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "864c62ff-10fa-4524-9e39-d33ea08a1a53",
+      "bom-ref": "fbccd6be-b6a4-4d7c-8819-e950c822a1fb",
       "name": "ECDSA",
       "properties": [
         {
@@ -551,7 +551,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "54c30282-0b7c-4b18-b2e1-30f5bd91f593",
+      "bom-ref": "b998a49d-487c-4d98-9d54-3fa6147d7cd9",
       "name": "ECDSA",
       "properties": [
         {
@@ -605,7 +605,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4693c062-d52d-4aa5-a44e-ff8f90746571",
+      "bom-ref": "c82eb270-9585-470e-b620-439ec2342e9c",
       "name": "ECDSA",
       "properties": [
         {
@@ -659,7 +659,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "14da4b80-11a1-4e43-a93c-909f7b7042ec",
+      "bom-ref": "78305892-1b93-4292-a43a-4aa7d37586b8",
       "name": "ECDSA",
       "properties": [
         {
@@ -713,7 +713,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "59fcab3e-495d-46e5-9d58-ab654ee0940d",
+      "bom-ref": "87dff03e-8d7b-4c14-9e9c-5b897f1736e1",
       "name": "ECDSA",
       "properties": [
         {
@@ -767,7 +767,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ad6f5ceb-4214-4119-8bcf-48c5a849574d",
+      "bom-ref": "c5a7446a-23c2-4ffa-8142-d0e239815be1",
       "name": "Keccak-256",
       "properties": [
         {
@@ -817,7 +817,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9421a640-91b2-4787-a78b-54a32bc59279",
+      "bom-ref": "d470f3d9-b642-4118-8cab-49c11b15e3c2",
       "name": "Keccak-256",
       "properties": [
         {
@@ -867,7 +867,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "57934c2d-4e88-451c-8c0f-5172e01fbbe9",
+      "bom-ref": "a74efb2a-193c-4cca-b90c-60c0d55a349a",
       "name": "Keccak-256",
       "properties": [
         {
@@ -912,6 +912,958 @@
             "digest"
           ],
           "classicalSecurityLevel": 128
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "26d748b4-7a04-4afd-9bf6-00d3d79d00d4",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs:328"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs#L328"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4a651a75-a88f-49e3-b713-0503e32099d5",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs:446"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs#L446"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0c2bd6ce-3014-432e-9828-23078397cb18",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-to-casm/src/invocations/pedersen.rs:18"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-to-casm/src/invocations/pedersen.rs#L18"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d63f448c-900a-4f1f-a946-cd3ee5c35117",
+      "name": "Pedersen commitment",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs:26"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/pedersen.rs#L26"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "pedersen-commitment"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2f0a7413-5676-459f-b417-3488f9051a0e",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/bin/get-lowering/src/main.rs:61"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/bin/get-lowering/src/main.rs#L61"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e3534ef7-5a1c-4e2e-93c9-afe3c2fa9abf",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-executable-plugin/src/lib.rs:37"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-executable-plugin/src/lib.rs#L37"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d98eabce-23c9-4333-89a3-c2027557024a",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-runnable-utils/src/builder.rs:13"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-runnable-utils/src/builder.rs#L13"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a3065e33-786f-46b2-92c9-49b88a55dcdb",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-runner/src/lib.rs:115"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-runner/src/lib.rs#L115"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2ed43a8b-9821-485c-a5a4-a446441fcde2",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs:39"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-ap-change/src/core_libfunc_ap_change.rs#L39"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "34ed9c75-1b0b-4df2-bc07-9e94ff058859",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs:46"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-gas/src/core_libfunc_cost_base.rs#L46"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "541bc8cc-68d3-428e-a98e-3f2dd582b2d5",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-to-casm/src/invocations/mod.rs:60"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-to-casm/src/invocations/mod.rs#L60"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d88d9dcd-f1a9-4346-8fd9-9dfd2fdf9603",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-to-casm/src/invocations/poseidon.rs:3"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-to-casm/src/invocations/poseidon.rs#L3"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (13 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "573874fb-bd0c-430d-a4a1-46a66c8c02e7",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra-type-size/src/lib.rs:88"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra-type-size/src/lib.rs#L88"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d7b83bbb-20af-4e94-859a-2d303aa586b7",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra/src/extensions/core.rs:45"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/core.rs#L45"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "57b57cb0-e813-4c48-a213-89366975f6cd",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra/src/extensions/modules/gas.rs:195"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/gas.rs#L195"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "139fa79b-0c56-4318-8139-8e857eaeba98",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra/src/extensions/modules/mod.rs:39"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/mod.rs#L39"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e3065429-310a-4549-9ac6-4bec17877935",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra/src/extensions/modules/poseidon.rs:15"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/extensions/modules/poseidon.rs#L15"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (8 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "72bc8acb-e104-4e98-adce-e21800b74906",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-sierra/src/simulation/core.rs:270"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-sierra/src/simulation/core.rs#L270"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7f97f497-bf66-4200-973c-906ca4ca9c10",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-starknet-classes/src/casm_contract_class.rs:15"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-starknet-classes/src/casm_contract_class.rs#L15"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (4 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "042c359b-ff9d-4134-8c52-37b394ad6280",
+      "name": "Poseidon",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "crates/cairo-lang-starknet/src/plugin/consts.rs:75"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/starkware-libs/cairo/blob/68a61f6c6251900e0080e09c812ffaeb37fd358e/crates/cairo-lang-starknet/src/plugin/consts.rs#L75"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "poseidon"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "cryptoFunctions": [
+            "digest"
+          ]
         }
       }
     }

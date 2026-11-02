@@ -11,6 +11,31 @@
           "version": "1.2.0",
           "rules": [
             {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (3 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "5 упоминаний RedDSA в 3 файл(ах), например feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt:375. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "5 упоминаний RedDSA в 3 файл(ах), например feature-voting/src/main/java/co/electriccoin/zcash/ui/common/provider/VotingCryptoClient.kt:375. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции. Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
@@ -65,8 +90,26 @@
       },
       "results": [
         {
-          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleId": "CODE-QV-ASYMMETRIC",
           "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (3 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3333045da80f49858374182c3850b1c1"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-09629",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-DEV",
+          "ruleIndex": 1,
           "level": "note",
           "message": {
             "text": "52 бюллетеней в 16 пакет(ах) Maven, нужных только для разработки или сборки (dependencies: Maven:non-runtime)"
@@ -75,7 +118,7 @@
             "qsiFindingKey/v1": "6f89f0407e6a493a1e36119717c018de"
           },
           "properties": {
-            "qsiId": "QSI-2026-07175",
+            "qsiId": "QSI-2026-09631",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -93,7 +136,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -102,7 +145,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-07174",
+            "qsiId": "QSI-2026-09630",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -111,13 +154,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/zodl-android @ 229dd3bff749/4d7a76e4-7215-4b07-9d88-6009bdb3d94d"
+        "id": "qsi/zodl-android @ 229dd3bff749/600742a1-15ef-473c-b9d0-39cd806ddd7c"
       },
       "properties": {
-        "qsiContentSha256": "6d6fdd62ef733486842482cec3ae478f7c091edf0805840ded02a77a558a06b6",
+        "qsiContentSha256": "8eea8c0c8001ff235d046a1fdb90474ae9e705ba0c51b46e1e09f69ef09005b2",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T23:18:24.160381+00:00",
+        "qsiGeneratedAt": "2026-10-31T00:31:01.902064+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
