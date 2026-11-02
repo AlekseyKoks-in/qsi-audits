@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: rustls @ 84bf9eaa9857
 
-*One-page brief* · Reviewed: 2026-10-30 23:46 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rustls project — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-02 12:18 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rustls project — public repository (passive review)
 
 Source: https://github.com/rustls/rustls/tree/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77
 
@@ -12,13 +12,13 @@ Source: https://github.com/rustls/rustls/tree/84bf9eaa9857d7114609f7e5d0ae1f0fd3
 
 ## What matters most
 
-1. **High** · Private key material present in bogo/keys/ecdsa_p256_key.pem (QSI-2026-09078)\
+1. **High** · Private key material present in bogo/keys/ecdsa_p256_key.pem (QSI-2026-09641)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-2. **High** · Private key material present in bogo/keys/ecdsa_p384_key.pem (QSI-2026-09083)\
+2. **High** · Private key material present in bogo/keys/ecdsa_p384_key.pem (QSI-2026-09646)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-3. **High** · Private key material present in bogo/keys/key.pem (QSI-2026-09084)\
+3. **High** · Private key material present in bogo/keys/key.pem (QSI-2026-09647)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-4. **High** · Private key material present in bogo/keys/rsa_1024_key.pem (QSI-2026-09090)\
+4. **High** · Private key material present in bogo/keys/rsa_1024_key.pem (QSI-2026-09653)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
 
 21 more in the full report.
@@ -38,7 +38,7 @@ Advisories for the versions in use: 1; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 137. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `e2a45b1ac8aa1ec0613bc872edb5c3120b28add5d56026110930117375a35d34`
+Full report, content SHA-256: `7c0f5bc801cbea400da5ae4b9dc958abf920a066adc2cea10d3193908c80f5e6`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

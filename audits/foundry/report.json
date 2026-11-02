@@ -1,8 +1,8 @@
 {
-  "content_sha256": "4c2814ec4811a0b100b4bd581ffd88153f82c782ed6f80376a4b86d99dcf982b",
+  "content_sha256": "8860d542d9bca9a7e483677ee5a72f1a11481b26812e92abae13c1b5c0cfd5b1",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-30T22:47:45.896572+00:00",
+  "generated_at": "2026-11-02T12:21:37.146579+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "0c6141c2-4fd0-44c7-b500-7bbfb2f554cd",
+    "id": "03536326-c11e-442a-815d-1d39e50a0e30",
     "mode": "document",
     "title": "Document audit: foundry",
     "status": "completed",
     "engine_version": "1.2.0",
-    "started_at": "2026-10-30T22:46:38.765062+00:00",
-    "finished_at": "2026-10-30T22:47:45.651263+00:00",
+    "started_at": "2026-11-02T12:20:08.641791+00:00",
+    "finished_at": "2026-11-02T12:21:36.942365+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -9478,8 +9478,8 @@
   },
   "findings": [
     {
-      "id": "90cd7708-7973-40c4-bd35-5e10aac6d951",
-      "public_id": "QSI-2026-08308",
+      "id": "b8f8dd15-271c-4035-bbef-e7955a5538de",
+      "public_id": "QSI-2026-09672",
       "rule_id": "CODE-HARDCODED-SECRET",
       "title": "Возможный секрет в коде crates/evm/symbolic/src/runtime/solver/mod.rs",
       "description": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 1685). Значения замаскированы QSI.",
@@ -9499,7 +9499,7 @@
       "affected_asset": "file:crates/evm/symbolic/src/runtime/solver/mod.rs",
       "data_source": "crates/evm/symbolic/src/runtime/solver/mod.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.514589+00:00",
+      "detected_at": "2026-11-02T12:21:36.796827+00:00",
       "risk_score": 47.1,
       "risk_breakdown": {
         "score": 47.1,
@@ -9555,7 +9555,7 @@
           "content_sha256": "1e5b0b9c59f38f6ec4fb4bf42d919a5ef5c7de450a6ab294e4d8e3ab195ddee1",
           "source_sha256": "af6910f69cea376402bde9e9d5ae2c1f47b156cbf88cf2c02e5222b71861e800",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.530583+00:00",
+          "collected_at": "2026-11-02T12:21:36.811182+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/symbolic/src/runtime/solver/mod.rs#L1685"
         }
       ],
@@ -9578,8 +9578,8 @@
       ]
     },
     {
-      "id": "36311c43-eee7-4187-979e-56e7abba7ec4",
-      "public_id": "QSI-2026-08316",
+      "id": "e5e3d35f-6ae4-492d-bf3f-35f99bd33850",
+      "public_id": "QSI-2026-09680",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0194",
       "description": "OSV.dev сообщает RUSTSEC-2026-0194 для пакета crates.io quick-xml версии 0.39.4: Quadratic run time when checking a start tag for duplicate attribute names. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -9600,7 +9600,7 @@
       "affected_asset": "dependency:crates.io/quick-xml@0.39.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.607226+00:00",
+      "detected_at": "2026-11-02T12:21:36.910261+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -9676,7 +9676,7 @@
           "content_sha256": "028cd2f8044c5c52031532eb91141d581476948b4fd115c63b565c4f52398450",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.638659+00:00",
+          "collected_at": "2026-11-02T12:21:36.931305+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0194"
         }
       ],
@@ -9699,8 +9699,8 @@
       ]
     },
     {
-      "id": "0b22e580-a764-44d5-af33-0839ff33a10b",
-      "public_id": "QSI-2026-08317",
+      "id": "10f48690-b3a4-4ab5-9f02-20a4786b09b5",
+      "public_id": "QSI-2026-09681",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0195",
       "description": "OSV.dev сообщает RUSTSEC-2026-0195 для пакета crates.io quick-xml версии 0.39.4: Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -9721,7 +9721,7 @@
       "affected_asset": "dependency:crates.io/quick-xml@0.39.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.636007+00:00",
+      "detected_at": "2026-11-02T12:21:36.925472+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -9797,7 +9797,7 @@
           "content_sha256": "7934c935f3154b61c623e871c948769f40fd83ae102d44328fbedb576471f986",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.706754+00:00",
+          "collected_at": "2026-11-02T12:21:37.014859+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0195"
         }
       ],
@@ -9820,8 +9820,8 @@
       ]
     },
     {
-      "id": "a6c3710a-e62a-4860-8649-6f17cfbf7666",
-      "public_id": "QSI-2026-08304",
+      "id": "bc34745a-ee3d-45f8-a011-48218baea148",
+      "public_id": "QSI-2026-09668",
       "rule_id": "TLSCODE-NO-PQ-HYBRID",
       "title": "TLS без постквантового обмена ключами: rustls с криптопровайдером ring",
       "description": "rustls с криптопровайдером ring в crates/cli/src/utils/mod.rs:260: настроенный обмен ключами (ring) не содержит гибридной группы ML-KEM, например X25519MLKEM768 (RFC 10024), поэтому рукопожатие не может её согласовать.",
@@ -9841,7 +9841,7 @@
       "affected_asset": "tls-code:rustls",
       "data_source": "crates/cli/src/utils/mod.rs",
       "analyzer": "tls_code 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.420927+00:00",
+      "detected_at": "2026-11-02T12:21:36.748007+00:00",
       "risk_score": 36.4,
       "risk_breakdown": {
         "mosca": {
@@ -9923,9 +9923,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -9945,7 +9945,7 @@
           "content_sha256": "0084c5a919bee6778c8436c47d41f06240827ab128eb7ef31339267091e759cf",
           "source_sha256": "0784360683f1c5dcc8fe0cc9fb581d1761f3bb6baa9df157d849695cd49235dc",
           "collector": "tls_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.471265+00:00",
+          "collected_at": "2026-11-02T12:21:36.766500+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cli/src/utils/mod.rs#L260"
         }
       ],
@@ -9968,8 +9968,8 @@
       ]
     },
     {
-      "id": "75c85612-3965-4b95-90e3-24bd0e2d29cd",
-      "public_id": "QSI-2026-08302",
+      "id": "bf904708-57c0-44a6-89ee-0f8b6575a4f1",
+      "public_id": "QSI-2026-09666",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))",
       "description": "13 упоминаний ECDSA в 9 файл(ах), например crates/anvil/src/eth/backend/cheats.rs:11. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -9989,7 +9989,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "crates/anvil/src/eth/backend/cheats.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.379491+00:00",
+      "detected_at": "2026-11-02T12:21:36.677235+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -10064,9 +10064,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -10086,7 +10086,7 @@
           "content_sha256": "e08fa6015cef9b6d59779c9f3e7c25ea0e325b4424289d7c3b847ae6965911a8",
           "source_sha256": "31fbcf6016a3810cdacd6adcabaa8b97bbeeba80a7ad238e7ae8f16670bdfeb1",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406674+00:00",
+          "collected_at": "2026-11-02T12:21:36.731456+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/cheats.rs#L11"
         },
         {
@@ -10097,7 +10097,7 @@
           "content_sha256": "52f153efb18e17109443cc34089b5a89d1a1b4c83b8f5e68fba410ec9d1fcb2a",
           "source_sha256": "3bba5daeff0a18a0517bc06b4e9b0534caa5c46f117ab066748d163312c5506a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406684+00:00",
+          "collected_at": "2026-11-02T12:21:36.731467+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/tempo.rs#L271"
         },
         {
@@ -10108,7 +10108,7 @@
           "content_sha256": "5d58b11e699bbe1d28e4a75b890106a088de2218bba25f8fb944230db03ba773",
           "source_sha256": "ea0a6cf003885ea9f33bdb910fcad4231fb733d4cb07b389d856539a8476b076",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406688+00:00",
+          "collected_at": "2026-11-02T12:21:36.731470+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L153"
         },
         {
@@ -10119,7 +10119,7 @@
           "content_sha256": "b07c462df7c1e73749099155ee6aaeaa1569cdd4568e13a1e1317ebef0fcc659",
           "source_sha256": "ea0a6cf003885ea9f33bdb910fcad4231fb733d4cb07b389d856539a8476b076",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406691+00:00",
+          "collected_at": "2026-11-02T12:21:36.731474+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L462"
         },
         {
@@ -10130,7 +10130,7 @@
           "content_sha256": "4a236801a5d76ecf75ecddf66d49cbadc28fe918e5218ae8bcbf2b0ab0c9523f",
           "source_sha256": "ea0a6cf003885ea9f33bdb910fcad4231fb733d4cb07b389d856539a8476b076",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406695+00:00",
+          "collected_at": "2026-11-02T12:21:36.731478+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L578"
         },
         {
@@ -10141,7 +10141,7 @@
           "content_sha256": "46a53d505e0d3369700709c58dabf91c816e81e59906959d5af8ac3fc7670469",
           "source_sha256": "3534969a0c0a712a3fb5e627499da2fc24f9dd4b0f868f43e9356e4e92125a57",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406698+00:00",
+          "collected_at": "2026-11-02T12:21:36.731481+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/tempo/zone/mod.rs#L221"
         },
         {
@@ -10152,7 +10152,7 @@
           "content_sha256": "3c595041c68eace648d774f0f69f05dd96ce13575114ecabcc71e2b3e835359a",
           "source_sha256": "c181922ad0f3e4d3be9338e219cf23d17a29f21236fa565ba54530a27af735c9",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406702+00:00",
+          "collected_at": "2026-11-02T12:21:36.731484+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/error.rs#L10"
         },
         {
@@ -10163,7 +10163,7 @@
           "content_sha256": "de4949f2f75dc96d7fa04e685806f1689470b0efacc7d096b13a61c80c782761",
           "source_sha256": "59453fcff95b4f79b622c1d88d9979efba6319feafb0de982d4f24cc73aad95b",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406705+00:00",
+          "collected_at": "2026-11-02T12:21:36.731487+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/session.rs#L321"
         },
         {
@@ -10174,7 +10174,7 @@
           "content_sha256": "c1eed0230f405adbff40033b2879b8000d521e302866b4850d9ad7705f2634a4",
           "source_sha256": "82ee234439f0109c51a48fa17d0789db34c14c19f45e8a374639daff758c84cd",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406709+00:00",
+          "collected_at": "2026-11-02T12:21:36.731490+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/networks/src/lib.rs#L29"
         },
         {
@@ -10185,7 +10185,7 @@
           "content_sha256": "8a680edc9e74629b043692fee273270f039ea08b7aea8752cfa55e855b9a4100",
           "source_sha256": "15cac19e5476b5c4aaf6741ae3f2f957081dfdb01dbdcc2794e6f48fffc18b1f",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.406712+00:00",
+          "collected_at": "2026-11-02T12:21:36.731494+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/symbolic/src/lib.rs#L28"
         }
       ],
@@ -10223,8 +10223,8 @@
       ]
     },
     {
-      "id": "7707d832-32e6-42c0-9b19-1e89261ae4f1",
-      "public_id": "QSI-2026-08307",
+      "id": "47489727-bd9f-4f8f-ab3a-7ec15589241b",
+      "public_id": "QSI-2026-09671",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))",
       "description": "39 упоминаний BLS12-381 в 3 файл(ах), например crates/evm/core/src/precompiles.rs:34. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -10244,7 +10244,7 @@
       "affected_asset": "source-code:BLS12-381:transaction_signing",
       "data_source": "crates/evm/core/src/precompiles.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.495222+00:00",
+      "detected_at": "2026-11-02T12:21:36.784974+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -10319,9 +10319,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -10341,7 +10341,7 @@
           "content_sha256": "e9d6760e61c5d95615b59c481b236749a952ceda871fa5873803470b529b91ee",
           "source_sha256": "2de3445f021fd297bb57e2ada44a4a64dce3ccf4edb25270ae0f6d497984af28",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518595+00:00",
+          "collected_at": "2026-11-02T12:21:36.799630+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L34"
         },
         {
@@ -10352,7 +10352,7 @@
           "content_sha256": "cc66a9c2775894a525021ffc6fe4d347f52ebe34064d82f6e4400f828c654b67",
           "source_sha256": "2de3445f021fd297bb57e2ada44a4a64dce3ccf4edb25270ae0f6d497984af28",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518604+00:00",
+          "collected_at": "2026-11-02T12:21:36.799639+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L37"
         },
         {
@@ -10363,7 +10363,7 @@
           "content_sha256": "f64918fb0a20f796360c240232d3a80a6b804fce081c3effd117316c46a55719",
           "source_sha256": "2de3445f021fd297bb57e2ada44a4a64dce3ccf4edb25270ae0f6d497984af28",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518608+00:00",
+          "collected_at": "2026-11-02T12:21:36.799642+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L40"
         },
         {
@@ -10374,7 +10374,7 @@
           "content_sha256": "851a2373c0ad3c5e1fd446403193f757e5c833428427e332fc9ae97a7b32bf56",
           "source_sha256": "9a1d93e87fc5f3d58e01e88de0ddb2f089a1c2a6bcdec33302b8464e1acb427a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518611+00:00",
+          "collected_at": "2026-11-02T12:21:36.799645+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L28"
         },
         {
@@ -10385,7 +10385,7 @@
           "content_sha256": "8f52a29c8533dabc5a48d03c5d190efe2583470180e7a803d173c4a93d64c42a",
           "source_sha256": "9a1d93e87fc5f3d58e01e88de0ddb2f089a1c2a6bcdec33302b8464e1acb427a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518614+00:00",
+          "collected_at": "2026-11-02T12:21:36.799648+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L29"
         },
         {
@@ -10396,7 +10396,7 @@
           "content_sha256": "2dd54823637c9ad3500d6cdd67ea43a290e670e39a2ada89aacfa0b0c28aefc6",
           "source_sha256": "9a1d93e87fc5f3d58e01e88de0ddb2f089a1c2a6bcdec33302b8464e1acb427a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518618+00:00",
+          "collected_at": "2026-11-02T12:21:36.799652+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L424"
         },
         {
@@ -10407,7 +10407,7 @@
           "content_sha256": "6a45e6e6e64988c4d23c76ecc0727fe03dd6eb0a7a8f7f864be6f51f820b5017",
           "source_sha256": "939dd5d3921de298f94d61d0e833dea91a8414137910920fa0f9fd2f26cae7a1",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518621+00:00",
+          "collected_at": "2026-11-02T12:21:36.799655+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L7"
         },
         {
@@ -10418,7 +10418,7 @@
           "content_sha256": "1cbc4db457becceed23c646a85a2191cb78062453411a6177172fa8e5e173bf5",
           "source_sha256": "939dd5d3921de298f94d61d0e833dea91a8414137910920fa0f9fd2f26cae7a1",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518625+00:00",
+          "collected_at": "2026-11-02T12:21:36.799659+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L8"
         },
         {
@@ -10429,7 +10429,7 @@
           "content_sha256": "8ab37a93305db1d491ed6efe32d5e924492f9493e2c298523b61abac7d4b3b2d",
           "source_sha256": "939dd5d3921de298f94d61d0e833dea91a8414137910920fa0f9fd2f26cae7a1",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.518628+00:00",
+          "collected_at": "2026-11-02T12:21:36.799814+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L332"
         }
       ],
@@ -10467,8 +10467,8 @@
       ]
     },
     {
-      "id": "d9069a3c-d70f-444c-a614-6b1ea35de055",
-      "public_id": "QSI-2026-08303",
+      "id": "b668d41e-a58e-4130-a451-9f0ae356362c",
+      "public_id": "QSI-2026-09667",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
       "description": "4 упоминаний ECDSA в 1 файл(ах), например crates/cheatcodes/src/crypto.rs:26. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -10488,7 +10488,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "crates/cheatcodes/src/crypto.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.400413+00:00",
+      "detected_at": "2026-11-02T12:21:36.726813+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -10563,9 +10563,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -10585,7 +10585,7 @@
           "content_sha256": "a551137cff41361990a5981742fde03e462e2a4e7b40a49fba299d7f1e749358",
           "source_sha256": "194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.426142+00:00",
+          "collected_at": "2026-11-02T12:21:36.752514+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L26"
         },
         {
@@ -10596,7 +10596,7 @@
           "content_sha256": "2d2ae3b338f8f2b933a2a78de2bb94bc04717a27b2ef71b413d6c154c3dabd1c",
           "source_sha256": "194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.426152+00:00",
+          "collected_at": "2026-11-02T12:21:36.752525+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L526"
         },
         {
@@ -10607,7 +10607,7 @@
           "content_sha256": "7c1a1c232d462506831f9bb7247a932ae80cf42f2152bf84d0ef117aa4f141da",
           "source_sha256": "194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.426156+00:00",
+          "collected_at": "2026-11-02T12:21:36.752530+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L537"
         }
       ],
@@ -10645,8 +10645,8 @@
       ]
     },
     {
-      "id": "fe7202e1-4f37-40de-8b8c-434461d0b3e2",
-      "public_id": "QSI-2026-08305",
+      "id": "db350cb6-0965-4213-a6bc-3198143b40f2",
+      "public_id": "QSI-2026-09669",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
       "description": "2 упоминаний ECDSA в 1 файл(ах), например crates/common/src/tempo/auth.rs:115. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.",
@@ -10666,7 +10666,7 @@
       "affected_asset": "source-code:ECDSA:authentication",
       "data_source": "crates/common/src/tempo/auth.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.438054+00:00",
+      "detected_at": "2026-11-02T12:21:36.759962+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -10741,9 +10741,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -10763,7 +10763,7 @@
           "content_sha256": "e8866289afb498a1ad1214bcef2aa268e90cbd3b50ca37d9682ea1fb0df87f5f",
           "source_sha256": "78b112c3b9d632766a958b36ed9117f1a1d2f94600bd20264f2821750433af6f",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.489256+00:00",
+          "collected_at": "2026-11-02T12:21:36.777168+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L115"
         },
         {
@@ -10774,7 +10774,7 @@
           "content_sha256": "54ee92aeb19ba7eadea1ba0f5101140294f899f35d74cd9254d58fb4aff93353",
           "source_sha256": "78b112c3b9d632766a958b36ed9117f1a1d2f94600bd20264f2821750433af6f",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.489265+00:00",
+          "collected_at": "2026-11-02T12:21:36.777182+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L191"
         }
       ],
@@ -10812,8 +10812,8 @@
       ]
     },
     {
-      "id": "19295951-4d61-49e1-b3f3-7d35bb677e71",
-      "public_id": "QSI-2026-08306",
+      "id": "2fb33dec-4dd1-4af3-8cbe-46dab7a4d3b7",
+      "public_id": "QSI-2026-09670",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))",
       "description": "7 упоминаний BLS12-381 в 1 файл(ах), например crates/debugger/src/node.rs:291. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -10833,7 +10833,7 @@
       "affected_asset": "source-code:BLS12-381:general",
       "data_source": "crates/debugger/src/node.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.484728+00:00",
+      "detected_at": "2026-11-02T12:21:36.773131+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -10908,9 +10908,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -10930,7 +10930,7 @@
           "content_sha256": "b5a33afbc110921885d6fdc2b239b77fa64c68479bad7f0654313bd4f95988a9",
           "source_sha256": "faf733e62eb7e172582bd2e1704c5c14e6f066303ba39567516cf0ec110a86ff",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.504161+00:00",
+          "collected_at": "2026-11-02T12:21:36.788333+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L291"
         },
         {
@@ -10941,7 +10941,7 @@
           "content_sha256": "7f2d22ce6fc44deb9ea5a0267f4ae6d9e169b33af3f20db693583e3c0a1aabff",
           "source_sha256": "faf733e62eb7e172582bd2e1704c5c14e6f066303ba39567516cf0ec110a86ff",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.504172+00:00",
+          "collected_at": "2026-11-02T12:21:36.788342+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L292"
         },
         {
@@ -10952,7 +10952,7 @@
           "content_sha256": "cb4c72ccdcd20bf16e22255941bc70ae5baacd7ea1ae3ca30e0d13cb5f106be7",
           "source_sha256": "faf733e62eb7e172582bd2e1704c5c14e6f066303ba39567516cf0ec110a86ff",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.504175+00:00",
+          "collected_at": "2026-11-02T12:21:36.788346+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L293"
         }
       ],
@@ -10990,8 +10990,8 @@
       ]
     },
     {
-      "id": "de27950d-f9d3-4f9e-8902-8f752286752d",
-      "public_id": "QSI-2026-08301",
+      "id": "7fa39b45-5e1b-478d-aab9-68eafb1b3396",
+      "public_id": "QSI-2026-09665",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (^0.8.13) в 12 файл(ах)",
       "description": "pragma ^0.8.13 в 12 файл(ах), впервые в .github/scripts/contracts/BatchCounter.sol:2. (см. SWC-103)",
@@ -11011,7 +11011,7 @@
       "affected_asset": "solidity:pragma:^0.8.13",
       "data_source": ".github/scripts/contracts/BatchCounter.sol",
       "analyzer": "solidity 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.367403+00:00",
+      "detected_at": "2026-11-02T12:21:36.639125+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -11067,7 +11067,7 @@
           "content_sha256": "7c3708d9069ee80391b81af25f28478d8257cfe3f51a51b01be9827555524d9a",
           "source_sha256": "d573ae940de4141c483f0e933d27ee0c40754f72ccf07f144dc5e3499faaa320",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387630+00:00",
+          "collected_at": "2026-11-02T12:21:36.692268+00:00",
           "url": null
         },
         {
@@ -11078,7 +11078,7 @@
           "content_sha256": "5ba651f9d9a85f874646356b2e4882d9492ccd2c37892a189cd79790bf2fec59",
           "source_sha256": "427bf1ddf5d91be68251f54ce74ae541ed241e8014b70a98c656a511a6ecea95",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387640+00:00",
+          "collected_at": "2026-11-02T12:21:36.692282+00:00",
           "url": null
         },
         {
@@ -11089,7 +11089,7 @@
           "content_sha256": "e480e29012507cfc6f4594f7a4fd4ab65d0adce3b3bb9b2323614637a52e2c3f",
           "source_sha256": "1595eb42765b9e3b88060afbb49a0f98fae88422c07d8aff4209b2dc0ae181da",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387643+00:00",
+          "collected_at": "2026-11-02T12:21:36.692285+00:00",
           "url": null
         },
         {
@@ -11100,7 +11100,7 @@
           "content_sha256": "7da697e70396e1794f5ccb8835bcc5b58068f231c41d272719e977b7d8331437",
           "source_sha256": "87e3edfaadcbf61a39942601a11e4b6cc3d86011583aeda13dd148295f2b8ea6",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387647+00:00",
+          "collected_at": "2026-11-02T12:21:36.692289+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/solidity/CounterTemplate.s.sol#L2"
         },
         {
@@ -11111,7 +11111,7 @@
           "content_sha256": "5ba651f9d9a85f874646356b2e4882d9492ccd2c37892a189cd79790bf2fec59",
           "source_sha256": "4b5eaa107784609cabdbd23e34e479cc957ee69bd4c4de2881625b884e6bbacc",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387651+00:00",
+          "collected_at": "2026-11-02T12:21:36.692293+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/solidity/CounterTemplate.sol#L2"
         },
         {
@@ -11122,7 +11122,7 @@
           "content_sha256": "b7d9e25cb26900b8a13c01b38782749ef0421704305f08208da38ed8f1de800a",
           "source_sha256": "6525887dd3620bd7b28a28fce1b9d596441d2ece58f8cbaf15a851f57a460bb7",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387654+00:00",
+          "collected_at": "2026-11-02T12:21:36.692297+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/solidity/CounterTemplate.t.sol#L2"
         },
         {
@@ -11133,7 +11133,7 @@
           "content_sha256": "7da697e70396e1794f5ccb8835bcc5b58068f231c41d272719e977b7d8331437",
           "source_sha256": "1d13a522def4b49168fefa58cab8e4d24f6e39ecfdfe5f7bdd85745af51136b8",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387657+00:00",
+          "collected_at": "2026-11-02T12:21:36.692300+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/tempo/MailTemplate.s.sol#L2"
         },
         {
@@ -11144,7 +11144,7 @@
           "content_sha256": "255e8e20fe021924c3a1bb809df0f9e26f8b4ba0d7d3d1c43464a6ec82136b54",
           "source_sha256": "be683ed20abdc3da045d719fd40f149d0e53139e94ea7cb931b7bdca8bade116",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387660+00:00",
+          "collected_at": "2026-11-02T12:21:36.692303+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/tempo/MailTemplate.sol#L2"
         },
         {
@@ -11155,7 +11155,7 @@
           "content_sha256": "b7d9e25cb26900b8a13c01b38782749ef0421704305f08208da38ed8f1de800a",
           "source_sha256": "f0aaa90bd7882e2835cd4cf533c4509300b346964b02b6a2b00a571831f923a9",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387663+00:00",
+          "collected_at": "2026-11-02T12:21:36.692306+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/tempo/MailTemplate.t.sol#L2"
         },
         {
@@ -11166,7 +11166,7 @@
           "content_sha256": "7da697e70396e1794f5ccb8835bcc5b58068f231c41d272719e977b7d8331437",
           "source_sha256": "89deefbf70e5943c117cf9bd88b385c72eabea1f890787ecf88512163b4355cd",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.387666+00:00",
+          "collected_at": "2026-11-02T12:21:36.692310+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/vyper/CounterTemplate.s.sol#L2"
         }
       ],
@@ -11189,8 +11189,8 @@
       ]
     },
     {
-      "id": "0d91325b-1914-4b7a-bc27-4db5f92aef2e",
-      "public_id": "QSI-2026-08309",
+      "id": "bdecd7e9-039c-455f-9e13-7ac6507948ff",
+      "public_id": "QSI-2026-09673",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.8.13 <0.9.0) в 2 файл(ах)",
       "description": "pragma >=0.8.13 <0.9.0 в 2 файл(ах), впервые в crates/evm/traces/src/decoder/monad/IMonadStaking.sol:2. (см. SWC-103)",
@@ -11210,7 +11210,7 @@
       "affected_asset": "solidity:pragma:>=0.8.13 <0.9.0",
       "data_source": "crates/evm/traces/src/decoder/monad/IMonadStaking.sol",
       "analyzer": "solidity 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.527397+00:00",
+      "detected_at": "2026-11-02T12:21:36.808370+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -11266,7 +11266,7 @@
           "content_sha256": "0966fab580a62d690b1abff6275e91d132627c82ac011aa8596cc8723b757f4f",
           "source_sha256": "04c61cabeb2fe14ca7eebfc4f1ce0e8bc23eac4fc3f2296b0e6f1f77d5081d20",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.538413+00:00",
+          "collected_at": "2026-11-02T12:21:36.820005+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/monad/IMonadStaking.sol#L2"
         },
         {
@@ -11277,7 +11277,7 @@
           "content_sha256": "c6df50db795a18ca9b1093b55e2b9d19cda0e05d8bc4e6d47c5566653ea65fc4",
           "source_sha256": "7479aa5f41b8ce3110a42256d44aa0cf35f6e6d33c224d3d782f50ef35e91c7f",
           "collector": "solidity 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.538421+00:00",
+          "collected_at": "2026-11-02T12:21:36.820013+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/monad/IReserveBalance.sol#L2"
         }
       ],
@@ -11300,8 +11300,8 @@
       ]
     },
     {
-      "id": "cad0e30b-b7ce-460c-af39-9c243317c8b8",
-      "public_id": "QSI-2026-08311",
+      "id": "c4118744-56d2-4cca-bc91-67b33179f9b7",
+      "public_id": "QSI-2026-09675",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -11322,7 +11322,7 @@
       "affected_asset": "dependency:crates.io/crypto-bigint@0.5.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.542664+00:00",
+      "detected_at": "2026-11-02T12:21:36.825608+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -11378,7 +11378,7 @@
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.551558+00:00",
+          "collected_at": "2026-11-02T12:21:36.839248+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -11401,8 +11401,8 @@
       ]
     },
     {
-      "id": "4644aaf2-2e0d-4f6a-a228-1019b6d35345",
-      "public_id": "QSI-2026-08312",
+      "id": "6cddfab7-4895-44a8-bb1e-a59fb037b6a4",
+      "public_id": "QSI-2026-09676",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -11423,7 +11423,7 @@
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.549564+00:00",
+      "detected_at": "2026-11-02T12:21:36.836492+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -11479,7 +11479,7 @@
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.563536+00:00",
+          "collected_at": "2026-11-02T12:21:36.862837+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -11502,8 +11502,8 @@
       ]
     },
     {
-      "id": "1bb88d9b-4b18-415c-93a5-7ce31ee63c5e",
-      "public_id": "QSI-2026-08313",
+      "id": "8a093359-270a-4701-9d1b-424f691586be",
+      "public_id": "QSI-2026-09677",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.3 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.3: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -11524,7 +11524,7 @@
       "affected_asset": "dependency:crates.io/ctutils@0.4.3",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.556133+00:00",
+      "detected_at": "2026-11-02T12:21:36.845539+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -11580,7 +11580,7 @@
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.585569+00:00",
+          "collected_at": "2026-11-02T12:21:36.893580+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -11603,8 +11603,8 @@
       ]
     },
     {
-      "id": "98a37b50-7a44-40d1-bdca-2dcf34f4b0ab",
-      "public_id": "QSI-2026-08310",
+      "id": "543533de-807e-4f54-a366-a49bc16085d4",
+      "public_id": "QSI-2026-09674",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 41 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, jsonwebtoken, k256, p256, ring, rustls, secp256k1, x25519-dalek), но ни одной из списка поддерживающих PQC.",
@@ -11624,7 +11624,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.536026+00:00",
+      "detected_at": "2026-11-02T12:21:36.817551+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -11687,15 +11687,15 @@
           "content_sha256": "026c023d3656248a1b40b42b344711de11348879e2c078d6608b3e22fe48aa37",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.545817+00:00",
+          "collected_at": "2026-11-02T12:21:36.828241+00:00",
           "url": null
         }
       ],
       "remediation": []
     },
     {
-      "id": "a9ae886a-ed21-4986-a1c2-e8f135a83aae",
-      "public_id": "QSI-2026-08314",
+      "id": "aa63c85c-4590-449b-b759-4faa287baabe",
+      "public_id": "QSI-2026-09678",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2024-0388 для пакета crates.io derivative версии 2.2.0 как информационный (unmaintained): `derivative` is unmaintained; consider using an alternative. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -11716,7 +11716,7 @@
       "affected_asset": "dependency:crates.io/derivative@2.2.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.583538+00:00",
+      "detected_at": "2026-11-02T12:21:36.891209+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -11772,7 +11772,7 @@
           "content_sha256": "3438f6c3cab3309fb6388762a19097619076b18baff08e3e9ab34fa969478d55",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.601621+00:00",
+          "collected_at": "2026-11-02T12:21:36.904101+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2024-0388"
         }
       ],
@@ -11795,8 +11795,8 @@
       ]
     },
     {
-      "id": "e9641086-85df-47c5-9886-0b009114f89b",
-      "public_id": "QSI-2026-08315",
+      "id": "63528d13-a65c-4706-88e3-fa91fff6d94a",
+      "public_id": "QSI-2026-09679",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2024-0436 для пакета crates.io paste версии 1.0.15 как информационный (unmaintained): paste - no longer maintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -11817,7 +11817,7 @@
       "affected_asset": "dependency:crates.io/paste@1.0.15",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:47:45.599314+00:00",
+      "detected_at": "2026-11-02T12:21:36.901621+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -11873,7 +11873,7 @@
           "content_sha256": "ea867adb8ba26c96c3779becf55b3de25d46f37f23ab55131e09c98a8b0b9975",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:47:45.610065+00:00",
+          "collected_at": "2026-11-02T12:21:36.913179+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2024-0436"
         }
       ],
@@ -11917,12 +11917,12 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-08304",
-      "QSI-2026-08302",
-      "QSI-2026-08307",
-      "QSI-2026-08303",
-      "QSI-2026-08305",
-      "QSI-2026-08306"
+      "QSI-2026-09668",
+      "QSI-2026-09666",
+      "QSI-2026-09671",
+      "QSI-2026-09667",
+      "QSI-2026-09669",
+      "QSI-2026-09670"
     ],
     "roles": [
       {
@@ -11938,7 +11938,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-08304"
+          "QSI-2026-09668"
         ],
         "files": 1
       },
@@ -11959,8 +11959,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-08302",
-          "QSI-2026-08307"
+          "QSI-2026-09666",
+          "QSI-2026-09671"
         ],
         "files": 12
       },
@@ -11977,7 +11977,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-08305"
+          "QSI-2026-09669"
         ],
         "files": 1
       },
@@ -11998,8 +11998,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-08303",
-          "QSI-2026-08306"
+          "QSI-2026-09667",
+          "QSI-2026-09670"
         ],
         "files": 2
       }
@@ -12207,7 +12207,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканер секретов ничего не находит; старые значения отозваны.",
         "status": "todo",
-        "finding": "QSI-2026-08308",
+        "finding": "QSI-2026-09672",
         "finding_title": "Возможный секрет в коде crates/evm/symbolic/src/runtime/solver/mod.rs",
         "severity": "high"
       },
@@ -12225,7 +12225,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0194.",
         "status": "todo",
-        "finding": "QSI-2026-08316",
+        "finding": "QSI-2026-09680",
         "finding_title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0194",
         "severity": "high"
       },
@@ -12243,7 +12243,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0195.",
         "status": "todo",
-        "finding": "QSI-2026-08317",
+        "finding": "QSI-2026-09681",
         "finding_title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0195",
         "severity": "high"
       }
@@ -12263,7 +12263,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "PQ-клиент согласует X25519MLKEM768.",
         "status": "todo",
-        "finding": "QSI-2026-08304",
+        "finding": "QSI-2026-09668",
         "finding_title": "TLS без постквантового обмена ключами: rustls с криптопровайдером ring",
         "severity": "medium"
       },
@@ -12281,7 +12281,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-08311",
+        "finding": "QSI-2026-09675",
         "finding_title": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -12299,7 +12299,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-08312",
+        "finding": "QSI-2026-09676",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -12317,7 +12317,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-08313",
+        "finding": "QSI-2026-09677",
         "finding_title": "ctutils 0.4.3 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -12337,7 +12337,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08302",
+        "finding": "QSI-2026-09666",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))",
         "severity": "medium"
       },
@@ -12355,7 +12355,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08307",
+        "finding": "QSI-2026-09671",
         "finding_title": "Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -12373,7 +12373,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08303",
+        "finding": "QSI-2026-09667",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12391,7 +12391,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08305",
+        "finding": "QSI-2026-09669",
         "finding_title": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
         "severity": "medium"
       },
@@ -12409,7 +12409,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08306",
+        "finding": "QSI-2026-09670",
         "finding_title": "Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12427,7 +12427,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-08301",
+        "finding": "QSI-2026-09665",
         "finding_title": "Плавающая версия компилятора (^0.8.13) в 12 файл(ах)",
         "severity": "low"
       },
@@ -12445,7 +12445,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-08309",
+        "finding": "QSI-2026-09673",
         "finding_title": "Плавающая версия компилятора (>=0.8.13 <0.9.0) в 2 файл(ах)",
         "severity": "low"
       },
@@ -12463,7 +12463,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08302",
+        "finding": "QSI-2026-09666",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))",
         "severity": "medium"
       },
@@ -12481,7 +12481,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08307",
+        "finding": "QSI-2026-09671",
         "finding_title": "Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -12499,7 +12499,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08303",
+        "finding": "QSI-2026-09667",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12517,7 +12517,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08305",
+        "finding": "QSI-2026-09669",
         "finding_title": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
         "severity": "medium"
       },
@@ -12535,7 +12535,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08306",
+        "finding": "QSI-2026-09670",
         "finding_title": "Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12553,7 +12553,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "derivative заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-08314",
+        "finding": "QSI-2026-09678",
         "finding_title": "derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)",
         "severity": "info"
       },
@@ -12571,7 +12571,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "paste заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-08315",
+        "finding": "QSI-2026-09679",
         "finding_title": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)",
         "severity": "info"
       }
@@ -12786,8 +12786,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "NIST-PQC-SEC",
@@ -13618,7 +13618,7 @@
     {
       "algorithm": "X25519MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "usage": "TLS key exchange: rustls with aws-lc-rs",
       "library": "",
       "location": "Cargo.toml:494",
@@ -14187,7 +14187,7 @@
     },
     {
       "algorithm": "X25519MLKEM768",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "library": "",
       "quantum_status": "hybrid",
       "classical_status": "ok",

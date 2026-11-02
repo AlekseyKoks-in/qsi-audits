@@ -1,8 +1,8 @@
 {
-  "content_sha256": "e2a45b1ac8aa1ec0613bc872edb5c3120b28add5d56026110930117375a35d34",
+  "content_sha256": "7c0f5bc801cbea400da5ae4b9dc958abf920a066adc2cea10d3193908c80f5e6",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-30T23:46:21.151468+00:00",
+  "generated_at": "2026-11-02T12:18:46.954192+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "f81d0319-a8d5-4d02-aa22-2accf8455c83",
     "name": "rustls @ 84bf9eaa9857",
     "client_name": "rustls project",
-    "description": "Static review of the source tree rustls at 84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77. 137 files analysed; of 1063 files, 823 are test, fuzzing, benchmark or example code and were left out, 103 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/FUNDING.yml, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/dependency-update.md, .github/ISSUE_TEMPLATE/feature_request.md, .github/codecov.yml. 92 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree rustls at 84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77. 137 files analysed; of 1063 files, 823 are test, fuzzing, benchmark or example code and were left out, 103 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/FUNDING.yml, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/dependency-update.md, .github/ISSUE_TEMPLATE/feature_request.md, .github/codecov.yml. 100 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "38a60100-0ac8-48f1-8d5e-bcf1e8c62075",
+    "id": "94eaedd6-cf25-464e-9433-30d655870144",
     "mode": "document",
     "title": "Document audit: rustls",
     "status": "completed",
     "engine_version": "1.2.0",
-    "started_at": "2026-10-30T23:46:05.048671+00:00",
-    "finished_at": "2026-10-30T23:46:20.966077+00:00",
+    "started_at": "2026-11-02T12:18:24.224181+00:00",
+    "finished_at": "2026-11-02T12:18:46.555753+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -2071,8 +2071,8 @@
   },
   "findings": [
     {
-      "id": "40fb9324-1c89-465c-8051-3c09314e394d",
-      "public_id": "QSI-2026-09078",
+      "id": "b4cece09-9250-499e-81da-a0cec1ce0a4d",
+      "public_id": "QSI-2026-09641",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/ecdsa_p256_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2092,7 +2092,7 @@
       "affected_asset": "file:bogo/keys/ecdsa_p256_key.pem",
       "data_source": "bogo/keys/ecdsa_p256_key.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.712465+00:00",
+      "detected_at": "2026-11-02T12:18:46.316267+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2168,7 +2168,7 @@
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "b181dfde192465a0c57146cfe4f4b9a8b535a1fd7ce1971a421cafcad63676cf",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.726700+00:00",
+          "collected_at": "2026-11-02T12:18:46.341438+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/ecdsa_p256_key.pem#L1"
         }
       ],
@@ -2206,8 +2206,8 @@
       ]
     },
     {
-      "id": "7666e981-439a-46d7-b365-7e441898d88c",
-      "public_id": "QSI-2026-09083",
+      "id": "08164592-85ef-4ac0-a1be-c98a62302ec1",
+      "public_id": "QSI-2026-09646",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p384_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/ecdsa_p384_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2227,7 +2227,7 @@
       "affected_asset": "file:bogo/keys/ecdsa_p384_key.pem",
       "data_source": "bogo/keys/ecdsa_p384_key.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.764577+00:00",
+      "detected_at": "2026-11-02T12:18:46.374548+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2303,7 +2303,7 @@
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "993c5c04104591939eba5820d1bd27bf90de98bc588b81a9182a91887d03437e",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.786114+00:00",
+          "collected_at": "2026-11-02T12:18:46.385637+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/ecdsa_p384_key.pem#L1"
         }
       ],
@@ -2341,8 +2341,8 @@
       ]
     },
     {
-      "id": "371a327d-bcfa-4ff6-8d49-dff18e1d660b",
-      "public_id": "QSI-2026-09084",
+      "id": "7aeaf7d5-dd49-4fd1-8de7-1d7e4902b612",
+      "public_id": "QSI-2026-09647",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2362,7 +2362,7 @@
       "affected_asset": "file:bogo/keys/key.pem",
       "data_source": "bogo/keys/key.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.781055+00:00",
+      "detected_at": "2026-11-02T12:18:46.381730+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2438,7 +2438,7 @@
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "a3673a3ea47f8fda764bb4ff5ad2f10f238634fe3779cc21a8de59eee59dbcc8",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.800805+00:00",
+          "collected_at": "2026-11-02T12:18:46.394369+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/key.pem#L1"
         }
       ],
@@ -2476,8 +2476,8 @@
       ]
     },
     {
-      "id": "067a6cd5-7a31-442e-931e-5910cde5f71a",
-      "public_id": "QSI-2026-09090",
+      "id": "5c5a3374-d223-4ead-b48c-6805bd3eb362",
+      "public_id": "QSI-2026-09653",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/rsa_1024_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/rsa_1024_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2497,7 +2497,7 @@
       "affected_asset": "file:bogo/keys/rsa_1024_key.pem",
       "data_source": "bogo/keys/rsa_1024_key.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.843135+00:00",
+      "detected_at": "2026-11-02T12:18:46.442671+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2573,7 +2573,7 @@
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "e750fef901c55a35482e7d41eb20ce50116f7e98f1c3d0d17140a643f3175fa3",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.853539+00:00",
+          "collected_at": "2026-11-02T12:18:46.453242+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/rsa_1024_key.pem#L1"
         }
       ],
@@ -2611,8 +2611,8 @@
       ]
     },
     {
-      "id": "690440a4-64fd-4f9a-9eab-8374e09ac4f5",
-      "public_id": "QSI-2026-09095",
+      "id": "c4207106-e8d4-4fa7-9227-1aa423330e3b",
+      "public_id": "QSI-2026-09658",
       "rule_id": "KEY-PRIVATE-IN-INPUT",
       "title": "Закрытый ключ присутствует в bogo/keys/rsa_chain_key.pem",
       "description": "Блок «PRIVATE KEY» найден в строке 1 файла bogo/keys/rsa_chain_key.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит.",
@@ -2632,7 +2632,7 @@
       "affected_asset": "file:bogo/keys/rsa_chain_key.pem",
       "data_source": "bogo/keys/rsa_chain_key.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.880184+00:00",
+      "detected_at": "2026-11-02T12:18:46.477259+00:00",
       "risk_score": 76.8,
       "risk_breakdown": {
         "cvss": {
@@ -2708,7 +2708,7 @@
           "content_sha256": "8ff5675e3f073e63b697c7e9001d2a28e01d7160748521613aeaa91195b89441",
           "source_sha256": "222931bc4617f0de6a4b2be8d02b1e4b96f0cf2d78e85c07e4617855f5fa63bd",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.890979+00:00",
+          "collected_at": "2026-11-02T12:18:46.488995+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/keys/rsa_chain_key.pem#L1"
         }
       ],
@@ -2746,8 +2746,8 @@
       ]
     },
     {
-      "id": "9b32c7e5-7c63-4451-8efb-a27da90c20af",
-      "public_id": "QSI-2026-09085",
+      "id": "682f277d-3008-41ea-9a6f-6cc3ab149e93",
+      "public_id": "QSI-2026-09648",
       "rule_id": "CERT-WEAK-RSA",
       "title": "RSA-ключ короче 2048 бит (1024 бит, O=bogo-rsa1024)",
       "description": "Сертификат O=bogo-rsa1024 использует RSA-ключ длиной 1024 бит. NIST SP 800-131A запрещает RSA-ключи короче 2048 бит.",
@@ -2767,7 +2767,7 @@
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.797317+00:00",
+      "detected_at": "2026-11-02T12:18:46.392009+00:00",
       "risk_score": 68.8,
       "risk_breakdown": {
         "score": 68.8,
@@ -2830,7 +2830,7 @@
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.809609+00:00",
+          "collected_at": "2026-11-02T12:18:46.403639+00:00",
           "url": null
         }
       ],
@@ -2853,8 +2853,8 @@
       ]
     },
     {
-      "id": "ec0c3bde-3416-49f7-848a-0675dd143adb",
-      "public_id": "QSI-2026-09074",
+      "id": "45d25009-f326-43dd-9ff7-0f914287d7bd",
+      "public_id": "QSI-2026-09637",
       "rule_id": "CERT-WEAK-SIGNATURE-HASH",
       "title": "Сертификат подписан с SHA1 (O=bogo-p256)",
       "description": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей.",
@@ -2874,7 +2874,7 @@
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.671011+00:00",
+      "detected_at": "2026-11-02T12:18:46.248823+00:00",
       "risk_score": 54.8,
       "risk_breakdown": {
         "score": 54.8,
@@ -2930,7 +2930,7 @@
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.685562+00:00",
+          "collected_at": "2026-11-02T12:18:46.261431+00:00",
           "url": null
         }
       ],
@@ -2953,8 +2953,8 @@
       ]
     },
     {
-      "id": "cd149be3-0a9d-4293-b206-041770c7193c",
-      "public_id": "QSI-2026-09079",
+      "id": "cd1a03f6-37f2-4bfd-ac26-08d37e79158b",
+      "public_id": "QSI-2026-09642",
       "rule_id": "CERT-WEAK-SIGNATURE-HASH",
       "title": "Сертификат подписан с SHA1 (O=bogo-p384)",
       "description": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей.",
@@ -2974,7 +2974,7 @@
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.722359+00:00",
+      "detected_at": "2026-11-02T12:18:46.337923+00:00",
       "risk_score": 54.8,
       "risk_breakdown": {
         "score": 54.8,
@@ -3030,7 +3030,7 @@
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.735286+00:00",
+          "collected_at": "2026-11-02T12:18:46.349826+00:00",
           "url": null
         }
       ],
@@ -3053,8 +3053,8 @@
       ]
     },
     {
-      "id": "68935895-7826-4c9e-a040-cec05d62f234",
-      "public_id": "QSI-2026-09086",
+      "id": "0ad63428-a021-4c69-b203-0351fa8dd344",
+      "public_id": "QSI-2026-09649",
       "rule_id": "CERT-WEAK-SIGNATURE-HASH",
       "title": "Сертификат подписан с SHA1 (O=bogo-rsa1024)",
       "description": "Подпись сертификата использует SHA1, недопустимый для генерации цифровых подписей.",
@@ -3074,7 +3074,7 @@
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.807527+00:00",
+      "detected_at": "2026-11-02T12:18:46.401122+00:00",
       "risk_score": 54.8,
       "risk_breakdown": {
         "score": 54.8,
@@ -3130,7 +3130,7 @@
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.818048+00:00",
+          "collected_at": "2026-11-02T12:18:46.420721+00:00",
           "url": null
         }
       ],
@@ -3153,8 +3153,8 @@
       ]
     },
     {
-      "id": "25363d69-f37f-4c73-baff-de3e31109382",
-      "public_id": "QSI-2026-09101",
+      "id": "a7cb8177-08e8-4a49-b2ab-2fd98ceb58d5",
+      "public_id": "QSI-2026-09664",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "tokio 1.54.0 затронут GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384)",
       "description": "OSV.dev сообщает GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384) для пакета crates.io tokio версии 1.54.0: Tokio: Race condition in `tokio::time::Interval`. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3175,7 +3175,7 @@
       "affected_asset": "dependency:crates.io/tokio@1.54.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.951582+00:00",
+      "detected_at": "2026-11-02T12:18:46.543997+00:00",
       "risk_score": 44.2,
       "risk_breakdown": {
         "score": 44.2,
@@ -3231,7 +3231,7 @@
           "content_sha256": "3dc0a6e90412029dd332ffb894bc27eec732a866dcbc20a92ce043a94998a1f0",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T23:46:21.024229+00:00",
+          "collected_at": "2026-11-02T12:18:46.659841+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-5wjr-9356-4wc8"
         }
       ],
@@ -3254,8 +3254,8 @@
       ]
     },
     {
-      "id": "a4ec647f-e96b-4b36-89d5-19f219747f8a",
-      "public_id": "QSI-2026-09096",
+      "id": "8fe46687-8f89-478c-8b54-37d5215fcbe7",
+      "public_id": "QSI-2026-09659",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))",
       "description": "122 упоминаний RSA в 10 файл(ах), например bogo/src/main.rs:38. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.",
@@ -3275,7 +3275,7 @@
       "affected_asset": "source-code:RSA:channel",
       "data_source": "bogo/src/main.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.888110+00:00",
+      "detected_at": "2026-11-02T12:18:46.485967+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -3350,9 +3350,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -3372,7 +3372,7 @@
           "content_sha256": "ae93639ea90759944ff6c9ac3ea3f2d3ff17841a2655526be6a8e94ea86bb1d6",
           "source_sha256": "e45f12d86e375ecb013e99a3e0edc5b4a5a6695ff941b95ef39fcacf13617eb8",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902056+00:00",
+          "collected_at": "2026-11-02T12:18:46.500910+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/src/main.rs#L38"
         },
         {
@@ -3383,7 +3383,7 @@
           "content_sha256": "ac65861d1f71343dfbc693d933128a251d8fc6e456375a026862837216789214",
           "source_sha256": "e45f12d86e375ecb013e99a3e0edc5b4a5a6695ff941b95ef39fcacf13617eb8",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902063+00:00",
+          "collected_at": "2026-11-02T12:18:46.500918+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/src/main.rs#L39"
         },
         {
@@ -3394,7 +3394,7 @@
           "content_sha256": "04b5641cdbcd74d1958b78ad94e77e373dbd0426282d275502844df765867978",
           "source_sha256": "e45f12d86e375ecb013e99a3e0edc5b4a5a6695ff941b95ef39fcacf13617eb8",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902067+00:00",
+          "collected_at": "2026-11-02T12:18:46.500922+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/bogo/src/main.rs#L40"
         },
         {
@@ -3405,7 +3405,7 @@
           "content_sha256": "9f6f98d1de7e2b3840b592c0c63f0603942c576b3a5660e0c25b854a20c8b4c5",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902070+00:00",
+          "collected_at": "2026-11-02T12:18:46.500925+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L85"
         },
         {
@@ -3416,7 +3416,7 @@
           "content_sha256": "200d9072d978f659916b5a162ce0256cf663a721c5215a2656131557d3ad99fa",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902074+00:00",
+          "collected_at": "2026-11-02T12:18:46.500928+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L86"
         },
         {
@@ -3427,7 +3427,7 @@
           "content_sha256": "1cad07b3681447a6e10b4c7b464253b8ca072090a7ec6e0ecedc313269c4e986",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902077+00:00",
+          "collected_at": "2026-11-02T12:18:46.500931+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L87"
         },
         {
@@ -3438,7 +3438,7 @@
           "content_sha256": "1c69ad0d035f3aa9ee3e7961f7c6f8af824eeecff0e82e564d0b9ce38314b555",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902080+00:00",
+          "collected_at": "2026-11-02T12:18:46.500934+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L31"
         },
         {
@@ -3449,7 +3449,7 @@
           "content_sha256": "67019936386f3abd23d0099a05e090be0b449efe244ebfae638a4efe2181d00f",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902083+00:00",
+          "collected_at": "2026-11-02T12:18:46.500937+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L32"
         },
         {
@@ -3460,7 +3460,7 @@
           "content_sha256": "54fd4d85c9235a51488a6453e4d0efb85e9feb6bf184603cb4e1aee7dc85e8d5",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902086+00:00",
+          "collected_at": "2026-11-02T12:18:46.500941+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L33"
         },
         {
@@ -3471,7 +3471,7 @@
           "content_sha256": "0b570c81a37b449fc919861a0767341a12b68565cbd749419fee438e27bd00a0",
           "source_sha256": "60de6a06560687802e2a736b175e12f28a57a4b68fa0cac2a53c93257820682e",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.902089+00:00",
+          "collected_at": "2026-11-02T12:18:46.500944+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/tls12.rs#L139"
         }
       ],
@@ -3509,8 +3509,8 @@
       ]
     },
     {
-      "id": "382e374c-ed77-4793-85ed-6da2af608cca",
-      "public_id": "QSI-2026-09099",
+      "id": "9c15fd65-9b76-46a8-90d6-67b0dce4d393",
+      "public_id": "QSI-2026-09662",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
       "description": "3 упоминаний X25519 в 1 файл(ах), например rustls/src/manual/defaults.rs:14. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.",
@@ -3530,7 +3530,7 @@
       "affected_asset": "source-code:X25519:channel",
       "data_source": "rustls/src/manual/defaults.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.925735+00:00",
+      "detected_at": "2026-11-02T12:18:46.521447+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -3605,9 +3605,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -3627,7 +3627,7 @@
           "content_sha256": "c4904a16b5b5ac7d3a8668957407466f09ca9be08c266e44ab36803e82a9e655",
           "source_sha256": "0b90e4ebfe8c82b152cf31c11c94cd83b4e75f5690cdad862121776db73f56e3",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.945084+00:00",
+          "collected_at": "2026-11-02T12:18:46.537134+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls/src/manual/defaults.rs#L14"
         },
         {
@@ -3638,7 +3638,7 @@
           "content_sha256": "ac055dfd6ec9dd2cc3082d4b7355f386f93794a6bf6989e209eb5baa445facf2",
           "source_sha256": "0b90e4ebfe8c82b152cf31c11c94cd83b4e75f5690cdad862121776db73f56e3",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.945093+00:00",
+          "collected_at": "2026-11-02T12:18:46.537142+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls/src/manual/defaults.rs#L16"
         },
         {
@@ -3649,7 +3649,7 @@
           "content_sha256": "50d4ee783648035b748605e8ae5d17e5cc332c126627289221b5e9967327abfd",
           "source_sha256": "0b90e4ebfe8c82b152cf31c11c94cd83b4e75f5690cdad862121776db73f56e3",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.945097+00:00",
+          "collected_at": "2026-11-02T12:18:46.537146+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls/src/manual/defaults.rs#L52"
         }
       ],
@@ -3687,8 +3687,8 @@
       ]
     },
     {
-      "id": "e9406faf-a7bf-4ff9-8ffe-358b9aa91c05",
-      "public_id": "QSI-2026-09097",
+      "id": "ffecb483-1dc6-4359-976c-a0bdf962e758",
+      "public_id": "QSI-2026-09660",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
       "description": "15 упоминаний ECDSA в 7 файл(ах), например rustls-aws-lc-rs/src/kx.rs:259. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -3708,7 +3708,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "rustls-aws-lc-rs/src/kx.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.897860+00:00",
+      "detected_at": "2026-11-02T12:18:46.497152+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -3783,9 +3783,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -3805,7 +3805,7 @@
           "content_sha256": "e90b05d40e87aa3e84924919b80fa897cee3d5136f6eef0b9d9c29ac35bd3229",
           "source_sha256": "e3a9ec3bf6b4c399d82178da9e14886bf0b66903dee98dc38df3c5d253f9c65d",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916462+00:00",
+          "collected_at": "2026-11-02T12:18:46.514306+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/kx.rs#L259"
         },
         {
@@ -3816,7 +3816,7 @@
           "content_sha256": "aac6804cbd00e97c81daef291f37f06862a5c2a96f5eb5c4b1f03974a204471f",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916471+00:00",
+          "collected_at": "2026-11-02T12:18:46.514314+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L223"
         },
         {
@@ -3827,7 +3827,7 @@
           "content_sha256": "99393b8467433b90dd91ebeacd1c5b474075b6fcd99765db09b417bfb4f5d690",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916474+00:00",
+          "collected_at": "2026-11-02T12:18:46.514318+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L231"
         },
         {
@@ -3838,7 +3838,7 @@
           "content_sha256": "044ffd42bffa3af0f281b3b8def3b2e9b37f67e214354bba5a16d72350d0962e",
           "source_sha256": "66de1a664e95fccb36d9349f2652b2f59bf764f21eacdfdf682fd6f79750b674",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916477+00:00",
+          "collected_at": "2026-11-02T12:18:46.514321+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/verify.rs#L172"
         },
         {
@@ -3849,7 +3849,7 @@
           "content_sha256": "46eb6dd52ef04efcbe1e3a7af505796087870c4d7ebdc3e0d03ed013ecac532c",
           "source_sha256": "66de1a664e95fccb36d9349f2652b2f59bf764f21eacdfdf682fd6f79750b674",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916480+00:00",
+          "collected_at": "2026-11-02T12:18:46.514324+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/verify.rs#L179"
         },
         {
@@ -3860,7 +3860,7 @@
           "content_sha256": "86ef4c6e3d99b55784b3e60037654c2fc846b056319893165b2ef48e905b153e",
           "source_sha256": "66de1a664e95fccb36d9349f2652b2f59bf764f21eacdfdf682fd6f79750b674",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916483+00:00",
+          "collected_at": "2026-11-02T12:18:46.514327+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/verify.rs#L193"
         },
         {
@@ -3871,7 +3871,7 @@
           "content_sha256": "680570864dbab8d6039188c7392870a498c1e7b3a0e11e4d2576babb43d9daca",
           "source_sha256": "b20262e8adfdee4e7f32749048cb5936a140237e5123de4f9d69bf0cc30ebad9",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916486+00:00",
+          "collected_at": "2026-11-02T12:18:46.514330+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/kx.rs#L102"
         },
         {
@@ -3882,7 +3882,7 @@
           "content_sha256": "0fa048cbe1f8ef5c2d59ed0cf4447e6152d1c22ebecc390085710021dc013deb",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916489+00:00",
+          "collected_at": "2026-11-02T12:18:46.514334+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L260"
         },
         {
@@ -3893,7 +3893,7 @@
           "content_sha256": "442697233c12c5bba405c785c8418763caf17e601b5f424d059dd0494ceaf288",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916492+00:00",
+          "collected_at": "2026-11-02T12:18:46.514337+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L268"
         },
         {
@@ -3904,7 +3904,7 @@
           "content_sha256": "11451f26a762786f4f7a20a4ff7cf1c0e706ea18df036bfac69dc1262c41d404",
           "source_sha256": "afdcbc5d088d62bd9bc2a349fc7b83936797a3127012e07a96e11491fc28b24a",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.916495+00:00",
+          "collected_at": "2026-11-02T12:18:46.514340+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/verify.rs#L120"
         }
       ],
@@ -3942,8 +3942,8 @@
       ]
     },
     {
-      "id": "207f2b53-43e5-42fa-a703-f8a650b76022",
-      "public_id": "QSI-2026-09098",
+      "id": "f904262e-8979-4fe7-bb8e-7a1c04e16521",
+      "public_id": "QSI-2026-09661",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Ed25519: роль не определена (4 файл(ов))",
       "description": "24 упоминаний Ed25519 в 4 файл(ах), например rustls-aws-lc-rs/src/lib.rs:58. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -3963,7 +3963,7 @@
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "rustls-aws-lc-rs/src/lib.rs",
       "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.911972+00:00",
+      "detected_at": "2026-11-02T12:18:46.511531+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -4038,9 +4038,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -4060,7 +4060,7 @@
           "content_sha256": "2f5d04777da0adf0765b0d10d4fcc48101680b39f3c282cfc2009d5eda1bb14d",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929805+00:00",
+          "collected_at": "2026-11-02T12:18:46.523800+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L58"
         },
         {
@@ -4071,7 +4071,7 @@
           "content_sha256": "48c2d267c7fb79dbdb3d52a32489bd62ad84a3da1fba65163297e2ed0fc3e0f4",
           "source_sha256": "05b3bf0bb1d2ef06d1d26a095bdcf6ade183c8f7eaca9d8c6400742f7c2f1bae",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929813+00:00",
+          "collected_at": "2026-11-02T12:18:46.523807+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/lib.rs#L166"
         },
         {
@@ -4082,7 +4082,7 @@
           "content_sha256": "e89cfc90640fdc280a473a9ce59f6e1caf4f1af5350b01391e5e5fcaad19a4c1",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929817+00:00",
+          "collected_at": "2026-11-02T12:18:46.523811+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L10"
         },
         {
@@ -4093,7 +4093,7 @@
           "content_sha256": "4230d55d90cea49266dd814eae2b59d6282d584cc0d7b2e39010a00ba0bf08b4",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929820+00:00",
+          "collected_at": "2026-11-02T12:18:46.523814+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L387"
         },
         {
@@ -4104,7 +4104,7 @@
           "content_sha256": "10a58f0dd4e25c231e7ff7d70ed71d9f06b1320cc75635ddb1bdd9c8734b7b6c",
           "source_sha256": "eb45837f9d5b0727d76e9479d5050a580df6d7bfb65d8ab218d7657ced2497c0",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929823+00:00",
+          "collected_at": "2026-11-02T12:18:46.523817+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-aws-lc-rs/src/sign.rs#L388"
         },
         {
@@ -4115,7 +4115,7 @@
           "content_sha256": "adb9e4b1cf5ef2adc5b99ca288bf15b1c41b0243b9081ad7b60b1dd1f2a5c1e4",
           "source_sha256": "c61d10ea2c3871de1e0b59c7ca3e3071da46af0d16c226c59f1777b455e9d2da",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929826+00:00",
+          "collected_at": "2026-11-02T12:18:46.523820+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/lib.rs#L34"
         },
         {
@@ -4126,7 +4126,7 @@
           "content_sha256": "c114ba38c9c2c4e7e7244ef556318b05f1210903b712a2b940e0a509d0cdafcb",
           "source_sha256": "c61d10ea2c3871de1e0b59c7ca3e3071da46af0d16c226c59f1777b455e9d2da",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929830+00:00",
+          "collected_at": "2026-11-02T12:18:46.523824+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/lib.rs#L123"
         },
         {
@@ -4137,7 +4137,7 @@
           "content_sha256": "1b578343e091d9647b538fff9f4fb9cc652edf078859680842dfa567c3061d74",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929833+00:00",
+          "collected_at": "2026-11-02T12:18:46.523827+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L10"
         },
         {
@@ -4148,7 +4148,7 @@
           "content_sha256": "5ad3a2f1d0c67b220d40bc141597232e02b1caa0f803799e3e5369aca19f5845",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929836+00:00",
+          "collected_at": "2026-11-02T12:18:46.523830+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L292"
         },
         {
@@ -4159,7 +4159,7 @@
           "content_sha256": "d06ac3f3e5effbf534b75da8ef14f39b5ebc9614b13aa7fd68b3922f3a8e8072",
           "source_sha256": "bc7eb8259652042a1c92259c5e236d792d0ded55b3db6704ffd4a125eced3014",
           "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.929839+00:00",
+          "collected_at": "2026-11-02T12:18:46.523834+00:00",
           "url": "https://github.com/rustls/rustls/blob/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77/rustls-ring/src/sign.rs#L293"
         }
       ],
@@ -4197,8 +4197,8 @@
       ]
     },
     {
-      "id": "3be4961f-1f44-4659-b8b1-cd8744642b05",
-      "public_id": "QSI-2026-09071",
+      "id": "cf82707f-f528-4272-b9a3-b48afcdaad83",
+      "public_id": "QSI-2026-09634",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)",
       "description": "Сертификат O=bogo использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -4218,11 +4218,11 @@
       "affected_asset": "certificate:O=bogo",
       "data_source": "bogo/keys/cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.627579+00:00",
+      "detected_at": "2026-11-02T12:18:46.211620+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.82,
+          "x": 0.81,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4231,7 +4231,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.18
+          "margin_years": -2.19
         },
         "score": 40.0,
         "factors": {
@@ -4293,9 +4293,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -4315,7 +4315,7 @@
           "content_sha256": "93bcf57d0ec2460c76444157005b6f7c66256c0541bfbadfbdaad0fce036fdfd",
           "source_sha256": "f6f857830e095d1fa16827b0f32ca462a59ddfc36580eb4432bfd537a8be191c",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.644987+00:00",
+          "collected_at": "2026-11-02T12:18:46.226632+00:00",
           "url": null
         }
       ],
@@ -4353,8 +4353,8 @@
       ]
     },
     {
-      "id": "75addb99-a620-4263-91b5-b0ce292e97ae",
-      "public_id": "QSI-2026-09075",
+      "id": "9f376403-50d1-4c77-9bee-d08a823a3e16",
+      "public_id": "QSI-2026-09638",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p256)",
       "description": "Сертификат O=bogo-p256 использует открытый ключ ECDSA secp256r1, действителен до 2027-08-26. ECDSA взламывается алгоритмом Шора на CRQC.",
@@ -4374,11 +4374,11 @@
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.679098+00:00",
+      "detected_at": "2026-11-02T12:18:46.257585+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.82,
+          "x": 0.81,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4387,7 +4387,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.18
+          "margin_years": -2.19
         },
         "score": 40.0,
         "factors": {
@@ -4449,9 +4449,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -4471,7 +4471,7 @@
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.696644+00:00",
+          "collected_at": "2026-11-02T12:18:46.290279+00:00",
           "url": null
         }
       ],
@@ -4509,8 +4509,8 @@
       ]
     },
     {
-      "id": "1f8c719d-821e-4892-92ba-b018ec9b763b",
-      "public_id": "QSI-2026-09080",
+      "id": "d851d27e-c67a-46a7-9f91-f2c013179ded",
+      "public_id": "QSI-2026-09643",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p384)",
       "description": "Сертификат O=bogo-p384 использует открытый ключ ECDSA secp384r1, действителен до 2027-08-26. ECDSA взламывается алгоритмом Шора на CRQC.",
@@ -4530,11 +4530,11 @@
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.732671+00:00",
+      "detected_at": "2026-11-02T12:18:46.347377+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.82,
+          "x": 0.81,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4543,7 +4543,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.18
+          "margin_years": -2.19
         },
         "score": 40.0,
         "factors": {
@@ -4605,9 +4605,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -4627,7 +4627,7 @@
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.748738+00:00",
+          "collected_at": "2026-11-02T12:18:46.359561+00:00",
           "url": null
         }
       ],
@@ -4665,8 +4665,8 @@
       ]
     },
     {
-      "id": "058b784f-e359-4218-957a-dcf6f5a6ff23",
-      "public_id": "QSI-2026-09087",
+      "id": "c562943a-cb4d-43df-ba4e-928d60ee3de2",
+      "public_id": "QSI-2026-09650",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-rsa1024)",
       "description": "Сертификат O=bogo-rsa1024 использует открытый ключ RSA 1024-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -4686,11 +4686,11 @@
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.813970+00:00",
+      "detected_at": "2026-11-02T12:18:46.408330+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.82,
+          "x": 0.81,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4699,7 +4699,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.18
+          "margin_years": -2.19
         },
         "score": 40.0,
         "factors": {
@@ -4761,9 +4761,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -4783,7 +4783,7 @@
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.828710+00:00",
+          "collected_at": "2026-11-02T12:18:46.430691+00:00",
           "url": null
         }
       ],
@@ -4821,8 +4821,8 @@
       ]
     },
     {
-      "id": "e13091d5-92a1-4d3c-94a3-56ec214d2611",
-      "public_id": "QSI-2026-09091",
+      "id": "8040dc10-1bc7-4f70-8c37-5cc6287220ce",
+      "public_id": "QSI-2026-09654",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-chain)",
       "description": "Сертификат O=bogo-chain использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -4842,11 +4842,11 @@
       "affected_asset": "certificate:O=bogo-chain",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.850778+00:00",
+      "detected_at": "2026-11-02T12:18:46.451294+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.82,
+          "x": 0.81,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -4855,7 +4855,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.18
+          "margin_years": -2.19
         },
         "score": 40.0,
         "factors": {
@@ -4917,9 +4917,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -4939,7 +4939,7 @@
           "content_sha256": "8cdcf8cf8bcccb55594356b4f726d8f7a9b2bf48e60e18ebab3db68ec926121b",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.860563+00:00",
+          "collected_at": "2026-11-02T12:18:46.459170+00:00",
           "url": null
         }
       ],
@@ -4977,8 +4977,8 @@
       ]
     },
     {
-      "id": "af19880d-3eb9-4058-a3d6-95a9ee03e6eb",
-      "public_id": "QSI-2026-09094",
+      "id": "19f2d4ce-2347-48a0-9f60-ea1e22dd506a",
+      "public_id": "QSI-2026-09657",
       "rule_id": "CERT-QV-KEY",
       "title": "Квантово-уязвимый ключ RSA в сертификате (O=Internet Widgits Pty Ltd,ST=Some-State,C=AU)",
       "description": "Сертификат O=Internet Widgits Pty Ltd,ST=Some-State,C=AU использует открытый ключ RSA 2048-bit, действителен до 2027-08-26. RSA взламывается алгоритмом Шора на CRQC.",
@@ -4998,11 +4998,11 @@
       "affected_asset": "certificate:O=Internet Widgits Pty Ltd,ST=Some-State,C=AU",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.873236+00:00",
+      "detected_at": "2026-11-02T12:18:46.470561+00:00",
       "risk_score": 40.0,
       "risk_breakdown": {
         "mosca": {
-          "x": 0.82,
+          "x": 0.81,
           "y": 5.0,
           "z": 8.0,
           "kind": "signature",
@@ -5011,7 +5011,7 @@
           "verdict": "tight",
           "scenario": "early",
           "x_source": "remaining validity of the key/certificate",
-          "margin_years": -2.18
+          "margin_years": -2.19
         },
         "score": 40.0,
         "factors": {
@@ -5073,9 +5073,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -5095,7 +5095,7 @@
           "content_sha256": "5c0d8fc4cb2cd522b76557f25e7ca752a25be0f21cf4220ae81b3c99f96c85e9",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.882868+00:00",
+          "collected_at": "2026-11-02T12:18:46.479633+00:00",
           "url": null
         }
       ],
@@ -5133,8 +5133,8 @@
       ]
     },
     {
-      "id": "258d4b70-61df-4833-8302-cf261ae4ab49",
-      "public_id": "QSI-2026-09072",
+      "id": "70e44a0b-0cfa-43e2-b7df-a46c5a4c6267",
+      "public_id": "QSI-2026-09635",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5154,7 +5154,7 @@
       "affected_asset": "certificate:O=bogo",
       "data_source": "bogo/keys/cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.638658+00:00",
+      "detected_at": "2026-11-02T12:18:46.221599+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5210,7 +5210,7 @@
           "content_sha256": "93bcf57d0ec2460c76444157005b6f7c66256c0541bfbadfbdaad0fce036fdfd",
           "source_sha256": "f6f857830e095d1fa16827b0f32ca462a59ddfc36580eb4432bfd537a8be191c",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.662397+00:00",
+          "collected_at": "2026-11-02T12:18:46.241816+00:00",
           "url": null
         }
       ],
@@ -5233,8 +5233,8 @@
       ]
     },
     {
-      "id": "c9b0a4fb-4df4-43e9-a419-7e6970f9037e",
-      "public_id": "QSI-2026-09076",
+      "id": "2a83c7c5-4813-4203-ab21-73763eb3e908",
+      "public_id": "QSI-2026-09639",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p256)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5254,7 +5254,7 @@
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.691308+00:00",
+      "detected_at": "2026-11-02T12:18:46.267374+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5310,7 +5310,7 @@
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.706059+00:00",
+          "collected_at": "2026-11-02T12:18:46.308531+00:00",
           "url": null
         }
       ],
@@ -5333,8 +5333,8 @@
       ]
     },
     {
-      "id": "b27d8198-119a-406a-a41c-77f2da397ab2",
-      "public_id": "QSI-2026-09081",
+      "id": "38631066-89f7-403e-8e4c-49ca60603a13",
+      "public_id": "QSI-2026-09644",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p384)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5354,7 +5354,7 @@
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.745941+00:00",
+      "detected_at": "2026-11-02T12:18:46.356948+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5410,7 +5410,7 @@
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.760556+00:00",
+          "collected_at": "2026-11-02T12:18:46.368438+00:00",
           "url": null
         }
       ],
@@ -5433,8 +5433,8 @@
       ]
     },
     {
-      "id": "7029ecc8-d750-4c84-9b77-0ed89219016f",
-      "public_id": "QSI-2026-09088",
+      "id": "4f4cabc0-33a1-4351-980d-2ac383e27d2e",
+      "public_id": "QSI-2026-09651",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-rsa1024)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5454,7 +5454,7 @@
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.826161+00:00",
+      "detected_at": "2026-11-02T12:18:46.428333+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5510,7 +5510,7 @@
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.836329+00:00",
+          "collected_at": "2026-11-02T12:18:46.438413+00:00",
           "url": null
         }
       ],
@@ -5533,8 +5533,8 @@
       ]
     },
     {
-      "id": "a7850435-48e4-4baa-b307-85f8ca6e4cfd",
-      "public_id": "QSI-2026-09092",
+      "id": "b5326f9e-584d-40f3-a8a2-ef769f737305",
+      "public_id": "QSI-2026-09655",
       "rule_id": "CERT-LONG-VALIDITY",
       "title": "Срок действия конечного сертификата 3650 дн. (O=bogo-chain)",
       "description": "Конечный сертификат действует 3650 дн. Публично доверенные TLS-сертификаты сегодня ограничены 398 днями, и правила CA/Browser Forum сокращают этот срок дальше.",
@@ -5554,7 +5554,7 @@
       "affected_asset": "certificate:O=bogo-chain",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.858437+00:00",
+      "detected_at": "2026-11-02T12:18:46.457474+00:00",
       "risk_score": 30.9,
       "risk_breakdown": {
         "score": 30.9,
@@ -5610,7 +5610,7 @@
           "content_sha256": "8cdcf8cf8bcccb55594356b4f726d8f7a9b2bf48e60e18ebab3db68ec926121b",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.868356+00:00",
+          "collected_at": "2026-11-02T12:18:46.464532+00:00",
           "url": null
         }
       ],
@@ -5633,8 +5633,8 @@
       ]
     },
     {
-      "id": "62e70162-06a8-4075-ac5e-846611735b70",
-      "public_id": "QSI-2026-09073",
+      "id": "262fba26-aeb0-48ec-9606-d2592d53de91",
+      "public_id": "QSI-2026-09636",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -5654,7 +5654,7 @@
       "affected_asset": "certificate:O=bogo",
       "data_source": "bogo/keys/cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.659145+00:00",
+      "detected_at": "2026-11-02T12:18:46.238619+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -5710,7 +5710,7 @@
           "content_sha256": "93bcf57d0ec2460c76444157005b6f7c66256c0541bfbadfbdaad0fce036fdfd",
           "source_sha256": "f6f857830e095d1fa16827b0f32ca462a59ddfc36580eb4432bfd537a8be191c",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.674103+00:00",
+          "collected_at": "2026-11-02T12:18:46.251656+00:00",
           "url": null
         }
       ],
@@ -5733,8 +5733,8 @@
       ]
     },
     {
-      "id": "3bfe3703-f975-4768-8e54-fcb7f51e67ee",
-      "public_id": "QSI-2026-09077",
+      "id": "15bbade5-b4c8-4da6-9fcc-41f822478126",
+      "public_id": "QSI-2026-09640",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-p256)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -5754,7 +5754,7 @@
       "affected_asset": "certificate:O=bogo-p256",
       "data_source": "bogo/keys/ecdsa_p256_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.703667+00:00",
+      "detected_at": "2026-11-02T12:18:46.305599+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -5810,7 +5810,7 @@
           "content_sha256": "aadb2d647432f5f4619a7b159584f2b08b1dd2ea7ea196c5653583c8a0aef9c4",
           "source_sha256": "0ed91efd9ab1677924bd95214bc191ea506bf3fc3edde33892e210fae025e47f",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.715689+00:00",
+          "collected_at": "2026-11-02T12:18:46.326318+00:00",
           "url": null
         }
       ],
@@ -5833,8 +5833,8 @@
       ]
     },
     {
-      "id": "49565ed3-0996-4f42-867a-a8a0f776cdc3",
-      "public_id": "QSI-2026-09082",
+      "id": "6238dc77-2f64-48ea-8885-f00cc3cf925d",
+      "public_id": "QSI-2026-09645",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-p384)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -5854,7 +5854,7 @@
       "affected_asset": "certificate:O=bogo-p384",
       "data_source": "bogo/keys/ecdsa_p384_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.757074+00:00",
+      "detected_at": "2026-11-02T12:18:46.365720+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -5910,7 +5910,7 @@
           "content_sha256": "f8c42a96d8061f0be20b58aebdb732d255783cda1d9a67208577c36343e488bc",
           "source_sha256": "17ba7999b13cd51daf9be90fb2c666801b5e58fa469e1f6e3971c84eb5a963c7",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.767334+00:00",
+          "collected_at": "2026-11-02T12:18:46.377373+00:00",
           "url": null
         }
       ],
@@ -5933,8 +5933,8 @@
       ]
     },
     {
-      "id": "8fa76865-d333-4fe4-aaf1-c307f25d8a44",
-      "public_id": "QSI-2026-09089",
+      "id": "61a89b0b-1c8d-4035-bf00-754758b57ff2",
+      "public_id": "QSI-2026-09652",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-rsa1024)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -5954,7 +5954,7 @@
       "affected_asset": "certificate:O=bogo-rsa1024",
       "data_source": "bogo/keys/rsa_1024_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.834036+00:00",
+      "detected_at": "2026-11-02T12:18:46.436636+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -6010,7 +6010,7 @@
           "content_sha256": "5571f60b4b65b796cd33a09ebd661b6a2cafdb5d979702bfa110aa502d082c49",
           "source_sha256": "1cb4acf85fb5dd32a030308a8837935c4f544023daaace2037515924933f9242",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.845948+00:00",
+          "collected_at": "2026-11-02T12:18:46.446354+00:00",
           "url": null
         }
       ],
@@ -6033,8 +6033,8 @@
       ]
     },
     {
-      "id": "5cfa65c1-9960-488d-bfb3-af7391c3bce4",
-      "public_id": "QSI-2026-09093",
+      "id": "ce37e02a-ead5-44cc-a6e9-4e715511987a",
+      "public_id": "QSI-2026-09656",
       "rule_id": "CERT-SELF-SIGNED",
       "title": "Самоподписанный конечный сертификат (O=bogo-chain)",
       "description": "Издатель совпадает с субъектом, сертификат не помечен как CA.",
@@ -6054,7 +6054,7 @@
       "affected_asset": "certificate:O=bogo-chain",
       "data_source": "bogo/keys/rsa_chain_cert.pem",
       "analyzer": "certificates 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.866326+00:00",
+      "detected_at": "2026-11-02T12:18:46.463022+00:00",
       "risk_score": 32.0,
       "risk_breakdown": {
         "score": 32.0,
@@ -6110,7 +6110,7 @@
           "content_sha256": "8cdcf8cf8bcccb55594356b4f726d8f7a9b2bf48e60e18ebab3db68ec926121b",
           "source_sha256": "840345f473ae756167fe7789c9b93d7d88cba6cb7a552b6fae6a55ee5da0540a",
           "collector": "certificates 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.876254+00:00",
+          "collected_at": "2026-11-02T12:18:46.472472+00:00",
           "url": null
         }
       ],
@@ -6133,8 +6133,8 @@
       ]
     },
     {
-      "id": "50c8306d-0781-43cf-9f9f-656253556e88",
-      "public_id": "QSI-2026-09100",
+      "id": "e5828849-3287-44e3-bfda-7e1b66e68bda",
+      "public_id": "QSI-2026-09663",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 9 манифестах зависимостей QSI нашёл криптобиблиотеки (openssl, ring, rustls), но ни одной из списка поддерживающих PQC.",
@@ -6154,7 +6154,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T23:46:20.942009+00:00",
+      "detected_at": "2026-11-02T12:18:46.533459+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -6217,7 +6217,7 @@
           "content_sha256": "1980ed6357825cc444a27bc1b98985b873318b59d5a5fa25de06c96d7c8ef037",
           "source_sha256": null,
           "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T23:46:20.954349+00:00",
+          "collected_at": "2026-11-02T12:18:46.546610+00:00",
           "url": null
         }
       ],
@@ -6245,16 +6245,16 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-09096",
-      "QSI-2026-09099",
-      "QSI-2026-09097",
-      "QSI-2026-09098",
-      "QSI-2026-09071",
-      "QSI-2026-09075",
-      "QSI-2026-09080",
-      "QSI-2026-09087",
-      "QSI-2026-09091",
-      "QSI-2026-09094"
+      "QSI-2026-09659",
+      "QSI-2026-09662",
+      "QSI-2026-09660",
+      "QSI-2026-09661",
+      "QSI-2026-09634",
+      "QSI-2026-09638",
+      "QSI-2026-09643",
+      "QSI-2026-09650",
+      "QSI-2026-09654",
+      "QSI-2026-09657"
     ],
     "roles": [
       {
@@ -6274,8 +6274,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-09096",
-          "QSI-2026-09099"
+          "QSI-2026-09659",
+          "QSI-2026-09662"
         ],
         "files": 11
       },
@@ -6296,8 +6296,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-09097",
-          "QSI-2026-09098"
+          "QSI-2026-09660",
+          "QSI-2026-09661"
         ],
         "files": 11
       }
@@ -6559,7 +6559,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-09078",
+        "finding": "QSI-2026-09641",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem",
         "severity": "high"
       },
@@ -6577,7 +6577,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-09083",
+        "finding": "QSI-2026-09646",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p384_key.pem",
         "severity": "high"
       },
@@ -6595,7 +6595,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-09084",
+        "finding": "QSI-2026-09647",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/key.pem",
         "severity": "high"
       },
@@ -6613,7 +6613,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-09090",
+        "finding": "QSI-2026-09653",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_1024_key.pem",
         "severity": "high"
       },
@@ -6631,7 +6631,7 @@
         "post_tests": "Подтвердите отзыв (CRL/OCSP) и использование нового ключа.",
         "closure_criteria": "Старый ключ отозван, новый развёрнут.",
         "status": "todo",
-        "finding": "QSI-2026-09095",
+        "finding": "QSI-2026-09658",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_chain_key.pem",
         "severity": "high"
       },
@@ -6649,7 +6649,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Ключ сертификата RSA ≥ 2048 (лучше 3072) или ECDSA ≥ P-256.",
         "status": "todo",
-        "finding": "QSI-2026-09085",
+        "finding": "QSI-2026-09648",
         "finding_title": "RSA-ключ короче 2048 бит (1024 бит, O=bogo-rsa1024)",
         "severity": "high"
       },
@@ -6667,7 +6667,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Хеш подписи — SHA-256 или сильнее.",
         "status": "todo",
-        "finding": "QSI-2026-09074",
+        "finding": "QSI-2026-09637",
         "finding_title": "Сертификат подписан с SHA1 (O=bogo-p256)",
         "severity": "medium"
       },
@@ -6685,7 +6685,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Хеш подписи — SHA-256 или сильнее.",
         "status": "todo",
-        "finding": "QSI-2026-09079",
+        "finding": "QSI-2026-09642",
         "finding_title": "Сертификат подписан с SHA1 (O=bogo-p384)",
         "severity": "medium"
       },
@@ -6703,7 +6703,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Хеш подписи — SHA-256 или сильнее.",
         "status": "todo",
-        "finding": "QSI-2026-09086",
+        "finding": "QSI-2026-09649",
         "finding_title": "Сертификат подписан с SHA1 (O=bogo-rsa1024)",
         "severity": "medium"
       },
@@ -6721,7 +6721,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384).",
         "status": "todo",
-        "finding": "QSI-2026-09101",
+        "finding": "QSI-2026-09664",
         "finding_title": "tokio 1.54.0 затронут GHSA-5wjr-9356-4wc8 (CVE-2026-115567, RUSTSEC-2026-0384)",
         "severity": "medium"
       }
@@ -6741,7 +6741,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-09078",
+        "finding": "QSI-2026-09641",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p256_key.pem",
         "severity": "high"
       },
@@ -6759,7 +6759,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-09083",
+        "finding": "QSI-2026-09646",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/ecdsa_p384_key.pem",
         "severity": "high"
       },
@@ -6777,7 +6777,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-09084",
+        "finding": "QSI-2026-09647",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/key.pem",
         "severity": "high"
       },
@@ -6795,7 +6795,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-09090",
+        "finding": "QSI-2026-09653",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_1024_key.pem",
         "severity": "high"
       },
@@ -6813,7 +6813,7 @@
         "post_tests": "Сканер не находит закрытых ключей; CI блокирует новые.",
         "closure_criteria": "Сканирование секретов обязательно в CI; ключей в истории нет.",
         "status": "todo",
-        "finding": "QSI-2026-09095",
+        "finding": "QSI-2026-09658",
         "finding_title": "Закрытый ключ присутствует в bogo/keys/rsa_chain_key.pem",
         "severity": "high"
       }
@@ -6833,7 +6833,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09096",
+        "finding": "QSI-2026-09659",
         "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))",
         "severity": "medium"
       },
@@ -6851,7 +6851,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09099",
+        "finding": "QSI-2026-09662",
         "finding_title": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
         "severity": "medium"
       },
@@ -6869,7 +6869,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09097",
+        "finding": "QSI-2026-09660",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
         "severity": "medium"
       },
@@ -6887,7 +6887,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09098",
+        "finding": "QSI-2026-09661",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -6905,7 +6905,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09071",
+        "finding": "QSI-2026-09634",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)",
         "severity": "low"
       },
@@ -6923,7 +6923,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09075",
+        "finding": "QSI-2026-09638",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p256)",
         "severity": "low"
       },
@@ -6941,7 +6941,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09080",
+        "finding": "QSI-2026-09643",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p384)",
         "severity": "low"
       },
@@ -6959,7 +6959,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09087",
+        "finding": "QSI-2026-09650",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-rsa1024)",
         "severity": "low"
       },
@@ -6977,7 +6977,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09091",
+        "finding": "QSI-2026-09654",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-chain)",
         "severity": "low"
       },
@@ -6995,7 +6995,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-09094",
+        "finding": "QSI-2026-09657",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=Internet Widgits Pty Ltd,ST=Some-State,C=AU)",
         "severity": "low"
       },
@@ -7013,7 +7013,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-09072",
+        "finding": "QSI-2026-09635",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo)",
         "severity": "low"
       },
@@ -7031,7 +7031,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-09076",
+        "finding": "QSI-2026-09639",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p256)",
         "severity": "low"
       },
@@ -7049,7 +7049,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-09081",
+        "finding": "QSI-2026-09644",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-p384)",
         "severity": "low"
       },
@@ -7067,7 +7067,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-09088",
+        "finding": "QSI-2026-09651",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-rsa1024)",
         "severity": "low"
       },
@@ -7085,7 +7085,7 @@
         "post_tests": "Проверьте даты следующего выпуска.",
         "closure_criteria": "Проверьте даты следующего выпуска.",
         "status": "todo",
-        "finding": "QSI-2026-09092",
+        "finding": "QSI-2026-09655",
         "finding_title": "Срок действия конечного сертификата 3650 дн. (O=bogo-chain)",
         "severity": "low"
       },
@@ -7103,7 +7103,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09096",
+        "finding": "QSI-2026-09659",
         "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (10 файл(ов))",
         "severity": "medium"
       },
@@ -7121,7 +7121,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09099",
+        "finding": "QSI-2026-09662",
         "finding_title": "Квантово-уязвимый X25519: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
         "severity": "medium"
       },
@@ -7139,7 +7139,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09097",
+        "finding": "QSI-2026-09660",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
         "severity": "medium"
       },
@@ -7157,7 +7157,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09098",
+        "finding": "QSI-2026-09661",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -7175,7 +7175,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09071",
+        "finding": "QSI-2026-09634",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo)",
         "severity": "low"
       },
@@ -7193,7 +7193,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09075",
+        "finding": "QSI-2026-09638",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p256)",
         "severity": "low"
       },
@@ -7211,7 +7211,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09080",
+        "finding": "QSI-2026-09643",
         "finding_title": "Квантово-уязвимый ключ ECDSA в сертификате (O=bogo-p384)",
         "severity": "low"
       },
@@ -7229,7 +7229,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09087",
+        "finding": "QSI-2026-09650",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-rsa1024)",
         "severity": "low"
       },
@@ -7247,7 +7247,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09091",
+        "finding": "QSI-2026-09654",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=bogo-chain)",
         "severity": "low"
       },
@@ -7265,7 +7265,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-09094",
+        "finding": "QSI-2026-09657",
         "finding_title": "Квантово-уязвимый ключ RSA в сертификате (O=Internet Widgits Pty Ltd,ST=Some-State,C=AU)",
         "severity": "low"
       },
@@ -7283,7 +7283,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-09073",
+        "finding": "QSI-2026-09636",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo)",
         "severity": "info"
       },
@@ -7301,7 +7301,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-09077",
+        "finding": "QSI-2026-09640",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-p256)",
         "severity": "info"
       },
@@ -7319,7 +7319,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-09082",
+        "finding": "QSI-2026-09645",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-p384)",
         "severity": "info"
       },
@@ -7337,7 +7337,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-09089",
+        "finding": "QSI-2026-09652",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-rsa1024)",
         "severity": "info"
       },
@@ -7355,7 +7355,7 @@
         "post_tests": "Проверьте издателя развёрнутого сертификата.",
         "closure_criteria": "Проверьте издателя развёрнутого сертификата.",
         "status": "todo",
-        "finding": "QSI-2026-09093",
+        "finding": "QSI-2026-09656",
         "finding_title": "Самоподписанный конечный сертификат (O=bogo-chain)",
         "severity": "info"
       }
@@ -7570,8 +7570,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "SP800-131A",
@@ -8266,7 +8266,7 @@
     {
       "algorithm": "SecP256r1MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "SecP256r1MLKEM768",
       "usage": "source code (1 reference(s))",
       "library": "",
       "location": "rustls-aws-lc-rs/src/kx.rs:59",
@@ -8278,7 +8278,7 @@
     {
       "algorithm": "SecP256r1MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "SecP256r1MLKEM768",
       "usage": "source code (2 reference(s))",
       "library": "",
       "location": "rustls/src/crypto/kx/mod.rs:561",
@@ -8290,7 +8290,7 @@
     {
       "algorithm": "SecP384r1MLKEM1024",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "SecP384r1MLKEM1024",
       "usage": "source code (2 reference(s))",
       "library": "",
       "location": "rustls/src/crypto/kx/mod.rs:565",
@@ -8302,7 +8302,7 @@
     {
       "algorithm": "X25519MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "usage": "TLS key exchange: rustls with aws-lc-rs",
       "library": "",
       "location": "bogo/Cargo.toml:10",
@@ -8314,7 +8314,7 @@
     {
       "algorithm": "X25519MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "usage": "source code (4 reference(s))",
       "library": "",
       "location": "rustls-aws-lc-rs/src/kx.rs:20",
@@ -8326,7 +8326,7 @@
     {
       "algorithm": "X25519MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "usage": "source code (1 reference(s))",
       "library": "",
       "location": "rustls-aws-lc-rs/src/lib.rs:240",
@@ -8338,7 +8338,7 @@
     {
       "algorithm": "X25519MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "usage": "source code (2 reference(s))",
       "library": "",
       "location": "rustls/src/crypto/kx/mod.rs:563",
@@ -8350,7 +8350,7 @@
     {
       "algorithm": "X25519MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "usage": "source code (4 reference(s))",
       "library": "",
       "location": "rustls/src/manual/defaults.rs:19",
@@ -8362,7 +8362,7 @@
     {
       "algorithm": "X25519MLKEM768",
       "family": "key_exchange",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "usage": "source code (1 reference(s))",
       "library": "",
       "location": "rustls/src/manual/features.rs:44",
@@ -9073,7 +9073,7 @@
     },
     {
       "algorithm": "SecP256r1MLKEM768",
-      "parameter": "",
+      "parameter": "SecP256r1MLKEM768",
       "library": "",
       "quantum_status": "hybrid",
       "classical_status": "ok",
@@ -9086,7 +9086,7 @@
     },
     {
       "algorithm": "SecP384r1MLKEM1024",
-      "parameter": "",
+      "parameter": "SecP384r1MLKEM1024",
       "library": "",
       "quantum_status": "hybrid",
       "classical_status": "ok",
@@ -9098,7 +9098,7 @@
     },
     {
       "algorithm": "X25519MLKEM768",
-      "parameter": "",
+      "parameter": "X25519MLKEM768",
       "library": "",
       "quantum_status": "hybrid",
       "classical_status": "ok",

@@ -184,6 +184,13 @@ the seventh named algorithm, which had no entry), are in
 [reports/FEDERAL-CBOM-2026-10-30.md](reports/FEDERAL-CBOM-2026-10-30.md) (also
 [in English](reports/FEDERAL-CBOM-2026-10-30.en.md)).
 
+On 27 October 2026 NIST published **IR 8547 in final form**, stricter than its 2024 draft: ECDSA, EdDSA, RSA and
+Diffie-Hellman are now deprecated after 2030 at every key size, not only at 112 bits. Measured here, that puts a
+2030 milestone on **281 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
+and up — and says nothing at all about the 470 secp256k1 rows, a curve NIST never approved; with the
+463 rows in families no NIST standard covers, more than half of the exposure here sits outside NIST's dates.
+The split is section 3 of the same report.
+
 ## A check any project can run: does your scanner have a word for this cryptography?
 
 An inventory can fail in a way that looks exactly like a clean result. Not a crash and not a parse error: the
