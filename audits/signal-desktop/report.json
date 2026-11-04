@@ -1,8 +1,8 @@
 {
-  "content_sha256": "ac7b6c0c129e043eb4d1f4e7e84808016014c6d36c2007a6f6d604f27c19565c",
+  "content_sha256": "3acf0170c49046cde3e45dc9b0a530b0288b9a07e99667ebef98642166e36ba2",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T19:27:49.399326+00:00",
+  "generated_at": "2026-11-04T20:39:52.919531+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "179337cd-93d5-42f5-9e8a-2d02bb4f8e5a",
+    "id": "fd5ba614-a0b0-4c32-b01e-537aed6eaa0b",
     "mode": "document",
     "title": "Document audit: signal-desktop",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T19:26:34.406765+00:00",
-    "finished_at": "2026-11-04T19:27:48.836787+00:00",
+    "started_at": "2026-11-04T20:38:28.760653+00:00",
+    "finished_at": "2026-11-04T20:39:52.715263+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -26540,8 +26540,8 @@
   },
   "findings": [
     {
-      "id": "8f232a3c-e247-450c-af2e-7a232c5ebb63",
-      "public_id": "QSI-2026-12828",
+      "id": "fc4cf147-376c-4d7e-8ddc-77d8f1651dd4",
+      "public_id": "QSI-2026-13590",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "@storybook/core 8.6.18 затронут GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125)",
       "description": "OSV.dev сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) для пакета npm @storybook/core версии 8.6.18: Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -26562,7 +26562,7 @@
       "affected_asset": "dependency:npm/@storybook/core@8.6.18",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.813173+00:00",
+      "detected_at": "2026-11-04T20:39:52.688205+00:00",
       "risk_score": 40.6,
       "risk_breakdown": {
         "score": 40.6,
@@ -26618,7 +26618,7 @@
           "content_sha256": "92de84a398faba971f897dfefaa92fd81e9492196c28c9310b7b387367a423ef",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.821245+00:00",
+          "collected_at": "2026-11-04T20:39:52.700302+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-f2ph-cmg5-wxc8"
         }
       ],
@@ -26641,8 +26641,8 @@
       ]
     },
     {
-      "id": "dacadab1-8742-4135-8c69-4abe43b9736b",
-      "public_id": "QSI-2026-12821",
+      "id": "832219fa-af04-4c63-b8ec-ce7b02859da1",
+      "public_id": "QSI-2026-13583",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zod 4.3.6 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)",
       "description": "OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 4.3.6: Zod can exhaust memory while validating oversized constrained collections. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -26663,7 +26663,7 @@
       "affected_asset": "dependency:npm/zod@4.3.6",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.741718+00:00",
+      "detected_at": "2026-11-04T20:39:52.614481+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -26739,7 +26739,7 @@
           "content_sha256": "fbd5f5d9c08d5ea6e57797966cf6931e9dccbb3e46859554eba6ad6e73820f9d",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.764596+00:00",
+          "collected_at": "2026-11-04T20:39:52.635245+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5"
         }
       ],
@@ -26762,8 +26762,8 @@
       ]
     },
     {
-      "id": "69fc6ba2-f3d8-49d1-bb56-c44a49755ed3",
-      "public_id": "QSI-2026-12820",
+      "id": "356ac0af-aee2-4711-9e94-1fb6f07192b7",
+      "public_id": "QSI-2026-13582",
       "rule_id": "CODE-HARDCODED-SECRET",
       "title": "Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts",
       "description": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 22). Значения замаскированы QSI.",
@@ -26783,7 +26783,7 @@
       "affected_asset": "file:ts/state/smart/fun/giphy.preload.ts",
       "data_source": "ts/state/smart/fun/giphy.preload.ts",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.730263+00:00",
+      "detected_at": "2026-11-04T20:39:52.604062+00:00",
       "risk_score": 47.1,
       "risk_breakdown": {
         "score": 47.1,
@@ -26839,7 +26839,7 @@
           "content_sha256": "1a3544c4894e717e5ff4905f6fbf51e17a24af7b9bc216e1a8ee0b98baa78272",
           "source_sha256": "ae94107c7c743d236be8f7223b908c93fd819ad12ff02331a738598335a256e9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.745867+00:00",
+          "collected_at": "2026-11-04T20:39:52.618362+00:00",
           "url": "https://github.com/signalapp/Signal-Desktop/blob/17502b9d1a9e34af689f31508c4ac4ccee5b5cb7/ts/state/smart/fun/giphy.preload.ts#L22"
         }
       ],
@@ -26862,8 +26862,8 @@
       ]
     },
     {
-      "id": "6b92b66e-6b5d-4b63-a4d0-adca9f9cd784",
-      "public_id": "QSI-2026-12823",
+      "id": "6c0cd68a-7e41-494f-a95e-c700179d88b5",
+      "public_id": "QSI-2026-13585",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "undici 6.29.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)",
       "description": "OSV.dev сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383) для пакета npm undici версии 6.29.0: undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -26884,7 +26884,7 @@
       "affected_asset": "dependency:npm/undici@6.29.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.770705+00:00",
+      "detected_at": "2026-11-04T20:39:52.640078+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -26960,7 +26960,7 @@
           "content_sha256": "19e2f924907f2ce4ed8291ce8090db4b0a3c4d3641b23ef551ecbdd3dbfd6d4e",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.781627+00:00",
+          "collected_at": "2026-11-04T20:39:52.650429+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-2m5v-pch6-74hx"
         }
       ],
@@ -26983,8 +26983,8 @@
       ]
     },
     {
-      "id": "71671c75-ab23-4789-92dc-de7cfcaf93a0",
-      "public_id": "QSI-2026-12826",
+      "id": "f5ed7cc9-6a27-40d0-8756-a7ddf934110d",
+      "public_id": "QSI-2026-13588",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "undici 6.29.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)",
       "description": "OSV.dev сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018) для пакета npm undici версии 6.29.0: undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -27005,7 +27005,7 @@
       "affected_asset": "dependency:npm/undici@6.29.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.794245+00:00",
+      "detected_at": "2026-11-04T20:39:52.664085+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -27081,7 +27081,7 @@
           "content_sha256": "9e812022c75ee0daa805570ce3c7fd7af5aa9523895bf6543828e4f354d52e36",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.809266+00:00",
+          "collected_at": "2026-11-04T20:39:52.682380+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-qrxm-fqhp-jwvm"
         }
       ],
@@ -27104,8 +27104,8 @@
       ]
     },
     {
-      "id": "f22a5fa4-90b2-45c3-b588-fea15940922a",
-      "public_id": "QSI-2026-12827",
+      "id": "f30a4aa5-2677-4228-96b3-b238c1d33175",
+      "public_id": "QSI-2026-13589",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "undici 6.29.0 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)",
       "description": "OSV.dev сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869) для пакета npm undici версии 6.29.0: undici vulnerable to Denial of Service via unhandled error on excessive content-encodings. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -27126,7 +27126,7 @@
       "affected_asset": "dependency:npm/undici@6.29.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.806572+00:00",
+      "detected_at": "2026-11-04T20:39:52.679070+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -27202,7 +27202,7 @@
           "content_sha256": "98da2a0ccc8faf78e8cda82e772dd00dfecd0503ce078459f6a1363e331ac198",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.815314+00:00",
+          "collected_at": "2026-11-04T20:39:52.692339+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-xjj6-f33q-929c"
         }
       ],
@@ -27225,8 +27225,8 @@
       ]
     },
     {
-      "id": "110c8999-d764-4a33-8608-d126a1fa461a",
-      "public_id": "QSI-2026-12829",
+      "id": "6f9a7855-62ea-4f36-ad0d-f2e2eb203699",
+      "public_id": "QSI-2026-13591",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "@storybook/core 8.6.18 затронут GHSA-px85-f4q5-jh77 (CVE-2026-114126)",
       "description": "OSV.dev сообщает GHSA-px85-f4q5-jh77 (CVE-2026-114126) для пакета npm @storybook/core версии 8.6.18: Storybook dev server vulnerable to code injection from the local network. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -27247,7 +27247,7 @@
       "affected_asset": "dependency:npm/@storybook/core@8.6.18",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.819186+00:00",
+      "detected_at": "2026-11-04T20:39:52.697313+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "score": 37.6,
@@ -27303,7 +27303,7 @@
           "content_sha256": "ca9572e93e0a3ad41e56d349820ff80eb5e275b89e55d7b8dd80a943aca43ff7",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.830452+00:00",
+          "collected_at": "2026-11-04T20:39:52.708514+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-px85-f4q5-jh77"
         }
       ],
@@ -27326,8 +27326,8 @@
       ]
     },
     {
-      "id": "afaf0940-4b69-4d95-a8ba-9291c9de81d0",
-      "public_id": "QSI-2026-12822",
+      "id": "5f2b6d35-306a-480c-89d5-3676000f064f",
+      "public_id": "QSI-2026-13584",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)",
       "description": "OSV.dev сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816) для пакета npm qs версии 6.16.0: qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS). Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -27348,7 +27348,7 @@
       "affected_asset": "dependency:npm/qs@6.16.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.761096+00:00",
+      "detected_at": "2026-11-04T20:39:52.632309+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -27424,7 +27424,7 @@
           "content_sha256": "4fd7af689173b0c3abc4f3e9006070e7de778a692b621288cc277cd4bcb7ab05",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.773624+00:00",
+          "collected_at": "2026-11-04T20:39:52.642239+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-6pq8-jhm2-2vcw"
         }
       ],
@@ -27447,8 +27447,8 @@
       ]
     },
     {
-      "id": "05a84c70-4c01-4473-9590-3273f7c323f2",
-      "public_id": "QSI-2026-12824",
+      "id": "99fdeb69-23f2-4c1f-9ade-ef91eba9714f",
+      "public_id": "QSI-2026-13586",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "undici 6.29.0 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)",
       "description": "OSV.dev сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924) для пакета npm undici версии 6.29.0: undici vulnerable to Denial of Service via unbounded memory in the EventSource parser. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -27469,7 +27469,7 @@
       "affected_asset": "dependency:npm/undici@6.29.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.778709+00:00",
+      "detected_at": "2026-11-04T20:39:52.647469+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -27545,7 +27545,7 @@
           "content_sha256": "e5622217ce8fee7d0f9d0c69334e0892afdc8d1b893f742d4e2027eeec4a9894",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.789976+00:00",
+          "collected_at": "2026-11-04T20:39:52.659034+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-4qv8-2p9j-2685"
         }
       ],
@@ -27568,8 +27568,8 @@
       ]
     },
     {
-      "id": "b8c6d5ba-2f15-4279-ae5f-7aa50012534c",
-      "public_id": "QSI-2026-12825",
+      "id": "dd6b556c-7fef-46f4-a3d6-abf6e95f7087",
+      "public_id": "QSI-2026-13587",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "undici 6.29.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)",
       "description": "OSV.dev сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932) для пакета npm undici версии 6.29.0: undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -27590,7 +27590,7 @@
       "affected_asset": "dependency:npm/undici@6.29.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.787243+00:00",
+      "detected_at": "2026-11-04T20:39:52.656154+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -27666,7 +27666,7 @@
           "content_sha256": "ec1f6601eb756d4048c59aceff106702f6512b7dea2377ff744bf7d42c4d4f79",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.797602+00:00",
+          "collected_at": "2026-11-04T20:39:52.668117+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-9fm3-97px-rjf6"
         }
       ],
@@ -27689,8 +27689,8 @@
       ]
     },
     {
-      "id": "3dc0c47b-3cfd-45b0-a02c-9e07dfc84beb",
-      "public_id": "QSI-2026-12830",
+      "id": "8e0d19f1-a8c4-4382-8a8f-6fbc6241d18b",
+      "public_id": "QSI-2026-13592",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "4 бюллетеней в 2 пакет(ах) npm, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 4 бюллетеней (3 с оценкой high или critical) для 2 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package.json): например, fabric@4.6.0 [dev]: GHSA-hfvx-25r5-qc3w, GHSA-w22m-hvvm-xmwx; storybook@8.6.18 [dev]: GHSA-f2ph-cmg5-wxc8, GHSA-px85-f4q5-jh77. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -27710,7 +27710,7 @@
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:27:48.828298+00:00",
+      "detected_at": "2026-11-04T20:39:52.705502+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -27766,7 +27766,7 @@
           "content_sha256": "aadeefee928a68c6a9a98b0557f79317c2b91a9a070abbc504a6408a16babd6e",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:27:48.968674+00:00",
+          "collected_at": "2026-11-04T20:39:52.792495+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -27949,7 +27949,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканер секретов ничего не находит; старые значения отозваны.",
         "status": "todo",
-        "finding": "QSI-2026-12820",
+        "finding": "QSI-2026-13582",
         "finding_title": "Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts",
         "severity": "high"
       },
@@ -27967,7 +27967,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125).",
         "status": "todo",
-        "finding": "QSI-2026-12828",
+        "finding": "QSI-2026-13590",
         "finding_title": "@storybook/core 8.6.18 затронут GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125)",
         "severity": "critical"
       },
@@ -27985,7 +27985,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404).",
         "status": "todo",
-        "finding": "QSI-2026-12821",
+        "finding": "QSI-2026-13583",
         "finding_title": "zod 4.3.6 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)",
         "severity": "high"
       },
@@ -28003,7 +28003,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383).",
         "status": "todo",
-        "finding": "QSI-2026-12823",
+        "finding": "QSI-2026-13585",
         "finding_title": "undici 6.29.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)",
         "severity": "high"
       },
@@ -28021,7 +28021,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018).",
         "status": "todo",
-        "finding": "QSI-2026-12826",
+        "finding": "QSI-2026-13588",
         "finding_title": "undici 6.29.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)",
         "severity": "high"
       },
@@ -28039,7 +28039,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869).",
         "status": "todo",
-        "finding": "QSI-2026-12827",
+        "finding": "QSI-2026-13589",
         "finding_title": "undici 6.29.0 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)",
         "severity": "high"
       },
@@ -28057,7 +28057,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-px85-f4q5-jh77 (CVE-2026-114126).",
         "status": "todo",
-        "finding": "QSI-2026-12829",
+        "finding": "QSI-2026-13591",
         "finding_title": "@storybook/core 8.6.18 затронут GHSA-px85-f4q5-jh77 (CVE-2026-114126)",
         "severity": "high"
       },
@@ -28075,7 +28075,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816).",
         "status": "todo",
-        "finding": "QSI-2026-12822",
+        "finding": "QSI-2026-13584",
         "finding_title": "qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)",
         "severity": "medium"
       },
@@ -28093,7 +28093,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924).",
         "status": "todo",
-        "finding": "QSI-2026-12824",
+        "finding": "QSI-2026-13586",
         "finding_title": "undici 6.29.0 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)",
         "severity": "medium"
       },
@@ -28111,7 +28111,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932).",
         "status": "todo",
-        "finding": "QSI-2026-12825",
+        "finding": "QSI-2026-13587",
         "finding_title": "undici 6.29.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)",
         "severity": "medium"
       }
@@ -28132,7 +28132,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-12830",
+        "finding": "QSI-2026-13592",
         "finding_title": "4 бюллетеней в 2 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }

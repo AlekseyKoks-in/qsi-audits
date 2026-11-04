@@ -1,8 +1,8 @@
 {
-  "content_sha256": "474b1294ee360010a360896aa943fa57c4538bdf5d05a1386be0965270613489",
+  "content_sha256": "39766604ab1aeefc4bba894650eb7dcbc1e20e52e66dc79b2e32f2c14954a176",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T19:04:58.064155+00:00",
+  "generated_at": "2026-11-04T20:33:56.734917+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "06283ac7-7f51-4ed2-a80a-9cf2f64d819d",
+    "id": "4cc5b5fa-3950-46b7-b985-0b8af61fef75",
     "mode": "document",
     "title": "Document audit: monero",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T19:03:59.005097+00:00",
-    "finished_at": "2026-11-04T19:04:57.845112+00:00",
+    "started_at": "2026-11-04T20:32:52.904178+00:00",
+    "finished_at": "2026-11-04T20:33:56.522183+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -10503,6 +10503,11 @@
       "status": "checked"
     },
     {
+      "area": "secrets",
+      "detail": "utils/python-rpc/framework/wallet.py: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)",
+      "status": "checked"
+    },
+    {
       "area": "source_code",
       "detail": "utils/python-rpc/framework/zmq.py: 49 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
@@ -12445,6 +12450,15 @@
       ]
     },
     {
+      "area": "secrets",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "utils/python-rpc/framework/wallet.py: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name)"
+      ]
+    },
+    {
       "area": "entropy",
       "status": "checked",
       "count": 1,
@@ -13675,7 +13689,7 @@
   "summary": {
     "by_severity": {
       "critical": 0,
-      "high": 1,
+      "high": 0,
       "medium": 40,
       "low": 1,
       "info": 1
@@ -13683,14 +13697,14 @@
     "by_classification": {
       "confirmed_vulnerability": 0,
       "known_vulnerable_component": 1,
-      "confirmed_misconfiguration": 1,
+      "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
       "pq_long_term_risk": 40,
       "improvement": 0,
       "insufficient_data": 1
     },
-    "total": 43,
-    "posture_index": 92,
+    "total": 42,
+    "posture_index": 99,
     "pq_vulnerable_share": 73.9,
     "inventory_total": 134,
     "inventory_by_quantum_status": {
@@ -13703,119 +13717,8 @@
   },
   "findings": [
     {
-      "id": "8b5f321c-29b8-4c14-82f5-ae03f6686a83",
-      "public_id": "QSI-2026-12234",
-      "rule_id": "CODE-HARDCODED-SECRET",
-      "title": "Возможный секрет в коде utils/python-rpc/framework/wallet.py",
-      "description": "2 значений, похожих на секреты, типа generic_assignment (первое — строка 1198). Значения замаскированы QSI.",
-      "impact": "Учётные данные в коде утекают через репозитории, сборки и журналы.",
-      "recommendation": "Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения.",
-      "retest": "Повторно просканируйте код и проверьте места вызова из доказательства.",
-      "limitations": "Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
-      "method": "Сопоставление регулярных выражений с API конкретного языка.",
-      "repro": "Откройте строка 1198 в предоставленном файле utils/python-rpc/framework/wallet.py и изучите приведённые строки (см. доказательство).",
-      "category": "source_code",
-      "classification": "confirmed_misconfiguration",
-      "severity": "high",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "file:utils/python-rpc/framework/wallet.py",
-      "data_source": "utils/python-rpc/framework/wallet.py",
-      "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.793418+00:00",
-      "risk_score": 47.1,
-      "risk_breakdown": {
-        "score": 47.1,
-        "factors": {
-          "ease": 0.6,
-          "asset": 0.6,
-          "impact": 0.59,
-          "urgency": 1.0,
-          "exposure": 0.5,
-          "severity": 0.8,
-          "exploitability": 0.7
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 69.3,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 11.8,
-          "urgency": 10.0,
-          "exposure": 7.5,
-          "severity": 20.0,
-          "exploitability": 14.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "ASVS",
-          "url": "https://owasp.org/www-project-application-security-verification-standard/",
-          "title": "OWASP Application Security Verification Standard",
-          "status": "living standard — check the project page for the current version",
-          "publisher": "OWASP"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "file_excerpt",
-          "source": "utils/python-rpc/framework/wallet.py",
-          "location": "line 1198",
-          "content": " 1198 |             self.reuse_password = '[REDACTED]'",
-          "content_sha256": "2e8c79a1511dbb04be71c5fa20632be7e0094f833cfd2dbc97a9e077e6dfaf98",
-          "source_sha256": "9cd51a3612102cd2b8d08d810fe8b056ce8dae36ba646bc0bae9f81c4dbdfb7d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.805645+00:00",
-          "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/utils/python-rpc/framework/wallet.py#L1198"
-        },
-        {
-          "kind": "file_excerpt",
-          "source": "utils/python-rpc/framework/wallet.py",
-          "location": "line 1199",
-          "content": " 1199 |             self.custom_password = '[REDACTED]'",
-          "content_sha256": "b7c9e444260abdb6c99a4e33ed3e3789d609c0e044674721d5db5127038e0859",
-          "source_sha256": "9cd51a3612102cd2b8d08d810fe8b056ce8dae36ba646bc0bae9f81c4dbdfb7d",
-          "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.805820+00:00",
-          "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/utils/python-rpc/framework/wallet.py#L1199"
-        }
-      ],
-      "remediation": [
-        {
-          "kind": "root_cause",
-          "action": "Замените и удалите секреты из utils/python-rpc/framework/wallet.py.",
-          "rationale": "Устраняет первопричину, описанную в находке.",
-          "expected_outcome": "При повторной проверке слабость не обнаруживается.",
-          "priority": "P1",
-          "horizon_days": 30,
-          "complexity": "low",
-          "dependencies": "Окно изменений и согласование владельца.",
-          "side_effects": "Возможна несовместимость со старыми клиентами.",
-          "pre_tests": "Воспроизведите находку по описанным шагам.",
-          "post_tests": "Выполните процедуру повторной проверки из находки.",
-          "closure_criteria": "Сканер секретов ничего не находит; старые значения отозваны.",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "id": "ac80133b-20ea-4f5a-a698-c8394626afce",
-      "public_id": "QSI-2026-12236",
+      "id": "208c0e4e-07ec-447f-a384-12922c9207f2",
+      "public_id": "QSI-2026-13420",
       "rule_id": "CHAINMAP-QV",
       "title": "Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых",
       "description": "Определения сообщений кошелька охватывают сети: Monero. Эти сети авторизуют транзакции подписями Ed25519, которые алгоритм Шора взламывает на криптографически значимом квантовом компьютере. Кошелёк не может сам перевести сеть на постквантовые подписи: сначала схему должна принять сеть.",
@@ -13835,7 +13738,7 @@
       "affected_asset": "chain-map",
       "data_source": "src/device_trezor/trezor/protob/messages-monero.proto",
       "analyzer": "chain_map 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.818993+00:00",
+      "detected_at": "2026-11-04T20:33:56.495667+00:00",
       "risk_score": 56.8,
       "risk_breakdown": {
         "mosca": {
@@ -13925,7 +13828,7 @@
           "content_sha256": "2a60fdbae9c4da472daabb0e85b95bb7592b561df57b5344c02f5d168a37c8d9",
           "source_sha256": null,
           "collector": "chain_map 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.828188+00:00",
+          "collected_at": "2026-11-04T20:33:56.503207+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/device_trezor/trezor/protob/messages-monero.proto#L2"
         }
       ],
@@ -13963,8 +13866,8 @@
       ]
     },
     {
-      "id": "ca6063e2-a1de-4c0e-a46b-49623fd1910a",
-      "public_id": "QSI-2026-12200",
+      "id": "3b4ef008-87ce-4268-b1d7-58b513aa8c9e",
+      "public_id": "QSI-2026-13385",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc",
       "description": "Найден открытый ключ Ed25519 Ed25519 (строка 1).",
@@ -13984,7 +13887,7 @@
       "affected_asset": "file:utils/gpg_keys/0xfffc0000.asc#line 1",
       "data_source": "utils/gpg_keys/0xfffc0000.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.489890+00:00",
+      "detected_at": "2026-11-04T20:33:56.203487+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -14074,7 +13977,7 @@
           "content_sha256": "6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8",
           "source_sha256": "cf0f659615191282004df56a94297b9a254df81c27011b57075d0f3fa74511f8",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.503897+00:00",
+          "collected_at": "2026-11-04T20:33:56.217881+00:00",
           "url": null
         }
       ],
@@ -14112,8 +14015,8 @@
       ]
     },
     {
-      "id": "f001f1f4-600b-4ab1-9d90-8dad9f7b96e0",
-      "public_id": "QSI-2026-12201",
+      "id": "4f04b2a6-79c9-4d4e-bde4-61d65bb40639",
+      "public_id": "QSI-2026-13386",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -14133,7 +14036,7 @@
       "affected_asset": "file:utils/gpg_keys/SNeedlewoods.asc#line 1",
       "data_source": "utils/gpg_keys/SNeedlewoods.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.500143+00:00",
+      "detected_at": "2026-11-04T20:33:56.214285+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -14223,7 +14126,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "f64a657294239ee52bc570808d47bc43151111dc57375cca5fa9fe6166c4693a",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.513357+00:00",
+          "collected_at": "2026-11-04T20:33:56.226362+00:00",
           "url": null
         },
         {
@@ -14234,7 +14137,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "f64a657294239ee52bc570808d47bc43151111dc57375cca5fa9fe6166c4693a",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.513365+00:00",
+          "collected_at": "2026-11-04T20:33:56.226370+00:00",
           "url": null
         }
       ],
@@ -14272,8 +14175,8 @@
       ]
     },
     {
-      "id": "3db7d5fb-5417-40d0-9c37-fe8f99a0e772",
-      "public_id": "QSI-2026-12202",
+      "id": "8af2a275-04c7-45b6-a01e-1f6427857073",
+      "public_id": "QSI-2026-13387",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc",
       "description": "Найден открытый ключ Ed25519 Ed25519 (строка 1).",
@@ -14293,7 +14196,7 @@
       "affected_asset": "file:utils/gpg_keys/anon.asc#line 1",
       "data_source": "utils/gpg_keys/anon.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.510880+00:00",
+      "detected_at": "2026-11-04T20:33:56.223650+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -14383,7 +14286,7 @@
           "content_sha256": "6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8",
           "source_sha256": "1748c167e8a1d2e3fa986a75f7d3a9d946cdce0dc7203cd0652933820b99d094",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.521351+00:00",
+          "collected_at": "2026-11-04T20:33:56.233860+00:00",
           "url": null
         }
       ],
@@ -14421,8 +14324,8 @@
       ]
     },
     {
-      "id": "fb69c23a-a2b7-48fa-b9ef-22c0148cacb9",
-      "public_id": "QSI-2026-12203",
+      "id": "1061d62f-9c98-418f-95da-4b44861b97bd",
+      "public_id": "QSI-2026-13388",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -14442,7 +14345,7 @@
       "affected_asset": "file:utils/gpg_keys/anonimal.asc#line 1",
       "data_source": "utils/gpg_keys/anonimal.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.518985+00:00",
+      "detected_at": "2026-11-04T20:33:56.231945+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -14532,7 +14435,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "1d4083c25bcabed6b48b0e438104804befbf5388e5abcc881caa06c3b60c395b",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.530041+00:00",
+          "collected_at": "2026-11-04T20:33:56.242671+00:00",
           "url": null
         },
         {
@@ -14543,7 +14446,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "1d4083c25bcabed6b48b0e438104804befbf5388e5abcc881caa06c3b60c395b",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.530049+00:00",
+          "collected_at": "2026-11-04T20:33:56.242678+00:00",
           "url": null
         }
       ],
@@ -14581,8 +14484,8 @@
       ]
     },
     {
-      "id": "b00d2eee-9172-4c8c-ac9c-5b94a6ada659",
-      "public_id": "QSI-2026-12204",
+      "id": "06c91dbb-3e94-4b0d-b2ae-110a50e64aeb",
+      "public_id": "QSI-2026-13389",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -14602,7 +14505,7 @@
       "affected_asset": "file:utils/gpg_keys/binaryfate.asc#line 1",
       "data_source": "utils/gpg_keys/binaryfate.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.525934+00:00",
+      "detected_at": "2026-11-04T20:33:56.239989+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -14692,7 +14595,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "7dcb19c87d41a4399b4877054111f7dbfd30531545678bc2be218bd56903904c",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.536764+00:00",
+          "collected_at": "2026-11-04T20:33:56.249842+00:00",
           "url": null
         },
         {
@@ -14703,7 +14606,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "7dcb19c87d41a4399b4877054111f7dbfd30531545678bc2be218bd56903904c",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.536772+00:00",
+          "collected_at": "2026-11-04T20:33:56.249848+00:00",
           "url": null
         }
       ],
@@ -14741,8 +14644,8 @@
       ]
     },
     {
-      "id": "e76a4f46-94e6-4a6d-ab21-739877d13bc5",
-      "public_id": "QSI-2026-12205",
+      "id": "8fceb9ce-1453-405c-93bf-7ea7e133b775",
+      "public_id": "QSI-2026-13390",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -14762,7 +14665,7 @@
       "affected_asset": "file:utils/gpg_keys/erciccione.asc#line 1",
       "data_source": "utils/gpg_keys/erciccione.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.534929+00:00",
+      "detected_at": "2026-11-04T20:33:56.247880+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -14852,7 +14755,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "63340a7d5a92d9242e174309775bbcd50150303af1b7e8033741fe9fd14620bc",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.542925+00:00",
+          "collected_at": "2026-11-04T20:33:56.259251+00:00",
           "url": null
         },
         {
@@ -14863,7 +14766,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "63340a7d5a92d9242e174309775bbcd50150303af1b7e8033741fe9fd14620bc",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.542933+00:00",
+          "collected_at": "2026-11-04T20:33:56.259259+00:00",
           "url": null
         }
       ],
@@ -14901,8 +14804,8 @@
       ]
     },
     {
-      "id": "e7b76ca4-f28b-4f12-ab83-9639de8d4dd0",
-      "public_id": "QSI-2026-12206",
+      "id": "89b15ea2-cea9-44cb-8edf-d8140da2d028",
+      "public_id": "QSI-2026-13391",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -14922,7 +14825,7 @@
       "affected_asset": "file:utils/gpg_keys/fluffypony.asc#line 1",
       "data_source": "utils/gpg_keys/fluffypony.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.541169+00:00",
+      "detected_at": "2026-11-04T20:33:56.256523+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -15012,7 +14915,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "ff561ba4b4cea730645e1717836bba1445c1e022cb2dba9f3932e44554bf16a1",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.552527+00:00",
+          "collected_at": "2026-11-04T20:33:56.267659+00:00",
           "url": null
         },
         {
@@ -15023,7 +14926,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "ff561ba4b4cea730645e1717836bba1445c1e022cb2dba9f3932e44554bf16a1",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.552535+00:00",
+          "collected_at": "2026-11-04T20:33:56.267667+00:00",
           "url": null
         }
       ],
@@ -15061,8 +14964,8 @@
       ]
     },
     {
-      "id": "03905b4a-edf7-48c3-8ab8-d8c2ff67be31",
-      "public_id": "QSI-2026-12207",
+      "id": "a95b5cc9-1550-4428-884e-06f9921e9b01",
+      "public_id": "QSI-2026-13392",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -15082,7 +14985,7 @@
       "affected_asset": "file:utils/gpg_keys/guzzi.asc#line 1",
       "data_source": "utils/gpg_keys/guzzi.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.550730+00:00",
+      "detected_at": "2026-11-04T20:33:56.265329+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -15172,7 +15075,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "5e7185b1fede4edc96922d807c640e905169f3bf2e4d251033faa9bf641c5e15",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.560493+00:00",
+          "collected_at": "2026-11-04T20:33:56.275191+00:00",
           "url": null
         },
         {
@@ -15183,7 +15086,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "5e7185b1fede4edc96922d807c640e905169f3bf2e4d251033faa9bf641c5e15",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.560500+00:00",
+          "collected_at": "2026-11-04T20:33:56.275199+00:00",
           "url": null
         }
       ],
@@ -15221,8 +15124,8 @@
       ]
     },
     {
-      "id": "e0c6dd57-bfcf-4416-8f91-25210ef3822f",
-      "public_id": "QSI-2026-12208",
+      "id": "e931d8a9-9067-4f16-bffb-25f8ad747cb6",
+      "public_id": "QSI-2026-13393",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc",
       "description": "Найден открытый ключ DSA DSA (строка 1).",
@@ -15242,7 +15145,7 @@
       "affected_asset": "file:utils/gpg_keys/hyc.asc#line 1",
       "data_source": "utils/gpg_keys/hyc.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.558346+00:00",
+      "detected_at": "2026-11-04T20:33:56.272906+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -15332,7 +15235,7 @@
           "content_sha256": "bd67fbaa9c5614b7ea4a953e4684b6fbf2eb0fb2f91da8ce058871948c9eaa65",
           "source_sha256": "d1151bc1339aeb0f6394a4b19006002d53f77b28e2458955a0bb7e1e9ae9259a",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.567251+00:00",
+          "collected_at": "2026-11-04T20:33:56.281282+00:00",
           "url": null
         }
       ],
@@ -15370,8 +15273,8 @@
       ]
     },
     {
-      "id": "4e277bbb-3fd4-43f3-99ca-39636e2a4b95",
-      "public_id": "QSI-2026-12209",
+      "id": "be8d6140-0849-4465-b4fa-eae58d0bdbd3",
+      "public_id": "QSI-2026-13394",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc",
       "description": "Найден открытый ключ ElGamal ElGamal (строка 1).",
@@ -15391,7 +15294,7 @@
       "affected_asset": "file:utils/gpg_keys/hyc.asc#line 1",
       "data_source": "utils/gpg_keys/hyc.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.565424+00:00",
+      "detected_at": "2026-11-04T20:33:56.279564+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -15481,7 +15384,7 @@
           "content_sha256": "657c53dc46662a421c9c6854bba4bdc6e4b6c3a3b3c47a63a1f23f751fbb45d8",
           "source_sha256": "d1151bc1339aeb0f6394a4b19006002d53f77b28e2458955a0bb7e1e9ae9259a",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.573731+00:00",
+          "collected_at": "2026-11-04T20:33:56.290247+00:00",
           "url": null
         },
         {
@@ -15492,7 +15395,7 @@
           "content_sha256": "657c53dc46662a421c9c6854bba4bdc6e4b6c3a3b3c47a63a1f23f751fbb45d8",
           "source_sha256": "d1151bc1339aeb0f6394a4b19006002d53f77b28e2458955a0bb7e1e9ae9259a",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.573739+00:00",
+          "collected_at": "2026-11-04T20:33:56.290254+00:00",
           "url": null
         }
       ],
@@ -15530,8 +15433,8 @@
       ]
     },
     {
-      "id": "a391be8d-d3bb-47ae-bef2-da9bed34cdf2",
-      "public_id": "QSI-2026-12210",
+      "id": "8be43001-ef50-4140-abeb-b2e0583fdc8a",
+      "public_id": "QSI-2026-13395",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -15551,7 +15454,7 @@
       "affected_asset": "file:utils/gpg_keys/iDunk.asc#line 1",
       "data_source": "utils/gpg_keys/iDunk.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.571500+00:00",
+      "detected_at": "2026-11-04T20:33:56.288077+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -15641,7 +15544,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "0c7e4136dc46b8e90d72619eb27fd8912985d9392f37bc8a21525b589be81389",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.582267+00:00",
+          "collected_at": "2026-11-04T20:33:56.298008+00:00",
           "url": null
         },
         {
@@ -15652,7 +15555,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "0c7e4136dc46b8e90d72619eb27fd8912985d9392f37bc8a21525b589be81389",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.582274+00:00",
+          "collected_at": "2026-11-04T20:33:56.298016+00:00",
           "url": null
         }
       ],
@@ -15690,8 +15593,8 @@
       ]
     },
     {
-      "id": "3d011ae6-515f-4701-bde1-0213f10efc77",
-      "public_id": "QSI-2026-12211",
+      "id": "33288622-b644-4d7d-a654-51a534deebb7",
+      "public_id": "QSI-2026-13396",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -15711,7 +15614,7 @@
       "affected_asset": "file:utils/gpg_keys/jaquee.asc#line 1",
       "data_source": "utils/gpg_keys/jaquee.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.580585+00:00",
+      "detected_at": "2026-11-04T20:33:56.295591+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -15801,7 +15704,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "7f96c9508d8683f76d584e635701ea4d2189eadcb6858229c3ac7eb5422c9708",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.589386+00:00",
+          "collected_at": "2026-11-04T20:33:56.305610+00:00",
           "url": null
         },
         {
@@ -15812,7 +15715,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "7f96c9508d8683f76d584e635701ea4d2189eadcb6858229c3ac7eb5422c9708",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.589394+00:00",
+          "collected_at": "2026-11-04T20:33:56.305618+00:00",
           "url": null
         }
       ],
@@ -15850,8 +15753,8 @@
       ]
     },
     {
-      "id": "5df0e97b-1006-47c5-8fdf-0896be5f54c4",
-      "public_id": "QSI-2026-12212",
+      "id": "0fd5eb75-0bf6-46de-b8d1-41de2818a9e1",
+      "public_id": "QSI-2026-13397",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc",
       "description": "Найден открытый ключ RSA 3072-bit (строка 1).",
@@ -15871,7 +15774,7 @@
       "affected_asset": "file:utils/gpg_keys/jeffro256.asc#line 1",
       "data_source": "utils/gpg_keys/jeffro256.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.587415+00:00",
+      "detected_at": "2026-11-04T20:33:56.302686+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -15961,7 +15864,7 @@
           "content_sha256": "315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194",
           "source_sha256": "9c612a7fc887d2c126414da34b0db7d4f7432a0c9b1daf8fa6fb0840bfb02e90",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.598227+00:00",
+          "collected_at": "2026-11-04T20:33:56.313722+00:00",
           "url": null
         },
         {
@@ -15972,7 +15875,7 @@
           "content_sha256": "6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4",
           "source_sha256": "9c612a7fc887d2c126414da34b0db7d4f7432a0c9b1daf8fa6fb0840bfb02e90",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.598235+00:00",
+          "collected_at": "2026-11-04T20:33:56.313729+00:00",
           "url": null
         }
       ],
@@ -16010,8 +15913,8 @@
       ]
     },
     {
-      "id": "10ca0608-b3af-4634-bb27-5b8dc3f937a1",
-      "public_id": "QSI-2026-12213",
+      "id": "e514a74b-74bf-49ce-8fb8-3baac6de27c9",
+      "public_id": "QSI-2026-13398",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc",
       "description": "Найден открытый ключ Ed25519 Ed25519 (строка 1).",
@@ -16031,7 +15934,7 @@
       "affected_asset": "file:utils/gpg_keys/jpk68.asc#line 1",
       "data_source": "utils/gpg_keys/jpk68.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.594624+00:00",
+      "detected_at": "2026-11-04T20:33:56.310783+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -16121,7 +16024,7 @@
           "content_sha256": "6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8",
           "source_sha256": "2effc04e539496fe74678e7b99079bd586c68a3e0d96556318cbe1fe80008e23",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.606234+00:00",
+          "collected_at": "2026-11-04T20:33:56.320257+00:00",
           "url": null
         }
       ],
@@ -16159,8 +16062,8 @@
       ]
     },
     {
-      "id": "a05b82de-e58f-4057-bcba-8905ec8573c9",
-      "public_id": "QSI-2026-12214",
+      "id": "71b5ebd8-67ed-4664-962c-e96f51e0e913",
+      "public_id": "QSI-2026-13399",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -16180,7 +16083,7 @@
       "affected_asset": "file:utils/gpg_keys/kenshi84.asc#line 1",
       "data_source": "utils/gpg_keys/kenshi84.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.603568+00:00",
+      "detected_at": "2026-11-04T20:33:56.318441+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -16270,7 +16173,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "a4f5dc1e36048090e411bd89f381de7673955a26230cb5459e4ae2b93b97aee5",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.613058+00:00",
+          "collected_at": "2026-11-04T20:33:56.331782+00:00",
           "url": null
         },
         {
@@ -16281,7 +16184,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "a4f5dc1e36048090e411bd89f381de7673955a26230cb5459e4ae2b93b97aee5",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.613065+00:00",
+          "collected_at": "2026-11-04T20:33:56.331790+00:00",
           "url": null
         }
       ],
@@ -16319,8 +16222,8 @@
       ]
     },
     {
-      "id": "702952b8-095f-4ac2-88b9-09db56359b0c",
-      "public_id": "QSI-2026-12215",
+      "id": "218e635f-08cf-4523-9461-41c2ca738abf",
+      "public_id": "QSI-2026-13400",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -16340,7 +16243,7 @@
       "affected_asset": "file:utils/gpg_keys/luigi1111.asc#line 1",
       "data_source": "utils/gpg_keys/luigi1111.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.611040+00:00",
+      "detected_at": "2026-11-04T20:33:56.327072+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -16430,7 +16333,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "a46965379e6edd1ecf4f2b804e3a96e9824512b5ca8e9351ee4a1d640d02ab51",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.620059+00:00",
+          "collected_at": "2026-11-04T20:33:56.341019+00:00",
           "url": null
         },
         {
@@ -16441,7 +16344,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "a46965379e6edd1ecf4f2b804e3a96e9824512b5ca8e9351ee4a1d640d02ab51",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.620066+00:00",
+          "collected_at": "2026-11-04T20:33:56.341026+00:00",
           "url": null
         }
       ],
@@ -16479,8 +16382,8 @@
       ]
     },
     {
-      "id": "58a5d76f-8155-4f25-9a85-b1db5f6ed48b",
-      "public_id": "QSI-2026-12216",
+      "id": "46040584-d654-4970-a1df-141db6caa55c",
+      "public_id": "QSI-2026-13401",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -16500,7 +16403,7 @@
       "affected_asset": "file:utils/gpg_keys/mikezackles.asc#line 1",
       "data_source": "utils/gpg_keys/mikezackles.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.617895+00:00",
+      "detected_at": "2026-11-04T20:33:56.337630+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -16590,7 +16493,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "f2cc7b7ca83853d7eeea718dac378da11f4dd6476e33da51c3d0975e790463ae",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.627057+00:00",
+          "collected_at": "2026-11-04T20:33:56.354197+00:00",
           "url": null
         },
         {
@@ -16601,7 +16504,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "f2cc7b7ca83853d7eeea718dac378da11f4dd6476e33da51c3d0975e790463ae",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.627065+00:00",
+          "collected_at": "2026-11-04T20:33:56.354205+00:00",
           "url": null
         }
       ],
@@ -16639,8 +16542,8 @@
       ]
     },
     {
-      "id": "c7765e2c-62dc-4a69-a088-95f5ddf641e4",
-      "public_id": "QSI-2026-12217",
+      "id": "7029624d-7d79-4185-a509-0ec5ae07efd0",
+      "public_id": "QSI-2026-13402",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -16660,7 +16563,7 @@
       "affected_asset": "file:utils/gpg_keys/mishi_choudhary.asc#line 1",
       "data_source": "utils/gpg_keys/mishi_choudhary.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.625299+00:00",
+      "detected_at": "2026-11-04T20:33:56.349639+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -16750,7 +16653,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "de80449d2ab16e76960a5f290745bba85d05f068f3878cb69c8578f5e7602fae",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.636450+00:00",
+          "collected_at": "2026-11-04T20:33:56.363784+00:00",
           "url": null
         },
         {
@@ -16761,7 +16664,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "de80449d2ab16e76960a5f290745bba85d05f068f3878cb69c8578f5e7602fae",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.636458+00:00",
+          "collected_at": "2026-11-04T20:33:56.363797+00:00",
           "url": null
         }
       ],
@@ -16799,8 +16702,8 @@
       ]
     },
     {
-      "id": "5ece302b-ed52-493a-be30-5be662646716",
-      "public_id": "QSI-2026-12218",
+      "id": "4c578c03-891e-43d3-bef5-c75c6fa833e7",
+      "public_id": "QSI-2026-13403",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -16820,7 +16723,7 @@
       "affected_asset": "file:utils/gpg_keys/mishi_choudhary.asc#line 1",
       "data_source": "utils/gpg_keys/mishi_choudhary.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.632657+00:00",
+      "detected_at": "2026-11-04T20:33:56.361563+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -16910,7 +16813,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "de80449d2ab16e76960a5f290745bba85d05f068f3878cb69c8578f5e7602fae",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.645149+00:00",
+          "collected_at": "2026-11-04T20:33:56.371189+00:00",
           "url": null
         }
       ],
@@ -16948,8 +16851,8 @@
       ]
     },
     {
-      "id": "1ceedd17-e684-4c8a-bfde-f8588a045caa",
-      "public_id": "QSI-2026-12219",
+      "id": "b93443b1-f7c8-450b-9ab4-225f2a086962",
+      "public_id": "QSI-2026-13404",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -16969,7 +16872,7 @@
       "affected_asset": "file:utils/gpg_keys/mj-xmr.asc#line 1",
       "data_source": "utils/gpg_keys/mj-xmr.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.642427+00:00",
+      "detected_at": "2026-11-04T20:33:56.369265+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -17059,7 +16962,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "ba9b8b9caada3d98be552dda5486ee11c515a3bb9d46252f660172908e167304",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.653301+00:00",
+          "collected_at": "2026-11-04T20:33:56.378041+00:00",
           "url": null
         },
         {
@@ -17070,7 +16973,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "ba9b8b9caada3d98be552dda5486ee11c515a3bb9d46252f660172908e167304",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.653309+00:00",
+          "collected_at": "2026-11-04T20:33:56.378048+00:00",
           "url": null
         }
       ],
@@ -17108,8 +17011,8 @@
       ]
     },
     {
-      "id": "912749fc-f340-4115-9b82-01aab2c5c3bb",
-      "public_id": "QSI-2026-12220",
+      "id": "230e37ad-cbb3-48e1-9d4d-63aac4f575d4",
+      "public_id": "QSI-2026-13405",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -17129,7 +17032,7 @@
       "affected_asset": "file:utils/gpg_keys/moneromooo.asc#line 1",
       "data_source": "utils/gpg_keys/moneromooo.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.650842+00:00",
+      "detected_at": "2026-11-04T20:33:56.376277+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -17219,7 +17122,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "5d5b400087cd41084ab415a498e8d8282796469a0cf5144774b7aaacd1e498f8",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.662484+00:00",
+          "collected_at": "2026-11-04T20:33:56.386411+00:00",
           "url": null
         },
         {
@@ -17230,7 +17133,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "5d5b400087cd41084ab415a498e8d8282796469a0cf5144774b7aaacd1e498f8",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.662492+00:00",
+          "collected_at": "2026-11-04T20:33:56.386418+00:00",
           "url": null
         }
       ],
@@ -17268,8 +17171,8 @@
       ]
     },
     {
-      "id": "994e9fd0-10b5-4e5b-bff6-5e171af827b3",
-      "public_id": "QSI-2026-12221",
+      "id": "a1b2eb55-10d2-4934-8a57-e7524e50e79d",
+      "public_id": "QSI-2026-13406",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -17289,7 +17192,7 @@
       "affected_asset": "file:utils/gpg_keys/nanoakron.asc#line 1",
       "data_source": "utils/gpg_keys/nanoakron.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.659771+00:00",
+      "detected_at": "2026-11-04T20:33:56.384109+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -17379,7 +17282,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "000a70d4a80164bc2ed8fd041b10ccbbfb65e3d46835ab24539b9b4c9a0b3d5a",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.674643+00:00",
+          "collected_at": "2026-11-04T20:33:56.392593+00:00",
           "url": null
         },
         {
@@ -17390,7 +17293,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "000a70d4a80164bc2ed8fd041b10ccbbfb65e3d46835ab24539b9b4c9a0b3d5a",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.674652+00:00",
+          "collected_at": "2026-11-04T20:33:56.392601+00:00",
           "url": null
         }
       ],
@@ -17428,8 +17331,8 @@
       ]
     },
     {
-      "id": "618cb34b-9ef4-4461-8a8c-08501f9cd855",
-      "public_id": "QSI-2026-12222",
+      "id": "3c0c46dd-1c26-463f-b980-0cbdf9f7b15d",
+      "public_id": "QSI-2026-13407",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -17449,7 +17352,7 @@
       "affected_asset": "file:utils/gpg_keys/oranjuice.asc#line 1",
       "data_source": "utils/gpg_keys/oranjuice.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.668214+00:00",
+      "detected_at": "2026-11-04T20:33:56.390865+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -17539,7 +17442,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "4dda309f25e7ebe0662545b48b45dc0697625f39dcc37fc18d18b94084ffbb90",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.702543+00:00",
+          "collected_at": "2026-11-04T20:33:56.403191+00:00",
           "url": null
         },
         {
@@ -17550,7 +17453,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "4dda309f25e7ebe0662545b48b45dc0697625f39dcc37fc18d18b94084ffbb90",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.702550+00:00",
+          "collected_at": "2026-11-04T20:33:56.403201+00:00",
           "url": null
         }
       ],
@@ -17588,8 +17491,8 @@
       ]
     },
     {
-      "id": "a91b17e7-3076-427d-b7ed-03a35339d5bf",
-      "public_id": "QSI-2026-12223",
+      "id": "52d5fe94-83fa-4fd5-9b54-e61fcbfa7a3b",
+      "public_id": "QSI-2026-13408",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -17609,7 +17512,7 @@
       "affected_asset": "file:utils/gpg_keys/rbrunner7.asc#line 1",
       "data_source": "utils/gpg_keys/rbrunner7.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.699087+00:00",
+      "detected_at": "2026-11-04T20:33:56.398276+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -17699,7 +17602,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "ad8af90e8787eae9da7479005d1faf509af206c4c91fb33f14d5ba90404ee035",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.712435+00:00",
+          "collected_at": "2026-11-04T20:33:56.410928+00:00",
           "url": null
         },
         {
@@ -17710,7 +17613,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "ad8af90e8787eae9da7479005d1faf509af206c4c91fb33f14d5ba90404ee035",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.712443+00:00",
+          "collected_at": "2026-11-04T20:33:56.410935+00:00",
           "url": null
         }
       ],
@@ -17748,8 +17651,8 @@
       ]
     },
     {
-      "id": "112ed301-6f76-4b25-9eee-7aedfec2db4b",
-      "public_id": "QSI-2026-12224",
+      "id": "f8d69f4b-0e5f-46ce-a1d4-a7f0e93742c1",
+      "public_id": "QSI-2026-13409",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -17769,7 +17672,7 @@
       "affected_asset": "file:utils/gpg_keys/sarang.asc#line 1",
       "data_source": "utils/gpg_keys/sarang.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.710135+00:00",
+      "detected_at": "2026-11-04T20:33:56.409091+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -17859,7 +17762,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "90c167b43bee53547544875213278763ac8f5863d33bdbdc17794157ea574966",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.719679+00:00",
+          "collected_at": "2026-11-04T20:33:56.418982+00:00",
           "url": null
         },
         {
@@ -17870,7 +17773,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "90c167b43bee53547544875213278763ac8f5863d33bdbdc17794157ea574966",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.719686+00:00",
+          "collected_at": "2026-11-04T20:33:56.418990+00:00",
           "url": null
         }
       ],
@@ -17908,8 +17811,8 @@
       ]
     },
     {
-      "id": "e4e0677e-7814-48ba-98a7-3886f12015da",
-      "public_id": "QSI-2026-12225",
+      "id": "445abd77-ab92-418b-925a-1e5ff97c2308",
+      "public_id": "QSI-2026-13410",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -17929,7 +17832,7 @@
       "affected_asset": "file:utils/gpg_keys/selsta.asc#line 1",
       "data_source": "utils/gpg_keys/selsta.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.717603+00:00",
+      "detected_at": "2026-11-04T20:33:56.416024+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -18019,7 +17922,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "21ec5b18eeb3e647f92338231bfb2cb9f5f9202f30226189541993078c721d80",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.729176+00:00",
+          "collected_at": "2026-11-04T20:33:56.427383+00:00",
           "url": null
         },
         {
@@ -18030,7 +17933,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "21ec5b18eeb3e647f92338231bfb2cb9f5f9202f30226189541993078c721d80",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.729184+00:00",
+          "collected_at": "2026-11-04T20:33:56.427391+00:00",
           "url": null
         }
       ],
@@ -18068,8 +17971,8 @@
       ]
     },
     {
-      "id": "ccff3d86-e02b-4a05-8fa4-ed58039fb799",
-      "public_id": "QSI-2026-12226",
+      "id": "926a4d65-058f-4382-a0c1-fafe83c75856",
+      "public_id": "QSI-2026-13411",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -18089,7 +17992,7 @@
       "affected_asset": "file:utils/gpg_keys/snipa.asc#line 1",
       "data_source": "utils/gpg_keys/snipa.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.725840+00:00",
+      "detected_at": "2026-11-04T20:33:56.424552+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -18179,7 +18082,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "15e9bbc7d0ed6160dd0725048397cc69b4c1d2c53f453f551393806447032937",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.739052+00:00",
+          "collected_at": "2026-11-04T20:33:56.437129+00:00",
           "url": null
         },
         {
@@ -18190,7 +18093,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "15e9bbc7d0ed6160dd0725048397cc69b4c1d2c53f453f551393806447032937",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.739060+00:00",
+          "collected_at": "2026-11-04T20:33:56.437137+00:00",
           "url": null
         }
       ],
@@ -18228,8 +18131,8 @@
       ]
     },
     {
-      "id": "79f9571a-f720-46e0-b2f2-402a7c0dda9d",
-      "public_id": "QSI-2026-12227",
+      "id": "546d453c-3487-4a86-ac29-ab931f3d0b83",
+      "public_id": "QSI-2026-13412",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -18249,7 +18152,7 @@
       "affected_asset": "file:utils/gpg_keys/stoffu.asc#line 1",
       "data_source": "utils/gpg_keys/stoffu.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.736568+00:00",
+      "detected_at": "2026-11-04T20:33:56.432188+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -18339,7 +18242,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "d4e8f3714c1f86a24cb5427690e73fddb18b911b838bc4bded3b3ebdd0aae849",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.746786+00:00",
+          "collected_at": "2026-11-04T20:33:56.444951+00:00",
           "url": null
         },
         {
@@ -18350,7 +18253,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "d4e8f3714c1f86a24cb5427690e73fddb18b911b838bc4bded3b3ebdd0aae849",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.746794+00:00",
+          "collected_at": "2026-11-04T20:33:56.444959+00:00",
           "url": null
         }
       ],
@@ -18388,8 +18291,8 @@
       ]
     },
     {
-      "id": "e2c3721e-ac9e-446c-8d29-f379f023a6ad",
-      "public_id": "QSI-2026-12228",
+      "id": "8798a1e1-38f7-4416-9499-aafcbe8335f9",
+      "public_id": "QSI-2026-13413",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -18409,7 +18312,7 @@
       "affected_asset": "file:utils/gpg_keys/tewinget.asc#line 1",
       "data_source": "utils/gpg_keys/tewinget.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.744660+00:00",
+      "detected_at": "2026-11-04T20:33:56.443050+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -18499,7 +18402,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "a009d80195976ef3618e83e6a18c8d4a5c1e013c3a4445855e8564e29b106b6d",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.754405+00:00",
+          "collected_at": "2026-11-04T20:33:56.451635+00:00",
           "url": null
         }
       ],
@@ -18537,8 +18440,8 @@
       ]
     },
     {
-      "id": "5c182a56-c1ce-4422-bfaa-85ae653bc134",
-      "public_id": "QSI-2026-12229",
+      "id": "74cf0b67-60e7-4039-b5b1-559be7ceb311",
+      "public_id": "QSI-2026-13414",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -18558,7 +18461,7 @@
       "affected_asset": "file:utils/gpg_keys/thecharlatan.asc#line 1",
       "data_source": "utils/gpg_keys/thecharlatan.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.752211+00:00",
+      "detected_at": "2026-11-04T20:33:56.449562+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -18648,7 +18551,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "c229c79d3677332d6eb406d406e2c7daef67fcad6439bb8224c4e3b3ccfef1e0",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.763412+00:00",
+          "collected_at": "2026-11-04T20:33:56.459763+00:00",
           "url": null
         },
         {
@@ -18659,7 +18562,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "c229c79d3677332d6eb406d406e2c7daef67fcad6439bb8224c4e3b3ccfef1e0",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.763419+00:00",
+          "collected_at": "2026-11-04T20:33:56.459771+00:00",
           "url": null
         },
         {
@@ -18670,7 +18573,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "c229c79d3677332d6eb406d406e2c7daef67fcad6439bb8224c4e3b3ccfef1e0",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.763423+00:00",
+          "collected_at": "2026-11-04T20:33:56.459774+00:00",
           "url": null
         },
         {
@@ -18681,7 +18584,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "c229c79d3677332d6eb406d406e2c7daef67fcad6439bb8224c4e3b3ccfef1e0",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.763426+00:00",
+          "collected_at": "2026-11-04T20:33:56.459777+00:00",
           "url": null
         }
       ],
@@ -18719,8 +18622,8 @@
       ]
     },
     {
-      "id": "dbc8b71b-da72-444f-96e1-59d6c3d0eabd",
-      "public_id": "QSI-2026-12230",
+      "id": "44b1f502-2bb3-4606-8b82-f2649e9df0b6",
+      "public_id": "QSI-2026-13415",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -18740,7 +18643,7 @@
       "affected_asset": "file:utils/gpg_keys/tobtoht.asc#line 1",
       "data_source": "utils/gpg_keys/tobtoht.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.760258+00:00",
+      "detected_at": "2026-11-04T20:33:56.457885+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -18830,7 +18733,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "724810ee65b892a4706d51c3f279d2f67727256f18150c0456590171caedd189",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.772267+00:00",
+          "collected_at": "2026-11-04T20:33:56.467876+00:00",
           "url": null
         },
         {
@@ -18841,7 +18744,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "724810ee65b892a4706d51c3f279d2f67727256f18150c0456590171caedd189",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.772275+00:00",
+          "collected_at": "2026-11-04T20:33:56.467884+00:00",
           "url": null
         }
       ],
@@ -18879,8 +18782,8 @@
       ]
     },
     {
-      "id": "01685d0f-e291-433e-90af-783a4a575c11",
-      "public_id": "QSI-2026-12231",
+      "id": "f93f96a6-267e-482a-938c-be6e255016ab",
+      "public_id": "QSI-2026-13416",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc",
       "description": "Найден открытый ключ RSA 2048-bit (строка 1).",
@@ -18900,7 +18803,7 @@
       "affected_asset": "file:utils/gpg_keys/tomerkon.asc#line 1",
       "data_source": "utils/gpg_keys/tomerkon.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.769775+00:00",
+      "detected_at": "2026-11-04T20:33:56.465695+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -18990,7 +18893,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "bc889610f94fd022dfae94feed3df356f4b3c24952f95fe335e10ab254b8b60c",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.780339+00:00",
+          "collected_at": "2026-11-04T20:33:56.475225+00:00",
           "url": null
         },
         {
@@ -19001,7 +18904,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "bc889610f94fd022dfae94feed3df356f4b3c24952f95fe335e10ab254b8b60c",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.780347+00:00",
+          "collected_at": "2026-11-04T20:33:56.475232+00:00",
           "url": null
         }
       ],
@@ -19039,8 +18942,8 @@
       ]
     },
     {
-      "id": "61c04f8c-6a48-4de7-b859-71311d1011ea",
-      "public_id": "QSI-2026-12232",
+      "id": "2ee96214-dec5-45bd-b4a3-615f6a583e27",
+      "public_id": "QSI-2026-13417",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc",
       "description": "Найден открытый ключ RSA 4096-bit (строка 1).",
@@ -19060,7 +18963,7 @@
       "affected_asset": "file:utils/gpg_keys/warptangent.asc#line 1",
       "data_source": "utils/gpg_keys/warptangent.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.777700+00:00",
+      "detected_at": "2026-11-04T20:33:56.473458+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -19150,7 +19053,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "c24c127a643a6c13bb331d5b22f786ffc662c61aacdf877aa9c2e526071c7880",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.787633+00:00",
+          "collected_at": "2026-11-04T20:33:56.482320+00:00",
           "url": null
         },
         {
@@ -19161,7 +19064,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "c24c127a643a6c13bb331d5b22f786ffc662c61aacdf877aa9c2e526071c7880",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.787640+00:00",
+          "collected_at": "2026-11-04T20:33:56.482327+00:00",
           "url": null
         }
       ],
@@ -19199,8 +19102,8 @@
       ]
     },
     {
-      "id": "6c8148db-e535-4d46-b86f-5ae2c0b0ab59",
-      "public_id": "QSI-2026-12233",
+      "id": "edf7f0e2-47f5-4d3d-9c65-0e9461e82f8b",
+      "public_id": "QSI-2026-13418",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc",
       "description": "Найден открытый ключ RSA 3072-bit (строка 1).",
@@ -19220,7 +19123,7 @@
       "affected_asset": "file:utils/gpg_keys/xiphon.asc#line 1",
       "data_source": "utils/gpg_keys/xiphon.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.785285+00:00",
+      "detected_at": "2026-11-04T20:33:56.479346+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -19310,7 +19213,7 @@
           "content_sha256": "315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194",
           "source_sha256": "a6fa139506005fee0b470e8077abf26b284f7aba309af004f25213a4e2b7a874",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.796252+00:00",
+          "collected_at": "2026-11-04T20:33:56.489804+00:00",
           "url": null
         },
         {
@@ -19321,7 +19224,7 @@
           "content_sha256": "6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4",
           "source_sha256": "a6fa139506005fee0b470e8077abf26b284f7aba309af004f25213a4e2b7a874",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.796260+00:00",
+          "collected_at": "2026-11-04T20:33:56.489811+00:00",
           "url": null
         }
       ],
@@ -19359,8 +19262,8 @@
       ]
     },
     {
-      "id": "c612d67d-b911-4db0-8545-67f332eb7451",
-      "public_id": "QSI-2026-12235",
+      "id": "0484daa7-2fa8-4f07-818a-577e0e61e7b5",
+      "public_id": "QSI-2026-13419",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc",
       "description": "Найден открытый ключ Ed25519 Ed25519 (строка 1).",
@@ -19380,7 +19283,7 @@
       "affected_asset": "file:external/randomx/doc/tevador.asc#line 1",
       "data_source": "external/randomx/doc/tevador.asc",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.802664+00:00",
+      "detected_at": "2026-11-04T20:33:56.487852+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -19470,7 +19373,7 @@
           "content_sha256": "6dbf836a10cb57142effcc3f89dd5e74340870bac059dd57e9f528bf344e8db8",
           "source_sha256": "4ac6623e81115d14dc67670c5a9bcd036979163aea95485a6c05931653e175f6",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.822180+00:00",
+          "collected_at": "2026-11-04T20:33:56.497747+00:00",
           "url": null
         }
       ],
@@ -19508,8 +19411,8 @@
       ]
     },
     {
-      "id": "cf54d3f3-2446-45b1-b5a6-4070aaad1f1b",
-      "public_id": "QSI-2026-12196",
+      "id": "4f310823-6764-4d5a-97b1-db2c722e4430",
+      "public_id": "QSI-2026-13381",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
       "description": "2 упоминаний RSA в 1 файл(ах), например contrib/epee/src/net_ssl.cpp:101. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.",
@@ -19529,7 +19432,7 @@
       "affected_asset": "source-code:RSA:channel",
       "data_source": "contrib/epee/src/net_ssl.cpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.439790+00:00",
+      "detected_at": "2026-11-04T20:33:56.147793+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -19626,7 +19529,7 @@
           "content_sha256": "4d50f6f14bec76d20f7716ad36b7f871e90002972fe847d7dc6d3ffc1bf8cd4e",
           "source_sha256": "1aa680f5e00a9f7882217858dd4028c53bf5aa23ff9099a89a9b771f8997c884",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.454453+00:00",
+          "collected_at": "2026-11-04T20:33:56.163338+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/contrib/epee/src/net_ssl.cpp#L101"
         },
         {
@@ -19637,7 +19540,7 @@
           "content_sha256": "d08840d9938697f2919cf1a59a44c2f16d1d4224019364b4de8bc3521b725285",
           "source_sha256": "1aa680f5e00a9f7882217858dd4028c53bf5aa23ff9099a89a9b771f8997c884",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.454462+00:00",
+          "collected_at": "2026-11-04T20:33:56.163346+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/contrib/epee/src/net_ssl.cpp#L125"
         }
       ],
@@ -19675,8 +19578,8 @@
       ]
     },
     {
-      "id": "3cfca7cb-28a1-48bc-9c77-d3a4d47f5af7",
-      "public_id": "QSI-2026-12197",
+      "id": "aaea650b-1674-4e7b-b005-0cb9b74e30b4",
+      "public_id": "QSI-2026-13382",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Ed25519: роль не определена (26 файл(ов))",
       "description": "216 упоминаний Ed25519 в 26 файл(ах), например src/crypto/crypto_ops_builder/crypto_sign.h:10. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -19696,7 +19599,7 @@
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "src/crypto/crypto_ops_builder/crypto_sign.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.449479+00:00",
+      "detected_at": "2026-11-04T20:33:56.157545+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -19793,7 +19696,7 @@
           "content_sha256": "1633a67376543975d71960dfc141c8df6517fb680e0f0bafa39f3e8693ce6069",
           "source_sha256": "37bae804bf4516a7150f53b9ce93cc8afeea6ea0f7844e8cf1a8afe9bfcdd928",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471951+00:00",
+          "collected_at": "2026-11-04T20:33:56.186493+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/crypto_sign.h#L10"
         },
         {
@@ -19804,7 +19707,7 @@
           "content_sha256": "e44ffcfd2c36c50a32623005fa4fc3a6955d56c815105774ac58780b1b801d0f",
           "source_sha256": "010e58c066e38efea63848b024903cfdc5f659a8495bdc7f1c3f4a45f366dcb9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471959+00:00",
+          "collected_at": "2026-11-04T20:33:56.186501+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/include/sodium.h#L32"
         },
         {
@@ -19815,7 +19718,7 @@
           "content_sha256": "26e7de53d9330d8b3068a57428b7da468d90ac67b75998f60c1d25d69e5154da",
           "source_sha256": "37c8cf172c190b37134e6c9f9bf61f12c790126ecedc2abd6ecddffa71a4fd92",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471963+00:00",
+          "collected_at": "2026-11-04T20:33:56.186505+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/fe.h#L16"
         },
         {
@@ -19826,7 +19729,7 @@
           "content_sha256": "e2521389a4c14017b8d251557d9c4325fd1f59abbad5eee70a7a76b12561c72e",
           "source_sha256": "37c8cf172c190b37134e6c9f9bf61f12c790126ecedc2abd6ecddffa71a4fd92",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471966+00:00",
+          "collected_at": "2026-11-04T20:33:56.186508+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/fe.h#L17"
         },
         {
@@ -19837,7 +19740,7 @@
           "content_sha256": "733e3482bd5a00a26b31eb182a2ca7e88b08401bd9904efd6b47f8e78667eec1",
           "source_sha256": "37c8cf172c190b37134e6c9f9bf61f12c790126ecedc2abd6ecddffa71a4fd92",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471970+00:00",
+          "collected_at": "2026-11-04T20:33:56.186511+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/fe.h#L18"
         },
         {
@@ -19848,7 +19751,7 @@
           "content_sha256": "5001b81c74571e1c2143968e03d70d03dcf7f8ba4aa35f6453e472df3f3b8f2b",
           "source_sha256": "827267cd894408c3e10443a51c257ce5dfc93ad032eff178a101d12cc9d1ace7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471975+00:00",
+          "collected_at": "2026-11-04T20:33:56.186515+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/ge.h#L53"
         },
         {
@@ -19859,7 +19762,7 @@
           "content_sha256": "188164fafff5c4f7e64ba66cd53d4e6a53dde94c6c6e6dcf04d6de0101751d9b",
           "source_sha256": "827267cd894408c3e10443a51c257ce5dfc93ad032eff178a101d12cc9d1ace7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471979+00:00",
+          "collected_at": "2026-11-04T20:33:56.186518+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/ge.h#L54"
         },
         {
@@ -19870,7 +19773,7 @@
           "content_sha256": "26704210ca2625df2efe6f7b4ab9fce20c3d458197e8caf7d534251b5a158605",
           "source_sha256": "827267cd894408c3e10443a51c257ce5dfc93ad032eff178a101d12cc9d1ace7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471982+00:00",
+          "collected_at": "2026-11-04T20:33:56.186521+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/ge.h#L55"
         },
         {
@@ -19881,7 +19784,7 @@
           "content_sha256": "7463cfd8d788a4394462333e573eb707e802d719f8151ef9326694b265e43610",
           "source_sha256": "a2fdd7099b1a4aaa2deee29991b032b1d5dc9744dc87152b1a76d3783b5e602d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471985+00:00",
+          "collected_at": "2026-11-04T20:33:56.186524+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/keypair.c#L7"
         },
         {
@@ -19892,7 +19795,7 @@
           "content_sha256": "665a37c7fc295c104e36f946601f5ebf7f1e0cd013404f2d84301d12ed52f43b",
           "source_sha256": "8ca4cb1ddc03571b62d668853f652b6116a8a93c439e32a529924bc0acc16c9d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.471988+00:00",
+          "collected_at": "2026-11-04T20:33:56.186527+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/sc.h#L9"
         }
       ],
@@ -19930,8 +19833,8 @@
       ]
     },
     {
-      "id": "66d9d22f-7f2a-4c24-8fc4-5d141d89e785",
-      "public_id": "QSI-2026-12198",
+      "id": "300c0e5f-d5f9-4a7f-847f-15df79060970",
+      "public_id": "QSI-2026-13383",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: роль не определена (2 файл(ов))",
       "description": "2 упоминаний X25519 в 2 файл(ах), например src/crypto/crypto_ops_builder/include/sodium.h:25. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -19951,7 +19854,7 @@
       "affected_asset": "source-code:X25519:general",
       "data_source": "src/crypto/crypto_ops_builder/include/sodium.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.468640+00:00",
+      "detected_at": "2026-11-04T20:33:56.182374+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -20048,7 +19951,7 @@
           "content_sha256": "e2d333bff28206bff3400c47b5c6881b1ec65e0ebd19b05659e42ceb45f51547",
           "source_sha256": "010e58c066e38efea63848b024903cfdc5f659a8495bdc7f1c3f4a45f366dcb9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.484327+00:00",
+          "collected_at": "2026-11-04T20:33:56.198060+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/include/sodium.h#L25"
         },
         {
@@ -20059,7 +19962,7 @@
           "content_sha256": "bce348264cf8220651dfc34ba2a085d131c4931555ecc9701059e13aff64c093",
           "source_sha256": "aa9696357248dfaa733e4a512a1c6b4eff6c6e9cd4787ec7914f13cd7d3a78f9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.484336+00:00",
+          "collected_at": "2026-11-04T20:33:56.198067+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/x25519.cpp#L30"
         }
       ],
@@ -20097,8 +20000,8 @@
       ]
     },
     {
-      "id": "c4c32d28-dd93-4c99-80e2-d9709f04b585",
-      "public_id": "QSI-2026-12199",
+      "id": "306088ba-3d78-456a-a9c0-08d157935e82",
+      "public_id": "QSI-2026-13384",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))",
       "description": "3 упоминаний ECDH в 2 файл(ах), например src/device_trezor/trezor/protocol.cpp:699. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -20118,7 +20021,7 @@
       "affected_asset": "source-code:ECDH:general",
       "data_source": "src/device_trezor/trezor/protocol.cpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.480272+00:00",
+      "detected_at": "2026-11-04T20:33:56.195484+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -20215,7 +20118,7 @@
           "content_sha256": "7160937a79a3a95f9c7a63fe81b770c6ed8c34318e8970a8856144860de7c98b",
           "source_sha256": "208d62420b9807b1f6031655fc422468a2c306e1523276a27ee7c216ad559b19",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.494645+00:00",
+          "collected_at": "2026-11-04T20:33:56.208218+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/device_trezor/trezor/protocol.cpp#L699"
         },
         {
@@ -20226,7 +20129,7 @@
           "content_sha256": "457fe6b06c26b300f98003a4b0493c6e84abdfae48a650dac0be78ba805af4c5",
           "source_sha256": "2d45e11f8f8aecb5bcec1570b8fbbf26e6e4133b1652f02cec1826deb0b83436",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.494654+00:00",
+          "collected_at": "2026-11-04T20:33:56.208226+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/ringct/rctSigs.cpp#L1573"
         },
         {
@@ -20237,7 +20140,7 @@
           "content_sha256": "85f3eb7fcdfb06e0bff054a2e92336f11459a212c26b5ea7770cc9bcd8a4ee1d",
           "source_sha256": "2d45e11f8f8aecb5bcec1570b8fbbf26e6e4133b1652f02cec1826deb0b83436",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.494658+00:00",
+          "collected_at": "2026-11-04T20:33:56.208230+00:00",
           "url": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/ringct/rctSigs.cpp#L1574"
         }
       ],
@@ -20275,8 +20178,8 @@
       ]
     },
     {
-      "id": "01878ecf-1e82-484c-96a4-7012b93d0845",
-      "public_id": "QSI-2026-12238",
+      "id": "1fc7ef88-1711-484f-9ad3-f573233da7a3",
+      "public_id": "QSI-2026-13422",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)",
       "description": "OSV.dev сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) для пакета crates.io keccak версии 0.1.5: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. Затронутый код находится за флагом Cargo `asm`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость.",
@@ -20297,7 +20200,7 @@
       "affected_asset": "dependency:crates.io/keccak@0.1.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.832944+00:00",
+      "detected_at": "2026-11-04T20:33:56.509299+00:00",
       "risk_score": 25.0,
       "risk_breakdown": {
         "score": 25.0,
@@ -20353,7 +20256,7 @@
           "content_sha256": "d5a8f5565101ab9d60521142f31c54583db5b87e9a59fc99e1fa93d6c2e5f782",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.930364+00:00",
+          "collected_at": "2026-11-04T20:33:56.600400+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv"
         }
       ],
@@ -20376,8 +20279,8 @@
       ]
     },
     {
-      "id": "7ed06f3c-6ba9-49d1-afe9-f8128d636de6",
-      "public_id": "QSI-2026-12237",
+      "id": "4de1003d-13bf-4b72-8488-fcf8e9d8499d",
+      "public_id": "QSI-2026-13421",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, k256, p256), но ни одной из списка поддерживающих PQC.",
@@ -20397,7 +20300,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:04:57.826510+00:00",
+      "detected_at": "2026-11-04T20:33:56.501730+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -20460,7 +20363,7 @@
           "content_sha256": "db5d4da5ee6bd5304400a63ce961218e4d81bf3dc595a99c76e75ace171c646c",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:04:57.834906+00:00",
+          "collected_at": "2026-11-04T20:33:56.511406+00:00",
           "url": null
         }
       ],
@@ -20488,46 +20391,46 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-12236",
-      "QSI-2026-12200",
-      "QSI-2026-12201",
-      "QSI-2026-12202",
-      "QSI-2026-12203",
-      "QSI-2026-12204",
-      "QSI-2026-12205",
-      "QSI-2026-12206",
-      "QSI-2026-12207",
-      "QSI-2026-12208",
-      "QSI-2026-12209",
-      "QSI-2026-12210",
-      "QSI-2026-12211",
-      "QSI-2026-12212",
-      "QSI-2026-12213",
-      "QSI-2026-12214",
-      "QSI-2026-12215",
-      "QSI-2026-12216",
-      "QSI-2026-12217",
-      "QSI-2026-12218",
-      "QSI-2026-12219",
-      "QSI-2026-12220",
-      "QSI-2026-12221",
-      "QSI-2026-12222",
-      "QSI-2026-12223",
-      "QSI-2026-12224",
-      "QSI-2026-12225",
-      "QSI-2026-12226",
-      "QSI-2026-12227",
-      "QSI-2026-12228",
-      "QSI-2026-12229",
-      "QSI-2026-12230",
-      "QSI-2026-12231",
-      "QSI-2026-12232",
-      "QSI-2026-12233",
-      "QSI-2026-12235",
-      "QSI-2026-12196",
-      "QSI-2026-12197",
-      "QSI-2026-12198",
-      "QSI-2026-12199"
+      "QSI-2026-13420",
+      "QSI-2026-13385",
+      "QSI-2026-13386",
+      "QSI-2026-13387",
+      "QSI-2026-13388",
+      "QSI-2026-13389",
+      "QSI-2026-13390",
+      "QSI-2026-13391",
+      "QSI-2026-13392",
+      "QSI-2026-13393",
+      "QSI-2026-13394",
+      "QSI-2026-13395",
+      "QSI-2026-13396",
+      "QSI-2026-13397",
+      "QSI-2026-13398",
+      "QSI-2026-13399",
+      "QSI-2026-13400",
+      "QSI-2026-13401",
+      "QSI-2026-13402",
+      "QSI-2026-13403",
+      "QSI-2026-13404",
+      "QSI-2026-13405",
+      "QSI-2026-13406",
+      "QSI-2026-13407",
+      "QSI-2026-13408",
+      "QSI-2026-13409",
+      "QSI-2026-13410",
+      "QSI-2026-13411",
+      "QSI-2026-13412",
+      "QSI-2026-13413",
+      "QSI-2026-13414",
+      "QSI-2026-13415",
+      "QSI-2026-13416",
+      "QSI-2026-13417",
+      "QSI-2026-13418",
+      "QSI-2026-13419",
+      "QSI-2026-13381",
+      "QSI-2026-13382",
+      "QSI-2026-13383",
+      "QSI-2026-13384"
     ],
     "roles": [
       {
@@ -20543,7 +20446,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12196"
+          "QSI-2026-13381"
         ],
         "files": 1
       },
@@ -20560,7 +20463,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12236"
+          "QSI-2026-13420"
         ],
         "files": 1
       },
@@ -20585,9 +20488,9 @@
           }
         ],
         "findings": [
-          "QSI-2026-12197",
-          "QSI-2026-12198",
-          "QSI-2026-12199"
+          "QSI-2026-13382",
+          "QSI-2026-13383",
+          "QSI-2026-13384"
         ],
         "files": 30
       }
@@ -20811,24 +20714,6 @@
     "30": [
       {
         "kind": "root_cause",
-        "action": "Замените и удалите секреты из utils/python-rpc/framework/wallet.py.",
-        "rationale": "Устраняет первопричину, описанную в находке.",
-        "expected_outcome": "При повторной проверке слабость не обнаруживается.",
-        "priority": "P1",
-        "horizon_days": 30,
-        "complexity": "low",
-        "dependencies": "Окно изменений и согласование владельца.",
-        "side_effects": "Возможна несовместимость со старыми клиентами.",
-        "pre_tests": "Воспроизведите находку по описанным шагам.",
-        "post_tests": "Выполните процедуру повторной проверки из находки.",
-        "closure_criteria": "Сканер секретов ничего не находит; старые значения отозваны.",
-        "status": "todo",
-        "finding": "QSI-2026-12234",
-        "finding_title": "Возможный секрет в коде utils/python-rpc/framework/wallet.py",
-        "severity": "high"
-      },
-      {
-        "kind": "root_cause",
         "action": "Обновите keccak до исправленной версии (0.1.6).",
         "rationale": "Устраняет первопричину, описанную в находке.",
         "expected_outcome": "При повторной проверке слабость не обнаруживается.",
@@ -20841,7 +20726,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012).",
         "status": "todo",
-        "finding": "QSI-2026-12238",
+        "finding": "QSI-2026-13422",
         "finding_title": "keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)",
         "severity": "low"
       }
@@ -20862,7 +20747,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12236",
+        "finding": "QSI-2026-13420",
         "finding_title": "Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых",
         "severity": "medium"
       },
@@ -20880,7 +20765,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12200",
+        "finding": "QSI-2026-13385",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc",
         "severity": "medium"
       },
@@ -20898,7 +20783,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12201",
+        "finding": "QSI-2026-13386",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc",
         "severity": "medium"
       },
@@ -20916,7 +20801,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12202",
+        "finding": "QSI-2026-13387",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc",
         "severity": "medium"
       },
@@ -20934,7 +20819,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12203",
+        "finding": "QSI-2026-13388",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc",
         "severity": "medium"
       },
@@ -20952,7 +20837,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12204",
+        "finding": "QSI-2026-13389",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc",
         "severity": "medium"
       },
@@ -20970,7 +20855,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12205",
+        "finding": "QSI-2026-13390",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc",
         "severity": "medium"
       },
@@ -20988,7 +20873,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12206",
+        "finding": "QSI-2026-13391",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc",
         "severity": "medium"
       },
@@ -21006,7 +20891,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12207",
+        "finding": "QSI-2026-13392",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc",
         "severity": "medium"
       },
@@ -21024,7 +20909,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12208",
+        "finding": "QSI-2026-13393",
         "finding_title": "Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc",
         "severity": "medium"
       },
@@ -21042,7 +20927,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12209",
+        "finding": "QSI-2026-13394",
         "finding_title": "Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc",
         "severity": "medium"
       },
@@ -21060,7 +20945,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12210",
+        "finding": "QSI-2026-13395",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc",
         "severity": "medium"
       },
@@ -21078,7 +20963,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12211",
+        "finding": "QSI-2026-13396",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc",
         "severity": "medium"
       },
@@ -21096,7 +20981,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12212",
+        "finding": "QSI-2026-13397",
         "finding_title": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc",
         "severity": "medium"
       },
@@ -21114,7 +20999,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12213",
+        "finding": "QSI-2026-13398",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc",
         "severity": "medium"
       },
@@ -21132,7 +21017,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12214",
+        "finding": "QSI-2026-13399",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc",
         "severity": "medium"
       },
@@ -21150,7 +21035,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12215",
+        "finding": "QSI-2026-13400",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc",
         "severity": "medium"
       },
@@ -21168,7 +21053,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12216",
+        "finding": "QSI-2026-13401",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc",
         "severity": "medium"
       },
@@ -21186,7 +21071,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12217",
+        "finding": "QSI-2026-13402",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc",
         "severity": "medium"
       },
@@ -21204,7 +21089,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12218",
+        "finding": "QSI-2026-13403",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc",
         "severity": "medium"
       },
@@ -21222,7 +21107,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12219",
+        "finding": "QSI-2026-13404",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc",
         "severity": "medium"
       },
@@ -21240,7 +21125,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12220",
+        "finding": "QSI-2026-13405",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc",
         "severity": "medium"
       },
@@ -21258,7 +21143,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12221",
+        "finding": "QSI-2026-13406",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc",
         "severity": "medium"
       },
@@ -21276,7 +21161,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12222",
+        "finding": "QSI-2026-13407",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc",
         "severity": "medium"
       },
@@ -21294,7 +21179,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12223",
+        "finding": "QSI-2026-13408",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc",
         "severity": "medium"
       },
@@ -21312,7 +21197,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12224",
+        "finding": "QSI-2026-13409",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc",
         "severity": "medium"
       },
@@ -21330,7 +21215,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12225",
+        "finding": "QSI-2026-13410",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc",
         "severity": "medium"
       },
@@ -21348,7 +21233,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12226",
+        "finding": "QSI-2026-13411",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc",
         "severity": "medium"
       },
@@ -21366,7 +21251,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12227",
+        "finding": "QSI-2026-13412",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc",
         "severity": "medium"
       },
@@ -21384,7 +21269,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12228",
+        "finding": "QSI-2026-13413",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc",
         "severity": "medium"
       },
@@ -21402,7 +21287,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12229",
+        "finding": "QSI-2026-13414",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc",
         "severity": "medium"
       },
@@ -21420,7 +21305,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12230",
+        "finding": "QSI-2026-13415",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc",
         "severity": "medium"
       },
@@ -21438,7 +21323,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12231",
+        "finding": "QSI-2026-13416",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc",
         "severity": "medium"
       },
@@ -21456,7 +21341,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12232",
+        "finding": "QSI-2026-13417",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc",
         "severity": "medium"
       },
@@ -21474,7 +21359,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12233",
+        "finding": "QSI-2026-13418",
         "finding_title": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc",
         "severity": "medium"
       },
@@ -21492,7 +21377,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12235",
+        "finding": "QSI-2026-13419",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc",
         "severity": "medium"
       },
@@ -21510,7 +21395,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12196",
+        "finding": "QSI-2026-13381",
         "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
         "severity": "medium"
       },
@@ -21528,7 +21413,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12197",
+        "finding": "QSI-2026-13382",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (26 файл(ов))",
         "severity": "medium"
       },
@@ -21546,7 +21431,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12198",
+        "finding": "QSI-2026-13383",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -21564,7 +21449,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12199",
+        "finding": "QSI-2026-13384",
         "finding_title": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -21582,7 +21467,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ? или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12236",
+        "finding": "QSI-2026-13420",
         "finding_title": "Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых",
         "severity": "medium"
       },
@@ -21600,7 +21485,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12200",
+        "finding": "QSI-2026-13385",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc",
         "severity": "medium"
       },
@@ -21618,7 +21503,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12201",
+        "finding": "QSI-2026-13386",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc",
         "severity": "medium"
       },
@@ -21636,7 +21521,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12202",
+        "finding": "QSI-2026-13387",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc",
         "severity": "medium"
       },
@@ -21654,7 +21539,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12203",
+        "finding": "QSI-2026-13388",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc",
         "severity": "medium"
       },
@@ -21672,7 +21557,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12204",
+        "finding": "QSI-2026-13389",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc",
         "severity": "medium"
       },
@@ -21690,7 +21575,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12205",
+        "finding": "QSI-2026-13390",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc",
         "severity": "medium"
       },
@@ -21708,7 +21593,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12206",
+        "finding": "QSI-2026-13391",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc",
         "severity": "medium"
       },
@@ -21726,7 +21611,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12207",
+        "finding": "QSI-2026-13392",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc",
         "severity": "medium"
       },
@@ -21744,7 +21629,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12208",
+        "finding": "QSI-2026-13393",
         "finding_title": "Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc",
         "severity": "medium"
       },
@@ -21762,7 +21647,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12209",
+        "finding": "QSI-2026-13394",
         "finding_title": "Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc",
         "severity": "medium"
       },
@@ -21780,7 +21665,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12210",
+        "finding": "QSI-2026-13395",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc",
         "severity": "medium"
       },
@@ -21798,7 +21683,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12211",
+        "finding": "QSI-2026-13396",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc",
         "severity": "medium"
       },
@@ -21816,7 +21701,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12212",
+        "finding": "QSI-2026-13397",
         "finding_title": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc",
         "severity": "medium"
       },
@@ -21834,7 +21719,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12213",
+        "finding": "QSI-2026-13398",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc",
         "severity": "medium"
       },
@@ -21852,7 +21737,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12214",
+        "finding": "QSI-2026-13399",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc",
         "severity": "medium"
       },
@@ -21870,7 +21755,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12215",
+        "finding": "QSI-2026-13400",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc",
         "severity": "medium"
       },
@@ -21888,7 +21773,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12216",
+        "finding": "QSI-2026-13401",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc",
         "severity": "medium"
       },
@@ -21906,7 +21791,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12217",
+        "finding": "QSI-2026-13402",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc",
         "severity": "medium"
       },
@@ -21924,7 +21809,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12218",
+        "finding": "QSI-2026-13403",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc",
         "severity": "medium"
       },
@@ -21942,7 +21827,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12219",
+        "finding": "QSI-2026-13404",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc",
         "severity": "medium"
       },
@@ -21960,7 +21845,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12220",
+        "finding": "QSI-2026-13405",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc",
         "severity": "medium"
       },
@@ -21978,7 +21863,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12221",
+        "finding": "QSI-2026-13406",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc",
         "severity": "medium"
       },
@@ -21996,7 +21881,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12222",
+        "finding": "QSI-2026-13407",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc",
         "severity": "medium"
       },
@@ -22014,7 +21899,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12223",
+        "finding": "QSI-2026-13408",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc",
         "severity": "medium"
       },
@@ -22032,7 +21917,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12224",
+        "finding": "QSI-2026-13409",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc",
         "severity": "medium"
       },
@@ -22050,7 +21935,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12225",
+        "finding": "QSI-2026-13410",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc",
         "severity": "medium"
       },
@@ -22068,7 +21953,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12226",
+        "finding": "QSI-2026-13411",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc",
         "severity": "medium"
       },
@@ -22086,7 +21971,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12227",
+        "finding": "QSI-2026-13412",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc",
         "severity": "medium"
       },
@@ -22104,7 +21989,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12228",
+        "finding": "QSI-2026-13413",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc",
         "severity": "medium"
       },
@@ -22122,7 +22007,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12229",
+        "finding": "QSI-2026-13414",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc",
         "severity": "medium"
       },
@@ -22140,7 +22025,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12230",
+        "finding": "QSI-2026-13415",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc",
         "severity": "medium"
       },
@@ -22158,7 +22043,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12231",
+        "finding": "QSI-2026-13416",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc",
         "severity": "medium"
       },
@@ -22176,7 +22061,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12232",
+        "finding": "QSI-2026-13417",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc",
         "severity": "medium"
       },
@@ -22194,7 +22079,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12233",
+        "finding": "QSI-2026-13418",
         "finding_title": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc",
         "severity": "medium"
       },
@@ -22212,7 +22097,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12235",
+        "finding": "QSI-2026-13419",
         "finding_title": "Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc",
         "severity": "medium"
       },
@@ -22230,7 +22115,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12196",
+        "finding": "QSI-2026-13381",
         "finding_title": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))",
         "severity": "medium"
       },
@@ -22248,7 +22133,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12197",
+        "finding": "QSI-2026-13382",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (26 файл(ов))",
         "severity": "medium"
       },
@@ -22266,7 +22151,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12198",
+        "finding": "QSI-2026-13383",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -22284,7 +22169,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12199",
+        "finding": "QSI-2026-13384",
         "finding_title": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))",
         "severity": "medium"
       }
@@ -22494,13 +22379,6 @@
       "title": "OSV advisory GHSA-3288-p39f-rqpv",
       "status": "modified 2026-09-10T03:50:59.332505686Z",
       "publisher": "OSV.dev"
-    },
-    {
-      "key": "ASVS",
-      "url": "https://owasp.org/www-project-application-security-verification-standard/",
-      "title": "OWASP Application Security Verification Standard",
-      "status": "living standard — check the project page for the current version",
-      "publisher": "OWASP"
     },
     {
       "key": "SHOR1997",
@@ -23430,7 +23308,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/SNeedlewoods.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23442,7 +23320,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/SNeedlewoods.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23478,7 +23356,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/binaryfate.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23490,7 +23368,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/binaryfate.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23502,7 +23380,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/erciccione.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23514,7 +23392,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/erciccione.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23598,7 +23476,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/jaquee.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23610,7 +23488,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/jaquee.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23646,7 +23524,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/kenshi84.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23658,7 +23536,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/kenshi84.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23694,6 +23572,18 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
+      "usage": "OpenPGP subkey",
+      "library": "",
+      "location": "utils/gpg_keys/mikezackles.asc (line 1)",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "2048-bit",
       "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/mikezackles.asc (line 1)",
@@ -23708,18 +23598,6 @@
       "parameter": "2048-bit",
       "usage": "OpenPGP subkey",
       "library": "",
-      "location": "utils/gpg_keys/mikezackles.asc (line 1)",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RSA",
-      "family": "signature",
-      "parameter": "2048-bit",
-      "usage": "OpenPGP subkey",
-      "library": "",
       "location": "utils/gpg_keys/mishi_choudhary.asc (line 1)",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
@@ -23745,18 +23623,6 @@
       "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/mishi_choudhary.asc (line 1)",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RSA",
-      "family": "signature",
-      "parameter": "4096-bit",
-      "usage": "OpenPGP primary key",
-      "library": "",
-      "location": "utils/gpg_keys/mj-xmr.asc (line 1)",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
@@ -23780,7 +23646,7 @@
       "parameter": "4096-bit",
       "usage": "OpenPGP primary key",
       "library": "",
-      "location": "utils/gpg_keys/moneromooo.asc (line 1)",
+      "location": "utils/gpg_keys/mj-xmr.asc (line 1)",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
@@ -23801,10 +23667,10 @@
     {
       "algorithm": "RSA",
       "family": "signature",
-      "parameter": "2048-bit",
-      "usage": "OpenPGP subkey",
+      "parameter": "4096-bit",
+      "usage": "OpenPGP primary key",
       "library": "",
-      "location": "utils/gpg_keys/nanoakron.asc (line 1)",
+      "location": "utils/gpg_keys/moneromooo.asc (line 1)",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
@@ -23827,6 +23693,18 @@
       "family": "signature",
       "parameter": "2048-bit",
       "usage": "OpenPGP subkey",
+      "library": "",
+      "location": "utils/gpg_keys/nanoakron.asc (line 1)",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "2048-bit",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/oranjuice.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23838,7 +23716,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/oranjuice.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23874,7 +23752,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/sarang.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23886,7 +23764,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/sarang.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23922,7 +23800,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/snipa.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -23934,7 +23812,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/snipa.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -24030,7 +23908,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/tomerkon.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -24042,7 +23920,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "2048-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/tomerkon.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -24054,7 +23932,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/warptangent.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -24066,7 +23944,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "4096-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/warptangent.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -24078,7 +23956,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "3072-bit",
-      "usage": "OpenPGP primary key",
+      "usage": "OpenPGP subkey",
       "library": "",
       "location": "utils/gpg_keys/xiphon.asc (line 1)",
       "quantum_status": "vulnerable_shor",
@@ -24090,7 +23968,7 @@
       "algorithm": "RSA",
       "family": "signature",
       "parameter": "3072-bit",
-      "usage": "OpenPGP subkey",
+      "usage": "OpenPGP primary key",
       "library": "",
       "location": "utils/gpg_keys/xiphon.asc (line 1)",
       "quantum_status": "vulnerable_shor",

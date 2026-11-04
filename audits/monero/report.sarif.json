@@ -11,31 +11,6 @@
           "version": "1.3.0",
           "rules": [
             {
-              "id": "CODE-HARDCODED-SECRET",
-              "name": "CodeHardcodedSecret",
-              "shortDescription": {
-                "text": "Возможный секрет в коде utils/python-rpc/framework/wallet.py"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "confirmed_misconfiguration"
-                ],
-                "security-severity": "7.5"
-              },
-              "fullDescription": {
-                "text": "2 значений, похожих на секреты, типа generic_assignment (первое — строка 1198). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "help": {
-                "text": "2 значений, похожих на секреты, типа generic_assignment (первое — строка 1198). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
-            },
-            {
               "id": "CHAINMAP-QV",
               "name": "ChainmapQv",
               "shortDescription": {
@@ -165,38 +140,8 @@
       },
       "results": [
         {
-          "ruleId": "CODE-HARDCODED-SECRET",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Возможный секрет в коде utils/python-rpc/framework/wallet.py"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4e602c71984f8b1763de2505920986e1"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-12234",
-            "severity": "high",
-            "confidence": "medium",
-            "classification": "confirmed_misconfiguration",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "utils/python-rpc/framework/wallet.py"
-                },
-                "region": {
-                  "startLine": 1198
-                }
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CHAINMAP-QV",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "warning",
           "message": {
             "text": "Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых"
@@ -205,7 +150,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-12236",
+            "qsiId": "QSI-2026-13420",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -214,7 +159,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc"
@@ -223,7 +168,7 @@
             "qsiFindingKey/v1": "015c728a7b05fe74261e6f59612b1eb6"
           },
           "properties": {
-            "qsiId": "QSI-2026-12200",
+            "qsiId": "QSI-2026-13385",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -232,7 +177,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc"
@@ -241,7 +186,7 @@
             "qsiFindingKey/v1": "b12bab5b4fcec97809f148c2ccd35365"
           },
           "properties": {
-            "qsiId": "QSI-2026-12201",
+            "qsiId": "QSI-2026-13386",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -250,7 +195,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc"
@@ -259,7 +204,7 @@
             "qsiFindingKey/v1": "75393f3cdc1eab22ef35b9abf88f1e67"
           },
           "properties": {
-            "qsiId": "QSI-2026-12202",
+            "qsiId": "QSI-2026-13387",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -268,7 +213,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc"
@@ -277,7 +222,7 @@
             "qsiFindingKey/v1": "e2560b07f3b7dddd247ddcd1bff81018"
           },
           "properties": {
-            "qsiId": "QSI-2026-12203",
+            "qsiId": "QSI-2026-13388",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -286,7 +231,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc"
@@ -295,7 +240,7 @@
             "qsiFindingKey/v1": "693c8a4581240af84c97fe48a8a045a2"
           },
           "properties": {
-            "qsiId": "QSI-2026-12204",
+            "qsiId": "QSI-2026-13389",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -304,7 +249,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc"
@@ -313,7 +258,7 @@
             "qsiFindingKey/v1": "39876601a46f9efd20118a2ff5315e4d"
           },
           "properties": {
-            "qsiId": "QSI-2026-12205",
+            "qsiId": "QSI-2026-13390",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -322,7 +267,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc"
@@ -331,7 +276,7 @@
             "qsiFindingKey/v1": "a7abc8f810ff44aa937409257b0a2f5b"
           },
           "properties": {
-            "qsiId": "QSI-2026-12206",
+            "qsiId": "QSI-2026-13391",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -340,7 +285,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc"
@@ -349,7 +294,7 @@
             "qsiFindingKey/v1": "d6e0a2c05f1f2c1826a4504ca7debf66"
           },
           "properties": {
-            "qsiId": "QSI-2026-12207",
+            "qsiId": "QSI-2026-13392",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -358,7 +303,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc"
@@ -367,7 +312,7 @@
             "qsiFindingKey/v1": "34cdca4f058e479c0480c8f535d19dee"
           },
           "properties": {
-            "qsiId": "QSI-2026-12208",
+            "qsiId": "QSI-2026-13393",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -376,7 +321,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc"
@@ -385,7 +330,7 @@
             "qsiFindingKey/v1": "34cdca4f058e479c0480c8f535d19dee"
           },
           "properties": {
-            "qsiId": "QSI-2026-12209",
+            "qsiId": "QSI-2026-13394",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -394,7 +339,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc"
@@ -403,7 +348,7 @@
             "qsiFindingKey/v1": "8254787fcd78054683581a27383b2404"
           },
           "properties": {
-            "qsiId": "QSI-2026-12210",
+            "qsiId": "QSI-2026-13395",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -412,7 +357,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc"
@@ -421,7 +366,7 @@
             "qsiFindingKey/v1": "153cf810fe559c2813a270d0628dc15a"
           },
           "properties": {
-            "qsiId": "QSI-2026-12211",
+            "qsiId": "QSI-2026-13396",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -430,7 +375,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc"
@@ -439,7 +384,7 @@
             "qsiFindingKey/v1": "8940dac20b1d1647dd751d55a8f107e3"
           },
           "properties": {
-            "qsiId": "QSI-2026-12212",
+            "qsiId": "QSI-2026-13397",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -448,7 +393,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc"
@@ -457,7 +402,7 @@
             "qsiFindingKey/v1": "f86943d0da1b3519143a73c5e14d36b6"
           },
           "properties": {
-            "qsiId": "QSI-2026-12213",
+            "qsiId": "QSI-2026-13398",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -466,7 +411,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc"
@@ -475,7 +420,7 @@
             "qsiFindingKey/v1": "3f0fd07b430ad99892a1ae0a00ad399a"
           },
           "properties": {
-            "qsiId": "QSI-2026-12214",
+            "qsiId": "QSI-2026-13399",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -484,7 +429,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc"
@@ -493,7 +438,7 @@
             "qsiFindingKey/v1": "79a3456aed575de3453fe0e231cd46e3"
           },
           "properties": {
-            "qsiId": "QSI-2026-12215",
+            "qsiId": "QSI-2026-13400",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -502,7 +447,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc"
@@ -511,7 +456,7 @@
             "qsiFindingKey/v1": "342127b97fa2b33249e0bcae0f3cafe2"
           },
           "properties": {
-            "qsiId": "QSI-2026-12216",
+            "qsiId": "QSI-2026-13401",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -520,7 +465,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc"
@@ -529,7 +474,7 @@
             "qsiFindingKey/v1": "a94624cf79d17c205e4b0653aae7e20c"
           },
           "properties": {
-            "qsiId": "QSI-2026-12217",
+            "qsiId": "QSI-2026-13402",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -538,7 +483,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc"
@@ -547,7 +492,7 @@
             "qsiFindingKey/v1": "a94624cf79d17c205e4b0653aae7e20c"
           },
           "properties": {
-            "qsiId": "QSI-2026-12218",
+            "qsiId": "QSI-2026-13403",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -556,7 +501,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc"
@@ -565,7 +510,7 @@
             "qsiFindingKey/v1": "a0e870bfa631df925420ca02d5dc581e"
           },
           "properties": {
-            "qsiId": "QSI-2026-12219",
+            "qsiId": "QSI-2026-13404",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -574,7 +519,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc"
@@ -583,7 +528,7 @@
             "qsiFindingKey/v1": "9caeea58dd44e018e453af082fa31d26"
           },
           "properties": {
-            "qsiId": "QSI-2026-12220",
+            "qsiId": "QSI-2026-13405",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -592,7 +537,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc"
@@ -601,7 +546,7 @@
             "qsiFindingKey/v1": "2a952e368effdb02e4e83e7d8a19d423"
           },
           "properties": {
-            "qsiId": "QSI-2026-12221",
+            "qsiId": "QSI-2026-13406",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -610,7 +555,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc"
@@ -619,7 +564,7 @@
             "qsiFindingKey/v1": "39e0f4431cf5269386c4d653512c48f3"
           },
           "properties": {
-            "qsiId": "QSI-2026-12222",
+            "qsiId": "QSI-2026-13407",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -628,7 +573,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc"
@@ -637,7 +582,7 @@
             "qsiFindingKey/v1": "7c64da19d4accbb07dc5ca0984c90706"
           },
           "properties": {
-            "qsiId": "QSI-2026-12223",
+            "qsiId": "QSI-2026-13408",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -646,7 +591,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc"
@@ -655,7 +600,7 @@
             "qsiFindingKey/v1": "298f07c620330c4e37d8b5627e041344"
           },
           "properties": {
-            "qsiId": "QSI-2026-12224",
+            "qsiId": "QSI-2026-13409",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -664,7 +609,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc"
@@ -673,7 +618,7 @@
             "qsiFindingKey/v1": "da541a0f2e63b7c61292bc154a322a11"
           },
           "properties": {
-            "qsiId": "QSI-2026-12225",
+            "qsiId": "QSI-2026-13410",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -682,7 +627,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc"
@@ -691,7 +636,7 @@
             "qsiFindingKey/v1": "91c4b0470647d500c27b92c8ad350507"
           },
           "properties": {
-            "qsiId": "QSI-2026-12226",
+            "qsiId": "QSI-2026-13411",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -700,7 +645,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc"
@@ -709,7 +654,7 @@
             "qsiFindingKey/v1": "c3a1ac8083cf84a063219e219d14fd32"
           },
           "properties": {
-            "qsiId": "QSI-2026-12227",
+            "qsiId": "QSI-2026-13412",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -718,7 +663,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc"
@@ -727,7 +672,7 @@
             "qsiFindingKey/v1": "34c2c5407c2ad05433faadc865488adc"
           },
           "properties": {
-            "qsiId": "QSI-2026-12228",
+            "qsiId": "QSI-2026-13413",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -736,7 +681,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc"
@@ -745,7 +690,7 @@
             "qsiFindingKey/v1": "4539c8f6ef7878635258c2b4a500d81a"
           },
           "properties": {
-            "qsiId": "QSI-2026-12229",
+            "qsiId": "QSI-2026-13414",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -754,7 +699,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc"
@@ -763,7 +708,7 @@
             "qsiFindingKey/v1": "29b13d204922281d1fee4cc1a295be0c"
           },
           "properties": {
-            "qsiId": "QSI-2026-12230",
+            "qsiId": "QSI-2026-13415",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -772,7 +717,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc"
@@ -781,7 +726,7 @@
             "qsiFindingKey/v1": "34024143d99d59ef31fe4745adb36be3"
           },
           "properties": {
-            "qsiId": "QSI-2026-12231",
+            "qsiId": "QSI-2026-13416",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -790,7 +735,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc"
@@ -799,7 +744,7 @@
             "qsiFindingKey/v1": "ff1d82467acd02c0802273971bb0a79b"
           },
           "properties": {
-            "qsiId": "QSI-2026-12232",
+            "qsiId": "QSI-2026-13417",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -808,7 +753,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc"
@@ -817,7 +762,7 @@
             "qsiFindingKey/v1": "df76359cc24e86d59756379cbe462e45"
           },
           "properties": {
-            "qsiId": "QSI-2026-12233",
+            "qsiId": "QSI-2026-13418",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -826,7 +771,7 @@
         },
         {
           "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc"
@@ -835,7 +780,7 @@
             "qsiFindingKey/v1": "1e18a834cbd109930f2377214cde3a59"
           },
           "properties": {
-            "qsiId": "QSI-2026-12235",
+            "qsiId": "QSI-2026-13419",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -844,7 +789,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))"
@@ -853,7 +798,7 @@
             "qsiFindingKey/v1": "cb7dd5d879e7ccc6fbf842f8dd2da6e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-12196",
+            "qsiId": "QSI-2026-13381",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -862,7 +807,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Ed25519: роль не определена (26 файл(ов))"
@@ -871,7 +816,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-12197",
+            "qsiId": "QSI-2026-13382",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -880,7 +825,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый X25519: роль не определена (2 файл(ов))"
@@ -889,7 +834,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-12198",
+            "qsiId": "QSI-2026-13383",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -898,7 +843,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))"
@@ -907,7 +852,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-12199",
+            "qsiId": "QSI-2026-13384",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -916,7 +861,7 @@
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 4,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) (dependency: crates.io/keccak@0.1.5)"
@@ -925,7 +870,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-12238",
+            "qsiId": "QSI-2026-13422",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -943,7 +888,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 5,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -952,7 +897,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-12237",
+            "qsiId": "QSI-2026-13421",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -961,13 +906,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/monero @ 3fd0f88c20f5/06283ac7-7f51-4ed2-a80a-9cf2f64d819d"
+        "id": "qsi/monero @ 3fd0f88c20f5/4cc5b5fa-3950-46b7-b985-0b8af61fef75"
       },
       "properties": {
-        "qsiContentSha256": "474b1294ee360010a360896aa943fa57c4538bdf5d05a1386be0965270613489",
+        "qsiContentSha256": "39766604ab1aeefc4bba894650eb7dcbc1e20e52e66dc79b2e32f2c14954a176",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:04:58.064155+00:00",
+        "qsiGeneratedAt": "2026-11-04T20:33:56.734917+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

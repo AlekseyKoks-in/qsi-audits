@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: foundry @ 7f0a409a5c20
 
-*One-page brief* · Reviewed: 2026-11-04 18:46 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Foundry (Paradigm) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 20:31 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Foundry (Paradigm) — public repository (passive review)
 
 Source: https://github.com/foundry-rs/foundry/tree/7f0a409a5c2016f16cb2e8618a750cc04e13977c
 
@@ -12,13 +12,13 @@ Source: https://github.com/foundry-rs/foundry/tree/7f0a409a5c2016f16cb2e8618a750
 
 ## What matters most
 
-1. **High** · Possible hard-coded secret in crates/evm/symbolic/src/runtime/solver/mod.rs (QSI-2026-11922) · *preliminary*\
+1. **High** · Possible hard-coded secret in crates/evm/symbolic/src/runtime/solver/mod.rs (QSI-2026-13370) · *preliminary*\
    What to do: Move secrets to a secrets manager/environment; rotate the exposed values.
-2. **High** · Non-cryptographic generator next to key or seed generation in crates/anvil/src/cmd.rs (QSI-2026-11924) · *preliminary*\
+2. **High** · Non-cryptographic generator next to key or seed generation in crates/anvil/src/cmd.rs (QSI-2026-13372) · *preliminary*\
    What to do: Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key…
-3. **High** · quick-xml 0.39.4 is affected by RUSTSEC-2026-0194 (QSI-2026-11930)\
+3. **High** · quick-xml 0.39.4 is affected by RUSTSEC-2026-0194 (QSI-2026-13378)\
    What to do: Upgrade to a fixed version (0.41.0).
-4. **High** · quick-xml 0.39.4 is affected by RUSTSEC-2026-0195 (QSI-2026-11931)\
+4. **High** · quick-xml 0.39.4 is affected by RUSTSEC-2026-0195 (QSI-2026-13379)\
    What to do: Upgrade to a fixed version (0.41.0).
 
 12 more in the full report.
@@ -40,7 +40,7 @@ Advisories for the versions in use: 6; unlikely to apply to this build: 1 (a Car
 
 Static review of source code and manifests; files analysed: 760. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `11eb453dbcef9b595c5e7749f4a83429e0cc136eb0a9ec83e490d1e351eb49d4`
+Full report, content SHA-256: `ff7a682c497170f8daf477a628131ec90d11c35f06413bcbd468164adc567662`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

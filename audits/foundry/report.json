@@ -1,8 +1,8 @@
 {
-  "content_sha256": "11eb453dbcef9b595c5e7749f4a83429e0cc136eb0a9ec83e490d1e351eb49d4",
+  "content_sha256": "ff7a682c497170f8daf477a628131ec90d11c35f06413bcbd468164adc567662",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T18:46:38.102137+00:00",
+  "generated_at": "2026-11-04T20:31:33.736803+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "c64030b3-2abe-4487-a89e-9a5c01d34654",
+    "id": "8a688252-d893-4980-ab65-7a373455f0c3",
     "mode": "document",
     "title": "Document audit: foundry",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T18:45:46.506998+00:00",
-    "finished_at": "2026-11-04T18:46:37.932653+00:00",
+    "started_at": "2026-11-04T20:30:38.391390+00:00",
+    "finished_at": "2026-11-04T20:31:33.564513+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -9521,8 +9521,8 @@
   },
   "findings": [
     {
-      "id": "604908cc-30c0-47e2-a5c5-f4efbb317299",
-      "public_id": "QSI-2026-11922",
+      "id": "667144b8-3d1d-4e06-9f84-ec7bc9ed96d7",
+      "public_id": "QSI-2026-13370",
       "rule_id": "CODE-HARDCODED-SECRET",
       "title": "Возможный секрет в коде crates/evm/symbolic/src/runtime/solver/mod.rs",
       "description": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 1685). Значения замаскированы QSI.",
@@ -9542,7 +9542,7 @@
       "affected_asset": "file:crates/evm/symbolic/src/runtime/solver/mod.rs",
       "data_source": "crates/evm/symbolic/src/runtime/solver/mod.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.821919+00:00",
+      "detected_at": "2026-11-04T20:31:33.469958+00:00",
       "risk_score": 47.1,
       "risk_breakdown": {
         "score": 47.1,
@@ -9598,7 +9598,7 @@
           "content_sha256": "1e5b0b9c59f38f6ec4fb4bf42d919a5ef5c7de450a6ab294e4d8e3ab195ddee1",
           "source_sha256": "af6910f69cea376402bde9e9d5ae2c1f47b156cbf88cf2c02e5222b71861e800",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.834524+00:00",
+          "collected_at": "2026-11-04T20:31:33.484306+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/symbolic/src/runtime/solver/mod.rs#L1685"
         }
       ],
@@ -9621,8 +9621,8 @@
       ]
     },
     {
-      "id": "432c729c-7e27-4480-ab2e-cc5cd5dafbe7",
-      "public_id": "QSI-2026-11924",
+      "id": "f826e925-65ea-4c3e-8eac-a4178246381a",
+      "public_id": "QSI-2026-13372",
       "rule_id": "RNG-WEAK-KEYGEN",
       "title": "Некриптографический генератор рядом с генерацией ключа или сида в crates/anvil/src/cmd.rs",
       "description": "«seed_from_u64(» в строка 418, в нескольких строках от «mnemonic» (1 мест).",
@@ -9642,7 +9642,7 @@
       "affected_asset": "crates/anvil/src/cmd.rs:keygen",
       "data_source": "crates/anvil/src/cmd.rs",
       "analyzer": "entropy 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.839368+00:00",
+      "detected_at": "2026-11-04T20:31:33.490596+00:00",
       "risk_score": 38.8,
       "risk_breakdown": {
         "score": 38.8,
@@ -9712,7 +9712,7 @@
           "content_sha256": "a8af010cc9ce8b0704660429496766ae5129b6cde2b84e6230f436b2df84a9a5",
           "source_sha256": "22eed0693ab0baa5b4e1c9b133ec6ef5fde5fd36bbe4b38f0863743c9990a41b",
           "collector": "entropy 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.849794+00:00",
+          "collected_at": "2026-11-04T20:31:33.500379+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/cmd.rs#L418"
         }
       ],
@@ -9735,8 +9735,8 @@
       ]
     },
     {
-      "id": "970a3727-656d-4c1a-8897-9a93dfd5ed7e",
-      "public_id": "QSI-2026-11930",
+      "id": "8932e0f4-2f83-4ba3-bd14-e4dbf1fec888",
+      "public_id": "QSI-2026-13378",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0194",
       "description": "OSV.dev сообщает RUSTSEC-2026-0194 для пакета crates.io quick-xml версии 0.39.4: Quadratic run time when checking a start tag for duplicate attribute names. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -9757,7 +9757,7 @@
       "affected_asset": "dependency:crates.io/quick-xml@0.39.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.881708+00:00",
+      "detected_at": "2026-11-04T20:31:33.535796+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -9833,7 +9833,7 @@
           "content_sha256": "028cd2f8044c5c52031532eb91141d581476948b4fd115c63b565c4f52398450",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.916734+00:00",
+          "collected_at": "2026-11-04T20:31:33.547095+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0194"
         }
       ],
@@ -9856,8 +9856,8 @@
       ]
     },
     {
-      "id": "e016c46a-4c04-4950-ae59-319aa7e75bf2",
-      "public_id": "QSI-2026-11931",
+      "id": "9bc46687-bcac-45d0-8044-0802357fa59b",
+      "public_id": "QSI-2026-13379",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0195",
       "description": "OSV.dev сообщает RUSTSEC-2026-0195 для пакета crates.io quick-xml версии 0.39.4: Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -9878,7 +9878,7 @@
       "affected_asset": "dependency:crates.io/quick-xml@0.39.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.914961+00:00",
+      "detected_at": "2026-11-04T20:31:33.544159+00:00",
       "risk_score": 37.6,
       "risk_breakdown": {
         "cvss": {
@@ -9954,7 +9954,7 @@
           "content_sha256": "7934c935f3154b61c623e871c948769f40fd83ae102d44328fbedb576471f986",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.923677+00:00",
+          "collected_at": "2026-11-04T20:31:33.556349+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0195"
         }
       ],
@@ -9977,8 +9977,8 @@
       ]
     },
     {
-      "id": "45a2b057-7359-4862-86cc-c3639d369c18",
-      "public_id": "QSI-2026-11918",
+      "id": "a082c77b-3a03-48de-b7c3-a76fbc5ac1b0",
+      "public_id": "QSI-2026-13366",
       "rule_id": "TLSCODE-NO-PQ-HYBRID",
       "title": "TLS без постквантового обмена ключами: rustls с криптопровайдером ring",
       "description": "rustls с криптопровайдером ring в crates/cli/src/utils/mod.rs:260: настроенный обмен ключами (ring) не содержит гибридной группы ML-KEM, например X25519MLKEM768 (RFC 10024), поэтому рукопожатие не может её согласовать.",
@@ -9998,7 +9998,7 @@
       "affected_asset": "tls-code:rustls",
       "data_source": "crates/cli/src/utils/mod.rs",
       "analyzer": "tls_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.787011+00:00",
+      "detected_at": "2026-11-04T20:31:33.433230+00:00",
       "risk_score": 36.4,
       "risk_breakdown": {
         "mosca": {
@@ -10102,7 +10102,7 @@
           "content_sha256": "0084c5a919bee6778c8436c47d41f06240827ab128eb7ef31339267091e759cf",
           "source_sha256": "0784360683f1c5dcc8fe0cc9fb581d1761f3bb6baa9df157d849695cd49235dc",
           "collector": "tls_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.798568+00:00",
+          "collected_at": "2026-11-04T20:31:33.446791+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cli/src/utils/mod.rs#L260"
         }
       ],
@@ -10125,8 +10125,8 @@
       ]
     },
     {
-      "id": "4922e049-1b17-4345-9b0b-dfbc71663916",
-      "public_id": "QSI-2026-11915",
+      "id": "d4dc244b-0ec8-471a-a7e0-ce91ed3ab8e8",
+      "public_id": "QSI-2026-13363",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))",
       "description": "13 упоминаний ECDSA в 9 файл(ах), например crates/anvil/src/eth/backend/cheats.rs:11. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -10146,7 +10146,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "crates/anvil/src/eth/backend/cheats.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.742008+00:00",
+      "detected_at": "2026-11-04T20:31:33.384774+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -10243,7 +10243,7 @@
           "content_sha256": "e08fa6015cef9b6d59779c9f3e7c25ea0e325b4424289d7c3b847ae6965911a8",
           "source_sha256": "31fbcf6016a3810cdacd6adcabaa8b97bbeeba80a7ad238e7ae8f16670bdfeb1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766173+00:00",
+          "collected_at": "2026-11-04T20:31:33.410444+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/cheats.rs#L11"
         },
         {
@@ -10254,7 +10254,7 @@
           "content_sha256": "52f153efb18e17109443cc34089b5a89d1a1b4c83b8f5e68fba410ec9d1fcb2a",
           "source_sha256": "3bba5daeff0a18a0517bc06b4e9b0534caa5c46f117ab066748d163312c5506a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766180+00:00",
+          "collected_at": "2026-11-04T20:31:33.410452+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/anvil/src/eth/backend/tempo.rs#L271"
         },
         {
@@ -10265,7 +10265,7 @@
           "content_sha256": "5d58b11e699bbe1d28e4a75b890106a088de2218bba25f8fb944230db03ba773",
           "source_sha256": "ea0a6cf003885ea9f33bdb910fcad4231fb733d4cb07b389d856539a8476b076",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766184+00:00",
+          "collected_at": "2026-11-04T20:31:33.410455+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L153"
         },
         {
@@ -10276,7 +10276,7 @@
           "content_sha256": "b07c462df7c1e73749099155ee6aaeaa1569cdd4568e13a1e1317ebef0fcc659",
           "source_sha256": "ea0a6cf003885ea9f33bdb910fcad4231fb733d4cb07b389d856539a8476b076",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766188+00:00",
+          "collected_at": "2026-11-04T20:31:33.410459+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L462"
         },
         {
@@ -10287,7 +10287,7 @@
           "content_sha256": "4a236801a5d76ecf75ecddf66d49cbadc28fe918e5218ae8bcbf2b0ab0c9523f",
           "source_sha256": "ea0a6cf003885ea9f33bdb910fcad4231fb733d4cb07b389d856539a8476b076",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766191+00:00",
+          "collected_at": "2026-11-04T20:31:33.410463+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/keychain.rs#L578"
         },
         {
@@ -10298,7 +10298,7 @@
           "content_sha256": "46a53d505e0d3369700709c58dabf91c816e81e59906959d5af8ac3fc7670469",
           "source_sha256": "3534969a0c0a712a3fb5e627499da2fc24f9dd4b0f868f43e9356e4e92125a57",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766195+00:00",
+          "collected_at": "2026-11-04T20:31:33.410466+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cast/src/cmd/tempo/zone/mod.rs#L221"
         },
         {
@@ -10309,7 +10309,7 @@
           "content_sha256": "3c595041c68eace648d774f0f69f05dd96ce13575114ecabcc71e2b3e835359a",
           "source_sha256": "c181922ad0f3e4d3be9338e219cf23d17a29f21236fa565ba54530a27af735c9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766198+00:00",
+          "collected_at": "2026-11-04T20:31:33.410469+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/error.rs#L10"
         },
         {
@@ -10320,7 +10320,7 @@
           "content_sha256": "de4949f2f75dc96d7fa04e685806f1689470b0efacc7d096b13a61c80c782761",
           "source_sha256": "59453fcff95b4f79b622c1d88d9979efba6319feafb0de982d4f24cc73aad95b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766201+00:00",
+          "collected_at": "2026-11-04T20:31:33.410473+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/session.rs#L321"
         },
         {
@@ -10331,7 +10331,7 @@
           "content_sha256": "c1eed0230f405adbff40033b2879b8000d521e302866b4850d9ad7705f2634a4",
           "source_sha256": "82ee234439f0109c51a48fa17d0789db34c14c19f45e8a374639daff758c84cd",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766205+00:00",
+          "collected_at": "2026-11-04T20:31:33.410476+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/networks/src/lib.rs#L29"
         },
         {
@@ -10342,7 +10342,7 @@
           "content_sha256": "8a680edc9e74629b043692fee273270f039ea08b7aea8752cfa55e855b9a4100",
           "source_sha256": "15cac19e5476b5c4aaf6741ae3f2f957081dfdb01dbdcc2794e6f48fffc18b1f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.766208+00:00",
+          "collected_at": "2026-11-04T20:31:33.410479+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/symbolic/src/lib.rs#L28"
         }
       ],
@@ -10380,8 +10380,8 @@
       ]
     },
     {
-      "id": "e2630a3e-9340-4d39-ad54-22b8b6564e29",
-      "public_id": "QSI-2026-11917",
+      "id": "d1d93c36-4d9e-4043-b52e-04a8c6535658",
+      "public_id": "QSI-2026-13365",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))",
       "description": "1 упоминаний Ed25519 в 1 файл(ах), например crates/cheatcodes/src/crypto.rs:30. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -10401,7 +10401,7 @@
       "affected_asset": "source-code:Ed25519:transaction_signing",
       "data_source": "crates/cheatcodes/src/crypto.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.777376+00:00",
+      "detected_at": "2026-11-04T20:31:33.424263+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -10498,7 +10498,7 @@
           "content_sha256": "59ce76668f01d8f7a0d9cca0c38d14a57a9e948a16d109afab5540e33313e7a0",
           "source_sha256": "194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.790116+00:00",
+          "collected_at": "2026-11-04T20:31:33.436039+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L30"
         }
       ],
@@ -10536,8 +10536,8 @@
       ]
     },
     {
-      "id": "299774c2-8985-40df-a4af-361c5d4aa748",
-      "public_id": "QSI-2026-11921",
+      "id": "b3ffea53-9d18-4aef-ab5d-faa3334858bf",
+      "public_id": "QSI-2026-13369",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))",
       "description": "39 упоминаний BLS12-381 в 3 файл(ах), например crates/evm/core/src/precompiles.rs:34. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -10557,7 +10557,7 @@
       "affected_asset": "source-code:BLS12-381:transaction_signing",
       "data_source": "crates/evm/core/src/precompiles.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.812685+00:00",
+      "detected_at": "2026-11-04T20:31:33.459896+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -10654,7 +10654,7 @@
           "content_sha256": "e9d6760e61c5d95615b59c481b236749a952ceda871fa5873803470b529b91ee",
           "source_sha256": "2de3445f021fd297bb57e2ada44a4a64dce3ccf4edb25270ae0f6d497984af28",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825852+00:00",
+          "collected_at": "2026-11-04T20:31:33.473127+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L34"
         },
         {
@@ -10665,7 +10665,7 @@
           "content_sha256": "cc66a9c2775894a525021ffc6fe4d347f52ebe34064d82f6e4400f828c654b67",
           "source_sha256": "2de3445f021fd297bb57e2ada44a4a64dce3ccf4edb25270ae0f6d497984af28",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825860+00:00",
+          "collected_at": "2026-11-04T20:31:33.473261+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L37"
         },
         {
@@ -10676,7 +10676,7 @@
           "content_sha256": "f64918fb0a20f796360c240232d3a80a6b804fce081c3effd117316c46a55719",
           "source_sha256": "2de3445f021fd297bb57e2ada44a4a64dce3ccf4edb25270ae0f6d497984af28",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825864+00:00",
+          "collected_at": "2026-11-04T20:31:33.473269+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/core/src/precompiles.rs#L40"
         },
         {
@@ -10687,7 +10687,7 @@
           "content_sha256": "851a2373c0ad3c5e1fd446403193f757e5c833428427e332fc9ae97a7b32bf56",
           "source_sha256": "9a1d93e87fc5f3d58e01e88de0ddb2f089a1c2a6bcdec33302b8464e1acb427a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825868+00:00",
+          "collected_at": "2026-11-04T20:31:33.473273+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L28"
         },
         {
@@ -10698,7 +10698,7 @@
           "content_sha256": "8f52a29c8533dabc5a48d03c5d190efe2583470180e7a803d173c4a93d64c42a",
           "source_sha256": "9a1d93e87fc5f3d58e01e88de0ddb2f089a1c2a6bcdec33302b8464e1acb427a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825873+00:00",
+          "collected_at": "2026-11-04T20:31:33.473276+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L29"
         },
         {
@@ -10709,7 +10709,7 @@
           "content_sha256": "2dd54823637c9ad3500d6cdd67ea43a290e670e39a2ada89aacfa0b0c28aefc6",
           "source_sha256": "9a1d93e87fc5f3d58e01e88de0ddb2f089a1c2a6bcdec33302b8464e1acb427a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825876+00:00",
+          "collected_at": "2026-11-04T20:31:33.473279+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/mod.rs#L424"
         },
         {
@@ -10720,7 +10720,7 @@
           "content_sha256": "6a45e6e6e64988c4d23c76ecc0727fe03dd6eb0a7a8f7f864be6f51f820b5017",
           "source_sha256": "939dd5d3921de298f94d61d0e833dea91a8414137910920fa0f9fd2f26cae7a1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825880+00:00",
+          "collected_at": "2026-11-04T20:31:33.473282+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L7"
         },
         {
@@ -10731,7 +10731,7 @@
           "content_sha256": "1cbc4db457becceed23c646a85a2191cb78062453411a6177172fa8e5e173bf5",
           "source_sha256": "939dd5d3921de298f94d61d0e833dea91a8414137910920fa0f9fd2f26cae7a1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825883+00:00",
+          "collected_at": "2026-11-04T20:31:33.473286+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L8"
         },
         {
@@ -10742,7 +10742,7 @@
           "content_sha256": "8ab37a93305db1d491ed6efe32d5e924492f9493e2c298523b61abac7d4b3b2d",
           "source_sha256": "939dd5d3921de298f94d61d0e833dea91a8414137910920fa0f9fd2f26cae7a1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.825887+00:00",
+          "collected_at": "2026-11-04T20:31:33.473289+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/precompiles.rs#L332"
         }
       ],
@@ -10780,8 +10780,8 @@
       ]
     },
     {
-      "id": "217d2e27-0342-49e0-bd19-2260a6fe7ad6",
-      "public_id": "QSI-2026-11916",
+      "id": "2c394d21-1852-4961-b237-a6c20da87294",
+      "public_id": "QSI-2026-13364",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
       "description": "4 упоминаний ECDSA в 1 файл(ах), например crates/cheatcodes/src/crypto.rs:26. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -10801,7 +10801,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "crates/cheatcodes/src/crypto.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.762698+00:00",
+      "detected_at": "2026-11-04T20:31:33.406825+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -10898,7 +10898,7 @@
           "content_sha256": "a551137cff41361990a5981742fde03e462e2a4e7b40a49fba299d7f1e749358",
           "source_sha256": "194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.780113+00:00",
+          "collected_at": "2026-11-04T20:31:33.427421+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L26"
         },
         {
@@ -10909,7 +10909,7 @@
           "content_sha256": "2d2ae3b338f8f2b933a2a78de2bb94bc04717a27b2ef71b413d6c154c3dabd1c",
           "source_sha256": "194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.780126+00:00",
+          "collected_at": "2026-11-04T20:31:33.427429+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L526"
         },
         {
@@ -10920,7 +10920,7 @@
           "content_sha256": "7c1a1c232d462506831f9bb7247a932ae80cf42f2152bf84d0ef117aa4f141da",
           "source_sha256": "194dec89b94c09b4f26b174039af33c90fbf98af1e25231f61d6578c4f68a73e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.780130+00:00",
+          "collected_at": "2026-11-04T20:31:33.427433+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/cheatcodes/src/crypto.rs#L537"
         }
       ],
@@ -10958,8 +10958,8 @@
       ]
     },
     {
-      "id": "f461f586-ac99-4178-ae36-51979303ef8b",
-      "public_id": "QSI-2026-11919",
+      "id": "31d34933-2be0-49b8-a6a0-56067c78eeea",
+      "public_id": "QSI-2026-13367",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
       "description": "2 упоминаний ECDSA в 1 файл(ах), например crates/common/src/tempo/auth.rs:115. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.",
@@ -10979,7 +10979,7 @@
       "affected_asset": "source-code:ECDSA:authentication",
       "data_source": "crates/common/src/tempo/auth.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.795891+00:00",
+      "detected_at": "2026-11-04T20:31:33.442044+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -11076,7 +11076,7 @@
           "content_sha256": "e8866289afb498a1ad1214bcef2aa268e90cbd3b50ca37d9682ea1fb0df87f5f",
           "source_sha256": "78b112c3b9d632766a958b36ed9117f1a1d2f94600bd20264f2821750433af6f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.806550+00:00",
+          "collected_at": "2026-11-04T20:31:33.454393+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L115"
         },
         {
@@ -11087,7 +11087,7 @@
           "content_sha256": "54ee92aeb19ba7eadea1ba0f5101140294f899f35d74cd9254d58fb4aff93353",
           "source_sha256": "78b112c3b9d632766a958b36ed9117f1a1d2f94600bd20264f2821750433af6f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.806558+00:00",
+          "collected_at": "2026-11-04T20:31:33.454400+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/common/src/tempo/auth.rs#L191"
         }
       ],
@@ -11125,8 +11125,8 @@
       ]
     },
     {
-      "id": "179aa78a-29fc-482c-8710-4dcf20f51aef",
-      "public_id": "QSI-2026-11920",
+      "id": "9da4969a-6690-4a8e-8e37-b2e0556b3c36",
+      "public_id": "QSI-2026-13368",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))",
       "description": "7 упоминаний BLS12-381 в 1 файл(ах), например crates/debugger/src/node.rs:291. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -11146,7 +11146,7 @@
       "affected_asset": "source-code:BLS12-381:general",
       "data_source": "crates/debugger/src/node.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.803700+00:00",
+      "detected_at": "2026-11-04T20:31:33.451599+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -11243,7 +11243,7 @@
           "content_sha256": "b5a33afbc110921885d6fdc2b239b77fa64c68479bad7f0654313bd4f95988a9",
           "source_sha256": "faf733e62eb7e172582bd2e1704c5c14e6f066303ba39567516cf0ec110a86ff",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.814819+00:00",
+          "collected_at": "2026-11-04T20:31:33.463672+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L291"
         },
         {
@@ -11254,7 +11254,7 @@
           "content_sha256": "7f2d22ce6fc44deb9ea5a0267f4ae6d9e169b33af3f20db693583e3c0a1aabff",
           "source_sha256": "faf733e62eb7e172582bd2e1704c5c14e6f066303ba39567516cf0ec110a86ff",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.814828+00:00",
+          "collected_at": "2026-11-04T20:31:33.463680+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L292"
         },
         {
@@ -11265,7 +11265,7 @@
           "content_sha256": "cb4c72ccdcd20bf16e22255941bc70ae5baacd7ea1ae3ca30e0d13cb5f106be7",
           "source_sha256": "faf733e62eb7e172582bd2e1704c5c14e6f066303ba39567516cf0ec110a86ff",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.814896+00:00",
+          "collected_at": "2026-11-04T20:31:33.463684+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/debugger/src/node.rs#L293"
         }
       ],
@@ -11303,8 +11303,8 @@
       ]
     },
     {
-      "id": "14671fc3-2ea5-4ec8-af75-7e9730e2c92b",
-      "public_id": "QSI-2026-11914",
+      "id": "6df1c582-74c7-40b2-897b-cc18c6eeb0d3",
+      "public_id": "QSI-2026-13362",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (^0.8.13) в 12 файл(ах)",
       "description": "pragma ^0.8.13 в 12 файл(ах), впервые в .github/scripts/contracts/BatchCounter.sol:2. (см. SWC-103)",
@@ -11324,7 +11324,7 @@
       "affected_asset": "solidity:pragma:^0.8.13",
       "data_source": ".github/scripts/contracts/BatchCounter.sol",
       "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.733042+00:00",
+      "detected_at": "2026-11-04T20:31:33.373083+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -11380,7 +11380,7 @@
           "content_sha256": "7c3708d9069ee80391b81af25f28478d8257cfe3f51a51b01be9827555524d9a",
           "source_sha256": "d573ae940de4141c483f0e933d27ee0c40754f72ccf07f144dc5e3499faaa320",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746331+00:00",
+          "collected_at": "2026-11-04T20:31:33.391143+00:00",
           "url": null
         },
         {
@@ -11391,7 +11391,7 @@
           "content_sha256": "5ba651f9d9a85f874646356b2e4882d9492ccd2c37892a189cd79790bf2fec59",
           "source_sha256": "427bf1ddf5d91be68251f54ce74ae541ed241e8014b70a98c656a511a6ecea95",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746339+00:00",
+          "collected_at": "2026-11-04T20:31:33.391154+00:00",
           "url": null
         },
         {
@@ -11402,7 +11402,7 @@
           "content_sha256": "e480e29012507cfc6f4594f7a4fd4ab65d0adce3b3bb9b2323614637a52e2c3f",
           "source_sha256": "1595eb42765b9e3b88060afbb49a0f98fae88422c07d8aff4209b2dc0ae181da",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746342+00:00",
+          "collected_at": "2026-11-04T20:31:33.391158+00:00",
           "url": null
         },
         {
@@ -11413,7 +11413,7 @@
           "content_sha256": "7da697e70396e1794f5ccb8835bcc5b58068f231c41d272719e977b7d8331437",
           "source_sha256": "87e3edfaadcbf61a39942601a11e4b6cc3d86011583aeda13dd148295f2b8ea6",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746345+00:00",
+          "collected_at": "2026-11-04T20:31:33.391161+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/solidity/CounterTemplate.s.sol#L2"
         },
         {
@@ -11424,7 +11424,7 @@
           "content_sha256": "5ba651f9d9a85f874646356b2e4882d9492ccd2c37892a189cd79790bf2fec59",
           "source_sha256": "4b5eaa107784609cabdbd23e34e479cc957ee69bd4c4de2881625b884e6bbacc",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746349+00:00",
+          "collected_at": "2026-11-04T20:31:33.391165+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/solidity/CounterTemplate.sol#L2"
         },
         {
@@ -11435,7 +11435,7 @@
           "content_sha256": "b7d9e25cb26900b8a13c01b38782749ef0421704305f08208da38ed8f1de800a",
           "source_sha256": "6525887dd3620bd7b28a28fce1b9d596441d2ece58f8cbaf15a851f57a460bb7",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746352+00:00",
+          "collected_at": "2026-11-04T20:31:33.391168+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/solidity/CounterTemplate.t.sol#L2"
         },
         {
@@ -11446,7 +11446,7 @@
           "content_sha256": "7da697e70396e1794f5ccb8835bcc5b58068f231c41d272719e977b7d8331437",
           "source_sha256": "1d13a522def4b49168fefa58cab8e4d24f6e39ecfdfe5f7bdd85745af51136b8",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746356+00:00",
+          "collected_at": "2026-11-04T20:31:33.391172+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/tempo/MailTemplate.s.sol#L2"
         },
         {
@@ -11457,7 +11457,7 @@
           "content_sha256": "255e8e20fe021924c3a1bb809df0f9e26f8b4ba0d7d3d1c43464a6ec82136b54",
           "source_sha256": "be683ed20abdc3da045d719fd40f149d0e53139e94ea7cb931b7bdca8bade116",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746359+00:00",
+          "collected_at": "2026-11-04T20:31:33.391176+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/tempo/MailTemplate.sol#L2"
         },
         {
@@ -11468,7 +11468,7 @@
           "content_sha256": "b7d9e25cb26900b8a13c01b38782749ef0421704305f08208da38ed8f1de800a",
           "source_sha256": "f0aaa90bd7882e2835cd4cf533c4509300b346964b02b6a2b00a571831f923a9",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746362+00:00",
+          "collected_at": "2026-11-04T20:31:33.391179+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/tempo/MailTemplate.t.sol#L2"
         },
         {
@@ -11479,7 +11479,7 @@
           "content_sha256": "7da697e70396e1794f5ccb8835bcc5b58068f231c41d272719e977b7d8331437",
           "source_sha256": "89deefbf70e5943c117cf9bd88b385c72eabea1f890787ecf88512163b4355cd",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.746365+00:00",
+          "collected_at": "2026-11-04T20:31:33.391182+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/forge/assets/vyper/CounterTemplate.s.sol#L2"
         }
       ],
@@ -11502,8 +11502,8 @@
       ]
     },
     {
-      "id": "eb29fc7e-20d5-47eb-9ac9-8397bcd26bec",
-      "public_id": "QSI-2026-11923",
+      "id": "4e258cd7-32e0-49a3-a3fa-3d5c80109cfc",
+      "public_id": "QSI-2026-13371",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.8.13 <0.9.0) в 2 файл(ах)",
       "description": "pragma >=0.8.13 <0.9.0 в 2 файл(ах), впервые в crates/evm/traces/src/decoder/monad/IMonadStaking.sol:2. (см. SWC-103)",
@@ -11523,7 +11523,7 @@
       "affected_asset": "solidity:pragma:>=0.8.13 <0.9.0",
       "data_source": "crates/evm/traces/src/decoder/monad/IMonadStaking.sol",
       "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.832880+00:00",
+      "detected_at": "2026-11-04T20:31:33.481640+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -11579,7 +11579,7 @@
           "content_sha256": "0966fab580a62d690b1abff6275e91d132627c82ac011aa8596cc8723b757f4f",
           "source_sha256": "04c61cabeb2fe14ca7eebfc4f1ce0e8bc23eac4fc3f2296b0e6f1f77d5081d20",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.842174+00:00",
+          "collected_at": "2026-11-04T20:31:33.493034+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/monad/IMonadStaking.sol#L2"
         },
         {
@@ -11590,7 +11590,7 @@
           "content_sha256": "c6df50db795a18ca9b1093b55e2b9d19cda0e05d8bc4e6d47c5566653ea65fc4",
           "source_sha256": "7479aa5f41b8ce3110a42256d44aa0cf35f6e6d33c224d3d782f50ef35e91c7f",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.842182+00:00",
+          "collected_at": "2026-11-04T20:31:33.493042+00:00",
           "url": "https://github.com/foundry-rs/foundry/blob/7f0a409a5c2016f16cb2e8618a750cc04e13977c/crates/evm/traces/src/decoder/monad/IReserveBalance.sol#L2"
         }
       ],
@@ -11613,8 +11613,8 @@
       ]
     },
     {
-      "id": "045c2e6e-505a-4017-ae66-fdb595c06a2a",
-      "public_id": "QSI-2026-11925",
+      "id": "6ea3dff8-362a-414b-9a12-8caeb619c90b",
+      "public_id": "QSI-2026-13373",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -11635,7 +11635,7 @@
       "affected_asset": "dependency:crates.io/crypto-bigint@0.5.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.847107+00:00",
+      "detected_at": "2026-11-04T20:31:33.498178+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -11691,7 +11691,7 @@
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.856186+00:00",
+          "collected_at": "2026-11-04T20:31:33.507249+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -11714,8 +11714,8 @@
       ]
     },
     {
-      "id": "8b14519c-4462-4dd4-8444-bbb9ecb79fb6",
-      "public_id": "QSI-2026-11926",
+      "id": "76b2e4ff-70b2-45cc-a9cd-89e43b3856fb",
+      "public_id": "QSI-2026-13374",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -11736,7 +11736,7 @@
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.854374+00:00",
+      "detected_at": "2026-11-04T20:31:33.505162+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -11792,7 +11792,7 @@
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.863653+00:00",
+          "collected_at": "2026-11-04T20:31:33.515533+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -11815,8 +11815,8 @@
       ]
     },
     {
-      "id": "1a93a053-518f-4207-83b2-85564835c48e",
-      "public_id": "QSI-2026-11927",
+      "id": "f1ef5ee9-fa16-4b5c-82e1-810e14c41e4b",
+      "public_id": "QSI-2026-13375",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.3 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.3: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -11837,7 +11837,7 @@
       "affected_asset": "dependency:crates.io/ctutils@0.4.3",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.861549+00:00",
+      "detected_at": "2026-11-04T20:31:33.512371+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -11893,7 +11893,7 @@
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.870418+00:00",
+          "collected_at": "2026-11-04T20:31:33.524087+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -11916,8 +11916,8 @@
       ]
     },
     {
-      "id": "41afdf78-ebd2-4915-af86-0a906860d4d5",
-      "public_id": "QSI-2026-11932",
+      "id": "cb4aa7d1-daba-4b29-b8d5-2aadc6ba185c",
+      "public_id": "QSI-2026-13380",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "tokio 1.53.2 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.53.2: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).",
@@ -11938,7 +11938,7 @@
       "affected_asset": "dependency:crates.io/tokio@1.53.2",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.921652+00:00",
+      "detected_at": "2026-11-04T20:31:33.553356+00:00",
       "risk_score": 17.8,
       "risk_breakdown": {
         "score": 17.8,
@@ -11994,7 +11994,7 @@
           "content_sha256": "1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.984113+00:00",
+          "collected_at": "2026-11-04T20:31:33.621027+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0386"
         }
       ],
@@ -12017,8 +12017,8 @@
       ]
     },
     {
-      "id": "48daeebd-7b23-4198-8672-f9286847c3b4",
-      "public_id": "QSI-2026-11928",
+      "id": "9ac65af8-13b1-493d-a351-4252d0819838",
+      "public_id": "QSI-2026-13376",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2024-0388 для пакета crates.io derivative версии 2.2.0 как информационный (unmaintained): `derivative` is unmaintained; consider using an alternative. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -12039,7 +12039,7 @@
       "affected_asset": "dependency:crates.io/derivative@2.2.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.867943+00:00",
+      "detected_at": "2026-11-04T20:31:33.521717+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -12095,7 +12095,7 @@
           "content_sha256": "3438f6c3cab3309fb6388762a19097619076b18baff08e3e9ab34fa969478d55",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.877204+00:00",
+          "collected_at": "2026-11-04T20:31:33.530936+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2024-0388"
         }
       ],
@@ -12118,8 +12118,8 @@
       ]
     },
     {
-      "id": "28d20e3a-61fe-40d4-8b37-5412522c4b19",
-      "public_id": "QSI-2026-11929",
+      "id": "b811dca3-616c-44e4-b563-2af9e1811951",
+      "public_id": "QSI-2026-13377",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2024-0436 для пакета crates.io paste версии 1.0.15 как информационный (unmaintained): paste - no longer maintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -12140,7 +12140,7 @@
       "affected_asset": "dependency:crates.io/paste@1.0.15",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:46:37.875176+00:00",
+      "detected_at": "2026-11-04T20:31:33.528589+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -12196,7 +12196,7 @@
           "content_sha256": "ea867adb8ba26c96c3779becf55b3de25d46f37f23ab55131e09c98a8b0b9975",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:46:37.887446+00:00",
+          "collected_at": "2026-11-04T20:31:33.538530+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2024-0436"
         }
       ],
@@ -12240,13 +12240,13 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-11918",
-      "QSI-2026-11915",
-      "QSI-2026-11917",
-      "QSI-2026-11921",
-      "QSI-2026-11916",
-      "QSI-2026-11919",
-      "QSI-2026-11920"
+      "QSI-2026-13366",
+      "QSI-2026-13363",
+      "QSI-2026-13365",
+      "QSI-2026-13369",
+      "QSI-2026-13364",
+      "QSI-2026-13367",
+      "QSI-2026-13368"
     ],
     "roles": [
       {
@@ -12262,7 +12262,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-11918"
+          "QSI-2026-13366"
         ],
         "files": 1
       },
@@ -12287,9 +12287,9 @@
           }
         ],
         "findings": [
-          "QSI-2026-11915",
-          "QSI-2026-11917",
-          "QSI-2026-11921"
+          "QSI-2026-13363",
+          "QSI-2026-13365",
+          "QSI-2026-13369"
         ],
         "files": 13
       },
@@ -12306,7 +12306,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-11919"
+          "QSI-2026-13367"
         ],
         "files": 1
       },
@@ -12327,8 +12327,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-11916",
-          "QSI-2026-11920"
+          "QSI-2026-13364",
+          "QSI-2026-13368"
         ],
         "files": 2
       }
@@ -12540,7 +12540,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканер секретов ничего не находит; старые значения отозваны.",
         "status": "todo",
-        "finding": "QSI-2026-11922",
+        "finding": "QSI-2026-13370",
         "finding_title": "Возможный секрет в коде crates/evm/symbolic/src/runtime/solver/mod.rs",
         "severity": "high"
       },
@@ -12558,7 +12558,7 @@
         "post_tests": "Повторно просканируйте код и проверьте места вызова из доказательства.",
         "closure_criteria": "Повторно просканируйте код и проверьте места вызова из доказательства.",
         "status": "todo",
-        "finding": "QSI-2026-11924",
+        "finding": "QSI-2026-13372",
         "finding_title": "Некриптографический генератор рядом с генерацией ключа или сида в crates/anvil/src/cmd.rs",
         "severity": "high"
       },
@@ -12576,7 +12576,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0194.",
         "status": "todo",
-        "finding": "QSI-2026-11930",
+        "finding": "QSI-2026-13378",
         "finding_title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0194",
         "severity": "high"
       },
@@ -12594,7 +12594,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0195.",
         "status": "todo",
-        "finding": "QSI-2026-11931",
+        "finding": "QSI-2026-13379",
         "finding_title": "quick-xml 0.39.4 затронут RUSTSEC-2026-0195",
         "severity": "high"
       }
@@ -12614,7 +12614,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "PQ-клиент согласует X25519MLKEM768.",
         "status": "todo",
-        "finding": "QSI-2026-11918",
+        "finding": "QSI-2026-13366",
         "finding_title": "TLS без постквантового обмена ключами: rustls с криптопровайдером ring",
         "severity": "medium"
       },
@@ -12632,7 +12632,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-11925",
+        "finding": "QSI-2026-13373",
         "finding_title": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -12650,7 +12650,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-11926",
+        "finding": "QSI-2026-13374",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -12668,7 +12668,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-11927",
+        "finding": "QSI-2026-13375",
         "finding_title": "ctutils 0.4.3 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -12686,7 +12686,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-11932",
+        "finding": "QSI-2026-13380",
         "finding_title": "tokio 1.53.2 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
         "severity": "info"
       }
@@ -12706,7 +12706,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-11915",
+        "finding": "QSI-2026-13363",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))",
         "severity": "medium"
       },
@@ -12724,7 +12724,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-11917",
+        "finding": "QSI-2026-13365",
         "finding_title": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -12742,7 +12742,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-11921",
+        "finding": "QSI-2026-13369",
         "finding_title": "Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -12760,7 +12760,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-11916",
+        "finding": "QSI-2026-13364",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12778,7 +12778,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-11919",
+        "finding": "QSI-2026-13367",
         "finding_title": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
         "severity": "medium"
       },
@@ -12796,7 +12796,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-11920",
+        "finding": "QSI-2026-13368",
         "finding_title": "Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12814,7 +12814,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-11914",
+        "finding": "QSI-2026-13362",
         "finding_title": "Плавающая версия компилятора (^0.8.13) в 12 файл(ах)",
         "severity": "low"
       },
@@ -12832,7 +12832,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-11923",
+        "finding": "QSI-2026-13371",
         "finding_title": "Плавающая версия компилятора (>=0.8.13 <0.9.0) в 2 файл(ах)",
         "severity": "low"
       },
@@ -12850,7 +12850,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-11915",
+        "finding": "QSI-2026-13363",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))",
         "severity": "medium"
       },
@@ -12868,7 +12868,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-11917",
+        "finding": "QSI-2026-13365",
         "finding_title": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -12886,7 +12886,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-11921",
+        "finding": "QSI-2026-13369",
         "finding_title": "Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -12904,7 +12904,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-11916",
+        "finding": "QSI-2026-13364",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12922,7 +12922,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-11919",
+        "finding": "QSI-2026-13367",
         "finding_title": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
         "severity": "medium"
       },
@@ -12940,7 +12940,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-11920",
+        "finding": "QSI-2026-13368",
         "finding_title": "Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -12958,7 +12958,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "derivative заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-11928",
+        "finding": "QSI-2026-13376",
         "finding_title": "derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)",
         "severity": "info"
       },
@@ -12976,7 +12976,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "paste заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-11929",
+        "finding": "QSI-2026-13377",
         "finding_title": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)",
         "severity": "info"
       }

@@ -1,27 +1,27 @@
 # Post-quantum cryptography review: monero @ 3fd0f88c20f5
 
-*One-page brief* · Reviewed: 2026-11-04 19:04 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Monero — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 20:33 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Monero — public repository (passive review)
 
 Source: https://github.com/monero-project/monero/tree/3fd0f88c20f559839cafb20911cb13cb45eba7bd
 
 **Post-quantum maturity:** Level 0 of 4 — no post-quantum cryptography. **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
-**Findings:** Critical 0 · High 1 · Medium 40 · Low 1 · Info 1
+**Findings:** Critical 0 · High 0 · Medium 40 · Low 1 · Info 1
 
 **Quantum timeline (Mosca: x + y − z):** Key establishment 10 + 5 − 8 = 7 → too late; Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **High** · Possible hard-coded secret in utils/python-rpc/framework/wallet.py (QSI-2026-12234) · *preliminary*\
-   What to do: Move secrets to a secrets manager/environment; rotate the exposed values.
-2. **Medium** · Transaction signing for 1 chain(s) relies on elliptic-curve signatures (QSI-2026-12236)\
+1. **Medium** · Transaction signing for 1 chain(s) relies on elliptic-curve signatures (QSI-2026-13420)\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in utils/gpg_keys/0xfffc0000.asc (QSI-2026-12200)\
+2. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in utils/gpg_keys/0xfffc0000.asc (QSI-2026-13385)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-4. **Medium** · Quantum-vulnerable RSA key (4096-bit) in utils/gpg_keys/SNeedlewoods.asc (QSI-2026-12201)\
+3. **Medium** · Quantum-vulnerable RSA key (4096-bit) in utils/gpg_keys/SNeedlewoods.asc (QSI-2026-13386)\
+   What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+4. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in utils/gpg_keys/anon.asc (QSI-2026-13387)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
 
-38 more in the full report.
+37 more in the full report.
 
 ## What the quantum-vulnerable cryptography protects
 
@@ -39,7 +39,7 @@ Advisories for the versions in use: 1; unlikely to apply to this build: 1 (a Car
 
 Static review of source code and manifests; files analysed: 1117. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `474b1294ee360010a360896aa943fa57c4538bdf5d05a1386be0965270613489`
+Full report, content SHA-256: `39766604ab1aeefc4bba894650eb7dcbc1e20e52e66dc79b2e32f2c14954a176`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 
