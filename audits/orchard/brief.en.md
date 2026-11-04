@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: orchard @ 616a669df8c9
 
-*One-page brief* · Reviewed: 2026-10-30 23:34 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 19:11 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/orchard/tree/616a669df8c9a59c33d47064d3ce04b25d026b2e
 
@@ -12,13 +12,13 @@ Source: https://github.com/zcash/orchard/tree/616a669df8c9a59c33d47064d3ce04b25d
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (14 file(s)) (QSI-2026-08741) · *preliminary*\
+1. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (14 file(s)) (QSI-2026-12260) · *preliminary*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-2. **Medium** · Quantum-vulnerable RedDSA: transaction and message signing (1 file(s)) (QSI-2026-08745) · *preliminary*\
+2. **Medium** · Quantum-vulnerable RedDSA: transaction and message signing (1 file(s)) (QSI-2026-12264) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable Halo 2 (IPA): role not determined (16 file(s)) (QSI-2026-08742) · *preliminary*\
+3. **Medium** · Quantum-vulnerable Halo 2 (IPA): role not determined (16 file(s)) (QSI-2026-12261) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
-4. **Medium** · Quantum-vulnerable RedDSA: role not determined (1 file(s)) (QSI-2026-08743) · *preliminary*\
+4. **Medium** · Quantum-vulnerable RedDSA: role not determined (1 file(s)) (QSI-2026-12262) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
 
 7 more in the full report.
@@ -40,7 +40,7 @@ Advisories for the versions in use: 5; unlikely to apply to this build: 1 (a Car
 
 Static review of source code and manifests; files analysed: 49. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `2322fc1dbacc08f4c1d2d3bffd63d5fa13ed7b236b4c6ea67f4dd0df49a155b7`
+Full report, content SHA-256: `34a08fbc0f0e509f4c47b3809624b2cec2340411859552a01434b474f169df53`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

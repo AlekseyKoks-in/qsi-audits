@@ -1,0 +1,7 @@
+# Recovered from ethers-js/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-27"
+decisions:
+  - match: {rule: "CODE-HARDCODED-SECRET"}
+    decision: false_positive
+    note: "Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long."

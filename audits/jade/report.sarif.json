@@ -7,14 +7,14 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "KEY-PRIVATE-IN-INPUT",
               "name": "KeyPrivateInInput",
               "shortDescription": {
-                "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_A.pem"
+                "text": "Закрытый ключ присутствует в tools/fakeprod_attest.pem"
               },
               "defaultConfiguration": {
                 "level": "error"
@@ -28,10 +28,10 @@
                 "security-severity": "8.1"
               },
               "fullDescription": {
-                "text": "Блок «RSA PRIVATE KEY» найден в строке 1 файла release/scripts/dev_fw_signing_key_A.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
+                "text": "Блок «RSA PRIVATE KEY» найден в строке 1 файла tools/fakeprod_attest.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
               },
               "help": {
-                "text": "Блок «RSA PRIVATE KEY» найден в строке 1 файла release/scripts/dev_fw_signing_key_A.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
+                "text": "Блок «RSA PRIVATE KEY» найден в строке 1 файла tools/fakeprod_attest.pem. QSI замаскировал ключ перед сохранением; исходный файл по-прежнему его содержит. Считайте ключ скомпрометированным: замените его, отзовите связанные сертификаты, удалите из истории версий, храните ключи в менеджере секретов/HSM. QSI не может определить, используется ли ключ в продуктиве. Значение ключа не сохранялось."
               },
               "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
             },
@@ -144,103 +144,13 @@
           "ruleIndex": 0,
           "level": "error",
           "message": {
-            "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_A.pem"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "625323bc5a3b34a4d377755538e9afc4"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06703",
-            "severity": "high",
-            "confidence": "high",
-            "classification": "confirmed_vulnerability",
-            "security-severity": "8.1"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "release/scripts/dev_fw_signing_key_A.pem"
-                },
-                "region": {
-                  "startLine": 1
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "KEY-PRIVATE-IN-INPUT",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_B.pem"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "04d9ab1656a40edbbeeee42bbbf26870"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06704",
-            "severity": "high",
-            "confidence": "high",
-            "classification": "confirmed_vulnerability",
-            "security-severity": "8.1"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "release/scripts/dev_fw_signing_key_B.pem"
-                },
-                "region": {
-                  "startLine": 1
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "KEY-PRIVATE-IN-INPUT",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Закрытый ключ присутствует в release/scripts/dev_fw_signing_key_C.pem"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "d59da22404e567a06756060b4b4457ff"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06705",
-            "severity": "high",
-            "confidence": "high",
-            "classification": "confirmed_vulnerability",
-            "security-severity": "8.1"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "release/scripts/dev_fw_signing_key_C.pem"
-                },
-                "region": {
-                  "startLine": 1
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "KEY-PRIVATE-IN-INPUT",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
             "text": "Закрытый ключ присутствует в tools/fakeprod_attest.pem"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "59a3ce90999c07761680b7a82dddbdf8"
           },
           "properties": {
-            "qsiId": "QSI-2026-06710",
+            "qsiId": "QSI-2026-11963",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -270,7 +180,7 @@
             "qsiFindingKey/v1": "9681280d7fbe76fc10410a863c955140"
           },
           "properties": {
-            "qsiId": "QSI-2026-06711",
+            "qsiId": "QSI-2026-11964",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -300,25 +210,7 @@
             "qsiFindingKey/v1": "2d44bf907c8f8deae06fb74e8260bfca"
           },
           "properties": {
-            "qsiId": "QSI-2026-06691",
-            "severity": "medium",
-            "confidence": "high",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 1,
-          "level": "warning",
-          "message": {
-            "text": "Квантово-уязвимый ключ RSA (4096-bit) в components/libwally-core/upstream/SECURITY.md"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "631111c82958a24ca4eb11ab8ee411e8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06693",
+            "qsiId": "QSI-2026-11947",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -336,7 +228,7 @@
             "qsiFindingKey/v1": "44f022f9d8c7a2019532e85022c0544a"
           },
           "properties": {
-            "qsiId": "QSI-2026-06700",
+            "qsiId": "QSI-2026-11956",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -354,7 +246,7 @@
             "qsiFindingKey/v1": "0634ef92374c448ea28ff13b1f26aa98"
           },
           "properties": {
-            "qsiId": "QSI-2026-06701",
+            "qsiId": "QSI-2026-11957",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -372,7 +264,7 @@
             "qsiFindingKey/v1": "673a3d470585a2d1b3603011e0d345c7"
           },
           "properties": {
-            "qsiId": "QSI-2026-06702",
+            "qsiId": "QSI-2026-11958",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -390,7 +282,7 @@
             "qsiFindingKey/v1": "6d0cbcc52eed3d6d1d2e013c246c36d7"
           },
           "properties": {
-            "qsiId": "QSI-2026-06706",
+            "qsiId": "QSI-2026-11959",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -408,7 +300,7 @@
             "qsiFindingKey/v1": "1db9354e38d72ef657d8ad0ad832be27"
           },
           "properties": {
-            "qsiId": "QSI-2026-06707",
+            "qsiId": "QSI-2026-11960",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -426,7 +318,7 @@
             "qsiFindingKey/v1": "38cac7ac78496d60c427087a942d7a62"
           },
           "properties": {
-            "qsiId": "QSI-2026-06708",
+            "qsiId": "QSI-2026-11961",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -444,7 +336,25 @@
             "qsiFindingKey/v1": "ebd7c67fcaa93d7e59721be8a97f7c23"
           },
           "properties": {
-            "qsiId": "QSI-2026-06709",
+            "qsiId": "QSI-2026-11962",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ RSA (4096-bit) в components/libwally-core/upstream/SECURITY.md"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "631111c82958a24ca4eb11ab8ee411e8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11965",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -462,7 +372,7 @@
             "qsiFindingKey/v1": "a40c69f2e897406891adf400d5d59cf8"
           },
           "properties": {
-            "qsiId": "QSI-2026-06692",
+            "qsiId": "QSI-2026-11948",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -474,13 +384,31 @@
           "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (36 файл(ов))"
+            "text": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (3 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11953",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (38 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-06694",
+            "qsiId": "QSI-2026-11954",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -492,49 +420,13 @@
           "ruleIndex": 2,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (5 файл(ов))"
+            "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (8 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-06696",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06695",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 2,
-          "level": "warning",
-          "message": {
-            "text": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06697",
+            "qsiId": "QSI-2026-11955",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -552,7 +444,7 @@
             "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
           },
           "properties": {
-            "qsiId": "QSI-2026-06698",
+            "qsiId": "QSI-2026-11949",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -570,7 +462,61 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-06699",
+            "qsiId": "QSI-2026-11950",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDH: роль не определена (11 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11951",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: роль не определена (12 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11952",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11966",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -588,7 +534,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-06713",
+            "qsiId": "QSI-2026-11968",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -615,7 +561,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-06712",
+            "qsiId": "QSI-2026-11967",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -624,13 +570,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/jade @ a59d14c2b397/b3760777-ac16-4f31-8650-45c2187077a4"
+        "id": "qsi/jade @ a59d14c2b397/620e7a33-bc9c-4d12-aa96-aaaf4e88890b"
       },
       "properties": {
-        "qsiContentSha256": "f4b140a68a457febeea7aae793751c45b1001460fce55b495d23af538ad63b92",
+        "qsiContentSha256": "c63d3d7f217a30d4175e240476737e24cdf4757b3c18c2f58beef44c0fed6714",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T19:59:17.115192+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:49:19.206057+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

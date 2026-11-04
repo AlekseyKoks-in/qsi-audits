@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -128,10 +128,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, ff, group, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, ff, group, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 49 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, ecdsa, elliptic, ethers, jsonwebtoken, k256, node-forge, p256, ring, rustls), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -150,7 +150,7 @@
             "qsiFindingKey/v1": "31cd59e242ba5b36198477bc18b8151f"
           },
           "properties": {
-            "qsiId": "QSI-2026-08728",
+            "qsiId": "QSI-2026-12247",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -177,7 +177,7 @@
             "qsiFindingKey/v1": "f916efd99a9f509598476a2500b055db"
           },
           "properties": {
-            "qsiId": "QSI-2026-08729",
+            "qsiId": "QSI-2026-12248",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -204,7 +204,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-08722",
+            "qsiId": "QSI-2026-12241",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -222,7 +222,7 @@
             "qsiFindingKey/v1": "a32dc4d401fc32a953504c0a38f8d3f4"
           },
           "properties": {
-            "qsiId": "QSI-2026-08720",
+            "qsiId": "QSI-2026-12239",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -240,7 +240,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-08721",
+            "qsiId": "QSI-2026-12240",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -258,7 +258,7 @@
             "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-08725",
+            "qsiId": "QSI-2026-12244",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -285,7 +285,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-08724",
+            "qsiId": "QSI-2026-12243",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -312,7 +312,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-08726",
+            "qsiId": "QSI-2026-12245",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -339,7 +339,7 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-08727",
+            "qsiId": "QSI-2026-12246",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -366,7 +366,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-08730",
+            "qsiId": "QSI-2026-12249",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -393,7 +393,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-08731",
+            "qsiId": "QSI-2026-12250",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -420,7 +420,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-08723",
+            "qsiId": "QSI-2026-12242",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -429,13 +429,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/noir @ 5c98fecd3fe6/54939f03-3a5a-42de-8046-0e39a70315fb"
+        "id": "qsi/noir @ 5c98fecd3fe6/418d6971-441a-4ae1-a777-c8dd68f7843f"
       },
       "properties": {
-        "qsiContentSha256": "7fc94ead2170678bbc98c19dd80371095b4aba686b0b5628506da5b88871e4ad",
+        "qsiContentSha256": "53576c752dce86cf5dc0dd399bb2034f3d8c34d7beeb65f88d60194d782bdd41",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-30T23:32:38.342530+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:10:09.570015+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

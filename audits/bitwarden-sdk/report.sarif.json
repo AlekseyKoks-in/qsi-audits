@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -114,7 +114,7 @@
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "13 бюллетеней в 5 пакет(ах) npm, нужных только для разработки или сборки"
+                "text": "16 бюллетеней в 7 пакет(ах) npm, нужных только для разработки или сборки"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -128,10 +128,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает 13 бюллетеней (7 с оценкой high или critical) для 5 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@5.0.8 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-q3jh-wrc6-jgq8; ip-address@10.3.1 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5; shell-quote@1.9.0 [dev]: GHSA-pqg4-j6r4-53mv. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из ма…"
+                "text": "OSV.dev сообщает 16 бюллетеней (7 с оценкой high или critical) для 7 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@5.0.8 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-mrwp-f3q8-3g9p, GHSA-q3jh-wrc6-jgq8; glob@13.0.6 [dev]: GHSA-3g3m-2fjr-6pw4; ip-address@10.3.1 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области примене…"
               },
               "help": {
-                "text": "OSV.dev сообщает 13 бюллетеней (7 с оценкой high или critical) для 5 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@5.0.8 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-q3jh-wrc6-jgq8; ip-address@10.3.1 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5; shell-quote@1.9.0 [dev]: GHSA-pqg4-j6r4-53mv. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+                "text": "OSV.dev сообщает 16 бюллетеней (7 с оценкой high или critical) для 7 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@5.0.8 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-mrwp-f3q8-3g9p, GHSA-q3jh-wrc6-jgq8; glob@13.0.6 [dev]: GHSA-3g3m-2fjr-6pw4; ip-address@10.3.1 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
             },
@@ -175,7 +175,7 @@
             "qsiFindingKey/v1": "80dcdb235ea4758fe7584776aa3fa9e4"
           },
           "properties": {
-            "qsiId": "QSI-2026-05805",
+            "qsiId": "QSI-2026-11811",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -202,7 +202,7 @@
             "qsiFindingKey/v1": "c2c7f55f264ba1c2b08a407506bcb98f"
           },
           "properties": {
-            "qsiId": "QSI-2026-05806",
+            "qsiId": "QSI-2026-11812",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -229,7 +229,7 @@
             "qsiFindingKey/v1": "37cf7527345cadeb12e0099923a7b982"
           },
           "properties": {
-            "qsiId": "QSI-2026-05789",
+            "qsiId": "QSI-2026-11796",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -247,7 +247,7 @@
             "qsiFindingKey/v1": "63ed1a0fe276081a1c0530a2e556915d"
           },
           "properties": {
-            "qsiId": "QSI-2026-05790",
+            "qsiId": "QSI-2026-11797",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -265,7 +265,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-05791",
+            "qsiId": "QSI-2026-11798",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -283,39 +283,12 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-05794",
+            "qsiId": "QSI-2026-11801",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
           }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.10.4)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-05798",
-            "severity": "medium",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "5.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "Cargo.lock"
-                }
-              }
-            }
-          ]
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
@@ -328,7 +301,7 @@
             "qsiFindingKey/v1": "7e27b620ed3afa2766f0d7c6eabd2809"
           },
           "properties": {
-            "qsiId": "QSI-2026-05808",
+            "qsiId": "QSI-2026-11814",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -355,7 +328,7 @@
             "qsiFindingKey/v1": "0c214321e3e7ce2b7c0a2531f71801b7"
           },
           "properties": {
-            "qsiId": "QSI-2026-05809",
+            "qsiId": "QSI-2026-11815",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -376,13 +349,13 @@
           "ruleIndex": 2,
           "level": "note",
           "message": {
-            "text": "Квантово-уязвимый Ed25519: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (2 файл(ов))"
+            "text": "Квантово-уязвимый Ed25519: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "0aba2e2bcd7b95bfa30682b0b2fddff5"
           },
           "properties": {
-            "qsiId": "QSI-2026-05792",
+            "qsiId": "QSI-2026-11799",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -400,7 +373,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-05793",
+            "qsiId": "QSI-2026-11800",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -418,7 +391,7 @@
             "qsiFindingKey/v1": "b302032650de6c165e0e74b7d843d367"
           },
           "properties": {
-            "qsiId": "QSI-2026-05795",
+            "qsiId": "QSI-2026-11802",
             "severity": "low",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -436,7 +409,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-05800",
+            "qsiId": "QSI-2026-11806",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -463,7 +436,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-05801",
+            "qsiId": "QSI-2026-11807",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -490,7 +463,7 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-05802",
+            "qsiId": "QSI-2026-11808",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -517,7 +490,7 @@
             "qsiFindingKey/v1": "ba8434a29ae02f313b720c0655582a47"
           },
           "properties": {
-            "qsiId": "QSI-2026-05810",
+            "qsiId": "QSI-2026-11816",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -544,7 +517,7 @@
             "qsiFindingKey/v1": "3286653610c53d670e72eca21c86ab95"
           },
           "properties": {
-            "qsiId": "QSI-2026-05815",
+            "qsiId": "QSI-2026-11821",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -571,7 +544,7 @@
             "qsiFindingKey/v1": "75ea72e743b02165442bef2814615a03"
           },
           "properties": {
-            "qsiId": "QSI-2026-05816",
+            "qsiId": "QSI-2026-11822",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -598,7 +571,7 @@
             "qsiFindingKey/v1": "d4c7cf2a81d03919d11f20e7dc08e38b"
           },
           "properties": {
-            "qsiId": "QSI-2026-05807",
+            "qsiId": "QSI-2026-11813",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -625,7 +598,7 @@
             "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
           },
           "properties": {
-            "qsiId": "QSI-2026-05812",
+            "qsiId": "QSI-2026-11818",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -646,13 +619,13 @@
           "ruleIndex": 4,
           "level": "note",
           "message": {
-            "text": "13 бюллетеней в 5 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
+            "text": "16 бюллетеней в 7 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-05817",
+            "qsiId": "QSI-2026-11823",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -679,7 +652,7 @@
             "qsiFindingKey/v1": "1d63cfcd48c7e84b490d9525503f6555"
           },
           "properties": {
-            "qsiId": "QSI-2026-05796",
+            "qsiId": "QSI-2026-11803",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -706,7 +679,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-05797",
+            "qsiId": "QSI-2026-11804",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -733,7 +706,7 @@
             "qsiFindingKey/v1": "65040fb0ca3e2c454553f7190d0bda5c"
           },
           "properties": {
-            "qsiId": "QSI-2026-05799",
+            "qsiId": "QSI-2026-11805",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -760,7 +733,7 @@
             "qsiFindingKey/v1": "657a1f7bc918b25a7ebeac72aaefabac"
           },
           "properties": {
-            "qsiId": "QSI-2026-05803",
+            "qsiId": "QSI-2026-11809",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -787,7 +760,7 @@
             "qsiFindingKey/v1": "f9883bcc2b5931811747b605992d85cd"
           },
           "properties": {
-            "qsiId": "QSI-2026-05804",
+            "qsiId": "QSI-2026-11810",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -814,7 +787,7 @@
             "qsiFindingKey/v1": "cc9eed8c51727cbb09a3a7e0376e78b4"
           },
           "properties": {
-            "qsiId": "QSI-2026-05811",
+            "qsiId": "QSI-2026-11817",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -841,7 +814,7 @@
             "qsiFindingKey/v1": "de72eaefc562e40bf507b93374d005d4"
           },
           "properties": {
-            "qsiId": "QSI-2026-05813",
+            "qsiId": "QSI-2026-11819",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -868,7 +841,7 @@
             "qsiFindingKey/v1": "af089dcbba7dfa68eca6e4460004633a"
           },
           "properties": {
-            "qsiId": "QSI-2026-05814",
+            "qsiId": "QSI-2026-11820",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -886,13 +859,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/bitwarden-sdk @ 25b6c8c3860a/3299dddc-14ef-48e1-91a2-a864b03ce4d0"
+        "id": "qsi/bitwarden-sdk @ 25b6c8c3860a/51217354-390e-4186-93aa-bc9d292a6463"
       },
       "properties": {
-        "qsiContentSha256": "1e4739b3d4d55d63452098b66dfb2f91cf88d4f8816147acca500b5289e09586",
+        "qsiContentSha256": "9f393370f03e2e297d153a9b3eb3b6c372ce3fedc66534cc04808deabf2c6f21",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "security_software",
-        "qsiGeneratedAt": "2026-10-28T18:19:06.490144+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:38:59.142194+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

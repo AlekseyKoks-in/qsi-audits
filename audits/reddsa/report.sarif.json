@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -78,10 +78,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, ff, group, jubjub, pasta_curves), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, jubjub, pasta_curves), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, ff, group, jubjub, pasta_curves), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, jubjub, pasta_curves), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "dddc06ae3551b9ff5cf5afa8bf517a7f"
           },
           "properties": {
-            "qsiId": "QSI-2026-07275",
+            "qsiId": "QSI-2026-12470",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "8523edb9ce7f414dc285e274554d2cfa"
           },
           "properties": {
-            "qsiId": "QSI-2026-07274",
+            "qsiId": "QSI-2026-12469",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +136,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-07277",
+            "qsiId": "QSI-2026-12472",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -163,7 +163,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-07276",
+            "qsiId": "QSI-2026-12471",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -172,13 +172,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/reddsa @ 04e973bcf8d4/eb279341-8c00-4ae1-9a0f-b358aa847fc9"
+        "id": "qsi/reddsa @ 04e973bcf8d4/66dc426a-b0c7-4872-8381-1690c003ff22"
       },
       "properties": {
-        "qsiContentSha256": "d9243f8dfd3941e5e6a92db037b26c39dbdc1672e3532e89daa13c24c6b57733",
+        "qsiContentSha256": "5ca6c9c5ed7313b21cef308aaed72429129f081cd89916ded12aeb8640a00654",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T23:42:59.840917+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:15:59.602006+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 23:49 UTC |
+| Дата отчёта | 2026-11-04 19:43 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 8d18afbc-4df4-4a08-b655-7271d4eadaa9 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 732f0281-a5f1-41bf-8dee-2700b3efaf80 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `91cfb3dd01b634fae7dd5a8e161479a5e242739f2957bd218e9a221f11e5df4c` |
+| SHA-256 содержимого | `c94d3ad48bc03d1cc0022e97e0680d3c8fcabe06a4753072a8333bd7f50a4f31` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -22,10 +22,10 @@
 - Информационная: **6**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 10
+- Известная уязвимая версия компонента: 9
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 11
+- Долгосрочный постквантовый риск: 12
 - Рекомендация по улучшению: 4
 - Недостаточность данных: 1
 
@@ -50,9 +50,10 @@
 | dependencies | проверено | 13 | Cargo.lock: 709 dependencies parsed (709 pinned); Cargo.toml: 148 dependencies parsed (0 pinned); tower-batch-control/Cargo.toml: 16 dependencies parsed (0 pinned) |
 | keys | Недостаточность данных | 1 | SECURITY.md line 70: OpenPGP algorithm ID 18 is not in the algorithm registry |
 | certificates_and_keys | проверено | 1 | SECURITY.md: certificates/keys parsed |
-| source_code | проверено | 419 | book/lens-init.js: 132 lines scanned with 16 rule patterns and 128 registry patterns; book/mermaid-init.js: 1 lines scanned with 16 rule patterns and 128 registry patterns; book/mermaid.min.js: 4 lines scanned with 16 rule patterns and 128 registry patterns |
+| source_code | проверено | 419 | book/lens-init.js: 132 lines scanned with 16 rule patterns and 145 registry patterns; book/mermaid-init.js: 1 lines scanned with 16 rule patterns and 145 registry patterns; book/mermaid.min.js: 4 lines scanned with 16 rule patterns and 145 registry patterns |
 | tls_configuration | проверено | 1 | book/src/user/lightwalletd.md: nginx TLS directives parsed |
-| osv_advisories | проверено | 1 | 709 pinned packages queried at OSV.dev; 11 affected (2 of them only in development or build dependencies) |
+| entropy | проверено | 1 | random-number generation: 419 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| osv_advisories | проверено | 1 | 709 pinned packages queried at OSV.dev; 10 affected (2 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -62,22 +63,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree zebra at 147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522. 439 files analysed; of 1600 files, 836 are test, fuzzing, benchmark or example code and were left out, 325 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .agents/skills/zebra-pr/SKILL.md, .changes/header.tpl.md, .changes/tower-batch-control/v1.1.1.md, .changes/tower-fallback/v0.2.43.md, .changes/unreleased/.gitkeep. 56 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree zebra at 147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522. 439 files analysed; of 1600 files, 836 are test, fuzzing, benchmark or example code and were left out, 325 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .agents/skills/zebra-pr/SKILL.md, .changes/header.tpl.md, .changes/tower-batch-control/v1.1.1.md, .changes/tower-fallback/v0.2.43.md, .changes/unreleased/.gitkeep. 33 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **62** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 43.9%
+- Ориентировочный индекс состояния: **66** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 46.6%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-07371 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0340
+### QSI-2026-13024 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0340
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -105,13 +106,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0340](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07372 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0341
+### QSI-2026-13025 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0341
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -139,13 +140,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0341](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07350 — Квантово-уязвимый ключ Ed25519 (Ed25519) в SECURITY.md
+### QSI-2026-13003 — Квантово-уязвимый ключ Ed25519 (Ed25519) в SECURITY.md
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:SECURITY.md#line 70`
 - Источник данных: SECURITY.md
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -173,13 +174,13 @@ OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07367 — opentelemetry_sdk 0.31.0 затронут GHSA-w9wp-h8wv-79jx (CVE-2026-48504)
+### QSI-2026-13020 — opentelemetry_sdk 0.31.0 затронут GHSA-w9wp-h8wv-79jx (CVE-2026-48504)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/opentelemetry_sdk@0.31.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -207,13 +208,13 @@ _tool_output · [OSV.dev GHSA-w9wp-h8wv-79jx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07353 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (12 файл(ов))
+### QSI-2026-13006 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (12 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Pedersen commitment:threshold_mpc`
 - Источник данных: zebra-chain/src/orchard.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -315,13 +316,13 @@ _file_excerpt · [zebra-chain/src/orchard/shielded_data.rs](https://github.com/Z
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07357 — Квантово-уязвимый Halo 2 (IPA): подпись транзакций и сообщений (5 файл(ов))
+### QSI-2026-13010 — Квантово-уязвимый Halo 2 (IPA): подпись транзакций и сообщений (5 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Halo 2 (IPA):transaction_signing`
 - Источник данных: zebra-chain/src/primitives/proofs/halo2.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -423,13 +424,121 @@ _file_excerpt · [zebra-consensus/src/transaction.rs](https://github.com/ZcashFo
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07358 — Квантово-уязвимый RedDSA: подпись транзакций и сообщений (3 файл(ов))
+### QSI-2026-13011 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (5 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Ed25519:transaction_signing`
+- Источник данных: zebra-chain/src/transaction.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
+- Балл приоритета: 35.6 / 100
+- CVSS v3.1: неприменимо
+
+10 упоминаний Ed25519 в 5 файл(ах), например zebra-chain/src/transaction.rs:366. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте zebra-chain/src/transaction.rs:366 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [zebra-chain/src/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-chain/src/transaction.rs#L366) · line 366 · SHA-256 118b2035c4fe531db5e7f4dc4efbe0e5ba3c7e2ac5390f25f4a77a0d077abae5_
+
+```
+  365 |         &self,
+  366 |     ) -> Option<crate::primitives::ed25519::VerificationKeyBytes> {
+  367 |         self.sprout_bundle()
+```
+
+_file_excerpt · [zebra-chain/src/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-chain/src/transaction.rs#L368) · line 368 · SHA-256 8b7185a153fcd2daa5149bf544a6604a4703caefde98f4c766bae777f2903a1b_
+
+```
+  367 |         self.sprout_bundle()
+  368 |             .map(|b| crate::primitives::ed25519::VerificationKeyBytes::from(b.joinsplit_pubkey))
+  369 |     }
+```
+
+_file_excerpt · [zebra-chain/src/transaction/arbitrary.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-chain/src/transaction/arbitrary.rs#L599) · line 599 · SHA-256 8f71407faa8566ff36208e1da0b175001d73bd39d5767b564a20022a3c4b9a28_
+
+```
+  598 |                 rest,
+  599 |                 pub_key: ed25519_zebra::VerificationKeyBytes::from(pub_key_bytes),
+  600 |                 sig: ed25519_zebra::Signature::from({
+```
+
+_file_excerpt · [zebra-chain/src/transaction/arbitrary.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-chain/src/transaction/arbitrary.rs#L600) · line 600 · SHA-256 c49c5934757ec6355cd4befad43a8d05dd101a65b6a2ef24b30059549253d727_
+
+```
+  599 |                 pub_key: ed25519_zebra::VerificationKeyBytes::from(pub_key_bytes),
+  600 |                 sig: ed25519_zebra::Signature::from({
+  601 |                     let mut b = [0u8; 64];
+```
+
+_file_excerpt · [zebra-chain/src/transaction/joinsplit.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-chain/src/transaction/joinsplit.rs#L47) · line 47 · SHA-256 755296ea1883298622d32d32fbbabc78850ce287d8fabf9afbc08361f3778ad4_
+
+```
+   46 |     /// The public key for the JoinSplit signature, denoted as `joinSplitPubKey` in the spec.
+   47 |     pub pub_key: ed25519::VerificationKeyBytes,
+   48 |     /// The JoinSplit signature, denoted as `joinSplitSig` in the spec.
+```
+
+_file_excerpt · [zebra-chain/src/transaction/joinsplit.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-chain/src/transaction/joinsplit.rs#L49) · line 49 · SHA-256 7b5f18c28d4b4cf995c8c645d6699ea435fc2e3771326fafe98976648f3dc02c_
+
+```
+   48 |     /// The JoinSplit signature, denoted as `joinSplitSig` in the spec.
+   49 |     pub sig: ed25519::Signature,
+   50 | }
+```
+
+_file_excerpt · [zebra-consensus/src/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-consensus/src/transaction.rs#L1336) · line 1336 · SHA-256 47c225a0eb060a0e1266d6cbaf74c3257e94ddf54cd53cd62da02bdbdcea218a_
+
+```
+ 1335 |         // https://zips.z.cash/protocol/protocol.pdf#txnencodingandconsensus
+ 1336 |         let ed25519_verifier = primitives::ed25519::VERIFIER.clone();
+ 1337 |         let pub_key = zebra_chain::primitives::ed25519::VerificationKeyBytes::from(
+```
+
+_file_excerpt · [zebra-consensus/src/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-consensus/src/transaction.rs#L1337) · line 1337 · SHA-256 7e1e83dc267bda9203a1e89c9f2bb66aa828af4aadb1fa9b88e6e7ab41987248_
+
+```
+ 1336 |         let ed25519_verifier = primitives::ed25519::VERIFIER.clone();
+ 1337 |         let pub_key = zebra_chain::primitives::ed25519::VerificationKeyBytes::from(
+ 1338 |             sprout_bundle.joinsplit_pubkey,
+```
+
+_file_excerpt · [zebra-consensus/src/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-consensus/src/transaction.rs#L1340) · line 1340 · SHA-256 c5cd881930df105bad00840a473fa63cec1e81b86bb4c8096b356109c586ef9f_
+
+```
+ 1339 |         );
+ 1340 |         let sig = zebra_chain::primitives::ed25519::Signature::from(sprout_bundle.joinsplit_sig);
+ 1341 |         let ed25519_item = (pub_key, sig, shielded_sighash).into();
+```
+
+_file_excerpt · [zebra-rpc/src/methods/types/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-rpc/src/methods/types/transaction.rs#L380) · line 380 · SHA-256 ad4a7b87509a64c51a6849f560fe90747a31fde83bee6d59e22d8cff6b3eb64e_
+
+```
+  379 |     #[getter(copy)]
+  380 |     pub(crate) joinsplit_sig: Option<[u8; ed25519::Signature::BYTE_SIZE]>,
+  381 | 
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-13012 — Квантово-уязвимый RedDSA: подпись транзакций и сообщений (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RedDSA:transaction_signing`
 - Источник данных: zebra-chain/src/transaction/arbitrary.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -499,65 +608,13 @@ _file_excerpt · [zebra-chain/src/transaction/serialize.rs](https://github.com/Z
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07359 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (3 файл(ов))
-
-- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `source-code:Ed25519:transaction_signing`
-- Источник данных: zebra-chain/src/transaction/joinsplit.rs
-- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
-- Балл приоритета: 35.6 / 100
-- CVSS v3.1: неприменимо
-
-3 упоминаний Ed25519 в 3 файл(ах), например zebra-chain/src/transaction/joinsplit.rs:49. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
-
-**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
-
-**Шаги воспроизведения.**
-
-```
-Откройте zebra-chain/src/transaction/joinsplit.rs:49 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [zebra-chain/src/transaction/joinsplit.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-chain/src/transaction/joinsplit.rs#L49) · line 49 · SHA-256 7b5f18c28d4b4cf995c8c645d6699ea435fc2e3771326fafe98976648f3dc02c_
-
-```
-   48 |     /// The JoinSplit signature, denoted as `joinSplitSig` in the spec.
-   49 |     pub sig: ed25519::Signature,
-   50 | }
-```
-
-_file_excerpt · [zebra-consensus/src/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-consensus/src/transaction.rs#L1340) · line 1340 · SHA-256 c5cd881930df105bad00840a473fa63cec1e81b86bb4c8096b356109c586ef9f_
-
-```
- 1339 |         );
- 1340 |         let sig = zebra_chain::primitives::ed25519::Signature::from(sprout_bundle.joinsplit_sig);
- 1341 |         let ed25519_item = (pub_key, sig, shielded_sighash).into();
-```
-
-_file_excerpt · [zebra-rpc/src/methods/types/transaction.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-rpc/src/methods/types/transaction.rs#L380) · line 380 · SHA-256 ad4a7b87509a64c51a6849f560fe90747a31fde83bee6d59e22d8cff6b3eb64e_
-
-```
-  379 |     #[getter(copy)]
-  380 |     pub(crate) joinsplit_sig: Option<[u8; ed25519::Signature::BYTE_SIZE]>,
-  381 | 
-```
-
-**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
-
-**Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
-
-**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
-
-### QSI-2026-07352 — Квантово-уязвимый Halo 2 (IPA): роль не определена (17 файл(ов))
+### QSI-2026-13005 — Квантово-уязвимый Halo 2 (IPA): роль не определена (17 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Halo 2 (IPA):general`
 - Источник данных: zebra-chain/src/amount.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -659,13 +716,13 @@ _file_excerpt · [zebra-chain/src/orchard/keys.rs](https://github.com/ZcashFound
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07354 — Квантово-уязвимый Sinsemilla: роль не определена (6 файл(ов))
+### QSI-2026-13007 — Квантово-уязвимый Sinsemilla: роль не определена (6 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Sinsemilla:general`
 - Источник данных: zebra-chain/src/orchard.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -751,13 +808,13 @@ _file_excerpt · [zebra-chain/src/orchard/tree.rs](https://github.com/ZcashFound
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07355 — Квантово-уязвимый RedDSA: роль не определена (5 файл(ов))
+### QSI-2026-13008 — Квантово-уязвимый RedDSA: роль не определена (5 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RedDSA:general`
 - Источник данных: zebra-chain/src/orchard/action.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -851,13 +908,13 @@ _file_excerpt · [zebra-consensus/src/primitives/redpallas.rs](https://github.co
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07356 — Квантово-уязвимый X25519: роль не определена (3 файл(ов))
+### QSI-2026-13009 — Квантово-уязвимый X25519: роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:X25519:general`
 - Источник данных: zebra-chain/src/primitives.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -919,13 +976,13 @@ _file_excerpt · [zebra-chain/src/sprout/joinsplit.rs](https://github.com/ZcashF
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07360 — Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))
+### QSI-2026-13013 — Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: zebra-chain/src/transparent/keys.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -963,13 +1020,65 @@ _file_excerpt · [zebra-chain/src/transparent/keys.rs](https://github.com/ZcashF
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07361 — Квантово-уязвимый BLS12-381: роль не определена (2 файл(ов))
+### QSI-2026-13014 — Квантово-уязвимый Ed25519: роль не определена (2 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Ed25519:general`
+- Источник данных: zebra-consensus/src/error.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+3 упоминаний Ed25519 в 2 файл(ах), например zebra-consensus/src/error.rs:157. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте zebra-consensus/src/error.rs:157 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [zebra-consensus/src/error.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-consensus/src/error.rs#L157) · line 157 · SHA-256 9dd9aa94360bdf95a8f3652f403a5b6032700c44f005599edc3dbcb022659349_
+
+```
+  156 |     #[cfg_attr(any(test, feature = "proptest-impl"), proptest(skip))]
+  157 |     Ed25519(#[from] zebra_chain::primitives::ed25519::Error),
+  158 | 
+```
+
+_file_excerpt · [zebra-consensus/src/error.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-consensus/src/error.rs#L371) · line 371 · SHA-256 c346cd9f757502e2f2c0fdd633c3dc1d869210fe85e1ea51dd1a9aacecb5d92f_
+
+```
+  370 | 
+  371 |         match err.downcast::<zebra_chain::primitives::ed25519::Error>() {
+  372 |             Ok(e) => return TransactionError::Ed25519(*e),
+```
+
+_file_excerpt · [zebra-consensus/src/primitives/ed25519.rs](https://github.com/ZcashFoundation/zebra/blob/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522/zebra-consensus/src/primitives/ed25519.rs#L17) · line 17 · SHA-256 c45b28aaaf30bf3522f903c6e44358ef201a620a834f997e410fca7f6f330552_
+
+```
+   16 | use tower_fallback::Fallback;
+   17 | use zebra_chain::primitives::ed25519::*;
+   18 | 
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-13015 — Квантово-уязвимый BLS12-381: роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:BLS12-381:general`
 - Источник данных: zebra-consensus/src/primitives/groth16.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1007,47 +1116,13 @@ _file_excerpt · [zebra-consensus/src/primitives/groth16/params.rs](https://gith
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07364 — block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-- Затронутый актив: `dependency:crates.io/block-buffer@0.10.4`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
-- Балл приоритета: 33.1 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-07365 — libz-sys 1.1.28 затронут RUSTSEC-2026-0418 (без оценки серьёзности)
+### QSI-2026-13018 — libz-sys 1.1.28 затронут RUSTSEC-2026-0418 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/libz-sys@1.1.28`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1075,13 +1150,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0418](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07369 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
+### QSI-2026-13022 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1109,13 +1184,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07370 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0339 (без оценки серьёзности)
+### QSI-2026-13023 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0339 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1143,13 +1218,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07373 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0342 (без оценки серьёзности)
+### QSI-2026-13026 — quinn-proto 0.11.16 затронут RUSTSEC-2026-0342 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.11.16`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1177,13 +1252,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07375 — webpki-root-certs 1.0.7 затронут RUSTSEC-2026-0383 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-13028 — webpki-root-certs 1.0.7 затронут RUSTSEC-2026-0383 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-root-certs@1.0.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1211,13 +1286,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07363 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-13017 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/bincode@1.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1245,13 +1320,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-07374 — tokio 1.52.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
+### QSI-2026-13027 — tokio 1.52.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/tokio@1.52.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1279,17 +1354,17 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07376 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
+### QSI-2026-13029 — 4 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:crates.io:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 3 бюллетеней (1 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, git2@0.20.4 [build]: RUSTSEC-2026-0183, RUSTSEC-2026-0184; pulldown-cmark@0.13.3 [build]: RUSTSEC-2026-0414. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 4 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, git2@0.20.4 [build]: RUSTSEC-2026-0183, RUSTSEC-2026-0184; pulldown-cmark@0.13.3 [build]: RUSTSEC-2026-0414, RUSTSEC-2026-0433. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -1301,11 +1376,11 @@ OSV.dev сообщает 3 бюллетеней (1 с оценкой high или
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (crates.io)](https://osv.dev/) · Cargo.lock · SHA-256 ef4e8ed1d4a904a99effd30e97246700ef1f5b6684029bd2111f907ae591afcc_
+_tool_output · [OSV.dev (crates.io)](https://osv.dev/) · Cargo.lock · SHA-256 678e54865e562e792fee792e6f065190a3303f6c90abae758098d7e9848d4251_
 
 ```
 git2@0.20.4 [build]: RUSTSEC-2026-0183, RUSTSEC-2026-0184
-pulldown-cmark@0.13.3 [build]: RUSTSEC-2026-0414
+pulldown-cmark@0.13.3 [build]: RUSTSEC-2026-0414, RUSTSEC-2026-0433
 ```
 
 **Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
@@ -1314,17 +1389,17 @@ pulldown-cmark@0.13.3 [build]: RUSTSEC-2026-0414
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07362 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-13016 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
-В 13 манифестах зависимостей QSI нашёл криптобиблиотеки (bellman, bls12_381, curve25519-dalek, ff, group, halo2, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, pasta_curves, reddsa, redjubjub, ring), но ни одной из списка поддерживающих PQC.
+В 13 манифестах зависимостей QSI нашёл криптобиблиотеки (bellman, bls12_381, curve25519-dalek, halo2, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, pasta_curves, reddsa, redjubjub, ring, rustls, sapling-crypto), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -1336,10 +1411,10 @@ pulldown-cmark@0.13.3 [build]: RUSTSEC-2026-0414
 
 **Подтверждающие доказательства.**
 
-_dependency · Cargo.lock, Cargo.toml, tower-batch-control/Cargo.toml, tower-fallback/Cargo.toml, zebra-chain/Cargo.toml, zebra-consensus/Cargo.toml, zebra-network/Cargo.toml, zebra-node-services/Cargo.toml, zebra-rpc/Cargo.toml, zebra-script/Cargo.toml, zebra-state/Cargo.toml, zebra-utils/Cargo.toml, zebrad/Cargo.toml · SHA-256 d087fd86fa294e82d9381ade65c78545fe4fd99b0af163dbc8ba8273327b8a93_
+_dependency · Cargo.lock, Cargo.toml, tower-batch-control/Cargo.toml, tower-fallback/Cargo.toml, zebra-chain/Cargo.toml, zebra-consensus/Cargo.toml, zebra-network/Cargo.toml, zebra-node-services/Cargo.toml, zebra-rpc/Cargo.toml, zebra-script/Cargo.toml, zebra-state/Cargo.toml, zebra-utils/Cargo.toml, zebrad/Cargo.toml · SHA-256 9c9e8321623c107159703e7bc4bae8de08be6d6d75150044f55e88a0d67b7e80_
 
 ```
-Crypto libraries: bellman, bls12_381, curve25519-dalek, ff, group, halo2, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, pasta_curves, reddsa, redjubjub, ring, rustls, sapling-crypto, secp256k1, sinsemilla, x25519-dalek, zcash_keys, zcash_note_encryption, zcash_primitives, zcash_proofs, zcash_protocol, zcash_spec, zip32
+Crypto libraries: bellman, bls12_381, curve25519-dalek, halo2, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, pasta_curves, reddsa, redjubjub, ring, rustls, sapling-crypto, secp256k1, sinsemilla, x25519-dalek, zcash_keys, zcash_note_encryption, zcash_primitives, zcash_proofs, zcash_protocol, zcash_spec, zip32
 ```
 
 **Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
@@ -1348,13 +1423,13 @@ Crypto libraries: bellman, bls12_381, curve25519-dalek, ff, group, halo2, halo2_
 
 **Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-07366 — number_prefix 0.4.0: информационный бюллетень RUSTSEC-2025-0119 (unmaintained)
+### QSI-2026-13019 — number_prefix 0.4.0: информационный бюллетень RUSTSEC-2025-0119 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/number_prefix@0.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1382,13 +1457,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0119](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-07368 — proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)
+### QSI-2026-13021 — proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/proc-macro-error2@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:43 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -1422,7 +1497,7 @@ _Эти находки аналитик отклонил как ложные с�
 
 | ID | Подробное описание находок | Проверка аналитика |
 |---|---|---|
-| QSI-2026-07351 | Некриптографический ГСЧ рядом с чувствительными идентификаторами в book/mermaid.min.js | book/mermaid.min.js is the minified Mermaid diagram library bundled into the mdBook documentation output. It is third-party code vendored for rendering docs, never runs in the node, and the Math.random calls are Mermaid's own layout code rather than anything security-sensitive in Zebra. |
+| QSI-2026-13004 | Некриптографический ГСЧ рядом с чувствительными идентификаторами в book/mermaid.min.js | book/mermaid.min.js is the minified Mermaid diagram library bundled into the mdBook documentation output. It is third-party code vendored for rendering docs, never runs in the node, and the Math.random calls are Mermaid's own layout code rather than anything security-sensitive in Zebra. |
 
 ## 8. Постквантовая оценка
 
@@ -1447,6 +1522,7 @@ _Допущения планирования: x для обмена ключам
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
+- Только классика — пороговая подпись и протоколы MPC: Pedersen commitment (12 файл(ов))
 
 **Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -1456,9 +1532,9 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **пороговая подпись и протоколы MPC** | Pedersen commitment (12) | QSI-2026-07353 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
-| **подпись транзакций и сообщений** | Halo 2 (IPA) (5), Ed25519 (3), RedDSA (3) | QSI-2026-07357, QSI-2026-07358, QSI-2026-07359 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | Halo 2 (IPA) (17), Sinsemilla (6), RedDSA (5), X25519 (3), BLS12-381 (2), ECDSA (1) | QSI-2026-07352, QSI-2026-07354, QSI-2026-07355, QSI-2026-07356, QSI-2026-07360, QSI-2026-07361 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
+| **пороговая подпись и протоколы MPC** | Pedersen commitment (12) | QSI-2026-13006 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **подпись транзакций и сообщений** | Ed25519 (5), Halo 2 (IPA) (5), RedDSA (3) | QSI-2026-13010, QSI-2026-13011, QSI-2026-13012 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | Halo 2 (IPA) (17), Sinsemilla (6), RedDSA (5), X25519 (3), BLS12-381 (2), Ed25519 (2), ECDSA (1) | QSI-2026-13005, QSI-2026-13007, QSI-2026-13008, QSI-2026-13009, QSI-2026-13013, QSI-2026-13014, QSI-2026-13015 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -1468,7 +1544,7 @@ _Роль определяется по путям файлов, именам ф
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
 | Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BLS12-381 (2), Groth16 (2) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BLS12-381 (2), ECDSA (1), Ed25519 (5), Groth16 (2), Halo 2 (IPA) (22), Pedersen commitment (12), RedDSA (11), Sinsemilla (6), X25519 (4) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BLS12-381 (2), ECDSA (1), Ed25519 (8), Groth16 (2), Halo 2 (IPA) (22), Pedersen commitment (12), RedDSA (11), Sinsemilla (6), X25519 (4) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | SHA-2 (3) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | SHA-2 (3) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -1487,64 +1563,65 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-07371 | Обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0340. |
-| P2 | QSI-2026-07372 | Обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0341. |
-| P2 | QSI-2026-07367 | Обновите opentelemetry_sdk до исправленной версии (0.32.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w9wp-h8wv-79jx (CVE-2026-48504). |
-| P2 | QSI-2026-07364 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
+| P2 | QSI-2026-13024 | Обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0340. |
+| P2 | QSI-2026-13025 | Обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2026-0341. |
+| P2 | QSI-2026-13020 | Обновите opentelemetry_sdk до исправленной версии (0.32.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w9wp-h8wv-79jx (CVE-2026-48504). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-07365 | Разберите RUSTSEC-2026-0418; при необходимости обновите libz-sys до исправленной версии (1.1.31). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0418 или результат разбора записан. |
-| P3 | QSI-2026-07369 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
-| P3 | QSI-2026-07370 | Разберите RUSTSEC-2026-0339; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0339 или результат разбора записан. |
-| P3 | QSI-2026-07373 | Разберите RUSTSEC-2026-0342; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0342 или результат разбора записан. |
-| P3 | QSI-2026-07375 | Разберите RUSTSEC-2026-0383 (CVE-2026-111943); при необходимости обновите webpki-root-certs до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0383 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-07374 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+| P3 | QSI-2026-13018 | Разберите RUSTSEC-2026-0418; при необходимости обновите libz-sys до исправленной версии (1.1.31). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0418 или результат разбора записан. |
+| P3 | QSI-2026-13022 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
+| P3 | QSI-2026-13023 | Разберите RUSTSEC-2026-0339; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0339 или результат разбора записан. |
+| P3 | QSI-2026-13026 | Разберите RUSTSEC-2026-0342; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0342 или результат разбора записан. |
+| P3 | QSI-2026-13028 | Разберите RUSTSEC-2026-0383 (CVE-2026-111943); при необходимости обновите webpki-root-certs до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0383 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-13027 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-07350 | Внесите использования Ed25519 в file:SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07353 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07357 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07358 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07359 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07352 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07354 | Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07355 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07356 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07360 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07361 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-07350 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07353 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07357 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07358 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07359 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-07352 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07354 | Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07355 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07356 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-07360 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-07361 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07363 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
-| P4 | QSI-2026-07376 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
-| P4 | QSI-2026-07366 | Замените number_prefix поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | number_prefix заменён или решение зафиксировано. |
-| P4 | QSI-2026-07368 | Замените proc-macro-error2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error2 заменён или решение зафиксировано. |
+| P3 | QSI-2026-13003 | Внесите использования Ed25519 в file:SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13006 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13010 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13011 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13012 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13005 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13007 | Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13008 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13009 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13013 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13014 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13015 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-13003 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-13006 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13010 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13011 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-13012 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13005 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13007 | Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13008 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13009 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-13013 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-13014 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-13015 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13017 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-13029 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-13019 | Замените number_prefix поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | number_prefix заменён или решение зафиксировано. |
+| P4 | QSI-2026-13021 | Замените proc-macro-error2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error2 заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -1567,25 +1644,24 @@ _Действие: взламывает — алгоритм нужно заме
 16. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
 17. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 18. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-21. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
-22. OSV advisory GHSA-w9wp-h8wv-79jx — OSV.dev. <https://osv.dev/vulnerability/GHSA-w9wp-h8wv-79jx> (modified 2026-09-10T03:50:50.807599062Z)
-23. OSV advisory RUSTSEC-2025-0119 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0119> (modified 2025-11-18T08:13:56Z)
-24. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
-25. OSV advisory RUSTSEC-2026-0173 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0173> (modified 2026-06-07T21:00:04.318567692Z)
-26. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
-27. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
-28. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
-29. OSV advisory RUSTSEC-2026-0341 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0341> (modified 2026-10-12T18:15:01.969505433Z)
-30. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
-31. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-29T10:55:54.096394276Z)
-32. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
-33. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
-34. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-35. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-36. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-37. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+21. OSV advisory GHSA-w9wp-h8wv-79jx — OSV.dev. <https://osv.dev/vulnerability/GHSA-w9wp-h8wv-79jx> (modified 2026-09-10T03:50:50.807599062Z)
+22. OSV advisory RUSTSEC-2025-0119 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0119> (modified 2025-11-18T08:13:56Z)
+23. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
+24. OSV advisory RUSTSEC-2026-0173 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0173> (modified 2026-06-07T21:00:04.318567692Z)
+25. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
+26. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
+27. OSV advisory RUSTSEC-2026-0340 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0340> (modified 2026-10-12T18:15:01.975478256Z)
+28. OSV advisory RUSTSEC-2026-0341 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0341> (modified 2026-10-12T18:15:01.969505433Z)
+29. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
+30. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-29T10:55:54.096394276Z)
+31. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
+32. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
+33. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+34. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+35. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+36. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -1594,8 +1670,6 @@ _Действие: взламывает — алгоритм нужно заме
 | SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 3 | 3 | zebra-chain/src/serialization/sha256d.rs:17; zebra-chain/src/sprout/commitment.rs:53; zebrad/src/components/zcashd_compat/managed.rs:424 |
 | Crypto library | 0.11.0 | zcash_protocol (Zcash protocol crates) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
 | Crypto library | 0.11.1 | jubjub (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.14.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.14.0 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.15.0 | bellman (bellman) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.16.0 | orchard (Zcash protocol crates) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
 | Crypto library | 0.17.0 | zcash_keys (Zcash protocol crates) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
@@ -1611,44 +1685,41 @@ _Действие: взламывает — алгоритм нужно заме
 | Crypto library | 0.4.0 | halo2_proofs (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.5.1 | zcash_note_encryption (Zcash protocol crates) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
 | Crypto library | 0.6.0 | halo2_gadgets (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.6.1 | reddsa (reddsa) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
 | Crypto library | 0.6.1 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.9.0 | bls12_381 (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.9.0 | redjubjub (reddsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.6.1 | reddsa (reddsa) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
 | Crypto library | 0.9.0 | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.9.0 | bls12_381 (bls12_381) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.9.0 | redjubjub (reddsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 3.0.0 | x25519-dalek (ed25519-dalek) | н/п | допустимо | 2 | 2 | Cargo.lock; Cargo.toml |
 | Crypto library | 5.0.0 | curve25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.11 | jubjub (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
-| Crypto library | 0.14 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
-| Crypto library | 0.14 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.15 | bellman (bellman) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.2 | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.3 | zip32 (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.33 | secp256k1 (secp256k1 bindings) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.4 | halo2 (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.toml |
-| Crypto library | 0.9 | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.9 | redjubjub (reddsa) | н/п | допустимо | 1 | 1 | Cargo.toml |
-| Crypto library | 0.9 | bls12_381 (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.9 | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.9 | bls12_381 (bls12_381) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.4 | halo2_proofs (halo2 (Zcash)) | н/п | допустимо | 3 | 3 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-state/Cargo.toml |
-| Crypto library | workspace | orchard (Zcash protocol crates) | н/п | допустимо | 3 | 3 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-rpc/Cargo.toml |
-| Crypto library | workspace | x25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
-| Crypto library | workspace | zcash_primitives (Zcash protocol crates) | н/п | допустимо | 5 | 5 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-rpc/Cargo.toml |
 | Crypto library | workspace | redjubjub (reddsa) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
 | Crypto library | workspace | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
-| Crypto library | workspace | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 4 | 4 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-rpc/Cargo.toml |
 | Crypto library | workspace | jubjub (jubjub) | н/п | допустимо | 3 | 3 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-state/Cargo.toml |
-| Crypto library | workspace | group (jubjub) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
+| Crypto library | workspace | sapling-crypto (Zcash protocol crates) | н/п | допустимо | 4 | 4 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-rpc/Cargo.toml |
+| Crypto library | workspace | orchard (Zcash protocol crates) | н/п | допустимо | 3 | 3 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-rpc/Cargo.toml |
+| Crypto library | workspace | x25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
+| Crypto library | workspace | secp256k1 (secp256k1 bindings) | н/п | допустимо | 2 | 2 | zebra-chain/Cargo.toml; zebra-script/Cargo.toml |
+| Crypto library | workspace | zcash_note_encryption (Zcash protocol crates) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
+| Crypto library | workspace | zcash_primitives (Zcash protocol crates) | н/п | допустимо | 5 | 5 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-rpc/Cargo.toml |
 | Crypto library | workspace | reddsa (reddsa) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
 | Crypto library | workspace | zcash_protocol (Zcash protocol crates) | н/п | допустимо | 4 | 4 | zebra-chain/Cargo.toml; zebra-consensus/Cargo.toml; zebra-rpc/Cargo.toml |
-| Crypto library | workspace | zcash_note_encryption (Zcash protocol crates) | н/п | допустимо | 1 | 1 | zebra-chain/Cargo.toml |
-| Crypto library | workspace | secp256k1 (secp256k1 bindings) | н/п | допустимо | 2 | 2 | zebra-chain/Cargo.toml; zebra-script/Cargo.toml |
+| Crypto library | workspace | bls12_381 (bls12_381) | н/п | допустимо | 1 | 1 | zebra-consensus/Cargo.toml |
 | Crypto library | workspace | bellman (bellman) | н/п | допустимо | 1 | 1 | zebra-consensus/Cargo.toml |
 | Crypto library | workspace | zcash_proofs (Zcash protocol crates) | н/п | допустимо | 1 | 1 | zebra-consensus/Cargo.toml |
-| Crypto library | workspace | bls12_381 (jubjub) | н/п | допустимо | 1 | 1 | zebra-consensus/Cargo.toml |
 | Crypto library | workspace | zcash_keys (Zcash protocol crates) | н/п | допустимо | 2 | 2 | zebra-rpc/Cargo.toml; zebrad/Cargo.toml |
 | BLS12-381 |  |  | уязвим (Шор) | допустимо | 2 | 2 | zebra-consensus/src/primitives/groth16.rs:6; zebra-consensus/src/primitives/groth16/params.rs:3 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 1 | 1 | zebra-chain/src/transparent/keys.rs:8 |
-| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 5 | 5 | SECURITY.md (line 70); zebra-chain/src/transaction/joinsplit.rs:49; zebra-consensus/src/primitives/ed25519.rs |
+| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 8 | 8 | SECURITY.md (line 70); zebra-chain/src/transaction.rs:366; zebra-chain/src/transaction/arbitrary.rs:599 |
 | Groth16 |  |  | уязвим (Шор) | допустимо | 2 | 2 | zebra-chain/src/primitives/proofs/groth16.rs; zebra-consensus/src/primitives/groth16.rs |
 | Halo 2 (IPA) |  |  | уязвим (Шор) | допустимо | 22 | 22 | zebra-chain/src/amount.rs:264; zebra-chain/src/block.rs:5; zebra-chain/src/block/arbitrary.rs:492 |
 | Pedersen commitment |  |  | уязвим (Шор) | допустимо | 12 | 12 | zebra-chain/src/orchard.rs:22; zebra-chain/src/orchard/action.rs:11; zebra-chain/src/orchard/arbitrary.rs:13 |

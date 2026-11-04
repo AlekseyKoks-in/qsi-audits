@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -78,10 +78,10 @@
                 "security-severity": "7.5"
               },
               "fullDescription": {
-                "text": "Срок действия сертификата X.509 с субъектом (empty) истёк 2023-08-11 (1173 дн. назад). Перевыпустите сертификат и автоматизируйте продление (например, ACME) с мониторингом сроков. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
+                "text": "Срок действия сертификата X.509 с субъектом (empty) истёк 2023-08-11 (1180 дн. назад). Перевыпустите сертификат и автоматизируйте продление (например, ACME) с мониторингом сроков. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
               },
               "help": {
-                "text": "Срок действия сертификата X.509 с субъектом (empty) истёк 2023-08-11 (1173 дн. назад). Перевыпустите сертификат и автоматизируйте продление (например, ACME) с мониторингом сроков. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
+                "text": "Срок действия сертификата X.509 с субъектом (empty) истёк 2023-08-11 (1180 дн. назад). Перевыпустите сертификат и автоматизируйте продление (например, ACME) с мониторингом сроков. Документальный анализ: исследован только предоставленный файл. Развёрнутая конфигурация может отличаться; результат относится к содержимому файла с зафиксированным SHA-256."
               },
               "helpUri": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"
             },
@@ -92,7 +92,7 @@
                 "text": "Квантово-уязвимый ключ ECDSA (secp256r1) в packages/cli/src/signer.ts"
               },
               "defaultConfiguration": {
-                "level": "note"
+                "level": "warning"
               },
               "properties": {
                 "tags": [
@@ -100,13 +100,38 @@
                   "post_quantum",
                   "pq_long_term_risk"
                 ],
-                "security-severity": "3.0"
+                "security-severity": "5.0"
               },
               "fullDescription": {
                 "text": "Найден открытый ключ ECDSA secp256r1 (строка 12). Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
               },
               "help": {
                 "text": "Найден открытый ключ ECDSA secp256r1 (строка 12). Внесите в инвентаризацию и запланируйте миграцию на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "1 упоминаний ECDSA в 1 файл(ах), например packages/conformance/src/commands/verify-bundle.ts:189. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "1 упоминаний ECDSA в 1 файл(ах), например packages/conformance/src/commands/verify-bundle.ts:189. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -136,35 +161,10 @@
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
             {
-              "id": "CODE-QV-ASYMMETRIC",
-              "name": "CodeQvAsymmetric",
-              "shortDescription": {
-                "text": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))"
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "post_quantum",
-                  "pq_long_term_risk"
-                ],
-                "security-severity": "3.0"
-              },
-              "fullDescription": {
-                "text": "1 упоминаний ECDSA в 1 файл(ах), например packages/conformance/src/commands/verify-bundle.ts:189. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "help": {
-                "text": "1 упоминаний ECDSA в 1 файл(ах), например packages/conformance/src/commands/verify-bundle.ts:189. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка. Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости. Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
-              },
-              "helpUri": "https://doi.org/10.1137/S0097539795293172"
-            },
-            {
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "18 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки"
+                "text": "21 бюллетеней в 12 пакет(ах) npm, нужных только для разработки или сборки"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -178,10 +178,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает 18 бюллетеней (10 с оценкой high или critical) для 9 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @babel/core@7.29.0 [dev]: GHSA-4x5r-pxfx-6jf8; @humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g; baseline-browser-mapping@2.10.31 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.2 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реа…"
+                "text": "OSV.dev сообщает 21 бюллетеней (10 с оценкой high или critical) для 12 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @babel/core@7.29.0 [dev]: GHSA-4x5r-pxfx-6jf8; @humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g; baseline-browser-mapping@2.10.31 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.2 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше ре…"
               },
               "help": {
-                "text": "OSV.dev сообщает 18 бюллетеней (10 с оценкой high или critical) для 9 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @babel/core@7.29.0 [dev]: GHSA-4x5r-pxfx-6jf8; @humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g; baseline-browser-mapping@2.10.31 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.2 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+                "text": "OSV.dev сообщает 21 бюллетеней (10 с оценкой high или critical) для 12 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @babel/core@7.29.0 [dev]: GHSA-4x5r-pxfx-6jf8; @humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g; baseline-browser-mapping@2.10.31 [dev]: GHSA-w5vr-8v7q-w6rv; browserslist@4.28.2 [dev]: GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
             },
@@ -225,7 +225,7 @@
             "qsiFindingKey/v1": "36a4bc50e6c80291be86799e8f59c0ad"
           },
           "properties": {
-            "qsiId": "QSI-2026-05978",
+            "qsiId": "QSI-2026-12855",
             "severity": "critical",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -252,7 +252,7 @@
             "qsiFindingKey/v1": "0ca094a70170e073e4153cc78ef318ce"
           },
           "properties": {
-            "qsiId": "QSI-2026-05957",
+            "qsiId": "QSI-2026-12833",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_vulnerability",
@@ -282,7 +282,7 @@
             "qsiFindingKey/v1": "9d2451a5b524539be5e7b0c29c00c2c2"
           },
           "properties": {
-            "qsiId": "QSI-2026-05955",
+            "qsiId": "QSI-2026-12831",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -300,7 +300,7 @@
             "qsiFindingKey/v1": "d7e2af9f0fc6d67be06280b7b34f6ebc"
           },
           "properties": {
-            "qsiId": "QSI-2026-05961",
+            "qsiId": "QSI-2026-12837",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -327,7 +327,7 @@
             "qsiFindingKey/v1": "a97f2c6f2d257322275f3044907e947a"
           },
           "properties": {
-            "qsiId": "QSI-2026-05963",
+            "qsiId": "QSI-2026-12839",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -354,7 +354,7 @@
             "qsiFindingKey/v1": "f7e8c4679956e2618817ee2208769add"
           },
           "properties": {
-            "qsiId": "QSI-2026-05964",
+            "qsiId": "QSI-2026-12841",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -381,7 +381,7 @@
             "qsiFindingKey/v1": "d7e2af9f0fc6d67be06280b7b34f6ebc"
           },
           "properties": {
-            "qsiId": "QSI-2026-05965",
+            "qsiId": "QSI-2026-12842",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -408,34 +408,7 @@
             "qsiFindingKey/v1": "a97f2c6f2d257322275f3044907e947a"
           },
           "properties": {
-            "qsiId": "QSI-2026-05967",
-            "severity": "high",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.5"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "package-lock.json"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "http-cache-semantics 4.1.1 затронут GHSA-ch52-4w7c-c8xp (CVE-2026-93748) (dependency: npm/http-cache-semantics@4.1.1)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b873b35e52d0c808791055a38e266a62"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-05969",
+            "qsiId": "QSI-2026-12844",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -462,7 +435,7 @@
             "qsiFindingKey/v1": "d7e2af9f0fc6d67be06280b7b34f6ebc"
           },
           "properties": {
-            "qsiId": "QSI-2026-05975",
+            "qsiId": "QSI-2026-12852",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -489,7 +462,7 @@
             "qsiFindingKey/v1": "a97f2c6f2d257322275f3044907e947a"
           },
           "properties": {
-            "qsiId": "QSI-2026-05977",
+            "qsiId": "QSI-2026-12854",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -506,6 +479,24 @@
           ]
         },
         {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ключ ECDSA (secp256r1) в packages/cli/src/signer.ts"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c54d547a0a3284b8f7f283eaceea0e36"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12834",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
           "ruleId": "DEP-KNOWN-ADVISORY",
           "ruleIndex": 0,
           "level": "warning",
@@ -516,7 +507,7 @@
             "qsiFindingKey/v1": "84a7ab124d4db916ee85eea8154bac57"
           },
           "properties": {
-            "qsiId": "QSI-2026-05968",
+            "qsiId": "QSI-2026-12846",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -533,6 +524,24 @@
           ]
         },
         {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12835",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
           "ruleId": "DEP-KNOWN-ADVISORY",
           "ruleIndex": 0,
           "level": "warning",
@@ -543,11 +552,38 @@
             "qsiFindingKey/v1": "d9a4face229b6e3eb187858a4f78901e"
           },
           "properties": {
-            "qsiId": "QSI-2026-05962",
+            "qsiId": "QSI-2026-12838",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
             "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "minimatch 10.2.5 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764) (dependency: npm/minimatch@10.2.5)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12840",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
           },
           "locations": [
             {
@@ -570,11 +606,38 @@
             "qsiFindingKey/v1": "d9a4face229b6e3eb187858a4f78901e"
           },
           "properties": {
-            "qsiId": "QSI-2026-05966",
+            "qsiId": "QSI-2026-12843",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
             "security-severity": "5.3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "package-lock.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) (dependency: npm/glob@13.0.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12845",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
           },
           "locations": [
             {
@@ -597,7 +660,7 @@
             "qsiFindingKey/v1": "537be754fc583dd296a29e42766c0b64"
           },
           "properties": {
-            "qsiId": "QSI-2026-05970",
+            "qsiId": "QSI-2026-12847",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -624,7 +687,7 @@
             "qsiFindingKey/v1": "f60accf858dc5dc061345f9c9912ca9f"
           },
           "properties": {
-            "qsiId": "QSI-2026-05971",
+            "qsiId": "QSI-2026-12848",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -651,7 +714,7 @@
             "qsiFindingKey/v1": "b36522f20d5048e3e09c3fc9db8d8967"
           },
           "properties": {
-            "qsiId": "QSI-2026-05972",
+            "qsiId": "QSI-2026-12849",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -678,7 +741,7 @@
             "qsiFindingKey/v1": "938769ac38cc88b48c8cb206da1275de"
           },
           "properties": {
-            "qsiId": "QSI-2026-05973",
+            "qsiId": "QSI-2026-12850",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -705,7 +768,7 @@
             "qsiFindingKey/v1": "7a9a0e722bf8efc5a1269e081d19f5ff"
           },
           "properties": {
-            "qsiId": "QSI-2026-05974",
+            "qsiId": "QSI-2026-12851",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -732,7 +795,7 @@
             "qsiFindingKey/v1": "d9a4face229b6e3eb187858a4f78901e"
           },
           "properties": {
-            "qsiId": "QSI-2026-05976",
+            "qsiId": "QSI-2026-12853",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -759,7 +822,7 @@
             "qsiFindingKey/v1": "5eae0405711ecaa841966573121b57f1"
           },
           "properties": {
-            "qsiId": "QSI-2026-05979",
+            "qsiId": "QSI-2026-12856",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -786,7 +849,7 @@
             "qsiFindingKey/v1": "156b25f742ea6e412aca32e75ea63ea3"
           },
           "properties": {
-            "qsiId": "QSI-2026-05980",
+            "qsiId": "QSI-2026-12857",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -803,26 +866,8 @@
           ]
         },
         {
-          "ruleId": "KEY-QV-PUBLIC",
-          "ruleIndex": 3,
-          "level": "note",
-          "message": {
-            "text": "Квантово-уязвимый ключ ECDSA (secp256r1) в packages/cli/src/signer.ts"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "c54d547a0a3284b8f7f283eaceea0e36"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-05958",
-            "severity": "low",
-            "confidence": "high",
-            "classification": "pq_long_term_risk",
-            "security-severity": "3.0"
-          }
-        },
-        {
           "ruleId": "CERT-QV-KEY",
-          "ruleIndex": 4,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "Квантово-уязвимый ключ ECDSA в сертификате ((empty))"
@@ -831,7 +876,7 @@
             "qsiFindingKey/v1": "25df2eae1091e24e8e608d7031aaa218"
           },
           "properties": {
-            "qsiId": "QSI-2026-05956",
+            "qsiId": "QSI-2026-12832",
             "severity": "low",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -849,7 +894,7 @@
             "qsiFindingKey/v1": "a9a2b54863e53d3973710590114af0f2"
           },
           "properties": {
-            "qsiId": "QSI-2026-05981",
+            "qsiId": "QSI-2026-12858",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -866,35 +911,17 @@
           ]
         },
         {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-05959",
-            "severity": "low",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "3.0"
-          }
-        },
-        {
           "ruleId": "DEP-ADVISORY-DEV",
           "ruleIndex": 6,
           "level": "note",
           "message": {
-            "text": "18 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
+            "text": "21 бюллетеней в 12 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-05982",
+            "qsiId": "QSI-2026-12859",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -921,7 +948,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-05960",
+            "qsiId": "QSI-2026-12836",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -930,13 +957,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/sigstore-js @ 769a53d87132/0c3b4262-640e-447a-928e-f22bd0d617ad"
+        "id": "qsi/sigstore-js @ 769a53d87132/96b7a032-9808-44fb-befa-9164d29d2289"
       },
       "properties": {
-        "qsiContentSha256": "dc5dfd0611af59e5724beaee5a3151159457f67dc81deebe8ed4ff09b683b1cb",
+        "qsiContentSha256": "f1e3600f0297419c9c33b55b3d015472213d69f82d285a251aaa4b2fa5f13731",
         "qsiReportVersion": 1,
-        "qsiRiskProfile": "security_software",
-        "qsiGeneratedAt": "2026-10-28T18:30:56.955660+00:00",
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-11-04T19:28:57.812390+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

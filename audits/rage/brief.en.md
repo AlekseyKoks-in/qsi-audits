@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: rage @ b5b68c4f4f7e
 
-*One-page brief* · Reviewed: 2026-10-30 23:40 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: str4d (rage / age encryption) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 19:15 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: str4d (rage / age encryption) — public repository (passive review)
 
 Source: https://github.com/str4d/rage/tree/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f
 
@@ -12,13 +12,13 @@ Source: https://github.com/str4d/rage/tree/b5b68c4f4f7ea5c368bc060f6fe0237549c3a
 
 ## What matters most
 
-1. **Critical** · zip 8.6.0 is affected by GHSA-m665-v7pm-7grj (CVE-2026-115905) (QSI-2026-08932)\
+1. **Critical** · zip 8.6.0 is affected by GHSA-m665-v7pm-7grj (CVE-2026-115905) (QSI-2026-12449)\
    What to do: Upgrade to a fixed version (9.0.5).
-2. **Critical** · zip 8.6.0 is affected by RUSTSEC-2026-0369 (QSI-2026-08936)\
+2. **Critical** · zip 8.6.0 is affected by RUSTSEC-2026-0369 (QSI-2026-12453)\
    What to do: Upgrade to a fixed version (9.0.0).
-3. **High** · zip 8.6.0 is affected by GHSA-9hj8-73fh-9963 (CVE-2026-115907) (QSI-2026-08930)\
+3. **High** · zip 8.6.0 is affected by GHSA-9hj8-73fh-9963 (CVE-2026-115907) (QSI-2026-12447)\
    What to do: Upgrade to a fixed version (9.0.0).
-4. **High** · zip 8.6.0 is affected by GHSA-hjqx-j4rw-g7xv (CVE-2026-115908) (QSI-2026-08931)\
+4. **High** · zip 8.6.0 is affected by GHSA-hjqx-j4rw-g7xv (CVE-2026-115908) (QSI-2026-12448)\
    What to do: Upgrade to a fixed version (9.0.0).
 
 24 more in the full report.
@@ -39,7 +39,7 @@ Advisories for the versions in use: 25; unlikely to apply to this build: 13 (a C
 
 Static review of source code and manifests; files analysed: 54. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `76622d3c924e94337b8766930e89ea7856f07432343ba2458689207d4fc92b40`
+Full report, content SHA-256: `a833838fdb11193cc21292e0f5511c380f612a315c04ce68507a686152a574a3`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

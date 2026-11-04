@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: reddsa @ 04e973bcf8d4
 
-*One-page brief* · Reviewed: 2026-10-29 23:42 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Zcash Foundation — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 19:15 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Zcash Foundation — public repository (passive review)
 
 Source: https://github.com/ZcashFoundation/reddsa/tree/04e973bcf8d46819db055ebd0d44304c24a156a4
 
@@ -12,9 +12,9 @@ Source: https://github.com/ZcashFoundation/reddsa/tree/04e973bcf8d46819db055ebd0
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable FROST: threshold signing and MPC protocols (1 file(s)) (QSI-2026-07275) · *preliminary*\
+1. **Medium** · Quantum-vulnerable FROST: threshold signing and MPC protocols (1 file(s)) (QSI-2026-12470) · *preliminary*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-2. **Medium** · Quantum-vulnerable RedDSA: role not determined (3 file(s)) (QSI-2026-07274) · *preliminary*\
+2. **Medium** · Quantum-vulnerable RedDSA: role not determined (3 file(s)) (QSI-2026-12469) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
 
 ## What the quantum-vulnerable cryptography protects
@@ -28,7 +28,7 @@ Source: https://github.com/ZcashFoundation/reddsa/tree/04e973bcf8d46819db055ebd0
 
 Static review of source code and manifests; files analysed: 15. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `d9243f8dfd3941e5e6a92db037b26c39dbdc1672e3532e89daa13c24c6b57733`
+Full report, content SHA-256: `5ca6c9c5ed7313b21cef308aaed72429129f081cd89916ded12aeb8640a00654`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

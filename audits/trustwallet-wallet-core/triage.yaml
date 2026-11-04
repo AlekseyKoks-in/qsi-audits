@@ -1,0 +1,55 @@
+# Recovered from trustwallet-wallet-core/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-28"
+decisions:
+  - match: {rule: "DEP-KNOWN-ADVISORY", advisory: "GHSA-7gcf-g7xr-8hxj"}
+    decision: not_applicable
+    note: "wallet-core uses serde_with only in tw_zcash (PCZT transparent bundle) as serde_as(as = \"BTreeMap<[_; 33], _>\"); KeyValueMap, the type whose serialization panics, is not referenced anywhere in the tree."
+  - match: {rule: "DEP-KNOWN-ADVISORY", advisory: "RUSTSEC-2026-0009"}
+    decision: not_applicable
+    note: "time 0.3.44 is pulled in only by serde_with (Cargo.lock), which wallet-core uses only for the BTreeMap adapter above; the affected RFC 2822 parsing functions are not reached."
+  - match: {rule: "DEP-ADVISORY-UNRATED", advisory: "RUSTSEC-2026-0387"}
+    decision: confirmed
+    note: "crypto-bigint 0.5.1 (multiple timing variability issues in operations intended to be constant-time) is a hard, non-optional dependency of the signing path, so unlike in the BitBox02 firmware there is no feature flag to hide behind. rust/tw_keypair/Cargo.toml declares k256 0.13.0 with features [\"ecdh\", \"ecdsa\", \"pkcs8\", \"schnorr\", \"std\"] and p256 0.13.0 with [\"ecdsa\", \"std\"], both of which depend on elliptic-curve, which depends on crypto-bigint; starknet-crypto and starknet-ff reach it directly as well. Traced in rust/Cargo.lock: the workspace roots tw_tests and wallet_core_bin both reach it, by way of tw_keypair and therefore of every chain crate that signs. This is a library that signs on behalf of wallets on a host operating system, so timing variability in operations documented as constant-time is in scope rather than academic. No exploit is demonstrated and the attacker needs local measurement; medium, not high. Fixed in crypto-bigint 0.7.6, which is a breaking upgrade through elliptic-curve and will need k256/p256 to move first."
+  - match: {rule: "DEP-KNOWN-ADVISORY", advisory: "GHSA-qwgh-2vcv-g2f7"}
+    decision: not_applicable
+    note: "Both affected versions are present (block-buffer 0.9.0 and 0.10.3) and both reach almost the whole tree through digest and blake-hash, so the dependency claim is right. The advisory needs a panic to be caught and the corrupted buffer then reused, and that cannot happen here: a code search for catch_unwind across trustwallet/wallet-core returns zero hits, and the C FFI boundary propagates rather than catches. The same advisory recurs in bitbox02-firmware, zcash's librustzcash, lightwalletd, zebra and the Android SDK, and monero-project/monero — which is the recurrence argument for a consolidated inventory, and is why it is worth recording a reasoned decision once rather than six times."
+  - match: {rule: "DEP-ADVISORY-UNRATED", advisory: "RUSTSEC-2026-0190"}
+    decision: not_applicable
+    note: "anyhow 1.0.75 (unsoundness in Error::downcast_mut) arrives through move-core-types, so only the Aptos and Sui crates depend on it, and no audited file calls downcast_mut. Upgrading to 1.0.103 is routine maintenance rather than a fix for an exposure here."
+  - match: {rule: "DEP-KNOWN-ADVISORY", advisory: "GHSA-cq8v-f236-94qc"}
+    decision: not_applicable
+    note: "rand 0.8.5 is unsound only when a custom global logger calls rand::rng() reentrantly. wallet-core installs no global logger; rand reaches the tree through secp256k1, ark-std, fixed-hash and move-core-types, none of which log from inside the generator. The affected functions rand::rng and rand::thread_rng are not named in the audited code."
+  - match: {rule: "DEP-KNOWN-ADVISORY", advisory: "GHSA-3288-p39f-rqpv"}
+    decision: not_applicable
+    note: "keccak 0.1.3's unsoundness is in the opt-in ARMv8 assembly backend behind the asm Cargo feature, which is off by default and which no manifest in the audited tree enables; the advisory's own CVSS vector (AV:L/AC:H/AT:P, exploit maturity unproven) reflects that. keccak arrives through sha3 and tw_hash, both using the portable implementation. Upgrading to 0.1.6 is routine maintenance."
+  - match: {rule: "CODE-WEAK-HASH-API"}
+    decision: confirmed
+    note: "Accurate as stated, and the reason it cannot simply be removed is worth recording. rust/tw_hash/src/sha1.rs defines sha1() and rust/tw_hash/src/ffi.rs:128 exports it over the C FFI; it is published through the library's public surface as TWHash (include/TrustWalletCore/TWHash.h, src/interface/TWHash.cpp, src/Hash.h, src/Hash.cpp). No in-tree security decision depends on it, which is exactly what the rule says. But src/Bitcoin/OpCodes.h references SHA-1 because Bitcoin Script defines OP_SHA1, so a wallet library that evaluates or builds scripts has to be able to compute it: this is a consensus-level requirement, not a choice the library can revisit. Correct disposition is therefore to keep it, document it as script-compatibility only, and ensure no new caller uses it for integrity — not to delete it."
+  - match: {rule: "DEP-NO-PQC-LIBRARY"}
+    decision: confirmed
+    note: "Accurate: across 47 dependency manifests the declared cryptography is curve25519-dalek, ecdsa, k256, p256 and secp256k1, with nothing PQC-capable. For a library that signs for 43 chains this is not a dependency that can usefully be added yet — each chain's signature scheme is set by its own consensus, so until a chain defines a post-quantum scheme there is nothing for the wallet to implement against. The actionable part is the opposite direction: the library should be ready to carry two schemes per chain during a transition, which is an architectural question about tw_keypair rather than a missing crate."
+  - match: {rule: "DEP-ADVISORY-DEV"}
+    decision: not_applicable
+    note: "Three advisories in two build-only crates (ansi_term 0.12.1 RUSTSEC-2021-0139; atty 0.2.14 GHSA-g98v-hv3f-hcfr and RUSTSEC-2024-0375), neither of which ships in a built artefact. They are worth updating during routine maintenance, and worth watching only insofar as they run in CI with credentials."
+  - match: {rule: "DEP-ADVISORY-INFORMATIONAL"}
+    decision: not_applicable
+    note: "Five unmaintained-crate notices (bincode 1.3.3, derivative 2.2.0, paste 1.0.11, proc-macro-error 1.0.4, unsafe-libyaml 0.2.11). None reports a defect and none carries cryptography, so none bears on post-quantum readiness; recording the decision to keep them, which is what an informational advisory asks for."
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "role not determined", algorithm: "ECDH"}
+    decision: confirmed
+    note: "Role resolved: trezor-crypto/crypto/bip32.c:710 is the vendored copy of trezor-crypto's hdnode_get_shared_key, the same ECDH-over-a-BIP-32-node function reviewed in trezor-firmware.yml. Session keys for identity and encryption features, so harvest-now-decrypt-later applies; one row, not a signing exposure."
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "role not determined", algorithm: "X25519"}
+    decision: confirmed
+    note: "Role resolved: all three anchors are the vendored trezor-crypto C library (trezor-crypto/crypto/bip32.c:504, crypto/ed25519-donna/ed25519.c, include/TrezorCrypto/ed25519.h) — the curve25519 public-key derivation layer underneath the Ed25519 signing rows, not an independent use. In the inventory because the derivation changes in any post-quantum scheme; not additional exposure on top of the signing rows."
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "role not determined", algorithm: "ECDSA"}
+    decision: confirmed
+    note: "Role resolved: the anchors are the keypair implementation itself — rust/tw_keypair/src/ecdsa/{mod.rs,nist256p1/private.rs,nist256p1/public.rs} and schnorr/public.rs — plus per-chain signature types (tw_binance/src/signature.rs, tw_internet_computer/src/protocol/principal.rs). This is the secp256k1 and NIST P-256 ECDSA that every chain crate signs through, so it is the same exposure as the transaction-signing rows reached one layer lower. Count it once: it is where the migration work lands, not an extra surface."
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "role not determined", algorithm: "Ed25519"}
+    decision: confirmed
+    note: "Role resolved: rust/tw_keypair/src/tw/{private,public}.rs are the type-erased keypair wrappers, and the remaining anchors are per-chain compilers and request builders (tw_pactus, tw_ton). Transaction signing, reached through the generic keypair layer rather than named at the call site — which is exactly why the role came back undetermined."
+  - match: {rule: "CHAINMAP-QV"}
+    decision: confirmed
+    note: "True by construction and the headline row for this repository: the protobuf definitions cover 43 chains, every one of which authorizes transactions with ECDSA, Ed25519 or Schnorr. A wallet library cannot migrate any of them unilaterally — consensus decides — so the deliverable is a per-chain readiness map, and its ordering is the actual product. Nothing here is a defect in wallet-core."
+  - match: {rule: "CODE-QV-ASYMMETRIC"}
+    decision: confirmed
+    note: "The remaining rows carry roles the engine determined and review agrees with. ECDSA across 84 files (211 references), anchored at include/TrustWalletCore/TWCurve.h:14 and running through every chain's signer, and Ed25519 across 33 files, are transaction and message signing: a CRQC derives the private key from a public key that is already on chain after the first spend. ECDSA at tw_internet_computer/src/protocol/identity.rs:6 is authentication and identity, a shorter-lived exposure. This repository is the largest single row count in the portfolio (355 inventory rows, 254 Shor-breakable) because it supports the most chains, not because it is the weakest code."

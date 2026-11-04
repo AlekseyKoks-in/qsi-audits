@@ -1,8 +1,8 @@
 {
-  "content_sha256": "f6a350f97e53392a2c023ba504fc31db89a49e3f1374e2a107d3ce75d808694c",
+  "content_sha256": "217c0730537078bce0e422b49916a96dfa4cdf1966744643797c8e094e34d7a8",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-30T22:49:22.179412+00:00",
+  "generated_at": "2026-11-04T20:12:24.474540+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "147a7ff8-9ccf-4606-a552-b7040d9c9698",
+    "id": "27b9e9eb-640a-40d3-bead-3afaa5166e14",
     "mode": "document",
     "title": "Document audit: halo2",
     "status": "completed",
-    "engine_version": "1.2.0",
-    "started_at": "2026-10-30T22:49:11.791390+00:00",
-    "finished_at": "2026-10-30T22:49:21.998838+00:00",
+    "engine_version": "1.3.0",
+    "started_at": "2026-11-04T20:12:16.531388+00:00",
+    "finished_at": "2026-11-04T20:12:24.344498+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -662,7 +662,7 @@
     },
     {
       "area": "source_code",
-      "detail": "halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
@@ -672,147 +672,147 @@
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 136 registry patterns; 474 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 145 registry patterns; 474 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/add.rs: 440 lines scanned with 16 rule patterns and 136 registry patterns; 115 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/add.rs: 440 lines scanned with 16 rule patterns and 145 registry patterns; 115 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/add_incomplete.rs: 191 lines scanned with 16 rule patterns and 136 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/add_incomplete.rs: 191 lines scanned with 16 rule patterns and 145 registry patterns; 47 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/constants.rs: 280 lines scanned with 16 rule patterns and 136 registry patterns; 52 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/constants.rs: 280 lines scanned with 16 rule patterns and 145 registry patterns; 52 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/layout_dump.rs: 355 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/ecc/chip/layout_dump.rs: 355 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul.rs: 863 lines scanned with 16 rule patterns and 136 registry patterns; 403 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/mul.rs: 863 lines scanned with 16 rule patterns and 145 registry patterns; 403 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul/complete.rs: 193 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/ecc/chip/mul/complete.rs: 193 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul/incomplete.rs: 401 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/ecc/chip/mul/incomplete.rs: 401 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul/overflow.rs: 209 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/ecc/chip/mul/overflow.rs: 209 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed.rs: 488 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed.rs: 488 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/base_field_elem.rs: 528 lines scanned with 16 rule patterns and 136 registry patterns; 148 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/base_field_elem.rs: 528 lines scanned with 16 rule patterns and 145 registry patterns; 148 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/full_width.rs: 319 lines scanned with 16 rule patterns and 136 registry patterns; 140 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/full_width.rs: 319 lines scanned with 16 rule patterns and 145 registry patterns; 140 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/short.rs: 968 lines scanned with 16 rule patterns and 136 registry patterns; 660 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/mul_fixed/short.rs: 968 lines scanned with 16 rule patterns and 145 registry patterns; 660 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/ecc/chip/witness_point.rs: 275 lines scanned with 16 rule patterns and 136 registry patterns; 63 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/ecc/chip/witness_point.rs: 275 lines scanned with 16 rule patterns and 145 registry patterns; 63 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/lib.rs: 30 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/lib.rs: 30 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/poseidon.rs: 286 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/poseidon.rs: 286 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/poseidon/pow5.rs: 912 lines scanned with 16 rule patterns and 136 registry patterns; 323 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/poseidon/pow5.rs: 912 lines scanned with 16 rule patterns and 145 registry patterns; 323 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/sinsemilla.rs: 936 lines scanned with 16 rule patterns and 136 registry patterns; 403 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/sinsemilla.rs: 936 lines scanned with 16 rule patterns and 145 registry patterns; 403 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/sinsemilla/chip.rs: 376 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/sinsemilla/chip.rs: 376 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/sinsemilla/chip/generator_table.rs: 96 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/sinsemilla/chip/generator_table.rs: 96 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs: 594 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/sinsemilla/chip/hash_to_point.rs: 594 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/sinsemilla/merkle.rs: 636 lines scanned with 16 rule patterns and 136 registry patterns; 464 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/sinsemilla/merkle.rs: 636 lines scanned with 16 rule patterns and 145 registry patterns; 464 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/sinsemilla/merkle/chip.rs: 582 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/sinsemilla/merkle/chip.rs: 582 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/sinsemilla/message.rs: 65 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_gadgets/src/sinsemilla/message.rs: 65 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/utilities.rs: 497 lines scanned with 16 rule patterns and 136 registry patterns; 258 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/utilities.rs: 497 lines scanned with 16 rule patterns and 145 registry patterns; 258 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/utilities/cond_swap.rs: 649 lines scanned with 16 rule patterns and 136 registry patterns; 352 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/utilities/cond_swap.rs: 649 lines scanned with 16 rule patterns and 145 registry patterns; 352 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/utilities/decompose_running_sum.rs: 416 lines scanned with 16 rule patterns and 136 registry patterns; 182 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/utilities/decompose_running_sum.rs: 416 lines scanned with 16 rule patterns and 145 registry patterns; 182 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_gadgets/src/utilities/lookup_range_check.rs: 1258 lines scanned with 16 rule patterns and 136 registry patterns; 394 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_gadgets/src/utilities/lookup_range_check.rs: 1258 lines scanned with 16 rule patterns and 145 registry patterns; 394 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -822,32 +822,32 @@
     },
     {
       "area": "source_code",
-      "detail": "halo2_poseidon/src/fp.rs: 1431 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_poseidon/src/fp.rs: 1431 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_poseidon/src/fq.rs: 1431 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_poseidon/src/fq.rs: 1431 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_poseidon/src/grain.rs: 195 lines scanned with 16 rule patterns and 136 registry patterns; 12 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_poseidon/src/grain.rs: 195 lines scanned with 16 rule patterns and 145 registry patterns; 12 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_poseidon/src/lib.rs: 502 lines scanned with 16 rule patterns and 136 registry patterns; 23 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_poseidon/src/lib.rs: 502 lines scanned with 16 rule patterns and 145 registry patterns; 23 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_poseidon/src/mds.rs: 131 lines scanned with 16 rule patterns and 136 registry patterns; 26 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_poseidon/src/mds.rs: 131 lines scanned with 16 rule patterns and 145 registry patterns; 26 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_poseidon/src/p128pow5t3.rs: 322 lines scanned with 16 rule patterns and 136 registry patterns; 254 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_poseidon/src/p128pow5t3.rs: 322 lines scanned with 16 rule patterns and 145 registry patterns; 254 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -857,287 +857,292 @@
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/arithmetic.rs: 733 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/arithmetic.rs: 733 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit.rs: 597 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/circuit.rs: 597 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit/floor_planner.rs: 6 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/circuit/floor_planner.rs: 6 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit/floor_planner/single_pass.rs: 418 lines scanned with 16 rule patterns and 136 registry patterns; 54 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/circuit/floor_planner/single_pass.rs: 418 lines scanned with 16 rule patterns and 145 registry patterns; 54 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit/floor_planner/v1.rs: 531 lines scanned with 16 rule patterns and 136 registry patterns; 53 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/circuit/floor_planner/v1.rs: 531 lines scanned with 16 rule patterns and 145 registry patterns; 53 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit/floor_planner/v1/strategy.rs: 282 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/circuit/floor_planner/v1/strategy.rs: 282 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit/layouter.rs: 285 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/circuit/layouter.rs: 285 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit/table_layouter.rs: 407 lines scanned with 16 rule patterns and 136 registry patterns; 256 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/circuit/table_layouter.rs: 407 lines scanned with 16 rule patterns and 145 registry patterns; 256 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/circuit/value.rs: 717 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/circuit/value.rs: 717 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev.rs: 1146 lines scanned with 16 rule patterns and 136 registry patterns; 216 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/dev.rs: 1146 lines scanned with 16 rule patterns and 145 registry patterns; 216 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/circuit_fixture.rs: 613 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/circuit_fixture.rs: 613 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/cost.rs: 549 lines scanned with 16 rule patterns and 136 registry patterns; 34 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/dev/cost.rs: 549 lines scanned with 16 rule patterns and 145 registry patterns; 34 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/failure.rs: 561 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/failure.rs: 561 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/failure/emitter.rs: 163 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/failure/emitter.rs: 163 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/gates.rs: 278 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/gates.rs: 278 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/graph.rs: 189 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/graph.rs: 189 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/graph/layout.rs: 320 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/graph/layout.rs: 320 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/metadata.rs: 175 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/metadata.rs: 175 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/tfp.rs: 483 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/tfp.rs: 483 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/dev/util.rs: 161 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/dev/util.rs: 161 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/helpers.rs: 16 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/helpers.rs: 16 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/lib.rs: 20 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/lib.rs: 20 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/multicore.rs: 120 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/multicore.rs: 120 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk.rs: 179 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk.rs: 179 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/assigned.rs: 693 lines scanned with 16 rule patterns and 136 registry patterns; 298 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/plonk/assigned.rs: 693 lines scanned with 16 rule patterns and 145 registry patterns; 298 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/circuit.rs: 1547 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/circuit.rs: 1547 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/circuit/compress_selectors.rs: 351 lines scanned with 16 rule patterns and 136 registry patterns; 123 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/plonk/circuit/compress_selectors.rs: 351 lines scanned with 16 rule patterns and 145 registry patterns; 123 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/circuit/fixture.rs: 350 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/circuit/fixture.rs: 350 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/error.rs: 140 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/error.rs: 140 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/fingerprint/mod.rs: 72 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/fingerprint/mod.rs: 72 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/fingerprint/transcript.rs: 98 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/fingerprint/transcript.rs: 98 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/fingerprint/vesta_lean.rs: 1538 lines scanned with 16 rule patterns and 136 registry patterns; 65 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/plonk/fingerprint/vesta_lean.rs: 1538 lines scanned with 16 rule patterns and 145 registry patterns; 65 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/keygen.rs: 341 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/keygen.rs: 341 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/lookup.rs: 72 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/lookup.rs: 72 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/lookup/prover.rs: 649 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/lookup/prover.rs: 649 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/lookup/verifier.rs: 209 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/lookup/verifier.rs: 209 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/permutation.rs: 92 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/permutation.rs: 92 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/permutation/keygen.rs: 210 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/permutation/keygen.rs: 210 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/permutation/prover.rs: 432 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/permutation/prover.rs: 432 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/permutation/verifier.rs: 241 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/permutation/verifier.rs: 241 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/prover.rs: 813 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/prover.rs: 813 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/vanishing.rs: 11 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/vanishing.rs: 11 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/vanishing/prover.rs: 173 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/vanishing/prover.rs: 173 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/vanishing/verifier.rs: 140 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/vanishing/verifier.rs: 140 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/verifier.rs: 503 lines scanned with 16 rule patterns and 136 registry patterns; 126 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/plonk/verifier.rs: 503 lines scanned with 16 rule patterns and 145 registry patterns; 126 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/plonk/verifier/batch.rs: 125 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/plonk/verifier/batch.rs: 125 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly.rs: 365 lines scanned with 16 rule patterns and 136 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/poly.rs: 365 lines scanned with 16 rule patterns and 145 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/commitment.rs: 404 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/poly/commitment.rs: 404 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/commitment/msm.rs: 267 lines scanned with 16 rule patterns and 136 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/poly/commitment/msm.rs: 267 lines scanned with 16 rule patterns and 145 registry patterns; 50 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/commitment/prover.rs: 161 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/poly/commitment/prover.rs: 161 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/commitment/verifier.rs: 169 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/poly/commitment/verifier.rs: 169 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/domain.rs: 617 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/poly/domain.rs: 617 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/evaluator.rs: 663 lines scanned with 16 rule patterns and 136 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/poly/evaluator.rs: 663 lines scanned with 16 rule patterns and 145 registry patterns; 47 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/multiopen.rs: 603 lines scanned with 16 rule patterns and 136 registry patterns; 119 lines in #[cfg(test)] modules ignored",
+      "detail": "halo2_proofs/src/poly/multiopen.rs: 603 lines scanned with 16 rule patterns and 145 registry patterns; 119 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/multiopen/prover.rs: 161 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/poly/multiopen/prover.rs: 161 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/poly/multiopen/verifier.rs: 150 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/poly/multiopen/verifier.rs: 150 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "halo2_proofs/src/transcript.rs: 305 lines scanned with 16 rule patterns and 136 registry patterns",
+      "detail": "halo2_proofs/src/transcript.rs: 305 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 93 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
       "status": "checked"
     },
     {
@@ -1164,9 +1169,18 @@
       "count": 93,
       "rows": 93,
       "examples": [
-        "halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 136 registry patterns",
-        "halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 136 registry patterns; 474 lines in #[cfg(test)] modules ignored",
-        "halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 136 registry patterns"
+        "halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 145 registry patterns",
+        "halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 145 registry patterns; 474 lines in #[cfg(test)] modules ignored",
+        "halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 145 registry patterns"
+      ]
+    },
+    {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 93 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
       ]
     },
     {
@@ -1285,7 +1299,8 @@
       "halo2_proofs/src/poly/multiopen.rs",
       "halo2_proofs/src/poly/multiopen/prover.rs",
       "halo2_proofs/src/poly/multiopen/verifier.rs",
-      "halo2_proofs/src/transcript.rs"
+      "halo2_proofs/src/transcript.rs",
+      "random-number generation"
     ]
   },
   "dismissed": [],
@@ -1309,18 +1324,18 @@
     },
     "total": 5,
     "posture_index": 100,
-    "pq_vulnerable_share": 62.2,
-    "inventory_total": 74,
+    "pq_vulnerable_share": 71.4,
+    "inventory_total": 63,
     "inventory_by_quantum_status": {
       "grover_reduced": 4,
-      "not_applicable": 24,
-      "vulnerable_shor": 46
+      "not_applicable": 14,
+      "vulnerable_shor": 45
     }
   },
   "findings": [
     {
-      "id": "640441eb-88c5-4d81-b6c3-3ad62c466bfc",
-      "public_id": "QSI-2026-08328",
+      "id": "78d5c0b0-01dc-444a-89a6-e3a14f8f4487",
+      "public_id": "QSI-2026-13316",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))",
       "description": "41 упоминаний Halo 2 (IPA) в 34 файл(ах), например halo2_gadgets/src/ecc.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1339,8 +1354,8 @@
       "triage": null,
       "affected_asset": "source-code:Halo 2 (IPA):general",
       "data_source": "halo2_gadgets/src/ecc.rs",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:49:21.922044+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:12:24.276070+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1415,9 +1430,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1436,8 +1451,8 @@
           "content": "    4 | \n    5 | use halo2_proofs::{\n    6 |     arithmetic::CurveAffine,",
           "content_sha256": "9e744d2ffbb0484896345bbcd45ec0752fe8a6897889f019f125dfdd1c1bc8d4",
           "source_sha256": "59b832b8e6dd618a572fb726f6f45b3aea939baf7b5c9398ae9cd1d4a2c6f510",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943304+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302138+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc.rs#L5"
         },
         {
@@ -1447,8 +1462,8 @@
           "content": "   11 | use group::CurveAffine as _;\n   12 | use halo2_proofs::{\n   13 |     circuit::{AssignedCell, Chip, Layouter, Value},",
           "content_sha256": "ae82b6164e511c052b5f66681f77f732f4d79a6a62a7990fe1f8b2a57746dfc8",
           "source_sha256": "9d001517c6028308060d635f6c10772308c2af7c2c430f6666290f4d4fc20a09",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943314+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302146+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip.rs#L12"
         },
         {
@@ -1458,8 +1473,8 @@
           "content": "    3 | use group::ff::PrimeField;\n    4 | use halo2_proofs::{\n    5 |     circuit::Region,",
           "content_sha256": "ba8fe6bf018f9e7feb579efe8423698eba158ff884d9faf434822de4bc328c90",
           "source_sha256": "a81bad0a96c5991a25f4f3d5ea24a41823cd2e1fdbd423d4ec4db16e1f421c75",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943318+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302150+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add.rs#L4"
         },
         {
@@ -1469,8 +1484,8 @@
           "content": "    3 | use super::NonIdentityEccPoint;\n    4 | use halo2_proofs::{\n    5 |     circuit::Region,",
           "content_sha256": "e0b2038aa27837669eb57d099d4381d764f3e354417ca59b395ca7b8020fefa1",
           "source_sha256": "1e0083b20f89a8469c42ad18d7d6915012c2132b3a86b1ab772f714b5ae98bad",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943321+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302153+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/add_incomplete.rs#L4"
         },
         {
@@ -1480,8 +1495,8 @@
           "content": "    4 | use group::ff::{Field, PrimeField};\n    5 | use halo2_proofs::arithmetic::lagrange_interpolate;\n    6 | use pasta_curves::{",
           "content_sha256": "be4c7428a26ba3d085a1f0820c0fd1ea0cdacd7c2ccb2e543d1e4b0a87fcdd88",
           "source_sha256": "4598ca03006b5c001af74425ca19f96e439a20ca7e9a573a1697656b96aa20a9",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943324+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302157+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/constants.rs#L5"
         },
         {
@@ -1491,8 +1506,8 @@
           "content": "    4 | use crate::utilities::lookup_range_check::{LookupRangeCheck, PallasLookupRangeCheckConfig};\n    5 | use halo2_proofs::{\n    6 |     circuit::{Layouter, SimpleFloorPlanner, Value},",
           "content_sha256": "26379000da5a020d9e36dd44dc3f25f2e77afe45c558c5ce0ce14e727690a68d",
           "source_sha256": "0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943327+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302160+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L5"
         },
         {
@@ -1502,8 +1517,8 @@
           "content": "  230 | \n  231 | const MUL_LAYOUT_HEADER: &str = \"-- Auto-generated by halo2 `dump_lean` (Halo2-Clean VK-matching, Phase 2 layout). Do not edit by hand.\n  232 | -- Phase 2 layout of the isolated mul chain (`configure_mul` / `MulDumpCircuit`,",
           "content_sha256": "190334e42429d1f6b19211a6528e7cd0b73bafac8fa3ae184eab0f0d03c97009",
           "source_sha256": "0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943331+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302164+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L231"
         },
         {
@@ -1513,8 +1528,8 @@
           "content": "  267 | const MUL_SELMAP_HEADER: &str =\n  268 |     \"-- Auto-generated by halo2 `dump_lean` (Halo2-Clean VK-matching). Do not edit by hand.\n  269 | -- Selector-compression map (see `compress_selectors.rs`): per selector, the packed",
           "content_sha256": "01cee9ca5f2a30bac8a9913250ac1f295b7ee0c13cba13f7af224ed6bef62fc6",
           "source_sha256": "0ddff158e1d972a0ab1c268b84d13b8658c886b170cac56ef867b68d0cee1682",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943336+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302167+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/layout_dump.rs#L268"
         },
         {
@@ -1524,8 +1539,8 @@
           "content": "   11 | use ff::{Field, PrimeField};\n   12 | use halo2_proofs::{\n   13 |     circuit::{AssignedCell, Layouter, Region, Value},",
           "content_sha256": "7acb57b0c0ef4067d0352685d00d393e28cf04d42062857429e73befaa763f51",
           "source_sha256": "5bd412ea5e8c90006ffd3e653d92918a4a33ce58c120e7b5acec3848864b66f0",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943340+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302170+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul.rs#L12"
         },
         {
@@ -1535,8 +1550,8 @@
           "content": "    4 | \n    5 | use halo2_proofs::{\n    6 |     circuit::{Region, Value},",
           "content_sha256": "a7d7ad8a617509d058101e1f6e166614219a8f55d79c054028c433fece5f4596",
           "source_sha256": "514390b1e77f4e81d2745418ba7209b80958ad3fe4dbc8dc0f894a8e7c8abcc3",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.943343+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.302174+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/complete.rs#L5"
         }
       ],
@@ -1574,8 +1589,8 @@
       ]
     },
     {
-      "id": "57f6131a-beb5-4d29-a9b6-179fa2cb3dd6",
-      "public_id": "QSI-2026-08329",
+      "id": "7e1b788c-0847-4a2f-9836-f7ccd00ee8ac",
+      "public_id": "QSI-2026-13317",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))",
       "description": "173 упоминаний Sinsemilla в 9 файл(ах), например halo2_gadgets/src/ecc/chip/mul/overflow.rs:3. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1594,8 +1609,8 @@
       "triage": null,
       "affected_asset": "source-code:Sinsemilla:general",
       "data_source": "halo2_gadgets/src/ecc/chip/mul/overflow.rs",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T22:49:21.936247+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:12:24.289450+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1670,9 +1685,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1691,8 +1706,8 @@
           "content": "    2 | use crate::{\n    3 |     sinsemilla::primitives as sinsemilla,\n    4 |     utilities::lookup_range_check::{PallasLookupRangeCheck, PallasLookupRangeCheckConfig},",
           "content_sha256": "61473701044b00a24e8b2948c40c32dbc3e16a230dab868526877e8a5a09db8b",
           "source_sha256": "20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969349+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318820+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L3"
         },
         {
@@ -1702,8 +1717,8 @@
           "content": "  195 |         // Number of k-bit words we can use in the lookup decomposition.\n  196 |         let num_words = 130 / sinsemilla::K;\n  197 |         assert!(num_words * sinsemilla::K == 130);",
           "content_sha256": "d2f4cb9aa13b9f5ccf2304d9a9ee85fd54de84c51ab8c4564a2a0908e5b25cba",
           "source_sha256": "20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969358+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318828+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L196"
         },
         {
@@ -1713,8 +1728,8 @@
           "content": "  196 |         let num_words = 130 / sinsemilla::K;\n  197 |         assert!(num_words * sinsemilla::K == 130);\n  198 | ",
           "content_sha256": "5bbefdc3ba4e31fe189d9510accebddf6ee3906a4ee0647237cd0fe017f4c732",
           "source_sha256": "20acfebd3f3ed5dd71fa04c0115d3ccb77dcf919968c8809d03a6df979c0e77a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969362+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318832+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/ecc/chip/mul/overflow.rs#L197"
         },
         {
@@ -1724,8 +1739,8 @@
           "content": "   25 | pub mod poseidon;\n   26 | pub mod sinsemilla;\n   27 | pub mod utilities;",
           "content_sha256": "7f45c76f548f226657d7df19a6981a3f52ab4069301de34bed3372100aa241ea",
           "source_sha256": "4434c72bd5a92f8cba995ec280ae3b20a25308accbf6058e411fa84988b49dac",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969366+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318835+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/lib.rs#L26"
         },
         {
@@ -1735,8 +1750,8 @@
           "content": "   19 | \n   20 | pub use ::sinsemilla as primitives;\n   21 | ",
           "content_sha256": "8e138d1047bdd1d0ed85ffbdc93ada1a7eb922d7d4f9b76ae4173aa08ffca322",
           "source_sha256": "99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969370+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318838+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L20"
         },
         {
@@ -1746,8 +1761,8 @@
           "content": "   25 | /// number of words that a single hash instance can process.\n   26 | pub trait SinsemillaInstructions<C: CurveAffine, const K: usize, const MAX_WORDS: usize> {\n   27 |     /// A variable in the circuit.",
           "content_sha256": "99a1d2d2b6a53adc468da6ef45edfd75eecc776d41d76bd2d2706e2d4bf414f9",
           "source_sha256": "99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969373+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318842+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L26"
         },
         {
@@ -1757,8 +1772,8 @@
           "content": "  120 | #[derive(Clone, Debug)]\n  121 | pub struct Message<C: CurveAffine, SinsemillaChip, const K: usize, const MAX_WORDS: usize>\n  122 | where",
           "content_sha256": "43755b6d17985b02c033966cd61a74f023cb2aa64a145e7ee02fd3e05ad14292",
           "source_sha256": "99d33149e2725ac6d4458f8fb123537347bb0e1627fafd2d8a480e1b1a697f3e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969377+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318845+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla.rs#L121"
         },
         {
@@ -1768,8 +1783,8 @@
           "content": "    4 |     message::{Message, MessagePiece},\n    5 |     primitives as sinsemilla, CommitDomains, HashDomains, SinsemillaInstructions,\n    6 | };",
           "content_sha256": "b419059e91e6474372f4fc3227c6aff5fa80a6beab13b809d08628d36fa6314c",
           "source_sha256": "ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969380+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318848+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L5"
         },
         {
@@ -1779,8 +1794,8 @@
           "content": "   38 | #[derive(Eq, PartialEq, Clone, Debug)]\n   39 | pub struct SinsemillaConfig<Hash, Commit, F, Lookup = PallasLookupRangeCheckConfig>\n   40 | where",
           "content_sha256": "76d32e781d39f14fedf833bd8677408480635d843cf59b53de8720cd674c0759",
           "source_sha256": "ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969383+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318851+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L39"
         },
         {
@@ -1790,8 +1805,8 @@
           "content": "   75 | \n   76 | impl<Hash, Commit, F, Lookup> SinsemillaConfig<Hash, Commit, F, Lookup>\n   77 | where",
           "content_sha256": "b1107413b5bff30832ec37e0b00500bae36ef605c95fbbb9a3759062dd2fe6ab",
           "source_sha256": "ffb7017d18da2ec4568114fab60eb82ac18544e5ebdc17cdbceaca3928a53b82",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.969386+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.318855+00:00",
           "url": "https://github.com/zcash/halo2/blob/3442dd33754ae0d44b8970e5a4eea79b0c3360bf/halo2_gadgets/src/sinsemilla/chip.rs#L76"
         }
       ],
@@ -1829,8 +1844,8 @@
       ]
     },
     {
-      "id": "80213230-ef1a-40ac-a956-190a81d74430",
-      "public_id": "QSI-2026-08332",
+      "id": "7cc0b9bd-9c42-44e0-bec2-ccabcb0952ee",
+      "public_id": "QSI-2026-13320",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 3 бюллетеней (2 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -1849,8 +1864,8 @@
       "triage": null,
       "affected_asset": "dependencies:crates.io:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:49:21.985553+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T20:12:24.333222+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -1905,8 +1920,8 @@
           "content": "gumdrop@0.8.1 [dev]: RUSTSEC-2026-0214\nquick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195",
           "content_sha256": "616397a43959bf6a4ed1107e089d8fabf0b48f7c38a24a6c6d33520152314344",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:49:22.044806+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.385728+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -1929,11 +1944,11 @@
       ]
     },
     {
-      "id": "41bb9ed4-ef72-4cb8-abcb-13f0e2010a52",
-      "public_id": "QSI-2026-08330",
+      "id": "4ce5b4ce-47fc-4f75-8be1-09cf3fcff532",
+      "public_id": "QSI-2026-13318",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
-      "description": "В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC.",
+      "description": "В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC.",
       "impact": "Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.",
       "recommendation": "Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).",
       "retest": "Повторите сканирование после обновлений.",
@@ -1949,8 +1964,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:49:21.964807+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T20:12:24.315868+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2009,19 +2024,19 @@
           "kind": "dependency",
           "source": "Cargo.lock, Cargo.toml, halo2/Cargo.toml, halo2_gadgets/Cargo.toml, halo2_poseidon/Cargo.toml, halo2_proofs/Cargo.toml",
           "location": null,
-          "content": "Crypto libraries: ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla",
-          "content_sha256": "e3f047d63f0a64fea96d533760fe7bdaa0eb56367b01de8a327ec457c0414f85",
+          "content": "Crypto libraries: halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla",
+          "content_sha256": "b02ff1018eb2187caba7a4af0b370e92bd445d5fb8c80c3537ac6d242b4f5033",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.981485+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.329568+00:00",
           "url": null
         }
       ],
       "remediation": []
     },
     {
-      "id": "69ccdfb1-0677-4be4-b817-77bbfdc0283e",
-      "public_id": "QSI-2026-08331",
+      "id": "481819fd-4fc1-469c-97d3-f8ffae666f4e",
+      "public_id": "QSI-2026-13319",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0192 для пакета crates.io ttf-parser версии 0.20.0 как информационный (unmaintained): `ttf-parser` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -2041,8 +2056,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/ttf-parser@0.20.0",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T22:49:21.977439+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T20:12:24.326760+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -2097,8 +2112,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0192\", \"aliases\": [], \"modified\": \"2026-06-29T21:15:04.384453633Z\", \"summary\": \"`ttf-parser` is unmaintained\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "d3f7ce2105a490b5cc0802ff198a1ca809120d266ed32b6200a30a1ab6d06752",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T22:49:21.989167+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T20:12:24.335895+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0192"
         }
       ],
@@ -2142,8 +2157,8 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-08328",
-      "QSI-2026-08329"
+      "QSI-2026-13316",
+      "QSI-2026-13317"
     ],
     "roles": [
       {
@@ -2163,8 +2178,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-08328",
-          "QSI-2026-08329"
+          "QSI-2026-13316",
+          "QSI-2026-13317"
         ],
         "files": 43
       }
@@ -2205,10 +2220,6 @@
         "model": "Q1",
         "model_label": "Q1: квантовые вычисления офлайн, классический доступ к жертве",
         "affected": [
-          {
-            "algorithm": "ECDSA",
-            "rows": 1
-          },
           {
             "algorithm": "Halo 2 (IPA)",
             "rows": 34
@@ -2334,7 +2345,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08328",
+        "finding": "QSI-2026-13316",
         "finding_title": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))",
         "severity": "medium"
       },
@@ -2352,7 +2363,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-08329",
+        "finding": "QSI-2026-13317",
         "finding_title": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))",
         "severity": "medium"
       },
@@ -2370,7 +2381,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08328",
+        "finding": "QSI-2026-13316",
         "finding_title": "Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))",
         "severity": "medium"
       },
@@ -2388,7 +2399,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-08329",
+        "finding": "QSI-2026-13317",
         "finding_title": "Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))",
         "severity": "medium"
       },
@@ -2406,7 +2417,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-08332",
+        "finding": "QSI-2026-13320",
         "finding_title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
         "severity": "info"
       },
@@ -2424,7 +2435,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "ttf-parser заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-08331",
+        "finding": "QSI-2026-13319",
         "finding_title": "ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)",
         "severity": "info"
       }
@@ -2437,7 +2448,7 @@
     },
     {
       "name": "certificates",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "chain_map",
@@ -2449,7 +2460,7 @@
     },
     {
       "name": "dependencies",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "inventory_document",
@@ -2457,11 +2468,11 @@
     },
     {
       "name": "solidity",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "source_code",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "tls_code",
@@ -2473,7 +2484,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "OSV.dev API",
@@ -2611,8 +2622,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "NIST-PQC-SEC",
@@ -2710,30 +2721,6 @@
     {
       "algorithm": "Crypto library",
       "family": "library",
-      "parameter": "0.14.0",
-      "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
-      "location": "Cargo.lock",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14.0",
-      "usage": "crates.io dependency",
-      "library": "group (jubjub)",
-      "location": "Cargo.lock",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
       "parameter": "0.2.0",
       "usage": "crates.io dependency",
       "library": "sinsemilla (sinsemilla)",
@@ -2750,30 +2737,6 @@
       "usage": "crates.io dependency",
       "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
       "location": "Cargo.lock",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14",
-      "usage": "crates.io dependency",
-      "library": "group (jubjub)",
-      "location": "Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14",
-      "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
-      "location": "Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
@@ -2820,7 +2783,7 @@
       "family": "library",
       "parameter": "0.6",
       "usage": "crates.io dependency",
-      "library": "halo2_gadgets (halo2 (Zcash))",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
       "location": "Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -2832,7 +2795,7 @@
       "family": "library",
       "parameter": "0.6",
       "usage": "crates.io dependency",
-      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "library": "halo2_gadgets (halo2 (Zcash))",
       "location": "Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -2846,6 +2809,30 @@
       "usage": "crates.io dependency",
       "library": "halo2_proofs (halo2 (Zcash))",
       "location": "halo2/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "halo2_poseidon (halo2 (Zcash))",
+      "location": "halo2_gadgets/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "location": "halo2_gadgets/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
@@ -2880,79 +2867,7 @@
       "family": "library",
       "parameter": "workspace",
       "usage": "crates.io dependency",
-      "library": "halo2_poseidon (halo2 (Zcash))",
-      "location": "halo2_gadgets/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "group (jubjub)",
-      "location": "halo2_gadgets/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
       "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
-      "location": "halo2_gadgets/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
-      "location": "halo2_gadgets/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
-      "location": "halo2_poseidon/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
-      "location": "halo2_poseidon/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "group (jubjub)",
       "location": "halo2_poseidon/Cargo.toml",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -2969,42 +2884,6 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
-      "location": "halo2_proofs/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "group (jubjub)",
-      "location": "halo2_proofs/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "implemented in a file of this name",
-      "library": "",
-      "location": "halo2_gadgets/src/ecc.rs",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "low",
       "occurrences": 1
     },
     {
@@ -3565,30 +3444,6 @@
     },
     {
       "algorithm": "Crypto library",
-      "parameter": "0.14.0",
-      "library": "ff (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.lock"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "0.14.0",
-      "library": "group (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.lock"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
       "parameter": "0.2.0",
       "library": "sinsemilla (sinsemilla)",
       "quantum_status": "not_applicable",
@@ -3609,30 +3464,6 @@
       "rows": 1,
       "examples": [
         "Cargo.lock"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "0.14",
-      "library": "group (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.toml"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "0.14",
-      "library": "ff (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.toml"
       ]
     },
     {
@@ -3674,7 +3505,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.6",
-      "library": "halo2_gadgets (halo2 (Zcash))",
+      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3686,7 +3517,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.6",
-      "library": "pasta_curves (pasta_curves (Pallas/Vesta))",
+      "library": "halo2_gadgets (halo2 (Zcash))",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3711,18 +3542,6 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "sinsemilla (sinsemilla)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "halo2_gadgets/Cargo.toml"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "workspace",
       "library": "halo2_poseidon (halo2 (Zcash))",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -3730,20 +3549,6 @@
       "rows": 1,
       "examples": [
         "halo2_gadgets/Cargo.toml"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "workspace",
-      "library": "group (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 3,
-      "rows": 3,
-      "examples": [
-        "halo2_gadgets/Cargo.toml",
-        "halo2_poseidon/Cargo.toml",
-        "halo2_proofs/Cargo.toml"
       ]
     },
     {
@@ -3763,27 +3568,13 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "ff (jubjub)",
+      "library": "sinsemilla (sinsemilla)",
       "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 3,
-      "rows": 3,
-      "examples": [
-        "halo2_gadgets/Cargo.toml",
-        "halo2_poseidon/Cargo.toml",
-        "halo2_proofs/Cargo.toml"
-      ]
-    },
-    {
-      "algorithm": "ECDSA",
-      "parameter": "",
-      "library": "",
-      "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "count": 1,
       "rows": 1,
       "examples": [
-        "halo2_gadgets/src/ecc.rs"
+        "halo2_gadgets/Cargo.toml"
       ]
     },
     {

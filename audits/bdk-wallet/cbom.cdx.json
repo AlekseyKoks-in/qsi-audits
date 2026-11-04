@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:67fd2616-a6d0-4c62-b1eb-dbc7c0c8c056",
+  "serialNumber": "urn:uuid:e57a25cd-6024-471a-8909-1b8fda9d34ff",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-29T18:40:40Z",
+    "timestamp": "2026-11-04T20:14:15Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cbf8db94-af4b-46f0-a60b-f7fef7203af0",
+      "bom-ref": "1b697b08-e270-4478-a883-9703028ca47a",
       "name": "ECDSA",
       "properties": [
         {
@@ -76,7 +76,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "09d7d0e2-e62d-4191-afc8-dfef55436940",
+      "bom-ref": "b500fdbd-6d01-4a79-abc8-e108cdb331d5",
       "name": "ECDSA",
       "properties": [
         {
@@ -130,7 +130,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d8708311-0135-4f84-8467-09f0e1b33afb",
+      "bom-ref": "7938d7ee-51a9-4d4e-9fc0-710e56cf575c",
       "name": "ECDSA",
       "properties": [
         {
@@ -184,61 +184,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "907abdc6-04fa-4885-9eed-06fc78240d17",
-      "name": "ECDSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "src/persist_test_utils.rs:13"
-        },
-        {
-          "name": "qsi:url",
-          "value": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/persist_test_utils.rs#L13"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "source code (1 reference(s))"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "medium"
-        },
-        {
-          "name": "qsi:source",
-          "value": "source_code"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "ecdsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "secp256k1",
-          "curve": "secp256k1",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "classicalSecurityLevel": 128,
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.3.132.0.10"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "81669e11-590e-458b-ad34-60ec40cbf13d",
+      "bom-ref": "9aeb28d2-5aec-47a6-a7ca-432121812112",
       "name": "ECDSA",
       "properties": [
         {
@@ -292,7 +238,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "644fb92d-ff70-4860-ba8c-920d272c3674",
+      "bom-ref": "ce9ac0e0-e7e8-47e5-aa08-fa6b85ebe643",
       "name": "ECDSA",
       "properties": [
         {
@@ -346,7 +292,58 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d7b2855e-c92c-4375-9bb3-6c4daf85abb2",
+      "bom-ref": "9c3692dd-0ce8-416e-b6e9-238064d932e8",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/wallet/signer.rs:631"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L631"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5f0042b3-1206-4f72-aa9e-8b9f215d73ad",
       "name": "ECDSA",
       "properties": [
         {
@@ -400,7 +397,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ca1106db-ea0b-47dc-87be-3ca773736e73",
+      "bom-ref": "7e74c1fd-97d5-43bc-a34e-fbe191f62073",
       "name": "RIPEMD-160",
       "properties": [
         {
@@ -450,7 +447,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b8ef03c0-39d1-4375-af16-7721265301cc",
+      "bom-ref": "9b3aba9e-e79a-4efd-91f0-5d7f3f9d569a",
       "name": "RIPEMD-160",
       "properties": [
         {
@@ -500,7 +497,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0d887206-a2a2-4401-a22e-aa2fb71d8348",
+      "bom-ref": "42fea31a-e387-46a5-b99c-a1c992414789",
       "name": "RIPEMD-160",
       "properties": [
         {
@@ -545,6 +542,206 @@
             "digest"
           ],
           "classicalSecurityLevel": 80
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "47749bc4-4ef9-4537-8975-34aa8425525a",
+      "name": "Schnorr (BIP-340)",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/descriptor/mod.rs:26"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/mod.rs#L26"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "schnorr-bip340"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "efc93495-d1f1-4da6-85eb-ded3bd547fe0",
+      "name": "Schnorr (BIP-340)",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/descriptor/policy.rs:48"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/descriptor/policy.rs#L48"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "schnorr-bip340"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "94b71355-e10f-4336-a7b6-b6086695bde1",
+      "name": "Schnorr (BIP-340)",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/keys/mod.rs:28"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/keys/mod.rs#L28"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "schnorr-bip340"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2927f0e2-0194-4a96-9dfc-131319e6621e",
+      "name": "Schnorr (BIP-340)",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/wallet/signer.rs:105"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/bitcoindevkit/bdk_wallet/blob/09c677305139e5478d57115a65e626320e809b0d/src/wallet/signer.rs#L105"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (6 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "schnorr-bip340"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
         }
       }
     }

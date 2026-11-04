@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 19:56 UTC |
+| Дата отчёта | 2026-11-04 19:19 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 9a8057aa-62c4-49fc-8047-f988a32f7a64 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | fa7dc87f-dc80-4a29-b35f-4802b3d7ef6e (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `0383ea7ca33a559a1937e9fb54875aaf90e0e5036351bd80f34861433622d557` |
+| SHA-256 содержимого | `82abeea34e02e233b7a86c4ef175f23ed70a059aed003f355163c56f669bdd1b` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,7 +17,7 @@
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **3**
+- Средняя: **5**
 - Низкая: **0**
 - Информационная: **0**
 
@@ -25,7 +25,7 @@
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 3
+- Долгосрочный постквантовый риск: 5
 - Рекомендация по улучшению: 0
 - Недостаточность данных: 0
 
@@ -46,8 +46,9 @@
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
 | dependencies | проверено | 2 | Cargo.toml: 11 dependencies parsed (0 pinned); secp256k1-sys/Cargo.toml: 2 dependencies parsed (0 pinned) |
-| source_code | проверено | 116 | secp256k1-sys/build.rs: 68 lines scanned with 16 rule patterns and 123 registry patterns; secp256k1-sys/depend/check_uint128_t.c: 16 lines scanned with 16 rule patterns and 123 registry patterns; secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c: 150 lines scanned with 16 rule patterns and 123 registry patterns |
+| source_code | проверено | 116 | secp256k1-sys/build.rs: 68 lines scanned with 16 rule patterns and 145 registry patterns; secp256k1-sys/depend/check_uint128_t.c: 16 lines scanned with 16 rule patterns and 145 registry patterns; secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.c: 150 lines scanned with 16 rule patterns and 145 registry patterns |
 | secrets | проверено | 7 | src/ellswift.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); src/key/mod.rs: value(s) at line(s) 2162 (test_keypair_deserialize_serde) are declared inside a fixture and treated as test data, although the file itself is not test code; src/key/mod.rs: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| entropy | проверено | 1 | random-number generation: 116 code files read with 146 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | не проверено | 1 | no exactly pinned versions to query |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -58,7 +59,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree rust-secp256k1 at fe8b3bec962fc2c7052501de397fde58ef7142d1. 118 files analysed; of 248 files, 46 are test, fuzzing, benchmark or example code and were left out, 84 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
+Static review of the source tree rust-secp256k1 at fe8b3bec962fc2c7052501de397fde58ef7142d1. 118 files analysed; of 248 files, 46 are test, fuzzing, benchmark or example code and were left out, 84 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/workflows/README.md, .github/workflows/cross.yml, .github/workflows/rust.yml, .github/workflows/shellcheck.yml, .gitignore. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -67,17 +68,17 @@ Static review of the source tree rust-secp256k1 at fe8b3bec962fc2c7052501de397fd
 
 ## 7. Подробное описание находок
 
-### QSI-2026-06682 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (23 файл(ов))
+### QSI-2026-12584 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (23 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: secp256k1-sys/build.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 19:56 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:19 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
-51 упоминаний ECDSA в 23 файл(ах), например secp256k1-sys/build.rs:20. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+55 упоминаний ECDSA в 23 файл(ах), например secp256k1-sys/build.rs:20. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -175,50 +176,90 @@ _file_excerpt · [secp256k1-sys/depend/secp256k1/include/secp256k1_extrakeys.h](
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06683 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (2 файл(ов))
+### QSI-2026-12586 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
 - Источник данных: secp256k1-sys/src/lib.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 19:56 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:19 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
-9 упоминаний Schnorr (BIP-340) в 2 файл(ах), например secp256k1-sys/src/lib.rs:1073. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+60 упоминаний Schnorr (BIP-340) в 3 файл(ах), например secp256k1-sys/src/lib.rs:317. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте secp256k1-sys/src/lib.rs:1073 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте secp256k1-sys/src/lib.rs:317 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
 
-_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1073) · line 1073 · SHA-256 efacee2282622bd9afdbd4d21fba13b4ae52c3b7950fd46c6eaad7f2833d7b66_
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L317) · line 317 · SHA-256 d13b5cfda891d55bca8ab5391a7ad28af4e48f2c5202172385c04a7a1d8664be_
 
 ```
- 1072 |     )]
- 1073 |     pub fn secp256k1_schnorrsig_sign(
- 1074 |         cx: *const Context,
+  316 | #[cfg_attr(secp256k1_fuzz, derive(PartialEq, Eq, PartialOrd, Ord, Hash))]
+  317 | pub struct XOnlyPublicKey([c_uchar; 64]);
+  318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
 ```
 
-_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1086) · line 1086 · SHA-256 7155b9ee61a6b3b7a19c9ac3b631ad3edddee83c1b261e3bb09f225c048c9e9d_
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L318) · line 318 · SHA-256 7c99a2d66dd9053313f941bd2cb8e22987e700a387c3ec366b1dbb7bb43b3bc1_
 
 ```
- 1085 |     )]
- 1086 |     pub fn secp256k1_schnorrsig_sign_custom(
- 1087 |         cx: *const Context,
+  317 | pub struct XOnlyPublicKey([c_uchar; 64]);
+  318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
+  319 | impl_raw_debug!(XOnlyPublicKey);
 ```
 
-_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1099) · line 1099 · SHA-256 c0c60e7da096f64bf928a080f61201ddc6e99b91eb09cbad8df405a0f2587182_
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L319) · line 319 · SHA-256 bf7f117989626f07dce7281aa2f79198e106af57b4f86785a21eefa48edb9e51_
 
 ```
- 1098 |     )]
- 1099 |     pub fn secp256k1_schnorrsig_verify(
- 1100 |         cx: *const Context,
+  318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
+  319 | impl_raw_debug!(XOnlyPublicKey);
+  320 | 
+```
+
+_file_excerpt · [src/musig.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/musig.rs#L18) · line 18 · SHA-256 bdfb2b8f8aeaf4e8c59bc9a28a92e80233c45117f57a55574993f1cd519608a5_
+
+```
+   17 | use crate::{
+   18 |     from_hex, schnorr, Error, Keypair, PublicKey, Scalar, Secp256k1, SecretKey, XOnlyPublicKey,
+   19 | };
+```
+
+_file_excerpt · [src/musig.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/musig.rs#L109) · line 109 · SHA-256 eb5a054185a10d2b191e5f760af93a1b773d38f725aa7590b9a76a1e20f7a308_
+
+```
+  108 |     data: ffi::MusigKeyAggCache,
+  109 |     aggregated_xonly_public_key: XOnlyPublicKey,
+  110 | }
+```
+
+_file_excerpt · [src/musig.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/musig.rs#L413) · line 413 · SHA-256 a202ffe9a5444c45fe739e3d823361fe7d599f330ced9bff9a53d61b0014b204_
+
+```
+  412 |         let mut key_agg_cache = MaybeUninit::<ffi::MusigKeyAggCache>::uninit();
+  413 |         let mut agg_pk = MaybeUninit::<ffi::XOnlyPublicKey>::uninit();
+  414 | 
+```
+
+_file_excerpt · [src/schnorr.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/schnorr.rs#L13) · line 13 · SHA-256 c86d8dd8515e2a82aad72b3bdcb408f22a1f28596cec77d822f953be5e3075a7_
+
+```
+   12 | use crate::ffi::{self, CPtr};
+   13 | use crate::key::{Keypair, XOnlyPublicKey};
+   14 | use crate::{constants, from_hex, Error, Secp256k1, Signing, Verification};
+```
+
+_file_excerpt · [src/schnorr.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/schnorr.rs#L107) · line 107 · SHA-256 c1eff3b2d664272c647efcb734238ff435096f4cd5e39fb5f90bc80a7d69eb6b_
+
+```
+  106 |     #[cfg(feature = "global-context")]
+  107 |     pub fn verify(&self, msg: &[u8], pk: &XOnlyPublicKey) -> Result<(), Error> {
+  108 |         verify(self, msg, pk)
 ```
 
 _file_excerpt · [src/schnorr.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/schnorr.rs#L119) · line 119 · SHA-256 b0ac4aa5cec5e41d8282163f25ae8852222c94224505fe06a05e79b8e0e43c6f_
@@ -229,41 +270,165 @@ _file_excerpt · [src/schnorr.rs](https://github.com/rust-bitcoin/rust-secp256k1
   120 |                     secp.ctx.as_ptr(),
 ```
 
-_file_excerpt · [src/schnorr.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/schnorr.rs#L167) · line 167 · SHA-256 3c8d77857e39e275e2dbfcd82048329024ab19596a4d5f0aeac8ee8c576d00d8_
-
-```
-  166 |             |secp: &Secp256k1<crate::AllPreallocated>| {
-  167 |                 ffi::secp256k1_schnorrsig_verify(
-  168 |                     secp.ctx.as_ptr(),
-```
-
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06684 — Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))
+### QSI-2026-12585 — Квантово-уязвимый ECDH: роль не определена (5 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `source-code:ECDSA:general`
-- Источник данных: src/lib.rs
+- Затронутый актив: `source-code:ECDH:general`
+- Источник данных: secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 19:56 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:19 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
-3 упоминаний ECDSA в 2 файл(ах), например src/lib.rs:362. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+10 упоминаний ECDH в 5 файл(ах), например secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h:10. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/lib.rs:362 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h:10 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
+
+_file_excerpt · [secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h#L10) · line 10 · SHA-256 65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134_
+
+```
+    9 | 
+   10 | #include "../../../include/secp256k1_ecdh.h"
+   11 | #include "../../ecmult_const_impl.h"
+```
+
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L722) · line 722 · SHA-256 e0a014b9c105dc8471d91a923ee1d9b0ddf9318d5c20ff1ed9d5f43fa20d1bbf_
+
+```
+  721 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_13_ellswift_xdh")]
+  722 |     pub fn secp256k1_ellswift_xdh(
+  723 |         ctx: *const Context,
+```
+
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1040) · line 1040 · SHA-256 64e0270f95ec39d78b97329cc4943195fdc2ae9e1b3252d088aede99479d7053_
+
+```
+ 1039 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_13_ecdh")]
+ 1040 |     pub fn secp256k1_ecdh(
+ 1041 |         cx: *const Context,
+```
+
+_file_excerpt · [secp256k1-sys/src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/src/lib.rs#L1796) · line 1796 · SHA-256 f71582bb7fb903311264e499339b28cd71361503d0f115fbe0be168913cabfad_
+
+```
+ 1795 |     /// Sets out to point^scalar^1s
+ 1796 |     pub unsafe fn secp256k1_ecdh(
+ 1797 |         cx: *const Context,
+```
+
+_file_excerpt · [src/ecdh.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/ecdh.rs#L43) · line 43 · SHA-256 d6b1e73ec65561e3cb50257949257115c7f1f1807d4dc81539bade17b35a600f_
+
+```
+   42 |         let res = unsafe {
+   43 |             ffi::secp256k1_ecdh(
+   44 |                 ffi::secp256k1_context_no_precomp,
+```
+
+_file_excerpt · [src/ecdh.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/ecdh.rs#L129) · line 129 · SHA-256 08476e289b4492ec9bd012fd90ed0d7bc2c077c65950d880fc8e8ab6a6da9843_
+
+```
+  128 | /// ```
+  129 | pub fn shared_secret_point(point: &PublicKey, scalar: &SecretKey) -> [u8; 64] {
+  130 |     let mut xy = [0u8; 64];
+```
+
+_file_excerpt · [src/ecdh.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/ecdh.rs#L133) · line 133 · SHA-256 f0788523cc37eebcb5c2a2f11804bbb3a177fbb4e9fda55c50bff3992398d220_
+
+```
+  132 |     let res = unsafe {
+  133 |         ffi::secp256k1_ecdh(
+  134 |             ffi::secp256k1_context_no_precomp,
+```
+
+_file_excerpt · [src/ellswift.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/ellswift.rs#L198) · line 198 · SHA-256 1f32d27839f0c4569293f89f0ce7195aceec8356046ae82fb8d4a40957c6e275_
+
+```
+  197 |         unsafe {
+  198 |             let ret = ffi::secp256k1_ellswift_xdh(
+  199 |                 ffi::secp256k1_context_no_precomp,
+```
+
+_file_excerpt · [src/ellswift.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/ellswift.rs#L232) · line 232 · SHA-256 e7f6d9c7c9badacbedf05b822c74eda984c04548d5fedfb1f545df65152e78e1_
+
+```
+  231 |         unsafe {
+  232 |             let ret = ffi::secp256k1_ellswift_xdh(
+  233 |                 ffi::secp256k1_context_no_precomp,
+```
+
+_file_excerpt · [src/secret.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/secret.rs#L8) · line 8 · SHA-256 285ee8c64fa6d77d43d5c0042c5008cb2b089f93c9cbd80e46a1e5f27feaac70_
+
+```
+    7 | use crate::constants::SECRET_KEY_SIZE;
+    8 | use crate::ecdh::SharedSecret;
+    9 | use crate::key::{Keypair, SecretKey};
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-12587 — Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDSA:general`
+- Источник данных: src/key/mod.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:19 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+7 упоминаний ECDSA в 4 файл(ах), например src/key/mod.rs:401. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/key/mod.rs:401 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/key/mod.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/mod.rs#L401) · line 401 · SHA-256 5cacf3b584ab70f62ff9b94757a82d28a308f351de05d669feeb1c72c706025d_
+
+```
+  400 |     /// Checks that `sig` is a valid ECDSA signature for `msg` using this public key.
+  401 |     pub fn verify(&self, msg: impl Into<Message>, sig: &ecdsa::Signature) -> Result<(), Error> {
+  402 |         ecdsa::verify(sig, msg, self)
+```
+
+_file_excerpt · [src/key/mod.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/mod.rs#L402) · line 402 · SHA-256 911be2dedc0212b458ed814a1423f013330551dd18b1966cf19d4d7c6912f76b_
+
+```
+  401 |     pub fn verify(&self, msg: impl Into<Message>, sig: &ecdsa::Signature) -> Result<(), Error> {
+  402 |         ecdsa::verify(sig, msg, self)
+  403 |     }
+```
+
+_file_excerpt · [src/key/secret.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/secret.rs#L277) · line 277 · SHA-256 402868456f283f055f16da0d57aa7e5d41d14adfc3b39560dc19216ef86c208c_
+
+```
+  276 |     #[inline]
+  277 |     pub fn sign_ecdsa(&self, msg: impl Into<Message>) -> ecdsa::Signature { ecdsa::sign(msg, self) }
+  278 | 
+```
 
 _file_excerpt · [src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/lib.rs#L362) · line 362 · SHA-256 ffad46a775c24c96bcfcbea7698aa07d993b31975376d7e818d1f3c45d00c042_
 
@@ -281,6 +446,14 @@ _file_excerpt · [src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blo
   417 |     pub fn generate_keypair<R: rand::Rng + ?Sized>(
 ```
 
+_file_excerpt · [src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/lib.rs#L1041) · line 1041 · SHA-256 4d4282cfb0db50080ca39ab63eca0fb554033f65e26fdd973a68659b5699011b_
+
+```
+ 1040 |         bh.iter(|| {
+ 1041 |             let res = ecdsa::verify(&sig, msg, &pk).unwrap();
+ 1042 |             black_box(res);
+```
+
 _file_excerpt · [src/scalar.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/scalar.rs#L151) · line 151 · SHA-256 d1c2f06aed006e6ebf628ab453e342b3fd91780c66badcc37598269148d8a562_
 
 ```
@@ -292,6 +465,90 @@ _file_excerpt · [src/scalar.rs](https://github.com/rust-bitcoin/rust-secp256k1/
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-12588 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (3 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Schnorr (BIP-340):general`
+- Источник данных: src/key/mod.rs
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:19 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+44 упоминаний Schnorr (BIP-340) в 3 файл(ах), например src/key/mod.rs:207. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/key/mod.rs:207 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/key/mod.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/mod.rs#L207) · line 207 · SHA-256 c3146f780d86380b5e058767afdd24296d4466e0cf1cecfaf3758be9fc13e9ff_
+
+```
+  206 |     /// Creates a [`PublicKey`] using the key material from `pk` combined with the `parity`.
+  207 |     pub fn from_x_only_public_key(pk: XOnlyPublicKey, parity: Parity) -> PublicKey {
+  208 |         let mut buf = [0u8; 33];
+```
+
+_file_excerpt · [src/key/mod.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/mod.rs#L382) · line 382 · SHA-256 9d97d51a9f53397efe27fabbe8470f6c14dd7ef4b4a32b3f7ba28fcf4d136fd5_
+
+```
+  381 |     #[inline]
+  382 |     pub fn x_only_public_key(&self) -> (XOnlyPublicKey, Parity) {
+  383 |         let mut pk_parity = 0;
+```
+
+_file_excerpt · [src/key/mod.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/mod.rs#L385) · line 385 · SHA-256 8c94c44a86b95d223321e8a81dc5c86ec1829fcf1531c8901bc5cfb1a5d095f8_
+
+```
+  384 |         unsafe {
+  385 |             let mut xonly_pk = ffi::XOnlyPublicKey::new();
+  386 |             let ret = ffi::secp256k1_xonly_pubkey_from_pubkey(
+```
+
+_file_excerpt · [src/key/secret.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/secret.rs#L12) · line 12 · SHA-256 3dbd331669d688d1497c9951dd57e4a4339d3f1551af2f7c738ced7e29ee0f71_
+
+```
+   11 |     constants, ecdsa, ffi, from_hex, Error, Keypair, Message, Parity, PublicKey, Scalar,
+   12 |     XOnlyPublicKey,
+   13 | };
+```
+
+_file_excerpt · [src/key/secret.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/secret.rs#L295) · line 295 · SHA-256 e294a903fe5363ec5a8e1d5907c70c485ca7032055c0b131575fe3eae6255846_
+
+```
+  294 |     #[inline]
+  295 |     pub fn x_only_public_key(&self) -> (XOnlyPublicKey, Parity) {
+  296 |         let kp = self.keypair();
+```
+
+_file_excerpt · [src/key/secret.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/key/secret.rs#L297) · line 297 · SHA-256 7b50075f9c54c7a65aa70c755b7b30026cf0efaab47c0c17b171b66519f53b4a_
+
+```
+  296 |         let kp = self.keypair();
+  297 |         XOnlyPublicKey::from_keypair(&kp)
+  298 |     }
+```
+
+_file_excerpt · [src/lib.rs](https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/lib.rs#L204) · line 204 · SHA-256 51e36cd16b3d765b86a58df7a9067e5facc973e09da16afc747e302e5d61982b_
+
+```
+  203 |     key::{
+  204 |         sort_pubkeys, InvalidParityValue, Keypair, Parity, PublicKey, SecretKey, XOnlyPublicKey,
+  205 |     },
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
@@ -328,8 +585,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (23), Schnorr (BIP-340) (2) | QSI-2026-06682, QSI-2026-06683 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (2) | QSI-2026-06684 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (23), Schnorr (BIP-340) (3) | QSI-2026-12584, QSI-2026-12586 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDH (5), ECDSA (4), Schnorr (BIP-340) (3) | QSI-2026-12585, QSI-2026-12587, QSI-2026-12588 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -338,7 +595,7 @@ _Роль определяется по путям файлов, именам ф
 
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (2), ECDSA (27), Schnorr (BIP-340) (3) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (6), ECDSA (30), Schnorr (BIP-340) (7) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 
 _Действие: взламывает — алгоритм нужно заменить; ослабляет — более длинные ключи или выходы восстанавливают запас; учтено в стандартных параметрах — при стандартных наборах действий не требуется; только при суперпозиционных запросах — к обычному применению неприменимо._
 
@@ -363,26 +620,30 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06682 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06683 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06684 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-06682 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06683 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-06684 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P3 | QSI-2026-12584 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12586 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12585 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12587 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12588 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-12584 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12586 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-12585 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-12587 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12588 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -397,7 +658,7 @@ _Действие: взламывает — алгоритм нужно заме
 8. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
 9. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 10. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-11. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+11. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 12. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
 13. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
 
@@ -405,10 +666,10 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
-| ECDH |  |  | уязвим (Шор) | допустимо | 2 | 2 | secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h; src/ecdh.rs |
+| ECDH |  |  | уязвим (Шор) | допустимо | 6 | 6 | secp256k1-sys/depend/secp256k1/include/secp256k1_ecdh.h; secp256k1-sys/depend/secp256k1/src/modules/ecdh/main_impl.h:10; secp256k1-sys/src/lib.rs:722 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 21 | 21 | secp256k1-sys/build.rs:20; secp256k1-sys/depend/secp256k1/contrib/lax_der_parsing.h:57; secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.h:34 |
-| ECDSA |  |  | уязвим (Шор) | допустимо | 6 | 6 | secp256k1-sys/depend/secp256k1/src/ecdsa.h; secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h; secp256k1-sys/src/lib.rs:271 |
-| Schnorr (BIP-340) |  |  | уязвим (Шор) | допустимо | 3 | 3 | secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h; secp256k1-sys/src/lib.rs:1073; src/schnorr.rs:119 |
+| ECDSA |  |  | уязвим (Шор) | допустимо | 9 | 9 | secp256k1-sys/depend/secp256k1/src/ecdsa.h; secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h; secp256k1-sys/src/lib.rs:271 |
+| Schnorr (BIP-340) |  |  | уязвим (Шор) | допустимо | 7 | 7 | secp256k1-sys/depend/secp256k1/include/secp256k1_schnorrsig.h; secp256k1-sys/src/lib.rs:317; src/key/mod.rs:207 |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 

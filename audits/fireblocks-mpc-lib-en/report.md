@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-10-28 17:13 UTC |
+| Report date | 2026-11-04 18:45 UTC |
 | Report version | 1 |
-| Audit run | e4764262-def8-4ad7-b114-07f66a508aff (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
+| Audit run | 92e20a21-f187-4881-8325-8e840f68589f (Document audit) |
+| Analyzer engine | qsi-engine 1.3.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `f06cccbfc13d6c5da9cad5a46abad990cdf7078b0550437f15421f034e1783c1` |
+| Content SHA-256 | `e56cf1018211bae7b2d7583db90895e5a9dc121ed95c664de743328a671a9f5b` |
 | Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -47,8 +47,9 @@ Repository: <https://github.com/fireblocks/mpc-lib> @ `00ae08b7f1bdbb887aedece38
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 123 | include/blockchain/mpc/hd_derive.h: 59 lines scanned with 16 rule patterns and 122 registry patterns; include/cosigner/asymmetric_eddsa_cosigner.h: 54 lines scanned with 16 rule patterns and 122 registry patterns; include/cosigner/asymmetric_eddsa_cosigner_client.h: 51 lines scanned with 16 rule patterns and 122 registry patterns |
+| source_code | checked | 123 | include/blockchain/mpc/hd_derive.h: 59 lines scanned with 16 rule patterns and 145 registry patterns; include/cosigner/asymmetric_eddsa_cosigner.h: 54 lines scanned with 16 rule patterns and 145 registry patterns; include/cosigner/asymmetric_eddsa_cosigner_client.h: 51 lines scanned with 16 rule patterns and 145 registry patterns |
 | secrets | checked | 1 | include/crypto/shamir_secret_sharing/verifiable_secret_sharing.h: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| entropy | checked | 1 | random-number generation: 123 code files read with 90 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -58,7 +59,7 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree fireblocks-mpc-lib-en at 00ae08b7f1bdbb887aedece384aca2f942aae432. 123 files analysed; of 126 files, 1 are test, fuzzing, benchmark or example code and were left out, 2 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree fireblocks-mpc-lib-en at 00ae08b7f1bdbb887aedece384aca2f942aae432. 123 files analysed; of 126 files, 1 are test, fuzzing, benchmark or example code and were left out, 2 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 3 path(s) of the repository: CMakeLists.txt, include, src; 83 files outside them were not read. Files no analyzer reads include: CMakeLists.txt, src/common/CMakeLists.txt. No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
@@ -67,14 +68,14 @@ Static review of the source tree fireblocks-mpc-lib-en at 00ae08b7f1bdbb887aedec
 
 ## 7. Detailed findings
 
-### QSI-2026-05455 — Quantum-vulnerable Paillier: threshold signing and MPC protocols (30 file(s))
+### QSI-2026-11907 — Quantum-vulnerable Paillier: threshold signing and MPC protocols (30 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** The largest row in this repository by reference count — 911 references across 30 files — and the one a post-quantum signature standard does not address. The anchors run through the BAM ECDSA cosigner surface (include/cosigner/bam_ecdsa_cosigner{,_client,_server}.h) and, importantly, through the key persistency structures (bam_key_persistency_structures{,_client,_server}.h): Paillier material is not only used in the protocol, it is *stored*. That matters for sequencing, because stored ciphertext is a harvest-now-decrypt-later item while a protocol is only a future-signing item. Replacing Paillier means redesigning the threshold protocol, not swapping a primitive: NIST's 2024 standards are single-signer, its multi-party threshold call is still open, and the literature notes PQC-round schemes do not convert directly to threshold form through MPC.
 - Affected asset: `source-code:Paillier:threshold_mpc`
 - Data source: include/cosigner/bam_ecdsa_cosigner.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 17:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:45 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -176,14 +177,14 @@ _file_excerpt · [include/cosigner/cmp_ecdsa_signing_service.h](https://github.c
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-05456 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))
+### QSI-2026-11908 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Correct, anchored on a real implementation (include/crypto/commitments/pedersen.h) plus the cosigner clients and servers that use it and the key persistency structures that store it. Stated precisely: breaking the discrete log costs a Pedersen commitment its binding property, not its hiding — it is perfectly hiding, so committed values are not recoverable even with a CRQC. The exposure is forgeability within the proofs, which is future soundness rather than retroactive disclosure. Do not describe this row as "amounts become readable".
 - Affected asset: `source-code:Pedersen commitment:threshold_mpc`
 - Data source: include/cosigner/bam_ecdsa_cosigner_client.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 17:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:45 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -285,14 +286,14 @@ _file_excerpt · [src/common/cosigner/bam_well_formed_proof.cpp](https://github.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-05457 — Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (7 file(s))
+### QSI-2026-11909 — Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (7 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Correct and well anchored, unlike the equivalent row in cb-mpc: the files are the CMP signing services themselves (include/cosigner/cmp_ecdsa_{offline,online,}_signing_service.h and src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp), i.e. an implementation of the CMP/CGGMP threshold ECDSA protocol. This is the core custody operation: every transaction the cosigner authorises goes through it.
 - Affected asset: `source-code:Threshold ECDSA:threshold_mpc`
 - Data source: include/cosigner/cmp_ecdsa_offline_signing_service.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 17:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:45 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -393,14 +394,14 @@ _file_excerpt · [src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp](htt
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-05458 — Quantum-vulnerable FROST: threshold signing and MPC protocols (7 file(s))
+### QSI-2026-11910 — Quantum-vulnerable FROST: threshold signing and MPC protocols (7 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Correct: include/cosigner/frost_cosigner{,_client,_server}.h and platform_service.h, 70 references. FROST is a Schnorr-based threshold signature over a prime-order group, so Shor breaks it by the same discrete-log attack as the ECDSA protocols — worth a separate row because FROST is often presented as the modern, safer choice, and its quantum exposure is identical. There is no post-quantum FROST analogue in production.
 - Affected asset: `source-code:FROST:threshold_mpc`
 - Data source: include/cosigner/frost_cosigner.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 17:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:45 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -502,14 +503,14 @@ _file_excerpt · [include/cosigner/platform_service.h](https://github.com/firebl
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-05459 — Quantum-vulnerable ECDSA: threshold signing and MPC protocols (1 file(s))
+### QSI-2026-11911 — Quantum-vulnerable ECDSA: threshold signing and MPC protocols (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** include/cosigner/sign_algorithm.h:10 — the enumeration of supported signing algorithms. A small row, and the right one to look at first in a migration: the place where a new scheme has to be admitted into the protocol's type system, and therefore a version-compatibility problem across every deployed cosigner.
 - Affected asset: `source-code:ECDSA:threshold_mpc`
 - Data source: include/cosigner/sign_algorithm.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 17:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:45 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -547,14 +548,14 @@ _file_excerpt · [include/cosigner/sign_algorithm.h](https://github.com/firebloc
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-05461 — Quantum-vulnerable Ed25519: threshold signing and MPC protocols (3 file(s))
+### QSI-2026-11913 — Quantum-vulnerable Ed25519: threshold signing and MPC protocols (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Threshold EdDSA signing: src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp:401, eddsa_online_signing_service.cpp and frost_cosigner_server.cpp. Same migration class as the FROST and threshold-ECDSA rows.
 - Affected asset: `source-code:Ed25519:threshold_mpc`
 - Data source: src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 17:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:45 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -608,14 +609,14 @@ _file_excerpt · [src/common/cosigner/frost_cosigner_server.cpp](https://github.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-05460 — Quantum-vulnerable Ed25519: role not determined (2 file(s))
+### QSI-2026-11912 — Quantum-vulnerable Ed25519: role not determined (2 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-28): confirmed by the analyst.** Role resolved: both anchors are include/crypto/ed25519_algebra/ed25519_algebra.h:71 and src/common/crypto/ed25519_algebra/ed25519_algebra.c — the Ed25519 group and field arithmetic layer that the EdDSA and FROST cosigners are built on, not an independent key use. It belongs in the inventory because a post-quantum scheme replaces this layer wholesale, but it is the same exposure as the threshold EdDSA rows reached one level lower, so it must not be counted as additional surface.
 - Affected asset: `source-code:Ed25519:general`
 - Data source: include/crypto/ed25519_algebra/ed25519_algebra.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-28 17:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:45 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -677,6 +678,7 @@ _Planning assumptions: x for key establishment, x for signatures, y are the defa
 
 ### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
 
+- Classical only — threshold signing and MPC protocols: ECDSA, Ed25519, FROST, Paillier, Pedersen commitment, Threshold ECDSA (45 file(s))
 
 **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -686,8 +688,8 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **threshold signing and MPC protocols** | Paillier (30), Pedersen commitment (8), FROST (7), Threshold ECDSA (7), Ed25519 (3), ECDSA (1) | QSI-2026-05455, QSI-2026-05456, QSI-2026-05457, QSI-2026-05458, QSI-2026-05459, QSI-2026-05461 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
-| **role not determined** | Ed25519 (2) | QSI-2026-05460 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **threshold signing and MPC protocols** | Paillier (30), Pedersen commitment (8), FROST (7), Threshold ECDSA (7), Ed25519 (3), ECDSA (1) | QSI-2026-11907, QSI-2026-11908, QSI-2026-11909, QSI-2026-11910, QSI-2026-11911, QSI-2026-11913 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
+| **role not determined** | Ed25519 (2) | QSI-2026-11912 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -724,34 +726,34 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-05455 | Add Paillier usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05456 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05457 | Add Threshold ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05458 | Add FROST usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05459 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05461 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-05460 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-05455 | Plan migration of Paillier to No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) or a hybrid scheme in use. |
-| P4 | QSI-2026-05456 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-05457 | Plan migration of Threshold ECDSA to The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design or a hybrid scheme in use. |
-| P4 | QSI-2026-05458 | Plan migration of FROST to As for the single-signer scheme it produces: ML-DSA or SLH-DSA where the verifier allows; threshold post-quantum signatures are still research (NIST IR 8214C) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows As for the single-signer scheme it produces: ML-DSA or SLH-DSA where the verifier allows; threshold post-quantum signatures are still research (NIST IR 8214C) or a hybrid scheme in use. |
-| P4 | QSI-2026-05459 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-05461 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-05460 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-11907 | Add Paillier usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11908 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11909 | Add Threshold ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11910 | Add FROST usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11911 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11913 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11912 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-11907 | Plan migration of Paillier to No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) or a hybrid scheme in use. |
+| P4 | QSI-2026-11908 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-11909 | Plan migration of Threshold ECDSA to The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design or a hybrid scheme in use. |
+| P4 | QSI-2026-11910 | Plan migration of FROST to As for the single-signer scheme it produces: ML-DSA or SLH-DSA where the verifier allows; threshold post-quantum signatures are still research (NIST IR 8214C) (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows As for the single-signer scheme it produces: ML-DSA or SLH-DSA where the verifier allows; threshold post-quantum signatures are still research (NIST IR 8214C) or a hybrid scheme in use. |
+| P4 | QSI-2026-11911 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-11913 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-11912 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -775,7 +777,7 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 17. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
 18. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 19. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-20. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+20. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 21. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 22. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
 23. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)

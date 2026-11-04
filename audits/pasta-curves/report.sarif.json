@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -59,31 +59,6 @@
                 "text": "OSV.dev сообщает 3 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375; bincode@1.3.3 [dev]: RUSTSEC-2025-0141. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
-            },
-            {
-              "id": "DEP-NO-PQC-LIBRARY",
-              "name": "DepNoPqcLibrary",
-              "shortDescription": {
-                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "post_quantum",
-                  "insufficient_data"
-                ],
-                "security-severity": "1.0"
-              },
-              "fullDescription": {
-                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
-              },
-              "help": {
-                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
           ]
         }
@@ -100,7 +75,7 @@
             "qsiFindingKey/v1": "51c0d95643bc4443dd2bc31ce8ac4783"
           },
           "properties": {
-            "qsiId": "QSI-2026-07555",
+            "qsiId": "QSI-2026-12277",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +93,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-07557",
+            "qsiId": "QSI-2026-12278",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -133,34 +108,16 @@
               }
             }
           ]
-        },
-        {
-          "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 2,
-          "level": "note",
-          "message": {
-            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-07556",
-            "severity": "info",
-            "confidence": "medium",
-            "classification": "insufficient_data",
-            "security-severity": "1.0"
-          }
         }
       ],
       "automationDetails": {
-        "id": "qsi/pasta-curves @ e3c0f0246f56/ebc4cacf-0b49-4605-b458-daffef75c78e"
+        "id": "qsi/pasta-curves @ e3c0f0246f56/27944377-e8dd-469d-902d-8eab841e28e7"
       },
       "properties": {
-        "qsiContentSha256": "2919c46477b0ece07cb139e575e93a0c5fa3adc70e68306085e2b990adc39eba",
+        "qsiContentSha256": "02f97d2a63b9de6a907d16415561dfff45827aee3f298143449459019b8ae1cc",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-30T20:59:34.768606+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:12:07.276120+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

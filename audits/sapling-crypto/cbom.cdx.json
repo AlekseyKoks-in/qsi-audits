@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:613782ef-3050-47e2-b3bd-3572d2e67b7d",
+  "serialNumber": "urn:uuid:df337c77-6d6c-49c0-b5ab-f64779f82f55",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-30T23:49:32Z",
+    "timestamp": "2026-11-04T20:12:01Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "385d4f17-7b9b-4236-8006-7de1d9649c73",
+      "bom-ref": "9a84b065-162a-4f76-a468-098b0f12c4d5",
       "name": "AES-256",
       "properties": [
         {
@@ -75,7 +75,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5a0bf83f-f221-485e-b16f-648ff75e2f37",
+      "bom-ref": "966ee62c-df17-478f-b593-3241f108b86b",
       "name": "BLS12-381",
       "properties": [
         {
@@ -121,7 +121,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7fc5a513-b724-44c9-95f9-0c94c48a9a19",
+      "bom-ref": "5fa845f5-8de2-4803-a3af-50479048eebc",
       "name": "BLS12-381",
       "properties": [
         {
@@ -167,7 +167,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4897158d-5360-4f7a-b3c3-8c653073abc0",
+      "bom-ref": "fda89d32-0403-4e14-b709-390f367745e6",
       "name": "BLS12-381",
       "properties": [
         {
@@ -213,7 +213,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a8a597dd-85de-4e7e-8f06-b0dfdfce88b2",
+      "bom-ref": "14c04291-0f52-4305-bf21-2ed2d1ed42cd",
       "name": "BLS12-381",
       "properties": [
         {
@@ -259,7 +259,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "46bb8472-4d4f-4a11-91f2-25f266c5b314",
+      "bom-ref": "16ed188f-2f52-4561-a899-dff42df205a7",
       "name": "BLS12-381",
       "properties": [
         {
@@ -305,7 +305,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7495a705-8d42-4ae2-a385-d90f02ef1c35",
+      "bom-ref": "4032f068-159e-4e44-9634-c34a2bf4f57c",
       "name": "BLS12-381",
       "properties": [
         {
@@ -351,7 +351,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3412f181-cb3b-4ab4-ac8b-a50b3011c9a7",
+      "bom-ref": "340e814c-a988-4752-9939-52ce91fcc4f1",
       "name": "BLS12-381",
       "properties": [
         {
@@ -397,7 +397,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b2340425-1e5b-4e53-9ef9-fd303e801083",
+      "bom-ref": "d1f3e160-cb4f-4227-8a21-8d210cba7643",
       "name": "BLS12-381",
       "properties": [
         {
@@ -443,7 +443,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "eda72278-a22a-4fe2-9cab-d5595781937b",
+      "bom-ref": "885d600a-a52b-4d00-a899-1b3ed6730d5c",
       "name": "BLS12-381",
       "properties": [
         {
@@ -489,7 +489,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8a848b16-8a78-4758-872f-921eccac0d2c",
+      "bom-ref": "e357fa67-c248-45b2-ae46-db9afc4bf608",
       "name": "BLS12-381",
       "properties": [
         {
@@ -535,7 +535,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c0c4e3c3-f2c6-4159-a25c-b004f02eab3a",
+      "bom-ref": "7dc333b3-a871-435b-ab3a-41b9772a4e81",
       "name": "BLS12-381",
       "properties": [
         {
@@ -581,7 +581,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b5b6b96f-643c-4352-be50-08c90108e19a",
+      "bom-ref": "ed0278d2-b8af-47dd-b414-37fa53d4fe32",
       "name": "BLS12-381",
       "properties": [
         {
@@ -627,7 +627,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6d1181f4-31bf-4dc0-b9b9-f6076473292c",
+      "bom-ref": "de14880e-d849-430c-b05a-7559e874476a",
       "name": "BLS12-381",
       "properties": [
         {
@@ -673,7 +673,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "76005e3d-cc00-4121-9a02-fd9da86e9881",
+      "bom-ref": "9166993a-057c-4576-991f-ce737e04511f",
       "name": "BLS12-381",
       "properties": [
         {
@@ -719,7 +719,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c4724729-14ad-4134-a8ff-6f4279ff431c",
+      "bom-ref": "b7e70171-748a-4dfe-9709-8c2900a83736",
       "name": "Crypto library",
       "properties": [
         {
@@ -760,7 +760,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1c5ab0f0-c9b8-4ea7-a1f9-fd4b8801d48f",
+      "bom-ref": "9bdf53df-b800-4790-92ec-d5f0d9015798",
       "name": "Crypto library",
       "properties": [
         {
@@ -789,7 +789,7 @@
         },
         {
           "name": "qsi:library",
-          "value": "bls12_381 (jubjub)"
+          "value": "bls12_381 (bls12_381)"
         }
       ],
       "cryptoProperties": {
@@ -801,89 +801,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "920544bc-cabf-4bdb-b4ab-6169b91884e3",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "ff (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "9734382c-6427-484a-b67e-f4b52d00d4ec",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "group (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "9df230f5-6ad7-499e-923c-d213e74681aa",
+      "bom-ref": "321d55d0-87bd-40ce-b117-c01b0e290861",
       "name": "Crypto library",
       "properties": [
         {
@@ -924,7 +842,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2d14c0d9-5d35-41cc-aecf-417ae098f41b",
+      "bom-ref": "607c0896-55e4-41d7-aed9-712d0dbf0ddb",
       "name": "Crypto library",
       "properties": [
         {
@@ -965,7 +883,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "72d60573-9b83-4f3a-96e1-27b1b1af81ee",
+      "bom-ref": "b3f7d5aa-6a8f-425f-b708-eb08e1b1daed",
       "name": "Crypto library",
       "properties": [
         {
@@ -1006,7 +924,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2a6aced9-3e3c-43d9-8ae6-3423fce1b795",
+      "bom-ref": "15872cb0-7fb1-4eab-819c-a32c53ac0b57",
       "name": "Crypto library",
       "properties": [
         {
@@ -1047,7 +965,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fe247eef-a3ff-4855-b937-492bf896202c",
+      "bom-ref": "97633707-efdf-4976-9031-206aaeb67890",
       "name": "Crypto library",
       "properties": [
         {
@@ -1088,7 +1006,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7a9f8b6d-4a9e-4318-9e0e-6eb5f94cf30a",
+      "bom-ref": "46ccf74b-4117-4ec3-9336-bb16bc168fad",
       "name": "Crypto library",
       "properties": [
         {
@@ -1129,7 +1047,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "60745fd7-124a-4d00-8bf0-89b0c2ddaa52",
+      "bom-ref": "09a39a29-ba28-45b8-b308-07c9872b6c4d",
       "name": "Crypto library",
       "properties": [
         {
@@ -1170,48 +1088,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3fdb9acb-2c50-41f6-b641-395b4cfaaf9a",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "zcash_spec (Zcash protocol crates)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "35b4354b-c9bd-4cbe-ae49-81a84ea34e94",
+      "bom-ref": "a5c8370e-ddc1-4dde-bc39-4c2fc083896c",
       "name": "Crypto library",
       "properties": [
         {
@@ -1252,7 +1129,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5b19ce09-4aa6-470e-ab12-06c64a9836bf",
+      "bom-ref": "7583baa7-0e97-408c-b7df-9f4f60d3d022",
       "name": "Crypto library",
       "properties": [
         {
@@ -1281,7 +1158,7 @@
         },
         {
           "name": "qsi:library",
-          "value": "redjubjub (reddsa)"
+          "value": "bls12_381 (bls12_381)"
         }
       ],
       "cryptoProperties": {
@@ -1293,7 +1170,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e2f8bcf4-2099-4d0c-a46e-e15be5730e02",
+      "bom-ref": "7c124a42-e53f-4d63-9f3b-45433722f21b",
       "name": "Crypto library",
       "properties": [
         {
@@ -1334,89 +1211,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "21aff285-7712-48ad-9b32-2e5dcb7de6a2",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "ff (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "5d3dba44-11da-4597-89c3-bceda185b26a",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "group (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "4115b62d-0456-4f73-82b0-03084ee8cbe7",
+      "bom-ref": "5318a451-b9d5-4ac7-9021-0155078a3bb3",
       "name": "Crypto library",
       "properties": [
         {
@@ -1457,48 +1252,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c8299e87-7db9-4a40-be89-86da7f311f9e",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "bls12_381 (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "7927747a-f187-494d-8e07-af45e53738c9",
+      "bom-ref": "6a87e698-440d-4283-96c1-70e8fb0f2264",
       "name": "Crypto library",
       "properties": [
         {
@@ -1539,12 +1293,12 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cca278b9-d4a6-444c-94a2-8c3b5bddadf6",
-      "name": "ECDSA",
+      "bom-ref": "509f5f65-4c6d-4403-bede-a749c2af2820",
+      "name": "Crypto library",
       "properties": [
         {
           "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
+          "value": "not_applicable"
         },
         {
           "name": "qsi:classical_status",
@@ -1552,41 +1306,76 @@
         },
         {
           "name": "qsi:location",
-          "value": "src/circuit/ecc.rs"
+          "value": "Cargo.toml"
         },
         {
           "name": "qsi:usage",
-          "value": "implemented in a file of this name"
+          "value": "crates.io dependency"
         },
         {
           "name": "qsi:confidence",
-          "value": "low"
+          "value": "high"
         },
         {
           "name": "qsi:source",
-          "value": "source_code"
+          "value": "dependencies"
         },
         {
-          "name": "qsi:registry_id",
-          "value": "ecdsa"
+          "name": "qsi:library",
+          "value": "redjubjub (reddsa)"
         }
       ],
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "signature",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.10045.2.1"
+          "primitive": "unknown"
+        }
       }
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5ebcb1f6-0602-4595-8955-49671abd5aff",
+      "bom-ref": "a49df0d7-6d41-4f4f-9c6b-88c3b55c3af7",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "zcash_spec (Zcash protocol crates)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "278b4b74-9514-4012-8e4e-dc7df5ff072e",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1632,7 +1421,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b5cf9906-e8db-43b1-8033-c2144039605a",
+      "bom-ref": "ef9dd03e-d893-4eec-b38c-dfa75ffa9060",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1678,7 +1467,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "34860e85-5eba-4cea-9b03-956a253cba24",
+      "bom-ref": "4ddc908c-619e-4d27-9eb0-11e3572833c7",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1724,7 +1513,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "26ccea4a-123b-4ae9-a050-a1fe82d12fdc",
+      "bom-ref": "ed20bdc5-92bd-41e8-ae08-3aa10e7a09ba",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1770,7 +1559,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d0a9ff2e-8703-4822-b0dd-383e7b71ceb8",
+      "bom-ref": "f485e563-f408-4291-b984-022e961c6258",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1816,7 +1605,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2d0a88ce-9a19-49a8-a023-212e9344e5de",
+      "bom-ref": "7b319602-4db6-4a77-892c-71806d50432f",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1862,7 +1651,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "20d83c9c-67b5-41d6-9494-d964ab8eac5f",
+      "bom-ref": "a699f51d-d456-4b98-bda7-5b4358a150d9",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1908,7 +1697,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "08388eac-5984-4df2-b947-a14ea95ea055",
+      "bom-ref": "5af5248d-0be8-4720-95b7-9d0ad6927584",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -1954,7 +1743,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a9c47d65-2d02-425b-bd90-2a92471069ac",
+      "bom-ref": "78a64182-e004-42f2-a62f-1366882442b3",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2000,7 +1789,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "04ecb830-5972-4957-bb87-d1ff62a069bb",
+      "bom-ref": "d30a10ce-6a08-437b-8da0-55c8e30b44e3",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2046,7 +1835,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a13b736f-6e88-44f8-a825-30f9fb0c7e44",
+      "bom-ref": "3bf09ff2-e3ff-4cd5-bd37-a86d111c6f4f",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2092,7 +1881,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a2df07c8-7849-41ad-aaea-96ff0c38de96",
+      "bom-ref": "43b4b9ce-a510-45c7-abc8-7195b9c6e8a5",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2138,7 +1927,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c4880cde-ee11-4f30-aca0-ac2be79b007c",
+      "bom-ref": "5acb34cd-f1f3-4fb3-9fc8-2b034dcf5b48",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2184,7 +1973,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "00850b1f-2360-4a1a-9507-f2b93f4012a3",
+      "bom-ref": "46e970e7-9c4b-4f73-9c98-ac3eada18d21",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2230,7 +2019,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f86c2eaa-5f86-4104-bd71-b86dbf0c0ae0",
+      "bom-ref": "3cd9a089-b4d6-4058-9b4f-f834e5d3899d",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2276,7 +2065,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7f1e8c01-b029-4526-9051-adbf470e8cc6",
+      "bom-ref": "e48b5cd5-fd82-49c1-b254-d79cb334d500",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2322,7 +2111,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d502fb7b-0557-4e95-92ed-67d03de220cf",
+      "bom-ref": "25cdd599-70f9-4a3d-b173-8a26b5ac06ad",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2368,7 +2157,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8f8b1078-8dbe-4c5a-b628-91b44faf4714",
+      "bom-ref": "462a67b2-c338-431d-89e5-b4945d10a032",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2414,7 +2203,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "08977a73-11a8-4643-90b9-0b1e7bfdb380",
+      "bom-ref": "5983db31-2cd8-430a-ad5e-891120e5ebad",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -2460,7 +2249,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6ac559f0-e20c-494e-b790-c0bcd4024d15",
+      "bom-ref": "d19732a2-23a9-458a-989d-2867117e6ff3",
       "name": "RedDSA",
       "properties": [
         {
@@ -2510,7 +2299,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2df3b1a5-2b6f-4f11-b757-2627a39b88a3",
+      "bom-ref": "ad30644d-724c-4301-abfa-a0cb14261449",
       "name": "RedDSA",
       "properties": [
         {
@@ -2563,7 +2352,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "49adb652-5c9e-494e-8d4f-bc2bde8a9e5a",
+      "bom-ref": "258c6281-321c-4b16-8c15-6f28a3fb3098",
       "name": "RedDSA",
       "properties": [
         {

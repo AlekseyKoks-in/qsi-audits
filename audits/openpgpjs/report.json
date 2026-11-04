@@ -1,8 +1,8 @@
 {
-  "content_sha256": "51c76f4947c45fca86f01b8d92427866b15d600f9551fdc9a0e629f0fb1ea52d",
+  "content_sha256": "cba05e60ddad459b1d599134c411395e900bf2b3adb93f02cfda6d12c3fc69d5",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-29T23:21:57.451141+00:00",
+  "generated_at": "2026-11-04T20:13:09.344178+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "cf79ae89-9985-47f6-81a2-a8dbfdf2b41b",
+    "id": "ea4badae-e687-4b28-94d3-1788cd084e97",
     "mode": "document",
     "title": "Document audit: openpgpjs",
     "status": "completed",
-    "engine_version": "1.2.0",
-    "started_at": "2026-10-29T23:21:26.598983+00:00",
-    "finished_at": "2026-10-29T23:21:57.301688+00:00",
+    "engine_version": "1.3.0",
+    "started_at": "2026-11-04T20:12:45.476704+00:00",
+    "finished_at": "2026-11-04T20:13:09.216178+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -46,15 +46,15 @@
     },
     {
       "name": "README.md",
-      "size": 30090,
+      "size": 29992,
       "sha256": "176ee00dcebb1a4e32568659ef992f2f8ccbb9c553224c18f424b25a296ae3c6",
-      "redactions": 7
+      "redactions": 0
     },
     {
       "name": "docs/index.html",
-      "size": 39869,
+      "size": 39771,
       "sha256": "ce6de6bfc583de901f2e9877affe7fc43a503548da25f6fbed1e781b60f0a190",
-      "redactions": 7
+      "redactions": 0
     },
     {
       "name": "docs/scripts/linenumber.js",
@@ -394,9 +394,9 @@
     },
     {
       "name": "src/encoding/armor.js",
-      "size": 14928,
+      "size": 15095,
       "sha256": "389cffa77b54f3e8e84d5779776fd7da62ee7984424988ef9f748802499fe68c",
-      "redactions": 1
+      "redactions": 0
     },
     {
       "name": "src/encoding/base64.js",
@@ -689,88 +689,18 @@
   ],
   "inputs_total": {
     "files": 108,
-    "bytes": 1427412,
-    "redactions": 15
+    "bytes": 1427383,
+    "redactions": 0
   },
   "coverage": [
     {
       "area": "source_code",
-      "detail": ".jsdocrc.cjs: 28 lines scanned with 16 rule patterns and 127 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "README.md: the marker at line 238 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "README.md: the marker at line 288 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "README.md: the marker at line 318 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "README.md: the marker at line 413 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "README.md: the marker at line 527 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "README.md: the marker at line 570 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "README.md: the marker at line 622 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
+      "detail": ".jsdocrc.cjs: 28 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "certificates_and_keys",
       "detail": "README.md: certificates/keys parsed",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "docs/index.html: the marker at line 312 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "docs/index.html: the marker at line 359 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "docs/index.html: the marker at line 387 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "docs/index.html: the marker at line 468 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "docs/index.html: the marker at line 565 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "docs/index.html: the marker at line 605 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "docs/index.html: the marker at line 654 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
       "status": "checked"
     },
     {
@@ -780,22 +710,22 @@
     },
     {
       "area": "source_code",
-      "detail": "docs/scripts/linenumber.js: 25 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "docs/scripts/linenumber.js: 25 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "docs/scripts/prettify/lang-css.js: 3 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "docs/scripts/prettify/lang-css.js: 3 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "docs/scripts/prettify/prettify.js: 28 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "docs/scripts/prettify/prettify.js: 28 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "eslint.config.js: 180 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "eslint.config.js: 180 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
@@ -815,252 +745,247 @@
     },
     {
       "area": "source_code",
-      "detail": "rollup.config.js: 202 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "rollup.config.js: 202 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cleartext.js: 226 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/cleartext.js: 226 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/config.ts: 375 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/config.ts: 375 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/aes_kw.js: 98 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/aes_kw.js: 98 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/biginteger.ts: 233 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/biginteger.ts: 233 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipher/blowfish.js: 400 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipher/blowfish.js: 400 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipher/cast5.js: 611 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipher/cast5.js: 611 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipher/des.js: 475 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipher/des.js: 475 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipher/index.js: 77 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipher/index.js: 77 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipher/legacy_ciphers.js: 19 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipher/legacy_ciphers.js: 19 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipher/twofish.js: 350 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipher/twofish.js: 350 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipherMode/cfb.js: 390 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipherMode/cfb.js: 390 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipherMode/eax.js: 178 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipherMode/eax.js: 178 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipherMode/gcm.js: 135 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipherMode/gcm.js: 135 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipherMode/index.js: 36 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipherMode/index.js: 36 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cipherMode/ocb.js: 280 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cipherMode/ocb.js: 280 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/cmac.js: 106 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/cmac.js: 106 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/crypto.js: 578 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/crypto.js: 578 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/hash/index.js: 127 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/hash/index.js: 127 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/hash/noble_hashes.js: 22 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/hash/noble_hashes.js: 22 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/hkdf.js: 18 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/hkdf.js: 18 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/index.js: 19 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/index.js: 19 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/pkcs1.js: 168 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/pkcs1.js: 168 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/pkcs5.js: 56 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/pkcs5.js: 56 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/dsa.js: 199 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/dsa.js: 199 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elgamal.js: 147 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elgamal.js: 147 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/ecdh.js: 370 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/ecdh.js: 370 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/ecdh_x.js: 337 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/ecdh_x.js: 337 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/ecdsa.js: 283 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/ecdsa.js: 283 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/eddsa.js: 262 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/eddsa.js: 262 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/eddsa_legacy.js: 93 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/eddsa_legacy.js: 93 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/index.js: 37 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/index.js: 37 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/noble_curves.js: 24 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/noble_curves.js: 24 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/elliptic/oid_curves.js: 389 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/elliptic/oid_curves.js: 389 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/index.js: 11 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/index.js: 11 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/index.js: 9 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/index.js: 9 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/kem/ecc_kem.js: 53 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/kem/ecc_kem.js: 53 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/kem/index.js: 4 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/kem/index.js: 4 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/kem/kem.js: 58 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/kem/kem.js: 58 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/kem/ml_kem.js: 75 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/kem/ml_kem.js: 75 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/noble_post_quantum.ts: 11 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/noble_post_quantum.ts: 11 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/signature/ecc_dsa.js: 49 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/signature/ecc_dsa.js: 49 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/signature/index.js: 4 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/signature/index.js: 4 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/signature/ml_dsa.js: 72 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/signature/ml_dsa.js: 72 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/post_quantum/signature/signature.js: 62 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/post_quantum/signature/signature.js: 62 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/prime.ts: 225 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/prime.ts: 225 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/public_key/rsa.js: 435 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/public_key/rsa.js: 435 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/random.js: 65 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/crypto/random.js: 65 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/crypto/signature.js: 233 lines scanned with 16 rule patterns and 127 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "keys",
-      "detail": "src/encoding/armor.js: the marker at line 397 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
+      "detail": "src/crypto/signature.js: 233 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
@@ -1070,252 +995,257 @@
     },
     {
       "area": "source_code",
-      "detail": "src/encoding/armor.js: 413 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/encoding/armor.js: 413 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/encoding/base64.js: 118 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/encoding/base64.js: 118 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/enums.d.ts: 196 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/enums.d.ts: 196 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/enums.js: 482 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/enums.js: 482 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/index.d.ts: 726 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/index.d.ts: 726 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/index.js: 29 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/index.js: 29 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/factory.js: 489 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/factory.js: 489 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/helper.js: 555 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/helper.js: 555 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/index.js: 36 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/index.js: 36 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/key.js: 760 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/key.js: 760 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/private_key.js: 289 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/private_key.js: 289 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/public_key.js: 73 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/public_key.js: 73 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/subkey.js: 210 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/subkey.js: 210 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/key/user.js: 274 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/key/user.js: 274 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/message.js: 929 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/message.js: 929 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/openpgp.js: 743 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/openpgp.js: 743 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/aead_encrypted_data.js: 134 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/aead_encrypted_data.js: 134 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/all_packets.js: 24 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/all_packets.js: 24 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/compressed_data.js: 307 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/compressed_data.js: 307 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/grammar.ts: 144 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/grammar.ts: 144 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/index.js: 8 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/index.js: 8 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/literal_data.js: 169 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/literal_data.js: 169 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/marker.js: 63 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/marker.js: 63 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/one_pass_signature.js: 206 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/one_pass_signature.js: 206 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/packet.js: 315 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/packet.js: 315 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/packetlist.js: 321 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/packetlist.js: 321 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/padding.js: 66 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/padding.js: 66 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/public_key.js: 303 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/public_key.js: 303 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/public_key_encrypted_session_key.js: 306 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/public_key_encrypted_session_key.js: 306 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/public_subkey.js: 63 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/public_subkey.js: 63 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/secret_key.js: 596 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/secret_key.js: 596 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/secret_subkey.js: 43 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/secret_subkey.js: 43 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/signature.js: 888 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/signature.js: 888 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/sym_encrypted_integrity_protected_data.js: 354 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/sym_encrypted_integrity_protected_data.js: 354 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/sym_encrypted_session_key.js: 233 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/sym_encrypted_session_key.js: 233 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/symmetrically_encrypted_data.js: 125 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/symmetrically_encrypted_data.js: 125 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/trust.js: 39 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/trust.js: 39 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/user_attribute.js: 93 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/user_attribute.js: 93 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/packet/userid.js: 140 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/packet/userid.js: 140 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/signature.js: 100 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/signature.js: 100 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/ecdh_symkey.js: 61 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/ecdh_symkey.js: 61 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/ecdh_x_symkey.js: 48 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/ecdh_x_symkey.js: 48 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/kdf_params.js: 70 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/kdf_params.js: 70 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/keyid.js: 103 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/keyid.js: 103 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/oid.js: 117 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/oid.js: 117 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/s2k/argon2.js: 163 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/s2k/argon2.js: 163 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/s2k/generic.js: 201 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/s2k/generic.js: 201 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/type/s2k/index.js: 51 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/type/s2k/index.js: 51 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/util.js: 698 lines scanned with 16 rule patterns and 127 registry patterns",
+      "detail": "src/util.js: 698 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 103 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
       "status": "checked"
     },
     {
       "area": "osv_advisories",
-      "detail": "929 pinned packages queried at OSV.dev; 23 affected (23 of them only in development or build dependencies)",
+      "detail": "929 pinned packages queried at OSV.dev; 28 affected (28 of them only in development or build dependencies)",
       "status": "checked"
     }
   ],
@@ -1326,20 +1256,9 @@
       "count": 103,
       "rows": 103,
       "examples": [
-        ".jsdocrc.cjs: 28 lines scanned with 16 rule patterns and 127 registry patterns",
-        "docs/scripts/linenumber.js: 25 lines scanned with 16 rule patterns and 127 registry patterns",
-        "docs/scripts/prettify/lang-css.js: 3 lines scanned with 16 rule patterns and 127 registry patterns"
-      ]
-    },
-    {
-      "area": "keys",
-      "status": "checked",
-      "count": 15,
-      "rows": 15,
-      "examples": [
-        "README.md: the marker at line 238 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-        "README.md: the marker at line 288 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)",
-        "README.md: the marker at line 318 is a PEM header without key material (a literal in code that parses or writes PEM, or a documentation placeholder)"
+        ".jsdocrc.cjs: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+        "docs/scripts/linenumber.js: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+        "docs/scripts/prettify/lang-css.js: 3 lines scanned with 16 rule patterns and 145 registry patterns"
       ]
     },
     {
@@ -1365,12 +1284,21 @@
       ]
     },
     {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 103 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+      ]
+    },
+    {
       "area": "osv_advisories",
       "status": "checked",
       "count": 1,
       "rows": 1,
       "examples": [
-        "929 pinned packages queried at OSV.dev; 23 affected (23 of them only in development or build dependencies)"
+        "929 pinned packages queried at OSV.dev; 28 affected (28 of them only in development or build dependencies)"
       ]
     }
   ],
@@ -1382,7 +1310,7 @@
     "registered": [],
     "examined_inputs": [
       ".jsdocrc.cjs",
-      "929 pinned packages queried at OSV.dev; 23 affected (23 of them only in development or build dependencies)",
+      "929 pinned packages queried at OSV.dev; 28 affected (28 of them only in development or build dependencies)",
       "README.md",
       "docs/index.html",
       "docs/scripts/linenumber.js",
@@ -1392,6 +1320,7 @@
       "lightweight/package.json",
       "package-lock.json",
       "package.json",
+      "random-number generation",
       "rollup.config.js",
       "src/cleartext.js",
       "src/config.ts",
@@ -1513,20 +1442,20 @@
     },
     "total": 9,
     "posture_index": 94,
-    "pq_vulnerable_share": 53.8,
-    "inventory_total": 65,
+    "pq_vulnerable_share": 51.6,
+    "inventory_total": 62,
     "inventory_by_quantum_status": {
       "classical_weakness": 10,
       "grover_margin": 4,
       "not_applicable": 8,
       "pqc": 8,
-      "vulnerable_shor": 35
+      "vulnerable_shor": 32
     }
   },
   "findings": [
     {
-      "id": "8fc57e03-1e00-4062-a1db-9ad110740cbf",
-      "public_id": "QSI-2026-07208",
+      "id": "b37da116-c78c-4023-aa5f-70dcf7dfadf7",
+      "public_id": "QSI-2026-13322",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (5 файл(ов))",
       "description": "41 упоминаний X25519 в 5 файл(ах), например src/crypto/crypto.js:67. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
@@ -1545,8 +1474,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:key_wrapping",
       "data_source": "src/crypto/crypto.js",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.155482+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.124577+00:00",
       "risk_score": 36.9,
       "risk_breakdown": {
         "mosca": {
@@ -1621,9 +1550,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1642,8 +1571,8 @@
           "content": "   66 |     }\n   67 |     case enums.publicKey.x25519:\n   68 |     case enums.publicKey.x448: {",
           "content_sha256": "6caf77681182d2e5587208f4f2f3e2adfbe5716ca5c74635b3d4338ab32c9a72",
           "source_sha256": "703c5ba10d7a165bbe449b6b3ca778dd0e7711788d21d01576612ab5592609bd",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207840+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146182+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L67"
         },
         {
@@ -1653,8 +1582,8 @@
           "content": "  125 |     }\n  126 |     case enums.publicKey.x25519:\n  127 |     case enums.publicKey.x448: {",
           "content_sha256": "97ebcbb54d2758fefc29cac032c9f08d18ded0816dc1c0a8867b60c82312d138",
           "source_sha256": "703c5ba10d7a165bbe449b6b3ca778dd0e7711788d21d01576612ab5592609bd",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207850+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146189+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L126"
         },
         {
@@ -1664,8 +1593,8 @@
           "content": "  201 |     case enums.publicKey.ed448:\n  202 |     case enums.publicKey.x25519:\n  203 |     case enums.publicKey.x448: {",
           "content_sha256": "7ce8a6903b93123062ab7128a6e668e6d2cf40ebae581e2048e2f844cd2bc378",
           "source_sha256": "703c5ba10d7a165bbe449b6b3ca778dd0e7711788d21d01576612ab5592609bd",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207853+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146193+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/crypto.js#L202"
         },
         {
@@ -1675,8 +1604,8 @@
           "content": "   15 | const HKDF_INFO = {\n   16 |   x25519: util.encodeUTF8('OpenPGP X25519'),\n   17 |   x448: util.encodeUTF8('OpenPGP X448')",
           "content_sha256": "6a8eddf288a9c2a77149db1f401d401b0b95e3d4a1215b63173ffa115a3c1d3f",
           "source_sha256": "75d82a69c31dde8ebcfe2718bbb1536d8cde0503581a40fa910a6fe5d972a801",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207856+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146196+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L16"
         },
         {
@@ -1686,8 +1615,8 @@
           "content": "   26 |   switch (algo) {\n   27 |     case enums.publicKey.x25519:\n   28 |       try {",
           "content_sha256": "922ea9b93ea793bd820ba0ef05d8cf6ea9bda82b3587e2f71a243d89d2cb9d94",
           "source_sha256": "75d82a69c31dde8ebcfe2718bbb1536d8cde0503581a40fa910a6fe5d972a801",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207860+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146200+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L27"
         },
         {
@@ -1697,8 +1626,8 @@
           "content": "   56 |         }\n   57 |         const { default: x25519 } = await import('@openpgp/tweetnacl');\n   58 |         // k stays in little-endian, unlike legacy ECDH over curve25519",
           "content_sha256": "371ae1787aa309a61d2ab90e6f937a3c82ffb06df08f86b0074baa8b7940524e",
           "source_sha256": "75d82a69c31dde8ebcfe2718bbb1536d8cde0503581a40fa910a6fe5d972a801",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207864+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146203+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L57"
         },
         {
@@ -1708,8 +1637,8 @@
           "content": "  424 |       break;\n  425 |     case 'ecc': // NB: this case also handles legacy eddsa and x25519 keys, based on `options.curve`\n  426 |       try {",
           "content_sha256": "59adffecad14d86080d43ea51a008d5eed02ea566984f5458a383bd909e5ad53",
           "source_sha256": "ad6b24fa9a009ce5e8dc3435ebc92514a60b72f151a08d6d3e262be0e02f1c61",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207867+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146206+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L425"
         },
         {
@@ -1719,8 +1648,8 @@
           "content": "  441 |     case 'curve25519':\n  442 |       options.algorithm = options.sign ? enums.publicKey.ed25519 : enums.publicKey.x25519;\n  443 |       break;",
           "content_sha256": "0cee2e279a6b5fe687f969526552efa361b0132a03e1b834689ac210cb80a418",
           "source_sha256": "ad6b24fa9a009ce5e8dc3435ebc92514a60b72f151a08d6d3e262be0e02f1c61",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207870+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146209+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L442"
         },
         {
@@ -1730,8 +1659,8 @@
           "content": "  481 |     case enums.publicKey.ecdh:\n  482 |     case enums.publicKey.x25519:\n  483 |     case enums.publicKey.x448:",
           "content_sha256": "e5505ee4ae066a442ec272a51ad1f32a27704ddf9d13d5f4ce1205af1d8d11cf",
           "source_sha256": "ad6b24fa9a009ce5e8dc3435ebc92514a60b72f151a08d6d3e262be0e02f1c61",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207874+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146212+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/key/helper.js#L482"
         },
         {
@@ -1741,8 +1670,8 @@
           "content": "  366 |       .then(maybeKey => {\n  367 |         if (maybeKey && (maybeKey.keyPacket.algorithm === enums.publicKey.x25519 || maybeKey.keyPacket.algorithm === enums.publicKey.x448) &&\n  368 |           !aeadAlgoName && !util.isAES(symmetricAlgo)) { // if AEAD is defined, then PKESK v6 are used, and the algo info is encrypted",
           "content_sha256": "16b37e58a27065ccebe12db67a707b30d29ed30a225cd9e99bcd10e2b1af24ac",
           "source_sha256": "52f89b40657bef5227e9f0016e8f5ac31ee1fb0913ac31ff8b733e3d81004507",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.207879+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.146217+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/message.js#L367"
         }
       ],
@@ -1780,8 +1709,8 @@
       ]
     },
     {
-      "id": "974deb8e-0ff5-40aa-839e-ca3ae2fbba76",
-      "public_id": "QSI-2026-07213",
+      "id": "3e5638b3-0fff-43b2-a9cf-0a3d1611e996",
+      "public_id": "QSI-2026-13327",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
       "description": "8 упоминаний ECDH в 1 файл(ах), например src/crypto/public_key/elliptic/ecdh_x.js:69. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
@@ -1800,8 +1729,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDH:key_wrapping",
       "data_source": "src/crypto/public_key/elliptic/ecdh_x.js",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.261843+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.185098+00:00",
       "risk_score": 36.9,
       "risk_breakdown": {
         "mosca": {
@@ -1876,9 +1805,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1897,8 +1826,8 @@
           "content": "   68 |     default:\n   69 |       throw new Error('Unsupported ECDH algorithm');\n   70 |   }",
           "content_sha256": "30222de3219cc99164d9b95fb8c95d2b149f5e65081439fc8f66d5ab949cf0cf",
           "source_sha256": "75d82a69c31dde8ebcfe2718bbb1536d8cde0503581a40fa910a6fe5d972a801",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.278358+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.198326+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L69"
         },
         {
@@ -1908,8 +1837,8 @@
           "content": "  146 |     default:\n  147 |       throw new Error('Unsupported ECDH algorithm');\n  148 |   }",
           "content_sha256": "4fc585ad8fd85e138aac18c158c73931dd6b712783d58a4bd4167814da997bd9",
           "source_sha256": "75d82a69c31dde8ebcfe2718bbb1536d8cde0503581a40fa910a6fe5d972a801",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.278367+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.198333+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L147"
         },
         {
@@ -1919,8 +1848,8 @@
           "content": "  182 |     default:\n  183 |       throw new Error('Unsupported ECDH algorithm');\n  184 |   }",
           "content_sha256": "d1b356d9bc94caa86cfccaa12996dbfd31b0813f90221d6728549b30f14f789f",
           "source_sha256": "75d82a69c31dde8ebcfe2718bbb1536d8cde0503581a40fa910a6fe5d972a801",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.278370+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.198336+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh_x.js#L183"
         }
       ],
@@ -1958,8 +1887,8 @@
       ]
     },
     {
-      "id": "bfdc94de-1fee-4c5c-b9aa-648d1ea864bd",
-      "public_id": "QSI-2026-07207",
+      "id": "ae9df288-421b-4d18-8d07-f45d6de7c42c",
+      "public_id": "QSI-2026-13321",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
       "description": "13 упоминаний ECDSA в 7 файл(ах), например src/config.ts:369. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1978,8 +1907,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "src/config.ts",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.094960+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.111456+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2054,9 +1983,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -2075,8 +2004,8 @@
           "content": "  368 |    */\n  369 |   rejectCurves: new Set([enums.curve.secp256k1])\n  370 | };",
           "content_sha256": "c5db59fdcbe6ed4bb21e923d3d013f8150ee82531432e8c501ba83aea57a06c1",
           "source_sha256": "8b9ef728da3fffbd26b2a40ad002ae283638675d799febcf23c3d1521dc8da18",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165092+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129064+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/config.ts#L369"
         },
         {
@@ -2086,8 +2015,8 @@
           "content": "    9 | import { x448, ed448 } from '@noble/curves/ed448.js';\n   10 | import { secp256k1 } from '@noble/curves/secp256k1.js';\n   11 | import { brainpoolP256r1, brainpoolP384r1, brainpoolP512r1 } from '@noble/curves/misc.js';",
           "content_sha256": "d339484c3d24ee7f0a65f3f6c881ae00e7f2e5c3ea93ab621e7ffa1749003a2d",
           "source_sha256": "2a1bfa8fe6029dbb5717478a4b87eed625a1c0a133f46172f67e5b0be794012c",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165100+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129072+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/noble_curves.js#L10"
         },
         {
@@ -2097,8 +2026,8 @@
           "content": "   19 |   brainpoolP512r1,\n   20 |   secp256k1,\n   21 |   x448,",
           "content_sha256": "256a4ebbf585ae607de0248487d875bff7cbc60abef68e287c9d2b026e0088b4",
           "source_sha256": "2a1bfa8fe6029dbb5717478a4b87eed625a1c0a133f46172f67e5b0be794012c",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165104+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129075+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/noble_curves.js#L20"
         },
         {
@@ -2108,8 +2037,8 @@
           "content": "   40 | const nodeCurves = nodeCrypto ? {\n   41 |   [enums.curve.secp256k1]: knownCurves.includes('secp256k1') ? 'secp256k1' : undefined,\n   42 |   [enums.curve.nistP256]: knownCurves.includes('prime256v1') ? 'prime256v1' : undefined,",
           "content_sha256": "efbb3e14bd355823baff05fd7e74cb47297988aab466ed4e15e01f82d5bd7032",
           "source_sha256": "a509143ad8b8e7b725cf5be5a976a1472ab7fc083ba1aae7f300deb0f3c99d7a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165107+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129078+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L41"
         },
         {
@@ -2119,8 +2048,8 @@
           "content": "   41 |   [enums.curve.secp256k1]: knownCurves.includes('secp256k1') ? 'secp256k1' : undefined,\n   42 |   [enums.curve.nistP256]: knownCurves.includes('prime256v1') ? 'prime256v1' : undefined,\n   43 |   [enums.curve.nistP384]: knownCurves.includes('secp384r1') ? 'secp384r1' : undefined,",
           "content_sha256": "49f43e42cd4df4962d3fb7ea9ad262602f69f27be96debf7a2e0c5850b5200f3",
           "source_sha256": "a509143ad8b8e7b725cf5be5a976a1472ab7fc083ba1aae7f300deb0f3c99d7a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165110+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129082+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L42"
         },
         {
@@ -2130,8 +2059,8 @@
           "content": "   85 |   },\n   86 |   [enums.curve.secp256k1]: {\n   87 |     oid: [0x06, 0x05, 0x2B, 0x81, 0x04, 0x00, 0x0A],",
           "content_sha256": "aeaa982bd5f9fbf62cac44e5be94c099de8292755a9abb1a8b08f36492fd3dde",
           "source_sha256": "a509143ad8b8e7b725cf5be5a976a1472ab7fc083ba1aae7f300deb0f3c99d7a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165114+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129086+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L86"
         },
         {
@@ -2141,8 +2070,8 @@
           "content": "  112 |     curve25519Legacy = 'curve25519Legacy',\n  113 |     secp256k1 = 'secp256k1',\n  114 |     brainpoolP256r1 = 'brainpoolP256r1',",
           "content_sha256": "1e886ad8295c1de43a7adecc20929a406bcb5b7c9bf8d8152755b414a8565342",
           "source_sha256": "0f55028f6afa996e52c82dfb543b37dc2de7d3f35ce15e976aca1ba099542313",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165117+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129091+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L113"
         },
         {
@@ -2152,8 +2081,8 @@
           "content": "   31 |     /** SECG SECP256k1 Curve */\n   32 |     'secp256k1':              'secp256k1',\n   33 | ",
           "content_sha256": "45efce41a21d89e8da3215093aeb57cf9c1ab6d75d7ce992e3b0ca5296eaa95b",
           "source_sha256": "ef596e9696993aaec65875ccd0374f47c6c1177d2d072a0d79c257ef3b5cdd8e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165120+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129094+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.js#L32"
         },
         {
@@ -2163,8 +2092,8 @@
           "content": "  676 | \n  677 | export type EllipticCurveName = 'ed25519Legacy' | 'curve25519Legacy' | 'nistP256' | 'nistP384' | 'nistP521' | 'secp256k1' | 'brainpoolP256r1' | 'brainpoolP384r1' | 'brainpoolP512r1';\n  678 | ",
           "content_sha256": "79115c16a34a64e10cbf419c921b1f950b76ee4ba788294e1fbe7bc747446279",
           "source_sha256": "4bdc54675e0aa0916483fd28c05bfc13e02e4c47580a01bff057a26691491bee",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165123+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129097+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/index.d.ts#L677"
         },
         {
@@ -2174,8 +2103,8 @@
           "content": "   42 |   '2b81040023': enums.curve.nistP521,\n   43 |   '2b8104000a': enums.curve.secp256k1,\n   44 |   '2b06010401da470f01': enums.curve.ed25519Legacy,",
           "content_sha256": "c3397494df5c3355f392a24b9cc3572a1eed7ea01393c68d2999992c77a5d4b2",
           "source_sha256": "abeff52445230bffea6cc45ae2b3c1ac7bd2a99391391ad9f8fa607bcc93b8ff",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.165126+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.129100+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/type/oid.js#L43"
         }
       ],
@@ -2213,8 +2142,8 @@
       ]
     },
     {
-      "id": "39e744bf-b64f-4b2b-bbf4-82b0b062815f",
-      "public_id": "QSI-2026-07211",
+      "id": "a3bdace5-eae4-4535-9a07-21003b0209a2",
+      "public_id": "QSI-2026-13325",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))",
       "description": "9 упоминаний ECDH в 2 файл(ах), например src/crypto/public_key/elliptic/ecdh.js:249. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -2233,8 +2162,8 @@
       "triage": null,
       "affected_asset": "source-code:ECDH:general",
       "data_source": "src/crypto/public_key/elliptic/ecdh.js",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.231931+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.164069+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2309,9 +2238,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -2330,8 +2259,8 @@
           "content": "  248 |     {\n  249 |       name: 'ECDH',\n  250 |       namedCurve: curve.web",
           "content_sha256": "3454cba51223c0daf016a91dac4294f475ec4f66b4f481c989050ea86ad3ee90",
           "source_sha256": "a47c4f75e3480010db08a67c8f6c24843f725d43d0f54b5d03e5b488112cdc86",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.247581+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.176685+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L249"
         },
         {
@@ -2341,8 +2270,8 @@
           "content": "  259 |     {\n  260 |       name: 'ECDH',\n  261 |       namedCurve: curve.web",
           "content_sha256": "3e270aa8dd1322e70e5a4ce00d678ee9e1891c5a88f54924881a592cdfcee43e",
           "source_sha256": "a47c4f75e3480010db08a67c8f6c24843f725d43d0f54b5d03e5b488112cdc86",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.247590+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.176692+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L260"
         },
         {
@@ -2352,8 +2281,8 @@
           "content": "  268 |     {\n  269 |       name: 'ECDH',\n  270 |       namedCurve: curve.web,",
           "content_sha256": "a4b9152c04c73f78c219aef1b6c7e22425768c871b4ec13008e117d0efd76c1d",
           "source_sha256": "a47c4f75e3480010db08a67c8f6c24843f725d43d0f54b5d03e5b488112cdc86",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.247593+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.176696+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L269"
         },
         {
@@ -2363,8 +2292,8 @@
           "content": "  323 |   // Note: ECDSA and ECDH key generation is structurally equivalent\n  324 |   const ecdh = nodeCrypto.createECDH(nodeCurves[name]);\n  325 |   ecdh.generateKeys();",
           "content_sha256": "dbae0069b965a134528d3224723dbe1cd05dd4c423c0cd22d845e0b96c3a9996",
           "source_sha256": "a509143ad8b8e7b725cf5be5a976a1472ab7fc083ba1aae7f300deb0f3c99d7a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.247597+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.176699+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L324"
         }
       ],
@@ -2402,8 +2331,8 @@
       ]
     },
     {
-      "id": "ebd19821-1b54-4294-8c3e-b766bb2dbc00",
-      "public_id": "QSI-2026-07212",
+      "id": "aef2d69b-10e3-4af7-aa2b-35aae6b1630a",
+      "public_id": "QSI-2026-13326",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: роль не определена (5 файл(ов))",
       "description": "11 упоминаний X25519 в 5 файл(ах), например src/crypto/public_key/elliptic/ecdh.js:92. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -2422,8 +2351,8 @@
       "triage": null,
       "affected_asset": "source-code:X25519:general",
       "data_source": "src/crypto/public_key/elliptic/ecdh.js",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.243188+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.172126+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2498,9 +2427,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -2519,8 +2448,8 @@
           "content": "   91 |     case 'curve25519Legacy': {\n   92 |       const { sharedSecret: [REDACTED] ephemeralPublicKey } = await ecdhXGenerateEphemeralEncryptionMaterial(enums.publicKey.x25519, Q.subarray(1));\n   93 |       const publicKey = util.concatUint8Array([new Uint8Array([curve.wireFormatLeadingByte]), ephemeralPublicKey]);",
           "content_sha256": "33754afed28e070c6fe889d3028e51b53ef1b222bbaf8f8fb6756bf243d4c20e",
           "source_sha256": "a47c4f75e3480010db08a67c8f6c24843f725d43d0f54b5d03e5b488112cdc86",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265610+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187742+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L92"
         },
         {
@@ -2530,8 +2459,8 @@
           "content": "  157 |       const secretKey = [REDACTED]\n  158 |       const sharedKey = await ecdhXRecomputeSharedSecret(enums.publicKey.x25519, V.subarray(1), Q.subarray(1), secretKey);\n  159 |       return { secretKey, sharedKey }; // Note: sharedKey is little-endian here, unlike below",
           "content_sha256": "294a3fb06da976751217f842b6f6103deff0a00f190f61bc434ea854ef0e4cb5",
           "source_sha256": "a47c4f75e3480010db08a67c8f6c24843f725d43d0f54b5d03e5b488112cdc86",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265619+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187749+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/ecdh.js#L158"
         },
         {
@@ -2541,8 +2470,8 @@
           "content": "  188 |         // the private key must be stored in big endian and already clamped: https://www.ietf.org/archive/id/draft-ietf-openpgp-crypto-refresh-13.html#section-5.5.5.6.1.1-3\n  189 |         const { k, A } = await ecdhXGenerate(enums.publicKey.x25519);\n  190 |         const privateKey = [REDACTED]",
           "content_sha256": "085af22a63073285f9b41c8fd1580f25e34eee786fc9c93549f81de299b1dc3a",
           "source_sha256": "a509143ad8b8e7b725cf5be5a976a1472ab7fc083ba1aae7f300deb0f3c99d7a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265623+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187753+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L189"
         },
         {
@@ -2552,8 +2481,8 @@
           "content": "  262 |     }\n  263 |     return ecdhXValidateParams(enums.publicKey.x25519, Q.subarray(1), dLittleEndian);\n  264 |   }",
           "content_sha256": "06a2e4b692ec06cd2f2668c4defc241cabf6aa423908d36123d1b82fa220a96e",
           "source_sha256": "a509143ad8b8e7b725cf5be5a976a1472ab7fc083ba1aae7f300deb0f3c99d7a",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265626+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187756+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/elliptic/oid_curves.js#L263"
         },
         {
@@ -2563,8 +2492,8 @@
           "content": "    8 |     case enums.publicKey.mlkem768X25519: {\n    9 |       const { A, k } = await ecdhX.generate(enums.publicKey.x25519);\n   10 |       return {",
           "content_sha256": "61f4944eac6993ac9bc705985a4ca6e817fe3e097fc73a0729ec47f9df0acc31",
           "source_sha256": "b71fb6b416bd690e166ffe0d1a2c174db710c090cf91093232a83ad73a80e04e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265629+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187759+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L9"
         },
         {
@@ -2574,8 +2503,8 @@
           "content": "   22 |     case enums.publicKey.mlkem768X25519: {\n   23 |       const { ephemeralPublicKey: eccCipherText, sharedSecret: [REDACTED] } = await ecdhX.generateEphemeralEncryptionMaterial(enums.publicKey.x25519, eccRecipientPublicKey);\n   24 | ",
           "content_sha256": "a072232312f37979fc0f350cae28c9be08729c30e6d4b0a81c003d5a2f924fd0",
           "source_sha256": "b71fb6b416bd690e166ffe0d1a2c174db710c090cf91093232a83ad73a80e04e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265633+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187762+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L23"
         },
         {
@@ -2585,8 +2514,8 @@
           "content": "   37 |     case enums.publicKey.mlkem768X25519: {\n   38 |       const eccKeyShare = await ecdhX.recomputeSharedSecret(enums.publicKey.x25519, eccCipherText, eccPublicKey, eccSecretKey);\n   39 |       return eccKeyShare;",
           "content_sha256": "e24fdf348a018c86e5ac263481e36f6c24c92db544237676c517d1bc0d7c8122",
           "source_sha256": "b71fb6b416bd690e166ffe0d1a2c174db710c090cf91093232a83ad73a80e04e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265636+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187765+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/post_quantum/kem/ecc_kem.js#L38"
         },
         {
@@ -2596,8 +2525,8 @@
           "content": "   76 | \n   77 |   export type publicKeyNames = 'rsaEncryptSign' | 'rsaEncrypt' | 'rsaSign' | 'elgamal' | 'dsa' | 'ecdh' | 'ecdsa' | 'eddsaLegacy' | 'aedh' | 'aedsa' | 'ed25519' | 'x25519' | 'ed448' | 'x448' | 'mlkem768X25519' | 'mldsa65Ed25519';\n   78 |   export enum publicKey {",
           "content_sha256": "51bcc65cc5abe5fd7bb19e52368c5e477cac45493cdb751d3a8e4abe399ccdb6",
           "source_sha256": "0f55028f6afa996e52c82dfb543b37dc2de7d3f35ce15e976aca1ba099542313",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265639+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187769+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L77"
         },
         {
@@ -2607,8 +2536,8 @@
           "content": "   88 |     aedsa = 24,\n   89 |     x25519 = 25,\n   90 |     x448 = 26,",
           "content_sha256": "3e0f0dc265cee6d852a925e4e23941bd5bae8987249ecfe7607016fe88d0fb48",
           "source_sha256": "0f55028f6afa996e52c82dfb543b37dc2de7d3f35ce15e976aca1ba099542313",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265642+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187771+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.d.ts#L89"
         },
         {
@@ -2618,8 +2547,8 @@
           "content": "   92 |     /** X25519 (Encrypt only) */\n   93 |     x25519: 25,\n   94 |     /** X448 (Encrypt only) */",
           "content_sha256": "2abe536f7602f2ea77e7707a22b274dd3d1d46f3120d3844e4c048920a94af2e",
           "source_sha256": "ef596e9696993aaec65875ccd0374f47c6c1177d2d072a0d79c257ef3b5cdd8e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.265645+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.187774+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/enums.js#L93"
         }
       ],
@@ -2657,8 +2586,8 @@
       ]
     },
     {
-      "id": "616f1878-e95b-4445-a132-1439f7a8dd9e",
-      "public_id": "QSI-2026-07214",
+      "id": "6d7d78ad-e7ae-4805-ac85-02c5ff33cb55",
+      "public_id": "QSI-2026-13328",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
       "description": "4 упоминаний RSA в 1 файл(ах), например src/crypto/public_key/rsa.js:162. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -2677,8 +2606,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:general",
       "data_source": "src/crypto/public_key/rsa.js",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.275250+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.195434+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2753,9 +2682,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -2774,8 +2703,8 @@
           "content": "  161 |     const keyGenOpt = {\n  162 |       name: 'RSASSA-PKCS1-v1_5',\n  163 |       modulusLength: bits, // the specified keysize in bits",
           "content_sha256": "b0cbb193503eeb88bf6bc5592bf1fd5c47d7ad63d3c813b6cd2e4f794ff32445",
           "source_sha256": "9558590f47e04e083ac6c292710d903d8acc039b7650a359cbbea25579775133",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.289088+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.206060+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L162"
         },
         {
@@ -2785,8 +2714,8 @@
           "content": "  183 |     const jwk = await new Promise((resolve, reject) => {\n  184 |       nodeCrypto.generateKeyPair('rsa', opts, (err, _, jwkPrivateKey) => {\n  185 |         if (err) {",
           "content_sha256": "d75d3961fa30018d8b20a2bec1167b41ed845cbe35528febd5214c22eda40a26",
           "source_sha256": "9558590f47e04e083ac6c292710d903d8acc039b7650a359cbbea25579775133",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.289099+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.206067+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L184"
         },
         {
@@ -2796,8 +2725,8 @@
           "content": "  263 |   const algo = {\n  264 |     name: 'RSASSA-PKCS1-v1_5',\n  265 |     hash: { name: hashName }",
           "content_sha256": "53874c8c2c39e251bb82434c3249acca1da7f567fd83b00687a98795e3b3caab",
           "source_sha256": "9558590f47e04e083ac6c292710d903d8acc039b7650a359cbbea25579775133",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.289102+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.206070+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/public_key/rsa.js#L264"
         }
       ],
@@ -2835,8 +2764,8 @@
       ]
     },
     {
-      "id": "d30973a3-1c1f-4cf7-ac49-87a1239a3265",
-      "public_id": "QSI-2026-07209",
+      "id": "d0cfad64-da73-4f38-bbdb-8292512d6bb8",
+      "public_id": "QSI-2026-13323",
       "rule_id": "CODE-WEAK-HASH",
       "title": "Использование MD5 в src/crypto/hash/index.js",
       "description": "1 мест(а) использования MD5 (первое — строка 78).",
@@ -2855,8 +2784,8 @@
       "triage": null,
       "affected_asset": "file:src/crypto/hash/index.js",
       "data_source": "src/crypto/hash/index.js",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.204396+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.143931+00:00",
       "risk_score": 33.7,
       "risk_breakdown": {
         "score": 33.7,
@@ -2911,8 +2840,8 @@
           "content": "   76 |   switch (algo) {\n   77 |     case enums.hash.md5:\n   78 |       return md5(data);\n   79 |     case enums.hash.sha1:\n   80 |       return sha1(data);",
           "content_sha256": "37bf736791dde606da49f3d3749ab6d97bbb3b0c6fc06aa5255a6610d4392a66",
           "source_sha256": "8d6b12940eb7cb6f7fbac8015b85edbef49ae21ec3f6ad0357777da6a72d8f06",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.224808+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.159232+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/hash/index.js#L78"
         }
       ],
@@ -2935,8 +2864,8 @@
       ]
     },
     {
-      "id": "e193fc34-21bb-448b-bdac-52fb5ff33f5f",
-      "public_id": "QSI-2026-07210",
+      "id": "f5a41355-6d3f-4308-b276-6d52c6b466b8",
+      "public_id": "QSI-2026-13324",
       "rule_id": "CODE-WEAK-HASH",
       "title": "Использование SHA-1 в src/crypto/hash/index.js",
       "description": "1 мест(а) использования SHA-1 (первое — строка 80).",
@@ -2955,8 +2884,8 @@
       "triage": null,
       "affected_asset": "file:src/crypto/hash/index.js",
       "data_source": "src/crypto/hash/index.js",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.221104+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.155516+00:00",
       "risk_score": 33.7,
       "risk_breakdown": {
         "score": 33.7,
@@ -3011,8 +2940,8 @@
           "content": "   78 |       return md5(data);\n   79 |     case enums.hash.sha1:\n   80 |       return sha1(data);\n   81 |     case enums.hash.ripemd:\n   82 |       return ripemd(data);",
           "content_sha256": "2bb3e32df818e85ca86b80b83efa65ddd49c199bade96c413185312ccd710b0e",
           "source_sha256": "8d6b12940eb7cb6f7fbac8015b85edbef49ae21ec3f6ad0357777da6a72d8f06",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.236118+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.167477+00:00",
           "url": "https://github.com/openpgpjs/openpgpjs/blob/8bc35df4887933a3b2661e3741b33ba5f347b935/src/crypto/hash/index.js#L80"
         }
       ],
@@ -3035,11 +2964,11 @@
       ]
     },
     {
-      "id": "619b57f3-b632-4a38-8f23-654197e1d56b",
-      "public_id": "QSI-2026-07215",
+      "id": "37b276c2-9b8e-4646-8144-5c31ec6e65ff",
+      "public_id": "QSI-2026-13329",
       "rule_id": "DEP-ADVISORY-DEV",
-      "title": "71 бюллетеней в 23 пакет(ах) npm, нужных только для разработки или сборки",
-      "description": "OSV.dev сообщает 71 бюллетеней (30 с оценкой high или critical) для 23 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
+      "title": "76 бюллетеней в 28 пакет(ах) npm, нужных только для разработки или сборки",
+      "description": "OSV.dev сообщает 76 бюллетеней (30 с оценкой high или critical) для 28 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7; brace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
       "impact": "Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.",
       "recommendation": "Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.",
       "retest": "Повторите сканирование зависимостей после обновления.",
@@ -3055,8 +2984,8 @@
       "triage": null,
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-29T23:21:57.285808+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T20:13:09.204073+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -3108,11 +3037,11 @@
           "kind": "tool_output",
           "source": "OSV.dev (npm)",
           "location": "package-lock.json",
-          "content": "@humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g\nbasic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r\nbrace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7\nbrace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7\nbrace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\nbrace-expansion@5.0.9 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7\ndeepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4\ndeepmerge-ts@7.1.6 [dev]: GHSA-ggr8-5vv4-36mx\ndiff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx\nextract-zip@2.0.1 [dev]: GHSA-7pqw-9j4j-h8q3, GHSA-jmr9-qjv8-65gv\nip-address@10.5.0 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5\njs-yaml@4.3.1 [dev]: GHSA-2883-xcg3-v3hh\nmarkdown-it@14.3.0 [dev]: GHSA-253c-mchw-3w2r, GHSA-gfr2-rv44-r23c, GHSA-r7fv-28h4-cvq7, GHSA-vfgh-jcmw-g37q\npug@2.0.4 [dev]: GHSA-3965-hpx2-q597, GHSA-p493-635q-r6gr\npug-code-gen@2.0.3 [dev]: GHSA-3965-hpx2-q597\nqs@6.15.3 [dev]: GHSA-4mjr-xmp4-gh2g, GHSA-6pq8-jhm2-2vcw, GHSA-x5fp-wj9c-mxmx\nserialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v\nserialize-javascript@7.0.5 [dev]: GHSA-m5mm-p8h7-m29v\nsource-map-js@1.2.1 [dev]: GHSA-68fv-2mgg-jv7q\nundici@6.28.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-3wwx-pv8p-q78v, GHSA-4qv8-2p9j-2685, GHSA-9fm3-97px-rjf6, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-xjj6-f33q-929c\nundici@7.29.0 [dev]: GHSA-2gqq-gqf2-x968, GHSA-2jfj-6hjv-fm6j, GHSA-2m5v-pch6-74hx, GHSA-3wwx-pv8p-q78v, GHSA-3xpg-4rpp-hhhm, GHSA-4qv8-2p9j-2685, GHSA-4w7w-5xrc-9h26, GHSA-55wc-3pg8-jfw6, GHSA-8436-99hf-9mmv, GHSA-9fm3-97px-rjf6, GHSA-f72v-6w45-q472, GHSA-pmjh-fq2x-6v4x, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-rx4f-c7p8-82vq, GHSA-w293-vg96-wgc3, GHSA-xjj6-f33q-929c\nvue-template-compiler@2.7.16 [dev]: GHSA-g3ch-rx76-35fx\nzod@3.25.76 [dev]: GHSA-mrhx-c7xc-m3w5",
-          "content_sha256": "04859aea607eeb6e0eee59480e26ef786e776b704c2aa89bf4a9cb23ebcb0c63",
+          "content": "@humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g\nbasic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r\nbrace-expansion@1.1.18 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7\nbrace-expansion@2.1.4 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7\nbrace-expansion@5.0.6 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895\nbrace-expansion@5.0.9 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7\ndeepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4\ndeepmerge-ts@7.1.6 [dev]: GHSA-ggr8-5vv4-36mx\ndiff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx\nextract-zip@2.0.1 [dev]: GHSA-7pqw-9j4j-h8q3, GHSA-jmr9-qjv8-65gv\nglob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4\nglob@13.0.6 [dev]: GHSA-3g3m-2fjr-6pw4\nip-address@10.5.0 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5\njs-yaml@4.3.1 [dev]: GHSA-2883-xcg3-v3hh\nmarkdown-it@14.3.0 [dev]: GHSA-253c-mchw-3w2r, GHSA-gfr2-rv44-r23c, GHSA-r7fv-28h4-cvq7, GHSA-vfgh-jcmw-g37q\nminimatch@10.2.5 [dev]: GHSA-g3hv-75wg-m249\nminimatch@10.2.6 [dev]: GHSA-g3hv-75wg-m249\nminimatch@9.0.9 [dev]: GHSA-g3hv-75wg-m249\npug@2.0.4 [dev]: GHSA-3965-hpx2-q597, GHSA-p493-635q-r6gr\npug-code-gen@2.0.3 [dev]: GHSA-3965-hpx2-q597\nqs@6.15.3 [dev]: GHSA-4mjr-xmp4-gh2g, GHSA-6pq8-jhm2-2vcw, GHSA-x5fp-wj9c-mxmx\nserialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v\nserialize-javascript@7.0.5 [dev]: GHSA-m5mm-p8h7-m29v\nsource-map-js@1.2.1 [dev]: GHSA-68fv-2mgg-jv7q\nundici@6.28.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-3wwx-pv8p-q78v, GHSA-4qv8-2p9j-2685, GHSA-9fm3-97px-rjf6, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-xjj6-f33q-929c\nundici@7.29.0 [dev]: GHSA-2gqq-gqf2-x968, GHSA-2jfj-6hjv-fm6j, GHSA-2m5v-pch6-74hx, GHSA-3wwx-pv8p-q78v, GHSA-3xpg-4rpp-hhhm, GHSA-4qv8-2p9j-2685, GHSA-4w7w-5xrc-9h26, GHSA-55wc-3pg8-jfw6, GHSA-8436-99hf-9mmv, GHSA-9fm3-97px-rjf6, GHSA-f72v-6w45-q472, GHSA-pmjh-fq2x-6v4x, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-rx4f-c7p8-82vq, GHSA-w293-vg96-wgc3, GHSA-xjj6-f33q-929c\nvue-template-compiler@2.7.16 [dev]: GHSA-g3ch-rx76-35fx\nzod@3.25.76 [dev]: GHSA-mrhx-c7xc-m3w5",
+          "content_sha256": "9af61d3a3c3a01c7e8a5a3ba0bd27e5cbc5f39a396a0aabafa66568e45d92566",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-29T23:21:57.338160+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T20:13:09.256856+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -3156,12 +3085,12 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-07208",
-      "QSI-2026-07213",
-      "QSI-2026-07207",
-      "QSI-2026-07211",
-      "QSI-2026-07212",
-      "QSI-2026-07214"
+      "QSI-2026-13322",
+      "QSI-2026-13327",
+      "QSI-2026-13321",
+      "QSI-2026-13325",
+      "QSI-2026-13326",
+      "QSI-2026-13328"
     ],
     "roles": [
       {
@@ -3181,8 +3110,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-07208",
-          "QSI-2026-07213"
+          "QSI-2026-13322",
+          "QSI-2026-13327"
         ],
         "files": 6
       },
@@ -3211,10 +3140,10 @@
           }
         ],
         "findings": [
-          "QSI-2026-07207",
-          "QSI-2026-07211",
-          "QSI-2026-07212",
-          "QSI-2026-07214"
+          "QSI-2026-13321",
+          "QSI-2026-13325",
+          "QSI-2026-13326",
+          "QSI-2026-13328"
         ],
         "files": 15
       }
@@ -3264,7 +3193,7 @@
         "affected": [
           {
             "algorithm": "DSA",
-            "rows": 3
+            "rows": 1
           },
           {
             "algorithm": "ElGamal",
@@ -3293,7 +3222,7 @@
           },
           {
             "algorithm": "ECDSA",
-            "rows": 12
+            "rows": 11
           },
           {
             "algorithm": "Ed25519",
@@ -3467,7 +3396,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Не осталось использований MD5, влияющих на безопасность.",
         "status": "todo",
-        "finding": "QSI-2026-07209",
+        "finding": "QSI-2026-13323",
         "finding_title": "Использование MD5 в src/crypto/hash/index.js",
         "severity": "medium"
       },
@@ -3485,7 +3414,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Не осталось использований SHA-1, влияющих на безопасность.",
         "status": "todo",
-        "finding": "QSI-2026-07210",
+        "finding": "QSI-2026-13324",
         "finding_title": "Использование SHA-1 в src/crypto/hash/index.js",
         "severity": "medium"
       }
@@ -3505,7 +3434,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-07208",
+        "finding": "QSI-2026-13322",
         "finding_title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (5 файл(ов))",
         "severity": "medium"
       },
@@ -3523,7 +3452,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-07213",
+        "finding": "QSI-2026-13327",
         "finding_title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
         "severity": "medium"
       },
@@ -3541,7 +3470,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-07207",
+        "finding": "QSI-2026-13321",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
         "severity": "medium"
       },
@@ -3559,7 +3488,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-07211",
+        "finding": "QSI-2026-13325",
         "finding_title": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -3577,7 +3506,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-07212",
+        "finding": "QSI-2026-13326",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (5 файл(ов))",
         "severity": "medium"
       },
@@ -3595,7 +3524,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-07214",
+        "finding": "QSI-2026-13328",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -3613,7 +3542,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-07208",
+        "finding": "QSI-2026-13322",
         "finding_title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (5 файл(ов))",
         "severity": "medium"
       },
@@ -3631,7 +3560,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-07213",
+        "finding": "QSI-2026-13327",
         "finding_title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (1 файл(ов))",
         "severity": "medium"
       },
@@ -3649,7 +3578,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-07207",
+        "finding": "QSI-2026-13321",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (7 файл(ов))",
         "severity": "medium"
       },
@@ -3667,7 +3596,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-07211",
+        "finding": "QSI-2026-13325",
         "finding_title": "Квантово-уязвимый ECDH: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -3685,7 +3614,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-07212",
+        "finding": "QSI-2026-13326",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (5 файл(ов))",
         "severity": "medium"
       },
@@ -3703,7 +3632,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-07214",
+        "finding": "QSI-2026-13328",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -3721,8 +3650,8 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-07215",
-        "finding_title": "71 бюллетеней в 23 пакет(ах) npm, нужных только для разработки или сборки",
+        "finding": "QSI-2026-13329",
+        "finding_title": "76 бюллетеней в 28 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }
     ]
@@ -3734,7 +3663,7 @@
     },
     {
       "name": "certificates",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "chain_map",
@@ -3746,7 +3675,7 @@
     },
     {
       "name": "dependencies",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "inventory_document",
@@ -3754,11 +3683,11 @@
     },
     {
       "name": "solidity",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "source_code",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "tls_code",
@@ -3770,7 +3699,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "OSV.dev API",
@@ -3936,8 +3865,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "SP800-131A",
@@ -4181,7 +4110,7 @@
       "family": "library",
       "parameter": "2.4.0",
       "usage": "npm dependency",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -4193,7 +4122,7 @@
       "family": "library",
       "parameter": "2.4.0",
       "usage": "npm dependency",
-      "library": "@noble/hashes (noble-hashes)",
+      "library": "@noble/curves (noble-curves)",
       "location": "package-lock.json",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
@@ -4357,30 +4286,6 @@
       "occurrences": 1
     },
     {
-      "algorithm": "DSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "implemented in a file of this name",
-      "library": "",
-      "location": "src/crypto/public_key/post_quantum/signature/ecc_dsa.js",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "deprecated",
-      "confidence": "low",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "DSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "implemented in a file of this name",
-      "library": "",
-      "location": "src/crypto/public_key/post_quantum/signature/ml_dsa.js",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "deprecated",
-      "confidence": "low",
-      "occurrences": 1
-    },
-    {
       "algorithm": "ECDH",
       "family": "key_exchange",
       "parameter": "",
@@ -4510,18 +4415,6 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "ECDSA",
-      "family": "signature",
-      "parameter": "",
-      "usage": "implemented in a file of this name",
-      "library": "",
-      "location": "src/crypto/public_key/post_quantum/kem/ecc_kem.js",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "low",
       "occurrences": 1
     },
     {
@@ -4894,7 +4787,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "2.4.0",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -4906,7 +4799,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "2.4.0",
-      "library": "@noble/hashes (noble-hashes)",
+      "library": "@noble/curves (noble-curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -5043,12 +4936,10 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "deprecated",
-      "count": 3,
-      "rows": 3,
+      "count": 1,
+      "rows": 1,
       "examples": [
-        "src/crypto/public_key/dsa.js",
-        "src/crypto/public_key/post_quantum/signature/ecc_dsa.js",
-        "src/crypto/public_key/post_quantum/signature/ml_dsa.js"
+        "src/crypto/public_key/dsa.js"
       ]
     },
     {
@@ -5085,12 +4976,12 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 4,
-      "rows": 4,
+      "count": 3,
+      "rows": 3,
       "examples": [
         "src/crypto/public_key/elliptic/ecdsa.js",
         "src/crypto/public_key/elliptic/oid_curves.js:311",
-        "src/crypto/public_key/post_quantum/kem/ecc_kem.js"
+        "src/crypto/public_key/post_quantum/signature/ecc_dsa.js"
       ]
     },
     {

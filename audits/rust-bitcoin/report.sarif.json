@@ -7,14 +7,14 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable ECDSA: transaction and message signing (7 file(s))"
+                "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -28,10 +28,10 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "119 reference(s) to ECDSA across 7 file(s), e.g. bitcoin/src/crypto/key.rs:12. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "70 reference(s) to Schnorr (BIP-340) across 7 file(s), e.g. addresses/src/lib.rs:123. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "help": {
-                "text": "119 reference(s) to ECDSA across 7 file(s), e.g. bitcoin/src/crypto/key.rs:12. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "70 reference(s) to Schnorr (BIP-340) across 7 file(s), e.g. addresses/src/lib.rs:123. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
             },
@@ -94,13 +94,31 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: transaction and message signing (7 file(s))"
+            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12578",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-06108",
+            "qsiId": "QSI-2026-12579",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +136,25 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-06109",
+            "qsiId": "QSI-2026-12580",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12581",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +172,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-06110",
+            "qsiId": "QSI-2026-12582",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -154,7 +190,7 @@
             "qsiFindingKey/v1": "7442b1c54fc03c4c83f5aba63caf750d"
           },
           "properties": {
-            "qsiId": "QSI-2026-06111",
+            "qsiId": "QSI-2026-12583",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -163,13 +199,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/rust-bitcoin @ f127ba2ae14e/7e9e1d8a-3dd1-4920-820b-36f24fab9a7b"
+        "id": "qsi/rust-bitcoin @ f127ba2ae14e/2e935aa9-46ad-4264-82a6-30aa442dc464"
       },
       "properties": {
-        "qsiContentSha256": "12081a441ae15f877685ae1f00258d13f31914bf44da4ccc081d5a16ec586eb9",
+        "qsiContentSha256": "85f793c3cefd18fd504e7c243ffa6c191c6676f381d6308495e23b444ca7d76c",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-28T19:28:06.313058+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:18:35.250447+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

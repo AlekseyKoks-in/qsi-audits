@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CHAINMAP-QV",
@@ -67,7 +67,7 @@
                 "text": "crypto-bigint 0.5.1 is affected by RUSTSEC-2026-0387 (no severity rating)"
               },
               "defaultConfiguration": {
-                "level": "warning"
+                "level": "note"
               },
               "properties": {
                 "tags": [
@@ -75,7 +75,7 @@
                   "dependencies",
                   "confirmed_vulnerability"
                 ],
-                "security-severity": "5.0"
+                "security-severity": "3.0"
               },
               "fullDescription": {
                 "text": "OSV.dev reports RUSTSEC-2026-0387 for crates.io package crypto-bigint at version 0.5.1: Multiple timing variability issues in operations intended to be constant-time. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (0.7.6) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed."
@@ -225,7 +225,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-05514",
+            "qsiId": "QSI-2026-12926",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -243,7 +243,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-05506",
+            "qsiId": "QSI-2026-12916",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -255,13 +255,13 @@
           "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Ed25519: transaction and message signing (33 file(s))"
+            "text": "Quantum-vulnerable Ed25519: transaction and message signing (38 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-05507",
+            "qsiId": "QSI-2026-12917",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -273,13 +273,31 @@
           "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDSA: role not determined (18 file(s))"
+            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (16 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12919",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (20 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-05508",
+            "qsiId": "QSI-2026-12918",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -297,7 +315,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-05509",
+            "qsiId": "QSI-2026-12920",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -309,13 +327,31 @@
           "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable Ed25519: role not determined (14 file(s))"
+            "text": "Quantum-vulnerable Ed25519: role not determined (24 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-05510",
+            "qsiId": "QSI-2026-12921",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12923",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -333,7 +369,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-05512",
+            "qsiId": "QSI-2026-12924",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -351,7 +387,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-05513",
+            "qsiId": "QSI-2026-12925",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -361,7 +397,7 @@
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
           "ruleIndex": 2,
-          "level": "warning",
+          "level": "note",
           "message": {
             "text": "crypto-bigint 0.5.1 is affected by RUSTSEC-2026-0387 (no severity rating) (dependency: crates.io/crypto-bigint@0.5.1)"
           },
@@ -369,11 +405,11 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-05520",
-            "severity": "medium",
+            "qsiId": "QSI-2026-12930",
+            "severity": "low",
             "confidence": "low",
             "classification": "confirmed_vulnerability",
-            "security-severity": "5.0"
+            "security-severity": "3.0"
           },
           "locations": [
             {
@@ -396,63 +432,9 @@
             "qsiFindingKey/v1": "e1f38e8ffdcdb1df8ded424fe0032ad2"
           },
           "properties": {
-            "qsiId": "QSI-2026-05526",
+            "qsiId": "QSI-2026-12936",
             "severity": "info",
             "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "rust/Cargo.lock"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 3,
-          "level": "note",
-          "message": {
-            "text": "block-buffer 0.9.0 is affected by GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.9.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-05518",
-            "severity": "info",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "rust/Cargo.lock"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 3,
-          "level": "note",
-          "message": {
-            "text": "block-buffer 0.10.3 is affected by GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.10.3)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-05519",
-            "severity": "info",
-            "confidence": "low",
             "classification": "known_vulnerable_component",
             "security-severity": "1.0"
           },
@@ -477,7 +459,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-05522",
+            "qsiId": "QSI-2026-12932",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -504,7 +486,7 @@
             "qsiFindingKey/v1": "de9d6880ad9a2af6ca3b69562ca270b4"
           },
           "properties": {
-            "qsiId": "QSI-2026-05525",
+            "qsiId": "QSI-2026-12935",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -531,7 +513,7 @@
             "qsiFindingKey/v1": "2ac8c159371cd6957a4d2f0c1eb519e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-05527",
+            "qsiId": "QSI-2026-12937",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -558,7 +540,7 @@
             "qsiFindingKey/v1": "1f27145871005f6327f1f0fb577d459e"
           },
           "properties": {
-            "qsiId": "QSI-2026-05516",
+            "qsiId": "QSI-2026-12928",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -585,7 +567,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-05517",
+            "qsiId": "QSI-2026-12929",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -612,7 +594,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-05529",
+            "qsiId": "QSI-2026-12939",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -639,7 +621,7 @@
             "qsiFindingKey/v1": "8a3c37d485fca34e4a6435a7e905d9f1"
           },
           "properties": {
-            "qsiId": "QSI-2026-05511",
+            "qsiId": "QSI-2026-12922",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -657,7 +639,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-05515",
+            "qsiId": "QSI-2026-12927",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -675,7 +657,7 @@
             "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-05521",
+            "qsiId": "QSI-2026-12931",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -702,7 +684,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-05523",
+            "qsiId": "QSI-2026-12933",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -729,7 +711,7 @@
             "qsiFindingKey/v1": "2b6fa4b2f9c2e028a075e66fb8c40d56"
           },
           "properties": {
-            "qsiId": "QSI-2026-05524",
+            "qsiId": "QSI-2026-12934",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -756,7 +738,7 @@
             "qsiFindingKey/v1": "af089dcbba7dfa68eca6e4460004633a"
           },
           "properties": {
-            "qsiId": "QSI-2026-05528",
+            "qsiId": "QSI-2026-12938",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -774,13 +756,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/trustwallet-wallet-core-en @ adf80f8bac98/478bfb89-e473-47c4-8516-28fe7a099b3b"
+        "id": "qsi/trustwallet-wallet-core-en @ adf80f8bac98/c4cc3990-4e68-41c5-a03e-6d256472989b"
       },
       "properties": {
-        "qsiContentSha256": "1412f5977b2ba713e9eeda1c6b510b591cb00dc1bb1ce55ebc9213636cf833a3",
+        "qsiContentSha256": "f42e37d97d9fb8678004e87e0803924e2fc2f3508ba33d6fd7a8da749ec3f97b",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-28T17:21:45.801507+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:39:51.929326+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

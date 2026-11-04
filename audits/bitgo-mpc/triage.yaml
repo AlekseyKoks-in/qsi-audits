@@ -1,0 +1,28 @@
+# Recovered from bitgo-mpc/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-28"
+decisions:
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "role not determined", algorithm: "ECDSA"}
+    decision: confirmed
+    note: "Role resolved, and it is a storage role rather than a signing one, which changes its priority. modules/sdk-core/src/bitgo/utils/opengpgUtils.ts wraps OpenPGP: it fetches BitGo's GPG public key (getBitgoGpgPubKey), encrypts and signs messages, and verifies share proofs over 'eddsa' | 'ecdsa' (verifyShareProof, verifySharedDataProof). That is how TSS key shares and their proofs are protected in transit and at rest, so harvest-now-decrypt-later applies: anything captured today is readable once a CRQC exists. The second anchor, bitgo/bip32util.ts, is BIP-32 key handling over @bitgo/secp256k1. Fixable today with a hybrid KEM around the share wrapping, independently of any signature migration."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "RSA"}
+    decision: confirmed
+    note: "Correct and specific enough to act on: modules/sdk-core/src/bitgo/trading/network/encrypt-rsa-browser.ts imports an SPKI PEM public key through WebCrypto with { name: 'RSA-OAEP', hash: 'SHA-256' } and usage ['encrypt'], deliberately reading window.crypto in the browser because crypto-browserify does not implement it. So this is RSA-OAEP key wrapping toward a server key in the trading network, and the ciphertext is transmitted and may be retained — harvest-now-decrypt-later, and the first candidate for a hybrid KEM because it is a client-to-server channel the vendor controls at both ends."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Paillier"}
+    decision: confirmed
+    note: "42 references across 14 files, and the file list is the point: besides the protocol (account-lib/mpc/tss/ecdsa/{ecdsa,types}.ts) it reaches bitgo/keychain/{iKeychains,keychains}.ts, i.e. the keychain representation. Paillier material that is persisted is a harvest-now-decrypt-later item, not only a future-signing one. As with the other two custodian libraries, this is the row a post-quantum signature standard does not fix: Paillier underpins the threshold protocol, NIST's 2024 standards are single-signer, and the multi-party threshold effort has not produced one."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Threshold ECDSA"}
+    decision: confirmed
+    note: "The largest row here — 215 references across 16 files — spanning account-lib/mpc/util.ts, bitgo/baseCoin/iBaseCoin.ts, bitgo/keychain/keychains.ts, bitgo/pendingApproval/pendingApproval.ts and the tss modules. It is correct by the product's purpose, and the spread through pending approvals and base coin interfaces shows why a migration is not confined to a crypto module: the threshold scheme's identity is baked into the SDK's public types, so changing it is an API-compatibility exercise across every integrating customer."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "X25519"}
+    decision: confirmed
+    note: "modules/sdk-lib-mpc/src/tss/eddsa-mps/util.ts and redpallas-mps/util.ts — the multi-party signing helpers for EdDSA and for RedPallas, the Zcash Orchard signature scheme. Worth noting for its own sake: a custodian supporting Zcash shielded signing carries the same discrete-log exposure there as everywhere else, and Orchard's own post-quantum future is the subject of Shielded Labs' Epoch rather than of this SDK."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "ECDSA"}
+    decision: confirmed
+    note: "Two roles, both correct. Transaction and message signing: account-lib/baseCoin/secp256k1ExtendedKeyPair.ts, account-lib/util/crypto.ts, bitgo/ecdh.ts and bitgo/utils/tss/addressVerification.ts. Threshold signing and MPC: account-lib/mpc/curves/index.ts, account-lib/mpc/tss/ecdsa/ecdsa.ts and bitgo/utils/tss/ecdsa/{base,ecdsa}.ts. A CRQC derives the private key from a public key that is already on chain after the first spend, so for a custodian the exposure is proportional to how much of its address set has ever been spent from."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Ed25519"}
+    decision: confirmed
+    note: "account-lib/baseCoin/ed25519KeyPair.ts and baseCoin/index.ts — transaction signing on the Ed25519 chains. Small row count, same migration class as the secp256k1 signing rows."
+  - match: {rule: "DEP-NO-PQC-LIBRARY"}
+    decision: confirmed
+    note: "Accurate: across the three audited manifests (sdk-core, sdk-lib-mpc and the root package.json) the declared cryptography is @noble/curves, secp256k1 and tweetnacl, with nothing PQC-capable. In the JavaScript ecosystem, unlike on the Cortex-M targets in this portfolio, ML-KEM implementations are available (@noble/post-quantum among them), so for the key-wrapping rows above — OpenPGP share protection and the RSA-OAEP trading channel — a hybrid is a dependency choice today rather than a research problem. That makes this gap cheaper to close here than anywhere else in the custody slice, and it should be sequenced first."

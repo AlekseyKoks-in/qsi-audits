@@ -1,0 +1,25 @@
+# Recovered from fireblocks-mpc-lib-en/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-28"
+decisions:
+  - match: {rule: "CODE-QV-ASYMMETRIC", title: "role not determined", algorithm: "Ed25519"}
+    decision: confirmed
+    note: "Role resolved: both anchors are include/crypto/ed25519_algebra/ed25519_algebra.h:71 and src/common/crypto/ed25519_algebra/ed25519_algebra.c — the Ed25519 group and field arithmetic layer that the EdDSA and FROST cosigners are built on, not an independent key use. It belongs in the inventory because a post-quantum scheme replaces this layer wholesale, but it is the same exposure as the threshold EdDSA rows reached one level lower, so it must not be counted as additional surface."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Paillier"}
+    decision: confirmed
+    note: "The largest row in this repository by reference count — 911 references across 30 files — and the one a post-quantum signature standard does not address. The anchors run through the BAM ECDSA cosigner surface (include/cosigner/bam_ecdsa_cosigner{,_client,_server}.h) and, importantly, through the key persistency structures (bam_key_persistency_structures{,_client,_server}.h): Paillier material is not only used in the protocol, it is *stored*. That matters for sequencing, because stored ciphertext is a harvest-now-decrypt-later item while a protocol is only a future-signing item. Replacing Paillier means redesigning the threshold protocol, not swapping a primitive: NIST's 2024 standards are single-signer, its multi-party threshold call is still open, and the literature notes PQC-round schemes do not convert directly to threshold form through MPC."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Pedersen commitment"}
+    decision: confirmed
+    note: "Correct, anchored on a real implementation (include/crypto/commitments/pedersen.h) plus the cosigner clients and servers that use it and the key persistency structures that store it. Stated precisely: breaking the discrete log costs a Pedersen commitment its binding property, not its hiding — it is perfectly hiding, so committed values are not recoverable even with a CRQC. The exposure is forgeability within the proofs, which is future soundness rather than retroactive disclosure. Do not describe this row as \"amounts become readable\"."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Threshold ECDSA"}
+    decision: confirmed
+    note: "Correct and well anchored, unlike the equivalent row in cb-mpc: the files are the CMP signing services themselves (include/cosigner/cmp_ecdsa_{offline,online,}_signing_service.h and src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp), i.e. an implementation of the CMP/CGGMP threshold ECDSA protocol. This is the core custody operation: every transaction the cosigner authorises goes through it."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "FROST"}
+    decision: confirmed
+    note: "Correct: include/cosigner/frost_cosigner{,_client,_server}.h and platform_service.h, 70 references. FROST is a Schnorr-based threshold signature over a prime-order group, so Shor breaks it by the same discrete-log attack as the ECDSA protocols — worth a separate row because FROST is often presented as the modern, safer choice, and its quantum exposure is identical. There is no post-quantum FROST analogue in production."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "Ed25519"}
+    decision: confirmed
+    note: "Threshold EdDSA signing: src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp:401, eddsa_online_signing_service.cpp and frost_cosigner_server.cpp. Same migration class as the FROST and threshold-ECDSA rows."
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "ECDSA"}
+    decision: confirmed
+    note: "include/cosigner/sign_algorithm.h:10 — the enumeration of supported signing algorithms. A small row, and the right one to look at first in a migration: the place where a new scheme has to be admitted into the protocol's type system, and therefore a version-compatibility problem across every deployed cosigner."

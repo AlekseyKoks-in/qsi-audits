@@ -4,34 +4,34 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-10-29 05:33 UTC |
+| Report date | 2026-11-04 18:52 UTC |
 | Report version | 1 |
-| Audit run | 110c8786-2e40-4009-8e49-42ea024c6ae9 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
+| Audit run | 59875687-bb02-418b-9798-bc32732ba918 (Document audit) |
+| Analyzer engine | qsi-engine 1.3.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `4f426bcc00442f4f274c469090959c0b3a232f491d8f493bb9f774ffe0bed106` |
+| Content SHA-256 | `e013074c7b0eda8ff8256cc33f333800e595ae0c48705d84b95076950e74be8d` |
 | Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
-- High: **0**
-- Medium: **5**
+- High: **2**
+- Medium: **6**
 - Low: **0**
 - Info: **3**
 
 - Confirmed technical vulnerability: 0
 - Known vulnerable component: 0
 - Confirmed configuration error: 0
-- Potential cryptographic risk: 3
-- Long-term post-quantum risk: 4
+- Potential cryptographic risk: 4
+- Long-term post-quantum risk: 6
 - Improvement recommendation: 1
 - Insufficient data: 0
 
 Mosca's inequality (x + y > z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. _z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today._
 
-Analyst review: 5 confirmed, 3 not applicable, 0 dismissed as false positives.
+Analyst review: 7 confirmed, 3 not applicable, 0 dismissed as false positives.
 
 **Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.** Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -41,16 +41,17 @@ Mode: Document audit
 
 Repository: <https://github.com/selfcustody/krux> @ `9b3a4314a205767606b1ad9fbd1da06ad908f38e` — evidence links open the lines at this commit.
 
-257 files, 2912029 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+246 files, 2857956 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
 
 ## 3. Methodology
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 254 | firmware/Kboot/build/ktool.py: 1813 lines scanned with 16 rule patterns and 123 registry patterns; firmware/Kboot/src/bootloader_hi/fpioa.c: 4932 lines scanned with 16 rule patterns and 123 registry patterns; firmware/Kboot/src/bootloader_hi/gpiohs.c: 110 lines scanned with 16 rule patterns and 123 registry patterns |
 | dependencies | checked | 3 | pyproject.toml: 2 dependencies parsed (0 pinned); vendor/embit/poetry.lock: 55 dependencies parsed (55 pinned); vendor/embit/pyproject.toml: 0 dependencies parsed (0 pinned) |
+| source_code | checked | 243 | src/boot.py: 182 lines scanned with 16 rule patterns and 145 registry patterns; src/krux/auto_shutdown.py: 79 lines scanned with 16 rule patterns and 145 registry patterns; src/krux/baseconv.py: 192 lines scanned with 16 rule patterns and 145 registry patterns |
 | tls_key_exchange_groups | Insufficient data | 56 | vendor/embit/poetry.lock line 9: not in the algorithm registry, not assessed: ["main"]; vendor/embit/poetry.lock line 25: not in the algorithm registry, not assessed: ["main"]; vendor/embit/poetry.lock line 46: not in the algorithm registry, not assessed: ["main"] |
 | tls_configuration | checked | 2 | vendor/embit/poetry.lock: openssl TLS directives parsed; vendor/embit/src/embit/slip39.py: openssl TLS directives parsed |
+| entropy | checked | 1 | random-number generation: 243 code files read with 968 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s) |
 | osv_advisories | checked | 1 | 55 pinned packages queried at OSV.dev; 8 affected (8 of them only in development or build dependencies) |
 | osv_advisories | Insufficient data | 1 | PyPI/virtualenv@21.2.0: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
@@ -63,27 +64,144 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree krux at 9b3a4314a205767606b1ad9fbd1da06ad908f38e. 257 files analysed; of 437 files, 60 are test, fuzzing, benchmark or example code and were left out, 120 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 170 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.
+Static review of the source tree krux at 9b3a4314a205767606b1ad9fbd1da06ad908f38e. 246 files analysed; of 437 files, 71 are test, fuzzing, benchmark or example code and were left out, 120 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 6 path(s) of the repository: .coveragerc, .gitignore, firmware/Kboot, pyproject.toml, src, vendor; 8852 files outside them were not read. Files no analyzer reads include: .coveragerc, .gitignore, firmware/Kboot/.git, firmware/Kboot/.github/FUNDING.yml, firmware/Kboot/.gitignore. 159 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: vendor/embit (142), firmware/Kboot (17). No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
-- Indicative posture index: **95** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 65.3%
+- Indicative posture index: **81** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
+- Quantum-vulnerable share of inventory: 63.4%
 
 ## 7. Detailed findings
 
-### QSI-2026-06399 — Quantum-vulnerable ECDSA: transaction and message signing (39 file(s))
+### QSI-2026-11969 — ECB block-cipher mode used in src/krux/kef.py
+
+- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Real and deliberate: src/krux/kef.py defines the Krux Encrypted Format, and of its eleven versions four are ECB — version 0 "AES-ECB v1" (released 2023.08 for BIP-39 entropy), 5 "AES-ECB", 6 "AES-ECB +p" and 7 "AES-ECB +c". So a user can store an encrypted mnemonic under ECB, and old backups already are. Reported at medium rather than high, because the usual reasons for calling ECB high do not all hold here and saying so is the point of a review. Every version carries an `auth` field sizing an authentication tag, so integrity is not left to the mode; GCM versions 20 and 21 exist in the same table; and the maintainers document the actual hazard themselves, version 6 reading "safe padding: for mid-sized plaintext w/o duplicate blocks" and 7 "may compact otherwise duplicate blocks". For the intended payload — one or two blocks of high-entropy mnemonic — ECB's block-repetition leak has little to bite on. What remains true, and is the actionable half: versions 6 and 7 exist precisely for larger plaintext, which is where duplicate blocks become possible, and ECB there leaks structure that CTR or GCM would not. The recommendation is not "remove ECB" (that would orphan 2023 backups) but to keep the ECB versions for decryption of old backups and stop offering them for new ones.
+- Affected asset: `file:src/krux/kef.py`
+- Data source: src/krux/kef.py
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
+- Priority score: 45.6 / 100
+- CVSS v3.1: not applicable
+
+8 usage(s) of ECB mode (first at line 30).
+
+**Potential impact.** ECB reveals patterns in encrypted data and provides no integrity.
+
+**Reproduction steps.**
+
+```
+Open line 30 in the supplied file src/krux/kef.py and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L30) · line 30 · SHA-256 983f2cc48989ecc4a9f6c09815c088adaee8547eabd249ae4291e761a3cb33b7_
+
+```
+   28 | #  to disable a VERSION: set its value to None
+   29 | AES = ucryptolib.aes
+   30 | MODE_ECB = ucryptolib.MODE_ECB
+   31 | MODE_CBC = ucryptolib.MODE_CBC
+   32 | MODE_CTR = ucryptolib.MODE_CTR
+```
+
+_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L38) · line 38 · SHA-256 e840c4c38d9dd0654dfd9922ecb81f4c117f1e3137ec29e256a5d470ec2b6d29_
+
+```
+   36 |     0: {
+   37 |         "name": "AES-ECB v1",
+   38 |         "mode": MODE_ECB,
+   39 |         "auth": -16,
+   40 |     },
+```
+
+_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L50) · line 50 · SHA-256 4102c93b1240502843f64f9563a027599f489a8e989673c7958b2c3b9ddc385c_
+
+```
+   48 |         # smallest ECB ciphertext, w/ unsafe padding: for high entropy mnemonics, passphrases, etc
+   49 |         "name": "AES-ECB",
+   50 |         "mode": MODE_ECB,
+   51 |         "auth": 3,
+   52 |     },
+```
+
+_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L56) · line 56 · SHA-256 2b53d9a1ca1d33e5ab513ca4295be4bc013ab6569b4107406722600a5c330e4e_
+
+```
+   54 |         # safe padding: for mid-sized plaintext w/o duplicate blocks
+   55 |         "name": "AES-ECB +p",
+   56 |         "mode": MODE_ECB,
+   57 |         "pkcs_pad": True,
+   58 |         "auth": -4,
+```
+
+_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L63) · line 63 · SHA-256 dbd2e22444870467bd8df2254c9813892fb16fa3782ccda465b67e7dc8463821_
+
+```
+   61 |         # compressed, w/ safe padding: for larger plaintext; may compact otherwise duplicate blocks
+   62 |         "name": "AES-ECB +c",
+   63 |         "mode": MODE_ECB,
+   64 |         "pkcs_pad": True,
+   65 |         "auth": -4,
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Use an AEAD mode (GCM) with unique nonces.
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-11978 — Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py
+
+- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `vendor/embit/src/embit/util/key.py:keygen`
+- Data source: vendor/embit/src/embit/util/key.py
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: entropy 1.3.0 · 2026-11-04 18:52 UTC
+- Priority score: 38.8 / 100
+- CVSS v3.1: not applicable
+
+'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)).
+
+**Potential impact.** Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.
+
+**Reproduction steps.**
+
+```
+Open line 374 in the supplied file vendor/embit/src/embit/util/key.py and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [vendor/embit/src/embit/util/key.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/key.py#L374) · line 374 · SHA-256 6a16bf61b745add23af0bcc22cb0758b1719a6aead17b725bb75597ba4738788_
+
+```
+  372 | def generate_privkey():
+  373 |     """Generate a valid random 32-byte private key."""
+  374 |     return random.randrange(1, SECP256K1_ORDER).to_bytes(32, "big")
+  375 | 
+  376 | 
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-11972 — Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and this is the finding the audit exists to produce. 53 of the 98 inventory rows are ECDSA and they span the whole chain: src/krux/key.py:255 calls secp256k1.ecdsa_sign_recoverable through embit, which dispatches in vendor/embit/src/embit/util/secp256k1.py either to ctypes_secp256k1.py (the C library) or to py_secp256k1.py (a pure-Python fallback), and the C library itself is vendored again at vendor/embit/secp256k1/secp256k1-zkp/. Every spend this device authorises is a discrete-log signature over secp256k1, so Shor applies to the signing path in full. Forward-only rather than retroactive: a signature already published cannot be made more secret, but a public key that has been seen on chain can be attacked the day a CRQC exists, which is why address reuse is the behaviour worth changing before the scheme does.
+> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and this is the finding the audit exists to produce. 43 of the 87 inventory rows are ECDSA (53 of 98 as first published on 2026-10-29, before eleven benchmark files of the vendored secp256k1-zkp were set aside) and they span the whole chain: src/krux/key.py:255 calls secp256k1.ecdsa_sign_recoverable through embit, which dispatches in vendor/embit/src/embit/util/secp256k1.py either to ctypes_secp256k1.py (the C library) or to py_secp256k1.py (a pure-Python fallback), and the C library itself is vendored again at vendor/embit/secp256k1/secp256k1-zkp/. Every spend this device authorises is a discrete-log signature over secp256k1, so Shor applies to the signing path in full. Forward-only rather than retroactive: a signature already published cannot be made more secret, but a public key that has been seen on chain can be attacked the day a CRQC exists, which is why address reuse is the behaviour worth changing before the scheme does.
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:33 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
-296 reference(s) to ECDSA across 39 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+277 reference(s) to ECDSA across 31 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -181,18 +299,18 @@ _file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h](http
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-06400 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))
+### QSI-2026-11974 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct. Seven rows, in vendor/embit/src/embit/util/secp256k1.py:33 and ctypes_secp256k1.py:287 and in the vendored library's own schnorrsig module. Taproot spends therefore sit in the same class as ECDSA ones: BIP-340 changes the signature's shape, not the hardness assumption it rests on.
+> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct. Six rows (seven as first published, one of them in a benchmark file): vendor/embit/src/embit/util/secp256k1.py:33 and ctypes_secp256k1.py:287, and the vendored library's own schnorrsig and musig modules. Taproot spends therefore sit in the same class as ECDSA ones: BIP-340 changes the signature's shape, not the hardness assumption it rests on.
 - Affected asset: `source-code:Schnorr (BIP-340):transaction_signing`
 - Data source: vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:33 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
-22 reference(s) to Schnorr (BIP-340) across 7 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
+21 reference(s) to Schnorr (BIP-340) across 7 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.
 
 **Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
@@ -218,30 +336,6 @@ _file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorr
    99 |  */
   100 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_schnorrsig_verify(
   101 |     const secp256k1_context* ctx,
-```
-
-_file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c#L35) · line 35 · SHA-256 674eca5c90f2832557ebb0e80a0d9602e21023babdcafa1cd7a408fc4e030aaf_
-
-```
-   34 |         msg[1] = i >> 8;
-   35 |         CHECK(secp256k1_schnorrsig_sign(data->ctx, sig, msg, data->keypairs[i], NULL, NULL));
-   36 |     }
-```
-
-_file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c#L46) · line 46 · SHA-256 84de389aa6107e5e013a9fd58f887352a61df857f4e7eb5d5ef0a104237c8bdd_
-
-```
-   45 |         CHECK(secp256k1_xonly_pubkey_parse(data->ctx, &pk, data->pk[i]) == 1);
-   46 |         CHECK(secp256k1_schnorrsig_verify(data->ctx, data->sigs[i], data->msgs[i], &pk));
-   47 |     }
-```
-
-_file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c#L81) · line 81 · SHA-256 2fbca448de4d89f7312e1825db82d238f30049d1dd81211703821e5aec69b2b3_
-
-```
-   80 |         CHECK(secp256k1_keypair_create(data.ctx, keypair, sk));
-   81 |         CHECK(secp256k1_schnorrsig_sign(data.ctx, sig, msg, keypair, NULL, NULL));
-   82 |         CHECK(secp256k1_keypair_xonly_pub(data.ctx, &pk, NULL, keypair));
 ```
 
 _file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/example.c](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/example.c#L160) · line 160 · SHA-256 e6ab7181c8dbb6504611247b2678ae83985acb1cf70e10429645f5d869e047bd_
@@ -284,20 +378,44 @@ _file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/src/modules/schnorrsig/ma
   118 |     secp256k1_sha256_write(&sha, r32, 32);
 ```
 
+_file_excerpt · [vendor/embit/src/embit/util/ctypes_secp256k1.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L287) · line 287 · SHA-256 57e08893e8b0d02ff62160e83bf0ee2a5297829ebdd67694ce5df8eac407d88d_
+
+```
+  286 | 
+  287 |         secp256k1.secp256k1_schnorrsig_verify.argtypes = [
+  288 |             c_void_p,  # ctx
+```
+
+_file_excerpt · [vendor/embit/src/embit/util/ctypes_secp256k1.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L293) · line 293 · SHA-256 081fdf562b7a5fc864bee913ad182153c51fe01d652d42c0ccaec47ab8249e94_
+
+```
+  292 |         ]
+  293 |         secp256k1.secp256k1_schnorrsig_verify.restype = c_int
+  294 | 
+```
+
+_file_excerpt · [vendor/embit/src/embit/util/ctypes_secp256k1.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L295) · line 295 · SHA-256 ca6ef88f4a54753ab4313ab865dab0bd59f732d4276c85eb8d3f4d7a3600a616_
+
+```
+  294 | 
+  295 |         secp256k1.secp256k1_schnorrsig_sign.argtypes = [
+  296 |             c_void_p,  # ctx
+```
+
 **Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
 
 **Recommendation.** Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them.
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-06401 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))
+### QSI-2026-11975 — Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct but narrow, and the narrowness is worth recording so nobody reads this as four more rows of spending exposure. All four are Liquid, not Bitcoin: vendor/embit/src/embit/liquid/pset.py:101 and liquid/transaction.py:90 call secp256k1.pedersen_commit for confidential-transaction value commitments, via util/secp256k1.py:51 and ctypes_secp256k1.py:949. The property at risk is the commitment's *binding*, which rests on the discrete log, so a CRQC could forge a value commitment; the *hiding* property is information-theoretic and no quantum computer touches it. A post-quantum signature standard does not fix this — it needs a different commitment scheme — and it only matters to users who spend Liquid assets.
 - Affected asset: `source-code:Pedersen commitment:threshold_mpc`
 - Data source: vendor/embit/src/embit/liquid/pset.py
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:33 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -399,14 +517,14 @@ _file_excerpt · [vendor/embit/src/embit/util/secp256k1.py](https://github.com/s
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-06397 — Quantum-vulnerable ECDSA: role not determined (5 file(s))
+### QSI-2026-11970 — Quantum-vulnerable ECDSA: role not determined (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and this is the finding the audit exists to produce. 53 of the 98 inventory rows are ECDSA and they span the whole chain: src/krux/key.py:255 calls secp256k1.ecdsa_sign_recoverable through embit, which dispatches in vendor/embit/src/embit/util/secp256k1.py either to ctypes_secp256k1.py (the C library) or to py_secp256k1.py (a pure-Python fallback), and the C library itself is vendored again at vendor/embit/secp256k1/secp256k1-zkp/. Every spend this device authorises is a discrete-log signature over secp256k1, so Shor applies to the signing path in full. Forward-only rather than retroactive: a signature already published cannot be made more secret, but a public key that has been seen on chain can be attacked the day a CRQC exists, which is why address reuse is the behaviour worth changing before the scheme does.
+> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and this is the finding the audit exists to produce. 43 of the 87 inventory rows are ECDSA (53 of 98 as first published on 2026-10-29, before eleven benchmark files of the vendored secp256k1-zkp were set aside) and they span the whole chain: src/krux/key.py:255 calls secp256k1.ecdsa_sign_recoverable through embit, which dispatches in vendor/embit/src/embit/util/secp256k1.py either to ctypes_secp256k1.py (the C library) or to py_secp256k1.py (a pure-Python fallback), and the C library itself is vendored again at vendor/embit/secp256k1/secp256k1-zkp/. Every spend this device authorises is a discrete-log signature over secp256k1, so Shor applies to the signing path in full. Forward-only rather than retroactive: a signature already published cannot be made more secret, but a public key that has been seen on chain can be attacked the day a CRQC exists, which is why address reuse is the behaviour worth changing before the scheme does.
 - Affected asset: `source-code:ECDSA:general`
 - Data source: src/krux/key.py
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:33 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -507,93 +625,144 @@ _file_excerpt · [vendor/embit/src/embit/util/key.py](https://github.com/selfcus
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-06396 — ECB block-cipher mode used in src/krux/kef.py
+### QSI-2026-11973 — Quantum-vulnerable ECDH: role not determined (4 file(s))
 
-- Severity: **Medium** · Classification: Potential cryptographic risk · Confidence: Medium
-> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Real and deliberate: src/krux/kef.py defines the Krux Encrypted Format, and of its eleven versions four are ECB — version 0 "AES-ECB v1" (released 2023.08 for BIP-39 entropy), 5 "AES-ECB", 6 "AES-ECB +p" and 7 "AES-ECB +c". So a user can store an encrypted mnemonic under ECB, and old backups already are. Reported at medium rather than high, because the usual reasons for calling ECB high do not all hold here and saying so is the point of a review. Every version carries an `auth` field sizing an authentication tag, so integrity is not left to the mode; GCM versions 20 and 21 exist in the same table; and the maintainers document the actual hazard themselves, version 6 reading "safe padding: for mid-sized plaintext w/o duplicate blocks" and 7 "may compact otherwise duplicate blocks". For the intended payload — one or two blocks of high-entropy mnemonic — ECB's block-repetition leak has little to bite on. What remains true, and is the actionable half: versions 6 and 7 exist precisely for larger plaintext, which is where duplicate blocks become possible, and ECB there leaks structure that CTR or GCM would not. The recommendation is not "remove ECB" (that would orphan 2023 backups) but to keep the ECB versions for decryption of old backups and stop offering them for new ones. _automated severity: High._
-- Affected asset: `file:src/krux/kef.py`
-- Data source: src/krux/kef.py
-- Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:33 UTC
-- Priority score: 39.6 / 100
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Kept rather than dismissed. The rule could not classify the role for five files, and that is honest: the anchor is src/krux/key.py:252-255, where the import of embit.util.secp256k1 and the call to ecdsa_sign_recoverable sit together, so the role is in fact transaction signing and the surrounding rows say so. Left as "role not determined" in the report because the classifier's own confidence should not be overwritten by the analyst's reading of the same lines; the decision records the reading instead.
+- Affected asset: `source-code:ECDH:general`
+- Data source: vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
+- Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
-8 usage(s) of ECB mode (first at line 30).
+9 reference(s) to ECDH across 4 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h:49. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
 
-**Potential impact.** ECB reveals patterns in encrypted data and provides no integrity.
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
 
 **Reproduction steps.**
 
 ```
-Open line 30 in the supplied file src/krux/kef.py and inspect the quoted lines (see evidence).
+Open vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h:49 and inspect the quoted lines; the evidence lists further files.
 ```
 
 **Evidence.**
 
-_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L30) · line 30 · SHA-256 983f2cc48989ecc4a9f6c09815c088adaee8547eabd249ae4291e761a3cb33b7_
+_file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h#L49) · line 49 · SHA-256 72841f4795f99327f8d386d48f812972ad9b9c93c2aaa26a78a395894af2edb0_
 
 ```
-   28 | #  to disable a VERSION: set its value to None
-   29 | AES = ucryptolib.aes
-   30 | MODE_ECB = ucryptolib.MODE_ECB
-   31 | MODE_CBC = ucryptolib.MODE_CBC
-   32 | MODE_CTR = ucryptolib.MODE_CTR
+   48 |  */
+   49 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ecdh(
+   50 |   const secp256k1_context* ctx,
 ```
 
-_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L38) · line 38 · SHA-256 e840c4c38d9dd0654dfd9922ecb81f4c117f1e3137ec29e256a5d470ec2b6d29_
+_file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h#L10) · line 10 · SHA-256 65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134_
 
 ```
-   36 |     0: {
-   37 |         "name": "AES-ECB v1",
-   38 |         "mode": MODE_ECB,
-   39 |         "auth": -16,
-   40 |     },
+    9 | 
+   10 | #include "../../../include/secp256k1_ecdh.h"
+   11 | #include "../../ecmult_const_impl.h"
 ```
 
-_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L50) · line 50 · SHA-256 4102c93b1240502843f64f9563a027599f489a8e989673c7958b2c3b9ddc385c_
+_file_excerpt · [vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h#L29) · line 29 · SHA-256 99bef9ddb51d26be8ad1c573044618a7a1801ccdcb8c468cbce745d4dbedb6bf_
 
 ```
-   48 |         # smallest ECB ciphertext, w/ unsafe padding: for high entropy mnemonics, passphrases, etc
-   49 |         "name": "AES-ECB",
-   50 |         "mode": MODE_ECB,
-   51 |         "auth": 3,
-   52 |     },
+   28 | 
+   29 | int secp256k1_ecdh(const secp256k1_context* ctx, unsigned char *output, const secp256k1_pubkey *point, const unsigned char *scalar, secp256k1_ecdh_hash_function hashfp, void *data) {
+   30 |     int ret = 0;
 ```
 
-_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L56) · line 56 · SHA-256 2b53d9a1ca1d33e5ab513ca4295be4bc013ab6569b4107406722600a5c330e4e_
+_file_excerpt · [vendor/embit/src/embit/util/ctypes_secp256k1.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L131) · line 131 · SHA-256 25ed92dcf661ed2360a198512a0006c9e51c0e8a86d6e1e6cb0b64dc880c0d3f_
 
 ```
-   54 |         # safe padding: for mid-sized plaintext w/o duplicate blocks
-   55 |         "name": "AES-ECB +p",
-   56 |         "mode": MODE_ECB,
-   57 |         "pkcs_pad": True,
-   58 |         "auth": -4,
+  130 |     preferred_symbols = (
+  131 |         "secp256k1_ecdh",
+  132 |         "secp256k1_xonly_pubkey_from_pubkey",
 ```
 
-_file_excerpt · [src/krux/kef.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L63) · line 63 · SHA-256 dbd2e22444870467bd8df2254c9813892fb16fa3782ccda465b67e7dc8463821_
+_file_excerpt · [vendor/embit/src/embit/util/ctypes_secp256k1.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L265) · line 265 · SHA-256 de340041c8677f93a6eb25e7cd23f166d2c5a072a02c006e4f7b8610957dd194_
 
 ```
-   61 |         # compressed, w/ safe padding: for larger plaintext; may compact otherwise duplicate blocks
-   62 |         "name": "AES-ECB +c",
-   63 |         "mode": MODE_ECB,
-   64 |         "pkcs_pad": True,
-   65 |         "auth": -4,
+  264 |     try:
+  265 |         secp256k1.secp256k1_ecdh.argtypes = [
+  266 |             c_void_p,  # ctx
 ```
 
-**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+_file_excerpt · [vendor/embit/src/embit/util/ctypes_secp256k1.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L273) · line 273 · SHA-256 9d8302f1aac7f738489ca0a9b1da65674b762df2abcb1df8bf0ba178bd170608_
 
-**Recommendation.** Use an AEAD mode (GCM) with unique nonces.
+```
+  272 |         ]
+  273 |         secp256k1.secp256k1_ecdh.restype = c_int
+  274 |     except Exception:  # noqa: S110
+```
 
-**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+_file_excerpt · [vendor/embit/src/embit/util/secp256k1.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/secp256k1.py#L31) · line 31 · SHA-256 4be965210b8e21d1911d60c3f2f6fcb51b6f14257125a3509ed6f700a5d8ed9a_
 
-### QSI-2026-06398 — ECB block-cipher mode used in src/krux/krux_settings.py
+```
+   30 |         _OPTIONAL_SYMBOLS = {
+   31 |             "ecdh": "secp256k1_ecdh",
+   32 |             "xonly_pubkey_from_pubkey": "secp256k1_xonly_pubkey_from_pubkey",
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH; introduce an abstraction layer for crypto-agility.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-11977 — Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
+> **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct. Six rows (seven as first published, one of them in a benchmark file): vendor/embit/src/embit/util/secp256k1.py:33 and ctypes_secp256k1.py:287, and the vendored library's own schnorrsig and musig modules. Taproot spends therefore sit in the same class as ECDSA ones: BIP-340 changes the signature's shape, not the hardness assumption it rests on.
+- Affected asset: `source-code:Schnorr (BIP-340):general`
+- Data source: vendor/embit/src/embit/util/key.py
+- Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
+- Priority score: 40.2 / 100
+- CVSS v3.1: not applicable
+
+2 reference(s) to Schnorr (BIP-340) across 1 file(s), e.g. vendor/embit/src/embit/util/key.py:535. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.
+
+**Potential impact.** Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).
+
+**Reproduction steps.**
+
+```
+Open vendor/embit/src/embit/util/key.py:535 and inspect the quoted lines; the evidence lists further files.
+```
+
+**Evidence.**
+
+_file_excerpt · [vendor/embit/src/embit/util/key.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/key.py#L535) · line 535 · SHA-256 0597a48161191ebf461aaedda31f2a87a429eaaa13531cee7adae7137e912a39_
+
+```
+  534 | 
+  535 | def verify_schnorr(key, sig, msg):
+  536 |     """Verify a Schnorr signature (see BIP 340).
+```
+
+_file_excerpt · [vendor/embit/src/embit/util/key.py](https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/key.py#L572) · line 572 · SHA-256 f0e6c6749e812b18bfc62efa05381551783c523260a6d2f23ec1e1f80d12e644_
+
+```
+  571 | 
+  572 | def sign_schnorr(key, msg, aux=None, flip_p=False, flip_r=False):
+  573 |     """Create a Schnorr signature (see BIP 340)."""
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for crypto-agility.
+
+**Retest procedure.** Re-run the inventory after refactoring.
+
+### QSI-2026-11971 — ECB block-cipher mode used in src/krux/krux_settings.py
 
 - Severity: **Info** · Classification: Potential cryptographic risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): not applicable to this code.** Not a use of the mode. src/krux/krux_settings.py:425 defines MODE_NAMES = {ucryptolib.MODE_ECB: "AES-ECB", ...}, a mapping from mode constant to the label shown in the settings menu, so the device can print which format a user picked. No key, no plaintext and no call to ucryptolib.aes appears here. The design decision this finding is really about is in src/krux/kef.py and is decided separately below; counting it twice would report one choice as two problems. _automated severity: High._
 - Affected asset: `file:src/krux/krux_settings.py`
 - Data source: src/krux/krux_settings.py
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:33 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
 - Priority score: 30.6 / 100
 - CVSS v3.1: not applicable
 
@@ -625,14 +794,14 @@ _file_excerpt · [src/krux/krux_settings.py](https://github.com/selfcustody/krux
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-06402 — Low PBKDF2 iteration count (2500) in vendor/embit/src/embit/slip39.py
+### QSI-2026-11976 — Low PBKDF2 iteration count (2500) in vendor/embit/src/embit/slip39.py
 
 - Severity: **Info** · Classification: Potential cryptographic risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): not applicable to this code.** The iteration count is a protocol constant, not a hardening parameter. vendor/embit/src/embit/slip39.py:51 calls hashlib.pbkdf2_hmac("sha256", i + passphrase, salt + right, 2500 << exponent, half) inside _crypt, which is SLIP-39's four-round Feistel construction: 2500 per round times four rounds is the specification's base iteration count of 10000, and `exponent` is SLIP-39's own iteration-exponent field, which a share carries so that any implementation can reproduce it. Raising it to OWASP's 600,000 — the rule's recommendation, which is correct guidance for password storage — would produce shares that no other SLIP-39 implementation could read, and would therefore destroy the interoperability that makes a backup standard worth using. The rule is right that 2500 is low for a password; it is the wrong question for a protocol constant. Worth separating from a real concern: SLIP-39's security rests on the share secret, not on the passphrase being hard to guess, so the iteration count is not what protects a strong share. _automated severity: Medium._
 - Affected asset: `file:vendor/embit/src/embit/slip39.py`
 - Data source: vendor/embit/src/embit/slip39.py
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:33 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 18:52 UTC
 - Priority score: 30.6 / 100
 - CVSS v3.1: not applicable
 
@@ -664,14 +833,14 @@ _file_excerpt · [vendor/embit/src/embit/slip39.py](https://github.com/selfcusto
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-06403 — 40 advisories in 8 development or build-only PyPI package(s)
+### QSI-2026-11979 — 40 advisories in 8 development or build-only PyPI package(s)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): not applicable to this code.** Correct as a single non-runtime summary, and it is the one thing in this audit that the submodule fix made worse before a second fix made it right. vendor/embit/poetry.lock pins 55 packages and every one of them is `optional = true` behind `markers = 'extra == "dev"'`, so embit has no unconditional runtime dependencies at all: the lock file describes how embit is developed and documented, not what it ships. Read by Poetry groups alone they all appeared to be runtime — Poetry 2 files extras under the main group — and this repository briefly reported one critical and sixteen high advisories, eleven of them virtualenv, for a device that runs MicroPython on a K210 and pip-installs nothing. The parser now treats an optional package gated behind a development-shaped extra as non-runtime. Nothing in this group reaches the firmware.
 - Affected asset: `dependencies:PyPI:non-runtime`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch lookup of exact versions; scope from devDependencies, package-lock.json dev flags, pnpm importers sections, the Cargo.lock graph rooted at the Cargo.toml tables, and — for yarn.lock, which records no scope — the lock graph walked from package.json. Where a runtime requirement cannot be resolved in a lock, that lock is left unclassified rather than risking a package being set aside wrongly.
-- Analyzer: dependencies 1.2.0 · 2026-10-29 05:33 UTC
+- Analyzer: dependencies 1.3.0 · 2026-11-04 18:52 UTC
 - Priority score: 18.3 / 100
 - CVSS v3.1: not applicable
 
@@ -730,6 +899,7 @@ _Planning assumptions: x for key establishment, x for signatures, y are the defa
 
 ### Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography
 
+- Classical only — threshold signing and MPC protocols: Pedersen commitment (4 file(s))
 
 **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
@@ -739,9 +909,9 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **threshold signing and MPC protocols** | Pedersen commitment (4) | QSI-2026-06401 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
-| **transaction and message signing** | ECDSA (39), Schnorr (BIP-340) (7) | QSI-2026-06399, QSI-2026-06400 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDSA (5) | QSI-2026-06397 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **threshold signing and MPC protocols** | Pedersen commitment (4) | QSI-2026-11975 | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys and shares must stay valid for how long |
+| **transaction and message signing** | ECDSA (31), Schnorr (BIP-340) (7) | QSI-2026-11972, QSI-2026-11974 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | ECDSA (5), ECDH (4), Schnorr (BIP-340) (1) | QSI-2026-11970, QSI-2026-11973, QSI-2026-11977 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -750,7 +920,7 @@ No readiness questionnaire was completed for this project.
 
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (53), Pedersen commitment (4), Schnorr (BIP-340) (7) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (4), ECDSA (43), Pedersen commitment (4), Schnorr (BIP-340) (8) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | HMAC (6), PBKDF2 (4), RIPEMD-160 (2), SHA-2 (17) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | RIPEMD-160 (2), SHA-2 (17) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Simon's algorithm — superposition attacks on symmetric constructions | only with superposition queries | Q2 | GCM mode (2) | No action for ordinary deployments of AES-GCM or CBC-MAC — the attack model does not apply. Record it as a model assumption; see the offline variant for Even–Mansour-type designs. |
@@ -771,40 +941,45 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
+| P1 | QSI-2026-11969 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P1 | QSI-2026-11978 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P2 | QSI-2026-06396 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
 ### 90 days
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-06399 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06400 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06401 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-06397 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-06399 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06400 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-06401 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-06397 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-06398 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P4 | QSI-2026-06402 | Follow current OWASP Password Storage guidance (e.g. 600,000 iterations for PBKDF2-HMAC-SHA256) or use Argon2id. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P4 | QSI-2026-06403 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
+| P3 | QSI-2026-11972 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11974 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11975 | Add Pedersen commitment usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11970 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11973 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-11977 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-11972 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-11974 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-11975 | Plan migration of Pedersen commitment to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-11970 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-11973 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P4 | QSI-2026-11977 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-11971 | Use an AEAD mode (GCM) with unique nonces. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P4 | QSI-2026-11976 | Follow current OWASP Password Storage guidance (e.g. 600,000 iterations for PBKDF2-HMAC-SHA256) or use Argon2id. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P4 | QSI-2026-11979 | Update the development and build dependencies listed in the evidence. | root-cause fix | The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded. |
 
 ## 11. Tools used
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
@@ -812,30 +987,33 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
 3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-7. D. R. Simon — On the Power of Quantum Computation (SIAM J. Comput. 26, 1997) — SIAM. <https://doi.org/10.1137/S0097539796298637> (peer-reviewed article)
-8. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-9. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-10. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-11. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-12. H. Kuwakado, M. Morii — Quantum distinguisher between the 3-round Feistel cipher and the random permutation (IEEE ISIT 2010) — IEEE. <https://ieeexplore.ieee.org/document/5513654> (peer-reviewed conference paper)
-13. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-14. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-15. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-16. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-17. M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <https://arxiv.org/abs/1602.05973> (peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)
-18. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-19. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-20. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
-21. NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <https://csrc.nist.gov/pubs/sp/800/131/a/r2/final> (final (2019))
-22. NIST SP 800-132 — Recommendation for Password-Based Key Derivation — NIST. <https://csrc.nist.gov/pubs/sp/800/132/final> (final (2010))
-23. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-24. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-25. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-26. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-27. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+4. CVE-2023-31290 — Trust Wallet Core: 32 bits of mnemonic entropy (mt19937 seeded with one 32-bit value) — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-31290> (published 2023-04-27; Trust Wallet Core before 3.1.1 (browser extension 0.0.172-0.0.182), exploited in the wild in December 2022 and March 2023: only about four billion possible mnemonics)
+5. CVE-2023-39910 — Libbitcoin Explorer 'bx seed' entropy (Milk Sad): mt19937 limits it to 32 bits — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-39910> (published 2023-08-09; Libbitcoin Explorer 3.0.0-3.6.0, exploited in the wild in 2023)
+6. CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) — MITRE. <https://cwe.mitre.org/data/definitions/338.html> (weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable)
+7. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+8. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+9. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+10. D. R. Simon — On the Power of Quantum Computation (SIAM J. Comput. 26, 1997) — SIAM. <https://doi.org/10.1137/S0097539796298637> (peer-reviewed article)
+11. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+12. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+13. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+14. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+15. H. Kuwakado, M. Morii — Quantum distinguisher between the 3-round Feistel cipher and the random permutation (IEEE ISIT 2010) — IEEE. <https://ieeexplore.ieee.org/document/5513654> (peer-reviewed conference paper)
+16. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+17. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+18. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+19. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+20. M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <https://arxiv.org/abs/1602.05973> (peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)
+21. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+22. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+23. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+24. NIST SP 800-131A Rev. 2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths — NIST. <https://csrc.nist.gov/pubs/sp/800/131/a/r2/final> (final (2019))
+25. NIST SP 800-132 — Recommendation for Password-Based Key Derivation — NIST. <https://csrc.nist.gov/pubs/sp/800/132/final> (final (2010))
+26. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+27. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+28. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+29. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+30. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
 
@@ -848,10 +1026,11 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 17 | 17 | firmware/Kboot/build/ktool.py:1176; firmware/Kboot/src/bootloader_hi/include/sha256.h; firmware/Kboot/src/bootloader_hi/sha256.c |
 | CBC mode |  |  | n/a | acceptable | 3 | 3 | src/krux/encryption.py:77; src/krux/kef.py:71; src/krux/krux_settings.py:427 |
 | GCM mode |  |  | n/a | acceptable | 2 | 2 | src/krux/kef.py:109; src/krux/krux_settings.py:429 |
-| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 39 | 39 | src/krux/key.py:252; vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:57; vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h:34 |
-| ECDSA |  |  | vulnerable (Shor) | acceptable | 14 | 14 | vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11; vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:88; vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h:85 |
+| ECDH |  |  | vulnerable (Shor) | acceptable | 4 | 4 | vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h:49; vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h:10; vendor/embit/src/embit/util/ctypes_secp256k1.py:131 |
+| ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 31 | 31 | src/krux/key.py:252; vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:57; vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h:34 |
+| ECDSA |  |  | vulnerable (Shor) | acceptable | 12 | 12 | vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11; vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:88; vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h:85 |
 | Pedersen commitment |  |  | vulnerable (Shor) | acceptable | 4 | 4 | vendor/embit/src/embit/liquid/pset.py:101; vendor/embit/src/embit/liquid/transaction.py:90; vendor/embit/src/embit/util/ctypes_secp256k1.py:949 |
-| Schnorr (BIP-340) |  |  | vulnerable (Shor) | acceptable | 7 | 7 | vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82; vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c:35; vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/example.c:160 |
+| Schnorr (BIP-340) |  |  | vulnerable (Shor) | acceptable | 8 | 8 | vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82; vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/example.c:160; vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h:460 |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -859,23 +1038,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 | File | Size | SHA-256 | Redactions |
 |---|---|---|---|
-| firmware/Kboot/build/ktool.py | 135603 | `800794f7d621f44e393400d31b291c2f087d0cabf986dd35ae727eb33729dca5` | 0 |
-| firmware/Kboot/src/bootloader_hi/fpioa.c | 108140 | `fe9bdd25e4404c6d37767038773edff55cdabf46c17fa35935685afb00c76023` | 0 |
-| firmware/Kboot/src/bootloader_hi/gpiohs.c | 2838 | `e7b45f7d005b0220bcd48604745b9c0b7a2d675071721abb59a1a9713e167789` | 0 |
-| firmware/Kboot/src/bootloader_hi/include/encoding.h | 46554 | `3ced07bdbd1389c035aed5422b64db521e17fee41e9a0796dd428a48ced0c88d` | 0 |
-| firmware/Kboot/src/bootloader_hi/include/fpioa.h | 51938 | `8ed1e43f8c801d3f4e74d6b80b9ceece944b2f9520831326f0ff08b3175730a4` | 0 |
-| firmware/Kboot/src/bootloader_hi/include/gpiohs.h | 6815 | `43f2758481477f89bc6c080f812f821435af0bf780304e275a697b7ae16984fb` | 0 |
-| firmware/Kboot/src/bootloader_hi/include/platform.h | 2910 | `fbfc117bb58ad42e75560896a8d44bbf1b946a931e2ccc4ea82b19561081206e` | 0 |
-| firmware/Kboot/src/bootloader_hi/include/sha256.h | 3597 | `ffa02fcca2254789838ad39c713a113e9643e3a6be80b7a0f3a159c64ac92234` | 0 |
-| firmware/Kboot/src/bootloader_hi/include/spi.h | 4864 | `48dbd2d371dff0a68c2a79634a051f88af3b57004519ff7f6a6f211a6a24768d` | 0 |
-| firmware/Kboot/src/bootloader_hi/include/sysctl.h | 24408 | `917554ed51202e48b82f6118ab03cb1abff881e163322e3e39fdf65dfd220383` | 0 |
-| firmware/Kboot/src/bootloader_hi/main.c | 17753 | `e595d8d4a431bb6cf24e584ba4c75363916ed918efd78657a63eb6443ae3148e` | 0 |
-| firmware/Kboot/src/bootloader_hi/sha256.c | 4381 | `faafd74ad01e75cf4fbace5b5db360fa6b2e13755a5c1eb729662756df495870` | 0 |
-| firmware/Kboot/src/bootloader_lo/include/encoding.h | 46554 | `3ced07bdbd1389c035aed5422b64db521e17fee41e9a0796dd428a48ced0c88d` | 0 |
-| firmware/Kboot/src/bootloader_lo/include/platform.h | 2910 | `fbfc117bb58ad42e75560896a8d44bbf1b946a931e2ccc4ea82b19561081206e` | 0 |
-| firmware/Kboot/src/bootloader_lo/include/spi.h | 4864 | `48dbd2d371dff0a68c2a79634a051f88af3b57004519ff7f6a6f211a6a24768d` | 0 |
-| firmware/Kboot/src/bootloader_lo/include/sysctl.h | 24408 | `917554ed51202e48b82f6118ab03cb1abff881e163322e3e39fdf65dfd220383` | 0 |
-| firmware/Kboot/src/bootloader_lo/main.c | 7501 | `873afe5fe11e294dfa040fff18dbe8fbc74e59aeb8ecdd8834477b7b8d0740c3` | 0 |
 | pyproject.toml | 7270 | `4f53081e2daf3738eb1ef71229589f7f607558490ab8aa21d13546864235f28d` | 0 |
 | src/boot.py | 5126 | `ed6dd67981fd1f63c25b8c07b1311f1cbeac1f922403c5c665c2eac6f8cc6574` | 0 |
 | src/krux/auto_shutdown.py | 2856 | `9cfffddc948166eb37ac504492279c0ce68ad4d541c21cb5ccb3d9c8f49dc2e2` | 0 |
@@ -963,6 +1125,23 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | src/krux/translations/zh.py | 10840 | `cbe33b1cdc21aeb196b0da9bc2db5d318156e81607e6af3f5fb48453fb628d0a` | 0 |
 | src/krux/wallet.py | 21233 | `810d6df697e709814bb9d650ecf51e737ff61c0f20133d40dbc644cebd6403cd` | 0 |
 | src/krux/wdt.py | 1277 | `63372e251d26ccea92c2c8d235f06bacd5f52c611267a71a5ec457c6cb8055c0` | 0 |
+| firmware/Kboot/build/ktool.py | 135603 | `800794f7d621f44e393400d31b291c2f087d0cabf986dd35ae727eb33729dca5` | 0 |
+| firmware/Kboot/src/bootloader_hi/fpioa.c | 108140 | `fe9bdd25e4404c6d37767038773edff55cdabf46c17fa35935685afb00c76023` | 0 |
+| firmware/Kboot/src/bootloader_hi/gpiohs.c | 2838 | `e7b45f7d005b0220bcd48604745b9c0b7a2d675071721abb59a1a9713e167789` | 0 |
+| firmware/Kboot/src/bootloader_hi/include/encoding.h | 46554 | `3ced07bdbd1389c035aed5422b64db521e17fee41e9a0796dd428a48ced0c88d` | 0 |
+| firmware/Kboot/src/bootloader_hi/include/fpioa.h | 51938 | `8ed1e43f8c801d3f4e74d6b80b9ceece944b2f9520831326f0ff08b3175730a4` | 0 |
+| firmware/Kboot/src/bootloader_hi/include/gpiohs.h | 6815 | `43f2758481477f89bc6c080f812f821435af0bf780304e275a697b7ae16984fb` | 0 |
+| firmware/Kboot/src/bootloader_hi/include/platform.h | 2910 | `fbfc117bb58ad42e75560896a8d44bbf1b946a931e2ccc4ea82b19561081206e` | 0 |
+| firmware/Kboot/src/bootloader_hi/include/sha256.h | 3597 | `ffa02fcca2254789838ad39c713a113e9643e3a6be80b7a0f3a159c64ac92234` | 0 |
+| firmware/Kboot/src/bootloader_hi/include/spi.h | 4864 | `48dbd2d371dff0a68c2a79634a051f88af3b57004519ff7f6a6f211a6a24768d` | 0 |
+| firmware/Kboot/src/bootloader_hi/include/sysctl.h | 24408 | `917554ed51202e48b82f6118ab03cb1abff881e163322e3e39fdf65dfd220383` | 0 |
+| firmware/Kboot/src/bootloader_hi/main.c | 17753 | `e595d8d4a431bb6cf24e584ba4c75363916ed918efd78657a63eb6443ae3148e` | 0 |
+| firmware/Kboot/src/bootloader_hi/sha256.c | 4381 | `faafd74ad01e75cf4fbace5b5db360fa6b2e13755a5c1eb729662756df495870` | 0 |
+| firmware/Kboot/src/bootloader_lo/include/encoding.h | 46554 | `3ced07bdbd1389c035aed5422b64db521e17fee41e9a0796dd428a48ced0c88d` | 0 |
+| firmware/Kboot/src/bootloader_lo/include/platform.h | 2910 | `fbfc117bb58ad42e75560896a8d44bbf1b946a931e2ccc4ea82b19561081206e` | 0 |
+| firmware/Kboot/src/bootloader_lo/include/spi.h | 4864 | `48dbd2d371dff0a68c2a79634a051f88af3b57004519ff7f6a6f211a6a24768d` | 0 |
+| firmware/Kboot/src/bootloader_lo/include/sysctl.h | 24408 | `917554ed51202e48b82f6118ab03cb1abff881e163322e3e39fdf65dfd220383` | 0 |
+| firmware/Kboot/src/bootloader_lo/main.c | 7501 | `873afe5fe11e294dfa040fff18dbe8fbc74e59aeb8ecdd8834477b7b8d0740c3` | 0 |
 | vendor/embit/poetry.lock | 141384 | `2cb04f5c9e548a06fd72f23071379937898e90680cf8323c9ad76b732067b4c9` | 0 |
 | vendor/embit/pyproject.toml | 2272 | `13dbd4a607f5ab89d185fd59084e095ec07f61aff41ae796593140fe510f0e86` | 0 |
 | vendor/embit/secp256k1/config/libsecp256k1-config.h | 1049 | `b89383e0d2b44a0ee82a1047507425812039ba509d5ef6c670b48bac2bfc5ddc` | 0 |
@@ -985,17 +1164,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_whitelist.h | 6507 | `2cb891357e7113721542c6cf61f7c32796f70a68589ef1103b691223b3f5231d` | 0 |
 | vendor/embit/secp256k1/secp256k1-zkp/src/assumptions.h | 4366 | `1a7f40ea5b62146fa1809da4799e3315743195950b494b12ce2d0c81e8c76024` | 0 |
 | vendor/embit/secp256k1/secp256k1-zkp/src/basic-config.h | 590 | `5af274e93a0de7a51f1111f356d249262b1934976d0e537c072ddbbbec2ae7b6` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench.h | 3248 | `67c79b13fdab8785cee3dc99c04d33d348e7fe7d83f95a19f1bec2cda301bd8c` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_ecdh.c | 1780 | `1ee504efb7e2ceb3c20bf6a3e9ae58b9af406f27c07d41f7ac0fb93c91951580` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_ecmult.c | 13913 | `3a4364ee95d65ef3ef1537915c3417817efbe60d429c2737636de08c793930ea` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_generator.c | 1937 | `f8329e9cdc68bfede01433cb6f1f8c60ccd9805c3367143a92aaad11cd57af5d` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_internal.c | 15815 | `e97bf77934b3cde1dd9450917dbc958e130ed964873156b6c168a1314dfbcc88` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_rangeproof.c | 2285 | `9565559cee0be2595fb6949bc198dab62b501737991da4234ae6ac3efb5492ca` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_recover.c | 2097 | `6d5c4875a5914bfe80244852ad820cace9850ab7d051c0a1b027145f328d7613` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_schnorrsig.c | 3562 | `2818e1de5c6a6b9901618caaf52d50ff410e10b3b43a52a9654feea638d5af02` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_sign.c | 1674 | `1267c04ff3173197fb701ea7db98b4e37bfbc500bb698d0ac61b229f8272e5b4` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_verify.c | 3972 | `c29c485cc0bb3bffb420ee047916424ffb6a77fe8e614841d148252f4155c270` | 0 |
-| vendor/embit/secp256k1/secp256k1-zkp/src/bench_whitelist.c | 3790 | `fbada26bce0086e0c02280604da159e78270eade5183c5af2aea679732760523` | 0 |
 | vendor/embit/secp256k1/secp256k1-zkp/src/eccommit.h | 2162 | `b9336fd346fcde5886597c7c8b34e0fa9769519774c093695341e1d60a7d4431` | 0 |
 | vendor/embit/secp256k1/secp256k1-zkp/src/eccommit_impl.h | 3117 | `7cb79dcac87f70f59664dd0599e6f79f1f5f5b779e1ca3e4c599d1eb16309dad` | 0 |
 | vendor/embit/secp256k1/secp256k1-zkp/src/ecdsa.h | 1201 | `812552ffa5a48b516a7dea910a15278739cf1376dbcc650ccb3d4dc29269d824` | 0 |

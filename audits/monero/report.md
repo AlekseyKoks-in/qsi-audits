@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 23:26 UTC |
+| Дата отчёта | 2026-11-04 19:04 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | e425d0b6-4289-4e9c-a90f-1054ae92ae26 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 06283ac7-7f51-4ed2-a80a-9cf2f64d819d (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `baf67d98f79b2d660cf6851c2ab260cc1d832d4825056049a72d778f6eb5536e` |
+| SHA-256 содержимого | `474b1294ee360010a360896aa943fa57c4538bdf5d05a1386be0965270613489` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,12 +17,12 @@
 
 - Критическая: **0**
 - Высокая: **1**
-- Средняя: **41**
-- Низкая: **2**
+- Средняя: **40**
+- Низкая: **1**
 - Информационная: **1**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 3
+- Известная уязвимая версия компонента: 1
 - Подтверждённая ошибка конфигурации: 1
 - Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 40
@@ -45,7 +45,7 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 1075 | cmake/CheckLinkerFlag.c: 14 lines scanned with 16 rule patterns and 127 registry patterns; contrib/epee/include/byte_slice.h: 177 lines scanned with 16 rule patterns and 127 registry patterns; contrib/epee/include/byte_stream.h: 217 lines scanned with 16 rule patterns and 127 registry patterns |
+| source_code | проверено | 1075 | cmake/CheckLinkerFlag.c: 14 lines scanned with 16 rule patterns and 145 registry patterns; contrib/epee/include/byte_slice.h: 177 lines scanned with 16 rule patterns and 145 registry patterns; contrib/epee/include/byte_stream.h: 217 lines scanned with 16 rule patterns and 145 registry patterns |
 | certificates | ошибка (не проверено) | 1 | src/common/dns_utils.cpp line 79: certificate could not be parsed (ValueError) |
 | certificates_and_keys | проверено | 34 | src/common/dns_utils.cpp: certificates/keys parsed; utils/gpg_keys/0xfffc0000.asc: certificates/keys parsed; utils/gpg_keys/SNeedlewoods.asc: certificates/keys parsed |
 | chain_map | проверено | 1 | src/device_trezor/trezor/protob/messages-monero.proto: Monero |
@@ -53,7 +53,9 @@
 | tls_key_exchange_groups | Недостаточность данных | 1 | src/ringct/multiexp.cc line 555: not in the algorithm registry, not assessed: (groups |
 | tls_configuration | проверено | 1 | src/ringct/multiexp.cc: openssl TLS directives parsed |
 | keys | Недостаточность данных | 4 | utils/gpg_keys/0xfffc0000.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry; utils/gpg_keys/anon.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry; utils/gpg_keys/jpk68.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry |
-| osv_advisories | проверено | 1 | 79 pinned packages queried at OSV.dev; 3 affected |
+| entropy | проверено | 1 | random-number generation: 1075 code files read with 1516 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| osv_advisories | не проверено | 1 | 12 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: crypto-bigint, ec-divisors, full-chain-membership-proofs, generalized-bulletproofs, generalized-bulletproofs-circuit-abstraction, generalized-bulletproofs-ec-gadgets, helioselene, monero-ed25519, monero-fcmp-plus-plus, monero-fcmp-plus-plus-generators, monero-io, monero-primitives |
+| osv_advisories | проверено | 1 | 67 pinned packages queried at OSV.dev; 1 affected |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -65,25 +67,26 @@ _Длинные списки здесь сгруппированы; полный
 - keys — Недостаточность данных: utils/gpg_keys/anon.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
 - keys — Недостаточность данных: utils/gpg_keys/jpk68.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
 - keys — Недостаточность данных: external/randomx/doc/tevador.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- osv_advisories — не проверено: 12 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: crypto-bigint, ec-divisors, full-chain-membership-proofs, generalized-bulletproofs, generalized-bulletproofs-circuit-abstraction, generalized-bulletproofs-ec-gadgets, helioselene, monero-ed25519, monero-fcmp-plus-plus, monero-fcmp-plus-plus-generators, monero-io, monero-primitives
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree monero at 3fd0f88c20f559839cafb20911cb13cb45eba7bd. 1117 files analysed; of 2668 files, 842 are test, fuzzing, benchmark or example code and were left out, 709 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/FUNDING.yml, .github/actions/set-make-job-count/action.yml, .github/workflows/build.yml, .github/workflows/depends.yml. 422 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 367 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: external/rapidjson (119), external/supercop (84), external/randomx (68), external/gtest (57). No requests were sent to the owner's systems.
+Static review of the source tree monero at 3fd0f88c20f559839cafb20911cb13cb45eba7bd. 1117 files analysed; of 2668 files, 842 are test, fuzzing, benchmark or example code and were left out, 709 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/FUNDING.yml, .github/actions/set-make-job-count/action.yml, .github/workflows/build.yml, .github/workflows/depends.yml. 518 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 367 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: external/rapidjson (119), external/supercop (84), external/randomx (68), external/gtest (57). No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **86** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 68.1%
+- Ориентировочный индекс состояния: **92** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 73.9%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-07254 — Возможный секрет в коде utils/python-rpc/framework/wallet.py
+### QSI-2026-12234 — Возможный секрет в коде utils/python-rpc/framework/wallet.py
 
 - Серьёзность: **Высокая** · Классификация: Подтверждённая ошибка конфигурации · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:utils/python-rpc/framework/wallet.py`
 - Источник данных: utils/python-rpc/framework/wallet.py
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 47.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -117,13 +120,13 @@ _file_excerpt · [utils/python-rpc/framework/wallet.py](https://github.com/moner
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-07256 — Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых
+### QSI-2026-12236 — Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `chain-map`
 - Источник данных: src/device_trezor/trezor/protob/messages-monero.proto
 - Метод обнаружения: Определения сообщений (.proto) сопоставлены с таблицей схем подписи сетей QSI.
-- Анализатор: chain_map 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: chain_map 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 56.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -151,13 +154,13 @@ package hw.trezor.messages.monero;
 
 **Повторная проверка.** Повторить, когда сеть активирует постквантовую схему подписи или кошелёк добавит её поддержку.
 
-### QSI-2026-07220 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc
+### QSI-2026-12200 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/0xfffc0000.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/0xfffc0000.asc#line 1`
 - Источник данных: utils/gpg_keys/0xfffc0000.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -185,13 +188,13 @@ OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07221 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc
+### QSI-2026-12201 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/SNeedlewoods.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/SNeedlewoods.asc#line 1`
 - Источник данных: utils/gpg_keys/SNeedlewoods.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -225,13 +228,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07222 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc
+### QSI-2026-12202 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/anon.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/anon.asc#line 1`
 - Источник данных: utils/gpg_keys/anon.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -259,13 +262,13 @@ OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07223 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc
+### QSI-2026-12203 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/anonimal.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/anonimal.asc#line 1`
 - Источник данных: utils/gpg_keys/anonimal.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -299,13 +302,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07224 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc
+### QSI-2026-12204 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/binaryfate.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/binaryfate.asc#line 1`
 - Источник данных: utils/gpg_keys/binaryfate.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -339,13 +342,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07225 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc
+### QSI-2026-12205 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/erciccione.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/erciccione.asc#line 1`
 - Источник данных: utils/gpg_keys/erciccione.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -379,13 +382,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07226 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc
+### QSI-2026-12206 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/fluffypony.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/fluffypony.asc#line 1`
 - Источник данных: utils/gpg_keys/fluffypony.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -419,13 +422,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07227 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc
+### QSI-2026-12207 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/guzzi.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/guzzi.asc#line 1`
 - Источник данных: utils/gpg_keys/guzzi.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -459,13 +462,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07228 — Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc
+### QSI-2026-12208 — Квантово-уязвимый ключ DSA (DSA) в utils/gpg_keys/hyc.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/hyc.asc#line 1`
 - Источник данных: utils/gpg_keys/hyc.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -493,13 +496,13 @@ OpenPGP primary key: algorithm ID 17 (DSA) DSA
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07229 — Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc
+### QSI-2026-12209 — Квантово-уязвимый ключ ElGamal (ElGamal) в utils/gpg_keys/hyc.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/hyc.asc#line 1`
 - Источник данных: utils/gpg_keys/hyc.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -533,13 +536,13 @@ OpenPGP subkey: algorithm ID 16 (ElGamal) ElGamal
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07230 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc
+### QSI-2026-12210 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/iDunk.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/iDunk.asc#line 1`
 - Источник данных: utils/gpg_keys/iDunk.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -573,13 +576,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07231 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc
+### QSI-2026-12211 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/jaquee.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/jaquee.asc#line 1`
 - Источник данных: utils/gpg_keys/jaquee.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -613,13 +616,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07232 — Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc
+### QSI-2026-12212 — Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/jeffro256.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/jeffro256.asc#line 1`
 - Источник данных: utils/gpg_keys/jeffro256.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -653,13 +656,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07233 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc
+### QSI-2026-12213 — Квантово-уязвимый ключ Ed25519 (Ed25519) в utils/gpg_keys/jpk68.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/jpk68.asc#line 1`
 - Источник данных: utils/gpg_keys/jpk68.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -687,13 +690,13 @@ OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07234 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc
+### QSI-2026-12214 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/kenshi84.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/kenshi84.asc#line 1`
 - Источник данных: utils/gpg_keys/kenshi84.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -727,13 +730,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07235 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc
+### QSI-2026-12215 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/luigi1111.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/luigi1111.asc#line 1`
 - Источник данных: utils/gpg_keys/luigi1111.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -767,13 +770,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07236 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc
+### QSI-2026-12216 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mikezackles.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/mikezackles.asc#line 1`
 - Источник данных: utils/gpg_keys/mikezackles.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -807,13 +810,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07237 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc
+### QSI-2026-12217 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mishi_choudhary.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/mishi_choudhary.asc#line 1`
 - Источник данных: utils/gpg_keys/mishi_choudhary.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -847,13 +850,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07238 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc
+### QSI-2026-12218 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/mishi_choudhary.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/mishi_choudhary.asc#line 1`
 - Источник данных: utils/gpg_keys/mishi_choudhary.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -881,13 +884,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07239 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc
+### QSI-2026-12219 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/mj-xmr.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/mj-xmr.asc#line 1`
 - Источник данных: utils/gpg_keys/mj-xmr.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -921,13 +924,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07240 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc
+### QSI-2026-12220 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/moneromooo.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/moneromooo.asc#line 1`
 - Источник данных: utils/gpg_keys/moneromooo.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -961,13 +964,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07241 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc
+### QSI-2026-12221 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/nanoakron.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/nanoakron.asc#line 1`
 - Источник данных: utils/gpg_keys/nanoakron.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1001,13 +1004,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07242 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc
+### QSI-2026-12222 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/oranjuice.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/oranjuice.asc#line 1`
 - Источник данных: utils/gpg_keys/oranjuice.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1041,13 +1044,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07243 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc
+### QSI-2026-12223 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/rbrunner7.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/rbrunner7.asc#line 1`
 - Источник данных: utils/gpg_keys/rbrunner7.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1081,13 +1084,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07244 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc
+### QSI-2026-12224 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/sarang.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/sarang.asc#line 1`
 - Источник данных: utils/gpg_keys/sarang.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1121,13 +1124,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07245 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc
+### QSI-2026-12225 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/selsta.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/selsta.asc#line 1`
 - Источник данных: utils/gpg_keys/selsta.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1161,13 +1164,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07246 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc
+### QSI-2026-12226 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/snipa.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/snipa.asc#line 1`
 - Источник данных: utils/gpg_keys/snipa.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1201,13 +1204,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07247 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc
+### QSI-2026-12227 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/stoffu.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/stoffu.asc#line 1`
 - Источник данных: utils/gpg_keys/stoffu.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1241,13 +1244,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07248 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc
+### QSI-2026-12228 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tewinget.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/tewinget.asc#line 1`
 - Источник данных: utils/gpg_keys/tewinget.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1275,13 +1278,13 @@ OpenPGP primary key: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07249 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc
+### QSI-2026-12229 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/thecharlatan.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/thecharlatan.asc#line 1`
 - Источник данных: utils/gpg_keys/thecharlatan.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1327,13 +1330,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07250 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc
+### QSI-2026-12230 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/tobtoht.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/tobtoht.asc#line 1`
 - Источник данных: utils/gpg_keys/tobtoht.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1367,13 +1370,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07251 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc
+### QSI-2026-12231 — Квантово-уязвимый ключ RSA (2048-bit) в utils/gpg_keys/tomerkon.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/tomerkon.asc#line 1`
 - Источник данных: utils/gpg_keys/tomerkon.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1407,13 +1410,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 2048-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07252 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc
+### QSI-2026-12232 — Квантово-уязвимый ключ RSA (4096-bit) в utils/gpg_keys/warptangent.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/warptangent.asc#line 1`
 - Источник данных: utils/gpg_keys/warptangent.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1447,13 +1450,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07253 — Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc
+### QSI-2026-12233 — Квантово-уязвимый ключ RSA (3072-bit) в utils/gpg_keys/xiphon.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:utils/gpg_keys/xiphon.asc#line 1`
 - Источник данных: utils/gpg_keys/xiphon.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1487,13 +1490,13 @@ OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07255 — Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc
+### QSI-2026-12235 — Квантово-уязвимый ключ Ed25519 (Ed25519) в external/randomx/doc/tevador.asc
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:external/randomx/doc/tevador.asc#line 1`
 - Источник данных: external/randomx/doc/tevador.asc
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -1521,13 +1524,13 @@ OpenPGP primary key: algorithm ID 22 (Ed25519) Ed25519
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-07216 — Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))
+### QSI-2026-12196 — Квантово-уязвимый RSA: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RSA:channel`
 - Источник данных: contrib/epee/src/net_ssl.cpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1565,17 +1568,17 @@ _file_excerpt · [contrib/epee/src/net_ssl.cpp](https://github.com/monero-projec
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07217 — Квантово-уязвимый Ed25519: роль не определена (6 файл(ов))
+### QSI-2026-12197 — Квантово-уязвимый Ed25519: роль не определена (26 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Ed25519:general`
 - Источник данных: src/crypto/crypto_ops_builder/crypto_sign.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
-6 упоминаний Ed25519 в 6 файл(ах), например src/crypto/crypto_ops_builder/crypto_sign.h:10. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+216 упоминаний Ed25519 в 26 файл(ах), например src/crypto/crypto_ops_builder/crypto_sign.h:10. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -1603,6 +1606,54 @@ _file_excerpt · [src/crypto/crypto_ops_builder/include/sodium.h](https://github
    33 | #include "sodium/crypto_stream.h"
 ```
 
+_file_excerpt · [src/crypto/crypto_ops_builder/ref10/fe.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/fe.h#L16) · line 16 · SHA-256 26e7de53d9330d8b3068a57428b7da468d90ac67b75998f60c1d25d69e5154da_
+
+```
+   15 | 
+   16 | #define fe_frombytes crypto_sign_ed25519_ref10_fe_frombytes
+   17 | #define fe_tobytes crypto_sign_ed25519_ref10_fe_tobytes
+```
+
+_file_excerpt · [src/crypto/crypto_ops_builder/ref10/fe.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/fe.h#L17) · line 17 · SHA-256 e2521389a4c14017b8d251557d9c4325fd1f59abbad5eee70a7a76b12561c72e_
+
+```
+   16 | #define fe_frombytes crypto_sign_ed25519_ref10_fe_frombytes
+   17 | #define fe_tobytes crypto_sign_ed25519_ref10_fe_tobytes
+   18 | #define fe_copy crypto_sign_ed25519_ref10_fe_copy
+```
+
+_file_excerpt · [src/crypto/crypto_ops_builder/ref10/fe.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/fe.h#L18) · line 18 · SHA-256 733e3482bd5a00a26b31eb182a2ca7e88b08401bd9904efd6b47f8e78667eec1_
+
+```
+   17 | #define fe_tobytes crypto_sign_ed25519_ref10_fe_tobytes
+   18 | #define fe_copy crypto_sign_ed25519_ref10_fe_copy
+   19 | #define fe_isnonzero crypto_sign_ed25519_ref10_fe_isnonzero
+```
+
+_file_excerpt · [src/crypto/crypto_ops_builder/ref10/ge.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/ge.h#L53) · line 53 · SHA-256 5001b81c74571e1c2143968e03d70d03dcf7f8ba4aa35f6453e472df3f3b8f2b_
+
+```
+   52 | 
+   53 | #define ge_frombytes_negate_vartime crypto_sign_ed25519_ref10_ge_frombytes_negate_vartime
+   54 | #define ge_tobytes crypto_sign_ed25519_ref10_ge_tobytes
+```
+
+_file_excerpt · [src/crypto/crypto_ops_builder/ref10/ge.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/ge.h#L54) · line 54 · SHA-256 188164fafff5c4f7e64ba66cd53d4e6a53dde94c6c6e6dcf04d6de0101751d9b_
+
+```
+   53 | #define ge_frombytes_negate_vartime crypto_sign_ed25519_ref10_ge_frombytes_negate_vartime
+   54 | #define ge_tobytes crypto_sign_ed25519_ref10_ge_tobytes
+   55 | #define ge_p3_tobytes crypto_sign_ed25519_ref10_ge_p3_tobytes
+```
+
+_file_excerpt · [src/crypto/crypto_ops_builder/ref10/ge.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/ge.h#L55) · line 55 · SHA-256 26704210ca2625df2efe6f7b4ab9fce20c3d458197e8caf7d534251b5a158605_
+
+```
+   54 | #define ge_tobytes crypto_sign_ed25519_ref10_ge_tobytes
+   55 | #define ge_p3_tobytes crypto_sign_ed25519_ref10_ge_p3_tobytes
+   56 | 
+```
+
 _file_excerpt · [src/crypto/crypto_ops_builder/ref10/keypair.c](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/keypair.c#L7) · line 7 · SHA-256 7463cfd8d788a4394462333e573eb707e802d719f8151ef9326694b265e43610_
 
 ```
@@ -1611,28 +1662,12 @@ _file_excerpt · [src/crypto/crypto_ops_builder/ref10/keypair.c](https://github.
     8 | {
 ```
 
-_file_excerpt · [src/crypto/crypto_ops_builder/ref10CommentedCombined/keypair.c](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10CommentedCombined/keypair.c#L7) · line 7 · SHA-256 7463cfd8d788a4394462333e573eb707e802d719f8151ef9326694b265e43610_
+_file_excerpt · [src/crypto/crypto_ops_builder/ref10/sc.h](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/ref10/sc.h#L9) · line 9 · SHA-256 665a37c7fc295c104e36f946601f5ebf7f1e0cd013404f2d84301d12ed52f43b_
 
 ```
-    6 | 
-    7 | int crypto_sign_keypair(unsigned char *pk,unsigned char *sk)
-    8 | {
-```
-
-_file_excerpt · [external/supercop/crypto_sign/ed25519/amd64-51-30k/keypair.c](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/external/supercop/crypto_sign/ed25519/amd64-51-30k/keypair.c#L7) · line 7 · SHA-256 7463cfd8d788a4394462333e573eb707e802d719f8151ef9326694b265e43610_
-
-```
-    6 | 
-    7 | int crypto_sign_keypair(unsigned char *pk,unsigned char *sk)
-    8 | {
-```
-
-_file_excerpt · [external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c](https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c#L7) · line 7 · SHA-256 7463cfd8d788a4394462333e573eb707e802d719f8151ef9326694b265e43610_
-
-```
-    6 | 
-    7 | int crypto_sign_keypair(unsigned char *pk,unsigned char *sk)
-    8 | {
+    8 | 
+    9 | #define sc_reduce crypto_sign_ed25519_ref10_sc_reduce
+   10 | #define sc_muladd crypto_sign_ed25519_ref10_sc_muladd
 ```
 
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
@@ -1641,13 +1676,13 @@ _file_excerpt · [external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c](
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07218 — Квантово-уязвимый X25519: роль не определена (2 файл(ов))
+### QSI-2026-12198 — Квантово-уязвимый X25519: роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:X25519:general`
 - Источник данных: src/crypto/crypto_ops_builder/include/sodium.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1685,13 +1720,13 @@ _file_excerpt · [src/crypto/x25519.cpp](https://github.com/monero-project/moner
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07219 — Квантово-уязвимый ECDH: роль не определена (2 файл(ов))
+### QSI-2026-12199 — Квантово-уязвимый ECDH: роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDH:general`
 - Источник данных: src/device_trezor/trezor/protocol.cpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1737,47 +1772,13 @@ _file_excerpt · [src/ringct/rctSigs.cpp](https://github.com/monero-project/mone
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07258 — block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-- Затронутый актив: `dependency:crates.io/block-buffer@0.10.4`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
-- Балл приоритета: 33.1 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-07260 — keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-12238 — keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/keccak@0.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 25.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -1805,51 +1806,17 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07259 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
-
-- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
-- Балл приоритета: 20.3 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0387
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSEC-2026-0387) · manifest · SHA-256 eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5_
-
-```
-{"id": "RUSTSEC-2026-0387", "aliases": [], "modified": "2026-10-24T03:45:02.365137418Z", "summary": "Multiple timing variability issues in operations intended to be constant-time", "severity": null, "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-07257 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-12237 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:26 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:04 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
-В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, k256, p256), но ни одной из списка поддерживающих PQC.
+В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, k256, p256), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -1861,10 +1828,10 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Подтверждающие доказательства.**
 
-_dependency · src/fcmp_pp/fcmp_pp_rust/Cargo.lock, src/fcmp_pp/fcmp_pp_rust/Cargo.toml, external/rapidjson/package.json · SHA-256 46a6721e3245e7b772fdb399be86720975d85b225845f8c751236bb0d9ed1743_
+_dependency · src/fcmp_pp/fcmp_pp_rust/Cargo.lock, src/fcmp_pp/fcmp_pp_rust/Cargo.toml, external/rapidjson/package.json · SHA-256 db5d4da5ee6bd5304400a63ce961218e4d81bf3dc595a99c76e75ace171c646c_
 
 ```
-Crypto libraries: curve25519-dalek, ecdsa, ff, group, k256, p256
+Crypto libraries: curve25519-dalek, ecdsa, k256, p256
 ```
 
 **Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
@@ -1907,9 +1874,9 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **обмен ключами в канале (TLS, Noise, рукопожатия)** | RSA (1) | QSI-2026-07216 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
-| **подпись транзакций и сообщений** | Ed25519 (1) | QSI-2026-07256 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | Ed25519 (6), ECDH (2), X25519 (2) | QSI-2026-07217, QSI-2026-07218, QSI-2026-07219 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **обмен ключами в канале (TLS, Noise, рукопожатия)** | RSA (1) | QSI-2026-12196 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
+| **подпись транзакций и сообщений** | Ed25519 (1) | QSI-2026-12236 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | Ed25519 (26), ECDH (2), X25519 (2) | QSI-2026-12197, QSI-2026-12198, QSI-2026-12199 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -1920,7 +1887,7 @@ _Роль определяется по путям файлов, именам ф
 |---|---|---|---|---|
 | Алгоритм Шора — факторизация | взламывает | Q1 | RSA (57) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
 | Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | DSA (1), ElGamal (1) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | Bulletproofs (4), ECDH (2), Ed25519 (11), X25519 (3) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | Bulletproofs (4), ECDH (2), Ed25519 (31), X25519 (3) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | AES-128 (1), Argon2 (6), BLAKE2 (8), ChaCha20-Poly1305 (3), HMAC (2), MD5 (1), PBKDF2 (2), SHA-2 (7), SHA-3 (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE2 (8), MD5 (1), SHA-2 (7), SHA-3 (1) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -1937,6 +1904,7 @@ _Действие: взламывает — алгоритм нужно заме
 - keys: utils/gpg_keys/anon.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
 - keys: utils/gpg_keys/jpk68.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
 - keys: external/randomx/doc/tevador.asc line 1: OpenPGP algorithm ID 18 is not in the algorithm registry
+- osv_advisories: 12 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: crypto-bigint, ec-divisors, full-chain-membership-proofs, generalized-bulletproofs, generalized-bulletproofs-circuit-abstraction, generalized-bulletproofs-ec-gadgets, helioselene, monero-ed25519, monero-fcmp-plus-plus, monero-fcmp-plus-plus-generators, monero-io, monero-primitives
 
 ## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
@@ -1944,112 +1912,110 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-07254 | Замените и удалите секреты из utils/python-rpc/framework/wallet.py. | устранение первопричины | Сканер секретов ничего не находит; старые значения отозваны. |
-| P2 | QSI-2026-07258 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-07260 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P1 | QSI-2026-12234 | Замените и удалите секреты из utils/python-rpc/framework/wallet.py. | устранение первопричины | Сканер секретов ничего не находит; старые значения отозваны. |
+| P2 | QSI-2026-12238 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-07259 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-07256 | Внесите использования Ed25519 в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07220 | Внесите использования Ed25519 в file:utils/gpg_keys/0xfffc0000.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07221 | Внесите использования RSA в file:utils/gpg_keys/SNeedlewoods.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07222 | Внесите использования Ed25519 в file:utils/gpg_keys/anon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07223 | Внесите использования RSA в file:utils/gpg_keys/anonimal.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07224 | Внесите использования RSA в file:utils/gpg_keys/binaryfate.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07225 | Внесите использования RSA в file:utils/gpg_keys/erciccione.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07226 | Внесите использования RSA в file:utils/gpg_keys/fluffypony.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07227 | Внесите использования RSA в file:utils/gpg_keys/guzzi.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07228 | Внесите использования DSA в file:utils/gpg_keys/hyc.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07229 | Внесите использования ElGamal в file:utils/gpg_keys/hyc.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07230 | Внесите использования RSA в file:utils/gpg_keys/iDunk.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07231 | Внесите использования RSA в file:utils/gpg_keys/jaquee.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07232 | Внесите использования RSA в file:utils/gpg_keys/jeffro256.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07233 | Внесите использования Ed25519 в file:utils/gpg_keys/jpk68.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07234 | Внесите использования RSA в file:utils/gpg_keys/kenshi84.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07235 | Внесите использования RSA в file:utils/gpg_keys/luigi1111.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07236 | Внесите использования RSA в file:utils/gpg_keys/mikezackles.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07237 | Внесите использования RSA в file:utils/gpg_keys/mishi_choudhary.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07238 | Внесите использования RSA в file:utils/gpg_keys/mishi_choudhary.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07239 | Внесите использования RSA в file:utils/gpg_keys/mj-xmr.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07240 | Внесите использования RSA в file:utils/gpg_keys/moneromooo.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07241 | Внесите использования RSA в file:utils/gpg_keys/nanoakron.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07242 | Внесите использования RSA в file:utils/gpg_keys/oranjuice.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07243 | Внесите использования RSA в file:utils/gpg_keys/rbrunner7.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07244 | Внесите использования RSA в file:utils/gpg_keys/sarang.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07245 | Внесите использования RSA в file:utils/gpg_keys/selsta.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07246 | Внесите использования RSA в file:utils/gpg_keys/snipa.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07247 | Внесите использования RSA в file:utils/gpg_keys/stoffu.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07248 | Внесите использования RSA в file:utils/gpg_keys/tewinget.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07249 | Внесите использования RSA в file:utils/gpg_keys/thecharlatan.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07250 | Внесите использования RSA в file:utils/gpg_keys/tobtoht.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07251 | Внесите использования RSA в file:utils/gpg_keys/tomerkon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07252 | Внесите использования RSA в file:utils/gpg_keys/warptangent.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07253 | Внесите использования RSA в file:utils/gpg_keys/xiphon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07255 | Внесите использования Ed25519 в file:external/randomx/doc/tevador.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07216 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07217 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07218 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07219 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-07256 | Запланируйте миграцию Ed25519 на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
-| P4 | QSI-2026-07220 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07221 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07222 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07223 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07224 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07225 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07226 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07227 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07228 | Запланируйте миграцию DSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07229 | Запланируйте миграцию ElGamal на Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH. или гибридной схемы. |
-| P4 | QSI-2026-07230 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07231 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07232 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07233 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07234 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07235 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07236 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07237 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07238 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07239 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07240 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07241 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07242 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07243 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07244 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07245 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07246 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07247 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07248 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07249 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07250 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07251 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07252 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07253 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07255 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-07216 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-07217 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-07218 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-07219 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P3 | QSI-2026-12236 | Внесите использования Ed25519 в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12200 | Внесите использования Ed25519 в file:utils/gpg_keys/0xfffc0000.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12201 | Внесите использования RSA в file:utils/gpg_keys/SNeedlewoods.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12202 | Внесите использования Ed25519 в file:utils/gpg_keys/anon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12203 | Внесите использования RSA в file:utils/gpg_keys/anonimal.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12204 | Внесите использования RSA в file:utils/gpg_keys/binaryfate.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12205 | Внесите использования RSA в file:utils/gpg_keys/erciccione.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12206 | Внесите использования RSA в file:utils/gpg_keys/fluffypony.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12207 | Внесите использования RSA в file:utils/gpg_keys/guzzi.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12208 | Внесите использования DSA в file:utils/gpg_keys/hyc.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12209 | Внесите использования ElGamal в file:utils/gpg_keys/hyc.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12210 | Внесите использования RSA в file:utils/gpg_keys/iDunk.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12211 | Внесите использования RSA в file:utils/gpg_keys/jaquee.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12212 | Внесите использования RSA в file:utils/gpg_keys/jeffro256.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12213 | Внесите использования Ed25519 в file:utils/gpg_keys/jpk68.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12214 | Внесите использования RSA в file:utils/gpg_keys/kenshi84.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12215 | Внесите использования RSA в file:utils/gpg_keys/luigi1111.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12216 | Внесите использования RSA в file:utils/gpg_keys/mikezackles.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12217 | Внесите использования RSA в file:utils/gpg_keys/mishi_choudhary.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12218 | Внесите использования RSA в file:utils/gpg_keys/mishi_choudhary.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12219 | Внесите использования RSA в file:utils/gpg_keys/mj-xmr.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12220 | Внесите использования RSA в file:utils/gpg_keys/moneromooo.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12221 | Внесите использования RSA в file:utils/gpg_keys/nanoakron.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12222 | Внесите использования RSA в file:utils/gpg_keys/oranjuice.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12223 | Внесите использования RSA в file:utils/gpg_keys/rbrunner7.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12224 | Внесите использования RSA в file:utils/gpg_keys/sarang.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12225 | Внесите использования RSA в file:utils/gpg_keys/selsta.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12226 | Внесите использования RSA в file:utils/gpg_keys/snipa.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12227 | Внесите использования RSA в file:utils/gpg_keys/stoffu.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12228 | Внесите использования RSA в file:utils/gpg_keys/tewinget.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12229 | Внесите использования RSA в file:utils/gpg_keys/thecharlatan.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12230 | Внесите использования RSA в file:utils/gpg_keys/tobtoht.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12231 | Внесите использования RSA в file:utils/gpg_keys/tomerkon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12232 | Внесите использования RSA в file:utils/gpg_keys/warptangent.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12233 | Внесите использования RSA в file:utils/gpg_keys/xiphon.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12235 | Внесите использования Ed25519 в file:external/randomx/doc/tevador.asc в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12196 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12197 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12198 | Внесите использования X25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12199 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-12236 | Запланируйте миграцию Ed25519 на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-12200 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12201 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12202 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12203 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12204 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12205 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12206 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12207 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12208 | Запланируйте миграцию DSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12209 | Запланируйте миграцию ElGamal на Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH. или гибридной схемы. |
+| P4 | QSI-2026-12210 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12211 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12212 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12213 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12214 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12215 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12216 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12217 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12218 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12219 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12220 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12221 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12222 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12223 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12224 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12225 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12226 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12227 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12228 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12229 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12230 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12231 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12232 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12233 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12235 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12196 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12197 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12198 | Запланируйте миграцию X25519 на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-12199 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -2073,15 +2039,13 @@ _Действие: взламывает — алгоритм нужно заме
 17. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
 18. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 19. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-20. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+20. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 21. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 22. OSV advisory GHSA-3288-p39f-rqpv — OSV.dev. <https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv> (modified 2026-09-10T03:50:59.332505686Z)
-23. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
-24. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-25. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
-26. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-27. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-28. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+23. OWASP Application Security Verification Standard — OWASP. <https://owasp.org/www-project-application-security-verification-standard/> (living standard — check the project page for the current version)
+24. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+25. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+26. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -2097,8 +2061,6 @@ _Действие: взламывает — алгоритм нужно заме
 | BLAKE2 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 8 | 8 | external/randomx/src/blake2/blake2-impl.h; external/randomx/src/blake2/blake2.h; external/randomx/src/blake2/blake2b.c |
 | SHA-2 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 4 | 4 | contrib/epee/include/net/net_ssl.h:174; contrib/epee/src/http_auth.cpp:173; contrib/epee/src/net_ssl.cpp:180 |
 | SHA-3 |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 1 | 1 | src/net/tor_address.cpp:297 |
-| Crypto library | 0.13.0 | group (jubjub) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
-| Crypto library | 0.13.1 | ff (jubjub) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
 | Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
 | Crypto library | 0.13.4 | k256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
 | Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | src/fcmp_pp/fcmp_pp_rust/Cargo.lock |
@@ -2106,7 +2068,7 @@ _Действие: взламывает — алгоритм нужно заме
 | Bulletproofs |  |  | уязвим (Шор) | допустимо | 4 | 4 | src/ringct/bulletproofs.cc; src/ringct/bulletproofs.h; src/ringct/bulletproofs_plus.cc |
 | DSA | DSA |  | уязвим (Шор) | устаревший | 1 | 1 | utils/gpg_keys/hyc.asc (line 1) |
 | ECDH |  |  | уязвим (Шор) | допустимо | 2 | 2 | src/device_trezor/trezor/protocol.cpp:699; src/ringct/rctSigs.cpp:1573 |
-| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 10 | 10 | external/randomx/doc/tevador.asc (line 1); external/supercop/crypto_sign/ed25519/amd64-51-30k/keypair.c:7; external/supercop/crypto_sign/ed25519/amd64-64-24k/keypair.c:7 |
+| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 30 | 30 | external/randomx/doc/tevador.asc (line 1); external/supercop/crypto_sign/ed25519/amd64-51-30k/fe25519.h:4; external/supercop/crypto_sign/ed25519/amd64-51-30k/ge25519.h:15 |
 | Ed25519 | CLSAG ring signatures on the Ed25519 curve |  | уязвим (Шор) | допустимо | 1 | 1 | src/device_trezor/trezor/protob/messages-monero.proto:2 |
 | ElGamal | ElGamal |  | уязвим (Шор) | устаревший | 1 | 1 | utils/gpg_keys/hyc.asc (line 1) |
 | RSA |  |  | уязвим (Шор) | допустимо | 1 | 1 | contrib/epee/src/net_ssl.cpp:101 |

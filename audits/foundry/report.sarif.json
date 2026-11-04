@@ -8,7 +8,7 @@
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
           "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
-          "version": "1.2.0",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-HARDCODED-SECRET",
@@ -34,6 +34,31 @@
                 "text": "1 значений, похожих на секреты, типа generic_assignment (первое — строка 1685). Значения замаскированы QSI. Перенесите секреты в менеджер секретов/окружение; замените раскрытые значения. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
               },
               "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
+              "id": "RNG-WEAK-KEYGEN",
+              "name": "RngWeakKeygen",
+              "shortDescription": {
+                "text": "Некриптографический генератор рядом с генерацией ключа или сида в crates/anvil/src/cmd.rs"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "«seed_from_u64(» в строка 418, в нескольких строках от «mnemonic» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "«seed_from_u64(» в строка 418, в нескольких строках от «mnemonic» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
             },
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -161,31 +186,6 @@
               "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
             },
             {
-              "id": "DEP-NO-PQC-LIBRARY",
-              "name": "DepNoPqcLibrary",
-              "shortDescription": {
-                "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "post_quantum",
-                  "insufficient_data"
-                ],
-                "security-severity": "1.0"
-              },
-              "fullDescription": {
-                "text": "В 41 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, jsonwebtoken, k256, p256, ring, rustls, secp256k1, x25519-dalek), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
-              },
-              "help": {
-                "text": "В 41 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, jsonwebtoken, k256, p256, ring, rustls, secp256k1, x25519-dalek), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
-            },
-            {
               "id": "DEP-ADVISORY-INFORMATIONAL",
               "name": "DepAdvisoryInformational",
               "shortDescription": {
@@ -225,7 +225,7 @@
             "qsiFindingKey/v1": "c4710c11033346d7672aa7183c918f40"
           },
           "properties": {
-            "qsiId": "QSI-2026-09672",
+            "qsiId": "QSI-2026-11922",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -245,8 +245,26 @@
           ]
         },
         {
-          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleId": "RNG-WEAK-KEYGEN",
           "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Некриптографический генератор рядом с генерацией ключа или сида в crates/anvil/src/cmd.rs"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c49239f02c1e548054c70bbc126ec482"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11924",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 2,
           "level": "error",
           "message": {
             "text": "quick-xml 0.39.4 затронут RUSTSEC-2026-0194 (dependency: crates.io/quick-xml@0.39.4)"
@@ -255,7 +273,7 @@
             "qsiFindingKey/v1": "31cd59e242ba5b36198477bc18b8151f"
           },
           "properties": {
-            "qsiId": "QSI-2026-09680",
+            "qsiId": "QSI-2026-11930",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -264,7 +282,7 @@
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "error",
           "message": {
             "text": "quick-xml 0.39.4 затронут RUSTSEC-2026-0195 (dependency: crates.io/quick-xml@0.39.4)"
@@ -273,7 +291,7 @@
             "qsiFindingKey/v1": "f916efd99a9f509598476a2500b055db"
           },
           "properties": {
-            "qsiId": "QSI-2026-09681",
+            "qsiId": "QSI-2026-11931",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -282,7 +300,7 @@
         },
         {
           "ruleId": "TLSCODE-NO-PQ-HYBRID",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
             "text": "TLS без постквантового обмена ключами: rustls с криптопровайдером ring"
@@ -291,7 +309,7 @@
             "qsiFindingKey/v1": "37cf7527345cadeb12e0099923a7b982"
           },
           "properties": {
-            "qsiId": "QSI-2026-09668",
+            "qsiId": "QSI-2026-11918",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -300,7 +318,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (9 файл(ов))"
@@ -309,7 +327,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09666",
+            "qsiId": "QSI-2026-11915",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -318,7 +336,25 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11917",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый BLS12-381: подпись транзакций и сообщений (3 файл(ов))"
@@ -327,7 +363,7 @@
             "qsiFindingKey/v1": "ec373b0b791251d9646fe1520c3710fa"
           },
           "properties": {
-            "qsiId": "QSI-2026-09671",
+            "qsiId": "QSI-2026-11921",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -336,7 +372,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))"
@@ -345,7 +381,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-09667",
+            "qsiId": "QSI-2026-11916",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -354,7 +390,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))"
@@ -363,7 +399,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-09669",
+            "qsiId": "QSI-2026-11919",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -372,7 +408,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый BLS12-381: роль не определена (1 файл(ов))"
@@ -381,7 +417,7 @@
             "qsiFindingKey/v1": "a32dc4d401fc32a953504c0a38f8d3f4"
           },
           "properties": {
-            "qsiId": "QSI-2026-09670",
+            "qsiId": "QSI-2026-11920",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -390,7 +426,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 4,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (^0.8.13) в 12 файл(ах)"
@@ -399,7 +435,7 @@
             "qsiFindingKey/v1": "2cfba554f3ebf36cc2a96a766e36906e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09665",
+            "qsiId": "QSI-2026-11914",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -408,7 +444,7 @@
         },
         {
           "ruleId": "SOL-FLOATING-PRAGMA",
-          "ruleIndex": 4,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "Плавающая версия компилятора (>=0.8.13 <0.9.0) в 2 файл(ах)"
@@ -417,7 +453,7 @@
             "qsiFindingKey/v1": "b9a3257a8ac1972019f93c5dc1fd816a"
           },
           "properties": {
-            "qsiId": "QSI-2026-09673",
+            "qsiId": "QSI-2026-11923",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -426,7 +462,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 5,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности) (dependency: crates.io/crypto-bigint@0.5.5)"
@@ -435,7 +471,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-09675",
+            "qsiId": "QSI-2026-11925",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -444,7 +480,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 5,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности) (dependency: crates.io/crypto-bigint@0.7.5)"
@@ -453,7 +489,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-09676",
+            "qsiId": "QSI-2026-11926",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -462,7 +498,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 5,
+          "ruleIndex": 6,
           "level": "note",
           "message": {
             "text": "ctutils 0.4.3 затронут RUSTSEC-2026-0385 (без оценки серьёзности) (dependency: crates.io/ctutils@0.4.3)"
@@ -471,7 +507,7 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-09677",
+            "qsiId": "QSI-2026-11927",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -479,20 +515,20 @@
           }
         },
         {
-          "ruleId": "DEP-NO-PQC-LIBRARY",
+          "ruleId": "DEP-ADVISORY-UNRATED",
           "ruleIndex": 6,
           "level": "note",
           "message": {
-            "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
+            "text": "tokio 1.53.2 затронут RUSTSEC-2026-0386 (без оценки серьёзности) (dependency: crates.io/tokio@1.53.2)"
           },
           "partialFingerprints": {
-            "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
+            "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
           },
           "properties": {
-            "qsiId": "QSI-2026-09674",
+            "qsiId": "QSI-2026-11932",
             "severity": "info",
-            "confidence": "medium",
-            "classification": "insufficient_data",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
             "security-severity": "1.0"
           }
         },
@@ -507,7 +543,7 @@
             "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-09678",
+            "qsiId": "QSI-2026-11928",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -525,7 +561,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-09679",
+            "qsiId": "QSI-2026-11929",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -534,13 +570,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/foundry @ 7f0a409a5c20/03536326-c11e-442a-815d-1d39e50a0e30"
+        "id": "qsi/foundry @ 7f0a409a5c20/c64030b3-2abe-4487-a89e-9a5c01d34654"
       },
       "properties": {
-        "qsiContentSha256": "8860d542d9bca9a7e483677ee5a72f1a11481b26812e92abae13c1b5c0cfd5b1",
+        "qsiContentSha256": "11eb453dbcef9b595c5e7749f4a83429e0cc136eb0a9ec83e490d1e351eb49d4",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-02T12:21:37.146579+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:46:38.102137+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

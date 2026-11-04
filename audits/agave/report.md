@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-30 22:21 UTC |
+| Дата отчёта | 2026-11-04 18:21 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | a3db9a79-d86f-454d-a183-fdab1c2c6f8f (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | ded20889-5500-46bb-989d-1769a4e6a994 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `633a102a6daa6dbfca5de244b15ca5571cccad0f36a3f8622656376914977674` |
+| SHA-256 содержимого | `0bd9b0a0f4a11ff2fadcc1131f86ad7cdd40e0964340c4b37ac351a57d2386d5` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -18,11 +18,11 @@
 - Критическая: **0**
 - Высокая: **15**
 - Средняя: **32**
-- Низкая: **37**
-- Информационная: **28**
+- Низкая: **34**
+- Информационная: **27**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 82
+- Известная уязвимая версия компонента: 78
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 9
@@ -46,19 +46,21 @@
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
 | dependencies | проверено | 158 | Cargo.lock: 670 dependencies parsed (670 pinned); Cargo.toml: 293 dependencies parsed (90 pinned); account-decoder/Cargo.toml: 19 dependencies parsed (0 pinned) |
-| source_code | проверено | 1126 | account-decoder/src/lib.rs: 278 lines scanned with 16 rule patterns and 136 registry patterns; 59 lines in #[cfg(test)] modules ignored; account-decoder/src/parse_account_data.rs: 174 lines scanned with 16 rule patterns and 136 registry patterns; 50 lines in #[cfg(test)] modules ignored; account-decoder/src/parse_address_lookup_table.rs: 117 lines scanned with 16 rule patterns and 136 registry patterns; 58 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | 1126 | account-decoder/src/lib.rs: 278 lines scanned with 16 rule patterns and 145 registry patterns; 59 lines in #[cfg(test)] modules ignored; account-decoder/src/parse_account_data.rs: 174 lines scanned with 16 rule patterns and 145 registry patterns; 50 lines in #[cfg(test)] modules ignored; account-decoder/src/parse_address_lookup_table.rs: 117 lines scanned with 16 rule patterns and 145 registry patterns; 58 lines in #[cfg(test)] modules ignored |
 | tls_code | проверено | 6 | core/src/repair/quic_endpoint.rs: TLS key-exchange settings read; quic-client/src/nonblocking/quic_client.rs: TLS key-exchange settings read; streamer/src/nonblocking/quic.rs: TLS key-exchange settings read |
 | secrets | проверено | 3 | docs/docusaurus.config.js: value(s) at line(s) 106 are not reported as secrets because the source annotates them as published (publishable, search-only, safe to commit); that is the project's own decision, recorded here rather than raised against it; docs/docusaurus.config.js: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); rpc/src/rpc_pubsub.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | certificates | проверено | 1 | storage-bigtable/src/pki-goog-roots.pem: 39 certificates, all self-signed CAs — a root trust store. Their algorithms are inventoried; their expiry and issuance properties describe those CAs, not this project, and are not reported as findings against it |
 | certificates_and_keys | проверено | 1 | storage-bigtable/src/pki-goog-roots.pem: certificates/keys parsed |
 | chain_map | проверено | 4 | storage-proto/proto/confirmed_block.proto: Solana; storage-proto/proto/entries.proto: Solana; storage-proto/proto/transaction_by_addr.proto: Solana |
-| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 62 affected |
+| entropy | проверено | 1 | random-number generation: 1124 code files read with 52 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| osv_advisories | не проверено | 1 | 5 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: aes-gcm-siv, crossbeam-epoch, curve25519-dalek, tokio, tokio-macros |
+| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 59 affected |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
 ## 4. Проверенные и непроверенные активы
 
-- Нет
+- osv_advisories — не проверено: 5 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: aes-gcm-siv, crossbeam-epoch, curve25519-dalek, tokio, tokio-macros
 
 ## 5. Краткое описание архитектуры
 
@@ -67,17 +69,17 @@ Static review of the source tree agave at 7700cb3128c1f19820de67b81aa45d18f73d2a
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **0** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 51.5%
+- Доля квантово-уязвимых элементов инвентаризации: 53.4%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-08030 — openssl 0.10.64 затронут GHSA-8c75-8mhr-p7r9 (CVE-2026-41678)
+### QSI-2026-11545 — openssl 0.10.64 затронут GHSA-8c75-8mhr-p7r9 (CVE-2026-41678)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -105,13 +107,13 @@ _tool_output · [OSV.dev GHSA-8c75-8mhr-p7r9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08031 — openssl 0.10.64 затронут GHSA-ghm9-cr32-g9qj (CVE-2026-41681)
+### QSI-2026-11546 — openssl 0.10.64 затронут GHSA-ghm9-cr32-g9qj (CVE-2026-41681)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -139,13 +141,13 @@ _tool_output · [OSV.dev GHSA-ghm9-cr32-g9qj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08032 — openssl 0.10.64 затронут GHSA-hppc-g8h3-xhp3 (CVE-2026-41898)
+### QSI-2026-11547 — openssl 0.10.64 затронут GHSA-hppc-g8h3-xhp3 (CVE-2026-41898)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -173,13 +175,13 @@ _tool_output · [OSV.dev GHSA-hppc-g8h3-xhp3](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08034 — openssl 0.10.64 затронут GHSA-pqf5-4pqq-29f5 (CVE-2026-41676)
+### QSI-2026-11549 — openssl 0.10.64 затронут GHSA-pqf5-4pqq-29f5 (CVE-2026-41676)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -207,13 +209,13 @@ _tool_output · [OSV.dev GHSA-pqf5-4pqq-29f5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08038 — openssl 0.10.64 затронут GHSA-xp3w-r5p5-63rr (CVE-2026-42327)
+### QSI-2026-11553 — openssl 0.10.64 затронут GHSA-xp3w-r5p5-63rr (CVE-2026-42327)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -241,13 +243,13 @@ _tool_output · [OSV.dev GHSA-xp3w-r5p5-63rr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08042 — quinn-proto 0.10.6 затронут GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185)
+### QSI-2026-11557 — quinn-proto 0.10.6 затронут GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.10.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -275,13 +277,13 @@ _tool_output · [OSV.dev GHSA-4w2j-m93h-cj5j](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08043 — quinn-proto 0.10.6 затронут GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037)
+### QSI-2026-11558 — quinn-proto 0.10.6 затронут GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.10.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -309,13 +311,13 @@ _tool_output · [OSV.dev GHSA-6xvm-j4wr-6v98](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08068 — tar 0.4.40 затронут GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068)
+### QSI-2026-11583 — tar 0.4.40 затронут GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/tar@0.4.40`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 50.2 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N`)
 
@@ -343,13 +345,13 @@ _tool_output · [OSV.dev GHSA-gchp-q4r4-x4ff](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08059 — rustls-webpki 0.101.7 затронут GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104)
+### QSI-2026-11574 — rustls-webpki 0.101.7 затронут GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -377,13 +379,13 @@ _tool_output · [OSV.dev GHSA-82j2-j2ch-gfr8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08088 — semver 6.3.0 затронут GHSA-c2qf-rxjj-qqgw (CVE-2022-25883)
+### QSI-2026-11601 — semver 6.3.0 затронут GHSA-c2qf-rxjj-qqgw (CVE-2022-25883)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/semver@6.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -411,13 +413,13 @@ _tool_output · [OSV.dev GHSA-c2qf-rxjj-qqgw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08090 — @babel/plugin-transform-modules-systemjs 7.19.6 затронут GHSA-fv7c-fp4j-7gwp (CVE-2026-44728)
+### QSI-2026-11603 — @babel/plugin-transform-modules-systemjs 7.19.6 затронут GHSA-fv7c-fp4j-7gwp (CVE-2026-44728)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@babel/plugin-transform-modules-systemjs@7.19.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.2 (`CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H`)
 
@@ -445,13 +447,13 @@ _tool_output · [OSV.dev GHSA-fv7c-fp4j-7gwp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08093 — js-yaml 3.14.1 затронут GHSA-2883-xcg3-v3hh (CVE-2026-84375)
+### QSI-2026-11606 — js-yaml 3.14.1 затронут GHSA-2883-xcg3-v3hh (CVE-2026-84375)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/js-yaml@3.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -479,13 +481,13 @@ _tool_output · [OSV.dev GHSA-2883-xcg3-v3hh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08094 — js-yaml 3.14.1 затронут GHSA-52cp-r559-cp3m (CVE-2026-59869)
+### QSI-2026-11607 — js-yaml 3.14.1 затронут GHSA-52cp-r559-cp3m (CVE-2026-59869)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/js-yaml@3.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -513,13 +515,13 @@ _tool_output · [OSV.dev GHSA-52cp-r559-cp3m](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08095 — js-yaml 3.14.1 затронут GHSA-5p4m-2wfm-xmqj
+### QSI-2026-11608 — js-yaml 3.14.1 затронут GHSA-5p4m-2wfm-xmqj
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/js-yaml@3.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -547,13 +549,13 @@ _tool_output · [OSV.dev GHSA-5p4m-2wfm-xmqj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08099 — semver 5.7.1 затронут GHSA-c2qf-rxjj-qqgw (CVE-2022-25883)
+### QSI-2026-11612 — semver 5.7.1 затронут GHSA-c2qf-rxjj-qqgw (CVE-2022-25883)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/semver@5.7.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -581,13 +583,13 @@ _tool_output · [OSV.dev GHSA-c2qf-rxjj-qqgw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07997 — Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых
+### QSI-2026-11514 — Подпись транзакций для сетей (1) основана на подписях на эллиптических кривых
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `chain-map`
 - Источник данных: storage-proto/proto/confirmed_block.proto
 - Метод обнаружения: Определения сообщений (.proto) сопоставлены с таблицей схем подписи сетей QSI.
-- Анализатор: chain_map 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: chain_map 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 56.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -633,13 +635,13 @@ package solana.wen_restart_proto;
 
 **Повторная проверка.** Повторить, когда сеть активирует постквантовую схему подписи или кошелёк добавит её поддержку.
 
-### QSI-2026-08007 — borsh 0.9.3 затронут GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033)
+### QSI-2026-11524 — borsh 0.9.3 затронут GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/borsh@0.9.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -667,13 +669,13 @@ _tool_output · [OSV.dev GHSA-fjx5-qpf4-xjf2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08008 — borsh 0.10.3 затронут GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033)
+### QSI-2026-11525 — borsh 0.10.3 затронут GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/borsh@0.10.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -701,13 +703,13 @@ _tool_output · [OSV.dev GHSA-fjx5-qpf4-xjf2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08009 — bytes 1.5.0 затронут GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
+### QSI-2026-11526 — bytes 1.5.0 затронут GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/bytes@1.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -735,13 +737,13 @@ _tool_output · [OSV.dev GHSA-434x-w66g-qw3r](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08010 — crossbeam-channel 0.5.12 затронут GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024)
+### QSI-2026-11527 — crossbeam-channel 0.5.12 затронут GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/crossbeam-channel@0.5.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -769,13 +771,13 @@ _tool_output · [OSV.dev GHSA-pg9f-39pc-qf8g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08014 — ed25519-dalek 1.0.1 затронут GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093)
+### QSI-2026-11529 — ed25519-dalek 1.0.1 затронут GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/ed25519-dalek@1.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N`)
 
@@ -803,13 +805,13 @@ _tool_output · [OSV.dev GHSA-w5vr-6qhr-36cc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08033 — openssl 0.10.64 затронут GHSA-phqj-4mhp-q6mq (CVE-2026-45784)
+### QSI-2026-11548 — openssl 0.10.64 затронут GHSA-phqj-4mhp-q6mq (CVE-2026-45784)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -837,13 +839,13 @@ _tool_output · [OSV.dev GHSA-phqj-4mhp-q6mq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08039 — openssl 0.10.64 затронут GHSA-xv59-967r-8726 (CVE-2026-44662)
+### QSI-2026-11554 — openssl 0.10.64 затронут GHSA-xv59-967r-8726 (CVE-2026-44662)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -871,13 +873,13 @@ _tool_output · [OSV.dev GHSA-xv59-967r-8726](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08054 — rustls 0.21.10 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+### QSI-2026-11569 — rustls 0.21.10 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rustls@0.21.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -905,13 +907,13 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08063 — serde_with 2.3.3 затронут GHSA-7gcf-g7xr-8hxj
+### QSI-2026-11578 — serde_with 2.3.3 затронут GHSA-7gcf-g7xr-8hxj
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/serde_with@2.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -939,13 +941,13 @@ _tool_output · [OSV.dev GHSA-7gcf-g7xr-8hxj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08067 — tar 0.4.40 затронут GHSA-3pv8-6f4r-ffg2
+### QSI-2026-11582 — tar 0.4.40 затронут GHSA-3pv8-6f4r-ffg2
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/tar@0.4.40`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -973,13 +975,13 @@ _tool_output · [OSV.dev GHSA-3pv8-6f4r-ffg2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08069 — tar 0.4.40 затронут GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067)
+### QSI-2026-11584 — tar 0.4.40 затронут GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/tar@0.4.40`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N`)
 
@@ -1007,13 +1009,13 @@ _tool_output · [OSV.dev GHSA-j4xf-2g29-59ph](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07989 — TLS без постквантового обмена ключами: rustls до 0.23 (только ring)
+### QSI-2026-11506 — TLS без постквантового обмена ключами: rustls до 0.23 (только ring)
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `tls-code:rustls-old`
 - Источник данных: Cargo.toml
 - Метод обнаружения: Статическое чтение настроек TLS-библиотек в коде и манифестах: криптопровайдер, списки групп и кривых, GODEBUG.
-- Анализатор: tls_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: tls_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 36.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -1043,13 +1045,13 @@ _file_excerpt · [Cargo.toml](https://github.com/anza-xyz/agave/blob/7700cb3128c
 
 **Повторная проверка.** Подключитесь клиентом, предлагающим X25519MLKEM768 (openssl s_client -groups X25519MLKEM768 с OpenSSL 3.5+ или клиент на Go 1.24+), и проверьте согласованную группу.
 
-### QSI-2026-07992 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))
+### QSI-2026-11509 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: sdk/bpf/c/inc/solana_sdk.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1103,13 +1105,13 @@ _file_excerpt · [sdk/src/feature_set.rs](https://github.com/anza-xyz/agave/blob
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07993 — Квантово-уязвимый BN254 (alt_bn128): подпись транзакций и сообщений (1 файл(ов))
+### QSI-2026-11510 — Квантово-уязвимый BN254 (alt_bn128): подпись транзакций и сообщений (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:BN254 (alt_bn128):transaction_signing`
 - Источник данных: sdk/bpf/c/inc/solana_sdk.h
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1139,17 +1141,17 @@ _file_excerpt · [sdk/bpf/c/inc/solana_sdk.h](https://github.com/anza-xyz/agave/
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07994 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))
+### QSI-2026-11511 — Квантово-уязвимый Ed25519: подпись транзакций и сообщений (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Ed25519:transaction_signing`
 - Источник данных: sdk/src/signer/keypair.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
-20 упоминаний Ed25519 в 1 файл(ах), например sdk/src/signer/keypair.rs:10. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+22 упоминаний Ed25519 в 1 файл(ах), например sdk/src/signer/keypair.rs:10. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -1169,6 +1171,14 @@ _file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/b
    11 |     ed25519_dalek_bip32::Error as Bip32Error,
 ```
 
+_file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/signer/keypair.rs#L11) · line 11 · SHA-256 8b95d3bccfab85672cdf52fd166c48d1a8b5538028248740f428e053494329e2_
+
+```
+   10 |     ed25519_dalek::Signer as DalekSigner,
+   11 |     ed25519_dalek_bip32::Error as Bip32Error,
+   12 |     hmac::Hmac,
+```
+
 _file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/signer/keypair.rs#L25) · line 25 · SHA-256 628e3ed54eb2db72bd4afd7046167a9a13117e9f60ff243f5b3bf1309bb240c5_
 
 ```
@@ -1177,27 +1187,19 @@ _file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/b
    26 | 
 ```
 
-_file_excerpt · [sdk/src/signer/keypair.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/signer/keypair.rs#L36) · line 36 · SHA-256 1c9d963316c581741e1225025050eb7559bf8c0650f0aa1eb93d9c54b9ef5c2a_
-
-```
-   35 |     {
-   36 |         Self(ed25519_dalek::Keypair::generate(csprng))
-   37 |     }
-```
-
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07995 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (25 файл(ов))
+### QSI-2026-11512 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (25 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Pedersen commitment:threshold_mpc`
 - Источник данных: zk-token-sdk/src/encryption/elgamal.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1299,17 +1301,17 @@ _file_excerpt · [zk-token-sdk/src/instruction/batched_range_proof/batched_range
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07990 — Квантово-уязвимый Ed25519: роль не определена (9 файл(ов))
+### QSI-2026-11507 — Квантово-уязвимый Ed25519: роль не определена (16 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Ed25519:general`
 - Источник данных: core/src/cluster_info_vote_listener.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
-23 упоминаний Ed25519 в 9 файл(ах), например core/src/cluster_info_vote_listener.rs:340. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+32 упоминаний Ed25519 в 16 файл(ах), например core/src/cluster_info_vote_listener.rs:340. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -1353,6 +1355,14 @@ _file_excerpt · [core/src/sigverify_stage.rs](https://github.com/anza-xyz/agave
   229 |         batches
 ```
 
+_file_excerpt · [cost-model/src/block_cost_limits.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/cost-model/src/block_cost_limits.rs#L51) · line 51 · SHA-256 f817b834717045ac4975f2990541d86df8b8e14f97b8a24955ccaed4188d4b6b_
+
+```
+   50 |         (secp256k1_program::id(), 0),
+   51 |         (ed25519_program::id(), 0),
+   52 |     ]
+```
+
 _file_excerpt · [entry/src/entry.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/entry/src/entry.rs#L579) · line 579 · SHA-256 d7da3bedbc73dacccf9889c0de997d70f6fd5aa592e17181138c6f2220bdcf4f_
 
 ```
@@ -1393,27 +1403,19 @@ _file_excerpt · [perf/src/perf_libs.rs](https://github.com/anza-xyz/agave/blob/
    46 |         'a,
 ```
 
-_file_excerpt · [perf/src/sigverify.rs](https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/perf/src/sigverify.rs#L518) · line 518 · SHA-256 704b1c78782591afb31cbb43ac4d453207abbc1eddd3b7a494aae17196b533e0_
-
-```
-  517 | 
-  518 | pub fn ed25519_verify_cpu(batches: &mut [PacketBatch], reject_non_vote: bool, packet_count: usize) {
-  519 |     debug!("CPU ECDSA for {}", packet_count);
-```
-
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07991 — Квантово-уязвимый BN254 (alt_bn128): роль не определена (10 файл(ов))
+### QSI-2026-11508 — Квантово-уязвимый BN254 (alt_bn128): роль не определена (10 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:BN254 (alt_bn128):general`
 - Источник данных: programs/bpf_loader/src/syscalls/mod.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1515,13 +1517,13 @@ _file_excerpt · [sdk/program/src/alt_bn128/compression.rs](https://github.com/a
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07996 — Квантово-уязвимый Bulletproofs: роль не определена (2 файл(ов))
+### QSI-2026-11513 — Квантово-уязвимый Bulletproofs: роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Bulletproofs:general`
 - Источник данных: zk-token-sdk/src/range_proof/generators.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -1591,13 +1593,13 @@ _file_excerpt · [zk-token-sdk/src/range_proof/mod.rs](https://github.com/anza-x
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-08015 — h2 0.3.24 затронут GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332)
+### QSI-2026-11530 — h2 0.3.24 затронут GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/h2@0.3.24`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -1625,13 +1627,13 @@ _tool_output · [OSV.dev GHSA-q6cp-qfwq-4gcv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08017 — idna 0.1.5 затронут GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421)
+### QSI-2026-11532 — idna 0.1.5 затронут GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/idna@0.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -1659,13 +1661,13 @@ _tool_output · [OSV.dev GHSA-h97m-ww89-6jmq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08018 — idna 0.5.0 затронут GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421)
+### QSI-2026-11533 — idna 0.5.0 затронут GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/idna@0.5.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -1693,13 +1695,13 @@ _tool_output · [OSV.dev GHSA-h97m-ww89-6jmq](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08049 — ring 0.16.20 затронут GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009)
+### QSI-2026-11564 — ring 0.16.20 затронут GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/ring@0.16.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -1727,13 +1729,13 @@ _tool_output · [OSV.dev GHSA-4p46-pwfr-66x6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08051 — ring 0.17.3 затронут GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009)
+### QSI-2026-11566 — ring 0.17.3 затронут GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/ring@0.17.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -1761,13 +1763,13 @@ _tool_output · [OSV.dev GHSA-4p46-pwfr-66x6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08070 — time 0.3.9 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
+### QSI-2026-11585 — time 0.3.9 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/time@0.3.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -1795,13 +1797,13 @@ _tool_output · [OSV.dev GHSA-r6v5-fh4h-64xc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08089 — @babel/helpers 7.19.4 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
+### QSI-2026-11602 — @babel/helpers 7.19.4 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@babel/helpers@7.19.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1829,13 +1831,13 @@ _tool_output · [OSV.dev GHSA-968p-4wvh-cqc8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08091 — @babel/runtime 7.19.4 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
+### QSI-2026-11604 — @babel/runtime 7.19.4 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@babel/runtime@7.19.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1863,13 +1865,13 @@ _tool_output · [OSV.dev GHSA-968p-4wvh-cqc8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08092 — @babel/runtime-corejs3 7.19.6 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
+### QSI-2026-11605 — @babel/runtime-corejs3 7.19.6 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@babel/runtime-corejs3@7.19.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -1897,13 +1899,13 @@ _tool_output · [OSV.dev GHSA-968p-4wvh-cqc8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08096 — js-yaml 3.14.1 затронут GHSA-h67p-54hq-rp68 (CVE-2026-53550)
+### QSI-2026-11609 — js-yaml 3.14.1 затронут GHSA-h67p-54hq-rp68 (CVE-2026-53550)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/js-yaml@3.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -1931,13 +1933,13 @@ _tool_output · [OSV.dev GHSA-h67p-54hq-rp68](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08097 — js-yaml 3.14.1 затронут GHSA-mh29-5h37-fv8m (CVE-2025-64718)
+### QSI-2026-11610 — js-yaml 3.14.1 затронут GHSA-mh29-5h37-fv8m (CVE-2025-64718)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/js-yaml@3.14.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -1965,13 +1967,13 @@ _tool_output · [OSV.dev GHSA-mh29-5h37-fv8m](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08100 — @sideway/formula 3.0.0 затронут GHSA-c2jc-4fpr-4vhg (CVE-2023-25166)
+### QSI-2026-11613 — @sideway/formula 3.0.0 затронут GHSA-c2jc-4fpr-4vhg (CVE-2023-25166)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@sideway/formula@3.0.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.5 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H`)
 
@@ -1999,13 +2001,13 @@ _tool_output · [OSV.dev GHSA-c2jc-4fpr-4vhg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08002 — atty 0.2.14 затронут GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145)
+### QSI-2026-11519 — atty 0.2.14 затронут GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/atty@0.2.14`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2033,47 +2035,13 @@ _tool_output · [OSV.dev GHSA-g98v-hv3f-hcfr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08012 — curve25519-dalek 3.2.1 затронут GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344)
-
-- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:crates.io/curve25519-dalek@3.2.1`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
-- Балл приоритета: 39.2 / 100
-- CVSS v3.1: 2.9 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
-
-OSV.dev сообщает GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344) для пакета crates.io curve25519-dalek версии 3.2.1: curve25519-dalek has timing variability in `curve25519-dalek`'s `Scalar29::sub`/`Scalar52::sub`. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-x4gp-pqpj-f43q
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-x4gp-pqpj-f43q](https://osv.dev/vulnerability/GHSA-x4gp-pqpj-f43q) · manifest · SHA-256 9c5ba7e4d1d09d2c4281ad759683fef0dfc421b4b4415921e436a1ddb8987906_
-
-```
-{"id": "GHSA-x4gp-pqpj-f43q", "aliases": ["CVE-2024-58262", "RUSTSEC-2024-0344"], "modified": "2026-09-10T03:50:15.886084155Z", "summary": "curve25519-dalek has timing variability in `curve25519-dalek`'s `Scalar29::sub`/`Scalar52::sub`", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (4.1.3).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-08037 — openssl 0.10.64 затронут GHSA-xmgf-hq76-4vx2 (CVE-2026-41677)
+### QSI-2026-11552 — openssl 0.10.64 затронут GHSA-xmgf-hq76-4vx2 (CVE-2026-41677)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2101,13 +2069,13 @@ _tool_output · [OSV.dev GHSA-xmgf-hq76-4vx2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08047 — rand 0.7.3 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-11562 — rand 0.7.3 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rand@0.7.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2135,13 +2103,13 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08048 — rand 0.8.5 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
+### QSI-2026-11563 — rand 0.8.5 затронут GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rand@0.8.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -2169,13 +2137,13 @@ _tool_output · [OSV.dev GHSA-cq8v-f236-94qc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08052 — rpassword 7.3.1 затронут GHSA-2p6r-x3vv-xqm2
+### QSI-2026-11567 — rpassword 7.3.1 затронут GHSA-2p6r-x3vv-xqm2
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rpassword@7.3.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.8 (`CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -2203,13 +2171,13 @@ _tool_output · [OSV.dev GHSA-2p6r-x3vv-xqm2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08055 — rustls 0.21.10 затронут GHSA-h2v8-394m-p7vv
+### QSI-2026-11570 — rustls 0.21.10 затронут GHSA-h2v8-394m-p7vv
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rustls@0.21.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -2237,13 +2205,13 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08056 — rustls 0.21.10 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-11571 — rustls 0.21.10 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rustls@0.21.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 39.2 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -2271,47 +2239,13 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08071 — tokio 1.29.1 затронут GHSA-rr8g-9fpq-6wmg (RUSTSEC-2025-0023)
-
-- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:crates.io/tokio@1.29.1`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
-- Балл приоритета: 39.2 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-rr8g-9fpq-6wmg (RUSTSEC-2025-0023) для пакета crates.io tokio версии 1.29.1: Tokio broadcast channel calls clone in parallel, but does not require `Sync`. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-rr8g-9fpq-6wmg
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-rr8g-9fpq-6wmg](https://osv.dev/vulnerability/GHSA-rr8g-9fpq-6wmg) · manifest · SHA-256 0b8ec087b92f8e517fa86ad41f421dc6d897f5c467346c42b1cc6fb002d1834d_
-
-```
-{"id": "GHSA-rr8g-9fpq-6wmg", "aliases": ["RUSTSEC-2025-0023"], "modified": "2026-09-10T03:50:24.081979053Z", "summary": "Tokio broadcast channel calls clone in parallel, but does not require `Sync`", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U"}], "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (1.38.2, 1.43.1, 1.44.2).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-08060 — rustls-webpki 0.101.7 затронут GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098)
+### QSI-2026-11575 — rustls-webpki 0.101.7 затронут GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -2339,13 +2273,13 @@ _tool_output · [OSV.dev GHSA-965h-392x-2mh5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08061 — rustls-webpki 0.101.7 затронут GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099)
+### QSI-2026-11576 — rustls-webpki 0.101.7 затронут GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 2.2 (`CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N`)
 
@@ -2373,13 +2307,13 @@ _tool_output · [OSV.dev GHSA-xgp8-3hg3-c2mh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08073 — tracing-subscriber 0.3.7 затронут GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
+### QSI-2026-11586 — tracing-subscriber 0.3.7 затронут GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/tracing-subscriber@0.3.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -2407,13 +2341,13 @@ _tool_output · [OSV.dev GHSA-xwfj-jgwm-7wp5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08087 — @babel/core 7.19.6 затронут GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356)
+### QSI-2026-11600 — @babel/core 7.19.6 затронут GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@babel/core@7.19.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.2 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -2441,13 +2375,13 @@ _tool_output · [OSV.dev GHSA-4x5r-pxfx-6jf8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08098 — @babel/core 7.12.9 затронут GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356)
+### QSI-2026-11611 — @babel/core 7.12.9 затронут GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@babel/core@7.12.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.2 (`CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N`)
 
@@ -2475,13 +2409,13 @@ _tool_output · [OSV.dev GHSA-4x5r-pxfx-6jf8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08022 — keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
+### QSI-2026-11537 — keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/keccak@0.1.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 25.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -2509,47 +2443,13 @@ _tool_output · [OSV.dev GHSA-3288-p39f-rqpv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08011 — crossbeam-epoch 0.9.5 затронут RUSTSEC-2026-0204 (без оценки серьёзности)
-
-- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `dependency:crates.io/crossbeam-epoch@0.9.5`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
-- Балл приоритета: 20.3 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.5: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0204
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0204](https://osv.dev/vulnerability/RUSTSEC-2026-0204) · manifest · SHA-256 87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95_
-
-```
-{"id": "RUSTSEC-2026-0204", "aliases": [], "modified": "2026-07-06T22:30:04.159269138Z", "summary": "Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid", "severity": null, "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (0.9.20).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-08016 — h2 0.3.24 затронут RUSTSEC-2026-0258 (без оценки серьёзности)
+### QSI-2026-11531 — h2 0.3.24 затронут RUSTSEC-2026-0258 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/h2@0.3.24`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2577,13 +2477,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0258](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08019 — im 15.1.0 затронут RUSTSEC-2023-0126 (без оценки серьёзности)
+### QSI-2026-11534 — im 15.1.0 затронут RUSTSEC-2023-0126 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/im@15.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2611,13 +2511,13 @@ _tool_output · [OSV.dev RUSTSEC-2023-0126](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08024 — libz-sys 1.1.3 затронут RUSTSEC-2026-0418 (без оценки серьёзности)
+### QSI-2026-11539 — libz-sys 1.1.3 затронут RUSTSEC-2026-0418 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/libz-sys@1.1.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2645,13 +2545,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0418](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08025 — lru 0.7.8 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
+### QSI-2026-11540 — lru 0.7.8 затронут RUSTSEC-2026-0253 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/lru@0.7.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2679,13 +2579,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0253](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08044 — quinn-proto 0.10.6 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
+### QSI-2026-11559 — quinn-proto 0.10.6 затронут RUSTSEC-2026-0338 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.10.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2713,13 +2613,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0338](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08045 — quinn-proto 0.10.6 затронут RUSTSEC-2026-0339 (без оценки серьёзности)
+### QSI-2026-11560 — quinn-proto 0.10.6 затронут RUSTSEC-2026-0339 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.10.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2747,13 +2647,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0339](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08046 — quinn-proto 0.10.6 затронут RUSTSEC-2026-0342 (без оценки серьёзности)
+### QSI-2026-11561 — quinn-proto 0.10.6 затронут RUSTSEC-2026-0342 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/quinn-proto@0.10.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2781,13 +2681,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0342](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08062 — rustls-webpki 0.101.7 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-11577 — rustls-webpki 0.101.7 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.101.7`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2815,13 +2715,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08065 — sized-chunks 0.6.5 затронут RUSTSEC-2026-0255 (без оценки серьёзности)
+### QSI-2026-11580 — sized-chunks 0.6.5 затронут RUSTSEC-2026-0255 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/sized-chunks@0.6.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2849,13 +2749,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0255](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08066 — solana_rbpf 0.8.0 затронут RUSTSEC-2026-0191 (без оценки серьёзности)
+### QSI-2026-11581 — solana_rbpf 0.8.0 затронут RUSTSEC-2026-0191 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/solana_rbpf@0.8.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2883,13 +2783,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0191](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08075 — webpki-roots 0.24.0 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-11588 — webpki-roots 0.24.0 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-roots@0.24.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2917,13 +2817,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08076 — webpki-roots 0.25.2 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-11589 — webpki-roots 0.25.2 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-roots@0.25.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2951,13 +2851,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08078 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
+### QSI-2026-11591 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0395 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -2973,25 +2873,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0395
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSEC-2026-0395) · manifest · SHA-256 cf314e3df3f714ad17083f648e4d6822839805759c13c152cf2b2edcfbba9cdb_
+_tool_output · [OSV.dev RUSTSEC-2026-0395](https://osv.dev/vulnerability/RUSTSEC-2026-0395) · manifest · SHA-256 728850176f43ecf2b9c562524c791d0da3abc31547980bb333caeadf51eb3ce4_
 
 ```
-{"id": "RUSTSEC-2026-0395", "aliases": [], "modified": "2026-10-26T14:00:06.388344282Z", "summary": "Use-after-free with `CParameter::StableInBuffer`", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0395", "aliases": [], "modified": "2026-11-02T09:30:03.420559993Z", "summary": "Use-after-free with `CParameter::StableInBuffer`", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08079 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
+### QSI-2026-11592 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0397 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3007,25 +2907,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0397
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSEC-2026-0397) · manifest · SHA-256 e1cc2d6a8e69a560eb15d719dcb988b36e18b940b8913145ec52a73efd0b9fcc_
+_tool_output · [OSV.dev RUSTSEC-2026-0397](https://osv.dev/vulnerability/RUSTSEC-2026-0397) · manifest · SHA-256 4ad3bc187fa64e24d070e53c5d01373b2aba040ea27757bbf26f8efea74c0967_
 
 ```
-{"id": "RUSTSEC-2026-0397", "aliases": [], "modified": "2026-10-26T14:00:05.089587004Z", "summary": "`OutBuffer::around_pos` exposes uninitialized memory", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0397", "aliases": [], "modified": "2026-11-02T09:30:03.445177143Z", "summary": "`OutBuffer::around_pos` exposes uninitialized memory", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08080 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
+### QSI-2026-11593 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0399 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3041,25 +2941,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0399
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSEC-2026-0399) · manifest · SHA-256 dde7c9d1fcd35a89a4e462b7b42373ae75187190ebfffa3876d9e2bba20e386a_
+_tool_output · [OSV.dev RUSTSEC-2026-0399](https://osv.dev/vulnerability/RUSTSEC-2026-0399) · manifest · SHA-256 58cd19f1b734988f6219b3659cd613c349a5c6693e08cb4e8b9846d1f92bb38f_
 
 ```
-{"id": "RUSTSEC-2026-0399", "aliases": [], "modified": "2026-10-26T14:00:05.792431051Z", "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0399", "aliases": [], "modified": "2026-11-02T09:30:03.328955732Z", "summary": "Use-after-free through `init_using_cdict` and `init_using_ddict`", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08081 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
+### QSI-2026-11594 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0400 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3075,25 +2975,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0400
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSEC-2026-0400) · manifest · SHA-256 12a31cd97694259b60fd13de0204d4257a30facebdbf5eb19bc091d2b54c85f6_
+_tool_output · [OSV.dev RUSTSEC-2026-0400](https://osv.dev/vulnerability/RUSTSEC-2026-0400) · manifest · SHA-256 00f83f7c4931137d6b18e25256c039f2c52bd627946f5f05f74c2cc7b2615d30_
 
 ```
-{"id": "RUSTSEC-2026-0400", "aliases": [], "modified": "2026-10-26T14:00:05.692077560Z", "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0400", "aliases": [], "modified": "2026-11-02T09:30:03.428341570Z", "summary": "Use-after-free of a dictionary after a one-shot call on a context with an open stream", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08082 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
+### QSI-2026-11595 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0401 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3109,25 +3009,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0401
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSEC-2026-0401) · manifest · SHA-256 8f606743a027e187f8815975be52f1a4018a22a8d8cacc5d66407f974573c3a0_
+_tool_output · [OSV.dev RUSTSEC-2026-0401](https://osv.dev/vulnerability/RUSTSEC-2026-0401) · manifest · SHA-256 dd6e9bd27e75cf4c8d9a5333bbc4dda81ef2f2990271b711f964d6bc829e71fd_
 
 ```
-{"id": "RUSTSEC-2026-0401", "aliases": [], "modified": "2026-10-26T14:00:04.231502512Z", "summary": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0401", "aliases": [], "modified": "2026-11-02T09:30:03.353698025Z", "summary": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08083 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
+### QSI-2026-11596 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0402 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3143,25 +3043,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0402
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSEC-2026-0402) · manifest · SHA-256 1659ee65665b5ae755a87f2715370efa327fc3064514c61888dd4fa3a3f32642_
+_tool_output · [OSV.dev RUSTSEC-2026-0402](https://osv.dev/vulnerability/RUSTSEC-2026-0402) · manifest · SHA-256 464c8c61aa6d0a29b646ba665145c6d256c18786ece14e1921252cecf4a4e54e_
 
 ```
-{"id": "RUSTSEC-2026-0402", "aliases": [], "modified": "2026-10-26T14:00:05.685817733Z", "summary": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0402", "aliases": [], "modified": "2026-11-02T09:30:04.162155944Z", "summary": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08084 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
+### QSI-2026-11597 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0403 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3177,25 +3077,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0403
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSEC-2026-0403) · manifest · SHA-256 b1d1701270f636af5d21f2b55cbd122bcd0df90ce4dce6793aa9263b377caddb_
+_tool_output · [OSV.dev RUSTSEC-2026-0403](https://osv.dev/vulnerability/RUSTSEC-2026-0403) · manifest · SHA-256 09699f0d23ac15a18937ce02a1b778a246ec661449852b62d6415d8d60ed2147_
 
 ```
-{"id": "RUSTSEC-2026-0403", "aliases": [], "modified": "2026-10-26T14:00:05.787441176Z", "summary": "Uninitialized memory exposed when streaming decompression of a legacy frame fails", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0403", "aliases": [], "modified": "2026-11-02T09:30:04.136442771Z", "summary": "Uninitialized memory exposed when streaming decompression of a legacy frame fails", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08085 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
+### QSI-2026-11598 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0404 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3211,25 +3111,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0404
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSEC-2026-0404) · manifest · SHA-256 7c25f3932e55150f3788cd8fcee7738d3c905758f825a562b19f78d7e041b0b2_
+_tool_output · [OSV.dev RUSTSEC-2026-0404](https://osv.dev/vulnerability/RUSTSEC-2026-0404) · manifest · SHA-256 e265647b9f2c582eebfcac7889bee04fada79ea833147205829d693f4c6f8131_
 
 ```
-{"id": "RUSTSEC-2026-0404", "aliases": [], "modified": "2026-10-26T14:00:05.092817237Z", "summary": "Double free in `DCtx::try_clone`", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0404", "aliases": [], "modified": "2026-11-02T09:30:04.168804805Z", "summary": "Double free in `DCtx::try_clone`", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08086 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
+### QSI-2026-11599 — zstd-safe 5.0.1+zstd.1.5.2 затронут RUSTSEC-2026-0406 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/zstd-safe@5.0.1+zstd.1.5.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 20.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3245,25 +3145,25 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0406
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSEC-2026-0406) · manifest · SHA-256 deca0b7103bdc0c3ed051bcdb0dbd3d63e215fecdbdba6a7f24f9fb8c2e93ecd_
+_tool_output · [OSV.dev RUSTSEC-2026-0406](https://osv.dev/vulnerability/RUSTSEC-2026-0406) · manifest · SHA-256 f08bb0f8849019aa21c995ae08e9c10ff924c83b0464e87d3143ab07935008f5_
 
 ```
-{"id": "RUSTSEC-2026-0406", "aliases": [], "modified": "2026-10-26T14:00:05.095427051Z", "summary": "Use-after-free when changing a multithreaded context with an unfinished frame", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0406", "aliases": [], "modified": "2026-11-02T09:30:03.591194710Z", "summary": "Use-after-free when changing a multithreaded context with an unfinished frame", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (8.2.0).
+**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (7.4.0, 8.2.0).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08029 — openssl 0.10.64 затронут GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022)
+### QSI-2026-11544 — openssl 0.10.64 затронут GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -3291,13 +3191,13 @@ _tool_output · [OSV.dev GHSA-4fcv-w3qc-ppgg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08035 — openssl 0.10.64 затронут GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357)
+### QSI-2026-11550 — openssl 0.10.64 затронут GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L`)
 
@@ -3325,13 +3225,13 @@ _tool_output · [OSV.dev GHSA-q445-7m23-qrmw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08036 — openssl 0.10.64 затронут GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004)
+### QSI-2026-11551 — openssl 0.10.64 затронут GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/openssl@0.10.64`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: неприменимо
 
@@ -3359,13 +3259,13 @@ _tool_output · [OSV.dev GHSA-rpmj-rpgj-qmpm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08053 — rustls 0.21.10 затронут GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336)
+### QSI-2026-11568 — rustls 0.21.10 затронут GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls@0.21.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 29.9 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
@@ -3393,13 +3293,13 @@ _tool_output · [OSV.dev GHSA-6g7w-8wpp-frhj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08003 — atty 0.2.14: информационный бюллетень RUSTSEC-2024-0375 (unmaintained)
+### QSI-2026-11520 — atty 0.2.14: информационный бюллетень RUSTSEC-2024-0375 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/atty@0.2.14`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3427,13 +3327,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0375](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08004 — backoff 0.4.0: информационный бюллетень RUSTSEC-2025-0012 (unmaintained)
+### QSI-2026-11521 — backoff 0.4.0: информационный бюллетень RUSTSEC-2025-0012 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/backoff@0.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3461,13 +3361,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0012](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08005 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-11522 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/bincode@1.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3495,13 +3395,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08013 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
+### QSI-2026-11528 — derivative 2.2.0: информационный бюллетень RUSTSEC-2024-0388 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/derivative@2.2.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3529,13 +3429,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0388](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08020 — im 15.1.0: информационный бюллетень RUSTSEC-2026-0248 (unmaintained)
+### QSI-2026-11535 — im 15.1.0: информационный бюллетень RUSTSEC-2026-0248 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/im@15.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3563,13 +3463,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0248](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08023 — libsecp256k1 0.6.0: информационный бюллетень RUSTSEC-2025-0161 (unmaintained)
+### QSI-2026-11538 — libsecp256k1 0.6.0: информационный бюллетень RUSTSEC-2025-0161 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/libsecp256k1@0.6.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3597,13 +3497,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0161](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08027 — net2 0.2.37: информационный бюллетень RUSTSEC-2020-0016 (unmaintained)
+### QSI-2026-11542 — net2 0.2.37: информационный бюллетень RUSTSEC-2020-0016 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `dependency:crates.io/net2@0.2.37`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 19.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3631,13 +3531,13 @@ _tool_output · [OSV.dev RUSTSEC-2020-0016](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08001 — anyhow 1.0.80 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
+### QSI-2026-11518 — anyhow 1.0.80 затронут RUSTSEC-2026-0190 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/anyhow@1.0.80`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3665,13 +3565,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0190](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08026 — memmap2 0.5.10 затронут RUSTSEC-2026-0186 (без оценки серьёзности)
+### QSI-2026-11541 — memmap2 0.5.10 затронут RUSTSEC-2026-0186 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/memmap2@0.5.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3699,47 +3599,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0186](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08072 — tokio 1.29.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
-
-- Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `dependency:crates.io/tokio@1.29.1`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
-- Балл приоритета: 17.8 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.29.1: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Ни одна из затронутых функций (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest) не упоминается в проверенном коде: бюллетень не применим, если они не вызываются косвенно (через трейты, макросы, другие зависимости).
-
-**Возможные последствия.** Неизвестно без разбора: прочитайте бюллетень и проверьте, достижим ли затронутый код в вашей сборке.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0386
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSEC-2026-0386) · manifest · SHA-256 1ebb594fd9923dc03209b41738d3f9cf8f324941e8844709473c643cd247e8b6_
-
-```
-{"id": "RUSTSEC-2026-0386", "aliases": [], "modified": "2026-10-23T14:45:03.847864944Z", "summary": "`AsyncFd::new` and related constructors violate I/O safety", "severity": null, "declared_in_manifest": true}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Разберите бюллетень; если он применим, обновите до исправленной версии (1.51.6, 1.53.3).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-07998 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-11515 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -3767,13 +3633,13 @@ Crypto libraries: curve25519-dalek, ed25519-dalek, node-forge, openssl, ring, ru
 
 **Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-07999 — adler 1.0.2: информационный бюллетень RUSTSEC-2025-0056 (unmaintained)
+### QSI-2026-11516 — adler 1.0.2: информационный бюллетень RUSTSEC-2025-0056 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/adler@1.0.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3801,13 +3667,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0056](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08000 — ansi_term 0.11.0: информационный бюллетень RUSTSEC-2021-0139 (unmaintained)
+### QSI-2026-11517 — ansi_term 0.11.0: информационный бюллетень RUSTSEC-2021-0139 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/ansi_term@0.11.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3835,13 +3701,13 @@ _tool_output · [OSV.dev RUSTSEC-2021-0139](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08006 — bitmaps 2.1.0: информационный бюллетень RUSTSEC-2026-0247 (unmaintained)
+### QSI-2026-11523 — bitmaps 2.1.0: информационный бюллетень RUSTSEC-2026-0247 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/bitmaps@2.1.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3869,13 +3735,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0247](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08021 — instant 0.1.12: информационный бюллетень RUSTSEC-2024-0384 (unmaintained)
+### QSI-2026-11536 — instant 0.1.12: информационный бюллетень RUSTSEC-2024-0384 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/instant@0.1.12`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3903,13 +3769,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0384](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08028 — number_prefix 0.4.0: информационный бюллетень RUSTSEC-2025-0119 (unmaintained)
+### QSI-2026-11543 — number_prefix 0.4.0: информационный бюллетень RUSTSEC-2025-0119 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/number_prefix@0.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3937,13 +3803,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0119](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08040 — paste 1.0.9: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
+### QSI-2026-11555 — paste 1.0.9: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/paste@1.0.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -3971,13 +3837,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0436](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08041 — proc-macro-error 1.0.4: информационный бюллетень RUSTSEC-2024-0370 (unmaintained)
+### QSI-2026-11556 — proc-macro-error 1.0.4: информационный бюллетень RUSTSEC-2024-0370 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/proc-macro-error@1.0.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -4005,13 +3871,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0370](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08050 — ring 0.16.20: информационный бюллетень RUSTSEC-2025-0010 (unmaintained)
+### QSI-2026-11565 — ring 0.16.20: информационный бюллетень RUSTSEC-2025-0010 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/ring@0.16.20`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -4039,13 +3905,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0010](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08057 — rustls-pemfile 0.2.1: информационный бюллетень RUSTSEC-2025-0134 (unmaintained)
+### QSI-2026-11572 — rustls-pemfile 0.2.1: информационный бюллетень RUSTSEC-2025-0134 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-pemfile@0.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -4073,13 +3939,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0134](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08058 — rustls-pemfile 1.0.0: информационный бюллетень RUSTSEC-2025-0134 (unmaintained)
+### QSI-2026-11573 — rustls-pemfile 1.0.0: информационный бюллетень RUSTSEC-2025-0134 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/rustls-pemfile@1.0.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -4107,13 +3973,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0134](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08064 — sized-chunks 0.6.5: информационный бюллетень RUSTSEC-2026-0251 (unmaintained)
+### QSI-2026-11579 — sized-chunks 0.6.5: информационный бюллетень RUSTSEC-2026-0251 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/sized-chunks@0.6.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -4141,13 +4007,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0251](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08074 — unsafe-libyaml 0.2.10: информационный бюллетень RUSTSEC-2024-0449 (unmaintained)
+### QSI-2026-11587 — unsafe-libyaml 0.2.10: информационный бюллетень RUSTSEC-2024-0449 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/unsafe-libyaml@0.2.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -4175,13 +4041,13 @@ _tool_output · [OSV.dev RUSTSEC-2024-0449](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-08077 — yaml-rust 0.4.5: информационный бюллетень RUSTSEC-2024-0320 (unmaintained)
+### QSI-2026-11590 — yaml-rust 0.4.5: информационный бюллетень RUSTSEC-2024-0320 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/yaml-rust@0.4.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:21 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -4234,6 +4100,7 @@ _Допущения планирования: x для обмена ключам
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
 - Только классика — обмен ключами в канале (TLS, Noise, рукопожатия): TLS (classical groups) (1 файл(ов))
+- Только классика — пороговая подпись и протоколы MPC: Pedersen commitment (25 файл(ов))
 
 **Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -4243,10 +4110,10 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **обмен ключами в канале (TLS, Noise, рукопожатия)** | TLS ECDHE (1) | QSI-2026-07989 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
-| **пороговая подпись и протоколы MPC** | Pedersen commitment (25) | QSI-2026-07995 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
-| **подпись транзакций и сообщений** | Ed25519 (5), ECDSA (3), BN254 (alt_bn128) (1) | QSI-2026-07992, QSI-2026-07993, QSI-2026-07994, QSI-2026-07997 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | BN254 (alt_bn128) (10), Ed25519 (9), Bulletproofs (2) | QSI-2026-07990, QSI-2026-07991, QSI-2026-07996 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **обмен ключами в канале (TLS, Noise, рукопожатия)** | TLS ECDHE (1) | QSI-2026-11506 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
+| **пороговая подпись и протоколы MPC** | Pedersen commitment (25) | QSI-2026-11512 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **подпись транзакций и сообщений** | Ed25519 (5), ECDSA (3), BN254 (alt_bn128) (1) | QSI-2026-11509, QSI-2026-11510, QSI-2026-11511, QSI-2026-11514 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | Ed25519 (16), BN254 (alt_bn128) (10), Bulletproofs (2) | QSI-2026-11507, QSI-2026-11508, QSI-2026-11513 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -4257,7 +4124,7 @@ _Роль определяется по путям файлов, именам ф
 |---|---|---|---|---|
 | Алгоритм Шора — факторизация | взламывает | Q1 | RSA (29) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
 | Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | BN254 (alt_bn128) (15), ElGamal (4) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BN254 (alt_bn128) (15), Bulletproofs (2), ECDSA (13), Ed25519 (15), Pedersen commitment (25) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | BN254 (alt_bn128) (15), Bulletproofs (2), ECDSA (13), Ed25519 (23), Pedersen commitment (25) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE3 (5), HMAC (1), Keccak-256 (3), Poseidon (11), SHA-1 (15), SHA-2 (27), SHA-3 (3), SHAKE (1) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | BLAKE3 (5), Keccak-256 (3), Poseidon (11), SHA-1 (15), SHA-2 (27), SHA-3 (3), SHAKE (1) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -4268,6 +4135,7 @@ _Действие: взламывает — алгоритм нужно заме
 
 - Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 - z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
+- osv_advisories: 5 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: aes-gcm-siv, crossbeam-epoch, curve25519-dalek, tokio, tokio-macros
 
 ## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
@@ -4275,147 +4143,143 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-08030 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8c75-8mhr-p7r9 (CVE-2026-41678). |
-| P2 | QSI-2026-08031 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ghm9-cr32-g9qj (CVE-2026-41681). |
-| P2 | QSI-2026-08032 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hppc-g8h3-xhp3 (CVE-2026-41898). |
-| P2 | QSI-2026-08034 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pqf5-4pqq-29f5 (CVE-2026-41676). |
-| P2 | QSI-2026-08038 | Обновите openssl до исправленной версии (0.10.79). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xp3w-r5p5-63rr (CVE-2026-42327). |
-| P2 | QSI-2026-08042 | Обновите quinn-proto до исправленной версии (0.11.15). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185). |
-| P2 | QSI-2026-08043 | Обновите quinn-proto до исправленной версии (0.11.14). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037). |
-| P2 | QSI-2026-08068 | Обновите tar до исправленной версии (0.4.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068). |
-| P2 | QSI-2026-08059 | Обновите rustls-webpki до исправленной версии (0.103.13, 0.104.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104). |
-| P2 | QSI-2026-08088 | Обновите semver до исправленной версии (5.7.2, 6.3.1, 7.5.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2qf-rxjj-qqgw (CVE-2022-25883). |
-| P2 | QSI-2026-08090 | Обновите @babel/plugin-transform-modules-systemjs до исправленной версии (7.29.4, 8.0.0-alpha.13). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fv7c-fp4j-7gwp (CVE-2026-44728). |
-| P2 | QSI-2026-08093 | Обновите js-yaml до исправленной версии (3.15.2, 4.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2883-xcg3-v3hh (CVE-2026-84375). |
-| P2 | QSI-2026-08094 | Обновите js-yaml до исправленной версии (3.15.0, 4.3.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-52cp-r559-cp3m (CVE-2026-59869). |
-| P2 | QSI-2026-08095 | Обновите js-yaml до исправленной версии (3.15.1, 4.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5p4m-2wfm-xmqj. |
-| P2 | QSI-2026-08099 | Обновите semver до исправленной версии (5.7.2, 6.3.1, 7.5.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2qf-rxjj-qqgw (CVE-2022-25883). |
-| P2 | QSI-2026-08007 | Обновите borsh до исправленной версии (1.0.0-alpha.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033). |
-| P2 | QSI-2026-08008 | Обновите borsh до исправленной версии (1.0.0-alpha.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033). |
-| P2 | QSI-2026-08009 | Обновите bytes до исправленной версии (1.11.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
-| P2 | QSI-2026-08010 | Обновите crossbeam-channel до исправленной версии (0.5.15). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024). |
-| P2 | QSI-2026-08014 | Обновите ed25519-dalek до исправленной версии (2.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093). |
-| P2 | QSI-2026-08033 | Обновите openssl до исправленной версии (0.10.80). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-phqj-4mhp-q6mq (CVE-2026-45784). |
-| P2 | QSI-2026-08039 | Обновите openssl до исправленной версии (0.10.79). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xv59-967r-8726 (CVE-2026-44662). |
-| P2 | QSI-2026-08054 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-08063 | Обновите serde_with до исправленной версии (3.21.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj. |
-| P2 | QSI-2026-08067 | Обновите tar до исправленной версии (0.4.46). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3pv8-6f4r-ffg2. |
-| P2 | QSI-2026-08069 | Обновите tar до исправленной версии (0.4.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067). |
-| P2 | QSI-2026-08015 | Обновите h2 до исправленной версии (0.3.26, 0.4.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332). |
-| P2 | QSI-2026-08017 | Обновите idna до исправленной версии (1.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421). |
-| P2 | QSI-2026-08018 | Обновите idna до исправленной версии (1.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421). |
-| P2 | QSI-2026-08049 | Обновите ring до исправленной версии (0.17.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009). |
-| P2 | QSI-2026-08051 | Обновите ring до исправленной версии (0.17.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009). |
-| P2 | QSI-2026-08070 | Обновите time до исправленной версии (0.3.47). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
-| P2 | QSI-2026-08089 | Обновите @babel/helpers до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
-| P2 | QSI-2026-08091 | Обновите @babel/runtime до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
-| P2 | QSI-2026-08092 | Обновите @babel/runtime-corejs3 до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
-| P2 | QSI-2026-08096 | Обновите js-yaml до исправленной версии (3.15.0, 4.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h67p-54hq-rp68 (CVE-2026-53550). |
-| P2 | QSI-2026-08097 | Обновите js-yaml до исправленной версии (3.14.2, 4.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mh29-5h37-fv8m (CVE-2025-64718). |
-| P2 | QSI-2026-08100 | Обновите @sideway/formula до исправленной версии (3.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2jc-4fpr-4vhg (CVE-2023-25166). |
-| P2 | QSI-2026-08002 | Обновите atty до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145). |
-| P2 | QSI-2026-08012 | Обновите curve25519-dalek до исправленной версии (4.1.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-x4gp-pqpj-f43q (CVE-2024-58262, RUSTSEC-2024-0344). |
-| P2 | QSI-2026-08037 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmgf-hq76-4vx2 (CVE-2026-41677). |
-| P2 | QSI-2026-08047 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-08048 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
-| P2 | QSI-2026-08052 | Обновите rpassword до исправленной версии (7.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2p6r-x3vv-xqm2. |
-| P2 | QSI-2026-08055 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv. |
-| P2 | QSI-2026-08056 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-08071 | Обновите tokio до исправленной версии (1.38.2, 1.43.1, 1.44.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rr8g-9fpq-6wmg (RUSTSEC-2025-0023). |
-| P2 | QSI-2026-08060 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098). |
-| P2 | QSI-2026-08061 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099). |
-| P2 | QSI-2026-08073 | Обновите tracing-subscriber до исправленной версии (0.3.20). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
-| P2 | QSI-2026-08087 | Обновите @babel/core до исправленной версии (7.29.6, 8.0.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356). |
-| P2 | QSI-2026-08098 | Обновите @babel/core до исправленной версии (7.29.6, 8.0.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356). |
-| P2 | QSI-2026-08022 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
-| P2 | QSI-2026-08029 | Обновите openssl до исправленной версии (0.10.72). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022). |
-| P2 | QSI-2026-08035 | Обновите openssl до исправленной версии (0.10.66). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357). |
-| P2 | QSI-2026-08036 | Обновите openssl до исправленной версии (0.10.70). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004). |
-| P2 | QSI-2026-08053 | Обновите rustls до исправленной версии (0.21.11, 0.22.4, 0.23.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336). |
+| P2 | QSI-2026-11545 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-8c75-8mhr-p7r9 (CVE-2026-41678). |
+| P2 | QSI-2026-11546 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-ghm9-cr32-g9qj (CVE-2026-41681). |
+| P2 | QSI-2026-11547 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hppc-g8h3-xhp3 (CVE-2026-41898). |
+| P2 | QSI-2026-11549 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pqf5-4pqq-29f5 (CVE-2026-41676). |
+| P2 | QSI-2026-11553 | Обновите openssl до исправленной версии (0.10.79). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xp3w-r5p5-63rr (CVE-2026-42327). |
+| P2 | QSI-2026-11557 | Обновите quinn-proto до исправленной версии (0.11.15). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4w2j-m93h-cj5j (CVE-2026-25800, RUSTSEC-2026-0185). |
+| P2 | QSI-2026-11558 | Обновите quinn-proto до исправленной версии (0.11.14). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6xvm-j4wr-6v98 (CVE-2026-31812, RUSTSEC-2026-0037). |
+| P2 | QSI-2026-11583 | Обновите tar до исправленной версии (0.4.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gchp-q4r4-x4ff (CVE-2026-33055, RUSTSEC-2026-0068). |
+| P2 | QSI-2026-11574 | Обновите rustls-webpki до исправленной версии (0.103.13, 0.104.0-alpha.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104). |
+| P2 | QSI-2026-11601 | Обновите semver до исправленной версии (5.7.2, 6.3.1, 7.5.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2qf-rxjj-qqgw (CVE-2022-25883). |
+| P2 | QSI-2026-11603 | Обновите @babel/plugin-transform-modules-systemjs до исправленной версии (7.29.4, 8.0.0-alpha.13). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fv7c-fp4j-7gwp (CVE-2026-44728). |
+| P2 | QSI-2026-11606 | Обновите js-yaml до исправленной версии (3.15.2, 4.3.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2883-xcg3-v3hh (CVE-2026-84375). |
+| P2 | QSI-2026-11607 | Обновите js-yaml до исправленной версии (3.15.0, 4.3.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-52cp-r559-cp3m (CVE-2026-59869). |
+| P2 | QSI-2026-11608 | Обновите js-yaml до исправленной версии (3.15.1, 4.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5p4m-2wfm-xmqj. |
+| P2 | QSI-2026-11612 | Обновите semver до исправленной версии (5.7.2, 6.3.1, 7.5.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2qf-rxjj-qqgw (CVE-2022-25883). |
+| P2 | QSI-2026-11524 | Обновите borsh до исправленной версии (1.0.0-alpha.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033). |
+| P2 | QSI-2026-11525 | Обновите borsh до исправленной версии (1.0.0-alpha.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fjx5-qpf4-xjf2 (RUSTSEC-2023-0033). |
+| P2 | QSI-2026-11526 | Обновите bytes до исправленной версии (1.11.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-434x-w66g-qw3r (CVE-2026-25541, RUSTSEC-2026-0007). |
+| P2 | QSI-2026-11527 | Обновите crossbeam-channel до исправленной версии (0.5.15). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-pg9f-39pc-qf8g (CVE-2025-4574, RUSTSEC-2025-0024). |
+| P2 | QSI-2026-11529 | Обновите ed25519-dalek до исправленной версии (2.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w5vr-6qhr-36cc (CVE-2022-50237, RUSTSEC-2022-0093). |
+| P2 | QSI-2026-11548 | Обновите openssl до исправленной версии (0.10.80). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-phqj-4mhp-q6mq (CVE-2026-45784). |
+| P2 | QSI-2026-11554 | Обновите openssl до исправленной версии (0.10.79). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xv59-967r-8726 (CVE-2026-44662). |
+| P2 | QSI-2026-11569 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-11578 | Обновите serde_with до исправленной версии (3.21.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj. |
+| P2 | QSI-2026-11582 | Обновите tar до исправленной версии (0.4.46). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3pv8-6f4r-ffg2. |
+| P2 | QSI-2026-11584 | Обновите tar до исправленной версии (0.4.45). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j4xf-2g29-59ph (CVE-2026-33056, RUSTSEC-2026-0067). |
+| P2 | QSI-2026-11530 | Обновите h2 до исправленной версии (0.3.26, 0.4.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q6cp-qfwq-4gcv (RUSTSEC-2024-0332). |
+| P2 | QSI-2026-11532 | Обновите idna до исправленной версии (1.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421). |
+| P2 | QSI-2026-11533 | Обновите idna до исправленной версии (1.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h97m-ww89-6jmq (CVE-2024-12224, RUSTSEC-2024-0421). |
+| P2 | QSI-2026-11564 | Обновите ring до исправленной версии (0.17.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009). |
+| P2 | QSI-2026-11566 | Обновите ring до исправленной версии (0.17.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4p46-pwfr-66x6 (CVE-2025-4432, RUSTSEC-2025-0009). |
+| P2 | QSI-2026-11585 | Обновите time до исправленной версии (0.3.47). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009). |
+| P2 | QSI-2026-11602 | Обновите @babel/helpers до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
+| P2 | QSI-2026-11604 | Обновите @babel/runtime до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
+| P2 | QSI-2026-11605 | Обновите @babel/runtime-corejs3 до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
+| P2 | QSI-2026-11609 | Обновите js-yaml до исправленной версии (3.15.0, 4.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h67p-54hq-rp68 (CVE-2026-53550). |
+| P2 | QSI-2026-11610 | Обновите js-yaml до исправленной версии (3.14.2, 4.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mh29-5h37-fv8m (CVE-2025-64718). |
+| P2 | QSI-2026-11613 | Обновите @sideway/formula до исправленной версии (3.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c2jc-4fpr-4vhg (CVE-2023-25166). |
+| P2 | QSI-2026-11519 | Обновите atty до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g98v-hv3f-hcfr (RUSTSEC-2021-0145). |
+| P2 | QSI-2026-11552 | Обновите openssl до исправленной версии (0.10.78). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmgf-hq76-4vx2 (CVE-2026-41677). |
+| P2 | QSI-2026-11562 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-11563 | Обновите rand до исправленной версии (0.10.1, 0.8.6, 0.9.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-cq8v-f236-94qc (RUSTSEC-2026-0097). |
+| P2 | QSI-2026-11567 | Обновите rpassword до исправленной версии (7.5.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2p6r-x3vv-xqm2. |
+| P2 | QSI-2026-11570 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv. |
+| P2 | QSI-2026-11571 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-11575 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-965h-392x-2mh5 (CVE-2026-93600, RUSTSEC-2026-0098). |
+| P2 | QSI-2026-11576 | Обновите rustls-webpki до исправленной версии (0.103.12, 0.104.0-alpha.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xgp8-3hg3-c2mh (CVE-2026-93601, RUSTSEC-2026-0099). |
+| P2 | QSI-2026-11586 | Обновите tracing-subscriber до исправленной версии (0.3.20). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwfj-jgwm-7wp5 (CVE-2025-58160, RUSTSEC-2025-0055). |
+| P2 | QSI-2026-11600 | Обновите @babel/core до исправленной версии (7.29.6, 8.0.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356). |
+| P2 | QSI-2026-11611 | Обновите @babel/core до исправленной версии (7.29.6, 8.0.0-rc.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4x5r-pxfx-6jf8 (CVE-2026-49356). |
+| P2 | QSI-2026-11537 | Обновите keccak до исправленной версии (0.1.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012). |
+| P2 | QSI-2026-11544 | Обновите openssl до исправленной версии (0.10.72). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4fcv-w3qc-ppgg (RUSTSEC-2025-0022). |
+| P2 | QSI-2026-11550 | Обновите openssl до исправленной версии (0.10.66). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q445-7m23-qrmw (RUSTSEC-2024-0357). |
+| P2 | QSI-2026-11551 | Обновите openssl до исправленной версии (0.10.70). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rpmj-rpgj-qmpm (CVE-2025-24898, RUSTSEC-2025-0004). |
+| P2 | QSI-2026-11568 | Обновите rustls до исправленной версии (0.21.11, 0.22.4, 0.23.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6g7w-8wpp-frhj (CVE-2024-32650, RUSTSEC-2024-0336). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-07989 | Обновите rustls до 0.23 или новее с провайдером aws-lc-rs и функцией prefer-post-quantum. | устранение первопричины | PQ-клиент согласует X25519MLKEM768. |
-| P3 | QSI-2026-08011 | Разберите RUSTSEC-2026-0204; при необходимости обновите crossbeam-epoch до исправленной версии (0.9.20). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан. |
-| P3 | QSI-2026-08016 | Разберите RUSTSEC-2026-0258; при необходимости обновите h2 до исправленной версии (0.4.16). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0258 или результат разбора записан. |
-| P3 | QSI-2026-08019 | Разберите RUSTSEC-2023-0126; при необходимости обновите im до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2023-0126 или результат разбора записан. |
-| P3 | QSI-2026-08024 | Разберите RUSTSEC-2026-0418; при необходимости обновите libz-sys до исправленной версии (1.1.31). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0418 или результат разбора записан. |
-| P3 | QSI-2026-08025 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
-| P3 | QSI-2026-08044 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
-| P3 | QSI-2026-08045 | Разберите RUSTSEC-2026-0339; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0339 или результат разбора записан. |
-| P3 | QSI-2026-08046 | Разберите RUSTSEC-2026-0342; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0342 или результат разбора записан. |
-| P3 | QSI-2026-08062 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-08065 | Разберите RUSTSEC-2026-0255; при необходимости обновите sized-chunks до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0255 или результат разбора записан. |
-| P3 | QSI-2026-08066 | Разберите RUSTSEC-2026-0191; при необходимости обновите solana_rbpf до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0191 или результат разбора записан. |
-| P3 | QSI-2026-08075 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-08076 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-08078 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
-| P3 | QSI-2026-08079 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
-| P3 | QSI-2026-08080 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
-| P3 | QSI-2026-08081 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
-| P3 | QSI-2026-08082 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
-| P3 | QSI-2026-08083 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
-| P3 | QSI-2026-08084 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
-| P3 | QSI-2026-08085 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
-| P3 | QSI-2026-08086 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
-| P3 | QSI-2026-08001 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
-| P3 | QSI-2026-08026 | Разберите RUSTSEC-2026-0186; при необходимости обновите memmap2 до исправленной версии (0.9.11). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0186 или результат разбора записан. |
-| P3 | QSI-2026-08072 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+| P2 | QSI-2026-11506 | Обновите rustls до 0.23 или новее с провайдером aws-lc-rs и функцией prefer-post-quantum. | устранение первопричины | PQ-клиент согласует X25519MLKEM768. |
+| P3 | QSI-2026-11531 | Разберите RUSTSEC-2026-0258; при необходимости обновите h2 до исправленной версии (0.4.16). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0258 или результат разбора записан. |
+| P3 | QSI-2026-11534 | Разберите RUSTSEC-2023-0126; при необходимости обновите im до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2023-0126 или результат разбора записан. |
+| P3 | QSI-2026-11539 | Разберите RUSTSEC-2026-0418; при необходимости обновите libz-sys до исправленной версии (1.1.31). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0418 или результат разбора записан. |
+| P3 | QSI-2026-11540 | Разберите RUSTSEC-2026-0253; при необходимости обновите lru до исправленной версии (0.18.2). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0253 или результат разбора записан. |
+| P3 | QSI-2026-11559 | Разберите RUSTSEC-2026-0338; при необходимости обновите quinn-proto до исправленной версии (0.11.18). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0338 или результат разбора записан. |
+| P3 | QSI-2026-11560 | Разберите RUSTSEC-2026-0339; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0339 или результат разбора записан. |
+| P3 | QSI-2026-11561 | Разберите RUSTSEC-2026-0342; при необходимости обновите quinn-proto до исправленной версии (0.11.17). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0342 или результат разбора записан. |
+| P3 | QSI-2026-11577 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-11580 | Разберите RUSTSEC-2026-0255; при необходимости обновите sized-chunks до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0255 или результат разбора записан. |
+| P3 | QSI-2026-11581 | Разберите RUSTSEC-2026-0191; при необходимости обновите solana_rbpf до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0191 или результат разбора записан. |
+| P3 | QSI-2026-11588 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-11589 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-11591 | Разберите RUSTSEC-2026-0395; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан. |
+| P3 | QSI-2026-11592 | Разберите RUSTSEC-2026-0397; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан. |
+| P3 | QSI-2026-11593 | Разберите RUSTSEC-2026-0399; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан. |
+| P3 | QSI-2026-11594 | Разберите RUSTSEC-2026-0400; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан. |
+| P3 | QSI-2026-11595 | Разберите RUSTSEC-2026-0401; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан. |
+| P3 | QSI-2026-11596 | Разберите RUSTSEC-2026-0402; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан. |
+| P3 | QSI-2026-11597 | Разберите RUSTSEC-2026-0403; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан. |
+| P3 | QSI-2026-11598 | Разберите RUSTSEC-2026-0404; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан. |
+| P3 | QSI-2026-11599 | Разберите RUSTSEC-2026-0406; при необходимости обновите zstd-safe до исправленной версии (7.4.0, 8.2.0). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан. |
+| P3 | QSI-2026-11518 | Разберите RUSTSEC-2026-0190; при необходимости обновите anyhow до исправленной версии (1.0.103). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0190 или результат разбора записан. |
+| P3 | QSI-2026-11541 | Разберите RUSTSEC-2026-0186; при необходимости обновите memmap2 до исправленной версии (0.9.11). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0186 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-07997 | Внесите использования Ed25519 в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07992 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07993 | Внесите использования BN254 (alt_bn128) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07994 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07995 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07990 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07991 | Внесите использования BN254 (alt_bn128) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07996 | Внесите использования Bulletproofs в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-07997 | Запланируйте миграцию Ed25519 на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
-| P4 | QSI-2026-07992 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-07993 | Запланируйте миграцию BN254 (alt_bn128) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07994 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-07995 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07990 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-07991 | Запланируйте миграцию BN254 (alt_bn128) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07996 | Запланируйте миграцию Bulletproofs на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-08003 | Замените atty поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atty заменён или решение зафиксировано. |
-| P4 | QSI-2026-08004 | Замените backoff поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | backoff заменён или решение зафиксировано. |
-| P4 | QSI-2026-08005 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
-| P4 | QSI-2026-08013 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
-| P4 | QSI-2026-08020 | Замените im поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | im заменён или решение зафиксировано. |
-| P4 | QSI-2026-08023 | Замените libsecp256k1 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | libsecp256k1 заменён или решение зафиксировано. |
-| P4 | QSI-2026-08027 | Замените net2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | net2 заменён или решение зафиксировано. |
-| P4 | QSI-2026-07999 | Замените adler поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | adler заменён или решение зафиксировано. |
-| P4 | QSI-2026-08000 | Замените ansi_term поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ansi_term заменён или решение зафиксировано. |
-| P4 | QSI-2026-08006 | Замените bitmaps поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bitmaps заменён или решение зафиксировано. |
-| P4 | QSI-2026-08021 | Замените instant поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | instant заменён или решение зафиксировано. |
-| P4 | QSI-2026-08028 | Замените number_prefix поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | number_prefix заменён или решение зафиксировано. |
-| P4 | QSI-2026-08040 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
-| P4 | QSI-2026-08041 | Замените proc-macro-error поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error заменён или решение зафиксировано. |
-| P4 | QSI-2026-08050 | Замените ring поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ring заменён или решение зафиксировано. |
-| P4 | QSI-2026-08057 | Замените rustls-pemfile поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | rustls-pemfile заменён или решение зафиксировано. |
-| P4 | QSI-2026-08058 | Замените rustls-pemfile поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | rustls-pemfile заменён или решение зафиксировано. |
-| P4 | QSI-2026-08064 | Замените sized-chunks поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | sized-chunks заменён или решение зафиксировано. |
-| P4 | QSI-2026-08074 | Замените unsafe-libyaml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | unsafe-libyaml заменён или решение зафиксировано. |
-| P4 | QSI-2026-08077 | Замените yaml-rust поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | yaml-rust заменён или решение зафиксировано. |
+| P3 | QSI-2026-11514 | Внесите использования Ed25519 в the wallet's transaction signing в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11509 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11510 | Внесите использования BN254 (alt_bn128) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11511 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11512 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11507 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11508 | Внесите использования BN254 (alt_bn128) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11513 | Внесите использования Bulletproofs в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-11514 | Запланируйте миграцию Ed25519 на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-11509 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11510 | Запланируйте миграцию BN254 (alt_bn128) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-11511 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11512 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-11507 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11508 | Запланируйте миграцию BN254 (alt_bn128) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-11513 | Запланируйте миграцию Bulletproofs на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-11520 | Замените atty поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | atty заменён или решение зафиксировано. |
+| P4 | QSI-2026-11521 | Замените backoff поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | backoff заменён или решение зафиксировано. |
+| P4 | QSI-2026-11522 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-11528 | Замените derivative поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | derivative заменён или решение зафиксировано. |
+| P4 | QSI-2026-11535 | Замените im поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | im заменён или решение зафиксировано. |
+| P4 | QSI-2026-11538 | Замените libsecp256k1 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | libsecp256k1 заменён или решение зафиксировано. |
+| P4 | QSI-2026-11542 | Замените net2 поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | net2 заменён или решение зафиксировано. |
+| P4 | QSI-2026-11516 | Замените adler поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | adler заменён или решение зафиксировано. |
+| P4 | QSI-2026-11517 | Замените ansi_term поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ansi_term заменён или решение зафиксировано. |
+| P4 | QSI-2026-11523 | Замените bitmaps поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bitmaps заменён или решение зафиксировано. |
+| P4 | QSI-2026-11536 | Замените instant поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | instant заменён или решение зафиксировано. |
+| P4 | QSI-2026-11543 | Замените number_prefix поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | number_prefix заменён или решение зафиксировано. |
+| P4 | QSI-2026-11555 | Замените paste поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | paste заменён или решение зафиксировано. |
+| P4 | QSI-2026-11556 | Замените proc-macro-error поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | proc-macro-error заменён или решение зафиксировано. |
+| P4 | QSI-2026-11565 | Замените ring поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ring заменён или решение зафиксировано. |
+| P4 | QSI-2026-11572 | Замените rustls-pemfile поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | rustls-pemfile заменён или решение зафиксировано. |
+| P4 | QSI-2026-11573 | Замените rustls-pemfile поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | rustls-pemfile заменён или решение зафиксировано. |
+| P4 | QSI-2026-11579 | Замените sized-chunks поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | sized-chunks заменён или решение зафиксировано. |
+| P4 | QSI-2026-11587 | Замените unsafe-libyaml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | unsafe-libyaml заменён или решение зафиксировано. |
+| P4 | QSI-2026-11590 | Замените yaml-rust поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | yaml-rust заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -4440,7 +4304,7 @@ _Действие: взламывает — алгоритм нужно заме
 18. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
 19. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 20. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-21. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+21. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 22. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 23. OSV advisory GHSA-2883-xcg3-v3hh — OSV.dev. <https://osv.dev/vulnerability/GHSA-2883-xcg3-v3hh> (modified 2026-09-08T21:30:05.575808098Z)
 24. OSV advisory GHSA-2p6r-x3vv-xqm2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-2p6r-x3vv-xqm2> (modified 2026-09-10T03:51:04.143649116Z)
@@ -4482,62 +4346,58 @@ _Действие: взламывает — алгоритм нужно заме
 60. OSV advisory GHSA-q6cp-qfwq-4gcv — OSV.dev. <https://osv.dev/vulnerability/GHSA-q6cp-qfwq-4gcv> (modified 2026-09-10T03:49:18.784343884Z)
 61. OSV advisory GHSA-r6v5-fh4h-64xc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc> (modified 2026-09-10T03:50:35.583241382Z)
 62. OSV advisory GHSA-rpmj-rpgj-qmpm — OSV.dev. <https://osv.dev/vulnerability/GHSA-rpmj-rpgj-qmpm> (modified 2026-09-10T03:50:06.186180196Z)
-63. OSV advisory GHSA-rr8g-9fpq-6wmg — OSV.dev. <https://osv.dev/vulnerability/GHSA-rr8g-9fpq-6wmg> (modified 2026-09-10T03:50:24.081979053Z)
-64. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-10-27T16:15:05.340347056Z)
-65. OSV advisory GHSA-w5vr-6qhr-36cc — OSV.dev. <https://osv.dev/vulnerability/GHSA-w5vr-6qhr-36cc> (modified 2026-02-04T03:12:24.206854Z)
-66. OSV advisory GHSA-x4gp-pqpj-f43q — OSV.dev. <https://osv.dev/vulnerability/GHSA-x4gp-pqpj-f43q> (modified 2026-09-10T03:50:15.886084155Z)
-67. OSV advisory GHSA-xgp8-3hg3-c2mh — OSV.dev. <https://osv.dev/vulnerability/GHSA-xgp8-3hg3-c2mh> (modified 2026-09-19T03:55:49.146112754Z)
-68. OSV advisory GHSA-xmgf-hq76-4vx2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2> (modified 2026-09-10T03:50:44.840710191Z)
-69. OSV advisory GHSA-xp3w-r5p5-63rr — OSV.dev. <https://osv.dev/vulnerability/GHSA-xp3w-r5p5-63rr> (modified 2026-09-10T03:51:07.254489393Z)
-70. OSV advisory GHSA-xv59-967r-8726 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xv59-967r-8726> (modified 2026-09-10T03:51:07.319185525Z)
-71. OSV advisory GHSA-xwfj-jgwm-7wp5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xwfj-jgwm-7wp5> (modified 2026-09-10T03:50:27.766863705Z)
-72. OSV advisory RUSTSEC-2020-0016 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2020-0016> (modified 2020-10-02T01:29:11Z)
-73. OSV advisory RUSTSEC-2021-0139 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2021-0139> (modified 2023-09-06T22:52:31Z)
-74. OSV advisory RUSTSEC-2023-0126 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0126> (modified 2026-08-10T19:45:04.530371817Z)
-75. OSV advisory RUSTSEC-2024-0320 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0320> (modified 2024-11-01T12:31:51Z)
-76. OSV advisory RUSTSEC-2024-0370 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0370> (modified 2026-06-07T20:00:03.923932350Z)
-77. OSV advisory RUSTSEC-2024-0375 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0375> (modified 2024-09-26T12:26:22Z)
-78. OSV advisory RUSTSEC-2024-0384 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0384> (modified 2024-11-10T13:10:28Z)
-79. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
-80. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
-81. OSV advisory RUSTSEC-2024-0449 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0449> (modified 2026-10-12T11:45:02.518189315Z)
-82. OSV advisory RUSTSEC-2025-0010 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0010> (modified 2025-03-07T15:46:47Z)
-83. OSV advisory RUSTSEC-2025-0012 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0012> (modified 2025-08-06T09:33:04Z)
-84. OSV advisory RUSTSEC-2025-0056 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0056> (modified 2025-09-05T09:05:48Z)
-85. OSV advisory RUSTSEC-2025-0119 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0119> (modified 2025-11-18T08:13:56Z)
-86. OSV advisory RUSTSEC-2025-0134 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0134> (modified 2025-12-05T19:07:59.622592Z)
-87. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
-88. OSV advisory RUSTSEC-2025-0161 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0161> (modified 2026-04-14T11:30:08.962845Z)
-89. OSV advisory RUSTSEC-2026-0186 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0186> (modified 2026-06-22T18:15:03.600280397Z)
-90. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
-91. OSV advisory RUSTSEC-2026-0191 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0191> (modified 2026-06-29T14:45:04.175629528Z)
-92. OSV advisory RUSTSEC-2026-0204 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0204> (modified 2026-07-06T22:30:04.159269138Z)
-93. OSV advisory RUSTSEC-2026-0247 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0247> (modified 2026-08-10T19:45:04.540318330Z)
-94. OSV advisory RUSTSEC-2026-0248 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0248> (modified 2026-08-10T19:45:04.540038805Z)
-95. OSV advisory RUSTSEC-2026-0251 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0251> (modified 2026-08-10T19:45:04.444367447Z)
-96. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
-97. OSV advisory RUSTSEC-2026-0255 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0255> (modified 2026-08-12T10:30:03.078996208Z)
-98. OSV advisory RUSTSEC-2026-0258 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0258> (modified 2026-10-12T18:00:10.934581734Z)
-99. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
-100. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
-101. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
-102. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
-103. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
-104. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
-105. OSV advisory RUSTSEC-2026-0395 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0395> (modified 2026-10-26T14:00:06.388344282Z)
-106. OSV advisory RUSTSEC-2026-0397 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0397> (modified 2026-10-26T14:00:05.089587004Z)
-107. OSV advisory RUSTSEC-2026-0399 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0399> (modified 2026-10-26T14:00:05.792431051Z)
-108. OSV advisory RUSTSEC-2026-0400 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0400> (modified 2026-10-26T14:00:05.692077560Z)
-109. OSV advisory RUSTSEC-2026-0401 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0401> (modified 2026-10-26T14:00:04.231502512Z)
-110. OSV advisory RUSTSEC-2026-0402 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0402> (modified 2026-10-26T14:00:05.685817733Z)
-111. OSV advisory RUSTSEC-2026-0403 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0403> (modified 2026-10-26T14:00:05.787441176Z)
-112. OSV advisory RUSTSEC-2026-0404 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0404> (modified 2026-10-26T14:00:05.092817237Z)
-113. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-10-26T14:00:05.095427051Z)
-114. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
-115. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-116. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-117. RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024) — IETF. <https://www.rfc-editor.org/rfc/rfc10024> (standards track; checked 2026-10-13)
-118. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+63. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-10-27T16:15:05.340347056Z)
+64. OSV advisory GHSA-w5vr-6qhr-36cc — OSV.dev. <https://osv.dev/vulnerability/GHSA-w5vr-6qhr-36cc> (modified 2026-02-04T03:12:24.206854Z)
+65. OSV advisory GHSA-xgp8-3hg3-c2mh — OSV.dev. <https://osv.dev/vulnerability/GHSA-xgp8-3hg3-c2mh> (modified 2026-09-19T03:55:49.146112754Z)
+66. OSV advisory GHSA-xmgf-hq76-4vx2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xmgf-hq76-4vx2> (modified 2026-09-10T03:50:44.840710191Z)
+67. OSV advisory GHSA-xp3w-r5p5-63rr — OSV.dev. <https://osv.dev/vulnerability/GHSA-xp3w-r5p5-63rr> (modified 2026-09-10T03:51:07.254489393Z)
+68. OSV advisory GHSA-xv59-967r-8726 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xv59-967r-8726> (modified 2026-09-10T03:51:07.319185525Z)
+69. OSV advisory GHSA-xwfj-jgwm-7wp5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-xwfj-jgwm-7wp5> (modified 2026-09-10T03:50:27.766863705Z)
+70. OSV advisory RUSTSEC-2020-0016 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2020-0016> (modified 2020-10-02T01:29:11Z)
+71. OSV advisory RUSTSEC-2021-0139 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2021-0139> (modified 2023-09-06T22:52:31Z)
+72. OSV advisory RUSTSEC-2023-0126 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0126> (modified 2026-08-10T19:45:04.530371817Z)
+73. OSV advisory RUSTSEC-2024-0320 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0320> (modified 2024-11-01T12:31:51Z)
+74. OSV advisory RUSTSEC-2024-0370 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0370> (modified 2026-06-07T20:00:03.923932350Z)
+75. OSV advisory RUSTSEC-2024-0375 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0375> (modified 2024-09-26T12:26:22Z)
+76. OSV advisory RUSTSEC-2024-0384 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0384> (modified 2024-11-10T13:10:28Z)
+77. OSV advisory RUSTSEC-2024-0388 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0388> (modified 2024-11-10T13:34:40Z)
+78. OSV advisory RUSTSEC-2024-0436 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0436> (modified 2026-01-27T22:03:15.694766Z)
+79. OSV advisory RUSTSEC-2024-0449 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0449> (modified 2026-10-12T11:45:02.518189315Z)
+80. OSV advisory RUSTSEC-2025-0010 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0010> (modified 2025-03-07T15:46:47Z)
+81. OSV advisory RUSTSEC-2025-0012 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0012> (modified 2025-08-06T09:33:04Z)
+82. OSV advisory RUSTSEC-2025-0056 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0056> (modified 2025-09-05T09:05:48Z)
+83. OSV advisory RUSTSEC-2025-0119 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0119> (modified 2025-11-18T08:13:56Z)
+84. OSV advisory RUSTSEC-2025-0134 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0134> (modified 2025-12-05T19:07:59.622592Z)
+85. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
+86. OSV advisory RUSTSEC-2025-0161 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0161> (modified 2026-04-14T11:30:08.962845Z)
+87. OSV advisory RUSTSEC-2026-0186 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0186> (modified 2026-06-22T18:15:03.600280397Z)
+88. OSV advisory RUSTSEC-2026-0190 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0190> (modified 2026-06-29T14:15:03.650725453Z)
+89. OSV advisory RUSTSEC-2026-0191 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0191> (modified 2026-06-29T14:45:04.175629528Z)
+90. OSV advisory RUSTSEC-2026-0247 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0247> (modified 2026-08-10T19:45:04.540318330Z)
+91. OSV advisory RUSTSEC-2026-0248 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0248> (modified 2026-08-10T19:45:04.540038805Z)
+92. OSV advisory RUSTSEC-2026-0251 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0251> (modified 2026-08-10T19:45:04.444367447Z)
+93. OSV advisory RUSTSEC-2026-0253 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0253> (modified 2026-08-11T11:15:06.101553049Z)
+94. OSV advisory RUSTSEC-2026-0255 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0255> (modified 2026-08-12T10:30:03.078996208Z)
+95. OSV advisory RUSTSEC-2026-0258 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0258> (modified 2026-10-12T18:00:10.934581734Z)
+96. OSV advisory RUSTSEC-2026-0338 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0338> (modified 2026-10-12T18:15:01.969514645Z)
+97. OSV advisory RUSTSEC-2026-0339 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0339> (modified 2026-10-12T18:15:01.956822776Z)
+98. OSV advisory RUSTSEC-2026-0342 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0342> (modified 2026-10-12T18:15:01.956681478Z)
+99. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
+100. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
+101. OSV advisory RUSTSEC-2026-0395 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0395> (modified 2026-11-02T09:30:03.420559993Z)
+102. OSV advisory RUSTSEC-2026-0397 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0397> (modified 2026-11-02T09:30:03.445177143Z)
+103. OSV advisory RUSTSEC-2026-0399 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0399> (modified 2026-11-02T09:30:03.328955732Z)
+104. OSV advisory RUSTSEC-2026-0400 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0400> (modified 2026-11-02T09:30:03.428341570Z)
+105. OSV advisory RUSTSEC-2026-0401 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0401> (modified 2026-11-02T09:30:03.353698025Z)
+106. OSV advisory RUSTSEC-2026-0402 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0402> (modified 2026-11-02T09:30:04.162155944Z)
+107. OSV advisory RUSTSEC-2026-0403 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0403> (modified 2026-11-02T09:30:04.136442771Z)
+108. OSV advisory RUSTSEC-2026-0404 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0404> (modified 2026-11-02T09:30:04.168804805Z)
+109. OSV advisory RUSTSEC-2026-0406 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0406> (modified 2026-11-02T09:30:03.591194710Z)
+110. OSV advisory RUSTSEC-2026-0418 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0418> (modified 2026-10-29T14:15:02.333141406Z)
+111. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+112. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+113. RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024) — IETF. <https://www.rfc-editor.org/rfc/rfc10024> (standards track; checked 2026-10-13)
+114. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -4571,7 +4431,7 @@ _Действие: взламывает — алгоритм нужно заме
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 3 | 3 | sdk/bpf/c/inc/solana_sdk.h:18; sdk/sbf/c/inc/solana_sdk.h:18; sdk/src/feature_set.rs:786 |
 | ECDSA | secp384r1 |  | уязвим (Шор) | допустимо | 9 | 9 | storage-bigtable/src/pki-goog-roots.pem (line 1006) — GTS Root R4; storage-bigtable/src/pki-goog-roots.pem (line 1096) — COMODO ECC Certification Authority; storage-bigtable/src/pki-goog-roots.pem (line 1164) — USERTrust ECC Certification Authority |
 | ECDSA | secp256r1 |  | уязвим (Шор) | допустимо | 1 | 1 | storage-bigtable/src/pki-goog-roots.pem (line 882) — GlobalSign |
-| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 11 | 11 | core/src/cluster_info_vote_listener.rs:340; core/src/sigverify.rs:8; core/src/sigverify_stage.rs:228 |
+| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 19 | 19 | core/src/cluster_info_vote_listener.rs:340; core/src/sigverify.rs:8; core/src/sigverify_stage.rs:228 |
 | Ed25519 |  |  | уязвим (Шор) | допустимо | 4 | 4 | storage-proto/proto/confirmed_block.proto:3; storage-proto/proto/entries.proto:3; storage-proto/proto/transaction_by_addr.proto:3 |
 | ElGamal |  |  | уязвим (Шор) | устаревший | 4 | 4 | zk-token-sdk/src/encryption/elgamal.rs; zk-token-sdk/src/encryption/grouped_elgamal.rs; zk-token-sdk/src/zk_token_elgamal/pod/elgamal.rs |
 | Pedersen commitment |  |  | уязвим (Шор) | допустимо | 25 | 25 | zk-token-sdk/src/encryption/elgamal.rs:21; zk-token-sdk/src/encryption/grouped_elgamal.rs:19; zk-token-sdk/src/encryption/pedersen.rs:44 |

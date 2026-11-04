@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-28 12:53 UTC |
+| Дата отчёта | 2026-11-04 19:21 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | b1c7d303-5af9-48a1-91d2-59255d391677 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
-| Профиль риска | Финансовая организация |
-| SHA-256 содержимого | `0da61727ced613d6767f96b37828d8b962f93bc2e81d7a8c2e0fab5270116a40` |
+| Запуск аудита | aa39ad88-f811-4f3d-9a1c-55e49434dbae (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `2bf95ac0248f27ddee30b12ec0d10f567f58e9bf3ed85495587dedda41cc19f2` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -45,12 +45,13 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 20 | .solcover.js: 15 lines scanned with 16 rule patterns and 122 registry patterns; eslint.config.mjs: 20 lines scanned with 16 rule patterns and 122 registry patterns; hardhat.config.ts: 134 lines scanned with 16 rule patterns and 122 registry patterns |
+| source_code | проверено | 20 | .solcover.js: 15 lines scanned with 16 rule patterns and 145 registry patterns; eslint.config.mjs: 20 lines scanned with 16 rule patterns and 145 registry patterns; hardhat.config.ts: 134 lines scanned with 16 rule patterns and 145 registry patterns |
 | smart_contracts | проверено | 54 | certora/harnesses/ExtensibleFallbackHandlerHarness.sol: built-in Solidity pattern checks; certora/harnesses/SafeHarness.sol: built-in Solidity pattern checks; contracts/Safe.sol: built-in Solidity pattern checks |
 | slither | не проверено | 54 | slither is not installed on the server (pip install slither-analyzer + solc) |
 | dependencies | проверено | 3 | certora/requirements.txt: 1 dependencies parsed (1 pinned); package-lock.json: 831 dependencies parsed (831 pinned); package.json: 30 dependencies parsed (0 pinned) |
 | secrets | проверено | 4 | contracts/Safe.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/handler/CompatibilityFallbackHandler.sol: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/handler/extensible/SignatureVerifierMuxer.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| osv_advisories | проверено | 1 | 736 pinned packages queried at OSV.dev; 45 affected (45 of them only in development or build dependencies) |
+| entropy | проверено | 1 | random-number generation: 20 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| osv_advisories | проверено | 1 | 736 pinned packages queried at OSV.dev; 46 affected (46 of them only in development or build dependencies) |
 | osv_advisories | Недостаточность данных | 2 | npm/axios@0.21.4: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/axios@1.13.2: 35 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -62,7 +63,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 77 files analysed; of 236 files, 81 are test, fuzzing, benchmark or example code and were left out, 78 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b369d137424ddc58. 77 files analysed; of 236 files, 81 are test, fuzzing, benchmark or example code and were left out, 78 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .env.sample, .gitattributes, .github/CODEOWNERS, .github/ISSUE_TEMPLATE/bug_report.md, .github/ISSUE_TEMPLATE/feature_request.md. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -71,14 +72,14 @@ Static review of the source tree safe-smart-account at 247b8ce3bdbf204a120e77f5b
 
 ## 7. Подробное описание находок
 
-### QSI-2026-05092 — Прямое использование ecrecover в certora/harnesses/SafeHarness.sol
+### QSI-2026-12624 — Прямое использование ecrecover в certora/harnesses/SafeHarness.sol
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:certora/harnesses/SafeHarness.sol`
 - Источник данных: certora/harnesses/SafeHarness.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 ecrecover в строка 32. (см. SWC-117/SWC-121)
@@ -119,14 +120,14 @@ _file_excerpt · [certora/harnesses/SafeHarness.sol](https://github.com/safe-glo
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-05093 — Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol
+### QSI-2026-12625 — Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:certora/harnesses/SafeHarness.sol`
 - Источник данных: certora/harnesses/SafeHarness.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104)
@@ -157,14 +158,14 @@ _file_excerpt · [certora/harnesses/SafeHarness.sol](https://github.com/safe-glo
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-05091 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))
+### QSI-2026-12623 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: certora/harnesses/SafeHarness.sol
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 39.6 / 100
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
 5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
@@ -233,14 +234,14 @@ _file_excerpt · [src/utils/execution.ts](https://github.com/safe-global/safe-sm
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05094 — Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)
+### QSI-2026-12626 — Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.7.0 <0.9.0`
 - Источник данных: contracts/Safe.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.7.0 <0.9.0 в 50 файл(ах), впервые в contracts/Safe.sol:2. (см. SWC-103)
@@ -353,14 +354,14 @@ _file_excerpt · [contracts/common/EIP7951.sol](https://github.com/safe-global/s
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-05095 — Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)
+### QSI-2026-12627 — Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.5.0 <0.9.0`
 - Источник данных: contracts/interfaces/ViewStorageAccessible.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.5.0 <0.9.0 в 1 файл(ах), впервые в contracts/interfaces/ViewStorageAccessible.sol:2. (см. SWC-103)
@@ -390,14 +391,14 @@ _file_excerpt · [contracts/interfaces/ViewStorageAccessible.sol](https://github
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-05096 — Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)
+### QSI-2026-12628 — Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.7.4 <0.9.0`
 - Источник данных: contracts/libraries/SafeStorage.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.7.4 <0.9.0 в 1 файл(ах), впервые в contracts/libraries/SafeStorage.sol:2. (см. SWC-103)
@@ -427,17 +428,17 @@ _file_excerpt · [contracts/libraries/SafeStorage.sol](https://github.com/safe-g
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-05098 — 174 бюллетеней в 45 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-12630 — 176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 17.1 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 174 бюллетеней (95 с оценкой high или critical) для 45 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; @openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 176 бюллетеней (94 с оценкой high или critical) для 46 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; @openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -449,7 +450,7 @@ OSV.dev сообщает 174 бюллетеней (95 с оценкой high и�
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 246d1fc835bf80bae1bffb3a9be4793d552a4248f1d02f0cec4af5e423ea4959_
+_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 e7e0d4ba12d0451485a23e0ef896adc8947c8f2642b075c4597d34ce70699112_
 
 ```
 @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx
@@ -475,16 +476,17 @@ fast-uri@3.1.0 [dev]: GHSA-333x-w4r6-6crp, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p
 flatted@3.3.3 [dev]: GHSA-25h7-pfq9-p65f, GHSA-rf6f-7fwh-wjgh
 follow-redirects@1.15.11 [dev]: GHSA-r4q5-vmmm-2653
 form-data@4.0.5 [dev]: GHSA-hmw2-7cc7-3qxx
+glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4
+glob@13.0.0 [dev]: GHSA-3g3m-2fjr-6pw4
 handlebars@4.7.8 [dev]: GHSA-2qvq-rjwj-gvw9, GHSA-2w6w-674q-4c4q, GHSA-3mfm-83xf-c92r, GHSA-442j-39wm-28r2, GHSA-7rx3-28cr-v5wh, GHSA-8r5x-fm3f-whwj, GHSA-9cx6-37pm-9jff, GHSA-p8wg-vrv2-v86f, GHSA-xhpv-hc6g-r9c6, GHSA-xjpj-3mr7-gcpf, GHSA-xw65-4hp5-5hc7
-http-cache-semantics@4.2.0 [dev]: GHSA-ch52-4w7c-c8xp
 immutable@4.3.7 [dev]: GHSA-v56q-mh7h-f735, GHSA-wf6x-7x77-mvgw, GHSA-xvcm-6775-5m9r
 js-yaml@3.14.2 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68
 js-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68
-lodash@4.17.21 [dev]: GHSA-f23m-r3pf-42rh, GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg
-minimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+lodash@4.17.21 [dev]: GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg
+minimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249
 minimatch@3.1.2 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
 minimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
-minimatch@9.0.5 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+minimatch@9.0.5 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249
 pbkdf2@3.1.5 [dev]: GHSA-477h-4r7f-fvrx
 picomatch@2.3.1 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj
 picomatch@4.0.3 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj
@@ -505,14 +507,14 @@ ws@8.18.3 [dev]: GHSA-58qx-3vcg-4xpx, GHSA-96hv-2xvq-fx4p
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05097 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-12629 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 12:53 UTC
-- Балл приоритета: 14.5 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:21 UTC
+- Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
 В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.
@@ -559,7 +561,7 @@ Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethe
 | 15 лет | 51-70% | вероятно |
 
 **Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
-_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Финансовая организация», а не данные клиента; с фактическими сроками клиента вывод может измениться._
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
@@ -572,7 +574,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (3) | QSI-2026-05091 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **подпись транзакций и сообщений** | ECDSA (3) | QSI-2026-12623 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -605,32 +607,32 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-05092 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-05093 | Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-12624 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-12625 | Проверяйте возвращаемое значение или используйте OpenZeppelin Address.sendValue / functionCall. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05091 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05094 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-05095 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-05096 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-05091 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05098 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-12623 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12626 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12627 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12628 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-12623 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12630 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -651,7 +653,7 @@ _Действие: взламывает — алгоритм нужно заме
 14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
 15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
 20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
@@ -664,8 +666,8 @@ _Действие: взламывает — алгоритм нужно заме
 | Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
 | Keccak-256 | Keccak-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 8 | 8 | certora/harnesses/SafeHarness.sol:32; contracts/Safe.sol:396; contracts/handler/CompatibilityFallbackHandler.sol:52 |
-| Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
 | Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
+| Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |
 | Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
 | Crypto library | 1.4.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 1 | 1 | package-lock.json |
 | Crypto library | 1.4.2 | @noble/curves (noble-curves) | н/п | допустимо | 1 | 1 | package-lock.json |

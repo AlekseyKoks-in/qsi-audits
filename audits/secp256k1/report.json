@@ -1,8 +1,8 @@
 {
-  "content_sha256": "56f80d0b643240472a5275315c67519ccec002d816ceb4d16c80c8c585d6670a",
+  "content_sha256": "df6c0ce6489e5158bf5c2d7d7168387c8cea5fc39bdd0e3f82e73231addc5521",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-29T19:55:26.414657+00:00",
+  "generated_at": "2026-11-04T19:25:05.276932+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "28ef5d2d-e536-4298-a4c4-f3aa32657fd5",
     "name": "secp256k1 @ 1b4181f93f7a",
     "client_name": "Bitcoin Core (libsecp256k1)",
-    "description": "Static review of the source tree secp256k1 at 1b4181f93f7a53639223ced4c347d0d0d2c2ff9c. 90 files analysed; of 189 files, 46 are test, fuzzing, benchmark or example code and were left out, 53 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree secp256k1 at 1b4181f93f7a53639223ced4c347d0d0d2c2ff9c. 90 files analysed; of 189 files, 46 are test, fuzzing, benchmark or example code and were left out, 53 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/actions/install-homebrew-valgrind/action.yml, .github/actions/print-logs/action.yml, .github/actions/run-in-docker-action/action.yml, .github/workflows/ci.yml. 43 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "bb11543f-3012-4bf0-b0b8-e449c4c01a94",
+    "id": "c6592253-efda-4229-89c3-0a1d1d792ff6",
     "mode": "document",
     "title": "Document audit: secp256k1",
     "status": "completed",
-    "engine_version": "1.2.0",
-    "started_at": "2026-10-29T19:55:09.103017+00:00",
-    "finished_at": "2026-10-29T19:55:26.060465+00:00",
+    "engine_version": "1.3.0",
+    "started_at": "2026-11-04T19:24:54.340081+00:00",
+    "finished_at": "2026-11-04T19:25:05.153766+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -626,452 +626,457 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": "contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "contrib/lax_der_privatekey_parsing.h: 95 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "contrib/lax_der_privatekey_parsing.h: 95 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1.h: 934 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1.h: 934 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_ecdh.h: 63 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_ecdh.h: 63 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_ellswift.h: 200 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_ellswift.h: 200 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_extrakeys.h: 250 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_extrakeys.h: 250 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_musig.h: 588 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_musig.h: 588 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_preallocated.h: 134 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_preallocated.h: 134 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_recovery.h: 123 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_recovery.h: 123 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_schnorrsig.h: 179 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_schnorrsig.h: 179 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/secp256k1_silentpayments.h: 396 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "include/secp256k1_silentpayments.h: 396 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/assumptions.h: 77 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/assumptions.h: 77 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/checkmem.h: 117 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/checkmem.h: 117 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecdsa.h: 21 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecdsa.h: 21 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecdsa_impl.h: 315 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecdsa_impl.h: 315 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/eckey.h: 22 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/eckey.h: 22 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/eckey_impl.h: 55 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/eckey_impl.h: 55 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult.h: 72 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult.h: 72 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_compute_table.h: 16 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_compute_table.h: 16 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_compute_table_impl.h: 49 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_compute_table_impl.h: 49 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_const.h: 39 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_const.h: 39 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_const_impl.h: 415 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_const_impl.h: 415 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_gen.h: 145 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_gen.h: 145 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_gen_compute_table.h: 14 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_gen_compute_table.h: 14 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_gen_compute_table_impl.h: 108 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_gen_compute_table_impl.h: 108 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_gen_impl.h: 347 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_gen_impl.h: 347 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecmult_impl.h: 860 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/ecmult_impl.h: 860 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/field.h: 358 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/field.h: 358 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/field_10x26.h: 57 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/field_10x26.h: 57 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/field_10x26_impl.h: 1210 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/field_10x26_impl.h: 1210 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/field_5x52.h: 62 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/field_5x52.h: 62 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/field_5x52_impl.h: 496 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/field_5x52_impl.h: 496 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/field_5x52_int128_impl.h: 274 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/field_5x52_int128_impl.h: 274 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/field_impl.h: 457 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/field_impl.h: 457 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/group.h: 250 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/group.h: 250 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/group_impl.h: 1202 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/group_impl.h: 1202 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hash.h: 56 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/hash.h: 56 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hash_impl.h: 397 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/hash_impl.h: 397 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hsort.h: 33 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/hsort.h: 33 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hsort_impl.h: 125 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/hsort_impl.h: 125 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/int128.h: 90 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/int128.h: 90 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/int128_impl.h: 18 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/int128_impl.h: 18 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/int128_native.h: 19 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/int128_native.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/int128_native_impl.h: 94 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/int128_native_impl.h: 94 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/int128_struct.h: 14 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/int128_struct.h: 14 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/int128_struct_impl.h: 205 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/int128_struct_impl.h: 205 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modinv32.h: 43 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modinv32.h: 43 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modinv32_impl.h: 725 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modinv32_impl.h: 725 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modinv64.h: 47 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modinv64.h: 47 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modinv64_impl.h: 780 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modinv64_impl.h: 780 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/ecdh/main_impl.h: 74 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/ecdh/main_impl.h: 74 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/ellswift/main_impl.h: 582 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/ellswift/main_impl.h: 582 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/extrakeys/main_impl.h: 292 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/extrakeys/main_impl.h: 292 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/musig/keyagg.h: 32 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/musig/keyagg.h: 32 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/musig/keyagg_impl.h: 275 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/musig/keyagg_impl.h: 275 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/musig/main_impl.h: 12 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/musig/main_impl.h: 12 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/musig/session.h: 24 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/musig/session.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/musig/session_impl.h: 767 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/musig/session_impl.h: 767 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/musig/vectors.h: 346 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/musig/vectors.h: 346 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/recovery/main_impl.h: 159 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/recovery/main_impl.h: 159 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/schnorrsig/main_impl.h: 256 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/schnorrsig/main_impl.h: 256 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/silentpayments/main_impl.h: 785 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/silentpayments/main_impl.h: 785 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/modules/silentpayments/vectors.h: 4747 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/modules/silentpayments/vectors.h: 4747 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/precompute_ecmult.c: 91 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/precompute_ecmult.c: 91 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/precompute_ecmult_gen.c: 101 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/precompute_ecmult_gen.c: 101 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/precomputed_ecmult.c: 16456 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/precomputed_ecmult.c: 16456 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/precomputed_ecmult.h: 40 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/precomputed_ecmult.h: 40 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/precomputed_ecmult_gen.c: 1779 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/precomputed_ecmult_gen.c: 1779 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/precomputed_ecmult_gen.h: 28 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/precomputed_ecmult_gen.h: 28 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar.h: 105 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar.h: 105 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_4x64.h: 19 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar_4x64.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_4x64_impl.h: 1005 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar_4x64_impl.h: 1005 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_8x32.h: 19 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar_8x32.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_8x32_impl.h: 820 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar_8x32_impl.h: 820 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_impl.h: 321 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar_impl.h: 321 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_low.h: 24 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar_low.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scalar_low_impl.h: 217 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scalar_low_impl.h: 217 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scratch.h: 44 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scratch.h: 44 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scratch_impl.h: 105 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/scratch_impl.h: 105 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1.c: 857 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/secp256k1.c: 857 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/selftest.h: 41 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/selftest.h: 41 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/testrand.h: 45 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/testrand.h: 45 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/testrand_impl.h: 162 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/testrand_impl.h: 162 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/testutil.h: 161 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/testutil.h: 161 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/util.h: 481 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/util.h: 481 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/util_local_visibility.h: 12 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "src/util_local_visibility.h: 12 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/symbol-check.py: 72 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "tools/symbol-check.py: 72 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/wycheproof_utils.py: 12 lines scanned with 16 rule patterns and 123 registry patterns",
+      "detail": "tools/wycheproof_utils.py: 12 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 90 code files read with 157 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
       "status": "checked"
     }
   ],
@@ -1082,9 +1087,18 @@
       "count": 90,
       "rows": 90,
       "examples": [
-        "contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 123 registry patterns",
-        "contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 123 registry patterns",
-        "contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 123 registry patterns"
+        "contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 145 registry patterns",
+        "contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 145 registry patterns",
+        "contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 145 registry patterns"
+      ]
+    },
+    {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 90 code files read with 157 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
       ]
     }
   ],
@@ -1108,6 +1122,7 @@
       "include/secp256k1_recovery.h",
       "include/secp256k1_schnorrsig.h",
       "include/secp256k1_silentpayments.h",
+      "random-number generation",
       "src/assumptions.h",
       "src/checkmem.h",
       "src/ecdsa.h",
@@ -1191,17 +1206,17 @@
   "triage": {
     "analyst": "QSI review, 2026-10-29",
     "counts": {
-      "confirmed": 3,
+      "confirmed": 4,
       "not_applicable": 0,
       "false_positive": 0
     },
-    "text": "Проверка аналитика: подтверждено — 3, не применимо — 0, отклонено как ложные срабатывания — 0."
+    "text": "Проверка аналитика: подтверждено — 4, не применимо — 0, отклонено как ложные срабатывания — 0."
   },
   "summary": {
     "by_severity": {
       "critical": 0,
       "high": 0,
-      "medium": 3,
+      "medium": 4,
       "low": 0,
       "info": 0
     },
@@ -1210,22 +1225,22 @@
       "known_vulnerable_component": 0,
       "confirmed_misconfiguration": 0,
       "potential_crypto_risk": 0,
-      "pq_long_term_risk": 3,
+      "pq_long_term_risk": 4,
       "improvement": 0,
       "insufficient_data": 0
     },
-    "total": 3,
+    "total": 4,
     "posture_index": 100,
     "pq_vulnerable_share": 100.0,
-    "inventory_total": 32,
+    "inventory_total": 35,
     "inventory_by_quantum_status": {
-      "vulnerable_shor": 32
+      "vulnerable_shor": 35
     }
   },
   "findings": [
     {
-      "id": "be9fd7f8-bb6c-4eef-8cd8-ae9aa6dc0234",
-      "public_id": "QSI-2026-06680",
+      "id": "377cf864-6563-4aee-96bf-79c10cd3cefe",
+      "public_id": "QSI-2026-12813",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))",
       "description": "51 упоминаний ECDSA в 10 файл(ах), например include/secp256k1.h:75. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -1249,8 +1264,8 @@
       },
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "include/secp256k1.h",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:55:25.978385+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T19:25:05.103829+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -1325,9 +1340,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1346,8 +1361,8 @@
           "content": "   74 |  */\n   75 | typedef struct secp256k1_ecdsa_signature {\n   76 |     unsigned char data[64];",
           "content_sha256": "b6351800fde3e84aa8aa2cf6b4bf534c2ea5100a379c226f948721e44e0a9df1",
           "source_sha256": "f9af5be29b0fbe1a2b65d4131e77832791d70d995472603c124b90fb5b427538",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049130+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132519+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1.h#L75"
         },
         {
@@ -1357,8 +1372,8 @@
           "content": "   76 |     unsigned char data[64];\n   77 | } secp256k1_ecdsa_signature;\n   78 | ",
           "content_sha256": "05e9164b839b31860fab9fa6dbbca49c52da2519809b7b247e37032176c76905",
           "source_sha256": "f9af5be29b0fbe1a2b65d4131e77832791d70d995472603c124b90fb5b427538",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049140+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132526+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1.h#L77"
         },
         {
@@ -1368,8 +1383,8 @@
           "content": "  540 |  */\n  541 | SECP256K1_API int secp256k1_ecdsa_signature_parse_compact(\n  542 |     const secp256k1_context *ctx,",
           "content_sha256": "d969cc0b74d4282326ee212faae09f740473600f0b9b3ca20b9352229ddc1593",
           "source_sha256": "f9af5be29b0fbe1a2b65d4131e77832791d70d995472603c124b90fb5b427538",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049145+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132530+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1.h#L541"
         },
         {
@@ -1379,8 +1394,8 @@
           "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
           "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
           "source_sha256": "ad314d14cb79a79d4113862f21e0deccf37962db7811c801dab2899f91dd8222",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049148+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132533+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ecdh.h#L4"
         },
         {
@@ -1390,8 +1405,8 @@
           "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
           "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
           "source_sha256": "620db468b1c13968946e9f404ceb59a3f11c895603bf1dcd3399567d7bf10e99",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049151+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132536+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ellswift.h#L4"
         },
         {
@@ -1401,8 +1416,8 @@
           "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
           "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
           "source_sha256": "7c3468c9fd192ad152c5cf042cb44938961d752fcf19966123ce6a5e3fd31637",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049154+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132539+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_extrakeys.h#L4"
         },
         {
@@ -1412,8 +1427,8 @@
           "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
           "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
           "source_sha256": "b7283d4cc9c13bb2572dc92e69cea76f3270403baf5748ea4d91a1064b951b85",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049158+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132542+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_preallocated.h#L4"
         },
         {
@@ -1423,8 +1438,8 @@
           "content": "    3 | \n    4 | #include \"secp256k1.h\"\n    5 | ",
           "content_sha256": "1b629d577e7d70d59383b1579315be3bf12eeca54bf16ca67903eecec13b55a4",
           "source_sha256": "3b2efb3ccf53e9f1bce93a4afae31946585958d5cba3b38fdfb1eea4c6ce2622",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049161+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132545+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_recovery.h#L4"
         },
         {
@@ -1434,8 +1449,8 @@
           "content": "   51 |     const secp256k1_context *ctx,\n   52 |     secp256k1_ecdsa_signature *sig,\n   53 |     const secp256k1_ecdsa_recoverable_signature *sigin",
           "content_sha256": "995bb88bfce1fba4d66a56f3a87a98cd29136c0be9615f1b82a3199c812c4092",
           "source_sha256": "3b2efb3ccf53e9f1bce93a4afae31946585958d5cba3b38fdfb1eea4c6ce2622",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049164+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132548+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_recovery.h#L52"
         },
         {
@@ -1445,8 +1460,8 @@
           "content": "   83 |  */\n   84 | SECP256K1_API int secp256k1_ecdsa_sign_recoverable(\n   85 |     const secp256k1_context *ctx,",
           "content_sha256": "c272ad9ed8375232acd4b7ccfcbb427af2bb07e4707e2f0c473309ffda296a45",
           "source_sha256": "3b2efb3ccf53e9f1bce93a4afae31946585958d5cba3b38fdfb1eea4c6ce2622",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.049167+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.132552+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_recovery.h#L84"
         }
       ],
@@ -1484,8 +1499,8 @@
       ]
     },
     {
-      "id": "91cde8e8-cf5a-4ff6-b089-f5cb58d786cd",
-      "public_id": "QSI-2026-06681",
+      "id": "51b2c4c9-d5b9-49df-9bba-c0d75e1555eb",
+      "public_id": "QSI-2026-12815",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))",
       "description": "18 упоминаний Schnorr (BIP-340) в 3 файл(ах), например include/secp256k1_schnorrsig.h:82. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -1509,8 +1524,8 @@
       },
       "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
       "data_source": "include/secp256k1_schnorrsig.h",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:55:26.044391+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T19:25:05.139900+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -1585,9 +1600,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1606,8 +1621,8 @@
           "content": "   81 |  */\n   82 | typedef struct secp256k1_schnorrsig_extraparams {\n   83 |     unsigned char magic[4];",
           "content_sha256": "6aae3b20f8f8b503597acb97fe491246b6777b5a9660b8a41542605d18aab6f4",
           "source_sha256": "9b72c2199046d815df533d61a0287c1f4ca73cdef2195666c0c57d284e0c84cc",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.096556+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.181131+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_schnorrsig.h#L82"
         },
         {
@@ -1617,8 +1632,8 @@
           "content": "   85 |     void *ndata;\n   86 | } secp256k1_schnorrsig_extraparams;\n   87 | ",
           "content_sha256": "43d5f6045ac4e6b23daf11fd6c10022dca16ca76afd775c3ee898ddbef44d5bd",
           "source_sha256": "9b72c2199046d815df533d61a0287c1f4ca73cdef2195666c0c57d284e0c84cc",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.096581+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.181139+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_schnorrsig.h#L86"
         },
         {
@@ -1628,8 +1643,8 @@
           "content": "  118 |  */\n  119 | SECP256K1_API int secp256k1_schnorrsig_sign32(\n  120 |     const secp256k1_context *ctx,",
           "content_sha256": "1e555d327421285c8a81345e58876f5f2f017571adb2f2168aafc7c44770594c",
           "source_sha256": "9b72c2199046d815df533d61a0287c1f4ca73cdef2195666c0c57d284e0c84cc",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.096585+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.181142+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_schnorrsig.h#L119"
         },
         {
@@ -1639,8 +1654,8 @@
           "content": "  582 |     secp256k1_musig_nonce_process_internal(ctx, &session_i.fin_nonce_parity, fin_nonce, &session_i.noncecoef, aggnonce_pts, agg_pk32, msg32);\n  583 |     secp256k1_schnorrsig_challenge(&ctx->hash_ctx, &session_i.challenge, fin_nonce, msg32, 32, agg_pk32);\n  584 | ",
           "content_sha256": "2e03141f0127e0e58b8914535733b1f53be2291dc17ff0e8aaecf8ecc7e27d15",
           "source_sha256": "8ddcdf7e501a487213289db68f45e4183bd9cba6901c10c329b82efaecc24cf3",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.096589+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.181145+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/musig/session_impl.h#L583"
         },
         {
@@ -1650,8 +1665,8 @@
           "content": "   97 |  * SHA256 to SHA256(\"BIP0340/challenge\")||SHA256(\"BIP0340/challenge\"). */\n   98 | static void secp256k1_schnorrsig_sha256_tagged(secp256k1_sha256 *sha) {\n   99 |     static const uint32_t midstate[8] = {",
           "content_sha256": "a1153ae2ef17b61baf8d2585aa893927fd88f650b34ce0d8166071a4d0fd904f",
           "source_sha256": "06b4bce1f64657f9a21b78de77e8215e2d0b5f9da128fe4fa5f8dfe27f5dfe8e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.096592+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.181148+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/schnorrsig/main_impl.h#L98"
         },
         {
@@ -1661,8 +1676,8 @@
           "content": "  105 | \n  106 | static void secp256k1_schnorrsig_challenge(const secp256k1_hash_ctx *hash_ctx, secp256k1_scalar* e, const unsigned char *r32, const unsigned char *msg, size_t msglen, const unsigned char *pubkey32)\n  107 | {",
           "content_sha256": "f299d1f78d3628291910977b1ab869c1f4322bf525ee5240bf39f43fcf9a3411",
           "source_sha256": "06b4bce1f64657f9a21b78de77e8215e2d0b5f9da128fe4fa5f8dfe27f5dfe8e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.096596+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.181151+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/schnorrsig/main_impl.h#L106"
         },
         {
@@ -1672,8 +1687,8 @@
           "content": "  111 |     /* tagged hash(r.x, pk.x, msg) */\n  112 |     secp256k1_schnorrsig_sha256_tagged(&sha);\n  113 |     secp256k1_sha256_write(hash_ctx, &sha, r32, 32);",
           "content_sha256": "a0a16dc204430e96c9903e6ee6ef21caae66df417cf75c5030f669edff995e9b",
           "source_sha256": "06b4bce1f64657f9a21b78de77e8215e2d0b5f9da128fe4fa5f8dfe27f5dfe8e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.096600+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.181154+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/schnorrsig/main_impl.h#L112"
         }
       ],
@@ -1711,8 +1726,8 @@
       ]
     },
     {
-      "id": "451c36f5-27ef-4acd-bffc-2d4af421491c",
-      "public_id": "QSI-2026-06679",
+      "id": "a10e725a-5007-4021-bb8b-168b000b764e",
+      "public_id": "QSI-2026-12812",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))",
       "description": "19 упоминаний ECDSA в 13 файл(ах), например contrib/lax_der_parsing.c:11. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1736,8 +1751,8 @@
       },
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "contrib/lax_der_parsing.c",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-29T19:55:25.922772+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T19:25:05.093208+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -1812,9 +1827,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -1833,8 +1848,8 @@
           "content": "   10 | \n   11 | int ecdsa_signature_parse_der_lax(const secp256k1_context* ctx, secp256k1_ecdsa_signature* sig, const unsigned char *input, size_t inputlen) {\n   12 |     size_t rpos, rlen, spos, slen;",
           "content_sha256": "9197354c850cb53bbc475b348c0f97bb3f550706fcced8bf483336d626575330",
           "source_sha256": "4da2ecdc0a3b9dbb9029d188bb0243764a3c2f2324613a688f1ac4d3fc878851",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014064+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108584+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_parsing.c#L11"
         },
         {
@@ -1844,8 +1859,8 @@
           "content": "   18 |     /* Hack to initialize sig with a correctly-parsed but invalid signature. */\n   19 |     secp256k1_ecdsa_signature_parse_compact(ctx, sig, tmpsig);\n   20 | ",
           "content_sha256": "234aeaaf6b28e1d2ff43854e60a3119e3c3f55229e18841e2dc766404eab65d0",
           "source_sha256": "4da2ecdc0a3b9dbb9029d188bb0243764a3c2f2324613a688f1ac4d3fc878851",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014073+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108592+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_parsing.c#L19"
         },
         {
@@ -1855,8 +1870,8 @@
           "content": "  139 |     if (!overflow) {\n  140 |         overflow = !secp256k1_ecdsa_signature_parse_compact(ctx, sig, tmpsig);\n  141 |     }",
           "content_sha256": "75ad5d0cba25ca64adb6d971da937879704b4abc8845c17dc1da9fa1eb773e5e",
           "source_sha256": "4da2ecdc0a3b9dbb9029d188bb0243764a3c2f2324613a688f1ac4d3fc878851",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014078+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108595+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_parsing.c#L140"
         },
         {
@@ -1866,8 +1881,8 @@
           "content": "   56 |    files (such as tests.c) without the need to set an explicit -I flag,\n   57 |    which would be necessary to locate secp256k1.h. */\n   58 | #ifndef SECP256K1_H",
           "content_sha256": "25af7e242d92af0d3c46ae8d8a48030e247c4bfdeba65068030e64eb4c88c912",
           "source_sha256": "7f3e8ba009f19a5f2759c9065af02cc8e62351100d69f8ae7e762fa4b65ea675",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014082+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108600+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_parsing.h#L57"
         },
         {
@@ -1877,8 +1892,8 @@
           "content": "   58 | #ifndef SECP256K1_H\n   59 | #include <secp256k1.h>\n   60 | #endif",
           "content_sha256": "4c35a81e99a7eaf5ea7315346f3b8cacb0832f7c4a3b1a3d003ff0bd3b6a82c1",
           "source_sha256": "7f3e8ba009f19a5f2759c9065af02cc8e62351100d69f8ae7e762fa4b65ea675",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014085+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108603+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_parsing.h#L59"
         },
         {
@@ -1888,8 +1903,8 @@
           "content": "   87 |     const secp256k1_context* ctx,\n   88 |     secp256k1_ecdsa_signature* sig,\n   89 |     const unsigned char *input,",
           "content_sha256": "85efcade66268dd4d0b42e8f31b634ea4cd93d9d55cdc2e036715108d8697665",
           "source_sha256": "7f3e8ba009f19a5f2759c9065af02cc8e62351100d69f8ae7e762fa4b65ea675",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014089+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108606+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_parsing.h#L88"
         },
         {
@@ -1899,8 +1914,8 @@
           "content": "   33 |    files (such as tests.c) without the need to set an explicit -I flag,\n   34 |    which would be necessary to locate secp256k1.h. */\n   35 | #ifndef SECP256K1_H",
           "content_sha256": "163cac24f6b60e798317e2383fb603da718e728035262dc9759d7cf3fbd47b4f",
           "source_sha256": "3420812d623c0f2f86debe0535f98eab9b929036bb2fee2de8e3b1adc3e1a0b9",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014092+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108609+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_privatekey_parsing.h#L34"
         },
         {
@@ -1910,8 +1925,8 @@
           "content": "   35 | #ifndef SECP256K1_H\n   36 | #include <secp256k1.h>\n   37 | #endif",
           "content_sha256": "2741d1869779ddac4f151ac1740c338ba299b2bed7b98a38e6042acb62fca350",
           "source_sha256": "3420812d623c0f2f86debe0535f98eab9b929036bb2fee2de8e3b1adc3e1a0b9",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014095+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108612+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/contrib/lax_der_privatekey_parsing.h#L36"
         },
         {
@@ -1921,8 +1936,8 @@
           "content": "   12 | \n   13 | #include \"../include/secp256k1.h\"\n   14 | ",
           "content_sha256": "61f85bd18d379195f21a0c30c8cd92f4b059f0d2b0cd5bf011746062d05a279c",
           "source_sha256": "4a30c765a9bd49b57bba6a0879fdea66f915f606e6f9f4c92abf580668d50999",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014098+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108615+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/hash.h#L13"
         },
         {
@@ -1932,8 +1947,8 @@
           "content": "    8 | \n    9 | #include \"../../../include/secp256k1.h\"\n   10 | #include \"../../../include/secp256k1_ellswift.h\"",
           "content_sha256": "8fa6b9f415ac1794e5b54b7b69fe2278bcaf5d885b59bc227dda4f5a01c0796b",
           "source_sha256": "5cafe952c236510ba2352ed59f6cca808037bed210bd76cbf3610aa7e2d3aaa3",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-29T19:55:26.014101+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.108618+00:00",
           "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ellswift/main_impl.h#L9"
         }
       ],
@@ -1969,6 +1984,211 @@
           "status": "todo"
         }
       ]
+    },
+    {
+      "id": "66770089-45ad-4fc8-b563-b34c971876d1",
+      "public_id": "QSI-2026-12814",
+      "rule_id": "CODE-QV-ASYMMETRIC",
+      "title": "Квантово-уязвимый ECDH: роль не определена (4 файл(ов))",
+      "description": "5 упоминаний ECDH в 4 файл(ах), например include/secp256k1_ecdh.h:50. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
+      "impact": "Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).",
+      "recommendation": "Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.",
+      "retest": "Повторите инвентаризацию после рефакторинга.",
+      "limitations": "Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.",
+      "method": "Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.",
+      "repro": "Откройте include/secp256k1_ecdh.h:50 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.",
+      "category": "post_quantum",
+      "classification": "pq_long_term_risk",
+      "severity": "medium",
+      "confidence": "medium",
+      "preliminary": false,
+      "status": "open",
+      "triage": {
+        "note": "The only row in this repository with a *retroactive* character, which is why it should not be read as one more signing row. include/secp256k1_ecdh.h is the key-agreement module, used by BIP-47 payment codes, silent payments and ECIES-style encryption built on top of this library. Where a shared secret derived through it protects stored or recorded data, harvest-now-decrypt-later applies: the ciphertext kept today becomes readable once a CRQC exists, and no later migration undoes that. Unlike the signature rows, that half can be fixed without a consensus change, by wrapping the agreed secret under a hybrid KEM. One row, and the first one anybody building on this library should act on.",
+        "analyst": "QSI review, 2026-10-29",
+        "decision": "confirmed",
+        "severity_before": "medium"
+      },
+      "affected_asset": "source-code:ECDH:general",
+      "data_source": "include/secp256k1_ecdh.h",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T19:25:05.129358+00:00",
+      "risk_score": 40.2,
+      "risk_breakdown": {
+        "mosca": {
+          "x": 10.0,
+          "y": 5.0,
+          "z": 8.0,
+          "kind": "key_establishment",
+          "note": "z is an assumed planning scenario, not a forecast",
+          "urgency": 1.0,
+          "verdict": "migration_late_under_scenario",
+          "scenario": "early",
+          "x_source": "project data shelf life (harvest now, decrypt later)",
+          "margin_years": 7.0
+        },
+        "score": 40.2,
+        "factors": {
+          "ease": 0.3,
+          "asset": 0.6,
+          "impact": 0.54,
+          "urgency": 1.0,
+          "exposure": 0.6,
+          "severity": 0.5,
+          "exploitability": 0.1
+        },
+        "profile": "crypto_exchange",
+        "weights": {
+          "asset": 0.1,
+          "impact": 0.2,
+          "urgency": 0.1,
+          "exposure": 0.15,
+          "severity": 0.25,
+          "exploitability": 0.2
+        },
+        "raw_score": 50.3,
+        "references": [
+          {
+            "key": "CVSS31",
+            "url": "https://www.first.org/cvss/v3.1/specification-document",
+            "title": "Common Vulnerability Scoring System v3.1: Specification Document",
+            "status": "final",
+            "publisher": "FIRST"
+          },
+          {
+            "key": "MOSCA2018",
+            "url": "https://doi.org/10.1109/MSP.2018.3761723",
+            "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+            "status": "peer-reviewed article; source of the x + y > z migration inequality",
+            "publisher": "IEEE"
+          }
+        ],
+        "methodology": "QSI explainable weighted model v1",
+        "contributions": {
+          "ease": 0.0,
+          "asset": 6.0,
+          "impact": 10.8,
+          "urgency": 10.0,
+          "exposure": 9.0,
+          "severity": 12.5,
+          "exploitability": 2.0
+        },
+        "confidence_multiplier": 0.8
+      },
+      "cvss_vector": null,
+      "cvss_score": null,
+      "references": [
+        {
+          "key": "SHOR1997",
+          "url": "https://doi.org/10.1137/S0097539795293172",
+          "title": "P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997)",
+          "status": "peer-reviewed article",
+          "publisher": "SIAM"
+        },
+        {
+          "key": "NISTIR8547",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+          "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
+          "publisher": "NIST"
+        },
+        {
+          "key": "MOSCA2018",
+          "url": "https://doi.org/10.1109/MSP.2018.3761723",
+          "title": "M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018)",
+          "status": "peer-reviewed article; source of the x + y > z migration inequality",
+          "publisher": "IEEE"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "file_excerpt",
+          "source": "include/secp256k1_ecdh.h",
+          "location": "line 50",
+          "content": "   49 |  */\n   50 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ecdh(\n   51 |   const secp256k1_context *ctx,",
+          "content_sha256": "641884d8d53d3f43ec90d963426eda40966aae93ee201bbf706e33e7537f4b7b",
+          "source_sha256": "ad314d14cb79a79d4113862f21e0deccf37962db7811c801dab2899f91dd8222",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.142499+00:00",
+          "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ecdh.h#L50"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "include/secp256k1_ellswift.h",
+          "location": "line 185",
+          "content": "  184 |  */\n  185 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ellswift_xdh(\n  186 |   const secp256k1_context *ctx,",
+          "content_sha256": "8d490ffc4815c2dafa571febfad7fdc9daec24e68abb60bbbe6b5ba4b16682fd",
+          "source_sha256": "620db468b1c13968946e9f404ceb59a3f11c895603bf1dcd3399567d7bf10e99",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.142507+00:00",
+          "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/include/secp256k1_ellswift.h#L185"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/modules/ecdh/main_impl.h",
+          "location": "line 10",
+          "content": "    9 | \n   10 | #include \"../../../include/secp256k1_ecdh.h\"\n   11 | #include \"../../ecmult_const_impl.h\"",
+          "content_sha256": "65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134",
+          "source_sha256": "f28e34d72a3eeb1c726a8a8b390984eeef17089a5316153b71e234d9cf6c286f",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.142510+00:00",
+          "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ecdh/main_impl.h#L10"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/modules/ecdh/main_impl.h",
+          "location": "line 34",
+          "content": "   33 | \n   34 | int secp256k1_ecdh(const secp256k1_context* ctx, unsigned char *output, const secp256k1_pubkey *point, const unsigned char *scalar, secp256k1_ecdh_hash_function hashfp, void *data) {\n   35 |     int ret = 0;",
+          "content_sha256": "ac3946003039187b7456e5d15a38ba2eaf4d0fd3561977c68503dc905bc42125",
+          "source_sha256": "f28e34d72a3eeb1c726a8a8b390984eeef17089a5316153b71e234d9cf6c286f",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.142513+00:00",
+          "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ecdh/main_impl.h#L34"
+        },
+        {
+          "kind": "file_excerpt",
+          "source": "src/modules/ellswift/main_impl.h",
+          "location": "line 536",
+          "content": "  535 | \n  536 | int secp256k1_ellswift_xdh(const secp256k1_context *ctx, unsigned char *output, const unsigned char *ell_a64, const unsigned char *ell_b64, const unsigned char *seckey32, int party, secp256k1_ellswift_xdh_hash_function hashfp, void *data) {\n  537 |     int ret = 0;",
+          "content_sha256": "1cf2bfcf58034a3e05e2b2902c067a78b504ed69a6d8b58a7c8c176eaa745cdc",
+          "source_sha256": "5cafe952c236510ba2352ed59f6cca808037bed210bd76cbf3610aa7e2d3aaa3",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:25:05.142515+00:00",
+          "url": "https://github.com/bitcoin-core/secp256k1/blob/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c/src/modules/ellswift/main_impl.h#L536"
+        }
+      ],
+      "remediation": [
+        {
+          "kind": "mitigation",
+          "action": "Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+          "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+          "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+          "priority": "P3",
+          "horizon_days": 90,
+          "complexity": "medium",
+          "dependencies": "Доступ к владельцам систем.",
+          "side_effects": "Нет (документация и проектирование).",
+          "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+          "post_tests": "Инвентаризация согласована владельцем системы.",
+          "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+          "status": "todo"
+        },
+        {
+          "kind": "root_cause",
+          "action": "Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+          "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+          "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+          "priority": "P4",
+          "horizon_days": 90,
+          "complexity": "high",
+          "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+          "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+          "pre_tests": "Тесты совместимости на стенде.",
+          "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+          "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
+          "status": "todo"
+        }
+      ]
     }
   ],
   "pq": {
@@ -1992,9 +2212,10 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-06680",
-      "QSI-2026-06681",
-      "QSI-2026-06679"
+      "QSI-2026-12813",
+      "QSI-2026-12815",
+      "QSI-2026-12812",
+      "QSI-2026-12814"
     ],
     "roles": [
       {
@@ -2014,8 +2235,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-06680",
-          "QSI-2026-06681"
+          "QSI-2026-12813",
+          "QSI-2026-12815"
         ],
         "files": 13
       },
@@ -2029,12 +2250,17 @@
           {
             "algorithm": "ECDSA",
             "files": 13
+          },
+          {
+            "algorithm": "ECDH",
+            "files": 4
           }
         ],
         "findings": [
-          "QSI-2026-06679"
+          "QSI-2026-12812",
+          "QSI-2026-12814"
         ],
-        "files": 13
+        "files": 17
       }
     ],
     "maturity": {
@@ -2054,7 +2280,7 @@
         "affected": [
           {
             "algorithm": "ECDH",
-            "rows": 1
+            "rows": 4
           },
           {
             "algorithm": "ECDSA",
@@ -2128,7 +2354,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06680",
+        "finding": "QSI-2026-12813",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))",
         "severity": "medium"
       },
@@ -2146,7 +2372,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06681",
+        "finding": "QSI-2026-12815",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -2164,8 +2390,26 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-06679",
+        "finding": "QSI-2026-12812",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "mitigation",
+        "action": "Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры).",
+        "rationale": "Без понимания, где и зачем используется алгоритм, миграцию невозможно спланировать.",
+        "expected_outcome": "У каждого использования есть владелец, срок жизни и путь миграции.",
+        "priority": "P3",
+        "horizon_days": 90,
+        "complexity": "medium",
+        "dependencies": "Доступ к владельцам систем.",
+        "side_effects": "Нет (документация и проектирование).",
+        "pre_tests": "Подтвердите соответствие записи развёрнутой конфигурации.",
+        "post_tests": "Инвентаризация согласована владельцем системы.",
+        "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
+        "status": "todo",
+        "finding": "QSI-2026-12814",
+        "finding_title": "Квантово-уязвимый ECDH: роль не определена (4 файл(ов))",
         "severity": "medium"
       },
       {
@@ -2182,7 +2426,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06680",
+        "finding": "QSI-2026-12813",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (10 файл(ов))",
         "severity": "medium"
       },
@@ -2200,7 +2444,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06681",
+        "finding": "QSI-2026-12815",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -2218,8 +2462,26 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-06679",
+        "finding": "QSI-2026-12812",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (13 файл(ов))",
+        "severity": "medium"
+      },
+      {
+        "kind": "root_cause",
+        "action": "Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов.",
+        "rationale": "Устраняет зависимость от квантово-уязвимого примитива с открытым ключом.",
+        "expected_outcome": "Актив использует стандартизированный NIST постквантовый или гибридный алгоритм.",
+        "priority": "P4",
+        "horizon_days": 90,
+        "complexity": "high",
+        "dependencies": "Поддержка в библиотеках/протоколах (например, OpenSSL ≥ 3.5, прошивки HSM), совместимость с контрагентами.",
+        "side_effects": "Больший размер ключей/подписей, возможное влияние на производительность и совместимость.",
+        "pre_tests": "Тесты совместимости на стенде.",
+        "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
+        "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
+        "status": "todo",
+        "finding": "QSI-2026-12814",
+        "finding_title": "Квантово-уязвимый ECDH: роль не определена (4 файл(ов))",
         "severity": "medium"
       }
     ]
@@ -2231,7 +2493,7 @@
     },
     {
       "name": "certificates",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "chain_map",
@@ -2243,7 +2505,7 @@
     },
     {
       "name": "dependencies",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "inventory_document",
@@ -2251,11 +2513,11 @@
     },
     {
       "name": "solidity",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "source_code",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "tls_code",
@@ -2267,7 +2529,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "OSV.dev API",
@@ -2349,8 +2611,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "SHOR1997",
@@ -2373,12 +2635,48 @@
       "algorithm": "ECDH",
       "family": "key_exchange",
       "parameter": "",
-      "usage": "implemented in a file of this name",
+      "usage": "source code (1 reference(s))",
       "library": "",
-      "location": "include/secp256k1_ecdh.h",
+      "location": "include/secp256k1_ecdh.h:50",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "confidence": "low",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDH",
+      "family": "key_exchange",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "include/secp256k1_ellswift.h:185",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1
+    },
+    {
+      "algorithm": "ECDH",
+      "family": "key_exchange",
+      "parameter": "",
+      "usage": "source code (2 reference(s))",
+      "library": "",
+      "location": "src/modules/ecdh/main_impl.h:10",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 2
+    },
+    {
+      "algorithm": "ECDH",
+      "family": "key_exchange",
+      "parameter": "",
+      "usage": "source code (1 reference(s))",
+      "library": "",
+      "location": "src/modules/ellswift/main_impl.h:536",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
       "occurrences": 1
     },
     {
@@ -2761,10 +3059,12 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
+      "count": 4,
+      "rows": 4,
       "examples": [
-        "include/secp256k1_ecdh.h"
+        "include/secp256k1_ecdh.h:50",
+        "include/secp256k1_ellswift.h:185",
+        "src/modules/ecdh/main_impl.h:10"
       ]
     },
     {

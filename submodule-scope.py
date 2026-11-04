@@ -25,7 +25,8 @@ code it never opened.
 2. **A skip list can silently override a declared scope.** A scanner whose directory-skip list contains `vendor`
    will skip `vendor/embit` even when the audit scope explicitly named it — and if it skips before counting, the
    report never mentions the files it declined. A Bitcoin hardware wallet measured 13 inventory rows and a single
-   ECDSA row that way; read correctly it is 98 rows and 64 Shor-breakable.
+   ECDSA row that way; read correctly it is 93 rows and 59 Shor-breakable (98 and 64 as first published, before
+   eleven benchmark files of the vendored secp256k1-zkp were set aside and the 2026-11-05 re-measure).
 
 Mode 1 catches the first and needs nothing but the checkout. A submodule the project declares `update = none` is
 the exception: git itself leaves it out of a default checkout, so an empty one is reported but is not a failure.

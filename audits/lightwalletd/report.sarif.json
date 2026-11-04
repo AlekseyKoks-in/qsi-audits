@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CERT-QV-KEY",
@@ -78,10 +78,10 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.58.1-0.20261009181718-2f1f834330b2). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет…"
               },
               "help": {
-                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GO-2026-5932 для пакета Go golang.org/x/crypto версии v0.55.0: The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.58.1-0.20261009181718-2f1f834330b2). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые."
               },
               "helpUri": "https://osv.dev/vulnerability/GO-2026-5932"
             },
@@ -150,7 +150,7 @@
             "qsiFindingKey/v1": "77376b17760f0bd734d35835f428f011"
           },
           "properties": {
-            "qsiId": "QSI-2026-07097",
+            "qsiId": "QSI-2026-12170",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -180,7 +180,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-07095",
+            "qsiId": "QSI-2026-12168",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -198,7 +198,7 @@
             "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
           },
           "properties": {
-            "qsiId": "QSI-2026-07099",
+            "qsiId": "QSI-2026-12172",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -218,6 +218,36 @@
           ]
         },
         {
+          "ruleId": "KEY-PRIVATE-IN-INPUT",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "Закрытый ключ присутствует в docker/cert.key"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f820eb2fee5050a6c79b4f50f505762a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12169",
+            "severity": "info",
+            "confidence": "high",
+            "classification": "confirmed_vulnerability",
+            "security-severity": "8.1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docker/cert.key"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
           "ruleId": "DEP-ADVISORY-UNRATED",
           "ruleIndex": 2,
           "level": "note",
@@ -228,11 +258,11 @@
             "qsiFindingKey/v1": "79a4e71ca0cc9cb4bf47ce78bf674bdc"
           },
           "properties": {
-            "qsiId": "QSI-2026-07100",
-            "severity": "low",
+            "qsiId": "QSI-2026-12173",
+            "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
           },
           "locations": [
             {
@@ -258,11 +288,11 @@
             "qsiFindingKey/v1": "c8622f739268e0accd76421999e40824"
           },
           "properties": {
-            "qsiId": "QSI-2026-07101",
-            "severity": "low",
+            "qsiId": "QSI-2026-12174",
+            "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
           },
           "locations": [
             {
@@ -288,11 +318,41 @@
             "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
           },
           "properties": {
-            "qsiId": "QSI-2026-07102",
-            "severity": "low",
+            "qsiId": "QSI-2026-12175",
+            "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "go.mod"
+                },
+                "region": {
+                  "startLine": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12176",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
           },
           "locations": [
             {
@@ -318,11 +378,11 @@
             "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
           },
           "properties": {
-            "qsiId": "QSI-2026-07104",
-            "severity": "low",
+            "qsiId": "QSI-2026-12177",
+            "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
           },
           "locations": [
             {
@@ -348,11 +408,11 @@
             "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
           },
           "properties": {
-            "qsiId": "QSI-2026-07105",
-            "severity": "low",
+            "qsiId": "QSI-2026-12178",
+            "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
           },
           "locations": [
             {
@@ -378,11 +438,11 @@
             "qsiFindingKey/v1": "5ec72a27883467515175682ca6f2a362"
           },
           "properties": {
-            "qsiId": "QSI-2026-07106",
-            "severity": "low",
+            "qsiId": "QSI-2026-12179",
+            "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
+            "security-severity": "1.0"
           },
           "locations": [
             {
@@ -408,67 +468,7 @@
             "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
           },
           "properties": {
-            "qsiId": "QSI-2026-07107",
-            "severity": "low",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "go.mod"
-                },
-                "region": {
-                  "startLine": 54
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "KEY-PRIVATE-IN-INPUT",
-          "ruleIndex": 3,
-          "level": "note",
-          "message": {
-            "text": "Закрытый ключ присутствует в docker/cert.key"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "f820eb2fee5050a6c79b4f50f505762a"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-07096",
-            "severity": "info",
-            "confidence": "high",
-            "classification": "confirmed_vulnerability",
-            "security-severity": "8.1"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "docker/cert.key"
-                },
-                "region": {
-                  "startLine": 1
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 2,
-          "level": "note",
-          "message": {
-            "text": "golang.org/x/net v0.58.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.58.0)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-07103",
+            "qsiId": "QSI-2026-12180",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -498,7 +498,7 @@
             "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
           },
           "properties": {
-            "qsiId": "QSI-2026-07108",
+            "qsiId": "QSI-2026-12181",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -528,7 +528,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-07098",
+            "qsiId": "QSI-2026-12171",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -537,13 +537,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/f9b43ee1-df86-4cae-992a-c23d240bcdbc"
+        "id": "qsi/lightwalletd @ 4abfe9cd7b9b/57bb3120-87c3-4e15-8064-0aab42bbd38a"
       },
       "properties": {
-        "qsiContentSha256": "ee01be5a6a668e45f80173febb444271441656e5c2f98f8ad60408f1e35ec330",
+        "qsiContentSha256": "15c9ca3d8b1929b9f8bbc0f232d6fa91f7530eb49985b7063252d68f05cc6b20",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T23:10:01.950700+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:58:11.716191+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -1,8 +1,8 @@
 {
-  "content_sha256": "c0d439a694ce1e368fd2f36235910d4b8fb8e439d2c8ee8f0b7a317d4baa0ae1",
+  "content_sha256": "d4ac682f1e883dc2bcfa4f3a479d5145f55f521d5d06e837964de3dd4e4af4b9",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-28T12:51:24.692683+00:00",
+  "generated_at": "2026-11-04T19:19:48.419402+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,21 +11,40 @@
     "id": "2bed3ea8-3288-435c-9610-29c1bcdf4aff",
     "name": "rustcrypto-rsa @ f96c4b5d629a",
     "client_name": "RustCrypto project",
-    "description": "Static review of the source tree rustcrypto-rsa at f96c4b5d629a0aeb6f680294debfd38ec8a81f68. 35 files analysed; of 75 files, 23 are test, fuzzing, benchmark or example code and were left out, 17 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree rustcrypto-rsa at f96c4b5d629a0aeb6f680294debfd38ec8a81f68. 35 files analysed; of 75 files, 23 are test, fuzzing, benchmark or example code and were left out, 17 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 17 path(s) of the repository: .gitattributes, .github, .gitignore, .gitmodules, .typos.toml, CHANGELOG.md and 11 more; 744 files outside them were not read. Files no analyzer reads include: .gitattributes, .github/dependabot.yml, .github/workflows/ci.yml, .github/workflows/publish.yml, .github/workflows/workspace.yml. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "1acd22ab-77cd-485d-86c8-d51734a5ccfe",
+    "id": "bac3db89-d10d-4388-9640-d57ea268e096",
     "mode": "document",
     "title": "Document audit: rustcrypto-rsa",
     "status": "completed",
-    "engine_version": "1.2.0",
-    "started_at": "2026-10-28T12:51:20.974770+00:00",
-    "finished_at": "2026-10-28T12:51:24.492108+00:00",
+    "engine_version": "1.3.0",
+    "started_at": "2026-11-04T19:19:45.305881+00:00",
+    "finished_at": "2026-11-04T19:19:48.311691+00:00",
     "risk_profile": "security_software",
     "risk_profile_name": "Разработчик ПО безопасности",
     "parameters": {
       "ref": "f96c4b5d629a0aeb6f680294debfd38ec8a81f68",
+      "scope": [
+        ".gitattributes",
+        ".github",
+        ".gitignore",
+        ".gitmodules",
+        ".typos.toml",
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "LICENSE-APACHE",
+        "LICENSE-MIT",
+        "README.md",
+        "SECURITY.md",
+        "benches",
+        "marvin-toolkit",
+        "release.toml",
+        "src",
+        "tests"
+      ],
       "language": "ru",
       "repo_url": "https://github.com/RustCrypto/RSA",
       "osv_lookup": true,
@@ -54,6 +73,12 @@
       "name": "marvin-toolkit/Cargo.toml",
       "size": 349,
       "sha256": "cb34ab4bd9ebd619db29da7dda6c1f48485836d15e8726673ba77ecc0c096bd4",
+      "redactions": 0
+    },
+    {
+      "name": "src/algorithms.rs",
+      "size": 968,
+      "sha256": "d0849f47ed22ea07afb79e8cf4f1bfa6351a47f373cdb9c0d475fe33a4d4de62",
       "redactions": 0
     },
     {
@@ -99,12 +124,6 @@
       "redactions": 0
     },
     {
-      "name": "src/algorithms.rs",
-      "size": 968,
-      "sha256": "d0849f47ed22ea07afb79e8cf4f1bfa6351a47f373cdb9c0d475fe33a4d4de62",
-      "redactions": 0
-    },
-    {
       "name": "src/dummy_rng.rs",
       "size": 608,
       "sha256": "aee7479544785b17942fd4800b5be942ab6313de28d9ee4f94bedd0b1f93900e",
@@ -136,8 +155,14 @@
     },
     {
       "name": "src/lib.rs",
-      "size": 4832,
+      "size": 8647,
       "sha256": "b595e73a382c529d557c7ef2930828893be0d87a2f27936db5c636e06eae5728",
+      "redactions": 0
+    },
+    {
+      "name": "src/oaep.rs",
+      "size": 22195,
+      "sha256": "d33b87a40ebbc0cd87b9d08f4c7d7195e1a109a8136b232c035afd22f98f63cf",
       "redactions": 1
     },
     {
@@ -153,9 +178,9 @@
       "redactions": 0
     },
     {
-      "name": "src/oaep.rs",
-      "size": 22195,
-      "sha256": "d33b87a40ebbc0cd87b9d08f4c7d7195e1a109a8136b232c035afd22f98f63cf",
+      "name": "src/pkcs1v15.rs",
+      "size": 24525,
+      "sha256": "560937820974e813a41eb96d0bbe49c6f4cebf838ad0795932945244edb6ebb5",
       "redactions": 1
     },
     {
@@ -189,10 +214,10 @@
       "redactions": 0
     },
     {
-      "name": "src/pkcs1v15.rs",
-      "size": 24525,
-      "sha256": "560937820974e813a41eb96d0bbe49c6f4cebf838ad0795932945244edb6ebb5",
-      "redactions": 1
+      "name": "src/pss.rs",
+      "size": 21764,
+      "sha256": "88537e9df026e7c4a3d343c6cd1d4dbfa4d34e035e10c411b8745f64b068f40e",
+      "redactions": 2
     },
     {
       "name": "src/pss/blinded_signing_key.rs",
@@ -219,10 +244,10 @@
       "redactions": 0
     },
     {
-      "name": "src/pss.rs",
-      "size": 21764,
-      "sha256": "88537e9df026e7c4a3d343c6cd1d4dbfa4d34e035e10c411b8745f64b068f40e",
-      "redactions": 2
+      "name": "src/traits.rs",
+      "size": 281,
+      "sha256": "fdf9a94e6dc1bfe6881aa16075d05428e62ac7071a5d48127c566ddb609932f2",
+      "redactions": 0
     },
     {
       "name": "src/traits/encryption.rs",
@@ -241,18 +266,12 @@
       "size": 1634,
       "sha256": "1e524d6c95b7502918c32a7ca77bd83dbda1f458ba9c4976ea8a4c27ad0e105a",
       "redactions": 0
-    },
-    {
-      "name": "src/traits.rs",
-      "size": 281,
-      "sha256": "fdf9a94e6dc1bfe6881aa16075d05428e62ac7071a5d48127c566ddb609932f2",
-      "redactions": 0
     }
   ],
   "inputs_total": {
     "files": 35,
-    "bytes": 300818,
-    "redactions": 5
+    "bytes": 304633,
+    "redactions": 4
   },
   "coverage": [
     {
@@ -272,62 +291,62 @@
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 122 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms.rs: 22 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 145 registry patterns; 50 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/oaep.rs: 262 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/pad.rs: 171 lines scanned with 16 rule patterns and 122 registry patterns; 62 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms/oaep.rs: 262 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/pkcs1v15.rs: 298 lines scanned with 16 rule patterns and 122 registry patterns; 103 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms/pad.rs: 171 lines scanned with 16 rule patterns and 145 registry patterns; 62 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/pss.rs: 377 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/algorithms/pkcs1v15.rs: 298 lines scanned with 16 rule patterns and 145 registry patterns; 103 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms/rsa.rs: 540 lines scanned with 16 rule patterns and 122 registry patterns; 110 lines in #[cfg(test)] modules ignored",
+      "detail": "src/algorithms/pss.rs: 377 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/algorithms.rs: 22 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/algorithms/rsa.rs: 540 lines scanned with 16 rule patterns and 145 registry patterns; 110 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/dummy_rng.rs: 24 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/dummy_rng.rs: 24 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/encoding.rs: 244 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/encoding.rs: 244 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/errors.rs: 141 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/errors.rs: 141 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hazmat.rs: 16 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/hazmat.rs: 16 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
@@ -342,13 +361,18 @@
     },
     {
       "area": "source_code",
-      "detail": "src/key.rs: 1368 lines scanned with 16 rule patterns and 122 registry patterns; 482 lines in #[cfg(test)] modules ignored",
+      "detail": "src/key.rs: 1368 lines scanned with 16 rule patterns and 145 registry patterns; 482 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "keys",
-      "detail": "src/lib.rs: the key block at line 139 sits in a documentation comment, where it is the worked example of the crate's own API",
-      "status": "checked"
+      "detail": "src/lib.rs line 161: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "src/lib.rs line 205: public key could not be parsed (ValueError)",
+      "status": "error"
     },
     {
       "area": "certificates_and_keys",
@@ -357,17 +381,7 @@
     },
     {
       "area": "source_code",
-      "detail": "src/lib.rs: 267 lines scanned with 16 rule patterns and 122 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/oaep/decrypting_key.rs: 140 lines scanned with 16 rule patterns and 122 registry patterns; 42 lines in #[cfg(test)] modules ignored",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/oaep/encrypting_key.rs: 112 lines scanned with 16 rule patterns and 122 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "src/lib.rs: 267 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
@@ -382,32 +396,17 @@
     },
     {
       "area": "source_code",
-      "detail": "src/oaep.rs: 613 lines scanned with 16 rule patterns and 122 registry patterns; 291 lines in #[cfg(test)] modules ignored",
+      "detail": "src/oaep.rs: 613 lines scanned with 16 rule patterns and 145 registry patterns; 291 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15/decrypting_key.rs: 87 lines scanned with 16 rule patterns and 122 registry patterns; 31 lines in #[cfg(test)] modules ignored",
+      "detail": "src/oaep/decrypting_key.rs: 140 lines scanned with 16 rule patterns and 145 registry patterns; 42 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15/encrypting_key.rs: 59 lines scanned with 16 rule patterns and 122 registry patterns; 29 lines in #[cfg(test)] modules ignored",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/pkcs1v15/signature.rs: 112 lines scanned with 16 rule patterns and 122 registry patterns; 15 lines in #[cfg(test)] modules ignored",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/pkcs1v15/signing_key.rs: 362 lines scanned with 16 rule patterns and 122 registry patterns; 25 lines in #[cfg(test)] modules ignored",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/pkcs1v15/verifying_key.rs: 272 lines scanned with 16 rule patterns and 122 registry patterns; 24 lines in #[cfg(test)] modules ignored",
+      "detail": "src/oaep/encrypting_key.rs: 112 lines scanned with 16 rule patterns and 145 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -422,27 +421,32 @@
     },
     {
       "area": "source_code",
-      "detail": "src/pkcs1v15.rs: 712 lines scanned with 16 rule patterns and 122 registry patterns; 434 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15.rs: 712 lines scanned with 16 rule patterns and 145 registry patterns; 434 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/blinded_signing_key.rs: 312 lines scanned with 16 rule patterns and 122 registry patterns; 24 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/decrypting_key.rs: 87 lines scanned with 16 rule patterns and 145 registry patterns; 31 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/signature.rs: 112 lines scanned with 16 rule patterns and 122 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/encrypting_key.rs: 59 lines scanned with 16 rule patterns and 145 registry patterns; 29 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/signing_key.rs: 349 lines scanned with 16 rule patterns and 122 registry patterns; 25 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/signature.rs: 112 lines scanned with 16 rule patterns and 145 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pss/verifying_key.rs: 269 lines scanned with 16 rule patterns and 122 registry patterns; 24 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pkcs1v15/signing_key.rs: 362 lines scanned with 16 rule patterns and 145 registry patterns; 25 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/pkcs1v15/verifying_key.rs: 272 lines scanned with 16 rule patterns and 145 registry patterns; 24 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -462,27 +466,52 @@
     },
     {
       "area": "source_code",
-      "detail": "src/pss.rs: 713 lines scanned with 16 rule patterns and 122 registry patterns; 404 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pss.rs: 713 lines scanned with 16 rule patterns and 145 registry patterns; 404 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits/encryption.rs: 41 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/pss/blinded_signing_key.rs: 312 lines scanned with 16 rule patterns and 145 registry patterns; 24 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits/keys.rs: 99 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/pss/signature.rs: 112 lines scanned with 16 rule patterns and 145 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits/padding.rs: 52 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/pss/signing_key.rs: 349 lines scanned with 16 rule patterns and 145 registry patterns; 25 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/traits.rs: 9 lines scanned with 16 rule patterns and 122 registry patterns",
+      "detail": "src/pss/verifying_key.rs: 269 lines scanned with 16 rule patterns and 145 registry patterns; 24 lines in #[cfg(test)] modules ignored",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/traits.rs: 9 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/traits/encryption.rs: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/traits/keys.rs: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "source_code",
+      "detail": "src/traits/padding.rs: 52 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 32 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
       "status": "checked"
     },
     {
@@ -509,18 +538,20 @@
       "count": 32,
       "rows": 32,
       "examples": [
-        "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 122 registry patterns; 50 lines in #[cfg(test)] modules ignored",
-        "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 122 registry patterns",
-        "src/algorithms/oaep.rs: 262 lines scanned with 16 rule patterns and 122 registry patterns"
+        "src/algorithms.rs: 22 lines scanned with 16 rule patterns and 145 registry patterns",
+        "src/algorithms/generate.rs: 187 lines scanned with 16 rule patterns and 145 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+        "src/algorithms/mgf.rs: 78 lines scanned with 16 rule patterns and 145 registry patterns"
       ]
     },
     {
       "area": "keys",
       "status": "error",
-      "count": 1,
-      "rows": 1,
+      "count": 3,
+      "rows": 3,
       "examples": [
-        "src/key.rs line 1134: public key could not be parsed (ValueError)"
+        "src/key.rs line 1134: public key could not be parsed (ValueError)",
+        "src/lib.rs line 161: public key could not be parsed (ValueError)",
+        "src/lib.rs line 205: public key could not be parsed (ValueError)"
       ]
     },
     {
@@ -537,12 +568,21 @@
     {
       "area": "keys",
       "status": "checked",
-      "count": 5,
-      "rows": 5,
+      "count": 4,
+      "rows": 4,
       "examples": [
-        "src/lib.rs: the key block at line 139 sits in a documentation comment, where it is the worked example of the crate's own API",
         "src/oaep.rs: private key block at line 339 is test data (test code)",
-        "src/pkcs1v15.rs: private key block at line 304 is test data (test code)"
+        "src/pkcs1v15.rs: private key block at line 304 is test data (test code)",
+        "src/pss.rs: private key block at line 327 is test data (test code)"
+      ]
+    },
+    {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 32 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
       ]
     },
     {
@@ -560,16 +600,28 @@
       "area": "keys",
       "detail": "src/key.rs line 1134: public key could not be parsed (ValueError)",
       "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "src/lib.rs line 161: public key could not be parsed (ValueError)",
+      "status": "error"
+    },
+    {
+      "area": "keys",
+      "detail": "src/lib.rs line 205: public key could not be parsed (ValueError)",
+      "status": "error"
     }
   ],
   "not_checked_grouped": [
     {
       "area": "keys",
       "status": "error",
-      "count": 1,
-      "rows": 1,
+      "count": 3,
+      "rows": 3,
       "examples": [
-        "src/key.rs line 1134: public key could not be parsed (ValueError)"
+        "src/key.rs line 1134: public key could not be parsed (ValueError)",
+        "src/lib.rs line 161: public key could not be parsed (ValueError)",
+        "src/lib.rs line 205: public key could not be parsed (ValueError)"
       ]
     }
   ],
@@ -582,6 +634,7 @@
       "Cargo.lock",
       "Cargo.toml",
       "marvin-toolkit/Cargo.toml",
+      "random-number generation",
       "src/algorithms.rs",
       "src/algorithms/generate.rs",
       "src/algorithms/mgf.rs",
@@ -648,8 +701,8 @@
   },
   "findings": [
     {
-      "id": "64d3ae37-f05c-4917-a4f4-13bc268d4625",
-      "public_id": "QSI-2026-05056",
+      "id": "9eb27235-5c14-498f-a44c-14f2767c9a5f",
+      "public_id": "QSI-2026-12589",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: роль не определена (5 файл(ов))",
       "description": "8 упоминаний RSA в 5 файл(ах), например src/encoding.rs:68. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -668,8 +721,8 @@
       "triage": null,
       "affected_asset": "source-code:RSA:general",
       "data_source": "src/encoding.rs",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-28T12:51:24.409048+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T19:19:48.267962+00:00",
       "risk_score": 35.3,
       "risk_breakdown": {
         "mosca": {
@@ -744,9 +797,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -765,8 +818,8 @@
           "content": "   67 | \n   68 |         RsaPrivateKey::from_components(n, e, d, primes).map_err(|_| KeyMalformed)\n   69 |     }",
           "content_sha256": "848496bd7c37c63103d96a76766750a0c93994941a9810bfd3804b1d855e2f05",
           "source_sha256": "39ec4b355f95e45bf6822d9b4a9ab1d43d1c4b730b3c54dd5db993e8f222213e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441195+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.283873+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/encoding.rs#L68"
         },
         {
@@ -776,8 +829,8 @@
           "content": "   87 | \n   88 |         RsaPublicKey::new(n, e).map_err(|_| KeyMalformed)\n   89 |     }",
           "content_sha256": "51040fadaa40d8aefffe667c170da4266984b8003fe2220dcf044ffd55ab4c03",
           "source_sha256": "39ec4b355f95e45bf6822d9b4a9ab1d43d1c4b730b3c54dd5db993e8f222213e",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441205+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.283881+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/encoding.rs#L88"
         },
         {
@@ -787,8 +840,8 @@
           "content": "  337 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;\n  338 |         RsaPrivateKey::from_components(\n  339 |             components.n.get(),",
           "content_sha256": "b400f8009b313e186171f142d7584b0f639b5a05524e78b44461a94f2104c7ca",
           "source_sha256": "eeb1e8704e8643c049561837a8da28d4528513f23642f1ee3199201519049527",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441209+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.283884+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L338"
         },
         {
@@ -798,8 +851,8 @@
           "content": "  363 |         let components = generate_multi_prime_key_with_exp(rng, 2, bit_size, exp)?;\n  364 |         RsaPrivateKey::from_components(\n  365 |             components.n.get(),",
           "content_sha256": "6202abba500461e188a8f64092e4524b2f6dfb3202a0694dc57bad41e0fe4ecc",
           "source_sha256": "eeb1e8704e8643c049561837a8da28d4528513f23642f1ee3199201519049527",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441213+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.284088+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/key.rs#L364"
         },
         {
@@ -809,8 +862,8 @@
           "content": "   59 |         Ok(Self {\n   60 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   61 |             prefix: pkcs1v15_generate_prefix::<D>(),",
           "content_sha256": "b0263c77cb240628bb2f31d489438c088a47a65609d04db1b81f99208ac3d2b4",
           "source_sha256": "8cdeedb6de0749c22bd6e0bf0c07270b3bed15dde1d5c1477950579a20bbe2bf",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441217+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.284098+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pkcs1v15/signing_key.rs#L60"
         },
         {
@@ -820,8 +873,8 @@
           "content": "   88 |         Ok(Self {\n   89 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   90 |             prefix: Vec::new(),",
           "content_sha256": "96efd77715170f81d71a18c7c23d8db777764f09d7bfbc345825c9e3cf46a90a",
           "source_sha256": "8cdeedb6de0749c22bd6e0bf0c07270b3bed15dde1d5c1477950579a20bbe2bf",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441220+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.284101+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pkcs1v15/signing_key.rs#L89"
         },
         {
@@ -831,8 +884,8 @@
           "content": "   79 |         Ok(Self {\n   80 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   81 |             salt_len,",
           "content_sha256": "129f3a710601ea4cfcdb8113049c8c1f093d9e451247404aac20c41f11d9efdd",
           "source_sha256": "05cb7d0e84ec7fcd64c5f091828214908d202cf47d6ca2b54c0e508c77c46cb6",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441223+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.284105+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pss/blinded_signing_key.rs#L80"
         },
         {
@@ -842,8 +895,8 @@
           "content": "   84 |         Ok(Self {\n   85 |             inner: RsaPrivateKey::new(rng, bit_size)?,\n   86 |             salt_len,",
           "content_sha256": "00c09dc98ca719774e6d1850f1e06364da42e2119ba5c17415b5e09cb961ae53",
           "source_sha256": "95cd495708093fa3747eda26bf0e0009e48f5a2feb46cf0c2a94203e2f2fe52f",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.441226+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.284108+00:00",
           "url": "https://github.com/RustCrypto/RSA/blob/f96c4b5d629a0aeb6f680294debfd38ec8a81f68/src/pss/signing_key.rs#L85"
         }
       ],
@@ -881,8 +934,8 @@
       ]
     },
     {
-      "id": "54370820-a71d-4dbc-ae0c-bbb1bcf9c756",
-      "public_id": "QSI-2026-05058",
+      "id": "4b126a71-f489-4bbd-a3ae-dcd7dddf37ed",
+      "public_id": "QSI-2026-12591",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -902,8 +955,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-28T12:51:24.467295+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T19:19:48.296881+00:00",
       "risk_score": 20.4,
       "risk_breakdown": {
         "score": 20.4,
@@ -958,8 +1011,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0387\", \"aliases\": [], \"modified\": \"2026-10-24T03:45:02.365137418Z\", \"summary\": \"Multiple timing variability issues in operations intended to be constant-time\", \"severity\": null, \"declared_in_manifest\": true}",
           "content_sha256": "90c1f0cc3ccb6bb642d968797b426e8af0e7976cb2c08c7f8deb3d57ddb784c2",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.484699+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.306218+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -982,8 +1035,8 @@
       ]
     },
     {
-      "id": "c3db887b-807b-4cca-a685-607b89931581",
-      "public_id": "QSI-2026-05059",
+      "id": "5a11b043-8f49-47b4-bd1a-c984d68f22c1",
+      "public_id": "QSI-2026-12592",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1003,8 +1056,8 @@
       "reachability": "unknown",
       "affected_asset": "dependency:crates.io/ctutils@0.4.2",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-28T12:51:24.480636+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T19:19:48.303309+00:00",
       "risk_score": 20.4,
       "risk_breakdown": {
         "score": 20.4,
@@ -1059,8 +1112,8 @@
           "content": "{\"id\": \"RUSTSEC-2026-0385\", \"aliases\": [], \"modified\": \"2026-10-23T08:30:02.389575143Z\", \"summary\": \"Non-constant-time mask generation and `u128` comparisons\", \"severity\": null, \"declared_in_manifest\": false}",
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.512668+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.329997+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -1083,8 +1136,8 @@
       ]
     },
     {
-      "id": "e0c9139a-687e-4128-bc99-98a426563d79",
-      "public_id": "QSI-2026-05057",
+      "id": "a74c40fd-09a0-4f99-8e49-67e85aaf5446",
+      "public_id": "QSI-2026-12590",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (rsa), но ни одной из списка поддерживающих PQC.",
@@ -1103,8 +1156,8 @@
       "triage": null,
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-28T12:51:24.435317+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T19:19:48.279446+00:00",
       "risk_score": 13.5,
       "risk_breakdown": {
         "score": 13.5,
@@ -1166,8 +1219,8 @@
           "content": "Crypto libraries: rsa",
           "content_sha256": "bceb41c8a05bf5308ccf41f3394d1edb11551672e62af9fdef4204d525b694bf",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-28T12:51:24.472379+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T19:19:48.300509+00:00",
           "url": null
         }
       ],
@@ -1195,7 +1248,7 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Разработчик ПО безопасности», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-05056"
+      "QSI-2026-12589"
     ],
     "roles": [
       {
@@ -1211,7 +1264,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-05056"
+          "QSI-2026-12589"
         ],
         "files": 5
       }
@@ -1341,7 +1394,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-05058",
+        "finding": "QSI-2026-12591",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -1359,7 +1412,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-05059",
+        "finding": "QSI-2026-12592",
         "finding_title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -1379,7 +1432,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-05056",
+        "finding": "QSI-2026-12589",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (5 файл(ов))",
         "severity": "medium"
       },
@@ -1397,7 +1450,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-05056",
+        "finding": "QSI-2026-12589",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (5 файл(ов))",
         "severity": "medium"
       }
@@ -1410,7 +1463,7 @@
     },
     {
       "name": "certificates",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "chain_map",
@@ -1422,7 +1475,7 @@
     },
     {
       "name": "dependencies",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "inventory_document",
@@ -1430,11 +1483,11 @@
     },
     {
       "name": "solidity",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "source_code",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "tls_code",
@@ -1446,7 +1499,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "OSV.dev API",
@@ -1556,8 +1609,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "NIST-PQC-SEC",

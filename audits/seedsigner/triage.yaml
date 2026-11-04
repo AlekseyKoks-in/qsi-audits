@@ -1,0 +1,7 @@
+# Recovered from seedsigner/report.json, which is where these decisions were signed.
+# Written back so a re-audit keeps them instead of discarding them.
+analyst: "QSI review, 2026-10-29"
+decisions:
+  - match: {rule: "CODE-QV-ASYMMETRIC", algorithm: "ECDSA"}
+    decision: confirmed
+    note: "Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit's, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of \"1 Shor-breakable row\" is \"this repository delegates its signing\", not \"this device is nearly post-quantum\". Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not \"when will SeedSigner adopt a post-quantum signature\" but \"when will embit\", and after that, \"how fast can a hash-locked pin be moved\" — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept."

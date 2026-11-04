@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: halo2 @ 3442dd33754a
 
-*One-page brief* · Reviewed: 2026-10-30 22:49 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 20:12 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/halo2/tree/3442dd33754ae0d44b8970e5a4eea79b0c3360bf
 
@@ -12,9 +12,9 @@ Source: https://github.com/zcash/halo2/tree/3442dd33754ae0d44b8970e5a4eea79b0c33
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable Halo 2 (IPA): role not determined (34 file(s)) (QSI-2026-08328) · *preliminary*\
+1. **Medium** · Quantum-vulnerable Halo 2 (IPA): role not determined (34 file(s)) (QSI-2026-13316) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
-2. **Medium** · Quantum-vulnerable Sinsemilla: role not determined (9 file(s)) (QSI-2026-08329) · *preliminary*\
+2. **Medium** · Quantum-vulnerable Sinsemilla: role not determined (9 file(s)) (QSI-2026-13317) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
 
 ## What the quantum-vulnerable cryptography protects
@@ -27,7 +27,7 @@ Source: https://github.com/zcash/halo2/tree/3442dd33754ae0d44b8970e5a4eea79b0c33
 
 Static review of source code and manifests; files analysed: 100. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `f6a350f97e53392a2c023ba504fc31db89a49e3f1374e2a107d3ce75d808694c`
+Full report, content SHA-256: `217c0730537078bce0e422b49916a96dfa4cdf1966744643797c8e094e34d7a8`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

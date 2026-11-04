@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: sapling-crypto @ 88a7946b4a30
 
-*One-page brief* · Reviewed: 2026-10-30 23:49 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 20:11 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/sapling-crypto/tree/88a7946b4a3066787776e11f0a502654167e022d
 
@@ -12,13 +12,13 @@ Source: https://github.com/zcash/sapling-crypto/tree/88a7946b4a3066787776e11f0a5
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (19 file(s)) (QSI-2026-09113) · *preliminary*\
+1. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (19 file(s)) (QSI-2026-13306) · *preliminary*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-2. **Medium** · Quantum-vulnerable BLS12-381: threshold signing and MPC protocols (1 file(s)) (QSI-2026-09116) · *preliminary*\
+2. **Medium** · Quantum-vulnerable BLS12-381: threshold signing and MPC protocols (1 file(s)) (QSI-2026-13309) · *preliminary*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-3. **Medium** · Quantum-vulnerable RedDSA: transaction and message signing (1 file(s)) (QSI-2026-09117) · *preliminary*\
+3. **Medium** · Quantum-vulnerable RedDSA: transaction and message signing (1 file(s)) (QSI-2026-13310) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-4. **Medium** · Quantum-vulnerable RedDSA: role not determined (2 file(s)) (QSI-2026-09114) · *preliminary*\
+4. **Medium** · Quantum-vulnerable RedDSA: role not determined (2 file(s)) (QSI-2026-13307) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to a post-quantum algorithm; introduce an abstraction layer for…
 
 3 more in the full report.
@@ -39,7 +39,7 @@ Advisories for the versions in use: 2; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 37. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `c3d679c06ba44d04606dafb1989c7611836ba5807d289f36e4771c0f424fdbb6`
+Full report, content SHA-256: `9d29799e58681f3f486cdb85bb8a40693447a9b1f3c3a71afd7ed34e1c656f82`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

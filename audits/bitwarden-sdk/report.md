@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-28 18:19 UTC |
+| Дата отчёта | 2026-11-04 18:38 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 3299dddc-14ef-48e1-91a2-a864b03ce4d0 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 51217354-390e-4186-93aa-bc9d292a6463 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Разработчик ПО безопасности |
-| SHA-256 содержимого | `1e4739b3d4d55d63452098b66dfb2f91cf88d4f8816147acca500b5289e09586` |
+| SHA-256 содержимого | `9f393370f03e2e297d153a9b3eb3b6c372ce3fedc66534cc04808deabf2c6f21` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,12 +17,12 @@
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **7**
+- Средняя: **6**
 - Низкая: **11**
 - Информационная: **11**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 13
+- Известная уязвимая версия компонента: 12
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 7
@@ -39,44 +39,46 @@
 
 Репозиторий: <https://github.com/bitwarden/sdk-internal> @ `25b6c8c3860af5165ac1428c4c825ede7caa55de` — ссылки в доказательствах открывают строки на этом коммите.
 
-1625 файлов, всего 8532057 байт, редактирований: 131; список SHA-256 по файлам — в приложении C.
+1625 файлов, всего 8554887 байт, редактирований: 129; список SHA-256 по файлам — в приложении C.
 
 ## 3. Методология
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| dependencies | проверено | 66 | Cargo.lock: 661 dependencies parsed (661 pinned); Cargo.toml: 115 dependencies parsed (61 pinned); crates/bitwarden-access-token/Cargo.toml: 6 dependencies parsed (0 pinned) |
-| source_code | проверено | 1558 | crates/bitwarden-access-token/src/consts.rs: 4 lines scanned with 16 rule patterns and 122 registry patterns; crates/bitwarden-access-token/src/kind.rs: 64 lines scanned with 16 rule patterns and 122 registry patterns; 32 lines in #[cfg(test)] modules ignored; crates/bitwarden-access-token/src/lib.rs: 13 lines scanned with 16 rule patterns and 122 registry patterns |
+| dependencies | проверено | 66 | Cargo.lock: 661 dependencies parsed (661 pinned); Cargo.toml: 115 dependencies parsed (61 pinned); crates/bitwarden-access-token-crypto/Cargo.toml: 10 dependencies parsed (0 pinned) |
+| source_code | проверено | 1558 | crates/bitwarden-access-token-crypto/src/error.rs: 16 lines scanned with 16 rule patterns and 145 registry patterns; crates/bitwarden-access-token-crypto/src/key.rs: 80 lines scanned with 16 rule patterns and 145 registry patterns; crates/bitwarden-access-token-crypto/src/lib.rs: 15 lines scanned with 16 rule patterns and 145 registry patterns |
 | tls_code | проверено | 3 | crates/bitwarden-api-base/src/client.rs: TLS key-exchange settings read; crates/bitwarden-uniffi/kotlin/sdk/build.gradle: TLS key-exchange settings read; crates/bitwarden-uniffi/src/android_support.rs: TLS key-exchange settings read |
 | secrets | проверено | 55 | crates/bitwarden-auth/src/login/api/request/login_api_request.rs: value(s) at line(s) 118 (mock_fields), 160 (mock_fields), 180 (mock_fields), 273 (mock_fields), 311 (mock_fields), 351 (mock_fields) are declared inside a fixture and treated as test data, although the file itself is not test code; crates/bitwarden-auth/src/login/api/request/login_api_request.rs: 7 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); crates/bitwarden-auth/src/login/api/send_login_request.rs: value(s) at line(s) 132 (MockLoginFields) are declared inside a fixture and treated as test data, although the file itself is not test code |
-| keys | проверено | 9 | crates/bitwarden-crypto/src/enc_string/asymmetric.rs: private key block at line 335 is test data (test code); crates/bitwarden-crypto/src/keys/public_key_encryption.rs: private key block at line 347 is test data (test code); crates/bitwarden-exporters/src/cxf/ssh.rs: private key block at line 116 is test data (test code) |
-| certificates_and_keys | проверено | 8 | crates/bitwarden-crypto/src/enc_string/asymmetric.rs: certificates/keys parsed; crates/bitwarden-crypto/src/keys/public_key_encryption.rs: certificates/keys parsed; crates/bitwarden-exporters/src/cxf/ssh.rs: certificates/keys parsed |
-| osv_advisories | проверено | 1 | 903 pinned packages queried at OSV.dev; 23 affected (5 of them only in development or build dependencies) |
+| keys | проверено | 7 | crates/bitwarden-crypto/src/enc_string/asymmetric.rs: private key block at line 335 is test data (test code); crates/bitwarden-crypto/src/keys/public_key_encryption.rs: private key block at line 347 is test data (test code); crates/bitwarden-exporters/src/cxf/ssh.rs: private key block at line 116 is test data (test code) |
+| certificates_and_keys | проверено | 6 | crates/bitwarden-crypto/src/enc_string/asymmetric.rs: certificates/keys parsed; crates/bitwarden-crypto/src/keys/public_key_encryption.rs: certificates/keys parsed; crates/bitwarden-exporters/src/cxf/ssh.rs: certificates/keys parsed |
+| entropy | проверено | 1 | random-number generation: 1554 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| osv_advisories | не проверено | 1 | 6 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: passkey, passkey-authenticator, passkey-client, passkey-transports, passkey-types, public-suffix |
+| osv_advisories | проверено | 1 | 897 pinned packages queried at OSV.dev; 24 affected (7 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
 ## 4. Проверенные и непроверенные активы
 
-- Нет
+- osv_advisories — не проверено: 6 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: passkey, passkey-authenticator, passkey-client, passkey-transports, passkey-types, public-suffix
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree bitwarden-sdk at 25b6c8c3860af5165ac1428c4c825ede7caa55de. 1625 files analysed; of 2037 files, 255 are test, fuzzing, benchmark or example code and were left out, 157 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree bitwarden-sdk at 25b6c8c3860af5165ac1428c4c825ede7caa55de. 1625 files analysed; of 2037 files, 255 are test, fuzzing, benchmark or example code and were left out, 157 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 5 path(s) of the repository: Cargo.lock, Cargo.toml, crates, package-lock.json, package.json; 240 files outside them were not read. Files no analyzer reads include: crates/bitwarden-access-token-crypto/README.md, crates/bitwarden-access-token/README.md, crates/bitwarden-api-api/.gitignore, crates/bitwarden-api-api/.openapi-generator-ignore, crates/bitwarden-api-api/.openapi-generator/FILES. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **77** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 10.1%
+- Ориентировочный индекс состояния: **82** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 10.8%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-05805 — rsa 0.10.0-rc.18 затронут RUSTSEC-2023-0071 (CVE-2023-49092)
+### QSI-2026-11811 — rsa 0.10.0-rc.18 затронут RUSTSEC-2023-0071 (CVE-2023-49092)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rsa@0.10.0-rc.18`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 44.3 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N`)
 
@@ -104,13 +106,13 @@ _tool_output · [OSV.dev RUSTSEC-2023-0071](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05806 — rustls 0.23.45 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
+### QSI-2026-11812 — rustls 0.23.45 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rustls@0.23.45`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 44.3 / 100
 - CVSS v3.1: 4.0 (`CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N`)
 
@@ -138,13 +140,13 @@ _tool_output · [OSV.dev GHSA-c8m5-c952-6cm4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05789 — TLS без постквантового обмена ключами: rustls с криптопровайдером ring
+### QSI-2026-11796 — TLS без постквантового обмена ключами: rustls с криптопровайдером ring
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `tls-code:rustls`
 - Источник данных: Cargo.toml
 - Метод обнаружения: Статическое чтение настроек TLS-библиотек в коде и манифестах: криптопровайдер, списки групп и кривых, GODEBUG.
-- Анализатор: tls_code 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: tls_code 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 38.1 / 100
 - CVSS v3.1: неприменимо
 
@@ -182,13 +184,13 @@ _file_excerpt · [crates/bitwarden-api-base/src/client.rs](https://github.com/bi
 
 **Повторная проверка.** Подключитесь клиентом, предлагающим X25519MLKEM768 (openssl s_client -groups X25519MLKEM768 с OpenSSL 3.5+ или клиент на Go 1.24+), и проверьте согласованную группу.
 
-### QSI-2026-05790 — Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (3 файл(ов))
+### QSI-2026-11797 — Квантово-уязвимый RSA: обёртка ключей и шифрование хранимых данных (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RSA:key_wrapping`
 - Источник данных: crates/bitwarden-crypto/src/enc_string/asymmetric.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 38.0 / 100
 - CVSS v3.1: неприменимо
 
@@ -258,13 +260,13 @@ _file_excerpt · [crates/bitwarden-wasm-internal/src/pure_crypto.rs](https://git
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05791 — Квантово-уязвимый RSA: роль не определена (2 файл(ов))
+### QSI-2026-11798 — Квантово-уязвимый RSA: роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RSA:general`
 - Источник данных: crates/bitwarden-crypto/src/rsa.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 35.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -302,13 +304,13 @@ _file_excerpt · [crates/bitwarden-importers/src/importers/onepassword/access/rs
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05794 — Квантово-уязвимый ECDH: роль не определена (1 файл(ов))
+### QSI-2026-11801 — Квантово-уязвимый ECDH: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDH:general`
 - Источник данных: crates/bitwarden-importers/src/importers/keeper/crypto/types.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 35.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -338,47 +340,13 @@ _file_excerpt · [crates/bitwarden-importers/src/importers/keeper/crypto/types.r
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05798 — block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-- Затронутый актив: `dependency:crates.io/block-buffer@0.10.4`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
-- Балл приоритета: 33.2 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-qwgh-2vcv-g2f7
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-qwgh-2vcv-g2f7](https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7) · manifest · SHA-256 ac22c9ee6301d8c1e4b09ca6951303d71527ccba2df30c96af92531d8efbb71e_
-
-```
-{"id": "GHSA-qwgh-2vcv-g2f7", "aliases": [], "modified": "2026-08-19T19:30:06.686866977Z", "summary": "block_buffer: panic corrupts inline buffer position", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-05808 — rustls 0.23.45 затронут GHSA-vp88-798v-h67f (RUSTSEC-2026-0347)
+### QSI-2026-11814 — rustls 0.23.45 затронут GHSA-vp88-798v-h67f (RUSTSEC-2026-0347)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rustls@0.23.45`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 39.3 / 100
 - CVSS v3.1: 2.3 (`CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -406,13 +374,13 @@ _tool_output · [OSV.dev GHSA-vp88-798v-h67f](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05809 — rustls 0.23.45 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
+### QSI-2026-11815 — rustls 0.23.45 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:crates.io/rustls@0.23.45`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 39.3 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N`)
 
@@ -440,17 +408,17 @@ _tool_output · [OSV.dev GHSA-w44r-93j7-qv28](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05792 — Квантово-уязвимый Ed25519: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (2 файл(ов))
+### QSI-2026-11799 — Квантово-уязвимый Ed25519: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))
 
 - Серьёзность: **Низкая** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Ed25519:authentication`
 - Источник данных: crates/bitwarden-crypto/src/signing/cose.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 28.3 / 100
 - CVSS v3.1: неприменимо
 
-7 упоминаний Ed25519 в 2 файл(ах), например crates/bitwarden-crypto/src/signing/cose.rs:70. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.
+9 упоминаний Ed25519 в 3 файл(ах), например crates/bitwarden-crypto/src/signing/cose.rs:70. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -494,19 +462,35 @@ _file_excerpt · [crates/bitwarden-ssh/src/export.rs](https://github.com/bitward
    19 |                 .try_into()
 ```
 
+_file_excerpt · [crates/bitwarden-ssh/src/import.rs](https://github.com/bitwarden/sdk-internal/blob/25b6c8c3860af5165ac1428c4c825ede7caa55de/crates/bitwarden-ssh/src/import.rs#L124) · line 124 · SHA-256 11e375e0a851a91efb5ee4a186f444400ccfc4311c44eb61ab09291f1ca3a60b_
+
+```
+  123 |     let private_key = match private_key_info.algorithm.oid {
+  124 |         ed25519::pkcs8::ALGORITHM_OID => {
+  125 |             let private_key: [REDACTED] = private_key_info
+```
+
+_file_excerpt · [crates/bitwarden-ssh/src/import.rs](https://github.com/bitwarden/sdk-internal/blob/25b6c8c3860af5165ac1428c4c825ede7caa55de/crates/bitwarden-ssh/src/import.rs#L125) · line 125 · SHA-256 9a1e78419cd691174470f69fe340f13c678faf82ecb13ecf915f111ff4b0b08b_
+
+```
+  124 |         ed25519::pkcs8::ALGORITHM_OID => {
+  125 |             let private_key: [REDACTED] = private_key_info
+  126 |                 .try_into()
+```
+
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05793 — Квантово-уязвимый Ed25519: роль не определена (2 файл(ов))
+### QSI-2026-11800 — Квантово-уязвимый Ed25519: роль не определена (2 файл(ов))
 
 - Серьёзность: **Низкая** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Ed25519:general`
 - Источник данных: crates/bitwarden-crypto/src/signing/signing_key.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 28.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -576,13 +560,13 @@ _file_excerpt · [crates/bitwarden-crypto/src/signing/verifying_key.rs](https://
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05795 — Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (2 файл(ов))
+### QSI-2026-11802 — Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (2 файл(ов))
 
 - Серьёзность: **Низкая** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RSA:authentication`
 - Источник данных: crates/bitwarden-ssh/src/export.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 28.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -620,13 +604,13 @@ _file_excerpt · [crates/bitwarden-ssh/src/import.rs](https://github.com/bitward
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05800 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
+### QSI-2026-11806 — crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/crypto-bigint@0.5.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -654,13 +638,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05801 — crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
+### QSI-2026-11807 — crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/crypto-bigint@0.7.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -688,13 +672,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0387](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05802 — ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)
+### QSI-2026-11808 — ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/ctutils@0.4.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -722,13 +706,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0385](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05810 — rustls-webpki 0.103.15 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-11816 — rustls-webpki 0.103.15 затронут RUSTSEC-2026-0382 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls-webpki@0.103.15`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -744,10 +728,10 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0382
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 9111e73d752392534752d5ea5c9da4ec9a422a29c088531d446d16b27a016fa8_
+_tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSEC-2026-0382) · manifest · SHA-256 4c972eb1d77abf0d1c39f2b402c5fea32a5dacf7dbbeac638e7549ce780805d1_
 
 ```
-{"id": "RUSTSEC-2026-0382", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-21T00:55:56.763143468Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0382", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Certificate verification may accept distrusted intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -756,13 +740,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0382](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05815 — webpki-root-certs 1.0.9 затронут RUSTSEC-2026-0383 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-11821 — webpki-root-certs 1.0.9 затронут RUSTSEC-2026-0383 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-root-certs@1.0.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -778,10 +762,10 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0383
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSEC-2026-0383) · manifest · SHA-256 5020317ed72c7e0cbf2d22efcc385ee146b42c336ffbeb3bf453e64cec1e9d3d_
+_tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSEC-2026-0383) · manifest · SHA-256 3246026933edff30d4662b8425596fe73691a2ab5c886d1d7d3a6808822713fb_
 
 ```
-{"id": "RUSTSEC-2026-0383", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0382"], "modified": "2026-10-21T06:30:02.691648061Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0383", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0381", "RUSTSEC-2026-0382"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -790,13 +774,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0383](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05816 — webpki-roots 1.0.9 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
+### QSI-2026-11822 — webpki-roots 1.0.9 затронут RUSTSEC-2026-0381 (CVE-2026-111943) (без оценки серьёзности)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/webpki-roots@1.0.9`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 20.4 / 100
 - CVSS v3.1: неприменимо
 
@@ -812,10 +796,10 @@ curl -s https://api.osv.dev/v1/vulns/RUSTSEC-2026-0381
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 a97aff76592b60902cd4b16acc1ea2e7be27cd23fb1cd59575028f4953d51114_
+_tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSEC-2026-0381) · manifest · SHA-256 fe0730fa87c619c62bf0bee198d2f7f275186863690454c8ae7e45848f4db031_
 
 ```
-{"id": "RUSTSEC-2026-0381", "aliases": ["CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-21T06:30:02.818201920Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
+{"id": "RUSTSEC-2026-0381", "aliases": ["BIT-golang-2026-111943", "CVE-2026-111943", "GO-2026-6809", "RUSTSEC-2026-0382", "RUSTSEC-2026-0383"], "modified": "2026-10-29T10:55:54.096394276Z", "summary": "Bundled root certificates allow trust in distrusted emSign intermediates", "severity": null, "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -824,13 +808,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0381](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05807 — rustls 0.23.45 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
+### QSI-2026-11813 — rustls 0.23.45 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/rustls@0.23.45`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 30.0 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
@@ -858,13 +842,13 @@ _tool_output · [OSV.dev GHSA-h2v8-394m-p7vv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05812 — tokio 1.53.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
+### QSI-2026-11818 — tokio 1.53.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)
 
 - Серьёзность: **Информационная** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependency:crates.io/tokio@1.53.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 17.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -892,17 +876,17 @@ _tool_output · [OSV.dev RUSTSEC-2026-0386](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05817 — 13 бюллетеней в 5 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-11823 — 16 бюллетеней в 7 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 15.3 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 13 бюллетеней (7 с оценкой high или critical) для 5 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@5.0.8 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-q3jh-wrc6-jgq8; ip-address@10.3.1 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5; shell-quote@1.9.0 [dev]: GHSA-pqg4-j6r4-53mv. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 16 бюллетеней (7 с оценкой high или critical) для 7 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r; brace-expansion@5.0.8 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-mrwp-f3q8-3g9p, GHSA-q3jh-wrc6-jgq8; glob@13.0.6 [dev]: GHSA-3g3m-2fjr-6pw4; ip-address@10.3.1 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -914,13 +898,15 @@ OSV.dev сообщает 13 бюллетеней (7 с оценкой high ил�
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 74ffc41c5a7c24e37c9f2447df9b62ad53930117d1126efe56865d39ee9b321c_
+_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 531d416d9d42229297b47dca0d6555323022dcbf2a8de36afa4dd33a8033ac34_
 
 ```
 basic-ftp@5.3.1 [dev]: GHSA-c475-qrg2-pj4r
 brace-expansion@5.0.8 [dev]: GHSA-6j4f-fj2g-mc7p, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895
-follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-q3jh-wrc6-jgq8
+follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-mrwp-f3q8-3g9p, GHSA-q3jh-wrc6-jgq8
+glob@13.0.6 [dev]: GHSA-3g3m-2fjr-6pw4
 ip-address@10.3.1 [dev]: GHSA-2vr4-cq9g-pvrc, GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5
+minimatch@10.2.5 [dev]: GHSA-g3hv-75wg-m249
 shell-quote@1.9.0 [dev]: GHSA-pqg4-j6r4-53mv
 ```
 
@@ -930,13 +916,13 @@ shell-quote@1.9.0 [dev]: GHSA-pqg4-j6r4-53mv
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05796 — basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained)
+### QSI-2026-11803 — basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/basic-toml@0.1.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -964,13 +950,13 @@ _tool_output · [OSV.dev RUSTSEC-2026-0374](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05797 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
+### QSI-2026-11804 — bincode 1.3.3: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/bincode@1.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -998,13 +984,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0141](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05799 — buf_redux 0.8.4: информационный бюллетень RUSTSEC-2023-0028 (unmaintained)
+### QSI-2026-11805 — buf_redux 0.8.4: информационный бюллетень RUSTSEC-2023-0028 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/buf_redux@0.8.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1032,13 +1018,13 @@ _tool_output · [OSV.dev RUSTSEC-2023-0028](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05803 — fxhash 0.2.1: информационный бюллетень RUSTSEC-2025-0057 (unmaintained)
+### QSI-2026-11809 — fxhash 0.2.1: информационный бюллетень RUSTSEC-2025-0057 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/fxhash@0.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1066,13 +1052,13 @@ _tool_output · [OSV.dev RUSTSEC-2025-0057](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05804 — multipart 0.18.0: информационный бюллетень RUSTSEC-2023-0050 (unmaintained)
+### QSI-2026-11810 — multipart 0.18.0: информационный бюллетень RUSTSEC-2023-0050 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/multipart@0.18.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1100,13 +1086,13 @@ _tool_output · [OSV.dev RUSTSEC-2023-0050](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05811 — safemem 0.3.3: информационный бюллетень RUSTSEC-2023-0081 (unmaintained)
+### QSI-2026-11817 — safemem 0.3.3: информационный бюллетень RUSTSEC-2023-0081 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/safemem@0.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1134,13 +1120,13 @@ _tool_output · [OSV.dev RUSTSEC-2023-0081](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05813 — twoway 0.1.8: информационный бюллетень RUSTSEC-2021-0146 (unmaintained)
+### QSI-2026-11819 — twoway 0.1.8: информационный бюллетень RUSTSEC-2021-0146 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/twoway@0.1.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1168,13 +1154,13 @@ _tool_output · [OSV.dev RUSTSEC-2021-0146](https://osv.dev/vulnerability/RUSTSE
 
 **Повторная проверка.** Повторите сканирование зависимостей после изменения.
 
-### QSI-2026-05814 — unsafe-libyaml 0.2.11: информационный бюллетень RUSTSEC-2024-0449 (unmaintained)
+### QSI-2026-11820 — unsafe-libyaml 0.2.11: информационный бюллетень RUSTSEC-2024-0449 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/unsafe-libyaml@0.2.11`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:19 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:38 UTC
 - Балл приоритета: 11.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -1241,10 +1227,10 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **обёртка ключей и шифрование хранимых данных** | RSA (3) | QSI-2026-05790 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
-| **обмен ключами в канале (TLS, Noise, рукопожатия)** | TLS ECDHE (2) | QSI-2026-05789 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
-| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | Ed25519 (2), RSA (2) | QSI-2026-05792, QSI-2026-05795 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
-| **роль не определена** | Ed25519 (2), RSA (2), ECDH (1) | QSI-2026-05791, QSI-2026-05793, QSI-2026-05794 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **обёртка ключей и шифрование хранимых данных** | RSA (3) | QSI-2026-11797 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
+| **обмен ключами в канале (TLS, Noise, рукопожатия)** | TLS ECDHE (2) | QSI-2026-11796 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
+| **аутентификация и идентификация (сертификаты, токены, аттестация устройств)** | Ed25519 (3), RSA (2) | QSI-2026-11799, QSI-2026-11802 | Делайте учётные данные краткоживущими и планируйте сертификаты, токены и ключи ML-DSA по мере поддержки в экосистеме |
+| **роль не определена** | Ed25519 (2), RSA (2), ECDH (1) | QSI-2026-11798, QSI-2026-11800, QSI-2026-11801 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -1254,7 +1240,7 @@ _Роль определяется по путям файлов, именам ф
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
 | Алгоритм Шора — факторизация | взламывает | Q1 | RSA (7) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (1), Ed25519 (4) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (1), Ed25519 (5) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | AES-256 (25), Argon2 (2), ChaCha20-Poly1305 (5), HKDF (7), HMAC (13), SHA-2 (17) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | SHA-2 (17) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 | Алгоритм Саймона — суперпозиционные атаки на симметричные конструкции | только при суперпозиционных запросах | Q2 | GCM mode (2) | Для обычного применения AES-GCM или CBC-MAC действий не требуется — модель атаки неприменима. Зафиксируйте это как допущение модели; для конструкций типа Even–Mansour см. офлайн-вариант. |
@@ -1267,6 +1253,7 @@ _Действие: взламывает — алгоритм нужно заме
 
 - Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 - z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует.
+- osv_advisories: 6 package(s) are built from git repositories (forks or unreleased code), so registry advisories were not looked up for them: passkey, passkey-authenticator, passkey-client, passkey-transports, passkey-types, public-suffix
 
 ## 10. План устранения проблем / Приоритеты на 30, 60 и 90 дней
 
@@ -1274,63 +1261,62 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-05805 | Обновите rsa до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2023-0071 (CVE-2023-49092). |
-| P2 | QSI-2026-05806 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
-| P2 | QSI-2026-05798 | Обновите block-buffer до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qwgh-2vcv-g2f7. |
-| P2 | QSI-2026-05808 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vp88-798v-h67f (RUSTSEC-2026-0347). |
-| P2 | QSI-2026-05809 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
-| P2 | QSI-2026-05807 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
+| P2 | QSI-2026-11811 | Обновите rsa до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает RUSTSEC-2023-0071 (CVE-2023-49092). |
+| P2 | QSI-2026-11812 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346). |
+| P2 | QSI-2026-11814 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vp88-798v-h67f (RUSTSEC-2026-0347). |
+| P2 | QSI-2026-11815 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349). |
+| P2 | QSI-2026-11813 | Обновите rustls до исправленной версии (0.23.46, 0.24.0-dev.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-05789 | Соберите rustls с провайдером aws-lc-rs (rustls::crypto::aws_lc_rs) и функцией prefer-post-quantum, которая ставит X25519MLKEM768 первым. | устранение первопричины | PQ-клиент согласует X25519MLKEM768. |
-| P3 | QSI-2026-05800 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
-| P3 | QSI-2026-05801 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
-| P3 | QSI-2026-05802 | Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан. |
-| P3 | QSI-2026-05810 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-05815 | Разберите RUSTSEC-2026-0383 (CVE-2026-111943); при необходимости обновите webpki-root-certs до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0383 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-05816 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
-| P3 | QSI-2026-05812 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
+| P2 | QSI-2026-11796 | Соберите rustls с провайдером aws-lc-rs (rustls::crypto::aws_lc_rs) и функцией prefer-post-quantum, которая ставит X25519MLKEM768 первым. | устранение первопричины | PQ-клиент согласует X25519MLKEM768. |
+| P3 | QSI-2026-11806 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-11807 | Разберите RUSTSEC-2026-0387; при необходимости обновите crypto-bigint до исправленной версии (0.7.6). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан. |
+| P3 | QSI-2026-11808 | Разберите RUSTSEC-2026-0385; при необходимости обновите ctutils до исправленной версии (0.4.4). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан. |
+| P3 | QSI-2026-11816 | Разберите RUSTSEC-2026-0382 (CVE-2026-111943); при необходимости обновите rustls-webpki до исправленной версии (0.103.16, 0.104.0-alpha.8). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0382 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-11821 | Разберите RUSTSEC-2026-0383 (CVE-2026-111943); при необходимости обновите webpki-root-certs до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0383 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-11822 | Разберите RUSTSEC-2026-0381 (CVE-2026-111943); при необходимости обновите webpki-roots до исправленной версии (0.26.11, 1.0.10). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0381 (CVE-2026-111943) или результат разбора записан. |
+| P3 | QSI-2026-11818 | Разберите RUSTSEC-2026-0386; при необходимости обновите tokio до исправленной версии (1.51.6, 1.53.3). | устранение первопричины | Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05790 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05791 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05794 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05792 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05793 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05795 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-05790 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05791 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05794 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-05792 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05793 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05795 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05817 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
-| P4 | QSI-2026-05796 | Замените basic-toml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | basic-toml заменён или решение зафиксировано. |
-| P4 | QSI-2026-05797 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
-| P4 | QSI-2026-05799 | Замените buf_redux поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | buf_redux заменён или решение зафиксировано. |
-| P4 | QSI-2026-05803 | Замените fxhash поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | fxhash заменён или решение зафиксировано. |
-| P4 | QSI-2026-05804 | Замените multipart поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | multipart заменён или решение зафиксировано. |
-| P4 | QSI-2026-05811 | Замените safemem поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | safemem заменён или решение зафиксировано. |
-| P4 | QSI-2026-05813 | Замените twoway поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | twoway заменён или решение зафиксировано. |
-| P4 | QSI-2026-05814 | Замените unsafe-libyaml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | unsafe-libyaml заменён или решение зафиксировано. |
+| P3 | QSI-2026-11797 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11798 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11801 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11799 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11800 | Внесите использования Ed25519 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11802 | Внесите использования RSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-11797 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11798 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11801 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-11799 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11800 | Запланируйте миграцию Ed25519 на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11802 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11823 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-11803 | Замените basic-toml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | basic-toml заменён или решение зафиксировано. |
+| P4 | QSI-2026-11804 | Замените bincode поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | bincode заменён или решение зафиксировано. |
+| P4 | QSI-2026-11805 | Замените buf_redux поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | buf_redux заменён или решение зафиксировано. |
+| P4 | QSI-2026-11809 | Замените fxhash поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | fxhash заменён или решение зафиксировано. |
+| P4 | QSI-2026-11810 | Замените multipart поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | multipart заменён или решение зафиксировано. |
+| P4 | QSI-2026-11817 | Замените safemem поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | safemem заменён или решение зафиксировано. |
+| P4 | QSI-2026-11819 | Замените twoway поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | twoway заменён или решение зафиксировано. |
+| P4 | QSI-2026-11820 | Замените unsafe-libyaml поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | unsafe-libyaml заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -1360,33 +1346,32 @@ _Действие: взламывает — алгоритм нужно заме
 23. M. Kaplan, G. Leurent, A. Leverrier, M. Naya-Plasencia — Breaking Symmetric Cryptosystems using Quantum Period Finding (CRYPTO 2016; arXiv:1602.05973) — Springer / arXiv. <https://arxiv.org/abs/1602.05973> (peer-reviewed article: superposition-query forgeries on CBC-MAC, PMAC, GMAC, GCM, OCB)
 24. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 25. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-26. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+26. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 27. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 28. OSV advisory GHSA-c8m5-c952-6cm4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4> (modified 2026-10-27T16:15:05.354395696Z)
 29. OSV advisory GHSA-h2v8-394m-p7vv — OSV.dev. <https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv> (modified 2026-10-27T16:15:05.337819489Z)
-30. OSV advisory GHSA-qwgh-2vcv-g2f7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7> (modified 2026-08-19T19:30:06.686866977Z)
-31. OSV advisory GHSA-vp88-798v-h67f — OSV.dev. <https://osv.dev/vulnerability/GHSA-vp88-798v-h67f> (modified 2026-10-27T16:15:05.336685240Z)
-32. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-10-27T16:15:05.340347056Z)
-33. OSV advisory RUSTSEC-2021-0146 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2021-0146> (modified 2023-02-09T03:11:29Z)
-34. OSV advisory RUSTSEC-2023-0028 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0028> (modified 2023-03-24T15:42:41Z)
-35. OSV advisory RUSTSEC-2023-0050 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0050> (modified 2023-08-18T20:38:40Z)
-36. OSV advisory RUSTSEC-2023-0071 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0071> (modified 2026-09-14T09:45:02.996132556Z)
-37. OSV advisory RUSTSEC-2023-0081 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0081> (modified 2024-03-04T18:47:07Z)
-38. OSV advisory RUSTSEC-2024-0449 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0449> (modified 2026-10-12T11:45:02.518189315Z)
-39. OSV advisory RUSTSEC-2025-0057 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0057> (modified 2025-09-05T19:09:01Z)
-40. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
-41. OSV advisory RUSTSEC-2026-0374 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0374> (modified 2026-10-20T11:15:37.076409305Z)
-42. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-21T06:30:02.818201920Z)
-43. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-21T00:55:56.763143468Z)
-44. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-21T06:30:02.691648061Z)
-45. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
-46. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
-47. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
-48. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-49. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-50. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-51. RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024) — IETF. <https://www.rfc-editor.org/rfc/rfc10024> (standards track; checked 2026-10-13)
-52. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+30. OSV advisory GHSA-vp88-798v-h67f — OSV.dev. <https://osv.dev/vulnerability/GHSA-vp88-798v-h67f> (modified 2026-10-27T16:15:05.336685240Z)
+31. OSV advisory GHSA-w44r-93j7-qv28 — OSV.dev. <https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28> (modified 2026-10-27T16:15:05.340347056Z)
+32. OSV advisory RUSTSEC-2021-0146 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2021-0146> (modified 2023-02-09T03:11:29Z)
+33. OSV advisory RUSTSEC-2023-0028 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0028> (modified 2023-03-24T15:42:41Z)
+34. OSV advisory RUSTSEC-2023-0050 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0050> (modified 2023-08-18T20:38:40Z)
+35. OSV advisory RUSTSEC-2023-0071 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0071> (modified 2026-09-14T09:45:02.996132556Z)
+36. OSV advisory RUSTSEC-2023-0081 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2023-0081> (modified 2024-03-04T18:47:07Z)
+37. OSV advisory RUSTSEC-2024-0449 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2024-0449> (modified 2026-10-12T11:45:02.518189315Z)
+38. OSV advisory RUSTSEC-2025-0057 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0057> (modified 2025-09-05T19:09:01Z)
+39. OSV advisory RUSTSEC-2025-0141 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2025-0141> (modified 2026-01-16T11:07:28.867553Z)
+40. OSV advisory RUSTSEC-2026-0374 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0374> (modified 2026-10-20T11:15:37.076409305Z)
+41. OSV advisory RUSTSEC-2026-0381 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0381> (modified 2026-10-29T10:55:54.096394276Z)
+42. OSV advisory RUSTSEC-2026-0382 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0382> (modified 2026-10-29T10:55:54.096394276Z)
+43. OSV advisory RUSTSEC-2026-0383 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0383> (modified 2026-10-29T10:55:54.096394276Z)
+44. OSV advisory RUSTSEC-2026-0385 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0385> (modified 2026-10-23T08:30:02.389575143Z)
+45. OSV advisory RUSTSEC-2026-0386 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0386> (modified 2026-10-23T14:45:03.847864944Z)
+46. OSV advisory RUSTSEC-2026-0387 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0387> (modified 2026-10-24T03:45:02.365137418Z)
+47. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+48. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+49. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+50. RFC 10024 — Hybrid ECDHE-MLKEM key agreement for TLS 1.3 (X25519MLKEM768, SecP256r1MLKEM768, SecP384r1MLKEM1024) — IETF. <https://www.rfc-editor.org/rfc/rfc10024> (standards track; checked 2026-10-13)
+51. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -1406,8 +1391,8 @@ _Действие: взламывает — алгоритм нужно заме
 | CBC mode |  |  | н/п | допустимо | 4 | 4 | crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc.rs; crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_ae.rs; crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes256_cbc_hmac_sha256_aead.rs |
 | Crypto library | 0.10.0-rc.18 | rsa (RustCrypto rsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.13.2 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.14.0 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.14.0 | p384 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
+| Crypto library | 0.14.0 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.16.9 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.17.0 | ecdsa (python-ecdsa) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.17.14 | ring (ring (Rust)) | н/п | допустимо | 1 | 1 | Cargo.lock |
@@ -1421,18 +1406,18 @@ _Действие: взламывает — алгоритм нужно заме
 | Crypto library | 3.0.0-pre.7 | ed25519-dalek (ed25519-dalek) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | workspace | rustls (rustls) | н/п | допустимо | 1 | 1 | crates/bitwarden-api-base/Cargo.toml |
 | Crypto library | =0.6.0-rc.8 | argon2 (Argon2 bindings) | н/п | допустимо | 1 | 1 | crates/bitwarden-crypto/Cargo.toml |
-| Crypto library | workspace | ed25519-dalek (ed25519-dalek) | н/п | допустимо | 2 | 2 | crates/bitwarden-crypto/Cargo.toml; crates/bitwarden-ssh/Cargo.toml |
 | Crypto library | workspace | rsa (RustCrypto rsa) | н/п | допустимо | 4 | 4 | crates/bitwarden-crypto/Cargo.toml; crates/bitwarden-importers/Cargo.toml; crates/bitwarden-ssh/Cargo.toml |
+| Crypto library | workspace | ed25519-dalek (ed25519-dalek) | н/п | допустимо | 2 | 2 | crates/bitwarden-crypto/Cargo.toml; crates/bitwarden-ssh/Cargo.toml |
 | Crypto library | >=0.13.2, <0.14 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | crates/bitwarden-fido/Cargo.toml |
 | Crypto library | =0.14.0 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | crates/bitwarden-importers/Cargo.toml |
-| Crypto library | 0.14.0-rc.9 | p384 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | crates/bitwarden-ssh/Cargo.toml |
 | Crypto library | 0.14.0-rc.9 | p256 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | crates/bitwarden-ssh/Cargo.toml |
+| Crypto library | 0.14.0-rc.9 | p384 (RustCrypto elliptic curves) | н/п | допустимо | 1 | 1 | crates/bitwarden-ssh/Cargo.toml |
 | GCM mode |  |  | н/п | допустимо | 2 | 2 | crates/bitwarden-crypto/src/hazmat/symmetric_encryption/aes_gcm.rs; crates/bitwarden-crypto/src/hazmat/symmetric_encryption/xaes_256_gcm.rs |
 | ML-DSA |  |  | постквантовый | допустимо | 3 | 3 | crates/bitwarden-crypto/src/signing/cose.rs:7; crates/bitwarden-crypto/src/signing/signing_key.rs:12; crates/bitwarden-crypto/src/signing/verifying_key.rs:14 |
 | PQC library | 0.1.1 | ml-dsa (RustCrypto post-quantum crates) | постквантовый | допустимо | 1 | 1 | Cargo.lock |
 | PQC library | 0.1.0-rc.8 | ml-dsa (RustCrypto post-quantum crates) | постквантовый | допустимо | 1 | 1 | crates/bitwarden-crypto/Cargo.toml |
 | ECDH |  |  | уязвим (Шор) | допустимо | 1 | 1 | crates/bitwarden-importers/src/importers/keeper/crypto/types.rs:515 |
-| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 4 | 4 | crates/bitwarden-crypto/src/signing/cose.rs:70; crates/bitwarden-crypto/src/signing/signing_key.rs:10; crates/bitwarden-crypto/src/signing/verifying_key.rs:16 |
+| Ed25519 | Ed25519 |  | уязвим (Шор) | допустимо | 5 | 5 | crates/bitwarden-crypto/src/signing/cose.rs:70; crates/bitwarden-crypto/src/signing/signing_key.rs:10; crates/bitwarden-crypto/src/signing/verifying_key.rs:16 |
 | RSA |  |  | уязвим (Шор) | допустимо | 7 | 7 | crates/bitwarden-crypto/src/enc_string/asymmetric.rs:5; crates/bitwarden-crypto/src/keys/public_key_encryption.rs:92; crates/bitwarden-crypto/src/rsa.rs:28 |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -1443,12 +1428,6 @@ _Длинные списки здесь сгруппированы; полный
 |---|---|---|---|
 | Cargo.lock | 188038 | `4d6655c6e8702d9b55b7445e9951bdfb854c1fe7703f800b1f1f15c13b6243c6` | 0 |
 | Cargo.toml | 13450 | `458d82836a443814986bd34d2ac9b76d4c4c93044c7c2c442ec938b780dfc0c7` | 0 |
-| crates/bitwarden-access-token/Cargo.toml | 666 | `1232f216e6943d4c628c3be66596eeaecee8f46a0e1a69464482cbc21d0937ad` | 0 |
-| crates/bitwarden-access-token/src/consts.rs | 154 | `3e72f1067db1ae0a4dcd16d6bd0db196e6bc38662c4f0a1c70c1cb54ba05c669` | 0 |
-| crates/bitwarden-access-token/src/kind.rs | 1952 | `a36b8431603bbf46e6ad7883f6b118b3bc583d1c95cb93f69d704e14bdd0b166` | 0 |
-| crates/bitwarden-access-token/src/lib.rs | 334 | `b176a9ed3fcf937a2c5a014dcd3efc26f019506087ba1003571d449529a4dccf` | 0 |
-| crates/bitwarden-access-token/src/secrets.rs | 2210 | `b35838a3b7dd6ee241bf177fc592d8bef98103322ebe2d9f8e8bd5b1cf89eb9c` | 0 |
-| crates/bitwarden-access-token/src/token.rs | 12352 | `300b923e5988308122cc43739dc4700f5c6549d75767e349cbbbe1c0190a0679` | 0 |
 | crates/bitwarden-access-token-crypto/Cargo.toml | 820 | `32a1c893c425b552822a428d6d55519564285fc916250a225426e8b9f189820b` | 0 |
 | crates/bitwarden-access-token-crypto/src/error.rs | 555 | `379994cb68ea75e999e37736e53f09fad06b93beb2688d3b4e92da44b548e656` | 0 |
 | crates/bitwarden-access-token-crypto/src/key.rs | 2741 | `6ddcf4909428c01f0c0501cf3429c92ab01a52083a1c6f1940849c8ab4153110` | 0 |
@@ -1456,6 +1435,12 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-access-token-crypto/src/material.rs | 2245 | `70bacab3f9b099d15a07bfc7e3eed7b2b7b59148074468adc74a60a11ea726e7` | 0 |
 | crates/bitwarden-access-token-crypto/src/purpose.rs | 1188 | `3ffa4e4b9e42cec62ed0316c935b396c72c1337cfa40faafd4f234084d2d086e` | 0 |
 | crates/bitwarden-access-token-crypto/src/seed.rs | 2160 | `fc40037bc578bf1cb9dfba2e3e727eb1b1bd9a970c3be2644fc55c3af47fb2be` | 0 |
+| crates/bitwarden-access-token/Cargo.toml | 666 | `1232f216e6943d4c628c3be66596eeaecee8f46a0e1a69464482cbc21d0937ad` | 0 |
+| crates/bitwarden-access-token/src/consts.rs | 154 | `3e72f1067db1ae0a4dcd16d6bd0db196e6bc38662c4f0a1c70c1cb54ba05c669` | 0 |
+| crates/bitwarden-access-token/src/kind.rs | 1952 | `a36b8431603bbf46e6ad7883f6b118b3bc583d1c95cb93f69d704e14bdd0b166` | 0 |
+| crates/bitwarden-access-token/src/lib.rs | 334 | `b176a9ed3fcf937a2c5a014dcd3efc26f019506087ba1003571d449529a4dccf` | 0 |
+| crates/bitwarden-access-token/src/secrets.rs | 2210 | `b35838a3b7dd6ee241bf177fc592d8bef98103322ebe2d9f8e8bd5b1cf89eb9c` | 0 |
+| crates/bitwarden-access-token/src/token.rs | 12352 | `300b923e5988308122cc43739dc4700f5c6549d75767e349cbbbe1c0190a0679` | 0 |
 | crates/bitwarden-api-api/Cargo.toml | 839 | `5f60a3e668f135ce7d1a7bc8c4be34923f2f7ab69eee519d153c032f722d2fdb` | 0 |
 | crates/bitwarden-api-api/src/apis/access_policies_api.rs | 14994 | `25e051836ee4323cea0b77113edc43dc69203520d768a89f595ccea34894b4e7` | 0 |
 | crates/bitwarden-api-api/src/apis/access_requests_api.rs | 7758 | `b51fd9afcfe7b91ae9f3c7f33a751a23486e07e4f77b92ea4a283fb0118af3ab` | 0 |
@@ -2331,6 +2316,8 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-collections/src/lib.rs | 821 | `451629dcb8c720c864c68b675ff24f9552c194b39362ab9d0a67e1e031b73e09` | 0 |
 | crates/bitwarden-collections/src/tree.rs | 9744 | `718b6685a2cf5ec755c08e705118f5749cd84c35184b74f9a14d54ac10e3c242` | 0 |
 | crates/bitwarden-collections/src/uniffi_support.rs | 65 | `b866e5045c0bf91493e1c750b2ceba7744afa61f7171f70159c3034c743e7714` | 0 |
+| crates/bitwarden-core-macro/Cargo.toml | 556 | `032ee465afc3323bf207b1db817745a1c6e74cd2212464da19d24ac4eaaa5225` | 0 |
+| crates/bitwarden-core-macro/src/lib.rs | 4855 | `ccf9ad1802b9916d8c370ddf05c773a8961021c341136cc58ce9fb0fbbecaddb` | 0 |
 | crates/bitwarden-core/Cargo.toml | 4414 | `da8ecb28e2920fabd7c532cda9563e113159afd98e3b7f00de1b22cabb278e88` | 0 |
 | crates/bitwarden-core/src/auth/access_token.rs | 4518 | `8c53619397f7c8ebda9f6e57790546955e7e97c94f52eaf4a951a8d4894134a6` | 1 |
 | crates/bitwarden-core/src/auth/api/mod.rs | 49 | `765b715c9b5d375e588edac715ccad98ec2c7a8643d351794e9a84b0f03b4e51` | 0 |
@@ -2407,8 +2394,8 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-core/src/global/mod.rs | 593 | `cae81da99a1d8a85aa26d8ac7cbf6394c6c60f940df0207bb7e7c7f6c72f67ad` | 0 |
 | crates/bitwarden-core/src/ids.rs | 97 | `c4925f6907736da6cc2ca39bcda9bf948e53de4e0c3bc4597e27b603368c3f1f` | 0 |
 | crates/bitwarden-core/src/key_management/account_cryptographic_state.rs | 58534 | `77795297d17e8f9cf253441ffbc0e07e7267e341479d8460c82485092a9d2417` | 0 |
-| crates/bitwarden-core/src/key_management/crypto/reinit_user_crypto.rs | 26308 | `609851e2f65de545c8336206611df57d35b5ce3133ea3bfc6a68c66abcb8e439` | 0 |
 | crates/bitwarden-core/src/key_management/crypto.rs | 101488 | `20416920c85baecf2244d821717e08922171e04ee9526276edd3d22df927d65e` | 8 |
+| crates/bitwarden-core/src/key_management/crypto/reinit_user_crypto.rs | 26308 | `609851e2f65de545c8336206611df57d35b5ce3133ea3bfc6a68c66abcb8e439` | 0 |
 | crates/bitwarden-core/src/key_management/crypto_client.rs | 18652 | `0baded531d71a70a021d02ee1a71791932af3f043172e611c30ac4474ba47929` | 0 |
 | crates/bitwarden-core/src/key_management/local_user_data_key.rs | 7977 | `6a334335503b85fe81da34f310b7d5f002af180bb0d808f9458a12b6e5c6ba87` | 0 |
 | crates/bitwarden-core/src/key_management/local_user_data_key_state.rs | 14626 | `12967eafd0f908024f9975cefb235f5e7586f35b92754d567868081b4ded03f9` | 0 |
@@ -2435,8 +2422,12 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-core/src/secrets_manager/mod.rs | 154 | `b1fea8dd66227f3c052fec0d42ead1abecc288c80e6ef095d73ef4b51e995ecc` | 0 |
 | crates/bitwarden-core/src/secrets_manager/state.rs | 2492 | `b7f415d6f4a6c792fe12e4bb5402e40b89c66e8eec55d8acf61c4c14b26a388b` | 0 |
 | crates/bitwarden-core/src/uniffi_support.rs | 1358 | `2c69120714e208f01522f17dbe7fdaaf7f0607173cb383b1417bb96b7fdac1c2` | 0 |
-| crates/bitwarden-core-macro/Cargo.toml | 556 | `032ee465afc3323bf207b1db817745a1c6e74cd2212464da19d24ac4eaaa5225` | 0 |
-| crates/bitwarden-core-macro/src/lib.rs | 4855 | `ccf9ad1802b9916d8c370ddf05c773a8961021c341136cc58ce9fb0fbbecaddb` | 0 |
+| crates/bitwarden-crypto-cipher-suite/Cargo.toml | 924 | `0b0f83b5385be2a9774a5f95dced5debeb9576eeee7a0deade2665c49c59aeb5` | 0 |
+| crates/bitwarden-crypto-cipher-suite/src/cipher_suite_client.rs | 3520 | `fc02e1ce4f5bb2153e5424dac6973ac63422353e5fdf0adc42a6431607e98e7c` | 0 |
+| crates/bitwarden-crypto-cipher-suite/src/lib.rs | 149 | `f46f9526e93b1c1d61ff83d3f16bd27401217696421761593cb27d3fd501443d` | 0 |
+| crates/bitwarden-crypto-sync-handler/Cargo.toml | 1582 | `83c537055a7ff53ef96e16bbcce990a6f30744dc4de5184336580c70a8154deb` | 0 |
+| crates/bitwarden-crypto-sync-handler/src/crypto_sync_handler.rs | 22541 | `2f0533455f3b2efd80ba6fa1f4b1390168c5737227b55210eb30cf1ef48c9859` | 0 |
+| crates/bitwarden-crypto-sync-handler/src/lib.rs | 436 | `126254245532907fa380a9ce091a74ecaaa3e784d8b62cb15d451195c9bbab45` | 0 |
 | crates/bitwarden-crypto/Cargo.toml | 3547 | `e32c5c2f39d895df9674e4121ef4dc9144938ba63595d11dee1f88217d483129` | 0 |
 | crates/bitwarden-crypto/src/content_format.rs | 10131 | `f424a349a9bc487529deed883ac4bf97fa2d8470082e0eaaf6a7e1b14442e033` | 0 |
 | crates/bitwarden-crypto/src/cose/mod.rs | 14303 | `41013fba25241d8acca009b1f03820ad901dd7dfbf36d1d545fc04200f230ead` | 0 |
@@ -2508,12 +2499,6 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-crypto/src/uniffi_support.rs | 2624 | `2d263e79ab74585a0ee83fc7da12d77e15f5b4f8d0bed350ae950e9806c7e1e7` | 0 |
 | crates/bitwarden-crypto/src/util.rs | 4398 | `1a33be9168a329241c7743f598527e4e32a38c5dafd19bc2813028b0735cd84e` | 0 |
 | crates/bitwarden-crypto/src/wordlist.rs | 116678 | `822f3044c50b3569ee1f0abffbed258de339371190011299774416fa30bca8da` | 0 |
-| crates/bitwarden-crypto-cipher-suite/Cargo.toml | 924 | `0b0f83b5385be2a9774a5f95dced5debeb9576eeee7a0deade2665c49c59aeb5` | 0 |
-| crates/bitwarden-crypto-cipher-suite/src/cipher_suite_client.rs | 3520 | `fc02e1ce4f5bb2153e5424dac6973ac63422353e5fdf0adc42a6431607e98e7c` | 0 |
-| crates/bitwarden-crypto-cipher-suite/src/lib.rs | 149 | `f46f9526e93b1c1d61ff83d3f16bd27401217696421761593cb27d3fd501443d` | 0 |
-| crates/bitwarden-crypto-sync-handler/Cargo.toml | 1582 | `83c537055a7ff53ef96e16bbcce990a6f30744dc4de5184336580c70a8154deb` | 0 |
-| crates/bitwarden-crypto-sync-handler/src/crypto_sync_handler.rs | 22541 | `2f0533455f3b2efd80ba6fa1f4b1390168c5737227b55210eb30cf1ef48c9859` | 0 |
-| crates/bitwarden-crypto-sync-handler/src/lib.rs | 436 | `126254245532907fa380a9ce091a74ecaaa3e784d8b62cb15d451195c9bbab45` | 0 |
 | crates/bitwarden-emergency-access/Cargo.toml | 1614 | `a374bcbf614d8bf648437c75ffa2499d1b91d83c37bcb1e7ffe9af485e45f9af` | 0 |
 | crates/bitwarden-emergency-access/src/accept.rs | 2683 | `02c4ea15a1fcd8836ce7bd5b14a9a75049a569c106f4f2f19ab97475f66ddeca` | 0 |
 | crates/bitwarden-emergency-access/src/approve.rs | 1997 | `1e9527d6527309199643c37fff77e2e17592f4d2d33061bd6ed6022471ababd7` | 0 |
@@ -2540,11 +2525,6 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-encoding/src/lib.rs | 312 | `850ea859586665f6d5b04d0f5008b3dd5aca125f3560a10b7e2282bd3bb10bb0` | 0 |
 | crates/bitwarden-encoding/src/serde.rs | 832 | `2a2d386eb6053070987c9675759033e4bf3ea02b2077260ac41cef3a8d4def8d` | 0 |
 | crates/bitwarden-encoding/src/uniffi_support.rs | 397 | `f95e1a38e2d6d2276bbebc573d794cd9cbfcfaa7cb9ce8ddcd673683aa8a8e96` | 0 |
-| crates/bitwarden-error/.cargo/config | 68 | `9ff2ef513df9e780376850768592b6fffda0a564450146f0a776523b1aaa58c5` | 0 |
-| crates/bitwarden-error/Cargo.toml | 826 | `9ac38271eda82e407ebbfb66c39370431f05396745c9626c94a0d7007e0ceb8d` | 0 |
-| crates/bitwarden-error/src/flat_error.rs | 92 | `bdf30d33be8ed36648593a4264d6629d75ac5c18e422846e8d51e1615bea5a92` | 0 |
-| crates/bitwarden-error/src/lib.rs | 586 | `8c984a49e6f07798554743394f015ee18add536d70b4a0c0e8c9b36be8b5460d` | 0 |
-| crates/bitwarden-error/src/wasm.rs | 1022 | `75f7147676321789adc0482f877e69bc4eb6b99da0921b791e9ba4ade10c9d2e` | 0 |
 | crates/bitwarden-error-macro/Cargo.toml | 725 | `cb06746edbf4c727e495aa9fded3face1cec3d4a75e707ffbe891d3982fb467b` | 0 |
 | crates/bitwarden-error-macro/src/args.rs | 588 | `19c2c6229989c9e30e7f40fab47c95d8b25b65b2680ed38bb7d9108e2f8d8ce7` | 0 |
 | crates/bitwarden-error-macro/src/attribute.rs | 1533 | `e21c9d6d3d252083c71c37d6899b5b9fe1c159cd5cd50418a903937acf70e4fd` | 0 |
@@ -2555,6 +2535,11 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-error-macro/src/full/attribute.rs | 671 | `f322e2e7dc64350e6990422ae52190180ae4cfeaeb848fe2deeb6042f5b2589d` | 0 |
 | crates/bitwarden-error-macro/src/full/mod.rs | 19 | `aa4a5db2b669a6351d9b614ec311c219243dddf5500435874831fdc2f29bb0e4` | 0 |
 | crates/bitwarden-error-macro/src/lib.rs | 2972 | `eeea5d637931e31fbef7f776b28a694561e8a3e98074bf9e9323fbd9aa4cc682` | 0 |
+| crates/bitwarden-error/.cargo/config | 68 | `9ff2ef513df9e780376850768592b6fffda0a564450146f0a776523b1aaa58c5` | 0 |
+| crates/bitwarden-error/Cargo.toml | 826 | `9ac38271eda82e407ebbfb66c39370431f05396745c9626c94a0d7007e0ceb8d` | 0 |
+| crates/bitwarden-error/src/flat_error.rs | 92 | `bdf30d33be8ed36648593a4264d6629d75ac5c18e422846e8d51e1615bea5a92` | 0 |
+| crates/bitwarden-error/src/lib.rs | 586 | `8c984a49e6f07798554743394f015ee18add536d70b4a0c0e8c9b36be8b5460d` | 0 |
+| crates/bitwarden-error/src/wasm.rs | 1022 | `75f7147676321789adc0482f877e69bc4eb6b99da0921b791e9ba4ade10c9d2e` | 0 |
 | crates/bitwarden-exporters/Cargo.toml | 1653 | `71ac53a0deda7294a018fb9a32513cbe1d1476d37a6fd289fc882bc5ef36e6a1` | 0 |
 | crates/bitwarden-exporters/src/csv.rs | 9155 | `7ea33cdc450c6004abcef8d6e57acac12455ea258960a2d91365f167f253543c` | 0 |
 | crates/bitwarden-exporters/src/cxf/api_key.rs | 5688 | `81326af20301889e350e8bc420c6ffef83676bfdec686dae98591e180a30fc83` | 0 |
@@ -2577,10 +2562,6 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-exporters/src/lib.rs | 26101 | `148240d36e53ceb80cc0d56437186a63394cd59887b55224bcb005c2a982165d` | 0 |
 | crates/bitwarden-exporters/src/models.rs | 13606 | `ae0a41ebea3f5f455e8b3c46570a9b0710450931c152c28957fd74a55e6d1a5f` | 0 |
 | crates/bitwarden-exporters/src/uniffi_support.rs | 65 | `b866e5045c0bf91493e1c750b2ceba7744afa61f7171f70159c3034c743e7714` | 0 |
-| crates/bitwarden-ffi/Cargo.toml | 961 | `f12f5e9471af2306bc9d8af9423b3bcdfcdcf263124a0129ee1ec1c9d226bf87` | 0 |
-| crates/bitwarden-ffi/src/lib.rs | 768 | `3857270f4529ea41164950d28a7e096ce537db7e3bdc50b189e306c20a598fbb` | 0 |
-| crates/bitwarden-ffi/src/wire.rs | 5189 | `ec561ce1afff8c7bf300463d22d692c3894f2808487c050221cdff13d46faa56` | 0 |
-| crates/bitwarden-ffi/src/wire_macros.rs | 5262 | `406fc43874cac9868496d7b8b97288bcabd71b2368d9a3bd87f25275fb9391e6` | 0 |
 | crates/bitwarden-ffi-macro/Cargo.toml | 555 | `eda6a775351e3f27ff0433c1f377e92acc23adf460deeec64c31422af6e67e73` | 0 |
 | crates/bitwarden-ffi-macro/src/attrs.rs | 2728 | `f96ef52c63deafc541ec685fa486a5357edc78c7e6db3b5819b3a606aa61a601` | 0 |
 | crates/bitwarden-ffi-macro/src/lib.rs | 4861 | `1cb9a8f9135eac0cbce718f57f9fc83760b5647ee826e8ac6606042b8f693757` | 0 |
@@ -2588,6 +2569,10 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-ffi-macro/src/wasm_import.rs | 5088 | `9c6d8adaab17b30b818e9e6c1a5bf19cdc0a79a353412b4292c2d428db1f2f4c` | 0 |
 | crates/bitwarden-ffi-macro/src/wasm_object.rs | 3154 | `ab44a62b2f220458ae47058f85a733e8666fd0bc3073c37e22bcc6f1ae37160c` | 0 |
 | crates/bitwarden-ffi-macro/src/wasm_record.rs | 4231 | `8848f4c34244bee5932d156009021718efad3162c47616b0ff6d5263c403f09d` | 0 |
+| crates/bitwarden-ffi/Cargo.toml | 961 | `f12f5e9471af2306bc9d8af9423b3bcdfcdcf263124a0129ee1ec1c9d226bf87` | 0 |
+| crates/bitwarden-ffi/src/lib.rs | 768 | `3857270f4529ea41164950d28a7e096ce537db7e3bdc50b189e306c20a598fbb` | 0 |
+| crates/bitwarden-ffi/src/wire.rs | 5189 | `ec561ce1afff8c7bf300463d22d692c3894f2808487c050221cdff13d46faa56` | 0 |
+| crates/bitwarden-ffi/src/wire_macros.rs | 5262 | `406fc43874cac9868496d7b8b97288bcabd71b2368d9a3bd87f25275fb9391e6` | 0 |
 | crates/bitwarden-fido/Cargo.toml | 1405 | `2b27ab1a52e5bc4b64040d6b6dec65d4f4acd239d6180fa34b0005a2352a776b` | 0 |
 | crates/bitwarden-fido/src/authenticator.rs | 31589 | `b313f865aa31c1f6f85dfc3017efb9f1a1b811acbf42b1e6cb15bcf9fe464ad4` | 0 |
 | crates/bitwarden-fido/src/client.rs | 5535 | `18339fd07599fd537e667fdb15c2552e655d7b6cb3f05bcb0c6be92a33ac2038` | 0 |
@@ -2695,6 +2680,8 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-ipc/src/wasm/js_session_repository.rs | 3578 | `0934d1046fb78efd72a2a5f0045cd472b9497eb56f16037dbaa71edaa7b82c9e` | 0 |
 | crates/bitwarden-ipc/src/wasm/message.rs | 1925 | `294c0742fa5dc889482b3b02113cdd252aaa4f84227fde09ef93a46d5e489c3a` | 0 |
 | crates/bitwarden-ipc/src/wasm/mod.rs | 301 | `f7f18cc18d73d682cd29e232a7b30b0d5626e233ba34bc1bb041318be9e084d1` | 0 |
+| crates/bitwarden-logging-macro/Cargo.toml | 559 | `3a4ddae882bee5cfcddfba2650c16884d0e6b343fc69cd92f6bbae43a54d02ba` | 0 |
+| crates/bitwarden-logging-macro/src/lib.rs | 2312 | `d9cca57b4de697e44dfca63b3d17bd0e13e75ab7e019b341fea9b57d01fc466f` | 0 |
 | crates/bitwarden-logging/Cargo.toml | 1041 | `459deb04073324c0b152541e6b6f09a095c0957bd9998e5267083002b2f1ac99` | 0 |
 | crates/bitwarden-logging/src/circular_buffer.rs | 4919 | `63a9849fc7fcb1ca3c5c354b62f914ccf609a5677f405fc3622aa1e25c5007ce` | 0 |
 | crates/bitwarden-logging/src/config.rs | 807 | `b2f0308d585dd0964f6800996482a344f62d4a66b22c4429ffaa8b7b6ee21f34` | 0 |
@@ -2703,14 +2690,12 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-logging/src/layer.rs | 5795 | `0ee55712ccefe643a40a0a6538fffe0c660532037c5f6300e6f57a1fc963281b` | 0 |
 | crates/bitwarden-logging/src/lib.rs | 497 | `f9c5b3f446fa14e23b323a880270baa277f751aa904a9eaa6f545d259c481c65` | 0 |
 | crates/bitwarden-logging/src/visitor.rs | 3799 | `25e41ad32cf440aa3973eebf27a57626c8a3c246560974ce70a9b669656118d9` | 0 |
-| crates/bitwarden-logging-macro/Cargo.toml | 559 | `3a4ddae882bee5cfcddfba2650c16884d0e6b343fc69cd92f6bbae43a54d02ba` | 0 |
-| crates/bitwarden-logging-macro/src/lib.rs | 2312 | `d9cca57b4de697e44dfca63b3d17bd0e13e75ab7e019b341fea9b57d01fc466f` | 0 |
-| crates/bitwarden-managed-settings/Cargo.toml | 1081 | `44995f00aea0ef4a091aa55af12095f379852b81f3fb791212d24617d475b0b4` | 0 |
-| crates/bitwarden-managed-settings/src/lib.rs | 214 | `c6798cf6d040dba3d36b26497e3b7f7706fb490be1212c82b30cafb87cf899ed` | 0 |
-| crates/bitwarden-managed-settings/src/managed_settings_client.rs | 7049 | `92c7ac189fb10abb7c6efce7d50991cafb94b88475af11aa6db98837dc0949f3` | 0 |
 | crates/bitwarden-managed-settings-types/Cargo.toml | 1105 | `7562ca7ecfcd8de95c17d41d1f072dcf33c1e9ee9c589b870936ac9186d70dc3` | 0 |
 | crates/bitwarden-managed-settings-types/src/lib.rs | 171 | `1433dcd33e235d8eb36b7bec59766faf9932601a52d0f0d9aa6229aa72c4d210` | 0 |
 | crates/bitwarden-managed-settings-types/src/profile.rs | 5263 | `cbea477c99b4082a5bc4540b37f90022df2386910557ae2af5c39cb7c5035a6b` | 0 |
+| crates/bitwarden-managed-settings/Cargo.toml | 1081 | `44995f00aea0ef4a091aa55af12095f379852b81f3fb791212d24617d475b0b4` | 0 |
+| crates/bitwarden-managed-settings/src/lib.rs | 214 | `c6798cf6d040dba3d36b26497e3b7f7706fb490be1212c82b30cafb87cf899ed` | 0 |
+| crates/bitwarden-managed-settings/src/managed_settings_client.rs | 7049 | `92c7ac189fb10abb7c6efce7d50991cafb94b88475af11aa6db98837dc0949f3` | 0 |
 | crates/bitwarden-member-administration/Cargo.toml | 1067 | `20a1ebf0581eb3c8e636810bdbd3e10e8c0d1675039341705ffe6ce3582698f4` | 0 |
 | crates/bitwarden-member-administration/src/lib.rs | 356 | `8b497ca1b6b7e6c8b9833e7e6aed6adfca0aded02f1074078e8239403aacb290` | 0 |
 | crates/bitwarden-member-administration/src/organization_user_bulk_response.rs | 2292 | `2fc5fe57ca46b5ea42568f82becc0350e41b18d2c096b2ae5e204f1211969b80` | 0 |
@@ -2832,6 +2817,8 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-ssh/src/generator.rs | 5223 | `bf74a5389fea4973e1187c74bfd59ccc715ddfbf60fd63e8fbf1b3bfe8ccb0f9` | 0 |
 | crates/bitwarden-ssh/src/import.rs | 17480 | `da110e2c92bbded49d34542cb234efe9ff822f92a0d6ecaef2a1db272d0eff30` | 0 |
 | crates/bitwarden-ssh/src/lib.rs | 1182 | `3cf3e6ed630fc332698b352da278dc2dace3d1e122cb44ceeae2a515432b5b81` | 0 |
+| crates/bitwarden-state-bridge-macro/Cargo.toml | 543 | `195f41984c083b9803fc43233215fe1475ebf3c8d1db504c7918a7e71d7be999` | 0 |
+| crates/bitwarden-state-bridge-macro/src/lib.rs | 14114 | `34b8bed944b04796f67c5e651e406c3bc169e0bc1425492d65d1ebb9f8666f3b` | 0 |
 | crates/bitwarden-state/Cargo.toml | 1770 | `dc68532b3bae9b46be860129c0fc038061472e8dc635bfa9c2a793cf36dcac31` | 0 |
 | crates/bitwarden-state/src/any_map.rs | 2454 | `8930d52088364a80e0fe0fccb6ae70815619c0c10b40e48cc8c427826555a38b` | 0 |
 | crates/bitwarden-state/src/debug.rs | 11756 | `93b5b4b9670f1393c464cce39970c19e8cedd59be4841e192474581311964c41` | 0 |
@@ -2847,8 +2834,6 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-state/src/settings/key.rs | 1925 | `2902ad98191c4c4e2eb03b28027f1bbe5f9269cee6ec122b1edfda790933d54c` | 0 |
 | crates/bitwarden-state/src/settings/mod.rs | 1333 | `8fe95b7ad9ced0349e21461d7118c6ac8db26db127d9a5554622aa4f05f3d98a` | 0 |
 | crates/bitwarden-state/src/settings/setting.rs | 3246 | `b8ef68f3b04c360eba40628df5eecd114ec9c400ca4e8c8531ccb0a780ee6927` | 0 |
-| crates/bitwarden-state-bridge-macro/Cargo.toml | 543 | `195f41984c083b9803fc43233215fe1475ebf3c8d1db504c7918a7e71d7be999` | 0 |
-| crates/bitwarden-state-bridge-macro/src/lib.rs | 14114 | `34b8bed944b04796f67c5e651e406c3bc169e0bc1425492d65d1ebb9f8666f3b` | 0 |
 | crates/bitwarden-sync/Cargo.toml | 1078 | `3e86caa17916e691d589a7c3e97e60f41a3a88e3c78683cdb4635d570ed0cb7c` | 0 |
 | crates/bitwarden-sync/src/handler.rs | 2565 | `f2691449fb48491c9714f1372aa23bd13a0643e2d6f66ccf5d7aae78fefb431c` | 0 |
 | crates/bitwarden-sync/src/lib.rs | 238 | `a72b4b0c369856691ea5a2eddcb72fcbdc9be1e01994d476c0aba78e1ecfaf3e` | 0 |
@@ -2862,6 +2847,8 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-threading/src/lib.rs | 861 | `4fcb882a028a72d13671569c327c480fc6069da60e3b9e4ef716ef001b6febe3` | 0 |
 | crates/bitwarden-threading/src/thread_bound_runner.rs | 8479 | `20935c56eedb1b073f6c2f0e1b88a3cde620d2bc55681a8f05e5aca7b3531493` | 0 |
 | crates/bitwarden-threading/src/time.rs | 2998 | `54c0149d8a21424bddd251180b568dc62d691c236afbfeeca519ea4ecb89490b` | 0 |
+| crates/bitwarden-uniffi-error/Cargo.toml | 458 | `2f2ab50d2692902f931369596b17bf9503babee1b057ec704a4cd929bd61498d` | 0 |
+| crates/bitwarden-uniffi-error/src/lib.rs | 1601 | `624e01c9d72ba7a5fb3888a68e032cdeb6bf0f5be822a527bbc1116b7b97aa4a` | 0 |
 | crates/bitwarden-uniffi/Cargo.toml | 3168 | `bc06b6c12642591f7da81648e566c08c4d53c579a547dbc7a7f261a8ff5e4efe` | 0 |
 | crates/bitwarden-uniffi/kotlin/app/build.gradle | 2565 | `0ef5bbeeb889ae70aca9cdc66da2786b85269190136a9f2a43e254954125238e` | 0 |
 | crates/bitwarden-uniffi/kotlin/app/src/main/java/com/bitwarden/myapplication/Biometrics.kt | 5643 | `e55f84f7e8d4379c85d69500fc6470d2c5810dd6ce1a330824e15e3045fd7626` | 0 |
@@ -2903,8 +2890,6 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-uniffi/swift/iOS/App/Biometrics.swift | 2845 | `cf24e5ca07866dfdcfcb25d69612d723b4f18a634d21d114f1ae3aaa5d64826f` | 0 |
 | crates/bitwarden-uniffi/swift/iOS/App/ContentView.swift | 18211 | `d4a7f76a422d003c0989a9a381a605a738c0ef1460021b53cdbd3fe95af239ca` | 1 |
 | crates/bitwarden-uniffi/swift/iOS/App/testApp.swift | 210 | `e35356fab5d1743f6a322e3cd611b797ee1495ed104c2f11c235a44facc61921` | 0 |
-| crates/bitwarden-uniffi-error/Cargo.toml | 458 | `2f2ab50d2692902f931369596b17bf9503babee1b057ec704a4cd929bd61498d` | 0 |
-| crates/bitwarden-uniffi-error/src/lib.rs | 1601 | `624e01c9d72ba7a5fb3888a68e032cdeb6bf0f5be822a527bbc1116b7b97aa4a` | 0 |
 | crates/bitwarden-unlock/Cargo.toml | 1323 | `74d0ae3d414d6e12dc0cbf4d1b39c7b4bfbac8d7da80843aeb6cec289aedeebd` | 0 |
 | crates/bitwarden-unlock/src/lib.rs | 318 | `4e1f3c08704ba71de7971ac106d87656d0e355f5625a634bdaa95e7712f15b8b` | 0 |
 | crates/bitwarden-unlock/src/session_key.rs | 3299 | `fa1eefc631abe0bfa656caf2671412f866b5292545b5118e8815e7eb7ccdbd95` | 0 |
@@ -2931,10 +2916,10 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-user-crypto-management/src/public_key_encryption_key_pair_regeneration/should_regenerate.rs | 32028 | `f9d5703205e0b28797e10f26ccf0f78e5dc92409cc933568f4b0fafcd9c9cf0c` | 0 |
 | crates/bitwarden-user-crypto-management/src/user_crypto_management_client.rs | 984 | `b5325b4b0db9d5d68c0035dbfabd9bb2357732920f28dfb07650246264b991d3` | 0 |
 | crates/bitwarden-user-crypto-management/src/v2_migration_permission.rs | 7473 | `834167f6b7029126ab4ddc5ab4b8b5be3ef9093177ae2940a94762fccd93f707` | 0 |
-| crates/bitwarden-uuid/Cargo.toml | 651 | `92704d49adcaf04f5ee77f6a66e256bde294fa4259b92b0665f2f0bc5f276af5` | 0 |
-| crates/bitwarden-uuid/src/lib.rs | 84 | `3527b88f621708640d95043723f25db7a13535528fcd03551ec3505eae1b6f76` | 0 |
 | crates/bitwarden-uuid-macro/Cargo.toml | 500 | `63cb9881ab5efd5cd9e6435bb07ccfcae5e9f70d113b79986c4e2b6451717d60` | 0 |
 | crates/bitwarden-uuid-macro/src/lib.rs | 2636 | `943ccd6e7984e9f21ba2b1d2b336b2a2209844b0b58b79f728c239664d494293` | 0 |
+| crates/bitwarden-uuid/Cargo.toml | 651 | `92704d49adcaf04f5ee77f6a66e256bde294fa4259b92b0665f2f0bc5f276af5` | 0 |
+| crates/bitwarden-uuid/src/lib.rs | 84 | `3527b88f621708640d95043723f25db7a13535528fcd03551ec3505eae1b6f76` | 0 |
 | crates/bitwarden-vault/Cargo.toml | 2610 | `18b3a5e61f59b50807a1048fc33313581ac56ea6214713a21f0de583a2eef9a9` | 0 |
 | crates/bitwarden-vault/src/cipher/attachment.rs | 20507 | `184b7f52f8580bf9bf2fb21c5f4830282d3fab708c051fb59060b1360d99e430` | 0 |
 | crates/bitwarden-vault/src/cipher/attachment_client/admin/delete.rs | 3449 | `0030ca5bc52a106c244bc15a99ad3b3112c06d269b821cd93ba1d7aef8117544` | 0 |
@@ -2955,13 +2940,13 @@ _Длинные списки здесь сгруппированы; полный
 | crates/bitwarden-vault/src/cipher/blob/conversions/mod.rs | 13321 | `eb985e3e8406b39b2c7ee0d0899a98d65d320d0de6f2bfd1b4f28119ab43e377` | 0 |
 | crates/bitwarden-vault/src/cipher/blob/conversions/passport.rs | 3712 | `c52be25bd78a6f8eb35f0c2bbaa2f7d9e4c523700a0d4f2a47aace7ff050c577` | 0 |
 | crates/bitwarden-vault/src/cipher/blob/conversions/secure_note.rs | 2322 | `ab738ba9410af2d363d94000cf444856c7cfd28c549d924c8ae0a638a5fbfabb` | 1 |
-| crates/bitwarden-vault/src/cipher/blob/conversions/ssh_key.rs | 693 | `c1747ca82ea200fb072fd76ba5ee740f3d4b7deff7664a0ca8b5654f79f68312` | 1 |
+| crates/bitwarden-vault/src/cipher/blob/conversions/ssh_key.rs | 1375 | `c1747ca82ea200fb072fd76ba5ee740f3d4b7deff7664a0ca8b5654f79f68312` | 0 |
 | crates/bitwarden-vault/src/cipher/blob/encryption.rs | 27423 | `80538b17850e9d9068eae53ca933832d4f8891f6c3d42ae650afbb2326f88f5c` | 1 |
 | crates/bitwarden-vault/src/cipher/blob/mod.rs | 1936 | `1b1563aa90a15611493b83c113789a780afda54ff7559f2f85a79ff95a988891` | 0 |
 | crates/bitwarden-vault/src/cipher/blob/sealed.rs | 8516 | `a7bde33c0e112b40c4f331c46896d9ac6305c1b1fc8f8f5a0f070bb5338af0cf` | 0 |
 | crates/bitwarden-vault/src/cipher/blob/v1.rs | 25317 | `2a93e693ad642fd21afb590ab2054c41e873f152543be5b27e37dbc06d154d89` | 2 |
 | crates/bitwarden-vault/src/cipher/card.rs | 10689 | `246ff8f4ffadc8d3d3c0cef3e4db04c76bfc0f5951700f7afb1ff08d7161bbb9` | 0 |
-| crates/bitwarden-vault/src/cipher/cipher.rs | 176387 | `70d0a3fe6af95978b97ceea966ab500e46130e586bd7fd17d81c05863c60680c` | 1 |
+| crates/bitwarden-vault/src/cipher/cipher.rs | 198535 | `70d0a3fe6af95978b97ceea966ab500e46130e586bd7fd17d81c05863c60680c` | 0 |
 | crates/bitwarden-vault/src/cipher/cipher_client/admin/create.rs | 8581 | `19495ff543cd38c8e823aa3efb107e0b433fb32ad0d01a49d0365578211de880` | 0 |
 | crates/bitwarden-vault/src/cipher/cipher_client/admin/delete.rs | 6994 | `b49c798124f8a9514ded377a951a11f553e3daba5cabc8ff1adc94cf36ad852e` | 0 |
 | crates/bitwarden-vault/src/cipher/cipher_client/admin/edit.rs | 16426 | `2aab29fea9ef3310fd68329e397e3a436d0abcc7964227bb222fd0be54da4f29` | 0 |

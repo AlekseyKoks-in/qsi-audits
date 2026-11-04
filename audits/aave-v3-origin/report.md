@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 06:16 UTC |
+| Дата отчёта | 2026-11-04 18:18 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 621b91b7-50f0-4a96-bb2c-fd8f374d3ff9 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
-| Профиль риска | Финансовая организация |
-| SHA-256 содержимого | `e7d4254918ac124d044234875cf5eaf0ca41e8942ad34749fce947e2c8940dca` |
+| Запуск аудита | 52cd4fb6-22a7-4f45-aa18-5f3ec5a74d7f (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `86df8a5f4dd0cb24515c135a01ce96303800f1daf549690b544c35378b6bb7de` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -47,9 +47,10 @@
 |---|---|---|---|
 | smart_contracts | проверено | 520 | certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol: built-in Solidity pattern checks; certora/atoken-with-delegation/harness/DummyERC20Impl.sol: built-in Solidity pattern checks; certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol: built-in Solidity pattern checks |
 | slither | не проверено | 520 | slither is not installed on the server (pip install slither-analyzer + solc) |
-| source_code | проверено | 113 | echidna-parser.py: 70 lines scanned with 16 rule patterns and 123 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.mocharc.js: 4 lines scanned with 16 rule patterns and 123 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.solcover.js: 21 lines scanned with 16 rule patterns and 123 registry patterns |
+| source_code | проверено | 113 | echidna-parser.py: 70 lines scanned with 16 rule patterns and 145 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.mocharc.js: 4 lines scanned with 16 rule patterns and 145 registry patterns; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.solcover.js: 21 lines scanned with 16 rule patterns and 145 registry patterns |
+| dependencies | проверено | 12 | package-lock.json: 110 dependencies parsed (110 pinned); package.json: 4 dependencies parsed (1 pinned); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/package.json: 1 dependencies parsed (1 pinned) |
 | secrets | проверено | 43 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| dependencies | проверено | 12 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/package.json: 1 dependencies parsed (1 pinned); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/package.json: 0 dependencies parsed (0 pinned); lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json: 931 dependencies parsed (930 pinned) |
+| entropy | проверено | 1 | random-number generation: 113 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | проверено | 1 | 852 pinned packages queried at OSV.dev; 53 affected (53 of them only in development or build dependencies) |
 | osv_advisories | Недостаточность данных | 2 | npm/axios@1.6.8: 31 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest; npm/undici@6.12.0: 21 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
@@ -62,7 +63,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree aave-v3-origin at 8305565ae342f1773c42cd2e4593f175fe5968a0. 645 files analysed; of 2245 files, 985 are test, fuzzing, benchmark or example code and were left out, 615 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 420 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.
+Static review of the source tree aave-v3-origin at 8305565ae342f1773c42cd2e4593f175fe5968a0. 645 files analysed; of 2245 files, 985 are test, fuzzing, benchmark or example code and were left out, 615 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .changeset/README.md, .changeset/config.json, .editorconfig, .env.example, .gitattributes. 697 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 420 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: lib/solidity-utils (420). No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -71,52 +72,14 @@ Static review of the source tree aave-v3-origin at 8305565ae342f1773c42cd2e4593f
 
 ## 7. Подробное описание находок
 
-### QSI-2026-06514 — Использование delegatecall в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
-
-- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
-- CVSS v3.1: неприменимо
-
-delegatecall в строка 97. (см. SWC-112)
-
-**Возможные последствия.** Если цель контролируется пользователем, атакующий может выполнить произвольный код в контексте хранилища контракта.
-
-**Шаги воспроизведения.**
-
-```
-Откройте строка 97 в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol#L97) · line 97 · SHA-256 de90734492398d249f990996f44e7767a3e9ae43db2e357697f6ccfc0437f3af_
-
-```
-   95 |      */
-   96 |     function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
-   97 |         (bool success, bytes memory returndata) = target.delegatecall(data);
-   98 |         return verifyCallResultFromTarget(target, success, returndata);
-   99 |     }
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Ограничьте цели delegatecall доверенными неизменяемыми реализациями.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06520 — Использование delegatecall в src/contracts/dependencies/openzeppelin/contracts/Address.sol
+### QSI-2026-11454 — Использование delegatecall в src/contracts/dependencies/openzeppelin/contracts/Address.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/contracts/Address.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/contracts/Address.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 delegatecall в строка 189. (см. SWC-112)
@@ -147,14 +110,14 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/contracts/Address.sol]
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06522 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol
+### QSI-2026-11456 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 delegatecall в строка 91. (см. SWC-112)
@@ -185,14 +148,14 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/BaseAdm
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06523 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol
+### QSI-2026-11457 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 Функция initialize в строка 25 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
@@ -223,14 +186,14 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Initial
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06524 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
+### QSI-2026-11458 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 delegatecall в строка 25. (см. SWC-112)
@@ -261,14 +224,14 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Initial
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06525 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
+### QSI-2026-11459 — initialize() без модификатора initializer в src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 Функция initialize в строка 20 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
@@ -299,14 +262,14 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Initial
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06526 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol
+### QSI-2026-11460 — Использование delegatecall в src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 delegatecall в строка 24. (см. SWC-112)
@@ -337,14 +300,14 @@ _file_excerpt · [src/contracts/dependencies/openzeppelin/upgradeability/Upgrade
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06530 — Использование delegatecall в src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol
+### QSI-2026-11464 — Использование delegatecall в src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol`
 - Источник данных: src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 delegatecall в строка 74. (см. SWC-112)
@@ -375,14 +338,14 @@ _file_excerpt · [src/contracts/misc/aave-upgradeability/BaseImmutableAdminUpgra
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06533 — initialize() без модификатора initializer в src/contracts/protocol/libraries/logic/ReserveLogic.sol
+### QSI-2026-11467 — initialize() без модификатора initializer в src/contracts/protocol/libraries/logic/ReserveLogic.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:src/contracts/protocol/libraries/logic/ReserveLogic.sol`
 - Источник данных: src/contracts/protocol/libraries/logic/ReserveLogic.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 Функция initialize в строка 109 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
@@ -413,14 +376,52 @@ _file_excerpt · [src/contracts/protocol/libraries/logic/ReserveLogic.sol](https
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06482 — Прямое использование ecrecover в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
+### QSI-2026-11498 — Использование delegatecall в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
+
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 36.5 / 100
+- CVSS v3.1: неприменимо
+
+delegatecall в строка 97. (см. SWC-112)
+
+**Возможные последствия.** Если цель контролируется пользователем, атакующий может выполнить произвольный код в контексте хранилища контракта.
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 97 в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol#L97) · line 97 · SHA-256 de90734492398d249f990996f44e7767a3e9ae43db2e357697f6ccfc0437f3af_
+
+```
+   95 |      */
+   96 |     function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+   97 |         (bool success, bytes memory returndata) = target.delegatecall(data);
+   98 |         return verifyCallResultFromTarget(target, success, returndata);
+   99 |     }
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Ограничьте цели delegatecall доверенными неизменяемыми реализациями.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11450 — Прямое использование ecrecover в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol`
 - Источник данных: certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 ecrecover в строка 98. (см. SWC-117/SWC-121)
@@ -451,14 +452,14 @@ _file_excerpt · [certora/atoken-with-delegation/harness/ATokenWithDelegation_Ha
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06515 — Прямое использование ecrecover в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
+### QSI-2026-11499 — Прямое использование ecrecover в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 ecrecover в строка 148. (см. SWC-117/SWC-121)
@@ -489,14 +490,14 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06481 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
+### QSI-2026-11449 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 39.6 / 100
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
 2 упоминаний ECDSA в 2 файл(ах), например certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:98. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
@@ -537,14 +538,14 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06480 — Плавающая версия компилятора (^0.8.0) в 116 файл(ах)
+### QSI-2026-11448 — Плавающая версия компилятора (^0.8.0) в 116 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.0`
 - Источник данных: certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.0 в 116 файл(ах), впервые в certora/atoken-with-delegation/harness/ATokenWithDelegation_Harness.sol:7. (см. SWC-103)
@@ -634,19 +635,19 @@ _file_excerpt · [certora/stata/harness/tokens/DummyERC20Impl.sol](https://githu
     4 | contract DummyERC20Impl {
 ```
 
-_file_excerpt · [lib/solidity-utils/script/DeployCreate3Factory.s.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/script/DeployCreate3Factory.s.sol#L2) · line 2 · SHA-256 f073d92b70a36ab471aacdc63b8bea1ef34caeb1fa16eb93fed6f108c1d51333_
+_file_excerpt · [scripts/DeployAaveV3MarketBatched.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/scripts/DeployAaveV3MarketBatched.sol#L2) · line 2 · SHA-256 29fd06d3d1e34e611f1fcffe019e86c5bc93fabb99e08b50a48c6d352e7ddab9_
 
 ```
-    1 | // SPDX-License-Identifier: MIT
+    1 | // SPDX-License-Identifier: BUSL-1.1
     2 | pragma solidity ^0.8.0;
     3 | 
-    4 | import {Script} from 'forge-std/Script.sol';
+    4 | import {DeployAaveV3MarketBatchedBase} from './misc/DeployAaveV3MarketBatchedBase.sol';
 ```
 
-_file_excerpt · [lib/solidity-utils/script/DeployTransparentProxyFactory.s.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/script/DeployTransparentProxyFactory.s.sol#L2) · line 2 · SHA-256 f073d92b70a36ab471aacdc63b8bea1ef34caeb1fa16eb93fed6f108c1d51333_
+_file_excerpt · [scripts/misc/DeployAaveV3MarketBatchedBase.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/scripts/misc/DeployAaveV3MarketBatchedBase.sol#L2) · line 2 · SHA-256 fd74724e7f82dd9e45e28f0ac6a25f2e0bbdc797dc74caf127d023eb54785107_
 
 ```
-    1 | // SPDX-License-Identifier: MIT
+    1 | // SPDX-License-Identifier: BUSL-1.1
     2 | pragma solidity ^0.8.0;
     3 | 
     4 | import {Script} from 'forge-std/Script.sol';
@@ -658,14 +659,14 @@ _file_excerpt · [lib/solidity-utils/script/DeployTransparentProxyFactory.s.sol]
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06483 — Плавающая версия компилятора (^0.8.10) в 91 файл(ах)
+### QSI-2026-11451 — Плавающая версия компилятора (^0.8.10) в 91 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.10`
 - Источник данных: certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.10 в 91 файл(ах), впервые в certora/atoken-with-delegation/harness/DummyERC20_aTokenUnderlying.sol:2. (см. SWC-103)
@@ -756,13 +757,13 @@ _file_excerpt · [certora/stata/harness/tokens/DummyERC20_rewardToken.sol](https
     4 | 
 ```
 
-_file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/interfaces/IProxyAdminOzV4.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/src/contracts/transparent-proxy/interfaces/IProxyAdminOzV4.sol#L2) · line 2 · SHA-256 53a9a15431851cfc4c1d9658d2a89ef900454527e9a4f8ab8bab76d0d3db92ad_
+_file_excerpt · [src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol#L2) · line 2 · SHA-256 48c90c111b01af01b2d3d56f3012bef946c82bd6543be6d8ec29066255fe6672_
 
 ```
-    1 | // SPDX-License-Identifier: MIT
+    1 | // SPDX-License-Identifier: LGPL-3.0-or-later
     2 | pragma solidity ^0.8.10;
     3 | 
-    4 | /**
+    4 | import {IERC20} from 'openzeppelin-contracts/contracts/token/ERC20/IERC20.sol';
 ```
 
 **Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
@@ -771,14 +772,14 @@ _file_excerpt · [lib/solidity-utils/src/contracts/transparent-proxy/interfaces/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06484 — Плавающая версия компилятора (^0.8.19) в 8 файл(ах)
+### QSI-2026-11452 — Плавающая версия компилятора (^0.8.19) в 8 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.19`
 - Источник данных: certora/basic/harness/ATokenHarness.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.19 в 8 файл(ах), впервые в certora/basic/harness/ATokenHarness.sol:2. (см. SWC-103)
@@ -871,14 +872,14 @@ _file_excerpt · [certora/basic/harness/VariableDebtTokenHarness.sol](https://gi
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06485 — Плавающая версия компилятора (>=0.8.0) в 5 файл(ах)
+### QSI-2026-11453 — Плавающая версия компилятора (>=0.8.0) в 5 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.0`
 - Источник данных: certora/solvency/harnesses/ERC20Like/DummyWeth.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.8.0 в 5 файл(ах), впервые в certora/solvency/harnesses/ERC20Like/DummyWeth.sol:2. (см. SWC-103)
@@ -944,14 +945,178 @@ _file_excerpt · [lib/solidity-utils/zksync/src/contracts/transparent-proxy/inte
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06486 — Плавающая версия компилятора (^0.8.20) в 259 файл(ах)
+### QSI-2026-11461 — Плавающая версия компилятора (^0.8.17) в 2 файл(ах)
+
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:^0.8.17`
+- Источник данных: src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
+
+pragma ^0.8.17 в 2 файл(ах), впервые в src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol:2. (см. SWC-103)
+
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol#L2) · line 2 · SHA-256 21291d3e7ca0e0403937e245bb8a6eca24e274760e069f5accc7441e24375e5b_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.17;
+    3 | 
+    4 | import {ERC20Upgradeable} from 'openzeppelin-contracts-upgradeable/contracts/token/ERC20/ERC20Upgradeable.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/stata-token/ERC4626StataTokenUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/stata-token/ERC4626StataTokenUpgradeable.sol#L2) · line 2 · SHA-256 e4f7afb0b75738dbe223abd04ec45905945431a2d367cb89fceb9220c56841c2_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.17;
+    3 | 
+    4 | import {ERC4626Upgradeable, Math, IERC4626} from 'openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol';
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11462 — Плавающая версия компилятора (^0.8.18) в 10 файл(ах)
+
+- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `solidity:pragma:^0.8.18`
+- Источник данных: src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
+- CVSS v3.1: неприменимо
+
+pragma ^0.8.18 в 10 файл(ах), впервые в src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol:2. (см. SWC-103)
+
+**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol#L2) · line 2 · SHA-256 bc2d074ade6ff76f0f9fd8746a7cd9013ed8811bbcc5f0ed9937f32b583cb0b7_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {CapsEngine} from './libraries/CapsEngine.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/EngineFlags.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/EngineFlags.sol#L2) · line 2 · SHA-256 6dcfa481195d4d5ca533b0f4bc147d5723e90fed760088d59c5a8a94ba43eec6_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | library EngineFlags {
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/IAaveV3ConfigEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/IAaveV3ConfigEngine.sol#L2) · line 2 · SHA-256 a288afc4df79d5498c8fd3eb98fbf6405acbcdc5db47b01026cb3ecfb80d214c_
+
+```
+    1 | // SPDX-License-Identifier: MIT
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {IPool} from '../../interfaces/IPool.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/BorrowEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/BorrowEngine.sol#L2) · line 2 · SHA-256 3e79704ae9d0caf9067fc913cc0cdcea70cf45eef97551f3d4e5b00d2de27b62_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {EngineFlags} from '../EngineFlags.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/CapsEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/CapsEngine.sol#L2) · line 2 · SHA-256 3e79704ae9d0caf9067fc913cc0cdcea70cf45eef97551f3d4e5b00d2de27b62_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {EngineFlags} from '../EngineFlags.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/CollateralEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/CollateralEngine.sol#L2) · line 2 · SHA-256 864819c389369ac5c245a4400de3ede2506a2e611893c833aa6ea53f79f4d853_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {DataTypes} from '../../../protocol/libraries/types/DataTypes.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/EModeEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/EModeEngine.sol#L2) · line 2 · SHA-256 f3fa8a68cbb51e71dd670b0824743219526b59fdb839dca214eb6963a9a704e8_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {SafeCast} from 'openzeppelin-contracts/contracts/utils/math/SafeCast.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/ListingEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/ListingEngine.sol#L2) · line 2 · SHA-256 c1702751d7caa76faa1518991e51d8b563906a681e2fea08e277e461839fa781_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {IAaveV3ConfigEngine as IEngine, IPoolConfigurator, IDefaultInterestRateStrategyV2} from '../IAaveV3ConfigEngine.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/PriceFeedEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/PriceFeedEngine.sol#L2) · line 2 · SHA-256 5b99f79ab9ea96a4858fe9e423dd00957460fcc6239d08b916223316d5f1deff_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {IAaveV3ConfigEngine as IEngine, IAaveOracle} from '../IAaveV3ConfigEngine.sol';
+```
+
+_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/RateEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/RateEngine.sol#L2) · line 2 · SHA-256 d5e33d92057ad3643644a2524e07ad10878cb5f333bd5907bd735cfce3fdf771_
+
+```
+    1 | // SPDX-License-Identifier: BUSL-1.1
+    2 | pragma solidity ^0.8.18;
+    3 | 
+    4 | import {IDefaultInterestRateStrategyV2} from '../../../interfaces/IDefaultInterestRateStrategyV2.sol';
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11470 — Плавающая версия компилятора (^0.8.20) в 259 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.20`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.20 в 259 файл(ах), впервые в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol:2. (см. SWC-103)
@@ -1068,14 +1233,14 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/cert
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06498 — Плавающая версия компилятора (^0.8.24) в 5 файл(ах)
+### QSI-2026-11482 — Плавающая версия компилятора (^0.8.24) в 5 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.24`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/draft-ERC20TemporaryApprovalUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.24 в 5 файл(ах), впервые в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/draft-ERC20TemporaryApprovalUpgradeable.sol:4. (см. SWC-103)
@@ -1146,14 +1311,14 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06499 — Плавающая версия компилятора (>=0.8.0 <0.9.0) в 4 файл(ах)
+### QSI-2026-11483 — Плавающая версия компилятора (>=0.8.0 <0.9.0) в 4 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.0 <0.9.0`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.8.0 <0.9.0 в 4 файл(ах), впервые в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol:2. (см. SWC-103)
@@ -1210,14 +1375,14 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06511 — Плавающая версия компилятора (^0.8.21) в 1 файл(ах)
+### QSI-2026-11495 — Плавающая версия компилятора (^0.8.21) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.21`
 - Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.21 в 1 файл(ах), впервые в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol:4. (см. SWC-103)
@@ -1248,14 +1413,14 @@ _file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06516 — Плавающая версия компилятора (>=0.7.0) в 2 файл(ах)
+### QSI-2026-11500 — Плавающая версия компилятора (>=0.7.0) в 2 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.7.0`
 - Источник данных: lib/solidity-utils/src/contracts/access-control/OwnableWithGuardian.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.7.0 в 2 файл(ах), впервые в lib/solidity-utils/src/contracts/access-control/OwnableWithGuardian.sol:2. (см. SWC-103)
@@ -1294,14 +1459,14 @@ _file_excerpt · [lib/solidity-utils/src/contracts/access-control/interfaces/IWi
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06517 — Плавающая версия компилятора (>=0.6.0) в 1 файл(ах)
+### QSI-2026-11501 — Плавающая версия компилятора (>=0.6.0) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.6.0`
 - Источник данных: lib/solidity-utils/src/contracts/create3/interfaces/ICreate3Factory.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.6.0 в 1 файл(ах), впервые в lib/solidity-utils/src/contracts/create3/interfaces/ICreate3Factory.sol:3. (см. SWC-103)
@@ -1332,14 +1497,14 @@ _file_excerpt · [lib/solidity-utils/src/contracts/create3/interfaces/ICreate3Fa
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06518 — Плавающая версия компилятора (^0.8.8) в 9 файл(ах)
+### QSI-2026-11502 — Плавающая версия компилятора (^0.8.8) в 9 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.8`
 - Источник данных: lib/solidity-utils/src/contracts/utils/PermissionlessRescuable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.8 в 9 файл(ах), впервые в lib/solidity-utils/src/contracts/utils/PermissionlessRescuable.sol:2. (см. SWC-103)
@@ -1441,14 +1606,14 @@ _file_excerpt · [lib/solidity-utils/src/contracts/utils/interfaces/IRescuableBa
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06519 — Плавающая версия компилятора (>=0.8.24) в 1 файл(ах)
+### QSI-2026-11503 — Плавающая версия компилятора (>=0.8.24) в 1 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.24`
 - Источник данных: lib/solidity-utils/zksync/src/contracts/transparent-proxy/TransparentProxyFactoryZkSync.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.8.24 в 1 файл(ах), впервые в lib/solidity-utils/zksync/src/contracts/transparent-proxy/TransparentProxyFactoryZkSync.sol:2. (см. SWC-103)
@@ -1478,994 +1643,14 @@ _file_excerpt · [lib/solidity-utils/zksync/src/contracts/transparent-proxy/Tran
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06527 — Плавающая версия компилятора (^0.8.17) в 2 файл(ах)
-
-- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `solidity:pragma:^0.8.17`
-- Источник данных: src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
-- CVSS v3.1: неприменимо
-
-pragma ^0.8.17 в 2 файл(ах), впервые в src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol:2. (см. SWC-103)
-
-**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
-
-**Шаги воспроизведения.**
-
-```
-Откройте src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/stata-token/ERC20AaveLMUpgradeable.sol#L2) · line 2 · SHA-256 21291d3e7ca0e0403937e245bb8a6eca24e274760e069f5accc7441e24375e5b_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.17;
-    3 | 
-    4 | import {ERC20Upgradeable} from 'openzeppelin-contracts-upgradeable/contracts/token/ERC20/ERC20Upgradeable.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/stata-token/ERC4626StataTokenUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/stata-token/ERC4626StataTokenUpgradeable.sol#L2) · line 2 · SHA-256 e4f7afb0b75738dbe223abd04ec45905945431a2d367cb89fceb9220c56841c2_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.17;
-    3 | 
-    4 | import {ERC4626Upgradeable, Math, IERC4626} from 'openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol';
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06528 — Плавающая версия компилятора (^0.8.18) в 10 файл(ах)
-
-- Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `solidity:pragma:^0.8.18`
-- Источник данных: src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.4 / 100
-- CVSS v3.1: неприменимо
-
-pragma ^0.8.18 в 10 файл(ах), впервые в src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol:2. (см. SWC-103)
-
-**Возможные последствия.** Контракты могут быть развёрнуты непроверенной версией компилятора. Фактический компилятор задаёт конфигурация сборки, которую эта проверка не читает.
-
-**Шаги воспроизведения.**
-
-```
-Откройте src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol:2 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/AaveV3ConfigEngine.sol#L2) · line 2 · SHA-256 bc2d074ade6ff76f0f9fd8746a7cd9013ed8811bbcc5f0ed9937f32b583cb0b7_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {CapsEngine} from './libraries/CapsEngine.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/EngineFlags.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/EngineFlags.sol#L2) · line 2 · SHA-256 6dcfa481195d4d5ca533b0f4bc147d5723e90fed760088d59c5a8a94ba43eec6_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | library EngineFlags {
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/IAaveV3ConfigEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/IAaveV3ConfigEngine.sol#L2) · line 2 · SHA-256 a288afc4df79d5498c8fd3eb98fbf6405acbcdc5db47b01026cb3ecfb80d214c_
-
-```
-    1 | // SPDX-License-Identifier: MIT
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {IPool} from '../../interfaces/IPool.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/BorrowEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/BorrowEngine.sol#L2) · line 2 · SHA-256 3e79704ae9d0caf9067fc913cc0cdcea70cf45eef97551f3d4e5b00d2de27b62_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {EngineFlags} from '../EngineFlags.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/CapsEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/CapsEngine.sol#L2) · line 2 · SHA-256 3e79704ae9d0caf9067fc913cc0cdcea70cf45eef97551f3d4e5b00d2de27b62_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {EngineFlags} from '../EngineFlags.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/CollateralEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/CollateralEngine.sol#L2) · line 2 · SHA-256 864819c389369ac5c245a4400de3ede2506a2e611893c833aa6ea53f79f4d853_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {DataTypes} from '../../../protocol/libraries/types/DataTypes.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/EModeEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/EModeEngine.sol#L2) · line 2 · SHA-256 f3fa8a68cbb51e71dd670b0824743219526b59fdb839dca214eb6963a9a704e8_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {SafeCast} from 'openzeppelin-contracts/contracts/utils/math/SafeCast.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/ListingEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/ListingEngine.sol#L2) · line 2 · SHA-256 c1702751d7caa76faa1518991e51d8b563906a681e2fea08e277e461839fa781_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {IAaveV3ConfigEngine as IEngine, IPoolConfigurator, IDefaultInterestRateStrategyV2} from '../IAaveV3ConfigEngine.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/PriceFeedEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/PriceFeedEngine.sol#L2) · line 2 · SHA-256 5b99f79ab9ea96a4858fe9e423dd00957460fcc6239d08b916223316d5f1deff_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {IAaveV3ConfigEngine as IEngine, IAaveOracle} from '../IAaveV3ConfigEngine.sol';
-```
-
-_file_excerpt · [src/contracts/extensions/v3-config-engine/libraries/RateEngine.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/src/contracts/extensions/v3-config-engine/libraries/RateEngine.sol#L2) · line 2 · SHA-256 d5e33d92057ad3643644a2524e07ad10878cb5f333bd5907bd735cfce3fdf771_
-
-```
-    1 | // SPDX-License-Identifier: BUSL-1.1
-    2 | pragma solidity ^0.8.18;
-    3 | 
-    4 | import {IDefaultInterestRateStrategyV2} from '../../../interfaces/IDefaultInterestRateStrategyV2.sol';
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Зафиксируйте версию компилятора, использованную при тестировании.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06487 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06488 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06489 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: transferOwnership. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
-
-```
-Privileged functions: transferOwnership
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06490 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: renounceOwnership, transferOwnership. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
-
-```
-Privileged functions: renounceOwnership, transferOwnership
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06491 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: relay. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
-
-```
-Privileged functions: relay
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06492 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: setLateQuorumVoteExtension. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
-
-```
-Privileged functions: setLateQuorumVoteExtension
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06493 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: setVotingDelay, setVotingPeriod, setProposalThreshold. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
-
-```
-Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06494 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: setBaseDelaySeconds, setAccessManagerIgnored. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
-
-```
-Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06495 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06496 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06497 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: updateQuorumNumerator. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
-
-```
-Privileged functions: updateQuorumNumerator
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06500 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06501 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol: restricted
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
-
-```
-Privileged functions: restricted
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06502 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: renounceOwnership, transferOwnership. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
-
-```
-Privileged functions: renounceOwnership, transferOwnership
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06503 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: transferOwnership. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
-
-```
-Privileged functions: transferOwnership
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06504 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: relay. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
-
-```
-Privileged functions: relay
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06505 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: setLateQuorumVoteExtension. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
-
-```
-Privileged functions: setLateQuorumVoteExtension
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06506 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: setVotingDelay, setVotingPeriod, setProposalThreshold. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
-
-```
-Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06507 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: setBaseDelaySeconds, setAccessManagerIgnored. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
-
-```
-Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06508 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06509 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
-
-```
-Privileged functions: updateTimelock
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06510 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: updateQuorumNumerator. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
-
-```
-Privileged functions: updateQuorumNumerator
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06512 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: upgradeTo. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol) · multiple · SHA-256 02e606b6560ec4a99c06589dd8655178cca253b457dcec0438b77dd4a8cb04f5_
-
-```
-Privileged functions: upgradeTo
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06513 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
-- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol`
-- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol
-- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
-- CVSS v3.1: неприменимо
-
-Функции, защищённые модификаторами владельца/ролей: upgradeAndCall. (см. —)
-
-**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
-
-**Шаги воспроизведения.**
-
-```
-Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol и изучите приведённые строки (см. доказательство).
-```
-
-**Подтверждающие доказательства.**
-
-_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol) · multiple · SHA-256 08d87f8ddab73b6f3211d313d176dd5e3323cdca43425bff268f49bee3960937_
-
-```
-Privileged functions: upgradeAndCall
-```
-
-**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
-
-**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
-
-**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
-
-### QSI-2026-06521 — Привилегированные административные функции в src/contracts/dependencies/openzeppelin/contracts/Ownable.sol: renounceOwnership, transferOwnership
+### QSI-2026-11455 — Привилегированные административные функции в src/contracts/dependencies/openzeppelin/contracts/Ownable.sol: renounceOwnership, transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/dependencies/openzeppelin/contracts/Ownable.sol`
 - Источник данных: src/contracts/dependencies/openzeppelin/contracts/Ownable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: renounceOwnership, transferOwnership. (см. —)
@@ -2492,14 +1677,14 @@ Privileged functions: renounceOwnership, transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06529 — Привилегированные административные функции в src/contracts/helpers/WrappedTokenGatewayV3.sol: emergencyTokenTransfer, emergencyEtherTransfer
+### QSI-2026-11463 — Привилегированные административные функции в src/contracts/helpers/WrappedTokenGatewayV3.sol: emergencyTokenTransfer, emergencyEtherTransfer
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/helpers/WrappedTokenGatewayV3.sol`
 - Источник данных: src/contracts/helpers/WrappedTokenGatewayV3.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: emergencyTokenTransfer, emergencyEtherTransfer. (см. —)
@@ -2526,14 +1711,14 @@ Privileged functions: emergencyTokenTransfer, emergencyEtherTransfer
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06531 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProvider.sol: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, setPoolConfiguratorImpl, setPriceOracle, setACLManager, setACLAdmin, setPriceOracleSentinel, setPoolDataProvider
+### QSI-2026-11465 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProvider.sol: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, setPoolConfiguratorImpl, setPriceOracle, setACLManager, setACLAdmin, setPriceOracleSentinel, setPoolDataProvider
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/protocol/configuration/PoolAddressesProvider.sol`
 - Источник данных: src/contracts/protocol/configuration/PoolAddressesProvider.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, setPoolConfiguratorImpl, setPriceOracle, setACLManager, setACLAdmin, setPriceOracleSentinel, setPoolDataProvider. (см. —)
@@ -2560,14 +1745,14 @@ Privileged functions: setMarketId, setAddress, setAddressAsProxy, setPoolImpl, s
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06532 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol: registerAddressesProvider, unregisterAddressesProvider
+### QSI-2026-11466 — Привилегированные административные функции в src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol: registerAddressesProvider, unregisterAddressesProvider
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol`
 - Источник данных: src/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: registerAddressesProvider, unregisterAddressesProvider. (см. —)
@@ -2594,14 +1779,14 @@ Privileged functions: registerAddressesProvider, unregisterAddressesProvider
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06534 — Привилегированные административные функции в src/contracts/rewards/EmissionManager.sol: setClaimer, setEmissionAdmin, setRewardsController
+### QSI-2026-11468 — Привилегированные административные функции в src/contracts/rewards/EmissionManager.sol: setClaimer, setEmissionAdmin, setRewardsController
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/contracts/rewards/EmissionManager.sol`
 - Источник данных: src/contracts/rewards/EmissionManager.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: setClaimer, setEmissionAdmin, setRewardsController. (см. —)
@@ -2628,14 +1813,14 @@ Privileged functions: setClaimer, setEmissionAdmin, setRewardsController
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06535 — Привилегированные административные функции в src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol: setupAaveV3Market, setMarketReport, setProtocolDataProvider, transferMarketOwnership
+### QSI-2026-11469 — Привилегированные административные функции в src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol: setupAaveV3Market, setMarketReport, setProtocolDataProvider, transferMarketOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol`
 - Источник данных: src/deployments/projects/aave-v3-batched/batches/AaveV3SetupBatch.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: setupAaveV3Market, setMarketReport, setProtocolDataProvider, transferMarketOwnership. (см. —)
@@ -2662,17 +1847,833 @@ Privileged functions: setupAaveV3Market, setMarketReport, setProtocolDataProvide
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06537 — 197 бюллетеней в 53 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-11471 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol: restricted
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
+
+```
+Privileged functions: restricted
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11472 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol: restricted
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
+
+```
+Privileged functions: restricted
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11473 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol: transferOwnership
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: transferOwnership. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
+
+```
+Privileged functions: transferOwnership
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11474 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: renounceOwnership, transferOwnership. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
+
+```
+Privileged functions: renounceOwnership, transferOwnership
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11475 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol: relay
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: relay. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
+
+```
+Privileged functions: relay
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11476 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol: setLateQuorumVoteExtension
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: setLateQuorumVoteExtension. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
+
+```
+Privileged functions: setLateQuorumVoteExtension
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11477 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: setVotingDelay, setVotingPeriod, setProposalThreshold. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
+
+```
+Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11478 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol: setBaseDelaySeconds, setAccessManagerIgnored
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: setBaseDelaySeconds, setAccessManagerIgnored. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
+
+```
+Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11479 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol: updateTimelock
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11480 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol: updateTimelock
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11481 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol: updateQuorumNumerator
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: updateQuorumNumerator. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
+
+```
+Privileged functions: updateQuorumNumerator
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11484 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol: restricted
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
+
+```
+Privileged functions: restricted
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11485 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol: restricted
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: restricted. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol) · multiple · SHA-256 36ed478689eb7537103955dd954f943862d16e4135ccd297de1e6c99b9b9e5e5_
+
+```
+Privileged functions: restricted
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11486 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol: renounceOwnership, transferOwnership
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: renounceOwnership, transferOwnership. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol) · multiple · SHA-256 c9178db25d8ef1b1a83ff9fe952090d86c1ef54a1f84a5a67cc0aac7fdd62bd6_
+
+```
+Privileged functions: renounceOwnership, transferOwnership
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11487 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol: transferOwnership
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: transferOwnership. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol) · multiple · SHA-256 3ef6a6924988649e26a7e42a450b6976f80844a318d3ab2418fc99e4bae2bcee_
+
+```
+Privileged functions: transferOwnership
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11488 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol: relay
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: relay. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol) · multiple · SHA-256 7ffca126961e19e9d9b0edb533fbaeacef6491d5098a94c1d9d5b988a15cb6ba_
+
+```
+Privileged functions: relay
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11489 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol: setLateQuorumVoteExtension
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: setLateQuorumVoteExtension. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol) · multiple · SHA-256 514805472eac509275a6bf6ad6edb5f54cc24756ff9976c1eb00d142f771616d_
+
+```
+Privileged functions: setLateQuorumVoteExtension
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11490 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol: setVotingDelay, setVotingPeriod, setProposalThreshold
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: setVotingDelay, setVotingPeriod, setProposalThreshold. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol) · multiple · SHA-256 86374e75349ee43fad2906180e81f23f3c94d19c2162c84a665cf6d22130b06e_
+
+```
+Privileged functions: setVotingDelay, setVotingPeriod, setProposalThreshold
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11491 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol: setBaseDelaySeconds, setAccessManagerIgnored
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: setBaseDelaySeconds, setAccessManagerIgnored. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol) · multiple · SHA-256 f2f0ae2a1314268db485c56a4fe1f2d974856fd30405d8e1b223f1102f2a16d6_
+
+```
+Privileged functions: setBaseDelaySeconds, setAccessManagerIgnored
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11492 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol: updateTimelock
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11493 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol: updateTimelock
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: updateTimelock. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol) · multiple · SHA-256 825de8a0266ca176b55c917fd9450222f4d40ce841c16a9f026715c5a07f3d75_
+
+```
+Privileged functions: updateTimelock
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11494 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol: updateQuorumNumerator
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: updateQuorumNumerator. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol) · multiple · SHA-256 37d9e023fde908bbc2e9347f91ad2aa3006ddd93480c2ac0413f2847e2b727b4_
+
+```
+Privileged functions: updateQuorumNumerator
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11496 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol: upgradeTo
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: upgradeTo. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol) · multiple · SHA-256 02e606b6560ec4a99c06589dd8655178cca253b457dcec0438b77dd4a8cb04f5_
+
+```
+Privileged functions: upgradeTo
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11497 — Привилегированные административные функции в lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol: upgradeAndCall
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
+- Затронутый актив: `contract:lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol`
+- Источник данных: lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol
+- Метод обнаружения: Анализ шаблонов исходного кода Solidity.
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 37.0 / 100
+- CVSS v3.1: неприменимо
+
+Функции, защищённые модификаторами владельца/ролей: upgradeAndCall. (см. —)
+
+**Возможные последствия.** Риск централизации: компрометация ключа администратора компрометирует протокол.
+
+**Шаги воспроизведения.**
+
+```
+Откройте contract в предоставленном файле lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol](https://github.com/aave-dao/aave-v3-origin/blob/8305565ae342f1773c42cd2e4593f175fe5968a0/lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol) · multiple · SHA-256 08d87f8ddab73b6f3211d313d176dd5e3323cdca43425bff268f49bee3960937_
+
+```
+Privileged functions: upgradeAndCall
+```
+
+**Ограничения проверки.** Облегчённый статический анализ шаблонов Solidity без компиляции и символьного исполнения. Не заменяет полноценный аудит смарт-контрактов; подтвердите вручную или специализированными инструментами (Slither, тесты Foundry).
+
+**Рекомендация.** Используйте мультиподпись/таймлок для ролей администратора и документируйте их.
+
+**Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
+
+### QSI-2026-11505 — 200 бюллетеней в 53 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 17.1 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 197 бюллетеней (103 с оценкой high или critical) для 53 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json, lib/solidity-utils/package-lock.json, package-lock.json): например, @babel/runtime@7.22.15 [dev]: GHSA-968p-4wvh-cqc8; @babel/runtime@7.26.9 [dev]: GHSA-968p-4wvh-cqc8; @fastify/busboy@2.0.0 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85; ajv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 200 бюллетеней (103 с оценкой high или critical) для 53 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json, lib/solidity-utils/package-lock.json, package-lock.json): например, @babel/runtime@7.22.15 [dev]: GHSA-968p-4wvh-cqc8; @babel/runtime@7.26.9 [dev]: GHSA-968p-4wvh-cqc8; @fastify/busboy@2.0.0 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85; ajv@6.12.6 [dev]: GHSA-2g4f-4pwh-qvx6. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -2684,7 +2685,7 @@ OSV.dev сообщает 197 бюллетеней (103 с оценкой high и
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (npm)](https://osv.dev/) · lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json · SHA-256 8bf9311412f0d5ff02697949a7e6e1b43f373ef12e25c19cd155713ed9e3236e_
+_tool_output · [OSV.dev (npm)](https://osv.dev/) · lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json · SHA-256 d7622f07205659226f255672c1ea522359b420d692b9dd46b6346b9536338314_
 
 ```
 @babel/runtime@7.22.15 [dev]: GHSA-968p-4wvh-cqc8
@@ -2712,21 +2713,21 @@ elliptic@6.5.4 [dev]: GHSA-434g-2637-qmqr, GHSA-49q7-c7j4-3p7m, GHSA-848j-6mx2-7
 flatted@3.2.9 [dev]: GHSA-25h7-pfq9-p65f, GHSA-rf6f-7fwh-wjgh
 follow-redirects@1.15.6 [dev]: GHSA-r4q5-vmmm-2653
 form-data@4.0.0 [dev]: GHSA-fjxv-7rqg-78g4, GHSA-hmw2-7cc7-3qxx
-glob@10.3.10 [dev]: GHSA-5j98-mcp5-4vw2
-glob@11.0.0 [dev]: GHSA-5j98-mcp5-4vw2
+glob@10.3.10 [dev]: GHSA-3g3m-2fjr-6pw4, GHSA-5j98-mcp5-4vw2
+glob@11.0.0 [dev]: GHSA-3g3m-2fjr-6pw4, GHSA-5j98-mcp5-4vw2
 handlebars@4.7.8 [dev]: GHSA-2qvq-rjwj-gvw9, GHSA-2w6w-674q-4c4q, GHSA-3mfm-83xf-c92r, GHSA-442j-39wm-28r2, GHSA-7rx3-28cr-v5wh, GHSA-8r5x-fm3f-whwj, GHSA-9cx6-37pm-9jff, GHSA-p8wg-vrv2-v86f, GHSA-xhpv-hc6g-r9c6, GHSA-xjpj-3mr7-gcpf, GHSA-xw65-4hp5-5hc7
 immutable@4.3.4 [dev]: GHSA-v56q-mh7h-f735, GHSA-wf6x-7x77-mvgw, GHSA-xvcm-6775-5m9r
 js-yaml@3.14.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68, GHSA-mh29-5h37-fv8m
 js-yaml@3.14.2 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68
 js-yaml@4.1.0 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68, GHSA-mh29-5h37-fv8m
 js-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68
-lodash@4.17.21 [dev]: GHSA-f23m-r3pf-42rh, GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg
+lodash@4.17.21 [dev]: GHSA-r5fr-rjxr-66jc, GHSA-xxjr-mmjv-4gpg
 micromatch@4.0.5 [dev]: GHSA-952p-6rrq-rcjv
-minimatch@10.0.0 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+minimatch@10.0.0 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249
 minimatch@3.1.2 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
 minimatch@5.0.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
 minimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
-minimatch@9.0.3 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+minimatch@9.0.3 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249
 nanoid@3.3.3 [dev]: GHSA-28wg-ghj8-5hjv, GHSA-2v37-7h3g-55p8, GHSA-mwcw-c2x4-8c55, GHSA-xwg4-73v4-xw9w
 pbkdf2@3.1.2 [dev]: GHSA-477h-4r7f-fvrx, GHSA-h7cp-r72f-jxh6, GHSA-v62p-rq8g-8h59
 picomatch@2.3.1 [dev]: GHSA-3v7f-55p6-f55p, GHSA-c2c7-rcm5-vvqj
@@ -2735,7 +2736,7 @@ serialize-javascript@6.0.0 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-76p7-773f-r4q5, GHSA
 sha.js@2.4.11 [dev]: GHSA-95m3-7q98-8xr5
 tmp@0.0.33 [dev]: GHSA-52f5-9888-hmc6, GHSA-ph9p-34f9-6g65
 undici@5.28.4 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g52, GHSA-4992-7rv2-5pvq, GHSA-8xcm-r25x-g524, GHSA-9fm3-97px-rjf6, GHSA-c76h-2ccp-4975, GHSA-cxrh-j4jr-qwg3, GHSA-g8m3-5g58-fq7m, GHSA-g9mf-h72j-4rw9, GHSA-m8rv-5g2x-5cg5, GHSA-p88m-4jfj-68fv, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-v3r7-h72x-cjcm, GHSA-v9p9-hfj2-hcw8, GHSA-vrm6-8vpv-qv8q, GHSA-vxpw-j846-p89q
-undici@6.12.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g52, GHSA-4992-7rv2-5pvq, GHSA-4qv8-2p9j-2685, GHSA-8xcm-r25x-g524, GHSA-9fm3-97px-rjf6, GHSA-c76h-2ccp-4975, GHSA-cxrh-j4jr-qwg3, GHSA-f269-vfmq-vjvj, GHSA-g8m3-5g58-fq7m, GHSA-g9mf-h72j-4rw9, GHSA-m8rv-5g2x-5cg5, GHSA-p88m-4jfj-68fv, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GHSA-rfgv-xxqx-mfg5, GHSA-v3r7-h72x-cjcm, GHSA-v9p9-hfj2-hcw8, GH
+undici@6.12.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g52, GHSA-4992-7rv2-5pvq, GHSA-4qv8-2p9j-2685, GHSA-8xcm-r25x-g524, GHSA-9fm3-97px-rjf6, GHSA-c76h-2ccp-4975, GHSA-cxrh-j4jr-qwg3, GHSA-f269-vfmq-vjvj, GHSA-g8m3-5g58-fq7m, GHSA-g9mf-h72j-4rw9, GHSA-m8rv-5g2x-5cg5, GHSA-p88m-4jfj-68fv, GHSA-qrxm-fqhp-jwvm, GHSA-r53p-7pc4-xj5r, GH
 ```
 
 **Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
@@ -2744,14 +2745,14 @@ undici@6.12.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06536 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-11504 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 06:16 UTC
-- Балл приоритета: 14.5 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:18 UTC
+- Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
 В 12 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1, tweetnacl), но ни одной из списка поддерживающих PQC.
@@ -2766,7 +2767,7 @@ undici@6.12.0 [dev]: GHSA-2m5v-pch6-74hx, GHSA-2mjp-6q6p-2qxm, GHSA-35p6-xmwp-9g
 
 **Подтверждающие доказательства.**
 
-_dependency · lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/package.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/package.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/solhint-custo · SHA-256 49a0b2cfa22c999965f749622f06b48a6edd611e28411faaf48b40bad22e538f_
+_dependency · package-lock.json, package.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/package.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/package.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package.json, lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppeli · SHA-256 49a0b2cfa22c999965f749622f06b48a6edd611e28411faaf48b40bad22e538f_
 
 ```
 Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1, tweetnacl
@@ -2798,7 +2799,7 @@ Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethe
 | 15 лет | 51-70% | вероятно |
 
 **Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
-_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Финансовая организация», а не данные клиента; с фактическими сроками клиента вывод может измениться._
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
@@ -2811,7 +2812,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-06481 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-11449 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -2840,86 +2841,86 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-06514 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06520 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06522 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06523 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06524 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06525 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06526 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06530 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06533 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11454 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11456 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11457 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11458 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11459 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11460 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11464 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11467 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-11498 | Ограничьте цели delegatecall доверенными неизменяемыми реализациями. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-06482 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-06515 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-11450 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-11499 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06481 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06480 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06483 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06484 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06485 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06486 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06498 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06499 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06511 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06516 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06517 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06518 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06519 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06527 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06528 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06481 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06487 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06488 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06489 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06490 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06491 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06492 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06493 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06494 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06495 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06496 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06497 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06500 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06501 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06502 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06503 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06504 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06505 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06506 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06507 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06508 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06509 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06510 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06512 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06513 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06521 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06529 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06531 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06532 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06534 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06535 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06537 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-11449 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11448 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11451 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11452 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11453 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11461 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11462 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11470 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11482 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11483 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11495 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11500 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11501 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11502 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-11503 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11449 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11455 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11463 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11465 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11466 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11468 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11469 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11471 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11472 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11473 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11474 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11475 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11476 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11477 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11478 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11479 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11480 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11481 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11484 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11485 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11486 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11487 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11488 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11489 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11490 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11491 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11492 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11493 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11494 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11496 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11497 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-11505 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -2940,7 +2941,7 @@ _Действие: взламывает — алгоритм нужно заме
 14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
 15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
 20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
@@ -2956,8 +2957,8 @@ _Действие: взламывает — алгоритм нужно заме
 | Crypto library | 1.0.3 | tweetnacl (TweetNaCl) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.1.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.1.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
-| Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
+| Crypto library | 1.2.0 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.3.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.3.1 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
 | Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json; lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json |
@@ -3008,426 +3009,6 @@ _Длинные списки здесь сгруппированы; полный
 | certora/stata/harness/tokens/DummyERC20_aTokenUnderlying.sol | 152 | `5ab15bd047b5c50634e450cd39c7114ab8ffdc6824e8d8619368c157449866e7` | 0 |
 | certora/stata/harness/tokens/DummyERC20_rewardToken.sol | 142 | `46cf60eeab10148855e20168f6e5351b86b84c36b9f91bf4c66918d59a3e4349` | 0 |
 | echidna-parser.py | 2400 | `9d8d2391a450bae08b573ca9246062cdf90d76455e455bca8acd1d5ba20a0fa1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.mocharc.js | 70 | `434e1df653523a6bce5e53a62690018b51039b10fab4a734a10948bedd06789d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.solcover.js | 448 | `9111d1d9d5d8651916cf6e1afb033eeefd3f1ffa2d353a13f443518364c59420` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol | 1454 | `e0ba6d8a937323046f2bbcc72ba70f7406276aa37b562e1a362004872def3ac8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlHarness.sol | 176 | `a49b1631dee3cd0b22358651751410bda67363f219d4c5dc5d9bcd105c5eb260` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagedHarness.sol | 1636 | `e6d084707582b75bf29e170ec02da237fc21541e793a15b2b17482ed9e1a63f9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagerHarness.sol | 4475 | `65fc78a99fd9cfc3daec97c3b5656338e526a7ec639aaa304b185afb32fa50cf` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/DoubleEndedQueueHarness.sol | 1399 | `7473e0ca273983325153604dde0906745542b4ce90bf94984a0c86ea1f54f3b8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20FlashMintHarness.sol | 1028 | `d14171faf0d2ccb9bf14fd9ad252c07e386689e69a39f0a65a7f5dae6540bcfe` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20PermitHarness.sol | 493 | `7f5eee48c453af458cec04df5678ee8618dd198d3ef399bd1e9efc543491cb97` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20WrapperHarness.sol | 1121 | `05f6d555cceadef86ae7dde4757897a685ed5c156e6034c7e1a760a8e54d133e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC3156FlashBorrowerHarness.sol | 405 | `68d31d5af5df023d29304b43e3720164b00d09c75240e9bad83995a8e138c9a6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721Harness.sol | 891 | `69a5144e1ae8249774d795e69f815457f85d32b9aff3f3bcc8c15545233ff8bd` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721ReceiverHarness.sol | 325 | `ba334a1b77d8b0c5bf566957f03fab538938318f059fc1277ecd36e065e76ba1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/EnumerableMapHarness.sol | 1488 | `9898955deb052f5c661ba6168e789f4f080f6a2a3411c7ad7412e76dd7b0a16b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/EnumerableSetHarness.sol | 890 | `dc5621c2e221d8bf0e5eb74c841e44ab3f7b7568388f758db919c36e64658733` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/InitializableHarness.sol | 976 | `92af00cfefdefb5137d3fc9c0b615fd719a2ecab85832d28346b4d359ab54158` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/NoncesHarness.sol | 378 | `112c07190fdc3275661c418dcc9597de383422aa31fe76f861248bef979e9c94` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol | 294 | `dd7ea7342e518bfdcbe4bf10980c1949e9ba67428f436b4d082b359560827eee` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol | 265 | `b285dad9f93bed4facd29fab94daea314baf78eab611daa3133323a2877a02ab` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/PausableHarness.sol | 387 | `d9c391078e05dceaa14d9731fb1542f5675b35670c556b705adb7c80b18e9374` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/TimelockControllerHarness.sol | 405 | `02d61705a0cce4d30449a7250da8e51e9eca48ce5598d962d9eadf6864096079` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/run.js | 4107 | `d2d11e62fd6e5cefbc43ebcf535ca140616e7fab85ce4c69d915dacd0495e691` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol | 8227 | `af65f33d5d4ee58be1871f806a6e5f76945ab93acc8579905348c0af9dbd6fdd` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol | 3433 | `e65937e8c36af5c343406e97399759bd576090c0599b864bbea3501d617f7e1f` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol | 3969 | `9247b9ad7939d23990dbdc9274917c3762ffb37e5137ef7bbfcc2e2fba1b8dd2` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlDefaultAdminRulesUpgradeable.sol | 17195 | `a0b367f3d905cd9bd7e2400f0ae9e59f614dee51ee089be7fec6363968851cf1` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlEnumerableUpgradeable.sol | 4738 | `071bc543877c67cb0e50d0a067af352df2e9edc09e9d3660f18f838a34e95b35` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagedUpgradeable.sol | 5973 | `af836143d788c8f77dedd1e0787d106ece21c01f56dd57098c6c0f0ed16fd17f` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagerUpgradeable.sol | 32629 | `cc4a118823d84eeb7736b60208a5658a1addfceada363d3c75afaf7049c46e95` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletCliffUpgradeable.sol | 3047 | `e1f8c203fd3ad167536df8dfa4fba69c67f02e19121992bf7dc3692f32b28104` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletUpgradeable.sol | 7298 | `62620100fc0b9e2abfda587822f3c00165cdeeb34c446705fcc99806949d4677` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol | 33538 | `dafe1155a93969bb87e417d1cebcf349b45089af4cd6ca567e08544e01b577c0` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/TimelockControllerUpgradeable.sol | 18135 | `242e38ddccb6c86ba0f3e66507ba8ab0ec27211b6918ec86c06cec9ea5421ecb` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorCountingFractionalUpgradeable.sol | 10837 | `d6d07a8fb58e11e521033c3299c02bccc0e350a5e3a0010dac3cddf07fb3325a` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorCountingSimpleUpgradeable.sol | 4609 | `d1eda2ca5173abc942a0fe275bbb5ab3a50704f2b426ccd421840e43be3554a9` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol | 5697 | `c6d4053375eba3754ccb3eeee8f7164bfa8f074895bf396dd74e6abdc68dce1c` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol | 5063 | `ebbf33d35dde1a83b894ed2f0ba878fdf4550bd00245c92cc9fa282113dd1e3b` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorStorageUpgradeable.sol | 5554 | `687b706ebd469ca771e6fdcfd85330b6f716d86780713c36bfc7a1a659893271` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol | 18106 | `c7c35f9ba9baafac9e489d2715e6b06640001b01e28f2fe35d0cafbd0f8ce549` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol | 8204 | `ad781eaf219aa5b24dcc61785d0b11118299e14ce1bf20c368de292e64955553` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol | 8476 | `b37e18eb1feefc7bcdb98f31b8da7bc5dce5b2e33fff0801c4e85653f9ea0e09` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol | 5336 | `41af72239fdd8f7ef590f65f305743226fa3e0bdcf14476e627dd58415f37709` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesUpgradeable.sol | 3075 | `bdc8a0b9615effb1359a4fbcbc018b943682e382ba8880951ce95eb95bf0df44` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/utils/VotesUpgradeable.sol | 11059 | `ec19a0f6732feb2e1276e60346f14ad0dda335f390d908266d09b7ae937a3ad9` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/metatx/ERC2771ContextUpgradeable.sol | 3618 | `f739bce56b6005c7299a65ee24a8c5402da0e781e76134e9f92b9edc76f23ab2` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/metatx/ERC2771ForwarderUpgradeable.sol | 17345 | `3efd96bd4e3b77aa8d72c28de2fc665b338e3810c44d59b19b61a991e63b07ff` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/package.json | 878 | `c6ffb3c1a939a98f71ac8e9eebd31622e5401225c891be35344a55bb07572e55` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol | 8854 | `a8b7eafa0fdc7cb5a644c8c61a8e4c51e031d5e1e6f268f72dbe18b768ead56e` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol | 6598 | `3c76952e97e1cacfec407359b9fc7ae41a739fab804458ba7c0806206949570f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/ERC1155Upgradeable.sol | 15886 | `6ef323d20ffc6623ea89e3a3efc971ea3e35d2692a7cb6f3afab10bab8a296b0` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol | 1281 | `97afd1059918bdf9b365fb10550ea221ef142d45294da21e3dfff1bae5c50fe9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155PausableUpgradeable.sol | 1707 | `82c23a2f1578461e109829b91fccfd8bde5a204759cd0bffa3976cb583877842` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155SupplyUpgradeable.sol | 4159 | `10e1d2442f6bf36f8e0525078f9cd53e0a65a9211b00b557dbdcd55e83e2c2d7` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155URIStorageUpgradeable.sol | 3292 | `7d202632221962f77ed8c1b8a9db24f5570ede69839e6da2648594d31ef98893` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol | 1750 | `7ab0380bad8a304c085fe2d2a7646f10eaedc204d9e4f51c1fd3e1f5d80da117` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/ERC20Upgradeable.sol | 12169 | `aaabbd0bac5de418bfd3c3c6429b2e9dbed8fd61fdb1ac1c4ef4434f803eda88` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC1363Upgradeable.sol | 5898 | `9fc9d03c226a7a798940de07f91e848028cc85b65ceb4ecf0a5e4ab8029b5eb8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20BurnableUpgradeable.sol | 1495 | `15b8cfe5d0c0f93fd9cccdb25eb9b2e6ff6bf555bdf7110db305e53880435790` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20CappedUpgradeable.sol | 2334 | `e87efc3174cbae107ab5656481651d0a26bf36667d9a37d882c65cfb47a10a0e` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20FlashMintUpgradeable.sol | 6084 | `ef30fc8af78eb529259a0a3216fc1062a086771d885a2fae618cab7158f28e5f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20PausableUpgradeable.sol | 1611 | `fcbcb1f80a2b2585dcc2fa0fe2edf5b300e53a5db77352c448250fc51b5e8601` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20PermitUpgradeable.sol | 3200 | `c538cb63958c81d3d796fae44104d42f2d0fa877a15ae8f5477593869c6e2a30` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20VotesUpgradeable.sol | 3928 | `84cdb63ccc1699bd1816e5b143c10f35396cc1a6d11920f2830da622e924dac0` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20WrapperUpgradeable.sol | 4846 | `8b26e411d21bbd8d2e3572a2f3370ddced6e0fc4c0caf5ddc73a70d2e18a097b` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol | 13605 | `8c65f46c961932ab4113c4758fbc96aaf350e812b040a201603131be59ada737` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/draft-ERC20TemporaryApprovalUpgradeable.sol | 5557 | `dc027d63a6a3266944fef04599f274e3fbddd75e62702977f0315cc61c74dee5` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/ERC721Upgradeable.sol | 18098 | `7baa9bd7d920ed5264920052ecbaaede764ad684c5e85b859aeebb1a1ee5cc10` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721BurnableUpgradeable.sol | 1195 | `b3c5805a42ec983a1daebdaacf2e3dbdc1dc68f3d14aa9eb307c22c729d72643` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721ConsecutiveUpgradeable.sol | 8566 | `e1be139be8b241797237a2565bf8188431e90c0bcac562995427a77762a044d4` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol | 8798 | `0d19f100db77d29b4628360ed4186c7911e03d8d45b6130b42232d760ad62312` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721PausableUpgradeable.sol | 1680 | `cbaf8b41622a946f665c17b3de0aee2ec93f55d1e89ef9b75735d660f2f90922` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721RoyaltyUpgradeable.sol | 1573 | `4217cd3f43788f1cb538c16e0dd1d765a013d2497309443afafab3d9e24cd075` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol | 3108 | `7d950da19da0df704d4ed54a0e5ac944111d5d98b8037fb653bd4539d438472c` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721VotesUpgradeable.sol | 2140 | `6c22a84c27c0c12c9fea54db5e5fa95f542f64beafc03dd10bb427dbf1572b07` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721WrapperUpgradeable.sol | 5341 | `265e00d60b434aabd5d40d9cb87dd8a6faae545a0e2f9a1954b69d680b08db22` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/utils/ERC721HolderUpgradeable.sol | 1074 | `5f819dbf73677aecc2a8e7e5309a403e1b6c36296270f878fd54b2859420c83b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/common/ERC2981Upgradeable.sol | 6476 | `11ea92eaadaef54892c47211e955925061780d86982671906fee690a7ca6270d` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol | 1194 | `a08e16324da33a9d666dc07a22ae58031c242a3869f6808e55b4b82fc70cb209` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/MulticallUpgradeable.sol | 1989 | `45922f4ff1e446b61cb4677ef95833e1cb2b0276dfb8b3e47cae68f59af70832` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/NoncesUpgradeable.sol | 2269 | `d63abfbf20ca119bf162ec5bb343df4b189208d1d0a73657555f688536498cd8` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/PausableUpgradeable.sol | 3799 | `de9a20a313d34dd3b454c834606518390c8ead4dcca8137c879401fef62d8583` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/ReentrancyGuardTransientUpgradeable.sol | 2354 | `9b7f12fb4521bcc04f278173bff4ce95673936c9066516244ae532b68144a83c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/ReentrancyGuardUpgradeable.sol | 4450 | `11b45418823fd6e961d8db5cf5c2795b08f51f88a66f8e37a38fcd052ee711a4` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol | 8636 | `e4921efd4791f39deaa0cd71fee74de4f2c8320a99f388b4189df504157981c8` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol | 1184 | `586f77f25f65f2b957d5579c346d39cc883848962a375857c151c5bb15c0eb93` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/docs/config.js | 748 | `d5cdaf3c2d7b2724173f9664210cfae1aa4a700bf2a1f6a7b7820b74b04c15e7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/docs/templates/helpers.js | 1423 | `c54072a039eb8e30ebdfc050e2366c4fd2d33aaef32693e000b355c28899fa13` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/docs/templates/properties.js | 2362 | `6963a4de368ade29eded9c3f8df165186be417f585a2a60c09a400921c7fd9c2` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/async-test-sanity.js | 76 | `5103b71ce9ab1f95f16435805507b3c3a1ae06aff4dbd2f9e78f3c544ac161a8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/env-artifacts.js | 1019 | `53209232db89939f0f8e047febfe15adfd52580c65594443e395423c7421f671` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/ignore-unreachable-warnings.js | 2018 | `5881535d1f4d05527a4481c6f0cd85156309e1623692b0d6a54139da67af96a3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/remappings.js | 508 | `8c937c074523720f867389503a24c6f1b24b729712995842fbb8fccf1c3fdb36` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/skip-foundry-tests.js | 295 | `5e594373be07d38818abb95c62e159435c68e291aa230e7d95fc2e38f00cb8ea` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/task-test-get-files.js | 1008 | `9851350b493983460df169f1c5dedac9c36930ee5bdbddaf977fb5fa75925a86` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat.config.js | 3094 | `114298824a9554ccb0e061e2023a4be605726717771508d6f8954d52ba850db9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol | 1594 | `35d3191997b0f778ba623c3f126aa2afacc486d7cbde83aa91cbe4aa089a9044` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SymTest.sol | 357 | `c5391a942e6ca4a31e1b48668ba80d12e5bc552453470fa153541ea322f8a88d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/.mocharc.js | 70 | `434e1df653523a6bce5e53a62690018b51039b10fab4a734a10948bedd06789d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/.solcover.js | 448 | `9111d1d9d5d8651916cf6e1afb033eeefd3f1ffa2d353a13f443518364c59420` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol | 1454 | `e0ba6d8a937323046f2bbcc72ba70f7406276aa37b562e1a362004872def3ac8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessControlHarness.sol | 176 | `a49b1631dee3cd0b22358651751410bda67363f219d4c5dc5d9bcd105c5eb260` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessManagedHarness.sol | 1636 | `e6d084707582b75bf29e170ec02da237fc21541e793a15b2b17482ed9e1a63f9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessManagerHarness.sol | 4475 | `65fc78a99fd9cfc3daec97c3b5656338e526a7ec639aaa304b185afb32fa50cf` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/DoubleEndedQueueHarness.sol | 1399 | `7473e0ca273983325153604dde0906745542b4ce90bf94984a0c86ea1f54f3b8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20FlashMintHarness.sol | 1028 | `d14171faf0d2ccb9bf14fd9ad252c07e386689e69a39f0a65a7f5dae6540bcfe` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20PermitHarness.sol | 493 | `7f5eee48c453af458cec04df5678ee8618dd198d3ef399bd1e9efc543491cb97` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20WrapperHarness.sol | 1121 | `05f6d555cceadef86ae7dde4757897a685ed5c156e6034c7e1a760a8e54d133e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC3156FlashBorrowerHarness.sol | 405 | `68d31d5af5df023d29304b43e3720164b00d09c75240e9bad83995a8e138c9a6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC721Harness.sol | 891 | `69a5144e1ae8249774d795e69f815457f85d32b9aff3f3bcc8c15545233ff8bd` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC721ReceiverHarness.sol | 325 | `ba334a1b77d8b0c5bf566957f03fab538938318f059fc1277ecd36e065e76ba1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/EnumerableMapHarness.sol | 1488 | `9898955deb052f5c661ba6168e789f4f080f6a2a3411c7ad7412e76dd7b0a16b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/EnumerableSetHarness.sol | 890 | `dc5621c2e221d8bf0e5eb74c841e44ab3f7b7568388f758db919c36e64658733` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/InitializableHarness.sol | 976 | `92af00cfefdefb5137d3fc9c0b615fd719a2ecab85832d28346b4d359ab54158` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/NoncesHarness.sol | 378 | `112c07190fdc3275661c418dcc9597de383422aa31fe76f861248bef979e9c94` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol | 294 | `dd7ea7342e518bfdcbe4bf10980c1949e9ba67428f436b4d082b359560827eee` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol | 265 | `b285dad9f93bed4facd29fab94daea314baf78eab611daa3133323a2877a02ab` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/PausableHarness.sol | 387 | `d9c391078e05dceaa14d9731fb1542f5675b35670c556b705adb7c80b18e9374` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/TimelockControllerHarness.sol | 405 | `02d61705a0cce4d30449a7250da8e51e9eca48ce5598d962d9eadf6864096079` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/run.js | 4107 | `d2d11e62fd6e5cefbc43ebcf535ca140616e7fab85ce4c69d915dacd0495e691` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/AccessControl.sol | 7050 | `1086a1ad3788972b885ff3f209da510615dde6214d46b29e1cd2a4924f66c06d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/IAccessControl.sol | 3343 | `c112f5c86fdc4e862f88d4f5694530342320923ebd5b5e7d9d8493550d337c2d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol | 3102 | `38578bd71c0a909840e67202db527cc6b4e6b437e0f39f0c909da32c1e30cb81` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol | 2476 | `c75345d7b9feef17ae29f2a800ca2f65f8021cf80436a41d6ec00f57f5180f36` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/AccessControlDefaultAdminRules.sol | 14810 | `fefdd334836d2fd96871284d4cc3877d95f081bbc54fc179a8572a5f2d50f7ad` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/AccessControlEnumerable.sol | 3373 | `d6c882c624699389abe9a4d8b6ad1f3d304ad6610221ac1cbd32f909e402629f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/IAccessControlDefaultAdminRules.sol | 8171 | `c7bbf8bc9e68a131951d23f099b50e8d2737d07a0307dfcb26be0595f3efcfa6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/IAccessControlEnumerable.sol | 1279 | `f91dc4b5750c1bac7a6a11a6057f14f01121847e6a6284e1200d8a87a4c4ff1e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/AccessManaged.sol | 4725 | `6834e350bc8bedbb042a62f6681f7976186e92e7febac2575bae081d81244ea9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/AccessManager.sol | 29876 | `72f06a0f03f2044d9b3bf036933aca7d589f0b8875a596206d50b696e59e8781` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/AuthorityUtils.sol | 1230 | `6a78662d327e8c82eee93a4659ddfb62a1f477f8cd9a2319848b3566e40baac8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAccessManaged.sol | 1111 | `b6cbb31989224829b1bcbcb7c34088eb16362650174da2cc98b2d7e01a1609bd` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAccessManager.sol | 16366 | `11da09673a4026c23d15f88562cc8cfff23646fb8264dad62db7f6ff1e992297` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAuthority.sol | 482 | `9fc27c63a17ed287dd1070ccca4bc9d3250af3d9e0c2c4ebf95173395ed98726` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/finance/VestingWallet.sol | 5641 | `8fd347d2b11c9e6203f29cde5d03bc51b17e94c3c74b93f0a4e5a36a1c1fe3f0` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/finance/VestingWalletCliff.sol | 2018 | `14981dea962b6c81e253295b702f2a461d7db60ae93715b293e95028d51b81f9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol | 31608 | `0e94dff852ecc526a7fa21b8af8e91d799a1e50e5edbd1f3b933782936f704f6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/IGovernor.sol | 15998 | `2f73642a69d9ff9033ffbb835dfac260c523e32d65e0eec3259857e5934882bc` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/TimelockController.sol | 16290 | `89a4cf0e404a42f13d01efefb5c1b3b1d46641c670b626b1b885330f3faccd2a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorCountingFractional.sol | 9388 | `06fd91844a6e6c6ed4425cb5238e7c6dc2a99499d6b266286ed9ebdc8e34c4ec` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorCountingSimple.sol | 3321 | `fee9f14eae7b45504e19f2e5dd55e74d7ce05f9733157a5811bd883b80256639` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol | 4354 | `af733274a4e245341fdce2b827470a162e0f967b6b1f1b3573526b859d5467fc` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol | 3631 | `f6268357cb5aeb8c2509699f78127b9b360e9bb57c2b4cb1406ca24a4573d66e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorStorage.sol | 4251 | `55ba9882c6d66026a6024cfe1db873754b0974a3859f709b765e35089e13d64c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol | 15993 | `676584f6c287cd0efbf388bdf0881a1654f63562b9a7ea6be03cc1a93c938266` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol | 6397 | `ee11bd77cdfeaa113b804edb9ebc3c43e8fdc4a3f8c8dbd618af45e9f8a3b35a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol | 6711 | `4fe02228a581a7b5f0f322834b79a898c5d65e1222573ca8afc0334feb6ae48b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotes.sol | 2048 | `bd306880ef79bac2fbd7ba3ed6ecc43bef4f78cbb5e26d12bdc0cc18a795163d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol | 4033 | `9febb68a832e0bc5e15fee84a1112436c8839f7f2294b3ec103cb1700af71c3c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/utils/IVotes.sol | 2322 | `f033b73ce92762d9ed9496b8a0f5f72bd0479e42388da584c2ff276cbb5cb9b1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/utils/Votes.sol | 9667 | `dea1532e5e0d920d9c40a6719a84e71b5de91391c1e2f65bb50d03878e7270bb` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155.sol | 189 | `6b08e7a48198dbe997205dad74a6dae1e5024dd4ef38ea7a70285950ba95bf24` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155MetadataURI.sol | 233 | `15df60a6b44a11ad12c8c6744ebb962834728fa4f20387430312c814394adf2a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155Receiver.sol | 213 | `ae9854dbfd4d879b6ed765d4de55ac7f9e67598ece010262bf46f3a86152115a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1271.sol | 653 | `599887e85d375f463f30e3c4cf139ea541e73c7b3535eb040da5e8d8145a4f14` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1363.sol | 4454 | `54f427f63724d9760211dfa9e0cc5d79d86c0724becd81f8e638e2e27b0e2669` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1363Receiver.sol | 1316 | `21584d4866c59fed42491cfb43a009ab451d1c387c951c7b7cadc3fdab68baa2` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1363Spender.sol | 1119 | `6e27f3eafd6190ceea989405d9e6cd15aa00c6530d316f82fffa746412ef1d94` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC165.sol | 192 | `49abfb8fa26e3f1715fe05948a96e3762b805bd4a77d103eb40ba96b1acfa144` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1820Implementer.sol | 767 | `9b7704eb411b2ebde03bb2a0a866cab485a21c41891ad79c1acebe04afda4e68` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1820Registry.sol | 4836 | `70337a0847da40172c8461693d6048c7a159ee0db9e5df6d8bb6024ab38fbef3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol | 636 | `886b093d8f7c41f73af42b8e183314b3654531a9d5e11f07c41a5a7f11d3e006` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC20.sol | 181 | `cb42f0b4d269ba8ef2629c176a7f99bf4fb50837c92f45596b54822b26e3df4b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC20Metadata.sol | 216 | `5fb70a9fa6d8e6193c557ea59dd18415bfe7facdf93fcf8ca1a415a9b7ff6706` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC2309.sol | 532 | `fb0568452aff870d2ec0e91c990f7b29d09001fc77c7413897f5fc5ccf492736` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC2612.sol | 245 | `8e9a3e95b74ab333b0d3319b4346293d3c84363bdfc6d95d08894f2bb95b94be` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC2981.sol | 1114 | `6a8ea184edb362922fb260ba9c43dc867e3b32cd3547d3de9299344cdf91c635` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC3156.sol | 263 | `27ed5fdc9ead61628277367c5fff80ace73defd91a69f9f9d9559a300f3ea8e6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC3156FlashBorrower.sol | 900 | `91bbede9a1163c3522f50f558b0f3d1d9c95c0e404d9a42d30286c1f481b2c11` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC3156FlashLender.sol | 1453 | `dd1b735c90f497c80743934aa7ec874aa50c359e001dd19c83caff4a227ca804` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC4626.sol | 12184 | `76ac9a58abb54725e50d19c66583135efc523410f6d6fbcdfc0528c4cf070cbb` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC4906.sol | 841 | `2b81c911f4c289d34f8d11064ce495bb8f49ba9a408df6ee1cbe4020eaf0ec10` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC5267.sol | 739 | `efd1ebd1e04b6ef9c3b8781a097588f83da954323f438d54a71dc06508e6c7b8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC5313.sol | 434 | `8bc20fb9e53bdb556386519448975a15afa3794230a90b6e3050fe00cbb48d50` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC5805.sol | 272 | `6ecc2370599496e6d862c2b4893975ec240f0ef8475daef1d20b5dd1efa90102` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC6372.sol | 519 | `2294c70df203a6a38985d064adca030293bec4b7aaa1237b62c7b1a34154f130` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721.sol | 185 | `f33ff9bb851371eab816597d29e77dea7947c392de6bce6bea29df3439546b16` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721Enumerable.sol | 226 | `3f2f9f48dbc9651ff725a00b0349b1a8280bdd309b97654d10e359739d1ff2dc` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721Metadata.sol | 220 | `9b62abc2c247f42681d4f3261628e510dfe6cea0f433d2174b332739c6e349ca` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721Receiver.sol | 209 | `d3ff9df7e9539f4eb7db7fc788d2e722ea7ba737de738d1c66e929fa6d158e8d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC777.sol | 6733 | `4d3d041b2a0d14e3f2da437ab17db313d14f36a631af84f8a88565d5bc7b43cf` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC777Recipient.sol | 1269 | `2c2e97190c7201dbec1d043c0515abd8c1f8d9ca3b6e3352c1d659e2c3e12251` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC777Sender.sol | 1278 | `361a409d3a0058d75419d4c6c7340c8e4acc03ac9b98d09f4c0a01b8320397a7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC1822.sol | 881 | `71190a8ee26dab908d3dad703ccfff09ebfc5850f2f405463e21df21a8643bbc` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol | 6538 | `56380323009ef4a119d44550b910fde1bff9cedde8f7f4c690152c7629bc3338` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC7674.sol | 567 | `c9aec3a4d47b7f8a8b4642b6616a685cf414346123daec9aab52eb51216ad2ca` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/metatx/ERC2771Context.sol | 3495 | `66e42d6798dedb18c2cdc92ca164aefb67ee3d37c90ec5aae0c311719c19d634` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/metatx/ERC2771Forwarder.sol | 16805 | `1e6659e3efa4ead550f6d3023ed30d56d499ddcb63916893ce7d5dbf58843498` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/package.json | 786 | `765a3a984fc182b033cc1daa3051c8b5c2d3b75d209765fe5a711b2023f06967` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/Clones.sol | 5510 | `178cb2b6d4e3ce038ce75114c862420f92bdd43360ef902f530139b4a80212cf` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Proxy.sol | 1718 | `03cdbd59c384fe18e74a2a0697ba167e7f545d6a1bbb3d52df502ab4fb108e0a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol | 6238 | `2ba1cb9e2c1a0518ac940fa1f10e62fa56f1ba2b13973f36a8b505de627e4119` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/Proxy.sol | 2670 | `5f5081378d4bc82b814b0d64990b7f7b9c69697593b73a3341f4a269940ba540` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/BeaconProxy.sol | 2311 | `f006ac05ec8509758348f9966c5aba64d695e99fb2d805eae9658114cefefb93` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol | 472 | `422eabc0e645e24c3a52898f6255b349323b013544a3ebdc4b2d3f7fc5bb7e9e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol | 2219 | `26dda9d5bb961b3df26602d49f9f5a0647cfdb78b63cc253aed8527030a64f25` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol | 1965 | `5fac2946d312b6c192751da6b22de349e6ee0acf9d95afeb24d3780c2efc7f93` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/TransparentUpgradeableProxy.sol | 6546 | `1a81841003cfbf26875cbcd82f045f727661853bfc6042e17b909f39ea5d1658` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol | 8854 | `a8b7eafa0fdc7cb5a644c8c61a8e4c51e031d5e1e6f268f72dbe18b768ead56e` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/utils/UUPSUpgradeable.sol | 6332 | `09c7406cf8c50d31b77089a6860ad026cd65d48ed5b696e6cad905c4aff008d6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/ERC1155.sol | 14532 | `560b187bb02cf3976455905e4f5bf6311e340e55e1e346a41ebf865e1c26b74c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/IERC1155.sol | 4716 | `587171cdcc6eb94734c7893c0dea36bc0f2784f1c0186f2000e6be9a62fbad4c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/IERC1155Receiver.sol | 2599 | `b3da220debe08c174f8848fa4c41cccf3d49e4e23c81d76528df99fb759f4937` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Burnable.sol | 997 | `a8122e8e46870932b21294d5df9f013f6b1381fdad08ea7e7f48efe49cd3cb20` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Pausable.sol | 1353 | `6bfd11fef86b179cc4369ebfc54926757d10820dd5552044215dc0213afe4c58` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Supply.sol | 3164 | `d34254efe73662358ed7f40a9bb4906b6216708bbe334aea360b41565ff0254e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol | 2090 | `52bcb7aa728be29ef2dd0b328f1300a3748221b5c234ba71f80f979816d58196` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol | 677 | `77eee1fa8944ebb742db88b0edb0376b8ceb035b570950bdae8db7ded1869fca` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/utils/ERC1155Holder.sol | 1352 | `8e2baa224856aa31b2b8706b2a9eb9c43694a04cfd02cb7886aba2f88014b1dd` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/utils/ERC1155Utils.sol | 3534 | `91338a168b1bbe35e59d5c21b259024e965a5e5a554a299900fa7a865bdd317a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol | 10895 | `be0df7e4b899a61a4beb3c8675088de494866438600ce2d529523807b558cf64` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol | 2780 | `30edf7394bab78d48b7db3a059248e1ea7c2c77d2ec0e37a13bb91415aafbe5a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC1363.sol | 5466 | `50a2b134a1e901b4dc2fc0a763ac53cea88cc8300afd8210782331c0f97b459f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol | 1182 | `2e6108a11184dd0caab3f3ef31bd15fed1bc7e4c781a55bc867ccedd8474565c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Capped.sol | 1433 | `cb15f210495f2119cfec53e32738ddb23469d414c45a2d7444c2181a9940bbed` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20FlashMint.sol | 5772 | `50a9e14561603af062887bb3820c32cca62e9339042d480a8bed92b637d93ecd` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Pausable.sol | 1261 | `12919f23b3b408e67b3b9c9543e37b7474e314d8f1c596472fd9201d9990a278` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Permit.sol | 2774 | `75f9f66db047b1413aa45538a53211e7b20479d74c3dd2657335bf4dc50b8811` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol | 3606 | `f2a0c9b7b4b67cec3ae19dad94454da68da553512f22e4eaf39c46447e11815a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Wrapper.sol | 3456 | `3cb248417b6d39e9b2894826069de17a15ca21555100f563928e5988bca4b52d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC4626.sol | 12314 | `556f6226a37eca849ecf4801ed5571e24da593bf9a9ee6092f1510c1601b2468` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol | 684 | `9e7c70ec72d2f7d592e23ea84f3852b04f91f6f644ce57e0263493046b36afb9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Permit.sol | 3805 | `026aca1c8ee4574eb9719dca7dfc33e3e57a618715ae702a675e8a8c9ea1e82d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/draft-ERC20TemporaryApproval.sol | 5125 | `362c2ebc6204fc35a0fc941145a41d0d347941d97bee4681162eb1799bdd6050` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/utils/ERC1363Utils.sol | 3293 | `a32004659b79673c1f41ffd717a6b752a9fe539d776bb485344e2c4a0de76fec` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol | 9443 | `d67b0f3d9302b2ff7cec76776fc2c1f3686082287441c15c6871c0086a8a4f74` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol | 16456 | `1c470376ac5b8d29fd44139aa0fadf4904ea161ed460050ffd7866e0eea1e982` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol | 4929 | `83dcde4af9ba4ded8b6e68e0cb8f4a9430dd23c423f6840d9f93fc6bb475f9ae` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol | 997 | `2eae310f371d9107d81d4b1285f897e56074465f7caeeff90b5e3e1770dda7d6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Burnable.sol | 880 | `7b212ebdf844128dd2b3f02f824d7e855983495a75eea9c23852301c3887e861` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Consecutive.sol | 7404 | `d500e45a69dfc5780d90b6f07e99ea62ac8f07cc69e9fb689478acc02285c93f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Enumerable.sol | 7382 | `26ef6fbb12f45741f07cd0f00a147c34d02a19f37e5a9a329e8c82986b9ac9b7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Pausable.sol | 1328 | `d773f8c1ad695bad18631cec9f3ddfa337982a75562bb061f09f7ef4f216af7d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Royalty.sol | 1238 | `5728aad19f726cd62001e01fb1c8857a166b24367a79e93214194bfa0db84d95` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721URIStorage.sol | 2093 | `ce36b2e59527b8a4890c68ca7f1e6c1b05661c2916660f63b00502c1394861a3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Votes.sol | 1831 | `37fdb0786bdfedc9e89357a9e9388ee92445ef6e14573e97348d03248ff70a80` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Wrapper.sol | 4291 | `e646308e346689526041583bb2a426c5e95fa5bd9e77081fdc635b449abda505` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Enumerable.sol | 1040 | `1660995643782d34787929cf39dd3a0d44117f14c3ab278329cb079d5253f35f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol | 792 | `63d104c065c281e8d8e1fabe0eda19ff83d4660ce1378f9dad2471226d2bf34f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/utils/ERC721Holder.sol | 795 | `fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/utils/ERC721Utils.sol | 1912 | `368171cf1ce8adbf7b95515ecf3f2f2ca38b194c38bf43dab07b6e6c0fc32f3a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/common/ERC2981.sol | 5372 | `e92ef291a91d7cf4bf178ea19abe680d2d9970f0c2cf24c57f01160639269e44` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol | 6033 | `8228692ef1ccb4cfe5b7cc58324cadd06045e10e386185f9e4d45173d6d6c633` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Arrays.sol | 18341 | `ba9eba95d720954becedb85977a4063ffebdfe56f2647705ef8a04945fb6fd5e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Base64.sol | 5211 | `c3738c1be3c48c5f78e311119a74256f2df0336951369b1d8290838459f8b4a1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Comparators.sol | 443 | `52fb1c8f57967d42a3214bde4a8a414ab25c2e3a844d00e171ca56487024e009` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Context.sol | 963 | `847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Create2.sol | 4466 | `1ddfef650decd5f4e4bb57ac5f42add20bf90bc8ff716de27b8f22619be332ef` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Errors.sol | 896 | `0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Multicall.sol | 1695 | `1f9eaa29689a4810ac91bebef305b700e7d0b387d12de41caa6209ed37435b89` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Nonces.sol | 1490 | `9b4cbb85d1f5053c744e83302538eb643a713ffd14bc37665b224f1c66529339` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Packing.sol | 44738 | `b8a34f90631d07edb45e491cbecb40e46022a9b59fb7fe7ac824cd49f7d82ec4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Panic.sol | 1973 | `270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Pausable.sol | 2830 | `6543160582b3c0319a180f31660faf6ba0a8444acbdb03357c09790a96256835` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol | 3384 | `32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/ReentrancyGuardTransient.sol | 2061 | `7884e70b6ee5c6f2b0dd7ae298ada9d58c8ae2c67f4489187dd5f639a9da2a56` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/ShortStrings.sol | 4226 | `c5970e9c77c9a797941fcb9ab8c9a5d0b1227c610a919ee8a04ba061e6881873` | 1 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/SlotDerivation.sol | 5322 | `08fcc8ff9c33f431aa55eb169597e2894bfc7665cc30756cc0706e32d2c49f19` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol | 4182 | `75704538dcb223239280c6726d9a31cf769a7816718517c997fc7d63bdb70778` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Strings.sol | 3932 | `27ab8a578913671cdda422a97e96c2239157be7a7c2cfb6d042ddd6963f200f9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/TransientSlot.sol | 5069 | `172a2fd2dadb94effdaa97843e009619162cb887df38d04c6e5792290d23dac6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol | 7815 | `0964ddd02f4a7a8cf9ba130e3aeead588ca3d425d5bc13cc4221358c69108ed0` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol | 6611 | `e7f41ef62494c6c26ddaaac0f2790fa365b635e7c5aaacbeafba3067574e38d7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/Hashes.sol | 1035 | `a83c3f8475456c2e8bf4655314f8e5d6af586f46e9dbd0b827009c57bb42ae96` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol | 24336 | `a174525c74ab5d2f066206ec9cebb6b3c618384c53ec35ad224ac1fbbf06b3f0` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/MessageHashUtils.sol | 3703 | `93e4c09f9c65d37a14d796601b67a67fc918e16957a6328261f8635e136adf76` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/P256.sol | 17032 | `b94e697867944db51efb2f3d0d1ec19877ddfae7066cb5fb7387945e2cdc852c` | 2 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/RSA.sol | 8237 | `036c1fab2a132d7acb7fa0873812f2ad22c873d2efc91032b8ac7a1fda5ff476` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/SignatureChecker.sol | 2338 | `37a06b31bce546a771a6450bdccf8f88ab3fef1d91e1aa5a2e10324cbbd9b2f0` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol | 912 | `7fdc4dc9e3872f6a4c1ec9cfa9583a1fc18ccd7a416397a6e698bd5bbf92f32b` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/introspection/ERC165Checker.sol | 5054 | `4a258c80eb26f4e93b0d80e470ea690d485cf4c0bb35300a693eea25182d9b15` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol | 870 | `7c5c3f98ab876991e7dd34b84d41137e836306eb9f36f6386a631f5be3f5d6d4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/math/Math.sol | 28308 | `68cf79a637995d5ed243c4a5856b42a5e134ee8786a05034e24d75927fc40ebc` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol | 34943 | `9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol | 2613 | `1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/BitMaps.sol | 2020 | `12d7dd76e44e30d2d076df04f970a272969f30c2a2d240a89b6e2cac3f3e7c55` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/Checkpoints.sol | 21425 | `51fdad936cefb4c63e987e97e516af965fbfca31e1798f380ae16e5b3a6fb3d1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/CircularBuffer.sol | 5131 | `471c15bba531238810d7ab94a30e0bad296caedaf194d50810e713d660bf2bc6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/DoubleEndedQueue.sol | 5689 | `463c51e14acbb0b9afef3f1f6903203cce5798fb168742ccd7e049e0397b2184` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/EnumerableMap.sol | 32557 | `4e7258db20d558c64d06ad592e80718dd127d9553dc29632e7d73de26d6d2005` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/EnumerableSet.sol | 12890 | `ed0804f9dcff9d2dceba8cc83f31669a84491dfcfe510050c9371aa7c48db09c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/Heap.sol | 10301 | `d9b945b169c77dd7d941a82e191edb709a31c0fb09e70252c32ec692b3d9c223` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/MerkleTree.sol | 7846 | `547569e45b872344f4be6608ae4c69e074ef0da72e57476f4c17e85056944a9d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/types/Time.sol | 5156 | `79534431c3934b23eafab9d02bda493cfc2ae383ba117a7c9698750c2e4845f1` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/vendor/compound/ICompoundTimelock.sol | 2357 | `94caa77588265fd0dd8d58bd687ab2845e5e3858557cd575a4c8bdbb3892d666` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/docs/config.js | 748 | `d5cdaf3c2d7b2724173f9664210cfae1aa4a700bf2a1f6a7b7820b74b04c15e7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/docs/templates/helpers.js | 1423 | `c54072a039eb8e30ebdfc050e2366c4fd2d33aaef32693e000b355c28899fa13` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/docs/templates/properties.js | 2362 | `6963a4de368ade29eded9c3f8df165186be417f585a2a60c09a400921c7fd9c2` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/async-test-sanity.js | 76 | `5103b71ce9ab1f95f16435805507b3c3a1ae06aff4dbd2f9e78f3c544ac161a8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/env-artifacts.js | 1019 | `53209232db89939f0f8e047febfe15adfd52580c65594443e395423c7421f671` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/ignore-unreachable-warnings.js | 2018 | `5881535d1f4d05527a4481c6f0cd85156309e1623692b0d6a54139da67af96a3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/remappings.js | 508 | `8c937c074523720f867389503a24c6f1b24b729712995842fbb8fccf1c3fdb36` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/skip-foundry-tests.js | 295 | `5e594373be07d38818abb95c62e159435c68e291aa230e7d95fc2e38f00cb8ea` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/task-test-get-files.js | 1008 | `9851350b493983460df169f1c5dedac9c36930ee5bdbddaf977fb5fa75925a86` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat.config.js | 3094 | `114298824a9554ccb0e061e2023a4be605726717771508d6f8954d52ba850db9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SVM.sol | 1594 | `35d3191997b0f778ba623c3f126aa2afacc486d7cbde83aa91cbe4aa089a9044` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SymTest.sol | 357 | `c5391a942e6ca4a31e1b48668ba80d12e5bc552453470fa153541ea322f8a88d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json | 414672 | `0b12305e50ac29f985ad2c1b8808842680ff1ddd244ce78803bf45fa46fb58c2` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package.json | 3431 | `c57ecc49cdadc103b019cf7617c9415d9678c85f329792bb7518a19786a4a23d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/compare-layout.js | 662 | `9db6f11c491c88e94eb7ca6700f50bfca1b6cd0ac5e1842ee797f89bff001140` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/compareGasReports.js | 7020 | `d6023ec6f9b7ca10b8fd11c515fe945523d611295ce9b56b9282ca45c2c77401` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/extract-layout.js | 1122 | `2c94e7b5cb32f542c6e4a7dd137a0d567114fa604d447d800013bed1b680ccb0` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/inheritance-ordering.js | 1949 | `b3f0fa6fd440d2b953a929d01f50b5ea3c13040143f402a8c396925861bc2ade` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/gen-nav.js | 984 | `4705c4cecad88a47dbb0dc8f1d854d17669b74851d57c16d6130cc6ebcf73af8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/format-lines.js | 422 | `de8e8ae2542d2db777ff3441efdd1b3f549c5ba473f1071180451c5e25575c12` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/helpers/sanitize.js | 190 | `aa9db8aae572c1076e7d081114673a8fa56e8e228ff2f5e43d9454421e0686bb` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/run.js | 2121 | `6e4641dbcfe2497aee22efd326966f4e0bd68594447bae18e04ee35da5e6b1a7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Arrays.js | 12302 | `1ba1b9d59a8523fd8a423fb745ec400fbf244c6d982e0c95f32914460c00d45e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Arrays.opts.js | 78 | `4bd89ea1be08ae608a28dbc75c45a54bbf733c0367a988ed2b84e92d0f4bf826` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Checkpoints.js | 8367 | `7fd21b768ec4dec279ec9f67b26375df5f9180cc294c5ac919c69482ca096121` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Checkpoints.opts.js | 411 | `47ac1d11a3e082049539e930b28e179cb665ce2c04e64bb434a606a591accaba` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Checkpoints.t.js | 4529 | `f7d2f5f48d755be28c6fe3df505a961b2042989fc77316f8bdf221891f7f6e10` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableMap.js | 9028 | `9ed4c302f2381ab72fcc586229b573e67dbab29c677fbea54aa9cad0ace4faa7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableMap.opts.js | 528 | `164f1188f6352dc2cf424c4dbc1b92e40d9ffe6a1ffec065d33ffb7a42bff552` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableSet.js | 7776 | `424d5ba705cb5fe8094c5bf1c0f136668a3d0e447dfbf1972a57de26be31250c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableSet.opts.js | 301 | `5c7a9371981122981dd2f2ae3eb856b4632151e816279403bcd037a00c8f2a0e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/MerkleProof.js | 8002 | `7fd6aca712d3cdcb5aa6ca603747c7713bfb11da4ec3dfbb13e4f865de03afa4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/MerkleProof.opts.js | 307 | `b2dd437a8f00e7a973cceaf3d0faaa81f68c6a5e44cc9a48c6a9335c7b374de9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Packing.js | 2746 | `8fc4918bb789bf933638263c872ce22fc9f68ce6ae4c36d9d1f398b56a3faa54` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Packing.opts.js | 72 | `795f4fc5182404c9c21b9d71c8156899c8f6956e5dbf3f74d6cfb6c59934368c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Packing.t.js | 1601 | `df80c5e4323bb6b5d58d5f7a0df3de1c4c1fe22ddcab16f141e35db5c5d371f4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/SafeCast.js | 3827 | `19b182fa8b42bdd1444b448780470d5229126f4dd39478ab87ee822c84490562` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Slot.opts.js | 632 | `f566f7646afaa4a9731d38f05870539a2d2bfea84721c320aa1f4dd8a2879bfc` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/SlotDerivation.js | 3582 | `f61661b71363c9cf872f4a9162740c9d31c5fe3460ce139c9414d4db6afa96e3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/SlotDerivation.t.js | 3235 | `4fb95dbeefc4fb0e08e1361df4a4614e9f60ae301a414e770606bebf878ea0d5` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/StorageSlot.js | 2321 | `daf387a4f34b198c78fe70fbeee28d5921630c6243c84fef988d04e4cbd6575f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/StorageSlotMock.js | 1622 | `17cfce493dcaaa2e85ca1b01eea5bdc0ff8e501a4281c58073dc4852d0ebe899` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/TransientSlot.js | 2133 | `11c898c4383f44d34341d9230593b9cb0b94c27b43a2d4a4d3e9b6bb67998e85` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/TransientSlotMock.js | 804 | `5b8320fc0615731a32816a51e6ed535c72eaf8911217a69c66e85c4e49ff33e6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/conversion.js | 678 | `134a41ead4e00cff47ef7d0f99b68dea2e730f5a8cc02dbca22f7603fb5b10f8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/helpers.js | 155 | `58660f4bfe243e8720a6001ae4380d4329b2891b973bccc19a53d831c9535808` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/format-changelog.js | 1227 | `e98c4c231803fb239db92fef68e6191349379c73751e015909c2b384a0754d08` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/synchronize-versions.js | 481 | `477c2b3c846a9faf36afa1a66d3ed8a7008a80aaec5a096ee7ed4d6a3ac1d54a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/update-comment.js | 1280 | `258bad59128bf2f39480fc719a0d8b4b5874d84a877ca00953854f66ce3ef48d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/github-release.js | 1660 | `4b88436e2c81e284ee0875402f21f63bb693ae3da96eac6d18d6cfdefb4217b4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/rerun.js | 250 | `e6463d98a64df5794190341fe03aa3123dbac1d7ac46160b95bed3daa038aa0c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/set-changesets-pr-title.js | 768 | `05305204f28f947b74ffa055756958d8ed7589ef5ded1b7fe711d1e463064747` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/state.js | 3587 | `d118f68312375d260a438ebf70d01979fae780d35853b66bd873b72ee780979d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/remove-ignored-artifacts.js | 1318 | `d760c8c71b7a6936b34c663402ec735f254d157830c6f2df3c1497b59b4ec806` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/solhint-custom/index.js | 2652 | `ec74c407ef34fcd219172a93948f1b1dd8e68b945883f188ed478877593a65a3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/solhint-custom/package.json | 85 | `61125d076ed3f59db01f41be15267ee9d40191d0d65e3083d515ee8810d7f761` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/update-docs-branch.js | 2099 | `8fdd058f08eb817bbf2e85565e8922cc4984a013909d8d4116006c147788f56d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/solhint.config.js | 619 | `008c12cfe2a018997f99bd41371fff76958fc1b6fbb6a43ecdd8ef5f989b1427` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json | 414672 | `0b12305e50ac29f985ad2c1b8808842680ff1ddd244ce78803bf45fa46fb58c2` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package.json | 3443 | `0b1026dd7a8713b67d5449919a4f78473f475217ec9e916b1f3987d1ec5f2689` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/compare-layout.js | 662 | `9db6f11c491c88e94eb7ca6700f50bfca1b6cd0ac5e1842ee797f89bff001140` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/compareGasReports.js | 7020 | `d6023ec6f9b7ca10b8fd11c515fe945523d611295ce9b56b9282ca45c2c77401` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/extract-layout.js | 1122 | `2c94e7b5cb32f542c6e4a7dd137a0d567114fa604d447d800013bed1b680ccb0` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/inheritance-ordering.js | 1949 | `b3f0fa6fd440d2b953a929d01f50b5ea3c13040143f402a8c396925861bc2ade` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/gen-nav.js | 984 | `4705c4cecad88a47dbb0dc8f1d854d17669b74851d57c16d6130cc6ebcf73af8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/format-lines.js | 422 | `de8e8ae2542d2db777ff3441efdd1b3f549c5ba473f1071180451c5e25575c12` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/helpers/sanitize.js | 190 | `aa9db8aae572c1076e7d081114673a8fa56e8e228ff2f5e43d9454421e0686bb` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/run.js | 2121 | `6e4641dbcfe2497aee22efd326966f4e0bd68594447bae18e04ee35da5e6b1a7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Arrays.js | 12302 | `1ba1b9d59a8523fd8a423fb745ec400fbf244c6d982e0c95f32914460c00d45e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Arrays.opts.js | 78 | `4bd89ea1be08ae608a28dbc75c45a54bbf733c0367a988ed2b84e92d0f4bf826` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Checkpoints.js | 8367 | `7fd21b768ec4dec279ec9f67b26375df5f9180cc294c5ac919c69482ca096121` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Checkpoints.opts.js | 411 | `47ac1d11a3e082049539e930b28e179cb665ce2c04e64bb434a606a591accaba` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Checkpoints.t.js | 4529 | `f7d2f5f48d755be28c6fe3df505a961b2042989fc77316f8bdf221891f7f6e10` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableMap.js | 9028 | `9ed4c302f2381ab72fcc586229b573e67dbab29c677fbea54aa9cad0ace4faa7` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableMap.opts.js | 528 | `164f1188f6352dc2cf424c4dbc1b92e40d9ffe6a1ffec065d33ffb7a42bff552` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableSet.js | 7776 | `424d5ba705cb5fe8094c5bf1c0f136668a3d0e447dfbf1972a57de26be31250c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableSet.opts.js | 301 | `5c7a9371981122981dd2f2ae3eb856b4632151e816279403bcd037a00c8f2a0e` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/MerkleProof.js | 8002 | `7fd6aca712d3cdcb5aa6ca603747c7713bfb11da4ec3dfbb13e4f865de03afa4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/MerkleProof.opts.js | 307 | `b2dd437a8f00e7a973cceaf3d0faaa81f68c6a5e44cc9a48c6a9335c7b374de9` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Packing.js | 2746 | `8fc4918bb789bf933638263c872ce22fc9f68ce6ae4c36d9d1f398b56a3faa54` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Packing.opts.js | 72 | `795f4fc5182404c9c21b9d71c8156899c8f6956e5dbf3f74d6cfb6c59934368c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Packing.t.js | 1601 | `df80c5e4323bb6b5d58d5f7a0df3de1c4c1fe22ddcab16f141e35db5c5d371f4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/SafeCast.js | 3827 | `19b182fa8b42bdd1444b448780470d5229126f4dd39478ab87ee822c84490562` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Slot.opts.js | 632 | `f566f7646afaa4a9731d38f05870539a2d2bfea84721c320aa1f4dd8a2879bfc` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/SlotDerivation.js | 3582 | `f61661b71363c9cf872f4a9162740c9d31c5fe3460ce139c9414d4db6afa96e3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/SlotDerivation.t.js | 3235 | `4fb95dbeefc4fb0e08e1361df4a4614e9f60ae301a414e770606bebf878ea0d5` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/StorageSlot.js | 2321 | `daf387a4f34b198c78fe70fbeee28d5921630c6243c84fef988d04e4cbd6575f` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/StorageSlotMock.js | 1622 | `17cfce493dcaaa2e85ca1b01eea5bdc0ff8e501a4281c58073dc4852d0ebe899` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/TransientSlot.js | 2133 | `11c898c4383f44d34341d9230593b9cb0b94c27b43a2d4a4d3e9b6bb67998e85` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/TransientSlotMock.js | 804 | `5b8320fc0615731a32816a51e6ed535c72eaf8911217a69c66e85c4e49ff33e6` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/conversion.js | 678 | `134a41ead4e00cff47ef7d0f99b68dea2e730f5a8cc02dbca22f7603fb5b10f8` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/helpers.js | 155 | `58660f4bfe243e8720a6001ae4380d4329b2891b973bccc19a53d831c9535808` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/format-changelog.js | 1227 | `e98c4c231803fb239db92fef68e6191349379c73751e015909c2b384a0754d08` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/synchronize-versions.js | 481 | `477c2b3c846a9faf36afa1a66d3ed8a7008a80aaec5a096ee7ed4d6a3ac1d54a` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/update-comment.js | 1280 | `258bad59128bf2f39480fc719a0d8b4b5874d84a877ca00953854f66ce3ef48d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/github-release.js | 1660 | `4b88436e2c81e284ee0875402f21f63bb693ae3da96eac6d18d6cfdefb4217b4` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/rerun.js | 250 | `e6463d98a64df5794190341fe03aa3123dbac1d7ac46160b95bed3daa038aa0c` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/set-changesets-pr-title.js | 768 | `05305204f28f947b74ffa055756958d8ed7589ef5ded1b7fe711d1e463064747` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/state.js | 3587 | `d118f68312375d260a438ebf70d01979fae780d35853b66bd873b72ee780979d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/remove-ignored-artifacts.js | 1318 | `d760c8c71b7a6936b34c663402ec735f254d157830c6f2df3c1497b59b4ec806` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/solhint-custom/index.js | 2652 | `ec74c407ef34fcd219172a93948f1b1dd8e68b945883f188ed478877593a65a3` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/solhint-custom/package.json | 85 | `61125d076ed3f59db01f41be15267ee9d40191d0d65e3083d515ee8810d7f761` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/update-docs-branch.js | 2099 | `8fdd058f08eb817bbf2e85565e8922cc4984a013909d8d4116006c147788f56d` | 0 |
-| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/solhint.config.js | 619 | `008c12cfe2a018997f99bd41371fff76958fc1b6fbb6a43ecdd8ef5f989b1427` | 0 |
-| lib/solidity-utils/package-lock.json | 47298 | `a7c2dd97a9bcddd7dd0bbc24a64f8bb191199e1ee1cb675cf39fb1857e373404` | 0 |
-| lib/solidity-utils/package.json | 1026 | `1134f75ad84e757e302b525d531d85896f123191938137e7056153adb0f2a033` | 0 |
-| lib/solidity-utils/script/DeployCreate3Factory.s.sol | 548 | `ea9999f51bf86e79476d6f378491a01b9f71db19771fb06c938470a8d99c317e` | 0 |
-| lib/solidity-utils/script/DeployTransparentProxyFactory.s.sol | 390 | `e97c23cc7b150f4c6c0c1d764a70882d71dc16ca6c8c0a88f870bc1d12aa927a` | 0 |
-| lib/solidity-utils/src/contracts/access-control/Ownable2StepWithGuardian.sol | 1523 | `aa1f553084a1b43e8d3ee5c8af3ab3e0ffde9ebcd8d24421f03816761e3d56a6` | 0 |
-| lib/solidity-utils/src/contracts/access-control/OwnableWithGuardian.sol | 1405 | `fe6accdda84a2cd84c1e1ee78272bdee37474caef987a9d33fdfb9598e2258b4` | 0 |
-| lib/solidity-utils/src/contracts/access-control/UpgradeableOwnableWithGuardian.sol | 2840 | `c9cdc8141640c8bde0e7746d0d7474ea5d5e62f37863e56f188b46163ff9645d` | 0 |
-| lib/solidity-utils/src/contracts/access-control/interfaces/IWithGuardian.sol | 861 | `c29e5b26507c8aebba6c527ca7b2e13d51345ffc71191d7f04f869b63e112105` | 0 |
-| lib/solidity-utils/src/contracts/create3/Create3.sol | 5685 | `6b07f5f8628a6ffe15adbf2578e432c91e36fa256ed3ac5316899bcc04b52ff6` | 0 |
-| lib/solidity-utils/src/contracts/create3/Create3Factory.sol | 1181 | `1aab50753bd407eea8f8643680a6965285bed1ae923693e09f0447bc318b89b2` | 0 |
-| lib/solidity-utils/src/contracts/create3/interfaces/ICreate3Factory.sol | 1304 | `b84931d5a68e5e3fd6c89cecd9caded58312e90e7a23cb64ceb16b126606c59d` | 0 |
-| lib/solidity-utils/src/contracts/oz-common/interfaces/IERC20WithPermit.sol | 295 | `26836607977779dfef47bbbdbf1ad921f357d5562009bce6ae046fb3cfee93df` | 0 |
-| lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol | 938 | `a96f28c251e93ecbe9b95795253774bdc53cad21cbca0ad26463b4704f7ec923` | 0 |
-| lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactoryBase.sol | 4072 | `a6d2c97623ac0ccdc258c70c92583fefb6d76eab77054723ce4aba2a4b2da9ee` | 0 |
-| lib/solidity-utils/src/contracts/transparent-proxy/interfaces/IProxyAdminOzV4.sol | 600 | `656ca9d39211733a177038d9b3f1cdfafa5190a0e4ca25a5b94c46cb2b4a9fad` | 0 |
-| lib/solidity-utils/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactory.sol | 4626 | `4e3ec13b0802c245be9b3572242301e421d8a73730a937952f97ebe072a81d87` | 0 |
-| lib/solidity-utils/src/contracts/utils/ChainHelpers.sol | 9962 | `120ee4b122e7ad7b44f627bf842e2258fa54a64ba5198e6a903dd0f9c072209d` | 0 |
-| lib/solidity-utils/src/contracts/utils/PermissionlessRescuable.sol | 869 | `7ebffe62e4ffcf39be900346f934da6a175dbe4c44346039688b55e3e2d8bd4f` | 0 |
-| lib/solidity-utils/src/contracts/utils/Rescuable.sol | 1109 | `b4056444ef602dce91173ca9633d967d050893c0bced667f76507b2533ff6c55` | 0 |
-| lib/solidity-utils/src/contracts/utils/Rescuable721.sol | 706 | `bcf613ccb2f36c06cb55b03520c66b02ca0d9d318acdc25c004ed7d5694b5cf1` | 0 |
-| lib/solidity-utils/src/contracts/utils/RescuableACL.sol | 1148 | `835b3d0fc5acd5f2b92b2f2c500b55568f8d8e51b78e9fdc7fc732c2435bfeb9` | 0 |
-| lib/solidity-utils/src/contracts/utils/RescuableBase.sol | 1038 | `69ec34ed50cd18e36c22bdffd933c77b0ee0461c65a1a6a708c757fd8d20f636` | 0 |
-| lib/solidity-utils/src/contracts/utils/ScriptUtils.sol | 6246 | `876ff2105d07c4d13c5cedd4e38c2879ea5d43f6e5383892b753665dd0e254e1` | 0 |
-| lib/solidity-utils/src/contracts/utils/interfaces/IPermissionlessRescuable.sol | 1013 | `3230169945ae357ebdfc69e6d3123ac83499e1c5fa7dee4754137d5586fd3394` | 0 |
-| lib/solidity-utils/src/contracts/utils/interfaces/IRescuable.sol | 936 | `31f74de49419286a116406d08c6d7c9973efb6119851f3b8a96cc60d822e77de` | 0 |
-| lib/solidity-utils/src/contracts/utils/interfaces/IRescuable721.sol | 1099 | `2613b19ce07b44632c4e2d4752312449c0a9a1e4f252adb94e403d2c8836189e` | 0 |
-| lib/solidity-utils/src/contracts/utils/interfaces/IRescuableBase.sol | 1302 | `b69ea2557f6b2b943e35c5ff4da1edbed8ebf55ecc932e1053915fb436c87f2f` | 0 |
-| lib/solidity-utils/zksync/script/DeployTransparentProxyFactoryZkSync.s.sol | 377 | `fe83e1df43ba3fef4824a94d8e307cf95e7a344009492760a78c0f289fa09628` | 0 |
-| lib/solidity-utils/zksync/src/contracts/transparent-proxy/TransparentProxyFactoryZkSync.sol | 2291 | `57a38e292f390866ef466bd5816f35da9375c798f021dc189554fbb75b73e12f` | 0 |
-| lib/solidity-utils/zksync/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactoryZkSync.sol | 341 | `3196f6f382883e3580f45cde2d417d385be0a18a0c5855cd3a3e47709bc07398` | 0 |
-| lib/solidity-utils/zksync/src/contracts/utils/ScriptUtilsZkSync.sol | 3511 | `1b6a90b7e338efa127ca59f27a782ace2ab1b179830b5dac1f50a089952fcf8f` | 0 |
-| lib/solidity-utils/zksync/src/contracts/utils/interfaces/ICreate2Factory.sol | 217 | `97f5be77accd440fc9b8f6e65d6aaad31ac3ee669d53850e1b25d73b223036d6` | 0 |
 | package-lock.json | 47418 | `b7dccbe98cd688ee13df7b2a28b35020650a005855ff6541073c4fd7eab5efd1` | 0 |
 | package.json | 884 | `18b7a1575cabf1d02382fbb5001cbe30e005f3b5b58a5c1341623a227de9117c` | 0 |
 | scripts/DeployAaveV3MarketBatched.sol | 310 | `10b3a158c9af3446bd92ce58513de3351c4f1f2fbcb32c0e7d1c2566bee10e3d` | 0 |
@@ -3620,3 +3201,423 @@ _Длинные списки здесь сгруппированы; полный
 | src/deployments/projects/aave-v3-batched/batches/AaveV3TokensBatch.sol | 550 | `e10077917a01cc531b3e9f268e2bc3c223f32a9e5bde1cf2b75d234ac5387fa9` | 0 |
 | src/deployments/projects/aave-v3-libraries/AaveV3LibrariesBatch1.sol | 676 | `e82dd02d6f3e5223fb9b3fe05b523d7aa4ed02c83565f06a652a62bd50feb188` | 0 |
 | src/deployments/projects/aave-v3-libraries/AaveV3LibrariesBatch2.sol | 1271 | `97c775e90b63a857df7f562544e0e2dcc0ac3fa4e7a8e5df155eee49c525167e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.mocharc.js | 70 | `434e1df653523a6bce5e53a62690018b51039b10fab4a734a10948bedd06789d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/.solcover.js | 448 | `9111d1d9d5d8651916cf6e1afb033eeefd3f1ffa2d353a13f443518364c59420` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol | 1454 | `e0ba6d8a937323046f2bbcc72ba70f7406276aa37b562e1a362004872def3ac8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessControlHarness.sol | 176 | `a49b1631dee3cd0b22358651751410bda67363f219d4c5dc5d9bcd105c5eb260` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagedHarness.sol | 1636 | `e6d084707582b75bf29e170ec02da237fc21541e793a15b2b17482ed9e1a63f9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/AccessManagerHarness.sol | 4475 | `65fc78a99fd9cfc3daec97c3b5656338e526a7ec639aaa304b185afb32fa50cf` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/DoubleEndedQueueHarness.sol | 1399 | `7473e0ca273983325153604dde0906745542b4ce90bf94984a0c86ea1f54f3b8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20FlashMintHarness.sol | 1028 | `d14171faf0d2ccb9bf14fd9ad252c07e386689e69a39f0a65a7f5dae6540bcfe` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20PermitHarness.sol | 493 | `7f5eee48c453af458cec04df5678ee8618dd198d3ef399bd1e9efc543491cb97` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC20WrapperHarness.sol | 1121 | `05f6d555cceadef86ae7dde4757897a685ed5c156e6034c7e1a760a8e54d133e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC3156FlashBorrowerHarness.sol | 405 | `68d31d5af5df023d29304b43e3720164b00d09c75240e9bad83995a8e138c9a6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721Harness.sol | 891 | `69a5144e1ae8249774d795e69f815457f85d32b9aff3f3bcc8c15545233ff8bd` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/ERC721ReceiverHarness.sol | 325 | `ba334a1b77d8b0c5bf566957f03fab538938318f059fc1277ecd36e065e76ba1` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/EnumerableMapHarness.sol | 1488 | `9898955deb052f5c661ba6168e789f4f080f6a2a3411c7ad7412e76dd7b0a16b` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/EnumerableSetHarness.sol | 890 | `dc5621c2e221d8bf0e5eb74c841e44ab3f7b7568388f758db919c36e64658733` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/InitializableHarness.sol | 976 | `92af00cfefdefb5137d3fc9c0b615fd719a2ecab85832d28346b4d359ab54158` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/NoncesHarness.sol | 378 | `112c07190fdc3275661c418dcc9597de383422aa31fe76f861248bef979e9c94` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/Ownable2StepHarness.sol | 294 | `dd7ea7342e518bfdcbe4bf10980c1949e9ba67428f436b4d082b359560827eee` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/OwnableHarness.sol | 265 | `b285dad9f93bed4facd29fab94daea314baf78eab611daa3133323a2877a02ab` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/PausableHarness.sol | 387 | `d9c391078e05dceaa14d9731fb1542f5675b35670c556b705adb7c80b18e9374` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/harnesses/TimelockControllerHarness.sol | 405 | `02d61705a0cce4d30449a7250da8e51e9eca48ce5598d962d9eadf6864096079` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/certora/run.js | 4107 | `d2d11e62fd6e5cefbc43ebcf535ca140616e7fab85ce4c69d915dacd0495e691` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol | 8227 | `af65f33d5d4ee58be1871f806a6e5f76945ab93acc8579905348c0af9dbd6fdd` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/Ownable2StepUpgradeable.sol | 3433 | `e65937e8c36af5c343406e97399759bd576090c0599b864bbea3501d617f7e1f` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol | 3969 | `9247b9ad7939d23990dbdc9274917c3762ffb37e5137ef7bbfcc2e2fba1b8dd2` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlDefaultAdminRulesUpgradeable.sol | 17195 | `a0b367f3d905cd9bd7e2400f0ae9e59f614dee51ee089be7fec6363968851cf1` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/extensions/AccessControlEnumerableUpgradeable.sol | 4738 | `071bc543877c67cb0e50d0a067af352df2e9edc09e9d3660f18f838a34e95b35` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagedUpgradeable.sol | 5973 | `af836143d788c8f77dedd1e0787d106ece21c01f56dd57098c6c0f0ed16fd17f` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/access/manager/AccessManagerUpgradeable.sol | 32629 | `cc4a118823d84eeb7736b60208a5658a1addfceada363d3c75afaf7049c46e95` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletCliffUpgradeable.sol | 3047 | `e1f8c203fd3ad167536df8dfa4fba69c67f02e19121992bf7dc3692f32b28104` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/finance/VestingWalletUpgradeable.sol | 7298 | `62620100fc0b9e2abfda587822f3c00165cdeeb34c446705fcc99806949d4677` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/GovernorUpgradeable.sol | 33538 | `dafe1155a93969bb87e417d1cebcf349b45089af4cd6ca567e08544e01b577c0` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/TimelockControllerUpgradeable.sol | 18135 | `242e38ddccb6c86ba0f3e66507ba8ab0ec27211b6918ec86c06cec9ea5421ecb` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorCountingFractionalUpgradeable.sol | 10837 | `d6d07a8fb58e11e521033c3299c02bccc0e350a5e3a0010dac3cddf07fb3325a` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorCountingSimpleUpgradeable.sol | 4609 | `d1eda2ca5173abc942a0fe275bbb5ab3a50704f2b426ccd421840e43be3554a9` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorPreventLateQuorumUpgradeable.sol | 5697 | `c6d4053375eba3754ccb3eeee8f7164bfa8f074895bf396dd74e6abdc68dce1c` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorSettingsUpgradeable.sol | 5063 | `ebbf33d35dde1a83b894ed2f0ba878fdf4550bd00245c92cc9fa282113dd1e3b` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorStorageUpgradeable.sol | 5554 | `687b706ebd469ca771e6fdcfd85330b6f716d86780713c36bfc7a1a659893271` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockAccessUpgradeable.sol | 18106 | `c7c35f9ba9baafac9e489d2715e6b06640001b01e28f2fe35d0cafbd0f8ce549` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockCompoundUpgradeable.sol | 8204 | `ad781eaf219aa5b24dcc61785d0b11118299e14ce1bf20c368de292e64955553` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorTimelockControlUpgradeable.sol | 8476 | `b37e18eb1feefc7bcdb98f31b8da7bc5dce5b2e33fff0801c4e85653f9ea0e09` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesQuorumFractionUpgradeable.sol | 5336 | `41af72239fdd8f7ef590f65f305743226fa3e0bdcf14476e627dd58415f37709` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/extensions/GovernorVotesUpgradeable.sol | 3075 | `bdc8a0b9615effb1359a4fbcbc018b943682e382ba8880951ce95eb95bf0df44` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/governance/utils/VotesUpgradeable.sol | 11059 | `ec19a0f6732feb2e1276e60346f14ad0dda335f390d908266d09b7ae937a3ad9` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/metatx/ERC2771ContextUpgradeable.sol | 3618 | `f739bce56b6005c7299a65ee24a8c5402da0e781e76134e9f92b9edc76f23ab2` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/metatx/ERC2771ForwarderUpgradeable.sol | 17345 | `3efd96bd4e3b77aa8d72c28de2fc665b338e3810c44d59b19b61a991e63b07ff` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/package.json | 878 | `c6ffb3c1a939a98f71ac8e9eebd31622e5401225c891be35344a55bb07572e55` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol | 8854 | `a8b7eafa0fdc7cb5a644c8c61a8e4c51e031d5e1e6f268f72dbe18b768ead56e` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol | 6598 | `3c76952e97e1cacfec407359b9fc7ae41a739fab804458ba7c0806206949570f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/ERC1155Upgradeable.sol | 15886 | `6ef323d20ffc6623ea89e3a3efc971ea3e35d2692a7cb6f3afab10bab8a296b0` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol | 1281 | `97afd1059918bdf9b365fb10550ea221ef142d45294da21e3dfff1bae5c50fe9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155PausableUpgradeable.sol | 1707 | `82c23a2f1578461e109829b91fccfd8bde5a204759cd0bffa3976cb583877842` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155SupplyUpgradeable.sol | 4159 | `10e1d2442f6bf36f8e0525078f9cd53e0a65a9211b00b557dbdcd55e83e2c2d7` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/extensions/ERC1155URIStorageUpgradeable.sol | 3292 | `7d202632221962f77ed8c1b8a9db24f5570ede69839e6da2648594d31ef98893` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol | 1750 | `7ab0380bad8a304c085fe2d2a7646f10eaedc204d9e4f51c1fd3e1f5d80da117` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/ERC20Upgradeable.sol | 12169 | `aaabbd0bac5de418bfd3c3c6429b2e9dbed8fd61fdb1ac1c4ef4434f803eda88` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC1363Upgradeable.sol | 5898 | `9fc9d03c226a7a798940de07f91e848028cc85b65ceb4ecf0a5e4ab8029b5eb8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20BurnableUpgradeable.sol | 1495 | `15b8cfe5d0c0f93fd9cccdb25eb9b2e6ff6bf555bdf7110db305e53880435790` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20CappedUpgradeable.sol | 2334 | `e87efc3174cbae107ab5656481651d0a26bf36667d9a37d882c65cfb47a10a0e` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20FlashMintUpgradeable.sol | 6084 | `ef30fc8af78eb529259a0a3216fc1062a086771d885a2fae618cab7158f28e5f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20PausableUpgradeable.sol | 1611 | `fcbcb1f80a2b2585dcc2fa0fe2edf5b300e53a5db77352c448250fc51b5e8601` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20PermitUpgradeable.sol | 3200 | `c538cb63958c81d3d796fae44104d42f2d0fa877a15ae8f5477593869c6e2a30` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20VotesUpgradeable.sol | 3928 | `84cdb63ccc1699bd1816e5b143c10f35396cc1a6d11920f2830da622e924dac0` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC20WrapperUpgradeable.sol | 4846 | `8b26e411d21bbd8d2e3572a2f3370ddced6e0fc4c0caf5ddc73a70d2e18a097b` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol | 13605 | `8c65f46c961932ab4113c4758fbc96aaf350e812b040a201603131be59ada737` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/extensions/draft-ERC20TemporaryApprovalUpgradeable.sol | 5557 | `dc027d63a6a3266944fef04599f274e3fbddd75e62702977f0315cc61c74dee5` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/ERC721Upgradeable.sol | 18098 | `7baa9bd7d920ed5264920052ecbaaede764ad684c5e85b859aeebb1a1ee5cc10` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721BurnableUpgradeable.sol | 1195 | `b3c5805a42ec983a1daebdaacf2e3dbdc1dc68f3d14aa9eb307c22c729d72643` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721ConsecutiveUpgradeable.sol | 8566 | `e1be139be8b241797237a2565bf8188431e90c0bcac562995427a77762a044d4` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol | 8798 | `0d19f100db77d29b4628360ed4186c7911e03d8d45b6130b42232d760ad62312` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721PausableUpgradeable.sol | 1680 | `cbaf8b41622a946f665c17b3de0aee2ec93f55d1e89ef9b75735d660f2f90922` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721RoyaltyUpgradeable.sol | 1573 | `4217cd3f43788f1cb538c16e0dd1d765a013d2497309443afafab3d9e24cd075` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol | 3108 | `7d950da19da0df704d4ed54a0e5ac944111d5d98b8037fb653bd4539d438472c` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721VotesUpgradeable.sol | 2140 | `6c22a84c27c0c12c9fea54db5e5fa95f542f64beafc03dd10bb427dbf1572b07` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/extensions/ERC721WrapperUpgradeable.sol | 5341 | `265e00d60b434aabd5d40d9cb87dd8a6faae545a0e2f9a1954b69d680b08db22` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/ERC721/utils/ERC721HolderUpgradeable.sol | 1074 | `5f819dbf73677aecc2a8e7e5309a403e1b6c36296270f878fd54b2859420c83b` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/token/common/ERC2981Upgradeable.sol | 6476 | `11ea92eaadaef54892c47211e955925061780d86982671906fee690a7ca6270d` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol | 1194 | `a08e16324da33a9d666dc07a22ae58031c242a3869f6808e55b4b82fc70cb209` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/MulticallUpgradeable.sol | 1989 | `45922f4ff1e446b61cb4677ef95833e1cb2b0276dfb8b3e47cae68f59af70832` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/NoncesUpgradeable.sol | 2269 | `d63abfbf20ca119bf162ec5bb343df4b189208d1d0a73657555f688536498cd8` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/PausableUpgradeable.sol | 3799 | `de9a20a313d34dd3b454c834606518390c8ead4dcca8137c879401fef62d8583` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/ReentrancyGuardTransientUpgradeable.sol | 2354 | `9b7f12fb4521bcc04f278173bff4ce95673936c9066516244ae532b68144a83c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/ReentrancyGuardUpgradeable.sol | 4450 | `11b45418823fd6e961d8db5cf5c2795b08f51f88a66f8e37a38fcd052ee711a4` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol | 8636 | `e4921efd4791f39deaa0cd71fee74de4f2c8320a99f388b4189df504157981c8` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol | 1184 | `586f77f25f65f2b957d5579c346d39cc883848962a375857c151c5bb15c0eb93` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/docs/config.js | 748 | `d5cdaf3c2d7b2724173f9664210cfae1aa4a700bf2a1f6a7b7820b74b04c15e7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/docs/templates/helpers.js | 1423 | `c54072a039eb8e30ebdfc050e2366c4fd2d33aaef32693e000b355c28899fa13` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/docs/templates/properties.js | 2362 | `6963a4de368ade29eded9c3f8df165186be417f585a2a60c09a400921c7fd9c2` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat.config.js | 3094 | `114298824a9554ccb0e061e2023a4be605726717771508d6f8954d52ba850db9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/async-test-sanity.js | 76 | `5103b71ce9ab1f95f16435805507b3c3a1ae06aff4dbd2f9e78f3c544ac161a8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/env-artifacts.js | 1019 | `53209232db89939f0f8e047febfe15adfd52580c65594443e395423c7421f671` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/ignore-unreachable-warnings.js | 2018 | `5881535d1f4d05527a4481c6f0cd85156309e1623692b0d6a54139da67af96a3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/remappings.js | 508 | `8c937c074523720f867389503a24c6f1b24b729712995842fbb8fccf1c3fdb36` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/skip-foundry-tests.js | 295 | `5e594373be07d38818abb95c62e159435c68e291aa230e7d95fc2e38f00cb8ea` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/hardhat/task-test-get-files.js | 1008 | `9851350b493983460df169f1c5dedac9c36930ee5bdbddaf977fb5fa75925a86` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SVM.sol | 1594 | `35d3191997b0f778ba623c3f126aa2afacc486d7cbde83aa91cbe4aa089a9044` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/SymTest.sol | 357 | `c5391a942e6ca4a31e1b48668ba80d12e5bc552453470fa153541ea322f8a88d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/.mocharc.js | 70 | `434e1df653523a6bce5e53a62690018b51039b10fab4a734a10948bedd06789d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/.solcover.js | 448 | `9111d1d9d5d8651916cf6e1afb033eeefd3f1ffa2d353a13f443518364c59420` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessControlDefaultAdminRulesHarness.sol | 1454 | `e0ba6d8a937323046f2bbcc72ba70f7406276aa37b562e1a362004872def3ac8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessControlHarness.sol | 176 | `a49b1631dee3cd0b22358651751410bda67363f219d4c5dc5d9bcd105c5eb260` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessManagedHarness.sol | 1636 | `e6d084707582b75bf29e170ec02da237fc21541e793a15b2b17482ed9e1a63f9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/AccessManagerHarness.sol | 4475 | `65fc78a99fd9cfc3daec97c3b5656338e526a7ec639aaa304b185afb32fa50cf` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/DoubleEndedQueueHarness.sol | 1399 | `7473e0ca273983325153604dde0906745542b4ce90bf94984a0c86ea1f54f3b8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20FlashMintHarness.sol | 1028 | `d14171faf0d2ccb9bf14fd9ad252c07e386689e69a39f0a65a7f5dae6540bcfe` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20PermitHarness.sol | 493 | `7f5eee48c453af458cec04df5678ee8618dd198d3ef399bd1e9efc543491cb97` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC20WrapperHarness.sol | 1121 | `05f6d555cceadef86ae7dde4757897a685ed5c156e6034c7e1a760a8e54d133e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC3156FlashBorrowerHarness.sol | 405 | `68d31d5af5df023d29304b43e3720164b00d09c75240e9bad83995a8e138c9a6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC721Harness.sol | 891 | `69a5144e1ae8249774d795e69f815457f85d32b9aff3f3bcc8c15545233ff8bd` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/ERC721ReceiverHarness.sol | 325 | `ba334a1b77d8b0c5bf566957f03fab538938318f059fc1277ecd36e065e76ba1` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/EnumerableMapHarness.sol | 1488 | `9898955deb052f5c661ba6168e789f4f080f6a2a3411c7ad7412e76dd7b0a16b` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/EnumerableSetHarness.sol | 890 | `dc5621c2e221d8bf0e5eb74c841e44ab3f7b7568388f758db919c36e64658733` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/InitializableHarness.sol | 976 | `92af00cfefdefb5137d3fc9c0b615fd719a2ecab85832d28346b4d359ab54158` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/NoncesHarness.sol | 378 | `112c07190fdc3275661c418dcc9597de383422aa31fe76f861248bef979e9c94` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/Ownable2StepHarness.sol | 294 | `dd7ea7342e518bfdcbe4bf10980c1949e9ba67428f436b4d082b359560827eee` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/OwnableHarness.sol | 265 | `b285dad9f93bed4facd29fab94daea314baf78eab611daa3133323a2877a02ab` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/PausableHarness.sol | 387 | `d9c391078e05dceaa14d9731fb1542f5675b35670c556b705adb7c80b18e9374` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/harnesses/TimelockControllerHarness.sol | 405 | `02d61705a0cce4d30449a7250da8e51e9eca48ce5598d962d9eadf6864096079` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/certora/run.js | 4107 | `d2d11e62fd6e5cefbc43ebcf535ca140616e7fab85ce4c69d915dacd0495e691` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/AccessControl.sol | 7050 | `1086a1ad3788972b885ff3f209da510615dde6214d46b29e1cd2a4924f66c06d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/IAccessControl.sol | 3343 | `c112f5c86fdc4e862f88d4f5694530342320923ebd5b5e7d9d8493550d337c2d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol | 3102 | `38578bd71c0a909840e67202db527cc6b4e6b437e0f39f0c909da32c1e30cb81` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol | 2476 | `c75345d7b9feef17ae29f2a800ca2f65f8021cf80436a41d6ec00f57f5180f36` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/AccessControlDefaultAdminRules.sol | 14810 | `fefdd334836d2fd96871284d4cc3877d95f081bbc54fc179a8572a5f2d50f7ad` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/AccessControlEnumerable.sol | 3373 | `d6c882c624699389abe9a4d8b6ad1f3d304ad6610221ac1cbd32f909e402629f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/IAccessControlDefaultAdminRules.sol | 8171 | `c7bbf8bc9e68a131951d23f099b50e8d2737d07a0307dfcb26be0595f3efcfa6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/extensions/IAccessControlEnumerable.sol | 1279 | `f91dc4b5750c1bac7a6a11a6057f14f01121847e6a6284e1200d8a87a4c4ff1e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/AccessManaged.sol | 4725 | `6834e350bc8bedbb042a62f6681f7976186e92e7febac2575bae081d81244ea9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/AccessManager.sol | 29876 | `72f06a0f03f2044d9b3bf036933aca7d589f0b8875a596206d50b696e59e8781` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/AuthorityUtils.sol | 1230 | `6a78662d327e8c82eee93a4659ddfb62a1f477f8cd9a2319848b3566e40baac8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAccessManaged.sol | 1111 | `b6cbb31989224829b1bcbcb7c34088eb16362650174da2cc98b2d7e01a1609bd` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAccessManager.sol | 16366 | `11da09673a4026c23d15f88562cc8cfff23646fb8264dad62db7f6ff1e992297` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/manager/IAuthority.sol | 482 | `9fc27c63a17ed287dd1070ccca4bc9d3250af3d9e0c2c4ebf95173395ed98726` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/finance/VestingWallet.sol | 5641 | `8fd347d2b11c9e6203f29cde5d03bc51b17e94c3c74b93f0a4e5a36a1c1fe3f0` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/finance/VestingWalletCliff.sol | 2018 | `14981dea962b6c81e253295b702f2a461d7db60ae93715b293e95028d51b81f9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/Governor.sol | 31608 | `0e94dff852ecc526a7fa21b8af8e91d799a1e50e5edbd1f3b933782936f704f6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/IGovernor.sol | 15998 | `2f73642a69d9ff9033ffbb835dfac260c523e32d65e0eec3259857e5934882bc` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/TimelockController.sol | 16290 | `89a4cf0e404a42f13d01efefb5c1b3b1d46641c670b626b1b885330f3faccd2a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorCountingFractional.sol | 9388 | `06fd91844a6e6c6ed4425cb5238e7c6dc2a99499d6b266286ed9ebdc8e34c4ec` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorCountingSimple.sol | 3321 | `fee9f14eae7b45504e19f2e5dd55e74d7ce05f9733157a5811bd883b80256639` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorPreventLateQuorum.sol | 4354 | `af733274a4e245341fdce2b827470a162e0f967b6b1f1b3573526b859d5467fc` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorSettings.sol | 3631 | `f6268357cb5aeb8c2509699f78127b9b360e9bb57c2b4cb1406ca24a4573d66e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorStorage.sol | 4251 | `55ba9882c6d66026a6024cfe1db873754b0974a3859f709b765e35089e13d64c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockAccess.sol | 15993 | `676584f6c287cd0efbf388bdf0881a1654f63562b9a7ea6be03cc1a93c938266` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockCompound.sol | 6397 | `ee11bd77cdfeaa113b804edb9ebc3c43e8fdc4a3f8c8dbd618af45e9f8a3b35a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol | 6711 | `4fe02228a581a7b5f0f322834b79a898c5d65e1222573ca8afc0334feb6ae48b` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotes.sol | 2048 | `bd306880ef79bac2fbd7ba3ed6ecc43bef4f78cbb5e26d12bdc0cc18a795163d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotesQuorumFraction.sol | 4033 | `9febb68a832e0bc5e15fee84a1112436c8839f7f2294b3ec103cb1700af71c3c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/utils/IVotes.sol | 2322 | `f033b73ce92762d9ed9496b8a0f5f72bd0479e42388da584c2ff276cbb5cb9b1` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/governance/utils/Votes.sol | 9667 | `dea1532e5e0d920d9c40a6719a84e71b5de91391c1e2f65bb50d03878e7270bb` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155.sol | 189 | `6b08e7a48198dbe997205dad74a6dae1e5024dd4ef38ea7a70285950ba95bf24` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155MetadataURI.sol | 233 | `15df60a6b44a11ad12c8c6744ebb962834728fa4f20387430312c814394adf2a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1155Receiver.sol | 213 | `ae9854dbfd4d879b6ed765d4de55ac7f9e67598ece010262bf46f3a86152115a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1271.sol | 653 | `599887e85d375f463f30e3c4cf139ea541e73c7b3535eb040da5e8d8145a4f14` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1363.sol | 4454 | `54f427f63724d9760211dfa9e0cc5d79d86c0724becd81f8e638e2e27b0e2669` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1363Receiver.sol | 1316 | `21584d4866c59fed42491cfb43a009ab451d1c387c951c7b7cadc3fdab68baa2` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1363Spender.sol | 1119 | `6e27f3eafd6190ceea989405d9e6cd15aa00c6530d316f82fffa746412ef1d94` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC165.sol | 192 | `49abfb8fa26e3f1715fe05948a96e3762b805bd4a77d103eb40ba96b1acfa144` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1820Implementer.sol | 767 | `9b7704eb411b2ebde03bb2a0a866cab485a21c41891ad79c1acebe04afda4e68` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1820Registry.sol | 4836 | `70337a0847da40172c8461693d6048c7a159ee0db9e5df6d8bb6024ab38fbef3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol | 636 | `886b093d8f7c41f73af42b8e183314b3654531a9d5e11f07c41a5a7f11d3e006` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC20.sol | 181 | `cb42f0b4d269ba8ef2629c176a7f99bf4fb50837c92f45596b54822b26e3df4b` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC20Metadata.sol | 216 | `5fb70a9fa6d8e6193c557ea59dd18415bfe7facdf93fcf8ca1a415a9b7ff6706` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC2309.sol | 532 | `fb0568452aff870d2ec0e91c990f7b29d09001fc77c7413897f5fc5ccf492736` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC2612.sol | 245 | `8e9a3e95b74ab333b0d3319b4346293d3c84363bdfc6d95d08894f2bb95b94be` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC2981.sol | 1114 | `6a8ea184edb362922fb260ba9c43dc867e3b32cd3547d3de9299344cdf91c635` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC3156.sol | 263 | `27ed5fdc9ead61628277367c5fff80ace73defd91a69f9f9d9559a300f3ea8e6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC3156FlashBorrower.sol | 900 | `91bbede9a1163c3522f50f558b0f3d1d9c95c0e404d9a42d30286c1f481b2c11` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC3156FlashLender.sol | 1453 | `dd1b735c90f497c80743934aa7ec874aa50c359e001dd19c83caff4a227ca804` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC4626.sol | 12184 | `76ac9a58abb54725e50d19c66583135efc523410f6d6fbcdfc0528c4cf070cbb` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC4906.sol | 841 | `2b81c911f4c289d34f8d11064ce495bb8f49ba9a408df6ee1cbe4020eaf0ec10` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC5267.sol | 739 | `efd1ebd1e04b6ef9c3b8781a097588f83da954323f438d54a71dc06508e6c7b8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC5313.sol | 434 | `8bc20fb9e53bdb556386519448975a15afa3794230a90b6e3050fe00cbb48d50` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC5805.sol | 272 | `6ecc2370599496e6d862c2b4893975ec240f0ef8475daef1d20b5dd1efa90102` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC6372.sol | 519 | `2294c70df203a6a38985d064adca030293bec4b7aaa1237b62c7b1a34154f130` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721.sol | 185 | `f33ff9bb851371eab816597d29e77dea7947c392de6bce6bea29df3439546b16` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721Enumerable.sol | 226 | `3f2f9f48dbc9651ff725a00b0349b1a8280bdd309b97654d10e359739d1ff2dc` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721Metadata.sol | 220 | `9b62abc2c247f42681d4f3261628e510dfe6cea0f433d2174b332739c6e349ca` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC721Receiver.sol | 209 | `d3ff9df7e9539f4eb7db7fc788d2e722ea7ba737de738d1c66e929fa6d158e8d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC777.sol | 6733 | `4d3d041b2a0d14e3f2da437ab17db313d14f36a631af84f8a88565d5bc7b43cf` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC777Recipient.sol | 1269 | `2c2e97190c7201dbec1d043c0515abd8c1f8d9ca3b6e3352c1d659e2c3e12251` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/IERC777Sender.sol | 1278 | `361a409d3a0058d75419d4c6c7340c8e4acc03ac9b98d09f4c0a01b8320397a7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC1822.sol | 881 | `71190a8ee26dab908d3dad703ccfff09ebfc5850f2f405463e21df21a8643bbc` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol | 6538 | `56380323009ef4a119d44550b910fde1bff9cedde8f7f4c690152c7629bc3338` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC7674.sol | 567 | `c9aec3a4d47b7f8a8b4642b6616a685cf414346123daec9aab52eb51216ad2ca` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/metatx/ERC2771Context.sol | 3495 | `66e42d6798dedb18c2cdc92ca164aefb67ee3d37c90ec5aae0c311719c19d634` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/metatx/ERC2771Forwarder.sol | 16805 | `1e6659e3efa4ead550f6d3023ed30d56d499ddcb63916893ce7d5dbf58843498` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/package.json | 786 | `765a3a984fc182b033cc1daa3051c8b5c2d3b75d209765fe5a711b2023f06967` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/Clones.sol | 5510 | `178cb2b6d4e3ce038ce75114c862420f92bdd43360ef902f530139b4a80212cf` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Proxy.sol | 1718 | `03cdbd59c384fe18e74a2a0697ba167e7f545d6a1bbb3d52df502ab4fb108e0a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol | 6238 | `2ba1cb9e2c1a0518ac940fa1f10e62fa56f1ba2b13973f36a8b505de627e4119` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/Proxy.sol | 2670 | `5f5081378d4bc82b814b0d64990b7f7b9c69697593b73a3341f4a269940ba540` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/BeaconProxy.sol | 2311 | `f006ac05ec8509758348f9966c5aba64d695e99fb2d805eae9658114cefefb93` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol | 472 | `422eabc0e645e24c3a52898f6255b349323b013544a3ebdc4b2d3f7fc5bb7e9e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/beacon/UpgradeableBeacon.sol | 2219 | `26dda9d5bb961b3df26602d49f9f5a0647cfdb78b63cc253aed8527030a64f25` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol | 1965 | `5fac2946d312b6c192751da6b22de349e6ee0acf9d95afeb24d3780c2efc7f93` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/transparent/TransparentUpgradeableProxy.sol | 6546 | `1a81841003cfbf26875cbcd82f045f727661853bfc6042e17b909f39ea5d1658` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol | 8854 | `a8b7eafa0fdc7cb5a644c8c61a8e4c51e031d5e1e6f268f72dbe18b768ead56e` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/proxy/utils/UUPSUpgradeable.sol | 6332 | `09c7406cf8c50d31b77089a6860ad026cd65d48ed5b696e6cad905c4aff008d6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/ERC1155.sol | 14532 | `560b187bb02cf3976455905e4f5bf6311e340e55e1e346a41ebf865e1c26b74c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/IERC1155.sol | 4716 | `587171cdcc6eb94734c7893c0dea36bc0f2784f1c0186f2000e6be9a62fbad4c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/IERC1155Receiver.sol | 2599 | `b3da220debe08c174f8848fa4c41cccf3d49e4e23c81d76528df99fb759f4937` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Burnable.sol | 997 | `a8122e8e46870932b21294d5df9f013f6b1381fdad08ea7e7f48efe49cd3cb20` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Pausable.sol | 1353 | `6bfd11fef86b179cc4369ebfc54926757d10820dd5552044215dc0213afe4c58` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Supply.sol | 3164 | `d34254efe73662358ed7f40a9bb4906b6216708bbe334aea360b41565ff0254e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol | 2090 | `52bcb7aa728be29ef2dd0b328f1300a3748221b5c234ba71f80f979816d58196` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol | 677 | `77eee1fa8944ebb742db88b0edb0376b8ceb035b570950bdae8db7ded1869fca` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/utils/ERC1155Holder.sol | 1352 | `8e2baa224856aa31b2b8706b2a9eb9c43694a04cfd02cb7886aba2f88014b1dd` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC1155/utils/ERC1155Utils.sol | 3534 | `91338a168b1bbe35e59d5c21b259024e965a5e5a554a299900fa7a865bdd317a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol | 10895 | `be0df7e4b899a61a4beb3c8675088de494866438600ce2d529523807b558cf64` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol | 2780 | `30edf7394bab78d48b7db3a059248e1ea7c2c77d2ec0e37a13bb91415aafbe5a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC1363.sol | 5466 | `50a2b134a1e901b4dc2fc0a763ac53cea88cc8300afd8210782331c0f97b459f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol | 1182 | `2e6108a11184dd0caab3f3ef31bd15fed1bc7e4c781a55bc867ccedd8474565c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Capped.sol | 1433 | `cb15f210495f2119cfec53e32738ddb23469d414c45a2d7444c2181a9940bbed` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20FlashMint.sol | 5772 | `50a9e14561603af062887bb3820c32cca62e9339042d480a8bed92b637d93ecd` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Pausable.sol | 1261 | `12919f23b3b408e67b3b9c9543e37b7474e314d8f1c596472fd9201d9990a278` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Permit.sol | 2774 | `75f9f66db047b1413aa45538a53211e7b20479d74c3dd2657335bf4dc50b8811` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Votes.sol | 3606 | `f2a0c9b7b4b67cec3ae19dad94454da68da553512f22e4eaf39c46447e11815a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Wrapper.sol | 3456 | `3cb248417b6d39e9b2894826069de17a15ca21555100f563928e5988bca4b52d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC4626.sol | 12314 | `556f6226a37eca849ecf4801ed5571e24da593bf9a9ee6092f1510c1601b2468` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol | 684 | `9e7c70ec72d2f7d592e23ea84f3852b04f91f6f644ce57e0263493046b36afb9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Permit.sol | 3805 | `026aca1c8ee4574eb9719dca7dfc33e3e57a618715ae702a675e8a8c9ea1e82d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/draft-ERC20TemporaryApproval.sol | 5125 | `362c2ebc6204fc35a0fc941145a41d0d347941d97bee4681162eb1799bdd6050` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/utils/ERC1363Utils.sol | 3293 | `a32004659b79673c1f41ffd717a6b752a9fe539d776bb485344e2c4a0de76fec` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol | 9443 | `d67b0f3d9302b2ff7cec76776fc2c1f3686082287441c15c6871c0086a8a4f74` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol | 16456 | `1c470376ac5b8d29fd44139aa0fadf4904ea161ed460050ffd7866e0eea1e982` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol | 4929 | `83dcde4af9ba4ded8b6e68e0cb8f4a9430dd23c423f6840d9f93fc6bb475f9ae` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol | 997 | `2eae310f371d9107d81d4b1285f897e56074465f7caeeff90b5e3e1770dda7d6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Burnable.sol | 880 | `7b212ebdf844128dd2b3f02f824d7e855983495a75eea9c23852301c3887e861` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Consecutive.sol | 7404 | `d500e45a69dfc5780d90b6f07e99ea62ac8f07cc69e9fb689478acc02285c93f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Enumerable.sol | 7382 | `26ef6fbb12f45741f07cd0f00a147c34d02a19f37e5a9a329e8c82986b9ac9b7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Pausable.sol | 1328 | `d773f8c1ad695bad18631cec9f3ddfa337982a75562bb061f09f7ef4f216af7d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Royalty.sol | 1238 | `5728aad19f726cd62001e01fb1c8857a166b24367a79e93214194bfa0db84d95` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721URIStorage.sol | 2093 | `ce36b2e59527b8a4890c68ca7f1e6c1b05661c2916660f63b00502c1394861a3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Votes.sol | 1831 | `37fdb0786bdfedc9e89357a9e9388ee92445ef6e14573e97348d03248ff70a80` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Wrapper.sol | 4291 | `e646308e346689526041583bb2a426c5e95fa5bd9e77081fdc635b449abda505` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Enumerable.sol | 1040 | `1660995643782d34787929cf39dd3a0d44117f14c3ab278329cb079d5253f35f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol | 792 | `63d104c065c281e8d8e1fabe0eda19ff83d4660ce1378f9dad2471226d2bf34f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/utils/ERC721Holder.sol | 795 | `fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC721/utils/ERC721Utils.sol | 1912 | `368171cf1ce8adbf7b95515ecf3f2f2ca38b194c38bf43dab07b6e6c0fc32f3a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/common/ERC2981.sol | 5372 | `e92ef291a91d7cf4bf178ea19abe680d2d9970f0c2cf24c57f01160639269e44` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Address.sol | 6033 | `8228692ef1ccb4cfe5b7cc58324cadd06045e10e386185f9e4d45173d6d6c633` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Arrays.sol | 18341 | `ba9eba95d720954becedb85977a4063ffebdfe56f2647705ef8a04945fb6fd5e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Base64.sol | 5211 | `c3738c1be3c48c5f78e311119a74256f2df0336951369b1d8290838459f8b4a1` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Comparators.sol | 443 | `52fb1c8f57967d42a3214bde4a8a414ab25c2e3a844d00e171ca56487024e009` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Context.sol | 963 | `847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Create2.sol | 4466 | `1ddfef650decd5f4e4bb57ac5f42add20bf90bc8ff716de27b8f22619be332ef` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Errors.sol | 896 | `0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Multicall.sol | 1695 | `1f9eaa29689a4810ac91bebef305b700e7d0b387d12de41caa6209ed37435b89` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Nonces.sol | 1490 | `9b4cbb85d1f5053c744e83302538eb643a713ffd14bc37665b224f1c66529339` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Packing.sol | 44738 | `b8a34f90631d07edb45e491cbecb40e46022a9b59fb7fe7ac824cd49f7d82ec4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Panic.sol | 1973 | `270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Pausable.sol | 2830 | `6543160582b3c0319a180f31660faf6ba0a8444acbdb03357c09790a96256835` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol | 3384 | `32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/ReentrancyGuardTransient.sol | 2061 | `7884e70b6ee5c6f2b0dd7ae298ada9d58c8ae2c67f4489187dd5f639a9da2a56` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/ShortStrings.sol | 4226 | `c5970e9c77c9a797941fcb9ab8c9a5d0b1227c610a919ee8a04ba061e6881873` | 1 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/SlotDerivation.sol | 5322 | `08fcc8ff9c33f431aa55eb169597e2894bfc7665cc30756cc0706e32d2c49f19` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol | 4182 | `75704538dcb223239280c6726d9a31cf769a7816718517c997fc7d63bdb70778` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/Strings.sol | 3932 | `27ab8a578913671cdda422a97e96c2239157be7a7c2cfb6d042ddd6963f200f9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/TransientSlot.sol | 5069 | `172a2fd2dadb94effdaa97843e009619162cb887df38d04c6e5792290d23dac6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol | 7815 | `0964ddd02f4a7a8cf9ba130e3aeead588ca3d425d5bc13cc4221358c69108ed0` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol | 6611 | `e7f41ef62494c6c26ddaaac0f2790fa365b635e7c5aaacbeafba3067574e38d7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/Hashes.sol | 1035 | `a83c3f8475456c2e8bf4655314f8e5d6af586f46e9dbd0b827009c57bb42ae96` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol | 24336 | `a174525c74ab5d2f066206ec9cebb6b3c618384c53ec35ad224ac1fbbf06b3f0` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/MessageHashUtils.sol | 3703 | `93e4c09f9c65d37a14d796601b67a67fc918e16957a6328261f8635e136adf76` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/P256.sol | 17032 | `b94e697867944db51efb2f3d0d1ec19877ddfae7066cb5fb7387945e2cdc852c` | 2 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/RSA.sol | 8237 | `036c1fab2a132d7acb7fa0873812f2ad22c873d2efc91032b8ac7a1fda5ff476` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/cryptography/SignatureChecker.sol | 2338 | `37a06b31bce546a771a6450bdccf8f88ab3fef1d91e1aa5a2e10324cbbd9b2f0` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol | 912 | `7fdc4dc9e3872f6a4c1ec9cfa9583a1fc18ccd7a416397a6e698bd5bbf92f32b` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/introspection/ERC165Checker.sol | 5054 | `4a258c80eb26f4e93b0d80e470ea690d485cf4c0bb35300a693eea25182d9b15` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol | 870 | `7c5c3f98ab876991e7dd34b84d41137e836306eb9f36f6386a631f5be3f5d6d4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/math/Math.sol | 28308 | `68cf79a637995d5ed243c4a5856b42a5e134ee8786a05034e24d75927fc40ebc` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol | 34943 | `9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol | 2613 | `1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/BitMaps.sol | 2020 | `12d7dd76e44e30d2d076df04f970a272969f30c2a2d240a89b6e2cac3f3e7c55` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/Checkpoints.sol | 21425 | `51fdad936cefb4c63e987e97e516af965fbfca31e1798f380ae16e5b3a6fb3d1` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/CircularBuffer.sol | 5131 | `471c15bba531238810d7ab94a30e0bad296caedaf194d50810e713d660bf2bc6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/DoubleEndedQueue.sol | 5689 | `463c51e14acbb0b9afef3f1f6903203cce5798fb168742ccd7e049e0397b2184` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/EnumerableMap.sol | 32557 | `4e7258db20d558c64d06ad592e80718dd127d9553dc29632e7d73de26d6d2005` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/EnumerableSet.sol | 12890 | `ed0804f9dcff9d2dceba8cc83f31669a84491dfcfe510050c9371aa7c48db09c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/Heap.sol | 10301 | `d9b945b169c77dd7d941a82e191edb709a31c0fb09e70252c32ec692b3d9c223` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/structs/MerkleTree.sol | 7846 | `547569e45b872344f4be6608ae4c69e074ef0da72e57476f4c17e85056944a9d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/utils/types/Time.sol | 5156 | `79534431c3934b23eafab9d02bda493cfc2ae383ba117a7c9698750c2e4845f1` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/vendor/compound/ICompoundTimelock.sol | 2357 | `94caa77588265fd0dd8d58bd687ab2845e5e3858557cd575a4c8bdbb3892d666` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/docs/config.js | 748 | `d5cdaf3c2d7b2724173f9664210cfae1aa4a700bf2a1f6a7b7820b74b04c15e7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/docs/templates/helpers.js | 1423 | `c54072a039eb8e30ebdfc050e2366c4fd2d33aaef32693e000b355c28899fa13` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/docs/templates/properties.js | 2362 | `6963a4de368ade29eded9c3f8df165186be417f585a2a60c09a400921c7fd9c2` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat.config.js | 3094 | `114298824a9554ccb0e061e2023a4be605726717771508d6f8954d52ba850db9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/async-test-sanity.js | 76 | `5103b71ce9ab1f95f16435805507b3c3a1ae06aff4dbd2f9e78f3c544ac161a8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/env-artifacts.js | 1019 | `53209232db89939f0f8e047febfe15adfd52580c65594443e395423c7421f671` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/ignore-unreachable-warnings.js | 2018 | `5881535d1f4d05527a4481c6f0cd85156309e1623692b0d6a54139da67af96a3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/remappings.js | 508 | `8c937c074523720f867389503a24c6f1b24b729712995842fbb8fccf1c3fdb36` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/skip-foundry-tests.js | 295 | `5e594373be07d38818abb95c62e159435c68e291aa230e7d95fc2e38f00cb8ea` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/hardhat/task-test-get-files.js | 1008 | `9851350b493983460df169f1c5dedac9c36930ee5bdbddaf977fb5fa75925a86` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SVM.sol | 1594 | `35d3191997b0f778ba623c3f126aa2afacc486d7cbde83aa91cbe4aa089a9044` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SymTest.sol | 357 | `c5391a942e6ca4a31e1b48668ba80d12e5bc552453470fa153541ea322f8a88d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json | 414672 | `0b12305e50ac29f985ad2c1b8808842680ff1ddd244ce78803bf45fa46fb58c2` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package.json | 3431 | `c57ecc49cdadc103b019cf7617c9415d9678c85f329792bb7518a19786a4a23d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/compare-layout.js | 662 | `9db6f11c491c88e94eb7ca6700f50bfca1b6cd0ac5e1842ee797f89bff001140` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/compareGasReports.js | 7020 | `d6023ec6f9b7ca10b8fd11c515fe945523d611295ce9b56b9282ca45c2c77401` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/extract-layout.js | 1122 | `2c94e7b5cb32f542c6e4a7dd137a0d567114fa604d447d800013bed1b680ccb0` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/checks/inheritance-ordering.js | 1949 | `b3f0fa6fd440d2b953a929d01f50b5ea3c13040143f402a8c396925861bc2ade` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/gen-nav.js | 984 | `4705c4cecad88a47dbb0dc8f1d854d17669b74851d57c16d6130cc6ebcf73af8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/format-lines.js | 422 | `de8e8ae2542d2db777ff3441efdd1b3f549c5ba473f1071180451c5e25575c12` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/helpers/sanitize.js | 190 | `aa9db8aae572c1076e7d081114673a8fa56e8e228ff2f5e43d9454421e0686bb` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/run.js | 2121 | `6e4641dbcfe2497aee22efd326966f4e0bd68594447bae18e04ee35da5e6b1a7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Arrays.js | 12302 | `1ba1b9d59a8523fd8a423fb745ec400fbf244c6d982e0c95f32914460c00d45e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Arrays.opts.js | 78 | `4bd89ea1be08ae608a28dbc75c45a54bbf733c0367a988ed2b84e92d0f4bf826` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Checkpoints.js | 8367 | `7fd21b768ec4dec279ec9f67b26375df5f9180cc294c5ac919c69482ca096121` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Checkpoints.opts.js | 411 | `47ac1d11a3e082049539e930b28e179cb665ce2c04e64bb434a606a591accaba` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Checkpoints.t.js | 4529 | `f7d2f5f48d755be28c6fe3df505a961b2042989fc77316f8bdf221891f7f6e10` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableMap.js | 9028 | `9ed4c302f2381ab72fcc586229b573e67dbab29c677fbea54aa9cad0ace4faa7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableMap.opts.js | 528 | `164f1188f6352dc2cf424c4dbc1b92e40d9ffe6a1ffec065d33ffb7a42bff552` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableSet.js | 7776 | `424d5ba705cb5fe8094c5bf1c0f136668a3d0e447dfbf1972a57de26be31250c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/EnumerableSet.opts.js | 301 | `5c7a9371981122981dd2f2ae3eb856b4632151e816279403bcd037a00c8f2a0e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/MerkleProof.js | 8002 | `7fd6aca712d3cdcb5aa6ca603747c7713bfb11da4ec3dfbb13e4f865de03afa4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/MerkleProof.opts.js | 307 | `b2dd437a8f00e7a973cceaf3d0faaa81f68c6a5e44cc9a48c6a9335c7b374de9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Packing.js | 2746 | `8fc4918bb789bf933638263c872ce22fc9f68ce6ae4c36d9d1f398b56a3faa54` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Packing.opts.js | 72 | `795f4fc5182404c9c21b9d71c8156899c8f6956e5dbf3f74d6cfb6c59934368c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Packing.t.js | 1601 | `df80c5e4323bb6b5d58d5f7a0df3de1c4c1fe22ddcab16f141e35db5c5d371f4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/SafeCast.js | 3827 | `19b182fa8b42bdd1444b448780470d5229126f4dd39478ab87ee822c84490562` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/Slot.opts.js | 632 | `f566f7646afaa4a9731d38f05870539a2d2bfea84721c320aa1f4dd8a2879bfc` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/SlotDerivation.js | 3582 | `f61661b71363c9cf872f4a9162740c9d31c5fe3460ce139c9414d4db6afa96e3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/SlotDerivation.t.js | 3235 | `4fb95dbeefc4fb0e08e1361df4a4614e9f60ae301a414e770606bebf878ea0d5` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/StorageSlot.js | 2321 | `daf387a4f34b198c78fe70fbeee28d5921630c6243c84fef988d04e4cbd6575f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/StorageSlotMock.js | 1622 | `17cfce493dcaaa2e85ca1b01eea5bdc0ff8e501a4281c58073dc4852d0ebe899` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/TransientSlot.js | 2133 | `11c898c4383f44d34341d9230593b9cb0b94c27b43a2d4a4d3e9b6bb67998e85` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/TransientSlotMock.js | 804 | `5b8320fc0615731a32816a51e6ed535c72eaf8911217a69c66e85c4e49ff33e6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/generate/templates/conversion.js | 678 | `134a41ead4e00cff47ef7d0f99b68dea2e730f5a8cc02dbca22f7603fb5b10f8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/helpers.js | 155 | `58660f4bfe243e8720a6001ae4380d4329b2891b973bccc19a53d831c9535808` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/format-changelog.js | 1227 | `e98c4c231803fb239db92fef68e6191349379c73751e015909c2b384a0754d08` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/synchronize-versions.js | 481 | `477c2b3c846a9faf36afa1a66d3ed8a7008a80aaec5a096ee7ed4d6a3ac1d54a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/update-comment.js | 1280 | `258bad59128bf2f39480fc719a0d8b4b5874d84a877ca00953854f66ce3ef48d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/github-release.js | 1660 | `4b88436e2c81e284ee0875402f21f63bb693ae3da96eac6d18d6cfdefb4217b4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/rerun.js | 250 | `e6463d98a64df5794190341fe03aa3123dbac1d7ac46160b95bed3daa038aa0c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/set-changesets-pr-title.js | 768 | `05305204f28f947b74ffa055756958d8ed7589ef5ded1b7fe711d1e463064747` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/release/workflow/state.js | 3587 | `d118f68312375d260a438ebf70d01979fae780d35853b66bd873b72ee780979d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/remove-ignored-artifacts.js | 1318 | `d760c8c71b7a6936b34c663402ec735f254d157830c6f2df3c1497b59b4ec806` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/solhint-custom/index.js | 2652 | `ec74c407ef34fcd219172a93948f1b1dd8e68b945883f188ed478877593a65a3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/solhint-custom/package.json | 85 | `61125d076ed3f59db01f41be15267ee9d40191d0d65e3083d515ee8810d7f761` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/scripts/update-docs-branch.js | 2099 | `8fdd058f08eb817bbf2e85565e8922cc4984a013909d8d4116006c147788f56d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/solhint.config.js | 619 | `008c12cfe2a018997f99bd41371fff76958fc1b6fbb6a43ecdd8ef5f989b1427` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json | 414672 | `0b12305e50ac29f985ad2c1b8808842680ff1ddd244ce78803bf45fa46fb58c2` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package.json | 3443 | `0b1026dd7a8713b67d5449919a4f78473f475217ec9e916b1f3987d1ec5f2689` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/compare-layout.js | 662 | `9db6f11c491c88e94eb7ca6700f50bfca1b6cd0ac5e1842ee797f89bff001140` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/compareGasReports.js | 7020 | `d6023ec6f9b7ca10b8fd11c515fe945523d611295ce9b56b9282ca45c2c77401` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/extract-layout.js | 1122 | `2c94e7b5cb32f542c6e4a7dd137a0d567114fa604d447d800013bed1b680ccb0` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/checks/inheritance-ordering.js | 1949 | `b3f0fa6fd440d2b953a929d01f50b5ea3c13040143f402a8c396925861bc2ade` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/gen-nav.js | 984 | `4705c4cecad88a47dbb0dc8f1d854d17669b74851d57c16d6130cc6ebcf73af8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/format-lines.js | 422 | `de8e8ae2542d2db777ff3441efdd1b3f549c5ba473f1071180451c5e25575c12` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/helpers/sanitize.js | 190 | `aa9db8aae572c1076e7d081114673a8fa56e8e228ff2f5e43d9454421e0686bb` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/run.js | 2121 | `6e4641dbcfe2497aee22efd326966f4e0bd68594447bae18e04ee35da5e6b1a7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Arrays.js | 12302 | `1ba1b9d59a8523fd8a423fb745ec400fbf244c6d982e0c95f32914460c00d45e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Arrays.opts.js | 78 | `4bd89ea1be08ae608a28dbc75c45a54bbf733c0367a988ed2b84e92d0f4bf826` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Checkpoints.js | 8367 | `7fd21b768ec4dec279ec9f67b26375df5f9180cc294c5ac919c69482ca096121` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Checkpoints.opts.js | 411 | `47ac1d11a3e082049539e930b28e179cb665ce2c04e64bb434a606a591accaba` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Checkpoints.t.js | 4529 | `f7d2f5f48d755be28c6fe3df505a961b2042989fc77316f8bdf221891f7f6e10` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableMap.js | 9028 | `9ed4c302f2381ab72fcc586229b573e67dbab29c677fbea54aa9cad0ace4faa7` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableMap.opts.js | 528 | `164f1188f6352dc2cf424c4dbc1b92e40d9ffe6a1ffec065d33ffb7a42bff552` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableSet.js | 7776 | `424d5ba705cb5fe8094c5bf1c0f136668a3d0e447dfbf1972a57de26be31250c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/EnumerableSet.opts.js | 301 | `5c7a9371981122981dd2f2ae3eb856b4632151e816279403bcd037a00c8f2a0e` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/MerkleProof.js | 8002 | `7fd6aca712d3cdcb5aa6ca603747c7713bfb11da4ec3dfbb13e4f865de03afa4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/MerkleProof.opts.js | 307 | `b2dd437a8f00e7a973cceaf3d0faaa81f68c6a5e44cc9a48c6a9335c7b374de9` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Packing.js | 2746 | `8fc4918bb789bf933638263c872ce22fc9f68ce6ae4c36d9d1f398b56a3faa54` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Packing.opts.js | 72 | `795f4fc5182404c9c21b9d71c8156899c8f6956e5dbf3f74d6cfb6c59934368c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Packing.t.js | 1601 | `df80c5e4323bb6b5d58d5f7a0df3de1c4c1fe22ddcab16f141e35db5c5d371f4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/SafeCast.js | 3827 | `19b182fa8b42bdd1444b448780470d5229126f4dd39478ab87ee822c84490562` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/Slot.opts.js | 632 | `f566f7646afaa4a9731d38f05870539a2d2bfea84721c320aa1f4dd8a2879bfc` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/SlotDerivation.js | 3582 | `f61661b71363c9cf872f4a9162740c9d31c5fe3460ce139c9414d4db6afa96e3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/SlotDerivation.t.js | 3235 | `4fb95dbeefc4fb0e08e1361df4a4614e9f60ae301a414e770606bebf878ea0d5` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/StorageSlot.js | 2321 | `daf387a4f34b198c78fe70fbeee28d5921630c6243c84fef988d04e4cbd6575f` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/StorageSlotMock.js | 1622 | `17cfce493dcaaa2e85ca1b01eea5bdc0ff8e501a4281c58073dc4852d0ebe899` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/TransientSlot.js | 2133 | `11c898c4383f44d34341d9230593b9cb0b94c27b43a2d4a4d3e9b6bb67998e85` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/TransientSlotMock.js | 804 | `5b8320fc0615731a32816a51e6ed535c72eaf8911217a69c66e85c4e49ff33e6` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/generate/templates/conversion.js | 678 | `134a41ead4e00cff47ef7d0f99b68dea2e730f5a8cc02dbca22f7603fb5b10f8` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/helpers.js | 155 | `58660f4bfe243e8720a6001ae4380d4329b2891b973bccc19a53d831c9535808` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/format-changelog.js | 1227 | `e98c4c231803fb239db92fef68e6191349379c73751e015909c2b384a0754d08` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/synchronize-versions.js | 481 | `477c2b3c846a9faf36afa1a66d3ed8a7008a80aaec5a096ee7ed4d6a3ac1d54a` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/update-comment.js | 1280 | `258bad59128bf2f39480fc719a0d8b4b5874d84a877ca00953854f66ce3ef48d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/github-release.js | 1660 | `4b88436e2c81e284ee0875402f21f63bb693ae3da96eac6d18d6cfdefb4217b4` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/rerun.js | 250 | `e6463d98a64df5794190341fe03aa3123dbac1d7ac46160b95bed3daa038aa0c` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/set-changesets-pr-title.js | 768 | `05305204f28f947b74ffa055756958d8ed7589ef5ded1b7fe711d1e463064747` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/release/workflow/state.js | 3587 | `d118f68312375d260a438ebf70d01979fae780d35853b66bd873b72ee780979d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/remove-ignored-artifacts.js | 1318 | `d760c8c71b7a6936b34c663402ec735f254d157830c6f2df3c1497b59b4ec806` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/solhint-custom/index.js | 2652 | `ec74c407ef34fcd219172a93948f1b1dd8e68b945883f188ed478877593a65a3` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/solhint-custom/package.json | 85 | `61125d076ed3f59db01f41be15267ee9d40191d0d65e3083d515ee8810d7f761` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/scripts/update-docs-branch.js | 2099 | `8fdd058f08eb817bbf2e85565e8922cc4984a013909d8d4116006c147788f56d` | 0 |
+| lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/solhint.config.js | 619 | `008c12cfe2a018997f99bd41371fff76958fc1b6fbb6a43ecdd8ef5f989b1427` | 0 |
+| lib/solidity-utils/package-lock.json | 47298 | `a7c2dd97a9bcddd7dd0bbc24a64f8bb191199e1ee1cb675cf39fb1857e373404` | 0 |
+| lib/solidity-utils/package.json | 1026 | `1134f75ad84e757e302b525d531d85896f123191938137e7056153adb0f2a033` | 0 |
+| lib/solidity-utils/script/DeployCreate3Factory.s.sol | 548 | `ea9999f51bf86e79476d6f378491a01b9f71db19771fb06c938470a8d99c317e` | 0 |
+| lib/solidity-utils/script/DeployTransparentProxyFactory.s.sol | 390 | `e97c23cc7b150f4c6c0c1d764a70882d71dc16ca6c8c0a88f870bc1d12aa927a` | 0 |
+| lib/solidity-utils/src/contracts/access-control/Ownable2StepWithGuardian.sol | 1523 | `aa1f553084a1b43e8d3ee5c8af3ab3e0ffde9ebcd8d24421f03816761e3d56a6` | 0 |
+| lib/solidity-utils/src/contracts/access-control/OwnableWithGuardian.sol | 1405 | `fe6accdda84a2cd84c1e1ee78272bdee37474caef987a9d33fdfb9598e2258b4` | 0 |
+| lib/solidity-utils/src/contracts/access-control/UpgradeableOwnableWithGuardian.sol | 2840 | `c9cdc8141640c8bde0e7746d0d7474ea5d5e62f37863e56f188b46163ff9645d` | 0 |
+| lib/solidity-utils/src/contracts/access-control/interfaces/IWithGuardian.sol | 861 | `c29e5b26507c8aebba6c527ca7b2e13d51345ffc71191d7f04f869b63e112105` | 0 |
+| lib/solidity-utils/src/contracts/create3/Create3.sol | 5685 | `6b07f5f8628a6ffe15adbf2578e432c91e36fa256ed3ac5316899bcc04b52ff6` | 0 |
+| lib/solidity-utils/src/contracts/create3/Create3Factory.sol | 1181 | `1aab50753bd407eea8f8643680a6965285bed1ae923693e09f0447bc318b89b2` | 0 |
+| lib/solidity-utils/src/contracts/create3/interfaces/ICreate3Factory.sol | 1304 | `b84931d5a68e5e3fd6c89cecd9caded58312e90e7a23cb64ceb16b126606c59d` | 0 |
+| lib/solidity-utils/src/contracts/oz-common/interfaces/IERC20WithPermit.sol | 295 | `26836607977779dfef47bbbdbf1ad921f357d5562009bce6ae046fb3cfee93df` | 0 |
+| lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactory.sol | 938 | `a96f28c251e93ecbe9b95795253774bdc53cad21cbca0ad26463b4704f7ec923` | 0 |
+| lib/solidity-utils/src/contracts/transparent-proxy/TransparentProxyFactoryBase.sol | 4072 | `a6d2c97623ac0ccdc258c70c92583fefb6d76eab77054723ce4aba2a4b2da9ee` | 0 |
+| lib/solidity-utils/src/contracts/transparent-proxy/interfaces/IProxyAdminOzV4.sol | 600 | `656ca9d39211733a177038d9b3f1cdfafa5190a0e4ca25a5b94c46cb2b4a9fad` | 0 |
+| lib/solidity-utils/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactory.sol | 4626 | `4e3ec13b0802c245be9b3572242301e421d8a73730a937952f97ebe072a81d87` | 0 |
+| lib/solidity-utils/src/contracts/utils/ChainHelpers.sol | 9962 | `120ee4b122e7ad7b44f627bf842e2258fa54a64ba5198e6a903dd0f9c072209d` | 0 |
+| lib/solidity-utils/src/contracts/utils/PermissionlessRescuable.sol | 869 | `7ebffe62e4ffcf39be900346f934da6a175dbe4c44346039688b55e3e2d8bd4f` | 0 |
+| lib/solidity-utils/src/contracts/utils/Rescuable.sol | 1109 | `b4056444ef602dce91173ca9633d967d050893c0bced667f76507b2533ff6c55` | 0 |
+| lib/solidity-utils/src/contracts/utils/Rescuable721.sol | 706 | `bcf613ccb2f36c06cb55b03520c66b02ca0d9d318acdc25c004ed7d5694b5cf1` | 0 |
+| lib/solidity-utils/src/contracts/utils/RescuableACL.sol | 1148 | `835b3d0fc5acd5f2b92b2f2c500b55568f8d8e51b78e9fdc7fc732c2435bfeb9` | 0 |
+| lib/solidity-utils/src/contracts/utils/RescuableBase.sol | 1038 | `69ec34ed50cd18e36c22bdffd933c77b0ee0461c65a1a6a708c757fd8d20f636` | 0 |
+| lib/solidity-utils/src/contracts/utils/ScriptUtils.sol | 6246 | `876ff2105d07c4d13c5cedd4e38c2879ea5d43f6e5383892b753665dd0e254e1` | 0 |
+| lib/solidity-utils/src/contracts/utils/interfaces/IPermissionlessRescuable.sol | 1013 | `3230169945ae357ebdfc69e6d3123ac83499e1c5fa7dee4754137d5586fd3394` | 0 |
+| lib/solidity-utils/src/contracts/utils/interfaces/IRescuable.sol | 936 | `31f74de49419286a116406d08c6d7c9973efb6119851f3b8a96cc60d822e77de` | 0 |
+| lib/solidity-utils/src/contracts/utils/interfaces/IRescuable721.sol | 1099 | `2613b19ce07b44632c4e2d4752312449c0a9a1e4f252adb94e403d2c8836189e` | 0 |
+| lib/solidity-utils/src/contracts/utils/interfaces/IRescuableBase.sol | 1302 | `b69ea2557f6b2b943e35c5ff4da1edbed8ebf55ecc932e1053915fb436c87f2f` | 0 |
+| lib/solidity-utils/zksync/script/DeployTransparentProxyFactoryZkSync.s.sol | 377 | `fe83e1df43ba3fef4824a94d8e307cf95e7a344009492760a78c0f289fa09628` | 0 |
+| lib/solidity-utils/zksync/src/contracts/transparent-proxy/TransparentProxyFactoryZkSync.sol | 2291 | `57a38e292f390866ef466bd5816f35da9375c798f021dc189554fbb75b73e12f` | 0 |
+| lib/solidity-utils/zksync/src/contracts/transparent-proxy/interfaces/ITransparentProxyFactoryZkSync.sol | 341 | `3196f6f382883e3580f45cde2d417d385be0a18a0c5855cd3a3e47709bc07398` | 0 |
+| lib/solidity-utils/zksync/src/contracts/utils/ScriptUtilsZkSync.sol | 3511 | `1b6a90b7e338efa127ca59f27a782ace2ab1b179830b5dac1f50a089952fcf8f` | 0 |
+| lib/solidity-utils/zksync/src/contracts/utils/interfaces/ICreate2Factory.sol | 217 | `97f5be77accd440fc9b8f6e65d6aaad31ac3ee669d53850e1b25d73b223036d6` | 0 |

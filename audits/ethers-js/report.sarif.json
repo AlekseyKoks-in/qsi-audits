@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -39,7 +39,7 @@
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "21 бюллетеней в 6 пакет(ах) npm, нужных только для разработки или сборки"
+                "text": "23 бюллетеней в 8 пакет(ах) npm, нужных только для разработки или сборки"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -53,10 +53,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает 21 бюллетеней (12 с оценкой high или critical) для 6 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, brace-expansion@1.1.13 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; brace-expansion@2.0.3 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4; diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx; js-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные…"
+                "text": "OSV.dev сообщает 23 бюллетеней (12 с оценкой high или critical) для 8 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, brace-expansion@1.1.13 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; brace-expansion@2.0.3 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4; diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx; glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. О…"
               },
               "help": {
-                "text": "OSV.dev сообщает 21 бюллетеней (12 с оценкой high или critical) для 6 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, brace-expansion@1.1.13 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; brace-expansion@2.0.3 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4; diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx; js-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+                "text": "OSV.dev сообщает 23 бюллетеней (12 с оценкой high или critical) для 8 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, brace-expansion@1.1.13 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; brace-expansion@2.0.3 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4; diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx; glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
             },
@@ -100,7 +100,25 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-05818",
+            "qsiId": "QSI-2026-11883",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDH: роль не определена (3 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11884",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +136,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-05823",
+            "qsiId": "QSI-2026-11889",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -130,13 +148,13 @@
           "ruleIndex": 1,
           "level": "note",
           "message": {
-            "text": "21 бюллетеней в 6 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
+            "text": "23 бюллетеней в 8 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-05833",
+            "qsiId": "QSI-2026-11899",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -163,7 +181,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-05832",
+            "qsiId": "QSI-2026-11898",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -172,13 +190,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/ethers-js @ 3ea4c226dd0b/0ef970f7-1de5-4aaa-965a-3c8635f1d23b"
+        "id": "qsi/ethers-js @ 3ea4c226dd0b/49173f50-3dbe-4eff-88d6-03dc06680839"
       },
       "properties": {
-        "qsiContentSha256": "59ba9aa8e8627d919a00be18246ec709d497ff78833c5c217a3bb0541b676a29",
+        "qsiContentSha256": "b6b1cbe5d92e05967f415894ea7547340ae7be255bf1392999588cf0f4f82a90",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-28T18:21:33.686790+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:44:03.204713+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

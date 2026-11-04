@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:6944c0b3-a265-4581-9fe7-85e5f83b22c6",
+  "serialNumber": "urn:uuid:76cf82ed-6dc5-4623-ae6c-fad5168db4e5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-29T23:43:16Z",
+    "timestamp": "2026-11-04T19:16:04Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -22,130 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7f6c0830-b0f0-4180-aca5-8c7a46e274f8",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "ff (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "7e665319-6e5b-461c-9e71-af6d674ff073",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "bls12_381 (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "2b0fe6fb-9ea9-4d04-b992-126c4a2779c7",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "group (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "5aec8936-22c9-446e-96d1-045d14348116",
+      "bom-ref": "f6645c56-339b-4a49-94f2-6527741711b5",
       "name": "Crypto library",
       "properties": [
         {
@@ -186,7 +63,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "16d87ca1-7ce3-4a21-ad06-7a996bf6985c",
+      "bom-ref": "30afed8d-c226-4dd4-a299-d89fcbf6effa",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "bls12_381 (bls12_381)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3543d860-9889-4fc2-9f2a-915339b8c872",
       "name": "Crypto library",
       "properties": [
         {
@@ -227,89 +145,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5e18b8e6-eac1-4da6-b6e2-e05568e9c330",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "jubjub (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "8f3979fe-cc02-438d-8e45-ef3bc388b426",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "group (jubjub)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "80b9c57f-ba66-443b-8c00-408844a7912f",
+      "bom-ref": "e9d49536-e043-4849-a358-421df94646c4",
       "name": "Crypto library",
       "properties": [
         {
@@ -350,7 +186,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6bbb1754-847a-48f3-8fcf-4806ae5edd17",
+      "bom-ref": "c73dcd79-43d1-46f4-a0b6-19b9dfb3bad9",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "jubjub (jubjub)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "22699eb5-e574-4534-b3d9-34fa85c84ade",
       "name": "FROST",
       "properties": [
         {
@@ -400,7 +277,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2db9ec4e-a68c-42b4-aa79-61483d25ab76",
+      "bom-ref": "a142e70a-a192-473e-867c-e250f3a1b565",
       "name": "RedDSA",
       "properties": [
         {
@@ -450,7 +327,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "961e8c82-96b9-48d0-afb3-9ded114f1659",
+      "bom-ref": "94f11505-987e-480b-90e3-95efebc642b6",
       "name": "RedDSA",
       "properties": [
         {
@@ -500,7 +377,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "81ac0761-a9d0-4d03-aea1-defc8cf3a8d4",
+      "bom-ref": "e45d7dba-c073-4378-b3a8-b284744a7102",
       "name": "RedDSA",
       "properties": [
         {

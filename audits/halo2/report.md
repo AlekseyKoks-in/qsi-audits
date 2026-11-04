@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-30 22:49 UTC |
+| Дата отчёта | 2026-11-04 20:12 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 147a7ff8-9ccf-4606-a552-b7040d9c9698 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 27b9e9eb-640a-40d3-bead-3afaa5166e14 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `f6a350f97e53392a2c023ba504fc31db89a49e3f1374e2a107d3ce75d808694c` |
+| SHA-256 содержимого | `217c0730537078bce0e422b49916a96dfa4cdf1966744643797c8e094e34d7a8` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -46,7 +46,8 @@
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
 | dependencies | проверено | 6 | Cargo.lock: 223 dependencies parsed (223 pinned); Cargo.toml: 25 dependencies parsed (0 pinned); halo2/Cargo.toml: 1 dependencies parsed (0 pinned) |
-| source_code | проверено | 93 | halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 136 registry patterns; halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 136 registry patterns; 474 lines in #[cfg(test)] modules ignored; halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 136 registry patterns |
+| source_code | проверено | 93 | halo2/src/lib.rs: 7 lines scanned with 16 rule patterns and 145 registry patterns; halo2_gadgets/src/ecc.rs: 1117 lines scanned with 16 rule patterns and 145 registry patterns; 474 lines in #[cfg(test)] modules ignored; halo2_gadgets/src/ecc/chip.rs: 719 lines scanned with 16 rule patterns and 145 registry patterns |
+| entropy | проверено | 1 | random-number generation: 93 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | проверено | 1 | 223 pinned packages queried at OSV.dev; 3 affected (2 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -62,17 +63,17 @@ Static review of the source tree halo2 at 3442dd33754ae0d44b8970e5a4eea79b0c3360
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 62.2%
+- Доля квантово-уязвимых элементов инвентаризации: 71.4%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-08328 — Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))
+### QSI-2026-13316 — Квантово-уязвимый Halo 2 (IPA): роль не определена (34 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Halo 2 (IPA):general`
 - Источник данных: halo2_gadgets/src/ecc.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 20:12 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -174,13 +175,13 @@ _file_excerpt · [halo2_gadgets/src/ecc/chip/mul/complete.rs](https://github.com
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-08329 — Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))
+### QSI-2026-13317 — Квантово-уязвимый Sinsemilla: роль не определена (9 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:Sinsemilla:general`
 - Источник данных: halo2_gadgets/src/ecc/chip/mul/overflow.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-30 22:49 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 20:12 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -282,13 +283,13 @@ _file_excerpt · [halo2_gadgets/src/sinsemilla/chip.rs](https://github.com/zcash
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-08332 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
+### QSI-2026-13320 — 3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:crates.io:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 20:12 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -317,17 +318,17 @@ quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-08330 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-13318 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 20:12 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
-В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC.
+В 6 манифестах зависимостей QSI нашёл криптобиблиотеки (halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -339,10 +340,10 @@ quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195
 
 **Подтверждающие доказательства.**
 
-_dependency · Cargo.lock, Cargo.toml, halo2/Cargo.toml, halo2_gadgets/Cargo.toml, halo2_poseidon/Cargo.toml, halo2_proofs/Cargo.toml · SHA-256 e3f047d63f0a64fea96d533760fe7bdaa0eb56367b01de8a327ec457c0414f85_
+_dependency · Cargo.lock, Cargo.toml, halo2/Cargo.toml, halo2_gadgets/Cargo.toml, halo2_poseidon/Cargo.toml, halo2_proofs/Cargo.toml · SHA-256 b02ff1018eb2187caba7a4af0b370e92bd445d5fb8c80c3537ac6d242b4f5033_
 
 ```
-Crypto libraries: ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla
+Crypto libraries: halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_curves, sinsemilla
 ```
 
 **Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
@@ -351,13 +352,13 @@ Crypto libraries: ff, group, halo2_gadgets, halo2_poseidon, halo2_proofs, pasta_
 
 **Повторная проверка.** Повторите сканирование после обновлений.
 
-### QSI-2026-08331 — ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)
+### QSI-2026-13319 — ttf-parser 0.20.0: информационный бюллетень RUSTSEC-2026-0192 (unmaintained)
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Низкая
 - Затронутый актив: `dependency:crates.io/ttf-parser@0.20.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-30 22:49 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 20:12 UTC
 - Балл приоритета: 11.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -418,7 +419,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **роль не определена** | Halo 2 (IPA) (34), Sinsemilla (9) | QSI-2026-08328, QSI-2026-08329 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
+| **роль не определена** | Halo 2 (IPA) (34), Sinsemilla (9) | QSI-2026-13316, QSI-2026-13317 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -428,7 +429,7 @@ _Роль определяется по путям файлов, именам ф
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
 | Алгоритм Шора — дискретный логарифм в конечных полях | взламывает | Q1 | PLONK (KZG) (1) | Взламывает Диффи–Хеллмана в конечных полях и DSA при любом размере. Переводите установление ключей на ML-KEM (на переходный период — гибрид с X25519 или ECDH), подписи — на ML-DSA или SLH-DSA. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (1), Halo 2 (IPA) (34), PLONK (KZG) (1), Pasta curves (Pallas/Vesta) (1), Sinsemilla (9) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | Halo 2 (IPA) (34), PLONK (KZG) (1), Pasta curves (Pallas/Vesta) (1), Sinsemilla (9) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Poseidon (4) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Poseidon (4) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -454,26 +455,26 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-08328 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-08329 | Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-08328 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-08329 | Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-08332 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
-| P4 | QSI-2026-08331 | Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ttf-parser заменён или решение зафиксировано. |
+| P3 | QSI-2026-13316 | Внесите использования Halo 2 (IPA) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-13317 | Внесите использования Sinsemilla в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-13316 | Запланируйте миграцию Halo 2 (IPA) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13317 | Запланируйте миграцию Sinsemilla на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-13320 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-13319 | Замените ttf-parser поддерживаемой альтернативой или зафиксируйте, почему он остаётся. | устранение первопричины | ttf-parser заменён или решение зафиксировано. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -496,7 +497,7 @@ _Действие: взламывает — алгоритм нужно заме
 16. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
 17. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 18. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 21. OSV advisory RUSTSEC-2026-0192 — OSV.dev. <https://osv.dev/vulnerability/RUSTSEC-2026-0192> (modified 2026-06-29T21:15:04.384453633Z)
 22. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
@@ -509,24 +510,17 @@ _Действие: взламывает — алгоритм нужно заме
 | Алгоритм | Параметр | Библиотека | Квантовый статус | Классический статус | Количество | Мест | Примеры |
 |---|---|---|---|---|---|---|---|
 | Poseidon |  |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 4 | 4 | halo2_gadgets/src/lib.rs:25; halo2_gadgets/src/poseidon.rs:15; halo2_gadgets/src/poseidon/pow5.rs:15 |
-| Crypto library | 0.14.0 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.14.0 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.2.0 | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | Cargo.lock |
 | Crypto library | 0.6.0 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.lock |
-| Crypto library | 0.14 | group (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
-| Crypto library | 0.14 | ff (jubjub) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.2 | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.2 | halo2_poseidon (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.4 | halo2_proofs (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.toml |
-| Crypto library | 0.6 | halo2_gadgets (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | 0.6 | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 1 | 1 | Cargo.toml |
+| Crypto library | 0.6 | halo2_gadgets (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | Cargo.toml |
 | Crypto library | workspace | halo2_proofs (halo2 (Zcash)) | н/п | допустимо | 2 | 2 | halo2/Cargo.toml; halo2_gadgets/Cargo.toml |
-| Crypto library | workspace | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | halo2_gadgets/Cargo.toml |
 | Crypto library | workspace | halo2_poseidon (halo2 (Zcash)) | н/п | допустимо | 1 | 1 | halo2_gadgets/Cargo.toml |
-| Crypto library | workspace | group (jubjub) | н/п | допустимо | 3 | 3 | halo2_gadgets/Cargo.toml; halo2_poseidon/Cargo.toml; halo2_proofs/Cargo.toml |
 | Crypto library | workspace | pasta_curves (pasta_curves (Pallas/Vesta)) | н/п | допустимо | 3 | 3 | halo2_gadgets/Cargo.toml; halo2_poseidon/Cargo.toml; halo2_proofs/Cargo.toml |
-| Crypto library | workspace | ff (jubjub) | н/п | допустимо | 3 | 3 | halo2_gadgets/Cargo.toml; halo2_poseidon/Cargo.toml; halo2_proofs/Cargo.toml |
-| ECDSA |  |  | уязвим (Шор) | допустимо | 1 | 1 | halo2_gadgets/src/ecc.rs |
+| Crypto library | workspace | sinsemilla (sinsemilla) | н/п | допустимо | 1 | 1 | halo2_gadgets/Cargo.toml |
 | Halo 2 (IPA) |  |  | уязвим (Шор) | допустимо | 34 | 34 | halo2_gadgets/src/ecc.rs:5; halo2_gadgets/src/ecc/chip.rs:12; halo2_gadgets/src/ecc/chip/add.rs:4 |
 | PLONK (KZG) |  |  | уязвим (Шор) | допустимо | 1 | 1 | halo2_proofs/src/plonk.rs |
 | Pasta curves (Pallas/Vesta) | Vesta |  | уязвим (Шор) | допустимо | 1 | 1 | halo2_proofs/src/plonk/fingerprint/vesta_lean.rs |

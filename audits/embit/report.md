@@ -4,28 +4,28 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 21:10 UTC |
+| Дата отчёта | 2026-11-04 18:43 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | d450d12b-59fc-47df-8956-1fafe44953b0 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 343e6b9c-3a70-4b2d-8f04-6a73624e15f1 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `e9746bf4b6b267bdcfac6f8386056330806949cdbd324b7328f3887daf254733` |
+| SHA-256 содержимого | `bee50377cbef325aa49d9381de462dde4c469be8af695aefc3cff7ecf42b0054` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **0**
-- Высокая: **0**
-- Средняя: **4**
+- Высокая: **1**
+- Средняя: **6**
 - Низкая: **0**
 - Информационная: **1**
 
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
-- Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 4
+- Потенциальный криптографический риск: 1
+- Долгосрочный постквантовый риск: 6
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 0
 
@@ -50,7 +50,8 @@
 | tls_key_exchange_groups | Недостаточность данных | 56 | poetry.lock line 9: not in the algorithm registry, not assessed: ["main"]; poetry.lock line 25: not in the algorithm registry, not assessed: ["main"]; poetry.lock line 46: not in the algorithm registry, not assessed: ["main"] |
 | tls_configuration | проверено | 2 | poetry.lock: openssl TLS directives parsed; src/embit/slip39.py: openssl TLS directives parsed |
 | dependencies | проверено | 2 | poetry.lock: 55 dependencies parsed (55 pinned); pyproject.toml: 0 dependencies parsed (0 pinned) |
-| source_code | проверено | 140 | secp256k1/config/libsecp256k1-config.h: 44 lines scanned with 16 rule patterns and 123 registry patterns; setup.py: 3 lines scanned with 16 rule patterns and 123 registry patterns; src/embit/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns |
+| source_code | проверено | 140 | secp256k1/config/libsecp256k1-config.h: 44 lines scanned with 16 rule patterns and 145 registry patterns; setup.py: 3 lines scanned with 16 rule patterns and 145 registry patterns; src/embit/__init__.py: 0 lines scanned with 16 rule patterns and 145 registry patterns |
+| entropy | проверено | 1 | random-number generation: 140 code files read with 128 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s) |
 | osv_advisories | проверено | 1 | 55 pinned packages queried at OSV.dev; 8 affected (8 of them only in development or build dependencies) |
 | osv_advisories | Недостаточность данных | 1 | PyPI/virtualenv@21.2.0: 23 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
@@ -67,19 +68,57 @@ Static review of the source tree embit at 2b375a33bd8926caec7e53d7cfd41b165d1965
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 71.4%
+- Ориентировочный индекс состояния: **93** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Доля квантово-уязвимых элементов инвентаризации: 73.2%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-06939 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (31 файл(ов))
+### QSI-2026-11881 — Некриптографический генератор рядом с генерацией ключа или сида в src/embit/util/key.py
+
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `src/embit/util/key.py:keygen`
+- Источник данных: src/embit/util/key.py
+- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
+- Анализатор: entropy 1.3.0 · 2026-11-04 18:43 UTC
+- Балл приоритета: 38.8 / 100
+- CVSS v3.1: неприменимо
+
+«random.randrange(» в строка 374, в нескольких строках от «generate_privkey» (1 мест).
+
+**Возможные последствия.** Мнемоники, сиды и приватные ключи из такого генератора перебираются по его малому внутреннему состоянию: так теряли средства Milk Sad (CVE-2023-39910, mt19937 за «bx seed») и Trust Wallet (CVE-2023-31290).
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 374 в предоставленном файле src/embit/util/key.py и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/embit/util/key.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/key.py#L374) · line 374 · SHA-256 6a16bf61b745add23af0bcc22cb0758b1719a6aead17b725bb75597ba4738788_
+
+```
+  372 | def generate_privkey():
+  373 |     """Generate a valid random 32-byte private key."""
+  374 |     return random.randrange(1, SECP256K1_ORDER).to_bytes(32, "big")
+  375 | 
+  376 | 
+```
+
+**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники.
+
+**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
+
+### QSI-2026-11874 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (31 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Verified against source at 2b375a33bd89. src/embit/ec.py wraps the implementation directly: line 18 serialises with secp256k1.ecdsa_signature_serialize_der and line 24 parses with ecdsa_signature_parse_der, over the pinned secp256k1/secp256k1-zkp submodule. This is the signing path two hardware wallets actually reach: SeedSigner through embit==0.8.0, pinned with a sha256 hash lock in its requirements.txt, and Krux through the vendor/embit submodule. A CRQC recovers the private key from a public key already on chain, so the exposure is retroactive for any reused or already-spent address. One correction to the finding's own exemplar: contrib/lax_der_parsing.c:11 is a permissive DER parsing helper, not the signing core, and a reader checking that line first will underrate the finding. src/embit/ec.py:18 and :24 are the lines to read.
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: src/embit/bip32.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:10 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:43 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -181,14 +220,14 @@ _file_excerpt · [src/embit/liquid/transaction.py](https://github.com/diybitcoin
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06941 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))
+### QSI-2026-11876 — Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** The primitive is present and quantum-relevant, but both the role and the stated consequence are wrong and are corrected here. src/embit/liquid/pset.py:101 and :300 call secp256k1.pedersen_commit over value blinding factors: this is Liquid confidential transactions, not threshold signing and not MPC. And the consequence is the opposite way round from the finding's text: a Pedersen commitment's HIDING property is information-theoretic, so a CRQC does not retroactively reveal blinded amounts, while its BINDING property rests on the discrete logarithm, so a CRQC can open a commitment to a different value. The risk here is forged amounts, that is inflation of a confidential asset, not loss of confidentiality. Priority should be read accordingly.
 - Затронутый актив: `source-code:Pedersen commitment:threshold_mpc`
 - Источник данных: src/embit/liquid/pset.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:10 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:43 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
@@ -290,18 +329,18 @@ _file_excerpt · [src/embit/util/secp256k1.py](https://github.com/diybitcoinhard
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06943 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (6 файл(ов))
+### QSI-2026-11879 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Verified. include/secp256k1_schnorrsig.h:82 is secp256k1_schnorrsig_sign and :100 is secp256k1_schnorrsig_verify, so taproot signing is present and reachable from embit. BIP-340 rests on the same discrete-log hardness as ECDSA: it fixed malleability and enabled aggregation, not quantum resistance, so these rows are exposed exactly as the ECDSA ones are. Counted with a caveat recorded against the scanner rather than against the project: one of the cited files, src/bench_schnorrsig.c, is a benchmark, and benchmark files inside a pinned submodule were not excluded by the test-and-example filter even though the report claims they were. 12 of this audit's 89 inventory rows come from bench_*.c files in secp256k1-zkp. That is an over-count on my side, the mirror image of the submodule under-reads this project has already fixed, and it is being fixed in the runner rather than papered over here.
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
 - Источник данных: src/embit/util/ctypes_secp256k1.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:10 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:43 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
-19 упоминаний Schnorr (BIP-340) в 6 файл(ах), например src/embit/util/ctypes_secp256k1.py:287. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+21 упоминаний Schnorr (BIP-340) в 7 файл(ах), например src/embit/util/ctypes_secp256k1.py:287. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -335,6 +374,22 @@ _file_excerpt · [src/embit/util/ctypes_secp256k1.py](https://github.com/diybitc
   294 | 
   295 |         secp256k1.secp256k1_schnorrsig_sign.argtypes = [
   296 |             c_void_p,  # ctx
+```
+
+_file_excerpt · [src/embit/util/py_secp256k1.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/py_secp256k1.py#L293) · line 293 · SHA-256 712f9c6407e423d0022ae7eb7b258108ded8bb698bb4fbd009eae1c779e839aa_
+
+```
+  292 |     sec = ec_pubkey_serialize(pubkey)
+  293 |     return _key.verify_schnorr(sec[1:33], sig, msg)
+  294 | 
+```
+
+_file_excerpt · [src/embit/util/py_secp256k1.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/py_secp256k1.py#L310) · line 310 · SHA-256 45e3ede2213f725fdbc233daf0dc53cdaf4c6585dbb5c3ad6b7efaeccb13f941_
+
+```
+  309 |         raise ValueError("Keypair should be 96 bytes long")
+  310 |     return _key.sign_schnorr(keypair[:32], msg, extra_data)
+  311 | 
 ```
 
 _file_excerpt · [src/embit/util/secp256k1.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/secp256k1.py#L33) · line 33 · SHA-256 adb579a45705e6d888d7888b09c5050db942d38a241b5a2a87bb7a936d646be3_
@@ -377,36 +432,20 @@ _file_excerpt · [secp256k1/secp256k1-zkp/src/modules/musig/example.c](https://g
   161 |         printf("FAILED\n");
 ```
 
-_file_excerpt · [secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h#L460) · line 460 · SHA-256 8347c1cd3e521a8ba5e1c0b465436477efc94e0749e2b6314e1928dcfbe9a321_
-
-```
-  459 | 
-  460 |     secp256k1_schnorrsig_sha256_tagged(&sha);
-  461 |     secp256k1_xonly_pubkey_load(ctx, &rp, &session->combined_nonce);
-```
-
-_file_excerpt · [secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h#L98) · line 98 · SHA-256 e73ca8d800b70a374cf5e3972e2d153290a93d2d12334ada5196282ceec4cede_
-
-```
-   97 |  * SHA256 to SHA256("BIP0340/challenge")||SHA256("BIP0340/challenge"). */
-   98 | static void secp256k1_schnorrsig_sha256_tagged(secp256k1_sha256 *sha) {
-   99 |     secp256k1_sha256_initialize(sha);
-```
-
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06940 — Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))
+### QSI-2026-11875 — Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Confirmed, with the role corrected. The finding reports "role not determined" for src/embit/ec.py, but the role is determinable from the file itself: ec.py is embit's signature and public-key class, and lines 18 and 24 serialise and parse DER ECDSA signatures for transactions. This is the same transaction-signing role as the other ECDSA finding in this audit, not an undetermined one, and the two should be read together rather than as separate exposures.
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: src/embit/ec.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 21:10 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:43 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -499,14 +538,142 @@ _file_excerpt · [src/embit/util/key.py](https://github.com/diybitcoinhardware/e
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06944 — 40 бюллетеней в 8 пакет(ах) PyPI, нужных только для разработки или сборки
+### QSI-2026-11878 — Квантово-уязвимый ECDH: роль не определена (4 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDH:general`
+- Источник данных: src/embit/util/ctypes_secp256k1.py
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:43 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+9 упоминаний ECDH в 4 файл(ах), например src/embit/util/ctypes_secp256k1.py:131. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/embit/util/ctypes_secp256k1.py:131 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/embit/util/ctypes_secp256k1.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L131) · line 131 · SHA-256 25ed92dcf661ed2360a198512a0006c9e51c0e8a86d6e1e6cb0b64dc880c0d3f_
+
+```
+  130 |     preferred_symbols = (
+  131 |         "secp256k1_ecdh",
+  132 |         "secp256k1_xonly_pubkey_from_pubkey",
+```
+
+_file_excerpt · [src/embit/util/ctypes_secp256k1.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L265) · line 265 · SHA-256 de340041c8677f93a6eb25e7cd23f166d2c5a072a02c006e4f7b8610957dd194_
+
+```
+  264 |     try:
+  265 |         secp256k1.secp256k1_ecdh.argtypes = [
+  266 |             c_void_p,  # ctx
+```
+
+_file_excerpt · [src/embit/util/ctypes_secp256k1.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/ctypes_secp256k1.py#L273) · line 273 · SHA-256 9d8302f1aac7f738489ca0a9b1da65674b762df2abcb1df8bf0ba178bd170608_
+
+```
+  272 |         ]
+  273 |         secp256k1.secp256k1_ecdh.restype = c_int
+  274 |     except Exception:  # noqa: S110
+```
+
+_file_excerpt · [src/embit/util/secp256k1.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/secp256k1.py#L31) · line 31 · SHA-256 4be965210b8e21d1911d60c3f2f6fcb51b6f14257125a3509ed6f700a5d8ed9a_
+
+```
+   30 |         _OPTIONAL_SYMBOLS = {
+   31 |             "ecdh": "secp256k1_ecdh",
+   32 |             "xonly_pubkey_from_pubkey": "secp256k1_xonly_pubkey_from_pubkey",
+```
+
+_file_excerpt · [secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h#L49) · line 49 · SHA-256 72841f4795f99327f8d386d48f812972ad9b9c93c2aaa26a78a395894af2edb0_
+
+```
+   48 |  */
+   49 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ecdh(
+   50 |   const secp256k1_context* ctx,
+```
+
+_file_excerpt · [secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h#L10) · line 10 · SHA-256 65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134_
+
+```
+    9 | 
+   10 | #include "../../../include/secp256k1_ecdh.h"
+   11 | #include "../../ecmult_const_impl.h"
+```
+
+_file_excerpt · [secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h#L29) · line 29 · SHA-256 99bef9ddb51d26be8ad1c573044618a7a1801ccdcb8c468cbce745d4dbedb6bf_
+
+```
+   28 | 
+   29 | int secp256k1_ecdh(const secp256k1_context* ctx, unsigned char *output, const secp256k1_pubkey *point, const unsigned char *scalar, secp256k1_ecdh_hash_function hashfp, void *data) {
+   30 |     int ret = 0;
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-11880 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:Schnorr (BIP-340):general`
+- Источник данных: src/embit/util/key.py
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:43 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+2 упоминаний Schnorr (BIP-340) в 1 файл(ах), например src/embit/util/key.py:535. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте src/embit/util/key.py:535 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [src/embit/util/key.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/key.py#L535) · line 535 · SHA-256 0597a48161191ebf461aaedda31f2a87a429eaaa13531cee7adae7137e912a39_
+
+```
+  534 | 
+  535 | def verify_schnorr(key, sig, msg):
+  536 |     """Verify a Schnorr signature (see BIP 340).
+```
+
+_file_excerpt · [src/embit/util/key.py](https://github.com/diybitcoinhardware/embit/blob/2b375a33bd8926caec7e53d7cfd41b165d196566/src/embit/util/key.py#L572) · line 572 · SHA-256 f0e6c6749e812b18bfc62efa05381551783c523260a6d2f23ec1e1f80d12e644_
+
+```
+  571 | 
+  572 | def sign_schnorr(key, msg, aux=None, flip_p=False, flip_r=False):
+  573 |     """Create a Schnorr signature (see BIP 340)."""
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-11882 — 40 бюллетеней в 8 пакет(ах) PyPI, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): не применимо к этому коду.** All eight packages are reached only through development and build groups in poetry.lock - black, certifi, filelock and similar - and none is imported by src/embit, which is the code that ships to SeedSigner as a wheel and to Krux as a submodule. The advisories are real for those packages and irrelevant to anyone running the library, so they are recorded and kept out of any risk figure. The dev-versus-runtime split is doing its job here.
 - Затронутый актив: `dependencies:PyPI:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 21:10 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:43 UTC
 - Балл приоритета: 18.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -547,7 +714,7 @@ _Эти находки аналитик отклонил как ложные с�
 
 | ID | Подробное описание находок | Проверка аналитика |
 |---|---|---|
-| QSI-2026-06942 | Малое число итераций PBKDF2 (2500) в src/embit/slip39.py | Read the source: src/embit/slip39.py runs hashlib.pbkdf2_hmac("sha256", i + passphrase, salt + right, 2500 << exponent, half) inside a loop over four round indices. SLIP-39 specifies a base iteration count of 10000 divided across its four Feistel rounds, which is 2500 per round, scaled by two to the power of the share's exponent field. The number is mandated by the standard the file implements, not a configuration the project chose, and the effective total at exponent 0 is 10000. Flagging it would mean flagging SLIP-39 itself, which is a different argument and does not belong in this finding. |
+| QSI-2026-11877 | Малое число итераций PBKDF2 (2500) в src/embit/slip39.py | Read the source: src/embit/slip39.py runs hashlib.pbkdf2_hmac("sha256", i + passphrase, salt + right, 2500 << exponent, half) inside a loop over four round indices. SLIP-39 specifies a base iteration count of 10000 divided across its four Feistel rounds, which is 2500 per round, scaled by two to the power of the share's exponent field. The number is mandated by the standard the file implements, not a configuration the project chose, and the effective total at exponent 0 is 10000. Flagging it would mean flagging SLIP-39 itself, which is a different argument and does not belong in this finding. |
 
 ## 8. Постквантовая оценка
 
@@ -572,6 +739,7 @@ _Допущения планирования: x для обмена ключам
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
+- Только классика — пороговая подпись и протоколы MPC: Pedersen commitment (4 файл(ов))
 
 **Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -581,9 +749,9 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **пороговая подпись и протоколы MPC** | Pedersen commitment (4) | QSI-2026-06941 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
-| **подпись транзакций и сообщений** | ECDSA (31), Schnorr (BIP-340) (6) | QSI-2026-06939, QSI-2026-06943 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (4) | QSI-2026-06940 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **пороговая подпись и протоколы MPC** | Pedersen commitment (4) | QSI-2026-11876 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **подпись транзакций и сообщений** | ECDSA (31), Schnorr (BIP-340) (7) | QSI-2026-11874, QSI-2026-11879 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDH (4), ECDSA (4), Schnorr (BIP-340) (1) | QSI-2026-11875, QSI-2026-11878, QSI-2026-11880 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -592,7 +760,7 @@ _Роль определяется по путям файлов, именам ф
 
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (1), ECDSA (44), Pedersen commitment (4), Schnorr (BIP-340) (6) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (4), ECDSA (44), Pedersen commitment (4), Schnorr (BIP-340) (8) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | HMAC (6), PBKDF2 (3), RIPEMD-160 (3), SHA-2 (10) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | RIPEMD-160 (3), SHA-2 (10) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -612,6 +780,7 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
+| P1 | QSI-2026-11881 | Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
@@ -620,29 +789,33 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06939 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06941 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06943 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06940 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-06939 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06941 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-06943 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-06940 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06944 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-11874 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11876 | Внесите использования Pedersen commitment в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11879 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11875 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11878 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11880 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-11874 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11876 | Запланируйте миграцию Pedersen commitment на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-11879 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-11875 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11878 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-11880 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-11882 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -650,25 +823,28 @@ _Действие: взламывает — алгоритм нужно заме
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
 3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-7. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-8. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-9. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-10. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-11. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
-18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-21. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-22. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+4. CVE-2023-31290 — Trust Wallet Core: 32 bits of mnemonic entropy (mt19937 seeded with one 32-bit value) — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-31290> (published 2023-04-27; Trust Wallet Core before 3.1.1 (browser extension 0.0.172-0.0.182), exploited in the wild in December 2022 and March 2023: only about four billion possible mnemonics)
+5. CVE-2023-39910 — Libbitcoin Explorer 'bx seed' entropy (Milk Sad): mt19937 limits it to 32 bits — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-39910> (published 2023-08-09; Libbitcoin Explorer 3.0.0-3.6.0, exploited in the wild in 2023)
+6. CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) — MITRE. <https://cwe.mitre.org/data/definitions/338.html> (weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable)
+7. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+8. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+9. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+10. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+11. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+12. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+13. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+14. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+15. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+16. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+17. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+18. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+19. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+20. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+21. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+22. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+23. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+24. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+25. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -679,11 +855,11 @@ _Действие: взламывает — алгоритм нужно заме
 | PBKDF2 |  |  | сниженный запас (Гровер), одобрен | допустимо | 2 | 2 | src/embit/bip39.py:81; src/embit/slip39.py:51 |
 | PBKDF2 | 2500 iterations |  | сниженный запас (Гровер), одобрен | устаревающий | 1 | 1 | src/embit/slip39.py:51 |
 | SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 10 | 10 | secp256k1/secp256k1-zkp/src/modules/rangeproof/main_impl.h:24; src/embit/bip39.py:57; src/embit/hashes.py:18 |
-| ECDH |  |  | уязвим (Шор) | допустимо | 1 | 1 | secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h |
+| ECDH |  |  | уязвим (Шор) | допустимо | 4 | 4 | secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h:49; secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h:10; src/embit/util/ctypes_secp256k1.py:131 |
 | ECDSA |  |  | уязвим (Шор) | допустимо | 14 | 14 | secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11; secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:88; secp256k1/secp256k1-zkp/include/secp256k1.h:85 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 30 | 30 | secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:57; secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h:34; secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h:4 |
 | Pedersen commitment |  |  | уязвим (Шор) | допустимо | 4 | 4 | src/embit/liquid/pset.py:101; src/embit/liquid/transaction.py:90; src/embit/util/ctypes_secp256k1.py:949 |
-| Schnorr (BIP-340) |  |  | уязвим (Шор) | допустимо | 6 | 6 | secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82; secp256k1/secp256k1-zkp/src/modules/musig/example.c:160; secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h:460 |
+| Schnorr (BIP-340) |  |  | уязвим (Шор) | допустимо | 8 | 8 | secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82; secp256k1/secp256k1-zkp/src/modules/musig/example.c:160; secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h:460 |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 

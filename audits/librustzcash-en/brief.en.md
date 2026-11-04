@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: librustzcash-en @ 8672a4b2d60f
 
-*One-page brief* · Reviewed: 2026-10-28 12:30 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 18:54 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/librustzcash/tree/8672a4b2d60f432664780e6a4e85f49a36805a2a
 
@@ -12,14 +12,14 @@ Source: https://github.com/zcash/librustzcash/tree/8672a4b2d60f432664780e6a4e85f
 
 ## What matters most
 
-1. **High** · rustls-webpki 0.101.7 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-04549)\
+1. **High** · rustls-webpki 0.101.7 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-12058)\
    What to do: Upgrade to a fixed version (0.103.13, 0.104.0-alpha.7).
-2. **High** · rustls-webpki 0.103.3 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-04553)\
+2. **High** · rustls-webpki 0.103.3 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-12062)\
    What to do: Upgrade to a fixed version (0.103.13, 0.104.0-alpha.7).
-3. **Medium** · serde_with 3.16.0 is affected by GHSA-7gcf-g7xr-8hxj (QSI-2026-04558)\
+3. **Medium** · serde_with 3.16.0 is affected by GHSA-7gcf-g7xr-8hxj (QSI-2026-12067)\
    What to do: Upgrade to a fixed version (3.21.0).
-4. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (15 file(s)) (QSI-2026-04522) · *preliminary*\
-   What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
+4. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s)) (QSI-2026-12031) · *preliminary*\
+   What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
 
 40 more in the full report.
 
@@ -27,17 +27,18 @@ Source: https://github.com/zcash/librustzcash/tree/8672a4b2d60f432664780e6a4e85f
 
 | Role | Algorithms | What to do |
 |---|---|---|
+| **Medium** · threshold signing and MPC protocols | Pedersen commitment | Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the… |
 | **Medium** · transaction and message signing | ECDSA, BLS12-381 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum… |
 
 ## Known vulnerable components
 
-Advisories for the versions in use: 43; unlikely to apply to this build: 14 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 29.
+Advisories for the versions in use: 42; unlikely to apply to this build: 14 (a Cargo feature that is off, affected functions not named in the code, or a platform that is not built); to review: 28.
 
 ---
 
 Static review of source code and manifests; files analysed: 333. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `6baf13b4c84a81172f24a313d909b2982d9a321075c01d5dd2a3c642e63e31f1`
+Full report, content SHA-256: `03b3c2491116445855ca64e958f067d951c66e342cfeed96f84e97c91650ed99`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

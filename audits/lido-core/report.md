@@ -4,27 +4,27 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 05:26 UTC |
+| Дата отчёта | 2026-11-04 18:57 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 8abdf060-c96a-4135-963c-b3e114a0a16e (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
-| Профиль риска | Финансовая организация |
-| SHA-256 содержимого | `c266fde0a890e83c5e80ded8062b5964727a2b971ca6b6d0d6a81227ffa65cca` |
+| Запуск аудита | f9c2b7ba-7adc-41e0-bb2b-47c3a3310862 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `f46bf3d63c32c5a0d4fa4432f9eed9ee7d601c840b1c9185e9171cf86cc18391` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
 ## 1. Резюме для руководства
 
 - Критическая: **5**
-- Высокая: **25**
-- Средняя: **27**
+- Высокая: **26**
+- Средняя: **28**
 - Низкая: **12**
 - Информационная: **7**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 46
+- Известная уязвимая версия компонента: 47
 - Подтверждённая ошибка конфигурации: 0
-- Потенциальный криптографический риск: 9
+- Потенциальный криптографический риск: 10
 - Долгосрочный постквантовый риск: 5
 - Рекомендация по улучшению: 15
 - Недостаточность данных: 1
@@ -45,14 +45,15 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 147 | .solcover.js: 19 lines scanned with 16 rule patterns and 123 registry patterns; commitlint.config.ts: 1 lines scanned with 16 rule patterns and 123 registry patterns; eslint.config.mjs: 68 lines scanned with 16 rule patterns and 123 registry patterns |
+| source_code | проверено | 147 | .solcover.js: 19 lines scanned with 16 rule patterns and 145 registry patterns; commitlint.config.ts: 1 lines scanned with 16 rule patterns and 145 registry patterns; eslint.config.mjs: 68 lines scanned with 16 rule patterns and 145 registry patterns |
 | smart_contracts | проверено | 116 | contracts/0.4.24/Lido.sol: built-in Solidity pattern checks; contracts/0.4.24/StETH.sol: built-in Solidity pattern checks; contracts/0.4.24/lib/StakeLimitUtils.sol: built-in Solidity pattern checks |
 | slither | не проверено | 116 | slither is not installed on the server (pip install slither-analyzer + solc) |
 | secrets | проверено | 8 | contracts/0.4.24/nos/NodeOperatorsRegistry.sol: 3 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/0.4.24/template/LidoTemplate.sol: 4 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); contracts/0.8.25/vaults/VaultHub.sol: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | dependencies | проверено | 4 | package.json: 66 dependencies parsed (58 pinned); poetry.lock: 50 dependencies parsed (50 pinned); pyproject.toml: 1 dependencies parsed (0 pinned) |
 | tls_key_exchange_groups | Недостаточность данных | 50 | poetry.lock line 9: not in the algorithm registry, not assessed: ["dev"]; poetry.lock line 21: not in the algorithm registry, not assessed: ["dev"]; poetry.lock line 163: not in the algorithm registry, not assessed: ["dev"] |
 | tls_configuration | проверено | 1 | poetry.lock: openssl TLS directives parsed |
-| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 44 affected (23 of them only in development or build dependencies) |
+| entropy | проверено | 1 | random-number generation: 147 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s) |
+| osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 45 affected (24 of them only in development or build dependencies) |
 | osv_advisories | Недостаточность данных | 1 | npm/axios@1.17.0: 22 advisories at OSV.dev, the first 20 are listed as findings; see OSV.dev for the rest |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -65,7 +66,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree lido-core at 2bd532298d85cdf520169fdc0c5fb0cc9baf03c3. 267 files analysed; of 966 files, 579 are test, fuzzing, benchmark or example code and were left out, 120 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree lido-core at 2bd532298d85cdf520169fdc0c5fb0cc9baf03c3. 267 files analysed; of 966 files, 579 are test, fuzzing, benchmark or example code and were left out, 120 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .editorconfig, .env.example, .gitattributes, .github/CODEOWNERS, .github/ISSUE_TEMPLATE/CONTRACT-BUG-REPORT.yml. 121 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -74,14 +75,14 @@ Static review of the source tree lido-core at 2bd532298d85cdf520169fdc0c5fb0cc9b
 
 ## 7. Подробное описание находок
 
-### QSI-2026-06310 — @openzeppelin/contracts 3.4.0 затронут GHSA-fg47-3c2x-m2wr (CVE-2021-39167)
+### QSI-2026-12121 — @openzeppelin/contracts 3.4.0 затронут GHSA-fg47-3c2x-m2wr (CVE-2021-39167)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/@openzeppelin/contracts@3.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 56.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 54.2 / 100
 - CVSS v3.1: 10.0 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H`)
 
 OSV.dev сообщает GHSA-fg47-3c2x-m2wr (CVE-2021-39167) для пакета npm @openzeppelin/contracts версии 3.4.0: TimelockController vulnerability in OpenZeppelin Contracts. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -108,14 +109,14 @@ _tool_output · [OSV.dev GHSA-fg47-3c2x-m2wr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06316 — babel-traverse 6.26.0 затронут GHSA-67hx-6x53-jw92 (CVE-2023-45133)
+### QSI-2026-12127 — babel-traverse 6.26.0 затронут GHSA-67hx-6x53-jw92 (CVE-2023-45133)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/babel-traverse@6.26.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 42.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 40.6 / 100
 - CVSS v3.1: 9.3 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H`)
 
 OSV.dev сообщает GHSA-67hx-6x53-jw92 (CVE-2023-45133) для пакета npm babel-traverse версии 6.26.0: Babel vulnerable to arbitrary code execution when compiling specifically crafted malicious code. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -142,14 +143,14 @@ _tool_output · [OSV.dev GHSA-67hx-6x53-jw92](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06334 — crypto-js 3.3.0 затронут GHSA-rg76-677x-56q9 (CVE-2026-71851)
+### QSI-2026-12145 — crypto-js 3.3.0 затронут GHSA-rg76-677x-56q9 (CVE-2026-71851)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/crypto-js@3.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 42.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 40.6 / 100
 - CVSS v3.1: 9.0 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H`)
 
 OSV.dev сообщает GHSA-rg76-677x-56q9 (CVE-2026-71851) для пакета npm crypto-js версии 3.3.0: crypto-js: Insufficient Entropy in Cryptographic Secret Generation via Vulnerable CryptoJS Dependency Chain. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -176,14 +177,14 @@ _tool_output · [OSV.dev GHSA-rg76-677x-56q9](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06335 — crypto-js 3.3.0 затронут GHSA-xwcq-pm8m-c4vf (CVE-2023-46233)
+### QSI-2026-12146 — crypto-js 3.3.0 затронут GHSA-xwcq-pm8m-c4vf (CVE-2023-46233)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/crypto-js@3.3.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 42.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 40.6 / 100
 - CVSS v3.1: 9.1 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
 OSV.dev сообщает GHSA-xwcq-pm8m-c4vf (CVE-2023-46233) для пакета npm crypto-js версии 3.3.0: crypto-js PBKDF2 1,000 times weaker than specified in 1993 and 1.3M times weaker than current standard. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -210,14 +211,14 @@ _tool_output · [OSV.dev GHSA-xwcq-pm8m-c4vf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06337 — form-data 2.3.3 затронут GHSA-fjxv-7rqg-78g4 (CVE-2025-7783)
+### QSI-2026-12148 — form-data 2.3.3 затронут GHSA-fjxv-7rqg-78g4 (CVE-2025-7783)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/form-data@2.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 42.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-fjxv-7rqg-78g4 (CVE-2025-7783) для пакета npm form-data версии 2.3.3: form-data uses unsafe random function in form-data for choosing boundary. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -244,14 +245,14 @@ _tool_output · [OSV.dev GHSA-fjxv-7rqg-78g4](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06309 — @openzeppelin/contracts 3.4.0 затронут GHSA-88g8-f5mf-f5rj (CVE-2021-46320, CVE-2022-39384, GHSA-9c22-pwxw-p6hx)
+### QSI-2026-12120 — @openzeppelin/contracts 3.4.0 затронут GHSA-88g8-f5mf-f5rj (CVE-2021-46320, CVE-2022-39384, GHSA-9c22-pwxw-p6hx)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/@openzeppelin/contracts@3.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 52.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
 OSV.dev сообщает GHSA-88g8-f5mf-f5rj (CVE-2021-46320, CVE-2022-39384, GHSA-9c22-pwxw-p6hx) для пакета npm @openzeppelin/contracts версии 3.4.0: Improper Initialization in OpenZeppelin. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -278,14 +279,14 @@ _tool_output · [OSV.dev GHSA-88g8-f5mf-f5rj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06339 — glob 10.4.5 затронут GHSA-5j98-mcp5-4vw2 (CVE-2025-64756)
+### QSI-2026-12151 — glob 10.4.5 затронут GHSA-5j98-mcp5-4vw2 (CVE-2025-64756)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/glob@10.4.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 52.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H`)
 
 OSV.dev сообщает GHSA-5j98-mcp5-4vw2 (CVE-2025-64756) для пакета npm glob версии 10.4.5: glob CLI: Command injection via -c/--cmd executes matches with shell:true. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -312,14 +313,52 @@ _tool_output · [OSV.dev GHSA-5j98-mcp5-4vw2](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06317 — base-x 3.0.10 затронут GHSA-xq7p-g2vc-g82p (CVE-2025-27611)
+### QSI-2026-12117 — Некриптографический генератор рядом с генерацией ключа или сида в lib/pdg.ts
+
+- Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `lib/pdg.ts:keygen`
+- Источник данных: lib/pdg.ts
+- Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
+- Анализатор: entropy 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 38.8 / 100
+- CVSS v3.1: неприменимо
+
+«Math.random(» в строка 19, в нескольких строках от «SecretKey» (1 мест).
+
+**Возможные последствия.** Мнемоники, сиды и приватные ключи из такого генератора перебираются по его малому внутреннему состоянию: так теряли средства Milk Sad (CVE-2023-39910, mt19937 за «bx seed») и Trust Wallet (CVE-2023-31290).
+
+**Шаги воспроизведения.**
+
+```
+Откройте строка 19 в предоставленном файле lib/pdg.ts и изучите приведённые строки (см. доказательство).
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib/pdg.ts](https://github.com/lidofinance/core/blob/2bd532298d85cdf520169fdc0c5fb0cc9baf03c3/lib/pdg.ts#L19) · line 19 · SHA-256 7ab45abbe09f8d9600edfa332455e591abe1341cc727be2c47279267cc94d6ab_
+
+```
+   17 | export const randomValidatorPubkey = (): string => hexlify(randomBytes(48));
+   18 | 
+   19 | export const randomInt = (max: number): number => Math.floor(Math.random() * max);
+   20 | const ikm = Uint8Array.from(Buffer.from("test test test test test test test", "utf-8"));
+   21 | const masterSecret = [REDACTED]
+```
+
+**Ограничения проверки.** Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники.
+
+**Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
+
+### QSI-2026-12128 — base-x 3.0.10 затронут GHSA-xq7p-g2vc-g82p (CVE-2025-27611)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/base-x@3.0.10`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-xq7p-g2vc-g82p (CVE-2025-27611) для пакета npm base-x версии 3.0.10: Homograph attack allows Unicode lookalike characters to bypass validation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -346,14 +385,14 @@ _tool_output · [OSV.dev GHSA-xq7p-g2vc-g82p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06321 — brace-expansion 2.0.1 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)
+### QSI-2026-12132 — brace-expansion 2.0.1 затронут GHSA-6j4f-fj2g-mc7p (CVE-2026-102276)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276) для пакета npm brace-expansion версии 2.0.1: brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -380,14 +419,14 @@ _tool_output · [OSV.dev GHSA-6j4f-fj2g-mc7p](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06323 — brace-expansion 2.0.1 затронут GHSA-mh99-v99m-4gvg (CVE-2026-14257)
+### QSI-2026-12134 — brace-expansion 2.0.1 затронут GHSA-mh99-v99m-4gvg (CVE-2026-14257)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-mh99-v99m-4gvg (CVE-2026-14257) для пакета npm brace-expansion версии 2.0.1: brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -414,14 +453,14 @@ _tool_output · [OSV.dev GHSA-mh99-v99m-4gvg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06325 — brace-expansion 2.0.1 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)
+### QSI-2026-12136 — brace-expansion 2.0.1 затронут GHSA-qhr7-859c-m2p7 (CVE-2026-102278)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278) для пакета npm brace-expansion версии 2.0.1: brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -448,14 +487,14 @@ _tool_output · [OSV.dev GHSA-qhr7-859c-m2p7](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06326 — brace-expansion 2.0.1 затронут GHSA-rgw5-rvv9-x895 (CVE-2026-69152)
+### QSI-2026-12137 — brace-expansion 2.0.1 затронут GHSA-rgw5-rvv9-x895 (CVE-2026-69152)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-rgw5-rvv9-x895 (CVE-2026-69152) для пакета npm brace-expansion версии 2.0.1: brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -482,14 +521,14 @@ _tool_output · [OSV.dev GHSA-rgw5-rvv9-x895](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06328 — browserslist 3.2.8 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088)
+### QSI-2026-12139 — browserslist 3.2.8 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/browserslist@3.2.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088) для пакета npm browserslist версии 3.2.8: Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -516,14 +555,14 @@ _tool_output · [OSV.dev GHSA-73wf-gq98-2v4g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06329 — browserslist 3.2.8 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089)
+### QSI-2026-12140 — browserslist 3.2.8 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/browserslist@3.2.8`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089) для пакета npm browserslist версии 3.2.8: Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -550,14 +589,14 @@ _tool_output · [OSV.dev GHSA-c83g-rgw3-j3cx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06330 — browserslist 4.24.4 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088)
+### QSI-2026-12141 — browserslist 4.24.4 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/browserslist@4.24.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088) для пакета npm browserslist версии 4.24.4: Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -584,14 +623,14 @@ _tool_output · [OSV.dev GHSA-73wf-gq98-2v4g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06331 — browserslist 4.24.4 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089)
+### QSI-2026-12142 — browserslist 4.24.4 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/browserslist@4.24.4`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089) для пакета npm browserslist версии 4.24.4: Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -618,14 +657,14 @@ _tool_output · [OSV.dev GHSA-c83g-rgw3-j3cx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06332 — browserslist 4.24.5 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088)
+### QSI-2026-12143 — browserslist 4.24.5 затронут GHSA-73wf-gq98-2v4g (CVE-2026-73088)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/browserslist@4.24.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088) для пакета npm browserslist версии 4.24.5: Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -652,14 +691,14 @@ _tool_output · [OSV.dev GHSA-73wf-gq98-2v4g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06333 — browserslist 4.24.5 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089)
+### QSI-2026-12144 — browserslist 4.24.5 затронут GHSA-c83g-rgw3-j3cx (CVE-2026-73089)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/browserslist@4.24.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089) для пакета npm browserslist версии 4.24.5: Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -686,14 +725,14 @@ _tool_output · [OSV.dev GHSA-c83g-rgw3-j3cx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06338 — form-data 2.3.3 затронут GHSA-hmw2-7cc7-3qxx (CVE-2026-12143)
+### QSI-2026-12149 — form-data 2.3.3 затронут GHSA-hmw2-7cc7-3qxx (CVE-2026-12143)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/form-data@2.3.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N`)
 
 OSV.dev сообщает GHSA-hmw2-7cc7-3qxx (CVE-2026-12143) для пакета npm form-data версии 2.3.3: form-data: CRLF injection in form-data via unescaped multipart field names and filenames. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -720,14 +759,14 @@ _tool_output · [OSV.dev GHSA-hmw2-7cc7-3qxx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06342 — ip-address 9.0.5 затронут GHSA-mwp4-54f8-5fhr (CVE-2026-69192)
+### QSI-2026-12154 — ip-address 9.0.5 затронут GHSA-mwp4-54f8-5fhr (CVE-2026-69192)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip-address@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-mwp4-54f8-5fhr (CVE-2026-69192) для пакета npm ip-address версии 9.0.5: ip-address: Address4 decodes leading-zero octets as decimal while resolvers decode them as octal, allowing SSRF and trust-boundary bypass. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -754,14 +793,14 @@ _tool_output · [OSV.dev GHSA-mwp4-54f8-5fhr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06346 — json5 0.5.1 затронут GHSA-9c47-m6qq-7p4h (CVE-2022-46175)
+### QSI-2026-12158 — json5 0.5.1 затронут GHSA-9c47-m6qq-7p4h (CVE-2022-46175)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/json5@0.5.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.1 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:H`)
 
 OSV.dev сообщает GHSA-9c47-m6qq-7p4h (CVE-2022-46175) для пакета npm json5 версии 0.5.1: Prototype Pollution in JSON5 via Parse Method. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -788,14 +827,14 @@ _tool_output · [OSV.dev GHSA-9c47-m6qq-7p4h](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06348 — lodash 4.17.21 затронут GHSA-r5fr-rjxr-66jc (CVE-2026-4800)
+### QSI-2026-12159 — lodash 4.17.21 затронут GHSA-r5fr-rjxr-66jc (CVE-2026-4800)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/lodash@4.17.21`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.1 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H`)
 
 OSV.dev сообщает GHSA-r5fr-rjxr-66jc (CVE-2026-4800) для пакета npm lodash версии 4.17.21: lodash vulnerable to Code Injection via `_.template` imports key names. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -822,14 +861,14 @@ _tool_output · [OSV.dev GHSA-r5fr-rjxr-66jc](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06350 — minimatch 9.0.5 затронут GHSA-23c5-xmqv-rm74 (CVE-2026-27904)
+### QSI-2026-12161 — minimatch 9.0.5 затронут GHSA-23c5-xmqv-rm74 (CVE-2026-27904)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-23c5-xmqv-rm74 (CVE-2026-27904) для пакета npm minimatch версии 9.0.5: minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -856,14 +895,14 @@ _tool_output · [OSV.dev GHSA-23c5-xmqv-rm74](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06351 — minimatch 9.0.5 затронут GHSA-3ppc-4f35-3m26 (CVE-2026-26996)
+### QSI-2026-12162 — minimatch 9.0.5 затронут GHSA-3ppc-4f35-3m26 (CVE-2026-26996)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-3ppc-4f35-3m26 (CVE-2026-26996) для пакета npm minimatch версии 9.0.5: minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -890,14 +929,14 @@ _tool_output · [OSV.dev GHSA-3ppc-4f35-3m26](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06352 — minimatch 9.0.5 затронут GHSA-7r86-cg39-jmmj (CVE-2026-27903)
+### QSI-2026-12163 — minimatch 9.0.5 затронут GHSA-7r86-cg39-jmmj (CVE-2026-27903)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/minimatch@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-7r86-cg39-jmmj (CVE-2026-27903) для пакета npm minimatch версии 9.0.5: minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -924,14 +963,14 @@ _tool_output · [OSV.dev GHSA-7r86-cg39-jmmj](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06353 — node-fetch 1.7.3 затронут GHSA-r683-j2x4-v87g (CVE-2022-0235)
+### QSI-2026-12165 — node-fetch 1.7.3 затронут GHSA-r683-j2x4-v87g (CVE-2022-0235)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/node-fetch@1.7.3`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 8.8 (`CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H`)
 
 OSV.dev сообщает GHSA-r683-j2x4-v87g (CVE-2022-0235) для пакета npm node-fetch версии 1.7.3: node-fetch forwards secure headers to untrusted sites. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -958,14 +997,14 @@ _tool_output · [OSV.dev GHSA-r683-j2x4-v87g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06281 — initialize() без модификатора initializer в contracts/0.4.24/Lido.sol
+### QSI-2026-12091 — initialize() без модификатора initializer в contracts/0.4.24/Lido.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:contracts/0.4.24/Lido.sol`
 - Источник данных: contracts/0.4.24/Lido.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 Функция initialize в строка 276 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
@@ -996,14 +1035,14 @@ _file_excerpt · [contracts/0.4.24/Lido.sol](https://github.com/lidofinance/core
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06283 — initialize() без модификатора initializer в contracts/0.4.24/nos/NodeOperatorsRegistry.sol
+### QSI-2026-12093 — initialize() без модификатора initializer в contracts/0.4.24/nos/NodeOperatorsRegistry.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:contracts/0.4.24/nos/NodeOperatorsRegistry.sol`
 - Источник данных: contracts/0.4.24/nos/NodeOperatorsRegistry.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 Функция initialize в строка 219 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
@@ -1034,14 +1073,14 @@ _file_excerpt · [contracts/0.4.24/nos/NodeOperatorsRegistry.sol](https://github
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06289 — initialize() без модификатора initializer в contracts/0.8.9/oracle/AccountingOracle.sol
+### QSI-2026-12099 — initialize() без модификатора initializer в contracts/0.8.9/oracle/AccountingOracle.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:contracts/0.8.9/oracle/AccountingOracle.sol`
 - Источник данных: contracts/0.8.9/oracle/AccountingOracle.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 Функция initialize в строка 128 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
@@ -1072,14 +1111,14 @@ _file_excerpt · [contracts/0.8.9/oracle/AccountingOracle.sol](https://github.co
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06290 — initialize() без модификатора initializer в contracts/0.8.9/oracle/ValidatorsExitBusOracle.sol
+### QSI-2026-12100 — initialize() без модификатора initializer в contracts/0.8.9/oracle/ValidatorsExitBusOracle.sol
 
 - Серьёзность: **Высокая** · Классификация: Потенциальный криптографический риск · Уверенность: Низкая · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:contracts/0.8.9/oracle/ValidatorsExitBusOracle.sol`
 - Источник данных: contracts/0.8.9/oracle/ValidatorsExitBusOracle.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 36.1 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 36.5 / 100
 - CVSS v3.1: неприменимо
 
 Функция initialize в строка 57 не имеет защиты initializer/onlyInitializing. (см. SWC-118)
@@ -1110,14 +1149,14 @@ _file_excerpt · [contracts/0.8.9/oracle/ValidatorsExitBusOracle.sol](https://gi
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06308 — @openzeppelin/contracts 3.4.0 затронут GHSA-7grf-83vw-6f5x (CVE-2022-35915)
+### QSI-2026-12119 — @openzeppelin/contracts 3.4.0 затронут GHSA-7grf-83vw-6f5x (CVE-2022-35915)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/@openzeppelin/contracts@3.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 46.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-7grf-83vw-6f5x (CVE-2022-35915) для пакета npm @openzeppelin/contracts версии 3.4.0: OpenZeppelin Contracts ERC165Checker unbounded gas consumption. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1144,14 +1183,14 @@ _tool_output · [OSV.dev GHSA-7grf-83vw-6f5x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06311 — @openzeppelin/contracts 3.4.0 затронут GHSA-mx2q-35m2-x2rh (CVE-2023-30541)
+### QSI-2026-12122 — @openzeppelin/contracts 3.4.0 затронут GHSA-mx2q-35m2-x2rh (CVE-2023-30541)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/@openzeppelin/contracts@3.4.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 46.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-mx2q-35m2-x2rh (CVE-2023-30541) для пакета npm @openzeppelin/contracts версии 3.4.0: OpenZeppelin Contracts TransparentUpgradeableProxy clashing selector calls may not be delegated. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1178,14 +1217,14 @@ _tool_output · [OSV.dev GHSA-mx2q-35m2-x2rh](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06312 — openzeppelin-solidity 2.0.0 затронут GHSA-7grf-83vw-6f5x (CVE-2022-35915)
+### QSI-2026-12123 — openzeppelin-solidity 2.0.0 затронут GHSA-7grf-83vw-6f5x (CVE-2022-35915)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/openzeppelin-solidity@2.0.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 46.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 44.2 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-7grf-83vw-6f5x (CVE-2022-35915) для пакета npm openzeppelin-solidity версии 2.0.0: OpenZeppelin Contracts ERC165Checker unbounded gas consumption. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1212,14 +1251,14 @@ _tool_output · [OSV.dev GHSA-7grf-83vw-6f5x](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06313 — setuptools 78.1.1 затронут GHSA-h35f-9h28-mq5c (CVE-2026-59890, PYSEC-2026-3447)
+### QSI-2026-12124 — setuptools 78.1.1 затронут GHSA-h35f-9h28-mq5c (CVE-2026-59890, PYSEC-2026-3447)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:PyPI/setuptools@78.1.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 46.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 44.2 / 100
 - CVSS v3.1: 6.1 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N`)
 
 OSV.dev сообщает GHSA-h35f-9h28-mq5c (CVE-2026-59890, PYSEC-2026-3447) для пакета PyPI setuptools версии 78.1.1: setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD) on macOS APFS/HFS+. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1246,14 +1285,48 @@ _tool_output · [OSV.dev GHSA-h35f-9h28-mq5c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06282 — Solidity < 0.8 без встроенных проверок переполнения (0.4.24) в 7 файл(ах)
+### QSI-2026-12150 — glob 10.4.5 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:npm/glob@10.4.5`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 44.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 10.4.5: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-3g3m-2fjr-6pw4
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4) · line 6758 · SHA-256 f6f138cb20ee17804eb66f416061f4f1a631a8981af700b5b196d2a8fc9c3726_
+
+```
+{"id": "GHSA-3g3m-2fjr-6pw4", "aliases": ["CVE-2026-118773"], "modified": "2026-10-30T23:15:04.503965732Z", "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (14.0.2).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-12092 — Solidity < 0.8 без встроенных проверок переполнения (0.4.24) в 7 файл(ах)
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `solidity:compiler:0.4.24`
 - Источник данных: contracts/0.4.24/lib/StakeLimitUtils.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 pragma 0.4.24 в 7 файл(ах), впервые в contracts/0.4.24/lib/StakeLimitUtils.sol:5; использование SafeMath: no. При SafeMath серьёзность снижена до низкой: проверки есть в коде. (см. SWC-101)
@@ -1344,14 +1417,14 @@ _file_excerpt · [contracts/0.4.24/utils/Versioned.sol](https://github.com/lidof
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06285 — Solidity < 0.8 без встроенных проверок переполнения (0.6.11) в 1 файл(ах)
+### QSI-2026-12095 — Solidity < 0.8 без встроенных проверок переполнения (0.6.11) в 1 файл(ах)
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `solidity:compiler:0.6.11`
 - Источник данных: contracts/0.6.11/deposit_contract.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 pragma 0.6.11 в 1 файл(ах), впервые в contracts/0.6.11/deposit_contract.sol:12; использование SafeMath: no. При SafeMath серьёзность снижена до низкой: проверки есть в коде. (см. SWC-101)
@@ -1382,14 +1455,14 @@ _file_excerpt · [contracts/0.6.11/deposit_contract.sol](https://github.com/lido
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06286 — Solidity < 0.8 без встроенных проверок переполнения (0.6.12) в 1 файл(ах)
+### QSI-2026-12096 — Solidity < 0.8 без встроенных проверок переполнения (0.6.12) в 1 файл(ах)
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `solidity:compiler:0.6.12`
 - Источник данных: contracts/0.6.12/interfaces/IStETH.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 pragma 0.6.12 в 1 файл(ах), впервые в contracts/0.6.12/interfaces/IStETH.sol:5; использование SafeMath: no. При SafeMath серьёзность снижена до низкой: проверки есть в коде. (см. SWC-101)
@@ -1420,14 +1493,14 @@ _file_excerpt · [contracts/0.6.12/interfaces/IStETH.sol](https://github.com/lid
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06300 — Прямое использование ecrecover в contracts/common/lib/ECDSA.sol
+### QSI-2026-12110 — Прямое использование ecrecover в contracts/common/lib/ECDSA.sol
 
 - Серьёзность: **Средняя** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:contracts/common/lib/ECDSA.sol`
 - Источник данных: contracts/common/lib/ECDSA.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 43.0 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 43.6 / 100
 - CVSS v3.1: неприменимо
 
 ecrecover в строка 40. (см. SWC-117/SWC-121)
@@ -1458,14 +1531,14 @@ _file_excerpt · [contracts/common/lib/ECDSA.sol](https://github.com/lidofinance
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06299 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
+### QSI-2026-12109 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: contracts/common/lib/ECDSA.sol
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 39.6 / 100
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
 2 упоминаний ECDSA в 2 файл(ах), например contracts/common/lib/ECDSA.sol:40. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
@@ -1504,14 +1577,14 @@ _file_excerpt · [lib/eips/eip712.ts](https://github.com/lidofinance/core/blob/2
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06305 — Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))
+### QSI-2026-12115 — Квантово-уязвимый ECDSA: роль не определена (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: lib/ec.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.2 / 100
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
 1 упоминаний ECDSA в 1 файл(ах), например lib/ec.ts:10. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
@@ -1540,14 +1613,14 @@ _file_excerpt · [lib/ec.ts](https://github.com/lidofinance/core/blob/2bd532298d
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06306 — Квантово-уязвимый BLS12-381: роль не определена (2 файл(ов))
+### QSI-2026-12116 — Квантово-уязвимый BLS12-381: роль не определена (2 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:BLS12-381:general`
 - Источник данных: lib/pdg.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.2 / 100
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
 4 упоминаний BLS12-381 в 2 файл(ах), например lib/pdg.ts:8. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
@@ -1600,14 +1673,14 @@ _file_excerpt · [lib/protocol/helpers/vaults.ts](https://github.com/lidofinance
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06287 — Криптография на спариваниях в контракте: BLS12-381 (contracts/0.8.25/CLValidatorVerifier.sol)
+### QSI-2026-12097 — Криптография на спариваниях в контракте: BLS12-381 (contracts/0.8.25/CLValidatorVerifier.sol)
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:contracts/0.8.25/CLValidatorVerifier.sol`
 - Источник данных: contracts/0.8.25/CLValidatorVerifier.sol
 - Метод обнаружения: Сопоставление шаблонов реестра с учётом комментариев.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.7 / 100
 - CVSS v3.1: неприменимо
 
 contracts/0.8.25/CLValidatorVerifier.sol использует BLS12-381 (впервые в строка 8): эллиптические кривые со спариванием (прекомпилы alt_bn128 0x06–0x08 или BLS12-381 0x0b–0x11) и/или верификатор доказательств на спариваниях.
@@ -1638,14 +1711,14 @@ _file_excerpt · [contracts/0.8.25/CLValidatorVerifier.sol](https://github.com/l
 
 **Повторная проверка.** Повторите аудит после обновления верификатора.
 
-### QSI-2026-06298 — Криптография на спариваниях в контракте: BLS12-381 (contracts/common/lib/BLS.sol)
+### QSI-2026-12108 — Криптография на спариваниях в контракте: BLS12-381 (contracts/common/lib/BLS.sol)
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `contract:contracts/common/lib/BLS.sol`
 - Источник данных: contracts/common/lib/BLS.sol
 - Метод обнаружения: Сопоставление шаблонов реестра с учётом комментариев.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.7 / 100
 - CVSS v3.1: неприменимо
 
 contracts/common/lib/BLS.sol использует BLS12-381 (впервые в строка 17): эллиптические кривые со спариванием (прекомпилы alt_bn128 0x06–0x08 или BLS12-381 0x0b–0x11) и/или верификатор доказательств на спариваниях.
@@ -1676,14 +1749,14 @@ _file_excerpt · [contracts/common/lib/BLS.sol](https://github.com/lidofinance/c
 
 **Повторная проверка.** Повторите аудит после обновления верификатора.
 
-### QSI-2026-06315 — @babel/runtime 7.26.0 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
+### QSI-2026-12126 — @babel/runtime 7.26.0 затронут GHSA-968p-4wvh-cqc8 (CVE-2025-27789)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@babel/runtime@7.26.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.2 (`CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789) для пакета npm @babel/runtime версии 7.26.0: Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1710,14 +1783,14 @@ _tool_output · [OSV.dev GHSA-968p-4wvh-cqc8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06318 — bn.js 4.12.1 затронут GHSA-378v-28hj-76wf (CVE-2026-2739)
+### QSI-2026-12129 — bn.js 4.12.1 затронут GHSA-378v-28hj-76wf (CVE-2026-2739)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/bn.js@4.12.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-378v-28hj-76wf (CVE-2026-2739) для пакета npm bn.js версии 4.12.1: bn.js affected by an infinite loop. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1744,14 +1817,14 @@ _tool_output · [OSV.dev GHSA-378v-28hj-76wf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06319 — bn.js 5.2.1 затронут GHSA-378v-28hj-76wf (CVE-2026-2739)
+### QSI-2026-12130 — bn.js 5.2.1 затронут GHSA-378v-28hj-76wf (CVE-2026-2739)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/bn.js@5.2.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-378v-28hj-76wf (CVE-2026-2739) для пакета npm bn.js версии 5.2.1: bn.js affected by an infinite loop. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1778,14 +1851,14 @@ _tool_output · [OSV.dev GHSA-378v-28hj-76wf](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06320 — brace-expansion 2.0.1 затронут GHSA-3jxr-9vmj-r5cp (CVE-2026-13149)
+### QSI-2026-12131 — brace-expansion 2.0.1 затронут GHSA-3jxr-9vmj-r5cp (CVE-2026-13149)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-3jxr-9vmj-r5cp (CVE-2026-13149) для пакета npm brace-expansion версии 2.0.1: brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1812,14 +1885,14 @@ _tool_output · [OSV.dev GHSA-3jxr-9vmj-r5cp](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06322 — brace-expansion 2.0.1 затронут GHSA-f886-m6hf-6m8v (CVE-2026-33750)
+### QSI-2026-12133 — brace-expansion 2.0.1 затронут GHSA-f886-m6hf-6m8v (CVE-2026-33750)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-f886-m6hf-6m8v (CVE-2026-33750) для пакета npm brace-expansion версии 2.0.1: brace-expansion: Zero-step sequence causes process hang and memory exhaustion. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1846,14 +1919,14 @@ _tool_output · [OSV.dev GHSA-f886-m6hf-6m8v](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06324 — brace-expansion 2.0.1 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)
+### QSI-2026-12135 — brace-expansion 2.0.1 затронут GHSA-q2hr-2g5m-vwhr (CVE-2026-102277)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277) для пакета npm brace-expansion версии 2.0.1: brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1880,14 +1953,14 @@ _tool_output · [OSV.dev GHSA-q2hr-2g5m-vwhr](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06336 — elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)
+### QSI-2026-12147 — elliptic 6.6.1 затронут GHSA-848j-6mx2-7j84 (CVE-2025-14505)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/elliptic@6.6.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.6 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L`)
 
 OSV.dev сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505) для пакета npm elliptic версии 6.6.1: Elliptic Uses a Cryptographic Primitive with a Risky Implementation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1914,14 +1987,14 @@ _tool_output · [OSV.dev GHSA-848j-6mx2-7j84](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06340 — ip-address 9.0.5 затронут GHSA-h3mg-xc3c-68pw (CVE-2026-101911)
+### QSI-2026-12152 — ip-address 9.0.5 затронут GHSA-h3mg-xc3c-68pw (CVE-2026-101911)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip-address@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-h3mg-xc3c-68pw (CVE-2026-101911) для пакета npm ip-address версии 9.0.5: ip-address: Address6 builds a parse diagnostic proportional to the input with no length bound, allowing a single long string to stall or crash the process. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1948,14 +2021,14 @@ _tool_output · [OSV.dev GHSA-h3mg-xc3c-68pw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06341 — ip-address 9.0.5 затронут GHSA-j6r3-76f7-8jcv (CVE-2026-101912)
+### QSI-2026-12153 — ip-address 9.0.5 затронут GHSA-j6r3-76f7-8jcv (CVE-2026-101912)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip-address@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-j6r3-76f7-8jcv (CVE-2026-101912) для пакета npm ip-address версии 9.0.5: ip-address: isInSubnet() and isHostInSubnet() compare addresses of different families as if they shared an address space, allowing an allowlist check to admit an address outside its range. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -1982,14 +2055,14 @@ _tool_output · [OSV.dev GHSA-j6r3-76f7-8jcv](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06343 — ip-address 9.0.5 затронут GHSA-rpw4-54j3-4h4q (CVE-2026-101913)
+### QSI-2026-12155 — ip-address 9.0.5 затронут GHSA-rpw4-54j3-4h4q (CVE-2026-101913)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip-address@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-rpw4-54j3-4h4q (CVE-2026-101913) для пакета npm ip-address версии 9.0.5: ip-address: Address6.isLinkLocal() recognizes fe80::/64 rather than fe80::/10, allowing SSRF and trust-boundary bypass to on-link hosts. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -2016,14 +2089,14 @@ _tool_output · [OSV.dev GHSA-rpw4-54j3-4h4q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06344 — ip-address 9.0.5 затронут GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997)
+### QSI-2026-12156 — ip-address 9.0.5 затронут GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip-address@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997) для пакета npm ip-address версии 9.0.5: ip-address: Address6 matches a zone identifier in quadratic time ahead of its length limit, allowing a single long string to stall the process. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -2050,14 +2123,14 @@ _tool_output · [OSV.dev GHSA-rxp7-6hxx-x8q5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06345 — ip-address 9.0.5 затронут GHSA-v2v4-37r5-5v8g (CVE-2026-42338)
+### QSI-2026-12157 — ip-address 9.0.5 затронут GHSA-v2v4-37r5-5v8g (CVE-2026-42338)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/ip-address@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-v2v4-37r5-5v8g (CVE-2026-42338) для пакета npm ip-address версии 9.0.5: ip-address has XSS in Address6 HTML-emitting methods. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -2084,51 +2157,17 @@ _tool_output · [OSV.dev GHSA-v2v4-37r5-5v8g](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06347 — lodash 4.17.21 затронут GHSA-f23m-r3pf-42rh (CVE-2026-2950)
+### QSI-2026-12160 — lodash 4.17.21 затронут GHSA-xxjr-mmjv-4gpg (CVE-2025-13465)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/lodash@4.17.21`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L`)
 
-OSV.dev сообщает GHSA-f23m-r3pf-42rh (CVE-2026-2950) для пакета npm lodash версии 4.17.21: lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
-
-**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
-
-**Шаги воспроизведения.**
-
-```
-curl -s https://api.osv.dev/v1/vulns/GHSA-f23m-r3pf-42rh
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev GHSA-f23m-r3pf-42rh](https://osv.dev/vulnerability/GHSA-f23m-r3pf-42rh) · line 8713 · SHA-256 f829d185af0521d1d9cdfb871e40105d15b0e8c3935c5f1c334af62ee9969ac6_
-
-```
-{"id": "GHSA-f23m-r3pf-42rh", "aliases": ["CVE-2026-2950"], "modified": "2026-10-17T02:56:13.084362346Z", "summary": "lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"}], "declared_in_manifest": false}
-```
-
-**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
-
-**Рекомендация.** Обновите до исправленной версии (4.18.0).
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-06349 — lodash 4.17.21 затронут GHSA-xxjr-mmjv-4gpg (CVE-2025-13465)
-
-- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
-- Затронутый актив: `dependency:npm/lodash@4.17.21`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 34.7 / 100
-- CVSS v3.1: 6.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L`)
-
-OSV.dev сообщает GHSA-xxjr-mmjv-4gpg (CVE-2025-13465) для пакета npm lodash версии 4.17.21: Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-xxjr-mmjv-4gpg (CVE-2025-13465) для пакета npm lodash версии 4.17.21: Lodash has Prototype Pollution Vulnerability in `_.unset`, `_.omit`, and `_.pullAt` functions. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
@@ -2140,10 +2179,10 @@ curl -s https://api.osv.dev/v1/vulns/GHSA-xxjr-mmjv-4gpg
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev GHSA-xxjr-mmjv-4gpg](https://osv.dev/vulnerability/GHSA-xxjr-mmjv-4gpg) · line 8713 · SHA-256 6f467919d9390f8e5f27ab05d05afeeb4c85df7ad2f81f04c1087e2ce75e96d7_
+_tool_output · [OSV.dev GHSA-xxjr-mmjv-4gpg](https://osv.dev/vulnerability/GHSA-xxjr-mmjv-4gpg) · line 8713 · SHA-256 0a309c46d2e6440809031e39932eac21955b978adfa5fca97e2f16275243ed7c_
 
 ```
-{"id": "GHSA-xxjr-mmjv-4gpg", "aliases": ["CVE-2025-13465"], "modified": "2026-10-17T02:55:54.229635593Z", "summary": "Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:L/SC:H/SI:H/SA:H/E:P"}], "declared_in_manifest": false}
+{"id": "GHSA-xxjr-mmjv-4gpg", "aliases": ["CVE-2025-13465"], "modified": "2026-11-04T03:15:10.832238351Z", "summary": "Lodash has Prototype Pollution Vulnerability in `_.unset`, `_.omit`, and `_.pullAt` functions", "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"}, {"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:L/SC:H/SI:H/SA:H/E:P"}], "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
@@ -2152,48 +2191,48 @@ _tool_output · [OSV.dev GHSA-xxjr-mmjv-4gpg](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06314 — setuptools 78.1.1 затронут GHSA-xmj3-9gf7-h52w
+### QSI-2026-12164 — minimatch 9.0.5 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
 
-- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
-- Затронутый актив: `dependency:PyPI/setuptools@78.1.1`
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:npm/minimatch@9.0.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 41.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает GHSA-xmj3-9gf7-h52w для пакета PyPI setuptools версии 78.1.1: setuptools: Windows path escape via namespace_packages.txt during legacy wheel installation  Description. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 9.0.5: minimatch has potential denial of service via globparts amplification. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
 
 **Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
 
 **Шаги воспроизведения.**
 
 ```
-curl -s https://api.osv.dev/v1/vulns/GHSA-xmj3-9gf7-h52w
+curl -s https://api.osv.dev/v1/vulns/GHSA-g3hv-75wg-m249
 ```
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev GHSA-xmj3-9gf7-h52w](https://osv.dev/vulnerability/GHSA-xmj3-9gf7-h52w) · manifest · SHA-256 44a6682e9f91141fddf72661e8dee5d4e7d036a4cef5a380ef28d84b2f40c18f_
+_tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249) · line 9036 · SHA-256 3a2de0ffc2f9af01774aed03eec898dd2779c85ad398dc716c8b11637e9de14c_
 
 ```
-{"id": "GHSA-xmj3-9gf7-h52w", "aliases": [], "modified": "2026-10-23T22:00:03.739009766Z", "summary": "setuptools: Windows path escape via namespace_packages.txt during legacy wheel installation  Description", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:L/UI:A/VC:N/VI:L/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+{"id": "GHSA-g3hv-75wg-m249", "aliases": ["CVE-2026-118764"], "modified": "2026-11-04T17:01:25.850114200Z", "summary": "minimatch has potential denial of service via globparts amplification", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
 ```
 
 **Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
 
-**Рекомендация.** Обновите до исправленной версии (84.1.0).
+**Рекомендация.** Обновите до исправленной версии (11.0.1).
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06280 — Solidity < 0.8 без встроенных проверок переполнения (0.4.24) в 3 файл(ах)
+### QSI-2026-12090 — Solidity < 0.8 без встроенных проверок переполнения (0.4.24) в 3 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Потенциальный криптографический риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `solidity:compiler:0.4.24`
 - Источник данных: contracts/0.4.24/Lido.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.8 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 39.3 / 100
 - CVSS v3.1: неприменимо
 
 pragma 0.4.24 в 3 файл(ах), впервые в contracts/0.4.24/Lido.sol:5; использование SafeMath: yes. При SafeMath серьёзность снижена до низкой: проверки есть в коде. (см. SWC-101)
@@ -2244,14 +2283,48 @@ _file_excerpt · [contracts/0.4.24/nos/NodeOperatorsRegistry.sol](https://github
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06288 — Плавающая версия компилятора (>=0.8.0) в 4 файл(ах)
+### QSI-2026-12125 — setuptools 78.1.1 затронут GHSA-xmj3-9gf7-h52w
+
+- Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
+- Затронутый актив: `dependency:PyPI/setuptools@78.1.1`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 39.2 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-xmj3-9gf7-h52w для пакета PyPI setuptools версии 78.1.1: setuptools: Windows path escape via namespace_packages.txt during legacy wheel installation  Description. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-xmj3-9gf7-h52w
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-xmj3-9gf7-h52w](https://osv.dev/vulnerability/GHSA-xmj3-9gf7-h52w) · manifest · SHA-256 44a6682e9f91141fddf72661e8dee5d4e7d036a4cef5a380ef28d84b2f40c18f_
+
+```
+{"id": "GHSA-xmj3-9gf7-h52w", "aliases": [], "modified": "2026-10-23T22:00:03.739009766Z", "summary": "setuptools: Windows path escape via namespace_packages.txt during legacy wheel installation  Description", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:L/UI:A/VC:N/VI:L/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": true}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (84.1.0).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-12098 — Плавающая версия компилятора (>=0.8.0) в 4 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.0`
 - Источник данных: contracts/0.8.25/vaults/interfaces/IPinnedBeaconProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.8.0 в 4 файл(ах), впервые в contracts/0.8.25/vaults/interfaces/IPinnedBeaconProxy.sol:6. (см. SWC-103)
@@ -2312,14 +2385,14 @@ _file_excerpt · [contracts/common/interfaces/ILido.sol](https://github.com/lido
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06292 — Плавающая версия компилятора (>=0.4.24 <0.9.0) в 16 файл(ах)
+### QSI-2026-12102 — Плавающая версия компилятора (>=0.4.24 <0.9.0) в 16 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.4.24 <0.9.0`
 - Источник данных: contracts/common/interfaces/IBurner.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.4.24 <0.9.0 в 16 файл(ах), впервые в contracts/common/interfaces/IBurner.sol:6. (см. SWC-103)
@@ -2440,14 +2513,14 @@ _file_excerpt · [contracts/common/lib/MemUtils.sol](https://github.com/lidofina
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06293 — Плавающая версия компилятора (>=0.5.0) в 7 файл(ах)
+### QSI-2026-12103 — Плавающая версия компилятора (>=0.5.0) в 7 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.5.0`
 - Источник данных: contracts/common/interfaces/IDepositContract.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.5.0 в 7 файл(ах), впервые в contracts/common/interfaces/IDepositContract.sol:6. (см. SWC-103)
@@ -2538,14 +2611,14 @@ _file_excerpt · [contracts/common/interfaces/ReportValues.sol](https://github.c
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06294 — Плавающая версия компилятора (>=0.4.24) в 3 файл(ах)
+### QSI-2026-12104 — Плавающая версия компилятора (>=0.4.24) в 3 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.4.24`
 - Источник данных: contracts/common/interfaces/IOracleReportSanityChecker.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.4.24 в 3 файл(ах), впервые в contracts/common/interfaces/IOracleReportSanityChecker.sol:6. (см. SWC-103)
@@ -2596,14 +2669,14 @@ _file_excerpt · [contracts/common/interfaces/IVersioned.sol](https://github.com
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06295 — Плавающая версия компилятора (>=0.8.9 <0.9.0) в 4 файл(ах)
+### QSI-2026-12105 — Плавающая версия компилятора (>=0.8.9 <0.9.0) в 4 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.9 <0.9.0`
 - Источник данных: contracts/common/interfaces/IStakingModuleV2.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.8.9 <0.9.0 в 4 файл(ах), впервые в contracts/common/interfaces/IStakingModuleV2.sol:5. (см. SWC-103)
@@ -2664,14 +2737,14 @@ _file_excerpt · [contracts/common/lib/WithdrawalCredentials.sol](https://github
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06296 — Плавающая версия компилятора (>=0.8.9) в 2 файл(ах)
+### QSI-2026-12106 — Плавающая версия компилятора (>=0.8.9) в 2 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:>=0.8.9`
 - Источник данных: contracts/common/interfaces/TopUpWitness.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma >=0.8.9 в 2 файл(ах), впервые в contracts/common/interfaces/TopUpWitness.sol:5. (см. SWC-103)
@@ -2712,14 +2785,14 @@ _file_excerpt · [contracts/common/interfaces/ValidatorWitness.sol](https://gith
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06297 — Плавающая версия компилятора (^0.8.25) в 9 файл(ах)
+### QSI-2026-12107 — Плавающая версия компилятора (^0.8.25) в 9 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.25`
 - Источник данных: contracts/common/lib/BLS.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.25 в 9 файл(ах), впервые в contracts/common/lib/BLS.sol:5. (см. SWC-103)
@@ -2830,14 +2903,14 @@ _file_excerpt · [contracts/upgrade/utils/OmnibusBase.sol](https://github.com/li
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06301 — Плавающая версия компилятора (^0.8.9) в 2 файл(ах)
+### QSI-2026-12111 — Плавающая версия компилятора (^0.8.9) в 2 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.9`
 - Источник данных: contracts/common/lib/UnstructuredStorage.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.9 в 2 файл(ах), впервые в contracts/common/lib/UnstructuredStorage.sol:5. (см. SWC-103)
@@ -2878,14 +2951,14 @@ _file_excerpt · [contracts/common/utils/PausableUntil.sol](https://github.com/l
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06302 — Плавающая версия компилятора (^0.8.20) в 6 файл(ах)
+### QSI-2026-12112 — Плавающая версия компилятора (^0.8.20) в 6 файл(ах)
 
 - Серьёзность: **Низкая** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `solidity:pragma:^0.8.20`
 - Источник данных: contracts/openzeppelin/5.2/upgradeable/access/AccessControlUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.4 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 34.8 / 100
 - CVSS v3.1: неприменимо
 
 pragma ^0.8.20 в 6 файл(ах), впервые в contracts/openzeppelin/5.2/upgradeable/access/AccessControlUpgradeable.sol:4. (см. SWC-103)
@@ -2966,14 +3039,14 @@ _file_excerpt · [contracts/openzeppelin/5.2/upgradeable/utils/introspection/ERC
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06327 — brace-expansion 2.0.1 затронут GHSA-v6h2-p8h4-qcjw (CVE-2025-5889)
+### QSI-2026-12138 — brace-expansion 2.0.1 затронут GHSA-v6h2-p8h4-qcjw (CVE-2025-5889)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/brace-expansion@2.0.1`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 31.0 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.1 (`CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-v6h2-p8h4-qcjw (CVE-2025-5889) для пакета npm brace-expansion версии 2.0.1: brace-expansion Regular Expression Denial of Service vulnerability. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -3000,14 +3073,14 @@ _tool_output · [OSV.dev GHSA-v6h2-p8h4-qcjw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06284 — Привилегированные административные функции в contracts/0.4.24/template/LidoTemplate.sol: setOwner, deployLidoAPM, cancelAndTransferDomain, createStdAragonRepos, createRepos, newDAO, issueTokens, finalizeDAO
+### QSI-2026-12094 — Привилегированные административные функции в contracts/0.4.24/template/LidoTemplate.sol: setOwner, deployLidoAPM, cancelAndTransferDomain, createStdAragonRepos, createRepos, newDAO, issueTokens, finalizeDAO
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:contracts/0.4.24/template/LidoTemplate.sol`
 - Источник данных: contracts/0.4.24/template/LidoTemplate.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: setOwner, deployLidoAPM, cancelAndTransferDomain, createStdAragonRepos, createRepos, newDAO, issueTokens, finalizeDAO. (см. —)
@@ -3034,14 +3107,14 @@ Privileged functions: setOwner, deployLidoAPM, cancelAndTransferDomain, createSt
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06291 — Привилегированные административные функции в contracts/0.8.9/proxy/OssifiableProxy.sol: proxy__ossify, proxy__changeAdmin, proxy__upgradeTo, proxy__upgradeToAndCall
+### QSI-2026-12101 — Привилегированные административные функции в contracts/0.8.9/proxy/OssifiableProxy.sol: proxy__ossify, proxy__changeAdmin, proxy__upgradeTo, proxy__upgradeToAndCall
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:contracts/0.8.9/proxy/OssifiableProxy.sol`
 - Источник данных: contracts/0.8.9/proxy/OssifiableProxy.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: proxy__ossify, proxy__changeAdmin, proxy__upgradeTo, proxy__upgradeToAndCall. (см. —)
@@ -3068,14 +3141,14 @@ Privileged functions: proxy__ossify, proxy__changeAdmin, proxy__upgradeTo, proxy
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06303 — Привилегированные административные функции в contracts/openzeppelin/5.2/upgradeable/access/Ownable2StepUpgradeable.sol: transferOwnership
+### QSI-2026-12113 — Привилегированные административные функции в contracts/openzeppelin/5.2/upgradeable/access/Ownable2StepUpgradeable.sol: transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:contracts/openzeppelin/5.2/upgradeable/access/Ownable2StepUpgradeable.sol`
 - Источник данных: contracts/openzeppelin/5.2/upgradeable/access/Ownable2StepUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: transferOwnership. (см. —)
@@ -3102,14 +3175,14 @@ Privileged functions: transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06304 — Привилегированные административные функции в contracts/openzeppelin/5.2/upgradeable/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
+### QSI-2026-12114 — Привилегированные административные функции в contracts/openzeppelin/5.2/upgradeable/access/OwnableUpgradeable.sol: renounceOwnership, transferOwnership
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Высокая
 - Затронутый актив: `contract:contracts/openzeppelin/5.2/upgradeable/access/OwnableUpgradeable.sol`
 - Источник данных: contracts/openzeppelin/5.2/upgradeable/access/OwnableUpgradeable.sol
 - Метод обнаружения: Анализ шаблонов исходного кода Solidity.
-- Анализатор: solidity 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 38.5 / 100
+- Анализатор: solidity 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 37.0 / 100
 - CVSS v3.1: неприменимо
 
 Функции, защищённые модификаторами владельца/ролей: renounceOwnership, transferOwnership. (см. —)
@@ -3136,14 +3209,67 @@ Privileged functions: renounceOwnership, transferOwnership
 
 **Повторная проверка.** Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.
 
-### QSI-2026-06354 — 13 бюллетеней в 4 пакет(ах) PyPI, нужных только для разработки или сборки
+### QSI-2026-12166 — 63 бюллетеней в 20 пакет(ах) npm, нужных только для разработки или сборки
+
+- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `dependencies:npm:non-runtime`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 15.5 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает 63 бюллетеней (30 с оценкой high или critical) для 20 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package.json, yarn.lock): например, @eslint/plugin-kit@0.3.1 [dev]: GHSA-xffm-g5w8-qvg7; @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+
+**Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
+
+**Шаги воспроизведения.**
+
+```
+Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в package.json, yarn.lock.
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev (npm)](https://osv.dev/) · package.json · SHA-256 dfa24e38058945b8776c561b081ad41930469e5f61bef29d20191e7177eba746_
+
+```
+@eslint/plugin-kit@0.3.1 [dev]: GHSA-xffm-g5w8-qvg7
+@fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx
+@humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g
+@isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2
+adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85
+ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6
+axios@1.17.0 [dev]: GHSA-3pq3-5fj3-cg6v, GHSA-42h9-826w-cgv3, GHSA-44g4-m2mj-wpvx, GHSA-4hqw-qxg8-jxx2, GHSA-542g-h47m-68v8, GHSA-7q8q-rj6j-mhjq, GHSA-9fr6-4gfg-395g, GHSA-c29m-xwm3-cm6r, GHSA-f4gw-2p7v-4548, GHSA-gcfj-64vw-6mp9, GHSA-hcpx-6fm6-wx23, GHSA-j8rh-479h-cp32, GHSA-jqh4-m9w3-8hp9, GHSA-m8m8-qj5v-23w3, GHSA-mghh-pgcx-3jjj, GHSA-mmx7-hfxf-jppx, GHSA-mwf2-3pr3-8698, GHSA-pmv8-rq9r-6j72, GHSA-r4gj-5m52-g5wh, GHSA-vh66-26gq-q6x8
+bn.js@4.11.6 [dev]: GHSA-378v-28hj-76wf
+cookie@0.4.2 [dev]: GHSA-pxg6-pf52-xh8x
+diff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx
+diff@5.2.0 [dev]: GHSA-73rr-hh4g-fpgx
+fast-uri@3.1.8 [dev]: GHSA-333x-w4r6-6crp, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h
+follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-mrwp-f3q8-3g9p, GHSA-q3jh-wrc6-jgq8
+form-data@4.0.5 [dev]: GHSA-hmw2-7cc7-3qxx
+glob@11.1.0 [dev]: GHSA-3g3m-2fjr-6pw4
+handlebars@4.7.9 [dev]: GHSA-8r5x-fm3f-whwj, GHSA-p8wg-vrv2-v86f, GHSA-xw65-4hp5-5hc7
+immutable@4.3.8 [dev]: GHSA-v56q-mh7h-f735, GHSA-xvcm-6775-5m9r
+js-yaml@4.1.0 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68, GHSA-mh29-5h37-fv8m
+minimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj, GHSA-g3hv-75wg-m249
+minimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
+```
+
+**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
+
+**Рекомендация.** Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-12167 — 13 бюллетеней в 4 пакет(ах) PyPI, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:PyPI:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 17.1 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает 13 бюллетеней (7 с оценкой high или critical) для 4 пакет(ов) PyPI, которые подтягивают только инструменты разработки или сборки (poetry.lock): например, aiohttp@3.14.3 [dev]: GHSA-2g87-pp6c-29x5, GHSA-494j-54xm-rwp3, GHSA-5wr8-gcqf-gqf3, GHSA-6cjc-53gc-5rqm, GHSA-9xw5-w5jj-pvcg, GHSA-f9xw-jh8m-3mwq, GHSA-gx76-c99x-2c96, GHSA-pqxq-w44r-73xw; certifi@2024.8.30 [dev]: GHSA-6q48-6c7w-9gw2; urllib3@2.7.0 [dev]: GHSA-8988-9cw3-xx77, GHSA-gh4c-6fx4-qh6g, GHSA-vxq7-64xx-v4gw; web3@6.20.3 [dev]: GHSA-5hr4-253g-cpx2. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
@@ -3173,66 +3299,14 @@ web3@6.20.3 [dev]: GHSA-5hr4-253g-cpx2
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-06355 — 60 бюллетеней в 19 пакет(ах) npm, нужных только для разработки или сборки
-
-- Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `dependencies:npm:non-runtime`
-- Источник данных: OSV.dev
-- Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 17.1 / 100
-- CVSS v3.1: неприменимо
-
-OSV.dev сообщает 60 бюллетеней (30 с оценкой high или critical) для 19 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (yarn.lock): например, @eslint/plugin-kit@0.3.1 [dev]: GHSA-xffm-g5w8-qvg7; @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
-
-**Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
-
-**Шаги воспроизведения.**
-
-```
-Найдите пакеты из доказательства на https://osv.dev и проверьте их область применения в yarn.lock.
-```
-
-**Подтверждающие доказательства.**
-
-_tool_output · [OSV.dev (npm)](https://osv.dev/) · yarn.lock · SHA-256 942cac280c5d4ce8c339d7bf24bf290ad9752d0a0c30f3589569e182a35ccccd_
-
-```
-@eslint/plugin-kit@0.3.1 [dev]: GHSA-xffm-g5w8-qvg7
-@fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx
-@humanfs/node@0.16.6 [dev]: GHSA-p498-v437-472g
-@isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2
-adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85
-ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6
-axios@1.17.0 [dev]: GHSA-3pq3-5fj3-cg6v, GHSA-42h9-826w-cgv3, GHSA-44g4-m2mj-wpvx, GHSA-4hqw-qxg8-jxx2, GHSA-542g-h47m-68v8, GHSA-7q8q-rj6j-mhjq, GHSA-9fr6-4gfg-395g, GHSA-c29m-xwm3-cm6r, GHSA-f4gw-2p7v-4548, GHSA-gcfj-64vw-6mp9, GHSA-hcpx-6fm6-wx23, GHSA-j8rh-479h-cp32, GHSA-jqh4-m9w3-8hp9, GHSA-m8m8-qj5v-23w3, GHSA-mghh-pgcx-3jjj, GHSA-mmx7-hfxf-jppx, GHSA-mwf2-3pr3-8698, GHSA-pmv8-rq9r-6j72, GHSA-r4gj-5m52-g5wh, GHSA-vh66-26gq-q6x8
-bn.js@4.11.6 [dev]: GHSA-378v-28hj-76wf
-cookie@0.4.2 [dev]: GHSA-pxg6-pf52-xh8x
-diff@4.0.2 [dev]: GHSA-73rr-hh4g-fpgx
-diff@5.2.0 [dev]: GHSA-73rr-hh4g-fpgx
-fast-uri@3.1.8 [dev]: GHSA-333x-w4r6-6crp, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h
-follow-redirects@1.16.0 [dev]: GHSA-8r9p-f939-6h3c, GHSA-q3jh-wrc6-jgq8
-form-data@4.0.5 [dev]: GHSA-hmw2-7cc7-3qxx
-handlebars@4.7.9 [dev]: GHSA-8r5x-fm3f-whwj, GHSA-p8wg-vrv2-v86f, GHSA-xw65-4hp5-5hc7
-immutable@4.3.8 [dev]: GHSA-v56q-mh7h-f735, GHSA-xvcm-6775-5m9r
-js-yaml@4.1.0 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68, GHSA-mh29-5h37-fv8m
-minimatch@10.1.1 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
-minimatch@5.1.6 [dev]: GHSA-23c5-xmqv-rm74, GHSA-3ppc-4f35-3m26, GHSA-7r86-cg39-jmmj
-```
-
-**Ограничения проверки.** Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше.
-
-**Рекомендация.** Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты.
-
-**Повторная проверка.** Повторите сканирование зависимостей после обновления.
-
-### QSI-2026-06307 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-12118 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 05:26 UTC
-- Балл приоритета: 14.5 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:57 UTC
+- Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
 В 4 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, crypto-js, elliptic, ethers, pycryptodome, secp256k1, tweetnacl, web3), но ни одной из списка поддерживающих PQC.
@@ -3279,7 +3353,7 @@ Crypto libraries: @noble/curves, @noble/hashes, @noble/secp256k1, crypto-js, ell
 | 15 лет | 51-70% | вероятно |
 
 **Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
-_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Финансовая организация», а не данные клиента; с фактическими сроками клиента вывод может измениться._
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
@@ -3292,8 +3366,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-06299 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | BLS12-381 (2), ECDSA (1) | QSI-2026-06305, QSI-2026-06306 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (2) | QSI-2026-12109 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | BLS12-381 (2), ECDSA (1) | QSI-2026-12115, QSI-2026-12116 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -3324,108 +3398,110 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-06281 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06283 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06289 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P1 | QSI-2026-06290 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-06310 | Обновите @openzeppelin/contracts до исправленной версии (3.4.2, 4.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fg47-3c2x-m2wr (CVE-2021-39167). |
-| P2 | QSI-2026-06316 | Обновите babel-traverse до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-67hx-6x53-jw92 (CVE-2023-45133). |
-| P2 | QSI-2026-06334 | Обновите crypto-js до исправленной версии (4.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rg76-677x-56q9 (CVE-2026-71851). |
-| P2 | QSI-2026-06335 | Обновите crypto-js до исправленной версии (4.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwcq-pm8m-c4vf (CVE-2023-46233). |
-| P2 | QSI-2026-06337 | Обновите form-data до исправленной версии (2.5.4, 3.0.4, 4.0.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fjxv-7rqg-78g4 (CVE-2025-7783). |
-| P2 | QSI-2026-06309 | Обновите @openzeppelin/contracts до исправленной версии (4.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-88g8-f5mf-f5rj (CVE-2021-46320, CVE-2022-39384, GHSA-9c22-pwxw-p6hx). |
-| P2 | QSI-2026-06339 | Обновите glob до исправленной версии (10.5.0, 11.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5j98-mcp5-4vw2 (CVE-2025-64756). |
-| P2 | QSI-2026-06317 | Обновите base-x до исправленной версии (3.0.11, 4.0.1, 5.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xq7p-g2vc-g82p (CVE-2025-27611). |
-| P2 | QSI-2026-06321 | Обновите brace-expansion до исправленной версии (1.1.19, 2.1.5, 3.0.7, 5.0.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276). |
-| P2 | QSI-2026-06323 | Обновите brace-expansion до исправленной версии (1.1.17, 2.1.3, 3.0.3, 5.0.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mh99-v99m-4gvg (CVE-2026-14257). |
-| P2 | QSI-2026-06325 | Обновите brace-expansion до исправленной версии (1.1.20, 2.1.6, 3.0.8, 5.0.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278). |
-| P2 | QSI-2026-06326 | Обновите brace-expansion до исправленной версии (1.1.18, 2.1.4, 3.0.6, 5.0.9). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rgw5-rvv9-x895 (CVE-2026-69152). |
-| P2 | QSI-2026-06328 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088). |
-| P2 | QSI-2026-06329 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089). |
-| P2 | QSI-2026-06330 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088). |
-| P2 | QSI-2026-06331 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089). |
-| P2 | QSI-2026-06332 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088). |
-| P2 | QSI-2026-06333 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089). |
-| P2 | QSI-2026-06338 | Обновите form-data до исправленной версии (2.5.6, 3.0.5, 4.0.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hmw2-7cc7-3qxx (CVE-2026-12143). |
-| P2 | QSI-2026-06342 | Обновите ip-address до исправленной версии (10.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mwp4-54f8-5fhr (CVE-2026-69192). |
-| P2 | QSI-2026-06346 | Обновите json5 до исправленной версии (1.0.2, 2.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9c47-m6qq-7p4h (CVE-2022-46175). |
-| P2 | QSI-2026-06348 | Обновите lodash до исправленной версии (4.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r5fr-rjxr-66jc (CVE-2026-4800). |
-| P2 | QSI-2026-06350 | Обновите minimatch до исправленной версии (10.2.3, 3.1.4, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-23c5-xmqv-rm74 (CVE-2026-27904). |
-| P2 | QSI-2026-06351 | Обновите minimatch до исправленной версии (10.2.1, 3.1.3, 4.2.4, 5.1.7, 6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3ppc-4f35-3m26 (CVE-2026-26996). |
-| P2 | QSI-2026-06352 | Обновите minimatch до исправленной версии (10.2.3, 3.1.3, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7r86-cg39-jmmj (CVE-2026-27903). |
-| P2 | QSI-2026-06353 | Обновите node-fetch до исправленной версии (2.6.7, 3.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r683-j2x4-v87g (CVE-2022-0235). |
-| P2 | QSI-2026-06308 | Обновите @openzeppelin/contracts до исправленной версии (4.7.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7grf-83vw-6f5x (CVE-2022-35915). |
-| P2 | QSI-2026-06311 | Обновите @openzeppelin/contracts до исправленной версии (4.8.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mx2q-35m2-x2rh (CVE-2023-30541). |
-| P2 | QSI-2026-06312 | Обновите openzeppelin-solidity до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7grf-83vw-6f5x (CVE-2022-35915). |
-| P2 | QSI-2026-06313 | Обновите setuptools до исправленной версии (83.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h35f-9h28-mq5c (CVE-2026-59890, PYSEC-2026-3447). |
-| P2 | QSI-2026-06315 | Обновите @babel/runtime до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
-| P2 | QSI-2026-06318 | Обновите bn.js до исправленной версии (4.12.3, 5.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-378v-28hj-76wf (CVE-2026-2739). |
-| P2 | QSI-2026-06319 | Обновите bn.js до исправленной версии (4.12.3, 5.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-378v-28hj-76wf (CVE-2026-2739). |
-| P2 | QSI-2026-06320 | Обновите brace-expansion до исправленной версии (1.1.16, 2.1.2, 5.0.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3jxr-9vmj-r5cp (CVE-2026-13149). |
-| P2 | QSI-2026-06322 | Обновите brace-expansion до исправленной версии (1.1.13, 2.0.3, 3.0.2, 5.0.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f886-m6hf-6m8v (CVE-2026-33750). |
-| P2 | QSI-2026-06324 | Обновите brace-expansion до исправленной версии (1.1.21, 2.1.7, 3.0.9, 5.0.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277). |
-| P2 | QSI-2026-06336 | Обновите elliptic до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505). |
-| P2 | QSI-2026-06340 | Обновите ip-address до исправленной версии (10.7.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h3mg-xc3c-68pw (CVE-2026-101911). |
-| P2 | QSI-2026-06341 | Обновите ip-address до исправленной версии (10.7.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j6r3-76f7-8jcv (CVE-2026-101912). |
-| P2 | QSI-2026-06343 | Обновите ip-address до исправленной версии (10.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rpw4-54j3-4h4q (CVE-2026-101913). |
-| P2 | QSI-2026-06344 | Обновите ip-address до исправленной версии (10.7.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997). |
-| P2 | QSI-2026-06345 | Обновите ip-address до исправленной версии (10.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v2v4-37r5-5v8g (CVE-2026-42338). |
-| P2 | QSI-2026-06347 | Обновите lodash до исправленной версии (4.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f23m-r3pf-42rh (CVE-2026-2950). |
-| P2 | QSI-2026-06349 | Обновите lodash до исправленной версии (4.17.23). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xxjr-mmjv-4gpg (CVE-2025-13465). |
-| P2 | QSI-2026-06314 | Обновите setuptools до исправленной версии (84.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmj3-9gf7-h52w. |
-| P2 | QSI-2026-06327 | Обновите brace-expansion до исправленной версии (1.1.12, 2.0.2, 3.0.1, 4.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v6h2-p8h4-qcjw (CVE-2025-5889). |
+| P1 | QSI-2026-12117 | Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. | устранение первопричины | Повторно просканируйте код и проверьте места вызова из доказательства. |
+| P1 | QSI-2026-12091 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-12093 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-12099 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P1 | QSI-2026-12100 | Используйте OpenZeppelin Initializable (модификатор initializer) и отключите инициализаторы в конструкторе реализации. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-12121 | Обновите @openzeppelin/contracts до исправленной версии (3.4.2, 4.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fg47-3c2x-m2wr (CVE-2021-39167). |
+| P2 | QSI-2026-12127 | Обновите babel-traverse до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-67hx-6x53-jw92 (CVE-2023-45133). |
+| P2 | QSI-2026-12145 | Обновите crypto-js до исправленной версии (4.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rg76-677x-56q9 (CVE-2026-71851). |
+| P2 | QSI-2026-12146 | Обновите crypto-js до исправленной версии (4.2.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xwcq-pm8m-c4vf (CVE-2023-46233). |
+| P2 | QSI-2026-12148 | Обновите form-data до исправленной версии (2.5.4, 3.0.4, 4.0.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-fjxv-7rqg-78g4 (CVE-2025-7783). |
+| P2 | QSI-2026-12120 | Обновите @openzeppelin/contracts до исправленной версии (4.4.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-88g8-f5mf-f5rj (CVE-2021-46320, CVE-2022-39384, GHSA-9c22-pwxw-p6hx). |
+| P2 | QSI-2026-12151 | Обновите glob до исправленной версии (10.5.0, 11.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-5j98-mcp5-4vw2 (CVE-2025-64756). |
+| P2 | QSI-2026-12128 | Обновите base-x до исправленной версии (3.0.11, 4.0.1, 5.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xq7p-g2vc-g82p (CVE-2025-27611). |
+| P2 | QSI-2026-12132 | Обновите brace-expansion до исправленной версии (1.1.19, 2.1.5, 3.0.7, 5.0.10). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6j4f-fj2g-mc7p (CVE-2026-102276). |
+| P2 | QSI-2026-12134 | Обновите brace-expansion до исправленной версии (1.1.17, 2.1.3, 3.0.3, 5.0.8). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mh99-v99m-4gvg (CVE-2026-14257). |
+| P2 | QSI-2026-12136 | Обновите brace-expansion до исправленной версии (1.1.20, 2.1.6, 3.0.8, 5.0.11). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qhr7-859c-m2p7 (CVE-2026-102278). |
+| P2 | QSI-2026-12137 | Обновите brace-expansion до исправленной версии (1.1.18, 2.1.4, 3.0.6, 5.0.9). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rgw5-rvv9-x895 (CVE-2026-69152). |
+| P2 | QSI-2026-12139 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088). |
+| P2 | QSI-2026-12140 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089). |
+| P2 | QSI-2026-12141 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088). |
+| P2 | QSI-2026-12142 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089). |
+| P2 | QSI-2026-12143 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-73wf-gq98-2v4g (CVE-2026-73088). |
+| P2 | QSI-2026-12144 | Обновите browserslist до исправленной версии (4.28.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-c83g-rgw3-j3cx (CVE-2026-73089). |
+| P2 | QSI-2026-12149 | Обновите form-data до исправленной версии (2.5.6, 3.0.5, 4.0.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-hmw2-7cc7-3qxx (CVE-2026-12143). |
+| P2 | QSI-2026-12154 | Обновите ip-address до исправленной версии (10.3.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mwp4-54f8-5fhr (CVE-2026-69192). |
+| P2 | QSI-2026-12158 | Обновите json5 до исправленной версии (1.0.2, 2.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9c47-m6qq-7p4h (CVE-2022-46175). |
+| P2 | QSI-2026-12159 | Обновите lodash до исправленной версии (4.18.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r5fr-rjxr-66jc (CVE-2026-4800). |
+| P2 | QSI-2026-12161 | Обновите minimatch до исправленной версии (10.2.3, 3.1.4, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-23c5-xmqv-rm74 (CVE-2026-27904). |
+| P2 | QSI-2026-12162 | Обновите minimatch до исправленной версии (10.2.1, 3.1.3, 4.2.4, 5.1.7, 6.2.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3ppc-4f35-3m26 (CVE-2026-26996). |
+| P2 | QSI-2026-12163 | Обновите minimatch до исправленной версии (10.2.3, 3.1.3, 4.2.5, 5.1.8, 6.2.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7r86-cg39-jmmj (CVE-2026-27903). |
+| P2 | QSI-2026-12165 | Обновите node-fetch до исправленной версии (2.6.7, 3.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-r683-j2x4-v87g (CVE-2022-0235). |
+| P2 | QSI-2026-12119 | Обновите @openzeppelin/contracts до исправленной версии (4.7.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7grf-83vw-6f5x (CVE-2022-35915). |
+| P2 | QSI-2026-12122 | Обновите @openzeppelin/contracts до исправленной версии (4.8.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mx2q-35m2-x2rh (CVE-2023-30541). |
+| P2 | QSI-2026-12123 | Обновите openzeppelin-solidity до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-7grf-83vw-6f5x (CVE-2022-35915). |
+| P2 | QSI-2026-12124 | Обновите setuptools до исправленной версии (83.0.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h35f-9h28-mq5c (CVE-2026-59890, PYSEC-2026-3447). |
+| P2 | QSI-2026-12150 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-12126 | Обновите @babel/runtime до исправленной версии (7.26.10, 8.0.0-alpha.17). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-968p-4wvh-cqc8 (CVE-2025-27789). |
+| P2 | QSI-2026-12129 | Обновите bn.js до исправленной версии (4.12.3, 5.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-378v-28hj-76wf (CVE-2026-2739). |
+| P2 | QSI-2026-12130 | Обновите bn.js до исправленной версии (4.12.3, 5.2.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-378v-28hj-76wf (CVE-2026-2739). |
+| P2 | QSI-2026-12131 | Обновите brace-expansion до исправленной версии (1.1.16, 2.1.2, 5.0.7). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3jxr-9vmj-r5cp (CVE-2026-13149). |
+| P2 | QSI-2026-12133 | Обновите brace-expansion до исправленной версии (1.1.13, 2.0.3, 3.0.2, 5.0.5). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f886-m6hf-6m8v (CVE-2026-33750). |
+| P2 | QSI-2026-12135 | Обновите brace-expansion до исправленной версии (1.1.21, 2.1.7, 3.0.9, 5.0.12). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-q2hr-2g5m-vwhr (CVE-2026-102277). |
+| P2 | QSI-2026-12147 | Обновите elliptic до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-848j-6mx2-7j84 (CVE-2025-14505). |
+| P2 | QSI-2026-12152 | Обновите ip-address до исправленной версии (10.7.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-h3mg-xc3c-68pw (CVE-2026-101911). |
+| P2 | QSI-2026-12153 | Обновите ip-address до исправленной версии (10.7.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-j6r3-76f7-8jcv (CVE-2026-101912). |
+| P2 | QSI-2026-12155 | Обновите ip-address до исправленной версии (10.5.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rpw4-54j3-4h4q (CVE-2026-101913). |
+| P2 | QSI-2026-12156 | Обновите ip-address до исправленной версии (10.7.4). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-rxp7-6hxx-x8q5 (CVE-2026-111997). |
+| P2 | QSI-2026-12157 | Обновите ip-address до исправленной версии (10.1.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v2v4-37r5-5v8g (CVE-2026-42338). |
+| P2 | QSI-2026-12160 | Обновите lodash до исправленной версии (4.17.23). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xxjr-mmjv-4gpg (CVE-2025-13465). |
+| P2 | QSI-2026-12164 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-12125 | Обновите setuptools до исправленной версии (84.1.0). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xmj3-9gf7-h52w. |
+| P2 | QSI-2026-12138 | Обновите brace-expansion до исправленной версии (1.1.12, 2.0.2, 3.0.1, 4.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-v6h2-p8h4-qcjw (CVE-2025-5889). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-06282 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-06285 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-06286 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P2 | QSI-2026-06300 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-12092 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-12095 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-12096 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P2 | QSI-2026-12110 | Используйте OpenZeppelin ECDSA.recover с разделением доменов EIP-712 и nonce. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
 ### 90 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06299 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06305 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06306 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06287 | Внесите использования ? в contract:contracts/0.8.25/CLValidatorVerifier.sol в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06298 | Внесите использования ? в contract:contracts/common/lib/BLS.sol в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06280 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06288 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06292 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06293 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06294 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06295 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06296 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06297 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06301 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P3 | QSI-2026-06302 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06299 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06305 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06306 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-06287 | Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
-| P4 | QSI-2026-06298 | Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
-| P4 | QSI-2026-06284 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06291 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06303 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06304 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
-| P4 | QSI-2026-06354 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
-| P4 | QSI-2026-06355 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-12109 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12115 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12116 | Внесите использования BLS12-381 в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12097 | Внесите использования ? в contract:contracts/0.8.25/CLValidatorVerifier.sol в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12108 | Внесите использования ? в contract:contracts/common/lib/BLS.sol в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12090 | Перейдите на Solidity ≥ 0.8 или последовательно используйте SafeMath. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12098 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12102 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12103 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12104 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12105 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12106 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12107 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12111 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P3 | QSI-2026-12112 | Зафиксируйте версию компилятора, использованную при тестировании. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-12109 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12115 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12116 | Запланируйте миграцию BLS12-381 на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-12097 | Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-12108 | Запланируйте миграцию ? на ? (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ? или гибридной схемы. |
+| P4 | QSI-2026-12094 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-12101 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-12113 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-12114 | Используйте мультиподпись/таймлок для ролей администратора и документируйте их. | устранение первопричины | Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон. |
+| P4 | QSI-2026-12166 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-12167 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -3434,70 +3510,74 @@ _Действие: взламывает — алгоритм нужно заме
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
 3. C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <https://doi.org/10.22331/q-2021-04-15-433> (peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)
 4. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-5. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-6. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-7. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-8. EIP-197 — Precompiled contract for optimal ate pairing check on alt_bn128 (0x08) — Ethereum. <https://eips.ethereum.org/EIPS/eip-197> (final)
-9. EIP-2537 — Precompile for BLS12-381 curve operations (0x0b–0x11) — Ethereum. <https://eips.ethereum.org/EIPS/eip-2537> (final)
-10. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-11. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-12. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-13. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-14. J. Groth — On the Size of Pairing-based Non-interactive Arguments (EUROCRYPT 2016) — IACR. <https://eprint.iacr.org/2016/260> (peer-reviewed article)
-15. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-16. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-17. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-18. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-19. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
-20. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-21. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-22. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
-23. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-24. OSV advisory GHSA-23c5-xmqv-rm74 — OSV.dev. <https://osv.dev/vulnerability/GHSA-23c5-xmqv-rm74> (modified 2026-09-10T03:50:59.274637421Z)
-25. OSV advisory GHSA-378v-28hj-76wf — OSV.dev. <https://osv.dev/vulnerability/GHSA-378v-28hj-76wf> (modified 2026-09-10T03:50:33.815513385Z)
-26. OSV advisory GHSA-3jxr-9vmj-r5cp — OSV.dev. <https://osv.dev/vulnerability/GHSA-3jxr-9vmj-r5cp> (modified 2026-09-10T03:51:10.092354944Z)
-27. OSV advisory GHSA-3ppc-4f35-3m26 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3ppc-4f35-3m26> (modified 2026-09-10T03:50:33.812431744Z)
-28. OSV advisory GHSA-5j98-mcp5-4vw2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-5j98-mcp5-4vw2> (modified 2026-09-10T03:50:30.568830409Z)
-29. OSV advisory GHSA-67hx-6x53-jw92 — OSV.dev. <https://osv.dev/vulnerability/GHSA-67hx-6x53-jw92> (modified 2026-09-10T03:50:03.372029556Z)
-30. OSV advisory GHSA-6j4f-fj2g-mc7p — OSV.dev. <https://osv.dev/vulnerability/GHSA-6j4f-fj2g-mc7p> (modified 2026-09-30T00:00:03.836613572Z)
-31. OSV advisory GHSA-73wf-gq98-2v4g — OSV.dev. <https://osv.dev/vulnerability/GHSA-73wf-gq98-2v4g> (modified 2026-09-10T03:51:15.295037659Z)
-32. OSV advisory GHSA-7grf-83vw-6f5x — OSV.dev. <https://osv.dev/vulnerability/GHSA-7grf-83vw-6f5x> (modified 2023-11-08T04:09:52.370855Z)
-33. OSV advisory GHSA-7r86-cg39-jmmj — OSV.dev. <https://osv.dev/vulnerability/GHSA-7r86-cg39-jmmj> (modified 2026-09-10T03:50:34.376990726Z)
-34. OSV advisory GHSA-848j-6mx2-7j84 — OSV.dev. <https://osv.dev/vulnerability/GHSA-848j-6mx2-7j84> (modified 2026-09-10T03:50:32.794069999Z)
-35. OSV advisory GHSA-88g8-f5mf-f5rj — OSV.dev. <https://osv.dev/vulnerability/GHSA-88g8-f5mf-f5rj> (modified 2026-07-16T03:56:17.546633851Z)
-36. OSV advisory GHSA-968p-4wvh-cqc8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-968p-4wvh-cqc8> (modified 2026-09-10T03:50:22.971593530Z)
-37. OSV advisory GHSA-9c47-m6qq-7p4h — OSV.dev. <https://osv.dev/vulnerability/GHSA-9c47-m6qq-7p4h> (modified 2026-09-10T03:49:56.250129993Z)
-38. OSV advisory GHSA-c83g-rgw3-j3cx — OSV.dev. <https://osv.dev/vulnerability/GHSA-c83g-rgw3-j3cx> (modified 2026-09-10T03:50:54.622936829Z)
-39. OSV advisory GHSA-f23m-r3pf-42rh — OSV.dev. <https://osv.dev/vulnerability/GHSA-f23m-r3pf-42rh> (modified 2026-10-17T02:56:13.084362346Z)
-40. OSV advisory GHSA-f886-m6hf-6m8v — OSV.dev. <https://osv.dev/vulnerability/GHSA-f886-m6hf-6m8v> (modified 2026-09-10T03:51:00.342356761Z)
-41. OSV advisory GHSA-fg47-3c2x-m2wr — OSV.dev. <https://osv.dev/vulnerability/GHSA-fg47-3c2x-m2wr> (modified 2026-07-08T06:29:37.864167374Z)
-42. OSV advisory GHSA-fjxv-7rqg-78g4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-fjxv-7rqg-78g4> (modified 2026-09-10T03:50:57.924154051Z)
-43. OSV advisory GHSA-h35f-9h28-mq5c — OSV.dev. <https://osv.dev/vulnerability/GHSA-h35f-9h28-mq5c> (modified 2026-09-10T03:50:52.323347787Z)
-44. OSV advisory GHSA-h3mg-xc3c-68pw — OSV.dev. <https://osv.dev/vulnerability/GHSA-h3mg-xc3c-68pw> (modified 2026-09-30T00:00:04.407982988Z)
-45. OSV advisory GHSA-hmw2-7cc7-3qxx — OSV.dev. <https://osv.dev/vulnerability/GHSA-hmw2-7cc7-3qxx> (modified 2026-09-10T03:50:49.785679067Z)
-46. OSV advisory GHSA-j6r3-76f7-8jcv — OSV.dev. <https://osv.dev/vulnerability/GHSA-j6r3-76f7-8jcv> (modified 2026-09-30T00:00:03.843448355Z)
-47. OSV advisory GHSA-mh99-v99m-4gvg — OSV.dev. <https://osv.dev/vulnerability/GHSA-mh99-v99m-4gvg> (modified 2026-09-10T03:50:12.282849322Z)
-48. OSV advisory GHSA-mwp4-54f8-5fhr — OSV.dev. <https://osv.dev/vulnerability/GHSA-mwp4-54f8-5fhr> (modified 2026-09-10T03:51:14.478555296Z)
-49. OSV advisory GHSA-mx2q-35m2-x2rh — OSV.dev. <https://osv.dev/vulnerability/GHSA-mx2q-35m2-x2rh> (modified 2026-09-10T03:50:01.099654307Z)
-50. OSV advisory GHSA-q2hr-2g5m-vwhr — OSV.dev. <https://osv.dev/vulnerability/GHSA-q2hr-2g5m-vwhr> (modified 2026-09-30T00:00:03.849541183Z)
-51. OSV advisory GHSA-qhr7-859c-m2p7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qhr7-859c-m2p7> (modified 2026-09-30T00:00:04.402763332Z)
-52. OSV advisory GHSA-r5fr-rjxr-66jc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r5fr-rjxr-66jc> (modified 2026-10-17T02:56:15.633068434Z)
-53. OSV advisory GHSA-r683-j2x4-v87g — OSV.dev. <https://osv.dev/vulnerability/GHSA-r683-j2x4-v87g> (modified 2023-11-08T04:07:30.211593Z)
-54. OSV advisory GHSA-rg76-677x-56q9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-rg76-677x-56q9> (modified 2026-08-07T19:10:56.177489Z)
-55. OSV advisory GHSA-rgw5-rvv9-x895 — OSV.dev. <https://osv.dev/vulnerability/GHSA-rgw5-rvv9-x895> (modified 2026-09-10T03:51:14.535270857Z)
-56. OSV advisory GHSA-rpw4-54j3-4h4q — OSV.dev. <https://osv.dev/vulnerability/GHSA-rpw4-54j3-4h4q> (modified 2026-09-28T21:00:05.359993143Z)
-57. OSV advisory GHSA-rxp7-6hxx-x8q5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-rxp7-6hxx-x8q5> (modified 2026-10-22T16:30:30.129356757Z)
-58. OSV advisory GHSA-v2v4-37r5-5v8g — OSV.dev. <https://osv.dev/vulnerability/GHSA-v2v4-37r5-5v8g> (modified 2026-09-10T03:50:47.603301077Z)
-59. OSV advisory GHSA-v6h2-p8h4-qcjw — OSV.dev. <https://osv.dev/vulnerability/GHSA-v6h2-p8h4-qcjw> (modified 2026-09-10T03:50:25.501161917Z)
-60. OSV advisory GHSA-xmj3-9gf7-h52w — OSV.dev. <https://osv.dev/vulnerability/GHSA-xmj3-9gf7-h52w> (modified 2026-10-23T22:00:03.739009766Z)
-61. OSV advisory GHSA-xq7p-g2vc-g82p — OSV.dev. <https://osv.dev/vulnerability/GHSA-xq7p-g2vc-g82p> (modified 2025-05-01T13:30:57Z)
-62. OSV advisory GHSA-xwcq-pm8m-c4vf — OSV.dev. <https://osv.dev/vulnerability/GHSA-xwcq-pm8m-c4vf> (modified 2026-09-10T03:49:58.831533491Z)
-63. OSV advisory GHSA-xxjr-mmjv-4gpg — OSV.dev. <https://osv.dev/vulnerability/GHSA-xxjr-mmjv-4gpg> (modified 2026-10-17T02:55:54.229635593Z)
-64. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-65. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-66. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-67. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
-68. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
+5. CVE-2023-31290 — Trust Wallet Core: 32 bits of mnemonic entropy (mt19937 seeded with one 32-bit value) — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-31290> (published 2023-04-27; Trust Wallet Core before 3.1.1 (browser extension 0.0.172-0.0.182), exploited in the wild in December 2022 and March 2023: only about four billion possible mnemonics)
+6. CVE-2023-39910 — Libbitcoin Explorer 'bx seed' entropy (Milk Sad): mt19937 limits it to 32 bits — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-39910> (published 2023-08-09; Libbitcoin Explorer 3.0.0-3.6.0, exploited in the wild in 2023)
+7. CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) — MITRE. <https://cwe.mitre.org/data/definitions/338.html> (weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable)
+8. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+9. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+10. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+11. EIP-197 — Precompiled contract for optimal ate pairing check on alt_bn128 (0x08) — Ethereum. <https://eips.ethereum.org/EIPS/eip-197> (final)
+12. EIP-2537 — Precompile for BLS12-381 curve operations (0x0b–0x11) — Ethereum. <https://eips.ethereum.org/EIPS/eip-2537> (final)
+13. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+14. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+15. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+16. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+17. J. Groth — On the Size of Pairing-based Non-interactive Arguments (EUROCRYPT 2016) — IACR. <https://eprint.iacr.org/2016/260> (peer-reviewed article)
+18. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+19. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+20. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+21. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+22. M. Ekerå, J. Gärtner — A high-level comparison of state-of-the-art quantum algorithms for breaking asymmetric cryptography (arXiv:2405.14381) — arXiv. <https://arxiv.org/abs/2405.14381> (preprint (2024-05-23): Regev-style algorithms show no overall advantage yet for cryptographic RSA and finite-field sizes)
+23. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+24. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+25. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+26. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+27. OSV advisory GHSA-23c5-xmqv-rm74 — OSV.dev. <https://osv.dev/vulnerability/GHSA-23c5-xmqv-rm74> (modified 2026-09-10T03:50:59.274637421Z)
+28. OSV advisory GHSA-378v-28hj-76wf — OSV.dev. <https://osv.dev/vulnerability/GHSA-378v-28hj-76wf> (modified 2026-09-10T03:50:33.815513385Z)
+29. OSV advisory GHSA-3g3m-2fjr-6pw4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4> (modified 2026-10-30T23:15:04.503965732Z)
+30. OSV advisory GHSA-3jxr-9vmj-r5cp — OSV.dev. <https://osv.dev/vulnerability/GHSA-3jxr-9vmj-r5cp> (modified 2026-09-10T03:51:10.092354944Z)
+31. OSV advisory GHSA-3ppc-4f35-3m26 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3ppc-4f35-3m26> (modified 2026-09-10T03:50:33.812431744Z)
+32. OSV advisory GHSA-5j98-mcp5-4vw2 — OSV.dev. <https://osv.dev/vulnerability/GHSA-5j98-mcp5-4vw2> (modified 2026-09-10T03:50:30.568830409Z)
+33. OSV advisory GHSA-67hx-6x53-jw92 — OSV.dev. <https://osv.dev/vulnerability/GHSA-67hx-6x53-jw92> (modified 2026-09-10T03:50:03.372029556Z)
+34. OSV advisory GHSA-6j4f-fj2g-mc7p — OSV.dev. <https://osv.dev/vulnerability/GHSA-6j4f-fj2g-mc7p> (modified 2026-09-30T00:00:03.836613572Z)
+35. OSV advisory GHSA-73wf-gq98-2v4g — OSV.dev. <https://osv.dev/vulnerability/GHSA-73wf-gq98-2v4g> (modified 2026-09-10T03:51:15.295037659Z)
+36. OSV advisory GHSA-7grf-83vw-6f5x — OSV.dev. <https://osv.dev/vulnerability/GHSA-7grf-83vw-6f5x> (modified 2023-11-08T04:09:52.370855Z)
+37. OSV advisory GHSA-7r86-cg39-jmmj — OSV.dev. <https://osv.dev/vulnerability/GHSA-7r86-cg39-jmmj> (modified 2026-09-10T03:50:34.376990726Z)
+38. OSV advisory GHSA-848j-6mx2-7j84 — OSV.dev. <https://osv.dev/vulnerability/GHSA-848j-6mx2-7j84> (modified 2026-09-10T03:50:32.794069999Z)
+39. OSV advisory GHSA-88g8-f5mf-f5rj — OSV.dev. <https://osv.dev/vulnerability/GHSA-88g8-f5mf-f5rj> (modified 2026-07-16T03:56:17.546633851Z)
+40. OSV advisory GHSA-968p-4wvh-cqc8 — OSV.dev. <https://osv.dev/vulnerability/GHSA-968p-4wvh-cqc8> (modified 2026-09-10T03:50:22.971593530Z)
+41. OSV advisory GHSA-9c47-m6qq-7p4h — OSV.dev. <https://osv.dev/vulnerability/GHSA-9c47-m6qq-7p4h> (modified 2026-09-10T03:49:56.250129993Z)
+42. OSV advisory GHSA-c83g-rgw3-j3cx — OSV.dev. <https://osv.dev/vulnerability/GHSA-c83g-rgw3-j3cx> (modified 2026-09-10T03:50:54.622936829Z)
+43. OSV advisory GHSA-f886-m6hf-6m8v — OSV.dev. <https://osv.dev/vulnerability/GHSA-f886-m6hf-6m8v> (modified 2026-09-10T03:51:00.342356761Z)
+44. OSV advisory GHSA-fg47-3c2x-m2wr — OSV.dev. <https://osv.dev/vulnerability/GHSA-fg47-3c2x-m2wr> (modified 2026-07-08T06:29:37.864167374Z)
+45. OSV advisory GHSA-fjxv-7rqg-78g4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-fjxv-7rqg-78g4> (modified 2026-09-10T03:50:57.924154051Z)
+46. OSV advisory GHSA-g3hv-75wg-m249 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249> (modified 2026-11-04T17:01:25.850114200Z)
+47. OSV advisory GHSA-h35f-9h28-mq5c — OSV.dev. <https://osv.dev/vulnerability/GHSA-h35f-9h28-mq5c> (modified 2026-09-10T03:50:52.323347787Z)
+48. OSV advisory GHSA-h3mg-xc3c-68pw — OSV.dev. <https://osv.dev/vulnerability/GHSA-h3mg-xc3c-68pw> (modified 2026-09-30T00:00:04.407982988Z)
+49. OSV advisory GHSA-hmw2-7cc7-3qxx — OSV.dev. <https://osv.dev/vulnerability/GHSA-hmw2-7cc7-3qxx> (modified 2026-09-10T03:50:49.785679067Z)
+50. OSV advisory GHSA-j6r3-76f7-8jcv — OSV.dev. <https://osv.dev/vulnerability/GHSA-j6r3-76f7-8jcv> (modified 2026-09-30T00:00:03.843448355Z)
+51. OSV advisory GHSA-mh99-v99m-4gvg — OSV.dev. <https://osv.dev/vulnerability/GHSA-mh99-v99m-4gvg> (modified 2026-09-10T03:50:12.282849322Z)
+52. OSV advisory GHSA-mwp4-54f8-5fhr — OSV.dev. <https://osv.dev/vulnerability/GHSA-mwp4-54f8-5fhr> (modified 2026-09-10T03:51:14.478555296Z)
+53. OSV advisory GHSA-mx2q-35m2-x2rh — OSV.dev. <https://osv.dev/vulnerability/GHSA-mx2q-35m2-x2rh> (modified 2026-09-10T03:50:01.099654307Z)
+54. OSV advisory GHSA-q2hr-2g5m-vwhr — OSV.dev. <https://osv.dev/vulnerability/GHSA-q2hr-2g5m-vwhr> (modified 2026-09-30T00:00:03.849541183Z)
+55. OSV advisory GHSA-qhr7-859c-m2p7 — OSV.dev. <https://osv.dev/vulnerability/GHSA-qhr7-859c-m2p7> (modified 2026-09-30T00:00:04.402763332Z)
+56. OSV advisory GHSA-r5fr-rjxr-66jc — OSV.dev. <https://osv.dev/vulnerability/GHSA-r5fr-rjxr-66jc> (modified 2026-10-17T02:56:15.633068434Z)
+57. OSV advisory GHSA-r683-j2x4-v87g — OSV.dev. <https://osv.dev/vulnerability/GHSA-r683-j2x4-v87g> (modified 2023-11-08T04:07:30.211593Z)
+58. OSV advisory GHSA-rg76-677x-56q9 — OSV.dev. <https://osv.dev/vulnerability/GHSA-rg76-677x-56q9> (modified 2026-08-07T19:10:56.177489Z)
+59. OSV advisory GHSA-rgw5-rvv9-x895 — OSV.dev. <https://osv.dev/vulnerability/GHSA-rgw5-rvv9-x895> (modified 2026-09-10T03:51:14.535270857Z)
+60. OSV advisory GHSA-rpw4-54j3-4h4q — OSV.dev. <https://osv.dev/vulnerability/GHSA-rpw4-54j3-4h4q> (modified 2026-09-28T21:00:05.359993143Z)
+61. OSV advisory GHSA-rxp7-6hxx-x8q5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-rxp7-6hxx-x8q5> (modified 2026-10-22T16:30:30.129356757Z)
+62. OSV advisory GHSA-v2v4-37r5-5v8g — OSV.dev. <https://osv.dev/vulnerability/GHSA-v2v4-37r5-5v8g> (modified 2026-09-10T03:50:47.603301077Z)
+63. OSV advisory GHSA-v6h2-p8h4-qcjw — OSV.dev. <https://osv.dev/vulnerability/GHSA-v6h2-p8h4-qcjw> (modified 2026-09-10T03:50:25.501161917Z)
+64. OSV advisory GHSA-xmj3-9gf7-h52w — OSV.dev. <https://osv.dev/vulnerability/GHSA-xmj3-9gf7-h52w> (modified 2026-10-23T22:00:03.739009766Z)
+65. OSV advisory GHSA-xq7p-g2vc-g82p — OSV.dev. <https://osv.dev/vulnerability/GHSA-xq7p-g2vc-g82p> (modified 2025-05-01T13:30:57Z)
+66. OSV advisory GHSA-xwcq-pm8m-c4vf — OSV.dev. <https://osv.dev/vulnerability/GHSA-xwcq-pm8m-c4vf> (modified 2026-09-10T03:49:58.831533491Z)
+67. OSV advisory GHSA-xxjr-mmjv-4gpg — OSV.dev. <https://osv.dev/vulnerability/GHSA-xxjr-mmjv-4gpg> (modified 2026-11-04T03:15:10.832238351Z)
+68. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+69. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+70. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+71. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+72. Smart Contract Weakness Classification (SWC) Registry — SWC community (no longer actively maintained). <https://swcregistry.io/> (historic reference; still widely cited)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -3728,8 +3808,6 @@ _Длинные списки здесь сгруппированы; полный
 | package.json | 6791 | `e714df7b4ff13932cfc3f431b62eff6aba032deeaf759e3307e466fc06eaac1e` | 0 |
 | poetry.lock | 242918 | `128104f06088106ef01bd0043fd7228de6e6d5959f93bc1fca0da296cbef12e1` | 4 |
 | pyproject.toml | 456 | `53340d428b9c07503771d876d67c575bea70d6fb6bf64fdf624dc52b5da678ab` | 0 |
-| scripts/archive/srv3-hoodi/steps/0100-deploy-wv-impl.ts | 1722 | `588e0746b9c4472ce1bfa728cef57f0d0a46827279a4999b77b8fb0596c8dd49` | 0 |
-| scripts/archive/srv3-hoodi/steps/1000-voting-wv-impl.ts | 2912 | `66c6327b63966e60fac5c77ff5b0fb76148a305c7b1237653f409b06da208cd3` | 0 |
 | scripts/archive/srv3-hoodi-upd1/steps/0911-upd1-deploy.ts | 11156 | `7b9a0ad864ea64c76d41b6b165c4c0819294f9e97127e629170cbe64ceb4e25c` | 0 |
 | scripts/archive/srv3-hoodi-upd1/steps/0911-upd1-voting.ts | 15604 | `d5db690e1fef454d35635bd8146aa61da4c77bbb6dc3ac5909416112e998b78a` | 0 |
 | scripts/archive/srv3-hoodi-upd2/steps/0911-upd2-deploy.ts | 6204 | `dbacf0abd5d9bde557c54f53e9a1a0218d766665ab4909d988a38ebfe745905f` | 0 |
@@ -3738,19 +3816,21 @@ _Длинные списки здесь сгруппированы; полный
 | scripts/archive/srv3-hoodi-upd3/steps/0911-upd3-voting.ts | 3395 | `f4860a03a3397b9ccdf7437e95e8d29339646f9c66d5ed05e4647a7e4e291fbe` | 0 |
 | scripts/archive/srv3-hoodi-upd4/steps/0911-upd4-deploy.ts | 2657 | `a08bc92abdbccc5426e09cf539c579d273161d3a3e93d9676b748e490438ce42` | 0 |
 | scripts/archive/srv3-hoodi-upd4/steps/0911-upd4-voting.ts | 3388 | `8c1966e631921c772a6e820e280d3235f1aa071459c39a28ee32670becd0503c` | 0 |
+| scripts/archive/srv3-hoodi/steps/0100-deploy-wv-impl.ts | 1722 | `588e0746b9c4472ce1bfa728cef57f0d0a46827279a4999b77b8fb0596c8dd49` | 0 |
+| scripts/archive/srv3-hoodi/steps/1000-voting-wv-impl.ts | 2912 | `66c6327b63966e60fac5c77ff5b0fb76148a305c7b1237653f409b06da208cd3` | 0 |
 | scripts/archive/stVaults-3.02/steps/0100-deploy-v3-02-implementations.ts | 3074 | `02db201409b39fab5d8378fa7262845fac6f1c021f73e85cb02d28e70793d7cf` | 0 |
 | scripts/archive/stVaults-3.02/steps/0100-mock-upgrade-to-v3-02.ts | 1145 | `cb9d7b1879f53f3b0edded0b08b218b002dcbe7638d079325a60387621fbaf5f` | 0 |
+| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc2.ts | 5401 | `e26ad32c3ea17e16219d9765f2cfb8c44610f986bab7797c9041c6db454cd114` | 0 |
+| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc3.ts | 4691 | `2ba3c284e9877c302d7b2a12516e659b05a13d0d378a8f6259db482031516ce2` | 0 |
+| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc4.ts | 2277 | `2f35314e80f40e549ef29559980a72b99cc0b2acf4e4449c01d0a64140f930c2` | 0 |
+| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc5.ts | 4506 | `056c93e5eb0cb77506447e21280385a3d10caf29456786fed87879cc6e00b1aa` | 0 |
+| scripts/archive/stvaults-hoodi/upgrade/steps/xxxx-update-lazy-oracle.ts | 437 | `da44d7af225c991565c6a6389f82b43a16c1f5654f82de95f595abf911bdc20d` | 0 |
 | scripts/archive/stvaults/steps/0000-check-env.ts | 995 | `ffe4c89615ffbbda610225fdb230ac24981dac3268424efa30e908149d2bbd8f` | 0 |
 | scripts/archive/stvaults/steps/0100-deploy-v3-contracts.ts | 13791 | `f8d3e02c37170c62e832eea8ce9b9013148c530150c339b00cfc6abef916968f` | 0 |
 | scripts/archive/stvaults/steps/0200-deploy-v3-upgrading-contracts.ts | 3372 | `d460adcc4bdd82ebf71f5cf41042dd0f2b4baf6d09f495a31936e2c5e73fc340` | 0 |
 | scripts/archive/stvaults/steps/0300-deploy-v3-vote-script.ts | 769 | `c3cd09b7b276d584978231161e5acd1698e7990ea6168727f8d158dd1191a4bb` | 0 |
 | scripts/archive/stvaults/steps/0500-mock-v3-aragon-voting.ts | 266 | `4e5acf083acbeafe7ab2e8d55ee6954cd831b1a67995df59084e7cf0c3879cca` | 0 |
 | scripts/archive/stvaults/steps/x0000-deploy-locator.ts | 2508 | `fe1b16ea0fd31def21684b4ab0bd50fc3a2259950846266dde1bb33e59bcc053` | 0 |
-| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc2.ts | 5401 | `e26ad32c3ea17e16219d9765f2cfb8c44610f986bab7797c9041c6db454cd114` | 0 |
-| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc3.ts | 4691 | `2ba3c284e9877c302d7b2a12516e659b05a13d0d378a8f6259db482031516ce2` | 0 |
-| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc4.ts | 2277 | `2f35314e80f40e549ef29559980a72b99cc0b2acf4e4449c01d0a64140f930c2` | 0 |
-| scripts/archive/stvaults-hoodi/upgrade/steps/0100-upgrade-hoodi-to-v3-rc5.ts | 4506 | `056c93e5eb0cb77506447e21280385a3d10caf29456786fed87879cc6e00b1aa` | 0 |
-| scripts/archive/stvaults-hoodi/upgrade/steps/xxxx-update-lazy-oracle.ts | 437 | `da44d7af225c991565c6a6389f82b43a16c1f5654f82de95f595abf911bdc20d` | 0 |
 | scripts/scratch/scratch-deploy.ts | 278 | `3ced7f3a139dc3ec82d0d53069867e48e85a0bd0c96b19834a34bf3787285ec9` | 0 |
 | scripts/scratch/steps/0000-populate-deploy-artifact-from-env.ts | 2846 | `c867d117578e9246313b4c4e62bc63d3f234a46463de9d73b801970b422edab9` | 0 |
 | scripts/scratch/steps/0010-deploy-deposit-contract.ts | 725 | `eecb99a08f318734c4443203d5bce0d0be9b645b59042230aff52278c95a203c` | 0 |

@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -89,7 +89,7 @@
               "id": "DEP-ADVISORY-DEV",
               "name": "DepAdvisoryDev",
               "shortDescription": {
-                "text": "45 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки"
+                "text": "47 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -103,10 +103,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает 45 бюллетеней (29 с оценкой high или critical) для 9 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (development/generate-attributions/yarn.lock): например, brace-expansion@1.1.11 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; brace-expansion@2.0.1 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; glob@10.4.1 [dev]: GHSA-5j98-mcp5-4vw2; ip-address@9.0.5 [dev]: GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-mwp4-54f8-5fhr, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5, GHSA-v2v4-37r5-5v8g. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый п…"
+                "text": "OSV.dev сообщает 47 бюллетеней (29 с оценкой high или critical) для 9 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (development/generate-attributions/yarn.lock): например, brace-expansion@1.1.11 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; brace-expansion@2.0.1 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; glob@10.4.1 [dev]: GHSA-3g3m-2fjr-6pw4, GHSA-5j98-mcp5-4vw2; ip-address@9.0.5 [dev]: GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-mwp4-54f8-5fhr, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5, GHSA-v2v4-37r5-5v8g. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэ…"
               },
               "help": {
-                "text": "OSV.dev сообщает 45 бюллетеней (29 с оценкой high или critical) для 9 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (development/generate-attributions/yarn.lock): например, brace-expansion@1.1.11 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; brace-expansion@2.0.1 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; glob@10.4.1 [dev]: GHSA-5j98-mcp5-4vw2; ip-address@9.0.5 [dev]: GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-mwp4-54f8-5fhr, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5, GHSA-v2v4-37r5-5v8g. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
+                "text": "OSV.dev сообщает 47 бюллетеней (29 с оценкой high или critical) для 9 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (development/generate-attributions/yarn.lock): например, brace-expansion@1.1.11 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; brace-expansion@2.0.1 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-f886-m6hf-6m8v, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895, GHSA-v6h2-p8h4-qcjw; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; glob@10.4.1 [dev]: GHSA-3g3m-2fjr-6pw4, GHSA-5j98-mcp5-4vw2; ip-address@9.0.5 [dev]: GHSA-h3mg-xc3c-68pw, GHSA-j6r3-76f7-8jcv, GHSA-mwp4-54f8-5fhr, GHSA-rpw4-54j3-4h4q, GHSA-rxp7-6hxx-x8q5, GHSA-v2v4-37r5-5v8g. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят. Обновите инструменты в рамках планового обслуживания; в первую очередь пакеты, которые выполняются в CI с секретами или создают релизные артефакты. Данные получены от OSV.dev в зафиксированное время. Области применения взяты из манифестов; собственные build-зависимости крейтов реестра в Cargo.lock не различимы, поэтому множество runtime может оказаться больше реального, но не меньше."
               },
               "helpUri": "https://osv.dev/"
             },
@@ -150,7 +150,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-08539",
+            "qsiId": "QSI-2026-12190",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -168,7 +168,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-08538",
+            "qsiId": "QSI-2026-12189",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -186,7 +186,7 @@
             "qsiFindingKey/v1": "5ac1fea07d82083f211ab2c659abe677"
           },
           "properties": {
-            "qsiId": "QSI-2026-08543",
+            "qsiId": "QSI-2026-12194",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -204,7 +204,7 @@
             "qsiFindingKey/v1": "0d27436c70e7a7d5b37400a1c8f0defd"
           },
           "properties": {
-            "qsiId": "QSI-2026-08540",
+            "qsiId": "QSI-2026-12191",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -234,7 +234,7 @@
             "qsiFindingKey/v1": "62f76521e650665909baa01a656c8f65"
           },
           "properties": {
-            "qsiId": "QSI-2026-08541",
+            "qsiId": "QSI-2026-12192",
             "severity": "medium",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -258,13 +258,13 @@
           "ruleIndex": 3,
           "level": "note",
           "message": {
-            "text": "45 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
+            "text": "47 бюллетеней в 9 пакет(ах) npm, нужных только для разработки или сборки (dependencies: npm:non-runtime)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-08544",
+            "qsiId": "QSI-2026-12195",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -291,7 +291,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-08542",
+            "qsiId": "QSI-2026-12193",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -300,13 +300,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/metamask-extension @ d2db7ee9a19b/cbd9e904-6251-4924-9149-9e1b6a17c295"
+        "id": "qsi/metamask-extension @ d2db7ee9a19b/862fe485-c694-487d-a2d3-9ecc94bfc715"
       },
       "properties": {
-        "qsiContentSha256": "166a64df90a460c39d5a1bebd48c401f7946e546851c3fb21b4fae2ca0ffd337",
+        "qsiContentSha256": "4574607d892a03af609dda8b51e06cab924466835209a93a9524129d671008ad",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-30T23:11:08.952192+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:02:06.913723+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

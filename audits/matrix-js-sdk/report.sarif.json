@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "947e04d7f733036f7c8eb3c415e38833"
           },
           "properties": {
-            "qsiId": "QSI-2026-05835",
+            "qsiId": "QSI-2026-12184",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -127,7 +127,7 @@
             "qsiFindingKey/v1": "f7870d5ee9f6d9b339c4edcb18794bf0"
           },
           "properties": {
-            "qsiId": "QSI-2026-05837",
+            "qsiId": "QSI-2026-12187",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -154,12 +154,66 @@
             "qsiFindingKey/v1": "a485bc45a5405282aba6af2ba5891438"
           },
           "properties": {
-            "qsiId": "QSI-2026-05834",
+            "qsiId": "QSI-2026-12182",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
           }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) (dependency: npm/glob@13.0.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e7af3d5d95ea203247df4ecd54432acd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12183",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pnpm-lock.yaml"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "minimatch 10.2.6 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764) (dependency: npm/minimatch@10.2.6)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45341742a21e85e68351e63550edd0db"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12186",
+            "severity": "medium",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pnpm-lock.yaml"
+                }
+              }
+            }
+          ]
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
@@ -172,7 +226,7 @@
             "qsiFindingKey/v1": "b0aa12c201eb807b5b56f469cb17df97"
           },
           "properties": {
-            "qsiId": "QSI-2026-05836",
+            "qsiId": "QSI-2026-12185",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -199,7 +253,7 @@
             "qsiFindingKey/v1": "aad33e0cc70425cfe168680acf66e760"
           },
           "properties": {
-            "qsiId": "QSI-2026-05838",
+            "qsiId": "QSI-2026-12188",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -217,13 +271,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/matrix-js-sdk @ 61b08bd037a3/259476ec-cff6-4f97-af62-52170c902315"
+        "id": "qsi/matrix-js-sdk @ 61b08bd037a3/f79008a2-4018-4e6d-bfa9-831152a52221"
       },
       "properties": {
-        "qsiContentSha256": "6b99f797316754f231b4b06db6d193f9d0893a7f657f49253d76cbd060ebaeb3",
+        "qsiContentSha256": "9b9c8b6f90ffc4e4e4cf58073d6ce1bedf2db9368076ecc999c1532f548628f9",
         "qsiReportVersion": 1,
-        "qsiRiskProfile": "security_software",
-        "qsiGeneratedAt": "2026-10-28T18:22:51.009302+00:00",
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-11-04T18:58:53.743660+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

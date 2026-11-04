@@ -7,14 +7,64 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
+            {
+              "id": "CODE-ECB-MODE",
+              "name": "CodeEcbMode",
+              "shortDescription": {
+                "text": "ECB block-cipher mode used in src/krux/kef.py"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
+            },
+            {
+              "id": "RNG-WEAK-KEYGEN",
+              "name": "RngWeakKeygen",
+              "shortDescription": {
+                "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)). Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
+            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
               "shortDescription": {
-                "text": "Quantum-vulnerable ECDSA: transaction and message signing (39 file(s))"
+                "text": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))"
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -28,37 +78,12 @@
                 "security-severity": "5.0"
               },
               "fullDescription": {
-                "text": "296 reference(s) to ECDSA across 39 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "277 reference(s) to ECDSA across 31 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "help": {
-                "text": "296 reference(s) to ECDSA across 39 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+                "text": "277 reference(s) to ECDSA across 31 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path. Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
               },
               "helpUri": "https://doi.org/10.1137/S0097539795293172"
-            },
-            {
-              "id": "CODE-ECB-MODE",
-              "name": "CodeEcbMode",
-              "shortDescription": {
-                "text": "ECB block-cipher mode used in src/krux/kef.py"
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "source_code",
-                  "potential_crypto_risk"
-                ],
-                "security-severity": "5.0"
-              },
-              "fullDescription": {
-                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "help": {
-                "text": "8 usage(s) of ECB mode (first at line 30). Use an AEAD mode (GCM) with unique nonces. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
-              },
-              "helpUri": "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
             },
             {
               "id": "CODE-WEAK-PBKDF2",
@@ -115,81 +140,9 @@
       },
       "results": [
         {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: transaction and message signing (39 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06399",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06400",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06401",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable ECDSA: role not determined (5 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06397",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
           "ruleId": "CODE-ECB-MODE",
-          "ruleIndex": 1,
-          "level": "warning",
+          "ruleIndex": 0,
+          "level": "error",
           "message": {
             "text": "ECB block-cipher mode used in src/krux/kef.py"
           },
@@ -197,11 +150,11 @@
             "qsiFindingKey/v1": "31071d4a7b431ce46c8165938bc355d2"
           },
           "properties": {
-            "qsiId": "QSI-2026-06396",
-            "severity": "medium",
+            "qsiId": "QSI-2026-11969",
+            "severity": "high",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
-            "security-severity": "5.0"
+            "security-severity": "7.5"
           },
           "locations": [
             {
@@ -217,8 +170,134 @@
           ]
         },
         {
-          "ruleId": "CODE-ECB-MODE",
+          "ruleId": "RNG-WEAK-KEYGEN",
           "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "2489d048adfe095e50872038083902bb"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11978",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11972",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11974",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11975",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: role not determined (5 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11970",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDH: role not determined (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11973",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11977",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-ECB-MODE",
+          "ruleIndex": 0,
           "level": "note",
           "message": {
             "text": "ECB block-cipher mode used in src/krux/krux_settings.py"
@@ -227,7 +306,7 @@
             "qsiFindingKey/v1": "e35ef95a522466c5cd2d6ec5edbfeca9"
           },
           "properties": {
-            "qsiId": "QSI-2026-06398",
+            "qsiId": "QSI-2026-11971",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -248,7 +327,7 @@
         },
         {
           "ruleId": "CODE-WEAK-PBKDF2",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "Low PBKDF2 iteration count (2500) in vendor/embit/src/embit/slip39.py"
@@ -257,7 +336,7 @@
             "qsiFindingKey/v1": "854cceba3797609712e7f0d3b39a3975"
           },
           "properties": {
-            "qsiId": "QSI-2026-06402",
+            "qsiId": "QSI-2026-11976",
             "severity": "info",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -278,7 +357,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 3,
+          "ruleIndex": 4,
           "level": "note",
           "message": {
             "text": "40 advisories in 8 development or build-only PyPI package(s) (dependencies: PyPI:non-runtime)"
@@ -287,7 +366,7 @@
             "qsiFindingKey/v1": "090734ef78b1f0fda46107c2c0bb9ca1"
           },
           "properties": {
-            "qsiId": "QSI-2026-06403",
+            "qsiId": "QSI-2026-11979",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -305,13 +384,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/krux @ 9b3a4314a205/110c8786-2e40-4009-8e49-42ea024c6ae9"
+        "id": "qsi/krux @ 9b3a4314a205/59875687-bb02-418b-9798-bc32732ba918"
       },
       "properties": {
-        "qsiContentSha256": "4f426bcc00442f4f274c469090959c0b3a232f491d8f493bb9f774ffe0bed106",
+        "qsiContentSha256": "e013074c7b0eda8ff8256cc33f333800e595ae0c48705d84b95076950e74be8d",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T05:33:42.135878+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:52:05.018486+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

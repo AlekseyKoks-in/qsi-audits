@@ -4,28 +4,28 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-10-29 05:36 UTC |
+| Report date | 2026-11-04 19:25 UTC |
 | Report version | 1 |
-| Audit run | 54ad7f7a-4171-4408-aacb-3479d20b9be8 (Document audit) |
-| Analyzer engine | qsi-engine 1.2.0 |
+| Audit run | b01f7e22-9418-4a84-ac38-cae35df8b502 (Document audit) |
+| Analyzer engine | qsi-engine 1.3.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `effe8cd836a4aeb1f5d672cd26315f8ade845f2d3a8f3b60aa0ba39a6416ff83` |
+| Content SHA-256 | `0d233bfb8d1a65a906d6c82ae8f7ee22cae7fe48eb5749141f8ef70df99894fd` |
 | Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
 ## 1. Executive summary
 
 - Critical: **0**
-- High: **0**
-- Medium: **1**
+- High: **2**
+- Medium: **2**
 - Low: **0**
 - Info: **0**
 
 - Confirmed technical vulnerability: 0
 - Known vulnerable component: 0
 - Confirmed configuration error: 0
-- Potential cryptographic risk: 0
-- Long-term post-quantum risk: 1
+- Potential cryptographic risk: 2
+- Long-term post-quantum risk: 2
 - Improvement recommendation: 0
 - Insufficient data: 0
 
@@ -41,14 +41,16 @@ Mode: Document audit
 
 Repository: <https://github.com/SeedSigner/seedsigner> @ `ada81cde050e46c19cb6e3fa73872b73955a138c` — evidence links open the lines at this commit.
 
-74 files, 986658 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+76 files, 990213 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
 
 ## 3. Methodology
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| dependencies | checked | 4 | pyproject.toml: 0 dependencies parsed (0 pinned); requirements-raspi.txt: 4 dependencies parsed (4 pinned); requirements.txt: 6 dependencies parsed (1 pinned) |
-| source_code | checked | 70 | setup.py: 8 lines scanned with 16 rule patterns and 123 registry patterns; src/main.py: 53 lines scanned with 16 rule patterns and 123 registry patterns; src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 123 registry patterns |
+| dependencies | checked | 5 | l10n/requirements-l10n.txt: 2 dependencies parsed (0 pinned); pyproject.toml: 0 dependencies parsed (0 pinned); requirements-raspi.txt: 4 dependencies parsed (4 pinned) |
+| certificates_and_keys | checked | 1 | seedsigner_pubkey.gpg: certificates/keys parsed |
+| source_code | checked | 70 | setup.py: 8 lines scanned with 16 rule patterns and 145 registry patterns; src/main.py: 53 lines scanned with 16 rule patterns and 145 registry patterns; src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 145 registry patterns |
+| entropy | checked | 1 | random-number generation: 70 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 2 weak key-generation site(s) |
 | osv_advisories | checked | 1 | 5 pinned packages queried at OSV.dev; 0 affected |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
@@ -59,23 +61,179 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree seedsigner at ada81cde050e46c19cb6e3fa73872b73955a138c. 74 files analysed; of 166 files, 57 are test, fuzzing, benchmark or example code and were left out, 34 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. 3 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.
+Static review of the source tree seedsigner at ada81cde050e46c19cb6e3fa73872b73955a138c. 76 files analysed; of 373 files, 70 are test, fuzzing, benchmark or example code and were left out, 226 are not read by any analyzer, 1 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/pull_request_template.md, .github/workflows/build.yml, .github/workflows/tests.yml, .gitignore, .gitmodules. 63 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 3 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: src/seedsigner/resources/seedsigner-translations (3). No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
-- Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 14.3%
+- Indicative posture index: **86** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
+- Quantum-vulnerable share of inventory: 33.3%
 
 ## 7. Detailed findings
 
-### QSI-2026-06413 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-12818 — Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py
+
+- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `src/seedsigner/views/seed_views.py:keygen`
+- Data source: src/seedsigner/views/seed_views.py
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: entropy 1.3.0 · 2026-11-04 19:25 UTC
+- Priority score: 38.8 / 100
+- CVSS v3.1: not applicable
+
+'random.random(' at line 1284, within a few lines of 'mnemonic_list' (3 occurrence(s)).
+
+**Potential impact.** Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.
+
+**Reproduction steps.**
+
+```
+Open line 1284 in the supplied file src/seedsigner/views/seed_views.py and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [src/seedsigner/views/seed_views.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1284) · line 1284 · SHA-256 d723de33db421cb83fece9c3e89e0ebba4d5ddc972fb2ae1e8abe90202b94cb8_
+
+```
+ 1282 | 
+ 1283 |         real_word = ButtonOptionWithoutTranslation(self.mnemonic_list[self.cur_index])
+ 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+```
+
+_file_excerpt · [src/seedsigner/views/seed_views.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1285) · line 1285 · SHA-256 caf93e3f449ccd2d13b25280a33505adffb00dc1fa21c1dc79755cf6ace9e077_
+
+```
+ 1283 |         real_word = ButtonOptionWithoutTranslation(self.mnemonic_list[self.cur_index])
+ 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1287 | 
+```
+
+_file_excerpt · [src/seedsigner/views/seed_views.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/src/seedsigner/views/seed_views.py#L1286) · line 1286 · SHA-256 4ecc0b33ab779205a0bf0403f83a00dd861f9c240c5b9828147db3879f503db7_
+
+```
+ 1284 |         fake_word1 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1285 |         fake_word2 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1286 |         fake_word3 = ButtonOptionWithoutTranslation(bip39.WORDLIST[int(random.random() * 2047)])
+ 1287 | 
+ 1288 |         button_data = [real_word, fake_word1, fake_word2, fake_word3]
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-12819 — Non-cryptographic generator next to key or seed generation in tools/mnemonic.py
+
+- Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
+- Affected asset: `tools/mnemonic.py:keygen`
+- Data source: tools/mnemonic.py
+- Detection method: Regular-expression matching of language-specific API patterns.
+- Analyzer: entropy 1.3.0 · 2026-11-04 19:25 UTC
+- Priority score: 38.8 / 100
+- CVSS v3.1: not applicable
+
+'random.randint(' at line 84, within a few lines of 'mnemonic_generation' (4 occurrence(s)).
+
+**Potential impact.** Mnemonics, seeds or private keys drawn from such a generator can be enumerated from its small internal state: Milk Sad (CVE-2023-39910, mt19937 behind 'bx seed') and Trust Wallet (CVE-2023-31290) lost funds this way.
+
+**Reproduction steps.**
+
+```
+Open line 84 in the supplied file tools/mnemonic.py and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_file_excerpt · [tools/mnemonic.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L84) · line 84 · SHA-256 81554da16391deb1865464a4df4ebb0a2b7e3b8ad2020319c7c6e0dc836cce93_
+
+```
+   82 |     if method == 'dice':
+   83 |         if zero_indexed_dice:
+   84 |             entropy = ''.join([str(random.randint(0, 5)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])
+   85 |         else:
+   86 |             entropy = ''.join([str(random.randint(1, 6)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])
+```
+
+_file_excerpt · [tools/mnemonic.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L86) · line 86 · SHA-256 1a73f1c331308a7e40d04099df3a3eed3986396f4951026ee1a73b191c8a3444_
+
+```
+   84 |             entropy = ''.join([str(random.randint(0, 5)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])
+   85 |         else:
+   86 |             entropy = ''.join([str(random.randint(1, 6)) for i in range(mnemonic_generation.DICE__NUM_ROLLS__12WORD if mnemonic_length == 12 else mnemonic_generation.DICE__NUM_ROLLS__24WORD)])
+   87 | 
+   88 |     elif method == 'coins':
+```
+
+_file_excerpt · [tools/mnemonic.py](https://github.com/SeedSigner/seedsigner/blob/ada81cde050e46c19cb6e3fa73872b73955a138c/tools/mnemonic.py#L89) · line 89 · SHA-256 c781ae848a2442a4d4da68c06d6cebc1b94de618065507f33f9975fe6d87ac02_
+
+```
+   87 | 
+   88 |     elif method == 'coins':
+   89 |         entropy = ''.join([str(random.randint(0, 1)) for i in range(128 if mnemonic_length == 12 else 256)])
+   90 | 
+   91 |     elif method == 'final_word':
+```
+
+**Limitations of the check.** Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary.
+
+**Recommendation.** Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic.
+
+**Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
+
+### QSI-2026-12816 — Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg
+
+- Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
+- Affected asset: `file:seedsigner_pubkey.gpg#line 1`
+- Data source: seedsigner_pubkey.gpg
+- Detection method: Public key parsing.
+- Analyzer: certificates 1.3.0 · 2026-11-04 19:25 UTC
+- Priority score: 50.3 / 100
+- CVSS v3.1: not applicable
+
+A RSA 3072-bit public key was found (line 1).
+
+**Potential impact.** Long-term risk once a CRQC exists; for key exchange, recorded traffic could be decrypted retroactively.
+
+**Reproduction steps.**
+
+```
+Open line 1 in the supplied file seedsigner_pubkey.gpg and inspect the quoted lines (see evidence).
+```
+
+**Evidence.**
+
+_key · seedsigner_pubkey.gpg · line 1 · SHA-256 315636b2f7e00661811d8d8feee53223db00c9277ae1194dcaf9d4fb25bf6194_
+
+```
+OpenPGP primary key: algorithm ID 1 (RSA) 3072-bit
+```
+
+_key · seedsigner_pubkey.gpg · line 1 · SHA-256 6ccbdce52e43463e8b282489a66bb4553923cec099cc342f213f584e97c81df4_
+
+```
+OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
+```
+
+**Limitations of the check.** This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability.
+
+**Recommendation.** Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
+
+**Retest procedure.** Re-audit after migration.
+
+### QSI-2026-12817 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit's, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of "1 Shor-breakable row" is "this repository delegates its signing", not "this device is nearly post-quantum". Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not "when will SeedSigner adopt a post-quantum signature" but "when will embit", and after that, "how fast can a hash-locked pin be moved" — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept.
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: src/seedsigner/helpers/embit_utils.py
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.2.0 · 2026-10-29 05:36 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-04 19:25 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -154,7 +312,7 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (1) | QSI-2026-06413 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **transaction and message signing** | ECDSA (1) | QSI-2026-12817 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -163,6 +321,7 @@ No readiness questionnaire was completed for this project.
 
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
+| Shor's algorithm — factoring | breaks | Q1 | RSA (2) | Breaks RSA at every key length: a longer modulus only raises the cost polynomially. Plan migration to ML-KEM (or a hybrid) for key establishment and ML-DSA / SLH-DSA for signatures; start with keys protecting data that must stay confidential for years (harvest now, decrypt later) and with long-lived signatures. |
 | Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (1) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
 | Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | PBKDF2 (1), SHA-2 (5) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
 | Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | SHA-2 (5) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
@@ -181,6 +340,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
+| P1 | QSI-2026-12818 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P1 | QSI-2026-12819 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
@@ -189,47 +350,54 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-06413 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-06413 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-12816 | Add RSA usages at file:seedsigner_pubkey.gpg to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-12817 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-12816 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-12817 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Sources and normative documents
 
 1. A. Chailloux, M. Naya-Plasencia, A. Schrottenloher — An Efficient Quantum Collision Search Algorithm and Implications on Symmetric Cryptography (ASIACRYPT 2017; IACR ePrint 2017/847) — IACR ePrint. <https://eprint.iacr.org/2017/847> (peer-reviewed article: Õ(2^{2n/5}) time, O(n) qubits, Õ(2^{n/5}) classical memory)
 2. C. Chevignard, P.-A. Fouque, A. Schrottenloher — Reducing the Number of Qubits in Quantum Discrete Logarithms on Elliptic Curves (IACR ePrint 2026/280) — IACR ePrint. <https://eprint.iacr.org/2026/280> (revision of a EUROCRYPT 2026 paper: 3.12n + o(n) qubits; for n = 256, 1193 qubits and 22 runs of 2^38.98 Toffoli gates)
-3. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
-4. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
-5. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
-6. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
-7. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
-8. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
-9. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
-10. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
-11. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
-12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
-13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
-14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
-15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
-18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-19. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-20. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-21. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+3. C. Gidney — How to factor 2048 bit RSA integers with less than a million noisy qubits (arXiv:2505.15917) — arXiv. <https://arxiv.org/abs/2505.15917> (preprint (2025-05-21): < 1 million noisy qubits, < 1 week, 0.1% gate error, 1 µs surface-code cycle)
+4. C. Gidney, M. Ekerå — How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits (Quantum 5, 433) — Quantum. <https://doi.org/10.22331/q-2021-04-15-433> (peer-reviewed article (2021): 10^-3 gate error, 1 µs cycle, 10 µs reaction time)
+5. C. Zalka — Grover's quantum searching algorithm is optimal (Phys. Rev. A 60, 2746, 1999; arXiv:quant-ph/9711070) — APS. <https://doi.org/10.1103/PhysRevA.60.2746> (peer-reviewed article: optimal for any success probability; parallel search gains no more than splitting the space)
+6. CVE-2023-31290 — Trust Wallet Core: 32 bits of mnemonic entropy (mt19937 seeded with one 32-bit value) — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-31290> (published 2023-04-27; Trust Wallet Core before 3.1.1 (browser extension 0.0.172-0.0.182), exploited in the wild in December 2022 and March 2023: only about four billion possible mnemonics)
+7. CVE-2023-39910 — Libbitcoin Explorer 'bx seed' entropy (Milk Sad): mt19937 limits it to 32 bits — NIST NVD. <https://nvd.nist.gov/vuln/detail/CVE-2023-39910> (published 2023-08-09; Libbitcoin Explorer 3.0.0-3.6.0, exploited in the wild in 2023)
+8. CWE-338 — Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) — MITRE. <https://cwe.mitre.org/data/definitions/338.html> (weakness catalogue entry: the consequence is predictable values where unpredictability was assumed, which is what makes a token or key guessable)
+9. Common Vulnerability Scoring System v3.1: Specification Document — FIRST. <https://www.first.org/cvss/v3.1/specification-document> (final)
+10. D. J. Bernstein — Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete? (2009) — cr.yp.to. <https://cr.yp.to/hash/collisioncost-20090823.pdf> (paper dated 2009-08-23)
+11. D. Litinski — How to compute a 256-bit elliptic curve private key with only 50 million Toffoli gates (arXiv:2306.08585) — arXiv. <https://arxiv.org/abs/2306.08585> (preprint (2023-06-14): 6000 modules × 1152 physical qubits, one key per 10 minutes under its architecture assumptions)
+12. FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM) — NIST. <https://csrc.nist.gov/pubs/fips/203/final> (final (August 2024))
+13. FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/204/final> (final (August 2024))
+14. FIPS 205 — Stateless Hash-Based Digital Signature Standard (SLH-DSA) — NIST. <https://csrc.nist.gov/pubs/fips/205/final> (final (August 2024))
+15. G. Brassard, P. Høyer, A. Tapp — Quantum Algorithm for the Collision Problem (LATIN '98; arXiv:quant-ph/9705002) — Springer / arXiv. <https://arxiv.org/abs/quant-ph/9705002> (peer-reviewed article: collisions of r-to-one functions in O((N/r)^{1/3}) expected evaluations)
+16. J. Proos, C. Zalka — Shor's discrete logarithm quantum algorithm for elliptic curves (Quantum Inf. Comput. 3(4), 2003; arXiv:quant-ph/0301141) — Quantum Information & Computation. <https://doi.org/10.26421/QIC3.4-3> (peer-reviewed article)
+17. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
+18. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
+19. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
+20. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
+21. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
+22. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
+23. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
+24. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+25. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+26. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
 
@@ -242,14 +410,18 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | SHA-2 | SHA-256 |  | src/seedsigner/helpers/ur2/xoshiro256.py:66 | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable |
 | SHA-2 | SHA-256 |  | src/seedsigner/views/tools_views.py:183 | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable |
 | ECDSA | secp256k1 |  | src/seedsigner/helpers/embit_utils.py:10 | vulnerable (Shor) | acceptable |
+| RSA | 3072-bit |  | seedsigner_pubkey.gpg (line 1) | vulnerable (Shor) | acceptable |
+| RSA | 3072-bit |  | seedsigner_pubkey.gpg (line 1) | vulnerable (Shor) | acceptable |
 
 ## Appendices: Input files
 
 | File | Size | SHA-256 | Redactions |
 |---|---|---|---|
+| l10n/requirements-l10n.txt | 1099 | `9ffcfaafedd10eee5b8020d7a9c6117e00eebaa354aa2248a0b1f7974f809cc3` | 0 |
 | pyproject.toml | 2006 | `806812aaa643b69646850af44736db858192095ae1da0dd6432fa9a52a2a9331` | 0 |
 | requirements-raspi.txt | 98 | `97a87553c8c5e02b39450fd57707fef2d68d1564c89402d3d25be468eb3c8481` | 0 |
 | requirements.txt | 7698 | `f43fdf89d5cfe76e4f1d01d27df6c5030d6aa1767217d9d8c855e4a5fe34b45a` | 0 |
+| seedsigner_pubkey.gpg | 2456 | `cb7d694d3c7f3c655d9d2e7a30a45b60fd6d8fb30e37afc53440eb156df9e57a` | 0 |
 | setup.py | 181 | `d79d8ecf1aa4f4e496d725ea43fa2082d91016d760ad1581aae0ca8e5be61c4b` | 0 |
 | src/main.py | 1540 | `0fec0abc13bf4f8d754e78ee16649b51028a85c3286f2abcb860fcc0b723bf27` | 0 |
 | src/seedsigner/__init__.py | 0 | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | 0 |
@@ -307,9 +479,6 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | src/seedsigner/models/settings_definition.py | 35542 | `ffdefda767a713a8c7a54dffd712739daa235b01efdffa2068fbaba86b241cce` | 0 |
 | src/seedsigner/models/singleton.py | 1059 | `caaa41a60af389c8b5322d510536d310664fa4ef53e8957c9fab7f021c4e71ac` | 0 |
 | src/seedsigner/models/threads.py | 1079 | `678a61d601a2c8a0d5ff3b1c110f781b07b17a2f152e20a6fcf55e95f6a531ee` | 0 |
-| src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py | 6279 | `7a1ecba23853b008f72921dfb453b14959e35ed7d8f0ebfa906a4eb0908319f2` | 0 |
-| src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py | 2700 | `df7055b2f0c8460ee5fd9f1e995cb7a8346e43af628d90a2b08b46d7766cd7ff` | 0 |
-| src/seedsigner/resources/seedsigner-translations/tools/requirements.txt | 6 | `68359c38ed3bf77f71bad8d21c219fbe8c094d44374b35d2974e202f8b24472b` | 0 |
 | src/seedsigner/views/__init__.py | 50 | `07d90e6e3c9bc4127568b08e5bdf2725ac093964a987c50d52efe3e4dca8d505` | 0 |
 | src/seedsigner/views/psbt_views.py | 41251 | `47fff120f41e2710226560d722b70d51a8bee0ece389b9b3567092988b413750` | 0 |
 | src/seedsigner/views/scan_views.py | 9526 | `f49166b5417dbc649da3b2b7871308aae608f573312e105945de36568d3628d3` | 0 |
@@ -321,3 +490,6 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | tools/mnemonic.py | 6971 | `92d3059fc0eb86241d4d8839d6c64116423291526d093bb4f1b37fdd95c13f60` | 0 |
 | tools/seed_phrase_to_qr.py | 1580 | `de71bf293c28d5c4e637c545a07685160c2aa92c9f64213d7a5259d9e91de66b` | 0 |
 | tools/write_versionfile.py | 1602 | `2bb499c921b6f8cf04f40f835ca3a6cd92ea445c50deb893e90d38262e19f53a` | 0 |
+| src/seedsigner/resources/seedsigner-translations/.github/diff_report/diff_screenshots.py | 6279 | `7a1ecba23853b008f72921dfb453b14959e35ed7d8f0ebfa906a4eb0908319f2` | 0 |
+| src/seedsigner/resources/seedsigner-translations/tools/extract_characters_from_babel_mo.py | 2700 | `df7055b2f0c8460ee5fd9f1e995cb7a8346e43af628d90a2b08b46d7766cd7ff` | 0 |
+| src/seedsigner/resources/seedsigner-translations/tools/requirements.txt | 6 | `68359c38ed3bf77f71bad8d21c219fbe8c094d44374b35d2974e202f8b24472b` | 0 |

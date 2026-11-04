@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-QV-ASYMMETRIC",
@@ -50,43 +50,7 @@
             "qsiFindingKey/v1": "1fa9c922eb483a5ac90d8375c9759995"
           },
           "properties": {
-            "qsiId": "QSI-2026-06090",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "56ce4b42a955143d4d6555212784bad6"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06087",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "pq_long_term_risk",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
-            "text": "Quantum-vulnerable Ed25519: threshold signing and MPC protocols (8 file(s))"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "bec890f753512e16cda5732a4d1d9cd0"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-06088",
+            "qsiId": "QSI-2026-11868",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +68,43 @@
             "qsiFindingKey/v1": "caadb0817a8af347815ab91cd52576b5"
           },
           "properties": {
-            "qsiId": "QSI-2026-06089",
+            "qsiId": "QSI-2026-11863",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "56ce4b42a955143d4d6555212784bad6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11866",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: threshold signing and MPC protocols (9 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "bec890f753512e16cda5732a4d1d9cd0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11867",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -122,7 +122,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-06091",
+            "qsiId": "QSI-2026-11869",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -140,7 +140,7 @@
             "qsiFindingKey/v1": "5cbcb5815d8848ab9b8496655468e460"
           },
           "properties": {
-            "qsiId": "QSI-2026-06092",
+            "qsiId": "QSI-2026-11870",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -158,7 +158,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-06093",
+            "qsiId": "QSI-2026-11872",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -176,7 +176,25 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-06086",
+            "qsiId": "QSI-2026-11864",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: role not determined (3 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11871",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -194,7 +212,25 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-06094",
+            "qsiId": "QSI-2026-11873",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Schnorr (BIP-340): role not determined (2 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11865",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -203,13 +239,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/coinbase-cb-mpc-en @ 0b716706f998/71e56ae6-3ab7-4092-9868-47ca2b9b929f"
+        "id": "qsi/coinbase-cb-mpc-en @ 0b716706f998/32b0f949-8ecd-42bd-b745-74580de74cf7"
       },
       "properties": {
-        "qsiContentSha256": "cd60b74a0943b30727e307a0fc9a9af47541c0b1cfff96b2f9a0db1c1fa863f7",
+        "qsiContentSha256": "f97305d07a10199298791bef31824379c96cf9e73e16151592d84131b0a588d9",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-28T18:56:05.015778+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:42:03.730900+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-28 18:21 UTC |
+| Дата отчёта | 2026-11-04 18:44 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 0ef970f7-1de5-4aaa-965a-3c8635f1d23b (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 49173f50-3dbe-4eff-88d6-03dc06680839 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `59ba9aa8e8627d919a00be18246ec709d497ff78833c5c217a3bb0541b676a29` |
+| SHA-256 содержимого | `b6b1cbe5d92e05967f415894ea7547340ae7be255bf1392999588cf0f4f82a90` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,7 +17,7 @@
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **2**
+- Средняя: **3**
 - Низкая: **0**
 - Информационная: **2**
 
@@ -25,7 +25,7 @@
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 2
+- Долгосрочный постквантовый риск: 3
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 1
 
@@ -47,9 +47,10 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 753 | docs.wrm/config.mjs: 90 lines scanned with 16 rule patterns and 122 registry patterns; lib.commonjs/_version.d.ts: 5 lines scanned with 16 rule patterns and 122 registry patterns; lib.commonjs/_version.js: 9 lines scanned with 16 rule patterns and 122 registry patterns |
+| source_code | проверено | 753 | docs.wrm/config.mjs: 90 lines scanned with 16 rule patterns and 145 registry patterns; lib.commonjs/_version.d.ts: 5 lines scanned with 16 rule patterns and 145 registry patterns; lib.commonjs/_version.js: 9 lines scanned with 16 rule patterns and 145 registry patterns |
 | dependencies | проверено | 6 | lib.commonjs/package.json: 0 dependencies parsed (0 pinned); lib.esm/package.json: 0 dependencies parsed (0 pinned); misc/basedirs/lib.commonjs/package.json: 0 dependencies parsed (0 pinned) |
-| osv_advisories | проверено | 1 | 162 pinned packages queried at OSV.dev; 6 affected (6 of them only in development or build dependencies) |
+| entropy | проверено | 1 | random-number generation: 753 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| osv_advisories | проверено | 1 | 162 pinned packages queried at OSV.dev; 8 affected (8 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -59,22 +60,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree ethers-js at 3ea4c226dd0b3a074abf90748de9d11192027f4f. 759 files analysed; of 1764 files, 343 are test, fuzzing, benchmark or example code and were left out, 662 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree ethers-js at 3ea4c226dd0b3a074abf90748de9d11192027f4f. 759 files analysed; of 1764 files, 343 are test, fuzzing, benchmark or example code and were left out, 662 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/FUNDING.yml, .github/ISSUE_TEMPLATE/bug-report-legacy.yml, .github/ISSUE_TEMPLATE/bug-report.yml, .github/ISSUE_TEMPLATE/config.yml, .github/ISSUE_TEMPLATE/documentation.yml. 42 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 29.0%
+- Доля квантово-уязвимых элементов инвентаризации: 31.1%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-05818 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (26 файл(ов))
+### QSI-2026-11883 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (26 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: lib.commonjs/crypto/signing-key.js
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:44 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -176,13 +177,65 @@ _file_excerpt · [lib.commonjs/providers/provider-jsonrpc.js](https://github.com
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05823 — Квантово-уязвимый ECDSA: роль не определена (3 файл(ов))
+### QSI-2026-11884 — Квантово-уязвимый ECDH: роль не определена (3 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
+- Затронутый актив: `source-code:ECDH:general`
+- Источник данных: lib.commonjs/crypto/signing-key.js
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:44 UTC
+- Балл приоритета: 34.2 / 100
+- CVSS v3.1: неприменимо
+
+3 упоминаний ECDH в 3 файл(ах), например lib.commonjs/crypto/signing-key.js:82. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте lib.commonjs/crypto/signing-key.js:82 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [lib.commonjs/crypto/signing-key.js](https://github.com/ethers-io/ethers.js/blob/3ea4c226dd0b3a074abf90748de9d11192027f4f/lib.commonjs/crypto/signing-key.js#L82) · line 82 · SHA-256 064ed30b908a9a5154447af71529ee389c56267c804c950fe9e535d168f17b7f_
+
+```
+   81 |         const pubKey = SigningKey.computePublicKey(other);
+   82 |         return (0, index_js_1.hexlify)(secp256k1_1.secp256k1.getSharedSecret((0, index_js_1.getBytesCopy)(this.#privateKey), (0, index_js_1.getBytes)(pubKey), false));
+   83 |     }
+```
+
+_file_excerpt · [lib.esm/crypto/signing-key.js](https://github.com/ethers-io/ethers.js/blob/3ea4c226dd0b3a074abf90748de9d11192027f4f/lib.esm/crypto/signing-key.js#L79) · line 79 · SHA-256 1ff0f8c343f1a823856cb7f0fc68ce2427c78466786a4b889d6b498d60fee2d3_
+
+```
+   78 |         const pubKey = SigningKey.computePublicKey(other);
+   79 |         return hexlify(secp256k1.getSharedSecret(getBytesCopy(this.#privateKey), getBytes(pubKey), false));
+   80 |     }
+```
+
+_file_excerpt · [src.ts/crypto/signing-key.ts](https://github.com/ethers-io/ethers.js/blob/3ea4c226dd0b3a074abf90748de9d11192027f4f/src.ts/crypto/signing-key.ts#L99) · line 99 · SHA-256 a4503d03390889883ad97060ed87b430439006f61d3d637de9b59ae5838a8dfc_
+
+```
+   98 |         const pubKey = SigningKey.computePublicKey(other);
+   99 |         return hexlify(secp256k1.getSharedSecret(getBytesCopy(this.#privateKey), getBytes(pubKey), false));
+  100 |     }
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-11889 — Квантово-уязвимый ECDSA: роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDSA:general`
 - Источник данных: lib.commonjs/utils/errors.d.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:21 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:44 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -228,17 +281,17 @@ _file_excerpt · [src.ts/utils/errors.ts](https://github.com/ethers-io/ethers.js
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05833 — 21 бюллетеней в 6 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-11899 — 23 бюллетеней в 8 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:44 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
-OSV.dev сообщает 21 бюллетеней (12 с оценкой high или critical) для 6 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, brace-expansion@1.1.13 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; brace-expansion@2.0.3 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4; diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx; js-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
+OSV.dev сообщает 23 бюллетеней (12 с оценкой high или critical) для 8 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, brace-expansion@1.1.13 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; brace-expansion@2.0.3 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895; deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4; diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx; glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
 
 **Возможные последствия.** Пользователей продукта они не затрагивают. Они могут влиять на машины разработчиков и CI (цепочка поставки): скомпрометированный или уязвимый инструмент способен изменить сборку.
 
@@ -250,14 +303,16 @@ OSV.dev сообщает 21 бюллетеней (12 с оценкой high ил
 
 **Подтверждающие доказательства.**
 
-_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 53cda0dec77a756f58bd280981cf6772e5faea8c2833526bdd685c6e623379c1_
+_tool_output · [OSV.dev (npm)](https://osv.dev/) · package-lock.json · SHA-256 3bf3a07dd529276f684d4fb0810953a90d57f86496aceaa907bbf02e8483437c_
 
 ```
 brace-expansion@1.1.13 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895
 brace-expansion@2.0.3 [dev]: GHSA-3jxr-9vmj-r5cp, GHSA-6j4f-fj2g-mc7p, GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-rgw5-rvv9-x895
 deepmerge@4.3.1 [dev]: GHSA-gcqx-w48m-w2h4
 diff@7.0.0 [dev]: GHSA-73rr-hh4g-fpgx
+glob@10.5.0 [dev]: GHSA-3g3m-2fjr-6pw4
 js-yaml@4.1.1 [dev]: GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68
+minimatch@9.0.9 [dev]: GHSA-g3hv-75wg-m249
 serialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA-qj8w-gfj5-8c6v
 ```
 
@@ -267,13 +322,13 @@ serialize-javascript@6.0.2 [dev]: GHSA-5c6j-r48x-rmvq, GHSA-m5mm-p8h7-m29v, GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05832 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-11898 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:21 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:44 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -307,18 +362,18 @@ _Эти находки аналитик отклонил как ложные с�
 
 | ID | Подробное описание находок | Проверка аналитика |
 |---|---|---|
-| QSI-2026-05819 | Возможный секрет в коде lib.commonjs/providers/provider-alchemy.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05820 | Возможный секрет в коде lib.commonjs/providers/provider-ankr.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05821 | Возможный секрет в коде lib.commonjs/providers/provider-blockscout.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05822 | Возможный секрет в коде lib.commonjs/providers/provider-quicknode.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05824 | Возможный секрет в коде lib.esm/providers/provider-alchemy.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05825 | Возможный секрет в коде lib.esm/providers/provider-ankr.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05826 | Возможный секрет в коде lib.esm/providers/provider-blockscout.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05827 | Возможный секрет в коде lib.esm/providers/provider-quicknode.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05828 | Возможный секрет в коде src.ts/providers/provider-alchemy.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05829 | Возможный секрет в коде src.ts/providers/provider-ankr.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05830 | Возможный секрет в коде src.ts/providers/provider-blockscout.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
-| QSI-2026-05831 | Возможный секрет в коде src.ts/providers/provider-quicknode.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11885 | Возможный секрет в коде lib.commonjs/providers/provider-alchemy.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11886 | Возможный секрет в коде lib.commonjs/providers/provider-ankr.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11887 | Возможный секрет в коде lib.commonjs/providers/provider-blockscout.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11888 | Возможный секрет в коде lib.commonjs/providers/provider-quicknode.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11890 | Возможный секрет в коде lib.esm/providers/provider-alchemy.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11891 | Возможный секрет в коде lib.esm/providers/provider-ankr.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11892 | Возможный секрет в коде lib.esm/providers/provider-blockscout.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11893 | Возможный секрет в коде lib.esm/providers/provider-quicknode.js | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11894 | Возможный секрет в коде src.ts/providers/provider-alchemy.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11895 | Возможный секрет в коде src.ts/providers/provider-ankr.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11896 | Возможный секрет в коде src.ts/providers/provider-blockscout.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
+| QSI-2026-11897 | Возможный секрет в коде src.ts/providers/provider-quicknode.ts | Community default endpoint keys that ethers.js publishes on purpose, one per provider, in src.ts and in the committed lib.commonjs and lib.esm builds: defaultApiKey in provider-ankr, provider-alchemy and provider-blockscout, and defaultToken in provider-quicknode. Each is the fallback the constructor uses when the caller supplies no key — `if (apiKey == null) { apiKey = defaultApiKey; }` — so the library works unconfigured; each provider implements CommunityResourcable and calls showThrottleMessage, which is the library telling the user they are on a shared, rate-limited credential. Public by design, not leaked. Note that the first three were invisible to the detector until it learned to read a camelCase credential name on 2026-10-27, and only the Ankr one was ever reported, by the accident of being 64 hex characters long. |
 
 ## 8. Постквантовая оценка
 
@@ -352,8 +407,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (26) | QSI-2026-05818 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (3) | QSI-2026-05823 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **подпись транзакций и сообщений** | ECDSA (26) | QSI-2026-11883 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDH (3), ECDSA (3) | QSI-2026-11884, QSI-2026-11889 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -362,7 +417,7 @@ _Роль определяется по путям файлов, именам ф
 
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDSA (29) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (3), ECDSA (29) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | AES-128 (3), HMAC (10), Keccak-256 (27), PBKDF2 (10), RIPEMD-160 (5), SHA-2 (7), scrypt (5) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | Keccak-256 (27), RIPEMD-160 (5), SHA-2 (7) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -388,25 +443,27 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05818 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-05823 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-05818 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05823 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-05833 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-11883 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11884 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-11889 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-11883 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11884 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-11889 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-11899 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -427,7 +484,7 @@ _Действие: взламывает — алгоритм нужно заме
 14. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
 15. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 16. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+17. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 18. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
 20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
@@ -449,6 +506,7 @@ _Действие: взламывает — алгоритм нужно заме
 | SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 2 | 2 | lib.esm/crypto/sha2.js:4; src.ts/crypto/sha2.ts:9 |
 | Crypto library | 1.2.0 | @noble/curves (noble-curves) | н/п | допустимо | 2 | 2 | package-lock.json; package.json |
 | Crypto library | 1.3.2 | @noble/hashes (noble-hashes) | н/п | допустимо | 2 | 2 | package-lock.json; package.json |
+| ECDH |  |  | уязвим (Шор) | допустимо | 3 | 3 | lib.commonjs/crypto/signing-key.js:82; lib.esm/crypto/signing-key.js:79; src.ts/crypto/signing-key.ts:99 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 3 | 3 | lib.commonjs/crypto/signing-key.js:9; lib.esm/crypto/signing-key.js:6; src.ts/crypto/signing-key.ts:7 |
 | ECDSA |  |  | уязвим (Шор) | допустимо | 26 | 26 | lib.commonjs/providers/abstract-signer.d.ts:42; lib.commonjs/providers/abstract-signer.js:244; lib.commonjs/providers/provider-jsonrpc.d.ts:208 |
 

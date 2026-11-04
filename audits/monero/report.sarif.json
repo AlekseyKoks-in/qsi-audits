@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CODE-HARDCODED-SECRET",
@@ -114,32 +114,7 @@
               "id": "DEP-KNOWN-ADVISORY",
               "name": "DepKnownAdvisory",
               "shortDescription": {
-                "text": "block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7"
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "dependencies",
-                  "known_vulnerable_component"
-                ],
-                "security-severity": "5.0"
-              },
-              "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
-              },
-              "help": {
-                "text": "OSV.dev сообщает GHSA-qwgh-2vcv-g2f7 для пакета crates.io block-buffer версии 0.10.4: block_buffer: panic corrupts inline buffer position. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Обновите до исправленной версии (пока не выпущена; меры смягчения — в бюллетене). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
-              },
-              "helpUri": "https://osv.dev/vulnerability/GHSA-qwgh-2vcv-g2f7"
-            },
-            {
-              "id": "DEP-ADVISORY-UNRATED",
-              "name": "DepAdvisoryUnrated",
-              "shortDescription": {
-                "text": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)"
+                "text": "keccak 0.1.5 затронут GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012)"
               },
               "defaultConfiguration": {
                 "level": "note"
@@ -153,12 +128,12 @@
                 "security-severity": "3.0"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) для пакета crates.io keccak версии 0.1.5: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. Затронутый код находится за флагом Cargo `asm`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость. Обновите до исправленной версии (0.1.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
               "help": {
-                "text": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Разберите бюллетень; если он применим, обновите до исправленной версии (0.7.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. У бюллетеня нет оценки серьёзности. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-3288-p39f-rqpv (RUSTSEC-2026-0012) для пакета crates.io keccak версии 0.1.5: Unsoundness in opt-in ARMv8 assembly backend for `keccak`. Затронутый код находится за флагом Cargo `asm`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость. Обновите до исправленной версии (0.1.6). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
               },
-              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
+              "helpUri": "https://osv.dev/vulnerability/GHSA-3288-p39f-rqpv"
             },
             {
               "id": "DEP-NO-PQC-LIBRARY",
@@ -178,10 +153,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, k256, p256), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, k256, p256), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, ff, group, k256, p256), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (curve25519-dalek, ecdsa, k256, p256), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -200,7 +175,7 @@
             "qsiFindingKey/v1": "4e602c71984f8b1763de2505920986e1"
           },
           "properties": {
-            "qsiId": "QSI-2026-07254",
+            "qsiId": "QSI-2026-12234",
             "severity": "high",
             "confidence": "medium",
             "classification": "confirmed_misconfiguration",
@@ -230,7 +205,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-07256",
+            "qsiId": "QSI-2026-12236",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -248,7 +223,7 @@
             "qsiFindingKey/v1": "015c728a7b05fe74261e6f59612b1eb6"
           },
           "properties": {
-            "qsiId": "QSI-2026-07220",
+            "qsiId": "QSI-2026-12200",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -266,7 +241,7 @@
             "qsiFindingKey/v1": "b12bab5b4fcec97809f148c2ccd35365"
           },
           "properties": {
-            "qsiId": "QSI-2026-07221",
+            "qsiId": "QSI-2026-12201",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -284,7 +259,7 @@
             "qsiFindingKey/v1": "75393f3cdc1eab22ef35b9abf88f1e67"
           },
           "properties": {
-            "qsiId": "QSI-2026-07222",
+            "qsiId": "QSI-2026-12202",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -302,7 +277,7 @@
             "qsiFindingKey/v1": "e2560b07f3b7dddd247ddcd1bff81018"
           },
           "properties": {
-            "qsiId": "QSI-2026-07223",
+            "qsiId": "QSI-2026-12203",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -320,7 +295,7 @@
             "qsiFindingKey/v1": "693c8a4581240af84c97fe48a8a045a2"
           },
           "properties": {
-            "qsiId": "QSI-2026-07224",
+            "qsiId": "QSI-2026-12204",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -338,7 +313,7 @@
             "qsiFindingKey/v1": "39876601a46f9efd20118a2ff5315e4d"
           },
           "properties": {
-            "qsiId": "QSI-2026-07225",
+            "qsiId": "QSI-2026-12205",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -356,7 +331,7 @@
             "qsiFindingKey/v1": "a7abc8f810ff44aa937409257b0a2f5b"
           },
           "properties": {
-            "qsiId": "QSI-2026-07226",
+            "qsiId": "QSI-2026-12206",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -374,7 +349,7 @@
             "qsiFindingKey/v1": "d6e0a2c05f1f2c1826a4504ca7debf66"
           },
           "properties": {
-            "qsiId": "QSI-2026-07227",
+            "qsiId": "QSI-2026-12207",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -392,7 +367,7 @@
             "qsiFindingKey/v1": "34cdca4f058e479c0480c8f535d19dee"
           },
           "properties": {
-            "qsiId": "QSI-2026-07228",
+            "qsiId": "QSI-2026-12208",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -410,7 +385,7 @@
             "qsiFindingKey/v1": "34cdca4f058e479c0480c8f535d19dee"
           },
           "properties": {
-            "qsiId": "QSI-2026-07229",
+            "qsiId": "QSI-2026-12209",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -428,7 +403,7 @@
             "qsiFindingKey/v1": "8254787fcd78054683581a27383b2404"
           },
           "properties": {
-            "qsiId": "QSI-2026-07230",
+            "qsiId": "QSI-2026-12210",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -446,7 +421,7 @@
             "qsiFindingKey/v1": "153cf810fe559c2813a270d0628dc15a"
           },
           "properties": {
-            "qsiId": "QSI-2026-07231",
+            "qsiId": "QSI-2026-12211",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -464,7 +439,7 @@
             "qsiFindingKey/v1": "8940dac20b1d1647dd751d55a8f107e3"
           },
           "properties": {
-            "qsiId": "QSI-2026-07232",
+            "qsiId": "QSI-2026-12212",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -482,7 +457,7 @@
             "qsiFindingKey/v1": "f86943d0da1b3519143a73c5e14d36b6"
           },
           "properties": {
-            "qsiId": "QSI-2026-07233",
+            "qsiId": "QSI-2026-12213",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -500,7 +475,7 @@
             "qsiFindingKey/v1": "3f0fd07b430ad99892a1ae0a00ad399a"
           },
           "properties": {
-            "qsiId": "QSI-2026-07234",
+            "qsiId": "QSI-2026-12214",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -518,7 +493,7 @@
             "qsiFindingKey/v1": "79a3456aed575de3453fe0e231cd46e3"
           },
           "properties": {
-            "qsiId": "QSI-2026-07235",
+            "qsiId": "QSI-2026-12215",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -536,7 +511,7 @@
             "qsiFindingKey/v1": "342127b97fa2b33249e0bcae0f3cafe2"
           },
           "properties": {
-            "qsiId": "QSI-2026-07236",
+            "qsiId": "QSI-2026-12216",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -554,7 +529,7 @@
             "qsiFindingKey/v1": "a94624cf79d17c205e4b0653aae7e20c"
           },
           "properties": {
-            "qsiId": "QSI-2026-07237",
+            "qsiId": "QSI-2026-12217",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -572,7 +547,7 @@
             "qsiFindingKey/v1": "a94624cf79d17c205e4b0653aae7e20c"
           },
           "properties": {
-            "qsiId": "QSI-2026-07238",
+            "qsiId": "QSI-2026-12218",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -590,7 +565,7 @@
             "qsiFindingKey/v1": "a0e870bfa631df925420ca02d5dc581e"
           },
           "properties": {
-            "qsiId": "QSI-2026-07239",
+            "qsiId": "QSI-2026-12219",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -608,7 +583,7 @@
             "qsiFindingKey/v1": "9caeea58dd44e018e453af082fa31d26"
           },
           "properties": {
-            "qsiId": "QSI-2026-07240",
+            "qsiId": "QSI-2026-12220",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -626,7 +601,7 @@
             "qsiFindingKey/v1": "2a952e368effdb02e4e83e7d8a19d423"
           },
           "properties": {
-            "qsiId": "QSI-2026-07241",
+            "qsiId": "QSI-2026-12221",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -644,7 +619,7 @@
             "qsiFindingKey/v1": "39e0f4431cf5269386c4d653512c48f3"
           },
           "properties": {
-            "qsiId": "QSI-2026-07242",
+            "qsiId": "QSI-2026-12222",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -662,7 +637,7 @@
             "qsiFindingKey/v1": "7c64da19d4accbb07dc5ca0984c90706"
           },
           "properties": {
-            "qsiId": "QSI-2026-07243",
+            "qsiId": "QSI-2026-12223",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -680,7 +655,7 @@
             "qsiFindingKey/v1": "298f07c620330c4e37d8b5627e041344"
           },
           "properties": {
-            "qsiId": "QSI-2026-07244",
+            "qsiId": "QSI-2026-12224",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -698,7 +673,7 @@
             "qsiFindingKey/v1": "da541a0f2e63b7c61292bc154a322a11"
           },
           "properties": {
-            "qsiId": "QSI-2026-07245",
+            "qsiId": "QSI-2026-12225",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -716,7 +691,7 @@
             "qsiFindingKey/v1": "91c4b0470647d500c27b92c8ad350507"
           },
           "properties": {
-            "qsiId": "QSI-2026-07246",
+            "qsiId": "QSI-2026-12226",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -734,7 +709,7 @@
             "qsiFindingKey/v1": "c3a1ac8083cf84a063219e219d14fd32"
           },
           "properties": {
-            "qsiId": "QSI-2026-07247",
+            "qsiId": "QSI-2026-12227",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -752,7 +727,7 @@
             "qsiFindingKey/v1": "34c2c5407c2ad05433faadc865488adc"
           },
           "properties": {
-            "qsiId": "QSI-2026-07248",
+            "qsiId": "QSI-2026-12228",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -770,7 +745,7 @@
             "qsiFindingKey/v1": "4539c8f6ef7878635258c2b4a500d81a"
           },
           "properties": {
-            "qsiId": "QSI-2026-07249",
+            "qsiId": "QSI-2026-12229",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -788,7 +763,7 @@
             "qsiFindingKey/v1": "29b13d204922281d1fee4cc1a295be0c"
           },
           "properties": {
-            "qsiId": "QSI-2026-07250",
+            "qsiId": "QSI-2026-12230",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -806,7 +781,7 @@
             "qsiFindingKey/v1": "34024143d99d59ef31fe4745adb36be3"
           },
           "properties": {
-            "qsiId": "QSI-2026-07251",
+            "qsiId": "QSI-2026-12231",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -824,7 +799,7 @@
             "qsiFindingKey/v1": "ff1d82467acd02c0802273971bb0a79b"
           },
           "properties": {
-            "qsiId": "QSI-2026-07252",
+            "qsiId": "QSI-2026-12232",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -842,7 +817,7 @@
             "qsiFindingKey/v1": "df76359cc24e86d59756379cbe462e45"
           },
           "properties": {
-            "qsiId": "QSI-2026-07253",
+            "qsiId": "QSI-2026-12233",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -860,7 +835,7 @@
             "qsiFindingKey/v1": "1e18a834cbd109930f2377214cde3a59"
           },
           "properties": {
-            "qsiId": "QSI-2026-07255",
+            "qsiId": "QSI-2026-12235",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -878,7 +853,7 @@
             "qsiFindingKey/v1": "cb7dd5d879e7ccc6fbf842f8dd2da6e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-07216",
+            "qsiId": "QSI-2026-12196",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -890,13 +865,13 @@
           "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый Ed25519: роль не определена (6 файл(ов))"
+            "text": "Квантово-уязвимый Ed25519: роль не определена (26 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-07217",
+            "qsiId": "QSI-2026-12197",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -914,7 +889,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-07218",
+            "qsiId": "QSI-2026-12198",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -932,39 +907,12 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-07219",
+            "qsiId": "QSI-2026-12199",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
             "security-severity": "5.0"
           }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 4,
-          "level": "warning",
-          "message": {
-            "text": "block-buffer 0.10.4 затронут GHSA-qwgh-2vcv-g2f7 (dependency: crates.io/block-buffer@0.10.4)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-07258",
-            "severity": "medium",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "5.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/fcmp_pp/fcmp_pp_rust/Cargo.lock"
-                }
-              }
-            }
-          ]
         },
         {
           "ruleId": "DEP-KNOWN-ADVISORY",
@@ -977,34 +925,7 @@
             "qsiFindingKey/v1": "c65e4355883a374b6cbcb4e457f78ffa"
           },
           "properties": {
-            "qsiId": "QSI-2026-07260",
-            "severity": "low",
-            "confidence": "low",
-            "classification": "known_vulnerable_component",
-            "security-severity": "3.0"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/fcmp_pp/fcmp_pp_rust/Cargo.lock"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "DEP-ADVISORY-UNRATED",
-          "ruleIndex": 5,
-          "level": "note",
-          "message": {
-            "text": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности) (dependency: crates.io/crypto-bigint@0.5.5)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-07259",
+            "qsiId": "QSI-2026-12238",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1022,7 +943,7 @@
         },
         {
           "ruleId": "DEP-NO-PQC-LIBRARY",
-          "ruleIndex": 6,
+          "ruleIndex": 5,
           "level": "note",
           "message": {
             "text": "Не обнаружено криптобиблиотек с поддержкой PQC"
@@ -1031,7 +952,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-07257",
+            "qsiId": "QSI-2026-12237",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -1040,13 +961,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/monero @ 3fd0f88c20f5/e425d0b6-4289-4e9c-a90f-1054ae92ae26"
+        "id": "qsi/monero @ 3fd0f88c20f5/06283ac7-7f51-4ed2-a80a-9cf2f64d819d"
       },
       "properties": {
-        "qsiContentSha256": "baf67d98f79b2d660cf6851c2ab260cc1d832d4825056049a72d778f6eb5536e",
+        "qsiContentSha256": "474b1294ee360010a360896aa943fa57c4538bdf5d05a1386be0965270613489",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T23:26:08.797898+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:04:58.064155+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

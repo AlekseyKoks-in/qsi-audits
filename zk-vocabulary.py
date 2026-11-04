@@ -78,8 +78,8 @@ PRIMITIVES = {
         "breaks": "forgery",
         "consequence": "Recover the signing key and forge spend authorization. Re-randomizable keys give unlinkability, not quantum resistance.",
         "patterns": [
-            "\\b(RedDSA|RedPallas|RedJubjub)\\b|\\breddsa::|\\b(SpendAuthSig|BindingSig)\\b",
-            "\\bpub (?:trait|enum) SpendAuth\\b|\\bimpl(?:<[^>]*>)? SigType for\\b|\\bpub type Randomizer\\b"
+            "RedDSA\\b|RedPallas\\b|RedJubjub\\b|reddsa::|SpendAuthSig\\b|BindingSig\\b",
+            "\\bpub (?:trait|enum) SpendAuth\\b|\\bimpl(?:<[^>]*>)? SigType for\\b|\\bpub type Randomizer\\b(?!\\s*=\\s*\\w+::Randomizer<)"
         ],
         "sources": [
             "ZCASHSPEC",
@@ -95,7 +95,7 @@ PRIMITIVES = {
         "breaks": "soundness",
         "consequence": "Produce an accepted proof of a false statement. Zero knowledge is statistical and is not lost retroactively, so the exposure is forged value, not disclosed value.",
         "patterns": [
-            "\\bhalo2(_proofs|_gadgets|_backend)?::|\\bHalo2\\w*|\\bParamsIPA\\b|\\b(Prover|Verifier)IPA\\b|\\bIPACommitmentScheme\\b"
+            "halo2_proofs::|halo2_gadgets::|halo2_backend::|halo2::|Halo2\\w*|ParamsIPA\\b|ProverIPA\\b|VerifierIPA\\b|IPACommitmentScheme\\b"
         ],
         "sources": [
             "HALO2",
@@ -128,7 +128,7 @@ PRIMITIVES = {
         "breaks": "preimage/collision only",
         "consequence": "No Shor-type break: the hardness is not group hardness. Generic quantum search sets the margin, so the field size and sponge parameters decide it, not the algebra.",
         "patterns": [
-            "(?:\\b|_)[Pp]oseidon\\w*"
+            "[Pp]oseidon\\w*"
         ],
         "sources": [
             "POSEIDON2019",
@@ -161,7 +161,8 @@ PRIMITIVES = {
         "consequence": "Pairing and discrete-logarithm break: signatures forgeable, and any proof system over this curve loses soundness with it.",
         "patterns": [
             "\\bbls12_381\\b|\\bBLS12_381\\b|@noble/curves/bls12-381|\\bblst_\\w+|\\bBLS12_(G1ADD|G1MSM|G2ADD|G2MSM|PAIRING_CHECK|MAP_FP_TO_G1|MAP_FP2_TO_G2)\\b",
-            "address\\(\\s*0x0*(b|c|d|e|f|10|11)\\s*\\)|staticcall\\(\\s*gas\\(\\)\\s*,\\s*(0x0*(b|c|d|e|f|10|11)|1[1-7])\\s*,"
+            "address\\(\\s*0x0*(b|c|d|e|f|10|11)\\s*\\)|staticcall\\(\\s*gas\\(\\)\\s*,\\s*(0x0*(b|c|d|e|f|10|11)|1[1-7])\\s*,",
+            "\\btbls\\.(?:Sign|Verify|VerifyAggregate|ThresholdSplit|ThresholdAggregate|RecoverSecret|Aggregate|GenerateSecretKey|SecretToPublicKey)\\b|\\bSigTypeBLS\\b|\\bffi\\.PrivateKey(?:Sign|PublicKey|GenerateWithSeed)\\b|\\bffi\\.HashVerify\\b"
         ],
         "sources": [
             "EIP-2537",

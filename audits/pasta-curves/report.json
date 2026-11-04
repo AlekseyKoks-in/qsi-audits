@@ -1,8 +1,8 @@
 {
-  "content_sha256": "2919c46477b0ece07cb139e575e93a0c5fa3adc70e68306085e2b990adc39eba",
+  "content_sha256": "02f97d2a63b9de6a907d16415561dfff45827aee3f298143449459019b8ae1cc",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-10-30T20:59:34.768606+00:00",
+  "generated_at": "2026-11-04T19:12:07.276120+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "ef649641-0655-47fc-a9ea-c9cf3384e4c7",
     "name": "pasta-curves @ e3c0f0246f56",
     "client_name": "Electric Coin Company (Zcash)",
-    "description": "Static review of the source tree pasta-curves at e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9. 35 files analysed; of 180 files, 38 are test, fuzzing, benchmark or example code and were left out, 107 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/ISSUE_TEMPLATE/eli15.md, .github/dependabot.yml, .github/workflows/asm.yml, .github/workflows/book.yml. 29 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree pasta-curves at e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9. 35 files analysed; of 180 files, 38 are test, fuzzing, benchmark or example code and were left out, 107 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .gitattributes, .github/ISSUE_TEMPLATE/eli15.md, .github/dependabot.yml, .github/workflows/asm.yml, .github/workflows/book.yml. 30 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "ebc4cacf-0b49-4605-b458-daffef75c78e",
+    "id": "27944377-e8dd-469d-902d-8eab841e28e7",
     "mode": "document",
     "title": "Document audit: pasta-curves",
     "status": "completed",
-    "engine_version": "1.2.0",
-    "started_at": "2026-10-30T20:59:25.918799+00:00",
-    "finished_at": "2026-10-30T20:59:33.618505+00:00",
+    "engine_version": "1.3.0",
+    "started_at": "2026-11-04T19:12:02.593819+00:00",
+    "finished_at": "2026-11-04T19:12:07.174234+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -267,22 +267,22 @@
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/asm_source.py: 800 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/asm_source.py: 800 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/check_export_axioms.py: 516 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/check_export_axioms.py: 516 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/check_export_coverage.py: 54 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/check_export_coverage.py: 54 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/gen.py: 1134 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/gen.py: 1134 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
@@ -297,22 +297,22 @@
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/gen_aarch64.py: 1232 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/gen_aarch64.py: 1232 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/gen_hull.py: 221 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/gen_hull.py: 221 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/gen_x86_64.py: 1061 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/gen_x86_64.py: 1061 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "lean/scripts/verify_hull_certificate.py: 400 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "lean/scripts/verify_hull_certificate.py: 400 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
@@ -322,117 +322,122 @@
     },
     {
       "area": "source_code",
-      "detail": "src/arithmetic.rs: 12 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/arithmetic.rs: 12 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/arithmetic/curves.rs: 314 lines scanned with 16 rule patterns and 130 registry patterns; 73 lines in #[cfg(test)] modules ignored",
+      "detail": "src/arithmetic/curves.rs: 314 lines scanned with 16 rule patterns and 145 registry patterns; 73 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/arithmetic/fields.rs: 462 lines scanned with 16 rule patterns and 130 registry patterns; 82 lines in #[cfg(test)] modules ignored",
+      "detail": "src/arithmetic/fields.rs: 462 lines scanned with 16 rule patterns and 145 registry patterns; 82 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/asm/aarch64.rs: 1323 lines scanned with 16 rule patterns and 130 registry patterns; 111 lines in #[cfg(test)] modules ignored",
+      "detail": "src/asm/aarch64.rs: 1323 lines scanned with 16 rule patterns and 145 registry patterns; 111 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/asm/entry.rs: 247 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/asm/entry.rs: 247 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/asm/mod.rs: 150 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/asm/mod.rs: 150 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/asm/x86_64.rs: 856 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/asm/x86_64.rs: 856 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/curves.rs: 1494 lines scanned with 16 rule patterns and 130 registry patterns; 161 lines in #[cfg(test)] modules ignored",
+      "detail": "src/curves.rs: 1494 lines scanned with 16 rule patterns and 145 registry patterns; 161 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deferred.rs: 285 lines scanned with 16 rule patterns and 130 registry patterns; 154 lines in #[cfg(test)] modules ignored",
+      "detail": "src/deferred.rs: 285 lines scanned with 16 rule patterns and 145 registry patterns; 154 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/fields.rs: 40 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/fields.rs: 40 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/fields/fp.rs: 1483 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/fields/fp.rs: 1483 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/fields/fq.rs: 1477 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/fields/fq.rs: 1477 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/fields/modinv62.rs: 1805 lines scanned with 16 rule patterns and 130 registry patterns; 1008 lines in #[cfg(test)] modules ignored",
+      "detail": "src/fields/modinv62.rs: 1805 lines scanned with 16 rule patterns and 145 registry patterns; 1008 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/glv.rs: 959 lines scanned with 16 rule patterns and 130 registry patterns; 539 lines in #[cfg(test)] modules ignored",
+      "detail": "src/glv.rs: 959 lines scanned with 16 rule patterns and 145 registry patterns; 539 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hashtocurve.rs: 279 lines scanned with 16 rule patterns and 130 registry patterns; 78 lines in #[cfg(test)] modules ignored",
+      "detail": "src/hashtocurve.rs: 279 lines scanned with 16 rule patterns and 145 registry patterns; 78 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/inversion.rs: 1643 lines scanned with 16 rule patterns and 130 registry patterns; 1490 lines in #[cfg(test)] modules ignored",
+      "detail": "src/inversion.rs: 1643 lines scanned with 16 rule patterns and 145 registry patterns; 1490 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/inversion/portable.rs: 342 lines scanned with 16 rule patterns and 130 registry patterns; 50 lines in #[cfg(test)] modules ignored",
+      "detail": "src/inversion/portable.rs: 342 lines scanned with 16 rule patterns and 145 registry patterns; 50 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/lib.rs: 127 lines scanned with 16 rule patterns and 130 registry patterns; 23 lines in #[cfg(test)] modules ignored",
+      "detail": "src/lib.rs: 127 lines scanned with 16 rule patterns and 145 registry patterns; 23 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/limbs.rs: 59 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/limbs.rs: 59 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/macros.rs: 163 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/macros.rs: 163 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pallas.rs: 164 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/pallas.rs: 164 lines scanned with 16 rule patterns and 145 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/serde_impl.rs: 447 lines scanned with 16 rule patterns and 130 registry patterns; 315 lines in #[cfg(test)] modules ignored",
+      "detail": "src/serde_impl.rs: 447 lines scanned with 16 rule patterns and 145 registry patterns; 315 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/vesta.rs: 72 lines scanned with 16 rule patterns and 130 registry patterns",
+      "detail": "src/vesta.rs: 72 lines scanned with 16 rule patterns and 145 registry patterns",
+      "status": "checked"
+    },
+    {
+      "area": "entropy",
+      "detail": "random-number generation: 31 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
       "status": "checked"
     },
     {
@@ -459,9 +464,9 @@
       "count": 31,
       "rows": 31,
       "examples": [
-        "lean/scripts/asm_source.py: 800 lines scanned with 16 rule patterns and 130 registry patterns",
-        "lean/scripts/check_export_axioms.py: 516 lines scanned with 16 rule patterns and 130 registry patterns",
-        "lean/scripts/check_export_coverage.py: 54 lines scanned with 16 rule patterns and 130 registry patterns"
+        "lean/scripts/asm_source.py: 800 lines scanned with 16 rule patterns and 145 registry patterns",
+        "lean/scripts/check_export_axioms.py: 516 lines scanned with 16 rule patterns and 145 registry patterns",
+        "lean/scripts/check_export_coverage.py: 54 lines scanned with 16 rule patterns and 145 registry patterns"
       ]
     },
     {
@@ -480,6 +485,15 @@
       "rows": 1,
       "examples": [
         "lean/scripts/gen_aarch64.py: openssl TLS directives parsed"
+      ]
+    },
+    {
+      "area": "entropy",
+      "status": "checked",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "random-number generation: 31 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
       ]
     },
     {
@@ -526,6 +540,7 @@
       "lean/scripts/gen_hull.py",
       "lean/scripts/gen_x86_64.py",
       "lean/scripts/verify_hull_certificate.py",
+      "random-number generation",
       "sage/pyproject.toml",
       "src/arithmetic.rs",
       "src/arithmetic/curves.rs",
@@ -560,7 +575,7 @@
       "high": 0,
       "medium": 1,
       "low": 0,
-      "info": 2
+      "info": 1
     },
     "by_classification": {
       "confirmed_vulnerability": 0,
@@ -569,21 +584,20 @@
       "potential_crypto_risk": 0,
       "pq_long_term_risk": 1,
       "improvement": 1,
-      "insufficient_data": 1
+      "insufficient_data": 0
     },
-    "total": 3,
+    "total": 2,
     "posture_index": 100,
-    "pq_vulnerable_share": 55.6,
-    "inventory_total": 9,
+    "pq_vulnerable_share": 100.0,
+    "inventory_total": 5,
     "inventory_by_quantum_status": {
-      "not_applicable": 4,
       "vulnerable_shor": 5
     }
   },
   "findings": [
     {
-      "id": "eaf28799-c374-4c60-82b4-8afcaa4eef97",
-      "public_id": "QSI-2026-07555",
+      "id": "dd15c09e-b4cb-49cb-92c3-79ffc7306596",
+      "public_id": "QSI-2026-12277",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))",
       "description": "21 упоминаний Pasta curves (Pallas/Vesta) в 4 файл(ах), например src/curves.rs:1066. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -602,8 +616,8 @@
       "triage": null,
       "affected_asset": "source-code:Pasta curves (Pallas/Vesta):general",
       "data_source": "src/curves.rs",
-      "analyzer": "source_code 1.2.0",
-      "detected_at": "2026-10-30T20:59:33.386947+00:00",
+      "analyzer": "source_code 1.3.0",
+      "detected_at": "2026-11-04T19:12:07.132199+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -678,9 +692,9 @@
         },
         {
           "key": "NISTIR8547",
-          "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+          "url": "https://csrc.nist.gov/pubs/ir/8547/final",
           "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
-          "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version",
+          "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems",
           "publisher": "NIST"
         },
         {
@@ -699,8 +713,8 @@
           "content": " 1065 | \n 1066 | new_curve_impl!(\n 1067 |     (pub),",
           "content_sha256": "83fde1e70d213628f3c9976ebe67c2fc74436f36ef46ec926e4a9a6d8c655713",
           "source_sha256": "91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490156+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149152+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1066"
         },
         {
@@ -710,8 +724,8 @@
           "content": " 1069 |     EpAffine,\n 1070 |     IsoEp,\n 1071 |     Fp,",
           "content_sha256": "253bef6339b63f0bb960716cecb41d520c6abeaf222cd184554270b0b2b32254",
           "source_sha256": "91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490165+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149161+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1070"
         },
         {
@@ -721,8 +735,8 @@
           "content": " 1079 | );\n 1080 | new_curve_impl!(\n 1081 |     (pub),",
           "content_sha256": "5cd0058ebbc73509bd9582c2a6387318e3915238dafa8a023b6305bc4534afb5",
           "source_sha256": "91d74885713c0303372309c40ba46671dddf2399c0daf587f16b476eeb3364b8",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490168+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149165+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/curves.rs#L1080"
         },
         {
@@ -732,8 +746,8 @@
           "content": "   44 | pub mod deferred;\n   45 | pub mod pallas;\n   46 | pub mod vesta;",
           "content_sha256": "d613a2d1a40df0eefae7099af56302a158e0b43c5aaee481a42a9a5ae4969f68",
           "source_sha256": "bf59271f6794fa7fad77adc3921e296f56cda92f57dbe6106647d72d56be4eb4",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490171+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149168+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L45"
         },
         {
@@ -743,8 +757,8 @@
           "content": "   45 | pub mod pallas;\n   46 | pub mod vesta;\n   47 | ",
           "content_sha256": "8e4a619713e5ddc491f9bf374652eaf2bd71bdb26e86c1080c230108f94ae670",
           "source_sha256": "bf59271f6794fa7fad77adc3921e296f56cda92f57dbe6106647d72d56be4eb4",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490175+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149171+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/lib.rs#L46"
         },
         {
@@ -754,8 +768,8 @@
           "content": "   26 |     // implement Shake128 any more but that's fine.\n   27 |     let r = super::IsoEp::new_jacobian(\n   28 |         Base::from_raw([",
           "content_sha256": "574f80fe0cb9f247fda677dce82366e1f115a07dde50d6e1251558bcde6a769f",
           "source_sha256": "b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490178+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149174+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L27"
         },
         {
@@ -765,8 +779,8 @@
           "content": "   47 |     .unwrap();\n   48 |     let p = super::hashtocurve::iso_map::<_, Point, super::IsoEp>(&r, &Ep::ISOGENY_CONSTANTS);\n   49 |     let (x, y, z) = p.jacobian_coordinates();",
           "content_sha256": "219f417612949fbca47e488784fe57ec076287462f01e56410b5316be29e1ad2",
           "source_sha256": "b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490181+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149178+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L48"
         },
         {
@@ -776,8 +790,8 @@
           "content": "   62 |     assert!(bool::from(r2.is_on_curve()));\n   63 |     let p2 = super::hashtocurve::iso_map::<_, Point, super::IsoEp>(&r2, &Ep::ISOGENY_CONSTANTS);\n   64 |     assert!(bool::from(p2.is_on_curve()));",
           "content_sha256": "ea70784da2cdf3146cf852d890a5d602b3f61f9968c725d74d46e929ff137966",
           "source_sha256": "b76caee73b607aab5045b3911c83b86f3e78ae41dbe8c86be3dbe3245b8caf6d",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490184+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149181+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/pallas.rs#L63"
         },
         {
@@ -787,8 +801,8 @@
           "content": "   20 |     use crate::arithmetic::CurveExt;\n   21 |     use crate::curves::IsoEq;\n   22 |     use crate::hashtocurve::map_to_curve_simple_swu;",
           "content_sha256": "bea22f200f9dd677668e3ace45534bf3c4dcba72ef012b13f32e79a555a8c70f",
           "source_sha256": "76dab33aa7bc55ae409c5711cc263e1fd46726575922ca636c41a35779364bde",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490188+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149185+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L21"
         },
         {
@@ -798,8 +812,8 @@
           "content": "   24 |     // The zero input is a special case.\n   25 |     let p: IsoEq = map_to_curve_simple_swu::<Fq, Eq, IsoEq>(&Fq::zero(), Eq::THETA, Eq::Z);\n   26 |     let (x, y, z) = p.jacobian_coordinates();",
           "content_sha256": "177934d421270aecd9abe365658eb2b9f729d8eb4998339b2dee10bdc7fd1a38",
           "source_sha256": "76dab33aa7bc55ae409c5711cc263e1fd46726575922ca636c41a35779364bde",
-          "collector": "source_code 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.490191+00:00",
+          "collector": "source_code 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.149188+00:00",
           "url": "https://github.com/zcash/pasta_curves/blob/e3c0f0246f56d351f1a94ff0a74c8d201dbf87d9/src/vesta.rs#L25"
         }
       ],
@@ -837,8 +851,8 @@
       ]
     },
     {
-      "id": "69eeb0a3-27a2-4fff-a825-d2d7496669fd",
-      "public_id": "QSI-2026-07557",
+      "id": "225fb507-fa30-4c1b-9da4-f5dc8ef68838",
+      "public_id": "QSI-2026-12278",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 3 бюллетеней (0 с оценкой high или critical) для 2 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375; bincode@1.3.3 [dev]: RUSTSEC-2025-0141. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -857,8 +871,8 @@
       "triage": null,
       "affected_asset": "dependencies:crates.io:non-runtime",
       "data_source": "OSV.dev",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T20:59:33.570483+00:00",
+      "analyzer": "dependencies 1.3.0",
+      "detected_at": "2026-11-04T19:12:07.142873+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -913,8 +927,8 @@
           "content": "atty@0.2.14 [dev]: GHSA-g98v-hv3f-hcfr, RUSTSEC-2024-0375\nbincode@1.3.3 [dev]: RUSTSEC-2025-0141",
           "content_sha256": "a929489dbe602baa22761100a6619ac454c7430823f7fe7c7e96022bb2fefb48",
           "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.757553+00:00",
+          "collector": "dependencies 1.3.0",
+          "collected_at": "2026-11-04T19:12:07.190818+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -935,97 +949,6 @@
           "status": "todo"
         }
       ]
-    },
-    {
-      "id": "3cfa4d34-d268-41df-874a-8877c40461fd",
-      "public_id": "QSI-2026-07556",
-      "rule_id": "DEP-NO-PQC-LIBRARY",
-      "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
-      "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (ff, group), но ни одной из списка поддерживающих PQC.",
-      "impact": "Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.",
-      "recommendation": "Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).",
-      "retest": "Повторите сканирование после обновлений.",
-      "limitations": "Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.",
-      "method": "Сопоставление названий зависимостей.",
-      "repro": "Изучите перечисленные в доказательстве манифесты.",
-      "category": "post_quantum",
-      "classification": "insufficient_data",
-      "severity": "info",
-      "confidence": "medium",
-      "preliminary": true,
-      "status": "open",
-      "triage": null,
-      "affected_asset": "dependencies",
-      "data_source": "dependency manifests",
-      "analyzer": "dependencies 1.2.0",
-      "detected_at": "2026-10-30T20:59:33.466053+00:00",
-      "risk_score": 13.3,
-      "risk_breakdown": {
-        "score": 13.3,
-        "factors": {
-          "ease": 0.6,
-          "asset": 0.6,
-          "impact": 0.24,
-          "urgency": 0.3,
-          "exposure": 0.3,
-          "severity": 0.05,
-          "exploitability": 0.0
-        },
-        "profile": "crypto_exchange",
-        "weights": {
-          "asset": 0.1,
-          "impact": 0.2,
-          "urgency": 0.1,
-          "exposure": 0.15,
-          "severity": 0.25,
-          "exploitability": 0.2
-        },
-        "raw_score": 19.55,
-        "references": [],
-        "methodology": "QSI explainable weighted model v1",
-        "contributions": {
-          "ease": 0.0,
-          "asset": 6.0,
-          "impact": 4.8,
-          "urgency": 3.0,
-          "exposure": 4.5,
-          "severity": 1.25,
-          "exploitability": 0.0
-        },
-        "confidence_multiplier": 0.68
-      },
-      "cvss_vector": null,
-      "cvss_score": null,
-      "references": [
-        {
-          "key": "FIPS203",
-          "url": "https://csrc.nist.gov/pubs/fips/203/final",
-          "title": "FIPS 203 — Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)",
-          "status": "final (August 2024)",
-          "publisher": "NIST"
-        },
-        {
-          "key": "FIPS204",
-          "url": "https://csrc.nist.gov/pubs/fips/204/final",
-          "title": "FIPS 204 — Module-Lattice-Based Digital Signature Standard (ML-DSA)",
-          "status": "final (August 2024)",
-          "publisher": "NIST"
-        }
-      ],
-      "evidence": [
-        {
-          "kind": "dependency",
-          "source": "Cargo.lock, Cargo.toml, sage/pyproject.toml",
-          "location": null,
-          "content": "Crypto libraries: ff, group",
-          "content_sha256": "8394c464da802a3186151760bcefdd3dd06a8ad0e233375abbe28269a50aa4c6",
-          "source_sha256": null,
-          "collector": "dependencies 1.2.0",
-          "collected_at": "2026-10-30T20:59:33.576291+00:00",
-          "url": null
-        }
-      ],
-      "remediation": []
     }
   ],
   "pq": {
@@ -1049,7 +972,7 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-07555"
+      "QSI-2026-12277"
     ],
     "roles": [
       {
@@ -1065,7 +988,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-07555"
+          "QSI-2026-12277"
         ],
         "files": 4
       }
@@ -1153,7 +1076,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-07555",
+        "finding": "QSI-2026-12277",
         "finding_title": "Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -1171,7 +1094,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-07555",
+        "finding": "QSI-2026-12277",
         "finding_title": "Квантово-уязвимый Pasta curves (Pallas/Vesta): роль не определена (4 файл(ов))",
         "severity": "medium"
       },
@@ -1189,7 +1112,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-07557",
+        "finding": "QSI-2026-12278",
         "finding_title": "3 бюллетеней в 2 пакет(ах) crates.io, нужных только для разработки или сборки",
         "severity": "info"
       }
@@ -1202,7 +1125,7 @@
     },
     {
       "name": "certificates",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "chain_map",
@@ -1214,7 +1137,7 @@
     },
     {
       "name": "dependencies",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "inventory_document",
@@ -1222,11 +1145,11 @@
     },
     {
       "name": "solidity",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "source_code",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "tls_code",
@@ -1238,7 +1161,7 @@
     },
     {
       "name": "qsi-engine",
-      "version": "1.2.0"
+      "version": "1.3.0"
     },
     {
       "name": "OSV.dev API",
@@ -1320,8 +1243,8 @@
       "key": "NISTIR8547",
       "title": "NIST IR 8547 — Transition to Post-Quantum Cryptography Standards",
       "publisher": "NIST",
-      "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-      "status": "initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version"
+      "url": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "status": "final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems"
     },
     {
       "key": "OSV-DEV",
@@ -1347,54 +1270,6 @@
   ],
   "references_reviewed": "2026-10-13",
   "inventory": [
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14.0",
-      "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
-      "location": "Cargo.lock",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14.0",
-      "usage": "crates.io dependency",
-      "library": "group (jubjub)",
-      "location": "Cargo.lock",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14",
-      "usage": "crates.io dependency",
-      "library": "ff (jubjub)",
-      "location": "Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14",
-      "usage": "crates.io dependency",
-      "library": "group (jubjub)",
-      "location": "Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
-    },
     {
       "algorithm": "Pasta curves (Pallas/Vesta)",
       "family": "zk_proof",
@@ -1457,54 +1332,6 @@
     }
   ],
   "inventory_grouped": [
-    {
-      "algorithm": "Crypto library",
-      "parameter": "0.14.0",
-      "library": "ff (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.lock"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "0.14.0",
-      "library": "group (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.lock"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "0.14",
-      "library": "ff (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.toml"
-      ]
-    },
-    {
-      "algorithm": "Crypto library",
-      "parameter": "0.14",
-      "library": "group (jubjub)",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "count": 1,
-      "rows": 1,
-      "examples": [
-        "Cargo.toml"
-      ]
-    },
     {
       "algorithm": "Pasta curves (Pallas/Vesta)",
       "parameter": "",

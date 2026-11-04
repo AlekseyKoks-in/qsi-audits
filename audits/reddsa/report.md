@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 23:42 UTC |
+| Дата отчёта | 2026-11-04 19:15 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | eb279341-8c00-4ae1-9a0f-b358aa847fc9 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 66dc426a-b0c7-4872-8381-1690c003ff22 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `d9243f8dfd3941e5e6a92db037b26c39dbdc1672e3532e89daa13c24c6b57733` |
+| SHA-256 содержимого | `5ca6c9c5ed7313b21cef308aaed72429129f081cd89916ded12aeb8640a00654` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -63,19 +63,20 @@
 |---|---|---|
 | dependencies | проверено | Cargo.lock: 130 dependencies parsed (130 pinned) |
 | dependencies | проверено | Cargo.toml: 22 dependencies parsed (0 pinned) |
-| source_code | проверено | src/batch.rs: 278 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/constants.rs: 24 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/error.rs: 35 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/hash.rs: 61 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/internal.rs: 14 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/lib.rs: 154 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/messages.rs: 277 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/orchard.rs: 157 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/sapling.rs: 27 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/scalar_mul.rs: 246 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/signature.rs: 55 lines scanned with 16 rule patterns and 128 registry patterns |
-| source_code | проверено | src/signing_key.rs: 227 lines scanned with 16 rule patterns and 128 registry patterns; 29 lines in #[cfg(test)] modules ignored |
-| source_code | проверено | src/verification_key.rs: 207 lines scanned with 16 rule patterns and 128 registry patterns |
+| source_code | проверено | src/batch.rs: 278 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/constants.rs: 24 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/error.rs: 35 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/hash.rs: 61 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/internal.rs: 14 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/lib.rs: 154 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/messages.rs: 277 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/orchard.rs: 157 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/sapling.rs: 27 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/scalar_mul.rs: 246 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/signature.rs: 55 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | проверено | src/signing_key.rs: 227 lines scanned with 16 rule patterns and 145 registry patterns; 29 lines in #[cfg(test)] modules ignored |
+| source_code | проверено | src/verification_key.rs: 207 lines scanned with 16 rule patterns and 145 registry patterns |
+| entropy | проверено | random-number generation: 13 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | проверено | 130 pinned packages queried at OSV.dev; 1 affected (1 of them only in development or build dependencies) |
 
 ## 4. Проверенные и непроверенные активы
@@ -89,17 +90,17 @@ Static review of the source tree reddsa at 04e973bcf8d46819db055ebd0d44304c24a15
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 33.3%
+- Доля квантово-уязвимых элементов инвентаризации: 44.4%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-07275 — Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (1 файл(ов))
+### QSI-2026-12470 — Квантово-уязвимый FROST: пороговая подпись и протоколы MPC (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:FROST:threshold_mpc`
 - Источник данных: src/messages.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:42 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:15 UTC
 - Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
@@ -145,13 +146,13 @@ _file_excerpt · [src/messages.rs](https://github.com/ZcashFoundation/reddsa/blo
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07274 — Квантово-уязвимый RedDSA: роль не определена (3 файл(ов))
+### QSI-2026-12469 — Квантово-уязвимый RedDSA: роль не определена (3 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:RedDSA:general`
 - Источник данных: src/lib.rs
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 23:42 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:15 UTC
 - Балл приоритета: 34.2 / 100
 - CVSS v3.1: неприменимо
 
@@ -237,13 +238,13 @@ _file_excerpt · [src/sapling.rs](https://github.com/ZcashFoundation/reddsa/blob
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-07277 — 1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки
+### QSI-2026-12472 — 1 бюллетеней в 1 пакет(ах) crates.io, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:crates.io:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:42 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:15 UTC
 - Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
@@ -271,17 +272,17 @@ bincode@1.3.3 [dev]: RUSTSEC-2025-0141
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-07276 — Не обнаружено криптобиблиотек с поддержкой PQC
+### QSI-2026-12471 — Не обнаружено криптобиблиотек с поддержкой PQC
 
 - Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies`
 - Источник данных: dependency manifests
 - Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 23:42 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:15 UTC
 - Балл приоритета: 13.3 / 100
 - CVSS v3.1: неприменимо
 
-В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, ff, group, jubjub, pasta_curves), но ни одной из списка поддерживающих PQC.
+В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bls12_381, jubjub, pasta_curves), но ни одной из списка поддерживающих PQC.
 
 **Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
 
@@ -293,10 +294,10 @@ bincode@1.3.3 [dev]: RUSTSEC-2025-0141
 
 **Подтверждающие доказательства.**
 
-_dependency · Cargo.lock, Cargo.toml · SHA-256 e88913eae28671436a0e91dd5f54d5fa0db5a5ae27bcda4c1ad423fed8b9f1dd_
+_dependency · Cargo.lock, Cargo.toml · SHA-256 075b070bd87081d3aa64ebb503bbde5e807966cd67ec60df515334137ed8c509_
 
 ```
-Crypto libraries: bls12_381, ff, group, jubjub, pasta_curves
+Crypto libraries: bls12_381, jubjub, pasta_curves
 ```
 
 **Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
@@ -329,6 +330,7 @@ _Допущения планирования: x для обмена ключам
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
+- Только классика — пороговая подпись и протоколы MPC: FROST (1 файл(ов))
 
 **Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -338,8 +340,8 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **пороговая подпись и протоколы MPC** | FROST (1) | QSI-2026-07275 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
-| **роль не определена** | RedDSA (3) | QSI-2026-07274 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
+| **пороговая подпись и протоколы MPC** | FROST (1) | QSI-2026-12470 | Отслеживайте постквантовые пороговые подписи (NIST IR 8214C) и держите слой протоколов готовым к замене схемы подписи; зафиксируйте, сколько должны жить ключи и доли |
+| **роль не определена** | RedDSA (3) | QSI-2026-12469 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на постквантовый алгоритм; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -372,25 +374,25 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-07275 | Внесите использования FROST в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-07274 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-07275 | Запланируйте миграцию FROST на Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) или гибридной схемы. |
-| P4 | QSI-2026-07274 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-07277 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-12470 | Внесите использования FROST в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12469 | Внесите использования RedDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-12470 | Запланируйте миграцию FROST на Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Как для обычной схемы, которую она порождает: ML-DSA или SLH-DSA там, где это допускает проверяющая сторона; пороговые постквантовые подписи пока в стадии исследований (NIST IR 8214C) или гибридной схемы. |
+| P4 | QSI-2026-12469 | Запланируйте миграцию RedDSA на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-12472 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -405,7 +407,7 @@ _Действие: взламывает — алгоритм нужно заме
 8. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
 9. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 10. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-11. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+11. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 12. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
 13. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
 14. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
@@ -415,12 +417,9 @@ _Действие: взламывает — алгоритм нужно заме
 | Алгоритм | Параметр | Библиотека | Расположение | Квантовый статус | Классический статус |
 |---|---|---|---|---|---|
 | Crypto library | 0.11.1 | jubjub (jubjub) | Cargo.lock | н/п | допустимо |
-| Crypto library | 0.14.0 | group (jubjub) | Cargo.lock | н/п | допустимо |
-| Crypto library | 0.14.0 | ff (jubjub) | Cargo.lock | н/п | допустимо |
 | Crypto library | 0.6.0 | pasta_curves (pasta_curves (Pallas/Vesta)) | Cargo.lock | н/п | допустимо |
-| Crypto library | 0.9.0 | bls12_381 (jubjub) | Cargo.lock | н/п | допустимо |
+| Crypto library | 0.9.0 | bls12_381 (bls12_381) | Cargo.lock | н/п | допустимо |
 | Crypto library | 0.11 | jubjub (jubjub) | Cargo.toml | н/п | допустимо |
-| Crypto library | 0.14 | group (jubjub) | Cargo.toml | н/п | допустимо |
 | Crypto library | 0.6 | pasta_curves (pasta_curves (Pallas/Vesta)) | Cargo.toml | н/п | допустимо |
 | FROST |  |  | src/messages.rs:39 | уязвим (Шор) | допустимо |
 | RedDSA |  |  | src/lib.rs:39 | уязвим (Шор) | допустимо |

@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-28 18:22 UTC |
+| Дата отчёта | 2026-11-04 18:58 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 259476ec-cff6-4f97-af62-52170c902315 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
-| Профиль риска | Разработчик ПО безопасности |
-| SHA-256 содержимого | `6b99f797316754f231b4b06db6d193f9d0893a7f657f49253d76cbd060ebaeb3` |
+| Запуск аудита | f79008a2-4018-4e6d-bfa9-831152a52221 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `9b9c8b6f90ffc4e4e4cf58073d6ce1bedf2db9368076ecc999c1532f548628f9` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,19 +17,19 @@
 
 - Критическая: **0**
 - Высокая: **2**
-- Средняя: **1**
+- Средняя: **3**
 - Низкая: **1**
 - Информационная: **1**
 
 - Подтверждённая техническая уязвимость: 0
-- Известная уязвимая версия компонента: 3
+- Известная уязвимая версия компонента: 5
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 1
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 0
 
-Неравенство Моски (x + y > z): x = 10, y = 3, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
 **Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -45,10 +45,11 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 238 | babel.config.cjs: 33 lines scanned with 16 rule patterns and 122 registry patterns; knip.ts: 45 lines scanned with 16 rule patterns and 122 registry patterns; scripts/changelog_head.py: 18 lines scanned with 16 rule patterns and 122 registry patterns |
+| source_code | проверено | 238 | babel.config.cjs: 33 lines scanned with 16 rule patterns and 145 registry patterns; knip.ts: 45 lines scanned with 16 rule patterns and 145 registry patterns; scripts/changelog_head.py: 18 lines scanned with 16 rule patterns and 145 registry patterns |
 | dependencies | проверено | 2 | package.json: 49 dependencies parsed (3 pinned); pnpm-lock.yaml: 487 dependencies parsed (487 pinned) |
 | secrets | проверено | 2 | src/interactive-auth.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); src/logger.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
-| osv_advisories | проверено | 1 | 487 pinned packages queried at OSV.dev; 3 affected (1 of them only in development or build dependencies) |
+| entropy | проверено | 1 | random-number generation: 238 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| osv_advisories | проверено | 1 | 487 pinned packages queried at OSV.dev; 5 affected (1 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -58,23 +59,23 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree matrix-js-sdk at 61b08bd037a3b987f267e2e8ac47002c75d59d85. 240 files analysed; of 489 files, 196 are test, fuzzing, benchmark or example code and were left out, 53 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree matrix-js-sdk at 61b08bd037a3b987f267e2e8ac47002c75d59d85. 240 files analysed; of 489 files, 196 are test, fuzzing, benchmark or example code and were left out, 53 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .editorconfig, .git-blame-ignore-revs, .github/CODEOWNERS, .github/FUNDING.yml, .github/PULL_REQUEST_TEMPLATE.md. 83 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
-- Ориентировочный индекс состояния: **74** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
+- Ориентировочный индекс состояния: **64** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
 - Доля квантово-уязвимых элементов инвентаризации: 16.7%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-05835 — markdown-it 14.3.2 затронут GHSA-gfr2-rv44-r23c (CVE-2026-111758)
+### QSI-2026-12184 — markdown-it 14.3.2 затронут GHSA-gfr2-rv44-r23c (CVE-2026-111758)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/markdown-it@14.3.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:22 UTC
-- Балл приоритета: 37.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:58 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -101,14 +102,14 @@ _tool_output · [OSV.dev GHSA-gfr2-rv44-r23c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05837 — zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-12187 — zod 4.6.5 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/zod@4.6.5`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:22 UTC
-- Балл приоритета: 37.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:58 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 4.6.5: Zod can exhaust memory while validating oversized constrained collections. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -135,14 +136,14 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05834 — Квантово-уязвимый ECDH: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))
+### QSI-2026-12182 — Квантово-уязвимый ECDH: обмен ключами в канале (TLS, Noise, рукопожатия) (1 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `source-code:ECDH:channel`
 - Источник данных: src/rendezvous/channels/MSC4108SecureChannel.ts
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:22 UTC
-- Балл приоритета: 36.7 / 100
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:58 UTC
+- Балл приоритета: 35.6 / 100
 - CVSS v3.1: неприменимо
 
 2 упоминаний ECDH в 1 файл(ах), например src/rendezvous/channels/MSC4108SecureChannel.ts:109. Роль по путям, именам функций и соседнему коду: обмен ключами в канале (TLS, Noise, рукопожатия). Трафик под этим обменом ключами можно записать сейчас и расшифровать позже; гибридный обмен сохраняет классические гарантии и добавляет постквантовые.
@@ -179,14 +180,82 @@ _file_excerpt · [src/rendezvous/channels/MSC4108SecureChannel.ts](https://githu
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-05836 — markdown-it 14.3.2 затронут GHSA-vfgh-jcmw-g37q (CVE-2026-111766)
+### QSI-2026-12183 — glob 13.0.6 затронут GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:npm/glob@13.0.6`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:58 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773) для пакета npm glob версии 13.0.6: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-3g3m-2fjr-6pw4
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-3g3m-2fjr-6pw4](https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4) · manifest · SHA-256 11e82fad921f8ab71fe7cdf71c7992fc9705fcb2eaeb1d475b40f8cff97152c6_
+
+```
+{"id": "GHSA-3g3m-2fjr-6pw4", "aliases": ["CVE-2026-118773"], "modified": "2026-10-30T23:15:04.503965732Z", "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (14.0.2).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-12186 — minimatch 10.2.6 затронут GHSA-g3hv-75wg-m249 (CVE-2026-118764)
+
+- Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
+- Затронутый актив: `dependency:npm/minimatch@10.2.6`
+- Источник данных: OSV.dev
+- Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:58 UTC
+- Балл приоритета: 33.1 / 100
+- CVSS v3.1: неприменимо
+
+OSV.dev сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764) для пакета npm minimatch версии 10.2.6: minimatch has potential denial of service via globparts amplification. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
+
+**Возможные последствия.** Зависит от достижимости уязвимого кода в вашем приложении.
+
+**Шаги воспроизведения.**
+
+```
+curl -s https://api.osv.dev/v1/vulns/GHSA-g3hv-75wg-m249
+```
+
+**Подтверждающие доказательства.**
+
+_tool_output · [OSV.dev GHSA-g3hv-75wg-m249](https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249) · manifest · SHA-256 3a2de0ffc2f9af01774aed03eec898dd2779c85ad398dc716c8b11637e9de14c_
+
+```
+{"id": "GHSA-g3hv-75wg-m249", "aliases": ["CVE-2026-118764"], "modified": "2026-11-04T17:01:25.850114200Z", "summary": "minimatch has potential denial of service via globparts amplification", "severity": [{"type": "CVSS_V4", "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"}], "declared_in_manifest": false}
+```
+
+**Ограничения проверки.** Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются.
+
+**Рекомендация.** Обновите до исправленной версии (11.0.1).
+
+**Повторная проверка.** Повторите сканирование зависимостей после обновления.
+
+### QSI-2026-12185 — markdown-it 14.3.2 затронут GHSA-vfgh-jcmw-g37q (CVE-2026-111766)
 
 - Серьёзность: **Низкая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/markdown-it@14.3.2`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:22 UTC
-- Балл приоритета: 29.5 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:58 UTC
+- Балл приоритета: 29.4 / 100
 - CVSS v3.1: 3.7 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-vfgh-jcmw-g37q (CVE-2026-111766) для пакета npm markdown-it версии 14.3.2: markdown-it: Quadratic-time denial of service in inline HTML parsing with html enabled. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -213,14 +282,14 @@ _tool_output · [OSV.dev GHSA-vfgh-jcmw-g37q](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05838 — 1 бюллетеней в 1 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-12188 — 1 бюллетеней в 1 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:22 UTC
-- Балл приоритета: 15.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:58 UTC
+- Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает 1 бюллетеней (1 с оценкой high или critical) для 1 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (pnpm-lock.yaml): например, happy-dom@21.0.3 [dev]: GHSA-834v-8h66-3h79. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
@@ -252,10 +321,10 @@ happy-dom@21.0.3 [dev]: GHSA-834v-8h66-3h79
 
 | | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Срок жизни данных/ключей x | 10 | 5 |
-| Время миграции y | 3 | 3 |
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
 | Принятое число лет до CRQC z | 8 (early) | 8 |
-| x + y − z | 5 → при этом сценарии миграция завершится слишком поздно | 0 → запас минимален |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
 #### Откуда взято z
 
 Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
@@ -267,7 +336,7 @@ happy-dom@21.0.3 [dev]: GHSA-834v-8h66-3h79
 | 15 лет | 51-70% | вероятно |
 
 **Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
-_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Разработчик ПО безопасности», а не данные клиента; с фактическими сроками клиента вывод может измениться._
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
@@ -281,7 +350,7 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **обмен ключами в канале (TLS, Noise, рукопожатия)** | ECDH (1) | QSI-2026-05834 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
+| **обмен ключами в канале (TLS, Noise, рукопожатия)** | ECDH (1) | QSI-2026-12182 | Переведите рукопожатие на гибридный обмен ключами (X25519MLKEM768 в TLS 1.3; гибридный KEM в протоколах на основе Noise) |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -307,9 +376,11 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P2 | QSI-2026-05835 | Обновите markdown-it до исправленной версии (14.3.3, 15.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758). |
-| P2 | QSI-2026-05837 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-05836 | Обновите markdown-it до исправленной версии (14.3.3, 15.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vfgh-jcmw-g37q (CVE-2026-111766). |
+| P2 | QSI-2026-12184 | Обновите markdown-it до исправленной версии (14.3.3, 15.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-gfr2-rv44-r23c (CVE-2026-111758). |
+| P2 | QSI-2026-12187 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-12183 | Обновите glob до исправленной версии (14.0.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-3g3m-2fjr-6pw4 (CVE-2026-118773). |
+| P2 | QSI-2026-12186 | Обновите minimatch до исправленной версии (11.0.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-g3hv-75wg-m249 (CVE-2026-118764). |
+| P2 | QSI-2026-12185 | Обновите markdown-it до исправленной версии (14.3.3, 15.0.3). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-vfgh-jcmw-g37q (CVE-2026-111766). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
@@ -318,23 +389,23 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-05834 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-05834 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
-| P4 | QSI-2026-05838 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-12182 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-12182 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-12188 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -352,15 +423,17 @@ _Действие: взламывает — алгоритм нужно заме
 11. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
 12. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 13. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-14. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+14. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 15. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
-16. OSV advisory GHSA-gfr2-rv44-r23c — OSV.dev. <https://osv.dev/vulnerability/GHSA-gfr2-rv44-r23c> (modified 2026-10-20T20:45:05.953469039Z)
-17. OSV advisory GHSA-mrhx-c7xc-m3w5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5> (modified 2026-10-23T18:30:09.376405885Z)
-18. OSV advisory GHSA-vfgh-jcmw-g37q — OSV.dev. <https://osv.dev/vulnerability/GHSA-vfgh-jcmw-g37q> (modified 2026-10-20T20:15:05.220039200Z)
-19. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
-20. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
-21. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
-22. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
+16. OSV advisory GHSA-3g3m-2fjr-6pw4 — OSV.dev. <https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4> (modified 2026-10-30T23:15:04.503965732Z)
+17. OSV advisory GHSA-g3hv-75wg-m249 — OSV.dev. <https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249> (modified 2026-11-04T17:01:25.850114200Z)
+18. OSV advisory GHSA-gfr2-rv44-r23c — OSV.dev. <https://osv.dev/vulnerability/GHSA-gfr2-rv44-r23c> (modified 2026-10-20T20:45:05.953469039Z)
+19. OSV advisory GHSA-mrhx-c7xc-m3w5 — OSV.dev. <https://osv.dev/vulnerability/GHSA-mrhx-c7xc-m3w5> (modified 2026-10-23T18:30:09.376405885Z)
+20. OSV advisory GHSA-vfgh-jcmw-g37q — OSV.dev. <https://osv.dev/vulnerability/GHSA-vfgh-jcmw-g37q> (modified 2026-10-20T20:15:05.220039200Z)
+21. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
+22. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
+23. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
+24. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Приложения: Криптографическая инвентаризация
 
@@ -429,11 +502,6 @@ _Действие: взламывает — алгоритм нужно заме
 | src/common-crypto/key-passphrase.ts | 1666 | `0497286a5c2b87322efe2277542da41397a693bf427943ed23df847fc2d4ba61` | 0 |
 | src/content-helpers.ts | 9767 | `b76aee41c31f897738340b506b96144f814bdf959d165c4e2c7df92858a979d7` | 0 |
 | src/content-repo.ts | 4753 | `23335245613a79a43c5c6ab4c734e9f542d98ae11a8d404803ee7fcd6f20e7dc` | 0 |
-| src/crypto/store/base.ts | 11763 | `25a3357b33b9882138ccdd2fc657c797de6c3692f112e597e9cd30a23869bd3b` | 0 |
-| src/crypto/store/indexeddb-crypto-store-backend.ts | 23284 | `6588d87733a9338da870a0368164a83bba038a26583862202069b75993c8eb2f` | 0 |
-| src/crypto/store/indexeddb-crypto-store.ts | 21319 | `b8522f1c25d9facd08ca9eb51172eb7bf1a87bbf459e756de5c0a949b76adf1d` | 0 |
-| src/crypto/store/localStorage-crypto-store.ts | 14334 | `e94d62c588e95676802531dfbc29d9daef13dbb252250019006e333060e90c1c` | 0 |
-| src/crypto/store/memory-crypto-store.ts | 10567 | `1076fa25d42978d7679b82f97541d3e9fbd8fb18850a8c38a7aef3887c216522` | 0 |
 | src/crypto-api/CryptoEvent.ts | 6111 | `fa30bfb3616d19f67f5c020a1cad02970159a45c88594df4a6611fac1e9ddcb5` | 0 |
 | src/crypto-api/CryptoEventHandlerMap.ts | 2172 | `7f7afc73296aa48175bbf40d8db645aaa3faad969eeaa095a8328dcb81999121` | 0 |
 | src/crypto-api/index.ts | 57450 | `81d909f45999be8257af79de4726eafc0a4f995d7acfa852a7ad7878c9b3e51e` | 0 |
@@ -441,6 +509,11 @@ _Действие: взламывает — алгоритм нужно заме
 | src/crypto-api/keybackup.ts | 3483 | `dde2c150bdedea6659a64a23c79a56bc2b3a9282f502165feeb392c3b46be6a2` | 0 |
 | src/crypto-api/recovery-key.ts | 2459 | `f4e4b9d8362eb8df77da57953482e0241186a9a66a359bdf88281944757a2ca1` | 0 |
 | src/crypto-api/verification.ts | 14929 | `2b23f38b315c32b57339ec46b09b8648aadc2d5d894421ae508a5f9c7007637e` | 0 |
+| src/crypto/store/base.ts | 11763 | `25a3357b33b9882138ccdd2fc657c797de6c3692f112e597e9cd30a23869bd3b` | 0 |
+| src/crypto/store/indexeddb-crypto-store-backend.ts | 23284 | `6588d87733a9338da870a0368164a83bba038a26583862202069b75993c8eb2f` | 0 |
+| src/crypto/store/indexeddb-crypto-store.ts | 21319 | `b8522f1c25d9facd08ca9eb51172eb7bf1a87bbf459e756de5c0a949b76adf1d` | 0 |
+| src/crypto/store/localStorage-crypto-store.ts | 14334 | `e94d62c588e95676802531dfbc29d9daef13dbb252250019006e333060e90c1c` | 0 |
+| src/crypto/store/memory-crypto-store.ts | 10567 | `1076fa25d42978d7679b82f97541d3e9fbd8fb18850a8c38a7aef3887c216522` | 0 |
 | src/digest.ts | 1329 | `244e0b9d539bf1f18349b6a616d31c677bdfb2d8b0fa63cb38ab2833fddbccdb` | 0 |
 | src/embedded.ts | 43095 | `146f21cacab40a49b8ddcb5f280e4b88b1c665d5841174a44de234c3e34f2b76` | 0 |
 | src/errors.ts | 2729 | `63e21fd48f51cf763d5f3f8cbf64fd113a171be3ecb6f0cf6ba844ed4b89a50a` | 0 |
@@ -583,11 +656,11 @@ _Действие: взламывает — алгоритм нужно заме
 | src/thread-utils.ts | 1258 | `c531d4a91a8124026f98fd9012db84f93a35d3eef33f7bc6f1d4d94a6d3b3ad7` | 0 |
 | src/timeline-window.ts | 19595 | `05301487a143cdb69e6bca783ad71a7b9a7e99386e652f879dad54fcb71d9430` | 0 |
 | src/types.ts | 2035 | `3850d38c16d9c0b03931eb2f99cf708fa4cb9052574277a982d068fb8a0b8110` | 0 |
+| src/utils.ts | 27415 | `4faf2126db1ed8aad725b932bea303c5c479269c2cdedb40bb8a2f83ca1bd5d8` | 0 |
 | src/utils/decryptAESSecretStorageItem.ts | 2264 | `5c53b9ac52ee3cbd47e7ca56fe3db3f72063e8abfbed9ffb7c8bb95bc0082868` | 0 |
 | src/utils/encryptAESSecretStorageItem.ts | 2843 | `bf40753c5a65f16b9a5886488d80e7a66fc777d93d134c15b7e9a45bc49be3f8` | 0 |
 | src/utils/internal/deriveKeys.ts | 2005 | `fab4c426a661592eb5a5b40588e9a9c6fd40a5979370121c731385d768766500` | 0 |
 | src/utils/roomVersion.ts | 1467 | `481c12212e6f04b16b2c1095d7a14c22ab2aaa21c1758904484c632bc139754f` | 0 |
-| src/utils.ts | 27415 | `4faf2126db1ed8aad725b932bea303c5c479269c2cdedb40bb8a2f83ca1bd5d8` | 0 |
 | src/version-support.ts | 1577 | `6669ba730d7298a6d45ba40041952ddedf2abf1c2998557cec8e453ae9d902c7` | 0 |
 | src/webrtc/audioContext.ts | 1477 | `831090f15b5220517c57d9fa2c933c383e3794f33cace713b1a916e511687de7` | 0 |
 | src/webrtc/call.ts | 123321 | `e17b2fc7175a8c66e0506cf8e61b39b20b6efec3716dd7dccb837ad10bef5929` | 0 |

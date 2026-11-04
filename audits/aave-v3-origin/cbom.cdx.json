@@ -1,16 +1,16 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:6e2a985b-1a95-462c-bcf8-7de69ae56c97",
+  "serialNumber": "urn:uuid:0769869b-bc8f-4dc4-8ff1-c1f44015144b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-29T06:17:01Z",
+    "timestamp": "2026-11-04T18:19:15Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "name": "QSI",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -22,89 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "adc727f3-60c6-4afb-ad1b-35439afc9f06",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/hashes (noble-hashes)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "bc45faef-1644-4090-bf4c-e54753386a81",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/hashes (noble-hashes)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "fd2cbf5a-de42-4d36-8813-f263fc2bd01b",
+      "bom-ref": "535d9993-472a-4142-a358-fde0caf40f59",
       "name": "Crypto library",
       "properties": [
         {
@@ -145,7 +63,89 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ccc5d355-de3f-415f-b6d5-f325e14b5773",
+      "bom-ref": "8a8a2171-32fd-455f-8bb7-2c9bb14445bc",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/hashes (noble-hashes)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "544c9a7a-e6c4-4252-a925-a745bb155e3d",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/curves (noble-curves)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "53ee960c-d2cf-45f2-8496-c7e6c35feca5",
       "name": "Crypto library",
       "properties": [
         {
@@ -186,7 +186,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6dd121e0-ab9a-4589-9bf8-5efc662f8ab8",
+      "bom-ref": "92c1dc96-870c-49d6-802e-22ff09508f7a",
       "name": "Crypto library",
       "properties": [
         {
@@ -227,48 +227,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d05e1cd7-6fad-4c56-b9ad-e4db487689c9",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/curves (noble-curves)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "4953291c-cb7b-49b7-8c9b-7501b4f791c7",
+      "bom-ref": "75c77675-63ce-46d6-a7ee-40d144e79890",
       "name": "Crypto library",
       "properties": [
         {
@@ -309,7 +268,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "141b3cdc-7f1c-4377-bf85-3e5fe0c68698",
+      "bom-ref": "87cdcd39-e643-432a-b3e7-63a58f4634f4",
       "name": "Crypto library",
       "properties": [
         {
@@ -338,7 +297,7 @@
         },
         {
           "name": "qsi:library",
-          "value": "@noble/secp256k1 (noble-curves)"
+          "value": "@noble/hashes (noble-hashes)"
         }
       ],
       "cryptoProperties": {
@@ -350,7 +309,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2e6b700c-10ea-44bb-a87f-5347a2f8f088",
+      "bom-ref": "3bc914fe-6440-4cac-8b56-8d4921a24155",
       "name": "Crypto library",
       "properties": [
         {
@@ -379,7 +338,7 @@
         },
         {
           "name": "qsi:library",
-          "value": "elliptic (elliptic (Node))"
+          "value": "@noble/curves (noble-curves)"
         }
       ],
       "cryptoProperties": {
@@ -391,7 +350,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b3b935f2-0de1-46d4-9f49-553b0a6f24fc",
+      "bom-ref": "a108d0c8-0eaa-4d2d-9365-bcf9e28813dd",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/hashes (noble-hashes)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b7bd1fe9-588e-4791-bb52-fe5ff5f33f9a",
       "name": "Crypto library",
       "properties": [
         {
@@ -432,7 +432,89 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "435137b4-6d6b-4c52-9cc5-b6f6f5210902",
+      "bom-ref": "148304d9-f03c-4220-aa77-7eff9fb7e06e",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "elliptic (elliptic (Node))"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "0d5374a4-5407-44ac-9557-67b892448755",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/secp256k1 (noble-curves)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "6a45ee74-3de6-40c6-9d87-7947bf573ab3",
       "name": "Crypto library",
       "properties": [
         {
@@ -473,89 +555,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3d6bceeb-718b-4d9c-9060-6cfa393e5eb7",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/curves (noble-curves)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "b16613ce-4801-4bed-9eca-38e42db31837",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/hashes (noble-hashes)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "2c51bc66-71bf-4e54-b1b1-69925cdc7bc9",
+      "bom-ref": "35c86184-628f-4556-aa5b-678ec1674862",
       "name": "Crypto library",
       "properties": [
         {
@@ -596,7 +596,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8ee1f7c5-5841-4ce8-97ad-6d033fb2f26f",
+      "bom-ref": "bed6fcdc-085d-4de5-b8d2-8902c0c699d3",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/hashes (noble-hashes)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "9b62bbab-9f77-4e10-a34d-453ccc92ff4c",
       "name": "Crypto library",
       "properties": [
         {
@@ -637,335 +678,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2067d87d-8c7e-4342-869c-7a2937a5e9e9",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "tweetnacl (TweetNaCl)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "07e40538-154b-407a-a215-f0bc17a71e82",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "secp256k1 (secp256k1 bindings)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "a40064c9-8bee-4afc-8b0e-e23600fa2457",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/hashes (noble-hashes)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "0ea7f2c1-e6c6-4c6f-9722-6a1f9eb2ce4d",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/hashes (noble-hashes)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "7d01d859-693c-4d57-8b17-bb8e95252945",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/curves (noble-curves)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "866f5bad-b61b-47fc-bc60-75fa73f1f73d",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "@noble/hashes (noble-hashes)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "87e334b4-5e38-43b3-b2a0-1d97c83ca563",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "ethers (ethers.js)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "a7a3e31e-6574-410e-9e9a-3a7b094788a4",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "npm dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "elliptic (elliptic (Node))"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "38ecf0c4-59ee-4dcf-9c7a-c86a6dcc67de",
+      "bom-ref": "10c7e4f8-1a06-4e5b-a6a5-9f9d948793e8",
       "name": "Crypto library",
       "properties": [
         {
@@ -1006,7 +719,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c8ea6ba0-0d2f-47be-9a9c-6b46548b2eb1",
+      "bom-ref": "bcbbfcb0-629d-4853-bef9-e2e5f79722b3",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "secp256k1 (secp256k1 bindings)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "522929d1-a661-492e-a056-04e132de20a2",
       "name": "Crypto library",
       "properties": [
         {
@@ -1047,7 +801,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1e7e230f-3b68-4dde-97d6-c0b18a568bc3",
+      "bom-ref": "9ec4fbb1-1faa-47ee-ba84-9ca7261d7857",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/hashes (noble-hashes)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "3ee51d0c-7a54-4e7b-998a-94c46559da46",
       "name": "Crypto library",
       "properties": [
         {
@@ -1088,7 +883,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "80b9691c-1d36-40d5-80f3-3dee907d25c6",
+      "bom-ref": "6eb8e41d-7ac5-4a79-b47f-f62d143bd4df",
       "name": "Crypto library",
       "properties": [
         {
@@ -1129,7 +924,212 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f0d5b0e6-f79a-4cd4-9390-544ba0ad0b21",
+      "bom-ref": "50644c4b-eee6-4932-973d-6b711c84abbc",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "ethers (ethers.js)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "47d6915c-f7d7-49b2-8c8f-7d85237eb32e",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "elliptic (elliptic (Node))"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2edb14a5-77e7-4d27-b72a-b6ece611f0fa",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/hashes (noble-hashes)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "871f39a7-5e67-4b79-afb1-fab8f238b9ad",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "@noble/curves (noble-curves)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c5e95355-e5aa-49e8-b9f2-cf52c521d908",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "lib/solidity-utils/lib/openzeppelin-contracts-upgradeable/package-lock.json"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "npm dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "tweetnacl (TweetNaCl)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "144a2982-5e15-4235-8978-d8b32a789a23",
       "name": "Crypto library",
       "properties": [
         {
@@ -1170,7 +1170,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "29302a68-ccf7-4cac-9fc1-f08dd1e06c76",
+      "bom-ref": "9b947a0d-0527-4c28-aed1-53f7f6435a73",
       "name": "ECDSA",
       "properties": [
         {
@@ -1222,7 +1222,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9b034c64-5435-4424-8173-d8f2b8f11a1c",
+      "bom-ref": "33120620-2687-4877-b452-41875a7b656d",
       "name": "ECDSA",
       "properties": [
         {
@@ -1274,7 +1274,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0b4fd27d-f4de-4f85-82e6-09abcaa338f4",
+      "bom-ref": "dd0dba98-16bd-45aa-ab65-287a49556ff8",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1324,7 +1324,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "54c076f7-ffa0-448a-9105-56befe7663fe",
+      "bom-ref": "5b236d63-9646-4a61-aea6-6b3c687e05b8",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1374,7 +1374,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "63f55e15-3321-4978-a356-67a3d011e7b8",
+      "bom-ref": "96db4269-138b-41e0-b133-e9f2031df63c",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1424,7 +1424,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "58d0aa6b-1dc4-4213-92a8-bad86ab26672",
+      "bom-ref": "9626ae77-1995-452d-b1ff-581b432e9531",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1474,7 +1474,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5b7249d9-a3c9-4f2b-972f-868f1fab52c6",
+      "bom-ref": "e37d041c-8983-4121-ad99-adf490c598cc",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1524,7 +1524,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d9dbcbbc-e926-4b0a-be11-f54f564193a3",
+      "bom-ref": "97db8558-0c91-49d1-bbf4-0c5914d40281",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1574,7 +1574,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2af9da4e-2898-4308-9ff7-b8f438fcf0a7",
+      "bom-ref": "a8ef99e2-74e1-46fb-a6ed-717a55fddac0",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1624,7 +1624,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "475f5178-399c-4d96-92d0-a823285476d6",
+      "bom-ref": "c6e4fd3b-b75e-46dd-b1d2-0935d832c624",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1674,7 +1674,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "57be171a-9c31-4088-92dc-1c7dc84aaee1",
+      "bom-ref": "b2443522-c051-411a-8b36-dd95e69f4709",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1724,7 +1724,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d9b24d4e-a154-4774-93e3-4fbe02cf5dec",
+      "bom-ref": "0913fdd6-aec9-46eb-a267-1cc5b084d817",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1774,7 +1774,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d19b4304-8464-4b46-a036-7489315cdc90",
+      "bom-ref": "daf57fd3-c774-4678-9df4-7e6bce060260",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1824,7 +1824,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "32726d87-309a-43fa-9b35-53cd2888a23c",
+      "bom-ref": "249075cf-17f0-411d-be77-fbca883c5f55",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1874,7 +1874,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9a018881-5d9f-4213-b7f0-dafccb69b92c",
+      "bom-ref": "05b37e70-eba7-4cf9-8d88-5cd0862e7156",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1924,7 +1924,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "518086e1-2c58-410f-b720-110f5953ab45",
+      "bom-ref": "df68f9cb-0113-454d-ae18-29ffa8160e80",
       "name": "Keccak-256",
       "properties": [
         {
@@ -1974,7 +1974,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8651e039-886d-46e5-a850-d2f333e269da",
+      "bom-ref": "5b1b9c76-f496-4ceb-aa26-257ca7a31ff4",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2024,7 +2024,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9be899d4-f802-4f5f-9e9d-d900d525e69c",
+      "bom-ref": "c1ecd67b-4917-4e7d-9552-a7f1f2213380",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2074,7 +2074,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d37c945a-f047-4c40-b53e-fcf0931eb3f8",
+      "bom-ref": "f1e30c1d-5152-43a1-aa89-92687471e9b8",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2124,7 +2124,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c785b90c-b486-4fc9-a02e-61067e13ce09",
+      "bom-ref": "226bf60d-6ace-4493-bab9-7abc9244a86e",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2174,7 +2174,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d9a1481e-9abf-4eda-af50-87c64c8649e3",
+      "bom-ref": "8ad461af-5097-4e86-84ee-b0047f4aaa24",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2224,7 +2224,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c34c97e4-1bd7-4f0d-ba13-1758228ff4af",
+      "bom-ref": "ce788073-c456-4391-ae3b-3b3f0f24fa66",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2274,7 +2274,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d24c25e7-d3a8-4b59-a11b-f0886f1fe902",
+      "bom-ref": "dfa8bf89-b61c-4f63-8367-dd8c5619c5b7",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2324,7 +2324,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "da33fcf1-958a-43ed-960d-11b87f40e96e",
+      "bom-ref": "77dc3bb7-917e-4c46-a7e6-f01062d554b4",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2374,7 +2374,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "85539af4-3c01-412e-94f8-96754fe6bf10",
+      "bom-ref": "a2cd8bda-d2bb-44cb-ac60-5de77294e93c",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2424,7 +2424,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "216f1577-2ab6-460a-b159-8abd20c7e5d5",
+      "bom-ref": "bf91901d-2dc1-4cbe-9c13-9898b0d610ac",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2474,7 +2474,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e642991d-7c38-4f6d-9194-2b605510c6f3",
+      "bom-ref": "a2b97eca-e0c1-48e7-bba5-e4ec413e1c05",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2524,7 +2524,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "427ebe28-ef83-4e6a-8d83-8fb065f496fa",
+      "bom-ref": "1c7488ce-2362-4814-8410-40b3b01182e5",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2574,7 +2574,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1150a600-7dd0-4574-bce2-0e3a38e57af1",
+      "bom-ref": "75731d8c-b0a8-4005-87dd-2dfbf45c6430",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2624,7 +2624,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f3b118dc-969b-4f3f-aaac-c6707a396a5e",
+      "bom-ref": "60323439-539d-4f92-9265-64a7c43060f5",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2674,7 +2674,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f913cc0b-2e5d-40a4-bc6e-cecb6b57a56d",
+      "bom-ref": "e6f75883-5000-4cf8-8593-ebdbc615b967",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2724,7 +2724,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d2c47434-0dfb-4cdd-8f6c-ecf40a950d96",
+      "bom-ref": "dd64cee0-942f-468e-8fac-17c3e3ca4290",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2774,7 +2774,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "31474bc8-44d6-4cdd-9256-838107a84590",
+      "bom-ref": "bd0eebf3-669e-4116-a696-e68dbe9108a1",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2824,7 +2824,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "290e780e-01b4-48a1-8fc8-de6592834a94",
+      "bom-ref": "565eb055-7a9e-4743-ab56-4d609ec00d86",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2874,7 +2874,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "366f8697-f4db-43aa-aaaa-9b035248e046",
+      "bom-ref": "92646876-ee31-4178-b71c-bf4cdedf0cab",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2924,7 +2924,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "497d0703-9d38-4e70-a488-b36e79ea5b78",
+      "bom-ref": "a213fe15-335e-4e55-99b3-672016ecacae",
       "name": "Keccak-256",
       "properties": [
         {
@@ -2974,7 +2974,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f587f827-9e76-47e6-8c9f-817eca408984",
+      "bom-ref": "9b39acd8-22de-4afd-b6ba-8525499e2031",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3024,7 +3024,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "569cd009-49de-4b05-82e9-af3889bd299b",
+      "bom-ref": "65e3bcb7-e122-4352-9b4c-c40f20713c9d",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3074,7 +3074,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "21b39256-c40a-4608-8a9d-e199140dc5cf",
+      "bom-ref": "6c3bf048-3643-441d-a64c-0be1b762f9c7",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3124,7 +3124,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7ea5c571-6988-4a58-b36b-b98f96edc596",
+      "bom-ref": "bc0b6676-60b4-439b-8f07-1c1dd54dfaf3",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3174,7 +3174,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "323e5972-dbc7-4ca0-9e70-db45e284e2ec",
+      "bom-ref": "20186df5-5bca-408f-b401-a330e241947f",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3224,7 +3224,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "89d04104-9256-4f48-b698-fb10222d97ed",
+      "bom-ref": "e9b36c66-3085-4207-8ca5-511677ae9305",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3274,7 +3274,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f4c87c66-613f-421d-b643-a27510a274a1",
+      "bom-ref": "30e370f3-76d2-46ed-bb21-6e4b06593761",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3324,7 +3324,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3d830301-b145-4f5e-be27-6d02e76e37e7",
+      "bom-ref": "ed43e031-f096-4bab-9dfe-06c01010bde8",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3374,7 +3374,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ced1d681-28d9-4274-9343-529540865f83",
+      "bom-ref": "649c4a5a-dd42-4273-bd1d-f20b0f80aac8",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3424,7 +3424,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e1566243-4fa1-4b4e-9bf3-30e8463b5218",
+      "bom-ref": "7e93a490-a48b-45fc-8143-61960cb6f424",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3474,7 +3474,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4a3a9841-83a0-41fc-b98d-3b479f51023f",
+      "bom-ref": "18cf9a4b-f011-4981-ab89-9aadeccef052",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3524,7 +3524,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8014853c-6a27-4788-8ca2-b300a29a7ab2",
+      "bom-ref": "4a27c87c-ef61-457f-a1d5-e5c79e275191",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3574,7 +3574,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "320125cf-586c-43bf-bb6d-9e08973db597",
+      "bom-ref": "53a8ca4a-52d7-4185-b1dd-82689d22cd79",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3624,7 +3624,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "84a3e798-1fa8-4be0-819f-bbdd0fe702dc",
+      "bom-ref": "71bf5a34-e855-44b0-a9e2-ee08d640499a",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3674,7 +3674,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7930b347-0ace-4322-afe3-7b91da356157",
+      "bom-ref": "7e3ad607-7973-472b-aaf5-ed14761d2d6c",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3724,7 +3724,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c2543f03-8ea1-48a7-be9c-3d386e0fc7ee",
+      "bom-ref": "b3bbfe8b-5b42-4c3a-9892-3f350509ab82",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3774,7 +3774,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3fcf0ed9-ab9e-45df-b05d-69c93431ecf2",
+      "bom-ref": "090ee13e-e770-4b52-a530-52c8012e1cc8",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3824,7 +3824,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "83f15384-a85d-4bf2-a150-c73d53d6f837",
+      "bom-ref": "e6824c5d-e121-408c-87e8-c412175b65d9",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3874,7 +3874,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "856045de-c18a-48b7-8ee8-88c0efe77ab8",
+      "bom-ref": "8558476e-a442-4d76-9c98-1c4ed9dfb5d3",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3924,7 +3924,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e1d19886-d147-424d-b4f1-1b26caee8b69",
+      "bom-ref": "3bf511b0-ee3a-4713-a3a3-46025c7ee50a",
       "name": "Keccak-256",
       "properties": [
         {
@@ -3974,7 +3974,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e4b68f81-4709-47f0-840d-b19339e56972",
+      "bom-ref": "2073e7ad-dc6e-43ab-aac9-e0b29b0b5e50",
       "name": "Keccak-256",
       "properties": [
         {
@@ -4024,7 +4024,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "772f77b5-ec37-41e5-9872-fcd6a0b419b8",
+      "bom-ref": "396aae0c-e46a-46bc-8128-f34a9fb2a967",
       "name": "Keccak-256",
       "properties": [
         {
@@ -4074,7 +4074,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b8167b6a-4f46-4819-8da1-543074746438",
+      "bom-ref": "869d3240-d140-4fd1-ba51-4c0f9b4b0ded",
       "name": "Keccak-256",
       "properties": [
         {
@@ -4124,7 +4124,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "505379b5-ebd2-4e20-a4c7-7c752b53b6f5",
+      "bom-ref": "730ad757-ed4f-4005-bceb-9882a0aa14bc",
       "name": "Keccak-256",
       "properties": [
         {
@@ -4174,7 +4174,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "389ae880-f8c1-4063-a185-9fbae5a299a1",
+      "bom-ref": "16da237b-f955-483b-88a9-e108c7beb53d",
       "name": "Keccak-256",
       "properties": [
         {

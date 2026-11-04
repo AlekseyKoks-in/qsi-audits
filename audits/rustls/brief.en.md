@@ -1,24 +1,24 @@
 # Post-quantum cryptography review: rustls @ 84bf9eaa9857
 
-*One-page brief* · Reviewed: 2026-11-02 12:18 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rustls project — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 19:20 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rustls project — public repository (passive review)
 
 Source: https://github.com/rustls/rustls/tree/84bf9eaa9857d7114609f7e5d0ae1f0fd3cd9f77
 
 **Post-quantum maturity:** Level 4 of 4 — post-quantum by default in the critical paths. **Next step:** Keep the inventory current and review new code paths before release.
 
-**Findings:** Critical 0 · High 6 · Medium 8 · Low 11 · Info 6
+**Findings:** Critical 0 · High 6 · Medium 8 · Low 11 · Info 5
 
 **Quantum timeline (Mosca: x + y − z):** Key establishment 10 + 5 − 8 = 7 → too late; Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **High** · Private key material present in bogo/keys/ecdsa_p256_key.pem (QSI-2026-09641)\
+1. **High** · Private key material present in bogo/keys/ecdsa_p256_key.pem (QSI-2026-12600)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-2. **High** · Private key material present in bogo/keys/ecdsa_p384_key.pem (QSI-2026-09646)\
+2. **High** · Private key material present in bogo/keys/ecdsa_p384_key.pem (QSI-2026-12605)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-3. **High** · Private key material present in bogo/keys/key.pem (QSI-2026-09647)\
+3. **High** · Private key material present in bogo/keys/key.pem (QSI-2026-12606)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-4. **High** · Private key material present in bogo/keys/rsa_1024_key.pem (QSI-2026-09653)\
+4. **High** · Private key material present in bogo/keys/rsa_1024_key.pem (QSI-2026-12612)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
 
 21 more in the full report.
@@ -38,7 +38,7 @@ Advisories for the versions in use: 1; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 137. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `7c0f5bc801cbea400da5ae4b9dc958abf920a066adc2cea10d3193908c80f5e6`
+Full report, content SHA-256: `c660d21dafa3de8a954ca99b4eee4886e68d339fee158e23aeae6245b91987dc`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

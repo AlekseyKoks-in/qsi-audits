@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-28 18:29 UTC |
+| Дата отчёта | 2026-11-04 19:27 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | f5cb1d6d-23ed-4a89-b045-61c86d6b9fea (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
-| Профиль риска | Разработчик ПО безопасности |
-| SHA-256 содержимого | `7bc698dcb2c9734f1682d4f12713911e942d23cc39434a23f720e6817e6ba212` |
+| Запуск аудита | 179337cd-93d5-42f5-9e8a-2d02bb4f8e5a (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
+| Профиль риска | Криптобиржа, кастодиан или кошелёк |
+| SHA-256 содержимого | `ac7b6c0c129e043eb4d1f4e7e84808016014c6d36c2007a6f6d604f27c19565c` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -19,7 +19,7 @@
 - Высокая: **6**
 - Средняя: **3**
 - Низкая: **0**
-- Информационная: **2**
+- Информационная: **1**
 
 - Подтверждённая техническая уязвимость: 0
 - Известная уязвимая версия компонента: 9
@@ -27,9 +27,9 @@
 - Потенциальный криптографический риск: 0
 - Долгосрочный постквантовый риск: 0
 - Рекомендация по улучшению: 1
-- Недостаточность данных: 1
+- Недостаточность данных: 0
 
-Неравенство Моски (x + y > z): x = 10, y = 3, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
+Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
 **Постквантовая зрелость: Уровень 1 из 4 — постквантовый код есть, но не подключён.** Следующий шаг: Подключите имеющийся постквантовый примитив к критичному пути (обёртка ключей или канал) в гибридной схеме и проверьте совместимость.
 
@@ -45,11 +45,12 @@
 
 | Область | Статус | Количество | Примеры |
 |---|---|---|---|
-| source_code | проверено | 2178 | .babelrc.mjs: 24 lines scanned with 16 rule patterns and 122 registry patterns; .oxlint/plugin.mjs: 41 lines scanned with 16 rule patterns and 122 registry patterns; .oxlint/rules/enforceArrayBuffer.mjs: 48 lines scanned with 16 rule patterns and 122 registry patterns |
+| source_code | проверено | 2178 | .babelrc.mjs: 24 lines scanned with 16 rule patterns and 145 registry patterns; .oxlint/plugin.mjs: 41 lines scanned with 16 rule patterns and 145 registry patterns; .oxlint/rules/enforceArrayBuffer.mjs: 48 lines scanned with 16 rule patterns and 145 registry patterns |
 | certificates | ошибка (не проверено) | 1 | config/default.json line 23: certificate could not be parsed (ValueError) |
 | certificates_and_keys | проверено | 1 | config/default.json: certificates/keys parsed |
 | dependencies | проверено | 9 | danger/package.json: 5 dependencies parsed (5 pinned); danger/pnpm-lock.yaml: 133 dependencies parsed (133 pinned); package.json: 224 dependencies parsed (217 pinned) |
 | secrets | проверено | 2 | ts/textsecure/WebAPI.preload.ts: 5 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); ts/types/SealedSender.std.ts: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| entropy | проверено | 1 | random-number generation: 2178 code files read with 1 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | проверено | 1 | 1000 pinned packages queried at OSV.dev; 6 affected (2 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -60,7 +61,7 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree signal-desktop at 17502b9d1a9e34af689f31508c4ac4ccee5b5cb7. 2202 files analysed; of 4499 files, 1033 are test, fuzzing, benchmark or example code and were left out, 1264 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. No requests were sent to the owner's systems.
+Static review of the source tree signal-desktop at 17502b9d1a9e34af689f31508c4ac4ccee5b5cb7. 2202 files analysed; of 4499 files, 1033 are test, fuzzing, benchmark or example code and were left out, 1264 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .changeset/config.json, .changeset/lemon-carrots-refuse.md, .changeset/vast-lies-ask.md, .gitattributes, .github/FUNDING.yml. 81 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
@@ -69,14 +70,14 @@ Static review of the source tree signal-desktop at 17502b9d1a9e34af689f31508c4ac
 
 ## 7. Подробное описание находок
 
-### QSI-2026-05952 — @storybook/core 8.6.18 затронут GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125)
+### QSI-2026-12828 — @storybook/core 8.6.18 затронут GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125)
 
 - Серьёзность: **Критическая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@storybook/core@8.6.18`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 40.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 40.6 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) для пакета npm @storybook/core версии 8.6.18: Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -103,14 +104,14 @@ _tool_output · [OSV.dev GHSA-f2ph-cmg5-wxc8](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05945 — zod 4.3.6 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
+### QSI-2026-12821 — zod 4.3.6 затронут GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Средняя
 - Затронутый актив: `dependency:npm/zod@4.3.6`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 50.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 50.2 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404) для пакета npm zod версии 4.3.6: Zod can exhaust memory while validating oversized constrained collections. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -137,14 +138,14 @@ _tool_output · [OSV.dev GHSA-mrhx-c7xc-m3w5](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05943 — Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts
+### QSI-2026-12820 — Возможный секрет в коде ts/state/smart/fun/giphy.preload.ts
 
 - Серьёзность: **Высокая** · Классификация: Подтверждённая ошибка конфигурации · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `file:ts/state/smart/fun/giphy.preload.ts`
 - Источник данных: ts/state/smart/fun/giphy.preload.ts
 - Метод обнаружения: Сопоставление регулярных выражений с API конкретного языка.
-- Анализатор: source_code 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 48.5 / 100
+- Анализатор: source_code 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 47.1 / 100
 - CVSS v3.1: неприменимо
 
 1 значений, похожих на секреты, типа generic_assignment (первое — строка 22). Значения замаскированы QSI.
@@ -171,14 +172,14 @@ _file_excerpt · [ts/state/smart/fun/giphy.preload.ts](https://github.com/signal
 
 **Повторная проверка.** Повторно просканируйте код и проверьте места вызова из доказательства.
 
-### QSI-2026-05947 — undici 6.29.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
+### QSI-2026-12823 — undici 6.29.0 затронут GHSA-2m5v-pch6-74hx (CVE-2026-109383)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@6.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 37.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.4 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N`)
 
 OSV.dev сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383) для пакета npm undici версии 6.29.0: undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -205,14 +206,14 @@ _tool_output · [OSV.dev GHSA-2m5v-pch6-74hx](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05950 — undici 6.29.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
+### QSI-2026-12826 — undici 6.29.0 затронут GHSA-qrxm-fqhp-jwvm (CVE-2026-87018)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@6.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 37.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018) для пакета npm undici версии 6.29.0: undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -239,14 +240,14 @@ _tool_output · [OSV.dev GHSA-qrxm-fqhp-jwvm](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05951 — undici 6.29.0 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)
+### QSI-2026-12827 — undici 6.29.0 затронут GHSA-xjj6-f33q-929c (CVE-2026-109869)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@6.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 37.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: 7.5 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869) для пакета npm undici версии 6.29.0: undici vulnerable to Denial of Service via unhandled error on excessive content-encodings. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -273,14 +274,14 @@ _tool_output · [OSV.dev GHSA-xjj6-f33q-929c](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05953 — @storybook/core 8.6.18 затронут GHSA-px85-f4q5-jh77 (CVE-2026-114126)
+### QSI-2026-12829 — @storybook/core 8.6.18 затронут GHSA-px85-f4q5-jh77 (CVE-2026-114126)
 
 - Серьёзность: **Высокая** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/@storybook/core@8.6.18`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 37.7 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 37.6 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает GHSA-px85-f4q5-jh77 (CVE-2026-114126) для пакета npm @storybook/core версии 8.6.18: Storybook dev server vulnerable to code injection from the local network. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -307,14 +308,14 @@ _tool_output · [OSV.dev GHSA-px85-f4q5-jh77](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05946 — qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
+### QSI-2026-12822 — qs 6.16.0 затронут GHSA-6pq8-jhm2-2vcw (CVE-2026-110816)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/qs@6.16.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 33.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.3 (`CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L`)
 
 OSV.dev сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816) для пакета npm qs версии 6.16.0: qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS). Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -341,14 +342,14 @@ _tool_output · [OSV.dev GHSA-6pq8-jhm2-2vcw](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05948 — undici 6.29.0 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)
+### QSI-2026-12824 — undici 6.29.0 затронут GHSA-4qv8-2p9j-2685 (CVE-2026-109924)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@6.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 33.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924) для пакета npm undici версии 6.29.0: undici vulnerable to Denial of Service via unbounded memory in the EventSource parser. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -375,14 +376,14 @@ _tool_output · [OSV.dev GHSA-4qv8-2p9j-2685](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05949 — undici 6.29.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
+### QSI-2026-12825 — undici 6.29.0 затронут GHSA-9fm3-97px-rjf6 (CVE-2026-109932)
 
 - Серьёзность: **Средняя** · Классификация: Известная уязвимая версия компонента · Уверенность: Низкая
 - Затронутый актив: `dependency:npm/undici@6.29.0`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch для точной объявленной версии.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 33.2 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 33.1 / 100
 - CVSS v3.1: 5.9 (`CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H`)
 
 OSV.dev сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932) для пакета npm undici версии 6.29.0: undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering. Бюллетень не называет затронутых функций, поэтому достижимость не определена.
@@ -409,14 +410,14 @@ _tool_output · [OSV.dev GHSA-9fm3-97px-rjf6](https://osv.dev/vulnerability/GHSA
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05954 — 4 бюллетеней в 2 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-12830 — 4 бюллетеней в 2 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 15.3 / 100
+- Анализатор: dependencies 1.3.0 · 2026-11-04 19:27 UTC
+- Балл приоритета: 15.5 / 100
 - CVSS v3.1: неприменимо
 
 OSV.dev сообщает 4 бюллетеней (3 с оценкой high или critical) для 2 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package.json): например, fabric@4.6.0 [dev]: GHSA-hfvx-25r5-qc3w, GHSA-w22m-hvvm-xmwx; storybook@8.6.18 [dev]: GHSA-f2ph-cmg5-wxc8, GHSA-px85-f4q5-jh77. Манифесты помечают их так (devDependencies, "dev": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.
@@ -444,49 +445,15 @@ storybook@8.6.18 [dev]: GHSA-f2ph-cmg5-wxc8, GHSA-px85-f4q5-jh77
 
 **Повторная проверка.** Повторите сканирование зависимостей после обновления.
 
-### QSI-2026-05944 — Не обнаружено криптобиблиотек с поддержкой PQC
-
-- Серьёзность: **Информационная** · Классификация: Недостаточность данных · Уверенность: Средняя · _предварительно — требует дополнительной проверки_
-- Затронутый актив: `dependencies`
-- Источник данных: dependency manifests
-- Метод обнаружения: Сопоставление названий зависимостей.
-- Анализатор: dependencies 1.2.0 · 2026-10-28 18:29 UTC
-- Балл приоритета: 13.5 / 100
-- CVSS v3.1: неприменимо
-
-В 9 манифестах зависимостей QSI нашёл криптобиблиотеки (jsonwebtoken), но ни одной из списка поддерживающих PQC.
-
-**Возможные последствия.** Только индикатор готовности: поддержка PQC может обеспечиваться платформой (OpenSSL, ОС, облачный KMS), а не зависимостями приложения.
-
-**Шаги воспроизведения.**
-
-```
-Изучите перечисленные в доказательстве манифесты.
-```
-
-**Подтверждающие доказательства.**
-
-_dependency · danger/package.json, danger/pnpm-lock.yaml, package.json, packages/lame/package.json, packages/mute-state-change/package.json, packages/types/package.json, packages/windows-ucv/package.json, pnpm-lock.yaml, sticker-creator/package.json · SHA-256 727c9fa51969eaa77ba568319a2ba09bbbf416d73bddeee8bfc4b77ecb755aa0_
-
-```
-Crypto libraries: jsonwebtoken
-```
-
-**Ограничения проверки.** Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться.
-
-**Рекомендация.** Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек).
-
-**Повторная проверка.** Повторите сканирование после обновлений.
-
 
 ## 8. Постквантовая оценка
 
 | | Обмен ключами (x — сколько данные должны оставаться конфиденциальными; «собери сейчас, расшифруй потом») | Подписи (x — сколько подписи и ключи должны оставаться доверенными) |
 |---|---|---|
-| Срок жизни данных/ключей x | 10 | 5 |
-| Время миграции y | 3 | 3 |
+| Срок жизни данных/ключей x | 10 | 10 |
+| Время миграции y | 5 | 5 |
 | Принятое число лет до CRQC z | 8 (early) | 8 |
-| x + y − z | 5 → при этом сценарии миграция завершится слишком поздно | 0 → запас минимален |
+| x + y − z | 7 → при этом сценарии миграция завершится слишком поздно | 7 → при этом сценарии миграция завершится слишком поздно |
 #### Откуда взято z
 
 Усреднённая оценка экспертов, что CRQC появится в пределах горизонта, из ежегодного опроса, который публикует автор этого неравенства. Это оценки вероятности, а не предсказание даты.
@@ -498,7 +465,7 @@ Crypto libraries: jsonwebtoken
 | 15 лет | 51-70% | вероятно |
 
 **Почему выбран этот сценарий (early, z = 8):** Внутри 10-летнего горизонта, которому опрос даёт 28-49% («вполне возможно»), и согласуется с оценкой BSI в 15 лет, которая «может сократиться до 10 или меньше». Для данных с десятилетиями конфиденциальности, где ошибка дорога.
-_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Разработчик ПО безопасности», а не данные клиента; с фактическими сроками клиента вывод может измениться._
+_Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться._
 
 ### Постквантовая зрелость: Уровень 1 из 4 — постквантовый код есть, но не подключён
 
@@ -533,16 +500,16 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P1 | QSI-2026-05943 | Замените и удалите секреты из ts/state/smart/fun/giphy.preload.ts. | устранение первопричины | Сканер секретов ничего не находит; старые значения отозваны. |
-| P2 | QSI-2026-05952 | Обновите @storybook/core до исправленной версии (8.6.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125). |
-| P2 | QSI-2026-05945 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
-| P2 | QSI-2026-05947 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
-| P2 | QSI-2026-05950 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
-| P2 | QSI-2026-05951 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869). |
-| P2 | QSI-2026-05953 | Обновите @storybook/core до исправленной версии (8.6.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-px85-f4q5-jh77 (CVE-2026-114126). |
-| P2 | QSI-2026-05946 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
-| P2 | QSI-2026-05948 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924). |
-| P2 | QSI-2026-05949 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
+| P1 | QSI-2026-12820 | Замените и удалите секреты из ts/state/smart/fun/giphy.preload.ts. | устранение первопричины | Сканер секретов ничего не находит; старые значения отозваны. |
+| P2 | QSI-2026-12828 | Обновите @storybook/core до исправленной версии (8.6.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125). |
+| P2 | QSI-2026-12821 | Обновите zod до исправленной версии (4.6.6). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-mrhx-c7xc-m3w5 (CVE-2023-54404). |
+| P2 | QSI-2026-12823 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-2m5v-pch6-74hx (CVE-2026-109383). |
+| P2 | QSI-2026-12826 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-qrxm-fqhp-jwvm (CVE-2026-87018). |
+| P2 | QSI-2026-12827 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-xjj6-f33q-929c (CVE-2026-109869). |
+| P2 | QSI-2026-12829 | Обновите @storybook/core до исправленной версии (8.6.19). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-px85-f4q5-jh77 (CVE-2026-114126). |
+| P2 | QSI-2026-12822 | Обновите qs до исправленной версии (6.16.1). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-6pq8-jhm2-2vcw (CVE-2026-110816). |
+| P2 | QSI-2026-12824 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-4qv8-2p9j-2685 (CVE-2026-109924). |
+| P2 | QSI-2026-12825 | Обновите undici до исправленной версии (6.29.1, 7.30.1, 8.12.2). | устранение первопричины | Сканирование зависимостей больше не сообщает GHSA-9fm3-97px-rjf6 (CVE-2026-109932). |
 ### 60 дн.
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
@@ -551,21 +518,21 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P4 | QSI-2026-05954 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P4 | QSI-2026-12830 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -584,7 +551,7 @@ _Действие: взламывает — алгоритм нужно заме
 12. L. K. Grover — A fast quantum mechanical algorithm for database search (STOC 1996) — ACM. <https://doi.org/10.1145/237814.237866> (peer-reviewed article)
 13. M. Amy et al. — Estimating the cost of generic quantum pre-image attacks on SHA-2 and SHA-3 (SAC 2016; arXiv:1603.09383) — Springer / arXiv. <https://arxiv.org/abs/1603.09383> (peer-reviewed article: SHA-256 about 2^153.8 surface-code cycles on 2^12.6 logical qubits; SHA3-256 about 2^146.5 cycles on 2^20)
 14. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
-15. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+15. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 16. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 17. OSV advisory GHSA-2m5v-pch6-74hx — OSV.dev. <https://osv.dev/vulnerability/GHSA-2m5v-pch6-74hx> (modified 2026-10-27T19:15:22.407771210Z)
 18. OSV advisory GHSA-4qv8-2p9j-2685 — OSV.dev. <https://osv.dev/vulnerability/GHSA-4qv8-2p9j-2685> (modified 2026-10-23T22:30:04.104974737Z)
@@ -704,11 +671,11 @@ _Действие: взламывает — алгоритм нужно заме
 | danger/danger-exports.mjs | 707 | `dde8ba2e6f29c279f9e9b840116f99343ed4b08844ffd31cedde4ebc8ee1b63a` | 0 |
 | danger/package.json | 615 | `f9d688b5ac0598ad71fb9bb57f8a24d0b103d02d04903b41109f54399dd96a18` | 0 |
 | danger/pnpm-lock.yaml | 43137 | `a170b0103cb80ca1d72b3037c81d904c27429fc5bd50fa4808807ebe2001838d` | 0 |
+| danger/rules.mjs | 303 | `96c6f63438fa575d669ec93ba0efa766481e4396a691298acb9f679ab3172fad` | 0 |
 | danger/rules/enforcePackageJsonPinnedDeps.mjs | 1543 | `0a34560e1bdb47b4198a902deb0a77b4a35f6ba30a52f339c4945bcb6024dab8` | 0 |
 | danger/rules/enforcePackageJsonPublishConfig.mjs | 1912 | `9b6a3293b522a17ed88651742014e0fea7d67a432ed13917ce9fbf28d1069766` | 0 |
 | danger/rules/enforcePnpmLockfileDepsIntegrity.mjs | 974 | `17a84231ed95c83c6480bb5f05a98dfd645d7e4519db0988fe3d7f9091fae9ec` | 0 |
 | danger/rules/enforceTailwindDepsMatch.mjs | 2175 | `a9a27275012778c74ad0a36dcd5b9ef4d1f04530e4aace68f403fba7ba061274` | 0 |
-| danger/rules.mjs | 303 | `96c6f63438fa575d669ec93ba0efa766481e4396a691298acb9f679ab3172fad` | 0 |
 | dangerfile.mjs | 125 | `f3f5f9f5703c2e0625a419e2518a04da82614517f248dc2e7a1e9b3b484f81ae` | 0 |
 | knip.js | 3899 | `272277e39966a650e26f785789e5f412cca1792ec697ce9fbab758b2111351d7` | 0 |
 | package.json | 25135 | `7694973e611a20ee50bfd7fd53e8b16fd4de18aa9e1a68ddbd6b1f349bd1f837` | 0 |
@@ -922,13 +889,13 @@ _Действие: взламывает — алгоритм нужно заме
 | sticker-creator/src/elements/icons/index.tsx | 122 | `a19f15744faf2bf8b7b27f2ff1ad41f4266c2480b1d884322ffa56305d16beb3` | 0 |
 | sticker-creator/src/main.tsx | 892 | `ecdb1e9f77d446169437664f598f1759c22427b4710ee6ec2db1e3315c9ead16` | 0 |
 | sticker-creator/src/routes/Root.tsx | 584 | `f9d3cd8d6875fa600078168fda92071dd9e38430667aaf1303396526520a8d2f` | 0 |
+| sticker-creator/src/routes/art.tsx | 1731 | `cbca45b81eb3a80b52952f451086d0518fda16a543ac8ab72dc1772171f2003f` | 0 |
 | sticker-creator/src/routes/art/AppStage.tsx | 3128 | `27dd2c34eb4257cc6460b0283eb566ee1d7513811ce8d409192a4f552129dc94` | 0 |
 | sticker-creator/src/routes/art/DropStage.tsx | 1365 | `83d0762aac9aadee52a4e93f53bc0e517a6bef27c9ac9b47ecc1bfc4b6d2aa7b` | 0 |
 | sticker-creator/src/routes/art/EmojiStage.tsx | 1007 | `684b3df1f3408628ab6484d9238483f6553f88c5607484a5447caf6d394c6893` | 0 |
 | sticker-creator/src/routes/art/MetaStage.tsx | 4614 | `e4c191ba1715b81c6272e2d0ffb635cc8d11f19a3b40902421de7b7ddc7cd37c` | 0 |
 | sticker-creator/src/routes/art/ShareStage.tsx | 3260 | `ab80e09e087ba608e8607ebce79087b9653337a6640c5331637260f4d0f72933` | 0 |
 | sticker-creator/src/routes/art/UploadStage.tsx | 3630 | `39419e08780bd549188b637c4388902e3641a152b7efe03e46560af0700ba41a` | 0 |
-| sticker-creator/src/routes/art.tsx | 1731 | `cbca45b81eb3a80b52952f451086d0518fda16a543ac8ab72dc1772171f2003f` | 0 |
 | sticker-creator/src/selectors/art.ts | 3197 | `42704c151a4553164a4c96278669509c92a4bcfcd37b779233956f024369915f` | 0 |
 | sticker-creator/src/slices/art.ts | 5512 | `7c05bd572aff813c1df5d3935bec64f57bbe1c1f7e55e4fca43f363c028aba58` | 0 |
 | sticker-creator/src/slices/credentials.ts | 700 | `ae4bcb6498f8d31567a763664e4750b5b63231be558626f4badd36e80872aaaa` | 0 |
@@ -949,8 +916,8 @@ _Действие: взламывает — алгоритм нужно заме
 | sticker-creator/vite.config.ts | 660 | `9e19a4c8857434f617f8d2d55c39a844748c3587d2bd950b3f03c247b177b81b` | 0 |
 | ts/AttachmentCrypto.node.ts | 21237 | `9f65def315dba51705b6ea80949b18140bbd0b28a1088a2a32880a803075ecc1` | 0 |
 | ts/Bytes.std.ts | 2145 | `1fb17908453f6fb3a9309404b416a9799614479e73a22c231c40a72d1732f1cd` | 0 |
-| ts/CI/benchmarkConversationOpen.preload.ts | 6986 | `4ac3b8b277acca3dd6bbca461fc312d074649891d6b6fe2ad68b49f134ecaddc` | 0 |
 | ts/CI.preload.ts | 11203 | `e53525c96265117a91b2454a7a43e8f077bd6b9dc68ced89561f4f405b9cfb14` | 0 |
+| ts/CI/benchmarkConversationOpen.preload.ts | 6986 | `4ac3b8b277acca3dd6bbca461fc312d074649891d6b6fe2ad68b49f134ecaddc` | 0 |
 | ts/ConversationController.preload.ts | 64507 | `e72d4053f04db4d6adc125eb6feb3e61d4bc3402b478c7e2264b0b3a0400088c` | 0 |
 | ts/Crypto.node.ts | 21480 | `14b53187ca5903557a630dc7eed9ca82882b5eec18c6881542d921ab37c89725` | 0 |
 | ts/Curve.node.ts | 3685 | `bd8276dd2ae5321a3603356895a75fea2a0d4f9da5e9d32278757131b91aeefd` | 0 |
@@ -1397,9 +1364,9 @@ _Действие: взламывает — алгоритм нужно заме
 | ts/components/conversation/Waveform.dom.tsx | 1536 | `c9c5661a9b6ffddeb3e167ed86bd005d5c13f44d6548745ee6073b74be631321` | 0 |
 | ts/components/conversation/WaveformScrubber.dom.tsx | 3429 | `9755463c3a52f2a349e31206dd3642a31f6a6762c9d7c1bfcb077ec6a40e46c5` | 0 |
 | ts/components/conversation/contactUtil.dom.tsx | 2890 | `16f844c2e541f3e5bd6d14a1dfda613005e596967c700e3087c5b81a5deedc9b` | 0 |
+| ts/components/conversation/conversation-details/AddGroupMembersModal.dom.tsx | 7830 | `4cf37cf1921acfabcc8ce25c8d5be8cd770b2c57ff35b92c3a6a69c9dcadecae` | 0 |
 | ts/components/conversation/conversation-details/AddGroupMembersModal/ChooseGroupMembersModal.dom.tsx | 15879 | `d65c521633dc93e9665d7ec87f170b121c085d65e1e2f8d7e8bd7b7581655778` | 0 |
 | ts/components/conversation/conversation-details/AddGroupMembersModal/ConfirmAdditionsModal.dom.tsx | 2652 | `4d7a8b1b99b540d0aa2d5b5bf4a81442a0017eaf7f145bcef67c3a87cd293496` | 0 |
-| ts/components/conversation/conversation-details/AddGroupMembersModal.dom.tsx | 7830 | `4cf37cf1921acfabcc8ce25c8d5be8cd770b2c57ff35b92c3a6a69c9dcadecae` | 0 |
 | ts/components/conversation/conversation-details/CallHistoryGroupPanelSection.dom.tsx | 3435 | `3be7858266fcbe63eaac887366f8ffd3af7a5e93c2f73d0b6fb23eca60069b3b` | 0 |
 | ts/components/conversation/conversation-details/ConversationDetails.dom.tsx | 29410 | `400c624d01ca30c9969cd387af2c7af3390bad8d85fa36aa9494466d8fe690a9` | 0 |
 | ts/components/conversation/conversation-details/ConversationDetailsActions.dom.tsx | 12159 | `ea1c095acc7f306e5a01fd88b1f7640770f6d89a9832b044b635f7fddfd78a55` | 0 |
@@ -1548,11 +1515,11 @@ _Действие: взламывает — алгоритм нужно заме
 | ts/environment.std.ts | 1807 | `96573d376ed4d57e16592f488cb2f629a91e96242c9f19761866b591d0f1c41b` | 0 |
 | ts/firstline.d.ts | 305 | `ea8718502f0e79bae822759ce0ef0de485b0c7ab7b524e6bead4cc483e18060d` | 0 |
 | ts/groupChange.std.ts | 27618 | `6924177ca0a4a5cc8c9b785e8295ed63f54843fdc42e058de569637a300e2ea2` | 0 |
+| ts/groups.preload.ts | 226625 | `706bdc5068e65d42e9d3ddc6e34ad6e189e2ab070f0b0d897252f99a06b8ecee` | 0 |
 | ts/groups/joinViaLink.preload.ts | 15287 | `dcbb19019453af0e897c0209d7da877071c300a8ca58a7acc254bcd3ef438787` | 0 |
 | ts/groups/limits.dom.ts | 854 | `542a6b92a6defd85dc888fb351e41bb876167e12d1778a75f693260ceb09a16d` | 0 |
 | ts/groups/toggleSelectedContactForGroupAddition.std.ts | 2001 | `dc0e7977a9192374a48d8f775e76de24a7eb7e8d0dd7c97abdb188677a39cfba` | 0 |
 | ts/groups/util.std.ts | 518 | `f05342a4626efbe3112bd6604f58f4097a29804f462e9265af7fce0afe22bb4b` | 0 |
-| ts/groups.preload.ts | 226625 | `706bdc5068e65d42e9d3ddc6e34ad6e189e2ab070f0b0d897252f99a06b8ecee` | 0 |
 | ts/growing-file.d.ts | 386 | `ce8a143eee6beaf51ee30f6392e9695a0989624e04fb8c3606d032fd78f520e4` | 0 |
 | ts/heic-convert.d.ts | 280 | `a43ef85fe765f423566adfaa7667207b58ddb013391807631f9f598cf7be7f78` | 0 |
 | ts/hooks/useActivateSpeakerViewOnPresenting.std.ts | 1358 | `770ce6f03867106cb6727af3fa334c669689901156cc86034a56b49b4702f9ed` | 0 |
@@ -2373,10 +2340,10 @@ _Действие: взламывает — алгоритм нужно заме
 | ts/util/asyncIterables.std.ts | 1278 | `4b23f64f053aba36a7c4cc84decd543db700a3603d32465699cb47aa85cde2ab` | 0 |
 | ts/util/attachmentDownloadQueue.preload.ts | 4064 | `0cbe2010457a550421d4329d1c60dca59c5b46797bdaba9a860cc990f472c846` | 0 |
 | ts/util/attachmentPath.node.ts | 581 | `b335fbb3f261b9c6c208bb466c686cb8a51f17c4bcb9c49d65cb501a8916d046` | 0 |
+| ts/util/attachments.preload.ts | 3558 | `41b870c253240919ceda4dbe4635a0cbb375625ae9bdc278f7ced07da4f8d99b` | 0 |
 | ts/util/attachments/deduplicateAttachment.preload.ts | 3315 | `cba9ec13dcd58bfb63e3f5c9b3aefacac673e65f3c37b10efb06293d84e4252b` | 0 |
 | ts/util/attachments/markAttachmentAsErrored.std.ts | 949 | `082ff3f2b18d85a172edb018ebec5f78360bd0dc5d12bb865f6ae561c7370abc` | 0 |
 | ts/util/attachments/migrateDataToFilesystem.std.ts | 1853 | `fd84907f718927fe123cae271fac7a82e2d94d4c07640aff4871f36a03c1640e` | 0 |
-| ts/util/attachments.preload.ts | 3558 | `41b870c253240919ceda4dbe4635a0cbb375625ae9bdc278f7ced07da4f8d99b` | 0 |
 | ts/util/avatarDataToBytes.dom.ts | 3821 | `dcae205384b7d9337e97334cb740ed2a0cee64fce7cbdcb3715d250e3166261e` | 0 |
 | ts/util/avatarTextSizeCalculator.std.ts | 1127 | `56bf49443c130f642e1031c5da849a83cef733fb4b97275c04f91c422513530b` | 0 |
 | ts/util/avatarUtils.preload.ts | 2471 | `6fdb096f099221b3f12647d746ad0d838fdb3a04a47a1591b133719696fe5131` | 0 |
@@ -2388,8 +2355,8 @@ _Действие: взламывает — алгоритм нужно заме
 | ts/util/buildExpiration.std.ts | 2422 | `b515fa79ee409a8755773442cde9cf9e2674573b6235d3e22a92d9691da9f560` | 0 |
 | ts/util/callDisposition.preload.ts | 51059 | `f75ae1b5b0b0a5aa005c9a98aafd5ed5bbc5e983fabfd8946f90962b754c81b2` | 0 |
 | ts/util/callLinkRootKeyToUrl.std.ts | 249 | `4573c86d34af17a6d7b3fce05a11aebd25dae6efc1fd8d8570bfe5c6fd990a56` | 0 |
-| ts/util/callLinks/zkgroup.preload.ts | 1769 | `97a59fec544161121896ab4559c86fd64b434013f80d88c0f276e682d758be76` | 0 |
 | ts/util/callLinks.std.ts | 2953 | `178190ba107c537893130245cf06bd329420ab274b461148c62077d381268ca4` | 0 |
+| ts/util/callLinks/zkgroup.preload.ts | 1769 | `97a59fec544161121896ab4559c86fd64b434013f80d88c0f276e682d758be76` | 0 |
 | ts/util/callLinksRingrtc.node.ts | 5563 | `a42e660891cc0a61f8738c56f49c8c4c98e69eada7d11920af1bdd291435d683` | 0 |
 | ts/util/callQualitySurvey.dom.ts | 2550 | `990171a63106b15e89a07f5a32057526ca37bcb668f7153113aa48f6bae19de9` | 0 |
 | ts/util/callingGetParticipantName.std.ts | 572 | `a6e4188b35f1f794f1d9e4e5f4a90d0f7f6efdac9a82bac32a14b7ee858ebeef` | 0 |

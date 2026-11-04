@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Организация | QSI |
-| Дата отчёта | 2026-10-29 19:57 UTC |
+| Дата отчёта | 2026-11-04 18:56 UTC |
 | Версия отчёта | 1 |
-| Запуск аудита | 6d1ba0de-c0f0-421d-ba42-4bdacac23f40 (Документальный аудит) |
-| Версия анализатора | qsi-engine 1.2.0 |
+| Запуск аудита | 033b0039-6157-4653-8b2d-84e794b14da2 (Документальный аудит) |
+| Версия анализатора | qsi-engine 1.3.0 |
 | Профиль риска | Криптобиржа, кастодиан или кошелёк |
-| SHA-256 содержимого | `df90bccaf38bd16d1d242f2278bdcc891e053d3d16dabc0f7ffb293761a8cc6c` |
+| SHA-256 содержимого | `c5113cb67ef52870716f434261cef10b8348209e2f0bfb7ed78e283dc233aa13` |
 | Ключ подписи (Ed25519, отпечаток SHA-256; подпись — отдельный файл report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > Отчёт содержит результаты автоматизированного и документального анализа в указанных границах. Он не является юридическим заключением, сертификацией или подтверждением соответствия какому-либо стандарту.
 
@@ -17,7 +17,7 @@
 
 - Критическая: **0**
 - Высокая: **0**
-- Средняя: **5**
+- Средняя: **7**
 - Низкая: **0**
 - Информационная: **1**
 
@@ -25,13 +25,13 @@
 - Известная уязвимая версия компонента: 0
 - Подтверждённая ошибка конфигурации: 0
 - Потенциальный криптографический риск: 0
-- Долгосрочный постквантовый риск: 5
+- Долгосрочный постквантовый риск: 7
 - Рекомендация по улучшению: 1
 - Недостаточность данных: 0
 
 Неравенство Моски (x + y > z): x = 10, y = 5, z = 8 → при этом сценарии миграция завершится слишком поздно. _z — плановое допущение профиля риска, а не прогноз. Публично известного криптографически значимого квантового компьютера сегодня не существует._
 
-Проверка аналитика: подтверждено — 4, не применимо — 1, отклонено как ложные срабатывания — 0.
+Проверка аналитика: подтверждено — 6, не применимо — 1, отклонено как ложные срабатывания — 0.
 
 **Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет.** Следующий шаг: Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -49,8 +49,9 @@
 |---|---|---|---|
 | certificates_and_keys | проверено | 1 | SECURITY.md: certificates/keys parsed |
 | dependencies | проверено | 4 | contrib/requirements.txt: 7 dependencies parsed (0 pinned); pyproject.toml: 0 dependencies parsed (0 pinned); src/wasm_package/package-lock.json: 156 dependencies parsed (156 pinned) |
-| source_code | проверено | 244 | docs/source/conf.py: 267 lines scanned with 16 rule patterns and 123 registry patterns; include/wally.hpp: 3375 lines scanned with 16 rule patterns and 123 registry patterns; include/wally_address.h: 376 lines scanned with 16 rule patterns and 123 registry patterns |
+| source_code | проверено | 244 | docs/source/conf.py: 267 lines scanned with 16 rule patterns and 145 registry patterns; include/wally.hpp: 3375 lines scanned with 16 rule patterns and 145 registry patterns; include/wally_address.h: 376 lines scanned with 16 rule patterns and 145 registry patterns |
 | secrets | проверено | 2 | src/swig_python/contrib/aes.py: value(s) at line(s) 12 (test_aes_cbc_ecdh), 15 (test_aes_cbc_ecdh) are declared inside a fixture and treated as test data, although the file itself is not test code; src/swig_python/contrib/aes.py: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
+| entropy | проверено | 1 | random-number generation: 244 code files read with 856 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | проверено | 1 | 156 pinned packages queried at OSV.dev; 3 affected (3 of them only in development or build dependencies) |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
@@ -61,22 +62,22 @@ _Длинные списки здесь сгруппированы; полный
 
 ## 5. Краткое описание архитектуры
 
-Static review of the source tree libwally-core at 374df231d05410a31d605b31c1cc5256581381d7. 249 files analysed; of 561 files, 151 are test, fuzzing, benchmark or example code and were left out, 161 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. 63 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 120 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache. No requests were sent to the owner's systems.
+Static review of the source tree libwally-core at 374df231d05410a31d605b31c1cc5256581381d7. 249 files analysed; of 561 files, 151 are test, fuzzing, benchmark or example code and were left out, 161 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/workflows/wasm-package.yml, .github/workflows/wheels.yml, .gitignore, .gitlab-ci.yml, .gitmodules. 112 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 120 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: src/secp256k1 (120). No requests were sent to the owner's systems.
 
 ## 6. Общая оценка состояния безопасности
 
 - Ориентировочный индекс состояния: **100** / 100 — _Рассчитан по находкам в области проверки (подтверждённые и потенциальные проблемы, взвешенные по серьёзности). Ориентировочный; не сравним между аудитами с разной областью._
-- Доля квантово-уязвимых элементов инвентаризации: 72.7%
+- Доля квантово-уязвимых элементов инвентаризации: 78.4%
 
 ## 7. Подробное описание находок
 
-### QSI-2026-06685 — Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md
+### QSI-2026-12082 — Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Высокая
 - Затронутый актив: `file:SECURITY.md#line 52`
 - Источник данных: SECURITY.md
 - Метод обнаружения: Разбор открытого ключа.
-- Анализатор: certificates 1.2.0 · 2026-10-29 19:57 UTC
+- Анализатор: certificates 1.3.0 · 2026-11-04 18:56 UTC
 - Балл приоритета: 50.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -110,18 +111,79 @@ OpenPGP subkey: algorithm ID 1 (RSA) 4096-bit
 
 **Повторная проверка.** Повторный аудит после миграции.
 
-### QSI-2026-06686 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (36 файл(ов))
+### QSI-2026-12085 — Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (2 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
+> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Three rows, and the only ones here with a retroactive character, so they should not be read as three more signing rows. One of the three is weaker evidence than the others and that is worth saying: it is a printf in a build-information path announcing "ECDH key exchange (optional module)" under #ifdef ENABLE_MODULE_ECDH, which proves the module can be compiled in, not that this build uses it. Where a shared secret derived through ECDH protects stored or recorded data, harvest-now-decrypt-later applies in full, and unlike the signature rows it can be hardened today by wrapping the agreed secret under a hybrid KEM — no consensus change needed. Kept at medium rather than raised, because the evidence for *use* is a conditional compile rather than a call.
+- Затронутый актив: `source-code:ECDH:key_wrapping`
+- Источник данных: include/wally_crypto.h
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:56 UTC
+- Балл приоритета: 43.4 / 100
+- CVSS v3.1: неприменимо
+
+4 упоминаний ECDH в 2 файл(ах), например include/wally_crypto.h:865. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте include/wally_crypto.h:865 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [include/wally_crypto.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L865) · line 865 · SHA-256 adeb0c9a3350908a68cfbbf4ed2ff60a9856e2ea68bd36f54e908e338d25c7b5_
+
+```
+  864 |  */
+  865 | WALLY_CORE_API int wally_ecdh(
+  866 |     const unsigned char *pub_key,
+```
+
+_file_excerpt · [include/wally_crypto.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L987) · line 987 · SHA-256 6bc1396058d9a876845f26f79b8626719ab94b03ec189c4bb7ed9ba733f31f9c_
+
+```
+  986 |  */
+  987 | WALLY_CORE_API int wally_aes_cbc_with_ecdh_key(
+  988 |     const unsigned char *priv_key,
+```
+
+_file_excerpt · [src/aes.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/aes.c#L264) · line 264 · SHA-256 3a7248295a661ed191080266becc0c12dd77c2bb2dfcfdf027f9871af778b85d_
+
+```
+  263 | 
+  264 | int wally_aes_cbc_with_ecdh_key(
+  265 |     const unsigned char *priv_key, size_t priv_key_len,
+```
+
+_file_excerpt · [src/aes.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/aes.c#L307) · line 307 · SHA-256 52eefa65a41f946b920e28c1461e5b64fcb2c79a2491a961c18eb141ab7ad078_
+
+```
+  306 |     /* Shared secret is ECDH(their pubkey, our private key) */
+  307 |     ret = wally_ecdh(pub_key, pub_key_len, priv_key, priv_key_len,
+  308 |                      secret, sizeof(secret));
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-12087 — Квантово-уязвимый ECDSA: подпись транзакций и сообщений (37 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Correct and central: 39 files, and 50 of the 81 inventory rows are ECDSA. The anchor is real call-site code rather than a header banner — src/sign.c:72 declares a secp256k1_ecdsa_signature and takes a context from secp_ctx(), which is the path every libwally consumer signs through. This is the library Blockstream's Jade vendors into its own tree and Green uses, so these rows are the spending path of real hardware rather than a dependency declaration. Forward-only exposure for an unused key; effectively retroactive for any public key already on chain, which is why address reuse is the behaviour to change before the scheme changes.
 - Затронутый актив: `source-code:ECDSA:transaction_signing`
 - Источник данных: setup.py
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 19:57 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:56 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
-131 упоминаний ECDSA в 36 файл(ах), например setup.py:58. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+149 упоминаний ECDSA в 37 файл(ах), например setup.py:58. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
@@ -157,6 +219,22 @@ _file_excerpt · [setup.py](https://github.com/ElementsProject/libwally-core/blo
   133 |     ]
 ```
 
+_file_excerpt · [src/anti_exfil.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L17) · line 17 · SHA-256 ca978913b4be378a9c0f913f861a82dccf092200d111cf381d2c45a1df69b2a2_
+
+```
+   16 |     if (!entropy || entropy_len != WALLY_S2C_DATA_LEN ||
+   17 |         flags != EC_FLAG_ECDSA ||
+   18 |         !bytes_out || len != WALLY_HOST_COMMITMENT_LEN)
+```
+
+_file_excerpt · [src/anti_exfil.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L47) · line 47 · SHA-256 97a4690693ca7d2991ecac4b603b8cb0a2727624974700ff3807186cf3fc18d8_
+
+```
+   46 |         !commitment || commitment_len != WALLY_HOST_COMMITMENT_LEN ||
+   47 |         flags != EC_FLAG_ECDSA ||
+   48 |         !s2c_opening_out || s2c_opening_out_len != WALLY_S2C_OPENING_LEN)
+```
+
 _file_excerpt · [src/anti_exfil.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L72) · line 72 · SHA-256 38a6257c59bd1576fcad77de26a0b8b07e8d637f0457829ebd386222ffc20554_
 
 ```
@@ -165,52 +243,36 @@ _file_excerpt · [src/anti_exfil.c](https://github.com/ElementsProject/libwally-
    73 |     const secp256k1_context *ctx = secp_ctx();
 ```
 
-_file_excerpt · [src/anti_exfil.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L87) · line 87 · SHA-256 9213bc4125f159f48bc6b0e8d7906dc826e6431c9b90cc8d1e9b98c342c9ee10_
+_file_excerpt · [src/psbt.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4677) · line 4677 · SHA-256 c4b1453ee00dea85b60c2dd841418cebc2b8149502ffe474cb7f705ab0736106_
 
 ```
-   86 |     ok = secp256k1_anti_exfil_sign(ctx, &sig_secp, bytes, priv_key, entropy) &&
-   87 |          secp256k1_ecdsa_signature_serialize_compact(ctx, bytes_out, &sig_secp);
-   88 | 
+ 4676 |         memcpy(signing_key, hdkey->priv_key + 1, EC_PRIVATE_KEY_LEN);
+ 4677 |         flags = EC_FLAG_ECDSA | (flags & EC_FLAG_GRIND_R);
+ 4678 |     } else {
 ```
 
-_file_excerpt · [src/anti_exfil.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L107) · line 107 · SHA-256 ccc27036c049ec2fe55b8cab5992c66b4834971552c32740b52ae96fbe16eecd_
+_file_excerpt · [src/psbt.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4704) · line 4704 · SHA-256 1fb8c7caa44761dcf85cb7fe64ed2882e91fd33b11322abd1019297ecc0804e2_
 
 ```
-  106 |     secp256k1_pubkey pub_secp;
-  107 |     secp256k1_ecdsa_signature sig_secp;
-  108 |     secp256k1_ecdsa_s2c_opening opening_secp;
+ 4703 |     /* Compute the sig */
+ 4704 |     ret = wally_ec_sig_from_bytes(signing_key, EC_PRIVATE_KEY_LEN,
+ 4705 |                                   txhash, txhash_len, flags, sig, sig_len);
 ```
 
-_file_excerpt · [src/secp256k1/contrib/lax_der_parsing.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.c#L11) · line 11 · SHA-256 9197354c850cb53bbc475b348c0f97bb3f550706fcced8bf483336d626575330_
+_file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L7) · line 7 · SHA-256 3e577720c5ce2234a75d0af2df9b2f9af4f7e33c6f97c2b4ff6a17660beee9c0_
 
 ```
-   10 | 
-   11 | int ecdsa_signature_parse_der_lax(const secp256k1_context* ctx, secp256k1_ecdsa_signature* sig, const unsigned char *input, size_t inputlen) {
-   12 |     size_t rpos, rlen, spos, slen;
+    6 | 
+    7 | #define EC_FLAGS_TYPES (EC_FLAG_ECDSA | EC_FLAG_SCHNORR)
+    8 | 
 ```
 
-_file_excerpt · [src/secp256k1/contrib/lax_der_parsing.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.c#L19) · line 19 · SHA-256 234aeaaf6b28e1d2ff43854e60a3119e3c3f55229e18841e2dc766404eab65d0_
+_file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L25) · line 25 · SHA-256 46a2627f782bf77c90381edb9560b59def5349bc9b646ada26a84cf6e3e3267c_
 
 ```
-   18 |     /* Hack to initialize sig with a correctly-parsed but invalid signature. */
-   19 |     secp256k1_ecdsa_signature_parse_compact(ctx, sig, tmpsig);
-   20 | 
-```
-
-_file_excerpt · [src/secp256k1/contrib/lax_der_parsing.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.c#L140) · line 140 · SHA-256 75ad5d0cba25ca64adb6d971da937879704b4abc8845c17dc1da9fa1eb773e5e_
-
-```
-  139 |     if (!overflow) {
-  140 |         overflow = !secp256k1_ecdsa_signature_parse_compact(ctx, sig, tmpsig);
-  141 |     }
-```
-
-_file_excerpt · [src/secp256k1/contrib/lax_der_parsing.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/contrib/lax_der_parsing.h#L57) · line 57 · SHA-256 25af7e242d92af0d3c46ae8d8a48030e247c4bfdeba65068030e64eb4c88c912_
-
-```
-   56 |    files (such as tests.c) without the need to set an explicit -I flag,
-   57 |    which would be necessary to locate secp256k1.h. */
-   58 | #ifndef SECP256K1_H
+   24 | {
+   25 |     BUILD_ASSERT(sizeof(secp256k1_ecdsa_signature) == EC_SIGNATURE_LEN);
+   26 | }
 ```
 
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
@@ -219,28 +281,68 @@ _file_excerpt · [src/secp256k1/contrib/lax_der_parsing.h](https://github.com/El
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06688 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (5 файл(ов))
+### QSI-2026-12088 — Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Correct, 7 rows across 7 files, including the real signing call at src/sign.c:387 (secp256k1_schnorrsig_sign32 guarded by a WALLY_EINVAL return) and the extraparams struct at include/secp256k1_schnorrsig.h:82. Taproot spends therefore sit in the same class as ECDSA ones — BIP-340 changed the signature's shape and its malleability, not the hardness assumption underneath it.
 - Затронутый актив: `source-code:Schnorr (BIP-340):transaction_signing`
-- Источник данных: src/secp256k1/include/secp256k1_schnorrsig.h
+- Источник данных: src/psbt.c
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 19:57 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:56 UTC
 - Балл приоритета: 41.8 / 100
 - CVSS v3.1: неприменимо
 
-34 упоминаний Schnorr (BIP-340) в 5 файл(ах), например src/secp256k1/include/secp256k1_schnorrsig.h:82. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
+43 упоминаний Schnorr (BIP-340) в 7 файл(ах), например src/psbt.c:4692. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/secp256k1/include/secp256k1_schnorrsig.h:82 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте src/psbt.c:4692 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
+
+_file_excerpt · [src/psbt.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4692) · line 4692 · SHA-256 72f7ca6f9868e0298a60b3afb945f26bb7e63d71d9ce01d01939e17ce6ebbb9f_
+
+```
+ 4691 |         /* Only Elements flag is relevant */
+ 4692 |         flags = EC_FLAG_SCHNORR | (flags & EC_FLAG_ELEMENTS);
+ 4693 |     }
+```
+
+_file_excerpt · [src/psbt.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4707) · line 4707 · SHA-256 c0a99390d8d34777ca9ebda66fe95ab70f7b7bbe0bf910ed507e46950d825199_
+
+```
+ 4706 |     if (ret == WALLY_OK) {
+ 4707 |         if (flags & EC_FLAG_SCHNORR) {
+ 4708 |             /* Add sighash byte (if needed) and store */
+```
+
+_file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L7) · line 7 · SHA-256 3e577720c5ce2234a75d0af2df9b2f9af4f7e33c6f97c2b4ff6a17660beee9c0_
+
+```
+    6 | 
+    7 | #define EC_FLAGS_TYPES (EC_FLAG_ECDSA | EC_FLAG_SCHNORR)
+    8 | 
+```
+
+_file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L32) · line 32 · SHA-256 b202ac94e8b895751ec81f220f5a3c89432b637d08ae69525c70a51e683d7e1c_
+
+```
+   31 |     return ((flags & EC_FLAGS_TYPES) == EC_FLAG_ECDSA) ||
+   32 |            ((flags & EC_FLAGS_TYPES) == EC_FLAG_SCHNORR);
+   33 | }
+```
+
+_file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L347) · line 347 · SHA-256 08dd89517de1e8c4174f05e1255365ee07df3c3ae84ee5a6099e07b989374aac_
+
+```
+  346 |         return WALLY_EINVAL;
+  347 |     if (flags & EC_FLAG_SCHNORR) {
+  348 |         if (flags & (EC_FLAG_RECOVERABLE | EC_FLAG_GRIND_R))
+```
 
 _file_excerpt · [src/secp256k1/include/secp256k1_schnorrsig.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig.h#L82) · line 82 · SHA-256 6aae3b20f8f8b503597acb97fe491246b6777b5a9660b8a41542605d18aab6f4_
 
@@ -282,74 +384,82 @@ _file_excerpt · [src/secp256k1/include/secp256k1_schnorrsig_halfagg.h](https://
    71 |     const secp256k1_context *ctx,
 ```
 
-_file_excerpt · [src/secp256k1/include/secp256k1_schnorrsig_halfagg.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h#L94) · line 94 · SHA-256 b10de912dd2b9f3e510c8fe909f0b6db3a25cde95edbbe0af55b109a33026fce_
-
-```
-   93 |  */
-   94 | SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_schnorrsig_aggverify(
-   95 |     const secp256k1_context *ctx,
-```
-
-_file_excerpt · [src/secp256k1/src/modules/musig/session_impl.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/musig/session_impl.h#L621) · line 621 · SHA-256 6254128e9a575e14bb87c68d5f2f12d65a6084dd7de58385e4a2764f96f3935a_
-
-```
-  620 |     secp256k1_musig_nonce_process_internal(ctx, &session_i.fin_nonce_parity, fin_nonce, &session_i.noncecoef, aggnonce_pts, agg_pk32, msg32);
-  621 |     secp256k1_schnorrsig_challenge(secp256k1_get_hash_context(ctx), &session_i.challenge, fin_nonce, msg32, 32, agg_pk32);
-  622 | 
-```
-
-_file_excerpt · [src/secp256k1/src/modules/schnorrsig/main_impl.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/main_impl.h#L98) · line 98 · SHA-256 a1153ae2ef17b61baf8d2585aa893927fd88f650b34ce0d8166071a4d0fd904f_
-
-```
-   97 |  * SHA256 to SHA256("BIP0340/challenge")||SHA256("BIP0340/challenge"). */
-   98 | static void secp256k1_schnorrsig_sha256_tagged(secp256k1_sha256 *sha) {
-   99 |     static const uint32_t midstate[8] = {
-```
-
-_file_excerpt · [src/secp256k1/src/modules/schnorrsig/main_impl.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/main_impl.h#L106) · line 106 · SHA-256 f299d1f78d3628291910977b1ab869c1f4322bf525ee5240bf39f43fcf9a3411_
-
-```
-  105 | 
-  106 | static void secp256k1_schnorrsig_challenge(const secp256k1_hash_ctx *hash_ctx, secp256k1_scalar* e, const unsigned char *r32, const unsigned char *msg, size_t msglen, const unsigned char *pubkey32)
-  107 | {
-```
-
-_file_excerpt · [src/secp256k1/src/modules/schnorrsig/main_impl.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/src/modules/schnorrsig/main_impl.h#L112) · line 112 · SHA-256 a0a16dc204430e96c9903e6ee6ef21caae66df417cf75c5030f669edff995e9b_
-
-```
-  111 |     /* tagged hash(r.x, pk.x, msg) */
-  112 |     secp256k1_schnorrsig_sha256_tagged(&sha);
-  113 |     secp256k1_sha256_write(hash_ctx, &sha, r32, 32);
-```
-
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
 
 **Рекомендация.** Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями.
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06687 — Квантово-уязвимый ECDSA: роль не определена (2 файл(ов))
+### QSI-2026-12083 — Квантово-уязвимый ECDSA: роль не определена (9 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Dropped to informational, because these rows are the amalgamation unit rather than a use: src/wally_elements.c and its siblings do #include "src/secp256k1/src/secp256k1.c" and #include "src/secp256k1/src/precompute_ecmult.c" to build the vendored library into one translation unit. The primitive genuinely appears at those lines, so the rows are correct inventory and are kept visible — a reader who checks the files should find what the tool found — but an #include of a .c file is a build arrangement, and the real uses are decided above.
 - Затронутый актив: `source-code:ECDSA:general`
-- Источник данных: src/amalgamation/combined.c
+- Источник данных: include/wally.hpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 19:57 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:56 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
-4 упоминаний ECDSA в 2 файл(ах), например src/amalgamation/combined.c:34. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+27 упоминаний ECDSA в 9 файл(ах), например include/wally.hpp:826. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/amalgamation/combined.c:34 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте include/wally.hpp:826 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
+
+_file_excerpt · [include/wally.hpp](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L826) · line 826 · SHA-256 5a034e1fa3088add100cae0c06589701ab9d6850ff06e984785b293d1c4275ab_
+
+```
+  825 | inline int ec_sig_from_bytes(const PRIV_KEY& priv_key, const BYTES& bytes, uint32_t flags, BYTES_OUT& bytes_out) {
+  826 |     int ret = ::wally_ec_sig_from_bytes(priv_key.data(), priv_key.size(), bytes.data(), bytes.size(), flags, bytes_out.data(), bytes_out.size());
+  827 |     return detail::check_ret(__FUNCTION__, ret);
+```
+
+_file_excerpt · [include/wally.hpp](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L832) · line 832 · SHA-256 f5748a5ea717a5bc4bc69822fc2fbe1fa1522a39a10f8bce5d14c3c8822bc53a_
+
+```
+  831 | inline int ec_sig_from_bytes_aux(const PRIV_KEY& priv_key, const BYTES& bytes, const AUX_RAND& aux_rand, uint32_t flags, BYTES_OUT& bytes_out) {
+  832 |     int ret = ::wally_ec_sig_from_bytes_aux(priv_key.data(), priv_key.size(), bytes.data(), bytes.size(), aux_rand.data(), aux_rand.size(), flags, bytes_out.data(), bytes_out.size());
+  833 |     return detail::check_ret(__FUNCTION__, ret);
+```
+
+_file_excerpt · [include/wally.hpp](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L838) · line 838 · SHA-256 ec1f93bd7cd7c14866088b120673f700a7d92fef820864d354cd4991f90e8efc_
+
+```
+  837 | inline int ec_sig_from_bytes_aux_len(const PRIV_KEY& priv_key, const BYTES& bytes, const AUX_RAND& aux_rand, uint32_t flags, size_t* written) {
+  838 |     int ret = ::wally_ec_sig_from_bytes_aux_len(priv_key.data(), priv_key.size(), bytes.data(), bytes.size(), aux_rand.data(), aux_rand.size(), flags, written);
+  839 |     return detail::check_ret(__FUNCTION__, ret);
+```
+
+_file_excerpt · [include/wally_crypto.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L371) · line 371 · SHA-256 3c4e8937fb035c5f6779cc57335026634d19e6909d54d873cd859cce12c7de99_
+
+```
+  370 | /** Indicates that a signature using ECDSA/secp256k1 is required */
+  371 | #define EC_FLAG_ECDSA 0x1
+  372 | /** Indicates that a signature using EC-Schnorr-SHA256 is required */
+```
+
+_file_excerpt · [include/wally_crypto.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L549) · line 549 · SHA-256 b00ee81459632de83c1c7568498c56ecc01cbb67ef40985e058300c3fde73ca8_
+
+```
+  548 |  */
+  549 | WALLY_CORE_API int wally_ec_sig_from_bytes_len(
+  550 |     const unsigned char *priv_key,
+```
+
+_file_excerpt · [include/wally_crypto.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L571) · line 571 · SHA-256 c09514af616afe00163fb401d847a1bfa0bc57334b815066b591f99e771cf92f_
+
+```
+  570 |  */
+  571 | WALLY_CORE_API int wally_ec_sig_from_bytes(
+  572 |     const unsigned char *priv_key,
+```
 
 _file_excerpt · [src/amalgamation/combined.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L34) · line 34 · SHA-256 8cce795a23b61e665185923e4058d56ed7e106c55784ee042d2a237e9547756d_
 
@@ -389,43 +499,152 @@ _file_excerpt · [src/internal.h](https://github.com/ElementsProject/libwally-co
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06689 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))
+### QSI-2026-12084 — Квантово-уязвимый ECDH: роль не определена (9 файл(ов))
 
 - Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
-> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Correct, 7 rows across 7 files, including the real signing call at src/sign.c:387 (secp256k1_schnorrsig_sign32 guarded by a WALLY_EINVAL return) and the extraparams struct at include/secp256k1_schnorrsig.h:82. Taproot spends therefore sit in the same class as ECDSA ones — BIP-340 changed the signature's shape and its malleability, not the hardness assumption underneath it.
-- Затронутый актив: `source-code:Schnorr (BIP-340):general`
-- Источник данных: src/sign.c
+> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Three rows, and the only ones here with a retroactive character, so they should not be read as three more signing rows. One of the three is weaker evidence than the others and that is worth saying: it is a printf in a build-information path announcing "ECDH key exchange (optional module)" under #ifdef ENABLE_MODULE_ECDH, which proves the module can be compiled in, not that this build uses it. Where a shared secret derived through ECDH protects stored or recorded data, harvest-now-decrypt-later applies in full, and unlike the signature rows it can be hardened today by wrapping the agreed secret under a hybrid KEM — no consensus change needed. Kept at medium rather than raised, because the evidence for *use* is a conditional compile rather than a call.
+- Затронутый актив: `source-code:ECDH:general`
+- Источник данных: include/wally.hpp
 - Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
-- Анализатор: source_code 1.2.0 · 2026-10-29 19:57 UTC
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:56 UTC
 - Балл приоритета: 40.2 / 100
 - CVSS v3.1: неприменимо
 
-2 упоминаний Schnorr (BIP-340) в 1 файл(ах), например src/sign.c:387. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+19 упоминаний ECDH в 9 файл(ах), например include/wally.hpp:420. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
 
 **Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
 
 **Шаги воспроизведения.**
 
 ```
-Откройте src/sign.c:387 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+Откройте include/wally.hpp:420 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
 ```
 
 **Подтверждающие доказательства.**
 
-_file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L387) · line 387 · SHA-256 b957a7949930facdb75237e2e6c12333acd87496052f7b47d028be3337f21aa3_
+_file_excerpt · [include/wally.hpp](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L420) · line 420 · SHA-256 710d4343296dae64bc1648683c523dc45578f9c36d221be470a5b8cacf73483a_
 
 ```
-  386 |             ret = WALLY_EINVAL;
-  387 |         else if (!secp256k1_schnorrsig_sign32(ctx, bytes_out, bytes, &keypair, aux_rand))
-  388 |             ret = WALLY_ERROR;
+  419 | inline int aes_cbc_with_ecdh_key(const PRIV_KEY& priv_key, const IV& iv, const BYTES& bytes, const PUB_KEY& pub_key, const LABEL& label, uint32_t flags, BYTES_OUT& bytes_out, size_t* written) {
+  420 |     int ret = ::wally_aes_cbc_with_ecdh_key(priv_key.data(), priv_key.size(), iv.data(), iv.size(), bytes.data(), bytes.size(), pub_key.data(), pub_key.size(), label.data(), label.size(), flags, bytes_out.data(), bytes_out.size(), written);
+  421 |     return detail::check_ret(__FUNCTION__, ret);
 ```
 
-_file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L456) · line 456 · SHA-256 b2cc452c48e864fed16b916f1e68559e9d63deec6656b7f76f35916d3cb585af_
+_file_excerpt · [include/wally.hpp](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L886) · line 886 · SHA-256 0065cf5143928209be1c0d8295c59b3cba5878e0083c200ed494ba6d219cb8b6_
 
 ```
-  455 |         ok = xpubkey_parse(&xonly_pub, pub_key, pub_key_len);
-  456 |         ok = ok && secp256k1_schnorrsig_verify(ctx, sig, bytes, bytes_len, &xonly_pub);
-  457 |         wally_clear(&xonly_pub, sizeof(xonly_pub));
+  885 | inline int ecdh(const PUB_KEY& pub_key, const PRIV_KEY& priv_key, BYTES_OUT& bytes_out) {
+  886 |     int ret = ::wally_ecdh(pub_key.data(), pub_key.size(), priv_key.data(), priv_key.size(), bytes_out.data(), bytes_out.size());
+  887 |     return detail::check_ret(__FUNCTION__, ret);
+```
+
+_file_excerpt · [include/wally.hpp](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L2498) · line 2498 · SHA-256 8ca33a52aa9c32254bc4c25f233916954bfaa727f3e7f5b11d0144c3d93dd68c_
+
+```
+ 2497 | inline int ecdh_nonce_hash(const PUB_KEY& pub_key, const PRIV_KEY& priv_key, BYTES_OUT& bytes_out) {
+ 2498 |     int ret = ::wally_ecdh_nonce_hash(pub_key.data(), pub_key.size(), priv_key.data(), priv_key.size(), bytes_out.data(), bytes_out.size());
+ 2499 |     return detail::check_ret(__FUNCTION__, ret);
+```
+
+_file_excerpt · [include/wally_elements.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_elements.h#L61) · line 61 · SHA-256 2b141a117280cc891ef590916ab52e5a58c0f323d74df715d55309bf108bfdce_
+
+```
+   60 |  */
+   61 | WALLY_CORE_API int wally_ecdh_nonce_hash(
+   62 |     const unsigned char *pub_key,
+```
+
+_file_excerpt · [src/ecdh.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/ecdh.c#L3) · line 3 · SHA-256 ce2c45bf89ff57e172bd6757a85b7804044bfc549dc253b41b9f317c86c8e922_
+
+```
+    2 | #include <include/wally_crypto.h>
+    3 | #include <secp256k1_ecdh.h>
+    4 | 
+```
+
+_file_excerpt · [src/ecdh.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/ecdh.c#L5) · line 5 · SHA-256 c11d4bdee4ffad78b372ec03e4d946d1e679d888b90acf99a864b82f32cdf2db_
+
+```
+    4 | 
+    5 | int wally_ecdh(const unsigned char *pub_key, size_t pub_key_len,
+    6 |                const unsigned char *priv_key, size_t priv_key_len,
+```
+
+_file_excerpt · [src/ecdh.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/ecdh.c#L25) · line 25 · SHA-256 d22b3758a7b0fe1793ecdf70363725766d8a5fa98b9fa281260ea8f2f8cedc08_
+
+```
+   24 |     else if (!seckey_verify(priv_key) ||
+   25 |              !secp256k1_ecdh(ctx, bytes_out, &pub, priv_key, NULL, NULL))
+   26 |         ret = WALLY_ERROR;
+```
+
+_file_excerpt · [src/elements.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/elements.c#L49) · line 49 · SHA-256 67e8c5413b1235a00c57869b346cd241c25020410839f9fa642e0fb4058e959b_
+
+```
+   48 | #ifndef WALLY_ABI_NO_ELEMENTS
+   49 | int wally_ecdh_nonce_hash(const unsigned char *pub_key, size_t pub_key_len,
+   50 |                           const unsigned char *priv_key, size_t priv_key_len,
+```
+
+_file_excerpt · [src/elements.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/elements.c#L59) · line 59 · SHA-256 78816fe84e635db69964bf3ba3fb15e7b903fccb87b3b736833bef430747ac31_
+
+```
+   58 | 
+   59 |     ret = wally_ecdh(pub_key, pub_key_len, priv_key, priv_key_len,
+   60 |                      nonce, sizeof(nonce));
+```
+
+_file_excerpt · [src/elements.c](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/elements.c#L332) · line 332 · SHA-256 933bf2be11244f409fa288e3d52606f08a2d7575c1ece43ccb162f5835a4d581_
+
+```
+  331 | 
+  332 |     ret = wally_ecdh_nonce_hash(pub_key, pub_key_len, priv_key, priv_key_len,
+  333 |                                 nonce_hash, sizeof(nonce_hash));
+```
+
+**Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
+
+**Рекомендация.** Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH; введите уровень абстракции для криптогибкости.
+
+**Повторная проверка.** Повторите инвентаризацию после рефакторинга.
+
+### QSI-2026-12086 — Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))
+
+- Серьёзность: **Средняя** · Классификация: Долгосрочный постквантовый риск · Уверенность: Средняя
+> **Проверка аналитика (QSI review, 2026-10-29): подтверждено аналитиком.** Correct, 7 rows across 7 files, including the real signing call at src/sign.c:387 (secp256k1_schnorrsig_sign32 guarded by a WALLY_EINVAL return) and the extraparams struct at include/secp256k1_schnorrsig.h:82. Taproot spends therefore sit in the same class as ECDSA ones — BIP-340 changed the signature's shape and its malleability, not the hardness assumption underneath it.
+- Затронутый актив: `source-code:Schnorr (BIP-340):general`
+- Источник данных: include/wally_crypto.h
+- Метод обнаружения: Сопоставление регулярных выражений с криптографическими API; роль определяется по словам в путях, именам охватывающих функций и строкам рядом с совпадениями.
+- Анализатор: source_code 1.3.0 · 2026-11-04 18:56 UTC
+- Балл приоритета: 40.2 / 100
+- CVSS v3.1: неприменимо
+
+2 упоминаний Schnorr (BIP-340) в 2 файл(ах), например include/wally_crypto.h:373. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.
+
+**Возможные последствия.** Долгосрочный риск зависит от назначения: подписи (подлинность до миграции) или обмен ключами/шифрование (ретроспективная расшифровка записанных данных).
+
+**Шаги воспроизведения.**
+
+```
+Откройте include/wally_crypto.h:373 и проверьте приведённые строки; остальные файлы перечислены в доказательствах.
+```
+
+**Подтверждающие доказательства.**
+
+_file_excerpt · [include/wally_crypto.h](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L373) · line 373 · SHA-256 ed990a48ee2a02ca3b13510ed4146f720516befa7a9653731cb7b63d106127a4_
+
+```
+  372 | /** Indicates that a signature using EC-Schnorr-SHA256 is required */
+  373 | #define EC_FLAG_SCHNORR 0x2
+  374 | /** ECDSA only: indicates that the signature nonce should be incremented until the signature is low-R */
+```
+
+_file_excerpt · [src/wasm_package/src/const.js](https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/wasm_package/src/const.js#L73) · line 73 · SHA-256 327e06b3faaf251b304004d03ea5a022af60fb08b4f663cc88a7b2b3aef53ac5_
+
+```
+   72 | export const EC_FLAG_RECOVERABLE = 0x8;
+   73 | export const EC_FLAG_SCHNORR = 0x2;
+   74 | export const EC_MESSAGE_HASH_LEN = 32;
 ```
 
 **Ограничения проверки.** Это прогнозный риск, зависящий от появления криптографически значимого квантового компьютера (CRQC). Публично известных CRQC сегодня нет; сроки неопределённы. Это не уязвимость, эксплуатируемая сегодня. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная.
@@ -434,14 +653,14 @@ _file_excerpt · [src/sign.c](https://github.com/ElementsProject/libwally-core/b
 
 **Повторная проверка.** Повторите инвентаризацию после рефакторинга.
 
-### QSI-2026-06690 — 7 бюллетеней в 3 пакет(ах) npm, нужных только для разработки или сборки
+### QSI-2026-12089 — 7 бюллетеней в 3 пакет(ах) npm, нужных только для разработки или сборки
 
 - Серьёзность: **Информационная** · Классификация: Рекомендация по улучшению · Уверенность: Средняя
 > **Проверка аналитика (QSI review, 2026-10-29): не применимо к этому коду.** Correct as a single non-runtime summary. The seven advisories are ajv, cross-spawn and fast-uri in src/wasm_package/package-lock.json, all marked dev there: they are the toolchain that builds the optional WebAssembly package, not anything a wallet linking libwally loads. Nothing here reaches a signing path.
 - Затронутый актив: `dependencies:npm:non-runtime`
 - Источник данных: OSV.dev
 - Метод обнаружения: Запрос OSV.dev querybatch по точным версиям; область применения — из devDependencies, флагов dev в package-lock.json, разделов importers в pnpm, графа Cargo.lock от таблиц Cargo.toml и — для yarn.lock, который область не записывает вовсе — графа файла блокировки, пройденного от package.json. Если рабочее требование в файле блокировки разрешить не удалось, файл остаётся без классификации, чтобы пакет не был отложен в сторону по ошибке.
-- Анализатор: dependencies 1.2.0 · 2026-10-29 19:57 UTC
+- Анализатор: dependencies 1.3.0 · 2026-11-04 18:56 UTC
 - Балл приоритета: 18.3 / 100
 - CVSS v3.1: неприменимо
 
@@ -495,6 +714,7 @@ _Допущения планирования: x для обмена ключам
 
 ### Постквантовая зрелость: Уровень 0 из 4 — постквантовой криптографии нет
 
+- Только классика — обёртка ключей и шифрование хранимых данных: ECDH (2 файл(ов))
 
 **Следующий шаг:** Проведите инвентаризацию: где классическая криптография с открытым ключом защищает долгоживущие данные и ключи, и выберите первую миграцию — обычно гибридный обмен ключами TLS и обёрнутые ключи.
 
@@ -504,8 +724,9 @@ _Уровни: 0 — нет; 1 — есть, но не подключено; 2 �
 
 | Роль | Алгоритмы (файлы) | ID | Первый шаг |
 |---|---|---|---|
-| **подпись транзакций и сообщений** | ECDSA (36), Schnorr (BIP-340) (5) | QSI-2026-06686, QSI-2026-06688 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
-| **роль не определена** | ECDSA (2), Schnorr (BIP-340) (1) | QSI-2026-06687, QSI-2026-06689 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
+| **обёртка ключей и шифрование хранимых данных** | ECDH (2) | QSI-2026-12085 | Оборачивайте ключи ML-KEM или гибридным KEM (X25519 + ML-KEM-768) и переоберните хранимые ключи; для данных, которые уже могли скопировать, нужна отдельная оценка |
+| **подпись транзакций и сообщений** | ECDSA (37), Schnorr (BIP-340) (7) | QSI-2026-12087, QSI-2026-12088 | Следите за постквантовыми планами каждой сети, не используйте открытые ключи повторно и держите подписание готовым к постквантовым схемам по мере их принятия сетями |
+| **роль не определена** | ECDH (9), ECDSA (9), Schnorr (BIP-340) (2) | QSI-2026-12083, QSI-2026-12084, QSI-2026-12086 | Классифицируйте каждое использование, зафиксируйте сроки жизни данных и запланируйте миграцию на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема; введите уровень абстракции для криптогибкости |
 
 _Роль определяется по путям файлов, именам функций и коду вокруг совпадений; проверка её подтверждает. Сначала — ключи корня доверия и обёрнутые ключи: их трудно заменить или можно записать уже сегодня._
 Анкета готовности для проекта не заполнялась.
@@ -515,7 +736,7 @@ _Роль определяется по путям файлов, именам ф
 | Квантовый алгоритм | Действие | Модель атаки | Алгоритмы из инвентаризации (строк) | Что это значит для аудита |
 |---|---|---|---|---|
 | Алгоритм Шора — факторизация | взламывает | Q1 | RSA (2) | Взламывает RSA при любой длине ключа: более длинный модуль лишь полиномиально повышает стоимость. Планируйте переход на ML-KEM (или гибрид) для установления ключей и ML-DSA / SLH-DSA для подписей; начинайте с ключей, защищающих данные, которые должны оставаться конфиденциальными годами («собери сейчас — расшифруй потом»), и с долгоживущих подписей. |
-| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (2), ECDSA (46), Schnorr (BIP-340) (6) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
+| Алгоритм Шора — дискретный логарифм на эллиптических кривых | взламывает | Q1 | ECDH (11), ECDSA (54), Schnorr (BIP-340) (9) | Ключи на эллиптических кривых, по оценкам, падут раньше ключей RSA сопоставимой классической стойкости. В блокчейнах первыми под угрозой монеты, чей открытый ключ уже опубликован (повторно используемые адреса, выходы pay-to-public-key и Taproot); планируйте переход на постквантовые подписи и до этого избегайте повторного использования ключей. |
 | Алгоритм Гровера — поиск ключа и прообразов | ослабляет (более длинные ключи восстанавливают запас) | Q1 | HMAC (7), PBKDF2 (1), RIPEMD-160 (2), SHA-2 (6), scrypt (5) | Не взлом. Ключи 256 бит (AES-256, ChaCha20) сохраняют хороший запас; AES-128 соответствует категории 1 NIST, но некоторые регуляторы требуют 256-битных ключей в квантово-устойчивых системах (см. запись AES-128). Для долгоживущих данных предпочитайте 256-битные ключи; 256-битные хеши для стойкости к прообразам менять не нужно. |
 | Брассар–Хойер–Тапп — поиск коллизий | ослабляет (более длинные ключи восстанавливают запас) | Q1 | RIPEMD-160 (2), SHA-2 (6) | 256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит. |
 
@@ -541,31 +762,35 @@ _Действие: взламывает — алгоритм нужно заме
 
 | Приоритет | ID | Действие | Тип | Условие закрытия |
 |---|---|---|---|---|
-| P3 | QSI-2026-06685 | Внесите использования RSA в file:SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06686 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06688 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06687 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P3 | QSI-2026-06689 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
-| P4 | QSI-2026-06685 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
-| P4 | QSI-2026-06686 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06688 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-06687 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
-| P4 | QSI-2026-06689 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
-| P4 | QSI-2026-06690 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
+| P3 | QSI-2026-12082 | Внесите использования RSA в file:SECURITY.md в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12085 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12087 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12088 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12083 | Внесите использования ECDSA в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12084 | Внесите использования ECDH в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P3 | QSI-2026-12086 | Внесите использования Schnorr (BIP-340) в source code в криптографическую инвентаризацию с владельцем и оценкой срока жизни данных; обеспечьте криптографическую гибкость (идентификаторы алгоритмов, конфигурируемые провайдеры). | краткосрочное снижение риска | Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом. |
+| P4 | QSI-2026-12082 | Запланируйте миграцию RSA на ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы. |
+| P4 | QSI-2026-12085 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-12087 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12088 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-12083 | Запланируйте миграцию ECDSA на ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы. |
+| P4 | QSI-2026-12084 | Запланируйте миграцию ECDH на Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы. |
+| P4 | QSI-2026-12086 | Запланируйте миграцию Schnorr (BIP-340) на  (или гибридную схему) после появления поддержки в библиотеках, протоколах и у контрагентов. | устранение первопричины | Повторный аудит показывает использование  или гибридной схемы. |
+| P4 | QSI-2026-12089 | Обновите зависимости разработки и сборки из доказательства. | устранение первопричины | Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы. |
 
 ## 11. Использованные инструменты
 
 - blockchain 1.0.0
-- certificates 1.1.0
+- certificates 1.2.0
 - chain_map 1.0.0
 - configs 1.1.0
-- dependencies 1.2.0
+- dependencies 1.3.0
 - inventory_document 1.1.0
-- solidity 1.2.0
-- source_code 1.3.0
+- solidity 1.3.0
+- source_code 1.4.0
 - tls_code 1.1.0
 - tls_live 1.0.0
-- qsi-engine 1.2.0
+- qsi-engine 1.3.0
 - OSV.dev API v1
 
 ## 12. Источники и нормативные документы
@@ -588,7 +813,7 @@ _Действие: взламывает — алгоритм нужно заме
 16. M. Cain et al. — Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits (arXiv:2603.28627) — arXiv. <https://arxiv.org/abs/2603.28627> (preprint (2026-03-30): P-256 in a few days with 26,000 physical neutral-atom qubits; RSA-2048 one to two orders of magnitude longer)
 17. M. Mosca — Cybersecurity in an Era with Quantum Computers: Will We Be Ready? (IEEE Security & Privacy, 2018) — IEEE. <https://doi.org/10.1109/MSP.2018.3761723> (peer-reviewed article; source of the x + y > z migration inequality)
 18. M. Roetteler, M. Naehrig, K. Svore, K. Lauter — Quantum resource estimates for computing elliptic curve discrete logarithms (ASIACRYPT 2017) — IACR / arXiv. <https://arxiv.org/abs/1706.06752> (peer-reviewed article: at most 9n + 2⌈log2 n⌉ + 10 qubits and 448 n^3 log2 n + 4090 n^3 Toffoli gates)
-19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/ipd> (initial public draft (November 2024); proposes deprecating quantum-vulnerable public-key algorithms after 2030 and disallowing them after 2035 — dates may change in the final version)
+19. NIST IR 8547 — Transition to Post-Quantum Cryptography Standards — NIST. <https://csrc.nist.gov/pubs/ir/8547/final> (final (2026-10-27; the initial public draft of November 2024 is obsoleted). Tables 2 and 4: ECDSA, EdDSA and RSA signatures, finite-field and elliptic-curve DH and MQV, and RSA key establishment are deprecated after 2030 and disallowed after 2035 at every key size — the draft deprecated only the 112-bit level. A composite (hybrid) key establishment stays FIPS 140-validatable while one input comes from an approved scheme. Repeats the federal deadlines of OMB M-26-15: post-quantum key establishment by 2030-12-31 and signatures by 2031-12-31 for high value assets and high impact systems)
 20. NIST — Post-Quantum Cryptography Standardization: Evaluation Criteria, Security (Call for Proposals, Section 4.A.5) — NIST. <https://csrc.nist.gov/Projects/Post-Quantum-Cryptography/Post-Quantum-Cryptography-Standardization/Evaluation-Criteria/Security-(Evaluation-Criteria)> (security categories: AES-128 key search 2^170/MAXDEPTH quantum gates, AES-192 2^233/MAXDEPTH, AES-256 2^298/MAXDEPTH; MAXDEPTH 2^40–2^96)
 21. OSV.dev — open-source vulnerability database and API — Open Source Security Foundation. <https://osv.dev/> (the database QSI queries for each exactly pinned version; every advisory id in a finding resolves at https://osv.dev/vulnerability/<id>)
 22. P. W. Shor — Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer (SIAM J. Comput., 1997) — SIAM. <https://doi.org/10.1137/S0097539795293172> (peer-reviewed article)
@@ -605,11 +830,11 @@ _Действие: взламывает — алгоритм нужно заме
 | SHA-2 | SHA-512 |  | сниженный запас (Гровер), одобрен | допустимо | 2 | 2 | src/ccan/ccan/crypto/sha512/sha512.c; src/ccan/ccan/crypto/sha512/sha512.h |
 | scrypt |  |  | сниженный запас (Гровер), одобрен | допустимо | 5 | 5 | src/scrypt.c; src/scrypt/crypto_scrypt.c; src/scrypt/crypto_scrypt_smix.c |
 | SHA-2 | SHA-256 |  | Гровер: допустимо по NIST, ниже рекомендаций ECCG/ANSSI | допустимо | 4 | 4 | src/ccan/ccan/crypto/sha256/sha256.c; src/ccan/ccan/crypto/sha256/sha256.h; src/ccan/ccan/crypto/sha256/sha256_sse4.c |
-| ECDH |  |  | уязвим (Шор) | допустимо | 2 | 2 | src/ecdh.c; src/secp256k1/include/secp256k1_ecdh.h |
+| ECDH |  |  | уязвим (Шор) | допустимо | 11 | 11 | include/wally.hpp:420; include/wally_crypto.h:865; include/wally_elements.h:61 |
+| ECDSA |  |  | уязвим (Шор) | допустимо | 22 | 22 | include/wally.hpp:826; include/wally_crypto.h:371; src/anti_exfil.c:17 |
 | ECDSA | secp256k1 |  | уязвим (Шор) | допустимо | 32 | 32 | setup.py:58; src/amalgamation/combined.c:34; src/internal.h:33 |
-| ECDSA |  |  | уязвим (Шор) | допустимо | 14 | 14 | src/anti_exfil.c:72; src/secp256k1/contrib/lax_der_parsing.c:11; src/secp256k1/contrib/lax_der_parsing.h:88 |
 | RSA | 4096-bit |  | уязвим (Шор) | допустимо | 2 | 2 | SECURITY.md (line 52) |
-| Schnorr (BIP-340) |  |  | уязвим (Шор) | допустимо | 6 | 6 | src/secp256k1/include/secp256k1_schnorrsig.h:82; src/secp256k1/include/secp256k1_schnorrsig_halfagg.h:43; src/secp256k1/src/modules/musig/session_impl.h:621 |
+| Schnorr (BIP-340) |  |  | уязвим (Шор) | допустимо | 9 | 9 | include/wally_crypto.h:373; src/psbt.c:4692; src/secp256k1/include/secp256k1_schnorrsig.h:82 |
 
 _Длинные списки здесь сгруппированы; полный список по файлам — в JSON-версии отчёта, подписанной тем же ключом._
 
@@ -707,11 +932,45 @@ _Длинные списки здесь сгруппированы; полный
 | src/script.c | 46749 | `fb0fe6ddcd942103db5b0d2dc44259d154aea6b1f9f0fc792b6ab49f37932a9f` | 0 |
 | src/script.h | 818 | `1617a0849f8db48baa659756a8df6fd8cda1ad03517959f392aa798f52c29cfa` | 0 |
 | src/script_int.h | 3734 | `bfb7c554290734d0fd4204ebcbad2496f46e4c475bfcfa44b1d364ffa97d06f4` | 0 |
+| src/scrypt.c | 2523 | `7912d0bfe719e149ed99ed1dc097e3087e0a9843433aedbeb749c42ac54d8e0c` | 0 |
 | src/scrypt/crypto_scrypt.c | 7396 | `033c20dbf6d9353f01f45cf14752afea67811c0fb487b7e2fc086d791c084ee5` | 0 |
 | src/scrypt/crypto_scrypt_smix.c | 6241 | `87c79624c9a5b5d1375dd332734f14758fb87781e5ab4dc3638dabfcb09b0f6b` | 0 |
 | src/scrypt/crypto_scrypt_smix_neon.c | 9554 | `a92a7abf7fcd2cd406acd8a3fa37a16fddf05f05581305d5900daf65a70ecdcd` | 0 |
 | src/scrypt/crypto_scrypt_smix_sse2.c | 7101 | `5a0b698f710cdc38e951d574804fde85b74e67d014da2207a08441de17c616da` | 0 |
-| src/scrypt.c | 2523 | `7912d0bfe719e149ed99ed1dc097e3087e0a9843433aedbeb749c42ac54d8e0c` | 0 |
+| src/sign.c | 28672 | `9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168` | 0 |
+| src/swig_python/contrib/aes.py | 2010 | `a908a69ec88322237a640666b30549f7ffbcfbb6f1161fc27b7910e81718f28f` | 2 |
+| src/swig_python/contrib/bip32.py | 2642 | `3f656b4c9cf631614cc98b3bd4fb86e83d25ec396af121a26da6f76715b1e888` | 0 |
+| src/swig_python/contrib/coinselection.py | 865 | `e984a050ea05ed45367d0b9beeb21b25a039575b88fb56cfe9dda90cf30ded75` | 0 |
+| src/swig_python/contrib/descriptor.py | 1238 | `293f13173b5700a5670f3fa59c09320769473ea577340fa1cbf4cc5f2a31b1d1` | 0 |
+| src/swig_python/contrib/elements_tx.py | 8121 | `f7ed910ed53a4ba8f0cbc4cf65f2f998b8753d29f3b732716a2561432e4c0d4e` | 0 |
+| src/swig_python/contrib/mnemonic.py | 1913 | `0affbe17869a1d77bc388af7b61d71b7eadde358f9804fb485c40ace73390f95` | 0 |
+| src/swig_python/contrib/psbt.py | 42984 | `de4eede31606e8bf3e7bf885648765a1214fc951bc83ad5e42f8732e7827e41d` | 0 |
+| src/swig_python/contrib/reconcile_sigs.py | 2854 | `0160b8f879594d0c33c9e08e0e0699e3d65a797d504383c3d2b42238d503b087` | 0 |
+| src/swig_python/contrib/sha.py | 2019 | `3a36b14987e4051ba544d89424b76f37bede9b87791f33b27bbb046dd10f813e` | 0 |
+| src/swig_python/contrib/signmessage.py | 1589 | `62c57fe76135de42dcd48c08bd33a0165ec566ad5610e58e9fe636723ecc3414` | 0 |
+| src/swig_python/contrib/tx.py | 4916 | `23ea1bea593ab10be4a4ade0c979ddf184b577016f802a49aded92238c0f8ead` | 0 |
+| src/symmetric.c | 1767 | `746f5c8d602544e0db731e54a287703536d6b462747001dff5122c2b10cd458f` | 0 |
+| src/transaction.c | 124444 | `c9e1504610735267d7048c56d49da1935a29c128eeb10d9d0b7416a9eae23619` | 0 |
+| src/tx_io.c | 41304 | `0b0c24cd86fc8aca60d6753d7fa837fb1ab1f3a64c122dd3948f9ce8cd37ad38` | 0 |
+| src/tx_io.h | 1145 | `2bc60074beb6cf037355e7ccbef1a57b446931babe9c4bf66b7b1fd91a6be4bb` | 0 |
+| src/wasm_package/package-lock.json | 127254 | `1c4bd9a6277a0372be350105ef2acf9b0f3700d67253e711079c857e5b8aae66` | 0 |
+| src/wasm_package/package.json | 608 | `f1c0400fbd6b50d7866ede0d6c960bacfaefdc9fd9d0f9d76a422ca3353bd424` | 0 |
+| src/wasm_package/src/browser/assert.js | 321 | `67e799d7b585943af24ff3d31d5d25b556d3f94812d2219d3eb703a472f4b82c` | 0 |
+| src/wasm_package/src/browser/crypto.js | 114 | `1a0550b75fc50491d16e6564434529adaa5e77b60cc8abae1dade004b0d71e2d` | 0 |
+| src/wasm_package/src/const.js | 18836 | `294fe5332d0323913a1f8eafc34d15e3ac8d07323a0ef239d2ee715367880a7e` | 0 |
+| src/wasm_package/src/core.js | 11103 | `cdd31896d2aff07dfa172e62b63c0d6c7d68f6fe69eaead859a1fa13297eb3ad` | 0 |
+| src/wasm_package/src/exports.js | 110 | `95b7045e0888c44564dbdad98a4a97d10162767c28ace45a58a31a5b3f1fbf8e` | 0 |
+| src/wasm_package/src/functions.js | 119691 | `54900f745051f0b068d7c08a32294c505a2249b284f7ce9b8712363826d7cddf` | 0 |
+| src/wasm_package/src/index.d.ts | 96119 | `68db6001469e4e5f3e41f81f88b3e79fa6f7ad42f904321a14dd768709d1ce19` | 0 |
+| src/wasm_package/src/index.js | 644 | `e604bf7297be553a02b5a716288bb479d6b39571d3302aaf7c4da52c3a034acc` | 0 |
+| src/wasm_package/src/util.js | 1217 | `34e03d693697456630eb3a9db4d8f253271b6536e0fbb7d6deb725081d715ffd` | 0 |
+| src/wasm_package/webpack.config.js | 458 | `9a861d818ed3d7e3b9cae555eb82409c4acc722153ca7d8a0f1089e389e61304` | 0 |
+| src/wif.c | 5335 | `2e01925997bcd34600c7e6e7e8831120b157fd13707a4897f411afc3c260d084` | 0 |
+| src/wordlist.c | 2726 | `d3f630d36f8a7763a67daa88b7652ed40f77540302597574b9e059d234ef5ec2` | 0 |
+| src/wordlist.h | 1678 | `7e8993598f450d95843cd4217f2d4fcfccf349a7464a8bc9dc0457c79a84f5d7` | 0 |
+| tools/build_psbt_ctests.py | 854 | `ecc8332fc3ea0a904897ba05598608e174a64d02fdd77be821920a983c249419` | 0 |
+| tools/build_wrappers.py | 26927 | `b59803b7ca9b045961bf6f446dc6c1d24b8c7b8c82fb9cf007299ccdad9c6f35` | 0 |
+| tools/wordlist_cc.py | 1736 | `e389277f851b59a3d4167ffec131903087ffeb646312e49949691a67260b853c` | 0 |
 | src/secp256k1/contrib/lax_der_parsing.c | 3595 | `4da2ecdc0a3b9dbb9029d188bb0243764a3c2f2324613a688f1ac4d3fc878851` | 0 |
 | src/secp256k1/contrib/lax_der_parsing.h | 4230 | `7f3e8ba009f19a5f2759c9065af02cc8e62351100d69f8ae7e762fa4b65ea675` | 0 |
 | src/secp256k1/contrib/lax_der_privatekey_parsing.c | 5112 | `48352c75520eecd141936c0011601925510cdf60afd3e46e79f0a0547cbc78da` | 0 |
@@ -832,37 +1091,3 @@ _Длинные списки здесь сгруппированы; полный
 | src/secp256k1/src/util_local_visibility.h | 402 | `d47d4a58f40157ab2a298151f366c5ebec8f7a1e7aaba88e36b530b1c01584ca` | 0 |
 | src/secp256k1/tools/symbol-check.py | 2416 | `1706069df728c1a2ac1d2578897076713c16eed73315be6c83ad9690007bca70` | 0 |
 | src/secp256k1/tools/wycheproof_utils.py | 427 | `9f2c2368953eeb3c9b7c3b31a807cde76b3106df93fbb975993638d5eb1a1e8a` | 0 |
-| src/sign.c | 28672 | `9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168` | 0 |
-| src/swig_python/contrib/aes.py | 2010 | `a908a69ec88322237a640666b30549f7ffbcfbb6f1161fc27b7910e81718f28f` | 2 |
-| src/swig_python/contrib/bip32.py | 2642 | `3f656b4c9cf631614cc98b3bd4fb86e83d25ec396af121a26da6f76715b1e888` | 0 |
-| src/swig_python/contrib/coinselection.py | 865 | `e984a050ea05ed45367d0b9beeb21b25a039575b88fb56cfe9dda90cf30ded75` | 0 |
-| src/swig_python/contrib/descriptor.py | 1238 | `293f13173b5700a5670f3fa59c09320769473ea577340fa1cbf4cc5f2a31b1d1` | 0 |
-| src/swig_python/contrib/elements_tx.py | 8121 | `f7ed910ed53a4ba8f0cbc4cf65f2f998b8753d29f3b732716a2561432e4c0d4e` | 0 |
-| src/swig_python/contrib/mnemonic.py | 1913 | `0affbe17869a1d77bc388af7b61d71b7eadde358f9804fb485c40ace73390f95` | 0 |
-| src/swig_python/contrib/psbt.py | 42984 | `de4eede31606e8bf3e7bf885648765a1214fc951bc83ad5e42f8732e7827e41d` | 0 |
-| src/swig_python/contrib/reconcile_sigs.py | 2854 | `0160b8f879594d0c33c9e08e0e0699e3d65a797d504383c3d2b42238d503b087` | 0 |
-| src/swig_python/contrib/sha.py | 2019 | `3a36b14987e4051ba544d89424b76f37bede9b87791f33b27bbb046dd10f813e` | 0 |
-| src/swig_python/contrib/signmessage.py | 1589 | `62c57fe76135de42dcd48c08bd33a0165ec566ad5610e58e9fe636723ecc3414` | 0 |
-| src/swig_python/contrib/tx.py | 4916 | `23ea1bea593ab10be4a4ade0c979ddf184b577016f802a49aded92238c0f8ead` | 0 |
-| src/symmetric.c | 1767 | `746f5c8d602544e0db731e54a287703536d6b462747001dff5122c2b10cd458f` | 0 |
-| src/transaction.c | 124444 | `c9e1504610735267d7048c56d49da1935a29c128eeb10d9d0b7416a9eae23619` | 0 |
-| src/tx_io.c | 41304 | `0b0c24cd86fc8aca60d6753d7fa837fb1ab1f3a64c122dd3948f9ce8cd37ad38` | 0 |
-| src/tx_io.h | 1145 | `2bc60074beb6cf037355e7ccbef1a57b446931babe9c4bf66b7b1fd91a6be4bb` | 0 |
-| src/wasm_package/package-lock.json | 127254 | `1c4bd9a6277a0372be350105ef2acf9b0f3700d67253e711079c857e5b8aae66` | 0 |
-| src/wasm_package/package.json | 608 | `f1c0400fbd6b50d7866ede0d6c960bacfaefdc9fd9d0f9d76a422ca3353bd424` | 0 |
-| src/wasm_package/src/browser/assert.js | 321 | `67e799d7b585943af24ff3d31d5d25b556d3f94812d2219d3eb703a472f4b82c` | 0 |
-| src/wasm_package/src/browser/crypto.js | 114 | `1a0550b75fc50491d16e6564434529adaa5e77b60cc8abae1dade004b0d71e2d` | 0 |
-| src/wasm_package/src/const.js | 18836 | `294fe5332d0323913a1f8eafc34d15e3ac8d07323a0ef239d2ee715367880a7e` | 0 |
-| src/wasm_package/src/core.js | 11103 | `cdd31896d2aff07dfa172e62b63c0d6c7d68f6fe69eaead859a1fa13297eb3ad` | 0 |
-| src/wasm_package/src/exports.js | 110 | `95b7045e0888c44564dbdad98a4a97d10162767c28ace45a58a31a5b3f1fbf8e` | 0 |
-| src/wasm_package/src/functions.js | 119691 | `54900f745051f0b068d7c08a32294c505a2249b284f7ce9b8712363826d7cddf` | 0 |
-| src/wasm_package/src/index.d.ts | 96119 | `68db6001469e4e5f3e41f81f88b3e79fa6f7ad42f904321a14dd768709d1ce19` | 0 |
-| src/wasm_package/src/index.js | 644 | `e604bf7297be553a02b5a716288bb479d6b39571d3302aaf7c4da52c3a034acc` | 0 |
-| src/wasm_package/src/util.js | 1217 | `34e03d693697456630eb3a9db4d8f253271b6536e0fbb7d6deb725081d715ffd` | 0 |
-| src/wasm_package/webpack.config.js | 458 | `9a861d818ed3d7e3b9cae555eb82409c4acc722153ca7d8a0f1089e389e61304` | 0 |
-| src/wif.c | 5335 | `2e01925997bcd34600c7e6e7e8831120b157fd13707a4897f411afc3c260d084` | 0 |
-| src/wordlist.c | 2726 | `d3f630d36f8a7763a67daa88b7652ed40f77540302597574b9e059d234ef5ec2` | 0 |
-| src/wordlist.h | 1678 | `7e8993598f450d95843cd4217f2d4fcfccf349a7464a8bc9dc0457c79a84f5d7` | 0 |
-| tools/build_psbt_ctests.py | 854 | `ecc8332fc3ea0a904897ba05598608e174a64d02fdd77be821920a983c249419` | 0 |
-| tools/build_wrappers.py | 26927 | `b59803b7ca9b045961bf6f446dc6c1d24b8c7b8c82fb9cf007299ccdad9c6f35` | 0 |
-| tools/wordlist_cc.py | 1736 | `e389277f851b59a3d4167ffec131903087ffeb646312e49949691a67260b853c` | 0 |

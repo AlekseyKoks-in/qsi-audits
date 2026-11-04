@@ -7,9 +7,34 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
+            {
+              "id": "RNG-WEAK-KEYGEN",
+              "name": "RngWeakKeygen",
+              "shortDescription": {
+                "text": "Некриптографический генератор рядом с генерацией ключа или сида в src/embit/util/key.py"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "potential_crypto_risk"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "«random.randrange(» в строка 374, в нескольких строках от «generate_privkey» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "help": {
+                "text": "«random.randrange(» в строка 374, в нескольких строках от «generate_privkey» (1 мест). Используйте системный CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) или аппаратный TRNG для каждого ключа, сида и мнемоники. Эвристическое сопоставление шаблонов в исходном тексте без анализа потоков данных. Контекст использования (влияет ли на безопасность) требует ручного подтверждения; находка предварительная."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/338.html"
+            },
             {
               "id": "CODE-QV-ASYMMETRIC",
               "name": "CodeQvAsymmetric",
@@ -65,8 +90,26 @@
       },
       "results": [
         {
-          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleId": "RNG-WEAK-KEYGEN",
           "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Некриптографический генератор рядом с генерацией ключа или сида в src/embit/util/key.py"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3442216275c794c45c425b65b8687b25"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11881",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "potential_crypto_risk",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (31 файл(ов))"
@@ -75,7 +118,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-06939",
+            "qsiId": "QSI-2026-11874",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -84,7 +127,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))"
@@ -93,7 +136,7 @@
             "qsiFindingKey/v1": "4401bcd6c35be444dde0ac6ac85e5fc3"
           },
           "properties": {
-            "qsiId": "QSI-2026-06941",
+            "qsiId": "QSI-2026-11876",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -102,16 +145,16 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (6 файл(ов))"
+            "text": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-06943",
+            "qsiId": "QSI-2026-11879",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -120,7 +163,7 @@
         },
         {
           "ruleId": "CODE-QV-ASYMMETRIC",
-          "ruleIndex": 0,
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Квантово-уязвимый ECDSA: роль не определена (4 файл(ов))"
@@ -129,7 +172,43 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-06940",
+            "qsiId": "QSI-2026-11875",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый ECDH: роль не определена (4 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11878",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (1 файл(ов))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-11880",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -138,7 +217,7 @@
         },
         {
           "ruleId": "DEP-ADVISORY-DEV",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "note",
           "message": {
             "text": "40 бюллетеней в 8 пакет(ах) PyPI, нужных только для разработки или сборки (dependencies: PyPI:non-runtime)"
@@ -147,7 +226,7 @@
             "qsiFindingKey/v1": "090734ef78b1f0fda46107c2c0bb9ca1"
           },
           "properties": {
-            "qsiId": "QSI-2026-06944",
+            "qsiId": "QSI-2026-11882",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -165,13 +244,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/embit @ 2b375a33bd89/d450d12b-59fc-47df-8956-1fafe44953b0"
+        "id": "qsi/embit @ 2b375a33bd89/343e6b9c-3a70-4b2d-8f04-6a73624e15f1"
       },
       "properties": {
-        "qsiContentSha256": "e9746bf4b6b267bdcfac6f8386056330806949cdbd324b7328f3887daf254733",
+        "qsiContentSha256": "bee50377cbef325aa49d9381de462dde4c469be8af695aefc3cff7ecf42b0054",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-29T21:10:53.372575+00:00",
+        "qsiGeneratedAt": "2026-11-04T18:43:02.398616+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

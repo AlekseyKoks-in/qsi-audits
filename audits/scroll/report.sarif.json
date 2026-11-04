@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "DEP-KNOWN-ADVISORY",
@@ -28,10 +28,10 @@
                 "security-severity": "9.1"
               },
               "fullDescription": {
-                "text": "OSV.dev сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) для пакета Go github.com/gin-contrib/cors версии v1.5.0: Gin mishandles a wildcard at the end of an origin string. Проверенный код называет github.com/gin-contrib/cors.New: затронутый код может быть достижим. Обновите до исправленной версии (1.6.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) для пакета Go github.com/gin-contrib/cors версии v1.5.0: Gin mishandles a wildcard at the end of an origin string. Проверенный код называет github.com/gin-contrib/cors.New: затронутый код может быть достижим. Обновите до исправленной версии (1.6.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые."
               },
               "help": {
-                "text": "OSV.dev сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) для пакета Go github.com/gin-contrib/cors версии v1.5.0: Gin mishandles a wildcard at the end of an origin string. Проверенный код называет github.com/gin-contrib/cors.New: затронутый код может быть достижим. Обновите до исправленной версии (1.6.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются."
+                "text": "OSV.dev сообщает GHSA-869c-j7wc-8jqv (CVE-2019-25211, GO-2024-2955) для пакета Go github.com/gin-contrib/cors версии v1.5.0: Gin mishandles a wildcard at the end of an origin string. Проверенный код называет github.com/gin-contrib/cors.New: затронутый код может быть достижим. Обновите до исправленной версии (1.6.0). Данные об уязвимости получены от OSV.dev в зафиксированное время. Достижимость оценивается по именам, а не по графу вызовов: затронутые функции из бюллетеня — по идентификаторам проверенного кода продукта, флаг Cargo, выключенный по умолчанию, — по проверенным манифестам, платформы — по объявленным целям сборки Rust. Косвенные вызовы (через трейты, макросы, другие зависимости) не прослеживаются. Функция Go учитывается только в файле, который называет и её пакет (метод — и его тип); неэкспортируемые функции — только через экспортируемые."
               },
               "helpUri": "https://osv.dev/vulnerability/GHSA-869c-j7wc-8jqv"
             },
@@ -303,10 +303,10 @@
                 "security-severity": "1.0"
               },
               "fullDescription": {
-                "text": "В 16 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, bls12_381, ecdsa, elliptic, ethers, ff, golang.org/x/crypto, group, halo2, halo2_proofs, jubjub, k256, openssl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 16 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, bls12_381, ecdsa, elliptic, ethers, golang.org/x/crypto, halo2, halo2_proofs, jubjub, k256, openssl, p256, pasta_curves), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "help": {
-                "text": "В 16 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, bls12_381, ecdsa, elliptic, ethers, ff, golang.org/x/crypto, group, halo2, halo2_proofs, jubjub, k256, openssl), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
+                "text": "В 16 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, bls12_381, ecdsa, elliptic, ethers, golang.org/x/crypto, halo2, halo2_proofs, jubjub, k256, openssl, p256, pasta_curves), но ни одной из списка поддерживающих PQC. Определите источник поддержки PQC (TLS-терминатор, KMS/HSM, обновление библиотек). Отсутствие доказательств не является доказательством отсутствия: системные библиотеки и транзитивные зависимости могут не указываться."
               },
               "helpUri": "https://csrc.nist.gov/pubs/fips/203/final"
             }
@@ -325,11 +325,137 @@
             "qsiFindingKey/v1": "f57650f2ed1fae7c5213ec3ec7a52e0e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09219",
+            "qsiId": "QSI-2026-12737",
             "severity": "critical",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-5cgq-3rg8-m6cv (CVE-2026-42508) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b977472a0635430ca7b6a51c1bdcd1cd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12756",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-89gr-r52h-f8rx (CVE-2026-39831) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c0b056fa0fe5db84f115d12158bb1a4d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12758",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-f5wc-c3c7-36mc (CVE-2026-39832) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c28507f707b813c705788c318bbb01d7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12760",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-jppx-rxg9-jmrx (CVE-2026-39833) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d30ab6d8212c10ce2b4d84b69ec35b63"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12764",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-rm3j-f69w-wqmq (CVE-2026-39834) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "71ef29dd7ab41b990655076e1cc0310c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12767",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-vgwf-h737-ff37 (CVE-2026-39830) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cc5d0e2846d8aa7b5b54b1facc6f6101"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12768",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "9.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-x527-x647-q7gg (CVE-2026-46595) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b06893c06305e37a83b09d07e89e5517"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12770",
+            "severity": "critical",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "10.0"
           }
         },
         {
@@ -343,7 +469,7 @@
             "qsiFindingKey/v1": "786d5aaf932adb9244aab603ed7d0677"
           },
           "properties": {
-            "qsiId": "QSI-2026-09123",
+            "qsiId": "QSI-2026-12641",
             "severity": "high",
             "confidence": "high",
             "classification": "confirmed_misconfiguration",
@@ -367,17 +493,161 @@
           "ruleIndex": 0,
           "level": "error",
           "message": {
-            "text": "github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189) (dependency: Go/github.com/btcsuite/btcd@v0.20.1-beta)"
+            "text": "github.com/docker/cli v25.0.4-0.20240305161310-2bf4225ad269+incompatible затронут GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610) (dependency: Go/github.com/docker/cli@v25.0.4-0.20240305161310-2bf4225ad269+incompatible)"
           },
           "partialFingerprints": {
-            "qsiFindingKey/v1": "eaa318e80817e7975ab837a406341120"
+            "qsiFindingKey/v1": "ee63471611db144d88cdb8a9657a9a6c"
           },
           "properties": {
-            "qsiId": "QSI-2026-09220",
+            "qsiId": "QSI-2026-12742",
             "severity": "high",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
-            "security-severity": "7.4"
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5394a254269e190ec7b0906bf6cd68e9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12745",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.2"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b94891eb8897a714f97e0c91208542e9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12748",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.2"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-q4h4-gmj2-qvw2 (CVE-2026-46597) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "54c95c351408b896af4bf44bbd2156d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12765",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-w879-237q-wc7r (CVE-2026-39829) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "74353c9c2a0638a17f625a34295f4c87"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12769",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-pwhc-rpq9-4c8w (CVE-2024-25621, GO-2025-4100) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0c4a97ef12b67f584f7e7b13c19ce02"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12797",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-xhf5-7wjv-pqxp (CVE-2026-53488, GO-2026-5758) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "97aa376a046f643c6253773478ac3111"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12799",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-4c29-8rgm-jvjj (CVE-2026-33747, GO-2026-4858) (dependency: Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ea1746172a1d9429293df84083182cf9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12808",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "8.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-4vrq-3vrq-g6gg (CVE-2026-33748, GO-2026-4859) (dependency: Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "86184c51c07294c0fdef5d1e9bdbb54a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12809",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
           }
         },
         {
@@ -391,7 +661,7 @@
             "qsiFindingKey/v1": "2ed65c778f0c0a1523657d6d874be13d"
           },
           "properties": {
-            "qsiId": "QSI-2026-09193",
+            "qsiId": "QSI-2026-12711",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -418,7 +688,7 @@
             "qsiFindingKey/v1": "43f00660c70e2f072efb71f9b0041e21"
           },
           "properties": {
-            "qsiId": "QSI-2026-09194",
+            "qsiId": "QSI-2026-12712",
             "severity": "high",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -445,7 +715,7 @@
             "qsiFindingKey/v1": "24bfe171ee30e23dd418544c7484523e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09132",
+            "qsiId": "QSI-2026-12650",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -475,7 +745,7 @@
             "qsiFindingKey/v1": "24bfe171ee30e23dd418544c7484523e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09133",
+            "qsiId": "QSI-2026-12651",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -505,7 +775,7 @@
             "qsiFindingKey/v1": "730e1c64971ee8f992d788c58e95d1f4"
           },
           "properties": {
-            "qsiId": "QSI-2026-09147",
+            "qsiId": "QSI-2026-12665",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -535,7 +805,7 @@
             "qsiFindingKey/v1": "c22b55177e747181a5a09df7d9958261"
           },
           "properties": {
-            "qsiId": "QSI-2026-09153",
+            "qsiId": "QSI-2026-12671",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -565,7 +835,7 @@
             "qsiFindingKey/v1": "072b3076513665c30804a5878a8bebcc"
           },
           "properties": {
-            "qsiId": "QSI-2026-09156",
+            "qsiId": "QSI-2026-12674",
             "severity": "high",
             "confidence": "low",
             "classification": "potential_crypto_risk",
@@ -589,31 +859,13 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818) (dependency: Go/github.com/btcsuite/btcd@v0.20.1-beta)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "47687f52c2acf42f13424a6052df549c"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-09222",
-            "severity": "medium",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "5.0"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "warning",
-          "message": {
             "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-pxq6-2prw-chj9 (CVE-2026-33997, GO-2026-4883) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "d07d2419b56904a9460112125eb89de1"
           },
           "properties": {
-            "qsiId": "QSI-2026-09226",
+            "qsiId": "QSI-2026-12744",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -625,13 +877,265 @@
           "ruleIndex": 0,
           "level": "warning",
           "message": {
-            "text": "github.com/gorilla/websocket v1.5.0 затронут GHSA-w67g-5rqw-f597 (GO-2026-6278) (dependency: Go/github.com/gorilla/websocket@v1.5.0)"
+            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
           },
           "partialFingerprints": {
-            "qsiFindingKey/v1": "67de223f47ac2ec3b29761eeda2f4a89"
+            "qsiFindingKey/v1": "72f68e2f7edef76b5a0c46b0a483368e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09232",
+            "qsiId": "QSI-2026-12747",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-45gg-vh54-h5m9 (CVE-2026-39828) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b24abef5549d9844eb648b56badd9f61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12755",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-78mq-xcr3-xm33 (CVE-2026-39835) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "cf5a7bc671f44d2488f9edd1cb5615d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12757",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-9m57-25v3-79x9 (CVE-2026-46598) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "46e72193aa6ab47d12376fe5f9b63b12"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12759",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-qpw4-5x99-6vjp (CVE-2026-39827) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6c3acba563166c1ab6b800954dcee7e7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12766",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-265r-hfxg-fhmg (CVE-2024-40635, GO-2025-3528) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d6d5e1b057d9ffa86952bfedb7cf973c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12792",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.6"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-7jxh-36q5-gcqv (CVE-2026-53495, GO-2026-6444) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ce4c3887e576414912a31c31ccb76f2f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12793",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-jpcc-p29g-p8mq (CVE-2026-47262, GO-2026-5475) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0cba23f6791145515bdc8e398b34c8ab"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12794",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-m6hq-p25p-ffr2 (CVE-2025-64329, GO-2025-4108) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "94108ced3c581f9a10a3a7d608bdec36"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12795",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-pg57-6jwg-q645 (CVE-2026-53493, GO-2026-6597) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "62a9723f2afafd60c454ffbda79ac4a8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12796",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GHSA-rp3h-jf77-q9p4 (CVE-2026-95838, GO-2026-6796) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "74d403ead8d11ec543fba37ca3b00cce"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12798",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/docker/buildx v0.12.0-rc2.0.20231219140829-617f538cb315 затронут GHSA-m4gq-fm9h-8q75 (CVE-2025-0495, GO-2025-3527) (dependency: Go/github.com/docker/buildx@v0.12.0-rc2.0.20231219140829-617f538cb315)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d704016db2299d8452933c2dc0b75884"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12804",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/docker/distribution v2.8.3+incompatible затронут GHSA-685w-q87j-wqw3 (CVE-2026-85747) (dependency: Go/github.com/docker/distribution@v2.8.3+incompatible)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "64eef45c7c59ac3cc4efdacaf1bf633b"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12806",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.8"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/in-toto/in-toto-golang v0.5.0 затронут GHSA-pmwq-pjrm-6p5r (GO-2026-5547) (dependency: Go/github.com/in-toto/in-toto-golang@v0.5.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7b1af949b573f34679547ef90bf27f21"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12807",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.1"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-7236-3392-c5c6 (CVE-2026-61711, GO-2026-6255) (dependency: Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "820cccae9002e21c324d526e751bb741"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12810",
             "severity": "medium",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -649,7 +1153,7 @@
             "qsiFindingKey/v1": "8323a0ced95949bc301b1160fea0cac2"
           },
           "properties": {
-            "qsiId": "QSI-2026-09129",
+            "qsiId": "QSI-2026-12647",
             "severity": "medium",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -679,7 +1183,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09126",
+            "qsiId": "QSI-2026-12644",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -697,7 +1201,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-09124",
+            "qsiId": "QSI-2026-12642",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -715,7 +1219,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-09125",
+            "qsiId": "QSI-2026-12643",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -733,7 +1237,7 @@
             "qsiFindingKey/v1": "423283656c2b283e18c5dbc366d4fc76"
           },
           "properties": {
-            "qsiId": "QSI-2026-09165",
+            "qsiId": "QSI-2026-12683",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -763,7 +1267,7 @@
             "qsiFindingKey/v1": "7f595a69e66862ad9f2f4afeee11a5e8"
           },
           "properties": {
-            "qsiId": "QSI-2026-09175",
+            "qsiId": "QSI-2026-12693",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -790,7 +1294,7 @@
             "qsiFindingKey/v1": "ce4c6575359cf9d153f43bb6f325a231"
           },
           "properties": {
-            "qsiId": "QSI-2026-09197",
+            "qsiId": "QSI-2026-12715",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -817,7 +1321,7 @@
             "qsiFindingKey/v1": "c2c7f55f264ba1c2b08a407506bcb98f"
           },
           "properties": {
-            "qsiId": "QSI-2026-09198",
+            "qsiId": "QSI-2026-12716",
             "severity": "medium",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -844,7 +1348,7 @@
             "qsiFindingKey/v1": "c4d28076ad96dc58706ae85a13b98936"
           },
           "properties": {
-            "qsiId": "QSI-2026-09203",
+            "qsiId": "QSI-2026-12721",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -871,11 +1375,29 @@
             "qsiFindingKey/v1": "e777d06510640ae9d8c71bfc99c569d4"
           },
           "properties": {
-            "qsiId": "QSI-2026-09225",
+            "qsiId": "QSI-2026-12743",
             "severity": "low",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "3.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004) (dependency: Go/github.com/jackc/pgx/v5@v5.5.4)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "51cb44adb75fc00afa6690abe6625512"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12752",
+            "severity": "low",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
           }
         },
         {
@@ -889,7 +1411,7 @@
             "qsiFindingKey/v1": "74be19e8d45860cc87734826500a497b"
           },
           "properties": {
-            "qsiId": "QSI-2026-09127",
+            "qsiId": "QSI-2026-12645",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -907,7 +1429,7 @@
             "qsiFindingKey/v1": "d7874aefe2eb24c325fa0153f9d67e3f"
           },
           "properties": {
-            "qsiId": "QSI-2026-09130",
+            "qsiId": "QSI-2026-12648",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -925,7 +1447,7 @@
             "qsiFindingKey/v1": "ad4c91f080f8598ca456c14e76fe5ad3"
           },
           "properties": {
-            "qsiId": "QSI-2026-09131",
+            "qsiId": "QSI-2026-12649",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -943,7 +1465,7 @@
             "qsiFindingKey/v1": "9222f1a479645679076868cdfc63c53c"
           },
           "properties": {
-            "qsiId": "QSI-2026-09160",
+            "qsiId": "QSI-2026-12678",
             "severity": "low",
             "confidence": "high",
             "classification": "improvement",
@@ -961,7 +1483,7 @@
             "qsiFindingKey/v1": "2a38432256cda93d93247dedf5c88c86"
           },
           "properties": {
-            "qsiId": "QSI-2026-09184",
+            "qsiId": "QSI-2026-12702",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -988,7 +1510,7 @@
             "qsiFindingKey/v1": "2a38432256cda93d93247dedf5c88c86"
           },
           "properties": {
-            "qsiId": "QSI-2026-09186",
+            "qsiId": "QSI-2026-12704",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1015,7 +1537,7 @@
             "qsiFindingKey/v1": "6623c9e5d7c76355cd0a08d8eae427c7"
           },
           "properties": {
-            "qsiId": "QSI-2026-09188",
+            "qsiId": "QSI-2026-12706",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1042,7 +1564,7 @@
             "qsiFindingKey/v1": "0c214321e3e7ce2b7c0a2531f71801b7"
           },
           "properties": {
-            "qsiId": "QSI-2026-09200",
+            "qsiId": "QSI-2026-12718",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1069,7 +1591,7 @@
             "qsiFindingKey/v1": "d4c7cf2a81d03919d11f20e7dc08e38b"
           },
           "properties": {
-            "qsiId": "QSI-2026-09199",
+            "qsiId": "QSI-2026-12717",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1096,7 +1618,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-09176",
+            "qsiId": "QSI-2026-12694",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1123,7 +1645,7 @@
             "qsiFindingKey/v1": "39a5d837e386bcefe64c321f97b1e5db"
           },
           "properties": {
-            "qsiId": "QSI-2026-09180",
+            "qsiId": "QSI-2026-12698",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1150,7 +1672,7 @@
             "qsiFindingKey/v1": "131155ea58c3e2fbe4aa192d418e1a3b"
           },
           "properties": {
-            "qsiId": "QSI-2026-09183",
+            "qsiId": "QSI-2026-12701",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1177,7 +1699,7 @@
             "qsiFindingKey/v1": "a99cb340246a5baec640a7f8aa0fb8b1"
           },
           "properties": {
-            "qsiId": "QSI-2026-09185",
+            "qsiId": "QSI-2026-12703",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1204,7 +1726,7 @@
             "qsiFindingKey/v1": "a99cb340246a5baec640a7f8aa0fb8b1"
           },
           "properties": {
-            "qsiId": "QSI-2026-09187",
+            "qsiId": "QSI-2026-12705",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1231,7 +1753,7 @@
             "qsiFindingKey/v1": "d3ca7fccd21f67bd5f8f9561c7543a2c"
           },
           "properties": {
-            "qsiId": "QSI-2026-09191",
+            "qsiId": "QSI-2026-12709",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1258,7 +1780,7 @@
             "qsiFindingKey/v1": "654eafedce8c5c17c2ce41da18ded4ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-09192",
+            "qsiId": "QSI-2026-12710",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1285,7 +1807,7 @@
             "qsiFindingKey/v1": "39f30a2a3ec7f5404ef71baf0e11c67a"
           },
           "properties": {
-            "qsiId": "QSI-2026-09195",
+            "qsiId": "QSI-2026-12713",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1312,7 +1834,7 @@
             "qsiFindingKey/v1": "99b6533baac2fe727d46e2c0948bfef8"
           },
           "properties": {
-            "qsiId": "QSI-2026-09196",
+            "qsiId": "QSI-2026-12714",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1339,7 +1861,7 @@
             "qsiFindingKey/v1": "ba8434a29ae02f313b720c0655582a47"
           },
           "properties": {
-            "qsiId": "QSI-2026-09201",
+            "qsiId": "QSI-2026-12719",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1366,7 +1888,7 @@
             "qsiFindingKey/v1": "75ea72e743b02165442bef2814615a03"
           },
           "properties": {
-            "qsiId": "QSI-2026-09204",
+            "qsiId": "QSI-2026-12722",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1393,7 +1915,7 @@
             "qsiFindingKey/v1": "67973567a2d3929f8a65f995e1e7aa91"
           },
           "properties": {
-            "qsiId": "QSI-2026-09205",
+            "qsiId": "QSI-2026-12723",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1420,7 +1942,7 @@
             "qsiFindingKey/v1": "64c1fd5f38431b58ce6bc40e7e4e227e"
           },
           "properties": {
-            "qsiId": "QSI-2026-09206",
+            "qsiId": "QSI-2026-12724",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1447,7 +1969,7 @@
             "qsiFindingKey/v1": "ddd2290dd11a4be2cd0d1df793f0d2ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-09207",
+            "qsiId": "QSI-2026-12725",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1474,7 +1996,7 @@
             "qsiFindingKey/v1": "d382b3b77376d5f430467a2dda781ead"
           },
           "properties": {
-            "qsiId": "QSI-2026-09208",
+            "qsiId": "QSI-2026-12726",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1501,7 +2023,7 @@
             "qsiFindingKey/v1": "4dc3d97a34bcaae0c74ae12fdc154561"
           },
           "properties": {
-            "qsiId": "QSI-2026-09209",
+            "qsiId": "QSI-2026-12727",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1528,7 +2050,7 @@
             "qsiFindingKey/v1": "af7099f6a028cb26db55b7dda7ed86ea"
           },
           "properties": {
-            "qsiId": "QSI-2026-09210",
+            "qsiId": "QSI-2026-12728",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1555,7 +2077,7 @@
             "qsiFindingKey/v1": "f9c8da51df1c7bb095d219042d1c82ee"
           },
           "properties": {
-            "qsiId": "QSI-2026-09211",
+            "qsiId": "QSI-2026-12729",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1582,7 +2104,7 @@
             "qsiFindingKey/v1": "d6ac7e8d63f0f129f6fc20b7d503cca8"
           },
           "properties": {
-            "qsiId": "QSI-2026-09212",
+            "qsiId": "QSI-2026-12730",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1609,7 +2131,7 @@
             "qsiFindingKey/v1": "6f7f35cf9b55ea6dc2311fe171f62a01"
           },
           "properties": {
-            "qsiId": "QSI-2026-09213",
+            "qsiId": "QSI-2026-12731",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1636,7 +2158,7 @@
             "qsiFindingKey/v1": "29aeb0f151232cc86bd2fd6047e19579"
           },
           "properties": {
-            "qsiId": "QSI-2026-09214",
+            "qsiId": "QSI-2026-12732",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1663,7 +2185,7 @@
             "qsiFindingKey/v1": "93aaa6f71615d11ec32093f39cfdd5ed"
           },
           "properties": {
-            "qsiId": "QSI-2026-09215",
+            "qsiId": "QSI-2026-12733",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1690,7 +2212,7 @@
             "qsiFindingKey/v1": "0769c594012687558b7f6995d6b1f215"
           },
           "properties": {
-            "qsiId": "QSI-2026-09216",
+            "qsiId": "QSI-2026-12734",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1717,7 +2239,7 @@
             "qsiFindingKey/v1": "71976817d2bf587b4a2e06fc1dbdab81"
           },
           "properties": {
-            "qsiId": "QSI-2026-09217",
+            "qsiId": "QSI-2026-12735",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1744,7 +2266,115 @@
             "qsiFindingKey/v1": "f11b3d5f396b04b28411c7805a1872d4"
           },
           "properties": {
-            "qsiId": "QSI-2026-09231",
+            "qsiId": "QSI-2026-12749",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GO-2025-4116 (CVE-2025-47913) (без оценки серьёзности) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e19ee8c0314053a6be3d9bc34112c477"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12771",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-5064 (CVE-2026-53492) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1d286b89505d0906ebf7a477e442585f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12800",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-5338 (CVE-2026-50195) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "66f853f40960e6c639ebcdc5321b81ff"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12801",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-5622 (CVE-2026-53489) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9f9e6d25253236b8f7e32f2e9d316dc7"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12802",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "github.com/containerd/containerd v1.7.12 затронут GO-2026-6791 (CVE-2026-95837) (без оценки серьёзности) (dependency: Go/github.com/containerd/containerd@v1.7.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7784f2becca2c9f0e90bb815cdd4a3dd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12803",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "github.com/docker/compose/v2 v2.24.7 затронут GO-2025-4077 (CVE-2025-62725) (без оценки серьёзности) (dependency: Go/github.com/docker/compose/v2@v2.24.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1d698c2ea5b6c2c4c0632620e4b0e88a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12805",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -1762,7 +2392,7 @@
             "qsiFindingKey/v1": "55d4b7f5f16ded6d7b531c2e6db68628"
           },
           "properties": {
-            "qsiId": "QSI-2026-09128",
+            "qsiId": "QSI-2026-12646",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1789,7 +2419,7 @@
             "qsiFindingKey/v1": "af7364ab9cf6739b65ffeec2e6f30248"
           },
           "properties": {
-            "qsiId": "QSI-2026-09134",
+            "qsiId": "QSI-2026-12652",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1816,7 +2446,7 @@
             "qsiFindingKey/v1": "a05e4acc2cbfeb0eac4efdee4bd97c4f"
           },
           "properties": {
-            "qsiId": "QSI-2026-09135",
+            "qsiId": "QSI-2026-12653",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1843,7 +2473,7 @@
             "qsiFindingKey/v1": "31cb8f9840176ff0e838b337d779dcfa"
           },
           "properties": {
-            "qsiId": "QSI-2026-09136",
+            "qsiId": "QSI-2026-12654",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1870,7 +2500,7 @@
             "qsiFindingKey/v1": "3e755decc3c92c3e2d4b12f97509f967"
           },
           "properties": {
-            "qsiId": "QSI-2026-09137",
+            "qsiId": "QSI-2026-12655",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1897,7 +2527,7 @@
             "qsiFindingKey/v1": "717410cf071e1d227388537f8718dee4"
           },
           "properties": {
-            "qsiId": "QSI-2026-09138",
+            "qsiId": "QSI-2026-12656",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1924,7 +2554,7 @@
             "qsiFindingKey/v1": "cfff0c8d6d4acfe7b628c549a2a1f529"
           },
           "properties": {
-            "qsiId": "QSI-2026-09139",
+            "qsiId": "QSI-2026-12657",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1951,7 +2581,7 @@
             "qsiFindingKey/v1": "4b4efc3baa1d89be01c59fb80ea7711f"
           },
           "properties": {
-            "qsiId": "QSI-2026-09140",
+            "qsiId": "QSI-2026-12658",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -1978,7 +2608,7 @@
             "qsiFindingKey/v1": "3ac5b6d602ff1b02e4fa65735f5fc058"
           },
           "properties": {
-            "qsiId": "QSI-2026-09141",
+            "qsiId": "QSI-2026-12659",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2005,7 +2635,7 @@
             "qsiFindingKey/v1": "aaef733d667eede29058e13f9e79f614"
           },
           "properties": {
-            "qsiId": "QSI-2026-09142",
+            "qsiId": "QSI-2026-12660",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2032,7 +2662,7 @@
             "qsiFindingKey/v1": "42c406e70699b10c4879e5b4eb8d8338"
           },
           "properties": {
-            "qsiId": "QSI-2026-09143",
+            "qsiId": "QSI-2026-12661",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2059,7 +2689,7 @@
             "qsiFindingKey/v1": "e4284d81ecd48c600209b00a6f02212d"
           },
           "properties": {
-            "qsiId": "QSI-2026-09144",
+            "qsiId": "QSI-2026-12662",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2086,7 +2716,7 @@
             "qsiFindingKey/v1": "09b790e1fc4f1821ba1ce151df61159c"
           },
           "properties": {
-            "qsiId": "QSI-2026-09145",
+            "qsiId": "QSI-2026-12663",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2113,7 +2743,7 @@
             "qsiFindingKey/v1": "dc7a6c21053efae0e80f73a27b6100a9"
           },
           "properties": {
-            "qsiId": "QSI-2026-09146",
+            "qsiId": "QSI-2026-12664",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2140,7 +2770,7 @@
             "qsiFindingKey/v1": "cde6d81434d1d24198b8e8f76b89d050"
           },
           "properties": {
-            "qsiId": "QSI-2026-09148",
+            "qsiId": "QSI-2026-12666",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2167,7 +2797,7 @@
             "qsiFindingKey/v1": "d17c379b9f0744e5ce27cfeddd946923"
           },
           "properties": {
-            "qsiId": "QSI-2026-09149",
+            "qsiId": "QSI-2026-12667",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2194,7 +2824,7 @@
             "qsiFindingKey/v1": "9aba9fef265d9da19c358b6dd0c0e18d"
           },
           "properties": {
-            "qsiId": "QSI-2026-09150",
+            "qsiId": "QSI-2026-12668",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2221,7 +2851,7 @@
             "qsiFindingKey/v1": "317debe185126b493f56919eef968b79"
           },
           "properties": {
-            "qsiId": "QSI-2026-09151",
+            "qsiId": "QSI-2026-12669",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2248,7 +2878,7 @@
             "qsiFindingKey/v1": "49ac96717b17693a1c71746a1a9a7f32"
           },
           "properties": {
-            "qsiId": "QSI-2026-09152",
+            "qsiId": "QSI-2026-12670",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2275,7 +2905,7 @@
             "qsiFindingKey/v1": "94a442be31f6f364405646f6e595129f"
           },
           "properties": {
-            "qsiId": "QSI-2026-09154",
+            "qsiId": "QSI-2026-12672",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2302,7 +2932,7 @@
             "qsiFindingKey/v1": "42fe14a34cb3e40003f336b648f451f2"
           },
           "properties": {
-            "qsiId": "QSI-2026-09155",
+            "qsiId": "QSI-2026-12673",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2329,7 +2959,7 @@
             "qsiFindingKey/v1": "d5fc94a23f2b1309a4a225bbc0b6d4dc"
           },
           "properties": {
-            "qsiId": "QSI-2026-09157",
+            "qsiId": "QSI-2026-12675",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2356,7 +2986,7 @@
             "qsiFindingKey/v1": "db4f0b459d06d2084ec6d1d89f6d43df"
           },
           "properties": {
-            "qsiId": "QSI-2026-09158",
+            "qsiId": "QSI-2026-12676",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2383,7 +3013,7 @@
             "qsiFindingKey/v1": "40fcb621d903b5ae30d493c55319e1f1"
           },
           "properties": {
-            "qsiId": "QSI-2026-09159",
+            "qsiId": "QSI-2026-12677",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2410,7 +3040,7 @@
             "qsiFindingKey/v1": "e7975b0d79b65add63d974c05b30aba9"
           },
           "properties": {
-            "qsiId": "QSI-2026-09161",
+            "qsiId": "QSI-2026-12679",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2437,7 +3067,7 @@
             "qsiFindingKey/v1": "084a14952ce72239181a02b86e4da473"
           },
           "properties": {
-            "qsiId": "QSI-2026-09162",
+            "qsiId": "QSI-2026-12680",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2464,7 +3094,7 @@
             "qsiFindingKey/v1": "9f7e79f62eba586a8b5bebedef68fe32"
           },
           "properties": {
-            "qsiId": "QSI-2026-09163",
+            "qsiId": "QSI-2026-12681",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2491,7 +3121,7 @@
             "qsiFindingKey/v1": "be4b0edff2eb9001d2a167dd55c83b28"
           },
           "properties": {
-            "qsiId": "QSI-2026-09164",
+            "qsiId": "QSI-2026-12682",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2518,7 +3148,7 @@
             "qsiFindingKey/v1": "4983ad99a05fc1427f1f3becfcd824f2"
           },
           "properties": {
-            "qsiId": "QSI-2026-09166",
+            "qsiId": "QSI-2026-12684",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2545,7 +3175,7 @@
             "qsiFindingKey/v1": "1cab3910ebdef523520131f6470ba222"
           },
           "properties": {
-            "qsiId": "QSI-2026-09167",
+            "qsiId": "QSI-2026-12685",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2572,7 +3202,7 @@
             "qsiFindingKey/v1": "77e37f1cd602e44d1ba81e962778796d"
           },
           "properties": {
-            "qsiId": "QSI-2026-09168",
+            "qsiId": "QSI-2026-12686",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2593,17 +3223,53 @@
           "ruleIndex": 0,
           "level": "note",
           "message": {
+            "text": "github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-27vh-h6mc-q6g8 (CVE-2024-38365, GO-2024-3189) (dependency: Go/github.com/btcsuite/btcd@v0.20.1-beta)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "eaa318e80817e7975ab837a406341120"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12738",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
             "text": "github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-2chg-86hq-7w38 (CVE-2022-44797, GO-2022-1098) (dependency: Go/github.com/btcsuite/btcd@v0.20.1-beta)"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "3f37ac587aef6cd0549a7f28caeccbee"
           },
           "properties": {
-            "qsiId": "QSI-2026-09221",
+            "qsiId": "QSI-2026-12739",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "9.8"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "github.com/btcsuite/btcd v0.20.1-beta затронут GHSA-3jgf-r68h-xfqm (CVE-2024-34478, GO-2024-2818) (dependency: Go/github.com/btcsuite/btcd@v0.20.1-beta)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "47687f52c2acf42f13424a6052df549c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12740",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
           }
         },
         {
@@ -2617,47 +3283,11 @@
             "qsiFindingKey/v1": "e35114e201177c82c45642e5a339c4d3"
           },
           "properties": {
-            "qsiId": "QSI-2026-09223",
+            "qsiId": "QSI-2026-12741",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "7.5"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "github.com/docker/cli v25.0.4-0.20240305161310-2bf4225ad269+incompatible затронут GHSA-p436-gjf2-799p (CVE-2025-15558, GO-2026-4610) (dependency: Go/github.com/docker/cli@v25.0.4-0.20240305161310-2bf4225ad269+incompatible)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "ee63471611db144d88cdb8a9657a9a6c"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-09224",
-            "severity": "info",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-rg2x-37c3-w2rh (CVE-2026-42306, GO-2026-5617) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "5394a254269e190ec7b0906bf6cd68e9"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-09227",
-            "severity": "info",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.2"
           }
         },
         {
@@ -2671,7 +3301,7 @@
             "qsiFindingKey/v1": "33dcdda3e7078a22848104a010030376"
           },
           "properties": {
-            "qsiId": "QSI-2026-09228",
+            "qsiId": "QSI-2026-12746",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -2683,35 +3313,17 @@
           "ruleIndex": 0,
           "level": "note",
           "message": {
-            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-vp62-88p7-qqf5 (CVE-2026-41568, GO-2026-5668) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
+            "text": "github.com/gorilla/websocket v1.5.0 затронут GHSA-w67g-5rqw-f597 (GO-2026-6278) (dependency: Go/github.com/gorilla/websocket@v1.5.0)"
           },
           "partialFingerprints": {
-            "qsiFindingKey/v1": "72f68e2f7edef76b5a0c46b0a483368e"
+            "qsiFindingKey/v1": "67de223f47ac2ec3b29761eeda2f4a89"
           },
           "properties": {
-            "qsiId": "QSI-2026-09229",
+            "qsiId": "QSI-2026-12750",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
-            "security-severity": "6.1"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "github.com/docker/docker v26.1.0+incompatible затронут GHSA-x86f-5xw2-fm2r (CVE-2026-41567, GO-2026-5746) (dependency: Go/github.com/docker/docker@v26.1.0+incompatible)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "b94891eb8897a714f97e0c91208542e9"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-09230",
-            "severity": "info",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "7.2"
+            "security-severity": "1.0"
           }
         },
         {
@@ -2725,29 +3337,11 @@
             "qsiFindingKey/v1": "dede73341b6780e749fe7afac059b784"
           },
           "properties": {
-            "qsiId": "QSI-2026-09233",
+            "qsiId": "QSI-2026-12751",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "9.8"
-          }
-        },
-        {
-          "ruleId": "DEP-KNOWN-ADVISORY",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "github.com/jackc/pgx/v5 v5.5.4 затронут GHSA-j88v-2chj-qfwx (CVE-2026-41889, GO-2026-5004) (dependency: Go/github.com/jackc/pgx/v5@v5.5.4)"
-          },
-          "partialFingerprints": {
-            "qsiFindingKey/v1": "51cb44adb75fc00afa6690abe6625512"
-          },
-          "properties": {
-            "qsiId": "QSI-2026-09234",
-            "severity": "info",
-            "confidence": "medium",
-            "classification": "known_vulnerable_component",
-            "security-severity": "1.0"
           }
         },
         {
@@ -2761,7 +3355,7 @@
             "qsiFindingKey/v1": "d5f0bd319dc47780672929946f923832"
           },
           "properties": {
-            "qsiId": "QSI-2026-09235",
+            "qsiId": "QSI-2026-12753",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
@@ -2779,11 +3373,137 @@
             "qsiFindingKey/v1": "3587ca8eaa1c6d12870402df133c6824"
           },
           "properties": {
-            "qsiId": "QSI-2026-09236",
+            "qsiId": "QSI-2026-12754",
             "severity": "info",
             "confidence": "medium",
             "classification": "known_vulnerable_component",
             "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-f6x5-jh6r-wrfv (CVE-2025-47914, GO-2025-4135) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "533cb508dada34b7e73358b5b9fc45ac"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12761",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-hcg3-q754-cr77 (CVE-2025-22869, GO-2025-3487) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c7ee4e5cdb623d5341a5c0a4ec4c4bc4"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12762",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.32.0 затронут GHSA-j5w8-q4qc-rx2x (CVE-2025-58181, GO-2025-4134) (dependency: Go/golang.org/x/crypto@v0.32.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0a43f5ef8e70704167ecbd4b1bf8be13"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12763",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GHSA-5cv4-jp36-h3mw (CVE-2026-25680, GO-2026-5028) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8998ad384e6714d1c76c08da46584033"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12772",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.5"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GHSA-qxp5-gwg8-xv66 (CVE-2025-22870, GO-2025-3503) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3a90791813190dd3e5e522c1e882342c"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12773",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "4.4"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GHSA-vvgc-356p-c3xw (CVE-2025-22872, GO-2025-3595) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3ea7d7dc0652487c52c89acf7dbda356"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12774",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "github.com/moby/buildkit v0.13.0-beta1.0.20231219135447-957cb50df991 затронут GHSA-72x6-4j93-7w86 (CVE-2026-61712, GO-2026-6256) (dependency: Go/github.com/moby/buildkit@v0.13.0-beta1.0.20231219135447-957cb50df991)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1d725cc5cb55410b442a0562c91f6986"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12811",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
           }
         },
         {
@@ -2797,7 +3517,7 @@
             "qsiFindingKey/v1": "2eda64e1c30707135339d8ced1e60af9"
           },
           "properties": {
-            "qsiId": "QSI-2026-09171",
+            "qsiId": "QSI-2026-12689",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2824,7 +3544,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-09173",
+            "qsiId": "QSI-2026-12691",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2851,7 +3571,7 @@
             "qsiFindingKey/v1": "505630866b8a7ee1ff7ea2c4485a05b3"
           },
           "properties": {
-            "qsiId": "QSI-2026-09174",
+            "qsiId": "QSI-2026-12692",
             "severity": "info",
             "confidence": "high",
             "classification": "improvement",
@@ -2878,7 +3598,7 @@
             "qsiFindingKey/v1": "0f94b12e7ce6cd766918bf059898ddff"
           },
           "properties": {
-            "qsiId": "QSI-2026-09202",
+            "qsiId": "QSI-2026-12720",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2905,7 +3625,7 @@
             "qsiFindingKey/v1": "8d11754f30834ec723fd49617ffb55ca"
           },
           "properties": {
-            "qsiId": "QSI-2026-09218",
+            "qsiId": "QSI-2026-12736",
             "severity": "info",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -2922,6 +3642,312 @@
           ]
         },
         {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2024-3333 (CVE-2024-45338) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "5d01c506dd423a253a791f5cdb4d3b1a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12775",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-4440 (CVE-2025-47911) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a3c755749f5ca8649ba47453f60206e9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12776",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-4441 (CVE-2025-58190) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "27aa67c8794c97576e876c2160034a5f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12777",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-4918 (CVE-2026-33814) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "dbecdf268262e1b4c6db5d081b7cc331"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12778",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-5025 (CVE-2026-42506) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3e881b76766a189ea4e1b39ee3183e18"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12779",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-5026 (CVE-2026-39821) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "50e04c8a66836787b884afa80c6d1621"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12780",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-5027 (CVE-2026-42502) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "409dea2fb60ddc2f3808656c8dfbc15f"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12781",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-5029 (CVE-2026-25681) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "f7091a41b94c38fcb24e494983c16f26"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12782",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-5030 (CVE-2026-27136) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "d36d9f212b6483611c10d1a3bbc53f44"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12783",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-5942 (CVE-2026-46600) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "a2b6d45297f7a1a20dce14a1a15539d6"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12784",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-6603 (CVE-2026-78659) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e92c2006b8f38c88fe0e17c4bf998ebe"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12785",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-6610 (CVE-2026-78660) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "899edf217f7cabc018c5b695d6b8af79"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12786",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-6611 (CVE-2026-78669) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "e50bc6f4c748df1d9a65161f93ab44d8"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12787",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.25.0 затронут GO-2026-6612 (CVE-2026-78663) (без оценки серьёзности) (dependency: Go/golang.org/x/net@v0.25.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "426676587ef145763e9d528050642a50"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12788",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/sys v0.30.0 затронут GO-2026-5024 (CVE-2026-39824) (без оценки серьёзности) (dependency: Go/golang.org/x/sys@v0.30.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "edea553b6443bec2ad29601449a8d4ac"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12789",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/text v0.21.0 затронут GO-2026-5970 (CVE-2026-56852) (без оценки серьёзности) (dependency: Go/golang.org/x/text@v0.21.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3af8d59dfce04d9a4a7ff89a19689c5e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12790",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/text v0.21.0 затронут GO-2026-6629 (CVE-2026-56851) (без оценки серьёзности) (dependency: Go/golang.org/x/text@v0.21.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1f5d392cf2cbe83a831464c3efcc2392"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-12791",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
           "ruleId": "DEP-NO-PQC-LIBRARY",
           "ruleIndex": 11,
           "level": "note",
@@ -2932,7 +3958,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-09169",
+            "qsiId": "QSI-2026-12687",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -2950,7 +3976,7 @@
             "qsiFindingKey/v1": "665517bdb4ad6562fd552f32d83e32c8"
           },
           "properties": {
-            "qsiId": "QSI-2026-09170",
+            "qsiId": "QSI-2026-12688",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -2977,7 +4003,7 @@
             "qsiFindingKey/v1": "8152cdc99d2b32a001ec096f3ede3e86"
           },
           "properties": {
-            "qsiId": "QSI-2026-09172",
+            "qsiId": "QSI-2026-12690",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3004,7 +4030,7 @@
             "qsiFindingKey/v1": "cf55849eb6570f0ec212f967e6196feb"
           },
           "properties": {
-            "qsiId": "QSI-2026-09177",
+            "qsiId": "QSI-2026-12695",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3031,7 +4057,7 @@
             "qsiFindingKey/v1": "657a1f7bc918b25a7ebeac72aaefabac"
           },
           "properties": {
-            "qsiId": "QSI-2026-09178",
+            "qsiId": "QSI-2026-12696",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3058,7 +4084,7 @@
             "qsiFindingKey/v1": "1f86a632733871c7b31f116b052d83e5"
           },
           "properties": {
-            "qsiId": "QSI-2026-09179",
+            "qsiId": "QSI-2026-12697",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3085,7 +4111,7 @@
             "qsiFindingKey/v1": "c38825eb3e0be8d7636b89b1f64b78e5"
           },
           "properties": {
-            "qsiId": "QSI-2026-09181",
+            "qsiId": "QSI-2026-12699",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3112,7 +4138,7 @@
             "qsiFindingKey/v1": "d7ac17c260cd52dfe2551c2a76977625"
           },
           "properties": {
-            "qsiId": "QSI-2026-09182",
+            "qsiId": "QSI-2026-12700",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3139,7 +4165,7 @@
             "qsiFindingKey/v1": "ef7e5c6ed55e34efc3667ce97b8a1309"
           },
           "properties": {
-            "qsiId": "QSI-2026-09189",
+            "qsiId": "QSI-2026-12707",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3166,7 +4192,7 @@
             "qsiFindingKey/v1": "8412cde0bf828d754dd3b306bfe8c506"
           },
           "properties": {
-            "qsiId": "QSI-2026-09190",
+            "qsiId": "QSI-2026-12708",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -3184,13 +4210,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/scroll @ 3046bbd18a6a/c69e1f34-353d-49b8-8de3-4ff0b67f4ee6"
+        "id": "qsi/scroll @ 3046bbd18a6a/8cbccae1-2c2b-4322-9413-5745cde09780"
       },
       "properties": {
-        "qsiContentSha256": "2ba03a86d58a4d1243d2942f3659345ecc600994baf0104b133b23a18e89dfb6",
+        "qsiContentSha256": "4897e726a15e304768c5ebf2af71de58f62cb3bb57cf67be7e269af631545ec2",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-30T23:51:07.389397+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:23:49.075427+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

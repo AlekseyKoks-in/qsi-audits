@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: reown-appkit @ 8f9f39f1dfe0
 
-*One-page brief* · Reviewed: 2026-10-30 23:42 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Reown (ex-WalletConnect) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-04 19:17 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Reown (ex-WalletConnect) — public repository (passive review)
 
 Source: https://github.com/reown-com/appkit/tree/8f9f39f1dfe0a21bb619dd9a33b6d7500523298b
 
@@ -12,13 +12,13 @@ Source: https://github.com/reown-com/appkit/tree/8f9f39f1dfe0a21bb619dd9a33b6d75
 
 ## What matters most
 
-1. **Critical** · storybook 9.0.15 is affected by GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) (QSI-2026-08963)\
+1. **Critical** · storybook 9.0.15 is affected by GHSA-f2ph-cmg5-wxc8 (CVE-2026-114125) (QSI-2026-12480)\
    What to do: Upgrade to a fixed version (10.6.2, 11.0.0-alpha.6, 8.6.19, 9.1.21).
-2. **Critical** · next 15.5.9 is affected by GHSA-2464-fhr4-w9xw (QSI-2026-08986)\
+2. **Critical** · next 15.5.9 is affected by GHSA-2464-fhr4-w9xw (QSI-2026-12503)\
    What to do: Upgrade to a fixed version (15.5.28, 16.4.1).
-3. **Critical** · next 15.5.9 is affected by GHSA-2xp9-vwfh-vxw4 (QSI-2026-08989)\
+3. **Critical** · next 15.5.9 is affected by GHSA-2xp9-vwfh-vxw4 (QSI-2026-12506)\
    What to do: Upgrade to a fixed version (15.5.24, 16.3.3).
-4. **Critical** · next-auth 5.0.0-beta.29 is affected by GHSA-7rqj-j65f-68wh (CVE-2026-73420) (QSI-2026-09007)\
+4. **Critical** · next-auth 5.0.0-beta.29 is affected by GHSA-7rqj-j65f-68wh (CVE-2026-73420) (QSI-2026-12524)\
    What to do: Upgrade to a fixed version (4.24.15, 5.0.0-beta.32).
 
 99 more in the full report.
@@ -38,7 +38,7 @@ Advisories for the versions in use: 101; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 1249. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `39000b55e51dbcc1f383cb601b9bb54f8a55dfd75fee76360377a166ef523c5a`
+Full report, content SHA-256: `b5a5ee7745113ea35fed6e02921200885a792a7b25a976f14c5a5aa720a0089b`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

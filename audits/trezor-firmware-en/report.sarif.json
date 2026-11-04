@@ -7,8 +7,8 @@
         "driver": {
           "name": "QSI",
           "fullName": "QSI — Quantum Security Intelligence",
-          "informationUri": "https://github.com/AlekseyKoks-in/quantumwebhunter",
-          "version": "1.2.0",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
           "rules": [
             {
               "id": "CHAINMAP-QV",
@@ -75,7 +75,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-06105",
+            "qsiId": "QSI-2026-12887",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -93,7 +93,7 @@
             "qsiFindingKey/v1": "ede492d68e8699e95192c4d206c7540b"
           },
           "properties": {
-            "qsiId": "QSI-2026-06095",
+            "qsiId": "QSI-2026-12877",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -111,7 +111,7 @@
             "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
           },
           "properties": {
-            "qsiId": "QSI-2026-06097",
+            "qsiId": "QSI-2026-12879",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -129,7 +129,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-06098",
+            "qsiId": "QSI-2026-12880",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -147,7 +147,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-06101",
+            "qsiId": "QSI-2026-12883",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -165,7 +165,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-06104",
+            "qsiId": "QSI-2026-12886",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -183,7 +183,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-06096",
+            "qsiId": "QSI-2026-12878",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -195,13 +195,13 @@
           "ruleIndex": 1,
           "level": "warning",
           "message": {
-            "text": "Quantum-vulnerable ECDH: role not determined (1 file(s))"
+            "text": "Quantum-vulnerable ECDH: role not determined (2 file(s))"
           },
           "partialFingerprints": {
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-06099",
+            "qsiId": "QSI-2026-12881",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -219,7 +219,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-06100",
+            "qsiId": "QSI-2026-12882",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -237,7 +237,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-06102",
+            "qsiId": "QSI-2026-12884",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -255,7 +255,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-06103",
+            "qsiId": "QSI-2026-12885",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -264,13 +264,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/trezor-firmware-en @ 72489948b3c4/a7f00b63-4f9d-4441-8ea3-3c925595335f"
+        "id": "qsi/trezor-firmware-en @ 72489948b3c4/80f0642e-51ac-4e04-8c1c-fa6fcc6b2df6"
       },
       "properties": {
-        "qsiContentSha256": "5f237bcd3b3f212cf552c39f811bb7feec6f84750e4b79b7a4f3eaafac0ba77d",
+        "qsiContentSha256": "90dd7412a16c9c32e0ab86bd7ea84f18277cb6f27e0cc88c4eafa5a87e5841cc",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-10-28T18:57:13.801311+00:00",
+        "qsiGeneratedAt": "2026-11-04T19:34:13.523043+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [
