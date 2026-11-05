@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: coinbase-cb-mpc @ 0b716706f998
 
-*One-page brief* · Reviewed: 2026-11-04 18:41 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Coinbase — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-05 09:56 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Coinbase — public repository (passive review)
 
 Source: https://github.com/coinbase/cb-mpc/tree/0b716706f998633912ee2be9b9bf8909aed66088
 
@@ -12,13 +12,13 @@ Source: https://github.com/coinbase/cb-mpc/tree/0b716706f998633912ee2be9b9bf8909
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-11857) · *confirmed by the analyst*\
+1. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-14003) · *confirmed by the analyst*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-2. **Medium** · Quantum-vulnerable Paillier: threshold signing and MPC protocols (15 file(s)) (QSI-2026-11852) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable Paillier: threshold signing and MPC protocols (15 file(s)) (QSI-2026-13998) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-3. **Medium** · Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s)) (QSI-2026-11855) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (13 file(s)) (QSI-2026-14001) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
-4. **Medium** · Quantum-vulnerable Ed25519: threshold signing and MPC protocols (9 file(s)) (QSI-2026-11856) · *confirmed by the analyst*\
+4. **Medium** · Quantum-vulnerable Ed25519: threshold signing and MPC protocols (9 file(s)) (QSI-2026-14002) · *confirmed by the analyst*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
 
 7 more in the full report.
@@ -38,7 +38,7 @@ Analyst review: 10 confirmed, 0 not applicable, 0 dismissed as false positives. 
 
 Static review of source code and manifests; files analysed: 174. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `3ad6a1a6c6f868a747168d2382fb2dc46d18452c96c2f5b88227eeea07ef4aec`
+Full report, content SHA-256: `fdfb9330457c22987ea1c4cd303f83521adf2040315630276702ada9a3d35546`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:9d1ca289-70e1-4b79-b2c3-7a42f2c87a8e",
+  "serialNumber": "urn:uuid:510761d5-9c78-4fb2-aae4-a625d22f1e9c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-04T20:34:26Z",
+    "timestamp": "2026-11-05T10:19:52Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7c9f6cd4-8fbc-4b1e-ad6c-b287fd90274c",
+      "bom-ref": "43530479-674a-4a70-88b7-24e1a26a9bb4",
       "name": "AES-128",
       "properties": [
         {
@@ -75,7 +75,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c4d9d4ec-0419-48d3-85dd-e0a61db296f2",
+      "bom-ref": "344777eb-45af-431d-98e8-85108760e737",
       "name": "Argon2",
       "properties": [
         {
@@ -119,7 +119,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "21ab8a4e-6224-441d-bc4d-b8ea89c799c6",
+      "bom-ref": "f281eed7-121c-4830-8a21-90203dc0ec5f",
       "name": "Argon2",
       "properties": [
         {
@@ -163,7 +163,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9a61b18e-1ef4-4cd2-9c8f-08bdae2759c0",
+      "bom-ref": "eb24eb8d-7e0f-45fa-a306-8738a00d5d88",
       "name": "Argon2",
       "properties": [
         {
@@ -207,7 +207,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0857b9a1-5870-4783-9cca-43c03850ab04",
+      "bom-ref": "fbd85d67-4056-4acd-88c3-5adca1695012",
       "name": "Argon2",
       "properties": [
         {
@@ -251,7 +251,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "89cbea9e-72a3-43b9-8344-9fd6387b3d4e",
+      "bom-ref": "c1de0177-ac9f-42fe-8fdd-c6074722f801",
       "name": "Argon2",
       "properties": [
         {
@@ -295,7 +295,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "be4fa317-9504-4635-a15e-1c69f05da5d8",
+      "bom-ref": "cc8b29f1-93f7-45c7-98d0-4edf36fa1920",
       "name": "Argon2",
       "properties": [
         {
@@ -339,7 +339,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "92823465-f576-4ee0-b432-adc1ad5b61da",
+      "bom-ref": "1bb1e99f-39ad-472e-a5e0-f8364187141d",
       "name": "BLAKE2",
       "properties": [
         {
@@ -383,7 +383,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "138f4f53-f4d7-49e4-8c4d-19ad72c19ea2",
+      "bom-ref": "ea427503-68fb-4cdc-91b9-b19159b49079",
       "name": "BLAKE2",
       "properties": [
         {
@@ -427,7 +427,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "103feb7e-a1fb-4d8d-b497-f97021b07874",
+      "bom-ref": "74e77e50-3965-4a2f-ae08-91f24859f72b",
       "name": "BLAKE2",
       "properties": [
         {
@@ -471,7 +471,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4866ee0f-5f4a-4209-8200-b41f8b4b98c9",
+      "bom-ref": "10df1eee-dd2e-410b-9b88-87099c69ea6e",
       "name": "BLAKE2",
       "properties": [
         {
@@ -515,7 +515,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "159637d7-dff9-44ee-928f-463be55a1c57",
+      "bom-ref": "dbee5037-6e91-4bec-8a48-01ee99ae077f",
       "name": "BLAKE2",
       "properties": [
         {
@@ -559,7 +559,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "36e79b67-834a-4c18-a457-0f0ce06e2e3e",
+      "bom-ref": "b7979464-7195-4c43-ae4f-cabdf42d0308",
       "name": "BLAKE2",
       "properties": [
         {
@@ -603,7 +603,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "802aa7d9-84ec-48eb-9758-669fcb0f43b2",
+      "bom-ref": "c9af3349-673b-4863-b92f-dce21ae06b9a",
       "name": "BLAKE2",
       "properties": [
         {
@@ -647,7 +647,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a37eb8b9-ef15-4f55-a7ba-57b385fc9cce",
+      "bom-ref": "74d33fbe-b477-4445-94e1-d04662d0da51",
       "name": "BLAKE2",
       "properties": [
         {
@@ -695,7 +695,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2b3b6b0e-fe06-42c9-be49-600861aac1af",
+      "bom-ref": "127c5c0e-0e68-454d-b1f2-ff459834b18f",
       "name": "Bulletproofs",
       "properties": [
         {
@@ -737,7 +737,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "622b0f33-7858-4234-912f-b6c86b1350aa",
+      "bom-ref": "038ee708-9d92-4123-b3e4-d6c7c03ddc83",
       "name": "Bulletproofs",
       "properties": [
         {
@@ -779,7 +779,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dff4f1c6-b027-4142-b97b-671f0d965856",
+      "bom-ref": "cb29f739-b7fa-4ab8-9512-c2dcaabbed89",
       "name": "Bulletproofs",
       "properties": [
         {
@@ -821,7 +821,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a52310af-8f61-4477-883a-7c3c8a2effd6",
+      "bom-ref": "28547e7c-feb2-44b9-90c5-c316b17bfed3",
       "name": "Bulletproofs",
       "properties": [
         {
@@ -863,7 +863,52 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3e60f34c-d0ce-491f-bc9d-bdcb5e565711",
+      "bom-ref": "b00b493a-72fc-4250-8acd-ec4b06b5ce2f",
+      "name": "CFB mode",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/gen_ssl_cert/gen_ssl_cert.cpp:191"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/gen_ssl_cert/gen_ssl_cert.cpp#L191"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "mode-cfb"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ed949e29-2f91-4e0b-92c5-913bcc2e4bce",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -914,7 +959,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "561de8d1-2742-4b6f-b544-662c26447efa",
+      "bom-ref": "cd699aec-1b8e-4568-a61a-4ce114fb6e34",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -965,7 +1010,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a31eaae9-283e-4504-badd-2fe82c4895cd",
+      "bom-ref": "e1d02289-8274-4855-9f56-c5db2894a8d5",
       "name": "ChaCha20-Poly1305",
       "properties": [
         {
@@ -1016,7 +1061,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "54cb4dca-bd5a-45a6-a227-8a8ce2f6be56",
+      "bom-ref": "fe3b01dd-c708-497b-8e77-dfe23d2b826f",
       "name": "Crypto library",
       "properties": [
         {
@@ -1057,89 +1102,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "564575ba-28be-41ea-8522-c347a65d8549",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "src/fcmp_pp/fcmp_pp_rust/Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "k256 (RustCrypto elliptic curves)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "9a6d0b65-d45d-4b94-bb02-b87733bd430b",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "src/fcmp_pp/fcmp_pp_rust/Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "ecdsa (python-ecdsa)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "1e57223d-faa7-45fc-b4c1-31ee81faa2b2",
+      "bom-ref": "3e6a7da8-4c37-426a-8193-d959b2d3ce37",
       "name": "Crypto library",
       "properties": [
         {
@@ -1180,7 +1143,89 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bbb33257-c3a6-4ed6-affb-b02e70c01825",
+      "bom-ref": "8819c947-469d-47fd-ae46-4241b7fbde8a",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/fcmp_pp/fcmp_pp_rust/Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "k256 (RustCrypto elliptic curves)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "ebf45104-40e5-4163-a798-5b2bc80dd632",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/fcmp_pp/fcmp_pp_rust/Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "ecdsa (python-ecdsa)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a3bcab76-4eb2-49e6-a786-6b94972d2562",
       "name": "DSA",
       "properties": [
         {
@@ -1228,7 +1273,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f31c6e06-fc63-4a99-ba18-64c3f4f2a458",
+      "bom-ref": "6495bb3b-52f7-442c-be4f-53317a786ee6",
       "name": "ECDH",
       "properties": [
         {
@@ -1277,7 +1322,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9cfbf322-5dfe-4c69-926d-5a50a09559ec",
+      "bom-ref": "f12ae596-c7bc-439c-88f9-438e13f3a376",
       "name": "ECDH",
       "properties": [
         {
@@ -1326,7 +1371,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "49103e80-63b9-4dd7-813c-ac3ce95defcd",
+      "bom-ref": "7b2e2b10-8107-4f32-b9e3-52c04b79bd7b",
       "name": "Ed25519",
       "properties": [
         {
@@ -1376,7 +1421,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "67176080-0d96-4b9b-aea6-354d8e5391ea",
+      "bom-ref": "5d5d56ac-16a1-4fb9-bffb-7695d34aa9c7",
       "name": "Ed25519",
       "properties": [
         {
@@ -1430,7 +1475,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "43574682-6d47-4707-9be2-f5e295de6f18",
+      "bom-ref": "a3a90002-ea7f-4d3f-b5ef-599f32297aca",
       "name": "Ed25519",
       "properties": [
         {
@@ -1484,7 +1529,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ac22d239-f64e-4d1a-8219-386937757fdf",
+      "bom-ref": "674d099d-13dd-4505-a73f-b3a63b885564",
       "name": "Ed25519",
       "properties": [
         {
@@ -1538,7 +1583,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cbfbe967-86cd-4f02-a1df-27f26af9b3af",
+      "bom-ref": "f29eb93c-972a-497c-8751-7547a1c031d7",
       "name": "Ed25519",
       "properties": [
         {
@@ -1592,7 +1637,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "124e1bd4-6581-41d5-8e36-a4ec42153c49",
+      "bom-ref": "5d1fe99a-8d07-4458-a786-7d0ff4853bbb",
       "name": "Ed25519",
       "properties": [
         {
@@ -1646,7 +1691,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a5e066df-d65b-45a4-8971-a987850b9d28",
+      "bom-ref": "f11a0bd6-4041-4cb0-a676-9453c972dcea",
       "name": "Ed25519",
       "properties": [
         {
@@ -1700,7 +1745,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "23474171-89cc-4b70-a940-61aebc6acda6",
+      "bom-ref": "667ae63a-9a47-45b6-878d-b37d103cf3a3",
       "name": "Ed25519",
       "properties": [
         {
@@ -1754,7 +1799,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a5ae87da-4e64-4bdc-9436-ff49251b405a",
+      "bom-ref": "e520a3f9-0d14-42f3-a355-9fbf5cad722f",
       "name": "Ed25519",
       "properties": [
         {
@@ -1808,7 +1853,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3247e7f4-acf1-46f6-afeb-58946cac651e",
+      "bom-ref": "3153dd0c-d493-43e9-89f8-2a84b17225ad",
       "name": "Ed25519",
       "properties": [
         {
@@ -1862,7 +1907,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "44d81ab3-0468-4e15-8bd7-5ea4d6d187e3",
+      "bom-ref": "159fe015-b1e3-46c3-8a14-2d1a51337848",
       "name": "Ed25519",
       "properties": [
         {
@@ -1916,7 +1961,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1e1f4c72-1ceb-4aa4-ad64-cbd15091c058",
+      "bom-ref": "59cd9276-a59c-4a02-91ec-cc7f327c9007",
       "name": "Ed25519",
       "properties": [
         {
@@ -1970,7 +2015,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ed32349f-0ca3-4667-a721-16f94babdb80",
+      "bom-ref": "e87bc156-cf55-484e-b137-502a25dd62c0",
       "name": "Ed25519",
       "properties": [
         {
@@ -2024,7 +2069,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d7408d32-a17a-4632-a3f2-a346e292158a",
+      "bom-ref": "f33683dc-e2f9-4ac2-b3b2-b39fd6ac79b6",
       "name": "Ed25519",
       "properties": [
         {
@@ -2078,7 +2123,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "44102a18-777b-4050-8b03-b83da1a7a374",
+      "bom-ref": "6c9af8cf-38a1-4549-9425-2efff6003aa4",
       "name": "Ed25519",
       "properties": [
         {
@@ -2132,7 +2177,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "78239dd8-555c-4397-8e17-3dcdcc3acc56",
+      "bom-ref": "33e44660-afd7-4dbc-8253-4833cd8b8144",
       "name": "Ed25519",
       "properties": [
         {
@@ -2186,7 +2231,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0104bea9-3e3b-4aa4-8408-3fb3df1bd0c0",
+      "bom-ref": "3f44ea55-c488-4d49-bc43-49e317717265",
       "name": "Ed25519",
       "properties": [
         {
@@ -2240,7 +2285,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0e4781e4-7dfb-4a9c-8337-ce30fcd991a8",
+      "bom-ref": "960c83ef-0404-4d3b-aaf1-cff2243beeb5",
       "name": "Ed25519",
       "properties": [
         {
@@ -2294,7 +2339,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c186f198-959e-48dd-a2b5-feb53a649d9d",
+      "bom-ref": "9bdcf6b1-1da3-47e8-9077-5ac448add3bf",
       "name": "Ed25519",
       "properties": [
         {
@@ -2348,7 +2393,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a269c4da-d0e5-4369-9528-f634bccf5fb6",
+      "bom-ref": "06cd1d74-fbf2-46ad-910c-c177176b643c",
       "name": "Ed25519",
       "properties": [
         {
@@ -2402,7 +2447,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ba0f248b-1e8c-4660-a7c8-6b22d8d96250",
+      "bom-ref": "698146e3-0527-4ac4-bf51-b390cca682f4",
       "name": "Ed25519",
       "properties": [
         {
@@ -2456,7 +2501,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6e3b2ced-8243-4e81-b1a5-30729948548e",
+      "bom-ref": "4e3973fa-bd9b-4211-9eb3-81fb9b107cc8",
       "name": "Ed25519",
       "properties": [
         {
@@ -2510,7 +2555,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d87c0e2b-f2fe-4c00-a494-146a96965469",
+      "bom-ref": "1fe58e92-4bab-41a8-8d80-df380343dcfa",
       "name": "Ed25519",
       "properties": [
         {
@@ -2564,7 +2609,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1b231f5d-688a-40ee-b353-2dcabcc5a7d2",
+      "bom-ref": "80006d88-dc5e-441e-adce-19554b2b2a6d",
       "name": "Ed25519",
       "properties": [
         {
@@ -2618,7 +2663,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f668b8f1-e316-4116-b29b-07daabd92e1b",
+      "bom-ref": "84c5361b-71a9-4d27-b119-00887885a2a1",
       "name": "Ed25519",
       "properties": [
         {
@@ -2672,7 +2717,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "23a75d58-b5e6-4bc1-baf1-f27c340df6d9",
+      "bom-ref": "e66747e5-d2b9-4cd6-992c-3fb5490aaf1b",
       "name": "Ed25519",
       "properties": [
         {
@@ -2726,7 +2771,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "634ab646-03f9-4f1f-8f3c-18e7afdbbadd",
+      "bom-ref": "8acd3f1a-c02c-4e1a-abe2-8ea916f9b27d",
       "name": "Ed25519",
       "properties": [
         {
@@ -2780,7 +2825,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "13c4e637-ebe5-4ea5-8a1a-9bf2d1f5526d",
+      "bom-ref": "3015a69c-a516-498b-b693-c6e4f5a67ee5",
       "name": "Ed25519",
       "properties": [
         {
@@ -2834,7 +2879,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3c9f542c-7ad1-4678-833b-1394239d1da5",
+      "bom-ref": "ea152092-9ccf-4a84-90d2-23b552738a52",
       "name": "Ed25519",
       "properties": [
         {
@@ -2884,7 +2929,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dfbe11b3-bc6f-4caa-8f00-7c4f29e4c583",
+      "bom-ref": "84a9f27b-314a-4cfb-ab6b-a4be45279d5a",
       "name": "Ed25519",
       "properties": [
         {
@@ -2934,7 +2979,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bce5f53b-bbf1-4618-8367-ddd194ae30e1",
+      "bom-ref": "05795937-80e4-4b1d-b7d2-a469ff45f1c5",
       "name": "Ed25519",
       "properties": [
         {
@@ -2984,7 +3029,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "25e65472-1ddd-47de-b5f6-e1aa08f363a3",
+      "bom-ref": "f9fc5259-177b-4e99-86c3-fab9afddf15b",
       "name": "ElGamal",
       "properties": [
         {
@@ -3031,7 +3076,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "29b6ffec-7d2e-4d5b-bd39-dbd7b1b20f35",
+      "bom-ref": "a6582bd7-8be1-4e28-9c09-a460bdc32ee0",
       "name": "HMAC",
       "properties": [
         {
@@ -3075,7 +3120,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dda14ba3-054f-499f-beca-b83b3681f982",
+      "bom-ref": "60a66142-6aa9-478d-98d6-a621fe56d214",
       "name": "HMAC",
       "properties": [
         {
@@ -3119,7 +3164,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8a7183dd-4ea7-4ae0-9838-40e87d73d36b",
+      "bom-ref": "fa8c3d17-a78f-4ed4-86cc-4289de542b4d",
       "name": "MD5",
       "properties": [
         {
@@ -3168,7 +3213,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fee2b130-d4d9-4afc-8fb6-4156ac149c9a",
+      "bom-ref": "83d1f962-0973-4406-9df0-2883be33c893",
       "name": "PBKDF2",
       "properties": [
         {
@@ -3213,7 +3258,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2f22032f-197c-4b19-b137-67120300f472",
+      "bom-ref": "24108ee3-0f8e-4f85-857a-f54c7a411d8f",
       "name": "PBKDF2",
       "properties": [
         {
@@ -3258,7 +3303,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6e82ee7f-5ffb-4888-b594-4044a185d5fa",
+      "bom-ref": "c5e688bc-7aba-4fe7-b1ee-bcd8316d5025",
       "name": "RSA",
       "properties": [
         {
@@ -3309,55 +3354,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fb1752a9-ee68-4ba7-9b69-28412d2db02b",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/SNeedlewoods.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP subkey"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "4096-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "b01f0071-5d2a-4993-a34f-48d160ff135e",
+      "bom-ref": "a3fc77b5-25b8-44d3-8ecc-fd81ad6f0534",
       "name": "RSA",
       "properties": [
         {
@@ -3405,7 +3402,55 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9ce1e866-43d4-4f4f-8bea-30ba916bfb6e",
+      "bom-ref": "a69e7f67-b15d-4a64-ad1a-faa202aa2138",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/SNeedlewoods.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP subkey"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d0ed3529-5fd3-4f49-9ea7-80ff9a4949f0",
       "name": "RSA",
       "properties": [
         {
@@ -3453,7 +3498,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d2611661-e5a2-4d89-8002-39b05b6c4041",
+      "bom-ref": "626dc573-6e3d-4af0-9929-0a802291b547",
       "name": "RSA",
       "properties": [
         {
@@ -3501,55 +3546,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9bc533ac-698b-4cf8-b9ad-6a04f3df172d",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/binaryfate.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP primary key"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "4096-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "60a52bba-3a47-4f53-9404-06a7c6977e3d",
+      "bom-ref": "15e38215-4ed4-412f-a5a7-0d37a2b13401",
       "name": "RSA",
       "properties": [
         {
@@ -3597,7 +3594,55 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b0f1a916-9aaa-46a5-a543-bb5d0407d4ac",
+      "bom-ref": "9a870210-f5ee-4613-a4ae-dc1f21bf76f2",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/binaryfate.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP primary key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "cf0bc42b-bd39-44b4-a491-a6acc8b2d923",
       "name": "RSA",
       "properties": [
         {
@@ -3645,7 +3690,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ee140fa5-8519-4337-84ab-3e900e9ff961",
+      "bom-ref": "4440ac46-7ae2-4a2b-a33b-5e2812523165",
       "name": "RSA",
       "properties": [
         {
@@ -3693,7 +3738,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7558531e-7016-4688-a797-9cbdd1916b52",
+      "bom-ref": "c40123b7-f30c-443f-91b3-b236b80f0c35",
       "name": "RSA",
       "properties": [
         {
@@ -3741,7 +3786,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b65db58b-289b-4cc3-b585-9541518838a8",
+      "bom-ref": "7d5e2f7b-f356-46c9-b45d-221b674d65e4",
       "name": "RSA",
       "properties": [
         {
@@ -3789,7 +3834,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "01f25f92-4125-4efd-bbb7-0f6f12ade38f",
+      "bom-ref": "72d7d3d3-b291-4f5e-9fe6-e0a9f05bcf45",
       "name": "RSA",
       "properties": [
         {
@@ -3837,7 +3882,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8f531fb6-2b5a-4200-909c-e8c63ac00857",
+      "bom-ref": "17198a19-e13f-41f5-b140-98d587fa453a",
       "name": "RSA",
       "properties": [
         {
@@ -3885,55 +3930,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9ee897f6-4658-45e3-bb35-7b0ac0718bd3",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/iDunk.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP subkey"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "4096-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "050204d4-4b09-43fd-9e0f-e3030d4fca06",
+      "bom-ref": "9b343f28-cab0-4407-baa8-1c5fcd90b741",
       "name": "RSA",
       "properties": [
         {
@@ -3981,7 +3978,55 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c1a1e22f-2cbf-4d27-b44d-3bf8727f9c38",
+      "bom-ref": "1472a111-9983-4933-ad54-51c3f79b30c6",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/iDunk.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP subkey"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "000c3d71-8fba-40f8-8f99-0c7bf1dbdeaf",
       "name": "RSA",
       "properties": [
         {
@@ -4029,7 +4074,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "99a9c8c8-297e-4d84-9ed6-157f4f7dcac1",
+      "bom-ref": "c0e3dd7c-8c27-40c8-8d0c-c173b64b02a9",
       "name": "RSA",
       "properties": [
         {
@@ -4077,7 +4122,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cb5ba9f8-bc94-460d-9a2f-f1342bd66e93",
+      "bom-ref": "49e1cf6c-3fb1-4049-bb8a-48b4e81877fc",
       "name": "RSA",
       "properties": [
         {
@@ -4125,7 +4170,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8f7971af-27f4-41a5-871e-f5acca00b7b2",
+      "bom-ref": "25248acf-95ff-44f0-a5f3-96eed75e8f7d",
       "name": "RSA",
       "properties": [
         {
@@ -4173,7 +4218,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "23f89c33-34c0-4f56-94ac-3fc808e385f6",
+      "bom-ref": "ae4f91b4-1edc-4dae-b671-0449db78c969",
       "name": "RSA",
       "properties": [
         {
@@ -4221,7 +4266,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1324e055-d604-4c97-96e6-7e8215dedf9d",
+      "bom-ref": "8eeabd63-cc3d-4c35-8eba-b382c305b109",
       "name": "RSA",
       "properties": [
         {
@@ -4269,55 +4314,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ef6b11b2-903e-4baa-8c1c-7372a6c53159",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/luigi1111.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP primary key"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "2048-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "082c86ff-9a93-4fe8-a76f-f0c0fda7166b",
+      "bom-ref": "0095c019-4ba8-4d2a-aa96-878cab910e5f",
       "name": "RSA",
       "properties": [
         {
@@ -4365,7 +4362,103 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b573bbf7-51d0-403d-94cc-067308adc0ad",
+      "bom-ref": "38eadede-8390-4b17-82aa-228eaf9e0c50",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/luigi1111.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP primary key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "2048-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "654ce35f-dad6-4d88-a978-0fc464eb049e",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/mikezackles.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP primary key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "2048-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b929964a-d56f-4249-ad9a-706102e07dd6",
       "name": "RSA",
       "properties": [
         {
@@ -4413,55 +4506,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f6b3731b-87b3-423d-b1b2-666ec90e79c8",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/mikezackles.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP primary key"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "2048-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "7655c522-9ad7-4f19-9c39-f450adc0f50f",
+      "bom-ref": "2c2ade84-02b7-4e63-8543-2e2c157dcbb5",
       "name": "RSA",
       "properties": [
         {
@@ -4509,7 +4554,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "adecb7ba-733c-475e-a9c0-b581b7e166b9",
+      "bom-ref": "4917a9a3-0bb8-4269-b23b-f1141d959deb",
       "name": "RSA",
       "properties": [
         {
@@ -4557,7 +4602,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8c1f352b-e83f-4734-bea3-2b5b8d49ccff",
+      "bom-ref": "325fd7cd-cf27-42ad-8a99-29a710bfbaf4",
       "name": "RSA",
       "properties": [
         {
@@ -4605,55 +4650,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0b701ac8-33c0-4d40-8edb-5a3fbdee30c4",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/mj-xmr.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP subkey"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "4096-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "ae56a676-26e3-4114-ae41-13f2f3921906",
+      "bom-ref": "3bb6c1c8-c9a3-4739-b1ac-c8034d0b9e7a",
       "name": "RSA",
       "properties": [
         {
@@ -4701,7 +4698,103 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1c86e0d3-57e7-45bc-b19d-efd3b85af251",
+      "bom-ref": "6655af02-d3d9-48e7-99ad-17cc9ba89729",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/mj-xmr.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP subkey"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "bbb4bce5-466c-47dc-91be-378b17abe880",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/moneromooo.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP primary key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "f4a02f11-7bb6-4e0d-8139-fb8ba9bf4d9e",
       "name": "RSA",
       "properties": [
         {
@@ -4749,55 +4842,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "edc2e633-502a-4bc6-ab1d-14fcac1d86b4",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/moneromooo.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP primary key"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "4096-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "b0aceeda-5e21-408f-8c65-ca29d0c2f60a",
+      "bom-ref": "5090618b-9621-40aa-94fa-74a0ba333052",
       "name": "RSA",
       "properties": [
         {
@@ -4845,7 +4890,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f460cc6f-7bab-4afe-9b75-3457691b3d91",
+      "bom-ref": "44458464-2db0-4ac0-aede-17289a44818e",
       "name": "RSA",
       "properties": [
         {
@@ -4893,55 +4938,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0f5699a8-c538-4327-bc48-f216ed72959c",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/oranjuice.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP primary key"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "2048-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "b5ac60ba-8658-46a8-ab8e-a73b53004537",
+      "bom-ref": "d6c3ce45-1573-455d-a66b-2b56b383a27a",
       "name": "RSA",
       "properties": [
         {
@@ -4989,7 +4986,103 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c0acbb98-b376-408c-9a5b-aa316b004ee8",
+      "bom-ref": "7afdc8ac-84e7-4d0c-bd94-cd915a2d55d5",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/oranjuice.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP primary key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "2048-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "950621c7-dea6-42d3-8e55-42623dd2978d",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/rbrunner7.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP subkey"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "2048-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "7bd71b60-6036-4312-ba9c-a3699767e486",
       "name": "RSA",
       "properties": [
         {
@@ -5037,55 +5130,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ccfa473e-5087-4a28-8a61-4a5c36c09a17",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/rbrunner7.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP subkey"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "2048-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "140e4656-3494-4fa5-9b8d-d43c1a87a40c",
+      "bom-ref": "34558666-ea7a-4cd0-8530-528a7805328f",
       "name": "RSA",
       "properties": [
         {
@@ -5133,7 +5178,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "08f844fb-2037-4769-888d-07cfc8bfab2e",
+      "bom-ref": "00a8002f-ddab-4ce6-ae54-898f9e1c4630",
       "name": "RSA",
       "properties": [
         {
@@ -5181,55 +5226,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ba8e7fa1-8323-4582-aac2-11cb765b63f7",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/selsta.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP subkey"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "2048-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "dd68ab68-d5ea-4e75-a6db-438731899df1",
+      "bom-ref": "4ae890db-f16a-4b53-b310-edbeb0707193",
       "name": "RSA",
       "properties": [
         {
@@ -5277,7 +5274,55 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d04fd414-f23c-4ef0-bc99-1999f3f03c43",
+      "bom-ref": "35a35f60-6145-485e-ab0a-86285eba39f1",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/selsta.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP subkey"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "2048-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b0bb6807-5959-4e67-a6f1-60da84aae8c3",
       "name": "RSA",
       "properties": [
         {
@@ -5325,7 +5370,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0e9a949a-60c6-442a-b41a-387a66641f6a",
+      "bom-ref": "7b2f6431-0350-4643-a393-0269356fc257",
       "name": "RSA",
       "properties": [
         {
@@ -5373,7 +5418,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6cf8e8e4-a1d8-4da3-a95d-ec26334b5264",
+      "bom-ref": "ed089354-0ef0-4ca9-8d4c-65d893ce7269",
       "name": "RSA",
       "properties": [
         {
@@ -5421,7 +5466,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9d725276-e038-4273-9804-a32aa7a95cd9",
+      "bom-ref": "296976ca-b9da-4605-80cd-1581c87b2917",
       "name": "RSA",
       "properties": [
         {
@@ -5469,7 +5514,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b7770fc4-a6ff-4661-8e7c-cb072e08a92e",
+      "bom-ref": "dc235b48-3a36-4c31-9f79-068674442707",
       "name": "RSA",
       "properties": [
         {
@@ -5517,55 +5562,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0b4d9352-29cb-4be0-8702-9aed8ca3a86f",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/thecharlatan.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP primary key"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "4096-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "b23bc5d3-ba7e-4fd3-a42a-9d26cbfd007c",
+      "bom-ref": "359e0396-4dab-47ba-8f5f-a1991cd3a41e",
       "name": "RSA",
       "properties": [
         {
@@ -5613,7 +5610,55 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1ddde4f2-f4db-4dfb-8c7b-e269f3e62547",
+      "bom-ref": "7b078511-6ee6-4937-b3ce-5c5ad5d672bd",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/thecharlatan.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP primary key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "72a76e6a-a830-49ce-b941-d8da0264cc88",
       "name": "RSA",
       "properties": [
         {
@@ -5661,7 +5706,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b775bc0b-2756-474a-bb7f-9dd8494fc1d5",
+      "bom-ref": "70ed8f49-cb10-4aaf-8426-2d3acebc69a9",
       "name": "RSA",
       "properties": [
         {
@@ -5709,55 +5754,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b8abf7ba-4294-43f8-904a-671ef1a09782",
-      "name": "RSA",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "utils/gpg_keys/tomerkon.asc (line 1)"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "OpenPGP primary key"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "certificates"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "rsa"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "2048-bit",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.2.840.113549.1.1.1"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "1778057a-6894-402f-a2d9-ed53a20df4c8",
+      "bom-ref": "98153613-ac89-40c2-a27d-7bcb19631e67",
       "name": "RSA",
       "properties": [
         {
@@ -5805,7 +5802,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1a04da2f-5e4f-4d8a-91e1-f208787c8452",
+      "bom-ref": "03a5dcbb-ae49-4b24-ace4-11b134ca43f5",
       "name": "RSA",
       "properties": [
         {
@@ -5818,7 +5815,7 @@
         },
         {
           "name": "qsi:location",
-          "value": "utils/gpg_keys/warptangent.asc (line 1)"
+          "value": "utils/gpg_keys/tomerkon.asc (line 1)"
         },
         {
           "name": "qsi:usage",
@@ -5841,7 +5838,7 @@
         "assetType": "algorithm",
         "algorithmProperties": {
           "primitive": "signature",
-          "parameterSetIdentifier": "4096-bit",
+          "parameterSetIdentifier": "2048-bit",
           "cryptoFunctions": [
             "sign",
             "verify"
@@ -5853,7 +5850,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f6334fa9-c28c-4aea-919a-7cb5f6070702",
+      "bom-ref": "c56dc07b-810d-4b25-8dc7-23b2591cb86a",
       "name": "RSA",
       "properties": [
         {
@@ -5901,7 +5898,55 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6f8016d6-7b58-4908-9e54-93fda9977dea",
+      "bom-ref": "bf1751c8-6116-4eb2-8cb0-1e33071fd647",
+      "name": "RSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "utils/gpg_keys/warptangent.asc (line 1)"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "OpenPGP primary key"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "certificates"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "rsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "4096-bit",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c1ceadfa-841e-4563-a20e-c91602991efb",
       "name": "RSA",
       "properties": [
         {
@@ -5949,7 +5994,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bb570671-16ad-4d03-bcd2-aff7c4ecb2d3",
+      "bom-ref": "b534e9e2-e563-410e-ae85-1b9ffe5108fb",
       "name": "RSA",
       "properties": [
         {
@@ -5997,7 +6042,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "de50ff4c-7890-4bbf-a2ef-dcd21e2e10b5",
+      "bom-ref": "61b56e99-b6d1-4bea-871a-e90a0b377602",
       "name": "SHA-2",
       "properties": [
         {
@@ -6045,7 +6090,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5101a655-30c9-418b-b55c-07dbbfaecd18",
+      "bom-ref": "aeba6995-1d24-4383-bdf6-9d3ea055b460",
       "name": "SHA-2",
       "properties": [
         {
@@ -6093,7 +6138,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "13e4b527-f94f-4fe1-81eb-6fd9279a6c5c",
+      "bom-ref": "9e6a3dcd-c3de-44f9-8749-64b13c250ab1",
       "name": "SHA-2",
       "properties": [
         {
@@ -6141,7 +6186,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6310d13a-b241-44ae-a8ef-dfc33754a538",
+      "bom-ref": "ea608680-74a3-4441-8281-3f2a93ee9f5e",
       "name": "SHA-2",
       "properties": [
         {
@@ -6189,7 +6234,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "55e0780c-f56a-4919-b52a-b5e75eead0f9",
+      "bom-ref": "8f086364-fb60-45d1-9b4d-d1105761f3c2",
       "name": "SHA-2",
       "properties": [
         {
@@ -6237,7 +6282,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "55eebc30-da60-40fa-8382-a3e5aab01b80",
+      "bom-ref": "df34a68c-6f6e-43b7-9e9b-760e4576de07",
       "name": "SHA-2",
       "properties": [
         {
@@ -6285,7 +6330,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bcba4435-a8ab-47f8-85c2-8c9dd9e7c4c5",
+      "bom-ref": "2ce48f10-e2a9-4734-b4e6-9db9a0390fd9",
       "name": "SHA-2",
       "properties": [
         {
@@ -6333,7 +6378,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "28085885-6f8e-44e2-ac52-152c62469914",
+      "bom-ref": "cdf326d7-6499-4f4e-b0de-7935591e5926",
       "name": "SHA-3",
       "properties": [
         {
@@ -6381,7 +6426,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1240789a-eda7-413f-bfe4-f41e8fa25eb5",
+      "bom-ref": "23831800-aadb-4773-a011-0611cc32e419",
       "name": "X25519",
       "properties": [
         {
@@ -6434,7 +6479,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1db77137-774f-40ee-bfaa-f978ffa34113",
+      "bom-ref": "d44c7ba1-36f9-4a79-bfa3-eb231c522ca8",
       "name": "X25519",
       "properties": [
         {
@@ -6487,7 +6532,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "be0750f6-61a8-4a8c-8b60-c2ba197f43d9",
+      "bom-ref": "839d059d-2669-4b89-9b96-d61cfee82ba2",
       "name": "X25519",
       "properties": [
         {
@@ -6532,6 +6577,57 @@
           "nistQuantumSecurityLevel": 0
         },
         "oid": "1.3.101.110"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "e18355b7-a70d-4205-8710-c2ed81bcd31c",
+      "name": "XSalsa20-Poly1305",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_margin"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/crypto/crypto_ops_builder/include/sodium.h:27"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/monero-project/monero/blob/3fd0f88c20f559839cafb20911cb13cb45eba7bd/src/crypto/crypto_ops_builder/include/sodium.h#L27"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (3 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "xsalsa20-poly1305"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "parameterSetIdentifier": "XSalsa20-Poly1305",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "classicalSecurityLevel": 256
+        }
       }
     }
   ]
