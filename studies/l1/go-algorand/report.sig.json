@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"96d950eb-cb91-4272-91ed-00709f332206\",\"content_sha256\":\"6d145d52c9c066144e055074447ebfbd4d0fe3daaa4654cbf36de67ea6eb5165\",\"files_sha256\":{\"html\":\"49b07640b533fa7341dc682cc52eb9fdffaa5ea301a992563b695fb30106c898\",\"json\":\"343ce0883a3f475ea1024269148a2f9c2ac4a7cc74b7528ac2ba37276dcde08b\",\"md\":\"6664dde0a53a3c8366eb93e2e3895eb4a082e58a4761edab9e55acc119f35ec3\",\"pdf\":\"f4b43f33a428771ebc01abe99eb0bcb463222c5461ea427727a01e310ea8b5b6\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"go-algorand @ e46aea5466a1\",\"report_id\":\"117626bc-2cd1-49ef-9d73-6edcc53b59e9\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-11-06T16:16:30+00:00\",\"version\":1}",
+  "signature": "dYu5tGRKgFhurpILrpFh3O9PDnqvKpkkVDI72SsJfzKfA0QXa4L30ECOLcPeUDMaf5lfzmrM6NfKtD5jMQ69CQ=="
+}

@@ -1,0 +1,569 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QSI",
+          "fullName": "QSI — Quantum Security Intelligence",
+          "informationUri": "https://github.com/AlekseyKoks-in/qsi-audits",
+          "version": "1.3.0",
+          "rules": [
+            {
+              "id": "CODE-HARDCODED-SECRET",
+              "name": "CodeHardcodedSecret",
+              "shortDescription": {
+                "text": "Possible hard-coded secret in logging/telemetryConfig.go"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "source_code",
+                  "confirmed_misconfiguration"
+                ],
+                "security-severity": "7.5"
+              },
+              "fullDescription": {
+                "text": "1 secret-like value(s) of type generic_assignment (first at line 35). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "1 secret-like value(s) of type generic_assignment (first at line 35). Values were redacted by QSI. Move secrets to a secrets manager/environment; rotate the exposed values. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
+              "id": "KEY-QV-PUBLIC",
+              "name": "KeyQvPublic",
+              "shortDescription": {
+                "text": "Quantum-vulnerable RSA key (2048-bit) in installer/rpm/RPM-GPG-KEY-Algorand"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "A RSA 2048-bit public key was found (line 1). Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability."
+              },
+              "help": {
+                "text": "A RSA 2048-bit public key was found (line 1). Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it.. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-KNOWN-ADVISORY",
+              "name": "DepKnownAdvisory",
+              "shortDescription": {
+                "text": "github.com/labstack/echo/v4 v4.16.1 is affected by GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "5.3"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872) for Go package github.com/labstack/echo/v4 at version v4.16.1: Echo has Rate Limiter Bypass via Spoofed X-Forwarded-For Header in Default Configuration. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (none published yet; see the advisory for mitigations). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
+              },
+              "help": {
+                "text": "OSV.dev reports GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872) for Go package github.com/labstack/echo/v4 at version v4.16.1: Echo has Rate Limiter Bypass via Spoofed X-Forwarded-For Header in Default Configuration. The advisory names no affected functions, so reachability was not determined. Upgrade to a fixed version (none published yet; see the advisory for mitigations). Advisory data comes from OSV.dev at the recorded time. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GHSA-246p-cpwv-v3jq"
+            },
+            {
+              "id": "CODE-QV-ASYMMETRIC",
+              "name": "CodeQvAsymmetric",
+              "shortDescription": {
+                "text": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "post_quantum",
+                  "pq_long_term_risk"
+                ],
+                "security-severity": "5.0"
+              },
+              "fullDescription": {
+                "text": "1 reference(s) to X25519 across 1 file(s), e.g. crypto/libsodium-fork/src/libsodium/crypto_box/crypto_box_seal.c:32. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later). Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "help": {
+                "text": "1 reference(s) to X25519 across 1 file(s), e.g. crypto/libsodium-fork/src/libsodium/crypto_box/crypto_box_seal.c:32. Role, judged from paths, function names and nearby code: key wrapping and data encryption at rest. Keys or data encrypted to these public keys are stored: anyone who copies them now decrypts them once a CRQC exists (harvest now, decrypt later). Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its own assessment. This is a forward-looking risk that depends on the arrival of a cryptographically relevant quantum computer (CRQC). No such computer is publicly known to exist today; the timeline is uncertain. It is not a present-day exploitable vulnerability. Heuristic pattern match on source text without data-flow analysis. The usage context (security-relevant or not) must be confirmed manually; treat as preliminary."
+              },
+              "helpUri": "https://doi.org/10.1137/S0097539795293172"
+            },
+            {
+              "id": "DEP-ADVISORY-UNRATED",
+              "name": "DepAdvisoryUnrated",
+              "shortDescription": {
+                "text": "github.com/libp2p/go-libp2p-kad-dht v0.38.0 is affected by GO-2024-3218 (CVE-2023-26248) (no severity rating)"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "dependencies",
+                  "known_vulnerable_component"
+                ],
+                "security-severity": "3.0"
+              },
+              "fullDescription": {
+                "text": "OSV.dev reports GO-2024-3218 (CVE-2023-26248) for Go package github.com/libp2p/go-libp2p-kad-dht at version v0.38.0: Content Censorship in the InterPlanetary File System (IPFS) via Kademlia DHT abuse in github.com/libp2p/go-libp2p-kad-dht. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followe…"
+              },
+              "help": {
+                "text": "OSV.dev reports GO-2024-3218 (CVE-2023-26248) for Go package github.com/libp2p/go-libp2p-kad-dht at version v0.38.0: Content Censorship in the InterPlanetary File System (IPFS) via Kademlia DHT abuse in github.com/libp2p/go-libp2p-kad-dht. The advisory carries neither a CVSS vector nor a database severity, so QSI rates it low and preliminary until it is triaged. The advisory names no affected functions, so reachability was not determined. Triage the advisory; upgrade to a fixed version (none published yet; see the advisory for mitigations) if it applies. Advisory data comes from OSV.dev at the recorded time. The advisory has no severity rating. Reachability is judged from names, not a call graph: the affected functions the advisory lists against the identifiers in the audited product code, a Cargo feature it says is off by default against the audited manifests, the platforms it lists against the declared Rust targets. Indirect calls (traits, macros, other dependencies) are not followed. A Go function counts only in a file that also names its package (a method: its type); unexported functions only through the exported ones."
+              },
+              "helpUri": "https://osv.dev/vulnerability/GO-2024-3218"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CODE-HARDCODED-SECRET",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Possible hard-coded secret in logging/telemetryConfig.go"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "02d82a50fd85bb82d948e005344d2189"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19631",
+            "severity": "high",
+            "confidence": "medium",
+            "classification": "confirmed_misconfiguration",
+            "security-severity": "7.5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "logging/telemetryConfig.go"
+                },
+                "region": {
+                  "startLine": 35
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "KEY-QV-PUBLIC",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable RSA key (2048-bit) in installer/rpm/RPM-GPG-KEY-Algorand"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "9f4e031cd304b4a440420e8202fbf8ef"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19630",
+            "severity": "medium",
+            "confidence": "high",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "github.com/labstack/echo/v4 v4.16.1 is affected by GHSA-246p-cpwv-v3jq (CVE-2026-118653, GO-2026-6872) (dependency: Go/github.com/labstack/echo/v4@v4.16.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "8aab00a4d6301868ae805400126e6632"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19635",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "github.com/labstack/echo/v4 v4.16.1 is affected by GHSA-99jh-6h7p-pp36 (CVE-2026-118651, GO-2026-6875) (dependency: Go/github.com/labstack/echo/v4@v4.16.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b49a94c35bcbe43fd41fb72a40f4e87a"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19636",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "github.com/pion/dtls/v2 v2.2.12 is affected by GHSA-9f3f-wv7r-qc8r (CVE-2026-26014, GO-2026-4479) (dependency: Go/github.com/pion/dtls/v2@v2.2.12)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "6b97af46e9dfb940f4dcba29cbd855b0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19642",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.9"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "github.com/pion/stun v0.6.1 is affected by GHSA-34rh-wp3j-6cxc (CVE-2026-54909) (dependency: Go/github.com/pion/stun@v0.6.1)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "0d798710c9f30ef6f46ec8500783fbed"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19643",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "5.3"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable X25519: key wrapping and data encryption at rest (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "eea411a740e8c8ff6e16a6953594accc"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19627",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDSA: transaction and message signing (26 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19628",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable Ed25519: role not determined (19 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19625",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable X25519: role not determined (12 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19626",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable ECDH: role not determined (4 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19629",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "CODE-QV-ASYMMETRIC",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Quantum-vulnerable RSA: role not determined (1 file(s))"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19632",
+            "severity": "medium",
+            "confidence": "medium",
+            "classification": "pq_long_term_risk",
+            "security-severity": "5.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "github.com/libp2p/go-libp2p-kad-dht v0.38.0 is affected by GO-2024-3218 (CVE-2023-26248) (no severity rating) (dependency: Go/github.com/libp2p/go-libp2p-kad-dht@v0.38.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "c9988db10c97bde42631c70f392809be"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19637",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/crypto v0.57.0 is affected by GO-2026-5932 (no severity rating) (dependency: Go/golang.org/x/crypto@v0.57.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "4fdd1fd1877cd6452c3b3d542e967b84"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19638",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.60.0 is affected by GO-2026-6860 (CVE-2026-78661) (no severity rating) (dependency: Go/golang.org/x/net@v0.60.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "1692b3c52039f5ca5ee88825ad9f7611"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19644",
+            "severity": "low",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "3.0"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "github.com/ipld/go-ipld-prime v0.22.0 is affected by GHSA-w239-58x2-q8p5 (CVE-2026-42328, GO-2026-5684) (dependency: Go/github.com/ipld/go-ipld-prime@v0.22.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "eda331de59575f3420c159c17c3ec84d"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19639",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "6.2"
+          }
+        },
+        {
+          "ruleId": "DEP-KNOWN-ADVISORY",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "github.com/klauspost/compress v1.18.0 is affected by GHSA-259r-337f-4rfw (CVE-2026-63209, GO-2026-5841) (dependency: Go/github.com/klauspost/compress@v1.18.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "3587ca8eaa1c6d12870402df133c6824"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19640",
+            "severity": "info",
+            "confidence": "medium",
+            "classification": "known_vulnerable_component",
+            "security-severity": "7.5"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "github.com/aws/aws-sdk-go v1.34.0 is affected by GO-2022-0635 (CVE-2020-8912) (no severity rating) (dependency: Go/github.com/aws/aws-sdk-go@v1.34.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "fa77ac321411fac629c4709b44629c53"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19633",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "github.com/aws/aws-sdk-go v1.34.0 is affected by GO-2022-0646 (CVE-2020-8911) (no severity rating) (dependency: Go/github.com/aws/aws-sdk-go@v1.34.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "03894d121d7ee391f33a9a91f62b02e9"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19634",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "github.com/klauspost/compress v1.18.0 is affected by GO-2026-6865 (CVE-2026-116591) (no severity rating) (dependency: Go/github.com/klauspost/compress@v1.18.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ad62ad24aaaa5709c92451ae65228b85"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19641",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "golang.org/x/net v0.60.0 is affected by GO-2026-6866 (CVE-2026-97045) (no severity rating) (dependency: Go/golang.org/x/net@v0.60.0)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "45414f9faa7ad846da71ffcd30af2dfd"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19645",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        },
+        {
+          "ruleId": "DEP-ADVISORY-UNRATED",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "github.com/klauspost/compress v1.18.7 is affected by GO-2026-6865 (CVE-2026-116591) (no severity rating) (dependency: Go/github.com/klauspost/compress@v1.18.7)"
+          },
+          "partialFingerprints": {
+            "qsiFindingKey/v1": "ad62ad24aaaa5709c92451ae65228b85"
+          },
+          "properties": {
+            "qsiId": "QSI-2026-19646",
+            "severity": "info",
+            "confidence": "low",
+            "classification": "known_vulnerable_component",
+            "security-severity": "1.0"
+          }
+        }
+      ],
+      "automationDetails": {
+        "id": "qsi/go-algorand @ e46aea5466a1/96d950eb-cb91-4272-91ed-00709f332206"
+      },
+      "properties": {
+        "qsiContentSha256": "6d145d52c9c066144e055074447ebfbd4d0fe3daaa4654cbf36de67ea6eb5165",
+        "qsiReportVersion": 1,
+        "qsiRiskProfile": "crypto_exchange",
+        "qsiGeneratedAt": "2026-11-06T16:16:11.475514+00:00",
+        "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
+      },
+      "versionControlProvenance": [
+        {
+          "revisionId": "e46aea5466a1152af6e08f83555ed16cfcd89f49",
+          "repositoryUri": "https://github.com/algorand/go-algorand"
+        }
+      ]
+    }
+  ]
+}

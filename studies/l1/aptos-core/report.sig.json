@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"30269b00-7b13-4dea-be58-d53a0e2a5767\",\"content_sha256\":\"496bbf2c0ceaa6407d995b8152ee8fd44f8f95ed1f641fbd08068a5bb313751f\",\"files_sha256\":{\"html\":\"f51a9c97aa03203b26e0947c79e411ae6a621477e333512809d119bd7d10d97f\",\"json\":\"c2680408d0a824634e01d7b917fe998ff755e78f1cbcc37eed177fbacbc7db05\",\"md\":\"ee0f212bce6970058ecdd6a87d2ecba5717aab35f6cc767917d9ce178bd3ee3b\",\"pdf\":\"3097ce8851f6704e9ab231c447558c36f44ed130592fd89472099b4aff622d33\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"aptos-core @ 81d89f428fe8\",\"report_id\":\"7817807b-8769-4a8c-a1b4-4131cc57ed5f\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-11-06T16:20:45+00:00\",\"version\":1}",
+  "signature": "WVI1m2F+2WEXs6J2QnHqFZgRE7njh4oeFcSo17pb7qynLl8apItae1zo4ngDVr545Y7aqy3zzP49UsPDa+zNBA=="
+}

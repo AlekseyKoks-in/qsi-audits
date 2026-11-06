@@ -243,6 +243,10 @@ Project, seven signed bundles in `studies/institutional/`. Canton already signs 
 SLH-DSA, but none of the seven encrypts with ML-KEM in its own code; Fabric gets hybrid TLS only from the Go
 toolchain's default. See [reports/INSTITUTIONAL-LEDGERS-2026-11-06.md](reports/INSTITUTIONAL-LEDGERS-2026-11-06.md).
 
+A second study compares five layer-1 networks' announced post-quantum plans with their code (Algorand, Aptos,
+Stellar, Arc, Solana; bundles in `studies/l1/`): Falcon, SLH-DSA and ML-DSA verifiers and opt-in accounts exist, and
+every consensus key set is still classical. See [reports/L1-PQ-PLANS-VS-CODE-2026-11-06.md](reports/L1-PQ-PLANS-VS-CODE-2026-11-06.md).
+
 ## A federal mandate now describes this method
 
 OMB **M-26-15** of 24 June 2026 asks agencies to build "a dynamic, continuously updated inventory of all

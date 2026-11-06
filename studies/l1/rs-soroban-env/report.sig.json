@@ -1,0 +1,9 @@
+{
+  "schema": "qsi.report-signature/1",
+  "algorithm": "Ed25519",
+  "key_id": "5b3cf9c9bd0fa544",
+  "key_fingerprint_sha256": "5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e",
+  "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAO++PTBWnjcJHRIts8UVomh+lXHtepX3bkladLTEtQak=\n-----END PUBLIC KEY-----\n",
+  "payload": "{\"audit_run_id\":\"b6dad59b-c7b1-4e8f-86d3-2c4d7916c720\",\"content_sha256\":\"9b85f3462552f82353205b89d9274711efee1e99748e272a6e7abd94e0172d1e\",\"files_sha256\":{\"html\":\"825b007e194ab8d55d878bc91884a80a330c1958987db3b19f0461c4b587092f\",\"json\":\"fbbbd64160e9e8109839c263b11e9bf50286e800f6d610c1d8e4e57ff37ffe8d\",\"md\":\"aaabf99ea92791125540d6c6eac7b8f22adc7d11953a0c7021913e831cb564f5\",\"pdf\":\"abed256481eb5b587ccf4faf27ece575a303e10414c6768b6ebf178d60c09a99\"},\"key_id\":\"5b3cf9c9bd0fa544\",\"language\":\"en\",\"organization\":\"QSI\",\"project\":\"rs-soroban-env @ 0c99950e9612\",\"report_id\":\"8553e27f-1a09-475f-b685-adf95a84337f\",\"schema\":\"qsi.report-signature/1\",\"signed_at\":\"2026-11-06T16:05:35+00:00\",\"version\":1}",
+  "signature": "y54dDyE4T21JVrhD+ED2gGas7go05CfY3fTqFE2VMalLmE7l6ICHAitnHqtcFJ01OuNHRP+viKaMecNt46QnBA=="
+}
