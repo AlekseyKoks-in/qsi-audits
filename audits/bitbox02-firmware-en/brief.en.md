@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: bitbox02-firmware-en @ ae548ef4e40f
 
-*One-page brief* · Reviewed: 2026-11-04 20:10 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: BitBox (Shift Crypto) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:05 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: BitBox (Shift Crypto) — public repository (passive review)
 
 Source: https://github.com/BitBoxSwiss/bitbox02-firmware/tree/ae548ef4e40f548a17542ba457f138db4fa0069d
 
@@ -12,13 +12,13 @@ Source: https://github.com/BitBoxSwiss/bitbox02-firmware/tree/ae548ef4e40f548a17
 
 ## What matters most
 
-1. **Critical** · certifi 2022.12.7 is affected by GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) (QSI-2026-13280)\
+1. **Critical** · certifi 2022.12.7 is affected by GHSA-6q48-6c7w-9gw2 (PYSEC-2026-4320) (QSI-2026-17854)\
    What to do: Upgrade to a fixed version (2026.10.18).
-2. **High** · TLS certificate verification disabled in scripts/generate_version_headers.py (QSI-2026-13256)\
+2. **High** · TLS certificate verification disabled in scripts/generate_version_headers.py (QSI-2026-17830)\
    What to do: Remove the override; use a proper CA bundle or pinning.
-3. **High** · certifi 2022.12.7 is affected by GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135) (QSI-2026-13281)\
+3. **High** · certifi 2022.12.7 is affected by GHSA-xqr8-7jwr-rhp7 (CVE-2023-37920, PYSEC-2023-135) (QSI-2026-17855)\
    What to do: Upgrade to a fixed version (2023.7.22).
-4. **High** · jinja2 3.1.2 is affected by GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472) (QSI-2026-13285)\
+4. **High** · jinja2 3.1.2 is affected by GHSA-gmj6-6f8f-6699 (CVE-2024-56201, PYSEC-2026-1472) (QSI-2026-17859)\
    What to do: Upgrade to a fixed version (3.1.5).
 
 69 more in the full report.
@@ -42,7 +42,7 @@ Analyst review: 15 confirmed, 5 not applicable, 0 dismissed as false positives. 
 
 Static review of source code and manifests; files analysed: 2645. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `97427c688295170a9412989d617c735b3fae306bc47fc10b3b62313b102f1115`
+Full report, content SHA-256: `cf3c23870e4b4c35feb21d303d5082fae1730b014e64646954327f37e2becf0c`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

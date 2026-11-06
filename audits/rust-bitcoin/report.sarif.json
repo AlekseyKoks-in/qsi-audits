@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-12578",
+            "qsiId": "QSI-2026-18748",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-12579",
+            "qsiId": "QSI-2026-18749",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +136,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-12580",
+            "qsiId": "QSI-2026-18750",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -154,7 +154,7 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-12581",
+            "qsiId": "QSI-2026-18751",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -172,7 +172,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-12582",
+            "qsiId": "QSI-2026-18752",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -190,7 +190,7 @@
             "qsiFindingKey/v1": "7442b1c54fc03c4c83f5aba63caf750d"
           },
           "properties": {
-            "qsiId": "QSI-2026-12583",
+            "qsiId": "QSI-2026-18753",
             "severity": "info",
             "confidence": "low",
             "classification": "improvement",
@@ -199,13 +199,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/rust-bitcoin @ f127ba2ae14e/2e935aa9-46ad-4264-82a6-30aa442dc464"
+        "id": "qsi/rust-bitcoin @ f127ba2ae14e/4ab81962-1c35-43cd-a87a-9e56cda8bf10"
       },
       "properties": {
-        "qsiContentSha256": "85f793c3cefd18fd504e7c243ffa6c191c6676f381d6308495e23b444ca7d76c",
+        "qsiContentSha256": "3c66c2f5a80738810e373133f3f6a61ddd2c936670352def1ca38be290728472",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:18:35.250447+00:00",
+        "qsiGeneratedAt": "2026-11-06T13:50:16.722213+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

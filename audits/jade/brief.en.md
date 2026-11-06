@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: jade @ a59d14c2b397
 
-*One-page brief* · Reviewed: 2026-11-04 18:49 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Blockstream (Jade) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 14:36 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Blockstream (Jade) — public repository (passive review)
 
 Source: https://github.com/Blockstream/Jade/tree/a59d14c2b39715060e6721a309a7d49bedd3ee5b
 
@@ -12,13 +12,13 @@ Source: https://github.com/Blockstream/Jade/tree/a59d14c2b39715060e6721a309a7d49
 
 ## What matters most
 
-1. **High** · Private key material present in tools/fakeprod_attest.pem (QSI-2026-11963)\
+1. **High** · Private key material present in tools/fakeprod_attest.pem (QSI-2026-19276)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-2. **High** · Private key material present in tools/fakeprod_v2.pem (QSI-2026-11964)\
+2. **High** · Private key material present in tools/fakeprod_v2.pem (QSI-2026-19277)\
    What to do: Treat the key as compromised: rotate it, revoke associated certificates, remove it from version history and store keys in a secrets…
-3. **Medium** · Quantum-vulnerable RSA key (4096-bit) in SECURITY.md (QSI-2026-11947)\
+3. **Medium** · Quantum-vulnerable RSA key (4096-bit) in SECURITY.md (QSI-2026-19260)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-4. **Medium** · Quantum-vulnerable RSA key (3072-bit) in release/scripts/dev_fw_pub_key_A.pub (QSI-2026-11956)\
+4. **Medium** · Quantum-vulnerable RSA key (3072-bit) in release/scripts/dev_fw_pub_key_A.pub (QSI-2026-19269)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
 
 16 more in the full report.
@@ -34,9 +34,9 @@ Source: https://github.com/Blockstream/Jade/tree/a59d14c2b39715060e6721a309a7d49
 
 ---
 
-Static review of source code and manifests; files analysed: 737. No requests were sent to the owner's systems.
+Static review of source code and manifests; files analysed: 733. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `c63d3d7f217a30d4175e240476737e24cdf4757b3c18c2f58beef44c0fed6714`
+Full report, content SHA-256: `447dc63401d0c7203a75e0ba46ce8b54a460db98875c7a3393d656c9fc082ca4`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

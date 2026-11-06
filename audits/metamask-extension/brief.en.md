@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: metamask-extension @ d2db7ee9a19b
 
-*One-page brief* · Reviewed: 2026-11-04 19:02 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: MetaMask (Consensys) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:30 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: MetaMask (Consensys) — public repository (passive review)
 
 Source: https://github.com/MetaMask/metamask-extension/tree/d2db7ee9a19b0322105618521370ab690911209f
 
@@ -12,13 +12,13 @@ Source: https://github.com/MetaMask/metamask-extension/tree/d2db7ee9a19b03221056
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) (QSI-2026-12190) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) (QSI-2026-18296) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable ECDSA: role not determined (10 file(s)) (QSI-2026-12189) · *preliminary*\
+2. **Medium** · Quantum-vulnerable ECDSA: role not determined (10 file(s)) (QSI-2026-18295) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-3. **Medium** · @hono/node-server 2.1.1 is affected by GHSA-rmxm-3fg6-px4f (CVE-2026-118663) (QSI-2026-12194)\
+3. **Medium** · @hono/node-server 2.1.1 is affected by GHSA-rmxm-3fg6-px4f (CVE-2026-118663) (QSI-2026-18300)\
    What to do: Upgrade to a fixed version (2.1.3).
-4. **Medium** · Non-cryptographic RNG near security-sensitive identifiers in app/scripts/sidepanel/background.ts (QSI-2026-12191) · *preliminary*\
+4. **Medium** · Non-cryptographic RNG near security-sensitive identifiers in app/scripts/sidepanel/background.ts (QSI-2026-18297) · *preliminary*\
    What to do: Use a CSPRNG (secrets, crypto.getRandomValues, crypto/rand).
 
 1 more in the full report.
@@ -38,7 +38,7 @@ Advisories for the versions in use: 1; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 4870. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `4574607d892a03af609dda8b51e06cab924466835209a93a9524129d671008ad`
+Full report, content SHA-256: `8eb99db5997feaabab0eb8b5148bb5327f576c5d97fdef10e27c6b738a125dd4`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

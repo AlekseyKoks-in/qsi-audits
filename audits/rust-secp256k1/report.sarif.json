@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-12584",
+            "qsiId": "QSI-2026-19314",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,7 +68,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-12586",
+            "qsiId": "QSI-2026-19316",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -86,7 +86,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-12585",
+            "qsiId": "QSI-2026-19315",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +104,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-12587",
+            "qsiId": "QSI-2026-19317",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -122,7 +122,7 @@
             "qsiFindingKey/v1": "606525f239b63ec48e5f0094cfd33a41"
           },
           "properties": {
-            "qsiId": "QSI-2026-12588",
+            "qsiId": "QSI-2026-19318",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -131,13 +131,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/rust-secp256k1 @ fe8b3bec962f/fa7dc87f-dc80-4a29-b35f-4802b3d7ef6e"
+        "id": "qsi/rust-secp256k1 @ fe8b3bec962f/f60bdd9e-700f-459c-9b4c-67ea50c39123"
       },
       "properties": {
-        "qsiContentSha256": "82abeea34e02e233b7a86c4ef175f23ed70a059aed003f355163c56f669bdd1b",
+        "qsiContentSha256": "67af5bb6b7b16a10ee76bc2008963ec51d95977d16ed2b022eae9ebd4f82b891",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:19:09.838142+00:00",
+        "qsiGeneratedAt": "2026-11-06T14:44:08.662134+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

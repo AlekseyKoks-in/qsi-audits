@@ -1,24 +1,24 @@
 # Post-quantum cryptography review: agave @ 7700cb3128c1
 
-*One-page brief* · Reviewed: 2026-11-04 18:21 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Anza (Solana) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 12:53 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Anza (Solana) — public repository (passive review)
 
 Source: https://github.com/anza-xyz/agave/tree/7700cb3128c1f19820de67b81aa45d18f73d2ac0
 
 **Post-quantum maturity:** Level 0 of 4 — no post-quantum cryptography. **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
-**Findings:** Critical 0 · High 15 · Medium 32 · Low 34 · Info 27
+**Findings:** Critical 0 · High 15 · Medium 32 · Low 34 · Info 28
 
 **Quantum timeline (Mosca: x + y − z):** Key establishment 10 + 5 − 8 = 7 → too late; Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **High** · openssl 0.10.64 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678) (QSI-2026-11545)\
+1. **High** · openssl 0.10.64 is affected by GHSA-8c75-8mhr-p7r9 (CVE-2026-41678) (QSI-2026-17648)\
    What to do: Upgrade to a fixed version (0.10.78).
-2. **High** · openssl 0.10.64 is affected by GHSA-ghm9-cr32-g9qj (CVE-2026-41681) (QSI-2026-11546)\
+2. **High** · openssl 0.10.64 is affected by GHSA-ghm9-cr32-g9qj (CVE-2026-41681) (QSI-2026-17649)\
    What to do: Upgrade to a fixed version (0.10.78).
-3. **High** · openssl 0.10.64 is affected by GHSA-hppc-g8h3-xhp3 (CVE-2026-41898) (QSI-2026-11547)\
+3. **High** · openssl 0.10.64 is affected by GHSA-hppc-g8h3-xhp3 (CVE-2026-41898) (QSI-2026-17650)\
    What to do: Upgrade to a fixed version (0.10.78).
-4. **High** · openssl 0.10.64 is affected by GHSA-pqf5-4pqq-29f5 (CVE-2026-41676) (QSI-2026-11549)\
+4. **High** · openssl 0.10.64 is affected by GHSA-pqf5-4pqq-29f5 (CVE-2026-41676) (QSI-2026-17652)\
    What to do: Upgrade to a fixed version (0.10.78).
 
 77 more in the full report.
@@ -40,7 +40,7 @@ Advisories for the versions in use: 78; unlikely to apply to this build: 16 (a C
 
 Static review of source code and manifests; files analysed: 1293. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `0bd9b0a0f4a11ff2fadcc1131f86ad7cdd40e0964340c4b37ac351a57d2386d5`
+Full report, content SHA-256: `91ecaa02b2dddcbaad9a6a7b8734a6c7210d68443c420cd6be27b7b8262e8550`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

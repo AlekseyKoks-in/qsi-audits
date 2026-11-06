@@ -1,8 +1,8 @@
 {
-  "content_sha256": "a833838fdb11193cc21292e0f5511c380f612a315c04ce68507a686152a574a3",
+  "content_sha256": "dbd2c6df52207712f1309e15dc6cc70cdf4862fa5fc16ef83f11ff9fb2c78d1b",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T19:15:32.837905+00:00",
+  "generated_at": "2026-11-06T13:47:11.831513+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "ebc73c56-2d72-4c07-b0eb-ad0d257943b9",
+    "id": "07a13a9e-9999-4585-9e33-47a24be169ee",
     "mode": "document",
     "title": "Document audit: rage",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T19:15:17.187270+00:00",
-    "finished_at": "2026-11-04T19:15:32.705249+00:00",
+    "started_at": "2026-11-06T13:46:57.254492+00:00",
+    "finished_at": "2026-11-06T13:47:11.700067+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -386,27 +386,27 @@
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/format.rs: 624 lines scanned with 16 rule patterns and 145 registry patterns; 225 lines in #[cfg(test)] modules ignored",
+      "detail": "age-core/src/format.rs: 624 lines scanned with 16 rule patterns and 266 registry patterns; 225 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/io.rs: 69 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age-core/src/io.rs: 69 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/lib.rs: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age-core/src/lib.rs: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/plugin.rs: 523 lines scanned with 16 rule patterns and 145 registry patterns; 109 lines in #[cfg(test)] modules ignored",
+      "detail": "age-core/src/plugin.rs: 523 lines scanned with 16 rule patterns and 266 registry patterns; 109 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-core/src/primitives.rs: 225 lines scanned with 16 rule patterns and 145 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "detail": "age-core/src/primitives.rs: 225 lines scanned with 16 rule patterns and 266 registry patterns; 47 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -416,17 +416,17 @@
     },
     {
       "area": "source_code",
-      "detail": "age-plugin/src/identity.rs: 369 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age-plugin/src/identity.rs: 369 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-plugin/src/lib.rs: 357 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age-plugin/src/lib.rs: 357 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age-plugin/src/recipient.rs: 480 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age-plugin/src/recipient.rs: 480 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -436,122 +436,122 @@
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common.rs: 220 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/cli_common.rs: 220 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/error.rs: 116 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/cli_common/error.rs: 116 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/file_io.rs: 471 lines scanned with 16 rule patterns and 145 registry patterns; 38 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/cli_common/file_io.rs: 471 lines scanned with 16 rule patterns and 266 registry patterns; 38 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/identities.rs: 273 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/cli_common/identities.rs: 273 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/cli_common/recipients.rs: 223 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/cli_common/recipients.rs: 223 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/encrypted.rs: 354 lines scanned with 16 rule patterns and 145 registry patterns; 130 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/encrypted.rs: 354 lines scanned with 16 rule patterns and 266 registry patterns; 130 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/error.rs: 443 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/error.rs: 443 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/format.rs: 435 lines scanned with 16 rule patterns and 145 registry patterns; 79 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/format.rs: 435 lines scanned with 16 rule patterns and 266 registry patterns; 79 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/i18n.rs: 103 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/i18n.rs: 103 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/identity.rs: 395 lines scanned with 16 rule patterns and 145 registry patterns; 76 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/identity.rs: 395 lines scanned with 16 rule patterns and 266 registry patterns; 76 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/keys.rs: 44 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/keys.rs: 44 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/lib.rs: 463 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/lib.rs: 463 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native.rs: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/native.rs: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/scrypt.rs: 279 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/native/scrypt.rs: 279 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/tag.rs: 135 lines scanned with 16 rule patterns and 145 registry patterns; 13 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/native/tag.rs: 135 lines scanned with 16 rule patterns and 266 registry patterns; 13 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/tagpq.rs: 115 lines scanned with 16 rule patterns and 145 registry patterns; 12 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/native/tagpq.rs: 115 lines scanned with 16 rule patterns and 266 registry patterns; 12 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/native/x25519.rs: 292 lines scanned with 16 rule patterns and 145 registry patterns; 52 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/native/x25519.rs: 292 lines scanned with 16 rule patterns and 266 registry patterns; 52 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/plugin.rs: 878 lines scanned with 16 rule patterns and 145 registry patterns; 105 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/plugin.rs: 878 lines scanned with 16 rule patterns and 266 registry patterns; 105 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/primitives.rs: 71 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/primitives.rs: 71 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/primitives/armor.rs: 1598 lines scanned with 16 rule patterns and 145 registry patterns; 256 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/primitives/armor.rs: 1598 lines scanned with 16 rule patterns and 266 registry patterns; 256 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/primitives/stream.rs: 1085 lines scanned with 16 rule patterns and 145 registry patterns; 403 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/primitives/stream.rs: 1085 lines scanned with 16 rule patterns and 266 registry patterns; 403 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/protocol.rs: 587 lines scanned with 16 rule patterns and 145 registry patterns; 249 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/protocol.rs: 587 lines scanned with 16 rule patterns and 266 registry patterns; 249 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/simple.rs: 107 lines scanned with 16 rule patterns and 145 registry patterns; 33 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/simple.rs: 107 lines scanned with 16 rule patterns and 266 registry patterns; 33 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/ssh.rs: 587 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "age/src/ssh.rs: 587 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -601,17 +601,17 @@
     },
     {
       "area": "source_code",
-      "detail": "age/src/ssh/identity.rs: 589 lines scanned with 16 rule patterns and 145 registry patterns; 209 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/ssh/identity.rs: 589 lines scanned with 16 rule patterns and 266 registry patterns; 209 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/ssh/recipient.rs: 321 lines scanned with 16 rule patterns and 145 registry patterns; 39 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/ssh/recipient.rs: 321 lines scanned with 16 rule patterns and 266 registry patterns; 39 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "age/src/util.rs: 243 lines scanned with 16 rule patterns and 145 registry patterns; 47 lines in #[cfg(test)] modules ignored",
+      "detail": "age/src/util.rs: 243 lines scanned with 16 rule patterns and 266 registry patterns; 47 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -621,62 +621,62 @@
     },
     {
       "area": "source_code",
-      "detail": "rage/build.rs: 468 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/build.rs: 468 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-keygen/cli.rs: 48 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage-keygen/cli.rs: 48 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-keygen/error.rs: 52 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage-keygen/error.rs: 52 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-keygen/main.rs: 86 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage-keygen/main.rs: 86 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/cli.rs: 61 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage-mount/cli.rs: 61 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/main.rs: 242 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage-mount/main.rs: 242 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/tar.rs: 295 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage-mount/tar.rs: 295 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage-mount/zip.rs: 288 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage-mount/zip.rs: 288 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/cli.rs: 158 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage/cli.rs: 158 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/error.rs: 248 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage/error.rs: 248 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/i18n.rs: 31 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage/i18n.rs: 31 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rage/src/bin/rage/main.rs: 402 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rage/src/bin/rage/main.rs: 402 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -708,9 +708,9 @@
       "count": 47,
       "rows": 47,
       "examples": [
-        "age-core/src/format.rs: 624 lines scanned with 16 rule patterns and 145 registry patterns; 225 lines in #[cfg(test)] modules ignored",
-        "age-core/src/io.rs: 69 lines scanned with 16 rule patterns and 145 registry patterns",
-        "age-core/src/lib.rs: 20 lines scanned with 16 rule patterns and 145 registry patterns"
+        "age-core/src/format.rs: 624 lines scanned with 16 rule patterns and 266 registry patterns; 225 lines in #[cfg(test)] modules ignored",
+        "age-core/src/io.rs: 69 lines scanned with 16 rule patterns and 266 registry patterns",
+        "age-core/src/lib.rs: 20 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -845,12 +845,22 @@
       "not_applicable": 11,
       "pqc": 3,
       "vulnerable_shor": 13
+    },
+    "inventory_by_origin": {
+      "dependency": {
+        "total": 14,
+        "vulnerable_shor": 0
+      },
+      "own": {
+        "total": 29,
+        "vulnerable_shor": 13
+      }
     }
   },
   "findings": [
     {
-      "id": "0da5e963-c74a-4a20-a692-40a91fda453a",
-      "public_id": "QSI-2026-12449",
+      "id": "845d3a0a-4862-4d9b-ac06-a1f9bc62d1f4",
+      "public_id": "QSI-2026-18619",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905)",
       "description": "OSV.dev сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905) для пакета crates.io zip версии 8.6.0: zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -871,7 +881,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.477740+00:00",
+      "detected_at": "2026-11-06T13:47:11.564048+00:00",
       "risk_score": 54.2,
       "risk_breakdown": {
         "score": 54.2,
@@ -927,7 +937,7 @@
           "content_sha256": "c7888f0f98273e73f645f5f1c90045f0a43444e01a687f05af3f9b167d4b46cd",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.493464+00:00",
+          "collected_at": "2026-11-06T13:47:11.572196+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-m665-v7pm-7grj"
         }
       ],
@@ -950,8 +960,8 @@
       ]
     },
     {
-      "id": "90f63c6d-9dd2-4b56-a61c-f54be0d2b31e",
-      "public_id": "QSI-2026-12453",
+      "id": "724558d4-7c7a-47d2-9c30-024c253c7a41",
+      "public_id": "QSI-2026-18623",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут RUSTSEC-2026-0369",
       "description": "OSV.dev сообщает RUSTSEC-2026-0369 для пакета crates.io zip версии 8.6.0: ZipStreamReader::extract() and ZipArchive::extract() apply Unix permissions through symlinks without confining the target. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -972,7 +982,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.524295+00:00",
+      "detected_at": "2026-11-06T13:47:11.592395+00:00",
       "risk_score": 54.2,
       "risk_breakdown": {
         "cvss": {
@@ -1048,7 +1058,7 @@
           "content_sha256": "9aef5f045615f47bcb38c8fa6cc96616234dcdc509a2b8225bfe413eddd70e04",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.542252+00:00",
+          "collected_at": "2026-11-06T13:47:11.601366+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0369"
         }
       ],
@@ -1071,8 +1081,8 @@
       ]
     },
     {
-      "id": "ce2bc8b9-56a5-4f56-9ad0-d1a50c5e7e1e",
-      "public_id": "QSI-2026-12447",
+      "id": "b4b34bc3-a78b-48b2-adde-e046ef252af9",
+      "public_id": "QSI-2026-18617",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-9hj8-73fh-9963 (CVE-2026-115907)",
       "description": "OSV.dev сообщает GHSA-9hj8-73fh-9963 (CVE-2026-115907) для пакета crates.io zip версии 8.6.0: zip: legacy Shrink/Reduce/Implode decoder: denial of service from attacker-controlled ZIP64 uncompressed size. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1093,7 +1103,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.448780+00:00",
+      "detected_at": "2026-11-06T13:47:11.548528+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1169,7 +1179,7 @@
           "content_sha256": "e5238c3594d0f6994ca443d123704e8c97c4544f9bacde678e72248d2fa48a32",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.470018+00:00",
+          "collected_at": "2026-11-06T13:47:11.559142+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-9hj8-73fh-9963"
         }
       ],
@@ -1192,8 +1202,8 @@
       ]
     },
     {
-      "id": "76e8d084-acff-4927-b06d-6131aaf8250d",
-      "public_id": "QSI-2026-12448",
+      "id": "b9d40fd4-4910-4ab8-b53e-f3c7e7a96325",
+      "public_id": "QSI-2026-18618",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-hjqx-j4rw-g7xv (CVE-2026-115908)",
       "description": "OSV.dev сообщает GHSA-hjqx-j4rw-g7xv (CVE-2026-115908) для пакета crates.io zip версии 8.6.0: zip: Arbitrary file write outside the extraction directory, because ZipArchive::extract validates symlink targets lexically. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1214,7 +1224,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.464808+00:00",
+      "detected_at": "2026-11-06T13:47:11.557195+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1290,7 +1300,7 @@
           "content_sha256": "e55643081851bef064ccc4f96552a5060cbddb61f2ef37cafb3b5f64a828a808",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.483342+00:00",
+          "collected_at": "2026-11-06T13:47:11.566487+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-hjqx-j4rw-g7xv"
         }
       ],
@@ -1313,8 +1323,8 @@
       ]
     },
     {
-      "id": "ce3be5de-2203-4389-af90-97f0162b074b",
-      "public_id": "QSI-2026-12450",
+      "id": "f345b678-d323-4b05-9f5f-3b78a7f3cf90",
+      "public_id": "QSI-2026-18620",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429)",
       "description": "OSV.dev сообщает GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429) для пакета crates.io zip версии 8.6.0: zip: Unbounded Symlink-Target Handling Can Abort Or Exhaust Memory During Extraction. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1335,7 +1345,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.490542+00:00",
+      "detected_at": "2026-11-06T13:47:11.570234+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1411,7 +1421,7 @@
           "content_sha256": "21681ccd2acf5cec55626da20f07b4c5a08d22a64fa0662eee4116b1c4f21ef1",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.504388+00:00",
+          "collected_at": "2026-11-06T13:47:11.580996+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-q7v9-x93c-xqv3"
         }
       ],
@@ -1434,8 +1444,8 @@
       ]
     },
     {
-      "id": "3a9c4802-ff4e-42ee-98d8-759e04e589c5",
-      "public_id": "QSI-2026-12451",
+      "id": "dd01abc4-b85c-43a5-9671-80d2f8ae5fbb",
+      "public_id": "QSI-2026-18621",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут RUSTSEC-2026-0367",
       "description": "OSV.dev сообщает RUSTSEC-2026-0367 для пакета crates.io zip версии 8.6.0: Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1456,7 +1466,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.500399+00:00",
+      "detected_at": "2026-11-06T13:47:11.576065+00:00",
       "risk_score": 50.2,
       "risk_breakdown": {
         "cvss": {
@@ -1532,7 +1542,7 @@
           "content_sha256": "15f1d3dcd40074f7815d474465495a74632c16549a413ab89f8ddf2c2b88fbb5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.517157+00:00",
+          "collected_at": "2026-11-06T13:47:11.588181+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0367"
         }
       ],
@@ -1555,8 +1565,8 @@
       ]
     },
     {
-      "id": "ec953fbf-32ce-4770-8144-50579aaee5c4",
-      "public_id": "QSI-2026-12445",
+      "id": "689bd6ea-1910-44fa-a4e4-2dfada6fd3e8",
+      "public_id": "QSI-2026-18615",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "rsa 0.10.0-rc.18 затронут RUSTSEC-2023-0071 (CVE-2023-49092)",
       "description": "OSV.dev сообщает RUSTSEC-2023-0071 (CVE-2023-49092) для пакета crates.io rsa версии 0.10.0-rc.18: Marvin Attack: potential key recovery through timing sidechannels. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1577,7 +1587,7 @@
       "affected_asset": "dependency:crates.io/rsa@0.10.0-rc.18",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.418844+00:00",
+      "detected_at": "2026-11-06T13:47:11.533654+00:00",
       "risk_score": 44.2,
       "risk_breakdown": {
         "cvss": {
@@ -1653,7 +1663,7 @@
           "content_sha256": "0db94e1eb8892ff3c781df371743247db7a773258576ae414ad6431dd6e38cbc",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.440847+00:00",
+          "collected_at": "2026-11-06T13:47:11.542246+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0071"
         }
       ],
@@ -1676,8 +1686,8 @@
       ]
     },
     {
-      "id": "764694f9-0c4d-4a3e-8807-e29763e1018d",
-      "public_id": "QSI-2026-12446",
+      "id": "f705023f-c313-4f4c-a5a8-b71d87f78cf0",
+      "public_id": "QSI-2026-18616",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "zip 8.6.0 затронут GHSA-8hxf-qr8p-62x4 (CVE-2026-115906)",
       "description": "OSV.dev сообщает GHSA-8hxf-qr8p-62x4 (CVE-2026-115906) для пакета crates.io zip версии 8.6.0: zip: AES Entry HMAC Authentication Bypass on Premature EOF. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1698,7 +1708,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.435425+00:00",
+      "detected_at": "2026-11-06T13:47:11.539781+00:00",
       "risk_score": 44.2,
       "risk_breakdown": {
         "cvss": {
@@ -1774,7 +1784,7 @@
           "content_sha256": "90c3fdd1f80ac06d6d2f9a31728615341fa8365382a7b5b8414f15c35001f923",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.457033+00:00",
+          "collected_at": "2026-11-06T13:47:11.551378+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-8hxf-qr8p-62x4"
         }
       ],
@@ -1797,8 +1807,8 @@
       ]
     },
     {
-      "id": "037bc067-f0b7-4c12-a149-7fa1a13cefc2",
-      "public_id": "QSI-2026-12439",
+      "id": "95f419ff-7a9a-4be7-b248-36be655ebdf7",
+      "public_id": "QSI-2026-18609",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (3 файл(ов))",
       "description": "9 упоминаний X25519 в 3 файл(ах), например age/src/native/x25519.rs:16. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
@@ -1818,7 +1828,7 @@
       "affected_asset": "source-code:X25519:key_wrapping",
       "data_source": "age/src/native/x25519.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.290696+00:00",
+      "detected_at": "2026-11-06T13:47:11.465306+00:00",
       "risk_score": 36.9,
       "risk_breakdown": {
         "mosca": {
@@ -1915,7 +1925,7 @@
           "content_sha256": "05df6829be49cabd10d88d6036ce76d2ba7040e231172dca53924a0750b6570f",
           "source_sha256": "16e457867be81be4d998264e8cc9695b7a95660865e758a79e3501100846f9f5",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.332937+00:00",
+          "collected_at": "2026-11-06T13:47:11.490094+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/native/x25519.rs#L16"
         },
         {
@@ -1926,7 +1936,7 @@
           "content_sha256": "1ee07b7a7c8bc78c730da898a54e4637f245085669e2241423890dd326877b88",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.332947+00:00",
+          "collected_at": "2026-11-06T13:47:11.490102+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L20"
         },
         {
@@ -1937,7 +1947,7 @@
           "content_sha256": "87ba13f8a1497fd71ed3922f4e03c558c1286a2a000a6bcef5cc9ce029e2c31c",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.332951+00:00",
+          "collected_at": "2026-11-06T13:47:11.490105+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L103"
         },
         {
@@ -1948,7 +1958,7 @@
           "content_sha256": "0be5d59c2834e0cc9449d59da2a0d0ef4d12c1baafef72fc5be3f97c0be8471b",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.332954+00:00",
+          "collected_at": "2026-11-06T13:47:11.490108+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L108"
         },
         {
@@ -1959,7 +1969,7 @@
           "content_sha256": "6abe103c9a43a94a19a02b55300b17593e658208804bda30ec6d4a8f8935c00a",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.332957+00:00",
+          "collected_at": "2026-11-06T13:47:11.490111+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L24"
         },
         {
@@ -1970,7 +1980,7 @@
           "content_sha256": "900291691f762d6c9ce5739d76737af6565a43944e9e9595ede307ce1202091b",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.332961+00:00",
+          "collected_at": "2026-11-06T13:47:11.490115+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L181"
         },
         {
@@ -1981,7 +1991,7 @@
           "content_sha256": "a3dd61d18bb5abc2d5d5ecda2460b8425e0990823960a38a07f6f02254910caf",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.332964+00:00",
+          "collected_at": "2026-11-06T13:47:11.490118+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L184"
         }
       ],
@@ -2019,8 +2029,8 @@
       ]
     },
     {
-      "id": "caa67d3a-07e7-4a0d-b653-b02ab164faf9",
-      "public_id": "QSI-2026-12438",
+      "id": "ce5b13ba-c629-451b-ac06-567baf25352d",
+      "public_id": "QSI-2026-18608",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый X25519: роль не определена (6 файл(ов))",
       "description": "10 упоминаний X25519 в 6 файл(ах), например age/src/cli_common/recipients.rs:5. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -2040,7 +2050,7 @@
       "affected_asset": "source-code:X25519:general",
       "data_source": "age/src/cli_common/recipients.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.266434+00:00",
+      "detected_at": "2026-11-06T13:47:11.452616+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2137,7 +2147,7 @@
           "content_sha256": "949c4c42018679fc2651bed9e0f1f3b1745770fe5a7fb8e36b731e989e25846d",
           "source_sha256": "af2b6d7dd5958b91e56c35ddb3df73b9bde23b5cab9118e4d2ab719816d8bcee",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303362+00:00",
+          "collected_at": "2026-11-06T13:47:11.470501+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/cli_common/recipients.rs#L5"
         },
         {
@@ -2148,7 +2158,7 @@
           "content_sha256": "67e9a05a95b80abd2572165233020bf982389af48ab6e32fc58921fbabd4bd0c",
           "source_sha256": "af2b6d7dd5958b91e56c35ddb3df73b9bde23b5cab9118e4d2ab719816d8bcee",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303372+00:00",
+          "collected_at": "2026-11-06T13:47:11.470511+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/cli_common/recipients.rs#L59"
         },
         {
@@ -2159,7 +2169,7 @@
           "content_sha256": "90fb4d93d25a26413a6a2e13c88d3522480c3fe8ad04bd9a4714789f9afefbad",
           "source_sha256": "8be708188c5e0f9efa1f3aca44a943060147a23b4ced3a32d4d716d588fbbf02",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303377+00:00",
+          "collected_at": "2026-11-06T13:47:11.470515+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/identity.rs#L10"
         },
         {
@@ -2170,7 +2180,7 @@
           "content_sha256": "36e6ff8be827a3d1ca9c83b6bea9f135da0c2e3134d6065b0db4a549b1a84b24",
           "source_sha256": "8be708188c5e0f9efa1f3aca44a943060147a23b4ced3a32d4d716d588fbbf02",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303381+00:00",
+          "collected_at": "2026-11-06T13:47:11.470518+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/identity.rs#L25"
         },
         {
@@ -2181,7 +2191,7 @@
           "content_sha256": "5dbfb3ab6c2704e8c45630f92fe5b306c65e38bd00cda43237b0113c8a40e8e5",
           "source_sha256": "8be708188c5e0f9efa1f3aca44a943060147a23b4ced3a32d4d716d588fbbf02",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303384+00:00",
+          "collected_at": "2026-11-06T13:47:11.470521+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/identity.rs#L92"
         },
         {
@@ -2192,7 +2202,7 @@
           "content_sha256": "97aa08d50fd46207d19c0dbcece4d115dab63ea31e056bc595a5f0d1de4dc1d0",
           "source_sha256": "fa1f17a56d7ac3ff7b8ccc2472aa21f261d0c2ea53946498e9537e0ab6a074dc",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303387+00:00",
+          "collected_at": "2026-11-06T13:47:11.470524+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/lib.rs#L259"
         },
         {
@@ -2203,7 +2213,7 @@
           "content_sha256": "05ec1745e4a1eddf7f1b06b954c98bdc480a6ed460e540bdf7f35b369715f3e3",
           "source_sha256": "881b02385f188b684cc7f08f33984810dcad7fc318d3f5a8ab6d7439b516e0b5",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303391+00:00",
+          "collected_at": "2026-11-06T13:47:11.470527+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/native.rs#L9"
         },
         {
@@ -2214,7 +2224,7 @@
           "content_sha256": "99ac994fe5cd88e6869eb03bccd9531e1423147477843660c83708e8f60cdab2",
           "source_sha256": "55db85f9f5e07cdc650b647e80f184bde2536567f61eb1c6dccdae7ac8475def",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303394+00:00",
+          "collected_at": "2026-11-06T13:47:11.470531+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/rage/build.rs#L258"
         },
         {
@@ -2225,7 +2235,7 @@
           "content_sha256": "b74d073343a9a1960ff582b2292f1366a84e5fd86311591a7ba8e0e30cf6307d",
           "source_sha256": "55db85f9f5e07cdc650b647e80f184bde2536567f61eb1c6dccdae7ac8475def",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303397+00:00",
+          "collected_at": "2026-11-06T13:47:11.470534+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/rage/build.rs#L260"
         },
         {
@@ -2236,7 +2246,7 @@
           "content_sha256": "d3f1ab0f99eee13a2589f6865cb86ef7e63c343058c209297f0b40cba1267813",
           "source_sha256": "88b956d279fb1ab6d05dd77e531e784c0cfee0a2544dc8a8779e8cdc10a9e9e4",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.303401+00:00",
+          "collected_at": "2026-11-06T13:47:11.470537+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/rage/src/bin/rage-keygen/main.rs#L57"
         }
       ],
@@ -2274,8 +2284,8 @@
       ]
     },
     {
-      "id": "944640d7-73a1-476a-97b6-ae1642ab6a88",
-      "public_id": "QSI-2026-12440",
+      "id": "1f29c719-19ba-4821-82dc-1d9c1881003e",
+      "public_id": "QSI-2026-18610",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))",
       "description": "10 упоминаний RSA в 3 файл(ах), например age/src/ssh.rs:346. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.",
@@ -2295,7 +2305,7 @@
       "affected_asset": "source-code:RSA:authentication",
       "data_source": "age/src/ssh.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.327845+00:00",
+      "detected_at": "2026-11-06T13:47:11.487344+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2392,7 +2402,7 @@
           "content_sha256": "7e3785d0dbcd802591dcf43f3e19518c5a11074bbe503579789d417cce71a346",
           "source_sha256": "2dd1be76df20f7ed8cf9ae837709b179ceae4440f9ccc3413ff28446cbab1b1e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.346999+00:00",
+          "collected_at": "2026-11-06T13:47:11.503419+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh.rs#L346"
         },
         {
@@ -2403,7 +2413,7 @@
           "content_sha256": "4053b2391fbea71b39dd399191ef97f6307a2fb093522f2d6f7ac1d7eda26864",
           "source_sha256": "2dd1be76df20f7ed8cf9ae837709b179ceae4440f9ccc3413ff28446cbab1b1e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.347010+00:00",
+          "collected_at": "2026-11-06T13:47:11.503426+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh.rs#L351"
         },
         {
@@ -2414,7 +2424,7 @@
           "content_sha256": "7e7e503abedc0514c33f3905e22bdec016c5f8f737be09dd7bee1c7ea3e02b2e",
           "source_sha256": "2dd1be76df20f7ed8cf9ae837709b179ceae4440f9ccc3413ff28446cbab1b1e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.347014+00:00",
+          "collected_at": "2026-11-06T13:47:11.503430+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh.rs#L506"
         },
         {
@@ -2425,7 +2435,7 @@
           "content_sha256": "de035e6101f0cc8f4ddb886275317cee992d29d5439c38800bf9838042a88fbd",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.347017+00:00",
+          "collected_at": "2026-11-06T13:47:11.503435+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L38"
         },
         {
@@ -2436,7 +2446,7 @@
           "content_sha256": "65a19cbac089efc2a127c79940f7095fa0f59dcc40fa90892aeb787fe96b6cc3",
           "source_sha256": "9c359ba9b72af1c5dfee9cd33998b397b37f613d95ca4ba9fa9837d8f7d37fb7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.347020+00:00",
+          "collected_at": "2026-11-06T13:47:11.503438+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/identity.rs#L344"
         },
         {
@@ -2447,7 +2457,7 @@
           "content_sha256": "479bf142c9167d7508156b2bb610dc3f5f7b0340b5df42a781aca3cdf0e5ab43",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.347023+00:00",
+          "collected_at": "2026-11-06T13:47:11.503441+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L42"
         },
         {
@@ -2458,7 +2468,7 @@
           "content_sha256": "6951b047acbed0bc3e239453ac347280898f4087616b23546fd33c6aada0285a",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.347026+00:00",
+          "collected_at": "2026-11-06T13:47:11.503444+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L77"
         },
         {
@@ -2469,7 +2479,7 @@
           "content_sha256": "bff2dfed80a0d3876ae441e29798cd20bba3594c349b887486d2c80a81d28b78",
           "source_sha256": "4dfb6714f29babd5be9d0a876e33a7edbecd8d978fe2c7111a4fcb7ad91cb339",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.347029+00:00",
+          "collected_at": "2026-11-06T13:47:11.503447+00:00",
           "url": "https://github.com/str4d/rage/blob/b5b68c4f4f7ea5c368bc060f6fe0237549c3a13f/age/src/ssh/recipient.rs#L124"
         }
       ],
@@ -2507,8 +2517,8 @@
       ]
     },
     {
-      "id": "e2a1f184-147e-4fc8-bd9f-0c5c7a033340",
-      "public_id": "QSI-2026-12442",
+      "id": "fdfec1fd-569c-44e2-8863-3c189d333d18",
+      "public_id": "QSI-2026-18612",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.7.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -2529,7 +2539,7 @@
       "affected_asset": "dependency:crates.io/crypto-bigint@0.7.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.357816+00:00",
+      "detected_at": "2026-11-06T13:47:11.509917+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2585,7 +2595,7 @@
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.398692+00:00",
+          "collected_at": "2026-11-06T13:47:11.521641+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -2608,8 +2618,8 @@
       ]
     },
     {
-      "id": "f38d27a7-f298-4873-a1ca-4366576d3b14",
-      "public_id": "QSI-2026-12443",
+      "id": "8eb883bb-9291-4403-8639-9f345c258a0a",
+      "public_id": "QSI-2026-18613",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -2630,7 +2640,7 @@
       "affected_asset": "dependency:crates.io/ctutils@0.4.2",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.391607+00:00",
+      "detected_at": "2026-11-06T13:47:11.519098+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2686,7 +2696,7 @@
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.411364+00:00",
+          "collected_at": "2026-11-06T13:47:11.529828+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -2709,8 +2719,8 @@
       ]
     },
     {
-      "id": "9d3d55ba-a292-432e-850e-31711e659be7",
-      "public_id": "QSI-2026-12452",
+      "id": "59b1f919-5c8a-43fb-a075-c65b62ea77e5",
+      "public_id": "QSI-2026-18622",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zip 8.6.0 затронут RUSTSEC-2026-0368 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0368 для пакета crates.io zip версии 8.6.0: zip: `ZipArchive::extract` creates symbolic links whose attacker-controlled targets are outside the destination directory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -2731,7 +2741,7 @@
       "affected_asset": "dependency:crates.io/zip@8.6.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.512461+00:00",
+      "detected_at": "2026-11-06T13:47:11.585625+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2787,7 +2797,7 @@
           "content_sha256": "5290c9a29df3d85ab102844569d01115b101b377c4c3e6ad6ff25e6c67e65a22",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.527540+00:00",
+          "collected_at": "2026-11-06T13:47:11.595142+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0368"
         }
       ],
@@ -2810,8 +2820,8 @@
       ]
     },
     {
-      "id": "71854844-f343-4e16-ac48-0bddddb03817",
-      "public_id": "QSI-2026-12454",
+      "id": "6c27bd5a-8bb4-444a-8dcd-6a8934aefdb8",
+      "public_id": "QSI-2026-18624",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0391 для пакета crates.io zstd версии 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd приходит через другие зависимости, которые могут их вызывать.",
@@ -2832,7 +2842,7 @@
       "affected_asset": "dependency:crates.io/zstd@0.13.3",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.535055+00:00",
+      "detected_at": "2026-11-06T13:47:11.598957+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2888,7 +2898,7 @@
           "content_sha256": "f6b1f88e9d83bcb9d217fcbdccae0800038e990f9744b0323a94b3c98f05b7b9",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.552584+00:00",
+          "collected_at": "2026-11-06T13:47:11.607710+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0391"
         }
       ],
@@ -2911,8 +2921,8 @@
       ]
     },
     {
-      "id": "a0811df4-5963-4927-820b-c6b865a8145d",
-      "public_id": "QSI-2026-12455",
+      "id": "8fa14bbc-d849-4a16-abf1-ebd7a5c26b1f",
+      "public_id": "QSI-2026-18625",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0395 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free with `CParameter::StableInBuffer`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::set_parameter); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -2933,7 +2943,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.548977+00:00",
+      "detected_at": "2026-11-06T13:47:11.605466+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -2989,7 +2999,7 @@
           "content_sha256": "728850176f43ecf2b9c562524c791d0da3abc31547980bb333caeadf51eb3ce4",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.561568+00:00",
+          "collected_at": "2026-11-06T13:47:11.617112+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0395"
         }
       ],
@@ -3012,8 +3022,8 @@
       ]
     },
     {
-      "id": "6e88fa69-48b0-4957-892c-0f29b644ce2c",
-      "public_id": "QSI-2026-12456",
+      "id": "3a4de67e-9fe3-4419-bfc0-c3aab88f828b",
+      "public_id": "QSI-2026-18626",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0396 для пакета crates.io zstd-safe версии 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3034,7 +3044,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.558535+00:00",
+      "detected_at": "2026-11-06T13:47:11.613071+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3090,7 +3100,7 @@
           "content_sha256": "4530740c3dd2640b5c96ad098b4e771f286dd562d83e8e4aa6214c518b1f08ee",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.571943+00:00",
+          "collected_at": "2026-11-06T13:47:11.623035+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0396"
         }
       ],
@@ -3113,8 +3123,8 @@
       ]
     },
     {
-      "id": "04236ffe-d335-4822-b15c-2096793affee",
-      "public_id": "QSI-2026-12457",
+      "id": "b8dc7c68-a47a-4c44-8c6c-440d4e2ef8f1",
+      "public_id": "QSI-2026-18627",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0397 для пакета crates.io zstd-safe версии 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::OutBuffer::around_pos); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3135,7 +3145,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.568234+00:00",
+      "detected_at": "2026-11-06T13:47:11.620470+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3191,7 +3201,7 @@
           "content_sha256": "4ad3bc187fa64e24d070e53c5d01373b2aba040ea27757bbf26f8efea74c0967",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.583143+00:00",
+          "collected_at": "2026-11-06T13:47:11.629622+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0397"
         }
       ],
@@ -3214,8 +3224,8 @@
       ]
     },
     {
-      "id": "dbe98b87-2e0f-4a5b-9d6d-ace53e80dcea",
-      "public_id": "QSI-2026-12458",
+      "id": "764ca7b5-ffcc-4048-b20a-fbe7c10abf07",
+      "public_id": "QSI-2026-18628",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0398 для пакета crates.io zstd-safe версии 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3236,7 +3246,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.577697+00:00",
+      "detected_at": "2026-11-06T13:47:11.627493+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3292,7 +3302,7 @@
           "content_sha256": "7e1e8fe35e2578f061734431e3a9558d8cc0dab6043f409c833b43c905bf10d3",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.591492+00:00",
+          "collected_at": "2026-11-06T13:47:11.636369+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0398"
         }
       ],
@@ -3315,8 +3325,8 @@
       ]
     },
     {
-      "id": "1092ed13-ab88-4318-8594-73c1880ea493",
-      "public_id": "QSI-2026-12459",
+      "id": "7877bda5-d2ac-4293-b762-afc1fa7068f1",
+      "public_id": "QSI-2026-18629",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0399 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3337,7 +3347,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.588742+00:00",
+      "detected_at": "2026-11-06T13:47:11.634461+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3393,7 +3403,7 @@
           "content_sha256": "58cd19f1b734988f6219b3659cd613c349a5c6693e08cb4e8b9846d1f92bb38f",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.603405+00:00",
+          "collected_at": "2026-11-06T13:47:11.642744+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0399"
         }
       ],
@@ -3416,8 +3426,8 @@
       ]
     },
     {
-      "id": "ae45be11-e847-4dbd-a8ee-0cc5f4605f34",
-      "public_id": "QSI-2026-12460",
+      "id": "e35a586a-8c03-402a-9c3b-ff67ab9452e4",
+      "public_id": "QSI-2026-18630",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0400 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3438,7 +3448,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.599025+00:00",
+      "detected_at": "2026-11-06T13:47:11.640125+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3494,7 +3504,7 @@
           "content_sha256": "00f83f7c4931137d6b18e25256c039f2c52bd627946f5f05f74c2cc7b2615d30",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.621460+00:00",
+          "collected_at": "2026-11-06T13:47:11.648478+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0400"
         }
       ],
@@ -3517,8 +3527,8 @@
       ]
     },
     {
-      "id": "76751eb6-c2f6-41db-ac93-2421a158ba56",
-      "public_id": "QSI-2026-12461",
+      "id": "0788dd49-b35b-47d2-8d52-1c388e71293f",
+      "public_id": "QSI-2026-18631",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0401 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::train_from_buffer); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3539,7 +3549,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.617631+00:00",
+      "detected_at": "2026-11-06T13:47:11.646276+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3595,7 +3605,7 @@
           "content_sha256": "dd6e9bd27e75cf4c8d9a5333bbc4dda81ef2f2990271b711f964d6bc829e71fd",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.634996+00:00",
+          "collected_at": "2026-11-06T13:47:11.655541+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0401"
         }
       ],
@@ -3618,8 +3628,8 @@
       ]
     },
     {
-      "id": "1aea2533-65fa-4bc9-a4bf-b05c3b103111",
-      "public_id": "QSI-2026-12462",
+      "id": "262efdd3-5cf8-4891-aa19-34457381409f",
+      "public_id": "QSI-2026-18632",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0402 для пакета crates.io zstd-safe версии 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3640,7 +3650,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.631741+00:00",
+      "detected_at": "2026-11-06T13:47:11.652513+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3696,7 +3706,7 @@
           "content_sha256": "464c8c61aa6d0a29b646ba665145c6d256c18786ece14e1921252cecf4a4e54e",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.643686+00:00",
+          "collected_at": "2026-11-06T13:47:11.662310+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0402"
         }
       ],
@@ -3719,8 +3729,8 @@
       ]
     },
     {
-      "id": "89d7c63c-c6ba-4f94-a916-35bbdeaf92bd",
-      "public_id": "QSI-2026-12463",
+      "id": "5ebb1a31-4204-4b68-baec-c8b5fd3cd314",
+      "public_id": "QSI-2026-18633",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0403 для пакета crates.io zstd-safe версии 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3741,7 +3751,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.640467+00:00",
+      "detected_at": "2026-11-06T13:47:11.659591+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3797,7 +3807,7 @@
           "content_sha256": "09699f0d23ac15a18937ce02a1b778a246ec661449852b62d6415d8d60ed2147",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.651728+00:00",
+          "collected_at": "2026-11-06T13:47:11.668934+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0403"
         }
       ],
@@ -3820,8 +3830,8 @@
       ]
     },
     {
-      "id": "29bbfea4-7a3f-404e-a1bd-9559da06b843",
-      "public_id": "QSI-2026-12464",
+      "id": "36768fae-6a87-4019-98ce-7b1641c5a438",
+      "public_id": "QSI-2026-18634",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0404 для пакета crates.io zstd-safe версии 7.2.4: Double free in `DCtx::try_clone`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3842,7 +3852,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.649240+00:00",
+      "detected_at": "2026-11-06T13:47:11.666389+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3898,7 +3908,7 @@
           "content_sha256": "e265647b9f2c582eebfcac7889bee04fada79ea833147205829d693f4c6f8131",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.663189+00:00",
+          "collected_at": "2026-11-06T13:47:11.675587+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0404"
         }
       ],
@@ -3921,8 +3931,8 @@
       ]
     },
     {
-      "id": "74f9284e-5162-409d-b83d-3d41e9edfc27",
-      "public_id": "QSI-2026-12465",
+      "id": "e6a11d4e-a32e-411e-8cea-d9f3265d8c08",
+      "public_id": "QSI-2026-18635",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0405 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -3943,7 +3953,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.660745+00:00",
+      "detected_at": "2026-11-06T13:47:11.673830+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3999,7 +4009,7 @@
           "content_sha256": "e784735107b5a74149056e3244a7f30afbcf59892ceaa6d018ec1739be5661d5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.671171+00:00",
+          "collected_at": "2026-11-06T13:47:11.681282+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0405"
         }
       ],
@@ -4022,8 +4032,8 @@
       ]
     },
     {
-      "id": "eee3b545-230a-4b5e-99b1-ae6ed71cc447",
-      "public_id": "QSI-2026-12466",
+      "id": "38649908-6693-45dd-a30b-da199f42e82d",
+      "public_id": "QSI-2026-18636",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0406 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4044,7 +4054,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.668657+00:00",
+      "detected_at": "2026-11-06T13:47:11.679358+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4100,7 +4110,7 @@
           "content_sha256": "f08bb0f8849019aa21c995ae08e9c10ff924c83b0464e87d3143ab07935008f5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.690474+00:00",
+          "collected_at": "2026-11-06T13:47:11.688200+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0406"
         }
       ],
@@ -4123,8 +4133,8 @@
       ]
     },
     {
-      "id": "8f681265-74a5-43a6-aad4-1f597869b472",
-      "public_id": "QSI-2026-12467",
+      "id": "4c967611-a332-4b0b-a4c9-99989c260827",
+      "public_id": "QSI-2026-18637",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0410 для пакета crates.io zstd-sys версии 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Касается только целевых платформ wasm32.",
@@ -4145,7 +4155,7 @@
       "affected_asset": "dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.681735+00:00",
+      "detected_at": "2026-11-06T13:47:11.686187+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4201,7 +4211,7 @@
           "content_sha256": "1e892df4ce7c9911f01547e4a80d1fb3ea5a27b8c1c89c0514917e08bbf3bdc5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.698994+00:00",
+          "collected_at": "2026-11-06T13:47:11.694663+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0410"
         }
       ],
@@ -4224,8 +4234,8 @@
       ]
     },
     {
-      "id": "6eec379b-a388-492f-84a9-9f5e24e00bb8",
-      "public_id": "QSI-2026-12468",
+      "id": "b3a27db6-1c10-4a8d-8ed2-18cf12115e1b",
+      "public_id": "QSI-2026-18638",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 4 бюллетеней (2 с оценкой high или critical) для 3 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, pprof@0.13.0 [dev]: GHSA-gw5w-5j7f-jmjj; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195; tokio@1.52.3 [dev]: RUSTSEC-2026-0386. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -4245,7 +4255,7 @@
       "affected_asset": "dependencies:crates.io:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.695219+00:00",
+      "detected_at": "2026-11-06T13:47:11.692593+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -4301,7 +4311,7 @@
           "content_sha256": "9d9b06d343ab87c0c3691f419ae25b559874c19803ae3bbe7fd1c99ca4493185",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.739831+00:00",
+          "collected_at": "2026-11-06T13:47:11.728587+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -4324,8 +4334,8 @@
       ]
     },
     {
-      "id": "8b2b7eb7-50f5-4e29-9612-2fc722f9a96d",
-      "public_id": "QSI-2026-12441",
+      "id": "dd03cfd6-bae0-4a11-a768-661fe50afc2b",
+      "public_id": "QSI-2026-18611",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0374 для пакета crates.io basic-toml версии 0.1.10 как информационный (unmaintained): `basic-toml` is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -4346,7 +4356,7 @@
       "affected_asset": "dependency:crates.io/basic-toml@0.1.10",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.343749+00:00",
+      "detected_at": "2026-11-06T13:47:11.499292+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -4402,7 +4412,7 @@
           "content_sha256": "5043412c341a3842fb5b4d44f2440bd25fa5620f52d2ed3398ec617b542ae0db",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.364491+00:00",
+          "collected_at": "2026-11-06T13:47:11.512658+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0374"
         }
       ],
@@ -4425,8 +4435,8 @@
       ]
     },
     {
-      "id": "3b74cbaf-eb57-4bf9-bcbe-8e1203a9b311",
-      "public_id": "QSI-2026-12444",
+      "id": "0cf8111e-c0d2-4f4b-a5f8-84a9d4e48f98",
+      "public_id": "QSI-2026-18614",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0173 для пакета crates.io proc-macro-error2 версии 2.0.1 как информационный (unmaintained): proc-macro-error2 is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -4447,7 +4457,7 @@
       "affected_asset": "dependency:crates.io/proc-macro-error2@2.0.1",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:15:32.407442+00:00",
+      "detected_at": "2026-11-06T13:47:11.527250+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -4503,7 +4513,7 @@
           "content_sha256": "0ecc182141bd9effc6d35bc24dc20c57e6473fb3877ad59a5fbdb1cd55b56528",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:15:32.426474+00:00",
+          "collected_at": "2026-11-06T13:47:11.535691+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0173"
         }
       ],
@@ -4547,9 +4557,9 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-12439",
-      "QSI-2026-12438",
-      "QSI-2026-12440"
+      "QSI-2026-18609",
+      "QSI-2026-18608",
+      "QSI-2026-18610"
     ],
     "roles": [
       {
@@ -4565,7 +4575,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12439"
+          "QSI-2026-18609"
         ],
         "files": 3
       },
@@ -4582,7 +4592,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12440"
+          "QSI-2026-18610"
         ],
         "files": 3
       },
@@ -4599,7 +4609,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12438"
+          "QSI-2026-18608"
         ],
         "files": 6
       }
@@ -4775,7 +4785,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-m665-v7pm-7grj (CVE-2026-115905).",
         "status": "todo",
-        "finding": "QSI-2026-12449",
+        "finding": "QSI-2026-18619",
         "finding_title": "zip 8.6.0 затронут GHSA-m665-v7pm-7grj (CVE-2026-115905)",
         "severity": "critical"
       },
@@ -4793,7 +4803,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0369.",
         "status": "todo",
-        "finding": "QSI-2026-12453",
+        "finding": "QSI-2026-18623",
         "finding_title": "zip 8.6.0 затронут RUSTSEC-2026-0369",
         "severity": "critical"
       },
@@ -4811,7 +4821,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-9hj8-73fh-9963 (CVE-2026-115907).",
         "status": "todo",
-        "finding": "QSI-2026-12447",
+        "finding": "QSI-2026-18617",
         "finding_title": "zip 8.6.0 затронут GHSA-9hj8-73fh-9963 (CVE-2026-115907)",
         "severity": "high"
       },
@@ -4829,7 +4839,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-hjqx-j4rw-g7xv (CVE-2026-115908).",
         "status": "todo",
-        "finding": "QSI-2026-12448",
+        "finding": "QSI-2026-18618",
         "finding_title": "zip 8.6.0 затронут GHSA-hjqx-j4rw-g7xv (CVE-2026-115908)",
         "severity": "high"
       },
@@ -4847,7 +4857,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429).",
         "status": "todo",
-        "finding": "QSI-2026-12450",
+        "finding": "QSI-2026-18620",
         "finding_title": "zip 8.6.0 затронут GHSA-q7v9-x93c-xqv3 (CVE-2026-115909, RUSTSEC-2026-0429)",
         "severity": "high"
       },
@@ -4865,7 +4875,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2026-0367.",
         "status": "todo",
-        "finding": "QSI-2026-12451",
+        "finding": "QSI-2026-18621",
         "finding_title": "zip 8.6.0 затронут RUSTSEC-2026-0367",
         "severity": "high"
       },
@@ -4883,7 +4893,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2023-0071 (CVE-2023-49092).",
         "status": "todo",
-        "finding": "QSI-2026-12445",
+        "finding": "QSI-2026-18615",
         "finding_title": "rsa 0.10.0-rc.18 затронут RUSTSEC-2023-0071 (CVE-2023-49092)",
         "severity": "medium"
       },
@@ -4901,7 +4911,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-8hxf-qr8p-62x4 (CVE-2026-115906).",
         "status": "todo",
-        "finding": "QSI-2026-12446",
+        "finding": "QSI-2026-18616",
         "finding_title": "zip 8.6.0 затронут GHSA-8hxf-qr8p-62x4 (CVE-2026-115906)",
         "severity": "medium"
       }
@@ -4921,7 +4931,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12442",
+        "finding": "QSI-2026-18612",
         "finding_title": "crypto-bigint 0.7.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -4939,7 +4949,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12443",
+        "finding": "QSI-2026-18613",
         "finding_title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -4957,7 +4967,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0368 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12452",
+        "finding": "QSI-2026-18622",
         "finding_title": "zip 8.6.0 затронут RUSTSEC-2026-0368 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -4975,7 +4985,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0391 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12454",
+        "finding": "QSI-2026-18624",
         "finding_title": "zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -4993,7 +5003,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12455",
+        "finding": "QSI-2026-18625",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5011,7 +5021,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0396 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12456",
+        "finding": "QSI-2026-18626",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5029,7 +5039,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12457",
+        "finding": "QSI-2026-18627",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5047,7 +5057,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0398 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12458",
+        "finding": "QSI-2026-18628",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5065,7 +5075,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12459",
+        "finding": "QSI-2026-18629",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5083,7 +5093,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12460",
+        "finding": "QSI-2026-18630",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5101,7 +5111,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12461",
+        "finding": "QSI-2026-18631",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5119,7 +5129,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12462",
+        "finding": "QSI-2026-18632",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5137,7 +5147,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12463",
+        "finding": "QSI-2026-18633",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5155,7 +5165,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12464",
+        "finding": "QSI-2026-18634",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5173,7 +5183,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0405 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12465",
+        "finding": "QSI-2026-18635",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5191,7 +5201,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12466",
+        "finding": "QSI-2026-18636",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -5209,7 +5219,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12467",
+        "finding": "QSI-2026-18637",
         "finding_title": "zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -5229,7 +5239,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12439",
+        "finding": "QSI-2026-18609",
         "finding_title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (3 файл(ов))",
         "severity": "medium"
       },
@@ -5247,7 +5257,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12438",
+        "finding": "QSI-2026-18608",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (6 файл(ов))",
         "severity": "medium"
       },
@@ -5265,7 +5275,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12440",
+        "finding": "QSI-2026-18610",
         "finding_title": "Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))",
         "severity": "medium"
       },
@@ -5283,7 +5293,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12439",
+        "finding": "QSI-2026-18609",
         "finding_title": "Квантово-уязвимый X25519: обёртка ключей и шифрование хранимых данных (3 файл(ов))",
         "severity": "medium"
       },
@@ -5301,7 +5311,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12438",
+        "finding": "QSI-2026-18608",
         "finding_title": "Квантово-уязвимый X25519: роль не определена (6 файл(ов))",
         "severity": "medium"
       },
@@ -5319,7 +5329,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12440",
+        "finding": "QSI-2026-18610",
         "finding_title": "Квантово-уязвимый RSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (3 файл(ов))",
         "severity": "medium"
       },
@@ -5337,7 +5347,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-12468",
+        "finding": "QSI-2026-18638",
         "finding_title": "4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки",
         "severity": "info"
       },
@@ -5355,7 +5365,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "basic-toml заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-12441",
+        "finding": "QSI-2026-18611",
         "finding_title": "basic-toml 0.1.10: информационный бюллетень RUSTSEC-2026-0374 (unmaintained)",
         "severity": "info"
       },
@@ -5373,7 +5383,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "proc-macro-error2 заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-12444",
+        "finding": "QSI-2026-18614",
         "finding_title": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)",
         "severity": "info"
       }
@@ -5800,7 +5810,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "ChaCha20-Poly1305",
@@ -5812,7 +5823,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "ChaCha20-Poly1305",
@@ -5824,7 +5836,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "HKDF",
@@ -5836,7 +5849,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "HKDF",
@@ -5848,7 +5862,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5860,7 +5875,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5872,7 +5888,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5884,7 +5901,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5896,7 +5914,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5908,7 +5927,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "scrypt",
@@ -5920,7 +5940,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5932,7 +5953,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5944,7 +5966,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5956,7 +5979,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5968,7 +5992,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5980,7 +6005,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Crypto library",
@@ -5992,19 +6018,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.14.0",
-      "usage": "crates.io dependency",
-      "library": "p256 (RustCrypto elliptic curves)",
-      "location": "Cargo.lock",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6016,7 +6031,21 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.14.0",
+      "usage": "crates.io dependency",
+      "library": "p256 (RustCrypto elliptic curves)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6028,7 +6057,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6040,7 +6070,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6052,7 +6083,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6064,7 +6096,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6076,7 +6109,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6088,19 +6122,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "workspace",
-      "usage": "crates.io dependency",
-      "library": "p256 (RustCrypto elliptic curves)",
-      "location": "age/Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -6112,7 +6135,21 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "workspace",
+      "usage": "crates.io dependency",
+      "library": "p256 (RustCrypto elliptic curves)",
+      "location": "age/Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "PQC library",
@@ -6124,7 +6161,8 @@
       "quantum_status": "pqc",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "PQC library",
@@ -6136,7 +6174,8 @@
       "quantum_status": "pqc",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "PQC library",
@@ -6148,7 +6187,8 @@
       "quantum_status": "pqc",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "RSA",
@@ -6160,7 +6200,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "RSA",
@@ -6172,7 +6213,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "RSA",
@@ -6184,7 +6226,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6196,7 +6239,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6208,7 +6252,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6220,7 +6265,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6232,7 +6278,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6244,7 +6291,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6256,7 +6304,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6268,7 +6317,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6280,7 +6330,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6292,7 +6343,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -6304,7 +6356,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -6413,7 +6466,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14.0",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "p384 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -6425,7 +6478,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.14.0",
-      "library": "p384 (RustCrypto elliptic curves)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -6509,7 +6562,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "p256 (RustCrypto elliptic curves)",
+      "library": "x25519-dalek (ed25519-dalek)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -6521,7 +6574,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "workspace",
-      "library": "x25519-dalek (ed25519-dalek)",
+      "library": "p256 (RustCrypto elliptic curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,

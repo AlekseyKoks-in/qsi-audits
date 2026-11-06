@@ -1,8 +1,8 @@
 {
-  "content_sha256": "f60610c0fd09206ce2e4aaad78ee103215b2a01dfce8478b48eab66154fe87b9",
+  "content_sha256": "2d8b5fd188ac91539032dfc0c992994a3714083bf24b5b2cae09bf32785b8e32",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T19:42:35.043355+00:00",
+  "generated_at": "2026-11-06T14:13:18.024630+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "97bf65f4-f5d4-4df3-86a8-46d00021c160",
+    "id": "46c05467-0807-49d9-9081-62e8bff22f2f",
     "mode": "document",
     "title": "Document audit: zcash-swift-wallet-sdk",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T19:42:11.557828+00:00",
-    "finished_at": "2026-11-04T19:42:34.913905+00:00",
+    "started_at": "2026-11-06T14:12:52.856747+00:00",
+    "finished_at": "2026-11-06T14:13:17.350847+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -1277,22 +1277,22 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": ".claude/skills/update-checkpoints/scripts/checkmate.py: 73 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": ".claude/skills/update-checkpoints/scripts/checkmate.py: 73 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": ".claude/skills/update-checkpoints/scripts/fetch_checkpoints.py: 164 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": ".claude/skills/update-checkpoints/scripts/fetch_checkpoints.py: 164 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": ".claude/skills/update-checkpoints/scripts/verify_checkpoints.py: 199 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": ".claude/skills/update-checkpoints/scripts/verify_checkpoints.py: 199 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "BuildSupport/LocalPackages-Package.swift: 15 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "BuildSupport/LocalPackages-Package.swift: 15 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1312,782 +1312,782 @@
     },
     {
       "area": "source_code",
-      "detail": "Package.swift: 113 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Package.swift: 113 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Account/Account.swift: 48 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Account/Account.swift: 48 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Account/AccountMetadataKey.swift: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Account/AccountMetadataKey.swift: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/Action.swift: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/Action.swift: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/ClearAlreadyScannedBlocksAction.swift: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/ClearAlreadyScannedBlocksAction.swift: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/ClearCacheAction.swift: 30 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/ClearCacheAction.swift: 30 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/DownloadAction.swift: 67 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/DownloadAction.swift: 67 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/EnhanceAction.swift: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/EnhanceAction.swift: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/FetchUTXOsAction.swift: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/FetchUTXOsAction.swift: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/MigrateLegacyCacheDBAction.swift: 70 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/MigrateLegacyCacheDBAction.swift: 70 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/ProcessSuggestedScanRangesAction.swift: 69 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/ProcessSuggestedScanRangesAction.swift: 69 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/RewindAction.swift: 62 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/RewindAction.swift: 62 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/SaplingParamsAction.swift: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/SaplingParamsAction.swift: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/ScanAction.swift: 132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/ScanAction.swift: 132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/TxResubmissionAction.swift: 48 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/TxResubmissionAction.swift: 48 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/UpdateChainTipAction.swift: 59 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/UpdateChainTipAction.swift: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/UpdateSubtreeRootsAction.swift: 132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/UpdateSubtreeRootsAction.swift: 132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Actions/ValidateServerAction.swift: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Actions/ValidateServerAction.swift: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/CompactBlockProcessor.swift: 993 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/CompactBlockProcessor.swift: 993 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/DatabaseStorage/ConnectorProvider.swift: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/DatabaseStorage/ConnectorProvider.swift: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/DatabaseStorage/DatabaseStorageError.swift: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/DatabaseStorage/DatabaseStorageError.swift: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/DatabaseStorage/SimpleConnectionProvider.swift: 91 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/DatabaseStorage/SimpleConnectionProvider.swift: 91 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Download/BlockDownloader.swift: 285 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Download/BlockDownloader.swift: 285 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Download/BlockDownloaderService.swift: 120 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Download/BlockDownloaderService.swift: 120 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Enhance/BlockEnhancer.swift: 275 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Enhance/BlockEnhancer.swift: 275 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/FetchUnspentTxOutputs/UTXOFetcher.swift: 95 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/FetchUnspentTxOutputs/UTXOFetcher.swift: 95 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/FilesystemStorage/FSCompactBlockRepository.swift: 419 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/FilesystemStorage/FSCompactBlockRepository.swift: 419 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/SaplingParameters/SaplingParametersHandler.swift: 72 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/SaplingParameters/SaplingParametersHandler.swift: 72 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Scan/BlockScanner.swift: 88 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Scan/BlockScanner.swift: 88 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Utils/AfterSyncHooksManager.swift: 88 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Utils/AfterSyncHooksManager.swift: 88 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Utils/CompactBlockProgress.swift: 26 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Utils/CompactBlockProgress.swift: 26 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Block/Utils/SyncControlData.swift: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Block/Utils/SyncControlData.swift: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Broadcaster.swift: 211 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Broadcaster.swift: 211 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Checkpoint/BundleCheckpointSource.swift: 156 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Checkpoint/BundleCheckpointSource.swift: 156 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Checkpoint/BundleCheckpointURLProvider.swift: 63 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Checkpoint/BundleCheckpointURLProvider.swift: 63 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Checkpoint/Checkpoint+helpers.swift: 69 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Checkpoint/Checkpoint+helpers.swift: 69 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Checkpoint/Checkpoint.swift: 122 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Checkpoint/Checkpoint.swift: 122 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Checkpoint/CheckpointSource.swift: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Checkpoint/CheckpointSource.swift: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Checkpoint/CheckpointSourceFactory.swift: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Checkpoint/CheckpointSourceFactory.swift: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Checkpoint/RegtestCheckpointSource.swift: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Checkpoint/RegtestCheckpointSource.swift: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/ClosureSynchronizer.swift: 182 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/ClosureSynchronizer.swift: 182 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/CombineSynchronizer.swift: 166 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/CombineSynchronizer.swift: 166 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Constants/Checkpoint+mainnet.swift: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Constants/Checkpoint+mainnet.swift: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Constants/Checkpoint+regtest.swift: 30 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Constants/Checkpoint+regtest.swift: 30 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Constants/Checkpoint+testnet.swift: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Constants/Checkpoint+testnet.swift: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Constants/NetworkActivationHeights.swift: 70 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Constants/NetworkActivationHeights.swift: 70 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Constants/ZcashSDK.swift: 321 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Constants/ZcashSDK.swift: 321 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/DAO/BlockDao.swift: 65 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/DAO/BlockDao.swift: 65 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/DAO/PagedTransactionDao.swift: 54 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/DAO/PagedTransactionDao.swift: 54 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/DAO/TransactionDao.swift: 341 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/DAO/TransactionDao.swift: 341 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/DAO/UnspentTransactionOutputDao.swift: 37 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/DAO/UnspentTransactionOutputDao.swift: 37 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Entity/AccountEntity.swift: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Entity/AccountEntity.swift: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Entity/EncodedTransactionEntity.swift: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Entity/EncodedTransactionEntity.swift: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Entity/Pczt.swift: 10 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Entity/Pczt.swift: 10 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Entity/SentNoteEntity.swift: 48 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Entity/SentNoteEntity.swift: 48 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Entity/TransactionEntity.swift: 352 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Entity/TransactionEntity.swift: 352 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Entity/UnspentTransactionOutputEntity.swift: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Entity/UnspentTransactionOutputEntity.swift: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Entity/ZcashCompactBlock.swift: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Entity/ZcashCompactBlock.swift: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Error/RedactedRustError.swift: 74 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Error/RedactedRustError.swift: 74 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Error/ZcashError+LocalizedError.swift: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Error/ZcashError+LocalizedError.swift: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Error/ZcashError.swift: 1559 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Error/ZcashError.swift: 1559 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Error/ZcashErrorCode.swift: 550 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Error/ZcashErrorCode.swift: 550 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Error/ZcashErrorCodeDefinition.swift: 1099 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Error/ZcashErrorCodeDefinition.swift: 1099 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Bool+ToData.swift: 15 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Bool+ToData.swift: 15 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Data+ToOtherTypes.swift: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Data+ToOtherTypes.swift: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Data+Zcash.swift: 17 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Data+Zcash.swift: 17 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Data+internal.swift: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Data+internal.swift: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Error+ZcashError.swift: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Error+ZcashError.swift: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/HexEncode.swift: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/HexEncode.swift: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Int+ToData.swift: 15 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Int+ToData.swift: 15 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/NumberFormatter+Zcash.swift: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/NumberFormatter+Zcash.swift: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/URL+UpdateWithAlias.swift: 36 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/URL+UpdateWithAlias.swift: 36 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Undescribable.swift: 22 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Undescribable.swift: 22 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/Zatoshi+SQLite.swift: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/Zatoshi+SQLite.swift: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/ZcashRust+Utils.swift: 26 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/ZcashRust+Utils.swift: 26 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Extensions/ZcashSDK+extensions.swift: 34 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Extensions/ZcashSDK+extensions.swift: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Initializer.swift: 661 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Initializer.swift: 661 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Metrics/SDKMetrics.swift: 150 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Metrics/SDKMetrics.swift: 150 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Migration/ChainTipEstimator.swift: 138 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Migration/ChainTipEstimator.swift: 138 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Migration/MigrationBroadcaster.swift: 306 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Migration/MigrationBroadcaster.swift: 306 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Migration/MigrationSyncGate.swift: 543 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Migration/MigrationSyncGate.swift: 543 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Migration/OrchardMigration.swift: 1016 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Migration/OrchardMigration.swift: 1016 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Migration/OrchardMigrationHost.swift: 479 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Migration/OrchardMigrationHost.swift: 479 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/Eip681TransactionRequest.swift: 89 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/Eip681TransactionRequest.swift: 89 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/FiatCurrencyResult.swift: 31 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/FiatCurrencyResult.swift: 31 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/Memo.swift: 236 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/Memo.swift: 236 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/MigrationModels.swift: 1014 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/MigrationModels.swift: 1014 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/Proposal.swift: 83 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/Proposal.swift: 83 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/ScanRange.swift: 31 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/ScanRange.swift: 31 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/ScanSummary.swift: 14 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/ScanSummary.swift: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/SingleUseTransparentAddress.swift: 29 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/SingleUseTransparentAddress.swift: 29 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/TransactionDataRequest.swift: 107 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/TransactionDataRequest.swift: 107 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/TxId.swift: 48 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/TxId.swift: 48 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/WalletSummary.swift: 140 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/WalletSummary.swift: 140 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/WalletTypes.swift: 354 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/WalletTypes.swift: 354 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/Zatoshi.swift: 115 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/Zatoshi.swift: 115 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Model/ZcashNetwork+IronwoodActivation.swift: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Model/ZcashNetwork+IronwoodActivation.swift: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/LightWalletGRPCService.swift: 566 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/LightWalletGRPCService.swift: 566 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/Extensions/Protocolbuffer+Extensions.swift: 50 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/Extensions/Protocolbuffer+Extensions.swift: 50 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/compact_formats.pb.swift: 617 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/compact_formats.pb.swift: 617 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/proposal.pb.swift: 1052 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/proposal.pb.swift: 1052 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/service.grpc.swift: 2392 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/service.grpc.swift: 2392 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/service.pb.swift: 1567 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/GRPC/ProtoBuf/service.pb.swift: 1567 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/LightWalletService.swift: 252 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/LightWalletService.swift: 252 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Modules/Service/Tor/LightWalletGRPCServiceOverTor.swift: 273 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Modules/Service/Tor/LightWalletGRPCServiceOverTor.swift: 273 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Providers/LatestBlocksDataProvider.swift: 70 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Providers/LatestBlocksDataProvider.swift: 70 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Providers/ResourceProvider.swift: 75 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Providers/ResourceProvider.swift: 75 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Repository/BlockRepository.swift: 13 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Repository/BlockRepository.swift: 13 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Repository/CompactBlockRepository.swift: 43 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Repository/CompactBlockRepository.swift: 43 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Repository/NotesRepository.swift: 17 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Repository/NotesRepository.swift: 17 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Repository/PaginatedTransactionRepository.swift: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Repository/PaginatedTransactionRepository.swift: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Repository/TransactionRepository.swift: 31 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Repository/TransactionRepository.swift: 31 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Repository/TransactionRepositoryBuilder.swift: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Repository/TransactionRepositoryBuilder.swift: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/Voting/PirSnapshotResolver.swift: 268 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/Voting/PirSnapshotResolver.swift: 268 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingConstants.swift: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingConstants.swift: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingKeyTypes.swift: 148 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingKeyTypes.swift: 148 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingRustBackend.swift: 2140 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingRustBackend.swift: 2140 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingTypes.swift: 673 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/Voting/VotingTypes.swift: 673 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/WalletSummary+FFI.swift: 90 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/WalletSummary+FFI.swift: 90 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/ZcashEip681Backend.swift: 266 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/ZcashEip681Backend.swift: 266 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/ZcashKeyDerivationBackend.swift: 281 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/ZcashKeyDerivationBackend.swift: 281 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/ZcashKeyDerivationBackendWelding.swift: 114 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/ZcashKeyDerivationBackendWelding.swift: 114 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/ZcashRustBackend.swift: 3426 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/ZcashRustBackend.swift: 3426 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Rust/ZcashRustBackendWelding.swift: 887 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Rust/ZcashRustBackendWelding.swift: 887 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Synchronizer.swift: 1809 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Synchronizer.swift: 1809 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Synchronizer/ClosureSDKSynchronizer.swift: 300 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Synchronizer/ClosureSDKSynchronizer.swift: 300 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Synchronizer/CombineSDKSynchronizer.swift: 293 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Synchronizer/CombineSDKSynchronizer.swift: 293 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Synchronizer/Dependencies.swift: 258 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Synchronizer/Dependencies.swift: 258 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Synchronizer/SDKBroadcaster.swift: 206 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Synchronizer/SDKBroadcaster.swift: 206 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Synchronizer/SDKSynchronizer.swift: 1637 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Synchronizer/SDKSynchronizer.swift: 1637 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Tool/DerivationTool.swift: 303 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Tool/DerivationTool.swift: 303 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Tor/TorClient.swift: 549 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Tor/TorClient.swift: 549 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Transaction/EndpointSubmitter.swift: 68 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Transaction/EndpointSubmitter.swift: 68 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Transaction/MultiEndpointSubmitter.swift: 284 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Transaction/MultiEndpointSubmitter.swift: 284 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Transaction/SubmitPlanExecutor.swift: 42 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Transaction/SubmitPlanExecutor.swift: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Transaction/SubmitPlanStore.swift: 243 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Transaction/SubmitPlanStore.swift: 243 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Transaction/TransactionEncoder.swift: 115 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Transaction/TransactionEncoder.swift: 115 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Transaction/TxResubmitter.swift: 163 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Transaction/TxResubmitter.swift: 163 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Transaction/WalletTransactionEncoder.swift: 206 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Transaction/WalletTransactionEncoder.swift: 206 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/AsyncToClosureGateway.swift: 46 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/AsyncToClosureGateway.swift: 46 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/AsyncToCombineGateway.swift: 59 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/AsyncToCombineGateway.swift: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/BackupExcludedStorage.swift: 40 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/BackupExcludedStorage.swift: 40 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/Clamped.swift: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/Clamped.swift: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/DBActor.swift: 42 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/DBActor.swift: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/DIContainer.swift: 86 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/DIContainer.swift: 86 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/GenericActor.swift: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/GenericActor.swift: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/LoggingProxy.swift: 57 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/LoggingProxy.swift: 57 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/OSLogger.swift: 170 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/OSLogger.swift: 170 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/SDKFlags.swift: 84 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/SDKFlags.swift: 84 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/SaplingParameterDownloader.swift: 177 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/SaplingParameterDownloader.swift: 177 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/SpecificCombineTypes.swift: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/SpecificCombineTypes.swift: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/SyncSessionIDGenerator.swift: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/SyncSessionIDGenerator.swift: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/Task+sleep.swift: 14 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/Task+sleep.swift: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/UsedAliasesChecker.swift: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/UsedAliasesChecker.swift: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/WitnessesFixGate.swift: 138 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/WitnessesFixGate.swift: 138 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "Sources/ZcashLightClientKit/Utils/ZcashFileManager.swift: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "Sources/ZcashLightClientKit/Utils/ZcashFileManager.swift: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -2097,192 +2097,192 @@
     },
     {
       "area": "source_code",
-      "detail": "rust/build.rs: 78 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/build.rs: 78 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/derivation.rs: 826 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/derivation.rs: 826 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/eip681.rs: 460 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/eip681.rs: 460 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/error_report.rs: 532 lines scanned with 16 rule patterns and 145 registry patterns; 135 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/error_report.rs: 532 lines scanned with 16 rule patterns and 266 registry patterns; 135 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/ext_schema.rs: 44 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/ext_schema.rs: 44 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/ffi.rs: 1364 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/ffi.rs: 1364 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/ffi/sys.rs: 2 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/ffi/sys.rs: 2 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/lib.rs: 4831 lines scanned with 16 rule patterns and 145 registry patterns; 46 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/lib.rs: 4831 lines scanned with 16 rule patterns and 266 registry patterns; 46 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/migration.rs: 11699 lines scanned with 16 rule patterns and 145 registry patterns; 7137 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/migration.rs: 11699 lines scanned with 16 rule patterns and 266 registry patterns; 7137 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/migration_engine.rs: 138 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/migration_engine.rs: 138 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/migration_finalize.rs: 210 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/migration_finalize.rs: 210 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/migration_keystone.rs: 570 lines scanned with 16 rule patterns and 145 registry patterns; 303 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/migration_keystone.rs: 570 lines scanned with 16 rule patterns and 266 registry patterns; 303 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/migration_plan_cache.rs: 140 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/migration_plan_cache.rs: 140 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/migration_turnstile.rs: 110 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/migration_turnstile.rs: 110 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/os_log.rs: 80 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/os_log.rs: 80 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/os_log/layer.rs: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/os_log/layer.rs: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/os_log/signpost.rs: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/os_log/signpost.rs: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/os_log/writer.rs: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/os_log/writer.rs: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/tor.rs: 299 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/tor.rs: 299 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting.rs: 26 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/voting.rs: 26 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/confirmation.rs: 70 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/voting/confirmation.rs: 70 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/constants.rs: 50 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/voting/constants.rs: 50 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/db.rs: 200 lines scanned with 16 rule patterns and 145 registry patterns; 85 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/db.rs: 200 lines scanned with 16 rule patterns and 266 registry patterns; 85 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/delegation.rs: 1840 lines scanned with 16 rule patterns and 145 registry patterns; 1132 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/delegation.rs: 1840 lines scanned with 16 rule patterns and 266 registry patterns; 1132 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/ffi_types.rs: 201 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/voting/ffi_types.rs: 201 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/helpers.rs: 255 lines scanned with 16 rule patterns and 145 registry patterns; 72 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/helpers.rs: 255 lines scanned with 16 rule patterns and 266 registry patterns; 72 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/json.rs: 223 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/voting/json.rs: 223 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/notes.rs: 265 lines scanned with 16 rule patterns and 145 registry patterns; 151 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/notes.rs: 265 lines scanned with 16 rule patterns and 266 registry patterns; 151 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/progress.rs: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/voting/progress.rs: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/recovery.rs: 765 lines scanned with 16 rule patterns and 145 registry patterns; 412 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/recovery.rs: 765 lines scanned with 16 rule patterns and 266 registry patterns; 412 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/rounds.rs: 520 lines scanned with 16 rule patterns and 145 registry patterns; 200 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/rounds.rs: 520 lines scanned with 16 rule patterns and 266 registry patterns; 200 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/share_tracking.rs: 541 lines scanned with 16 rule patterns and 145 registry patterns; 172 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/share_tracking.rs: 541 lines scanned with 16 rule patterns and 266 registry patterns; 172 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/signing.rs: 487 lines scanned with 16 rule patterns and 145 registry patterns; 309 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/signing.rs: 487 lines scanned with 16 rule patterns and 266 registry patterns; 309 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/tree.rs: 111 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/src/voting/tree.rs: 111 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/util.rs: 673 lines scanned with 16 rule patterns and 145 registry patterns; 403 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/util.rs: 673 lines scanned with 16 rule patterns and 266 registry patterns; 403 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/src/voting/vote.rs: 341 lines scanned with 16 rule patterns and 145 registry patterns; 168 lines in #[cfg(test)] modules ignored",
+      "detail": "rust/src/voting/vote.rs: 341 lines scanned with 16 rule patterns and 266 registry patterns; 168 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/wrapper.c: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/wrapper.c: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "rust/wrapper.h: 9 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "rust/wrapper.h: 9 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -2308,9 +2308,9 @@
       "count": 198,
       "rows": 198,
       "examples": [
-        ".claude/skills/update-checkpoints/scripts/checkmate.py: 73 lines scanned with 16 rule patterns and 145 registry patterns",
-        ".claude/skills/update-checkpoints/scripts/fetch_checkpoints.py: 164 lines scanned with 16 rule patterns and 145 registry patterns",
-        ".claude/skills/update-checkpoints/scripts/verify_checkpoints.py: 199 lines scanned with 16 rule patterns and 145 registry patterns"
+        ".claude/skills/update-checkpoints/scripts/checkmate.py: 73 lines scanned with 16 rule patterns and 266 registry patterns",
+        ".claude/skills/update-checkpoints/scripts/fetch_checkpoints.py: 164 lines scanned with 16 rule patterns and 266 registry patterns",
+        ".claude/skills/update-checkpoints/scripts/verify_checkpoints.py: 199 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -2616,12 +2616,22 @@
     "inventory_by_quantum_status": {
       "not_applicable": 40,
       "vulnerable_shor": 3
+    },
+    "inventory_by_origin": {
+      "dependency": {
+        "total": 40,
+        "vulnerable_shor": 0
+      },
+      "own": {
+        "total": 3,
+        "vulnerable_shor": 3
+      }
     }
   },
   "findings": [
     {
-      "id": "c994e207-699c-41ec-a51c-049f4823fa29",
-      "public_id": "QSI-2026-12973",
+      "id": "4354832e-a697-4bc1-95bd-12b35a6270e6",
+      "public_id": "QSI-2026-19144",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (2048-bit) в responsible_disclosure.md",
       "description": "Найден открытый ключ RSA 2048-bit (строка 11).",
@@ -2641,7 +2651,7 @@
       "affected_asset": "file:responsible_disclosure.md#line 11",
       "data_source": "responsible_disclosure.md",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.491647+00:00",
+      "detected_at": "2026-11-06T14:13:17.129541+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -2731,7 +2741,7 @@
           "content_sha256": "99f8a76d7955bc1cad612c6fe14ee442ba2c3ba5655096eda02d83c54d97d810",
           "source_sha256": "b22c1c8a1dad5e09a915455a9111014624ba559bbea9c7b08f2dd4e1df0782f2",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.571373+00:00",
+          "collected_at": "2026-11-06T14:13:17.148414+00:00",
           "url": null
         },
         {
@@ -2742,7 +2752,7 @@
           "content_sha256": "a744425426415d58dbeef862a6f1d8bcf6b00820639c8784270363d0b6330969",
           "source_sha256": "b22c1c8a1dad5e09a915455a9111014624ba559bbea9c7b08f2dd4e1df0782f2",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.571382+00:00",
+          "collected_at": "2026-11-06T14:13:17.148422+00:00",
           "url": null
         }
       ],
@@ -2780,8 +2790,8 @@
       ]
     },
     {
-      "id": "2ab5b837-10c0-4fba-887e-238169884324",
-      "public_id": "QSI-2026-12972",
+      "id": "3ca1a653-c6e1-4832-9381-c01813e73bf4",
+      "public_id": "QSI-2026-19143",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (1 файл(ов))",
       "description": "1 упоминаний RedDSA в 1 файл(ах), например Sources/ZcashLightClientKit/Rust/Voting/VotingRustBackend.swift:682. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -2801,7 +2811,7 @@
       "affected_asset": "source-code:RedDSA:transaction_signing",
       "data_source": "Sources/ZcashLightClientKit/Rust/Voting/VotingRustBackend.swift",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.473460+00:00",
+      "detected_at": "2026-11-06T14:13:17.115770+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -2898,7 +2908,7 @@
           "content_sha256": "9a4939791e96816dc694840f60c037365b7ea1d50adc179063a950f8eb730cc6",
           "source_sha256": "6f96ef9d20b4a99b6eec105c7a00ccab7ac16e7d3ca82abf2312e377469be846",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.499515+00:00",
+          "collected_at": "2026-11-06T14:13:17.133549+00:00",
           "url": "https://github.com/zcash/zcash-swift-wallet-sdk/blob/4895ee058da99971057cceb80f36b8909656a8a9/Sources/ZcashLightClientKit/Rust/Voting/VotingRustBackend.swift#L682"
         }
       ],
@@ -2936,8 +2946,8 @@
       ]
     },
     {
-      "id": "af4bc089-812c-44fc-91c7-6e1ad222576d",
-      "public_id": "QSI-2026-12981",
+      "id": "85d66a0f-b1dd-4c57-8d9c-25a21afe1e8f",
+      "public_id": "QSI-2026-19152",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "rsa 0.9.10 затронут RUSTSEC-2023-0071 (CVE-2023-49092)",
       "description": "OSV.dev сообщает RUSTSEC-2023-0071 (CVE-2023-49092) для пакета crates.io rsa версии 0.9.10: Marvin Attack: potential key recovery through timing sidechannels. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -2958,7 +2968,7 @@
       "affected_asset": "dependency:crates.io/rsa@0.9.10",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.718234+00:00",
+      "detected_at": "2026-11-06T14:13:17.201012+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -3034,7 +3044,7 @@
           "content_sha256": "6fcc27a80e8a30342b68a229087947db7a952d0facf3cc8d6edbd7abfd150c53",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.736929+00:00",
+          "collected_at": "2026-11-06T14:13:17.209579+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0071"
         }
       ],
@@ -3057,8 +3067,8 @@
       ]
     },
     {
-      "id": "6d787d37-52f9-4876-a964-1653423d9b57",
-      "public_id": "QSI-2026-12982",
+      "id": "00ce0686-9fae-4b09-9f84-e1d850c63cfb",
+      "public_id": "QSI-2026-19153",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "rustls 0.23.42 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)",
       "description": "OSV.dev сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285) для пакета crates.io rustls версии 0.23.42: Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3079,7 +3089,7 @@
       "affected_asset": "dependency:crates.io/rustls@0.23.42",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.730363+00:00",
+      "detected_at": "2026-11-06T14:13:17.207664+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -3155,7 +3165,7 @@
           "content_sha256": "f20e4b21c01d3d75460ac8d90a54d541a1a34187a4f05b501e4f46c27c564e86",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.780434+00:00",
+          "collected_at": "2026-11-06T14:13:17.217275+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-2mjx-qc3c-rqvc"
         }
       ],
@@ -3178,8 +3188,8 @@
       ]
     },
     {
-      "id": "fa9bd105-736e-410a-9710-9a84b198568b",
-      "public_id": "QSI-2026-12983",
+      "id": "74052406-4653-453a-8e81-cf5879dbabc7",
+      "public_id": "QSI-2026-19154",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "rustls 0.23.42 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)",
       "description": "OSV.dev сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) для пакета crates.io rustls версии 0.23.42: Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3200,7 +3210,7 @@
       "affected_asset": "dependency:crates.io/rustls@0.23.42",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.765131+00:00",
+      "detected_at": "2026-11-06T14:13:17.214489+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "cvss": {
@@ -3276,7 +3286,7 @@
           "content_sha256": "87554a0cce34470a221f04ad57566b2b512ff6299ad3ee95b190df659d646e3d",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.792582+00:00",
+          "collected_at": "2026-11-06T14:13:17.225399+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-c8m5-c952-6cm4"
         }
       ],
@@ -3299,8 +3309,8 @@
       ]
     },
     {
-      "id": "598bc5e1-7208-424b-b2d1-a530964ff54d",
-      "public_id": "QSI-2026-12986",
+      "id": "80b14ad1-da02-4b2f-9534-c351703553b1",
+      "public_id": "QSI-2026-19157",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "serde_with 3.17.0 затронут GHSA-7gcf-g7xr-8hxj",
       "description": "OSV.dev сообщает GHSA-7gcf-g7xr-8hxj для пакета crates.io serde_with версии 3.17.0: serde_with: KeyValueMap serialization panics on empty sequence or map entries. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3321,7 +3331,7 @@
       "affected_asset": "dependency:crates.io/serde_with@3.17.0",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.805330+00:00",
+      "detected_at": "2026-11-06T14:13:17.237682+00:00",
       "risk_score": 33.1,
       "risk_breakdown": {
         "score": 33.1,
@@ -3377,7 +3387,7 @@
           "content_sha256": "9a6efbdf7670d9ead9898fb39da9d141ceec2380712ba7d56de6b7ec07c98051",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.815442+00:00",
+          "collected_at": "2026-11-06T14:13:17.247278+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-7gcf-g7xr-8hxj"
         }
       ],
@@ -3400,8 +3410,8 @@
       ]
     },
     {
-      "id": "481da3bc-23c6-44e7-8830-2bb4779bf4b6",
-      "public_id": "QSI-2026-12987",
+      "id": "fbd26e83-1f8d-43ac-9c85-13b3a2dfd6af",
+      "public_id": "QSI-2026-19158",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "time 0.3.37 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)",
       "description": "OSV.dev сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009) для пакета crates.io time версии 0.3.37: time vulnerable to stack exhaustion Denial of Service attack. Проверенный код не упоминает затронутые функции (time::Date::parse, time::OffsetDateTime::parse, time::PrimitiveDateTime::parse, time::Time::parse, time::UtcDateTime::parse, time::UtcOffset::parse …); time приходит через другие зависимости, которые могут их вызывать.",
@@ -3422,7 +3432,7 @@
       "affected_asset": "dependency:crates.io/time@0.3.37",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.813164+00:00",
+      "detected_at": "2026-11-06T14:13:17.244679+00:00",
       "risk_score": 28.2,
       "risk_breakdown": {
         "score": 28.2,
@@ -3478,7 +3488,7 @@
           "content_sha256": "47bed44226c6f8f5c94bfd27c3dd67ade62aa708c5d61bcca37c2b8bbe9b577d",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.823363+00:00",
+          "collected_at": "2026-11-06T14:13:17.254345+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-r6v5-fh4h-64xc"
         }
       ],
@@ -3501,8 +3511,8 @@
       ]
     },
     {
-      "id": "08a8d6b9-7ced-4299-b5f2-cff4c30329f6",
-      "public_id": "QSI-2026-12985",
+      "id": "c5dde25e-352b-4a1d-ba03-41e97af2174d",
+      "public_id": "QSI-2026-19156",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "rustls 0.23.42 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)",
       "description": "OSV.dev сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349) для пакета crates.io rustls версии 0.23.42: rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3523,7 +3533,7 @@
       "affected_asset": "dependency:crates.io/rustls@0.23.42",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.797950+00:00",
+      "detected_at": "2026-11-06T14:13:17.230118+00:00",
       "risk_score": 29.4,
       "risk_breakdown": {
         "cvss": {
@@ -3599,7 +3609,7 @@
           "content_sha256": "f0fcaa2fa7a56e188458f39e55b23e999d0c7da6d3c1294c014c64ab37b33dee",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.807670+00:00",
+          "collected_at": "2026-11-06T14:13:17.240508+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-w44r-93j7-qv28"
         }
       ],
@@ -3622,8 +3632,8 @@
       ]
     },
     {
-      "id": "ac9c7a91-f083-44f3-a97a-4be35fb0c6fe",
-      "public_id": "QSI-2026-12984",
+      "id": "da558859-0046-4223-bf09-be43653ed8d1",
+      "public_id": "QSI-2026-19155",
       "rule_id": "DEP-KNOWN-ADVISORY",
       "title": "rustls 0.23.42 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)",
       "description": "OSV.dev сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348) для пакета crates.io rustls версии 0.23.42: Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication. Затронутый код находится за флагом Cargo `brotli`, выключенным по умолчанию; ни один проверенный манифест его не включает — бюллетень не применим, если флаг не включает другая зависимость.",
@@ -3644,7 +3654,7 @@
       "affected_asset": "dependency:crates.io/rustls@0.23.42",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.787007+00:00",
+      "detected_at": "2026-11-06T14:13:17.221425+00:00",
       "risk_score": 25.0,
       "risk_breakdown": {
         "cvss": {
@@ -3720,7 +3730,7 @@
           "content_sha256": "9118726d52fea7cee09a6b4a21a10d2a7bab860f9762fff4658cb78db0453744",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.801058+00:00",
+          "collected_at": "2026-11-06T14:13:17.232953+00:00",
           "url": "https://osv.dev/vulnerability/GHSA-h2v8-394m-p7vv"
         }
       ],
@@ -3743,8 +3753,8 @@
       ]
     },
     {
-      "id": "66720caa-1bf3-433b-bd81-22e1519a0927",
-      "public_id": "QSI-2026-12977",
+      "id": "393dea0a-1532-42a5-8a31-298863345279",
+      "public_id": "QSI-2026-19148",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0387 для пакета crates.io crypto-bigint версии 0.5.5: Multiple timing variability issues in operations intended to be constant-time. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3765,7 +3775,7 @@
       "affected_asset": "dependency:crates.io/crypto-bigint@0.5.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.680030+00:00",
+      "detected_at": "2026-11-06T14:13:17.169530+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3821,7 +3831,7 @@
           "content_sha256": "eab63427da988e95becf061fd8169abcb9634f743aeeb7567dfa2ba2667b05a5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.696332+00:00",
+          "collected_at": "2026-11-06T14:13:17.179826+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0387"
         }
       ],
@@ -3844,8 +3854,8 @@
       ]
     },
     {
-      "id": "a1b39f7f-bc01-40b4-8091-68e016253bc4",
-      "public_id": "QSI-2026-12978",
+      "id": "dd2c9dfa-65c2-43b1-9cc5-8374479b827c",
+      "public_id": "QSI-2026-19149",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "event-listener 5.4.1 затронут RUSTSEC-2026-0221 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0221 для пакета crates.io event-listener версии 5.4.1: `event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3866,7 +3876,7 @@
       "affected_asset": "dependency:crates.io/event-listener@5.4.1",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.691972+00:00",
+      "detected_at": "2026-11-06T14:13:17.177975+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -3922,7 +3932,7 @@
           "content_sha256": "984b4e4e87b4e2cc5992a06daf6b6466ee08279d927a38dca105b75fa8546f7c",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.704402+00:00",
+          "collected_at": "2026-11-06T14:13:17.188083+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0221"
         }
       ],
@@ -3945,8 +3955,8 @@
       ]
     },
     {
-      "id": "21d737d9-d7df-49df-b2fd-301a35bdd1fd",
-      "public_id": "QSI-2026-12979",
+      "id": "84b217e5-7313-4bd0-a0c8-174322e60293",
+      "public_id": "QSI-2026-19150",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "h2 0.4.15 затронут RUSTSEC-2026-0258 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0258 для пакета crates.io h2 версии 0.4.15: h2 unbounded empty DATA frames. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -3967,7 +3977,7 @@
       "affected_asset": "dependency:crates.io/h2@0.4.15",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.701830+00:00",
+      "detected_at": "2026-11-06T14:13:17.185882+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4023,7 +4033,7 @@
           "content_sha256": "d8694780e4da4b8ee995c62dbd89ea4aef9579bf2c51b2a4b677a2231b8d4edc",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.712536+00:00",
+          "collected_at": "2026-11-06T14:13:17.196445+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0258"
         }
       ],
@@ -4046,8 +4056,8 @@
       ]
     },
     {
-      "id": "78421042-5afc-46e2-8b6e-d59b4d30915e",
-      "public_id": "QSI-2026-12988",
+      "id": "0387c804-6e16-49f8-b5fd-88d68bb03357",
+      "public_id": "QSI-2026-19159",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "tokio 1.53.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0386 для пакета crates.io tokio версии 1.53.1: `AsyncFd::new` and related constructors violate I/O safety. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (tokio::io::unix::AsyncFd::new, tokio::io::unix::AsyncFd::try_new, tokio::io::unix::AsyncFd::try_with_interest, tokio::io::unix::AsyncFd::with_interest); tokio приходит через другие зависимости, которые могут их вызывать.",
@@ -4068,7 +4078,7 @@
       "affected_asset": "dependency:crates.io/tokio@1.53.1",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.820028+00:00",
+      "detected_at": "2026-11-06T14:13:17.251971+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4124,7 +4134,7 @@
           "content_sha256": "f73073a3500a8c1b126e0070756badd87c6af0a88d357d6a1e083bf4f9f96021",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.844662+00:00",
+          "collected_at": "2026-11-06T14:13:17.261293+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0386"
         }
       ],
@@ -4147,8 +4157,8 @@
       ]
     },
     {
-      "id": "4e3dd429-88c1-457e-81ad-4bb907e46e6d",
-      "public_id": "QSI-2026-12989",
+      "id": "040a70b8-5a17-406e-b135-b183c82be0d9",
+      "public_id": "QSI-2026-19160",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0391 для пакета crates.io zstd версии 0.13.3: Data from an abandoned stream leaks into the next stream on a reused context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd::stream::raw::Decoder::with_context, zstd::stream::raw::Encoder::with_context); zstd приходит через другие зависимости, которые могут их вызывать.",
@@ -4169,7 +4179,7 @@
       "affected_asset": "dependency:crates.io/zstd@0.13.3",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.840068+00:00",
+      "detected_at": "2026-11-06T14:13:17.259106+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4225,7 +4235,7 @@
           "content_sha256": "f6b1f88e9d83bcb9d217fcbdccae0800038e990f9744b0323a94b3c98f05b7b9",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.855938+00:00",
+          "collected_at": "2026-11-06T14:13:17.267707+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0391"
         }
       ],
@@ -4248,8 +4258,8 @@
       ]
     },
     {
-      "id": "284096c3-33a9-4b9c-83db-492d10512858",
-      "public_id": "QSI-2026-12990",
+      "id": "ee56a3cf-8403-4a2b-b1f2-d73b6f38dca3",
+      "public_id": "QSI-2026-19161",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0395 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free with `CParameter::StableInBuffer`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::set_parameter); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4270,7 +4280,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.850379+00:00",
+      "detected_at": "2026-11-06T14:13:17.265557+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4326,7 +4336,7 @@
           "content_sha256": "728850176f43ecf2b9c562524c791d0da3abc31547980bb333caeadf51eb3ce4",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.860914+00:00",
+          "collected_at": "2026-11-06T14:13:17.273522+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0395"
         }
       ],
@@ -4349,8 +4359,8 @@
       ]
     },
     {
-      "id": "ae17146a-37c0-4057-81b4-4f3c1c812d1c",
-      "public_id": "QSI-2026-12991",
+      "id": "e6c315d4-2338-4402-b8e8-c642d52adb0e",
+      "public_id": "QSI-2026-19162",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0396 для пакета crates.io zstd-safe версии 7.2.4: `Seekable` reads a NULL or out-of-bounds seek table. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekTable::frame_decompressed_size, zstd_safe::seekable::Seekable::decompress, zstd_safe::seekable::Seekable::decompress_frame, zstd_safe::seekable::Seekable::frame_decompressed_size, zstd_safe::seekable::Seekable::offset_to_frame_index); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4371,7 +4381,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.859223+00:00",
+      "detected_at": "2026-11-06T14:13:17.271511+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4427,7 +4437,7 @@
           "content_sha256": "4530740c3dd2640b5c96ad098b4e771f286dd562d83e8e4aa6214c518b1f08ee",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.865213+00:00",
+          "collected_at": "2026-11-06T14:13:17.280724+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0396"
         }
       ],
@@ -4450,8 +4460,8 @@
       ]
     },
     {
-      "id": "b74fea44-cc70-41d6-a981-ff805bad4bbf",
-      "public_id": "QSI-2026-12992",
+      "id": "c2c781aa-e753-49c5-a3f5-98695d90e66d",
+      "public_id": "QSI-2026-19163",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0397 для пакета crates.io zstd-safe версии 7.2.4: `OutBuffer::around_pos` exposes uninitialized memory. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::OutBuffer::around_pos); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4472,7 +4482,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.863712+00:00",
+      "detected_at": "2026-11-06T14:13:17.278663+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4528,7 +4538,7 @@
           "content_sha256": "4ad3bc187fa64e24d070e53c5d01373b2aba040ea27757bbf26f8efea74c0967",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.869427+00:00",
+          "collected_at": "2026-11-06T14:13:17.287283+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0397"
         }
       ],
@@ -4551,8 +4561,8 @@
       ]
     },
     {
-      "id": "2bf77823-1ab6-4230-8150-75913288bf4d",
-      "public_id": "QSI-2026-12993",
+      "id": "77c9a5fe-f20d-4a4b-bf01-89d426a4ac2e",
+      "public_id": "QSI-2026-19164",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0398 для пакета crates.io zstd-safe версии 7.2.4: `Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::AdvancedSeekable::decompress, zstd_safe::seekable::Seekable::decompress); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4573,7 +4583,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.867944+00:00",
+      "detected_at": "2026-11-06T14:13:17.284921+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4629,7 +4639,7 @@
           "content_sha256": "7e1e8fe35e2578f061734431e3a9558d8cc0dab6043f409c833b43c905bf10d3",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.873714+00:00",
+          "collected_at": "2026-11-06T14:13:17.293453+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0398"
         }
       ],
@@ -4652,8 +4662,8 @@
       ]
     },
     {
-      "id": "c37a2082-4e88-4f44-91c1-26255ac80e17",
-      "public_id": "QSI-2026-12994",
+      "id": "8e299687-46a6-4808-8f84-fb095c407ad6",
+      "public_id": "QSI-2026-19165",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0399 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free through `init_using_cdict` and `init_using_ddict`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::init_using_cdict, zstd_safe::DCtx::init_using_ddict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4674,7 +4684,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.872199+00:00",
+      "detected_at": "2026-11-06T14:13:17.291311+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4730,7 +4740,7 @@
           "content_sha256": "58cd19f1b734988f6219b3659cd613c349a5c6693e08cb4e8b9846d1f92bb38f",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.877872+00:00",
+          "collected_at": "2026-11-06T14:13:17.300180+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0399"
         }
       ],
@@ -4753,8 +4763,8 @@
       ]
     },
     {
-      "id": "e78205f9-fe68-43c4-810d-e8c30d9848b7",
-      "public_id": "QSI-2026-12995",
+      "id": "30516403-2e67-41e4-9333-a321a6098e03",
+      "public_id": "QSI-2026-19166",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0400 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free of a dictionary after a one-shot call on a context with an open stream. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress, zstd_safe::DCtx::decompress_using_ddict, zstd_safe::DCtx::decompress_using_dict); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4775,7 +4785,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.876392+00:00",
+      "detected_at": "2026-11-06T14:13:17.298285+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4831,7 +4841,7 @@
           "content_sha256": "00f83f7c4931137d6b18e25256c039f2c52bd627946f5f05f74c2cc7b2615d30",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.882110+00:00",
+          "collected_at": "2026-11-06T14:13:17.306464+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0400"
         }
       ],
@@ -4854,8 +4864,8 @@
       ]
     },
     {
-      "id": "61e46f06-fa2c-4130-8127-917e5d84026b",
-      "public_id": "QSI-2026-12996",
+      "id": "fb4fc1c4-cacb-4645-b36e-5cb1be9ee565",
+      "public_id": "QSI-2026-19167",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0401 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read in `train_from_buffer` when sample sizes overflow. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::train_from_buffer); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4876,7 +4886,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.880621+00:00",
+      "detected_at": "2026-11-06T14:13:17.304670+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -4932,7 +4942,7 @@
           "content_sha256": "dd6e9bd27e75cf4c8d9a5333bbc4dda81ef2f2990271b711f964d6bc829e71fd",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.886167+00:00",
+          "collected_at": "2026-11-06T14:13:17.312660+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0401"
         }
       ],
@@ -4955,8 +4965,8 @@
       ]
     },
     {
-      "id": "4ac7b58a-aa2e-428f-937f-7bcf041b0a4b",
-      "public_id": "QSI-2026-12997",
+      "id": "ee696ea9-0e23-4f68-957d-8479f7016a0a",
+      "public_id": "QSI-2026-19168",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0402 для пакета crates.io zstd-safe версии 7.2.4: Heap buffer overflow in `CCtx::try_clone` on a multithreaded context. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -4977,7 +4987,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.884707+00:00",
+      "detected_at": "2026-11-06T14:13:17.309812+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -5033,7 +5043,7 @@
           "content_sha256": "464c8c61aa6d0a29b646ba665145c6d256c18786ece14e1921252cecf4a4e54e",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.890219+00:00",
+          "collected_at": "2026-11-06T14:13:17.319947+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0402"
         }
       ],
@@ -5056,8 +5066,8 @@
       ]
     },
     {
-      "id": "d413fbfe-6cfc-4b33-8539-d48f51ebb747",
-      "public_id": "QSI-2026-12998",
+      "id": "c1a51697-0d19-4003-bd91-c7211874a213",
+      "public_id": "QSI-2026-19169",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0403 для пакета crates.io zstd-safe версии 7.2.4: Uninitialized memory exposed when streaming decompression of a legacy frame fails. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::decompress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -5078,7 +5088,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.888762+00:00",
+      "detected_at": "2026-11-06T14:13:17.317287+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -5134,7 +5144,7 @@
           "content_sha256": "09699f0d23ac15a18937ce02a1b778a246ec661449852b62d6415d8d60ed2147",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.894363+00:00",
+          "collected_at": "2026-11-06T14:13:17.326546+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0403"
         }
       ],
@@ -5157,8 +5167,8 @@
       ]
     },
     {
-      "id": "126d71c4-92f7-43c4-a96a-1c4914ed20b7",
-      "public_id": "QSI-2026-12999",
+      "id": "96ead592-b147-4174-b294-86f88f56e37d",
+      "public_id": "QSI-2026-19170",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0404 для пакета crates.io zstd-safe версии 7.2.4: Double free in `DCtx::try_clone`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::DCtx::try_clone); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -5179,7 +5189,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.892841+00:00",
+      "detected_at": "2026-11-06T14:13:17.324426+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -5235,7 +5245,7 @@
           "content_sha256": "e265647b9f2c582eebfcac7889bee04fada79ea833147205829d693f4c6f8131",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.898439+00:00",
+          "collected_at": "2026-11-06T14:13:17.332636+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0404"
         }
       ],
@@ -5258,8 +5268,8 @@
       ]
     },
     {
-      "id": "9437501a-237a-416a-9993-cefaf6b2b2b4",
-      "public_id": "QSI-2026-13000",
+      "id": "e4336daa-0ceb-4270-a6a5-10a83aa49e63",
+      "public_id": "QSI-2026-19171",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0405 для пакета crates.io zstd-safe версии 7.2.4: Out-of-bounds read with an out-of-range `InBuffer::pos`. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::seekable::SeekableCStream::compress_stream); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -5280,7 +5290,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.896950+00:00",
+      "detected_at": "2026-11-06T14:13:17.330594+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -5336,7 +5346,7 @@
           "content_sha256": "e784735107b5a74149056e3244a7f30afbcf59892ceaa6d018ec1739be5661d5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.905763+00:00",
+          "collected_at": "2026-11-06T14:13:17.338733+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0405"
         }
       ],
@@ -5359,8 +5369,8 @@
       ]
     },
     {
-      "id": "43a894bb-b6df-4386-af37-3c242f45a5f9",
-      "public_id": "QSI-2026-13001",
+      "id": "292f25d6-3c9d-4b4b-9e71-3fea9997dd42",
+      "public_id": "QSI-2026-19172",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0406 для пакета crates.io zstd-safe версии 7.2.4: Use-after-free when changing a multithreaded context with an unfinished frame. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Проверенный код не упоминает затронутые функции (zstd_safe::CCtx::disable_dictionary, zstd_safe::CCtx::init, zstd_safe::CCtx::load_dictionary, zstd_safe::CCtx::ref_cdict, zstd_safe::CCtx::ref_prefix, zstd_safe::CCtx::reset …); zstd-safe приходит через другие зависимости, которые могут их вызывать.",
@@ -5381,7 +5391,7 @@
       "affected_asset": "dependency:crates.io/zstd-safe@7.2.4",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.901019+00:00",
+      "detected_at": "2026-11-06T14:13:17.336697+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -5437,7 +5447,7 @@
           "content_sha256": "f08bb0f8849019aa21c995ae08e9c10ff924c83b0464e87d3143ab07935008f5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.910207+00:00",
+          "collected_at": "2026-11-06T14:13:17.345098+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0406"
         }
       ],
@@ -5460,8 +5470,8 @@
       ]
     },
     {
-      "id": "353e2b31-fa00-4321-8ba5-c037b268db24",
-      "public_id": "QSI-2026-13002",
+      "id": "aefdbef8-d6c6-4bc1-9662-6a7c108e9447",
+      "public_id": "QSI-2026-19173",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0410 для пакета crates.io zstd-sys версии 2.0.16+zstd.1.5.7: WebAssembly allocator shim corrupts memory on allocation failure. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена. Касается только целевых платформ wasm32.",
@@ -5482,7 +5492,7 @@
       "affected_asset": "dependency:crates.io/zstd-sys@2.0.16+zstd.1.5.7",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.908710+00:00",
+      "detected_at": "2026-11-06T14:13:17.342732+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -5538,7 +5548,7 @@
           "content_sha256": "1e892df4ce7c9911f01547e4a80d1fb3ea5a27b8c1c89c0514917e08bbf3bdc5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.942697+00:00",
+          "collected_at": "2026-11-06T14:13:17.459531+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0410"
         }
       ],
@@ -5561,8 +5571,8 @@
       ]
     },
     {
-      "id": "99d10b26-24d0-433d-82ef-84a21dd494fd",
-      "public_id": "QSI-2026-12974",
+      "id": "8973ef5e-5b91-4709-921c-3cc082117a7f",
+      "public_id": "QSI-2026-19145",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (bellman, bls12_381, curve25519-dalek, ecdsa, ed25519-dalek, halo2_gadgets, halo2_poseidon, halo2_proofs, jubjub, orchard, p256, p384, pasta_curves, reddsa, redjubjub), но ни одной из списка поддерживающих PQC.",
@@ -5582,7 +5592,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.546163+00:00",
+      "detected_at": "2026-11-06T14:13:17.144542+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -5645,15 +5655,15 @@
           "content_sha256": "f4dd81bc784f3fbe0d0634487bd1a57a8b50abbe8a53b57e1ac025819a38baf7",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.654346+00:00",
+          "collected_at": "2026-11-06T14:13:17.157886+00:00",
           "url": null
         }
       ],
       "remediation": []
     },
     {
-      "id": "9f1585fb-9b4e-4cfe-9458-bdc38309d7f0",
-      "public_id": "QSI-2026-12975",
+      "id": "691ac5d9-29a2-4128-9858-62f907e816af",
+      "public_id": "QSI-2026-19146",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2023-0089 для пакета crates.io atomic-polyfill версии 1.0.3 как информационный (unmaintained): atomic-polyfill is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -5674,7 +5684,7 @@
       "affected_asset": "dependency:crates.io/atomic-polyfill@1.0.3",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.613052+00:00",
+      "detected_at": "2026-11-06T14:13:17.153911+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -5730,7 +5740,7 @@
           "content_sha256": "0fcfb6f26f61ecb982bc38b6d6f12db7c77d0fc40bf9353a089129368e765f0f",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.672442+00:00",
+          "collected_at": "2026-11-06T14:13:17.163719+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0089"
         }
       ],
@@ -5753,8 +5763,8 @@
       ]
     },
     {
-      "id": "a5efcf15-d4bc-4d09-b083-2254e206a75b",
-      "public_id": "QSI-2026-12976",
+      "id": "c25ad6c3-e624-4fe8-a64c-4b1b1995367d",
+      "public_id": "QSI-2026-19147",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2025-0141 для пакета crates.io bincode версии 2.0.1 как информационный (unmaintained): Bincode is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -5775,7 +5785,7 @@
       "affected_asset": "dependency:crates.io/bincode@2.0.1",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.668880+00:00",
+      "detected_at": "2026-11-06T14:13:17.160608+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -5831,7 +5841,7 @@
           "content_sha256": "532525d6fd3f2cb4701cae8133e80ff6557554f82b919c38fb8a089b03cf57f5",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.684573+00:00",
+          "collected_at": "2026-11-06T14:13:17.173144+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2025-0141"
         }
       ],
@@ -5854,8 +5864,8 @@
       ]
     },
     {
-      "id": "44296113-5394-4e20-98e0-67571c2972de",
-      "public_id": "QSI-2026-12980",
+      "id": "dbf1a7b9-71f4-4e1f-91d3-a4e444a31a0b",
+      "public_id": "QSI-2026-19151",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2024-0436 для пакета crates.io paste версии 1.0.15 как информационный (unmaintained): paste - no longer maintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -5876,7 +5886,7 @@
       "affected_asset": "dependency:crates.io/paste@1.0.15",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:42:34.709780+00:00",
+      "detected_at": "2026-11-06T14:13:17.192976+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -5932,7 +5942,7 @@
           "content_sha256": "ea867adb8ba26c96c3779becf55b3de25d46f37f23ab55131e09c98a8b0b9975",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:42:34.722026+00:00",
+          "collected_at": "2026-11-06T14:13:17.203690+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2024-0436"
         }
       ],
@@ -5976,8 +5986,8 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-12973",
-      "QSI-2026-12972"
+      "QSI-2026-19144",
+      "QSI-2026-19143"
     ],
     "roles": [
       {
@@ -5993,7 +6003,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12972"
+          "QSI-2026-19143"
         ],
         "files": 1
       }
@@ -6101,7 +6111,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает RUSTSEC-2023-0071 (CVE-2023-49092).",
         "status": "todo",
-        "finding": "QSI-2026-12981",
+        "finding": "QSI-2026-19152",
         "finding_title": "rsa 0.9.10 затронут RUSTSEC-2023-0071 (CVE-2023-49092)",
         "severity": "medium"
       },
@@ -6119,7 +6129,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285).",
         "status": "todo",
-        "finding": "QSI-2026-12982",
+        "finding": "QSI-2026-19153",
         "finding_title": "rustls 0.23.42 затронут GHSA-2mjx-qc3c-rqvc (RUSTSEC-2026-0285)",
         "severity": "medium"
       },
@@ -6137,7 +6147,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346).",
         "status": "todo",
-        "finding": "QSI-2026-12983",
+        "finding": "QSI-2026-19154",
         "finding_title": "rustls 0.23.42 затронут GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346)",
         "severity": "medium"
       },
@@ -6155,7 +6165,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-7gcf-g7xr-8hxj.",
         "status": "todo",
-        "finding": "QSI-2026-12986",
+        "finding": "QSI-2026-19157",
         "finding_title": "serde_with 3.17.0 затронут GHSA-7gcf-g7xr-8hxj",
         "severity": "medium"
       },
@@ -6173,7 +6183,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009).",
         "status": "todo",
-        "finding": "QSI-2026-12987",
+        "finding": "QSI-2026-19158",
         "finding_title": "time 0.3.37 затронут GHSA-r6v5-fh4h-64xc (CVE-2026-25727, RUSTSEC-2026-0009)",
         "severity": "medium"
       },
@@ -6191,7 +6201,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349).",
         "status": "todo",
-        "finding": "QSI-2026-12985",
+        "finding": "QSI-2026-19156",
         "finding_title": "rustls 0.23.42 затронут GHSA-w44r-93j7-qv28 (RUSTSEC-2026-0349)",
         "severity": "low"
       },
@@ -6209,7 +6219,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование зависимостей больше не сообщает GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348).",
         "status": "todo",
-        "finding": "QSI-2026-12984",
+        "finding": "QSI-2026-19155",
         "finding_title": "rustls 0.23.42 затронут GHSA-h2v8-394m-p7vv (RUSTSEC-2026-0348)",
         "severity": "low"
       }
@@ -6229,7 +6239,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0387 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12977",
+        "finding": "QSI-2026-19148",
         "finding_title": "crypto-bigint 0.5.5 затронут RUSTSEC-2026-0387 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6247,7 +6257,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0221 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12978",
+        "finding": "QSI-2026-19149",
         "finding_title": "event-listener 5.4.1 затронут RUSTSEC-2026-0221 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6265,7 +6275,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0258 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12979",
+        "finding": "QSI-2026-19150",
         "finding_title": "h2 0.4.15 затронут RUSTSEC-2026-0258 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6283,7 +6293,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0386 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12988",
+        "finding": "QSI-2026-19159",
         "finding_title": "tokio 1.53.1 затронут RUSTSEC-2026-0386 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6301,7 +6311,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0391 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12989",
+        "finding": "QSI-2026-19160",
         "finding_title": "zstd 0.13.3 затронут RUSTSEC-2026-0391 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6319,7 +6329,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0395 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12990",
+        "finding": "QSI-2026-19161",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0395 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6337,7 +6347,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0396 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12991",
+        "finding": "QSI-2026-19162",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0396 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6355,7 +6365,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0397 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12992",
+        "finding": "QSI-2026-19163",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0397 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6373,7 +6383,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0398 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12993",
+        "finding": "QSI-2026-19164",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0398 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6391,7 +6401,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0399 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12994",
+        "finding": "QSI-2026-19165",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0399 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6409,7 +6419,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0400 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12995",
+        "finding": "QSI-2026-19166",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0400 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6427,7 +6437,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0401 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12996",
+        "finding": "QSI-2026-19167",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0401 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6445,7 +6455,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0402 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12997",
+        "finding": "QSI-2026-19168",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0402 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6463,7 +6473,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0403 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12998",
+        "finding": "QSI-2026-19169",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0403 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6481,7 +6491,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0404 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12999",
+        "finding": "QSI-2026-19170",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0404 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6499,7 +6509,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0405 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-13000",
+        "finding": "QSI-2026-19171",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0405 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6517,7 +6527,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0406 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-13001",
+        "finding": "QSI-2026-19172",
         "finding_title": "zstd-safe 7.2.4 затронут RUSTSEC-2026-0406 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -6535,7 +6545,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0410 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-13002",
+        "finding": "QSI-2026-19173",
         "finding_title": "zstd-sys 2.0.16+zstd.1.5.7 затронут RUSTSEC-2026-0410 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -6555,7 +6565,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12973",
+        "finding": "QSI-2026-19144",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в responsible_disclosure.md",
         "severity": "medium"
       },
@@ -6573,7 +6583,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12972",
+        "finding": "QSI-2026-19143",
         "finding_title": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -6591,7 +6601,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12973",
+        "finding": "QSI-2026-19144",
         "finding_title": "Квантово-уязвимый ключ RSA (2048-bit) в responsible_disclosure.md",
         "severity": "medium"
       },
@@ -6609,7 +6619,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12972",
+        "finding": "QSI-2026-19143",
         "finding_title": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -6627,7 +6637,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "atomic-polyfill заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-12975",
+        "finding": "QSI-2026-19146",
         "finding_title": "atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)",
         "severity": "info"
       },
@@ -6645,7 +6655,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "bincode заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-12976",
+        "finding": "QSI-2026-19147",
         "finding_title": "bincode 2.0.1: информационный бюллетень RUSTSEC-2025-0141 (unmaintained)",
         "severity": "info"
       },
@@ -6663,7 +6673,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "paste заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-12980",
+        "finding": "QSI-2026-19151",
         "finding_title": "paste 1.0.15: информационный бюллетень RUSTSEC-2024-0436 (unmaintained)",
         "severity": "info"
       }
@@ -7034,7 +7044,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7046,7 +7057,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7058,7 +7070,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7070,7 +7083,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7082,7 +7096,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7094,7 +7109,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7106,7 +7122,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7118,7 +7135,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7130,7 +7148,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7142,7 +7161,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7154,7 +7174,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7166,7 +7187,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7178,7 +7200,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7190,7 +7213,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7202,7 +7226,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7214,7 +7239,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7226,7 +7252,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7238,7 +7265,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7250,7 +7278,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7262,7 +7291,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7274,7 +7304,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7286,7 +7317,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7298,7 +7330,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7310,19 +7343,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.8.0",
-      "usage": "crates.io dependency",
-      "library": "redjubjub (reddsa)",
-      "location": "Cargo.lock",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7334,7 +7356,21 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.8.0",
+      "usage": "crates.io dependency",
+      "library": "redjubjub (reddsa)",
+      "location": "Cargo.lock",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7346,7 +7382,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7358,7 +7395,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7370,7 +7408,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7382,7 +7421,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7394,7 +7434,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7406,7 +7447,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7418,7 +7460,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7430,7 +7473,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7442,7 +7486,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7454,7 +7499,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7466,7 +7512,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7478,7 +7525,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7490,7 +7538,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -7502,19 +7551,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "RSA",
-      "family": "signature",
-      "parameter": "2048-bit",
-      "usage": "OpenPGP subkey",
-      "library": "",
-      "location": "responsible_disclosure.md (line 11)",
-      "quantum_status": "vulnerable_shor",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "RSA",
@@ -7526,7 +7564,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "RSA",
+      "family": "signature",
+      "parameter": "2048-bit",
+      "usage": "OpenPGP subkey",
+      "library": "",
+      "location": "responsible_disclosure.md (line 11)",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -7538,7 +7590,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -7834,7 +7887,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.8.0",
-      "library": "redjubjub (reddsa)",
+      "library": "bls12_381 (bls12_381)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -7846,7 +7899,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.8.0",
-      "library": "bls12_381 (bls12_381)",
+      "library": "redjubjub (reddsa)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,

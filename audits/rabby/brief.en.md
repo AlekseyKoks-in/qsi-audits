@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: rabby @ 663c0e80e9f6
 
-*One-page brief* · Reviewed: 2026-11-04 20:36 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Rabby Wallet (DeBank) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:45 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Rabby Wallet (DeBank) — public repository (passive review)
 
 Source: https://github.com/RabbyHub/Rabby/tree/663c0e80e9f6139cbb87932ddea909e1e4a382f1
 
@@ -12,13 +12,13 @@ Source: https://github.com/RabbyHub/Rabby/tree/663c0e80e9f6139cbb87932ddea909e1e
 
 ## What matters most
 
-1. **Critical** · @openzeppelin/contracts 3.4.1-solc-0.7-2 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-13441)\
+1. **Critical** · @openzeppelin/contracts 3.4.1-solc-0.7-2 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-18467)\
    What to do: Upgrade to a fixed version (3.4.2, 4.3.1).
-2. **Critical** · @openzeppelin/contracts 3.4.2-solc-0.7 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-13445)\
+2. **Critical** · @openzeppelin/contracts 3.4.2-solc-0.7 is affected by GHSA-fg47-3c2x-m2wr (CVE-2021-39167) (QSI-2026-18471)\
    What to do: Upgrade to a fixed version (3.4.2, 4.3.1).
-3. **High** · fflate 0.8.2 is affected by GHSA-px8p-9vwx-vf98 (CVE-2026-45820) (QSI-2026-13428)\
+3. **High** · fflate 0.8.2 is affected by GHSA-px8p-9vwx-vf98 (CVE-2026-45820) (QSI-2026-18454)\
    What to do: Upgrade to a fixed version (0.4.9, 0.5.4, 0.6.11, 0.7.5, 0.8.3).
-4. **High** · lodash 4.17.21 is affected by GHSA-r5fr-rjxr-66jc (CVE-2026-4800) (QSI-2026-13429)\
+4. **High** · lodash 4.17.21 is affected by GHSA-r5fr-rjxr-66jc (CVE-2026-4800) (QSI-2026-18455)\
    What to do: Upgrade to a fixed version (4.18.0).
 
 152 more in the full report.
@@ -38,7 +38,7 @@ Advisories for the versions in use: 153; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 1694. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `800b8d589cb245eeb5336b3a3ba93dd1c8931844baa1a72475399064e0536f7e`
+Full report, content SHA-256: `737f869006f3ea348b2c1e6611f7869a5ab61eae8a6934d85e81cc96de6710f9`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

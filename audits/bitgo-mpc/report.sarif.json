@@ -75,7 +75,7 @@
             "qsiFindingKey/v1": "63ed1a0fe276081a1c0530a2e556915d"
           },
           "properties": {
-            "qsiId": "QSI-2026-11782",
+            "qsiId": "QSI-2026-17886",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -93,7 +93,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-11776",
+            "qsiId": "QSI-2026-17880",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -111,7 +111,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-11777",
+            "qsiId": "QSI-2026-17881",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -129,7 +129,7 @@
             "qsiFindingKey/v1": "5cbcb5815d8848ab9b8496655468e460"
           },
           "properties": {
-            "qsiId": "QSI-2026-11778",
+            "qsiId": "QSI-2026-17882",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -147,7 +147,7 @@
             "qsiFindingKey/v1": "caadb0817a8af347815ab91cd52576b5"
           },
           "properties": {
-            "qsiId": "QSI-2026-11779",
+            "qsiId": "QSI-2026-17883",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -165,7 +165,7 @@
             "qsiFindingKey/v1": "56ce4b42a955143d4d6555212784bad6"
           },
           "properties": {
-            "qsiId": "QSI-2026-11780",
+            "qsiId": "QSI-2026-17884",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -183,7 +183,7 @@
             "qsiFindingKey/v1": "33f3fc35d2316c9f4d6a9d5b158eeb71"
           },
           "properties": {
-            "qsiId": "QSI-2026-11784",
+            "qsiId": "QSI-2026-17888",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -201,7 +201,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-11781",
+            "qsiId": "QSI-2026-17885",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -219,7 +219,7 @@
             "qsiFindingKey/v1": "fa930b556df3f2ce8b025160c01a61ae"
           },
           "properties": {
-            "qsiId": "QSI-2026-11783",
+            "qsiId": "QSI-2026-17887",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -237,7 +237,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-11785",
+            "qsiId": "QSI-2026-17889",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -246,13 +246,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/bitgo-mpc @ 3c892fd6a388/0ce14b47-e85f-48b1-8a53-4cc2037d5eab"
+        "id": "qsi/bitgo-mpc @ 3c892fd6a388/cbb8c54d-6a78-49ee-9b47-af8d4318f938"
       },
       "properties": {
-        "qsiContentSha256": "f527962ba7691fa53130cc3f82583981b66c38f88f0c99879dbf71e898e9c79f",
+        "qsiContentSha256": "f0cceba44889b2d98b6f09218bf1db4d3057b725742651671b1f4852a187181d",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T18:36:13.552616+00:00",
+        "qsiGeneratedAt": "2026-11-06T13:06:52.915140+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

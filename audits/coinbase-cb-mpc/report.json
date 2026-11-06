@@ -1,8 +1,8 @@
 {
-  "content_sha256": "fdfb9330457c22987ea1c4cd303f83521adf2040315630276702ada9a3d35546",
+  "content_sha256": "30857ab4a6ad6b67bcd5d68ff21a17577fef7b50e63cb6a8d0f2cf6f729c8462",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-05T09:56:45.156358+00:00",
+  "generated_at": "2026-11-06T13:11:28.646829+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "6f313a60-4014-4bf5-956d-9860391a0b3d",
+    "id": "10ce6b79-b965-4f6f-b595-93cdbcac3fb0",
     "mode": "document",
     "title": "Document audit: coinbase-cb-mpc",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-05T09:56:38.151212+00:00",
-    "finished_at": "2026-11-05T09:56:45.006365+00:00",
+    "started_at": "2026-11-06T13:11:21.149527+00:00",
+    "finished_at": "2026-11-06T13:11:28.411329+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -32,6 +32,12 @@
         "include-internal",
         "src"
       ],
+      "pinned": {
+        "vendors/secp256k1": "https://github.com/coinbase/secp256k1",
+        "vendors/googletest": "https://github.com/google/googletest.git",
+        "vendors/google-benchmark": "https://github.com/google/benchmark.git",
+        "vendors/github-action-benchmark": "https://github.com/benchmark-action/github-action-benchmark.git"
+      },
       "triage": {
         "analyst": "QSI review, 2026-10-28",
         "decisions": [
@@ -1165,872 +1171,872 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/core/strext.h: 23 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/core/strext.h: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/core/utils.h: 182 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/core/utils.h: 182 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base.h: 211 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base.h: 211 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_bn.h: 267 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_bn.h: 267 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_bn256.h: 158 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_bn256.h: 158 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_ec_core.h: 677 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_ec_core.h: 677 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_ecc.h: 405 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_ecc.h: 405 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_ecc_secp256k1.h: 58 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_ecc_secp256k1.h: 58 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_eddsa.h: 57 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_eddsa.h: 57 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_hash.h: 360 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_hash.h: 360 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_mod.h: 131 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_mod.h: 131 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_paillier.h: 193 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_paillier.h: 193 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_pki.h: 212 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_pki.h: 212 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/base_rsa.h: 122 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/base_rsa.h: 122 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/commitment.h: 140 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/commitment.h: 140 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/ec25519_core.h: 37 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/ec25519_core.h: 37 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/elgamal.h: 108 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/elgamal.h: 108 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/lagrange.h: 59 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/lagrange.h: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/mlkem768.h: 34 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/mlkem768.h: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/ro.h: 168 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/ro.h: 168 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/scope.h: 62 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/scope.h: 62 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/secret_sharing.h: 196 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/secret_sharing.h: 196 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/crypto/tdh2.h: 135 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/crypto/tdh2.h: 135 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/agree_random.h: 50 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/agree_random.h: 50 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/committed_broadcast.h: 84 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/committed_broadcast.h: 84 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/ec_dkg.h: 115 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/ec_dkg.h: 115 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/ecdsa_2p.h: 122 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/ecdsa_2p.h: 122 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/ecdsa_mp.h: 129 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/ecdsa_mp.h: 129 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/eddsa.h: 25 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/eddsa.h: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h: 43 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h: 43 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/hd_keyset_eddsa_2p.h: 40 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/hd_keyset_eddsa_2p.h: 40 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/hd_tree_bip32.h: 59 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/hd_tree_bip32.h: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/int_commitment.h: 31 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/int_commitment.h: 31 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/mpc_job.h: 496 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/mpc_job.h: 496 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/ot.h: 267 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/ot.h: 267 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/pve.h: 45 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/pve.h: 45 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/pve_ac.h: 106 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/pve_ac.h: 106 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/pve_base.h: 258 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/pve_base.h: 258 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/pve_batch.h: 80 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/pve_batch.h: 80 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/schnorr_2p.h: 35 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/schnorr_2p.h: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/schnorr_mp.h: 60 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/schnorr_mp.h: 60 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/sid.h: 79 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/sid.h: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/protocol/util.h: 71 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/protocol/util.h: 71 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/fischlin.h: 110 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/fischlin.h: 110 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/small_primes.h: 35 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/small_primes.h: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/zk_ec.h: 101 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/zk_ec.h: 101 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/zk_elgamal_com.h: 99 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/zk_elgamal_com.h: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/zk_paillier.h: 235 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/zk_paillier.h: 235 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/zk_pedersen.h: 143 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/zk_pedersen.h: 143 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/zk_unknown_order.h: 25 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/zk_unknown_order.h: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include-internal/cbmpc/internal/zk/zk_util.h: 51 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include-internal/cbmpc/internal/zk/zk_util.h: 51 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/curve.h: 14 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/curve.h: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/ecdsa_2p.h: 88 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/ecdsa_2p.h: 88 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/ecdsa_mp.h: 134 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/ecdsa_mp.h: 134 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/eddsa_2p.h: 79 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/eddsa_2p.h: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/eddsa_mp.h: 137 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/eddsa_mp.h: 137 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/hd_keyset_ecdsa_2p.h: 41 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/hd_keyset_ecdsa_2p.h: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/hd_keyset_eddsa_2p.h: 46 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/hd_keyset_eddsa_2p.h: 46 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/pve_base_pke.h: 164 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/pve_base_pke.h: 164 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/pve_batch_ac.h: 122 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/pve_batch_ac.h: 122 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/pve_batch_single_recipient.h: 72 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/pve_batch_single_recipient.h: 72 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/schnorr_2p.h: 93 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/schnorr_2p.h: 93 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/schnorr_mp.h: 153 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/schnorr_mp.h: 153 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/api/tdh2.h: 85 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/api/tdh2.h: 85 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/access_structure.h: 84 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/access_structure.h: 84 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/cmem.h: 47 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/cmem.h: 47 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/common.h: 69 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/common.h: 69 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/ecdsa_2p.h: 95 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/ecdsa_2p.h: 95 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/ecdsa_mp.h: 167 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/ecdsa_mp.h: 167 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/eddsa_2p.h: 86 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/eddsa_2p.h: 86 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/eddsa_mp.h: 163 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/eddsa_mp.h: 163 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/job.h: 75 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/job.h: 75 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/pve_base_pke.h: 220 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/pve_base_pke.h: 220 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/pve_batch_ac.h: 108 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/pve_batch_ac.h: 108 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/pve_batch_single_recipient.h: 84 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/pve_batch_single_recipient.h: 84 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/schnorr_2p.h: 87 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/schnorr_2p.h: 87 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/schnorr_mp.h: 164 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/schnorr_mp.h: 164 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/c_api/tdh2.h: 106 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/c_api/tdh2.h: 106 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/access_structure.h: 74 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/access_structure.h: 74 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/access_structure_limits.h: 6 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/access_structure_limits.h: 6 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/bip32_path.h: 16 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/bip32_path.h: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/buf.h: 304 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/buf.h: 304 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/buf128.h: 114 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/buf128.h: 114 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/buf256.h: 59 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/buf256.h: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/error.h: 79 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/error.h: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/job.h: 67 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/job.h: 67 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/macros.h: 35 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/macros.h: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cbmpc/core/precompiled.h: 153 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "include/cbmpc/core/precompiled.h: 153 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/access_structure_util.h: 228 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/access_structure_util.h: 228 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/curve_util.h: 40 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/curve_util.h: 40 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/ecdsa2pc.cpp: 302 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/ecdsa2pc.cpp: 302 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/ecdsa_mp.cpp: 550 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/ecdsa_mp.cpp: 550 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/eddsa2pc.cpp: 223 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/eddsa2pc.cpp: 223 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/eddsa_mp.cpp: 528 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/eddsa_mp.cpp: 528 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/hd_keyset_ecdsa_2p.cpp: 226 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/hd_keyset_ecdsa_2p.cpp: 226 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/hd_keyset_eddsa_2p.cpp: 201 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/hd_keyset_eddsa_2p.cpp: 201 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/hd_keyset_util.h: 32 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/hd_keyset_util.h: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/job_util.h: 65 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/job_util.h: 65 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/mem_util.h: 54 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/mem_util.h: 54 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/pve_base_pke.cpp: 376 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/pve_base_pke.cpp: 376 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/pve_batch_ac.cpp: 415 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/pve_batch_ac.cpp: 415 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/pve_batch_single_recipient.cpp: 288 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/pve_batch_single_recipient.cpp: 288 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/pve_internal.h: 168 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/pve_internal.h: 168 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/schnorr2pc.cpp: 233 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/schnorr2pc.cpp: 233 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/schnorr_mp.cpp: 542 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/schnorr_mp.cpp: 542 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/api/tdh2.cpp: 363 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/api/tdh2.cpp: 363 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/access_structure_adapter.h: 125 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/access_structure_adapter.h: 125 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/common.cpp: 63 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/common.cpp: 63 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/ecdsa2pc.cpp: 262 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/ecdsa2pc.cpp: 262 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/ecdsa_mp.cpp: 454 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/ecdsa_mp.cpp: 454 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/eddsa2pc.cpp: 218 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/eddsa2pc.cpp: 218 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/eddsa_mp.cpp: 439 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/eddsa_mp.cpp: 439 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/pve_base_pke.cpp: 565 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/pve_base_pke.cpp: 565 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/pve_batch_ac.cpp: 387 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/pve_batch_ac.cpp: 387 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/pve_batch_single_recipient.cpp: 276 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/pve_batch_single_recipient.cpp: 276 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/pve_internal.h: 111 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/pve_internal.h: 111 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/schnorr2pc.cpp: 239 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/schnorr2pc.cpp: 239 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/schnorr_mp.cpp: 461 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/schnorr_mp.cpp: 461 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/tdh2.cpp: 352 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/tdh2.cpp: 352 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/transport_adapter.h: 127 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/transport_adapter.h: 127 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/c_api/util.h: 206 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/c_api/util.h: 206 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/core/buf.cpp: 765 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/core/buf.cpp: 765 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/core/buf128.cpp: 223 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/core/buf128.cpp: 223 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/core/buf256.cpp: 246 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/core/buf256.cpp: 246 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/core/convert.cpp: 260 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/core/convert.cpp: 260 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/core/error.cpp: 241 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/core/error.cpp: 241 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/core/strext.cpp: 147 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/core/strext.cpp: 147 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base.cpp: 281 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base.cpp: 281 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_bn.cpp: 773 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_bn.cpp: 773 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_bn256.cpp: 1411 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_bn256.cpp: 1411 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_ec_core.cpp: 89 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_ec_core.cpp: 89 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_ecc.cpp: 1124 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_ecc.cpp: 1124 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_ecc_secp256k1.cpp: 430 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_ecc_secp256k1.cpp: 430 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_eddsa.cpp: 230 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_eddsa.cpp: 230 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_hash.cpp: 278 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_hash.cpp: 278 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_mod.cpp: 563 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_mod.cpp: 563 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_paillier.cpp: 360 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_paillier.cpp: 360 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_rsa.cpp: 438 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_rsa.cpp: 438 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/base_rsa_oaep.cpp: 206 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/base_rsa_oaep.cpp: 206 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/drbg.cpp: 84 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/drbg.cpp: 84 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/ec25519_core.cpp: 1118 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/ec25519_core.cpp: 1118 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/elgamal.cpp: 118 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/elgamal.cpp: 118 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/lagrange.cpp: 193 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/lagrange.cpp: 193 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/mlkem768.cpp: 92 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/mlkem768.cpp: 92 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/ro.cpp: 161 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/ro.cpp: 161 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/secret_sharing.cpp: 589 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/secret_sharing.cpp: 589 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/crypto/tdh2.cpp: 198 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/crypto/tdh2.cpp: 198 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/agree_random.cpp: 130 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/agree_random.cpp: 130 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/ec_dkg.cpp: 729 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/ec_dkg.cpp: 729 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/ecdsa_2p.cpp: 610 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/ecdsa_2p.cpp: 610 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/ecdsa_mp.cpp: 508 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/ecdsa_mp.cpp: 508 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/eddsa.cpp: 26 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/eddsa.cpp: 26 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/hd_keyset_ecdsa_2p.cpp: 179 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/hd_keyset_ecdsa_2p.cpp: 179 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/hd_keyset_eddsa_2p.cpp: 171 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/hd_keyset_eddsa_2p.cpp: 171 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/hd_tree_bip32.cpp: 42 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/hd_tree_bip32.cpp: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/int_commitment.cpp: 201 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/int_commitment.cpp: 201 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/mpc_job.cpp: 47 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/mpc_job.cpp: 47 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/ot.cpp: 491 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/ot.cpp: 491 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/pve.cpp: 166 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/pve.cpp: 166 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/pve_ac.cpp: 298 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/pve_ac.cpp: 298 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/pve_base.cpp: 46 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/pve_base.cpp: 46 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/pve_batch.cpp: 208 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/pve_batch.cpp: 208 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/schnorr_2p.cpp: 146 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/schnorr_2p.cpp: 146 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/protocol/schnorr_mp.cpp: 189 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/protocol/schnorr_mp.cpp: 189 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/zk/fischlin.cpp: 51 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/zk/fischlin.cpp: 51 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/zk/small_primes.cpp: 725 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/zk/small_primes.cpp: 725 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/zk/zk_ec.cpp: 329 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/zk/zk_ec.cpp: 329 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/zk/zk_elgamal_com.cpp: 303 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/zk/zk_elgamal_com.cpp: 303 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/zk/zk_paillier.cpp: 562 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/zk/zk_paillier.cpp: 562 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/zk/zk_pedersen.cpp: 526 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/zk/zk_pedersen.cpp: 526 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cbmpc/zk/zk_unknown_order.cpp: 75 lines scanned with 16 rule patterns and 236 registry patterns",
+      "detail": "src/cbmpc/zk/zk_unknown_order.cpp: 75 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -2046,9 +2052,9 @@
       "count": 174,
       "rows": 174,
       "examples": [
-        "include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 236 registry patterns",
-        "include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 236 registry patterns",
-        "include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 236 registry patterns"
+        "include-internal/cbmpc/internal/core/convert.h: 307 lines scanned with 16 rule patterns and 266 registry patterns",
+        "include-internal/cbmpc/internal/core/extended_uint.h: 54 lines scanned with 16 rule patterns and 266 registry patterns",
+        "include-internal/cbmpc/internal/core/log.h: 124 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -2274,20 +2280,26 @@
     },
     "total": 11,
     "posture_index": 100,
-    "pq_vulnerable_share": 86.0,
-    "inventory_total": 107,
+    "pq_vulnerable_share": 86.1,
+    "inventory_total": 108,
     "inventory_by_quantum_status": {
       "classical_weakness": 2,
       "grover_margin": 6,
       "grover_reduced": 5,
       "pqc": 2,
-      "vulnerable_shor": 92
+      "vulnerable_shor": 93
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 108,
+        "vulnerable_shor": 93
+      }
     }
   },
   "findings": [
     {
-      "id": "e6b773d3-36f6-49f3-bf14-42426c4ae691",
-      "public_id": "QSI-2026-14003",
+      "id": "6dddba25-548a-4387-8db9-2e98b263a448",
+      "public_id": "QSI-2026-17961",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (5 файл(ов))",
       "description": "5 упоминаний ECDH в 5 файл(ах), например include-internal/cbmpc/internal/protocol/pve_base.h:213. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
@@ -2312,7 +2324,7 @@
       "affected_asset": "source-code:ECDH:key_wrapping",
       "data_source": "include-internal/cbmpc/internal/protocol/pve_base.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.934896+00:00",
+      "detected_at": "2026-11-06T13:11:28.296377+00:00",
       "risk_score": 43.4,
       "risk_breakdown": {
         "mosca": {
@@ -2409,7 +2421,7 @@
           "content_sha256": "02f0b0e2dc3db13d04880ba70b571232395b33294953c92a27a9d136fc05fe94",
           "source_sha256": "26dcc28fef1f2733ed7c10f2f9a389df73ecd8cc981358367c67b29d930ebfc1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.952480+00:00",
+          "collected_at": "2026-11-06T13:11:28.334070+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/pve_base.h#L213"
         },
         {
@@ -2420,7 +2432,7 @@
           "content_sha256": "7a1b1fff636e81f0627ac69da87fc93e1fcf0bf121c4e2297b0718d39ddb0d34",
           "source_sha256": "5639e943156dbf5e142c178b07da2c4eb0a5d60bcfa0f61af1b18bc22b830937",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.952488+00:00",
+          "collected_at": "2026-11-06T13:11:28.334080+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/pve_base_pke.cpp#L325"
         },
         {
@@ -2431,7 +2443,7 @@
           "content_sha256": "8e385b276c3dbb900f226e3840ad803a3463b08dc1a1f91ea262250d1691cba0",
           "source_sha256": "8b8be49db0d9dabae40d79f31809585672d745b3ac0a66147f6bab96a2f7daa3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.952492+00:00",
+          "collected_at": "2026-11-06T13:11:28.334085+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/pve_batch_ac.cpp#L308"
         },
         {
@@ -2442,7 +2454,7 @@
           "content_sha256": "862c1cebf150e17798084f5554fc57ca003f1addc2df7e382327442969d14396",
           "source_sha256": "c5572970684fdeff67948f2d3e40b6e2777a4fbe0737e70eb334ecaf7cc0e746",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.952495+00:00",
+          "collected_at": "2026-11-06T13:11:28.334088+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/pve_batch_single_recipient.cpp#L225"
         },
         {
@@ -2453,7 +2465,7 @@
           "content_sha256": "3fa55d0a81efe46a0c8448fd5d5943231913648274934d50546cae7b9f2196fc",
           "source_sha256": "47bce2585e9a7bf7b3a1939dc6f914f9f4a71a8e745a1dd372bc00ebab713754",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.952498+00:00",
+          "collected_at": "2026-11-06T13:11:28.334093+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/pve_internal.h#L154"
         }
       ],
@@ -2491,8 +2503,8 @@
       ]
     },
     {
-      "id": "1e77e9f8-96de-40d0-beee-cd18bfb30a3f",
-      "public_id": "QSI-2026-13998",
+      "id": "adf39d3b-9f21-4c74-8dae-fd2533b624a4",
+      "public_id": "QSI-2026-17956",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (15 файл(ов))",
       "description": "352 упоминаний Paillier в 15 файл(ах), например include-internal/cbmpc/internal/crypto/base_bn.h:46. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -2517,7 +2529,7 @@
       "affected_asset": "source-code:Paillier:threshold_mpc",
       "data_source": "include-internal/cbmpc/internal/crypto/base_bn.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.871393+00:00",
+      "detected_at": "2026-11-06T13:11:28.196367+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -2614,7 +2626,7 @@
           "content_sha256": "5b3069a225ca12ea3e28ab0aeabfda51b549f1b3b9d656edc897fe7e8f531eb7",
           "source_sha256": "2ab03b1f64160824d980856f8bb4d91a3413b293c5ff6b897e6ddb825bdef696",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886923+00:00",
+          "collected_at": "2026-11-06T13:11:28.217586+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_bn.h#L46"
         },
         {
@@ -2625,7 +2637,7 @@
           "content_sha256": "ee1680c40ae2e30e376737e08f755915785323d13d53983ed66744973fc95d78",
           "source_sha256": "2ab03b1f64160824d980856f8bb4d91a3413b293c5ff6b897e6ddb825bdef696",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886931+00:00",
+          "collected_at": "2026-11-06T13:11:28.217596+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_bn.h#L57"
         },
         {
@@ -2636,7 +2648,7 @@
           "content_sha256": "5e4a09314f2cd39ed8e8283c855838bd6ca755c5868d316db91eee3d56ad4bfe",
           "source_sha256": "635074e16e9ac9d0941b425940da73aaa1cfcbf9d9bfc23dbcaa17220462cfb1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886934+00:00",
+          "collected_at": "2026-11-06T13:11:28.217600+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_paillier.h#L8"
         },
         {
@@ -2647,7 +2659,7 @@
           "content_sha256": "5f18c9d760a32724c050c5db7a67fbc655776bda0da0b20a58aad0bee1772158",
           "source_sha256": "635074e16e9ac9d0941b425940da73aaa1cfcbf9d9bfc23dbcaa17220462cfb1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886938+00:00",
+          "collected_at": "2026-11-06T13:11:28.217603+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_paillier.h#L29"
         },
         {
@@ -2658,7 +2670,7 @@
           "content_sha256": "0cb26e46930009ca686d8c0d8cf27ded9d756b290f72260c02b479de1d9e13b7",
           "source_sha256": "635074e16e9ac9d0941b425940da73aaa1cfcbf9d9bfc23dbcaa17220462cfb1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886941+00:00",
+          "collected_at": "2026-11-06T13:11:28.217606+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_paillier.h#L30"
         },
         {
@@ -2669,7 +2681,7 @@
           "content_sha256": "ca851b698b030d5580b83a036c3c776223f359db508a167eef1d501155655ee7",
           "source_sha256": "bb2d45c7091bcb2dbdc81e77b6712c519093577ceec7a937003e57228bd767bb",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886945+00:00",
+          "collected_at": "2026-11-06T13:11:28.217609+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/ecdsa_2p.h#L18"
         },
         {
@@ -2680,7 +2692,7 @@
           "content_sha256": "0986d849de59c959f92b00dd88d412729fbe9ff0da5f142cd1c1029e0b413f96",
           "source_sha256": "bb2d45c7091bcb2dbdc81e77b6712c519093577ceec7a937003e57228bd767bb",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886948+00:00",
+          "collected_at": "2026-11-06T13:11:28.217612+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/ecdsa_2p.h#L66"
         },
         {
@@ -2691,7 +2703,7 @@
           "content_sha256": "220d61e7527123b6ac429da5f9c81c381cf521d6a0dd872c9c236eaef82f0b4b",
           "source_sha256": "bb2d45c7091bcb2dbdc81e77b6712c519093577ceec7a937003e57228bd767bb",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886952+00:00",
+          "collected_at": "2026-11-06T13:11:28.217616+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/ecdsa_2p.h#L67"
         },
         {
@@ -2702,7 +2714,7 @@
           "content_sha256": "6626153477cce1abe743ecfb348e91e140577229a70e4d4dc32b35e698ff2be1",
           "source_sha256": "98cef577118dc981109e7eca78bf1f41d24967f84449bf597008d2c8a69c604c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886955+00:00",
+          "collected_at": "2026-11-06T13:11:28.217619+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h#L11"
         },
         {
@@ -2713,7 +2725,7 @@
           "content_sha256": "b73ec02d5359acd4ea08e3bf49c6d23136c6a5d7bc3ff5e36548fa2c2dd8a7e1",
           "source_sha256": "5ad37919ff30625baf38930da6bea9aefe1fb3cddab2a02e52d9e42a6a0f2253",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.886958+00:00",
+          "collected_at": "2026-11-06T13:11:28.217622+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/zk/zk_paillier.h#L9"
         }
       ],
@@ -2751,8 +2763,8 @@
       ]
     },
     {
-      "id": "f1536bb6-cccd-4a3f-bf7c-369ab0e1fcd9",
-      "public_id": "QSI-2026-14001",
+      "id": "983b2d01-8e4b-4b3c-94b6-510521f7eb76",
+      "public_id": "QSI-2026-17959",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (13 файл(ов))",
       "description": "102 упоминаний Threshold ECDSA в 13 файл(ах), например include-internal/cbmpc/internal/protocol/ecdsa_2p.h:10. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -2777,7 +2789,7 @@
       "affected_asset": "source-code:Threshold ECDSA:threshold_mpc",
       "data_source": "include-internal/cbmpc/internal/protocol/ecdsa_2p.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.913731+00:00",
+      "detected_at": "2026-11-06T13:11:28.258504+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -2874,7 +2886,7 @@
           "content_sha256": "4f07cdced92dd607c8b26f039382244c79cc890b96ad3e8306460858c0624a71",
           "source_sha256": "bb2d45c7091bcb2dbdc81e77b6712c519093577ceec7a937003e57228bd767bb",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927390+00:00",
+          "collected_at": "2026-11-06T13:11:28.285839+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/ecdsa_2p.h#L10"
         },
         {
@@ -2885,7 +2897,7 @@
           "content_sha256": "eb44feaab487c80962c7a431cfbdf3361a9a37156029f2ec3d6219b7557e915a",
           "source_sha256": "bb2d45c7091bcb2dbdc81e77b6712c519093577ceec7a937003e57228bd767bb",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927397+00:00",
+          "collected_at": "2026-11-06T13:11:28.285848+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/ecdsa_2p.h#L122"
         },
         {
@@ -2896,7 +2908,7 @@
           "content_sha256": "867210bf6da87290b3d8ca0486277ad9893eb8ba3d71cb1b0f72a3e135e96501",
           "source_sha256": "09e920ca00569b73af88dd9ac50b4e809d20e6ef6c57a8ada392a2a40e7ebf3f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927400+00:00",
+          "collected_at": "2026-11-06T13:11:28.285852+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/ecdsa_mp.h#L9"
         },
         {
@@ -2907,7 +2919,7 @@
           "content_sha256": "1733ee2e1cb11d10a703f1fc869b155110678b46904534af78db5ddd3532d328",
           "source_sha256": "09e920ca00569b73af88dd9ac50b4e809d20e6ef6c57a8ada392a2a40e7ebf3f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927403+00:00",
+          "collected_at": "2026-11-06T13:11:28.285855+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/ecdsa_mp.h#L129"
         },
         {
@@ -2918,7 +2930,7 @@
           "content_sha256": "219e8141fa597210bbafd00b034030aa8b243102ba810d0f7e1e7bb72f64d035",
           "source_sha256": "98cef577118dc981109e7eca78bf1f41d24967f84449bf597008d2c8a69c604c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927407+00:00",
+          "collected_at": "2026-11-06T13:11:28.285859+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h#L3"
         },
         {
@@ -2929,7 +2941,7 @@
           "content_sha256": "a5b11e730725f1172506a636b59dc27320599bd992208ea7d2320c00d8558da0",
           "source_sha256": "98cef577118dc981109e7eca78bf1f41d24967f84449bf597008d2c8a69c604c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927411+00:00",
+          "collected_at": "2026-11-06T13:11:28.285863+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/hd_keyset_ecdsa_2p.h#L29"
         },
         {
@@ -2940,7 +2952,7 @@
           "content_sha256": "a78ce67e456bbade8e40693fbf9637650f04faa2e8891063ddeebead353fb6a4",
           "source_sha256": "105375859252d5a634822b7af6726a4a80003591cc2c8bcefdb6bf72674a1542",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927414+00:00",
+          "collected_at": "2026-11-06T13:11:28.286159+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/ecdsa_2p.h#L12"
         },
         {
@@ -2951,7 +2963,7 @@
           "content_sha256": "2a83480fd5d03e50bebb35352c4cb14708fc498793961d1a8abf5db9ca7dc16f",
           "source_sha256": "105375859252d5a634822b7af6726a4a80003591cc2c8bcefdb6bf72674a1542",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927417+00:00",
+          "collected_at": "2026-11-06T13:11:28.286171+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/ecdsa_2p.h#L88"
         },
         {
@@ -2962,7 +2974,7 @@
           "content_sha256": "eb3d5758c2755f9f5a315a84c4a64733cdf65c78f998b14de387f2616daa1a7e",
           "source_sha256": "ab364b34f5c08cdcc436596ba385938b4853fb25bbc630ef507be7fa21d46588",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927420+00:00",
+          "collected_at": "2026-11-06T13:11:28.286175+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/ecdsa_mp.h#L15"
         },
         {
@@ -2973,7 +2985,7 @@
           "content_sha256": "6496220e2d3584960750a9402b32c82c32f580a8ea5e20a24637f04899b245f3",
           "source_sha256": "ab364b34f5c08cdcc436596ba385938b4853fb25bbc630ef507be7fa21d46588",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.927423+00:00",
+          "collected_at": "2026-11-06T13:11:28.286179+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/ecdsa_mp.h#L134"
         }
       ],
@@ -3011,8 +3023,8 @@
       ]
     },
     {
-      "id": "038156ff-d97d-49b9-b234-e2f8fde5d6f0",
-      "public_id": "QSI-2026-14002",
+      "id": "cf4ec37e-fe6c-4ab2-adfc-0b6a516d0882",
+      "public_id": "QSI-2026-17960",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (9 файл(ов))",
       "description": "38 упоминаний Ed25519 в 9 файл(ах), например include-internal/cbmpc/internal/protocol/eddsa.h:6. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -3037,7 +3049,7 @@
       "affected_asset": "source-code:Ed25519:threshold_mpc",
       "data_source": "include-internal/cbmpc/internal/protocol/eddsa.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.922763+00:00",
+      "detected_at": "2026-11-06T13:11:28.281539+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3134,7 +3146,7 @@
           "content_sha256": "3c84aa793ed1f42936617a69b2658887b6d94795e53413cf8e15161241b933e1",
           "source_sha256": "1bae54da49de50c02f780d2bd27bb548eadc22ad94e095c01ae16b7e3cd34270",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940490+00:00",
+          "collected_at": "2026-11-06T13:11:28.302790+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/eddsa.h#L6"
         },
         {
@@ -3145,7 +3157,7 @@
           "content_sha256": "b312965fb62a137d3aae3bf51910e3d5803f05ece5bcf33078f902aa3dca78bc",
           "source_sha256": "1bae54da49de50c02f780d2bd27bb548eadc22ad94e095c01ae16b7e3cd34270",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940497+00:00",
+          "collected_at": "2026-11-06T13:11:28.302800+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/eddsa.h#L14"
         },
         {
@@ -3156,7 +3168,7 @@
           "content_sha256": "ef05e73154048d3043c22b41a17397906767a18a0b8cf741d1cf1948271555b7",
           "source_sha256": "0ec98767b365b0bcc4a52f1dbf47fb1096c0a580321abe70532ce3c0efacad91",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940501+00:00",
+          "collected_at": "2026-11-06T13:11:28.302805+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/protocol/hd_keyset_eddsa_2p.h#L26"
         },
         {
@@ -3167,7 +3179,7 @@
           "content_sha256": "c37e0dee9fd8cf516ded4812f075b46479e94f71599bc145a46dd68978c6e49a",
           "source_sha256": "16ec1fa4dcb7e197b2ec1edb4f5fee3330b9d4b5016221c0292ca5c9208445d3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940505+00:00",
+          "collected_at": "2026-11-06T13:11:28.302808+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/eddsa_2p.h#L8"
         },
         {
@@ -3178,7 +3190,7 @@
           "content_sha256": "1870990aac8e55e075d1ff1db55dfa554b8413e8081ccb3390a7b886119d2065",
           "source_sha256": "16ec1fa4dcb7e197b2ec1edb4f5fee3330b9d4b5016221c0292ca5c9208445d3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940508+00:00",
+          "collected_at": "2026-11-06T13:11:28.302812+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/eddsa_2p.h#L79"
         },
         {
@@ -3189,7 +3201,7 @@
           "content_sha256": "0d8efb61e1de8ae34931c96eb484fc2f9c4ff617d0efa53fce450b3b65181ee8",
           "source_sha256": "277a7491b190d4e1fbec7aac06aa60e357a4a72d374a5af0d9c8d323344ab2ad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940511+00:00",
+          "collected_at": "2026-11-06T13:11:28.302816+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/eddsa2pc.cpp#L1"
         },
         {
@@ -3200,7 +3212,7 @@
           "content_sha256": "c37e0dee9fd8cf516ded4812f075b46479e94f71599bc145a46dd68978c6e49a",
           "source_sha256": "277a7491b190d4e1fbec7aac06aa60e357a4a72d374a5af0d9c8d323344ab2ad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940514+00:00",
+          "collected_at": "2026-11-06T13:11:28.302820+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/eddsa2pc.cpp#L8"
         },
         {
@@ -3211,7 +3223,7 @@
           "content_sha256": "bebfad4c5352b665f0c5800512a735abd85c681f783086cf92dba60c0981bfd3",
           "source_sha256": "277a7491b190d4e1fbec7aac06aa60e357a4a72d374a5af0d9c8d323344ab2ad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940517+00:00",
+          "collected_at": "2026-11-06T13:11:28.302823+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/eddsa2pc.cpp#L29"
         },
         {
@@ -3222,7 +3234,7 @@
           "content_sha256": "f5e7d1db58a72a542c853835f4f649afc616439e30444f917e9a5345e966b936",
           "source_sha256": "db69a2795c6ad2b92dccdb42301e4d58701cfe694787171382580d1f6eac8a5c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940520+00:00",
+          "collected_at": "2026-11-06T13:11:28.302826+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/hd_keyset_eddsa_2p.cpp#L23"
         },
         {
@@ -3233,7 +3245,7 @@
           "content_sha256": "b14eb05d04888ba3a76cb7c9a40d1ecaabd069bdadb57f2e0c8ec39f5b5a59b2",
           "source_sha256": "db69a2795c6ad2b92dccdb42301e4d58701cfe694787171382580d1f6eac8a5c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.940524+00:00",
+          "collected_at": "2026-11-06T13:11:28.302829+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/hd_keyset_eddsa_2p.cpp#L24"
         }
       ],
@@ -3271,8 +3283,8 @@
       ]
     },
     {
-      "id": "5102e55d-65b0-4939-91a1-dec0587a30c3",
-      "public_id": "QSI-2026-14004",
+      "id": "2afc19d9-6b0c-4be2-af25-3d58d020fea8",
+      "public_id": "QSI-2026-17962",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))",
       "description": "21 упоминаний Pedersen commitment в 4 файл(ах), например include-internal/cbmpc/internal/zk/zk_pedersen.h:8. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -3297,7 +3309,7 @@
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "include-internal/cbmpc/internal/zk/zk_pedersen.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.949626+00:00",
+      "detected_at": "2026-11-06T13:11:28.316015+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3394,7 +3406,7 @@
           "content_sha256": "90f6fa4e7aa38c51851aec3f52cc5042b5a7d6cb58864e285ff27920ae55dc2c",
           "source_sha256": "899fad68ffd0cc058ea9edabd9505a26a539d2d31e64f3345d976991216bc528",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963968+00:00",
+          "collected_at": "2026-11-06T13:11:28.348314+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/zk/zk_pedersen.h#L8"
         },
         {
@@ -3405,7 +3417,7 @@
           "content_sha256": "beb6763be217e297856056988084ecbeb400ac2d7bf25b188e8104b30088b1a4",
           "source_sha256": "899fad68ffd0cc058ea9edabd9505a26a539d2d31e64f3345d976991216bc528",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963976+00:00",
+          "collected_at": "2026-11-06T13:11:28.348324+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/zk/zk_pedersen.h#L13"
         },
         {
@@ -3416,7 +3428,7 @@
           "content_sha256": "4a5620026d361a84899501efab6d448f6aaca1ec3470c5f81cf65597c77a20af",
           "source_sha256": "899fad68ffd0cc058ea9edabd9505a26a539d2d31e64f3345d976991216bc528",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963979+00:00",
+          "collected_at": "2026-11-06T13:11:28.348328+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/zk/zk_pedersen.h#L17"
         },
         {
@@ -3427,7 +3439,7 @@
           "content_sha256": "f6cd7432a9262739e96d7886c92f3c7506f35897ea1c58e6393e83e81e34c51c",
           "source_sha256": "676da782f28e8371b19dd2737d91d08ac8fbf805bf4c91b0c4defe0f9116216c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963982+00:00",
+          "collected_at": "2026-11-06T13:11:28.348333+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/protocol/ecdsa_2p.cpp#L28"
         },
         {
@@ -3438,7 +3450,7 @@
           "content_sha256": "cebe585f3f001af319bb63895f689e137cb8b6b68d327245e8efe2611a1a8f4f",
           "source_sha256": "fd1dc137a7611808815356268521063e54f833048b8fc42e616a59c7188e0ab0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963985+00:00",
+          "collected_at": "2026-11-06T13:11:28.348336+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_paillier.cpp#L537"
         },
         {
@@ -3449,7 +3461,7 @@
           "content_sha256": "edeeb6e35af2f2dfeb59c3d504b58d0c9676130e51cab7743e716f1b20fe1dc9",
           "source_sha256": "968641640c623fc2cdfe6012b8686db394631006f90478bfc182820228662bc6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963988+00:00",
+          "collected_at": "2026-11-06T13:11:28.348339+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_pedersen.cpp#L6"
         },
         {
@@ -3460,7 +3472,7 @@
           "content_sha256": "59b6c7a5b07fdfda0bfbf3c3cf9123cee14bec4790d944ee6da5b7441f752acd",
           "source_sha256": "968641640c623fc2cdfe6012b8686db394631006f90478bfc182820228662bc6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963992+00:00",
+          "collected_at": "2026-11-06T13:11:28.348343+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_pedersen.cpp#L39"
         },
         {
@@ -3471,7 +3483,7 @@
           "content_sha256": "ad78a5b9a922f859724ed7a18381e655d3c93f4063474ab5e7f8364521d0a4c2",
           "source_sha256": "968641640c623fc2cdfe6012b8686db394631006f90478bfc182820228662bc6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.963996+00:00",
+          "collected_at": "2026-11-06T13:11:28.348346+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/zk/zk_pedersen.cpp#L40"
         }
       ],
@@ -3509,8 +3521,8 @@
       ]
     },
     {
-      "id": "696ed5ad-78ff-4348-8ee2-35690ade23d0",
-      "public_id": "QSI-2026-14005",
+      "id": "c3584c8e-ed18-4358-be0a-df8e7a991545",
+      "public_id": "QSI-2026-17963",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (3 файл(ов))",
       "description": "17 упоминаний ECDSA в 3 файл(ах), например src/cbmpc/api/schnorr2pc.cpp:31. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -3535,7 +3547,7 @@
       "affected_asset": "source-code:ECDSA:threshold_mpc",
       "data_source": "src/cbmpc/api/schnorr2pc.cpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.960734+00:00",
+      "detected_at": "2026-11-06T13:11:28.344228+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3632,7 +3644,7 @@
           "content_sha256": "781d30e36a4e8dc2b8788c3413940215330fa9c99e7ede1cd51753e82cd69e8b",
           "source_sha256": "9495eab05f3110eaff559f33a89cea322a17fd6c873139300a9ff54b042eaaad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975874+00:00",
+          "collected_at": "2026-11-06T13:11:28.363286+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/schnorr2pc.cpp#L31"
         },
         {
@@ -3643,7 +3655,7 @@
           "content_sha256": "70c0040ad2b59e8fc028bfe2b304bf1e5c190dcd9bd81c45122946853180c247",
           "source_sha256": "9495eab05f3110eaff559f33a89cea322a17fd6c873139300a9ff54b042eaaad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975882+00:00",
+          "collected_at": "2026-11-06T13:11:28.363298+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/schnorr2pc.cpp#L48"
         },
         {
@@ -3654,7 +3666,7 @@
           "content_sha256": "8e0b65f6eab20ce3e7beabdf092159341fdbb8bce48e0965e1137569baf42221",
           "source_sha256": "9495eab05f3110eaff559f33a89cea322a17fd6c873139300a9ff54b042eaaad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975885+00:00",
+          "collected_at": "2026-11-06T13:11:28.363303+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/schnorr2pc.cpp#L67"
         },
         {
@@ -3665,7 +3677,7 @@
           "content_sha256": "6b5c5538004c224df21888f2ab7eb3b2283655671ec668e89d3b4466ff0cda99",
           "source_sha256": "bd909c04140c085cb023ee5fac58ee26b361234b6ce65f395fc0f37defe39bd0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975889+00:00",
+          "collected_at": "2026-11-06T13:11:28.363306+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/schnorr_mp.cpp#L46"
         },
         {
@@ -3676,7 +3688,7 @@
           "content_sha256": "6082a2958ef6b9148a404e06a13378b5ddeabf80c823bc9a75ba854116a3f8ff",
           "source_sha256": "bd909c04140c085cb023ee5fac58ee26b361234b6ce65f395fc0f37defe39bd0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975892+00:00",
+          "collected_at": "2026-11-06T13:11:28.363309+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/schnorr_mp.cpp#L71"
         },
         {
@@ -3687,7 +3699,7 @@
           "content_sha256": "516efb19886076797c71fe18d00e39cff6d00e5b16854aee71e290abcf13646c",
           "source_sha256": "bd909c04140c085cb023ee5fac58ee26b361234b6ce65f395fc0f37defe39bd0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975896+00:00",
+          "collected_at": "2026-11-06T13:11:28.363313+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/schnorr_mp.cpp#L117"
         },
         {
@@ -3698,7 +3710,7 @@
           "content_sha256": "6933ccbb7668499bfc93936f9461308c76da160293ca96d96dc726de24666977",
           "source_sha256": "a998fa463bf108155247586360a6e309dc8ec940ea10916c93a66334c0baab50",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975900+00:00",
+          "collected_at": "2026-11-06T13:11:28.363316+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/protocol/schnorr_2p.cpp#L82"
         },
         {
@@ -3709,7 +3721,7 @@
           "content_sha256": "a382d78dd9af5355999427605a0c64b9d3262c18a6290782f8046e6168e0ee69",
           "source_sha256": "a998fa463bf108155247586360a6e309dc8ec940ea10916c93a66334c0baab50",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.975904+00:00",
+          "collected_at": "2026-11-06T13:11:28.363319+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/protocol/schnorr_2p.cpp#L136"
         }
       ],
@@ -3747,8 +3759,8 @@
       ]
     },
     {
-      "id": "7b708470-e185-4313-8bc5-9fd9686c06c4",
-      "public_id": "QSI-2026-14007",
+      "id": "d342f59b-f168-4a6a-a459-b603304aea00",
+      "public_id": "QSI-2026-17965",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))",
       "description": "45 упоминаний ECDSA в 1 файл(ах), например src/cbmpc/crypto/base_ecc_secp256k1.cpp:5. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -3773,7 +3785,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "src/cbmpc/crypto/base_ecc_secp256k1.cpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.983191+00:00",
+      "detected_at": "2026-11-06T13:11:28.376887+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3870,7 +3882,7 @@
           "content_sha256": "872667182b513b2fb3be5898f64aee3035d69bc5401c5422a09fa424f8584f27",
           "source_sha256": "31cabe4ca85327316c07f9865c9efa3a81c98a630bc3276806d3dd96cf400c73",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.996291+00:00",
+          "collected_at": "2026-11-06T13:11:28.398425+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc_secp256k1.cpp#L5"
         },
         {
@@ -3881,7 +3893,7 @@
           "content_sha256": "080665ef1f83af114ec0d02cf611f582583d388fba9861259f38e465461c1f25",
           "source_sha256": "31cabe4ca85327316c07f9865c9efa3a81c98a630bc3276806d3dd96cf400c73",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.996299+00:00",
+          "collected_at": "2026-11-06T13:11:28.398436+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc_secp256k1.cpp#L6"
         },
         {
@@ -3892,7 +3904,7 @@
           "content_sha256": "3fef17948caa87b9d5b3b241d1f94b1459b96d31c44dc1188c4062b13cf9419f",
           "source_sha256": "31cabe4ca85327316c07f9865c9efa3a81c98a630bc3276806d3dd96cf400c73",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.996302+00:00",
+          "collected_at": "2026-11-06T13:11:28.398440+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc_secp256k1.cpp#L7"
         }
       ],
@@ -3930,8 +3942,8 @@
       ]
     },
     {
-      "id": "81dcf0c2-8169-417b-8e38-b01e31d6e1b6",
-      "public_id": "QSI-2026-13999",
+      "id": "df71c03d-fb31-4950-9b64-6618e6e3350d",
+      "public_id": "QSI-2026-17957",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (6 файл(ов))",
       "description": "12 упоминаний ECDSA в 6 файл(ах), например include-internal/cbmpc/internal/crypto/base_ecc.h:17. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -3956,7 +3968,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "include-internal/cbmpc/internal/crypto/base_ecc.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.883329+00:00",
+      "detected_at": "2026-11-06T13:11:28.211196+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4053,7 +4065,7 @@
           "content_sha256": "1acb65be89f9287ebf0f9fdd748084d46a04587d02e8e23bd77cb5aac0bae1a6",
           "source_sha256": "4622c8393c4f4bf8d3abdc12789b328ec85e725874e01b02df1896b8c5b311d0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905436+00:00",
+          "collected_at": "2026-11-06T13:11:28.241233+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_ecc.h#L17"
         },
         {
@@ -4064,7 +4076,7 @@
           "content_sha256": "32e38a7fe938b9f819247a3f2b8f4009a857ae01cfb18dc6643580cb273c559f",
           "source_sha256": "4622c8393c4f4bf8d3abdc12789b328ec85e725874e01b02df1896b8c5b311d0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905444+00:00",
+          "collected_at": "2026-11-06T13:11:28.241245+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_ecc.h#L177"
         },
         {
@@ -4075,7 +4087,7 @@
           "content_sha256": "d6d38a0587aa30e2f8e219bbeb332a262f5d6e28c8f16c55803bbb011c8e1f62",
           "source_sha256": "4622c8393c4f4bf8d3abdc12789b328ec85e725874e01b02df1896b8c5b311d0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905447+00:00",
+          "collected_at": "2026-11-06T13:11:28.241248+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_ecc.h#L246"
         },
         {
@@ -4086,7 +4098,7 @@
           "content_sha256": "8bc94e0040057c98486af0d2761abfd6ed943aa9547cb545354de9757f6294a4",
           "source_sha256": "2facde4582730feb655e92033395aada9402fe2c32f78e6ac475bd8324936cad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905451+00:00",
+          "collected_at": "2026-11-06T13:11:28.241252+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/curve.h#L9"
         },
         {
@@ -4097,7 +4109,7 @@
           "content_sha256": "0eb2996e7229d0e76b10f0da6cc1353d0ed4e76d9997664d08fa47e679e42bdc",
           "source_sha256": "2facde4582730feb655e92033395aada9402fe2c32f78e6ac475bd8324936cad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905454+00:00",
+          "collected_at": "2026-11-06T13:11:28.241255+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include/cbmpc/api/curve.h#L10"
         },
         {
@@ -4108,7 +4120,7 @@
           "content_sha256": "4a75918a0824abc51d4df2f3b0053de2ad333c16fee4e66dc47eac2b874a1d67",
           "source_sha256": "2b1ce8031d294bd7721265d8bd13469b0828e5511b10a43ef2ba9cb16f3dd4d6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905457+00:00",
+          "collected_at": "2026-11-06T13:11:28.241258+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/curve_util.h#L13"
         },
         {
@@ -4119,7 +4131,7 @@
           "content_sha256": "ea0e22518060778a7a9df31ae979e7d72520b1fc3bebb5996fceb10bd64d2d91",
           "source_sha256": "2b1ce8031d294bd7721265d8bd13469b0828e5511b10a43ef2ba9cb16f3dd4d6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905461+00:00",
+          "collected_at": "2026-11-06T13:11:28.241261+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/api/curve_util.h#L30"
         },
         {
@@ -4130,7 +4142,7 @@
           "content_sha256": "e7c477a077d0efbf921de86527e4f38cd37dec90e2fabbe063db58c2e9e90c3e",
           "source_sha256": "54e197b005d5bf85a970ffd48c13fa55c1748b8e1a53e8b70cd4d2194e73d6a3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905464+00:00",
+          "collected_at": "2026-11-06T13:11:28.241265+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/c_api/util.h#L79"
         },
         {
@@ -4141,7 +4153,7 @@
           "content_sha256": "59055bc4efcd046ef6d49e3274cfc060c68a3620ea7436b2d76a3df41d2eaf5e",
           "source_sha256": "dd31645addc8cf00b027fc453868a4aec33a826a95a7acca172dd3af54ca97ec",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905467+00:00",
+          "collected_at": "2026-11-06T13:11:28.241270+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc.cpp#L673"
         },
         {
@@ -4152,7 +4164,7 @@
           "content_sha256": "8996735a795dea2a0988f9d89bf72c598a082466689a5c52c129920ca48e0c74",
           "source_sha256": "dd31645addc8cf00b027fc453868a4aec33a826a95a7acca172dd3af54ca97ec",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.905470+00:00",
+          "collected_at": "2026-11-06T13:11:28.241274+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc.cpp#L677"
         }
       ],
@@ -4190,8 +4202,8 @@
       ]
     },
     {
-      "id": "c39a8e11-2111-4eee-846a-3f6650ca0d63",
-      "public_id": "QSI-2026-14006",
+      "id": "a9b6b252-1f03-450c-9676-f8aec682f86a",
+      "public_id": "QSI-2026-17964",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Ed25519: роль не определена (3 файл(ов))",
       "description": "27 упоминаний Ed25519 в 3 файл(ах), например src/cbmpc/crypto/base_ecc.cpp:420. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -4216,7 +4228,7 @@
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "src/cbmpc/crypto/base_ecc.cpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.972781+00:00",
+      "detected_at": "2026-11-06T13:11:28.359451+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4313,7 +4325,7 @@
           "content_sha256": "bc97f1d43e02c8937d050b6ff40221cbbe0b44782536f3749da34fbd26696d4f",
           "source_sha256": "dd31645addc8cf00b027fc453868a4aec33a826a95a7acca172dd3af54ca97ec",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.985626+00:00",
+          "collected_at": "2026-11-06T13:11:28.384545+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc.cpp#L420"
         },
         {
@@ -4324,7 +4336,7 @@
           "content_sha256": "7704d598e6d557afa1663d4d9e33459c337911a17c2ca8640e59bc289782ae41",
           "source_sha256": "dd31645addc8cf00b027fc453868a4aec33a826a95a7acca172dd3af54ca97ec",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.985633+00:00",
+          "collected_at": "2026-11-06T13:11:28.384557+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc.cpp#L428"
         },
         {
@@ -4335,7 +4347,7 @@
           "content_sha256": "098cb191d292ec1d0e482d879f64faec8854c3290ae06e8b92fb31c0167f37ff",
           "source_sha256": "45697966a1eb28d114a3f26c52dbd3d97abef3ed0bd13a6da051f2825f70f99d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.985637+00:00",
+          "collected_at": "2026-11-06T13:11:28.384561+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_eddsa.cpp#L73"
         },
         {
@@ -4346,7 +4358,7 @@
           "content_sha256": "6ac622113d6a0eee7bdfb0992c54cd1dfdeabf37880dd29b48619950f0b9df2d",
           "source_sha256": "45697966a1eb28d114a3f26c52dbd3d97abef3ed0bd13a6da051f2825f70f99d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.985641+00:00",
+          "collected_at": "2026-11-06T13:11:28.384565+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_eddsa.cpp#L74"
         },
         {
@@ -4357,7 +4369,7 @@
           "content_sha256": "5456bbfafd04245e9627dce77292b49b426863b9ecd3f6de7dffa7f3db59801c",
           "source_sha256": "45697966a1eb28d114a3f26c52dbd3d97abef3ed0bd13a6da051f2825f70f99d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.985645+00:00",
+          "collected_at": "2026-11-06T13:11:28.384568+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_eddsa.cpp#L75"
         },
         {
@@ -4368,7 +4380,7 @@
           "content_sha256": "dbde3ddb4baf2c21baf4a87a6914ed7f9e0289e5a9e6080e665bb0c50a305e31",
           "source_sha256": "b7aa492e64186b649ce0a19abc70e27afe5f7bcaaffc008bad3a6e0ee7d83af8",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.985649+00:00",
+          "collected_at": "2026-11-06T13:11:28.384572+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/protocol/schnorr_mp.cpp#L169"
         }
       ],
@@ -4406,8 +4418,8 @@
       ]
     },
     {
-      "id": "85bc7699-72a7-4789-b06a-13fc98039fd4",
-      "public_id": "QSI-2026-14008",
+      "id": "6779e181-8702-412b-a982-9123832d5f78",
+      "public_id": "QSI-2026-17966",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
       "description": "2 упоминаний RSA в 1 файл(ах), например src/cbmpc/crypto/base_rsa.cpp:96. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -4432,7 +4444,7 @@
       "affected_asset": "source-code:RSA:general",
       "data_source": "src/cbmpc/crypto/base_rsa.cpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.993344+00:00",
+      "detected_at": "2026-11-06T13:11:28.394550+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4529,7 +4541,7 @@
           "content_sha256": "db6acbfbb01b1b6b2b382dc3e96fd9dbe38bd0d17244c79529f41f8bba9128ae",
           "source_sha256": "ce1f7e2af4ab105d95931ebce00de933dc0718afbb555bea8cac329324b39cf4",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:45.056536+00:00",
+          "collected_at": "2026-11-06T13:11:28.481769+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_rsa.cpp#L96"
         },
         {
@@ -4540,7 +4552,7 @@
           "content_sha256": "2a07b530bd9526bfbff8696f00367319e11578e9fbdb917f5d310fcc4ba84c53",
           "source_sha256": "ce1f7e2af4ab105d95931ebce00de933dc0718afbb555bea8cac329324b39cf4",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:45.056548+00:00",
+          "collected_at": "2026-11-06T13:11:28.481779+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_rsa.cpp#L201"
         }
       ],
@@ -4578,8 +4590,8 @@
       ]
     },
     {
-      "id": "aac89f2f-9b84-48ab-be78-c9e9e69e2337",
-      "public_id": "QSI-2026-14000",
+      "id": "a4892a7b-7bde-4698-ba9e-c6cafc831575",
+      "public_id": "QSI-2026-17958",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))",
       "description": "4 упоминаний Schnorr (BIP-340) в 2 файл(ах), например include-internal/cbmpc/internal/crypto/base_ecc.h:299. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -4599,7 +4611,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):general",
       "data_source": "include-internal/cbmpc/internal/crypto/base_ecc.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-05T09:56:44.901794+00:00",
+      "detected_at": "2026-11-06T13:11:28.236356+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -4696,7 +4708,7 @@
           "content_sha256": "28f82276a84909538a7777f2fddddb21be288af66f48428f791704ef4132f0fb",
           "source_sha256": "4622c8393c4f4bf8d3abdc12789b328ec85e725874e01b02df1896b8c5b311d0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.916410+00:00",
+          "collected_at": "2026-11-06T13:11:28.265568+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_ecc.h#L299"
         },
         {
@@ -4707,7 +4719,7 @@
           "content_sha256": "7743eba94a1a6606ace6bf98cf07e363ed6b5af001f037832fd5d23c317201a7",
           "source_sha256": "4622c8393c4f4bf8d3abdc12789b328ec85e725874e01b02df1896b8c5b311d0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.916418+00:00",
+          "collected_at": "2026-11-06T13:11:28.265578+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/include-internal/cbmpc/internal/crypto/base_ecc.h#L328"
         },
         {
@@ -4718,7 +4730,7 @@
           "content_sha256": "a6d9f37f314044dd61e5a40ad96ef3ed821bef576af77319a04b138cdad88d5c",
           "source_sha256": "dd31645addc8cf00b027fc453868a4aec33a826a95a7acca172dd3af54ca97ec",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.916422+00:00",
+          "collected_at": "2026-11-06T13:11:28.265582+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc.cpp#L373"
         },
         {
@@ -4729,7 +4741,7 @@
           "content_sha256": "890e2d1fab1145cadf730e5f70917a0ef8d98c0ed2c921e05febab11ee156919",
           "source_sha256": "dd31645addc8cf00b027fc453868a4aec33a826a95a7acca172dd3af54ca97ec",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-05T09:56:44.916425+00:00",
+          "collected_at": "2026-11-06T13:11:28.265585+00:00",
           "url": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/base_ecc.cpp#L485"
         }
       ],
@@ -4788,17 +4800,17 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-14003",
-      "QSI-2026-13998",
-      "QSI-2026-14001",
-      "QSI-2026-14002",
-      "QSI-2026-14004",
-      "QSI-2026-14005",
-      "QSI-2026-14007",
-      "QSI-2026-13999",
-      "QSI-2026-14006",
-      "QSI-2026-14008",
-      "QSI-2026-14000"
+      "QSI-2026-17961",
+      "QSI-2026-17956",
+      "QSI-2026-17959",
+      "QSI-2026-17960",
+      "QSI-2026-17962",
+      "QSI-2026-17963",
+      "QSI-2026-17965",
+      "QSI-2026-17957",
+      "QSI-2026-17964",
+      "QSI-2026-17966",
+      "QSI-2026-17958"
     ],
     "roles": [
       {
@@ -4814,7 +4826,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-14003"
+          "QSI-2026-17961"
         ],
         "files": 5
       },
@@ -4847,11 +4859,11 @@
           }
         ],
         "findings": [
-          "QSI-2026-13998",
-          "QSI-2026-14001",
-          "QSI-2026-14002",
-          "QSI-2026-14004",
-          "QSI-2026-14005"
+          "QSI-2026-17956",
+          "QSI-2026-17959",
+          "QSI-2026-17960",
+          "QSI-2026-17962",
+          "QSI-2026-17963"
         ],
         "files": 44
       },
@@ -4868,7 +4880,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-14007"
+          "QSI-2026-17965"
         ],
         "files": 1
       },
@@ -4897,10 +4909,10 @@
           }
         ],
         "findings": [
-          "QSI-2026-13999",
-          "QSI-2026-14000",
-          "QSI-2026-14006",
-          "QSI-2026-14008"
+          "QSI-2026-17957",
+          "QSI-2026-17958",
+          "QSI-2026-17964",
+          "QSI-2026-17966"
         ],
         "files": 12
       }
@@ -4990,7 +5002,7 @@
           },
           {
             "algorithm": "Ed25519",
-            "rows": 19
+            "rows": 20
           },
           {
             "algorithm": "Pedersen commitment",
@@ -5186,7 +5198,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14003",
+        "finding": "QSI-2026-17961",
         "finding_title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (5 файл(ов))",
         "severity": "medium"
       },
@@ -5204,7 +5216,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-13998",
+        "finding": "QSI-2026-17956",
         "finding_title": "Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (15 файл(ов))",
         "severity": "medium"
       },
@@ -5222,7 +5234,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14001",
+        "finding": "QSI-2026-17959",
         "finding_title": "Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (13 файл(ов))",
         "severity": "medium"
       },
@@ -5240,7 +5252,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14002",
+        "finding": "QSI-2026-17960",
         "finding_title": "Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (9 файл(ов))",
         "severity": "medium"
       },
@@ -5258,7 +5270,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14004",
+        "finding": "QSI-2026-17962",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))",
         "severity": "medium"
       },
@@ -5276,7 +5288,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14005",
+        "finding": "QSI-2026-17963",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (3 файл(ов))",
         "severity": "medium"
       },
@@ -5294,7 +5306,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14007",
+        "finding": "QSI-2026-17965",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -5312,7 +5324,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-13999",
+        "finding": "QSI-2026-17957",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (6 файл(ов))",
         "severity": "medium"
       },
@@ -5330,7 +5342,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14006",
+        "finding": "QSI-2026-17964",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (3 файл(ов))",
         "severity": "medium"
       },
@@ -5348,7 +5360,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14008",
+        "finding": "QSI-2026-17966",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -5366,7 +5378,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-14000",
+        "finding": "QSI-2026-17958",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -5384,7 +5396,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14003",
+        "finding": "QSI-2026-17961",
         "finding_title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (5 файл(ов))",
         "severity": "medium"
       },
@@ -5402,7 +5414,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Стандартизованной постквантовой замены нет. Планируйте пороговые схемы над постквантовыми подписями по мере их зрелости (пороговый конкурс NIST, IR 8214C) или протоколы без Paillier (на основе забывчивой передачи) или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-13998",
+        "finding": "QSI-2026-17956",
         "finding_title": "Квантово-уязвимый Paillier: пороговая подпись и протоколы MPC (15 файл(ов))",
         "severity": "medium"
       },
@@ -5420,7 +5432,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Схему подписи задаёт блокчейн или проверяющая сторона. Следите за постквантовыми предложениями на уровне сетей и пороговыми постквантовыми подписями (NIST IR 8214C); закладывайте обновление долей ключа и криптогибкость в архитектуру хранения или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14001",
+        "finding": "QSI-2026-17959",
         "finding_title": "Квантово-уязвимый Threshold ECDSA: пороговая подпись и протоколы MPC (13 файл(ов))",
         "severity": "medium"
       },
@@ -5438,7 +5450,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14002",
+        "finding": "QSI-2026-17960",
         "finding_title": "Квантово-уязвимый Ed25519: пороговая подпись и протоколы MPC (9 файл(ов))",
         "severity": "medium"
       },
@@ -5456,7 +5468,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14004",
+        "finding": "QSI-2026-17962",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (4 файл(ов))",
         "severity": "medium"
       },
@@ -5474,7 +5486,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14005",
+        "finding": "QSI-2026-17963",
         "finding_title": "Квантово-уязвимый ECDSA: пороговая подпись и протоколы MPC (3 файл(ов))",
         "severity": "medium"
       },
@@ -5492,7 +5504,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14007",
+        "finding": "QSI-2026-17965",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -5510,7 +5522,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-13999",
+        "finding": "QSI-2026-17957",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (6 файл(ов))",
         "severity": "medium"
       },
@@ -5528,7 +5540,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14006",
+        "finding": "QSI-2026-17964",
         "finding_title": "Квантово-уязвимый Ed25519: роль не определена (3 файл(ов))",
         "severity": "medium"
       },
@@ -5546,7 +5558,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14008",
+        "finding": "QSI-2026-17966",
         "finding_title": "Квантово-уязвимый RSA: роль не определена (1 файл(ов))",
         "severity": "medium"
       },
@@ -5564,7 +5576,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-14000",
+        "finding": "QSI-2026-17958",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))",
         "severity": "medium"
       }
@@ -5823,7 +5835,8 @@
       "quantum_status": "classical_weakness",
       "classical_status": "legacy",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-1",
@@ -5835,7 +5848,8 @@
       "quantum_status": "classical_weakness",
       "classical_status": "deprecated",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "AES-192",
@@ -5847,7 +5861,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "AES-256",
@@ -5859,7 +5874,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "HKDF",
@@ -5871,7 +5887,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "HKDF",
@@ -5883,7 +5900,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "HKDF",
@@ -5895,7 +5913,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5907,7 +5926,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "AES-128",
@@ -5919,7 +5939,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "BLAKE2",
@@ -5931,7 +5952,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5943,7 +5965,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5955,7 +5978,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-3",
@@ -5967,7 +5991,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ML-KEM",
@@ -5979,7 +6004,8 @@
       "quantum_status": "pqc",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ML-KEM",
@@ -5991,7 +6017,8 @@
       "quantum_status": "pqc",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "BN254 (alt_bn128)",
@@ -6003,7 +6030,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "BN254 (alt_bn128)",
@@ -6015,7 +6043,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -6027,7 +6056,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -6039,7 +6069,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -6051,7 +6082,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -6063,7 +6095,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -6075,7 +6108,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6087,7 +6121,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6099,7 +6134,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6111,7 +6147,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6123,7 +6160,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6135,7 +6173,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6147,7 +6186,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6159,7 +6199,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6171,7 +6212,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6183,7 +6225,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6195,7 +6238,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6207,7 +6251,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6219,7 +6264,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6231,7 +6277,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6243,7 +6290,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6255,7 +6303,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6267,7 +6316,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 10
+      "occurrences": 10,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6279,7 +6329,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6291,7 +6342,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6303,7 +6355,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6315,7 +6368,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 45
+      "occurrences": 45,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6327,7 +6381,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6339,7 +6394,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6351,7 +6407,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6363,7 +6420,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6375,7 +6433,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6387,7 +6446,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6399,7 +6459,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6411,7 +6472,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6423,7 +6485,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6435,7 +6498,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6447,7 +6511,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6459,7 +6524,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6471,7 +6537,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6483,7 +6550,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 14
+      "occurrences": 14,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6495,7 +6563,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6507,7 +6576,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6519,7 +6589,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6531,7 +6602,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6543,7 +6615,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6555,7 +6628,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 24
+      "occurrences": 24,
+      "origin": "own"
+    },
+    {
+      "algorithm": "Ed25519",
+      "family": "signature",
+      "parameter": "Ed25519",
+      "usage": "implementation constant: edwards25519 curve constant d",
+      "library": "",
+      "location": "src/cbmpc/crypto/ec25519_core.cpp:914",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6567,7 +6654,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6579,7 +6667,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6591,7 +6680,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -6603,7 +6693,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ElGamal",
@@ -6615,7 +6706,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "deprecated",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ElGamal",
@@ -6627,7 +6719,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "deprecated",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ElGamal",
@@ -6639,7 +6732,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "deprecated",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ElGamal",
@@ -6651,7 +6745,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "deprecated",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6663,7 +6758,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6675,7 +6771,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 23
+      "occurrences": 23,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6687,7 +6784,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 11
+      "occurrences": 11,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6699,7 +6797,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6711,7 +6810,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 37
+      "occurrences": 37,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6723,7 +6823,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 16
+      "occurrences": 16,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6735,7 +6836,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6747,7 +6849,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 20
+      "occurrences": 20,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6759,7 +6862,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6771,7 +6875,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 33
+      "occurrences": 33,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6783,7 +6888,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 81
+      "occurrences": 81,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6795,7 +6901,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6807,7 +6914,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6819,7 +6927,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 77
+      "occurrences": 77,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -6831,7 +6940,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 33
+      "occurrences": 33,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -6843,7 +6953,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -6855,7 +6966,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -6867,7 +6979,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -6879,7 +6992,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 16
+      "occurrences": 16,
+      "origin": "own"
     },
     {
       "algorithm": "RSA",
@@ -6891,7 +7005,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RSA",
@@ -6903,7 +7018,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "RSA",
@@ -6915,7 +7031,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6927,7 +7044,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6939,7 +7057,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -6951,7 +7070,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -6963,7 +7083,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -6975,7 +7096,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -6987,7 +7109,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -6999,7 +7122,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7011,7 +7135,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 18
+      "occurrences": 18,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7023,7 +7148,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 25
+      "occurrences": 25,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7035,7 +7161,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7047,7 +7174,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7059,7 +7187,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 12
+      "occurrences": 12,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7071,7 +7200,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 11
+      "occurrences": 11,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7083,7 +7213,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -7095,7 +7226,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -7322,8 +7454,8 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 12,
-      "rows": 12,
+      "count": 13,
+      "rows": 13,
       "examples": [
         "include-internal/cbmpc/internal/protocol/eddsa.h:6",
         "include-internal/cbmpc/internal/protocol/hd_keyset_eddsa_2p.h:26",

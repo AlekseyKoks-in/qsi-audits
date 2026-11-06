@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: rust-secp256k1 @ fe8b3bec962f
 
-*One-page brief* · Reviewed: 2026-11-04 19:19 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rust-secp256k1 — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 14:44 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: rust-secp256k1 — public repository (passive review)
 
 Source: https://github.com/rust-bitcoin/rust-secp256k1/tree/fe8b3bec962fc2c7052501de397fde58ef7142d1
 
@@ -12,13 +12,13 @@ Source: https://github.com/rust-bitcoin/rust-secp256k1/tree/fe8b3bec962fc2c70525
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (23 file(s)) (QSI-2026-12584) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (23 file(s)) (QSI-2026-19314) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s)) (QSI-2026-12586) · *preliminary*\
+2. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s)) (QSI-2026-19316) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable ECDH: role not determined (5 file(s)) (QSI-2026-12585) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDH: role not determined (5 file(s)) (QSI-2026-19315) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in…
-4. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-12587) · *preliminary*\
+4. **Medium** · Quantum-vulnerable ECDSA: role not determined (4 file(s)) (QSI-2026-19317) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
 
 1 more in the full report.
@@ -32,9 +32,9 @@ Source: https://github.com/rust-bitcoin/rust-secp256k1/tree/fe8b3bec962fc2c70525
 
 ---
 
-Static review of source code and manifests; files analysed: 118. No requests were sent to the owner's systems.
+Static review of source code and manifests; files analysed: 114. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `82abeea34e02e233b7a86c4ef175f23ed70a059aed003f355163c56f669bdd1b`
+Full report, content SHA-256: `67af5bb6b7b16a10ee76bc2008963ec51d95977d16ed2b022eae9ebd4f82b891`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

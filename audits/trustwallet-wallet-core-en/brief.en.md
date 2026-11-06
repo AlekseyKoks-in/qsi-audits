@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: trustwallet-wallet-core-en @ adf80f8bac98
 
-*One-page brief* · Reviewed: 2026-11-04 19:39 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Trust Wallet — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 14:10 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Trust Wallet — public repository (passive review)
 
 Source: https://github.com/trustwallet/wallet-core/tree/adf80f8bac989e18a4ef1922e2b9eaeb4bf804a9
 
@@ -12,13 +12,13 @@ Source: https://github.com/trustwallet/wallet-core/tree/adf80f8bac989e18a4ef1922
 
 ## What matters most
 
-1. **Medium** · Transaction signing for 43 chain(s) relies on elliptic-curve signatures (QSI-2026-12926) · *confirmed by the analyst*\
+1. **Medium** · Transaction signing for 43 chain(s) relies on elliptic-curve signatures (QSI-2026-19097) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (84 file(s)) (QSI-2026-12916) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (84 file(s)) (QSI-2026-19087) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (38 file(s)) (QSI-2026-12917) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable Ed25519: transaction and message signing (38 file(s)) (QSI-2026-19088) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-4. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (16 file(s)) (QSI-2026-12919) · *confirmed by the analyst*\
+4. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (16 file(s)) (QSI-2026-19090) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
 
 7 more in the full report.
@@ -41,7 +41,7 @@ Analyst review: 13 confirmed, 11 not applicable, 0 dismissed as false positives.
 
 Static review of source code and manifests; files analysed: 1695. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `f42e37d97d9fb8678004e87e0803924e2fc2f3508ba33d6fd7a8da749ec3f97b`
+Full report, content SHA-256: `8a325521f3f1ccf1cab3be25a2700b299d0b6b1e4448b089929879f5298c8bba`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

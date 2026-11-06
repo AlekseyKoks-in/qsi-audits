@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:1db95a10-e80c-441f-98d0-6a395c62b1fe",
+  "serialNumber": "urn:uuid:0984fc75-59d5-45eb-b212-02858dc3ae13",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-04T19:19:17Z",
+    "timestamp": "2026-11-06T14:44:15Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7dcb51c7-d83f-4600-8f27-420c6ab44b91",
+      "bom-ref": "18877cfe-3ede-4dde-8ba4-457806323bef",
       "name": "ECDH",
       "properties": [
         {
@@ -67,7 +67,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "852bf5ef-e70c-4bc5-816a-5c181220d4ea",
+      "bom-ref": "8819d01f-8728-4e5f-9e7d-857683e3f178",
       "name": "ECDH",
       "properties": [
         {
@@ -116,7 +116,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ee4c25c5-113c-4982-b3cf-07e20ae6f6e7",
+      "bom-ref": "253f42df-1267-4a17-ab2d-c4d8d8918e8e",
       "name": "ECDH",
       "properties": [
         {
@@ -165,7 +165,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "026b632d-5649-48cd-9a4e-93f7f20f5267",
+      "bom-ref": "3258e753-9590-49f4-9b37-c8562e852876",
       "name": "ECDH",
       "properties": [
         {
@@ -214,7 +214,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "452744cc-850e-4646-93e6-df2f375e88bc",
+      "bom-ref": "a9abedb3-6df6-4374-afc8-a74cb53350ab",
       "name": "ECDH",
       "properties": [
         {
@@ -263,7 +263,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "683a71c2-1578-4220-b62d-9decdd1424e2",
+      "bom-ref": "b5ccc6a5-b66d-4b2e-ba35-ec7ba6b07574",
       "name": "ECDH",
       "properties": [
         {
@@ -312,7 +312,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "951e3ef0-67e4-4d87-90fe-c5535a2436cd",
+      "bom-ref": "81eec507-10b3-4b5d-8e2d-8c5189b2cbbe",
       "name": "ECDSA",
       "properties": [
         {
@@ -366,7 +366,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1b9d4a71-b902-4cb7-99ab-8ebdbe5ebd89",
+      "bom-ref": "2873cc99-21e1-4f2d-b811-8a93d6fe99e1",
       "name": "ECDSA",
       "properties": [
         {
@@ -420,7 +420,58 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0111fe94-4547-4472-ae63-cc91823be729",
+      "bom-ref": "3ea003d2-792f-4928-8308-952028afc72d",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.c:69"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/contrib/lax_der_privatekey_parsing.c#L69"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: secp256k1 field prime p"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "2dcc1709-1660-4a26-8a5b-d3b4330b0b51",
       "name": "ECDSA",
       "properties": [
         {
@@ -474,7 +525,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b0f54840-eeda-473d-bd28-0e7bf07d21b2",
+      "bom-ref": "14ca60ed-754e-4f2b-a565-1bced79aa565",
       "name": "ECDSA",
       "properties": [
         {
@@ -528,7 +579,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "99555c16-f2ba-4119-91fb-1872c3497891",
+      "bom-ref": "1e71b2a6-f4a7-4184-ae25-d1389464a332",
       "name": "ECDSA",
       "properties": [
         {
@@ -582,7 +633,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "45c925d8-ae4a-446c-9913-4edbed17c273",
+      "bom-ref": "179e4d50-e91f-474c-af08-2c93d4168e90",
       "name": "ECDSA",
       "properties": [
         {
@@ -636,7 +687,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0318eb42-9665-41cc-b001-85efc0188431",
+      "bom-ref": "58c260d8-8a47-4b62-9a44-db065b4c79d6",
       "name": "ECDSA",
       "properties": [
         {
@@ -690,7 +741,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "52d9cab8-918f-4f65-b6e2-24831ffd6fb9",
+      "bom-ref": "296f4f4a-5faf-424a-884d-47a22aa0911f",
       "name": "ECDSA",
       "properties": [
         {
@@ -744,7 +795,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7b3aa315-f469-4295-90d8-6e2dfc495475",
+      "bom-ref": "965032f7-af05-49ee-80a3-723ad363429c",
       "name": "ECDSA",
       "properties": [
         {
@@ -798,7 +849,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6d8d3ef1-e47d-4f68-b437-6801ff5bce55",
+      "bom-ref": "3efae380-6ace-4027-9e58-034c303167ac",
       "name": "ECDSA",
       "properties": [
         {
@@ -845,7 +896,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bbb26bbe-bf2c-4b6d-8084-d77554f606d2",
+      "bom-ref": "87c990c2-6342-45c6-b427-023af4b5ca39",
       "name": "ECDSA",
       "properties": [
         {
@@ -858,15 +909,19 @@
         },
         {
           "name": "qsi:location",
-          "value": "secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h"
+          "value": "secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h:20"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/ecdsa_impl.h#L20"
         },
         {
           "name": "qsi:usage",
-          "value": "implemented in a file of this name"
+          "value": "implementation constant: secp256k1 group order n"
         },
         {
           "name": "qsi:confidence",
-          "value": "low"
+          "value": "medium"
         },
         {
           "name": "qsi:source",
@@ -892,7 +947,160 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ea000020-1042-4575-b54a-b70a7e5bed7a",
+      "bom-ref": "59802f43-31fd-4512-98e9-740274c26829",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "secp256k1-sys/depend/secp256k1/src/field.h:54"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/field.h#L54"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: secp256k1 field prime p"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "1b9c57b0-2939-4fd7-ae01-7ea811f10ea6",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "secp256k1-sys/depend/secp256k1/src/field_5x52_impl.h:28"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/field_5x52_impl.h#L28"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: secp256k1 field prime p"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d6a76b24-64bc-4020-9380-d5e0a486e409",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "secp256k1-sys/depend/secp256k1/src/group_impl.h:39"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/group_impl.h#L39"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: secp256k1 generator x"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "698b0a7e-4f89-4802-9e40-5c661c675829",
       "name": "ECDSA",
       "properties": [
         {
@@ -946,7 +1154,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c141172f-ce28-4439-8ddf-0abfcb1eaf1b",
+      "bom-ref": "65161d06-5c50-4efe-af80-922ed341b160",
       "name": "ECDSA",
       "properties": [
         {
@@ -1000,7 +1208,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cfb83cb0-267f-4738-adba-967e15c5077a",
+      "bom-ref": "731f5510-c589-4e5c-92e1-efcaffef3922",
       "name": "ECDSA",
       "properties": [
         {
@@ -1054,7 +1262,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "afa0c45e-24fc-4d83-abb2-80df452d11b0",
+      "bom-ref": "bc9d5950-3795-4e9b-b9bc-9437ebe5843f",
       "name": "ECDSA",
       "properties": [
         {
@@ -1108,7 +1316,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0d669307-6421-4dc1-ae54-6c13733316bf",
+      "bom-ref": "6946d87b-8071-4f73-b202-476fb5ca6a68",
       "name": "ECDSA",
       "properties": [
         {
@@ -1162,7 +1370,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "28b8a47d-2c0f-4046-9454-2cdf7c016b0b",
+      "bom-ref": "a79fcacf-6c9d-440a-9a0a-755a75fe016c",
       "name": "ECDSA",
       "properties": [
         {
@@ -1216,7 +1424,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8c132f62-4fa3-4148-9092-35af49b94386",
+      "bom-ref": "cf4ec8e7-4317-4bdc-afa1-8369199ede31",
       "name": "ECDSA",
       "properties": [
         {
@@ -1270,7 +1478,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "98fdd5df-88b0-471f-884c-5304d689112f",
+      "bom-ref": "f8f672eb-04cc-48e1-963e-6c4bb3f7ab55",
       "name": "ECDSA",
       "properties": [
         {
@@ -1324,7 +1532,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "66afabf0-f170-4066-9155-ee769346429d",
+      "bom-ref": "20ba0a99-aa5e-43dc-9fbf-221ff6b52f0b",
       "name": "ECDSA",
       "properties": [
         {
@@ -1378,7 +1586,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b050bffd-6238-4f0d-ab48-def6da326743",
+      "bom-ref": "3cd7c970-66fc-41e1-b747-e163182f8f72",
       "name": "ECDSA",
       "properties": [
         {
@@ -1432,7 +1640,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1883d57e-3648-4be8-a105-05810e24fbc3",
+      "bom-ref": "740c9e19-b145-43b5-a08c-a46bd75b3504",
       "name": "ECDSA",
       "properties": [
         {
@@ -1483,7 +1691,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "20b68426-cca6-41fa-8f3b-a590fc83f0d8",
+      "bom-ref": "afd5655c-c797-44d7-bab5-0c07385f1d16",
       "name": "ECDSA",
       "properties": [
         {
@@ -1534,7 +1742,58 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7cff38fb-29fd-4149-b0c9-e2a001315e8b",
+      "bom-ref": "148a0486-bff4-48f1-94fc-0f490acf7fba",
+      "name": "ECDSA",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/constants.rs:41"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/src/constants.rs#L41"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: secp256k1 field prime p"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ecdsa"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.2.840.10045.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "d18c038b-25ec-4cae-a3d8-b506e0e79c3b",
       "name": "ECDSA",
       "properties": [
         {
@@ -1585,7 +1844,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ae70b517-4c2d-44d6-a5a2-36068aed4f60",
+      "bom-ref": "b4d02168-ed68-44f5-8211-50b28d612e46",
       "name": "ECDSA",
       "properties": [
         {
@@ -1636,7 +1895,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6445196e-221b-45af-93ef-6dddea4eb148",
+      "bom-ref": "0db6eab9-bcb8-4a3f-b38e-80a7c7c7b227",
       "name": "ECDSA",
       "properties": [
         {
@@ -1687,7 +1946,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "208cb5b3-7753-4f7b-b83e-eb62ee80d137",
+      "bom-ref": "3bb2254c-f8fb-4ca3-b479-e22eceeec8fb",
       "name": "ECDSA",
       "properties": [
         {
@@ -1738,7 +1997,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c339b40e-c6aa-4925-8578-faadeffc2f44",
+      "bom-ref": "71e463b5-68ec-47a1-ade7-56025817db7d",
       "name": "ECDSA",
       "properties": [
         {
@@ -1789,7 +2048,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7cb3fbf1-826b-4444-9c1d-37c99fa5564b",
+      "bom-ref": "a7d441e9-2b55-4e12-b89e-6785b14f2819",
       "name": "ECDSA",
       "properties": [
         {
@@ -1843,7 +2102,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f3784d70-27b8-493e-8734-7ec5c7146390",
+      "bom-ref": "6f80fec9-c281-44c1-a932-55dfbdfc871d",
       "name": "ECDSA",
       "properties": [
         {
@@ -1897,7 +2156,59 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "28d5a086-383e-446d-890d-bdcff17f42e9",
+      "bom-ref": "b07e9f75-1796-4161-8460-beeefd626494",
+      "name": "SHA-2",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "grover_reduced"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "secp256k1-sys/depend/secp256k1/src/hash_impl.h:48"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/rust-bitcoin/rust-secp256k1/blob/fe8b3bec962fc2c7052501de397fde58ef7142d1/secp256k1-sys/depend/secp256k1/src/hash_impl.h#L48"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: SHA-256 round constants K"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "sha-2"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": "SHA-256",
+          "cryptoFunctions": [
+            "digest"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 2
+        },
+        "oid": "2.16.840.1.101.3.4.2.1"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "47c9ec35-c8e0-4106-943d-413a6912bac6",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -1943,7 +2254,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "04ddb4fd-503a-49a1-9ec5-aeee7c0ba3cf",
+      "bom-ref": "8809651d-6312-4bca-bb46-37e5ea9130e7",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -1993,7 +2304,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "26a989ae-e39e-464c-bf01-313ec96f098c",
+      "bom-ref": "5d8bb408-d525-4f80-ae33-df72b284a961",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -2043,7 +2354,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "567de292-6489-4d45-bfcc-643120a1dce0",
+      "bom-ref": "d553fcd1-73dc-4835-9506-725ceb9b4171",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -2093,7 +2404,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "68b79147-aa31-407e-859f-e88c1806185c",
+      "bom-ref": "6701a4d6-3097-4b7d-872e-b12363105e84",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -2143,7 +2454,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b22c508b-869f-434a-8fd2-9948f9bea515",
+      "bom-ref": "6d3e0754-a5d6-4ee4-9d65-3461bda8b0fc",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -2193,7 +2504,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "50457817-306b-414e-ab86-c7e2d0eb889c",
+      "bom-ref": "d4599979-e86e-4b48-a6ea-ea2fc71d4c00",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {

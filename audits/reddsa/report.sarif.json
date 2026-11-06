@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "dddc06ae3551b9ff5cf5afa8bf517a7f"
           },
           "properties": {
-            "qsiId": "QSI-2026-12470",
+            "qsiId": "QSI-2026-18640",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "8523edb9ce7f414dc285e274554d2cfa"
           },
           "properties": {
-            "qsiId": "QSI-2026-12469",
+            "qsiId": "QSI-2026-18639",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -136,7 +136,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-12472",
+            "qsiId": "QSI-2026-18642",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -163,7 +163,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-12471",
+            "qsiId": "QSI-2026-18641",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -172,13 +172,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/reddsa @ 04e973bcf8d4/66dc426a-b0c7-4872-8381-1690c003ff22"
+        "id": "qsi/reddsa @ 04e973bcf8d4/c4c9d7c5-09f9-4c2c-b579-6fb622de2731"
       },
       "properties": {
-        "qsiContentSha256": "5ca6c9c5ed7313b21cef308aaed72429129f081cd89916ded12aeb8640a00654",
+        "qsiContentSha256": "08fe88f232c6ada4a674ff9f066eba67672d9342e3074b8ca4f1ff1deafda8f1",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:15:59.602006+00:00",
+        "qsiGeneratedAt": "2026-11-06T13:47:37.417324+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

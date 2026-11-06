@@ -10,10 +10,10 @@
 |---|---:|---|
 | **Реализовано** | 6 | постквантовый примитив встречается на строке исходного кода |
 | **Только названо** | 1 | свидетельство — *имя* файла; отчёты помечают это `confidence: low` |
-| **Только объявлено** | 2 | манифест делает возможность доступной; что она используется — ничего не говорит |
-| **Отсутствует** | 44 | постквантовых строк нет вовсе |
+| **Только объявлено** | 4 | манифест или умолчание инструментария делает возможность доступной (crypto/tls в Go 1.24+); сам проект её не выбирал |
+| **Отсутствует** | 42 | постквантовых строк нет вовсе |
 
-**9 из 53 начали при самом мягком чтении и 6 — при единственном, которое означает
+**11 из 53 начали при самом мягком чтении и 6 — при единственном, которое означает
 код.** Ни одно из четырёх состояний не является утверждением о вендоре: отсутствие строки означает отсутствие *в
 аудированной области на закреплённом коммите*, а работа может лежать в другой ветке, другом репозитории или в
 закрытом коде.
@@ -23,11 +23,11 @@
 | Кодовая база | Постквантовых строк | Ломает Шор | Что именно и где лежит сильнейшая строка |
 |---|---:|---:|---|
 | `rustls` | 9 | 29 | X25519MLKEM768 ×6, SecP256r1MLKEM768 ×2, SecP384r1MLKEM1024 — `rustls-aws-lc-rs/src/kx.rs:59` |
-| `openpgpjs` | 8 | 35 | ML-DSA ×3, ML-KEM ×3, PQC library ×2 — `src/crypto/public_key/post_quantum/noble_post_quantum.ts:10` |
-| `trezor-firmware` | 7 | 73 | ML-DSA ×6, SLH-DSA — `core/embed/sec/mcu_attestation/inc/sec/mcu_attestation.h:24` |
-| `bitwarden-sdk` | 5 | 12 | ML-DSA ×3, PQC library ×2 — `crates/bitwarden-crypto/src/signing/cose.rs:7` |
+| `openpgpjs` | 8 | 32 | ML-DSA ×3, ML-KEM ×3, PQC library ×2 — `src/crypto/public_key/post_quantum/noble_post_quantum.ts:10` |
+| `trezor-firmware` | 7 | 74 | ML-DSA ×6, SLH-DSA — `core/embed/sec/mcu_attestation/inc/sec/mcu_attestation.h:24` |
+| `bitwarden-sdk` | 5 | 13 | ML-DSA ×3, PQC library ×2 — `crates/bitwarden-crypto/src/signing/cose.rs:7` |
 | `zingolib` | 3 | 3 | X25519MLKEM768 ×2, PQC library — `zingo-netutils/src/crypto.rs:25` |
-| `coinbase-cb-mpc` | 2 | 88 | ML-KEM ×2 — `src/cbmpc/crypto/mlkem768.cpp:8` |
+| `coinbase-cb-mpc` | 2 | 93 | ML-KEM ×2 — `src/cbmpc/crypto/mlkem768.cpp:8` |
 
 У `trezor-firmware` претензия сильнейшая: ML-DSA в аттестации MCU и **SLH-DSA в
 `core/embed/sec/image/boot_header.c:30`, то есть в корне доверия**, рядом с Ed25519 на строке 81 того же файла —
@@ -54,7 +54,9 @@
 | Кодовая база | Постквантовых строк | Ломает Шор | Что именно и где лежит сильнейшая строка |
 |---|---:|---:|---|
 | `rage` | 3 | 13 | PQC library ×3 — `Cargo.lock` |
-| `foundry` | 1 | 16 | X25519MLKEM768 — `Cargo.toml:494` |
+| `foundry` | 1 | 17 | X25519MLKEM768 — `Cargo.toml:494` |
+| `lightwalletd` | 1 | 3 | X25519MLKEM768 — `frontend/rawrequest.go:60` |
+| `scroll` | 1 | 7 | X25519MLKEM768 — `bridge-history-api/cmd/api/app/app.go:67` |
 
 ## Исправление к отчёту-предшественнику и дефект, который за ним стоял
 
@@ -90,16 +92,16 @@ SecP384r1MLKEM1024, две группы, которых реестр не нах
 
 | Кодовая база | Строк, ломаемых Шором |
 |---|---:|
-| `trustwallet-wallet-core` | 254 |
-| `bitbox02-firmware` | 104 |
-| `agave` | 103 |
-| `fireblocks-mpc-lib` | 87 |
-| `monero` | 79 |
-| `jade` | 74 |
-| `bitgo-mpc` | 66 |
-| `zebra` | 65 |
+| `trustwallet-wallet-core` | 294 |
+| `bitbox02-firmware` | 113 |
+| `agave` | 111 |
+| `jade` | 107 |
+| `monero` | 99 |
+| `fireblocks-mpc-lib` | 88 |
+| `libwally-core` | 81 |
+| `bitgo-mpc` | 68 |
 
-По всем 53 базам алгоритм Шора ломает 1 729 строк инвентаризации. Смысл градации другого столбца в том,
+По всем 53 базам алгоритм Шора ломает 1 942 строк инвентаризации. Смысл градации другого столбца в том,
 что «начал» и «защищён» — разные вопросы, и только первый вообще измерим по исходному коду.
 
 ---

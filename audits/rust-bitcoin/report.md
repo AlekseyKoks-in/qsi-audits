@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-04 19:18 UTC |
+| Report date | 2026-11-06 13:50 UTC |
 | Report version | 1 |
-| Audit run | 2e935aa9-46ad-4264-82a6-30aa442dc464 (Document audit) |
+| Audit run | 4ab81962-1c35-43cd-a87a-9e56cda8bf10 (Document audit) |
 | Analyzer engine | qsi-engine 1.3.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `85f793c3cefd18fd504e7c243ffa6c191c6676f381d6308495e23b444ca7d76c` |
+| Content SHA-256 | `3c66c2f5a80738810e373133f3f6a61ddd2c936670352def1ca38be290728472` |
 | Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -46,7 +46,7 @@ Repository: <https://github.com/rust-bitcoin/rust-bitcoin> @ `f127ba2ae14e044760
 | Area | Status | Count | Examples |
 |---|---|---|---|
 | dependencies | checked | 15 | Cargo.toml: 0 dependencies parsed (0 pinned); addresses/Cargo.toml: 10 dependencies parsed (0 pinned); base58/Cargo.toml: 3 dependencies parsed (0 pinned) |
-| source_code | checked | 110 | addresses/src/error.rs: 314 lines scanned with 16 rule patterns and 145 registry patterns; addresses/src/lib.rs: 1608 lines scanned with 16 rule patterns and 145 registry patterns; 291 lines in #[cfg(test)] modules ignored; addresses/src/witness_program.rs: 246 lines scanned with 16 rule patterns and 145 registry patterns; 48 lines in #[cfg(test)] modules ignored |
+| source_code | checked | 110 | addresses/src/error.rs: 314 lines scanned with 16 rule patterns and 266 registry patterns; addresses/src/lib.rs: 1608 lines scanned with 16 rule patterns and 266 registry patterns; 291 lines in #[cfg(test)] modules ignored; addresses/src/witness_program.rs: 246 lines scanned with 16 rule patterns and 266 registry patterns; 48 lines in #[cfg(test)] modules ignored |
 | secrets | checked | 9 | bitcoin/src/address.rs: 1 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); bitcoin/src/taproot/mod.rs: 2 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name); chacha20_poly1305/src/chacha20.rs: 8 redacted value(s) not reported (comments, test modules, fixture declarations, placeholders, values the source annotates as published, or hex values not bound to a secret name) |
 | entropy | checked | 1 | random-number generation: 110 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | checked | 1 | 39 pinned packages queried at OSV.dev; 1 affected |
@@ -64,17 +64,17 @@ Static review of the source tree rust-bitcoin at f127ba2ae14e0447606bfee5d5783e6
 ## 6. Overall security posture
 
 - Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 59.5%
+- Quantum-vulnerable share of inventory: 52.1%
 
 ## 7. Detailed findings
 
-### QSI-2026-12578 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))
+### QSI-2026-18748 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Schnorr (BIP-340):transaction_signing`
 - Data source: addresses/src/lib.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:18 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 13:50 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -176,13 +176,13 @@ _file_excerpt · [bitcoin/src/taproot/mod.rs](https://github.com/rust-bitcoin/ru
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-12579 — Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))
+### QSI-2026-18749 — Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: bitcoin/src/blockdata/witness.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:18 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 13:50 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -284,13 +284,13 @@ _file_excerpt · [bitcoin/src/sign_message.rs](https://github.com/rust-bitcoin/r
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-12580 — Quantum-vulnerable ECDSA: role not determined (4 file(s))
+### QSI-2026-18750 — Quantum-vulnerable ECDSA: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:general`
 - Data source: crypto/src/ecdsa.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:18 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 13:50 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -392,13 +392,13 @@ _file_excerpt · [taproot_primitives/src/lib.rs](https://github.com/rust-bitcoin
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-12581 — Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))
+### QSI-2026-18751 — Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:Schnorr (BIP-340):general`
 - Data source: crypto/src/lib.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:18 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 13:50 UTC
 - Priority score: 34.2 / 100
 - CVSS v3.1: not applicable
 
@@ -476,13 +476,13 @@ _file_excerpt · [taproot_primitives/src/lib.rs](https://github.com/rust-bitcoin
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-12582 — No post-quantum capable cryptographic library detected
+### QSI-2026-18752 — No post-quantum capable cryptographic library detected
 
 - Severity: **Info** · Classification: Insufficient data · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `dependencies`
 - Data source: dependency manifests
 - Detection method: Dependency name matching.
-- Analyzer: dependencies 1.3.0 · 2026-11-04 19:18 UTC
+- Analyzer: dependencies 1.3.0 · 2026-11-06 13:50 UTC
 - Priority score: 13.3 / 100
 - CVSS v3.1: not applicable
 
@@ -510,13 +510,13 @@ Crypto libraries: secp256k1
 
 **Retest procedure.** Re-scan after upgrades.
 
-### QSI-2026-12583 — bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)
+### QSI-2026-18753 — bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)
 
 - Severity: **Info** · Classification: Improvement recommendation · Confidence: Low
 - Affected asset: `dependency:crates.io/bare-metal@0.2.5`
 - Data source: OSV.dev
 - Detection method: OSV.dev querybatch API lookup of the exact declared version.
-- Analyzer: dependencies 1.3.0 · 2026-11-04 19:18 UTC
+- Analyzer: dependencies 1.3.0 · 2026-11-06 13:50 UTC
 - Priority score: 11.8 / 100
 - CVSS v3.1: not applicable
 
@@ -577,8 +577,8 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (8), Schnorr (BIP-340) (7) | QSI-2026-12578, QSI-2026-12579 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | ECDSA (4), Schnorr (BIP-340) (3) | QSI-2026-12580, QSI-2026-12581 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (8), Schnorr (BIP-340) (7) | QSI-2026-18748, QSI-2026-18749 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | ECDSA (4), Schnorr (BIP-340) (3) | QSI-2026-18750, QSI-2026-18751 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -588,8 +588,8 @@ No readiness questionnaire was completed for this project.
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
 | Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDSA (15), Schnorr (BIP-340) (10) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | ChaCha20-Poly1305 (2), HKDF (1), HMAC (6), Poly1305 (1), RIPEMD-160 (1), SHA-2 (1) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | RIPEMD-160 (1), SHA-2 (1) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | ChaCha20-Poly1305 (2), HKDF (1), HMAC (6), Poly1305 (1), RIPEMD-160 (1), SHA-1 (1), SHA-2 (6) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
+| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | RIPEMD-160 (1), SHA-1 (1), SHA-2 (6) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 
 _Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
 
@@ -613,15 +613,15 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-12578 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-12579 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-12580 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-12581 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-12578 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-12579 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-12580 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-12581 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-12583 | Replace bare-metal with a maintained alternative or record why it stays. | root-cause fix | bare-metal replaced, or the decision recorded. |
+| P3 | QSI-2026-18748 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-18749 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-18750 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-18751 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-18748 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-18749 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-18750 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-18751 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-18753 | Replace bare-metal with a maintained alternative or record why it stays. | root-cause fix | bare-metal replaced, or the decision recorded. |
 
 ## 11. Tools used
 
@@ -665,9 +665,12 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 ## Appendices: Cryptographic inventory
 
+By origin: dependency manifests 5 (0 Shor-breakable) · own code 43 (25 Shor-breakable).
+
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
 | RIPEMD-160 | RIPEMD-160 |  | weak classically | legacy | 1 | 1 | hashes/src/lib.rs:126 |
+| SHA-1 | SHA-1 |  | weak classically | deprecated | 1 | 1 | hashes/src/sha1/crypto.rs:32 |
 | ChaCha20-Poly1305 |  |  | reduced margin (Grover), approved | acceptable | 1 | 1 | chacha20_poly1305/src/chacha20.rs |
 | ChaCha20-Poly1305 | ChaCha20-Poly1305 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | chacha20_poly1305/src/lib.rs:37 |
 | HKDF |  |  | reduced margin (Grover), approved | acceptable | 1 | 1 | hashes/src/lib.rs:115 |
@@ -675,7 +678,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 | HMAC | HMAC-SHA-256 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | hashes/src/lib.rs:156 |
 | HMAC | HMAC-SHA-512 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | hashes/src/lib.rs:159 |
 | Poly1305 |  |  | reduced margin (Grover), approved | acceptable | 1 | 1 | chacha20_poly1305/src/poly1305.rs |
-| SHA-2 |  |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | hashes/src/sha256/crypto/arm_sha2.rs |
+| SHA-2 | SHA-512 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | hashes/src/sha512/crypto.rs:100 |
+| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 5 | 5 | hashes/src/sha256/crypto/arm_sha2.rs:29; hashes/src/sha256/crypto/avx2.rs:164; hashes/src/sha256/crypto/mod.rs:215 |
 | Crypto library | 0.33.0 | secp256k1 (secp256k1 bindings) | n/a | acceptable | 5 | 5 | bitcoin/Cargo.toml; bitcoin/embedded/Cargo.lock; crypto/Cargo.toml |
 | ECDSA |  |  | vulnerable (Shor) | acceptable | 4 | 4 | bitcoin/src/blockdata/witness.rs:29; bitcoin/src/crypto/sighash.rs:91; crypto/src/ecdsa.rs:47 |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 11 | 11 | bitcoin/src/crypto/key.rs:12; bitcoin/src/crypto/sighash.rs:56; bitcoin/src/lib.rs:75 |

@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: zcash-android-wallet-sdk @ a95780ac00e0
 
-*One-page brief* · Reviewed: 2026-11-04 19:41 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 14:12 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/zcash-android-wallet-sdk/tree/a95780ac00e0198c111c6e701126e6688f64a12a
 
@@ -12,13 +12,13 @@ Source: https://github.com/zcash/zcash-android-wallet-sdk/tree/a95780ac00e0198c1
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable RSA key (2048-bit) in responsible_disclosure.md (QSI-2026-12942)\
+1. **Medium** · Quantum-vulnerable RSA key (2048-bit) in responsible_disclosure.md (QSI-2026-19113)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-2. **Medium** · SHA-1 used in backend-lib/src/main/java/cash/z/ecc/android/sdk/internal/ext/FileExt.kt (QSI-2026-12940) · *confirmed by the analyst*\
+2. **Medium** · SHA-1 used in backend-lib/src/main/java/cash/z/ecc/android/sdk/internal/ext/FileExt.kt (QSI-2026-19111) · *confirmed by the analyst*\
    What to do: Replace with SHA-256/SHA-3 (or Argon2/bcrypt for passwords) where security-relevant.
-3. **Medium** · Quantum-vulnerable RedDSA: authentication and identity (certificates, tokens, device attestation)… (QSI-2026-12941) · *preliminary*\
+3. **Medium** · Quantum-vulnerable RedDSA: authentication and identity (certificates, tokens, device attestation)… (QSI-2026-19112) · *preliminary*\
    What to do: Keep credentials short-lived and plan ML-DSA certificates, tokens and keys as the ecosystem supports them.
-4. **Medium** · rsa 0.9.10 is affected by RUSTSEC-2023-0071 (CVE-2023-49092) (QSI-2026-12949)\
+4. **Medium** · rsa 0.9.10 is affected by RUSTSEC-2023-0071 (CVE-2023-49092) (QSI-2026-19120)\
    What to do: Upgrade to a fixed version (none published yet; see the advisory for mitigations).
 
 22 more in the full report.
@@ -39,7 +39,7 @@ Analyst review: 1 confirmed, 0 not applicable, 0 dismissed as false positives. (
 
 Static review of source code and manifests; files analysed: 350. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `3f4299bc645d7af10b6282ebb31306cfe69d54b651508d5e0347234218334d02`
+Full report, content SHA-256: `6bb7c7be5d230a735167a08277218fe10d891f442a4312e64e8d08655ab1c43d`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

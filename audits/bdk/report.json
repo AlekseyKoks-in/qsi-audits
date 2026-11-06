@@ -1,8 +1,8 @@
 {
-  "content_sha256": "59ffd452de4aa332fec2fab0ef94887896d51b13df2992df5d90513da39d4abe",
+  "content_sha256": "95752fd04b542a6ac39fb243df69a7edd813f6c4f3e4845154c658f482fc2657",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-04T20:13:41.026638+00:00",
+  "generated_at": "2026-11-06T12:54:32.039431+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "1b96b952-ec67-48fd-a3c4-a009fb69fe9a",
+    "id": "2a9df95e-9959-43a5-a637-3e7b07f304cc",
     "mode": "document",
     "title": "Document audit: bdk",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T20:13:37.556939+00:00",
-    "finished_at": "2026-11-04T20:13:40.827992+00:00",
+    "started_at": "2026-11-06T12:54:29.422293+00:00",
+    "finished_at": "2026-11-06T12:54:31.884213+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -319,12 +319,12 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 145 registry patterns; 137 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 266 registry patterns; 137 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -334,87 +334,87 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 145 registry patterns; 38 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 266 registry patterns; 38 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/canonical.rs: 676 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/canonical.rs: 676 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/canonical_task.rs: 506 lines scanned with 16 rule patterns and 145 registry patterns; 59 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/chain/src/canonical_task.rs: 506 lines scanned with 16 rule patterns and 266 registry patterns; 59 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/canonical_view_task.rs: 223 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/canonical_view_task.rs: 223 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/chain_data.rs: 385 lines scanned with 16 rule patterns and 145 registry patterns; 200 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/chain/src/chain_data.rs: 385 lines scanned with 16 rule patterns and 266 registry patterns; 200 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/descriptor_ext.rs: 38 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/descriptor_ext.rs: 38 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/example_utils.rs: 29 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/example_utils.rs: 29 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/indexed_tx_graph.rs: 524 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/indexed_tx_graph.rs: 524 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/indexer.rs: 58 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/indexer.rs: 58 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/indexer/keychain_txout.rs: 1320 lines scanned with 16 rule patterns and 145 registry patterns; 157 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/chain/src/indexer/keychain_txout.rs: 1320 lines scanned with 16 rule patterns and 266 registry patterns; 157 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/indexer/spk_txout.rs: 510 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/indexer/spk_txout.rs: 510 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/lib.rs: 107 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/lib.rs: 107 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/local_chain.rs: 934 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/local_chain.rs: 934 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/rusqlite_impl.rs: 906 lines scanned with 16 rule patterns and 145 registry patterns; 245 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/chain/src/rusqlite_impl.rs: 906 lines scanned with 16 rule patterns and 266 registry patterns; 245 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/spk_iter.rs: 300 lines scanned with 16 rule patterns and 145 registry patterns; 159 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/chain/src/spk_iter.rs: 300 lines scanned with 16 rule patterns and 266 registry patterns; 159 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/tx_data_traits.rs: 115 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/tx_data_traits.rs: 115 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/chain/src/tx_graph.rs: 1458 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/chain/src/tx_graph.rs: 1458 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -424,42 +424,42 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/block_id.rs: 51 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/core/src/block_id.rs: 51 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/chain_query.rs: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/core/src/chain_query.rs: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/checkpoint.rs: 739 lines scanned with 16 rule patterns and 145 registry patterns; 116 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/core/src/checkpoint.rs: 739 lines scanned with 16 rule patterns and 266 registry patterns; 116 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/checkpoint_entry.rs: 163 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/core/src/checkpoint_entry.rs: 163 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/lib.rs: 93 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/core/src/lib.rs: 93 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/merge.rs: 82 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/core/src/merge.rs: 82 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/spk_client.rs: 734 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/core/src/spk_client.rs: 734 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/core/src/tx_update.rs: 112 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/core/src/tx_update.rs: 112 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -469,12 +469,12 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/electrum/src/bdk_electrum_client.rs: 916 lines scanned with 16 rule patterns and 145 registry patterns; 135 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/electrum/src/bdk_electrum_client.rs: 916 lines scanned with 16 rule patterns and 266 registry patterns; 135 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/electrum/src/lib.rs: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/electrum/src/lib.rs: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -484,17 +484,17 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/esplora/src/async_ext.rs: 803 lines scanned with 16 rule patterns and 145 registry patterns; 232 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/esplora/src/async_ext.rs: 803 lines scanned with 16 rule patterns and 266 registry patterns; 232 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/esplora/src/blocking_ext.rs: 966 lines scanned with 16 rule patterns and 145 registry patterns; 436 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/esplora/src/blocking_ext.rs: 966 lines scanned with 16 rule patterns and 266 registry patterns; 436 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/esplora/src/lib.rs: 83 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/esplora/src/lib.rs: 83 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -504,17 +504,17 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/file_store/src/entry_iter.rs: 83 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/file_store/src/entry_iter.rs: 83 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/file_store/src/lib.rs: 56 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/file_store/src/lib.rs: 56 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/file_store/src/store.rs: 633 lines scanned with 16 rule patterns and 145 registry patterns; 351 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/file_store/src/store.rs: 633 lines scanned with 16 rule patterns and 266 registry patterns; 351 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -524,12 +524,12 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/testenv/src/lib.rs: 579 lines scanned with 16 rule patterns and 145 registry patterns; 117 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/testenv/src/lib.rs: 579 lines scanned with 16 rule patterns and 266 registry patterns; 117 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/testenv/src/utils.rs: 158 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/testenv/src/utils.rs: 158 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -561,9 +561,9 @@
       "count": 37,
       "rows": 37,
       "examples": [
-        "crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 145 registry patterns",
-        "crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 145 registry patterns; 137 lines in #[cfg(test)] modules ignored",
-        "crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 145 registry patterns; 38 lines in #[cfg(test)] modules ignored"
+        "crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 266 registry patterns",
+        "crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 266 registry patterns; 137 lines in #[cfg(test)] modules ignored",
+        "crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 266 registry patterns; 38 lines in #[cfg(test)] modules ignored"
       ]
     },
     {
@@ -680,12 +680,18 @@
     "inventory_total": 1,
     "inventory_by_quantum_status": {
       "vulnerable_shor": 1
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 1,
+        "vulnerable_shor": 1
+      }
     }
   },
   "findings": [
     {
-      "id": "df79e6a0-a392-4e40-86a4-64d80f865d2d",
-      "public_id": "QSI-2026-13330",
+      "id": "62b17515-bd5c-4f1a-ba50-7ab8abc52800",
+      "public_id": "QSI-2026-17718",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
       "description": "2 reference(s) to ECDSA across 1 file(s), e.g. crates/chain/src/spk_iter.rs:2. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -705,7 +711,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "crates/chain/src/spk_iter.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T20:13:40.818058+00:00",
+      "detected_at": "2026-11-06T12:54:31.876411+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -802,7 +808,7 @@
           "content_sha256": "58953e8cd27684683f75e8c61ebc1f8b6d9c286a2f5983b56e89a0ae255886b5",
           "source_sha256": "5df96d8c7921b3306d986d117a4348e9afe98be7c27c94b1ef8fe1ab13c2f7b9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:13:40.841673+00:00",
+          "collected_at": "2026-11-06T12:54:31.954151+00:00",
           "url": "https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L2"
         },
         {
@@ -813,7 +819,7 @@
           "content_sha256": "2100b069271cc49191876e6a859414230e335185aeb5ec18d55ed509e55d5e14",
           "source_sha256": "5df96d8c7921b3306d986d117a4348e9afe98be7c27c94b1ef8fe1ab13c2f7b9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:13:40.841683+00:00",
+          "collected_at": "2026-11-06T12:54:31.954161+00:00",
           "url": "https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L40"
         }
       ],
@@ -872,7 +878,7 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-13330"
+      "QSI-2026-17718"
     ],
     "roles": [
       {
@@ -888,7 +894,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-13330"
+          "QSI-2026-17718"
         ],
         "files": 1
       }
@@ -976,7 +982,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-13330",
+        "finding": "QSI-2026-17718",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
         "severity": "medium"
       },
@@ -994,7 +1000,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-13330",
+        "finding": "QSI-2026-17718",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))",
         "severity": "medium"
       }
@@ -1155,7 +1161,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [

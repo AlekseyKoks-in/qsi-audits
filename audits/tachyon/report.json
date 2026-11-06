@@ -1,8 +1,8 @@
 {
-  "content_sha256": "e8a4a8a18457078579a3f17e2b0579b7c2857bb765f20afeae4ed3101c8844a3",
+  "content_sha256": "d681784f06f14b7231318a924675b797801738447d263befd10cff8bc9d32105",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T19:29:38.859949+00:00",
+  "generated_at": "2026-11-06T14:00:57.233788+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "08a12b34-364f-4397-928a-73b132f89f2a",
     "name": "tachyon @ 6cdaebccf147",
     "client_name": "Tachyon (Zcash)",
-    "description": "Static review of the source tree tachyon at 6cdaebccf147c5a013d212f9d7302924a9570626. 58 files analysed; of 138 files, 9 are test, fuzzing, benchmark or example code and were left out, 71 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/actions/rust-nightly-setup/action.yml, .github/actions/rust-setup/action.yml, .github/workflows/book.yml, .github/workflows/rust.yml, .github/workflows/zizmor.yml. 110 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree tachyon at 6cdaebccf147c5a013d212f9d7302924a9570626. 58 files analysed; of 138 files, 9 are test, fuzzing, benchmark or example code and were left out, 71 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/actions/rust-nightly-setup/action.yml, .github/actions/rust-setup/action.yml, .github/workflows/book.yml, .github/workflows/rust.yml, .github/workflows/zizmor.yml. 115 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "a4f4ffce-02c2-4cac-b0a1-899504c81522",
+    "id": "b0c5455f-2072-4ebe-88f1-bb11f4452926",
     "mode": "document",
     "title": "Document audit: tachyon",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T19:29:28.187713+00:00",
-    "finished_at": "2026-11-04T19:29:38.707325+00:00",
+    "started_at": "2026-11-06T14:00:45.378302+00:00",
+    "finished_at": "2026-11-06T14:00:57.126006+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -405,12 +405,12 @@
     },
     {
       "area": "source_code",
-      "detail": "book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "book/mermaid.min.js: 2609 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "book/mermaid.min.js: 2609 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -420,257 +420,257 @@
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/bundle/mod.rs: 1237 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/bundle/mod.rs: 1237 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/collections/indexed_multiset.rs: 182 lines scanned with 16 rule patterns and 145 registry patterns; 60 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/collections/indexed_multiset.rs: 182 lines scanned with 16 rule patterns and 266 registry patterns; 60 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/collections/mod.rs: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/collections/mod.rs: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/collections/multiset.rs: 13 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/collections/multiset.rs: 13 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/collections/qr.rs: 453 lines scanned with 16 rule patterns and 145 registry patterns; 297 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/collections/qr.rs: 453 lines scanned with 16 rule patterns and 266 registry patterns; 297 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/constants.rs: 26 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/constants.rs: 26 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/digest/blake2b.rs: 295 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/digest/blake2b.rs: 295 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/digest/mod.rs: 8 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/digest/mod.rs: 8 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/digest/poseidon.rs: 283 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/digest/poseidon.rs: 283 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/entropy.rs: 172 lines scanned with 16 rule patterns and 145 registry patterns; 98 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/entropy.rs: 172 lines scanned with 16 rule patterns and 266 registry patterns; 98 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/fee.rs: 64 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/fee.rs: 64 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/keys/master.rs: 81 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/keys/master.rs: 81 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/keys/mod.rs: 211 lines scanned with 16 rule patterns and 145 registry patterns; 116 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/keys/mod.rs: 211 lines scanned with 16 rule patterns and 266 registry patterns; 116 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/keys/note.rs: 170 lines scanned with 16 rule patterns and 145 registry patterns; 55 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/keys/note.rs: 170 lines scanned with 16 rule patterns and 266 registry patterns; 55 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/keys/private.rs: 287 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/keys/private.rs: 287 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/keys/proof.rs: 84 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/keys/proof.rs: 84 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/keys/public.rs: 154 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/keys/public.rs: 154 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/lib.rs: 44 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/lib.rs: 44 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/note.rs: 174 lines scanned with 16 rule patterns and 145 registry patterns; 53 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/note.rs: 174 lines scanned with 16 rule patterns and 266 registry patterns; 53 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/nullifier/mod.rs: 56 lines scanned with 16 rule patterns and 145 registry patterns; 13 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/nullifier/mod.rs: 56 lines scanned with 16 rule patterns and 266 registry patterns; 13 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/action_digest.rs: 119 lines scanned with 16 rule patterns and 145 registry patterns; 71 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/primitives/action_digest.rs: 119 lines scanned with 16 rule patterns and 266 registry patterns; 71 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/anchor.rs: 169 lines scanned with 16 rule patterns and 145 registry patterns; 67 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/primitives/anchor.rs: 169 lines scanned with 16 rule patterns and 266 registry patterns; 67 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/block_height.rs: 87 lines scanned with 16 rule patterns and 145 registry patterns; 20 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/primitives/block_height.rs: 87 lines scanned with 16 rule patterns and 266 registry patterns; 20 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/effect.rs: 66 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/primitives/effect.rs: 66 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/epoch.rs: 134 lines scanned with 16 rule patterns and 145 registry patterns; 41 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/primitives/epoch.rs: 134 lines scanned with 16 rule patterns and 266 registry patterns; 41 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/evidence.rs: 9 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/primitives/evidence.rs: 9 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/mod.rs: 27 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/primitives/mod.rs: 27 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/qr.rs: 272 lines scanned with 16 rule patterns and 145 registry patterns; 114 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/primitives/qr.rs: 272 lines scanned with 16 rule patterns and 266 registry patterns; 114 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/seq.rs: 67 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/primitives/seq.rs: 67 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/sets.rs: 193 lines scanned with 16 rule patterns and 145 registry patterns; 16 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/primitives/sets.rs: 193 lines scanned with 16 rule patterns and 266 registry patterns; 16 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/primitives/tachygram.rs: 71 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/primitives/tachygram.rs: 71 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/ragu_constraint.rs: 47 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/ragu_constraint.rs: 47 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/reddsa.rs: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/reddsa.rs: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/relations/enforce.rs: 127 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/relations/enforce.rs: 127 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/relations/mod.rs: 7 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/relations/mod.rs: 7 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/serialization/compactsize.rs: 472 lines scanned with 16 rule patterns and 145 registry patterns; 157 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/serialization/compactsize.rs: 472 lines scanned with 16 rule patterns and 266 registry patterns; 157 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/serialization/mod.rs: 131 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/serialization/mod.rs: 131 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/mod.rs: 1197 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/mod.rs: 1197 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/delegation.rs: 325 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/delegation.rs: 325 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/evidence.rs: 544 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/evidence.rs: 544 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/mod.rs: 85 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/mod.rs: 85 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/output.rs: 92 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/output.rs: 92 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/pool.rs: 561 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/pool.rs: 561 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/qr.rs: 841 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/qr.rs: 841 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/spend.rs: 145 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/spend.rs: 145 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/spendable.rs: 250 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/spendable.rs: 250 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/stamp.rs: 728 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/stamp.rs: 728 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/stamp/proof/summary.rs: 132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/stamp/proof/summary.rs: 132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/value.rs: 301 lines scanned with 16 rule patterns and 145 registry patterns; 40 lines in #[cfg(test)] modules ignored",
+      "detail": "crates/tachyon/src/value.rs: 301 lines scanned with 16 rule patterns and 266 registry patterns; 40 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crates/tachyon/src/witness.rs: 630 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crates/tachyon/src/witness.rs: 630 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -707,9 +707,9 @@
       "count": 53,
       "rows": 53,
       "examples": [
-        "book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 145 registry patterns",
-        "book/mermaid.min.js: 2609 lines scanned with 16 rule patterns and 145 registry patterns",
-        "crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 145 registry patterns"
+        "book/mermaid-init.js: 39 lines scanned with 16 rule patterns and 266 registry patterns",
+        "book/mermaid.min.js: 2609 lines scanned with 16 rule patterns and 266 registry patterns",
+        "crates/tachyon/src/action.rs: 324 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -849,12 +849,18 @@
     "inventory_by_quantum_status": {
       "grover_reduced": 15,
       "vulnerable_shor": 10
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 25,
+        "vulnerable_shor": 10
+      }
     }
   },
   "findings": [
     {
-      "id": "8d280563-fe85-4c2e-814d-16186260b79c",
-      "public_id": "QSI-2026-12863",
+      "id": "b2f180a2-dba6-446f-a247-2ba155e73999",
+      "public_id": "QSI-2026-19034",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))",
       "description": "3 упоминаний Pedersen commitment в 1 файл(ах), например crates/tachyon/src/value.rs:18. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -874,7 +880,7 @@
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "crates/tachyon/src/value.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:29:38.643680+00:00",
+      "detected_at": "2026-11-06T14:00:57.097422+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -971,7 +977,7 @@
           "content_sha256": "9ff0ec5ef69430ebe9a6c4b3b79ee6e5250d9fcac040615717f1d682c5490930",
           "source_sha256": "5bc365a663432264e7c4c995a3474ad5a4796b7c8759bfbe4e1418120e0f69d6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.682330+00:00",
+          "collected_at": "2026-11-06T14:00:57.110704+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/value.rs#L18"
         },
         {
@@ -982,7 +988,7 @@
           "content_sha256": "f1812189e951dd7c0b54be48946948862b7c298c797f8073ddeb42dec03b9189",
           "source_sha256": "5bc365a663432264e7c4c995a3474ad5a4796b7c8759bfbe4e1418120e0f69d6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.682340+00:00",
+          "collected_at": "2026-11-06T14:00:57.110712+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/value.rs#L79"
         },
         {
@@ -993,7 +999,7 @@
           "content_sha256": "599fff9d6a98290efca0ab16885161a6bc8f04a94d51fc6cd9fb2dbcac1895b5",
           "source_sha256": "5bc365a663432264e7c4c995a3474ad5a4796b7c8759bfbe4e1418120e0f69d6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.682344+00:00",
+          "collected_at": "2026-11-06T14:00:57.110715+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/value.rs#L93"
         }
       ],
@@ -1031,8 +1037,8 @@
       ]
     },
     {
-      "id": "45eb1d0a-9dc4-432c-bca5-02fad2fbc4bd",
-      "public_id": "QSI-2026-12861",
+      "id": "e320a463-a21c-409e-b852-a7fe5e423163",
+      "public_id": "QSI-2026-19032",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))",
       "description": "24 упоминаний RedDSA в 6 файл(ах), например crates/tachyon/src/action.rs:267. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1052,7 +1058,7 @@
       "affected_asset": "source-code:RedDSA:general",
       "data_source": "crates/tachyon/src/action.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:29:38.593290+00:00",
+      "detected_at": "2026-11-06T14:00:57.067570+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1149,7 +1155,7 @@
           "content_sha256": "665b8939749dc8191eb086848a64e3e5f20038a1d4ed0cd282fafe9b5d480ec5",
           "source_sha256": "e44def1c1daed39201890625a754c686e2787b110cdf178f912efc6ca31b54c9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628584+00:00",
+          "collected_at": "2026-11-06T14:00:57.086425+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/action.rs#L267"
         },
         {
@@ -1160,7 +1166,7 @@
           "content_sha256": "60e1af3bbf6b5ab3ceb775dc6a92938642e8b6b2d4daf43fbd19721ec7d0aca7",
           "source_sha256": "89739155e7e88dfdb57d2c662377599e2bd86e302c44614e3e9d6ecf3a429f82",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628594+00:00",
+          "collected_at": "2026-11-06T14:00:57.086432+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/bundle/mod.rs#L1215"
         },
         {
@@ -1171,7 +1177,7 @@
           "content_sha256": "42275e11e48ddc762025e9716308a53fc22c29e8c9e19365cd392e20089b0a34",
           "source_sha256": "f177d7eaecd09ddb2e0a1849eba276a2004b1a7f0cff95019e61753c65b3e53e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628598+00:00",
+          "collected_at": "2026-11-06T14:00:57.086436+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/proof.rs#L60"
         },
         {
@@ -1182,7 +1188,7 @@
           "content_sha256": "f2e806a6896e88ca2dd32fa70a75bcc42c3c4b0b797dc53f5cab00e499e34851",
           "source_sha256": "a2b330c55873c67c258ab44395e78044d450cd1415b63473aa53ae6c17175411",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628603+00:00",
+          "collected_at": "2026-11-06T14:00:57.086439+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/public.rs#L27"
         },
         {
@@ -1193,7 +1199,7 @@
           "content_sha256": "0fe24d0700a23e727cdd92a3075ce1e5d47345bd712bea8ed8caf7252dde4fb8",
           "source_sha256": "a2b330c55873c67c258ab44395e78044d450cd1415b63473aa53ae6c17175411",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628606+00:00",
+          "collected_at": "2026-11-06T14:00:57.086443+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/public.rs#L28"
         },
         {
@@ -1204,7 +1210,7 @@
           "content_sha256": "e53bb10a3849ab6c1aa1cdede1370153eafe5cbd06594d238b360386fe4646f3",
           "source_sha256": "a2b330c55873c67c258ab44395e78044d450cd1415b63473aa53ae6c17175411",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628609+00:00",
+          "collected_at": "2026-11-06T14:00:57.086446+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/public.rs#L46"
         },
         {
@@ -1215,7 +1221,7 @@
           "content_sha256": "6d4ccd8d10424d3d378a9a7e88892d8bc25ae06e9f350b6bf4c022f6172af00d",
           "source_sha256": "383bf0dab67da97d8c05c3d17810cc82560faba6c8960541aa56c4b62c8680ff",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628613+00:00",
+          "collected_at": "2026-11-06T14:00:57.086449+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/reddsa.rs#L7"
         },
         {
@@ -1226,7 +1232,7 @@
           "content_sha256": "77eeae14bf7b8f347d48553bd3036a1dbf5076b9b6a91017473345c2668b0dcb",
           "source_sha256": "383bf0dab67da97d8c05c3d17810cc82560faba6c8960541aa56c4b62c8680ff",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628616+00:00",
+          "collected_at": "2026-11-06T14:00:57.086452+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/reddsa.rs#L8"
         },
         {
@@ -1237,7 +1243,7 @@
           "content_sha256": "79c1e52cddc7e58d0fee89c204f80be9de528bc26eeef673e55a8df88ec638c8",
           "source_sha256": "4c5d40d9da4cbfaa6360fbeb1df898773a7f1df0805f917c3eee89fabeaff06c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628620+00:00",
+          "collected_at": "2026-11-06T14:00:57.086455+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/serialization/mod.rs#L79"
         },
         {
@@ -1248,7 +1254,7 @@
           "content_sha256": "1cf340d889c5613d44c473cb72b2e4e3372a6fd1c50b2550c07ef0a465a6cc18",
           "source_sha256": "4c5d40d9da4cbfaa6360fbeb1df898773a7f1df0805f917c3eee89fabeaff06c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.628623+00:00",
+          "collected_at": "2026-11-06T14:00:57.086459+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/serialization/mod.rs#L82"
         }
       ],
@@ -1286,8 +1292,8 @@
       ]
     },
     {
-      "id": "05355a6a-248b-4855-99cd-a95ec57fa70c",
-      "public_id": "QSI-2026-12862",
+      "id": "23e080f1-49ad-4151-9e1c-8bb5170ec7db",
+      "public_id": "QSI-2026-19033",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
       "description": "16 упоминаний RedDSA в 1 файл(ах), например crates/tachyon/src/keys/private.rs:95. Роль по путям, именам функций и соседнему коду: аутентификация и идентификация (сертификаты, токены, аттестация устройств). Краткоживущая аутентификация безопасна до появления CRQC; долгоживущим идентификаторам (аттестация устройств, ключи УЦ и SSH) план нужен раньше.",
@@ -1307,7 +1313,7 @@
       "affected_asset": "source-code:RedDSA:authentication",
       "data_source": "crates/tachyon/src/keys/private.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:29:38.623621+00:00",
+      "detected_at": "2026-11-06T14:00:57.083732+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1404,7 +1410,7 @@
           "content_sha256": "e1d11199ceccc6f1c27e4c457f1441994aa647da905f30db1592d61987b2f3dc",
           "source_sha256": "d14059dbeff2c2b5aef4a26967e86cdcfbd7a21e9de8be695718fd58d0ae9935",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.648493+00:00",
+          "collected_at": "2026-11-06T14:00:57.100622+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/private.rs#L95"
         },
         {
@@ -1415,7 +1421,7 @@
           "content_sha256": "d516b781a8f2f8dbce8d5cfa82f44e4f864ca9f0b882d7462edb8e615fbf862f",
           "source_sha256": "d14059dbeff2c2b5aef4a26967e86cdcfbd7a21e9de8be695718fd58d0ae9935",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.648504+00:00",
+          "collected_at": "2026-11-06T14:00:57.100629+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/private.rs#L96"
         },
         {
@@ -1426,7 +1432,7 @@
           "content_sha256": "8c3d41d1466260fe9cbf9603ba9f9b83fbe6fd57fdff0118f14b2fa9a9fd9d26",
           "source_sha256": "d14059dbeff2c2b5aef4a26967e86cdcfbd7a21e9de8be695718fd58d0ae9935",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.648508+00:00",
+          "collected_at": "2026-11-06T14:00:57.100632+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/crates/tachyon/src/keys/private.rs#L97"
         }
       ],
@@ -1464,8 +1470,8 @@
       ]
     },
     {
-      "id": "d6edd1c5-a9e4-4611-9861-a47e450ba627",
-      "public_id": "QSI-2026-12860",
+      "id": "3e42a885-5ba2-420f-908b-83526e087673",
+      "public_id": "QSI-2026-19031",
       "rule_id": "CODE-INSECURE-RANDOM",
       "title": "Некриптографический ГСЧ рядом с чувствительными идентификаторами в book/mermaid.min.js",
       "description": "«Math.random()» в строка 352 в строке, упоминающей key/token/secret/password/nonce.",
@@ -1485,7 +1491,7 @@
       "affected_asset": "file:book/mermaid.min.js",
       "data_source": "book/mermaid.min.js",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:29:38.573158+00:00",
+      "detected_at": "2026-11-06T14:00:57.054401+00:00",
       "risk_score": 25.2,
       "risk_breakdown": {
         "score": 25.2,
@@ -1548,7 +1554,7 @@
           "content_sha256": "0a166ec7b7340affea55f1d46f9a6b8a35148aa284cf5021408ce34377c27062",
           "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.601972+00:00",
+          "collected_at": "2026-11-06T14:00:57.072123+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L352"
         },
         {
@@ -1559,7 +1565,7 @@
           "content_sha256": "2f2f528b3a65b223875635a470b7c0eb9fa999193c3dbf26c34952a3b8de34db",
           "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.601981+00:00",
+          "collected_at": "2026-11-06T14:00:57.072132+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L1951"
         },
         {
@@ -1570,7 +1576,7 @@
           "content_sha256": "bacb8676b0f1607b62d68cfc323bf7e32a125394031d8e722e91c305ef2186fa",
           "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.601985+00:00",
+          "collected_at": "2026-11-06T14:00:57.072135+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L2410"
         },
         {
@@ -1581,7 +1587,7 @@
           "content_sha256": "0c31f030fdf110d12ba6b7477c3d005215bae838a804f575e97593ccb10bfa8d",
           "source_sha256": "eefea253bed9655e838eb874ff955c46872f982a8e26290c1dd2982ddc0a4703",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.601989+00:00",
+          "collected_at": "2026-11-06T14:00:57.072139+00:00",
           "url": "https://github.com/tachyon-zcash/tachyon/blob/6cdaebccf147c5a013d212f9d7302924a9570626/book/mermaid.min.js#L2556"
         }
       ],
@@ -1604,8 +1610,8 @@
       ]
     },
     {
-      "id": "f28cb5d1-eaaa-488a-86f7-9d7b065626f0",
-      "public_id": "QSI-2026-12865",
+      "id": "b2ed0136-091a-4695-9605-fc84daa09962",
+      "public_id": "QSI-2026-19036",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.18: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1626,7 +1632,7 @@
       "affected_asset": "dependency:crates.io/crossbeam-epoch@0.9.18",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:29:38.692723+00:00",
+      "detected_at": "2026-11-06T14:00:57.117183+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -1682,7 +1688,7 @@
           "content_sha256": "87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.736078+00:00",
+          "collected_at": "2026-11-06T14:00:57.148546+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0204"
         }
       ],
@@ -1705,8 +1711,8 @@
       ]
     },
     {
-      "id": "b43f8469-a3b8-4fd8-a47d-733beddab8fa",
-      "public_id": "QSI-2026-12864",
+      "id": "ce6ab62b-b7a4-40c9-95c8-c634647348e7",
+      "public_id": "QSI-2026-19035",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2023-0089 для пакета crates.io atomic-polyfill версии 1.0.3 как информационный (unmaintained): atomic-polyfill is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -1727,7 +1733,7 @@
       "affected_asset": "dependency:crates.io/atomic-polyfill@1.0.3",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:29:38.659616+00:00",
+      "detected_at": "2026-11-06T14:00:57.107422+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -1783,7 +1789,7 @@
           "content_sha256": "0fcfb6f26f61ecb982bc38b6d6f12db7c77d0fc40bf9353a089129368e765f0f",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:29:38.698517+00:00",
+          "collected_at": "2026-11-06T14:00:57.120556+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2023-0089"
         }
       ],
@@ -1827,9 +1833,9 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-12863",
-      "QSI-2026-12861",
-      "QSI-2026-12862"
+      "QSI-2026-19034",
+      "QSI-2026-19032",
+      "QSI-2026-19033"
     ],
     "roles": [
       {
@@ -1845,7 +1851,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12863"
+          "QSI-2026-19034"
         ],
         "files": 1
       },
@@ -1862,7 +1868,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12862"
+          "QSI-2026-19033"
         ],
         "files": 1
       },
@@ -1879,7 +1885,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12861"
+          "QSI-2026-19032"
         ],
         "files": 6
       }
@@ -2025,7 +2031,7 @@
         "post_tests": "Повторно просканируйте код и проверьте места вызова из доказательства.",
         "closure_criteria": "Повторно просканируйте код и проверьте места вызова из доказательства.",
         "status": "todo",
-        "finding": "QSI-2026-12860",
+        "finding": "QSI-2026-19031",
         "finding_title": "Некриптографический ГСЧ рядом с чувствительными идентификаторами в book/mermaid.min.js",
         "severity": "medium"
       },
@@ -2043,7 +2049,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-12865",
+        "finding": "QSI-2026-19036",
         "finding_title": "crossbeam-epoch 0.9.18 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -2063,7 +2069,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12863",
+        "finding": "QSI-2026-19034",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))",
         "severity": "medium"
       },
@@ -2081,7 +2087,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12861",
+        "finding": "QSI-2026-19032",
         "finding_title": "Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))",
         "severity": "medium"
       },
@@ -2099,7 +2105,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12862",
+        "finding": "QSI-2026-19033",
         "finding_title": "Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
         "severity": "medium"
       },
@@ -2117,7 +2123,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12863",
+        "finding": "QSI-2026-19034",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (1 файл(ов))",
         "severity": "medium"
       },
@@ -2135,7 +2141,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12861",
+        "finding": "QSI-2026-19032",
         "finding_title": "Квантово-уязвимый RedDSA: роль не определена (6 файл(ов))",
         "severity": "medium"
       },
@@ -2153,7 +2159,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12862",
+        "finding": "QSI-2026-19033",
         "finding_title": "Квантово-уязвимый RedDSA: аутентификация и идентификация (сертификаты, токены, аттестация устройств) (1 файл(ов))",
         "severity": "medium"
       },
@@ -2171,7 +2177,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "atomic-polyfill заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-12864",
+        "finding": "QSI-2026-19035",
         "finding_title": "atomic-polyfill 1.0.3: информационный бюллетень RUSTSEC-2023-0089 (unmaintained)",
         "severity": "info"
       }
@@ -2416,7 +2422,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2428,7 +2435,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2440,7 +2448,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2452,7 +2461,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2464,7 +2474,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 11
+      "occurrences": 11,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2476,7 +2487,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2488,7 +2500,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2500,7 +2513,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2512,7 +2526,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2524,7 +2539,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2536,7 +2552,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2548,7 +2565,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2560,7 +2578,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2572,7 +2591,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Poseidon",
@@ -2584,7 +2604,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -2596,7 +2617,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2608,7 +2630,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2620,7 +2643,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2632,7 +2656,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 11
+      "occurrences": 11,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2644,7 +2669,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2656,7 +2682,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2668,7 +2695,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2680,7 +2708,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2692,7 +2721,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -2704,7 +2734,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [

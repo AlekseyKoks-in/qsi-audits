@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: cairo @ 68a61f6c6251
 
-*One-page brief* · Reviewed: 2026-11-04 20:15 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: StarkWare — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:10 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: StarkWare — public repository (passive review)
 
 Source: https://github.com/starkware-libs/cairo/tree/68a61f6c6251900e0080e09c812ffaeb37fd358e
 
@@ -12,13 +12,13 @@ Source: https://github.com/starkware-libs/cairo/tree/68a61f6c6251900e0080e09c812
 
 ## What matters most
 
-1. **Critical** · zip 0.6.6 is affected by GHSA-m665-v7pm-7grj (CVE-2026-115905) (QSI-2026-13357)\
+1. **Critical** · zip 0.6.6 is affected by GHSA-m665-v7pm-7grj (CVE-2026-115905) (QSI-2026-17951)\
    What to do: Upgrade to a fixed version (9.0.5).
-2. **Critical** · zip 0.6.6 is affected by RUSTSEC-2026-0369 (QSI-2026-13360)\
+2. **Critical** · zip 0.6.6 is affected by RUSTSEC-2026-0369 (QSI-2026-17954)\
    What to do: Upgrade to a fixed version (9.0.0).
-3. **High** · pulldown-cmark 0.13.4 is affected by RUSTSEC-2026-0414 (QSI-2026-13343)\
+3. **High** · pulldown-cmark 0.13.4 is affected by RUSTSEC-2026-0414 (QSI-2026-17937)\
    What to do: Upgrade to a fixed version (0.13.5).
-4. **High** · pulldown-cmark 0.13.4 is affected by RUSTSEC-2026-0433 (QSI-2026-13344)\
+4. **High** · pulldown-cmark 0.13.4 is affected by RUSTSEC-2026-0433 (QSI-2026-17938)\
    What to do: Upgrade to a fixed version (0.13.6).
 
 20 more in the full report.
@@ -39,7 +39,7 @@ Advisories for the versions in use: 22; unlikely to apply to this build: 2 (a Ca
 
 Static review of source code and manifests; files analysed: 563. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `3a0ddef6c57697ec7ac4a39239a1de8557f84a6957413266f6217082aa2014fa`
+Full report, content SHA-256: `9fe1603966bd92436044a5bd164e5ed1e014521a75ba3cf960f7d54ead1645b0`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

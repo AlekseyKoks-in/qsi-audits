@@ -1,8 +1,8 @@
 {
-  "content_sha256": "9d29799e58681f3f486cdb85bb8a40693447a9b1f3c3a71afd7ed34e1c656f82",
+  "content_sha256": "b82c8fce50f5c93c404dc2639f177811587d0dfbc5fc575487a0d8cf9029b4f2",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T20:11:51.893844+00:00",
+  "generated_at": "2026-11-06T13:53:36.969807+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "8c903ca3-7033-4f28-8425-3088090e89e7",
+    "id": "57275b30-32af-4937-a521-1c4c5206b7f5",
     "mode": "document",
     "title": "Document audit: sapling-crypto",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T20:11:46.556856+00:00",
-    "finished_at": "2026-11-04T20:11:51.769927+00:00",
+    "started_at": "2026-11-06T13:53:31.439107+00:00",
+    "finished_at": "2026-11-06T13:53:36.845901+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -279,172 +279,172 @@
     },
     {
       "area": "source_code",
-      "detail": "src/address.rs: 118 lines scanned with 16 rule patterns and 145 registry patterns; 18 lines in #[cfg(test)] modules ignored",
+      "detail": "src/address.rs: 118 lines scanned with 16 rule patterns and 266 registry patterns; 18 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/builder.rs: 1384 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/builder.rs: 1384 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/bundle.rs: 636 lines scanned with 16 rule patterns and 145 registry patterns; 125 lines in #[cfg(test)] modules ignored",
+      "detail": "src/bundle.rs: 636 lines scanned with 16 rule patterns and 266 registry patterns; 125 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/circuit.rs: 1075 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/circuit.rs: 1075 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/circuit/constants.rs: 197 lines scanned with 16 rule patterns and 145 registry patterns; 27 lines in #[cfg(test)] modules ignored",
+      "detail": "src/circuit/constants.rs: 197 lines scanned with 16 rule patterns and 266 registry patterns; 27 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/circuit/ecc.rs: 1117 lines scanned with 16 rule patterns and 145 registry patterns; 496 lines in #[cfg(test)] modules ignored",
+      "detail": "src/circuit/ecc.rs: 1117 lines scanned with 16 rule patterns and 266 registry patterns; 496 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/circuit/pedersen_hash.rs: 305 lines scanned with 16 rule patterns and 145 registry patterns; 199 lines in #[cfg(test)] modules ignored",
+      "detail": "src/circuit/pedersen_hash.rs: 305 lines scanned with 16 rule patterns and 266 registry patterns; 199 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/constants.rs: 440 lines scanned with 16 rule patterns and 145 registry patterns; 163 lines in #[cfg(test)] modules ignored",
+      "detail": "src/constants.rs: 440 lines scanned with 16 rule patterns and 266 registry patterns; 163 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/group_hash.rs: 43 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/group_hash.rs: 43 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/keys.rs: 1076 lines scanned with 16 rule patterns and 145 registry patterns; 159 lines in #[cfg(test)] modules ignored",
+      "detail": "src/keys.rs: 1076 lines scanned with 16 rule patterns and 266 registry patterns; 159 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/lib.rs: 87 lines scanned with 16 rule patterns and 145 registry patterns; 8 lines in #[cfg(test)] modules ignored",
+      "detail": "src/lib.rs: 87 lines scanned with 16 rule patterns and 266 registry patterns; 8 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/note.rs: 212 lines scanned with 16 rule patterns and 145 registry patterns; 32 lines in #[cfg(test)] modules ignored",
+      "detail": "src/note.rs: 212 lines scanned with 16 rule patterns and 266 registry patterns; 32 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/note/commitment.rs: 110 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/note/commitment.rs: 110 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/note/nullifier.rs: 55 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/note/nullifier.rs: 55 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/note_encryption.rs: 1558 lines scanned with 16 rule patterns and 145 registry patterns; 1062 lines in #[cfg(test)] modules ignored",
+      "detail": "src/note_encryption.rs: 1558 lines scanned with 16 rule patterns and 266 registry patterns; 1062 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt.rs: 340 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt.rs: 340 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt/io_finalizer.rs: 119 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt/io_finalizer.rs: 119 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt/parse.rs: 330 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt/parse.rs: 330 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt/prover.rs: 146 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt/prover.rs: 146 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt/signer.rs: 81 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt/signer.rs: 81 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt/tx_extractor.rs: 193 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt/tx_extractor.rs: 193 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt/updater.rs: 127 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt/updater.rs: 127 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pczt/verify.rs: 233 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pczt/verify.rs: 233 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pedersen_hash.rs: 158 lines scanned with 16 rule patterns and 145 registry patterns; 37 lines in #[cfg(test)] modules ignored",
+      "detail": "src/pedersen_hash.rs: 158 lines scanned with 16 rule patterns and 266 registry patterns; 37 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/prover.rs: 270 lines scanned with 16 rule patterns and 145 registry patterns; 96 lines in #[cfg(test)] modules ignored",
+      "detail": "src/prover.rs: 270 lines scanned with 16 rule patterns and 266 registry patterns; 96 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/spec.rs: 165 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/spec.rs: 165 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tree.rs: 210 lines scanned with 16 rule patterns and 145 registry patterns; 31 lines in #[cfg(test)] modules ignored",
+      "detail": "src/tree.rs: 210 lines scanned with 16 rule patterns and 266 registry patterns; 31 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/util.rs: 34 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/util.rs: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/value.rs: 267 lines scanned with 16 rule patterns and 145 registry patterns; 88 lines in #[cfg(test)] modules ignored",
+      "detail": "src/value.rs: 267 lines scanned with 16 rule patterns and 266 registry patterns; 88 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/value/sums.rs: 266 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/value/sums.rs: 266 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/verifier.rs: 150 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/verifier.rs: 150 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/verifier/batch.rs: 168 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/verifier/batch.rs: 168 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/verifier/single.rs: 83 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/verifier/single.rs: 83 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/zip32.rs: 2050 lines scanned with 16 rule patterns and 145 registry patterns; 987 lines in #[cfg(test)] modules ignored",
+      "detail": "src/zip32.rs: 2050 lines scanned with 16 rule patterns and 266 registry patterns; 987 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -475,9 +475,9 @@
       "count": 34,
       "rows": 34,
       "examples": [
-        "src/address.rs: 118 lines scanned with 16 rule patterns and 145 registry patterns; 18 lines in #[cfg(test)] modules ignored",
-        "src/builder.rs: 1384 lines scanned with 16 rule patterns and 145 registry patterns",
-        "src/bundle.rs: 636 lines scanned with 16 rule patterns and 145 registry patterns; 125 lines in #[cfg(test)] modules ignored"
+        "src/address.rs: 118 lines scanned with 16 rule patterns and 266 registry patterns; 18 lines in #[cfg(test)] modules ignored",
+        "src/builder.rs: 1384 lines scanned with 16 rule patterns and 266 registry patterns",
+        "src/bundle.rs: 636 lines scanned with 16 rule patterns and 266 registry patterns; 125 lines in #[cfg(test)] modules ignored"
       ]
     },
     {
@@ -573,12 +573,22 @@
       "grover_margin": 1,
       "not_applicable": 16,
       "vulnerable_shor": 36
+    },
+    "inventory_by_origin": {
+      "dependency": {
+        "total": 16,
+        "vulnerable_shor": 0
+      },
+      "own": {
+        "total": 37,
+        "vulnerable_shor": 36
+      }
     }
   },
   "findings": [
     {
-      "id": "7494154a-48db-4fbc-aa59-88bc54ca8312",
-      "public_id": "QSI-2026-13306",
+      "id": "8a609773-998b-47b6-9f0d-d7ee04271a9e",
+      "public_id": "QSI-2026-18801",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (19 файл(ов))",
       "description": "118 упоминаний Pedersen commitment в 19 файл(ах), например src/builder.rs:23. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -598,7 +608,7 @@
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "src/builder.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.658311+00:00",
+      "detected_at": "2026-11-06T13:53:36.741394+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -695,7 +705,7 @@
           "content_sha256": "abbf526f9967d29338dfc368ff98e89bd21a9a29bd6695e9f8438d34baf6a829",
           "source_sha256": "646ea26b88224b4e56355246c68d5ec5202d88b9c7772ee1ca33bce42c245cba",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677663+00:00",
+          "collected_at": "2026-11-06T13:53:36.760466+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/builder.rs#L23"
         },
         {
@@ -706,7 +716,7 @@
           "content_sha256": "59c6f0598e8396ee3b96ae4893e155a42ea1f1ca282edbb48ec5da28bfd06348",
           "source_sha256": "646ea26b88224b4e56355246c68d5ec5202d88b9c7772ee1ca33bce42c245cba",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677672+00:00",
+          "collected_at": "2026-11-06T13:53:36.760474+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/builder.rs#L233"
         },
         {
@@ -717,7 +727,7 @@
           "content_sha256": "ed58054f8f35973bcc05cbb6d8f28d90c6eb7328d089e6489916067320054a1f",
           "source_sha256": "646ea26b88224b4e56355246c68d5ec5202d88b9c7772ee1ca33bce42c245cba",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677675+00:00",
+          "collected_at": "2026-11-06T13:53:36.760478+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/builder.rs#L244"
         },
         {
@@ -728,7 +738,7 @@
           "content_sha256": "60584de4dec41391afd0d73f5bc2a6dc79846e18ead3008cfa11736bc151de98",
           "source_sha256": "d9def3d67be115d7ec1e15ca3c4b8860972c1de485de7fd86069541eb7b6fe6c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677679+00:00",
+          "collected_at": "2026-11-06T13:53:36.760481+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/bundle.rs#L19"
         },
         {
@@ -739,7 +749,7 @@
           "content_sha256": "43db76310c26fc98d07acd719c453d1149470e0e18db466abcdac2e6740c4014",
           "source_sha256": "d9def3d67be115d7ec1e15ca3c4b8860972c1de485de7fd86069541eb7b6fe6c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677682+00:00",
+          "collected_at": "2026-11-06T13:53:36.760485+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/bundle.rs#L219"
         },
         {
@@ -750,7 +760,7 @@
           "content_sha256": "c3bad99521b7e408a6469923d968fdab34eb3342fcb316b8c806eecab68b26db",
           "source_sha256": "d9def3d67be115d7ec1e15ca3c4b8860972c1de485de7fd86069541eb7b6fe6c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677685+00:00",
+          "collected_at": "2026-11-06T13:53:36.760488+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/bundle.rs#L240"
         },
         {
@@ -761,7 +771,7 @@
           "content_sha256": "523ab8ed8b5d64991145bf42bcb8782418128579514e85399de6e6518c7781e6",
           "source_sha256": "769132963e46597aa2170b7adf453ca6a53b524667bec34bb564d09ad726037b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677689+00:00",
+          "collected_at": "2026-11-06T13:53:36.760491+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L30"
         },
         {
@@ -772,7 +782,7 @@
           "content_sha256": "173bcb45ff75481c0dcdce5b36b9279d8d6af449ac7931e3b2c61f9cde6b7ef1",
           "source_sha256": "769132963e46597aa2170b7adf453ca6a53b524667bec34bb564d09ad726037b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677692+00:00",
+          "collected_at": "2026-11-06T13:53:36.760494+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L34"
         },
         {
@@ -783,7 +793,7 @@
           "content_sha256": "8bdc492d7be3ef1275f5b46afb87de65249291915ace9c22cc2b2f7626465c29",
           "source_sha256": "769132963e46597aa2170b7adf453ca6a53b524667bec34bb564d09ad726037b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677695+00:00",
+          "collected_at": "2026-11-06T13:53:36.760498+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L40"
         },
         {
@@ -794,7 +804,7 @@
           "content_sha256": "e409f4f6f1c8e1a92692817f274ecc169a0026ab567c2b48b2b61cb26e52e5e3",
           "source_sha256": "23961d348841f38a0ccd009459ab976f850c455df40bd117f4475bac6b42b5bc",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.677698+00:00",
+          "collected_at": "2026-11-06T13:53:36.760502+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/pedersen_hash.rs#L4"
         }
       ],
@@ -832,8 +842,8 @@
       ]
     },
     {
-      "id": "01bfa27a-ec15-4198-81d9-1edbd4e8602c",
-      "public_id": "QSI-2026-13309",
+      "id": "dc048df7-326b-435b-af0f-d95fad33fd5e",
+      "public_id": "QSI-2026-18804",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый BLS12-381: пороговая подпись и протоколы MPC (1 файл(ов))",
       "description": "1 упоминаний BLS12-381 в 1 файл(ах), например src/circuit/pedersen_hash.rs:27. Роль по путям, именам функций и соседнему коду: пороговая подпись и протоколы MPC. Paillier, обязательства Педерсена и доказательства на дискретном логарифме внутри пороговых ECDSA и EdDSA ломаются алгоритмом Шора; постквантовая пороговая схема — это смена протокола, а не параметра.",
@@ -853,7 +863,7 @@
       "affected_asset": "source-code:BLS12-381:threshold_mpc",
       "data_source": "src/circuit/pedersen_hash.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.705551+00:00",
+      "detected_at": "2026-11-06T13:53:36.786500+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -950,7 +960,7 @@
           "content_sha256": "980932b8f97dfff9f0f1e372dba4e7120db37a797f84ac57cd65da931b5fafeb",
           "source_sha256": "23961d348841f38a0ccd009459ab976f850c455df40bd117f4475bac6b42b5bc",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.722237+00:00",
+          "collected_at": "2026-11-06T13:53:36.801000+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/pedersen_hash.rs#L27"
         }
       ],
@@ -988,8 +998,8 @@
       ]
     },
     {
-      "id": "8121a633-1f98-4686-a3be-d8990957bb6d",
-      "public_id": "QSI-2026-13310",
+      "id": "58b68977-2a51-409a-a19e-258af96e6f8d",
+      "public_id": "QSI-2026-18805",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (1 файл(ов))",
       "description": "3 упоминаний RedDSA в 1 файл(ах), например src/pczt/tx_extractor.rs:40. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -1009,7 +1019,7 @@
       "affected_asset": "source-code:RedDSA:transaction_signing",
       "data_source": "src/pczt/tx_extractor.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.719461+00:00",
+      "detected_at": "2026-11-06T13:53:36.797500+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -1106,7 +1116,7 @@
           "content_sha256": "c3e179742c511de9903c18d82f14d9ec3ac0b312a171a662543d42bae755b283",
           "source_sha256": "d36dff58013d5da259ed1557df2b8e17e4ce518cba75e610cc1aee26ada04453",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.729693+00:00",
+          "collected_at": "2026-11-06T13:53:36.810539+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/pczt/tx_extractor.rs#L40"
         },
         {
@@ -1117,7 +1127,7 @@
           "content_sha256": "2e8481efa3ebc7509f259633a1816d5d54763f2c1958472ac65f6fface257714",
           "source_sha256": "d36dff58013d5da259ed1557df2b8e17e4ce518cba75e610cc1aee26ada04453",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.729701+00:00",
+          "collected_at": "2026-11-06T13:53:36.810548+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/pczt/tx_extractor.rs#L125"
         },
         {
@@ -1128,7 +1138,7 @@
           "content_sha256": "e71d9d8c295c711ab5f3b058a28b30d5d9831759f232060500d1b4117b97f54a",
           "source_sha256": "d36dff58013d5da259ed1557df2b8e17e4ce518cba75e610cc1aee26ada04453",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.729705+00:00",
+          "collected_at": "2026-11-06T13:53:36.810552+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/pczt/tx_extractor.rs#L140"
         }
       ],
@@ -1166,8 +1176,8 @@
       ]
     },
     {
-      "id": "f5b3bc77-f5aa-48df-ab3f-84508340a128",
-      "public_id": "QSI-2026-13307",
+      "id": "0d84b3dd-039c-44d1-bb5b-e7b54103f6b7",
+      "public_id": "QSI-2026-18802",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый RedDSA: роль не определена (2 файл(ов))",
       "description": "5 упоминаний RedDSA в 2 файл(ах), например src/builder.rs:124. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1187,7 +1197,7 @@
       "affected_asset": "source-code:RedDSA:general",
       "data_source": "src/builder.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.672316+00:00",
+      "detected_at": "2026-11-06T13:53:36.752677+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1284,7 +1294,7 @@
           "content_sha256": "93c5aceb162f905ebabe59caa7fd5b83506ac7b763c69f47a0c4254c4c96807b",
           "source_sha256": "646ea26b88224b4e56355246c68d5ec5202d88b9c7772ee1ca33bce42c245cba",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.697441+00:00",
+          "collected_at": "2026-11-06T13:53:36.778504+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/builder.rs#L124"
         },
         {
@@ -1295,7 +1305,7 @@
           "content_sha256": "87ac52d237673a66bb0fc82d113b270c5cff7891e7b5645e3221c4697e4e4de0",
           "source_sha256": "646ea26b88224b4e56355246c68d5ec5202d88b9c7772ee1ca33bce42c245cba",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.697449+00:00",
+          "collected_at": "2026-11-06T13:53:36.778511+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/builder.rs#L151"
         },
         {
@@ -1306,7 +1316,7 @@
           "content_sha256": "be1cb9071ba304aa1ddcaf0dc126032c078e14208a5d2b18131132a5b6e4f615",
           "source_sha256": "ce8fe34be4d9aa27f4eb50805df7c7d1ce9331636efa5065d53307b569219c9b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.697453+00:00",
+          "collected_at": "2026-11-06T13:53:36.778514+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/keys.rs#L129"
         },
         {
@@ -1317,7 +1327,7 @@
           "content_sha256": "b8253a4d786a3d48b95320e17934ff602c6996397b9feb0fc9f76fbced83f2f7",
           "source_sha256": "ce8fe34be4d9aa27f4eb50805df7c7d1ce9331636efa5065d53307b569219c9b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.697456+00:00",
+          "collected_at": "2026-11-06T13:53:36.778517+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/keys.rs#L153"
         },
         {
@@ -1328,7 +1338,7 @@
           "content_sha256": "0adcf4932524702f1872a71c5dc416caaddae6c72c29458a8811ecdb3ed67dda",
           "source_sha256": "ce8fe34be4d9aa27f4eb50805df7c7d1ce9331636efa5065d53307b569219c9b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.697459+00:00",
+          "collected_at": "2026-11-06T13:53:36.778521+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/keys.rs#L243"
         }
       ],
@@ -1366,8 +1376,8 @@
       ]
     },
     {
-      "id": "33b44036-d020-470f-9870-8e7f7f67b5ac",
-      "public_id": "QSI-2026-13308",
+      "id": "004397e4-e49d-4c42-98fa-59e3b482fdd6",
+      "public_id": "QSI-2026-18803",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый BLS12-381: роль не определена (13 файл(ов))",
       "description": "115 упоминаний BLS12-381 в 13 файл(ах), например src/bundle.rs:220. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -1387,7 +1397,7 @@
       "affected_asset": "source-code:BLS12-381:general",
       "data_source": "src/bundle.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.694000+00:00",
+      "detected_at": "2026-11-06T13:53:36.775136+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -1484,7 +1494,7 @@
           "content_sha256": "4df03ae2eb3da284b6a96ab6302af9460408db046f648932f5b5cfe232dd78cd",
           "source_sha256": "d9def3d67be115d7ec1e15ca3c4b8860972c1de485de7fd86069541eb7b6fe6c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710614+00:00",
+          "collected_at": "2026-11-06T13:53:36.789224+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/bundle.rs#L220"
         },
         {
@@ -1495,7 +1505,7 @@
           "content_sha256": "23e5c68c7cb403c1227fa4b9235525956e07330b8e162c4435d1a5569e42cf01",
           "source_sha256": "d9def3d67be115d7ec1e15ca3c4b8860972c1de485de7fd86069541eb7b6fe6c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710622+00:00",
+          "collected_at": "2026-11-06T13:53:36.789231+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/bundle.rs#L241"
         },
         {
@@ -1506,7 +1516,7 @@
           "content_sha256": "d5d5888fe6740b0b819b82e60071bf60d97330945380b0ab2f0b177b42048b29",
           "source_sha256": "d9def3d67be115d7ec1e15ca3c4b8860972c1de485de7fd86069541eb7b6fe6c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710626+00:00",
+          "collected_at": "2026-11-06T13:53:36.789235+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/bundle.rs#L263"
         },
         {
@@ -1517,7 +1527,7 @@
           "content_sha256": "c16dbd6085f191206371323b3e75be079b6123d4d829d836bb67da6cab7da589",
           "source_sha256": "769132963e46597aa2170b7adf453ca6a53b524667bec34bb564d09ad726037b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710629+00:00",
+          "collected_at": "2026-11-06T13:53:36.789238+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L10"
         },
         {
@@ -1528,7 +1538,7 @@
           "content_sha256": "e8ced411aff2192e1db84acdb6f0ee5f4aa5191f02aa8ac37101d22d06742ca6",
           "source_sha256": "769132963e46597aa2170b7adf453ca6a53b524667bec34bb564d09ad726037b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710632+00:00",
+          "collected_at": "2026-11-06T13:53:36.789241+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L69"
         },
         {
@@ -1539,7 +1549,7 @@
           "content_sha256": "4a67e6f135063d0ca6b68ba94608d9b077e7a380ab10a605836a58d86a863027",
           "source_sha256": "769132963e46597aa2170b7adf453ca6a53b524667bec34bb564d09ad726037b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710636+00:00",
+          "collected_at": "2026-11-06T13:53:36.789244+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit.rs#L73"
         },
         {
@@ -1550,7 +1560,7 @@
           "content_sha256": "d805ecd41053d710e24ab2306e42b6a56d7d8a856648b1b4204a851491a71999",
           "source_sha256": "6d171dbc1e49c1b35ce2acf34d0b32ea5fd43c818b9afd09209b8559725a3775",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710639+00:00",
+          "collected_at": "2026-11-06T13:53:36.789247+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/constants.rs#L6"
         },
         {
@@ -1561,7 +1571,7 @@
           "content_sha256": "4ba36efee573a3d7bfd004aaf7ad1abe4e7bf3116094c18d533a2cc3d3aa98c7",
           "source_sha256": "ae671a20ec7a6ab1079fa19fad3ee5d349bd644e215fcdb6dca3e24f98976cb2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710642+00:00",
+          "collected_at": "2026-11-06T13:53:36.789250+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/ecc.rs#L22"
         },
         {
@@ -1572,7 +1582,7 @@
           "content_sha256": "cc310b0adf98de8b565f7106f4ece25b79c804614d2baf69d4d02084077d2529",
           "source_sha256": "ae671a20ec7a6ab1079fa19fad3ee5d349bd644e215fcdb6dca3e24f98976cb2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710645+00:00",
+          "collected_at": "2026-11-06T13:53:36.789253+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/ecc.rs#L23"
         },
         {
@@ -1583,7 +1593,7 @@
           "content_sha256": "730881d3c3d54ab59599d076cc3421eb9b9e007f2f14cbdcf43e191b307a7402",
           "source_sha256": "ae671a20ec7a6ab1079fa19fad3ee5d349bd644e215fcdb6dca3e24f98976cb2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.710648+00:00",
+          "collected_at": "2026-11-06T13:53:36.789256+00:00",
           "url": "https://github.com/zcash/sapling-crypto/blob/88a7946b4a3066787776e11f0a502654167e022d/src/circuit/ecc.rs#L34"
         }
       ],
@@ -1621,8 +1631,8 @@
       ]
     },
     {
-      "id": "362a55ab-92a4-4229-a12f-eb91c54658ab",
-      "public_id": "QSI-2026-13312",
+      "id": "20e1b394-97fe-4fa1-a711-f223185271cb",
+      "public_id": "QSI-2026-18807",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "crossbeam-epoch 0.9.15 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0204 для пакета crates.io crossbeam-epoch версии 0.9.15: Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1643,7 +1653,7 @@
       "affected_asset": "dependency:crates.io/crossbeam-epoch@0.9.15",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.737011+00:00",
+      "detected_at": "2026-11-06T13:53:36.815391+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -1699,7 +1709,7 @@
           "content_sha256": "87f069b4fa857d22ba2571deff7f541f4622924fb5fc8545cd46d35b7d427b95",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.745658+00:00",
+          "collected_at": "2026-11-06T13:53:36.821657+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0204"
         }
       ],
@@ -1722,8 +1732,8 @@
       ]
     },
     {
-      "id": "5e56988d-9bb7-476a-ac02-2acabbf84643",
-      "public_id": "QSI-2026-13313",
+      "id": "ecc2516c-eac5-4762-8651-af3a0c045c8b",
+      "public_id": "QSI-2026-18808",
       "rule_id": "DEP-ADVISORY-UNRATED",
       "title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
       "description": "OSV.dev сообщает RUSTSEC-2026-0385 для пакета crates.io ctutils версии 0.4.2: Non-constant-time mask generation and `u128` comparisons. У бюллетеня нет ни вектора CVSS, ни оценки базы данных, поэтому QSI ставит низкую серьёзность и пометку «предварительно» до разбора. Бюллетень не называет затронутых функций, поэтому достижимость не определена.",
@@ -1744,7 +1754,7 @@
       "affected_asset": "dependency:crates.io/ctutils@0.4.2",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.742159+00:00",
+      "detected_at": "2026-11-06T13:53:36.819732+00:00",
       "risk_score": 20.3,
       "risk_breakdown": {
         "score": 20.3,
@@ -1800,7 +1810,7 @@
           "content_sha256": "200470326c8a5ad19deb3639dff41d33749b1153097b6b87ef95e4beec747848",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.754326+00:00",
+          "collected_at": "2026-11-06T13:53:36.832616+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0385"
         }
       ],
@@ -1823,8 +1833,8 @@
       ]
     },
     {
-      "id": "86822cac-c30d-4c0f-a41a-0a4dbdde9716",
-      "public_id": "QSI-2026-13315",
+      "id": "97b3ba43-a2ec-4fcc-b4c6-051f17c7cc26",
+      "public_id": "QSI-2026-18810",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 4 бюллетеней (2 с оценкой high или critical) для 3 пакет(ов) crates.io, которые подтягивают только инструменты разработки или сборки (Cargo.lock): например, adler@1.0.2 [dev]: RUSTSEC-2025-0056; memmap2@0.9.10 [dev]: RUSTSEC-2026-0186; quick-xml@0.26.0 [dev]: RUSTSEC-2026-0194, RUSTSEC-2026-0195. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -1844,7 +1854,7 @@
       "affected_asset": "dependencies:crates.io:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.758518+00:00",
+      "detected_at": "2026-11-06T13:53:36.836910+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -1900,7 +1910,7 @@
           "content_sha256": "067b4def7fce165ecaa79fc9f88b5eaa13325a7cb60c279ad61c910d74c42172",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.799235+00:00",
+          "collected_at": "2026-11-06T13:53:36.879944+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -1923,8 +1933,8 @@
       ]
     },
     {
-      "id": "30fb755b-2f0a-4a4d-90c5-dd175c2597a7",
-      "public_id": "QSI-2026-13311",
+      "id": "790db2f3-e776-4c27-9ad9-e82da3413fb8",
+      "public_id": "QSI-2026-18806",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 2 манифестах зависимостей QSI нашёл криптобиблиотеки (bellman, bls12_381, jubjub, pasta_curves, reddsa, redjubjub, zcash_note_encryption, zcash_spec, zip32), но ни одной из списка поддерживающих PQC.",
@@ -1944,7 +1954,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.727089+00:00",
+      "detected_at": "2026-11-06T13:53:36.805819+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2007,15 +2017,15 @@
           "content_sha256": "4400fbe25cdfcbd679fb60cbc7794fde4aff19abe3fd60af8063315caf1cf436",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.739537+00:00",
+          "collected_at": "2026-11-06T13:53:36.817263+00:00",
           "url": null
         }
       ],
       "remediation": []
     },
     {
-      "id": "40e10384-a649-4bc3-bebf-80962aacbd1e",
-      "public_id": "QSI-2026-13314",
+      "id": "add3db38-132a-40a5-91b6-895f89876075",
+      "public_id": "QSI-2026-18809",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)",
       "description": "OSV.dev отмечает RUSTSEC-2026-0173 для пакета crates.io proc-macro-error2 версии 2.0.1 как информационный (unmaintained): proc-macro-error2 is unmaintained. Уязвимости в нём нет; неподдерживаемый пакет не получит исправлений будущих уязвимостей.",
@@ -2036,7 +2046,7 @@
       "affected_asset": "dependency:crates.io/proc-macro-error2@2.0.1",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T20:11:51.751809+00:00",
+      "detected_at": "2026-11-06T13:53:36.828496+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -2092,7 +2102,7 @@
           "content_sha256": "0ecc182141bd9effc6d35bc24dc20c57e6473fb3877ad59a5fbdb1cd55b56528",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T20:11:51.760502+00:00",
+          "collected_at": "2026-11-06T13:53:36.838791+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0173"
         }
       ],
@@ -2136,11 +2146,11 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-13306",
-      "QSI-2026-13309",
-      "QSI-2026-13310",
-      "QSI-2026-13307",
-      "QSI-2026-13308"
+      "QSI-2026-18801",
+      "QSI-2026-18804",
+      "QSI-2026-18805",
+      "QSI-2026-18802",
+      "QSI-2026-18803"
     ],
     "roles": [
       {
@@ -2160,8 +2170,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-13306",
-          "QSI-2026-13309"
+          "QSI-2026-18801",
+          "QSI-2026-18804"
         ],
         "files": 20
       },
@@ -2178,7 +2188,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-13310"
+          "QSI-2026-18805"
         ],
         "files": 1
       },
@@ -2199,8 +2209,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-13307",
-          "QSI-2026-13308"
+          "QSI-2026-18802",
+          "QSI-2026-18803"
         ],
         "files": 15
       }
@@ -2341,7 +2351,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0204 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-13312",
+        "finding": "QSI-2026-18807",
         "finding_title": "crossbeam-epoch 0.9.15 затронут RUSTSEC-2026-0204 (без оценки серьёзности)",
         "severity": "low"
       },
@@ -2359,7 +2369,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование больше не сообщает RUSTSEC-2026-0385 или результат разбора записан.",
         "status": "todo",
-        "finding": "QSI-2026-13313",
+        "finding": "QSI-2026-18808",
         "finding_title": "ctutils 0.4.2 затронут RUSTSEC-2026-0385 (без оценки серьёзности)",
         "severity": "low"
       }
@@ -2379,7 +2389,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-13306",
+        "finding": "QSI-2026-18801",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (19 файл(ов))",
         "severity": "medium"
       },
@@ -2397,7 +2407,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-13309",
+        "finding": "QSI-2026-18804",
         "finding_title": "Квантово-уязвимый BLS12-381: пороговая подпись и протоколы MPC (1 файл(ов))",
         "severity": "medium"
       },
@@ -2415,7 +2425,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-13310",
+        "finding": "QSI-2026-18805",
         "finding_title": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -2433,7 +2443,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-13307",
+        "finding": "QSI-2026-18802",
         "finding_title": "Квантово-уязвимый RedDSA: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -2451,7 +2461,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-13308",
+        "finding": "QSI-2026-18803",
         "finding_title": "Квантово-уязвимый BLS12-381: роль не определена (13 файл(ов))",
         "severity": "medium"
       },
@@ -2469,7 +2479,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-13306",
+        "finding": "QSI-2026-18801",
         "finding_title": "Квантово-уязвимый Pedersen commitment: пороговая подпись и протоколы MPC (19 файл(ов))",
         "severity": "medium"
       },
@@ -2487,7 +2497,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-13309",
+        "finding": "QSI-2026-18804",
         "finding_title": "Квантово-уязвимый BLS12-381: пороговая подпись и протоколы MPC (1 файл(ов))",
         "severity": "medium"
       },
@@ -2505,7 +2515,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-13310",
+        "finding": "QSI-2026-18805",
         "finding_title": "Квантово-уязвимый RedDSA: подпись транзакций и сообщений (1 файл(ов))",
         "severity": "medium"
       },
@@ -2523,7 +2533,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-13307",
+        "finding": "QSI-2026-18802",
         "finding_title": "Квантово-уязвимый RedDSA: роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -2541,7 +2551,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-13308",
+        "finding": "QSI-2026-18803",
         "finding_title": "Квантово-уязвимый BLS12-381: роль не определена (13 файл(ов))",
         "severity": "medium"
       },
@@ -2559,7 +2569,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-13315",
+        "finding": "QSI-2026-18810",
         "finding_title": "4 бюллетеней в 3 пакет(ах) crates.io, нужных только для разработки или сборки",
         "severity": "info"
       },
@@ -2577,7 +2587,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "proc-macro-error2 заменён или решение зафиксировано.",
         "status": "todo",
-        "finding": "QSI-2026-13314",
+        "finding": "QSI-2026-18809",
         "finding_title": "proc-macro-error2 2.0.1: информационный бюллетень RUSTSEC-2026-0173 (unmaintained)",
         "severity": "info"
       }
@@ -2815,7 +2825,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Crypto library",
@@ -2827,7 +2838,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2839,7 +2851,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2851,7 +2864,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2863,7 +2877,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2875,7 +2890,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2887,7 +2903,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2899,7 +2916,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2911,7 +2929,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2923,7 +2942,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2935,7 +2955,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2947,7 +2968,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2959,7 +2981,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2971,7 +2994,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -2983,19 +3007,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "0.9",
-      "usage": "crates.io dependency",
-      "library": "redjubjub (reddsa)",
-      "location": "Cargo.toml",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3007,7 +3020,21 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "0.9",
+      "usage": "crates.io dependency",
+      "library": "redjubjub (reddsa)",
+      "location": "Cargo.toml",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "BLS12-381",
@@ -3019,7 +3046,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3031,7 +3059,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 23
+      "occurrences": 23,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3043,7 +3072,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3055,7 +3085,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 41
+      "occurrences": 41,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3067,7 +3098,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3079,7 +3111,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 24
+      "occurrences": 24,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3091,7 +3124,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3103,7 +3137,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3115,7 +3150,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3127,7 +3163,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3139,7 +3176,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3151,7 +3189,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3163,7 +3202,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "BLS12-381",
@@ -3175,7 +3215,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3187,7 +3228,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3199,7 +3241,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 12
+      "occurrences": 12,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3211,7 +3254,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 21
+      "occurrences": 21,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3223,7 +3267,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3235,7 +3280,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3247,7 +3293,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3259,7 +3306,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3271,7 +3319,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3283,7 +3332,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3295,7 +3345,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3307,7 +3358,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3319,7 +3371,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3331,7 +3384,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3343,7 +3397,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3355,7 +3410,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3367,7 +3423,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 10
+      "occurrences": 10,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3379,7 +3436,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 23
+      "occurrences": 23,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3391,7 +3449,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -3403,7 +3462,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -3415,7 +3475,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -3427,7 +3488,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "RedDSA",
@@ -3439,7 +3501,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -3615,7 +3678,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.9",
-      "library": "redjubjub (reddsa)",
+      "library": "bls12_381 (bls12_381)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3627,7 +3690,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "0.9",
-      "library": "bls12_381 (bls12_381)",
+      "library": "redjubjub (reddsa)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,

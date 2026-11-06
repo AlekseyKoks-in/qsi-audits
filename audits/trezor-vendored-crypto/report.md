@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-04 19:36 UTC |
+| Report date | 2026-11-06 14:40 UTC |
 | Report version | 1 |
-| Audit run | 9a0e7c00-3b77-4cd5-9b67-ea655f1a872a (Document audit) |
+| Audit run | dec43503-c3d5-4ee3-bac4-415de182564e (Document audit) |
 | Analyzer engine | qsi-engine 1.3.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `487f14cbb0c7e7be4ab1ac3ef88d38f863fafb73da4da9bc920f75bebb1087fd` |
+| Content SHA-256 | `61dd2de82e4d564b1a3f4c220a2b6a15bf0407f3722f3b05d874bae599441e13` |
 | Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -41,14 +41,14 @@ Mode: Document audit
 
 Repository: <https://github.com/trezor/trezor-firmware> @ `72489948b3c44a37598de9da658be28e4fabb4ae` — evidence links open the lines at this commit.
 
-510 files, 5023716 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
+505 files, 4970823 bytes in total, 0 redaction(s); the per-file SHA-256 list is in appendix C.
 
 ## 3. Methodology
 
 | Area | Status | Count | Examples |
 |---|---|---|---|
-| source_code | checked | 510 | vendor/mldsa-native/.github/actions/cbmc/report.py: 297 lines scanned with 16 rule patterns and 145 registry patterns; vendor/mldsa-native/dev/aarch64_clean/meta.h: 247 lines scanned with 16 rule patterns and 145 registry patterns; vendor/mldsa-native/dev/aarch64_clean/src/aarch64_zetas.c: 231 lines scanned with 16 rule patterns and 145 registry patterns |
-| entropy | checked | 1 | random-number generation: 510 code files read with 527 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
+| source_code | checked | 505 | vendor/mldsa-native/.github/actions/cbmc/report.py: 297 lines scanned with 16 rule patterns and 266 registry patterns; vendor/mldsa-native/dev/aarch64_clean/meta.h: 247 lines scanned with 16 rule patterns and 266 registry patterns; vendor/mldsa-native/dev/aarch64_clean/src/aarch64_zetas.c: 231 lines scanned with 16 rule patterns and 266 registry patterns |
+| entropy | checked | 1 | random-number generation: 505 code files read with 524 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 
 _Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key._
 
@@ -58,23 +58,23 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 
 ## 5. Architecture overview
 
-Static review of the source tree trezor-vendored-crypto at 72489948b3c44a37598de9da658be28e4fabb4ae. 510 files analysed; of 1159 files, 183 are test, fuzzing, benchmark or example code and were left out, 466 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 4 path(s) of the repository: .clang-format, vendor/mldsa-native, vendor/secp256k1-zkp, vendor/sphincsplus; 24387 files outside them were not read. Files no analyzer reads include: .clang-format, vendor/mldsa-native/.clang-format, vendor/mldsa-native/.envrc, vendor/mldsa-native/.git, vendor/mldsa-native/.github/actionlint.yaml. 510 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: vendor/mldsa-native (301), vendor/sphincsplus (122), vendor/secp256k1-zkp (87). No requests were sent to the owner's systems.
+Static review of the source tree trezor-vendored-crypto at 72489948b3c44a37598de9da658be28e4fabb4ae. 505 files analysed; of 1159 files, 189 are test, fuzzing, benchmark or example code and were left out, 465 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 4 path(s) of the repository: .clang-format, vendor/mldsa-native, vendor/secp256k1-zkp, vendor/sphincsplus; 24387 files outside them were not read. Files no analyzer reads include: .clang-format, vendor/mldsa-native/.clang-format, vendor/mldsa-native/.envrc, vendor/mldsa-native/.git, vendor/mldsa-native/.github/actionlint.yaml. 505 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: vendor/mldsa-native (301), vendor/sphincsplus (121), vendor/secp256k1-zkp (83). No requests were sent to the owner's systems.
 
 ## 6. Overall security posture
 
 - Indicative posture index: **100** / 100 — _Derived from findings in scope (confirmed and potential issues weighted by severity). Indicative only; not comparable across differently scoped audits._
-- Quantum-vulnerable share of inventory: 25.7%
+- Quantum-vulnerable share of inventory: 27.7%
 
 ## 7. Detailed findings
 
-### QSI-2026-12889 — Quantum-vulnerable ECDSA: transaction and message signing (21 file(s))
+### QSI-2026-19291 — Quantum-vulnerable ECDSA: transaction and message signing (21 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct: 21 files of vendor/secp256k1-zkp (24 as first published; three were its benchmark harness, which the runner sets aside since 2026-10-29), Blockstream's fork of libsecp256k1, which is what a Trezor actually signs Bitcoin transactions with. The main audit's 73 Shor-breakable rows count the call sites in core/embed/sec; these are the implementation under them. The two should be read together and not added together — it is one dependency measured at two levels, which is why this bundle is not folded into the portfolio's per-codebase counts.
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: vendor/secp256k1-zkp/contrib/lax_der_parsing.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:36 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 14:40 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -176,14 +176,14 @@ _file_excerpt · [vendor/secp256k1-zkp/include/secp256k1.h](https://github.com/t
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-12891 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s))
+### QSI-2026-19293 — Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, three files (four as first published; the fourth was the module's own benchmark), the schnorrsig module of the same vendored library: Taproot spends.
 - Affected asset: `source-code:Schnorr (BIP-340):transaction_signing`
 - Data source: vendor/secp256k1-zkp/include/secp256k1_schnorrsig.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:36 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 14:40 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -261,14 +261,14 @@ _file_excerpt · [vendor/secp256k1-zkp/src/modules/schnorrsig/main_impl.h](https
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-12888 — Quantum-vulnerable Ed25519: role not determined (5 file(s))
+### QSI-2026-19290 — Quantum-vulnerable Ed25519: role not determined (5 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct and directly relevant to the migration story rather than to spending. Ed25519 is what the device's boot header is signed with today — core/embed/sec/image/boot_header.c:81 in the main audit — and these five rows are its implementation. This is the primitive SLH-DSA is being added alongside, so the pair Ed25519-plus-SLH-DSA in one header is the whole point: the root of trust is mid-migration, carrying both. Firmware signatures are forward-only exposure, but the consequence of a forgery is arbitrary code on a device holding keys, which is why a signer's boot path is where post-quantum signatures matter first even though the spending path is the louder number.
 - Affected asset: `source-code:Ed25519:general`
 - Data source: vendor/mldsa-native/mldsa/mldsa_native.c
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:36 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 14:40 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -362,14 +362,14 @@ _file_excerpt · [vendor/sphincsplus/ref/sign.c](https://github.com/trezor/trezo
 
 **Retest procedure.** Re-run the inventory after refactoring.
 
-### QSI-2026-12890 — Quantum-vulnerable ECDH: role not determined (4 file(s))
+### QSI-2026-19292 — Quantum-vulnerable ECDH: role not determined (4 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** The vendored secp256k1-zkp does carry ECDH key agreement (src/modules/ecdh), and it is the only retroactive exposure here: where a shared secret derived through it protects anything stored or recorded, a copy taken today becomes readable once a CRQC exists, and unlike the signature rows it can be hardened without a consensus change, by wrapping the agreed secret under a hybrid KEM. But the one ECDH row first published here came from a printf in the library's benchmark harness, not from that module, and the runner sets benchmarks aside since 2026-10-29; the module itself is not yet recognised, because the registry has no pattern for secp256k1_ecdh — a vocabulary gap found on 2026-11-02 and recorded for the next registry change. Until then this decision matches no finding.
 - Affected asset: `source-code:ECDH:general`
 - Data source: vendor/secp256k1-zkp/include/secp256k1_ecdh.h
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:36 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 14:40 UTC
 - Priority score: 40.2 / 100
 - CVSS v3.1: not applicable
 
@@ -469,8 +469,8 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (21), Schnorr (BIP-340) (3) | QSI-2026-12889, QSI-2026-12891 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
-| **role not determined** | Ed25519 (5), ECDH (4) | QSI-2026-12888, QSI-2026-12890 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
+| **transaction and message signing** | ECDSA (21), Schnorr (BIP-340) (3) | QSI-2026-19291, QSI-2026-19293 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **role not determined** | Ed25519 (5), ECDH (4) | QSI-2026-19290, QSI-2026-19292 | Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it; introduce an abstraction layer for crypto-agility |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -479,9 +479,9 @@ No readiness questionnaire was completed for this project.
 
 | Quantum algorithm | Effect | Attack model | Inventoried algorithms (rows) | What it means for this audit |
 |---|---|---|---|---|
-| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (4), ECDSA (24), Ed25519 (5), Schnorr (BIP-340) (3) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
-| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (1), SHA-2 (1), SLH-DSA (94) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
-| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | SHA-2 (1) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
+| Shor's algorithm — elliptic-curve discrete logarithms | breaks | Q1 | ECDH (4), ECDSA (29), Ed25519 (5), Schnorr (BIP-340) (3) | Elliptic-curve keys are expected to fall before RSA keys of comparable classical strength. On blockchains, coins whose public key is already on chain (reused addresses, pay-to-public-key and Taproot outputs) are exposed first; plan the move to post-quantum signatures and avoid key reuse in the meantime. |
+| Grover's algorithm — key search and preimages | weakens (larger keys restore the margin) | Q1 | AES-256 (1), SHA-2 (4), SLH-DSA (94) | Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance. |
+| Brassard–Høyer–Tapp — collision search | weakens (larger keys restore the margin) | Q1 | SHA-2 (4) | 256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required. |
 | Quantum lattice sieving | included in standard parameters | Q1 | ML-DSA (8) | No change for ML-KEM or ML-DSA at the standard parameter sets. A 2024 claim of a polynomial-time quantum LWE algorithm was withdrawn after a bug was found (see claims). |
 
 _Effects: breaks — replace the algorithm; weakens — larger keys or outputs restore the margin; included in standard parameters — no action at standard parameter sets; only with superposition queries — not applicable to ordinary deployments._
@@ -506,14 +506,14 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-12889 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-12891 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-12888 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-12890 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-12889 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-12891 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
-| P4 | QSI-2026-12888 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
-| P4 | QSI-2026-12890 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
+| P3 | QSI-2026-19291 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-19293 | Add Schnorr (BIP-340) usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-19290 | Add Ed25519 usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-19292 | Add ECDH usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-19291 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-19293 | Plan migration of Schnorr (BIP-340) to  (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows  or a hybrid scheme in use. |
+| P4 | QSI-2026-19290 | Plan migration of Ed25519 to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P4 | QSI-2026-19292 | Plan migration of ECDH to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -559,14 +559,17 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 ## Appendices: Cryptographic inventory
 
+By origin: third-party code in the tree 148 (41 Shor-breakable).
+
 | Algorithm | Parameter | Library | Quantum status | Classical status | Count | Locations | Examples |
 |---|---|---|---|---|---|---|---|
 | AES-256 | AES-256 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | vendor/sphincsplus/ref/rng.c:125 |
-| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 1 | 1 | vendor/sphincsplus/vectors.py:59 |
+| SHA-2 | SHA-512 |  | reduced margin (Grover), approved | acceptable | 1 | 1 | vendor/sphincsplus/sha2-avx2/sha512x4.c:116 |
+| SHA-2 | SHA-256 |  | Grover: acceptable to NIST, below ECCG/ANSSI guidance | acceptable | 3 | 3 | vendor/secp256k1-zkp/src/hash_impl.h:48; vendor/sphincsplus/ref/sha2.c:181; vendor/sphincsplus/sha2-avx2/sha256avx.h:7 |
 | ML-DSA |  |  | post-quantum | acceptable | 8 | 8 | vendor/mldsa-native/integration/liboqs/config_aarch64.h:315; vendor/mldsa-native/integration/liboqs/config_c.h:319; vendor/mldsa-native/integration/liboqs/config_x86_64.h:317 |
 | SLH-DSA |  |  | post-quantum | acceptable | 94 | 94 | vendor/sphincsplus/haraka-aesni/context.h:10; vendor/sphincsplus/haraka-aesni/haraka.c:117; vendor/sphincsplus/haraka-aesni/harakax4.h:19 |
 | ECDH |  |  | vulnerable (Shor) | acceptable | 4 | 4 | vendor/secp256k1-zkp/include/secp256k1_ecdh.h:50; vendor/secp256k1-zkp/include/secp256k1_ellswift.h:185; vendor/secp256k1-zkp/src/modules/ecdh/main_impl.h:10 |
-| ECDSA |  |  | vulnerable (Shor) | acceptable | 6 | 6 | vendor/secp256k1-zkp/contrib/lax_der_parsing.c:11; vendor/secp256k1-zkp/contrib/lax_der_parsing.h:88; vendor/secp256k1-zkp/include/secp256k1.h:74 |
+| ECDSA |  |  | vulnerable (Shor) | acceptable | 11 | 11 | vendor/secp256k1-zkp/contrib/lax_der_parsing.c:11; vendor/secp256k1-zkp/contrib/lax_der_parsing.h:88; vendor/secp256k1-zkp/contrib/lax_der_privatekey_parsing.c:69 |
 | ECDSA | secp256k1 |  | vulnerable (Shor) | acceptable | 18 | 18 | vendor/secp256k1-zkp/contrib/lax_der_parsing.h:57; vendor/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h:34; vendor/secp256k1-zkp/include/secp256k1_ecdh.h:4 |
 | Ed25519 | Ed25519 |  | vulnerable (Shor) | acceptable | 5 | 5 | vendor/mldsa-native/mldsa/mldsa_native.c:212; vendor/mldsa-native/mldsa/mldsa_native.h:866; vendor/sphincsplus/ref/PQCgenKAT_sign.c:118 |
 | Schnorr (BIP-340) |  |  | vulnerable (Shor) | acceptable | 3 | 3 | vendor/secp256k1-zkp/include/secp256k1_schnorrsig.h:82; vendor/secp256k1-zkp/src/modules/musig/session_impl.h:626; vendor/secp256k1-zkp/src/modules/schnorrsig/main_impl.h:106 |
@@ -937,7 +940,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | vendor/secp256k1-zkp/src/modules/musig/main_impl.h | 426 | `9ec7e6082aa496353466769bb9f7705c32caf8d060b0c92815cb37f6c4265654` | 0 |
 | vendor/secp256k1-zkp/src/modules/musig/session.h | 861 | `c256c3742a68849520569845640f152a22a4a8c21a96040cf0c1054516983980` | 0 |
 | vendor/secp256k1-zkp/src/modules/musig/session_impl.h | 30822 | `9dcc4c823bd1bb9c1e68d0e2a656528f5c45ab2c9d2cf3f65945587943239f6b` | 0 |
-| vendor/secp256k1-zkp/src/modules/musig/vectors.h | 37797 | `c7cd9dc3804d864d17e43c5b00335a405a3bc4a30861838ac4599a213231e132` | 0 |
 | vendor/secp256k1-zkp/src/modules/recovery/main_impl.h | 6135 | `fbec2358a560b669d85720108b0b1a8f653c91531a88ded0a1da339445266cc9` | 0 |
 | vendor/secp256k1-zkp/src/modules/schnorrsig/main_impl.h | 10281 | `d627be29e9a7e1e3b607df983c9f4e7b66990f056c7fcc242a16ee0345b03819` | 0 |
 | vendor/secp256k1-zkp/src/precompute_ecmult.c | 4014 | `9d4d5f79ae0b7c2a2283b33486a397e2a4de40a68a35d15e3e52db55baa13d29` | 0 |
@@ -958,9 +960,6 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | vendor/secp256k1-zkp/src/scratch_impl.h | 3677 | `294a55d429fa4cc9dec46ade345bbb2bfdff4055eb1cbf1ba6168a23e5e74db6` | 0 |
 | vendor/secp256k1-zkp/src/secp256k1.c | 29096 | `6a3cad3929bfd49c8f99d36c3e949f4067380dd40c4ba6b81a1ddc608fc65fd4` | 0 |
 | vendor/secp256k1-zkp/src/selftest.h | 1271 | `fa95cb3e35c5d121da797653a58c4c43370d51245aa43b65e0292ce3adf09dd4` | 0 |
-| vendor/secp256k1-zkp/src/testrand.h | 1886 | `b1708cdab67d44311b97af6f77c719f6dfc03d8c53e5e686bc1d9fd967a49687` | 0 |
-| vendor/secp256k1-zkp/src/testrand_impl.h | 5585 | `5410f491bb7dc8e40715b597fb22c2fe16df52602beea32a2e045684a255bc76` | 0 |
-| vendor/secp256k1-zkp/src/testutil.h | 4355 | `c904296216746f591f0404ef9507a93090bdd5b2826a28834154d79b5f1f0041` | 0 |
 | vendor/secp256k1-zkp/src/util.h | 15742 | `a2d678ac4126c742cee549dda6de8b2def62cbd87103ec7e9fd42e04b3881a36` | 0 |
 | vendor/secp256k1-zkp/src/util_local_visibility.h | 402 | `d47d4a58f40157ab2a298151f366c5ebec8f7a1e7aaba88e36b530b1c01584ca` | 0 |
 | vendor/secp256k1-zkp/tools/symbol-check.py | 2416 | `1706069df728c1a2ac1d2578897076713c16eed73315be6c83ad9690007bca70` | 0 |
@@ -1086,4 +1085,3 @@ _Long lists are grouped here; the full per-file list is in the JSON report, sign
 | vendor/sphincsplus/shake-avx2/utilsx4.h | 1084 | `79ab80de197ce967266920d85779c94c42b38ceaf53be261ff0233a30b694fca` | 0 |
 | vendor/sphincsplus/shake-avx2/wots.c | 8464 | `ff111f14558268b4a9fc165fa60dea3110e5ef4b5865387062271082d9a17a51` | 0 |
 | vendor/sphincsplus/shake-avx2/wotsx4.h | 1306 | `97fa5f08ccfdabe4a249e24e36ecd49ff1997a91423d9bbe29a5d7a3f35956c5` | 0 |
-| vendor/sphincsplus/vectors.py | 3270 | `799e1ead884a113139bdb169f6a589d2eafd8b9920cf5d2cf1167d27f1e80c04` | 0 |

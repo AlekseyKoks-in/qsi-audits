@@ -1,8 +1,8 @@
 {
-  "content_sha256": "85f793c3cefd18fd504e7c243ffa6c191c6676f381d6308495e23b444ca7d76c",
+  "content_sha256": "3c66c2f5a80738810e373133f3f6a61ddd2c936670352def1ca38be290728472",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-04T19:18:35.250447+00:00",
+  "generated_at": "2026-11-06T13:50:16.722213+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "2e935aa9-46ad-4264-82a6-30aa442dc464",
+    "id": "4ab81962-1c35-43cd-a87a-9e56cda8bf10",
     "mode": "document",
     "title": "Document audit: rust-bitcoin",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T19:18:26.299957+00:00",
-    "finished_at": "2026-11-04T19:18:35.130574+00:00",
+    "started_at": "2026-11-06T13:50:06.930328+00:00",
+    "finished_at": "2026-11-06T13:50:16.596243+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -820,17 +820,17 @@
     },
     {
       "area": "source_code",
-      "detail": "addresses/src/error.rs: 314 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "addresses/src/error.rs: 314 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "addresses/src/lib.rs: 1608 lines scanned with 16 rule patterns and 145 registry patterns; 291 lines in #[cfg(test)] modules ignored",
+      "detail": "addresses/src/lib.rs: 1608 lines scanned with 16 rule patterns and 266 registry patterns; 291 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "addresses/src/witness_program.rs: 246 lines scanned with 16 rule patterns and 145 registry patterns; 48 lines in #[cfg(test)] modules ignored",
+      "detail": "addresses/src/witness_program.rs: 246 lines scanned with 16 rule patterns and 266 registry patterns; 48 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -840,17 +840,17 @@
     },
     {
       "area": "source_code",
-      "detail": "base58/src/error.rs: 353 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "base58/src/error.rs: 353 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "base58/src/ext_array_vec.rs: 98 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "base58/src/ext_array_vec.rs: 98 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "base58/src/lib.rs: 681 lines scanned with 16 rule patterns and 145 registry patterns; 162 lines in #[cfg(test)] modules ignored",
+      "detail": "base58/src/lib.rs: 681 lines scanned with 16 rule patterns and 266 registry patterns; 162 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -860,17 +860,17 @@
     },
     {
       "area": "source_code",
-      "detail": "bip158/src/filter.rs: 625 lines scanned with 16 rule patterns and 145 registry patterns; 77 lines in #[cfg(test)] modules ignored",
+      "detail": "bip158/src/filter.rs: 625 lines scanned with 16 rule patterns and 266 registry patterns; 77 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bip158/src/hash_types.rs: 142 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bip158/src/hash_types.rs: 142 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bip158/src/lib.rs: 70 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bip158/src/lib.rs: 70 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -890,12 +890,12 @@
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/embedded/src/main.rs: 54 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/embedded/src/main.rs: 54 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/address.rs: 422 lines scanned with 16 rule patterns and 145 registry patterns; 336 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/address.rs: 422 lines scanned with 16 rule patterns and 266 registry patterns; 336 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -905,162 +905,162 @@
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/bip158.rs: 694 lines scanned with 16 rule patterns and 145 registry patterns; 143 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/bip158.rs: 694 lines scanned with 16 rule patterns and 266 registry patterns; 143 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/block.rs: 596 lines scanned with 16 rule patterns and 145 registry patterns; 262 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/blockdata/block.rs: 596 lines scanned with 16 rule patterns and 266 registry patterns; 262 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/constants.rs: 442 lines scanned with 16 rule patterns and 145 registry patterns; 158 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/blockdata/constants.rs: 442 lines scanned with 16 rule patterns and 266 registry patterns; 158 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/mod.rs: 88 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/mod.rs: 88 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/opcodes.rs: 881 lines scanned with 16 rule patterns and 145 registry patterns; 360 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/blockdata/opcodes.rs: 881 lines scanned with 16 rule patterns and 266 registry patterns; 360 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/borrowed.rs: 528 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/borrowed.rs: 528 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/builder.rs: 154 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/builder.rs: 154 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/instruction.rs: 262 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/instruction.rs: 262 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/mod.rs: 276 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/mod.rs: 276 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/owned.rs: 303 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/owned.rs: 303 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/push_bytes.rs: 123 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/push_bytes.rs: 123 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/script_code.rs: 55 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/script_code.rs: 55 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/script/witness_version.rs: 82 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/blockdata/script/witness_version.rs: 82 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/transaction.rs: 1753 lines scanned with 16 rule patterns and 145 registry patterns; 612 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/blockdata/transaction.rs: 1753 lines scanned with 16 rule patterns and 266 registry patterns; 612 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/blockdata/witness.rs: 442 lines scanned with 16 rule patterns and 145 registry patterns; 213 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/blockdata/witness.rs: 442 lines scanned with 16 rule patterns and 266 registry patterns; 213 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/consensus_validation.rs: 277 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/consensus_validation.rs: 277 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/crypto/key.rs: 123 lines scanned with 16 rule patterns and 145 registry patterns; 55 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/crypto/key.rs: 123 lines scanned with 16 rule patterns and 266 registry patterns; 55 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/crypto/mod.rs: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/crypto/mod.rs: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/crypto/sighash.rs: 2118 lines scanned with 16 rule patterns and 145 registry patterns; 691 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/crypto/sighash.rs: 2118 lines scanned with 16 rule patterns and 266 registry patterns; 691 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/hash_types.rs: 96 lines scanned with 16 rule patterns and 145 registry patterns; 87 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/hash_types.rs: 96 lines scanned with 16 rule patterns and 266 registry patterns; 87 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/internal_macros.rs: 71 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/internal_macros.rs: 71 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/lib.rs: 292 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/lib.rs: 292 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/merkle_tree/mod.rs: 27 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/merkle_tree/mod.rs: 27 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/network/mod.rs: 123 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/network/mod.rs: 123 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/network/params.rs: 291 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/network/params.rs: 291 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/policy.rs: 63 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/policy.rs: 63 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/pow.rs: 846 lines scanned with 16 rule patterns and 145 registry patterns; 443 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/pow.rs: 846 lines scanned with 16 rule patterns and 266 registry patterns; 443 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/sign_message.rs: 357 lines scanned with 16 rule patterns and 145 registry patterns; 114 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/sign_message.rs: 357 lines scanned with 16 rule patterns and 266 registry patterns; 114 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/taproot/merkle_branch/borrowed.rs: 280 lines scanned with 16 rule patterns and 145 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/taproot/merkle_branch/borrowed.rs: 280 lines scanned with 16 rule patterns and 266 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/taproot/merkle_branch/buf.rs: 276 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/taproot/merkle_branch/buf.rs: 276 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/taproot/merkle_branch/mod.rs: 76 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "bitcoin/src/taproot/merkle_branch/mod.rs: 76 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "bitcoin/src/taproot/mod.rs: 1817 lines scanned with 16 rule patterns and 145 registry patterns; 329 lines in #[cfg(test)] modules ignored",
+      "detail": "bitcoin/src/taproot/mod.rs: 1817 lines scanned with 16 rule patterns and 266 registry patterns; 329 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1075,7 +1075,7 @@
     },
     {
       "area": "source_code",
-      "detail": "chacha20_poly1305/src/chacha20.rs: 624 lines scanned with 16 rule patterns and 145 registry patterns; 167 lines in #[cfg(test)] modules ignored",
+      "detail": "chacha20_poly1305/src/chacha20.rs: 624 lines scanned with 16 rule patterns and 266 registry patterns; 167 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1085,7 +1085,7 @@
     },
     {
       "area": "source_code",
-      "detail": "chacha20_poly1305/src/chacha20/avx2.rs: 347 lines scanned with 16 rule patterns and 145 registry patterns; 35 lines in #[cfg(test)] modules ignored",
+      "detail": "chacha20_poly1305/src/chacha20/avx2.rs: 347 lines scanned with 16 rule patterns and 266 registry patterns; 35 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1095,7 +1095,7 @@
     },
     {
       "area": "source_code",
-      "detail": "chacha20_poly1305/src/chacha20/neon.rs: 454 lines scanned with 16 rule patterns and 145 registry patterns; 54 lines in #[cfg(test)] modules ignored",
+      "detail": "chacha20_poly1305/src/chacha20/neon.rs: 454 lines scanned with 16 rule patterns and 266 registry patterns; 54 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1105,7 +1105,7 @@
     },
     {
       "area": "source_code",
-      "detail": "chacha20_poly1305/src/chacha20/sse2.rs: 309 lines scanned with 16 rule patterns and 145 registry patterns; 30 lines in #[cfg(test)] modules ignored",
+      "detail": "chacha20_poly1305/src/chacha20/sse2.rs: 309 lines scanned with 16 rule patterns and 266 registry patterns; 30 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1115,7 +1115,7 @@
     },
     {
       "area": "source_code",
-      "detail": "chacha20_poly1305/src/lib.rs: 251 lines scanned with 16 rule patterns and 145 registry patterns; 56 lines in #[cfg(test)] modules ignored",
+      "detail": "chacha20_poly1305/src/lib.rs: 251 lines scanned with 16 rule patterns and 266 registry patterns; 56 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1125,7 +1125,7 @@
     },
     {
       "area": "source_code",
-      "detail": "chacha20_poly1305/src/poly1305.rs: 264 lines scanned with 16 rule patterns and 145 registry patterns; 18 lines in #[cfg(test)] modules ignored",
+      "detail": "chacha20_poly1305/src/poly1305.rs: 264 lines scanned with 16 rule patterns and 266 registry patterns; 18 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1140,12 +1140,12 @@
     },
     {
       "area": "source_code",
-      "detail": "crypto/src/ecdsa.rs: 527 lines scanned with 16 rule patterns and 145 registry patterns; 63 lines in #[cfg(test)] modules ignored",
+      "detail": "crypto/src/ecdsa.rs: 527 lines scanned with 16 rule patterns and 266 registry patterns; 63 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crypto/src/key.rs: 2605 lines scanned with 16 rule patterns and 145 registry patterns; 446 lines in #[cfg(test)] modules ignored",
+      "detail": "crypto/src/key.rs: 2605 lines scanned with 16 rule patterns and 266 registry patterns; 446 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1155,17 +1155,17 @@
     },
     {
       "area": "source_code",
-      "detail": "crypto/src/lib.rs: 73 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "crypto/src/lib.rs: 73 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crypto/src/sighash.rs: 528 lines scanned with 16 rule patterns and 145 registry patterns; 114 lines in #[cfg(test)] modules ignored",
+      "detail": "crypto/src/sighash.rs: 528 lines scanned with 16 rule patterns and 266 registry patterns; 114 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "crypto/src/taproot.rs: 660 lines scanned with 16 rule patterns and 145 registry patterns; 97 lines in #[cfg(test)] modules ignored",
+      "detail": "crypto/src/taproot.rs: 660 lines scanned with 16 rule patterns and 266 registry patterns; 97 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1185,137 +1185,137 @@
     },
     {
       "area": "source_code",
-      "detail": "hashes/embedded/src/main.rs: 77 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/embedded/src/main.rs: 77 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/cmp.rs: 109 lines scanned with 16 rule patterns and 145 registry patterns; 42 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/cmp.rs: 109 lines scanned with 16 rule patterns and 266 registry patterns; 42 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/hash160/mod.rs: 132 lines scanned with 16 rule patterns and 145 registry patterns; 80 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/hash160/mod.rs: 132 lines scanned with 16 rule patterns and 266 registry patterns; 80 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/hkdf/mod.rs: 289 lines scanned with 16 rule patterns and 145 registry patterns; 118 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/hkdf/mod.rs: 289 lines scanned with 16 rule patterns and 266 registry patterns; 118 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/hmac/mod.rs: 342 lines scanned with 16 rule patterns and 145 registry patterns; 166 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/hmac/mod.rs: 342 lines scanned with 16 rule patterns and 266 registry patterns; 166 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/internal_macros.rs: 247 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/internal_macros.rs: 247 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/lib.rs: 386 lines scanned with 16 rule patterns and 145 registry patterns; 46 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/lib.rs: 386 lines scanned with 16 rule patterns and 266 registry patterns; 46 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/macros.rs: 714 lines scanned with 16 rule patterns and 145 registry patterns; 138 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/macros.rs: 714 lines scanned with 16 rule patterns and 266 registry patterns; 138 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/muhash/mod.rs: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/muhash/mod.rs: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/ripemd160/crypto.rs: 330 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/ripemd160/crypto.rs: 330 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/ripemd160/mod.rs: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/ripemd160/mod.rs: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha1/crypto.rs: 59 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha1/crypto.rs: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha1/mod.rs: 92 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha1/mod.rs: 92 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256/crypto/arm_sha2.rs: 953 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha256/crypto/arm_sha2.rs: 953 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256/crypto/avx2.rs: 415 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha256/crypto/avx2.rs: 415 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256/crypto/mod.rs: 848 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha256/crypto/mod.rs: 848 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256/crypto/sse41.rs: 398 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha256/crypto/sse41.rs: 398 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256/crypto/x86_shani.rs: 1118 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha256/crypto/x86_shani.rs: 1118 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256/mod.rs: 373 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha256/mod.rs: 373 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256d/mod.rs: 172 lines scanned with 16 rule patterns and 145 registry patterns; 116 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/sha256d/mod.rs: 172 lines scanned with 16 rule patterns and 266 registry patterns; 116 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha256t/mod.rs: 298 lines scanned with 16 rule patterns and 145 registry patterns; 106 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/sha256t/mod.rs: 298 lines scanned with 16 rule patterns and 266 registry patterns; 106 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha384/mod.rs: 144 lines scanned with 16 rule patterns and 145 registry patterns; 100 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/sha384/mod.rs: 144 lines scanned with 16 rule patterns and 266 registry patterns; 100 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha3_256/mod.rs: 235 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha3_256/mod.rs: 235 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha512/crypto.rs: 196 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha512/crypto.rs: 196 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha512/mod.rs: 132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hashes/src/sha512/mod.rs: 132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/sha512_256/mod.rs: 147 lines scanned with 16 rule patterns and 145 registry patterns; 90 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/sha512_256/mod.rs: 147 lines scanned with 16 rule patterns and 266 registry patterns; 90 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hashes/src/siphash24/mod.rs: 359 lines scanned with 16 rule patterns and 145 registry patterns; 114 lines in #[cfg(test)] modules ignored",
+      "detail": "hashes/src/siphash24/mod.rs: 359 lines scanned with 16 rule patterns and 266 registry patterns; 114 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1325,12 +1325,12 @@
     },
     {
       "area": "source_code",
-      "detail": "key_expression/src/bip32.rs: 2458 lines scanned with 16 rule patterns and 145 registry patterns; 716 lines in #[cfg(test)] modules ignored",
+      "detail": "key_expression/src/bip32.rs: 2458 lines scanned with 16 rule patterns and 266 registry patterns; 716 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "key_expression/src/lib.rs: 38 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "key_expression/src/lib.rs: 38 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1340,132 +1340,132 @@
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/block.rs: 2562 lines scanned with 16 rule patterns and 145 registry patterns; 1262 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/block.rs: 2562 lines scanned with 16 rule patterns and 266 registry patterns; 1262 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/block_hash.rs: 117 lines scanned with 16 rule patterns and 145 registry patterns; 29 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/hash_types/block_hash.rs: 117 lines scanned with 16 rule patterns and 266 registry patterns; 29 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/generic.rs: 74 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/hash_types/generic.rs: 74 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/mod.rs: 383 lines scanned with 16 rule patterns and 145 registry patterns; 185 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/hash_types/mod.rs: 383 lines scanned with 16 rule patterns and 266 registry patterns; 185 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/ntxid.rs: 36 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/hash_types/ntxid.rs: 36 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/script_hash.rs: 193 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/hash_types/script_hash.rs: 193 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/transaction_merkle_node.rs: 141 lines scanned with 16 rule patterns and 145 registry patterns; 29 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/hash_types/transaction_merkle_node.rs: 141 lines scanned with 16 rule patterns and 266 registry patterns; 29 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/txid.rs: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/hash_types/txid.rs: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/witness_commitment.rs: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/hash_types/witness_commitment.rs: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/witness_merkle_node.rs: 161 lines scanned with 16 rule patterns and 145 registry patterns; 49 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/hash_types/witness_merkle_node.rs: 161 lines scanned with 16 rule patterns and 266 registry patterns; 49 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/witness_script_hash.rs: 124 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/hash_types/witness_script_hash.rs: 124 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hash_types/wtxid.rs: 34 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/hash_types/wtxid.rs: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/hex_codec.rs: 136 lines scanned with 16 rule patterns and 145 registry patterns; 29 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/hex_codec.rs: 136 lines scanned with 16 rule patterns and 266 registry patterns; 29 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/lib.rs: 178 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/lib.rs: 178 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/merkle_tree.rs: 426 lines scanned with 16 rule patterns and 145 registry patterns; 216 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/merkle_tree.rs: 426 lines scanned with 16 rule patterns and 266 registry patterns; 216 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/opcodes.rs: 323 lines scanned with 16 rule patterns and 145 registry patterns; 15 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/opcodes.rs: 323 lines scanned with 16 rule patterns and 266 registry patterns; 15 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/script/borrowed.rs: 389 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/script/borrowed.rs: 389 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/script/builder.rs: 212 lines scanned with 16 rule patterns and 145 registry patterns; 109 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/script/builder.rs: 212 lines scanned with 16 rule patterns and 266 registry patterns; 109 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/script/error.rs: 37 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/script/error.rs: 37 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/script/mod.rs: 642 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/script/mod.rs: 642 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/script/owned.rs: 488 lines scanned with 16 rule patterns and 145 registry patterns; 30 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/script/owned.rs: 488 lines scanned with 16 rule patterns and 266 registry patterns; 30 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/script/push_bytes.rs: 742 lines scanned with 16 rule patterns and 145 registry patterns; 181 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/script/push_bytes.rs: 742 lines scanned with 16 rule patterns and 266 registry patterns; 181 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/script/tag.rs: 55 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "primitives/src/script/tag.rs: 55 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/transaction.rs: 3550 lines scanned with 16 rule patterns and 145 registry patterns; 1823 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/transaction.rs: 3550 lines scanned with 16 rule patterns and 266 registry patterns; 1823 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/witness.rs: 2092 lines scanned with 16 rule patterns and 145 registry patterns; 965 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/witness.rs: 2092 lines scanned with 16 rule patterns and 266 registry patterns; 965 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "primitives/src/witness_version.rs: 422 lines scanned with 16 rule patterns and 145 registry patterns; 112 lines in #[cfg(test)] modules ignored",
+      "detail": "primitives/src/witness_version.rs: 422 lines scanned with 16 rule patterns and 266 registry patterns; 112 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1475,7 +1475,7 @@
     },
     {
       "area": "source_code",
-      "detail": "taproot_primitives/src/lib.rs: 595 lines scanned with 16 rule patterns and 145 registry patterns; 58 lines in #[cfg(test)] modules ignored",
+      "detail": "taproot_primitives/src/lib.rs: 595 lines scanned with 16 rule patterns and 266 registry patterns; 58 lines in #[cfg(test)] modules ignored",
       "status": "checked"
     },
     {
@@ -1507,9 +1507,9 @@
       "count": 110,
       "rows": 110,
       "examples": [
-        "addresses/src/error.rs: 314 lines scanned with 16 rule patterns and 145 registry patterns",
-        "addresses/src/lib.rs: 1608 lines scanned with 16 rule patterns and 145 registry patterns; 291 lines in #[cfg(test)] modules ignored",
-        "addresses/src/witness_program.rs: 246 lines scanned with 16 rule patterns and 145 registry patterns; 48 lines in #[cfg(test)] modules ignored"
+        "addresses/src/error.rs: 314 lines scanned with 16 rule patterns and 266 registry patterns",
+        "addresses/src/lib.rs: 1608 lines scanned with 16 rule patterns and 266 registry patterns; 291 lines in #[cfg(test)] modules ignored",
+        "addresses/src/witness_program.rs: 246 lines scanned with 16 rule patterns and 266 registry patterns; 48 lines in #[cfg(test)] modules ignored"
       ]
     },
     {
@@ -1699,20 +1699,30 @@
     },
     "total": 6,
     "posture_index": 100,
-    "pq_vulnerable_share": 59.5,
-    "inventory_total": 42,
+    "pq_vulnerable_share": 52.1,
+    "inventory_total": 48,
     "inventory_by_quantum_status": {
-      "classical_weakness": 1,
-      "grover_margin": 10,
-      "grover_reduced": 1,
+      "classical_weakness": 2,
+      "grover_margin": 11,
+      "grover_reduced": 5,
       "not_applicable": 5,
       "vulnerable_shor": 25
+    },
+    "inventory_by_origin": {
+      "dependency": {
+        "total": 5,
+        "vulnerable_shor": 0
+      },
+      "own": {
+        "total": 43,
+        "vulnerable_shor": 25
+      }
     }
   },
   "findings": [
     {
-      "id": "b4e15739-fd86-4f02-b549-94dce5f6fcfa",
-      "public_id": "QSI-2026-12578",
+      "id": "001ed893-f6cc-4d9b-8ccb-58bc7b8552e3",
+      "public_id": "QSI-2026-18748",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))",
       "description": "70 reference(s) to Schnorr (BIP-340) across 7 file(s), e.g. addresses/src/lib.rs:123. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -1732,7 +1742,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
       "data_source": "addresses/src/lib.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:18:35.055930+00:00",
+      "detected_at": "2026-11-06T13:50:16.519486+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -1829,7 +1839,7 @@
           "content_sha256": "a62c1a720cf261e21ac1a7f790debb52b0916021246b022bc74e44169045b4c4",
           "source_sha256": "ece00974e73f9eb54b931fcbf26fa63fa348dbd560546cfa2871b2a7843e161a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071378+00:00",
+          "collected_at": "2026-11-06T13:50:16.534451+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/addresses/src/lib.rs#L123"
         },
         {
@@ -1840,7 +1850,7 @@
           "content_sha256": "68f73523d9f7768c7fca900284aaf5ad49588cb1e7f457a1e4716378479f9ed7",
           "source_sha256": "ece00974e73f9eb54b931fcbf26fa63fa348dbd560546cfa2871b2a7843e161a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071385+00:00",
+          "collected_at": "2026-11-06T13:50:16.534459+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/addresses/src/lib.rs#L1004"
         },
         {
@@ -1851,7 +1861,7 @@
           "content_sha256": "876440f5cad2a028e70c4ebfe7a651a4359c53478ca7fca746bb8f9fbe73307c",
           "source_sha256": "ece00974e73f9eb54b931fcbf26fa63fa348dbd560546cfa2871b2a7843e161a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071388+00:00",
+          "collected_at": "2026-11-06T13:50:16.534463+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/addresses/src/lib.rs#L1015"
         },
         {
@@ -1862,7 +1872,7 @@
           "content_sha256": "6b19a01bf2ae39d2c14347241bfdf5eed393a37b231cbd0b916f78b9594071a8",
           "source_sha256": "07e5a99622d45b1d598c69b68b20f061cce279e95156c742cb1852b57f0217d9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071391+00:00",
+          "collected_at": "2026-11-06T13:50:16.534466+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/blockdata/script/builder.rs#L4"
         },
         {
@@ -1873,7 +1883,7 @@
           "content_sha256": "a77d24d3ceefd5bd00ea7f4f819009ee0569035d33b14dc022cc01dfd9f60b08",
           "source_sha256": "07e5a99622d45b1d598c69b68b20f061cce279e95156c742cb1852b57f0217d9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071395+00:00",
+          "collected_at": "2026-11-06T13:50:16.534469+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/blockdata/script/builder.rs#L101"
         },
         {
@@ -1884,7 +1894,7 @@
           "content_sha256": "9b29aaa5edf6e67d448fc20542ef14d9ffe43528a53cb568a9223fb0a9c6d63f",
           "source_sha256": "2df23abc0dabfff5cbcb1676eb835acc4c1b63ac4bd5c70b626c0f4a6118bfd3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071398+00:00",
+          "collected_at": "2026-11-06T13:50:16.534472+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/key.rs#L25"
         },
         {
@@ -1895,7 +1905,7 @@
           "content_sha256": "ee9bdfebb3cce7d866f2387bc9bf123f38b960224e8243d4277a1bf598ae22e1",
           "source_sha256": "f3e202f3d9b18ced89e127f6868f1abf5d83c2011071ed894f989e9252520049",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071401+00:00",
+          "collected_at": "2026-11-06T13:50:16.534475+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/lib.rs#L188"
         },
         {
@@ -1906,7 +1916,7 @@
           "content_sha256": "d552af0f934eb5b2183e1192b5d537bed29099ae7e023db4ba5506ee91614b94",
           "source_sha256": "3f7348eb8976129c7bca923770d3738026d7892d021593ed394364cefa7540ea",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071405+00:00",
+          "collected_at": "2026-11-06T13:50:16.534479+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/taproot/mod.rs#L53"
         },
         {
@@ -1917,7 +1927,7 @@
           "content_sha256": "1df598a45b339923eeba62cb70baac0769ee322b2315d2ea2a24bd8093b46b21",
           "source_sha256": "3f7348eb8976129c7bca923770d3738026d7892d021593ed394364cefa7540ea",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071408+00:00",
+          "collected_at": "2026-11-06T13:50:16.534482+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/taproot/mod.rs#L499"
         },
         {
@@ -1928,7 +1938,7 @@
           "content_sha256": "388fbad98d219b448d192aaa35351052f357b8b9ada089a9cfee234b1921e072",
           "source_sha256": "3f7348eb8976129c7bca923770d3738026d7892d021593ed394364cefa7540ea",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.071411+00:00",
+          "collected_at": "2026-11-06T13:50:16.534485+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/taproot/mod.rs#L1109"
         }
       ],
@@ -1966,8 +1976,8 @@
       ]
     },
     {
-      "id": "0795b0c7-0334-4678-8d71-5327d81d7636",
-      "public_id": "QSI-2026-12579",
+      "id": "17f4dee9-6540-4415-aa98-80f3f03544e0",
+      "public_id": "QSI-2026-18749",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))",
       "description": "127 reference(s) to ECDSA across 8 file(s), e.g. bitcoin/src/blockdata/witness.rs:29. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -1987,7 +1997,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "bitcoin/src/blockdata/witness.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:18:35.067077+00:00",
+      "detected_at": "2026-11-06T13:50:16.530655+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -2084,7 +2094,7 @@
           "content_sha256": "5528dfeaf19f41ae8b442a836d01fb1af70f710b67c36685d78ec42ae43ee643",
           "source_sha256": "7516177bb6effefd27a72bb84659268863556982c8766d2455d8b54f39fa71f4",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091382+00:00",
+          "collected_at": "2026-11-06T13:50:16.554472+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/blockdata/witness.rs#L29"
         },
         {
@@ -2095,7 +2105,7 @@
           "content_sha256": "1d7c0c34b509a0fd4a4fbb9afb78e3a30a70d8c71254c3249c64bfb849505d15",
           "source_sha256": "7516177bb6effefd27a72bb84659268863556982c8766d2455d8b54f39fa71f4",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091390+00:00",
+          "collected_at": "2026-11-06T13:50:16.554482+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/blockdata/witness.rs#L70"
         },
         {
@@ -2106,7 +2116,7 @@
           "content_sha256": "c93e86cfaeebca80fbf060ce376c25680c18aa75440b4253ffcd7a15a541f9d7",
           "source_sha256": "2df23abc0dabfff5cbcb1676eb835acc4c1b63ac4bd5c70b626c0f4a6118bfd3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091393+00:00",
+          "collected_at": "2026-11-06T13:50:16.554485+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/key.rs#L12"
         },
         {
@@ -2117,7 +2127,7 @@
           "content_sha256": "2822beecffec9cdaf16cd469a9b483c5f199eabb1a5112d154fb772fefc005fb",
           "source_sha256": "158eb7428c169de7f0617db2c82357e2a53afb669e2e06ceae5f008c3b9b168d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091396+00:00",
+          "collected_at": "2026-11-06T13:50:16.554488+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L56"
         },
         {
@@ -2128,7 +2138,7 @@
           "content_sha256": "a44e4b3f206b39e7373c5f48d480336f2629628dd7187b405314a5cc90da0c27",
           "source_sha256": "158eb7428c169de7f0617db2c82357e2a53afb669e2e06ceae5f008c3b9b168d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091399+00:00",
+          "collected_at": "2026-11-06T13:50:16.554491+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L57"
         },
         {
@@ -2139,7 +2149,7 @@
           "content_sha256": "25b0f81a19b2e9754b744b8d912d6f6de45858b0c60259a7cd27242a84ba2c73",
           "source_sha256": "158eb7428c169de7f0617db2c82357e2a53afb669e2e06ceae5f008c3b9b168d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091402+00:00",
+          "collected_at": "2026-11-06T13:50:16.554495+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/crypto/sighash.rs#L58"
         },
         {
@@ -2150,7 +2160,7 @@
           "content_sha256": "ab3c659f323740e32e371c569c0f6ac7f7ff86e25ad6ec754da5d97e126b5819",
           "source_sha256": "f3e202f3d9b18ced89e127f6868f1abf5d83c2011071ed894f989e9252520049",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091405+00:00",
+          "collected_at": "2026-11-06T13:50:16.554498+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/lib.rs#L75"
         },
         {
@@ -2161,7 +2171,7 @@
           "content_sha256": "bf4fee8211e6567a4e0a3a3739c0f3c72177fc774e7f45999f64f4cdf35bd455",
           "source_sha256": "0490974e5abf48fc440341969267e3054cf9d211ea053a04796c84318ea8afa3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091408+00:00",
+          "collected_at": "2026-11-06T13:50:16.554501+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L28"
         },
         {
@@ -2172,7 +2182,7 @@
           "content_sha256": "e5103bd3d5618003bfda34ed283bcfa72b5be925a6f77e78e667ea6b0d7acdc4",
           "source_sha256": "0490974e5abf48fc440341969267e3054cf9d211ea053a04796c84318ea8afa3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091411+00:00",
+          "collected_at": "2026-11-06T13:50:16.554504+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L63"
         },
         {
@@ -2183,7 +2193,7 @@
           "content_sha256": "daffb40573316105a3cbc121be9b542304e26171369749552d75f17aa3ad69ff",
           "source_sha256": "0490974e5abf48fc440341969267e3054cf9d211ea053a04796c84318ea8afa3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.091414+00:00",
+          "collected_at": "2026-11-06T13:50:16.554507+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/bitcoin/src/sign_message.rs#L66"
         }
       ],
@@ -2221,8 +2231,8 @@
       ]
     },
     {
-      "id": "f814c17d-e950-4368-bf07-49f7abfbe0a7",
-      "public_id": "QSI-2026-12580",
+      "id": "2d637e37-b4e4-401e-a92d-74da81c4e8bd",
+      "public_id": "QSI-2026-18750",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: role not determined (4 file(s))",
       "description": "16 reference(s) to ECDSA across 4 file(s), e.g. crypto/src/ecdsa.rs:47. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -2242,7 +2252,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "crypto/src/ecdsa.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:18:35.088278+00:00",
+      "detected_at": "2026-11-06T13:50:16.547146+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2339,7 +2349,7 @@
           "content_sha256": "53c2d800e17a34a85eb1592b1e52421478bf84dc95d463f9736abce9ab62b6f5",
           "source_sha256": "15b5b705b602cfccdc101dc668c9f1e1dac3a98e9b0e5b02417b3b306f59b79b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104357+00:00",
+          "collected_at": "2026-11-06T13:50:16.570515+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L47"
         },
         {
@@ -2350,7 +2360,7 @@
           "content_sha256": "e94855bdb686f74e258a508f15131f1590dbac165bd7028d1cf0730771b56a61",
           "source_sha256": "15b5b705b602cfccdc101dc668c9f1e1dac3a98e9b0e5b02417b3b306f59b79b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104365+00:00",
+          "collected_at": "2026-11-06T13:50:16.570523+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L55"
         },
         {
@@ -2361,7 +2371,7 @@
           "content_sha256": "2b73d6e3eb649b2a23602e482ce344e339f148dd5f49125fea88808d2268ee43",
           "source_sha256": "15b5b705b602cfccdc101dc668c9f1e1dac3a98e9b0e5b02417b3b306f59b79b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104368+00:00",
+          "collected_at": "2026-11-06T13:50:16.570526+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/ecdsa.rs#L72"
         },
         {
@@ -2372,7 +2382,7 @@
           "content_sha256": "578776bfe3591a6c57fcfeb143276ee3d3b8df7a8a565dc7d054a3f0b1f368f8",
           "source_sha256": "63a929ca613ec617c03b443f48baa2eddfd00c66967ed0eee58ff13c3ac08510",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104371+00:00",
+          "collected_at": "2026-11-06T13:50:16.570529+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/lib.rs#L25"
         },
         {
@@ -2383,7 +2393,7 @@
           "content_sha256": "213d77204e7e7c822521a037fd89f4e9af3fd172cf63282da563512204b11de4",
           "source_sha256": "9d693dad362736086d00a7d8f8d36592f7629ba6560ffcd550f680929e6f9150",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104375+00:00",
+          "collected_at": "2026-11-06T13:50:16.570532+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L41"
         },
         {
@@ -2394,7 +2404,7 @@
           "content_sha256": "0cac400fbdf512ea35e6d74060c50a98fc42199dd184dee36f1f92376f161cf4",
           "source_sha256": "9d693dad362736086d00a7d8f8d36592f7629ba6560ffcd550f680929e6f9150",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104378+00:00",
+          "collected_at": "2026-11-06T13:50:16.570535+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L57"
         },
         {
@@ -2405,7 +2415,7 @@
           "content_sha256": "28bd3991c242414afc776fa4fc386bf16462ff632f79400412ceebcf8f0a8f95",
           "source_sha256": "9d693dad362736086d00a7d8f8d36592f7629ba6560ffcd550f680929e6f9150",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104381+00:00",
+          "collected_at": "2026-11-06T13:50:16.570539+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L68"
         },
         {
@@ -2416,7 +2426,7 @@
           "content_sha256": "d6300f17aee73f0bd828c9fdcb6ce3ddae6425ddcdfa65f65c3681722964a7bc",
           "source_sha256": "0efe9ae04fe70035b6d6d9d56defe9de124c1e49f474c63c6d99e055341295ac",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104384+00:00",
+          "collected_at": "2026-11-06T13:50:16.570542+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L26"
         },
         {
@@ -2427,7 +2437,7 @@
           "content_sha256": "0a8766074a73453f2b6314ff9afd59a6df105eda4b2c7153ec595c3107e68936",
           "source_sha256": "0efe9ae04fe70035b6d6d9d56defe9de124c1e49f474c63c6d99e055341295ac",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104387+00:00",
+          "collected_at": "2026-11-06T13:50:16.570545+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L45"
         },
         {
@@ -2438,7 +2448,7 @@
           "content_sha256": "0a6bcc9eaac7c6f524ec18cb59f4f7a67f61f2bcb70890f81c37a61fddefe56b",
           "source_sha256": "0efe9ae04fe70035b6d6d9d56defe9de124c1e49f474c63c6d99e055341295ac",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.104390+00:00",
+          "collected_at": "2026-11-06T13:50:16.570547+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L428"
         }
       ],
@@ -2476,8 +2486,8 @@
       ]
     },
     {
-      "id": "08bc74b6-0208-4de0-93ab-0d2a2f582f4d",
-      "public_id": "QSI-2026-12581",
+      "id": "45fd7bb7-153d-497e-bad3-159d38bd9e87",
+      "public_id": "QSI-2026-18751",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))",
       "description": "8 reference(s) to Schnorr (BIP-340) across 3 file(s), e.g. crypto/src/lib.rs:33. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -2497,7 +2507,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):general",
       "data_source": "crypto/src/lib.rs",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:18:35.101024+00:00",
+      "detected_at": "2026-11-06T13:50:16.567612+00:00",
       "risk_score": 34.2,
       "risk_breakdown": {
         "mosca": {
@@ -2594,7 +2604,7 @@
           "content_sha256": "9415f48bf1c101229771f715c5938d47e0fd714ba4311f88b6fede66e0b5ccd6",
           "source_sha256": "63a929ca613ec617c03b443f48baa2eddfd00c66967ed0eee58ff13c3ac08510",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.116060+00:00",
+          "collected_at": "2026-11-06T13:50:16.581035+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/lib.rs#L33"
         },
         {
@@ -2605,7 +2615,7 @@
           "content_sha256": "213d77204e7e7c822521a037fd89f4e9af3fd172cf63282da563512204b11de4",
           "source_sha256": "9d693dad362736086d00a7d8f8d36592f7629ba6560ffcd550f680929e6f9150",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.116067+00:00",
+          "collected_at": "2026-11-06T13:50:16.581044+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L41"
         },
         {
@@ -2616,7 +2626,7 @@
           "content_sha256": "0cac400fbdf512ea35e6d74060c50a98fc42199dd184dee36f1f92376f161cf4",
           "source_sha256": "9d693dad362736086d00a7d8f8d36592f7629ba6560ffcd550f680929e6f9150",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.116071+00:00",
+          "collected_at": "2026-11-06T13:50:16.581047+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L57"
         },
         {
@@ -2627,7 +2637,7 @@
           "content_sha256": "28bd3991c242414afc776fa4fc386bf16462ff632f79400412ceebcf8f0a8f95",
           "source_sha256": "9d693dad362736086d00a7d8f8d36592f7629ba6560ffcd550f680929e6f9150",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.116074+00:00",
+          "collected_at": "2026-11-06T13:50:16.581050+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/crypto/src/taproot.rs#L68"
         },
         {
@@ -2638,7 +2648,7 @@
           "content_sha256": "7bbdbc3b72b9163efc341a1a788fdea69b6bfd512150379b197fe7ac71a9d93f",
           "source_sha256": "0efe9ae04fe70035b6d6d9d56defe9de124c1e49f474c63c6d99e055341295ac",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.116077+00:00",
+          "collected_at": "2026-11-06T13:50:16.581053+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L42"
         },
         {
@@ -2649,7 +2659,7 @@
           "content_sha256": "73e61752c16ba7243668d77331629a9c2d91098e96035447a32b3717ed3c219b",
           "source_sha256": "0efe9ae04fe70035b6d6d9d56defe9de124c1e49f474c63c6d99e055341295ac",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.116080+00:00",
+          "collected_at": "2026-11-06T13:50:16.581057+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L425"
         },
         {
@@ -2660,7 +2670,7 @@
           "content_sha256": "98da70df00a22c65acf45d929606a3e768b6ec321491229888a44afd4b7971da",
           "source_sha256": "0efe9ae04fe70035b6d6d9d56defe9de124c1e49f474c63c6d99e055341295ac",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.116083+00:00",
+          "collected_at": "2026-11-06T13:50:16.581060+00:00",
           "url": "https://github.com/rust-bitcoin/rust-bitcoin/blob/f127ba2ae14e0447606bfee5d5783e623c423809/taproot_primitives/src/lib.rs#L431"
         }
       ],
@@ -2698,8 +2708,8 @@
       ]
     },
     {
-      "id": "100be1ba-6f9b-45a6-b785-8007f9ac654c",
-      "public_id": "QSI-2026-12582",
+      "id": "bdc44425-cc01-48ba-b93a-293d157fce43",
+      "public_id": "QSI-2026-18752",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "No post-quantum capable cryptographic library detected",
       "description": "Across 15 dependency manifests, QSI found crypto libraries (secp256k1) but none from its PQC-capable list.",
@@ -2719,7 +2729,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:18:35.112711+00:00",
+      "detected_at": "2026-11-06T13:50:16.578914+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2782,15 +2792,15 @@
           "content_sha256": "287cb2008737c0fe03b7729193c577d77a128b5d87065e91d8e4624b7d0f14ce",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.125684+00:00",
+          "collected_at": "2026-11-06T13:50:16.591906+00:00",
           "url": null
         }
       ],
       "remediation": []
     },
     {
-      "id": "99e4b39b-30d8-4b7e-b311-779b0433c3b2",
-      "public_id": "QSI-2026-12583",
+      "id": "c8fe90cf-2f5b-4b03-b952-6e59502e8202",
+      "public_id": "QSI-2026-18753",
       "rule_id": "DEP-ADVISORY-INFORMATIONAL",
       "title": "bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)",
       "description": "OSV.dev lists RUSTSEC-2026-0110 for crates.io package bare-metal at version 0.2.5 as informational (unmaintained): bare-metal is deprecated. It reports no vulnerability; an unmaintained package will not receive fixes for future ones.",
@@ -2811,7 +2821,7 @@
       "affected_asset": "dependency:crates.io/bare-metal@0.2.5",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:18:35.122181+00:00",
+      "detected_at": "2026-11-06T13:50:16.587020+00:00",
       "risk_score": 11.8,
       "risk_breakdown": {
         "score": 11.8,
@@ -2867,7 +2877,7 @@
           "content_sha256": "1377cbc63847011c54324d486e3a7bae12ccbda6c1c9a981451db3532783f3c2",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:18:35.159734+00:00",
+          "collected_at": "2026-11-06T13:50:16.629038+00:00",
           "url": "https://osv.dev/vulnerability/RUSTSEC-2026-0110"
         }
       ],
@@ -2911,10 +2921,10 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-12578",
-      "QSI-2026-12579",
-      "QSI-2026-12580",
-      "QSI-2026-12581"
+      "QSI-2026-18748",
+      "QSI-2026-18749",
+      "QSI-2026-18750",
+      "QSI-2026-18751"
     ],
     "roles": [
       {
@@ -2934,8 +2944,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-12578",
-          "QSI-2026-12579"
+          "QSI-2026-18748",
+          "QSI-2026-18749"
         ],
         "files": 15
       },
@@ -2956,8 +2966,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-12580",
-          "QSI-2026-12581"
+          "QSI-2026-18750",
+          "QSI-2026-18751"
         ],
         "files": 7
       }
@@ -3026,8 +3036,12 @@
             "rows": 1
           },
           {
-            "algorithm": "SHA-2",
+            "algorithm": "SHA-1",
             "rows": 1
+          },
+          {
+            "algorithm": "SHA-2",
+            "rows": 6
           }
         ],
         "audit": "Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.",
@@ -3053,8 +3067,12 @@
             "rows": 1
           },
           {
-            "algorithm": "SHA-2",
+            "algorithm": "SHA-1",
             "rows": 1
+          },
+          {
+            "algorithm": "SHA-2",
+            "rows": 6
           }
         ],
         "audit": "256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.",
@@ -3118,7 +3136,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-12578",
+        "finding": "QSI-2026-18748",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))",
         "severity": "medium"
       },
@@ -3136,7 +3154,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-12579",
+        "finding": "QSI-2026-18749",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))",
         "severity": "medium"
       },
@@ -3154,7 +3172,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-12580",
+        "finding": "QSI-2026-18750",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -3172,7 +3190,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-12581",
+        "finding": "QSI-2026-18751",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))",
         "severity": "medium"
       },
@@ -3190,7 +3208,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-12578",
+        "finding": "QSI-2026-18748",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))",
         "severity": "medium"
       },
@@ -3208,7 +3226,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-12579",
+        "finding": "QSI-2026-18749",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (8 file(s))",
         "severity": "medium"
       },
@@ -3226,7 +3244,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-12580",
+        "finding": "QSI-2026-18750",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -3244,7 +3262,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-12581",
+        "finding": "QSI-2026-18751",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (3 file(s))",
         "severity": "medium"
       },
@@ -3262,7 +3280,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "bare-metal replaced, or the decision recorded.",
         "status": "todo",
-        "finding": "QSI-2026-12583",
+        "finding": "QSI-2026-18753",
         "finding_title": "bare-metal 0.2.5: informational advisory RUSTSEC-2026-0110 (unmaintained)",
         "severity": "info"
       }
@@ -3486,7 +3504,21 @@
       "quantum_status": "classical_weakness",
       "classical_status": "legacy",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-1",
+      "family": "hash",
+      "parameter": "SHA-1",
+      "usage": "implementation constant: SHA-1 round constants K",
+      "library": "",
+      "location": "hashes/src/sha1/crypto.rs:32",
+      "quantum_status": "classical_weakness",
+      "classical_status": "deprecated",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ChaCha20-Poly1305",
@@ -3498,7 +3530,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ChaCha20-Poly1305",
@@ -3510,7 +3543,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "HKDF",
@@ -3522,7 +3556,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -3534,7 +3569,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -3546,7 +3582,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -3558,7 +3595,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -3570,7 +3608,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -3582,7 +3621,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -3594,7 +3634,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "Poly1305",
@@ -3606,19 +3647,86 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
       "family": "hash",
-      "parameter": "",
-      "usage": "implemented in a file of this name",
+      "parameter": "SHA-512",
+      "usage": "implementation constant: SHA-512 round constants K",
       "library": "",
-      "location": "hashes/src/sha256/crypto/arm_sha2.rs",
+      "location": "hashes/src/sha512/crypto.rs:100",
+      "quantum_status": "grover_margin",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "implementation constant: SHA-256 round constants K",
+      "library": "",
+      "location": "hashes/src/sha256/crypto/arm_sha2.rs:29",
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
-      "confidence": "low",
-      "occurrences": 1
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "implementation constant: SHA-256 round constants K",
+      "library": "",
+      "location": "hashes/src/sha256/crypto/avx2.rs:164",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "implementation constant: SHA-256 round constants K",
+      "library": "",
+      "location": "hashes/src/sha256/crypto/mod.rs:215",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "implementation constant: SHA-256 round constants K",
+      "library": "",
+      "location": "hashes/src/sha256/crypto/sse41.rs:146",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "implementation constant: SHA-256 round constants K",
+      "library": "",
+      "location": "hashes/src/sha256/crypto/x86_shani.rs:285",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Crypto library",
@@ -3630,7 +3738,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3642,7 +3751,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3654,7 +3764,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3666,7 +3777,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3678,7 +3790,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "ECDSA",
@@ -3690,7 +3803,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3702,7 +3816,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3714,7 +3829,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3726,7 +3842,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3738,7 +3855,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3750,7 +3868,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 10
+      "occurrences": 10,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3762,7 +3881,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3774,7 +3894,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3786,7 +3907,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3798,7 +3920,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 81
+      "occurrences": 81,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3810,7 +3933,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3822,7 +3946,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3834,7 +3959,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3846,7 +3972,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 18
+      "occurrences": 18,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3858,7 +3985,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3870,7 +3998,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3882,7 +4011,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3894,7 +4024,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3906,7 +4037,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3918,7 +4050,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3930,7 +4063,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 57
+      "occurrences": 57,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3942,7 +4076,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3954,7 +4089,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3966,7 +4102,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -3978,7 +4115,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -3992,6 +4130,18 @@
       "rows": 1,
       "examples": [
         "hashes/src/lib.rs:126"
+      ]
+    },
+    {
+      "algorithm": "SHA-1",
+      "parameter": "SHA-1",
+      "library": "",
+      "quantum_status": "classical_weakness",
+      "classical_status": "deprecated",
+      "count": 1,
+      "rows": 1,
+      "examples": [
+        "hashes/src/sha1/crypto.rs:32"
       ]
     },
     {
@@ -4082,14 +4232,28 @@
     },
     {
       "algorithm": "SHA-2",
-      "parameter": "",
+      "parameter": "SHA-512",
       "library": "",
-      "quantum_status": "grover_reduced",
+      "quantum_status": "grover_margin",
       "classical_status": "ok",
       "count": 1,
       "rows": 1,
       "examples": [
-        "hashes/src/sha256/crypto/arm_sha2.rs"
+        "hashes/src/sha512/crypto.rs:100"
+      ]
+    },
+    {
+      "algorithm": "SHA-2",
+      "parameter": "SHA-256",
+      "library": "",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "count": 5,
+      "rows": 5,
+      "examples": [
+        "hashes/src/sha256/crypto/arm_sha2.rs:29",
+        "hashes/src/sha256/crypto/avx2.rs:164",
+        "hashes/src/sha256/crypto/mod.rs:215"
       ]
     },
     {

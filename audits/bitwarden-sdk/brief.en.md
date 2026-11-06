@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: bitwarden-sdk @ 25b6c8c3860a
 
-*One-page brief* · Reviewed: 2026-11-04 18:38 UTC · Risk profile: Security software vendor · Client: Bitwarden — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:09 UTC · Risk profile: Security software vendor · Client: Bitwarden — public repository (passive review)
 
 Source: https://github.com/bitwarden/sdk-internal/tree/25b6c8c3860af5165ac1428c4c825ede7caa55de
 
@@ -12,13 +12,13 @@ Source: https://github.com/bitwarden/sdk-internal/tree/25b6c8c3860af5165ac1428c4
 
 ## What matters most
 
-1. **Medium** · rsa 0.10.0-rc.18 is affected by RUSTSEC-2023-0071 (CVE-2023-49092) (QSI-2026-11811)\
+1. **Medium** · rsa 0.10.0-rc.18 is affected by RUSTSEC-2023-0071 (CVE-2023-49092) (QSI-2026-17915)\
    What to do: Upgrade to a fixed version (none published yet; see the advisory for mitigations).
-2. **Medium** · rustls 0.23.45 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) (QSI-2026-11812)\
+2. **Medium** · rustls 0.23.45 is affected by GHSA-c8m5-c952-6cm4 (RUSTSEC-2026-0346) (QSI-2026-17916)\
    What to do: Upgrade to a fixed version (0.23.46, 0.24.0-dev.2).
-3. **Medium** · TLS without a post-quantum key exchange: rustls with the ring crypto provider (QSI-2026-11796) · *preliminary*\
+3. **Medium** · TLS without a post-quantum key exchange: rustls with the ring crypto provider (QSI-2026-17900) · *preliminary*\
    What to do: Build rustls with the aws-lc-rs provider (rustls::crypto::aws_lc_rs) and the prefer-post-quantum feature, which puts X25519MLKEM768 first.
-4. **Medium** · Quantum-vulnerable RSA: key wrapping and data encryption at rest (3 file(s)) (QSI-2026-11797) · *preliminary*\
+4. **Medium** · Quantum-vulnerable RSA: key wrapping and data encryption at rest (3 file(s)) (QSI-2026-17901) · *preliminary*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
 
 13 more in the full report.
@@ -40,7 +40,7 @@ Advisories for the versions in use: 12; unlikely to apply to this build: 2 (a Ca
 
 Static review of source code and manifests; files analysed: 1625. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `9f393370f03e2e297d153a9b3eb3b6c372ce3fedc66534cc04808deabf2c6f21`
+Full report, content SHA-256: `596d85abf58ecac3b9830cc5d0eda750de6c55d0041dedbaa29fd1289085c848`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

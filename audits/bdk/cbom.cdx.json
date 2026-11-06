@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b8d72e89-f50f-4a60-839f-650cc745544b",
+  "serialNumber": "urn:uuid:a18ee065-3c7e-4f44-bb89-28522e0d1147",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-04T20:13:46Z",
+    "timestamp": "2026-11-06T12:54:35Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0af06fe9-f513-42d8-8ebb-92e27552476b",
+      "bom-ref": "e8574b06-6b19-4b6c-b08a-15d48e8045fb",
       "name": "ECDSA",
       "properties": [
         {

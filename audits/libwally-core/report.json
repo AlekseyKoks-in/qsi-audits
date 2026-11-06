@@ -1,8 +1,8 @@
 {
-  "content_sha256": "c5113cb67ef52870716f434261cef10b8348209e2f0bfb7ed78e283dc233aa13",
+  "content_sha256": "55ecffa10a3e007108d9f6a7b6d32add8e8af2cb6b1a45acb5988062afffac7b",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T18:56:09.045082+00:00",
+  "generated_at": "2026-11-06T14:37:50.899654+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,21 +11,24 @@
     "id": "0d227d5e-0c96-4875-9899-a4faab97e1b4",
     "name": "libwally-core @ 374df231d054",
     "client_name": "Blockstream (libwally)",
-    "description": "Static review of the source tree libwally-core at 374df231d05410a31d605b31c1cc5256581381d7. 249 files analysed; of 561 files, 151 are test, fuzzing, benchmark or example code and were left out, 161 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/workflows/wasm-package.yml, .github/workflows/wheels.yml, .gitignore, .gitlab-ci.yml, .gitmodules. 112 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 120 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: src/secp256k1 (120). No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree libwally-core at 374df231d05410a31d605b31c1cc5256581381d7. 245 files analysed; of 561 files, 155 are test, fuzzing, benchmark or example code and were left out, 161 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. Files no analyzer reads include: .github/workflows/wasm-package.yml, .github/workflows/wheels.yml, .gitignore, .gitlab-ci.yml, .gitmodules. 111 files in build-output or dependency-cache directories (.git, .hg, .venv, __pycache__, build, dist, node_modules, target, vendor, venv) were not read. 116 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: src/secp256k1 (116). No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "033b0039-6157-4653-8b2d-84e794b14da2",
+    "id": "d2804bdc-c052-4dd0-9c67-bc42722dfae4",
     "mode": "document",
     "title": "Document audit: libwally-core",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T18:55:45.781116+00:00",
-    "finished_at": "2026-11-04T18:56:08.899421+00:00",
+    "started_at": "2026-11-06T14:37:26.669124+00:00",
+    "finished_at": "2026-11-06T14:37:50.760206+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
       "ref": "374df231d05410a31d605b31c1cc5256581381d7",
+      "pinned": {
+        "src/secp256k1": "https://github.com/BlockstreamResearch/secp256k1-zkp.git"
+      },
       "triage": {
         "analyst": "QSI review, 2026-10-29",
         "decisions": [
@@ -1344,12 +1347,6 @@
       "redactions": 0
     },
     {
-      "name": "src/secp256k1/src/modules/musig/vectors.h",
-      "size": 37797,
-      "sha256": "c7cd9dc3804d864d17e43c5b00335a405a3bc4a30861838ac4599a213231e132",
-      "redactions": 0
-    },
-    {
       "name": "src/secp256k1/src/modules/rangeproof/borromean.h",
       "size": 1167,
       "sha256": "204588b38d00b1db3765ab4b2c25e01f5afb5f5920a380cfeca381ace064377f",
@@ -1536,24 +1533,6 @@
       "redactions": 0
     },
     {
-      "name": "src/secp256k1/src/testrand.h",
-      "size": 1950,
-      "sha256": "bfe1b9a78209aa90d5652a83efccf633bbd874ed72dfe523f2ff6125f97ceba1",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/testrand_impl.h",
-      "size": 5786,
-      "sha256": "ac12496cdb04f5432b14dbb60ab464317669532fffa5b1de327e21075f01dbb6",
-      "redactions": 0
-    },
-    {
-      "name": "src/secp256k1/src/testutil.h",
-      "size": 4945,
-      "sha256": "5a780fc16fcd8549ea4774d15beb2d36c6ad9a2ca7180dd95f84199a2863d1ff",
-      "redactions": 0
-    },
-    {
       "name": "src/secp256k1/src/util.h",
       "size": 16482,
       "sha256": "a203e19a64dc197ac051aadad15163515fb013ea37dfb8d241929bea4cd09ba7",
@@ -1579,8 +1558,8 @@
     }
   ],
   "inputs_total": {
-    "files": 249,
-    "bytes": 6834215,
+    "files": 245,
+    "bytes": 6783737,
     "redactions": 2
   },
   "coverage": [
@@ -1596,102 +1575,102 @@
     },
     {
       "area": "source_code",
-      "detail": "docs/source/conf.py: 267 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "docs/source/conf.py: 267 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally.hpp: 3375 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally.hpp: 3375 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_address.h: 376 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_address.h: 376 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_anti_exfil.h: 119 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_anti_exfil.h: 119 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_bip32.h: 556 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_bip32.h: 556 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_bip38.h: 125 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_bip38.h: 125 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_bip39.h: 158 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_bip39.h: 158 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_bip85.h: 69 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_bip85.h: 69 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_coinselection.h: 56 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_coinselection.h: 56 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_core.h: 476 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_core.h: 476 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_crypto.h: 1007 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_crypto.h: 1007 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_descriptor.h: 625 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_descriptor.h: 625 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_elements.h: 729 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_elements.h: 729 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_map.h: 733 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_map.h: 733 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_psbt.h: 2753 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_psbt.h: 2753 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_psbt_members.h: 260 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_psbt_members.h: 260 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_script.h: 702 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_script.h: 702 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_symmetric.h: 50 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_symmetric.h: 50 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_transaction.h: 1463 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_transaction.h: 1463 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/wally_transaction_members.h: 185 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/wally_transaction_members.h: 185 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1701,372 +1680,372 @@
     },
     {
       "area": "source_code",
-      "detail": "setup.py: 211 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "setup.py: 211 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/address.c: 219 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/address.c: 219 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/aes.c: 350 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/aes.c: 350 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/amalgamation/combined.c: 134 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/amalgamation/combined.c: 134 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/amalgamation/windows_config/config.h: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/amalgamation/windows_config/config.h: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/anti_exfil.c: 132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/anti_exfil.c: 132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/base58.h: 14 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/base58.h: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/base_58.c: 315 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/base_58.c: 315 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/base_64.c: 79 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/base_64.c: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/bech32.c: 301 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/bech32.c: 301 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/bip32.c: 1178 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/bip32.c: 1178 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/bip32_int.h: 55 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/bip32_int.h: 55 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/bip38.c: 384 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/bip38.c: 384 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/bip39.c: 256 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/bip39.c: 256 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/bip85.c: 131 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/bip85.c: 131 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/blech32.c: 339 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/blech32.c: 339 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/base64/base64.c: 279 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/base64/base64.c: 279 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/base64/base64.h: 243 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/base64/base64.h: 243 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/build_assert/build_assert.h: 40 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/build_assert/build_assert.h: 40 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/compiler/compiler.h: 243 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/compiler/compiler.h: 243 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/crypto/ripemd160/ripemd160.c: 406 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/crypto/ripemd160/ripemd160.c: 406 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/crypto/ripemd160/ripemd160.h: 148 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/crypto/ripemd160/ripemd160.h: 148 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/crypto/sha256/sha256.c: 372 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/crypto/sha256/sha256.c: 372 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/crypto/sha256/sha256.h: 163 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/crypto/sha256/sha256.h: 163 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/crypto/sha256/sha256_sse4.c: 955 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/crypto/sha256/sha256_sse4.c: 955 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/crypto/sha512/sha512.c: 285 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/crypto/sha512/sha512.c: 285 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/crypto/sha512/sha512.h: 146 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/crypto/sha512/sha512.h: 146 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/endian/endian.h: 346 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/endian/endian.h: 346 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/str/hex/hex.c: 66 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/str/hex/hex.c: 66 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/str/hex/hex.h: 73 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/str/hex/hex.h: 73 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/tap/tap.c: 457 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/tap/tap.c: 457 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan/ccan/tap/tap.h: 251 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan/ccan/tap/tap.h: 251 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ccan_config.h: 70 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ccan_config.h: 70 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/coins.c: 167 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/coins.c: 167 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cpufeatures/cpu-features.c: 1299 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/cpufeatures/cpu-features.c: 1299 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/cpufeatures/cpu-features.h: 323 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/cpufeatures/cpu-features.h: 323 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ctaes/ctaes.c: 556 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ctaes/ctaes.c: 556 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ctaes/ctaes.h: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ctaes/ctaes.h: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ctest/psbts.h: 691 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ctest/psbts.h: 691 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/data/wordlists/chinese_simplified.c: 2408 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/data/wordlists/chinese_simplified.c: 2408 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/data/wordlists/chinese_traditional.c: 2408 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/data/wordlists/chinese_traditional.c: 2408 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/data/wordlists/english.c: 2408 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/data/wordlists/english.c: 2408 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/data/wordlists/french.c: 2408 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/data/wordlists/french.c: 2408 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/data/wordlists/italian.c: 2408 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/data/wordlists/italian.c: 2408 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/data/wordlists/japanese.c: 2408 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/data/wordlists/japanese.c: 2408 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/data/wordlists/spanish.c: 2408 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/data/wordlists/spanish.c: 2408 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/descriptor.c: 4402 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/descriptor.c: 4402 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/ecdh.c: 30 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/ecdh.c: 30 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/elements.c: 1166 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/elements.c: 1166 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hex_.c: 69 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/hex_.c: 69 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hmac.c: 43 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/hmac.c: 43 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/hmac.h: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/hmac.h: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/internal.c: 678 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/internal.c: 678 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/internal.h: 169 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/internal.h: 169 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/map.c: 948 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/map.c: 948 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/mnemonic.c: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/mnemonic.c: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/mnemonic.h: 38 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/mnemonic.h: 38 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pbkdf2.c: 34 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pbkdf2.c: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/psbt.c: 6132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/psbt.c: 6132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/psbt_io.h: 291 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/psbt_io.h: 291 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pullpush.c: 285 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pullpush.c: 285 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pullpush.h: 117 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pullpush.h: 117 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pyexample/anti-exfil.py: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pyexample/anti-exfil.py: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/pyexample/liquid/receive-send.py: 250 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/pyexample/liquid/receive-send.py: 250 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/script.c: 1405 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/script.c: 1405 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/script.h: 29 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/script.h: 29 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/script_int.h: 123 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/script_int.h: 123 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scrypt.c: 79 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/scrypt.c: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scrypt/crypto_scrypt.c: 276 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/scrypt/crypto_scrypt.c: 276 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scrypt/crypto_scrypt_smix.c: 217 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/scrypt/crypto_scrypt_smix.c: 217 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scrypt/crypto_scrypt_smix_neon.c: 266 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/scrypt/crypto_scrypt_smix_neon.c: 266 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/scrypt/crypto_scrypt_smix_sse2.c: 251 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/scrypt/crypto_scrypt_smix_sse2.c: 251 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/sign.c: 779 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/sign.c: 779 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/aes.py: 43 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/aes.py: 43 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -2081,72 +2060,72 @@
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/bip32.py: 61 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/bip32.py: 61 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/coinselection.py: 29 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/coinselection.py: 29 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/descriptor.py: 27 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/descriptor.py: 27 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/elements_tx.py: 155 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/elements_tx.py: 155 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/mnemonic.py: 63 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/mnemonic.py: 63 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/psbt.py: 793 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/psbt.py: 793 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/reconcile_sigs.py: 64 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/reconcile_sigs.py: 64 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/sha.py: 39 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/sha.py: 39 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/signmessage.py: 38 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/signmessage.py: 38 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/swig_python/contrib/tx.py: 115 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/swig_python/contrib/tx.py: 115 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/symmetric.c: 65 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/symmetric.c: 65 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/transaction.c: 3380 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/transaction.c: 3380 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tx_io.c: 1115 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/tx_io.c: 1115 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tx_io.h: 34 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/tx_io.h: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -2161,687 +2140,667 @@
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/browser/assert.js: 7 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/browser/assert.js: 7 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/browser/crypto.js: 2 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/browser/crypto.js: 2 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/const.js: 271 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/const.js: 271 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/core.js: 307 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/core.js: 307 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/exports.js: 4 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/exports.js: 4 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/functions.js: 927 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/functions.js: 927 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/index.d.ts: 887 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/index.d.ts: 887 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/index.js: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/index.js: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/src/util.js: 36 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/src/util.js: 36 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wasm_package/webpack.config.js: 22 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wasm_package/webpack.config.js: 22 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wif.c: 176 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wif.c: 176 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wordlist.c: 105 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wordlist.c: 105 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/wordlist.h: 67 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/wordlist.h: 67 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/build_psbt_ctests.py: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "tools/build_psbt_ctests.py: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/build_wrappers.py: 601 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "tools/build_wrappers.py: 601 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "tools/wordlist_cc.py: 52 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "tools/wordlist_cc.py: 52 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/contrib/lax_der_privatekey_parsing.h: 95 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/contrib/lax_der_privatekey_parsing.h: 95 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1.h: 929 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1.h: 929 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_bppp.h: 73 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_bppp.h: 73 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_ecdh.h: 63 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_ecdh.h: 63 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_ecdsa_adaptor.h: 164 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_ecdsa_adaptor.h: 164 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_ecdsa_s2c.h: 234 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_ecdsa_s2c.h: 234 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_ellswift.h: 200 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_ellswift.h: 200 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_extrakeys.h: 250 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_extrakeys.h: 250 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_generator.h: 241 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_generator.h: 241 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_musig.h: 669 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_musig.h: 669 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_preallocated.h: 134 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_preallocated.h: 134 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_rangeproof.h: 217 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_rangeproof.h: 217 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_recovery.h: 123 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_recovery.h: 123 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_schnorrsig.h: 190 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_schnorrsig.h: 190 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_schnorrsig_halfagg.h: 107 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_schnorrsig_halfagg.h: 107 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_surjectionproof.h: 269 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_surjectionproof.h: 269 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/include/secp256k1_whitelist.h: 148 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/include/secp256k1_whitelist.h: 148 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/assumptions.h: 87 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/assumptions.h: 87 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/checkmem.h: 117 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/checkmem.h: 117 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/eccommit.h: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/eccommit.h: 28 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/eccommit_impl.h: 73 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/eccommit_impl.h: 73 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecdsa.h: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecdsa.h: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecdsa_impl.h: 312 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecdsa_impl.h: 312 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/eckey.h: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/eckey.h: 28 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/eckey_impl.h: 94 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/eckey_impl.h: 94 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult.h: 64 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult.h: 64 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_compute_table.h: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_compute_table.h: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_compute_table_impl.h: 49 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_compute_table_impl.h: 49 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_const.h: 38 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_const.h: 38 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_const_impl.h: 402 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_const_impl.h: 402 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_gen.h: 144 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_gen.h: 144 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_gen_compute_table.h: 14 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_gen_compute_table.h: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_gen_compute_table_impl.h: 108 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_gen_compute_table_impl.h: 108 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_gen_impl.h: 341 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_gen_impl.h: 341 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/ecmult_impl.h: 869 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/ecmult_impl.h: 869 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/field.h: 351 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/field.h: 351 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/field_10x26.h: 57 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/field_10x26.h: 57 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/field_10x26_impl.h: 1234 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/field_10x26_impl.h: 1234 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/field_5x52.h: 62 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/field_5x52.h: 62 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/field_5x52_impl.h: 524 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/field_5x52_impl.h: 524 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/field_5x52_int128_impl.h: 274 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/field_5x52_int128_impl.h: 274 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/field_impl.h: 457 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/field_impl.h: 457 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/group.h: 227 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/group.h: 227 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/group_impl.h: 1036 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/group_impl.h: 1036 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/hash.h: 54 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/hash.h: 54 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/hash_impl.h: 332 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/hash_impl.h: 332 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/hsort.h: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/hsort.h: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/hsort_impl.h: 125 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/hsort_impl.h: 125 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/int128.h: 90 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/int128.h: 90 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/int128_impl.h: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/int128_impl.h: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/int128_native.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/int128_native.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/int128_native_impl.h: 94 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/int128_native_impl.h: 94 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/int128_struct.h: 14 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/int128_struct.h: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/int128_struct_impl.h: 205 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/int128_struct_impl.h: 205 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modinv32.h: 43 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modinv32.h: 43 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modinv32_impl.h: 725 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modinv32_impl.h: 725 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modinv64.h: 47 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modinv64.h: 47 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modinv64_impl.h: 780 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modinv64_impl.h: 780 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/bppp/bppp_norm_product_impl.h: 553 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/bppp/bppp_norm_product_impl.h: 553 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/bppp/bppp_transcript_impl.h: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/bppp/bppp_transcript_impl.h: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/bppp/bppp_util.h: 83 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/bppp/bppp_util.h: 83 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/bppp/main.h: 13 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/bppp/main.h: 13 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/bppp/main_impl.h: 116 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/bppp/main_impl.h: 116 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/ecdh/main_impl.h: 79 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/ecdh/main_impl.h: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/ecdsa_adaptor/dleq_impl.h: 164 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/ecdsa_adaptor/dleq_impl.h: 164 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/ecdsa_adaptor/main_impl.h: 384 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/ecdsa_adaptor/main_impl.h: 384 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/ecdsa_s2c/main_impl.h: 190 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/ecdsa_s2c/main_impl.h: 190 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/ellswift/main_impl.h: 581 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/ellswift/main_impl.h: 581 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/extrakeys/main_impl.h: 285 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/extrakeys/main_impl.h: 285 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/generator/main_impl.h: 467 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/generator/main_impl.h: 467 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/generator/pedersen.h: 22 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/generator/pedersen.h: 22 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/generator/pedersen_impl.h: 51 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/generator/pedersen_impl.h: 51 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/musig/adaptor_impl.h: 101 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/musig/adaptor_impl.h: 101 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/musig/keyagg.h: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/musig/keyagg.h: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/musig/keyagg_impl.h: 275 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/musig/keyagg_impl.h: 275 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/musig/main_impl.h: 13 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/musig/main_impl.h: 13 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/musig/session.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/musig/session.h: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/musig/session_impl.h: 805 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/musig/session_impl.h: 805 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/musig/vectors.h: 346 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/rangeproof/borromean.h: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/rangeproof/borromean.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/rangeproof/borromean_impl.h: 197 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/rangeproof/borromean_impl.h: 197 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/rangeproof/main_impl.h: 106 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/rangeproof/main_impl.h: 106 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/rangeproof/rangeproof.h: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/rangeproof/rangeproof.h: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/rangeproof/rangeproof_impl.h: 685 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/rangeproof/rangeproof_impl.h: 685 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/recovery/main_impl.h: 159 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/recovery/main_impl.h: 159 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/schnorrsig/main_impl.h: 263 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/schnorrsig/main_impl.h: 263 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/schnorrsig_halfagg/main_impl.h: 200 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/schnorrsig_halfagg/main_impl.h: 200 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/surjection/main_impl.h: 404 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/surjection/main_impl.h: 404 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/surjection/surjection.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/surjection/surjection.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/surjection/surjection_impl.h: 97 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/surjection/surjection_impl.h: 97 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/whitelist/main_impl.h: 170 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/whitelist/main_impl.h: 170 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/modules/whitelist/whitelist_impl.h: 128 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/modules/whitelist/whitelist_impl.h: 128 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/precompute_ecmult.c: 91 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/precompute_ecmult.c: 91 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/precompute_ecmult_gen.c: 101 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/precompute_ecmult_gen.c: 101 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/precomputed_ecmult.c: 16456 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/precomputed_ecmult.c: 16456 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/precomputed_ecmult.h: 40 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/precomputed_ecmult.h: 40 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/precomputed_ecmult_gen.c: 1779 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/precomputed_ecmult_gen.c: 1779 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/precomputed_ecmult_gen.h: 28 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/precomputed_ecmult_gen.h: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar.h: 111 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar.h: 111 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar_4x64.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar_4x64.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar_4x64_impl.h: 1183 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar_4x64_impl.h: 1183 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar_8x32.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar_8x32.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar_8x32_impl.h: 923 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar_8x32_impl.h: 923 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar_impl.h: 321 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar_impl.h: 321 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar_low.h: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar_low.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scalar_low_impl.h: 219 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scalar_low_impl.h: 219 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scratch.h: 44 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scratch.h: 44 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/scratch_impl.h: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/scratch_impl.h: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/secp256k1.c: 959 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/secp256k1.c: 959 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/selftest.h: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/selftest.h: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/util.h: 495 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/testrand.h: 48 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/src/util_local_visibility.h: 12 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/testrand_impl.h: 180 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/tools/symbol-check.py: 72 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/secp256k1/src/testutil.h: 161 lines scanned with 16 rule patterns and 145 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/util.h: 495 lines scanned with 16 rule patterns and 145 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/src/util_local_visibility.h: 12 lines scanned with 16 rule patterns and 145 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/tools/symbol-check.py: 72 lines scanned with 16 rule patterns and 145 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "src/secp256k1/tools/wycheproof_utils.py: 12 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/secp256k1/tools/wycheproof_utils.py: 12 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "entropy",
-      "detail": "random-number generation: 244 code files read with 856 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
+      "detail": "random-number generation: 240 code files read with 853 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)",
       "status": "checked"
     },
     {
@@ -2874,12 +2833,12 @@
     {
       "area": "source_code",
       "status": "checked",
-      "count": 244,
-      "rows": 244,
+      "count": 240,
+      "rows": 240,
       "examples": [
-        "docs/source/conf.py: 267 lines scanned with 16 rule patterns and 145 registry patterns",
-        "include/wally.hpp: 3375 lines scanned with 16 rule patterns and 145 registry patterns",
-        "include/wally_address.h: 376 lines scanned with 16 rule patterns and 145 registry patterns"
+        "docs/source/conf.py: 267 lines scanned with 16 rule patterns and 266 registry patterns",
+        "include/wally.hpp: 3375 lines scanned with 16 rule patterns and 266 registry patterns",
+        "include/wally_address.h: 376 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -2898,7 +2857,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "random-number generation: 244 code files read with 856 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
+        "random-number generation: 240 code files read with 853 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)"
       ]
     },
     {
@@ -3096,7 +3055,6 @@
       "src/secp256k1/src/modules/musig/main_impl.h",
       "src/secp256k1/src/modules/musig/session.h",
       "src/secp256k1/src/modules/musig/session_impl.h",
-      "src/secp256k1/src/modules/musig/vectors.h",
       "src/secp256k1/src/modules/rangeproof/borromean.h",
       "src/secp256k1/src/modules/rangeproof/borromean_impl.h",
       "src/secp256k1/src/modules/rangeproof/main_impl.h",
@@ -3128,9 +3086,6 @@
       "src/secp256k1/src/scratch_impl.h",
       "src/secp256k1/src/secp256k1.c",
       "src/secp256k1/src/selftest.h",
-      "src/secp256k1/src/testrand.h",
-      "src/secp256k1/src/testrand_impl.h",
-      "src/secp256k1/src/testutil.h",
       "src/secp256k1/src/util.h",
       "src/secp256k1/src/util_local_visibility.h",
       "src/secp256k1/tools/symbol-check.py",
@@ -3200,19 +3155,29 @@
     },
     "total": 8,
     "posture_index": 100,
-    "pq_vulnerable_share": 78.4,
-    "inventory_total": 97,
+    "pq_vulnerable_share": 78.6,
+    "inventory_total": 103,
     "inventory_by_quantum_status": {
       "classical_weakness": 2,
       "grover_margin": 15,
-      "grover_reduced": 4,
-      "vulnerable_shor": 76
+      "grover_reduced": 5,
+      "vulnerable_shor": 81
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 45,
+        "vulnerable_shor": 25
+      },
+      "third_party": {
+        "total": 58,
+        "vulnerable_shor": 56
+      }
     }
   },
   "findings": [
     {
-      "id": "39ff59ac-8114-48aa-8017-52eb5c7ff60c",
-      "public_id": "QSI-2026-12082",
+      "id": "bb10b0a8-50b9-480f-b6ac-70acfc2e4a76",
+      "public_id": "QSI-2026-19282",
       "rule_id": "KEY-QV-PUBLIC",
       "title": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md",
       "description": "Найден открытый ключ RSA 4096-bit (строка 52).",
@@ -3232,7 +3197,7 @@
       "affected_asset": "file:SECURITY.md#line 52",
       "data_source": "SECURITY.md",
       "analyzer": "certificates 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.596098+00:00",
+      "detected_at": "2026-11-06T14:37:50.654304+00:00",
       "risk_score": 50.3,
       "risk_breakdown": {
         "mosca": {
@@ -3322,7 +3287,7 @@
           "content_sha256": "18fb5f0b9bd19412cb5c0404d29bd26dc62ba6e0ff99543463ebc0757b50ef09",
           "source_sha256": "3ab230590b464090a9bd2d92a77fe84b7f6514328b8922e4b7bfd4f8a73b0e6b",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.697352+00:00",
+          "collected_at": "2026-11-06T14:37:50.668678+00:00",
           "url": null
         },
         {
@@ -3333,7 +3298,7 @@
           "content_sha256": "484f2172c4dd53b29fd23e321304b308266950550fb37c83431470e8045649f0",
           "source_sha256": "3ab230590b464090a9bd2d92a77fe84b7f6514328b8922e4b7bfd4f8a73b0e6b",
           "collector": "certificates 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.697360+00:00",
+          "collected_at": "2026-11-06T14:37:50.668686+00:00",
           "url": null
         }
       ],
@@ -3371,8 +3336,8 @@
       ]
     },
     {
-      "id": "7c0121e0-af80-4fb3-9d1f-e71f3dc90f18",
-      "public_id": "QSI-2026-12085",
+      "id": "7233befc-dcce-4a03-bd5a-144d83de2a4b",
+      "public_id": "QSI-2026-19285",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (2 файл(ов))",
       "description": "4 упоминаний ECDH в 2 файл(ах), например include/wally_crypto.h:865. Роль по путям, именам функций и соседнему коду: обёртка ключей и шифрование хранимых данных. Ключи или данные, зашифрованные на эти открытые ключи, хранятся: кто скопирует их сейчас, расшифрует, когда появится CRQC («собери сейчас — расшифруй потом»).",
@@ -3397,7 +3362,7 @@
       "affected_asset": "source-code:ECDH:key_wrapping",
       "data_source": "include/wally_crypto.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.825871+00:00",
+      "detected_at": "2026-11-06T14:37:50.698228+00:00",
       "risk_score": 43.4,
       "risk_breakdown": {
         "mosca": {
@@ -3494,7 +3459,7 @@
           "content_sha256": "adeb0c9a3350908a68cfbbf4ed2ff60a9856e2ea68bd36f54e908e338d25c7b5",
           "source_sha256": "2181a542b32bbf426de0259360751fa6e821dd45e0f67bc7015533bb08c629c0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.849151+00:00",
+          "collected_at": "2026-11-06T14:37:50.715037+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L865"
         },
         {
@@ -3505,7 +3470,7 @@
           "content_sha256": "6bc1396058d9a876845f26f79b8626719ab94b03ec189c4bb7ed9ba733f31f9c",
           "source_sha256": "2181a542b32bbf426de0259360751fa6e821dd45e0f67bc7015533bb08c629c0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.849158+00:00",
+          "collected_at": "2026-11-06T14:37:50.715045+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L987"
         },
         {
@@ -3516,7 +3481,7 @@
           "content_sha256": "3a7248295a661ed191080266becc0c12dd77c2bb2dfcfdf027f9871af778b85d",
           "source_sha256": "5a9d9d02276f306f18a1afec725d00544d43ce5e991df8f7f9e66f651b37fbda",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.849162+00:00",
+          "collected_at": "2026-11-06T14:37:50.715048+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/aes.c#L264"
         },
         {
@@ -3527,7 +3492,7 @@
           "content_sha256": "52eefa65a41f946b920e28c1461e5b64fcb2c79a2491a961c18eb141ab7ad078",
           "source_sha256": "5a9d9d02276f306f18a1afec725d00544d43ce5e991df8f7f9e66f651b37fbda",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.849165+00:00",
+          "collected_at": "2026-11-06T14:37:50.715051+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/aes.c#L307"
         }
       ],
@@ -3565,8 +3530,8 @@
       ]
     },
     {
-      "id": "af19cc56-26e7-4f67-bbf4-20c7d408f7b3",
-      "public_id": "QSI-2026-12087",
+      "id": "bce28620-dae5-4f3a-b26a-8669b115cd9d",
+      "public_id": "QSI-2026-19287",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (37 файл(ов))",
       "description": "149 упоминаний ECDSA в 37 файл(ах), например setup.py:58. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -3591,7 +3556,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "setup.py",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.855687+00:00",
+      "detected_at": "2026-11-06T14:37:50.721024+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3688,7 +3653,7 @@
           "content_sha256": "faf6a0cba5f30b003359e096b202e6312b83d259b06c8c18493fc02a13b16467",
           "source_sha256": "016931c29406077b6d11f67500ba0bc5cc27e7fa9e76a7b4a7de30e9f0a17325",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869494+00:00",
+          "collected_at": "2026-11-06T14:37:50.735293+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/setup.py#L58"
         },
         {
@@ -3699,7 +3664,7 @@
           "content_sha256": "07224e44121568888046b6db0a64d8c77d33d1715e2c4c0e03b44ebbcca10b36",
           "source_sha256": "016931c29406077b6d11f67500ba0bc5cc27e7fa9e76a7b4a7de30e9f0a17325",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869502+00:00",
+          "collected_at": "2026-11-06T14:37:50.735301+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/setup.py#L75"
         },
         {
@@ -3710,7 +3675,7 @@
           "content_sha256": "790764e66fa46e6f76061b300ae744943186e2a604de2f62962c3fae53c69b3b",
           "source_sha256": "016931c29406077b6d11f67500ba0bc5cc27e7fa9e76a7b4a7de30e9f0a17325",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869505+00:00",
+          "collected_at": "2026-11-06T14:37:50.735306+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/setup.py#L132"
         },
         {
@@ -3721,7 +3686,7 @@
           "content_sha256": "ca978913b4be378a9c0f913f861a82dccf092200d111cf381d2c45a1df69b2a2",
           "source_sha256": "9a82b2e8a8fb25df7d59ee0108552079c29c7f5e522a9ba9700f4fa10983a612",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869509+00:00",
+          "collected_at": "2026-11-06T14:37:50.735310+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L17"
         },
         {
@@ -3732,7 +3697,7 @@
           "content_sha256": "97a4690693ca7d2991ecac4b603b8cb0a2727624974700ff3807186cf3fc18d8",
           "source_sha256": "9a82b2e8a8fb25df7d59ee0108552079c29c7f5e522a9ba9700f4fa10983a612",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869513+00:00",
+          "collected_at": "2026-11-06T14:37:50.735314+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L47"
         },
         {
@@ -3743,7 +3708,7 @@
           "content_sha256": "38a6257c59bd1576fcad77de26a0b8b07e8d637f0457829ebd386222ffc20554",
           "source_sha256": "9a82b2e8a8fb25df7d59ee0108552079c29c7f5e522a9ba9700f4fa10983a612",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869516+00:00",
+          "collected_at": "2026-11-06T14:37:50.735317+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/anti_exfil.c#L72"
         },
         {
@@ -3754,7 +3719,7 @@
           "content_sha256": "c4b1453ee00dea85b60c2dd841418cebc2b8149502ffe474cb7f705ab0736106",
           "source_sha256": "e76cac2111ddcdbd1abe201be5f2411cb411156ec84e5848111007e3cfb28809",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869519+00:00",
+          "collected_at": "2026-11-06T14:37:50.735320+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4677"
         },
         {
@@ -3765,7 +3730,7 @@
           "content_sha256": "1fb8c7caa44761dcf85cb7fe64ed2882e91fd33b11322abd1019297ecc0804e2",
           "source_sha256": "e76cac2111ddcdbd1abe201be5f2411cb411156ec84e5848111007e3cfb28809",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869523+00:00",
+          "collected_at": "2026-11-06T14:37:50.735324+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4704"
         },
         {
@@ -3776,7 +3741,7 @@
           "content_sha256": "3e577720c5ce2234a75d0af2df9b2f9af4f7e33c6f97c2b4ff6a17660beee9c0",
           "source_sha256": "9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869526+00:00",
+          "collected_at": "2026-11-06T14:37:50.735327+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L7"
         },
         {
@@ -3787,7 +3752,7 @@
           "content_sha256": "46a2627f782bf77c90381edb9560b59def5349bc9b646ada26a84cf6e3e3267c",
           "source_sha256": "9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.869529+00:00",
+          "collected_at": "2026-11-06T14:37:50.735331+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L25"
         }
       ],
@@ -3825,8 +3790,8 @@
       ]
     },
     {
-      "id": "af1e84e7-3765-4734-9408-ba8712d57d04",
-      "public_id": "QSI-2026-12088",
+      "id": "948b039e-d4fc-4ed2-af17-36cd34411ff8",
+      "public_id": "QSI-2026-19288",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))",
       "description": "43 упоминаний Schnorr (BIP-340) в 7 файл(ах), например src/psbt.c:4692. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -3851,7 +3816,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
       "data_source": "src/psbt.c",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.864221+00:00",
+      "detected_at": "2026-11-06T14:37:50.732240+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3948,7 +3913,7 @@
           "content_sha256": "72f7ca6f9868e0298a60b3afb945f26bb7e63d71d9ce01d01939e17ce6ebbb9f",
           "source_sha256": "e76cac2111ddcdbd1abe201be5f2411cb411156ec84e5848111007e3cfb28809",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886203+00:00",
+          "collected_at": "2026-11-06T14:37:50.748102+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4692"
         },
         {
@@ -3959,7 +3924,7 @@
           "content_sha256": "c0a99390d8d34777ca9ebda66fe95ab70f7b7bbe0bf910ed507e46950d825199",
           "source_sha256": "e76cac2111ddcdbd1abe201be5f2411cb411156ec84e5848111007e3cfb28809",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886210+00:00",
+          "collected_at": "2026-11-06T14:37:50.748110+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/psbt.c#L4707"
         },
         {
@@ -3970,7 +3935,7 @@
           "content_sha256": "3e577720c5ce2234a75d0af2df9b2f9af4f7e33c6f97c2b4ff6a17660beee9c0",
           "source_sha256": "9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886215+00:00",
+          "collected_at": "2026-11-06T14:37:50.748114+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L7"
         },
         {
@@ -3981,7 +3946,7 @@
           "content_sha256": "b202ac94e8b895751ec81f220f5a3c89432b637d08ae69525c70a51e683d7e1c",
           "source_sha256": "9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886218+00:00",
+          "collected_at": "2026-11-06T14:37:50.748117+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L32"
         },
         {
@@ -3992,7 +3957,7 @@
           "content_sha256": "08dd89517de1e8c4174f05e1255365ee07df3c3ae84ee5a6099e07b989374aac",
           "source_sha256": "9e52718e9015f768784b457a4401d17c9d520b772d323ea87d6c8c69dbbac168",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886221+00:00",
+          "collected_at": "2026-11-06T14:37:50.748121+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/sign.c#L347"
         },
         {
@@ -4003,7 +3968,7 @@
           "content_sha256": "6aae3b20f8f8b503597acb97fe491246b6777b5a9660b8a41542605d18aab6f4",
           "source_sha256": "8185d6c6ea3234fff05f38fad4b1b6f48f0574ab599dfc87297ab9bca0abfca5",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886225+00:00",
+          "collected_at": "2026-11-06T14:37:50.748123+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig.h#L82"
         },
         {
@@ -4014,7 +3979,7 @@
           "content_sha256": "43d5f6045ac4e6b23daf11fd6c10022dca16ca76afd775c3ee898ddbef44d5bd",
           "source_sha256": "8185d6c6ea3234fff05f38fad4b1b6f48f0574ab599dfc87297ab9bca0abfca5",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886228+00:00",
+          "collected_at": "2026-11-06T14:37:50.748126+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig.h#L86"
         },
         {
@@ -4025,7 +3990,7 @@
           "content_sha256": "1e555d327421285c8a81345e58876f5f2f017571adb2f2168aafc7c44770594c",
           "source_sha256": "8185d6c6ea3234fff05f38fad4b1b6f48f0574ab599dfc87297ab9bca0abfca5",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886271+00:00",
+          "collected_at": "2026-11-06T14:37:50.748130+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig.h#L119"
         },
         {
@@ -4036,7 +4001,7 @@
           "content_sha256": "b3d54ae6f144846b9769cfe141d006f33bf49fa9572bafb7307c2ade17fd95eb",
           "source_sha256": "89669a3ad2c904072c1177e7b783996af5d72635bb7590e02284e776cc4e085f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886277+00:00",
+          "collected_at": "2026-11-06T14:37:50.748133+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h#L43"
         },
         {
@@ -4047,7 +4012,7 @@
           "content_sha256": "be378be4953e3b3d2e2b5a4ddab26874bc43e6f72392495b730cac093c057a7a",
           "source_sha256": "89669a3ad2c904072c1177e7b783996af5d72635bb7590e02284e776cc4e085f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.886280+00:00",
+          "collected_at": "2026-11-06T14:37:50.748136+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/secp256k1/include/secp256k1_schnorrsig_halfagg.h#L70"
         }
       ],
@@ -4085,8 +4050,8 @@
       ]
     },
     {
-      "id": "4c626788-eb26-414c-9744-b536a6b15b3b",
-      "public_id": "QSI-2026-12083",
+      "id": "994f1e70-8dae-4a20-bcef-3b96202ecb94",
+      "public_id": "QSI-2026-19283",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: роль не определена (9 файл(ов))",
       "description": "27 упоминаний ECDSA в 9 файл(ах), например include/wally.hpp:826. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -4111,7 +4076,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "include/wally.hpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.670501+00:00",
+      "detected_at": "2026-11-06T14:37:50.663761+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4208,7 +4173,7 @@
           "content_sha256": "5a034e1fa3088add100cae0c06589701ab9d6850ff06e984785b293d1c4275ab",
           "source_sha256": "4c71d16bd41091796a4898b24ddc0d30da23414f8741a484a251f4bfee9ad70d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784687+00:00",
+          "collected_at": "2026-11-06T14:37:50.689082+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L826"
         },
         {
@@ -4219,7 +4184,7 @@
           "content_sha256": "f5748a5ea717a5bc4bc69822fc2fbe1fa1522a39a10f8bce5d14c3c8822bc53a",
           "source_sha256": "4c71d16bd41091796a4898b24ddc0d30da23414f8741a484a251f4bfee9ad70d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784696+00:00",
+          "collected_at": "2026-11-06T14:37:50.689089+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L832"
         },
         {
@@ -4230,7 +4195,7 @@
           "content_sha256": "ec1f93bd7cd7c14866088b120673f700a7d92fef820864d354cd4991f90e8efc",
           "source_sha256": "4c71d16bd41091796a4898b24ddc0d30da23414f8741a484a251f4bfee9ad70d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784699+00:00",
+          "collected_at": "2026-11-06T14:37:50.689093+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L838"
         },
         {
@@ -4241,7 +4206,7 @@
           "content_sha256": "3c4e8937fb035c5f6779cc57335026634d19e6909d54d873cd859cce12c7de99",
           "source_sha256": "2181a542b32bbf426de0259360751fa6e821dd45e0f67bc7015533bb08c629c0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784702+00:00",
+          "collected_at": "2026-11-06T14:37:50.689096+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L371"
         },
         {
@@ -4252,7 +4217,7 @@
           "content_sha256": "b00ee81459632de83c1c7568498c56ecc01cbb67ef40985e058300c3fde73ca8",
           "source_sha256": "2181a542b32bbf426de0259360751fa6e821dd45e0f67bc7015533bb08c629c0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784706+00:00",
+          "collected_at": "2026-11-06T14:37:50.689099+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L549"
         },
         {
@@ -4263,7 +4228,7 @@
           "content_sha256": "c09514af616afe00163fb401d847a1bfa0bc57334b815066b591f99e771cf92f",
           "source_sha256": "2181a542b32bbf426de0259360751fa6e821dd45e0f67bc7015533bb08c629c0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784709+00:00",
+          "collected_at": "2026-11-06T14:37:50.689103+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L571"
         },
         {
@@ -4274,7 +4239,7 @@
           "content_sha256": "8cce795a23b61e665185923e4058d56ed7e106c55784ee042d2a237e9547756d",
           "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784712+00:00",
+          "collected_at": "2026-11-06T14:37:50.689106+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L34"
         },
         {
@@ -4285,7 +4250,7 @@
           "content_sha256": "b0ba42431dd53977e931a49f059369c0a07f7bb7b7924b65b78a0d467021b948",
           "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784715+00:00",
+          "collected_at": "2026-11-06T14:37:50.689109+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L35"
         },
         {
@@ -4296,7 +4261,7 @@
           "content_sha256": "9f2414696e322db70b097fe19907ea2f68a74d7db34037aad03b8dd534091072",
           "source_sha256": "ea2c2393b4f2f218bed700c4d880fdff8f6491ab98c42de945a14f9c1e265749",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784719+00:00",
+          "collected_at": "2026-11-06T14:37:50.689112+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/amalgamation/combined.c#L36"
         },
         {
@@ -4307,7 +4272,7 @@
           "content_sha256": "a3cf3e2c758ea293394dc165dc129bd87d56cac6ce0aa935b84a4eee6ffc8113",
           "source_sha256": "f21377ed9eba49d06a5664dc4c28437e62d1b2868f4d6cfb75fd844804cd4b65",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.784722+00:00",
+          "collected_at": "2026-11-06T14:37:50.689115+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/internal.h#L33"
         }
       ],
@@ -4345,8 +4310,8 @@
       ]
     },
     {
-      "id": "3f483589-7bf7-436b-9141-7bf5dbb96d4b",
-      "public_id": "QSI-2026-12084",
+      "id": "082ecaa2-439a-4e13-b2f0-c699d5e16269",
+      "public_id": "QSI-2026-19284",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDH: роль не определена (9 файл(ов))",
       "description": "19 упоминаний ECDH в 9 файл(ах), например include/wally.hpp:420. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -4371,7 +4336,7 @@
       "affected_asset": "source-code:ECDH:general",
       "data_source": "include/wally.hpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.779184+00:00",
+      "detected_at": "2026-11-06T14:37:50.685585+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4468,7 +4433,7 @@
           "content_sha256": "710d4343296dae64bc1648683c523dc45578f9c36d221be470a5b8cacf73483a",
           "source_sha256": "4c71d16bd41091796a4898b24ddc0d30da23414f8741a484a251f4bfee9ad70d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835759+00:00",
+          "collected_at": "2026-11-06T14:37:50.701482+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L420"
         },
         {
@@ -4479,7 +4444,7 @@
           "content_sha256": "0065cf5143928209be1c0d8295c59b3cba5878e0083c200ed494ba6d219cb8b6",
           "source_sha256": "4c71d16bd41091796a4898b24ddc0d30da23414f8741a484a251f4bfee9ad70d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835767+00:00",
+          "collected_at": "2026-11-06T14:37:50.701493+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L886"
         },
         {
@@ -4490,7 +4455,7 @@
           "content_sha256": "8ca33a52aa9c32254bc4c25f233916954bfaa727f3e7f5b11d0144c3d93dd68c",
           "source_sha256": "4c71d16bd41091796a4898b24ddc0d30da23414f8741a484a251f4bfee9ad70d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835770+00:00",
+          "collected_at": "2026-11-06T14:37:50.701497+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally.hpp#L2498"
         },
         {
@@ -4501,7 +4466,7 @@
           "content_sha256": "2b141a117280cc891ef590916ab52e5a58c0f323d74df715d55309bf108bfdce",
           "source_sha256": "12520fe83d0d7a6985a8f89f3483465920a56c70ef8bfe2c5ccea238a7eea498",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835773+00:00",
+          "collected_at": "2026-11-06T14:37:50.701500+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_elements.h#L61"
         },
         {
@@ -4512,7 +4477,7 @@
           "content_sha256": "ce2c45bf89ff57e172bd6757a85b7804044bfc549dc253b41b9f317c86c8e922",
           "source_sha256": "8ee530f4d9ae4d9bf59d56be587898902ef61da538b660f427dd222034bcb1f6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835776+00:00",
+          "collected_at": "2026-11-06T14:37:50.701504+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/ecdh.c#L3"
         },
         {
@@ -4523,7 +4488,7 @@
           "content_sha256": "c11d4bdee4ffad78b372ec03e4d946d1e679d888b90acf99a864b82f32cdf2db",
           "source_sha256": "8ee530f4d9ae4d9bf59d56be587898902ef61da538b660f427dd222034bcb1f6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835780+00:00",
+          "collected_at": "2026-11-06T14:37:50.701507+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/ecdh.c#L5"
         },
         {
@@ -4534,7 +4499,7 @@
           "content_sha256": "d22b3758a7b0fe1793ecdf70363725766d8a5fa98b9fa281260ea8f2f8cedc08",
           "source_sha256": "8ee530f4d9ae4d9bf59d56be587898902ef61da538b660f427dd222034bcb1f6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835783+00:00",
+          "collected_at": "2026-11-06T14:37:50.701510+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/ecdh.c#L25"
         },
         {
@@ -4545,7 +4510,7 @@
           "content_sha256": "67e8c5413b1235a00c57869b346cd241c25020410839f9fa642e0fb4058e959b",
           "source_sha256": "f2619a99c89c18b470b3d309f004bfa99994890e5c46df2527fe1f545189cae2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835786+00:00",
+          "collected_at": "2026-11-06T14:37:50.701513+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/elements.c#L49"
         },
         {
@@ -4556,7 +4521,7 @@
           "content_sha256": "78816fe84e635db69964bf3ba3fb15e7b903fccb87b3b736833bef430747ac31",
           "source_sha256": "f2619a99c89c18b470b3d309f004bfa99994890e5c46df2527fe1f545189cae2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835789+00:00",
+          "collected_at": "2026-11-06T14:37:50.701516+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/elements.c#L59"
         },
         {
@@ -4567,7 +4532,7 @@
           "content_sha256": "933bf2be11244f409fa288e3d52606f08a2d7575c1ece43ccb162f5835a4d581",
           "source_sha256": "f2619a99c89c18b470b3d309f004bfa99994890e5c46df2527fe1f545189cae2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.835792+00:00",
+          "collected_at": "2026-11-06T14:37:50.701520+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/elements.c#L332"
         }
       ],
@@ -4605,8 +4570,8 @@
       ]
     },
     {
-      "id": "980cf31d-6b19-4190-bb75-8ed800205c6f",
-      "public_id": "QSI-2026-12086",
+      "id": "15025e43-d2a8-4605-a880-429bbb30554a",
+      "public_id": "QSI-2026-19286",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))",
       "description": "2 упоминаний Schnorr (BIP-340) в 2 файл(ах), например include/wally_crypto.h:373. Роль по путям, именам функций и соседнему коду: роль не определена. По коду не видно, что защищают ключи; приоритет определит проверка.",
@@ -4631,7 +4596,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):general",
       "data_source": "include/wally_crypto.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.845895+00:00",
+      "detected_at": "2026-11-06T14:37:50.712154+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4728,7 +4693,7 @@
           "content_sha256": "ed990a48ee2a02ca3b13510ed4146f720516befa7a9653731cb7b63d106127a4",
           "source_sha256": "2181a542b32bbf426de0259360751fa6e821dd45e0f67bc7015533bb08c629c0",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.858512+00:00",
+          "collected_at": "2026-11-06T14:37:50.724413+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/include/wally_crypto.h#L373"
         },
         {
@@ -4739,7 +4704,7 @@
           "content_sha256": "327e06b3faaf251b304004d03ea5a022af60fb08b4f663cc88a7b2b3aef53ac5",
           "source_sha256": "294fe5332d0323913a1f8eafc34d15e3ac8d07323a0ef239d2ee715367880a7e",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.858519+00:00",
+          "collected_at": "2026-11-06T14:37:50.724421+00:00",
           "url": "https://github.com/ElementsProject/libwally-core/blob/374df231d05410a31d605b31c1cc5256581381d7/src/wasm_package/src/const.js#L73"
         }
       ],
@@ -4777,8 +4742,8 @@
       ]
     },
     {
-      "id": "33e004f3-0d46-45da-be37-3ca0e8410c64",
-      "public_id": "QSI-2026-12089",
+      "id": "0ca22d65-052c-4ff5-8bd1-93cec45c5c41",
+      "public_id": "QSI-2026-19289",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "7 бюллетеней в 3 пакет(ах) npm, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 7 бюллетеней (1 с оценкой high или critical) для 3 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (src/wasm_package/package-lock.json): например, ajv@8.17.1 [dev]: GHSA-2g4f-4pwh-qvx6; cross-spawn@7.0.3 [dev]: GHSA-3xgq-45jj-v275; fast-uri@3.1.7 [dev]: GHSA-333x-w4r6-6crp, GHSA-hrr3-gc8f-f4qj, GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -4803,7 +4768,7 @@
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:56:08.883029+00:00",
+      "detected_at": "2026-11-06T14:37:50.744686+00:00",
       "risk_score": 18.3,
       "risk_breakdown": {
         "score": 18.3,
@@ -4859,7 +4824,7 @@
           "content_sha256": "baa45062fa297ca1092e6508e54634767572b685acf5a4da92151730871ea6fb",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:56:08.951333+00:00",
+          "collected_at": "2026-11-06T14:37:50.800498+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -4903,13 +4868,13 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-12082",
-      "QSI-2026-12085",
-      "QSI-2026-12087",
-      "QSI-2026-12088",
-      "QSI-2026-12083",
-      "QSI-2026-12084",
-      "QSI-2026-12086"
+      "QSI-2026-19282",
+      "QSI-2026-19285",
+      "QSI-2026-19287",
+      "QSI-2026-19288",
+      "QSI-2026-19283",
+      "QSI-2026-19284",
+      "QSI-2026-19286"
     ],
     "roles": [
       {
@@ -4925,7 +4890,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12085"
+          "QSI-2026-19285"
         ],
         "files": 2
       },
@@ -4946,8 +4911,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-12087",
-          "QSI-2026-12088"
+          "QSI-2026-19287",
+          "QSI-2026-19288"
         ],
         "files": 44
       },
@@ -4972,9 +4937,9 @@
           }
         ],
         "findings": [
-          "QSI-2026-12083",
-          "QSI-2026-12084",
-          "QSI-2026-12086"
+          "QSI-2026-19283",
+          "QSI-2026-19284",
+          "QSI-2026-19286"
         ],
         "files": 20
       }
@@ -5024,7 +4989,7 @@
           },
           {
             "algorithm": "ECDSA",
-            "rows": 54
+            "rows": 59
           },
           {
             "algorithm": "Schnorr (BIP-340)",
@@ -5064,7 +5029,7 @@
           },
           {
             "algorithm": "SHA-2",
-            "rows": 6
+            "rows": 7
           },
           {
             "algorithm": "scrypt",
@@ -5095,7 +5060,7 @@
           },
           {
             "algorithm": "SHA-2",
-            "rows": 6
+            "rows": 7
           }
         ],
         "audit": "256-битные хеши (SHA-256, SHA3-256) остаются достаточными по стойкости к коллизиям; 160-битные хеши слабы уже классически (коллизии SHA-1 практичны). Где нужны категории NIST 4–5, используйте хеши на 384/512 бит.",
@@ -5159,7 +5124,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12082",
+        "finding": "QSI-2026-19282",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md",
         "severity": "medium"
       },
@@ -5177,7 +5142,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12085",
+        "finding": "QSI-2026-19285",
         "finding_title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (2 файл(ов))",
         "severity": "medium"
       },
@@ -5195,7 +5160,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12087",
+        "finding": "QSI-2026-19287",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (37 файл(ов))",
         "severity": "medium"
       },
@@ -5213,7 +5178,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12088",
+        "finding": "QSI-2026-19288",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))",
         "severity": "medium"
       },
@@ -5231,7 +5196,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12083",
+        "finding": "QSI-2026-19283",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (9 файл(ов))",
         "severity": "medium"
       },
@@ -5249,7 +5214,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12084",
+        "finding": "QSI-2026-19284",
         "finding_title": "Квантово-уязвимый ECDH: роль не определена (9 файл(ов))",
         "severity": "medium"
       },
@@ -5267,7 +5232,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12086",
+        "finding": "QSI-2026-19286",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -5285,7 +5250,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12082",
+        "finding": "QSI-2026-19282",
         "finding_title": "Квантово-уязвимый ключ RSA (4096-bit) в SECURITY.md",
         "severity": "medium"
       },
@@ -5303,7 +5268,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12085",
+        "finding": "QSI-2026-19285",
         "finding_title": "Квантово-уязвимый ECDH: обёртка ключей и шифрование хранимых данных (2 файл(ов))",
         "severity": "medium"
       },
@@ -5321,7 +5286,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12087",
+        "finding": "QSI-2026-19287",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (37 файл(ов))",
         "severity": "medium"
       },
@@ -5339,7 +5304,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12088",
+        "finding": "QSI-2026-19288",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): подпись транзакций и сообщений (7 файл(ов))",
         "severity": "medium"
       },
@@ -5357,7 +5322,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12083",
+        "finding": "QSI-2026-19283",
         "finding_title": "Квантово-уязвимый ECDSA: роль не определена (9 файл(ов))",
         "severity": "medium"
       },
@@ -5375,7 +5340,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование Гибридное установление ключей с ML-KEM (FIPS 203), например X25519MLKEM768 в TLS 1.3 или mlkem768x25519-sha256 в SSH или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12084",
+        "finding": "QSI-2026-19284",
         "finding_title": "Квантово-уязвимый ECDH: роль не определена (9 файл(ов))",
         "severity": "medium"
       },
@@ -5393,7 +5358,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование  или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12086",
+        "finding": "QSI-2026-19286",
         "finding_title": "Квантово-уязвимый Schnorr (BIP-340): роль не определена (2 файл(ов))",
         "severity": "medium"
       },
@@ -5411,7 +5376,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-12089",
+        "finding": "QSI-2026-19289",
         "finding_title": "7 бюллетеней в 3 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }
@@ -5649,7 +5614,8 @@
       "quantum_status": "classical_weakness",
       "classical_status": "legacy",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RIPEMD-160",
@@ -5661,7 +5627,8 @@
       "quantum_status": "classical_weakness",
       "classical_status": "legacy",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5673,7 +5640,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5685,7 +5653,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5697,7 +5666,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5709,7 +5679,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5721,7 +5692,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5733,7 +5705,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "HMAC",
@@ -5745,7 +5718,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "PBKDF2",
@@ -5757,19 +5731,21 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
       "family": "hash",
       "parameter": "SHA-512",
-      "usage": "implemented in a file of this name",
+      "usage": "implementation constant: SHA-512 round constants K",
       "library": "",
-      "location": "src/ccan/ccan/crypto/sha512/sha512.c",
+      "location": "src/ccan/ccan/crypto/sha512/sha512.c:117",
       "quantum_status": "grover_margin",
       "classical_status": "ok",
-      "confidence": "low",
-      "occurrences": 1
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5781,7 +5757,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "scrypt",
@@ -5793,7 +5770,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "scrypt",
@@ -5805,7 +5783,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "scrypt",
@@ -5817,7 +5796,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "scrypt",
@@ -5829,7 +5809,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "scrypt",
@@ -5841,19 +5822,21 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
       "family": "hash",
       "parameter": "SHA-256",
-      "usage": "implemented in a file of this name",
+      "usage": "implementation constant: SHA-256 round constants K",
       "library": "",
-      "location": "src/ccan/ccan/crypto/sha256/sha256.c",
+      "location": "src/ccan/ccan/crypto/sha256/sha256.c:121",
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
-      "confidence": "low",
-      "occurrences": 1
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -5865,19 +5848,34 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
       "family": "hash",
       "parameter": "SHA-256",
-      "usage": "implemented in a file of this name",
+      "usage": "implementation constant: SHA-256 round constants K",
       "library": "",
-      "location": "src/ccan/ccan/crypto/sha256/sha256_sse4.c",
+      "location": "src/ccan/ccan/crypto/sha256/sha256_sse4.c:15",
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
-      "confidence": "low",
-      "occurrences": 1
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "implementation constant: SHA-256 round constants K",
+      "library": "",
+      "location": "src/secp256k1/src/hash_impl.h:55",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -5889,7 +5887,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -5901,7 +5900,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -5913,7 +5913,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -5925,7 +5926,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -5937,7 +5939,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -5949,7 +5952,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -5961,7 +5965,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -5973,7 +5978,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -5985,7 +5991,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -5997,7 +6004,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -6009,7 +6017,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -6021,7 +6030,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6033,7 +6043,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6045,7 +6056,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6057,7 +6069,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 11
+      "occurrences": 11,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6069,7 +6082,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6081,7 +6095,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6093,7 +6108,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6105,7 +6121,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6117,7 +6134,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6129,7 +6147,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6141,7 +6160,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6153,7 +6173,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6165,7 +6186,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "src/secp256k1/contrib/lax_der_privatekey_parsing.c:69",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6177,7 +6212,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6189,7 +6225,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 17
+      "occurrences": 17,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6201,7 +6238,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6213,7 +6251,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6225,7 +6264,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6237,7 +6277,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6249,7 +6290,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6261,7 +6303,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6273,7 +6316,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6285,7 +6329,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6297,7 +6342,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6309,7 +6355,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6321,7 +6368,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6333,7 +6381,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6345,7 +6394,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6357,7 +6407,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6369,7 +6420,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6381,7 +6433,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6393,7 +6446,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6405,19 +6459,60 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
       "family": "signature",
       "parameter": "",
-      "usage": "implemented in a file of this name",
+      "usage": "implementation constant: secp256k1 group order n",
       "library": "",
-      "location": "src/secp256k1/src/ecdsa_impl.h",
+      "location": "src/secp256k1/src/ecdsa_impl.h:20",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "confidence": "low",
-      "occurrences": 1
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "src/secp256k1/src/field.h:54",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "src/secp256k1/src/field_5x52_impl.h:28",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 generator x",
+      "library": "",
+      "location": "src/secp256k1/src/group_impl.h:39",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6429,7 +6524,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6441,7 +6537,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6453,7 +6550,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6465,7 +6563,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6477,7 +6576,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "src/secp256k1/src/modules/generator/main_impl.h:25",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6489,7 +6602,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6501,7 +6615,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6513,7 +6628,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6525,7 +6641,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6537,7 +6654,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6549,7 +6667,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6561,7 +6680,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6573,7 +6693,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6585,7 +6706,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6597,7 +6719,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6609,7 +6732,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 19
+      "occurrences": 19,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6621,7 +6745,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6633,7 +6758,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 31
+      "occurrences": 31,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6645,7 +6771,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -6657,7 +6784,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -6669,7 +6797,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "RSA",
@@ -6681,7 +6810,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "RSA",
@@ -6693,7 +6823,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6705,7 +6836,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6717,7 +6849,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6729,7 +6862,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6741,7 +6875,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6753,7 +6888,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6765,7 +6901,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 13
+      "occurrences": 13,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6777,7 +6914,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6789,7 +6927,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -6801,7 +6940,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -6853,7 +6993,7 @@
       "count": 2,
       "rows": 2,
       "examples": [
-        "src/ccan/ccan/crypto/sha512/sha512.c",
+        "src/ccan/ccan/crypto/sha512/sha512.c:117",
         "src/ccan/ccan/crypto/sha512/sha512.h"
       ]
     },
@@ -6877,12 +7017,12 @@
       "library": "",
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
-      "count": 4,
-      "rows": 4,
+      "count": 5,
+      "rows": 5,
       "examples": [
-        "src/ccan/ccan/crypto/sha256/sha256.c",
+        "src/ccan/ccan/crypto/sha256/sha256.c:121",
         "src/ccan/ccan/crypto/sha256/sha256.h",
-        "src/ccan/ccan/crypto/sha256/sha256_sse4.c"
+        "src/ccan/ccan/crypto/sha256/sha256_sse4.c:15"
       ]
     },
     {
@@ -6905,8 +7045,8 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 22,
-      "rows": 22,
+      "count": 27,
+      "rows": 27,
       "examples": [
         "include/wally.hpp:826",
         "include/wally_crypto.h:371",

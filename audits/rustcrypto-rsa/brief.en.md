@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: rustcrypto-rsa @ f96c4b5d629a
 
-*One-page brief* · Reviewed: 2026-11-04 19:19 UTC · Risk profile: Security software vendor · Client: RustCrypto project — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:50 UTC · Risk profile: Security software vendor · Client: RustCrypto project — public repository (passive review)
 
 Source: https://github.com/RustCrypto/RSA/tree/f96c4b5d629a0aeb6f680294debfd38ec8a81f68
 
@@ -12,11 +12,11 @@ Source: https://github.com/RustCrypto/RSA/tree/f96c4b5d629a0aeb6f680294debfd38ec
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable RSA: role not determined (5 file(s)) (QSI-2026-12589) · *preliminary*\
+1. **Medium** · Quantum-vulnerable RSA: role not determined (5 file(s)) (QSI-2026-18754) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-2. **Low** · crypto-bigint 0.7.5 is affected by RUSTSEC-2026-0387 (no severity rating) (QSI-2026-12591) · *preliminary*\
+2. **Low** · crypto-bigint 0.7.5 is affected by RUSTSEC-2026-0387 (no severity rating) (QSI-2026-18756) · *preliminary*\
    What to do: Triage the advisory; upgrade to a fixed version (0.7.6) if it applies.
-3. **Low** · ctutils 0.4.2 is affected by RUSTSEC-2026-0385 (no severity rating) (QSI-2026-12592) · *preliminary*\
+3. **Low** · ctutils 0.4.2 is affected by RUSTSEC-2026-0385 (no severity rating) (QSI-2026-18757) · *preliminary*\
    What to do: Triage the advisory; upgrade to a fixed version (0.4.4) if it applies.
 
 ## What the quantum-vulnerable cryptography protects
@@ -33,7 +33,7 @@ Advisories for the versions in use: 2; each needs checking against the code.
 
 Static review of source code and manifests; files analysed: 35. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `d4ac682f1e883dc2bcfa4f3a479d5145f55f521d5d06e837964de3dd4e4af4b9`
+Full report, content SHA-256: `ac412823ecaa175f8be5a76d35eb3ccfb46ff2a08a22c9a4b48c91ad8b0f3e93`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

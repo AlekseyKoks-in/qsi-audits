@@ -1,8 +1,8 @@
 {
-  "content_sha256": "e013074c7b0eda8ff8256cc33f333800e595ae0c48705d84b95076950e74be8d",
+  "content_sha256": "ba805503cf4d3237bd8f16af9c112fd492cf72db8e64a50d6cfd1577c288a0b5",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-04T18:52:05.018486+00:00",
+  "generated_at": "2026-11-06T14:43:31.468811+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -11,17 +11,17 @@
     "id": "7d2611f1-3720-4c3a-bd19-9d6797425eda",
     "name": "krux @ 9b3a4314a205",
     "client_name": "Krux (selfcustody)",
-    "description": "Static review of the source tree krux at 9b3a4314a205767606b1ad9fbd1da06ad908f38e. 246 files analysed; of 437 files, 71 are test, fuzzing, benchmark or example code and were left out, 120 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 6 path(s) of the repository: .coveragerc, .gitignore, firmware/Kboot, pyproject.toml, src, vendor; 8852 files outside them were not read. Files no analyzer reads include: .coveragerc, .gitignore, firmware/Kboot/.git, firmware/Kboot/.github/FUNDING.yml, firmware/Kboot/.gitignore. 159 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: vendor/embit (142), firmware/Kboot (17). No requests were sent to the owner's systems.",
+    "description": "Static review of the source tree krux at 9b3a4314a205767606b1ad9fbd1da06ad908f38e. 244 files analysed; of 437 files, 73 are test, fuzzing, benchmark or example code and were left out, 120 are not read by any analyzer, 0 exceed the per-file limit and 0 did not fit the total limit. The review was restricted to 6 path(s) of the repository: .coveragerc, .gitignore, firmware/Kboot, pyproject.toml, src, vendor; 8852 files outside them were not read. Files no analyzer reads include: .coveragerc, .gitignore, firmware/Kboot/.git, firmware/Kboot/.github/FUNDING.yml, firmware/Kboot/.gitignore. 157 files come from directories a .gitmodules pins and are read as shipped source rather than skipped as a dependency cache: vendor/embit (140), firmware/Kboot (17). No requests were sent to the owner's systems.",
     "is_demo": false
   },
   "audit": {
-    "id": "59875687-bb02-418b-9798-bc32732ba918",
+    "id": "83f74b9a-cd9a-4256-bb2d-87bb86e7cd60",
     "mode": "document",
     "title": "Document audit: krux",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T18:51:34.122196+00:00",
-    "finished_at": "2026-11-04T18:52:04.865084+00:00",
+    "started_at": "2026-11-06T14:43:02.929315+00:00",
+    "finished_at": "2026-11-06T14:43:31.331842+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -34,6 +34,11 @@
         "src",
         "vendor"
       ],
+      "pinned": {
+        "vendor/embit": "../../diybitcoinhardware/embit",
+        "firmware/Kboot": "../../selfcustody/Kboot",
+        "firmware/MaixPy": "../../selfcustody/MaixPy"
+      },
       "triage": {
         "analyst": "QSI review, 2026-10-29",
         "decisions": [
@@ -1249,18 +1254,6 @@
       "redactions": 0
     },
     {
-      "name": "vendor/embit/secp256k1/secp256k1-zkp/src/testrand.h",
-      "size": 2030,
-      "sha256": "e1aab215d46d5168a2e411663cfc1f00bcdd15419d115baf8457608886957440",
-      "redactions": 0
-    },
-    {
-      "name": "vendor/embit/secp256k1/secp256k1-zkp/src/testrand_impl.h",
-      "size": 6500,
-      "sha256": "6fc1e8956367d5d7fbf86cf5fe4d30ba28cee9ed0fb93939f9c7c30f9b252907",
-      "redactions": 0
-    },
-    {
       "name": "vendor/embit/secp256k1/secp256k1-zkp/src/util.h",
       "size": 13326,
       "sha256": "c987ae9066b447e16c102767b8cd58b2555b5db4a0cd966e9bf4a58ac4c983d1",
@@ -1592,8 +1585,8 @@
     }
   ],
   "inputs_total": {
-    "files": 246,
-    "bytes": 2857956,
+    "files": 244,
+    "bytes": 2849426,
     "redactions": 0
   },
   "coverage": [
@@ -1604,517 +1597,517 @@
     },
     {
       "area": "source_code",
-      "detail": "src/boot.py: 182 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/boot.py: 182 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/auto_shutdown.py: 79 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/auto_shutdown.py: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/baseconv.py: 192 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/baseconv.py: 192 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/bbqr.py: 247 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/bbqr.py: 247 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/bip39.py: 60 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/bip39.py: 60 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/buttons.py: 153 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/buttons.py: 153 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/camera.py: 362 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/camera.py: 362 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/context.py: 54 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/context.py: 54 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/display.py: 594 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/display.py: 594 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/encryption.py: 194 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/encryption.py: 194 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/firmware.py: 437 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/firmware.py: 437 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/format.py: 78 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/format.py: 78 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/i2c.py: 45 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/i2c.py: 45 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/input.py: 364 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/input.py: 364 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/kboard.py: 53 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/kboard.py: 53 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/kef.py: 570 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/kef.py: 570 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/key.py: 366 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/key.py: 366 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/krux_settings.py: 539 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/krux_settings.py: 539 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/light.py: 57 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/light.py: 57 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/metadata.py: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/metadata.py: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/__init__.py: 1073 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/__init__.py: 1073 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/capture_entropy.py: 233 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/capture_entropy.py: 233 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/datum_tool.py: 882 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/datum_tool.py: 882 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/disclaimer.py: 141 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/disclaimer.py: 141 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/encryption_ui.py: 777 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/encryption_ui.py: 777 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/file_manager.py: 219 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/file_manager.py: 219 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/file_operations.py: 161 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/file_operations.py: 161 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/fill_flash.py: 136 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/fill_flash.py: 136 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/flash_tools.py: 324 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/flash_tools.py: 324 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/__init__.py: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/__init__.py: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/addresses.py: 378 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/addresses.py: 378 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/bip85.py: 188 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/bip85.py: 188 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/home.py: 548 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/home.py: 548 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/miniscript_indenter.py: 194 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/miniscript_indenter.py: 194 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/mnemonic_backup.py: 289 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/mnemonic_backup.py: 289 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/mnemonic_xor.py: 191 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/mnemonic_xor.py: 191 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/pub_key_view.py: 133 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/pub_key_view.py: 133 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/sign_message_ui.py: 398 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/sign_message_ui.py: 398 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/home_pages/wallet_descriptor.py: 498 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/home_pages/wallet_descriptor.py: 498 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/keypads.py: 310 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/keypads.py: 310 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/login.py: 437 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/login.py: 437 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/mnemonic_editor.py: 350 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/mnemonic_editor.py: 350 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/mnemonic_loader.py: 496 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/mnemonic_loader.py: 496 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/new_mnemonic/__init__.py: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/new_mnemonic/__init__.py: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/new_mnemonic/dice_rolls.py: 350 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/new_mnemonic/dice_rolls.py: 350 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/print_page.py: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/print_page.py: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/qr_capture.py: 295 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/qr_capture.py: 295 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/qr_view.py: 584 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/qr_view.py: 584 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/screensaver.py: 61 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/screensaver.py: 61 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/settings_page.py: 535 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/settings_page.py: 535 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/stack_1248.py: 716 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/stack_1248.py: 716 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/tc_code_verification.py: 78 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/tc_code_verification.py: 78 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/tiny_seed.py: 859 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/tiny_seed.py: 859 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/tools.py: 132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/tools.py: 132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/utils.py: 210 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/utils.py: 210 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/pages/wallet_settings.py: 473 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/pages/wallet_settings.py: 473 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/power.py: 104 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/power.py: 104 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/printers/__init__.py: 64 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/printers/__init__.py: 64 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/printers/cnc.py: 452 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/printers/cnc.py: 452 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/printers/thermal.py: 173 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/printers/thermal.py: 173 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/psbt.py: 864 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/psbt.py: 864 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/qr.py: 432 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/qr.py: 432 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/rotary.py: 123 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/rotary.py: 123 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/sats_vb.py: 199 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/sats_vb.py: 199 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/sd_card.py: 98 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/sd_card.py: 98 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/settings.py: 311 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/settings.py: 311 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/themes.py: 148 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/themes.py: 148 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/touch.py: 297 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/touch.py: 297 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/touchscreens/__init__.py: 34 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/touchscreens/__init__.py: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/touchscreens/cst816.py: 145 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/touchscreens/cst816.py: 145 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/touchscreens/ft6x36.py: 115 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/touchscreens/ft6x36.py: 115 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/touchscreens/gt911.py: 186 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/touchscreens/gt911.py: 186 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/__init__.py: 426 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/__init__.py: 426 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/de.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/de.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/es.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/es.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/fr.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/fr.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/ja.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/ja.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/ko.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/ko.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/nl.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/nl.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/pt.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/pt.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/ru.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/ru.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/tr.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/tr.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/vi.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/vi.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/translations/zh.py: 414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/translations/zh.py: 414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/wallet.py: 548 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/wallet.py: 548 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/krux/wdt.py: 27 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/krux/wdt.py: 27 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/build/ktool.py: 1813 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/build/ktool.py: 1813 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/fpioa.c: 4932 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/fpioa.c: 4932 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/gpiohs.c: 110 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/gpiohs.c: 110 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/include/encoding.h: 1325 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/include/encoding.h: 1325 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/include/fpioa.h: 1035 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/include/fpioa.h: 1035 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/include/gpiohs.h: 256 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/include/gpiohs.h: 256 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/include/platform.h: 98 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/include/platform.h: 98 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/include/sha256.h: 130 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/include/sha256.h: 130 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/include/spi.h: 123 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/include/spi.h: 123 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/include/sysctl.h: 886 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/include/sysctl.h: 886 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/main.c: 522 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/main.c: 522 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_hi/sha256.c: 136 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_hi/sha256.c: 136 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_lo/include/encoding.h: 1325 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_lo/include/encoding.h: 1325 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_lo/include/platform.h: 98 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_lo/include/platform.h: 98 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_lo/include/spi.h: 123 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_lo/include/spi.h: 123 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_lo/include/sysctl.h: 886 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_lo/include/sysctl.h: 886 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "firmware/Kboot/src/bootloader_lo/main.c: 191 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "firmware/Kboot/src/bootloader_lo/main.c: 191 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -2409,612 +2402,602 @@
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/config/libsecp256k1-config.h: 44 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/config/libsecp256k1-config.h: 44 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c: 148 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h: 97 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.c: 112 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h: 800 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h: 800 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h: 62 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h: 62 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdsa_adaptor.h: 162 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdsa_adaptor.h: 162 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdsa_s2c.h: 234 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdsa_s2c.h: 234 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_extrakeys.h: 264 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_extrakeys.h: 264 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_generator.h: 93 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_generator.h: 93 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_musig.h: 488 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_musig.h: 488 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_preallocated.h: 128 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_preallocated.h: 128 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_rangeproof.h: 293 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_rangeproof.h: 293 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_recovery.h: 110 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_recovery.h: 110 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h: 111 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h: 111 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_surjectionproof.h: 270 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_surjectionproof.h: 270 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_whitelist.h: 152 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_whitelist.h: 152 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/assumptions.h: 80 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/assumptions.h: 80 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/basic-config.h: 17 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/basic-config.h: 17 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eccommit.h: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eccommit.h: 28 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eccommit_impl.h: 73 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eccommit_impl.h: 73 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecdsa.h: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecdsa.h: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecdsa_impl.h: 315 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecdsa_impl.h: 315 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eckey.h: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eckey.h: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eckey_impl.h: 96 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/eckey_impl.h: 96 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult.h: 45 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult.h: 45 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_const.h: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_const.h: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_const_impl.h: 254 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_const_impl.h: 254 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_gen.h: 50 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_gen.h: 50 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_gen_impl.h: 208 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_gen_impl.h: 208 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_impl.h: 1083 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/ecmult_impl.h: 1083 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field.h: 128 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field.h: 128 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_10x26.h: 50 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_10x26.h: 50 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_10x26_impl.h: 1256 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_10x26_impl.h: 1256 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52.h: 55 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52.h: 55 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52_asm_impl.h: 502 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52_asm_impl.h: 502 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52_impl.h: 578 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52_impl.h: 578 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52_int128_impl.h: 279 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52_int128_impl.h: 279 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_impl.h: 145 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/field_impl.h: 145 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/gen_context.c: 94 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/gen_context.c: 94 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/group.h: 153 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/group.h: 153 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/group_impl.h: 692 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/group_impl.h: 692 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/hash.h: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/hash.h: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/hash_impl.h: 297 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/hash_impl.h: 297 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv32.h: 42 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv32.h: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv32_impl.h: 587 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv32_impl.h: 587 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv64.h: 46 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv64.h: 46 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv64_impl.h: 593 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modinv64_impl.h: 593 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h: 71 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h: 71 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdsa_adaptor/dleq_impl.h: 158 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdsa_adaptor/dleq_impl.h: 158 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdsa_adaptor/main_impl.h: 376 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdsa_adaptor/main_impl.h: 376 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdsa_s2c/main_impl.h: 198 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdsa_s2c/main_impl.h: 198 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/extrakeys/main_impl.h: 287 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/extrakeys/main_impl.h: 287 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/generator/main_impl.h: 222 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/generator/main_impl.h: 222 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/example.c: 168 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/example.c: 168 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h: 702 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h: 702 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/borromean.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/borromean.h: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/borromean_impl.h: 204 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/borromean_impl.h: 204 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/main_impl.h: 310 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/main_impl.h: 310 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/pedersen.h: 22 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/pedersen.h: 22 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/pedersen_impl.h: 51 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/pedersen_impl.h: 51 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/rangeproof.h: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/rangeproof.h: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/rangeproof_impl.h: 685 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/rangeproof_impl.h: 685 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/recovery/main_impl.h: 160 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/recovery/main_impl.h: 160 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h: 239 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h: 239 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/surjection/main_impl.h: 398 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/surjection/main_impl.h: 398 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/surjection/surjection.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/surjection/surjection.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/surjection/surjection_impl.h: 91 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/surjection/surjection_impl.h: 91 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/whitelist/main_impl.h: 174 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/whitelist/main_impl.h: 174 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/whitelist/whitelist_impl.h: 129 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/whitelist/whitelist_impl.h: 129 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar.h: 111 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar.h: 111 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_4x64.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_4x64.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_4x64_impl.h: 965 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_4x64_impl.h: 965 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_8x32.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_8x32.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_8x32_impl.h: 843 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_8x32_impl.h: 843 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_impl.h: 297 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_impl.h: 297 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_low.h: 17 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_low.h: 17 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_low_impl.h: 145 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scalar_low_impl.h: 145 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scratch.h: 42 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scratch.h: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scratch_impl.h: 99 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/scratch_impl.h: 99 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/secp256k1.c: 888 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/secp256k1.c: 888 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/selftest.h: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/selftest.h: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/testrand.h: 50 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/util.h: 370 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/testrand_impl.h: 176 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/setup.py: 3 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/secp256k1/secp256k1-zkp/src/util.h: 370 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/__init__.py: 0 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/setup.py: 3 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/base.py: 116 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/__init__.py: 0 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/base58.py: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/base.py: 116 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/bech32.py: 146 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/base58.py: 79 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/bip32.py: 309 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/bech32.py: 146 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/bip39.py: 122 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/bip32.py: 309 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/bip85.py: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/bip39.py: 122 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/compact.py: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/bip85.py: 59 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/__init__.py: 3 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/compact.py: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/arguments.py: 517 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/__init__.py: 3 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/base.py: 22 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/arguments.py: 517 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/checksum.py: 56 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/base.py: 22 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/descriptor.py: 385 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/checksum.py: 56 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/errors.py: 17 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/descriptor.py: 385 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/miniscript.py: 1069 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/errors.py: 17 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/descriptor/taptree.py: 151 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/miniscript.py: 1069 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/ec.py: 265 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/descriptor/taptree.py: 151 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/finalizer.py: 92 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/ec.py: 265 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/hashes.py: 41 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/finalizer.py: 92 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/__init__.py: 0 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/hashes.py: 41 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/addresses.py: 91 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/__init__.py: 0 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/blech32.py: 132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/addresses.py: 91 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/blip32.py: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/blech32.py: 132 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/descriptor.py: 278 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/blip32.py: 14 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/finalizer.py: 57 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/descriptor.py: 278 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/networks.py: 76 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/finalizer.py: 57 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/pset.py: 674 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/networks.py: 76 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/psetview.py: 266 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/pset.py: 674 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/slip77.py: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/psetview.py: 266 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/liquid/transaction.py: 554 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/slip77.py: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/misc.py: 71 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/liquid/transaction.py: 554 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/networks.py: 76 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/misc.py: 71 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/psbt.py: 1132 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/networks.py: 76 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/psbtview.py: 943 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/psbt.py: 1132 lines scanned with 16 rule patterns and 145 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "vendor/embit/src/embit/psbtview.py: 943 lines scanned with 16 rule patterns and 145 registry patterns",
-      "status": "checked"
-    },
-    {
-      "area": "source_code",
-      "detail": "vendor/embit/src/embit/script.py: 212 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/script.py: 212 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -3029,97 +3012,97 @@
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/slip39.py: 362 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/slip39.py: 362 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/transaction.py: 400 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/transaction.py: 400 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/util/__init__.py: 6 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/util/__init__.py: 6 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/util/ctypes_secp256k1.py: 1284 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/util/ctypes_secp256k1.py: 1284 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/util/key.py: 617 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/util/key.py: 617 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/util/py_ripemd160.py: 409 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/util/py_ripemd160.py: 409 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/util/py_secp256k1.py: 389 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/util/py_secp256k1.py: 389 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/util/secp256k1.py: 76 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/util/secp256k1.py: 76 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/wordlists/__init__.py: 0 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/wordlists/__init__.py: 0 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/wordlists/base.py: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/wordlists/base.py: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/wordlists/bip39.py: 2050 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/wordlists/bip39.py: 2050 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/wordlists/slip39.py: 1026 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/wordlists/slip39.py: 1026 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/wordlists/ubip39.py: 4 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/wordlists/ubip39.py: 4 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/src/embit/wordlists/uslip39.py: 4 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/src/embit/wordlists/uslip39.py: 4 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/tools/generate_release_sbom.py: 170 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/tools/generate_release_sbom.py: 170 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/tools/package_inspect.py: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/tools/package_inspect.py: 28 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/tools/verify_github_actions_pins.py: 224 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/tools/verify_github_actions_pins.py: 224 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "vendor/embit/tools/verify_package_artifacts.py: 382 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "vendor/embit/tools/verify_package_artifacts.py: 382 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "entropy",
-      "detail": "random-number generation: 243 code files read with 968 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s)",
+      "detail": "random-number generation: 241 code files read with 966 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s)",
       "status": "checked"
     },
     {
@@ -3148,12 +3131,12 @@
     {
       "area": "source_code",
       "status": "checked",
-      "count": 243,
-      "rows": 243,
+      "count": 241,
+      "rows": 241,
       "examples": [
-        "src/boot.py: 182 lines scanned with 16 rule patterns and 145 registry patterns",
-        "src/krux/auto_shutdown.py: 79 lines scanned with 16 rule patterns and 145 registry patterns",
-        "src/krux/baseconv.py: 192 lines scanned with 16 rule patterns and 145 registry patterns"
+        "src/boot.py: 182 lines scanned with 16 rule patterns and 266 registry patterns",
+        "src/krux/auto_shutdown.py: 79 lines scanned with 16 rule patterns and 266 registry patterns",
+        "src/krux/baseconv.py: 192 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -3183,7 +3166,7 @@
       "count": 1,
       "rows": 1,
       "examples": [
-        "random-number generation: 243 code files read with 968 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s)"
+        "random-number generation: 241 code files read with 966 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 1 weak key-generation site(s)"
       ]
     },
     {
@@ -3710,8 +3693,6 @@
       "vendor/embit/secp256k1/secp256k1-zkp/src/scratch_impl.h",
       "vendor/embit/secp256k1/secp256k1-zkp/src/secp256k1.c",
       "vendor/embit/secp256k1/secp256k1-zkp/src/selftest.h",
-      "vendor/embit/secp256k1/secp256k1-zkp/src/testrand.h",
-      "vendor/embit/secp256k1/secp256k1-zkp/src/testrand_impl.h",
       "vendor/embit/secp256k1/secp256k1-zkp/src/util.h",
       "vendor/embit/setup.py",
       "vendor/embit/src/embit/__init__.py",
@@ -3798,20 +3779,30 @@
     },
     "total": 11,
     "posture_index": 81,
-    "pq_vulnerable_share": 63.4,
-    "inventory_total": 93,
+    "pq_vulnerable_share": 64.6,
+    "inventory_total": 99,
     "inventory_by_quantum_status": {
       "classical_weakness": 2,
       "grover_margin": 10,
-      "grover_reduced": 17,
+      "grover_reduced": 18,
       "not_applicable": 5,
-      "vulnerable_shor": 59
+      "vulnerable_shor": 64
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 11,
+        "vulnerable_shor": 1
+      },
+      "third_party": {
+        "total": 88,
+        "vulnerable_shor": 63
+      }
     }
   },
   "findings": [
     {
-      "id": "dbbfa68a-a318-48bd-bf67-e14ebbaf424f",
-      "public_id": "QSI-2026-11969",
+      "id": "68e1f7b1-a52a-4f99-a6b1-c42c11e7f8c4",
+      "public_id": "QSI-2026-19303",
       "rule_id": "CODE-ECB-MODE",
       "title": "ECB block-cipher mode used in src/krux/kef.py",
       "description": "8 usage(s) of ECB mode (first at line 30).",
@@ -3836,7 +3827,7 @@
       "affected_asset": "file:src/krux/kef.py",
       "data_source": "src/krux/kef.py",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.443027+00:00",
+      "detected_at": "2026-11-06T14:43:31.203395+00:00",
       "risk_score": 45.6,
       "risk_breakdown": {
         "score": 45.6,
@@ -3892,7 +3883,7 @@
           "content_sha256": "983f2cc48989ecc4a9f6c09815c088adaee8547eabd249ae4291e761a3cb33b7",
           "source_sha256": "deb09c47bf20998696f11ed9b9fcc95bcb856b2def8428190c1044c1cf119a59",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.504813+00:00",
+          "collected_at": "2026-11-06T14:43:31.220189+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L30"
         },
         {
@@ -3903,7 +3894,7 @@
           "content_sha256": "e840c4c38d9dd0654dfd9922ecb81f4c117f1e3137ec29e256a5d470ec2b6d29",
           "source_sha256": "deb09c47bf20998696f11ed9b9fcc95bcb856b2def8428190c1044c1cf119a59",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.504821+00:00",
+          "collected_at": "2026-11-06T14:43:31.220197+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L38"
         },
         {
@@ -3914,7 +3905,7 @@
           "content_sha256": "4102c93b1240502843f64f9563a027599f489a8e989673c7958b2c3b9ddc385c",
           "source_sha256": "deb09c47bf20998696f11ed9b9fcc95bcb856b2def8428190c1044c1cf119a59",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.504825+00:00",
+          "collected_at": "2026-11-06T14:43:31.220201+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L50"
         },
         {
@@ -3925,7 +3916,7 @@
           "content_sha256": "2b53d9a1ca1d33e5ab513ca4295be4bc013ab6569b4107406722600a5c330e4e",
           "source_sha256": "deb09c47bf20998696f11ed9b9fcc95bcb856b2def8428190c1044c1cf119a59",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.504828+00:00",
+          "collected_at": "2026-11-06T14:43:31.220205+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L56"
         },
         {
@@ -3936,7 +3927,7 @@
           "content_sha256": "dbd2e22444870467bd8df2254c9813892fb16fa3782ccda465b67e7dc8463821",
           "source_sha256": "deb09c47bf20998696f11ed9b9fcc95bcb856b2def8428190c1044c1cf119a59",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.504831+00:00",
+          "collected_at": "2026-11-06T14:43:31.220208+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/kef.py#L63"
         }
       ],
@@ -3959,8 +3950,8 @@
       ]
     },
     {
-      "id": "0f1bb780-6c25-41d1-ae99-b53844b560e9",
-      "public_id": "QSI-2026-11978",
+      "id": "05c6231d-29c6-4ccf-8aa6-f6fdf14f9eeb",
+      "public_id": "QSI-2026-19312",
       "rule_id": "RNG-WEAK-KEYGEN",
       "title": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py",
       "description": "'random.randrange(' at line 374, within a few lines of 'generate_privkey' (1 occurrence(s)).",
@@ -3980,7 +3971,7 @@
       "affected_asset": "vendor/embit/src/embit/util/key.py:keygen",
       "data_source": "vendor/embit/src/embit/util/key.py",
       "analyzer": "entropy 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.844090+00:00",
+      "detected_at": "2026-11-06T14:43:31.310878+00:00",
       "risk_score": 38.8,
       "risk_breakdown": {
         "score": 38.8,
@@ -4050,7 +4041,7 @@
           "content_sha256": "6a16bf61b745add23af0bcc22cb0758b1719a6aead17b725bb75597ba4738788",
           "source_sha256": "0850b1637dafc13c7c2e0d1e4afbbcbc655890dc142da543c340ac8e494a5dd9",
           "collector": "entropy 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.855601+00:00",
+          "collected_at": "2026-11-06T14:43:31.322411+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/key.py#L374"
         }
       ],
@@ -4073,8 +4064,8 @@
       ]
     },
     {
-      "id": "afeaebd6-68a4-4a86-af0e-ad4bbc9e2dc3",
-      "public_id": "QSI-2026-11972",
+      "id": "404e5b99-e4a5-4052-8454-2b62b28ec2b5",
+      "public_id": "QSI-2026-19306",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))",
       "description": "277 reference(s) to ECDSA across 31 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -4099,7 +4090,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.530399+00:00",
+      "detected_at": "2026-11-06T14:43:31.248871+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -4196,7 +4187,7 @@
           "content_sha256": "9197354c850cb53bbc475b348c0f97bb3f550706fcced8bf483336d626575330",
           "source_sha256": "14225148538be5587db2304dcb6ba6340b2f195352ada8de78da53ba9ca7eec1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550234+00:00",
+          "collected_at": "2026-11-06T14:43:31.262025+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c#L11"
         },
         {
@@ -4207,7 +4198,7 @@
           "content_sha256": "234aeaaf6b28e1d2ff43854e60a3119e3c3f55229e18841e2dc766404eab65d0",
           "source_sha256": "14225148538be5587db2304dcb6ba6340b2f195352ada8de78da53ba9ca7eec1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550242+00:00",
+          "collected_at": "2026-11-06T14:43:31.262033+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c#L19"
         },
         {
@@ -4218,7 +4209,7 @@
           "content_sha256": "75ad5d0cba25ca64adb6d971da937879704b4abc8845c17dc1da9fa1eb773e5e",
           "source_sha256": "14225148538be5587db2304dcb6ba6340b2f195352ada8de78da53ba9ca7eec1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550246+00:00",
+          "collected_at": "2026-11-06T14:43:31.262036+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c#L140"
         },
         {
@@ -4229,7 +4220,7 @@
           "content_sha256": "25af7e242d92af0d3c46ae8d8a48030e247c4bfdeba65068030e64eb4c88c912",
           "source_sha256": "79c479a9e6f51a5ad1e83b9efcde9df4e3431c2a3e894d37de8e9c9bc4538fb2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550250+00:00",
+          "collected_at": "2026-11-06T14:43:31.262040+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h#L57"
         },
         {
@@ -4240,7 +4231,7 @@
           "content_sha256": "4c35a81e99a7eaf5ea7315346f3b8cacb0832f7c4a3b1a3d003ff0bd3b6a82c1",
           "source_sha256": "79c479a9e6f51a5ad1e83b9efcde9df4e3431c2a3e894d37de8e9c9bc4538fb2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550253+00:00",
+          "collected_at": "2026-11-06T14:43:31.262043+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h#L59"
         },
         {
@@ -4251,7 +4242,7 @@
           "content_sha256": "85efcade66268dd4d0b42e8f31b634ea4cd93d9d55cdc2e036715108d8697665",
           "source_sha256": "79c479a9e6f51a5ad1e83b9efcde9df4e3431c2a3e894d37de8e9c9bc4538fb2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550257+00:00",
+          "collected_at": "2026-11-06T14:43:31.262046+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h#L88"
         },
         {
@@ -4262,7 +4253,7 @@
           "content_sha256": "163cac24f6b60e798317e2383fb603da718e728035262dc9759d7cf3fbd47b4f",
           "source_sha256": "3dcaf6d98270a20ef1455f67479191ff31747af1e66cec979b01a2be41a968f2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550259+00:00",
+          "collected_at": "2026-11-06T14:43:31.262049+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h#L34"
         },
         {
@@ -4273,7 +4264,7 @@
           "content_sha256": "2741d1869779ddac4f151ac1740c338ba299b2bed7b98a38e6042acb62fca350",
           "source_sha256": "3dcaf6d98270a20ef1455f67479191ff31747af1e66cec979b01a2be41a968f2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550262+00:00",
+          "collected_at": "2026-11-06T14:43:31.262052+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.h#L36"
         },
         {
@@ -4284,7 +4275,7 @@
           "content_sha256": "976a23a4a733f368307a87186feac41d258d0c7eae4fef7da5eddec537f04c62",
           "source_sha256": "524e48b39a62c9f54f203dca9b8a5a69946028fe7adeadeb60a81e590eb5c78a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550265+00:00",
+          "collected_at": "2026-11-06T14:43:31.262055+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h#L85"
         },
         {
@@ -4295,7 +4286,7 @@
           "content_sha256": "15748a6fd21f774cca6b0c463fb56ef156b0a05c17cc86d0a52c76c0ed75a59e",
           "source_sha256": "524e48b39a62c9f54f203dca9b8a5a69946028fe7adeadeb60a81e590eb5c78a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.550269+00:00",
+          "collected_at": "2026-11-06T14:43:31.262059+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h#L417"
         }
       ],
@@ -4333,8 +4324,8 @@
       ]
     },
     {
-      "id": "d16dec7f-91cf-47f3-b166-88965dbc5247",
-      "public_id": "QSI-2026-11974",
+      "id": "6ff1619e-16fe-4a37-9507-7b439748d204",
+      "public_id": "QSI-2026-19308",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))",
       "description": "21 reference(s) to Schnorr (BIP-340) across 7 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h:82. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.",
@@ -4359,7 +4350,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):transaction_signing",
       "data_source": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.559375+00:00",
+      "detected_at": "2026-11-06T14:43:31.270554+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -4456,7 +4447,7 @@
           "content_sha256": "44a2365db81547948644f36130e817fe690091caa187560ab468f34585def2d5",
           "source_sha256": "4c06e835211e9426c0a1af5a6e7ba8a9b7a0849eb6c60adb9f9309902266b9b4",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578142+00:00",
+          "collected_at": "2026-11-06T14:43:31.285719+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h#L82"
         },
         {
@@ -4467,7 +4458,7 @@
           "content_sha256": "72dc7958413515e7228437fe19dec8a24a240083981c855296f98cdf0e8262f2",
           "source_sha256": "4c06e835211e9426c0a1af5a6e7ba8a9b7a0849eb6c60adb9f9309902266b9b4",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578150+00:00",
+          "collected_at": "2026-11-06T14:43:31.285726+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_schnorrsig.h#L100"
         },
         {
@@ -4478,7 +4469,7 @@
           "content_sha256": "e6ab7181c8dbb6504611247b2678ae83985acb1cf70e10429645f5d869e047bd",
           "source_sha256": "7568f0ec3778da013a98fd5e3133c2a640e3eb3f3cff59290cee43de7cdf856a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578153+00:00",
+          "collected_at": "2026-11-06T14:43:31.285730+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/example.c#L160"
         },
         {
@@ -4489,7 +4480,7 @@
           "content_sha256": "8347c1cd3e521a8ba5e1c0b465436477efc94e0749e2b6314e1928dcfbe9a321",
           "source_sha256": "f5b1e1cb467ee05a70006c55efe00cbc54962adf5a5446f74438f0b282aa1d75",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578156+00:00",
+          "collected_at": "2026-11-06T14:43:31.285733+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/musig/main_impl.h#L460"
         },
         {
@@ -4500,7 +4491,7 @@
           "content_sha256": "e73ca8d800b70a374cf5e3972e2d153290a93d2d12334ada5196282ceec4cede",
           "source_sha256": "eb51e55a0617e6145afed8ccdd2be86d3fc640a0a996f421a1caa5eb3f34e935",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578160+00:00",
+          "collected_at": "2026-11-06T14:43:31.285736+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h#L98"
         },
         {
@@ -4511,7 +4502,7 @@
           "content_sha256": "0dd4fa6557933bdf32a316d69c6f05a1a458a5fd3f056f03a250c6cee3636b68",
           "source_sha256": "eb51e55a0617e6145afed8ccdd2be86d3fc640a0a996f421a1caa5eb3f34e935",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578163+00:00",
+          "collected_at": "2026-11-06T14:43:31.285740+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h#L111"
         },
         {
@@ -4522,7 +4513,7 @@
           "content_sha256": "d433a64049d5b15ad012fcc92d25efe3f9c0faef114da2cfbe07f26c8e3c3e2f",
           "source_sha256": "eb51e55a0617e6145afed8ccdd2be86d3fc640a0a996f421a1caa5eb3f34e935",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578166+00:00",
+          "collected_at": "2026-11-06T14:43:31.285743+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/schnorrsig/main_impl.h#L117"
         },
         {
@@ -4533,7 +4524,7 @@
           "content_sha256": "57e08893e8b0d02ff62160e83bf0ee2a5297829ebdd67694ce5df8eac407d88d",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578169+00:00",
+          "collected_at": "2026-11-06T14:43:31.285746+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L287"
         },
         {
@@ -4544,7 +4535,7 @@
           "content_sha256": "081fdf562b7a5fc864bee913ad182153c51fe01d652d42c0ccaec47ab8249e94",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578172+00:00",
+          "collected_at": "2026-11-06T14:43:31.285750+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L293"
         },
         {
@@ -4555,7 +4546,7 @@
           "content_sha256": "ca6ef88f4a54753ab4313ab865dab0bd59f732d4276c85eb8d3f4d7a3600a616",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.578175+00:00",
+          "collected_at": "2026-11-06T14:43:31.285754+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L295"
         }
       ],
@@ -4593,8 +4584,8 @@
       ]
     },
     {
-      "id": "eed85f0f-1d0f-441f-bd8f-63e8ba5c9c5d",
-      "public_id": "QSI-2026-11975",
+      "id": "a40fbd72-4190-4d2f-8fec-e4a73a5655b3",
+      "public_id": "QSI-2026-19309",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))",
       "description": "15 reference(s) to Pedersen commitment across 4 file(s), e.g. vendor/embit/src/embit/liquid/pset.py:101. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -4619,7 +4610,7 @@
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "vendor/embit/src/embit/liquid/pset.py",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.574308+00:00",
+      "detected_at": "2026-11-06T14:43:31.282885+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -4716,7 +4707,7 @@
           "content_sha256": "b66b1e583d90306b059a9fd44ead20cf204eaa731e5f490ea219c83b49b2b806",
           "source_sha256": "b9bd8b713c6395282122052daeb4e95540d556abcaf40e055cb9c597d618738b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594489+00:00",
+          "collected_at": "2026-11-06T14:43:31.297078+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/liquid/pset.py#L101"
         },
         {
@@ -4727,7 +4718,7 @@
           "content_sha256": "06f441e13a3c4ee80a5e7bc1c367c410548b47089185765cf11a4af021382bbc",
           "source_sha256": "b9bd8b713c6395282122052daeb4e95540d556abcaf40e055cb9c597d618738b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594497+00:00",
+          "collected_at": "2026-11-06T14:43:31.297085+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/liquid/pset.py#L102"
         },
         {
@@ -4738,7 +4729,7 @@
           "content_sha256": "e13d6f4ff6fe3bd7adcceae1d254128bfd231d1754548bed4173819fd6551f55",
           "source_sha256": "b9bd8b713c6395282122052daeb4e95540d556abcaf40e055cb9c597d618738b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594500+00:00",
+          "collected_at": "2026-11-06T14:43:31.297089+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/liquid/pset.py#L300"
         },
         {
@@ -4749,7 +4740,7 @@
           "content_sha256": "ffe62aaa23ace0fd2936ab3f4a57b541efac76f5ce1fdc493f53d8712547af75",
           "source_sha256": "601e672e0ae53c08780b307a0b231215d31c8325b0fe18b97bb45a3e2892cb16",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594504+00:00",
+          "collected_at": "2026-11-06T14:43:31.297092+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/liquid/transaction.py#L90"
         },
         {
@@ -4760,7 +4751,7 @@
           "content_sha256": "b7bf98d515fa733b6fa50b40868407081e5d056aea4aa1f8521535f39f60d5b6",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594508+00:00",
+          "collected_at": "2026-11-06T14:43:31.297095+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L949"
         },
         {
@@ -4771,7 +4762,7 @@
           "content_sha256": "ae7600847f2badfdc520dc9b43caa54fe5c140fbc3f2618b08e27f37897e4ee4",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594511+00:00",
+          "collected_at": "2026-11-06T14:43:31.297098+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L960"
         },
         {
@@ -4782,7 +4773,7 @@
           "content_sha256": "d061be5d1ea86ffb8675c67e3f0d729a08048a4c9b7bd6c3790b187b4d3ede29",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594514+00:00",
+          "collected_at": "2026-11-06T14:43:31.297101+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L971"
         },
         {
@@ -4793,7 +4784,7 @@
           "content_sha256": "4485c26fa3e644b515ed1a6abf59b2d50f2bc77722ad56b84c581a20e445d203",
           "source_sha256": "3f0dfccabac80a6c83c0d2318582d296d0fa9cf88ab347418ba7e27af5e333c6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594517+00:00",
+          "collected_at": "2026-11-06T14:43:31.297105+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/secp256k1.py#L51"
         },
         {
@@ -4804,7 +4795,7 @@
           "content_sha256": "9ee2ecc76d93cb9f14a224de7eee8a4eb5a1dab003a01063faae76fc6b3515e0",
           "source_sha256": "3f0dfccabac80a6c83c0d2318582d296d0fa9cf88ab347418ba7e27af5e333c6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594520+00:00",
+          "collected_at": "2026-11-06T14:43:31.297110+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/secp256k1.py#L52"
         },
         {
@@ -4815,7 +4806,7 @@
           "content_sha256": "b419e6b04ad1f224679bd93af0189ee4ac479a9d15402a9c1c3e8a73e7604079",
           "source_sha256": "3f0dfccabac80a6c83c0d2318582d296d0fa9cf88ab347418ba7e27af5e333c6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.594523+00:00",
+          "collected_at": "2026-11-06T14:43:31.297113+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/secp256k1.py#L53"
         }
       ],
@@ -4853,8 +4844,8 @@
       ]
     },
     {
-      "id": "5835d46e-947d-43fd-ba9e-8b5d613c330f",
-      "public_id": "QSI-2026-11970",
+      "id": "a67ca4e5-8dc2-4ad8-9993-f8cd6d94f897",
+      "public_id": "QSI-2026-19304",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: role not determined (5 file(s))",
       "description": "34 reference(s) to ECDSA across 5 file(s), e.g. src/krux/key.py:252. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -4879,7 +4870,7 @@
       "affected_asset": "source-code:ECDSA:general",
       "data_source": "src/krux/key.py",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.499301+00:00",
+      "detected_at": "2026-11-06T14:43:31.215014+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -4976,7 +4967,7 @@
           "content_sha256": "3571a45d6fb4255051dccedca3e72ab1bec1576060e8bce5a1d7dbe6401d2dcf",
           "source_sha256": "f9176b1f127dae2264bd8c084b341118c3b3ff8d789d29d3bb2081339c005f85",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519001+00:00",
+          "collected_at": "2026-11-06T14:43:31.238428+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/key.py#L252"
         },
         {
@@ -4987,7 +4978,7 @@
           "content_sha256": "4b287db1f3538b56bb615d288b4011bc3684c9fbcaae6603726b28e46228b8a7",
           "source_sha256": "f9176b1f127dae2264bd8c084b341118c3b3ff8d789d29d3bb2081339c005f85",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519010+00:00",
+          "collected_at": "2026-11-06T14:43:31.238437+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/key.py#L255"
         },
         {
@@ -4998,7 +4989,7 @@
           "content_sha256": "70e842829bb3f2206eb1bc448bf9ec0a6a406c0ba40eff046043671116d548cc",
           "source_sha256": "f9176b1f127dae2264bd8c084b341118c3b3ff8d789d29d3bb2081339c005f85",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519013+00:00",
+          "collected_at": "2026-11-06T14:43:31.238440+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/key.py#L261"
         },
         {
@@ -5009,7 +5000,7 @@
           "content_sha256": "2da5ac4f0aac6b95a77ebbf62d29881b49cb5b77b6b6b0e545c568d12aeab1d0",
           "source_sha256": "1c2b11a8e397a903473962ff0baa2b3de02e81c211b6df300fe828f1249a533b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519016+00:00",
+          "collected_at": "2026-11-06T14:43:31.238443+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/ec.py#L3"
         },
         {
@@ -5020,7 +5011,7 @@
           "content_sha256": "22af8149d1de86bdaa2f37e9a1ee21d18db2b64fbb9fcd55610a17ea2df854d2",
           "source_sha256": "1c2b11a8e397a903473962ff0baa2b3de02e81c211b6df300fe828f1249a533b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519020+00:00",
+          "collected_at": "2026-11-06T14:43:31.238446+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/ec.py#L18"
         },
         {
@@ -5031,7 +5022,7 @@
           "content_sha256": "91eebf765cedecb0508205d819b8bdf939b5d9534e0cb94aab17156c7e3b5641",
           "source_sha256": "1c2b11a8e397a903473962ff0baa2b3de02e81c211b6df300fe828f1249a533b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519023+00:00",
+          "collected_at": "2026-11-06T14:43:31.238450+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/ec.py#L24"
         },
         {
@@ -5042,7 +5033,7 @@
           "content_sha256": "05b74d409d6158636eb6487a7526851bab9bc6f71ec1c6983c7c03cd2cc94eec",
           "source_sha256": "fc544d7dcb476386b4a2c1b47ea6c6da553e3471d916e8b2c24ea6328769ef9d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519026+00:00",
+          "collected_at": "2026-11-06T14:43:31.238453+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/misc.py#L7"
         },
         {
@@ -5053,7 +5044,7 @@
           "content_sha256": "ff45e726cacf161b9a430429e3241edb8cf6b0a3b38b7970dee8086c42c5c030",
           "source_sha256": "fc544d7dcb476386b4a2c1b47ea6c6da553e3471d916e8b2c24ea6328769ef9d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519030+00:00",
+          "collected_at": "2026-11-06T14:43:31.238456+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/misc.py#L9"
         },
         {
@@ -5064,7 +5055,7 @@
           "content_sha256": "00860f29eecbf17fef97f8df024ac6a0e1c1e9cbbe9369e049e938eacbea33e9",
           "source_sha256": "23cccc8f03e645102b5d2722758ac955edda2a2b14b7d24eec17a28b71595c79",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519033+00:00",
+          "collected_at": "2026-11-06T14:43:31.238460+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/__init__.py#L1"
         },
         {
@@ -5075,7 +5066,7 @@
           "content_sha256": "fb27cc95d202f1f9be5c94d5caf6544118c775bffd007789a844330fdfa96171",
           "source_sha256": "0850b1637dafc13c7c2e0d1e4afbbcbc655890dc142da543c340ac8e494a5dd9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.519037+00:00",
+          "collected_at": "2026-11-06T14:43:31.238463+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/key.py#L3"
         }
       ],
@@ -5113,8 +5104,8 @@
       ]
     },
     {
-      "id": "ddd4d383-209b-4991-83c1-385ddec148fd",
-      "public_id": "QSI-2026-11973",
+      "id": "65c73044-2438-4954-8e7e-ba39260b1b94",
+      "public_id": "QSI-2026-19307",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDH: role not determined (4 file(s))",
       "description": "9 reference(s) to ECDH across 4 file(s), e.g. vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h:49. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5139,7 +5130,7 @@
       "affected_asset": "source-code:ECDH:general",
       "data_source": "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.546445+00:00",
+      "detected_at": "2026-11-06T14:43:31.259166+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -5236,7 +5227,7 @@
           "content_sha256": "72841f4795f99327f8d386d48f812972ad9b9c93c2aaa26a78a395894af2edb0",
           "source_sha256": "7950343b5eea7112a491850ad20fd0862ae965f84ae0e8e74ea404cf83e6d12a",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.564263+00:00",
+          "collected_at": "2026-11-06T14:43:31.274530+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1_ecdh.h#L49"
         },
         {
@@ -5247,7 +5238,7 @@
           "content_sha256": "65d8983e01c7b44d6401a1272abfba2e129f3af0eaaa88497c0a871435e4b134",
           "source_sha256": "b88931b1b2f71adb0ef917064910601240f5a380b45defc0759b75e8e878279d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.564271+00:00",
+          "collected_at": "2026-11-06T14:43:31.274537+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h#L10"
         },
         {
@@ -5258,7 +5249,7 @@
           "content_sha256": "99bef9ddb51d26be8ad1c573044618a7a1801ccdcb8c468cbce745d4dbedb6bf",
           "source_sha256": "b88931b1b2f71adb0ef917064910601240f5a380b45defc0759b75e8e878279d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.564275+00:00",
+          "collected_at": "2026-11-06T14:43:31.274541+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/secp256k1/secp256k1-zkp/src/modules/ecdh/main_impl.h#L29"
         },
         {
@@ -5269,7 +5260,7 @@
           "content_sha256": "25ed92dcf661ed2360a198512a0006c9e51c0e8a86d6e1e6cb0b64dc880c0d3f",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.564278+00:00",
+          "collected_at": "2026-11-06T14:43:31.274544+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L131"
         },
         {
@@ -5280,7 +5271,7 @@
           "content_sha256": "de340041c8677f93a6eb25e7cd23f166d2c5a072a02c006e4f7b8610957dd194",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.564281+00:00",
+          "collected_at": "2026-11-06T14:43:31.274547+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L265"
         },
         {
@@ -5291,7 +5282,7 @@
           "content_sha256": "9d8302f1aac7f738489ca0a9b1da65674b762df2abcb1df8bf0ba178bd170608",
           "source_sha256": "76695a82303a769942a1d9edab23aaa9380af577ebae6ddf2eae04acc6b5d43b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.564284+00:00",
+          "collected_at": "2026-11-06T14:43:31.274550+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/ctypes_secp256k1.py#L273"
         },
         {
@@ -5302,7 +5293,7 @@
           "content_sha256": "4be965210b8e21d1911d60c3f2f6fcb51b6f14257125a3509ed6f700a5d8ed9a",
           "source_sha256": "3f0dfccabac80a6c83c0d2318582d296d0fa9cf88ab347418ba7e27af5e333c6",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.564287+00:00",
+          "collected_at": "2026-11-06T14:43:31.274553+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/secp256k1.py#L31"
         }
       ],
@@ -5340,8 +5331,8 @@
       ]
     },
     {
-      "id": "4108fc70-1e1d-4380-a2c6-385736dc817e",
-      "public_id": "QSI-2026-11977",
+      "id": "664159aa-b197-45fb-9387-5427eee65c9f",
+      "public_id": "QSI-2026-19311",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))",
       "description": "2 reference(s) to Schnorr (BIP-340) across 1 file(s), e.g. vendor/embit/src/embit/util/key.py:535. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -5366,7 +5357,7 @@
       "affected_asset": "source-code:Schnorr (BIP-340):general",
       "data_source": "vendor/embit/src/embit/util/key.py",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.603694+00:00",
+      "detected_at": "2026-11-06T14:43:31.304014+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -5463,7 +5454,7 @@
           "content_sha256": "0597a48161191ebf461aaedda31f2a87a429eaaa13531cee7adae7137e912a39",
           "source_sha256": "0850b1637dafc13c7c2e0d1e4afbbcbc655890dc142da543c340ac8e494a5dd9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.846983+00:00",
+          "collected_at": "2026-11-06T14:43:31.312899+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/key.py#L535"
         },
         {
@@ -5474,7 +5465,7 @@
           "content_sha256": "f0e6c6749e812b18bfc62efa05381551783c523260a6d2f23ec1e1f80d12e644",
           "source_sha256": "0850b1637dafc13c7c2e0d1e4afbbcbc655890dc142da543c340ac8e494a5dd9",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.846991+00:00",
+          "collected_at": "2026-11-06T14:43:31.312906+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/util/key.py#L572"
         }
       ],
@@ -5512,8 +5503,8 @@
       ]
     },
     {
-      "id": "2638a80b-811e-4d33-bd30-2083eae0baac",
-      "public_id": "QSI-2026-11971",
+      "id": "ecf60ff4-6a87-4390-9f74-f49a0142c6ee",
+      "public_id": "QSI-2026-19305",
       "rule_id": "CODE-ECB-MODE",
       "title": "ECB block-cipher mode used in src/krux/krux_settings.py",
       "description": "1 usage(s) of ECB mode (first at line 426).",
@@ -5538,7 +5529,7 @@
       "affected_asset": "file:src/krux/krux_settings.py",
       "data_source": "src/krux/krux_settings.py",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.516344+00:00",
+      "detected_at": "2026-11-06T14:43:31.235670+00:00",
       "risk_score": 30.6,
       "risk_breakdown": {
         "score": 30.6,
@@ -5594,7 +5585,7 @@
           "content_sha256": "ed4728795604753e57fcefec111b007f9f44c8bdc96aba7efd7e3380ed0704d6",
           "source_sha256": "70dd0a40cb8768fd8a3b572ffe5ec1619a56858561efd4a94ffcf8ef4f9d453c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.535717+00:00",
+          "collected_at": "2026-11-06T14:43:31.251773+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/src/krux/krux_settings.py#L426"
         }
       ],
@@ -5617,8 +5608,8 @@
       ]
     },
     {
-      "id": "596115c3-4d76-429f-ba43-0ae2725d8826",
-      "public_id": "QSI-2026-11976",
+      "id": "9b5f9092-851b-4818-b1d6-31d07ac41df3",
+      "public_id": "QSI-2026-19310",
       "rule_id": "CODE-WEAK-PBKDF2",
       "title": "Low PBKDF2 iteration count (2500) in vendor/embit/src/embit/slip39.py",
       "description": "PBKDF2 with 2500 iterations at line 51.",
@@ -5643,7 +5634,7 @@
       "affected_asset": "file:vendor/embit/src/embit/slip39.py",
       "data_source": "vendor/embit/src/embit/slip39.py",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.591783+00:00",
+      "detected_at": "2026-11-06T14:43:31.294918+00:00",
       "risk_score": 30.6,
       "risk_breakdown": {
         "score": 30.6,
@@ -5699,7 +5690,7 @@
           "content_sha256": "e0acab3c3d0997f0fb4255d3150bb54b2560dd0c4f85952ae27123e588883358",
           "source_sha256": "363e0dbd9282b7d6bd0e6aecaf04b58a3d86dd69df05eaaa1cf7df82870add79",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.606157+00:00",
+          "collected_at": "2026-11-06T14:43:31.306126+00:00",
           "url": "https://github.com/selfcustody/krux/blob/9b3a4314a205767606b1ad9fbd1da06ad908f38e/vendor/embit/src/embit/slip39.py#L51"
         }
       ],
@@ -5722,8 +5713,8 @@
       ]
     },
     {
-      "id": "70bd83ca-d783-4c85-ab4c-f71fa4de50a5",
-      "public_id": "QSI-2026-11979",
+      "id": "99bdfc68-5be0-43a0-8121-9387b5953636",
+      "public_id": "QSI-2026-19313",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "40 advisories in 8 development or build-only PyPI package(s)",
       "description": "OSV.dev lists 40 advisories (17 rated high or critical) for 8 PyPI package(s) that only development or build tooling pulls in (vendor/embit/poetry.lock): e.g. black@26.3.1 [dev]: GHSA-cg8m-r9f2-5wm2; certifi@2026.2.25 [dev]: GHSA-6q48-6c7w-9gw2; filelock@3.25.2 [dev]: GHSA-567q-5qvw-pf92, GHSA-69hj-f68j-2879, GHSA-8mx5-7m5m-r77g, GHSA-9vhv-jxww-xfm5, GHSA-cwqr-hh33-gh44, GHSA-fq56-3cx3-fjxp, GHSA-j8f7-rjxc-mr56, GHSA-rfpc-qcw5-3pc4, GHSA-v4x8-3wr5-3wq8; idna@3.11 [dev]: GHSA-65pc-fj4g-8rjx; mkdocs-material@9.7.6 [dev]: GHSA-xvg9-69gf-fjrf. The manifests mark them as such (devDependencies, \"dev\": true in package-lock.json, pnpm importers sections, [dev-dependencies]/[build-dependencies] reached through Cargo.lock, or — for yarn.lock, which records no scope at all — package.json reached through the lock graph), so they are not part of what ships.",
@@ -5748,7 +5739,7 @@
       "affected_asset": "dependencies:PyPI:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T18:52:04.852889+00:00",
+      "detected_at": "2026-11-06T14:43:31.320230+00:00",
       "risk_score": 18.3,
       "risk_breakdown": {
         "score": 18.3,
@@ -5804,7 +5795,7 @@
           "content_sha256": "47704e2f28f1e9b2997e7f58043e0a0637c52977b48edc36f9c64c07f445ea48",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T18:52:04.923815+00:00",
+          "collected_at": "2026-11-06T14:43:31.371966+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -5848,12 +5839,12 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-11972",
-      "QSI-2026-11974",
-      "QSI-2026-11975",
-      "QSI-2026-11970",
-      "QSI-2026-11973",
-      "QSI-2026-11977"
+      "QSI-2026-19306",
+      "QSI-2026-19308",
+      "QSI-2026-19309",
+      "QSI-2026-19304",
+      "QSI-2026-19307",
+      "QSI-2026-19311"
     ],
     "roles": [
       {
@@ -5869,7 +5860,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-11975"
+          "QSI-2026-19309"
         ],
         "files": 4
       },
@@ -5890,8 +5881,8 @@
           }
         ],
         "findings": [
-          "QSI-2026-11972",
-          "QSI-2026-11974"
+          "QSI-2026-19306",
+          "QSI-2026-19308"
         ],
         "files": 38
       },
@@ -5916,9 +5907,9 @@
           }
         ],
         "findings": [
-          "QSI-2026-11970",
-          "QSI-2026-11973",
-          "QSI-2026-11977"
+          "QSI-2026-19304",
+          "QSI-2026-19307",
+          "QSI-2026-19311"
         ],
         "files": 10
       }
@@ -5946,7 +5937,7 @@
           },
           {
             "algorithm": "ECDSA",
-            "rows": 43
+            "rows": 48
           },
           {
             "algorithm": "Pedersen commitment",
@@ -5990,7 +5981,7 @@
           },
           {
             "algorithm": "SHA-2",
-            "rows": 17
+            "rows": 18
           }
         ],
         "audit": "Not a break. 256-bit keys (AES-256, ChaCha20) keep a comfortable margin; AES-128 meets NIST category 1, while some authorities ask for 256-bit keys in quantum-resistant contexts (see the AES-128 entry). Prefer 256-bit keys for long-lived data; 256-bit hashes need no change for preimage resistance.",
@@ -6017,7 +6008,7 @@
           },
           {
             "algorithm": "SHA-2",
-            "rows": 17
+            "rows": 18
           }
         ],
         "audit": "256-bit hashes (SHA-256, SHA3-256) remain adequate for collision resistance; 160-bit hashes are already weak classically (SHA-1 collisions are practical). Use 384/512-bit hashes where NIST categories 4–5 are required.",
@@ -6100,7 +6091,7 @@
         "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
         "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
         "status": "todo",
-        "finding": "QSI-2026-11969",
+        "finding": "QSI-2026-19303",
         "finding_title": "ECB block-cipher mode used in src/krux/kef.py",
         "severity": "high"
       },
@@ -6118,7 +6109,7 @@
         "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
         "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
         "status": "todo",
-        "finding": "QSI-2026-11978",
+        "finding": "QSI-2026-19312",
         "finding_title": "Non-cryptographic generator next to key or seed generation in vendor/embit/src/embit/util/key.py",
         "severity": "high"
       }
@@ -6139,7 +6130,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11972",
+        "finding": "QSI-2026-19306",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))",
         "severity": "medium"
       },
@@ -6157,7 +6148,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11974",
+        "finding": "QSI-2026-19308",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))",
         "severity": "medium"
       },
@@ -6175,7 +6166,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11975",
+        "finding": "QSI-2026-19309",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))",
         "severity": "medium"
       },
@@ -6193,7 +6184,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11970",
+        "finding": "QSI-2026-19304",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (5 file(s))",
         "severity": "medium"
       },
@@ -6211,7 +6202,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11973",
+        "finding": "QSI-2026-19307",
         "finding_title": "Quantum-vulnerable ECDH: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -6229,7 +6220,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11977",
+        "finding": "QSI-2026-19311",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))",
         "severity": "medium"
       },
@@ -6247,7 +6238,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11972",
+        "finding": "QSI-2026-19306",
         "finding_title": "Quantum-vulnerable ECDSA: transaction and message signing (31 file(s))",
         "severity": "medium"
       },
@@ -6265,7 +6256,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11974",
+        "finding": "QSI-2026-19308",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (7 file(s))",
         "severity": "medium"
       },
@@ -6283,7 +6274,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11975",
+        "finding": "QSI-2026-19309",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s))",
         "severity": "medium"
       },
@@ -6301,7 +6292,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11970",
+        "finding": "QSI-2026-19304",
         "finding_title": "Quantum-vulnerable ECDSA: role not determined (5 file(s))",
         "severity": "medium"
       },
@@ -6319,7 +6310,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in TLS 1.3 or mlkem768x25519-sha256 in SSH or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11973",
+        "finding": "QSI-2026-19307",
         "finding_title": "Quantum-vulnerable ECDH: role not determined (4 file(s))",
         "severity": "medium"
       },
@@ -6337,7 +6328,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11977",
+        "finding": "QSI-2026-19311",
         "finding_title": "Quantum-vulnerable Schnorr (BIP-340): role not determined (1 file(s))",
         "severity": "medium"
       },
@@ -6355,7 +6346,7 @@
         "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
         "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
         "status": "todo",
-        "finding": "QSI-2026-11971",
+        "finding": "QSI-2026-19305",
         "finding_title": "ECB block-cipher mode used in src/krux/krux_settings.py",
         "severity": "info"
       },
@@ -6373,7 +6364,7 @@
         "post_tests": "Re-scan the source and review the call sites listed in the evidence.",
         "closure_criteria": "Re-scan the source and review the call sites listed in the evidence.",
         "status": "todo",
-        "finding": "QSI-2026-11976",
+        "finding": "QSI-2026-19310",
         "finding_title": "Low PBKDF2 iteration count (2500) in vendor/embit/src/embit/slip39.py",
         "severity": "info"
       },
@@ -6391,7 +6382,7 @@
         "post_tests": "Re-run the retest procedure from the finding.",
         "closure_criteria": "The dependency scan reports no advisories for tooling packages, or the remaining ones are recorded.",
         "status": "todo",
-        "finding": "QSI-2026-11979",
+        "finding": "QSI-2026-19313",
         "finding_title": "40 advisories in 8 development or build-only PyPI package(s)",
         "severity": "info"
       }
@@ -6671,7 +6662,8 @@
       "quantum_status": "classical_weakness",
       "classical_status": "legacy",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "third_party"
     },
     {
       "algorithm": "RIPEMD-160",
@@ -6683,7 +6675,8 @@
       "quantum_status": "classical_weakness",
       "classical_status": "legacy",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "HMAC",
@@ -6695,7 +6688,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "HMAC",
@@ -6707,7 +6701,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "HMAC",
@@ -6719,7 +6714,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "HMAC",
@@ -6731,7 +6727,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "third_party"
     },
     {
       "algorithm": "HMAC",
@@ -6743,7 +6740,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "HMAC",
@@ -6755,7 +6753,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "third_party"
     },
     {
       "algorithm": "PBKDF2",
@@ -6767,7 +6766,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "PBKDF2",
@@ -6779,7 +6779,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "PBKDF2",
@@ -6791,7 +6792,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "PBKDF2",
@@ -6803,7 +6805,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "legacy",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6815,7 +6818,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6827,7 +6831,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6839,7 +6844,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6851,7 +6857,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -6863,7 +6870,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -6875,7 +6883,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -6887,7 +6896,21 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
+    },
+    {
+      "algorithm": "SHA-2",
+      "family": "hash",
+      "parameter": "SHA-256",
+      "usage": "implementation constant: SHA-256 round constants K",
+      "library": "",
+      "location": "vendor/embit/secp256k1/secp256k1-zkp/src/hash_impl.h:54",
+      "quantum_status": "grover_reduced",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6899,7 +6922,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6911,7 +6935,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6923,7 +6948,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6935,7 +6961,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6947,7 +6974,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 14
+      "occurrences": 14,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6959,7 +6987,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 19
+      "occurrences": 19,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6971,7 +7000,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 12
+      "occurrences": 12,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6983,7 +7013,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 18
+      "occurrences": 18,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -6995,7 +7026,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "SHA-2",
@@ -7007,7 +7039,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "CBC mode",
@@ -7019,7 +7052,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "CBC mode",
@@ -7031,7 +7065,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "CBC mode",
@@ -7043,7 +7078,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "GCM mode",
@@ -7055,7 +7091,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "GCM mode",
@@ -7067,7 +7104,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "ECDH",
@@ -7079,7 +7117,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -7091,7 +7130,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -7103,7 +7143,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDH",
@@ -7115,7 +7156,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7127,7 +7169,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -7139,7 +7182,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7151,7 +7195,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7163,7 +7208,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.c:69",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7175,7 +7234,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7187,7 +7247,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 16
+      "occurrences": 16,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7199,7 +7260,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7211,7 +7273,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7223,7 +7286,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7235,7 +7299,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7247,7 +7312,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7259,7 +7325,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7271,7 +7338,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7283,7 +7351,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7295,7 +7364,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7307,7 +7377,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7319,7 +7390,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7331,7 +7403,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7343,7 +7416,34 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "vendor/embit/secp256k1/secp256k1-zkp/src/ecdsa_impl.h:24",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "vendor/embit/secp256k1/secp256k1-zkp/src/field_5x52_impl.h:46",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7355,7 +7455,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 generator x",
+      "library": "",
+      "location": "vendor/embit/secp256k1/secp256k1-zkp/src/group_impl.h:53",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7367,7 +7481,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7379,7 +7494,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7391,7 +7507,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7403,7 +7520,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7415,7 +7533,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7427,7 +7546,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 field prime p",
+      "library": "",
+      "location": "vendor/embit/secp256k1/secp256k1-zkp/src/modules/rangeproof/main_impl.h:22",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7439,7 +7572,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7451,7 +7585,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7463,7 +7598,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 19
+      "occurrences": 19,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7475,7 +7611,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7487,7 +7624,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7499,7 +7637,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 24
+      "occurrences": 24,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7511,7 +7650,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 21
+      "occurrences": 21,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7523,7 +7663,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 36
+      "occurrences": 36,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7535,7 +7676,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7547,7 +7689,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7559,7 +7702,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7571,7 +7715,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 23
+      "occurrences": 23,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7583,7 +7728,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 109
+      "occurrences": 109,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7595,7 +7741,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7607,7 +7754,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7619,7 +7767,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "ECDSA",
@@ -7631,7 +7780,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -7643,7 +7793,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "third_party"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -7655,7 +7806,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -7667,7 +7819,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "third_party"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -7679,7 +7832,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7691,7 +7845,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7703,7 +7858,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7715,7 +7871,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7727,7 +7884,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7739,7 +7897,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7751,7 +7910,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7763,7 +7923,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     },
     {
       "algorithm": "Schnorr (BIP-340)",
@@ -7775,7 +7936,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "third_party"
     }
   ],
   "inventory_grouped": [
@@ -7838,8 +8000,8 @@
       "library": "",
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
-      "count": 17,
-      "rows": 17,
+      "count": 18,
+      "rows": 18,
       "examples": [
         "firmware/Kboot/build/ktool.py:1176",
         "firmware/Kboot/src/bootloader_hi/include/sha256.h",
@@ -7907,12 +8069,12 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 12,
-      "rows": 12,
+      "count": 17,
+      "rows": 17,
       "examples": [
         "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.c:11",
         "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_parsing.h:88",
-        "vendor/embit/secp256k1/secp256k1-zkp/include/secp256k1.h:85"
+        "vendor/embit/secp256k1/secp256k1-zkp/contrib/lax_der_privatekey_parsing.c:69"
       ]
     },
     {

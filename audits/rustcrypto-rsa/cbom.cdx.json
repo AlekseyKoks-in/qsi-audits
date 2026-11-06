@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ebe6373f-95d6-4311-814f-6c4a79f33e3d",
+  "serialNumber": "urn:uuid:ccb021c6-f3aa-49f2-acf1-a6b09b5e2851",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-04T19:19:53Z",
+    "timestamp": "2026-11-06T13:50:59Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1b68270c-6629-4d1f-859a-6f8db134b89f",
+      "bom-ref": "1fb189f0-4a9d-4cae-b43d-d2746e70c250",
       "name": "Crypto library",
       "properties": [
         {
@@ -63,7 +63,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5ae0bb32-86cb-4ca0-9449-ca71a4d0f6e5",
+      "bom-ref": "0e1d4584-22ca-4718-ba7f-14c2140a9cb7",
       "name": "RSA",
       "properties": [
         {
@@ -110,7 +110,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1de1b8ae-a7dd-417c-a534-eb656dc32659",
+      "bom-ref": "7007a35a-d1e9-45d3-841b-44f469ebb15a",
       "name": "RSA",
       "properties": [
         {
@@ -161,7 +161,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "86f7f69c-be31-4d13-8608-11107117e7b3",
+      "bom-ref": "29bc471f-76e0-4c45-bfc4-31cacca55e56",
       "name": "RSA",
       "properties": [
         {
@@ -212,7 +212,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "25ac809a-ef4e-4aea-acd7-0ac10e1c3b22",
+      "bom-ref": "2c4b629a-1c7b-4c2a-9079-9cb09b7a7d10",
       "name": "RSA",
       "properties": [
         {
@@ -263,7 +263,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "96002030-c3a5-42e5-9db9-a3bd9d492969",
+      "bom-ref": "6e50f598-d39f-4aba-9255-a88d27b5a705",
       "name": "RSA",
       "properties": [
         {
@@ -314,7 +314,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "44bed013-dd6b-4890-be59-adda14a8d290",
+      "bom-ref": "87c4d22b-4343-4120-91e9-d494eb541524",
       "name": "RSA",
       "properties": [
         {
@@ -365,7 +365,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9fff7c8b-8b4c-4e45-9a83-6c555bd48fa8",
+      "bom-ref": "8560c046-e24a-4e75-89d9-f6ff3766a87d",
       "name": "SHA-2",
       "properties": [
         {
@@ -416,7 +416,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b757b043-66f9-4244-898f-34cc95e90aee",
+      "bom-ref": "e24d1bba-265b-4fab-b8f5-f81626fa472d",
       "name": "SHA-2",
       "properties": [
         {
@@ -468,7 +468,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3510e295-92a4-42d5-9f6e-8acbd25f2b2a",
+      "bom-ref": "58d887e1-5b1d-4b84-963e-16347d1c5786",
       "name": "SHA-2",
       "properties": [
         {
@@ -520,7 +520,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d6790ace-a5df-43fd-8fa3-b71ca3e1bf65",
+      "bom-ref": "b445d148-3064-4e51-bef7-a92b3875a0f6",
       "name": "SHA-2",
       "properties": [
         {

@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: safe-smart-account @ 247b8ce3bdbf
 
-*One-page brief* · Reviewed: 2026-11-04 19:21 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Safe — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:53 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Safe — public repository (passive review)
 
 Source: https://github.com/safe-global/safe-smart-account/tree/247b8ce3bdbf204a120e77f5b369d137424ddc58
 
@@ -12,13 +12,13 @@ Source: https://github.com/safe-global/safe-smart-account/tree/247b8ce3bdbf204a1
 
 ## What matters most
 
-1. **Medium** · Raw ecrecover usage in certora/harnesses/SafeHarness.sol (QSI-2026-12624) · *preliminary*\
+1. **Medium** · Raw ecrecover usage in certora/harnesses/SafeHarness.sol (QSI-2026-18794) · *preliminary*\
    What to do: Use OpenZeppelin ECDSA.recover with EIP-712 domain separation and nonces.
-2. **Medium** · Unchecked low-level call in certora/harnesses/SafeHarness.sol (QSI-2026-12625) · *preliminary*\
+2. **Medium** · Unchecked low-level call in certora/harnesses/SafeHarness.sol (QSI-2026-18795) · *preliminary*\
    What to do: Check the boolean return value or use OpenZeppelin Address.sendValue / functionCall.
-3. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (3 file(s)) (QSI-2026-12623) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (3 file(s)) (QSI-2026-18793) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-4. **Low** · Floating pragma (>=0.7.0 <0.9.0) in 50 file(s) (QSI-2026-12626)\
+4. **Low** · Floating pragma (>=0.7.0 <0.9.0) in 50 file(s) (QSI-2026-18796)\
    What to do: Pin the compiler version used in testing.
 
 2 more in the full report.
@@ -33,7 +33,7 @@ Source: https://github.com/safe-global/safe-smart-account/tree/247b8ce3bdbf204a1
 
 Static review of source code and manifests; files analysed: 77. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `2bf95ac0248f27ddee30b12ec0d10f567f58e9bf3ed85495587dedda41cc19f2`
+Full report, content SHA-256: `a78c7f23d1423e7637d8911f87319e67fed03020af9361b43d60c729eb96d13b`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: zebra @ 147a6a8bf7d3
 
-*One-page brief* · Reviewed: 2026-11-04 19:43 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Zcash Foundation — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 14:14 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Zcash Foundation — public repository (passive review)
 
 Source: https://github.com/ZcashFoundation/zebra/tree/147a6a8bf7d3b1427a9c0557f284d5bfa7b0e522
 
@@ -12,13 +12,13 @@ Source: https://github.com/ZcashFoundation/zebra/tree/147a6a8bf7d3b1427a9c0557f2
 
 ## What matters most
 
-1. **High** · quinn-proto 0.11.16 is affected by RUSTSEC-2026-0340 (QSI-2026-13024)\
+1. **High** · quinn-proto 0.11.16 is affected by RUSTSEC-2026-0340 (QSI-2026-19195)\
    What to do: Upgrade to a fixed version (0.11.18).
-2. **High** · quinn-proto 0.11.16 is affected by RUSTSEC-2026-0341 (QSI-2026-13025)\
+2. **High** · quinn-proto 0.11.16 is affected by RUSTSEC-2026-0341 (QSI-2026-19196)\
    What to do: Upgrade to a fixed version (0.11.17).
-3. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in SECURITY.md (QSI-2026-13003)\
+3. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in SECURITY.md (QSI-2026-19174)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-4. **Medium** · opentelemetry_sdk 0.31.0 is affected by GHSA-w9wp-h8wv-79jx (CVE-2026-48504) (QSI-2026-13020)\
+4. **Medium** · opentelemetry_sdk 0.31.0 is affected by GHSA-w9wp-h8wv-79jx (CVE-2026-48504) (QSI-2026-19191)\
    What to do: Upgrade to a fixed version (0.32.1).
 
 16 more in the full report.
@@ -41,7 +41,7 @@ Analyst review: 0 confirmed, 0 not applicable, 1 dismissed as false positives. (
 
 Static review of source code and manifests; files analysed: 439. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `c94d3ad48bc03d1cc0022e97e0680d3c8fcabe06a4753072a8333bd7f50a4f31`
+Full report, content SHA-256: `0bdbaa54627164d41ff5c32df8fdd31227a579b5dd0cf0f37f68914a776721c7`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

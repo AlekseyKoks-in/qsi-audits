@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "3333045da80f49858374182c3850b1c1"
           },
           "properties": {
-            "qsiId": "QSI-2026-13081",
+            "qsiId": "QSI-2026-19253",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "6f89f0407e6a493a1e36119717c018de"
           },
           "properties": {
-            "qsiId": "QSI-2026-13083",
+            "qsiId": "QSI-2026-19255",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -145,7 +145,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-13082",
+            "qsiId": "QSI-2026-19254",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -154,13 +154,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/zodl-android @ 229dd3bff749/6acac4d7-141a-4a06-bf0a-c6124d078a90"
+        "id": "qsi/zodl-android @ 229dd3bff749/a48050d8-7030-4be0-93af-16c5ace443f2"
       },
       "properties": {
-        "qsiContentSha256": "03b45dcd48862e675a425236dcd5fa3016b0ab65367cb7ad3a0de2690086f32b",
+        "qsiContentSha256": "9eded90e71bf179138c3bcbdb38ffcce8b8d11ab44f12cd52fdfa8d390e8c15a",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:47:44.235693+00:00",
+        "qsiGeneratedAt": "2026-11-06T14:17:23.610699+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

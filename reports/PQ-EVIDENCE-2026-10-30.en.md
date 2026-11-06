@@ -9,10 +9,10 @@ three. So here the same question is answered in four states, each named after **
 |---|---:|---|
 | **Implemented** | 6 | a post-quantum primitive appears at a line of source code |
 | **Named only** | 1 | the evidence is a file's *name*; the reports mark this `confidence: low` |
-| **Declared only** | 2 | a manifest makes the capability available; nothing shows it used |
-| **Absent** | 44 | no post-quantum row at all |
+| **Declared only** | 4 | a manifest or the toolchain's default makes the capability available (Go 1.24+ crypto/tls); nothing in the project chose it |
+| **Absent** | 42 | no post-quantum row at all |
 
-**9 of 53 have started on the loosest reading, and 6 on the only reading that means
+**11 of 53 have started on the loosest reading, and 6 on the only reading that means
 code.** Not one of the four states is a statement about a vendor: an absent row means absent *in the audited
 scope at a pinned commit*, and work may sit in another branch, repository or closed source.
 
@@ -21,11 +21,11 @@ scope at a pinned commit*, and work may sit in another branch, repository or clo
 | Codebase | PQ rows | Shor-breakable | What, and where the strongest row sits |
 |---|---:|---:|---|
 | `rustls` | 9 | 29 | X25519MLKEM768 ×6, SecP256r1MLKEM768 ×2, SecP384r1MLKEM1024 — `rustls-aws-lc-rs/src/kx.rs:59` |
-| `openpgpjs` | 8 | 35 | ML-DSA ×3, ML-KEM ×3, PQC library ×2 — `src/crypto/public_key/post_quantum/noble_post_quantum.ts:10` |
-| `trezor-firmware` | 7 | 73 | ML-DSA ×6, SLH-DSA — `core/embed/sec/mcu_attestation/inc/sec/mcu_attestation.h:24` |
-| `bitwarden-sdk` | 5 | 12 | ML-DSA ×3, PQC library ×2 — `crates/bitwarden-crypto/src/signing/cose.rs:7` |
+| `openpgpjs` | 8 | 32 | ML-DSA ×3, ML-KEM ×3, PQC library ×2 — `src/crypto/public_key/post_quantum/noble_post_quantum.ts:10` |
+| `trezor-firmware` | 7 | 74 | ML-DSA ×6, SLH-DSA — `core/embed/sec/mcu_attestation/inc/sec/mcu_attestation.h:24` |
+| `bitwarden-sdk` | 5 | 13 | ML-DSA ×3, PQC library ×2 — `crates/bitwarden-crypto/src/signing/cose.rs:7` |
 | `zingolib` | 3 | 3 | X25519MLKEM768 ×2, PQC library — `zingo-netutils/src/crypto.rs:25` |
-| `coinbase-cb-mpc` | 2 | 88 | ML-KEM ×2 — `src/cbmpc/crypto/mlkem768.cpp:8` |
+| `coinbase-cb-mpc` | 2 | 93 | ML-KEM ×2 — `src/cbmpc/crypto/mlkem768.cpp:8` |
 
 `trezor-firmware` is the one with the strongest claim of all: ML-DSA in MCU attestation and **SLH-DSA at
 `core/embed/sec/image/boot_header.c:30`, in the root of trust**, beside Ed25519 at line 81 of the same file — a
@@ -51,7 +51,9 @@ furthest beyond its data.
 | Codebase | PQ rows | Shor-breakable | What, and where the strongest row sits |
 |---|---:|---:|---|
 | `rage` | 3 | 13 | PQC library ×3 — `Cargo.lock` |
-| `foundry` | 1 | 16 | X25519MLKEM768 — `Cargo.toml:494` |
+| `foundry` | 1 | 17 | X25519MLKEM768 — `Cargo.toml:494` |
+| `lightwalletd` | 1 | 3 | X25519MLKEM768 — `frontend/rawrequest.go:60` |
+| `scroll` | 1 | 7 | X25519MLKEM768 — `bridge-history-api/cmd/api/app/app.go:67` |
 
 ## A correction to the predecessor report, and the defect behind it
 
@@ -87,16 +89,16 @@ rows really are a manifest and a single provider line.
 
 | Codebase | Shor-breakable rows |
 |---|---:|
-| `trustwallet-wallet-core` | 254 |
-| `bitbox02-firmware` | 104 |
-| `agave` | 103 |
-| `fireblocks-mpc-lib` | 87 |
-| `monero` | 79 |
-| `jade` | 74 |
-| `bitgo-mpc` | 66 |
-| `zebra` | 65 |
+| `trustwallet-wallet-core` | 294 |
+| `bitbox02-firmware` | 113 |
+| `agave` | 111 |
+| `jade` | 107 |
+| `monero` | 99 |
+| `fireblocks-mpc-lib` | 88 |
+| `libwally-core` | 81 |
+| `bitgo-mpc` | 68 |
 
-Across all 53 codebases, 1 729 inventory rows fall to Shor's algorithm. The point of grading the other
+Across all 53 codebases, 1 942 inventory rows fall to Shor's algorithm. The point of grading the other
 column is that "has started" and "is protected" are different questions, and only the first one is measurable
 from source at all.
 

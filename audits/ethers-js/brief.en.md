@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: ethers-js @ 3ea4c226dd0b
 
-*One-page brief* · Reviewed: 2026-11-04 18:44 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: ethers.js project — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:13 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: ethers.js project — public repository (passive review)
 
 Source: https://github.com/ethers-io/ethers.js/tree/3ea4c226dd0b3a074abf90748de9d11192027f4f
 
@@ -12,11 +12,11 @@ Source: https://github.com/ethers-io/ethers.js/tree/3ea4c226dd0b3a074abf90748de9
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (26 file(s)) (QSI-2026-11883) · *preliminary*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (26 file(s)) (QSI-2026-17987) · *preliminary*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable ECDH: role not determined (3 file(s)) (QSI-2026-11884) · *preliminary*\
+2. **Medium** · Quantum-vulnerable ECDH: role not determined (3 file(s)) (QSI-2026-17988) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in…
-3. **Medium** · Quantum-vulnerable ECDSA: role not determined (3 file(s)) (QSI-2026-11889) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDSA: role not determined (3 file(s)) (QSI-2026-17993) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
 
 ## What the quantum-vulnerable cryptography protects
@@ -32,7 +32,7 @@ Analyst review: 0 confirmed, 0 not applicable, 12 dismissed as false positives. 
 
 Static review of source code and manifests; files analysed: 759. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `b6b1cbe5d92e05967f415894ea7547340ae7be255bf1392999588cf0f4f82a90`
+Full report, content SHA-256: `f13775890fd2798bc2c6624af389afe39838e940bc0d599b6abf1834b5ddb795`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

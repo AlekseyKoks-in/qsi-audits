@@ -75,7 +75,7 @@
             "qsiFindingKey/v1": "51c0d95643bc4443dd2bc31ce8ac4783"
           },
           "properties": {
-            "qsiId": "QSI-2026-12277",
+            "qsiId": "QSI-2026-18447",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -93,7 +93,7 @@
             "qsiFindingKey/v1": "443a93f5a20512baf1e11567f110ca12"
           },
           "properties": {
-            "qsiId": "QSI-2026-12278",
+            "qsiId": "QSI-2026-18448",
             "severity": "info",
             "confidence": "medium",
             "classification": "improvement",
@@ -111,13 +111,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/pasta-curves @ e3c0f0246f56/27944377-e8dd-469d-902d-8eab841e28e7"
+        "id": "qsi/pasta-curves @ e3c0f0246f56/b73436fd-0a0d-4fbe-ad82-ada49aeeac14"
       },
       "properties": {
-        "qsiContentSha256": "02f97d2a63b9de6a907d16415561dfff45827aee3f298143449459019b8ae1cc",
+        "qsiContentSha256": "3aaf010cd64ce2d1860b664594a0eac2a96c949636573cf952d98501cd741f7e",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:12:07.276120+00:00",
+        "qsiGeneratedAt": "2026-11-06T13:43:42.140447+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

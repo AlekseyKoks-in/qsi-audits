@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: aave-v3-origin @ 8305565ae342
 
-*One-page brief* · Reviewed: 2026-11-04 18:18 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Aave DAO — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 12:50 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Aave DAO — public repository (passive review)
 
 Source: https://github.com/aave-dao/aave-v3-origin/tree/8305565ae342f1773c42cd2e4593f175fe5968a0
 
@@ -12,13 +12,13 @@ Source: https://github.com/aave-dao/aave-v3-origin/tree/8305565ae342f1773c42cd2e
 
 ## What matters most
 
-1. **High** · delegatecall usage in src/contracts/dependencies/openzeppelin/contracts/Address.sol (QSI-2026-11454) · *preliminary*\
+1. **High** · delegatecall usage in src/contracts/dependencies/openzeppelin/contracts/Address.sol (QSI-2026-17557) · *preliminary*\
    What to do: Restrict delegatecall targets to trusted, immutable implementations.
-2. **High** · delegatecall usage in… (QSI-2026-11456) · *preliminary*\
+2. **High** · delegatecall usage in… (QSI-2026-17559) · *preliminary*\
    What to do: Restrict delegatecall targets to trusted, immutable implementations.
-3. **High** · initialize() without initializer modifier in… (QSI-2026-11457) · *preliminary*\
+3. **High** · initialize() without initializer modifier in… (QSI-2026-17560) · *preliminary*\
    What to do: Use OpenZeppelin Initializable (initializer modifier) and disable initializers in the implementation constructor.
-4. **High** · delegatecall usage in… (QSI-2026-11458) · *preliminary*\
+4. **High** · delegatecall usage in… (QSI-2026-17561) · *preliminary*\
    What to do: Restrict delegatecall targets to trusted, immutable implementations.
 
 22 more in the full report.
@@ -33,7 +33,7 @@ Source: https://github.com/aave-dao/aave-v3-origin/tree/8305565ae342f1773c42cd2e
 
 Static review of source code and manifests; files analysed: 645. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `86df8a5f4dd0cb24515c135a01ce96303800f1daf549690b544c35378b6bb7de`
+Full report, content SHA-256: `ccca0cb5e9296152a5b2191011a5dd1c3bc67086ea2bcd6d9ded783c5e6ea570`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

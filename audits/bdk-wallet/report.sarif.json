@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-13332",
+            "qsiId": "QSI-2026-17720",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,7 +68,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-13333",
+            "qsiId": "QSI-2026-17721",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -86,7 +86,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-13331",
+            "qsiId": "QSI-2026-17719",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -95,13 +95,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/bdk-wallet @ 09c677305139/2176d8eb-53a1-43a0-8359-8f37c9e36a42"
+        "id": "qsi/bdk-wallet @ 09c677305139/abbbcbf6-c36c-4857-bacd-150b96c80177"
       },
       "properties": {
-        "qsiContentSha256": "ec70b5334bd4d1719b95e7da1090e7877b4a29abeba0b0ca1ee59ccac1ed9acb",
+        "qsiContentSha256": "3264ceace7408f585995c63f76424727be6b2beabd09b3d6d7250a61d7c60b39",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T20:14:10.026063+00:00",
+        "qsiGeneratedAt": "2026-11-06T12:54:51.701659+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

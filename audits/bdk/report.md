@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-04 20:13 UTC |
+| Report date | 2026-11-06 12:54 UTC |
 | Report version | 1 |
-| Audit run | 1b96b952-ec67-48fd-a3c4-a009fb69fe9a (Document audit) |
+| Audit run | 2a9df95e-9959-43a5-a637-3e7b07f304cc (Document audit) |
 | Analyzer engine | qsi-engine 1.3.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `59ffd452de4aa332fec2fab0ef94887896d51b13df2992df5d90513da39d4abe` |
+| Content SHA-256 | `95752fd04b542a6ac39fb243df69a7edd813f6c4f3e4845154c658f482fc2657` |
 | Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -46,7 +46,7 @@ Repository: <https://github.com/bitcoindevkit/bdk> @ `f2528da88b1041bdddf547d677
 | Area | Status | Count | Examples |
 |---|---|---|---|
 | dependencies | checked | 7 | crates/bitcoind_rpc/Cargo.toml: 4 dependencies parsed (0 pinned); crates/chain/Cargo.toml: 9 dependencies parsed (0 pinned); crates/core/Cargo.toml: 5 dependencies parsed (0 pinned) |
-| source_code | checked | 37 | crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 145 registry patterns; crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 145 registry patterns; 137 lines in #[cfg(test)] modules ignored; crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 145 registry patterns; 38 lines in #[cfg(test)] modules ignored |
+| source_code | checked | 37 | crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 266 registry patterns; crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 266 registry patterns; 137 lines in #[cfg(test)] modules ignored; crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 266 registry patterns; 38 lines in #[cfg(test)] modules ignored |
 | entropy | checked | 1 | random-number generation: 37 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s) |
 | osv_advisories | not checked | 1 | no exactly pinned versions to query |
 
@@ -67,13 +67,13 @@ Static review of the source tree bdk at f2528da88b1041bdddf547d677511aea19ad3573
 
 ## 7. Detailed findings
 
-### QSI-2026-13330 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-17718 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: crates/chain/src/spk_iter.rs
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 20:13 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 12:54 UTC
 - Priority score: 35.6 / 100
 - CVSS v3.1: not applicable
 
@@ -144,7 +144,7 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (1) | QSI-2026-13330 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **transaction and message signing** | ECDSA (1) | QSI-2026-17718 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -178,8 +178,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-13330 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-13330 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-17718 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-17718 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -213,6 +213,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 13. R. Babbush et al. — Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities: Resource Estimates and Mitigations (arXiv:2603.28846) — arXiv. <https://arxiv.org/abs/2603.28846> (preprint (2026-03-30, v2 2026-04-15): 256-bit ECDLP with < 1200 logical qubits and < 90 M Toffoli gates (or < 1450 and < 70 M); < 500,000 physical qubits at 10^-3 error, minutes)
 
 ## Appendices: Cryptographic inventory
+
+By origin: own code 1 (1 Shor-breakable).
 
 | Algorithm | Parameter | Library | Location | Quantum status | Classical status |
 |---|---|---|---|---|---|

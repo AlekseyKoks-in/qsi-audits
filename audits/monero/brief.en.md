@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: monero @ 3fd0f88c20f5
 
-*One-page brief* · Reviewed: 2026-11-05 10:19 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Monero — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:33 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Monero — public repository (passive review)
 
 Source: https://github.com/monero-project/monero/tree/3fd0f88c20f559839cafb20911cb13cb45eba7bd
 
@@ -12,13 +12,13 @@ Source: https://github.com/monero-project/monero/tree/3fd0f88c20f559839cafb20911
 
 ## What matters most
 
-1. **Medium** · Transaction signing for 1 chain(s) relies on elliptic-curve signatures (QSI-2026-14384)\
+1. **Medium** · Transaction signing for 1 chain(s) relies on elliptic-curve signatures (QSI-2026-18341)\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in utils/gpg_keys/0xfffc0000.asc (QSI-2026-14349)\
+2. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in utils/gpg_keys/0xfffc0000.asc (QSI-2026-18306)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-3. **Medium** · Quantum-vulnerable RSA key (4096-bit) in utils/gpg_keys/SNeedlewoods.asc (QSI-2026-14350)\
+3. **Medium** · Quantum-vulnerable RSA key (4096-bit) in utils/gpg_keys/SNeedlewoods.asc (QSI-2026-18307)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
-4. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in utils/gpg_keys/anon.asc (QSI-2026-14351)\
+4. **Medium** · Quantum-vulnerable Ed25519 key (Ed25519) in utils/gpg_keys/anon.asc (QSI-2026-18308)\
    What to do: Inventory and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it..
 
 37 more in the full report.
@@ -39,7 +39,7 @@ Advisories for the versions in use: 1; unlikely to apply to this build: 1 (a Car
 
 Static review of source code and manifests; files analysed: 1117. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `30240b44797dc95763c2fe857ca97db1c8166204b6e416584d06d6f87b710499`
+Full report, content SHA-256: `1d9664258194550349519ede88657844d15a0ca6876dce93bd2adaf7fadd3acd`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

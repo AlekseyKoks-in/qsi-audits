@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-12813",
+            "qsiId": "QSI-2026-19257",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,7 +68,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-12815",
+            "qsiId": "QSI-2026-19259",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -86,7 +86,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-12812",
+            "qsiId": "QSI-2026-19256",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +104,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-12814",
+            "qsiId": "QSI-2026-19258",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -113,13 +113,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/secp256k1 @ 1b4181f93f7a/c6592253-efda-4229-89c3-0a1d1d792ff6"
+        "id": "qsi/secp256k1 @ 1b4181f93f7a/3ecb8bb3-d3ba-4187-a476-95b8774fdeab"
       },
       "properties": {
-        "qsiContentSha256": "df6c0ce6489e5158bf5c2d7d7168387c8cea5fc39bdd0e3f82e73231addc5521",
+        "qsiContentSha256": "b2eba808578c3ddd17cd99b1e5738564388cf08523b9d91b4ebbc533a3017666",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:25:05.276932+00:00",
+        "qsiGeneratedAt": "2026-11-06T14:35:08.724514+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

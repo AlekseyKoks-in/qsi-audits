@@ -4,12 +4,12 @@
 | | |
 |---|---|
 | Organization | QSI |
-| Report date | 2026-11-04 19:25 UTC |
+| Report date | 2026-11-06 13:57 UTC |
 | Report version | 1 |
-| Audit run | b01f7e22-9418-4a84-ac38-cae35df8b502 (Document audit) |
+| Audit run | 87733b6d-a403-43e6-96bc-93e4e1806be1 (Document audit) |
 | Analyzer engine | qsi-engine 1.3.0 |
 | Risk profile | Crypto exchange, custodian or wallet |
-| Content SHA-256 | `0d233bfb8d1a65a906d6c82ae8f7ee22cae7fe48eb5749141f8ef70df99894fd` |
+| Content SHA-256 | `01996796bcafb8fce4023132d4bba49a64437dd673f115989e79cf74109bfa43` |
 | Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json) | `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e` |
 > This report presents automated and documented analysis results for the stated scope. It is not a legal opinion, a certification or an attestation of compliance with any standard.
 
@@ -49,7 +49,7 @@ Repository: <https://github.com/SeedSigner/seedsigner> @ `ada81cde050e46c19cb6e3
 |---|---|---|---|
 | dependencies | checked | 5 | l10n/requirements-l10n.txt: 2 dependencies parsed (0 pinned); pyproject.toml: 0 dependencies parsed (0 pinned); requirements-raspi.txt: 4 dependencies parsed (4 pinned) |
 | certificates_and_keys | checked | 1 | seedsigner_pubkey.gpg: certificates/keys parsed |
-| source_code | checked | 70 | setup.py: 8 lines scanned with 16 rule patterns and 145 registry patterns; src/main.py: 53 lines scanned with 16 rule patterns and 145 registry patterns; src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 145 registry patterns |
+| source_code | checked | 70 | setup.py: 8 lines scanned with 16 rule patterns and 266 registry patterns; src/main.py: 53 lines scanned with 16 rule patterns and 266 registry patterns; src/seedsigner/__init__.py: 0 lines scanned with 16 rule patterns and 266 registry patterns |
 | entropy | checked | 1 | random-number generation: 70 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 2 weak key-generation site(s) |
 | osv_advisories | checked | 1 | 5 pinned packages queried at OSV.dev; 0 affected |
 
@@ -70,13 +70,13 @@ Static review of the source tree seedsigner at ada81cde050e46c19cb6e3fa73872b739
 
 ## 7. Detailed findings
 
-### QSI-2026-12818 — Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py
+### QSI-2026-18989 — Non-cryptographic generator next to key or seed generation in src/seedsigner/views/seed_views.py
 
 - Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `src/seedsigner/views/seed_views.py:keygen`
 - Data source: src/seedsigner/views/seed_views.py
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: entropy 1.3.0 · 2026-11-04 19:25 UTC
+- Analyzer: entropy 1.3.0 · 2026-11-06 13:57 UTC
 - Priority score: 38.8 / 100
 - CVSS v3.1: not applicable
 
@@ -128,13 +128,13 @@ _file_excerpt · [src/seedsigner/views/seed_views.py](https://github.com/SeedSig
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-12819 — Non-cryptographic generator next to key or seed generation in tools/mnemonic.py
+### QSI-2026-18990 — Non-cryptographic generator next to key or seed generation in tools/mnemonic.py
 
 - Severity: **High** · Classification: Potential cryptographic risk · Confidence: Medium · _preliminary — requires further verification_
 - Affected asset: `tools/mnemonic.py:keygen`
 - Data source: tools/mnemonic.py
 - Detection method: Regular-expression matching of language-specific API patterns.
-- Analyzer: entropy 1.3.0 · 2026-11-04 19:25 UTC
+- Analyzer: entropy 1.3.0 · 2026-11-06 13:57 UTC
 - Priority score: 38.8 / 100
 - CVSS v3.1: not applicable
 
@@ -186,13 +186,13 @@ _file_excerpt · [tools/mnemonic.py](https://github.com/SeedSigner/seedsigner/bl
 
 **Retest procedure.** Re-scan the source and review the call sites listed in the evidence.
 
-### QSI-2026-12816 — Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg
+### QSI-2026-18987 — Quantum-vulnerable RSA key (3072-bit) in seedsigner_pubkey.gpg
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: High
 - Affected asset: `file:seedsigner_pubkey.gpg#line 1`
 - Data source: seedsigner_pubkey.gpg
 - Detection method: Public key parsing.
-- Analyzer: certificates 1.3.0 · 2026-11-04 19:25 UTC
+- Analyzer: certificates 1.3.0 · 2026-11-06 13:57 UTC
 - Priority score: 50.3 / 100
 - CVSS v3.1: not applicable
 
@@ -226,14 +226,14 @@ OpenPGP subkey: algorithm ID 1 (RSA) 3072-bit
 
 **Retest procedure.** Re-audit after migration.
 
-### QSI-2026-12817 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
+### QSI-2026-18988 — Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))
 
 - Severity: **Medium** · Classification: Long-term post-quantum risk · Confidence: Medium
 > **Analyst review (QSI review, 2026-10-29): confirmed by the analyst.** Correct, and it is the only row of its kind because it is the only place SeedSigner touches the primitive itself: src/seedsigner/helpers/embit_utils.py:10, the wrapper around embit. Everything that signs is embit's, and embit is not in this tree. Three consequences worth stating rather than leaving implied. First, the honest reading of "1 Shor-breakable row" is "this repository delegates its signing", not "this device is nearly post-quantum". Second, the pin is exact and hash-locked (embit==0.8.0 with a sha256 --hash), so the audited exposure is a specific, reproducible artefact rather than a version range — which is what makes the delegation auditable at all, and is the opposite of a criticism. Third, the migration question for SeedSigner is therefore not "when will SeedSigner adopt a post-quantum signature" but "when will embit", and after that, "how fast can a hash-locked pin be moved" — which is a release away, not a redesign. Compare Krux, which pins the same library as a git submodule and so carries the same code inside its own tree: 98 rows and 64 Shor-breakable for the same cryptography, differing only in where it is kept.
 - Affected asset: `source-code:ECDSA:transaction_signing`
 - Data source: src/seedsigner/helpers/embit_utils.py
 - Detection method: Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.
-- Analyzer: source_code 1.3.0 · 2026-11-04 19:25 UTC
+- Analyzer: source_code 1.3.0 · 2026-11-06 13:57 UTC
 - Priority score: 41.8 / 100
 - CVSS v3.1: not applicable
 
@@ -312,7 +312,7 @@ _Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hy
 
 | Role | Algorithms (files) | ID | First step |
 |---|---|---|---|
-| **transaction and message signing** | ECDSA (1) | QSI-2026-12817 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
+| **transaction and message signing** | ECDSA (1) | QSI-2026-18988 | Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them |
 
 _Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today._
 No readiness questionnaire was completed for this project.
@@ -340,8 +340,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P1 | QSI-2026-12818 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
-| P1 | QSI-2026-12819 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P1 | QSI-2026-18989 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
+| P1 | QSI-2026-18990 | Use the platform CSPRNG (secrets, os.urandom, crypto.getRandomValues, crypto/rand, SecureRandom, OsRng) or a hardware TRNG for every key, seed and mnemonic. | root-cause fix | Re-scan the source and review the call sites listed in the evidence. |
 ### 60 days
 
 | Priority | ID | Action | Type | Closure criteria |
@@ -350,10 +350,10 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 
 | Priority | ID | Action | Type | Closure criteria |
 |---|---|---|---|---|
-| P3 | QSI-2026-12816 | Add RSA usages at file:seedsigner_pubkey.gpg to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P3 | QSI-2026-12817 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
-| P4 | QSI-2026-12816 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
-| P4 | QSI-2026-12817 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
+| P3 | QSI-2026-18987 | Add RSA usages at file:seedsigner_pubkey.gpg to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P3 | QSI-2026-18988 | Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers). | short-term risk reduction | Inventory entry with owner, lifetime and target algorithm exists. |
+| P4 | QSI-2026-18987 | Plan migration of RSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it. or a hybrid scheme in use. |
+| P4 | QSI-2026-18988 | Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties. | root-cause fix | Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use. |
 
 ## 11. Tools used
 
@@ -400,6 +400,8 @@ _Effects: breaks — replace the algorithm; weakens — larger keys or outputs r
 26. S. Jaques, M. Naehrig, M. Roetteler, F. Virdia — Implementing Grover oracles for quantum key search on AES and LowMC (EUROCRYPT 2020; arXiv:1910.01700) — Springer / arXiv. <https://arxiv.org/abs/1910.01700> (peer-reviewed article: lower cost estimates for the AES key searches that define the NIST categories)
 
 ## Appendices: Cryptographic inventory
+
+By origin: keys and certificates 2 (2 Shor-breakable) · own code 7 (1 Shor-breakable).
 
 | Algorithm | Parameter | Library | Location | Quantum status | Classical status |
 |---|---|---|---|---|---|

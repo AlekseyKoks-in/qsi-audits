@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:4f1f7bac-150b-487e-8267-0f65131f5138",
+  "serialNumber": "urn:uuid:c07bd7cf-0acd-46d0-8ba9-9aef5ff2a4f5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-04T19:12:11Z",
+    "timestamp": "2026-11-06T13:43:47Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8d576ea0-6249-4f91-bbca-2c49c037e2b4",
+      "bom-ref": "be824040-6811-4456-8042-8a9de98c58f2",
       "name": "Pasta curves (Pallas/Vesta)",
       "properties": [
         {
@@ -68,7 +68,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "de268521-2ea1-49cf-aa5a-e9d1caeb6b8c",
+      "bom-ref": "00cb3ddd-23a8-4fa7-9f1a-3d6139716d0e",
       "name": "Pasta curves (Pallas/Vesta)",
       "properties": [
         {
@@ -117,7 +117,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f593f181-218f-41fd-a199-e00f1498e9ca",
+      "bom-ref": "0a1b5e38-2edc-4cf5-a65c-ff483deece28",
       "name": "Pasta curves (Pallas/Vesta)",
       "properties": [
         {
@@ -166,7 +166,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c3ef5b50-5705-44e7-aded-b0a49d9c1b82",
+      "bom-ref": "023b36c3-8148-46b3-9ce2-8077cbd77b1f",
       "name": "Pasta curves (Pallas/Vesta)",
       "properties": [
         {
@@ -212,7 +212,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "baa0e8e3-4e0e-449a-b51a-b67865cd3566",
+      "bom-ref": "44f7bb48-d8d2-4cf9-8847-09682e038eb4",
       "name": "Pasta curves (Pallas/Vesta)",
       "properties": [
         {

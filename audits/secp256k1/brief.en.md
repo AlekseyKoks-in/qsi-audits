@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: secp256k1 @ 1b4181f93f7a
 
-*One-page brief* · Reviewed: 2026-11-04 19:25 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Bitcoin Core (libsecp256k1) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 14:35 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Bitcoin Core (libsecp256k1) — public repository (passive review)
 
 Source: https://github.com/bitcoin-core/secp256k1/tree/1b4181f93f7a53639223ced4c347d0d0d2c2ff9c
 
@@ -12,13 +12,13 @@ Source: https://github.com/bitcoin-core/secp256k1/tree/1b4181f93f7a53639223ced4c
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (10 file(s)) (QSI-2026-12813) · *confirmed by the analyst*\
+1. **Medium** · Quantum-vulnerable ECDSA: transaction and message signing (10 file(s)) (QSI-2026-19257) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-2. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s)) (QSI-2026-12815) · *confirmed by the analyst*\
+2. **Medium** · Quantum-vulnerable Schnorr (BIP-340): transaction and message signing (3 file(s)) (QSI-2026-19259) · *confirmed by the analyst*\
    What to do: Follow each chain's post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains…
-3. **Medium** · Quantum-vulnerable ECDSA: role not determined (13 file(s)) (QSI-2026-12812) · *confirmed by the analyst*\
+3. **Medium** · Quantum-vulnerable ECDSA: role not determined (13 file(s)) (QSI-2026-19256) · *confirmed by the analyst*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-4. **Medium** · Quantum-vulnerable ECDH: role not determined (4 file(s)) (QSI-2026-12814) · *confirmed by the analyst*\
+4. **Medium** · Quantum-vulnerable ECDH: role not determined (4 file(s)) (QSI-2026-19258) · *confirmed by the analyst*\
    What to do: Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in…
 
 ## What the quantum-vulnerable cryptography protects
@@ -32,9 +32,9 @@ Analyst review: 4 confirmed, 0 not applicable, 0 dismissed as false positives. (
 
 ---
 
-Static review of source code and manifests; files analysed: 90. No requests were sent to the owner's systems.
+Static review of source code and manifests; files analysed: 85. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `df6c0ce6489e5158bf5c2d7d7168387c8cea5fc39bdd0e3f82e73231addc5521`
+Full report, content SHA-256: `b2eba808578c3ddd17cd99b1e5738564388cf08523b9d91b4ebbc533a3017666`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

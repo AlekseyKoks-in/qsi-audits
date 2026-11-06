@@ -1,8 +1,8 @@
 {
-  "content_sha256": "e56cf1018211bae7b2d7583db90895e5a9dc121ed95c664de743328a671a9f5b",
+  "content_sha256": "23fbd77d28cfee88fe35b18ec32795741bb197e17d217cbdef227c02036a02e3",
   "schema": "qsi.report/1",
   "language": "en",
-  "generated_at": "2026-11-04T18:45:07.357196+00:00",
+  "generated_at": "2026-11-06T13:14:34.459116+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "92e20a21-f187-4881-8325-8e840f68589f",
+    "id": "1b8fa6af-00da-4c82-aae7-66504b9373a8",
     "mode": "document",
     "title": "Document audit: fireblocks-mpc-lib-en",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T18:45:00.242895+00:00",
-    "finished_at": "2026-11-04T18:45:07.215025+00:00",
+    "started_at": "2026-11-06T13:14:27.501351+00:00",
+    "finished_at": "2026-11-06T13:14:34.307348+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Crypto exchange, custodian or wallet",
     "parameters": {
@@ -852,312 +852,312 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": "include/blockchain/mpc/hd_derive.h: 59 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/blockchain/mpc/hd_derive.h: 59 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/asymmetric_eddsa_cosigner.h: 54 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/asymmetric_eddsa_cosigner.h: 54 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/asymmetric_eddsa_cosigner_client.h: 51 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/asymmetric_eddsa_cosigner_client.h: 51 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/asymmetric_eddsa_cosigner_server.h: 79 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/asymmetric_eddsa_cosigner_server.h: 79 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_ecdsa_cosigner.h: 305 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_ecdsa_cosigner.h: 305 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_ecdsa_cosigner_client.h: 135 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_ecdsa_cosigner_client.h: 135 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_ecdsa_cosigner_server.h: 119 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_ecdsa_cosigner_server.h: 119 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_key_persistency_client.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_key_persistency_client.h: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_key_persistency_common.h: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_key_persistency_common.h: 28 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_key_persistency_server.h: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_key_persistency_server.h: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_key_persistency_structures.h: 42 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_key_persistency_structures.h: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_key_persistency_structures_client.h: 37 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_key_persistency_structures_client.h: 37 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_key_persistency_structures_server.h: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_key_persistency_structures_server.h: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_tx_persistency_client.h: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_tx_persistency_client.h: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_tx_persistency_common.h: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_tx_persistency_common.h: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_tx_persistency_server.h: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_tx_persistency_server.h: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_tx_persistency_structures.h: 42 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_tx_persistency_structures.h: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_tx_persistency_structures_client.h: 13 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_tx_persistency_structures_client.h: 13 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/bam_tx_persistency_structures_server.h: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/bam_tx_persistency_structures_server.h: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cmp_ecdsa_offline_signing_service.h: 60 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cmp_ecdsa_offline_signing_service.h: 60 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cmp_ecdsa_online_signing_service.h: 66 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cmp_ecdsa_online_signing_service.h: 66 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cmp_ecdsa_signing_service.h: 179 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cmp_ecdsa_signing_service.h: 179 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cmp_key_persistency.h: 67 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cmp_key_persistency.h: 67 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cmp_offline_refresh_service.h: 64 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cmp_offline_refresh_service.h: 64 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cmp_setup_service.h: 129 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cmp_setup_service.h: 129 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cmp_signature_preprocessed_data.h: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cmp_signature_preprocessed_data.h: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cosigner_exception.h: 164 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cosigner_exception.h: 164 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/cosigner_status.h: 17 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/cosigner_status.h: 17 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/eddsa_online_signing_service.h: 81 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/eddsa_online_signing_service.h: 81 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_cosigner.h: 130 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_cosigner.h: 130 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_cosigner_client.h: 56 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_cosigner_client.h: 56 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_cosigner_server.h: 52 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_cosigner_server.h: 52 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_key_persistency_client.h: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_key_persistency_client.h: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_key_persistency_common.h: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_key_persistency_common.h: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_key_persistency_server.h: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_key_persistency_server.h: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_key_persistency_structures.h: 24 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_key_persistency_structures.h: 24 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_key_persistency_structures_server.h: 19 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_key_persistency_structures_server.h: 19 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_tx_persistency.h: 23 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_tx_persistency.h: 23 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/frost_tx_persistency_structures.h: 31 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/frost_tx_persistency_structures.h: 31 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/key_persistency_base.h: 15 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/key_persistency_base.h: 15 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/mpc_globals.h: 30 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/mpc_globals.h: 30 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/platform_service.h: 80 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/platform_service.h: 80 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/prf.h: 39 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/prf.h: 39 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/sign_algorithm.h: 15 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/sign_algorithm.h: 15 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/timing_map.h: 39 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/timing_map.h: 39 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/cosigner/types.h: 170 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/cosigner/types.h: 170 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/GFp_curve_algebra/GFp_curve_algebra.h: 62 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/GFp_curve_algebra/GFp_curve_algebra.h: 62 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/algebra_utils/algebra_utils.h: 225 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/algebra_utils/algebra_utils.h: 225 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/algebra_utils/status_convert.h: 17 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/algebra_utils/status_convert.h: 17 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/commitments/commitments.h: 60 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/commitments/commitments.h: 60 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/commitments/damgard_fujisaki.h: 180 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/commitments/damgard_fujisaki.h: 180 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/commitments/pedersen.h: 107 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/commitments/pedersen.h: 107 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/commitments/ring_pedersen.h: 56 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/commitments/ring_pedersen.h: 56 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/common/byteswap.h: 9 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/common/byteswap.h: 9 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/drng/drng.h: 32 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/drng/drng.h: 32 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/ed25519_algebra/ed25519_algebra.h: 76 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/ed25519_algebra/ed25519_algebra.h: 76 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/elliptic_curve_algebra/elliptic_curve256_algebra.h: 102 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/elliptic_curve_algebra/elliptic_curve256_algebra.h: 102 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/elliptic_curve_algebra/elliptic_curve_algebra_status.h: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/elliptic_curve_algebra/elliptic_curve_algebra_status.h: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/keccak1600/keccak1600.h: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/keccak1600/keccak1600.h: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/paillier/paillier.h: 84 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/paillier/paillier.h: 84 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/paillier_commitment/paillier_commitment.h: 347 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/paillier_commitment/paillier_commitment.h: 347 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/shamir_secret_sharing/verifiable_secret_sharing.h: 85 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/shamir_secret_sharing/verifiable_secret_sharing.h: 85 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1167,307 +1167,307 @@
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/zero_knowledge_proof/diffie_hellman_log.h: 42 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/zero_knowledge_proof/diffie_hellman_log.h: 42 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/zero_knowledge_proof/range_proofs.h: 356 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/zero_knowledge_proof/range_proofs.h: 356 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/zero_knowledge_proof/schnorr.h: 34 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/zero_knowledge_proof/schnorr.h: 34 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/crypto/zero_knowledge_proof/zero_knowledge_proof_status.h: 14 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/crypto/zero_knowledge_proof/zero_knowledge_proof_status.h: 14 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/logging/logging_t.h: 35 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/logging/logging_t.h: 35 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "include/utils/string_utils.h: 33 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "include/utils/string_utils.h: 33 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/blockchain/mpc/hd_derive.cpp: 181 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/blockchain/mpc/hd_derive.cpp: 181 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/asymmetric_eddsa_cosigner.cpp: 83 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/asymmetric_eddsa_cosigner.cpp: 83 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/asymmetric_eddsa_cosigner_client.cpp: 202 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/asymmetric_eddsa_cosigner_client.cpp: 202 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp: 551 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp: 551 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/bam_ecdsa_cosigner.cpp: 373 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/bam_ecdsa_cosigner.cpp: 373 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/bam_ecdsa_cosigner_client.cpp: 790 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/bam_ecdsa_cosigner_client.cpp: 790 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/bam_ecdsa_cosigner_server.cpp: 974 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/bam_ecdsa_cosigner_server.cpp: 974 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/bam_key_persistency_structures.cpp: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/bam_key_persistency_structures.cpp: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/bam_well_formed_proof.cpp: 492 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/bam_well_formed_proof.cpp: 492 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/bam_well_formed_proof.h: 43 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/bam_well_formed_proof.h: 43 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp: 490 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp: 490 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cmp_ecdsa_online_signing_service.cpp: 525 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cmp_ecdsa_online_signing_service.cpp: 525 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cmp_ecdsa_signing_service.cpp: 318 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cmp_ecdsa_signing_service.cpp: 318 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cmp_key_persistency.cpp: 12 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cmp_key_persistency.cpp: 12 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cmp_offline_refresh_service.cpp: 263 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cmp_offline_refresh_service.cpp: 263 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cmp_setup_service.cpp: 1023 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cmp_setup_service.cpp: 1023 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cosigner_bn.h: 73 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cosigner_bn.h: 73 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/cosigner_exception.cpp: 158 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/cosigner_exception.cpp: 158 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/eddsa_online_signing_service.cpp: 509 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/eddsa_online_signing_service.cpp: 509 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/frost_cosigner.cpp: 374 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/frost_cosigner.cpp: 374 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/frost_cosigner_client.cpp: 313 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/frost_cosigner_client.cpp: 313 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/frost_cosigner_server.cpp: 450 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/frost_cosigner_server.cpp: 450 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/mta.cpp: 1671 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/mta.cpp: 1671 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/mta.h: 184 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/mta.h: 184 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/platform_service.cpp: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/platform_service.cpp: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/timing_map.cpp: 58 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/timing_map.cpp: 58 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/utils.cpp: 167 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/utils.cpp: 167 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/cosigner/utils.h: 89 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/cosigner/utils.h: 89 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/GFp_curve_algebra/GFp_curve_algebra.c: 1414 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/GFp_curve_algebra/GFp_curve_algebra.c: 1414 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/algebra_utils/algebra_utils.c: 406 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/algebra_utils/algebra_utils.c: 406 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/algebra_utils/status_convert.c: 81 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/algebra_utils/status_convert.c: 81 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/commitments/commitments.c: 133 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/commitments/commitments.c: 133 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/commitments/damgard_fujisaki.c: 959 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/commitments/damgard_fujisaki.c: 959 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/commitments/damgard_fujisaki_internal.h: 46 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/commitments/damgard_fujisaki_internal.h: 46 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/commitments/pedersen.c: 137 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/commitments/pedersen.c: 137 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/commitments/ring_pedersen.c: 1328 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/commitments/ring_pedersen.c: 1328 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/commitments/ring_pedersen_internal.h: 36 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/commitments/ring_pedersen_internal.h: 36 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/drng/drng.c: 74 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/drng/drng.c: 74 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/ed25519_algebra/curve25519.c: 5597 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/ed25519_algebra/curve25519.c: 5597 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/ed25519_algebra/ec_lcl.h: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/ed25519_algebra/ec_lcl.h: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/ed25519_algebra/ed25519_algebra.c: 1135 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/ed25519_algebra/ed25519_algebra.c: 1135 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/keccak1600/keccak1600.c: 86 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/keccak1600/keccak1600.c: 86 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/paillier/alpha.h: 984 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/paillier/alpha.h: 984 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/paillier/paillier.c: 1925 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/paillier/paillier.c: 1925 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/paillier/paillier_internal.h: 46 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/paillier/paillier_internal.h: 46 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/paillier/paillier_zkp.c: 1658 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/paillier/paillier_zkp.c: 1658 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/paillier_commitment/paillier_commitment.c: 1987 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/paillier_commitment/paillier_commitment.c: 1987 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/paillier_commitment/paillier_commitment_internal.h: 82 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/paillier_commitment/paillier_commitment_internal.h: 82 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/shamir_secret_sharing/verifiable_secret_sharing.c: 641 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/shamir_secret_sharing/verifiable_secret_sharing.c: 641 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/zero_knowledge_proof/damgard_fujisaki_zkp.c: 650 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/zero_knowledge_proof/damgard_fujisaki_zkp.c: 650 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/zero_knowledge_proof/diffie_hellman_log.c: 203 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/zero_knowledge_proof/diffie_hellman_log.c: 203 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/zero_knowledge_proof/range_proofs.c: 3575 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/zero_knowledge_proof/range_proofs.c: 3575 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/zero_knowledge_proof/schnorr.c: 186 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/zero_knowledge_proof/schnorr.c: 186 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/crypto/zero_knowledge_proof/zkp_constants_internal.h: 47 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/crypto/zero_knowledge_proof/zkp_constants_internal.h: 47 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/common/logging/logging_t.c: 46 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/common/logging/logging_t.c: 46 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1483,9 +1483,9 @@
       "count": 123,
       "rows": 123,
       "examples": [
-        "include/blockchain/mpc/hd_derive.h: 59 lines scanned with 16 rule patterns and 145 registry patterns",
-        "include/cosigner/asymmetric_eddsa_cosigner.h: 54 lines scanned with 16 rule patterns and 145 registry patterns",
-        "include/cosigner/asymmetric_eddsa_cosigner_client.h: 51 lines scanned with 16 rule patterns and 145 registry patterns"
+        "include/blockchain/mpc/hd_derive.h: 59 lines scanned with 16 rule patterns and 266 registry patterns",
+        "include/cosigner/asymmetric_eddsa_cosigner.h: 54 lines scanned with 16 rule patterns and 266 registry patterns",
+        "include/cosigner/asymmetric_eddsa_cosigner_client.h: 51 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -1670,17 +1670,23 @@
     "total": 7,
     "posture_index": 100,
     "pq_vulnerable_share": 97.8,
-    "inventory_total": 89,
+    "inventory_total": 90,
     "inventory_by_quantum_status": {
       "grover_margin": 1,
       "grover_reduced": 1,
-      "vulnerable_shor": 87
+      "vulnerable_shor": 88
+    },
+    "inventory_by_origin": {
+      "own": {
+        "total": 90,
+        "vulnerable_shor": 88
+      }
     }
   },
   "findings": [
     {
-      "id": "ff40716e-ea5f-4830-81c6-849d81c69e90",
-      "public_id": "QSI-2026-11907",
+      "id": "8a6ca6eb-4014-489b-8372-ec6f079c9f4a",
+      "public_id": "QSI-2026-18011",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Paillier: threshold signing and MPC protocols (30 file(s))",
       "description": "911 reference(s) to Paillier across 30 file(s), e.g. include/cosigner/bam_ecdsa_cosigner.h:59. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -1705,7 +1711,7 @@
       "affected_asset": "source-code:Paillier:threshold_mpc",
       "data_source": "include/cosigner/bam_ecdsa_cosigner.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:45:07.116449+00:00",
+      "detected_at": "2026-11-06T13:14:34.144905+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -1802,7 +1808,7 @@
           "content_sha256": "a3d30724e0d1cc720bdcee1ab854050dd97aae791a7595264635eaa4aae2f4aa",
           "source_sha256": "43a3eaafe7efc5873b9ad1c3f9e1adf530817a9afb8c7957d95bee435791e002",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133498+00:00",
+          "collected_at": "2026-11-06T13:14:34.167634+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_ecdsa_cosigner.h#L59"
         },
         {
@@ -1813,7 +1819,7 @@
           "content_sha256": "6be55d1352a2dadaba5b8b748068c0b73fc7c40c84c9cdd2df8d9c026ce9a6d4",
           "source_sha256": "43a3eaafe7efc5873b9ad1c3f9e1adf530817a9afb8c7957d95bee435791e002",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133508+00:00",
+          "collected_at": "2026-11-06T13:14:34.167642+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_ecdsa_cosigner.h#L60"
         },
         {
@@ -1824,7 +1830,7 @@
           "content_sha256": "13aec856ddc4a2742afb62c3e239209953f48d8c98885b60b7537ea741507e9b",
           "source_sha256": "43a3eaafe7efc5873b9ad1c3f9e1adf530817a9afb8c7957d95bee435791e002",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133512+00:00",
+          "collected_at": "2026-11-06T13:14:34.167647+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_ecdsa_cosigner.h#L68"
         },
         {
@@ -1835,7 +1841,7 @@
           "content_sha256": "f87b02773d914f663d4646cfbba89121eafab8e9c02ebf47df13c4f36324d2fe",
           "source_sha256": "bbb3628a1a863822935009bbef8e29f3d0365bd91d6f7e29a8cd9888d00a596c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133515+00:00",
+          "collected_at": "2026-11-06T13:14:34.167651+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_ecdsa_cosigner_client.h#L118"
         },
         {
@@ -1846,7 +1852,7 @@
           "content_sha256": "27067a51e815109bc25c793e51c5d24aede4300c25a6dad08b3081ee25327f99",
           "source_sha256": "1f878ae3e3f65f63928b4c355ab773793c9ca8f6f7470ddcfaf7f1e0adcf0ccf",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133519+00:00",
+          "collected_at": "2026-11-06T13:14:34.167656+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_ecdsa_cosigner_server.h#L97"
         },
         {
@@ -1857,7 +1863,7 @@
           "content_sha256": "395957d01b864c5bd185058af22e6930049851cbd1e6aefa4de8dfecd1bdf4e8",
           "source_sha256": "7cbd61de453cb52fb93e21b68e44f46e50e0826fa98faed3efb02a1f9c603dfa",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133522+00:00",
+          "collected_at": "2026-11-06T13:14:34.167661+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_key_persistency_structures_client.h#L5"
         },
         {
@@ -1868,7 +1874,7 @@
           "content_sha256": "5d17cd62f0c574e2b2f1a94e2f78db87e6734ef470dff3f02288831acc6185e1",
           "source_sha256": "7cbd61de453cb52fb93e21b68e44f46e50e0826fa98faed3efb02a1f9c603dfa",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133525+00:00",
+          "collected_at": "2026-11-06T13:14:34.167666+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_key_persistency_structures_client.h#L28"
         },
         {
@@ -1879,7 +1885,7 @@
           "content_sha256": "0160e73aad94c69f987099154af5b60cceee8d9d5181eb475e0364e8a55eaee2",
           "source_sha256": "68e9a88bb24c8408be5bf6de351772ed4d89cd0e2e83b0defbf740061d2b1e1d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133528+00:00",
+          "collected_at": "2026-11-06T13:14:34.167672+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_key_persistency_structures_server.h#L4"
         },
         {
@@ -1890,7 +1896,7 @@
           "content_sha256": "d6f03415a6648f23561345d5b5fea2159d25e656c36b6fadb75e89638abee531",
           "source_sha256": "68e9a88bb24c8408be5bf6de351772ed4d89cd0e2e83b0defbf740061d2b1e1d",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133531+00:00",
+          "collected_at": "2026-11-06T13:14:34.167677+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_key_persistency_structures_server.h#L16"
         },
         {
@@ -1901,7 +1907,7 @@
           "content_sha256": "c4c325a0537c146aa80b2ea30c08fa653773649c24c2ea271ce97db12cf9d153",
           "source_sha256": "5f9cb66f067166d12e7f344c95b27bcb5591daac3fc218da8ef728e9eea5f2ad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.133534+00:00",
+          "collected_at": "2026-11-06T13:14:34.167683+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_signing_service.h#L7"
         }
       ],
@@ -1939,8 +1945,8 @@
       ]
     },
     {
-      "id": "e80a011d-9fb2-4f84-853e-fc355e15bcd5",
-      "public_id": "QSI-2026-11908",
+      "id": "308ea4d1-3420-420d-9898-4ab3ca4eb01a",
+      "public_id": "QSI-2026-18012",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))",
       "description": "27 reference(s) to Pedersen commitment across 8 file(s), e.g. include/cosigner/bam_ecdsa_cosigner_client.h:8. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -1965,7 +1971,7 @@
       "affected_asset": "source-code:Pedersen commitment:threshold_mpc",
       "data_source": "include/cosigner/bam_ecdsa_cosigner_client.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:45:07.127422+00:00",
+      "detected_at": "2026-11-06T13:14:34.153756+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -2062,7 +2068,7 @@
           "content_sha256": "9d56e11fcd768b11849b71756b1600de96403ccc80d0f0f6fffcc2cf58a1036e",
           "source_sha256": "bbb3628a1a863822935009bbef8e29f3d0365bd91d6f7e29a8cd9888d00a596c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155705+00:00",
+          "collected_at": "2026-11-06T13:14:34.187273+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_ecdsa_cosigner_client.h#L8"
         },
         {
@@ -2073,7 +2079,7 @@
           "content_sha256": "45aa0403cca9b7fa8cc248f5d1f7ecb002b5931261882da9da59f8b7cca5a87f",
           "source_sha256": "bbb3628a1a863822935009bbef8e29f3d0365bd91d6f7e29a8cd9888d00a596c",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155713+00:00",
+          "collected_at": "2026-11-06T13:14:34.187282+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_ecdsa_cosigner_client.h#L120"
         },
         {
@@ -2084,7 +2090,7 @@
           "content_sha256": "97396fe65efec08897595aa1688eadc04c0455a50d82b4a62bfb73496ee9283d",
           "source_sha256": "b8f440b5865c6694f9ba426c3d8168e5168e9ee5253c071aa1536566caaf36e7",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155717+00:00",
+          "collected_at": "2026-11-06T13:14:34.187287+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/bam_key_persistency_structures.h#L20"
         },
         {
@@ -2095,7 +2101,7 @@
           "content_sha256": "b4288862b6ee842d39e8fa2e3d914c30eace3e9e2350b0640f7d4eec0adad012",
           "source_sha256": "64f9b6334199aea590507c2d5dab9c695bf8069f3d893f92d478a349ca88c393",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155720+00:00",
+          "collected_at": "2026-11-06T13:14:34.187291+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/crypto/commitments/pedersen.h#L25"
         },
         {
@@ -2106,7 +2112,7 @@
           "content_sha256": "c382ef08fb01911ed7ae5b82f5d9e91c6af09a18a7fc1a4354286235c48c278a",
           "source_sha256": "64f9b6334199aea590507c2d5dab9c695bf8069f3d893f92d478a349ca88c393",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155723+00:00",
+          "collected_at": "2026-11-06T13:14:34.187294+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/crypto/commitments/pedersen.h#L29"
         },
         {
@@ -2117,7 +2123,7 @@
           "content_sha256": "c46469dcb7763521d974aa9032ad397fd4b3739244adf4b4b3de4665312438ca",
           "source_sha256": "64f9b6334199aea590507c2d5dab9c695bf8069f3d893f92d478a349ca88c393",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155726+00:00",
+          "collected_at": "2026-11-06T13:14:34.187297+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/crypto/commitments/pedersen.h#L44"
         },
         {
@@ -2128,7 +2134,7 @@
           "content_sha256": "926c08a32756c401a76a7ac45e4f3348475af84b60a0d4aac8e7821bfdd44229",
           "source_sha256": "d5e5a60b90b9d16e7f9259a789c48b3da7b09b952486f642ac71c89d13928846",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155729+00:00",
+          "collected_at": "2026-11-06T13:14:34.187300+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/bam_ecdsa_cosigner_client.cpp#L193"
         },
         {
@@ -2139,7 +2145,7 @@
           "content_sha256": "7882963c7c7f8c7eb0be6fe7f3b6486898db202092a55a3821b09f998af2a200",
           "source_sha256": "d5e5a60b90b9d16e7f9259a789c48b3da7b09b952486f642ac71c89d13928846",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155732+00:00",
+          "collected_at": "2026-11-06T13:14:34.187303+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/bam_ecdsa_cosigner_client.cpp#L448"
         },
         {
@@ -2150,7 +2156,7 @@
           "content_sha256": "f67b3d1bf5695c08b42ba40216c5c41bf8db4a2e207a15ab79c068cc4ab9dfbd",
           "source_sha256": "dfa91f27d28fe42406ad9f82703190fa39117aaaf8251409f585104d21c253dc",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155735+00:00",
+          "collected_at": "2026-11-06T13:14:34.187307+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/bam_ecdsa_cosigner_server.cpp#L104"
         },
         {
@@ -2161,7 +2167,7 @@
           "content_sha256": "82c45265099193cf93bfa2b7a5c7e63ed91ed5b2efc2c468e1e987afee1c17c1",
           "source_sha256": "e7393aba28ea97975f47837f376d0c6a71207cdc494d430110cb31905cd9d6a1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.155739+00:00",
+          "collected_at": "2026-11-06T13:14:34.187310+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/bam_well_formed_proof.cpp#L167"
         }
       ],
@@ -2199,8 +2205,8 @@
       ]
     },
     {
-      "id": "a30cff18-d2bb-49cd-bd66-75a6c8a3f048",
-      "public_id": "QSI-2026-11909",
+      "id": "69b25526-802e-4f8d-b6bb-e416179950d6",
+      "public_id": "QSI-2026-18013",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (7 file(s))",
       "description": "43 reference(s) to Threshold ECDSA across 7 file(s), e.g. include/cosigner/cmp_ecdsa_offline_signing_service.h:5. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -2225,7 +2231,7 @@
       "affected_asset": "source-code:Threshold ECDSA:threshold_mpc",
       "data_source": "include/cosigner/cmp_ecdsa_offline_signing_service.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:45:07.151824+00:00",
+      "detected_at": "2026-11-06T13:14:34.183238+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -2322,7 +2328,7 @@
           "content_sha256": "5d5a2072dbd88f509f650bb4bc0446ff74dc396986e369817da54bd87fd9cc9b",
           "source_sha256": "5f6e2ebfef941b6d5fcbaec28e9166686cb6bd90a9e50f1abd4f942632a482f3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169448+00:00",
+          "collected_at": "2026-11-06T13:14:34.200437+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_offline_signing_service.h#L5"
         },
         {
@@ -2333,7 +2339,7 @@
           "content_sha256": "1b5adf8d721446429fa3f1a9577872e40f6c67cb9e9ba843406425dd0263fa67",
           "source_sha256": "5f6e2ebfef941b6d5fcbaec28e9166686cb6bd90a9e50f1abd4f942632a482f3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169455+00:00",
+          "collected_at": "2026-11-06T13:14:34.200445+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_offline_signing_service.h#L17"
         },
         {
@@ -2344,7 +2350,7 @@
           "content_sha256": "de949e60589397048d1a0c7cef04c62f2932210074f171b3237e3e02c300fae9",
           "source_sha256": "5f6e2ebfef941b6d5fcbaec28e9166686cb6bd90a9e50f1abd4f942632a482f3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169458+00:00",
+          "collected_at": "2026-11-06T13:14:34.200449+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_offline_signing_service.h#L41"
         },
         {
@@ -2355,7 +2361,7 @@
           "content_sha256": "f4205c3420ea3979b75a127cf72d4b949b9147c13c1b4738337dc9cc41d3a0d7",
           "source_sha256": "88a9477e41b6be37e08d23543670a2617bfe0aac058e160f635c5c1efe8dab14",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169462+00:00",
+          "collected_at": "2026-11-06T13:14:34.200453+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_online_signing_service.h#L5"
         },
         {
@@ -2366,7 +2372,7 @@
           "content_sha256": "dee2ab8850981985bfdf4c16f5f5d12b130a8c509e89f261631c561cda4fc7a8",
           "source_sha256": "88a9477e41b6be37e08d23543670a2617bfe0aac058e160f635c5c1efe8dab14",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169465+00:00",
+          "collected_at": "2026-11-06T13:14:34.200456+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_online_signing_service.h#L34"
         },
         {
@@ -2377,7 +2383,7 @@
           "content_sha256": "5ca1c386ac827ef9aab7b179add7e26d2de76ee53eefe31d4f119f834f90b7c6",
           "source_sha256": "88a9477e41b6be37e08d23543670a2617bfe0aac058e160f635c5c1efe8dab14",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169468+00:00",
+          "collected_at": "2026-11-06T13:14:34.200458+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_online_signing_service.h#L48"
         },
         {
@@ -2388,7 +2394,7 @@
           "content_sha256": "bfd7c0125f4d8f0be9349304cdef8653469765c8de87ffb6a5480761a8755085",
           "source_sha256": "5f9cb66f067166d12e7f344c95b27bcb5591daac3fc218da8ef728e9eea5f2ad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169471+00:00",
+          "collected_at": "2026-11-06T13:14:34.200462+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_signing_service.h#L90"
         },
         {
@@ -2399,7 +2405,7 @@
           "content_sha256": "fe23a1ba2f04d34df7f16a613d5a3fe361f4801518c6b8b5cd3919af9db30a7a",
           "source_sha256": "5f9cb66f067166d12e7f344c95b27bcb5591daac3fc218da8ef728e9eea5f2ad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169474+00:00",
+          "collected_at": "2026-11-06T13:14:34.200465+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_signing_service.h#L93"
         },
         {
@@ -2410,7 +2416,7 @@
           "content_sha256": "25164deb5b15a258b18482a7e9c6dd78cb34bff1dabcce66eb90681fc309e243",
           "source_sha256": "5f9cb66f067166d12e7f344c95b27bcb5591daac3fc218da8ef728e9eea5f2ad",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169477+00:00",
+          "collected_at": "2026-11-06T13:14:34.200468+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/cmp_ecdsa_signing_service.h#L94"
         },
         {
@@ -2421,7 +2427,7 @@
           "content_sha256": "bbf5a7f92ba6fdcdb5e3fbd07ed1dd31b4d507c8895f948bb52edef57fc1360f",
           "source_sha256": "29718caacb308f10d62e5499870b165ab530eb41f3ae28e45961760d5c0c5ed2",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.169480+00:00",
+          "collected_at": "2026-11-06T13:14:34.200471+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/cmp_ecdsa_offline_signing_service.cpp#L1"
         }
       ],
@@ -2459,8 +2465,8 @@
       ]
     },
     {
-      "id": "cd68ee35-d7e7-41ba-b4f8-c346caa0171e",
-      "public_id": "QSI-2026-11910",
+      "id": "72bfcdc2-4008-4bf8-98f0-3dad8ac5c917",
+      "public_id": "QSI-2026-18014",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable FROST: threshold signing and MPC protocols (7 file(s))",
       "description": "70 reference(s) to FROST across 7 file(s), e.g. include/cosigner/frost_cosigner.h:17. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -2485,7 +2491,7 @@
       "affected_asset": "source-code:FROST:threshold_mpc",
       "data_source": "include/cosigner/frost_cosigner.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:45:07.165811+00:00",
+      "detected_at": "2026-11-06T13:14:34.197213+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -2582,7 +2588,7 @@
           "content_sha256": "dfb2f2409ba54ee92edb786b2df6cd4951b60ef2e88d67fbcb2d6337fd383cba",
           "source_sha256": "cdfdfc52b15629df12a50a1b341ca816e02862988ac659b8be302c190fc779a1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184183+00:00",
+          "collected_at": "2026-11-06T13:14:34.215118+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner.h#L17"
         },
         {
@@ -2593,7 +2599,7 @@
           "content_sha256": "27e7eab089c30bb8844d3c4608c16973c9849ac4f27d80f734096c24d00f8bdb",
           "source_sha256": "cdfdfc52b15629df12a50a1b341ca816e02862988ac659b8be302c190fc779a1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184190+00:00",
+          "collected_at": "2026-11-06T13:14:34.215126+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner.h#L22"
         },
         {
@@ -2604,7 +2610,7 @@
           "content_sha256": "10e549016afff2225eb878fb7a3ace11b8fd27bbd59f3a44d84003573df22b8a",
           "source_sha256": "cdfdfc52b15629df12a50a1b341ca816e02862988ac659b8be302c190fc779a1",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184193+00:00",
+          "collected_at": "2026-11-06T13:14:34.215130+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner.h#L68"
         },
         {
@@ -2615,7 +2621,7 @@
           "content_sha256": "7f634f4c985a8e3630c7ba6f31a04f3e30f4521a6596c92408cabf121a3468b9",
           "source_sha256": "1fff442d632f1c26700d7c6ec8f1a48b0c2eb2cf529a4b48358b12916eb93b00",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184197+00:00",
+          "collected_at": "2026-11-06T13:14:34.215133+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner_client.h#L3"
         },
         {
@@ -2626,7 +2632,7 @@
           "content_sha256": "36ee4725d41505f6e6e6b590bcb911cc0e4600d890419fd354b72fdc6dee76be",
           "source_sha256": "1fff442d632f1c26700d7c6ec8f1a48b0c2eb2cf529a4b48358b12916eb93b00",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184200+00:00",
+          "collected_at": "2026-11-06T13:14:34.215136+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner_client.h#L11"
         },
         {
@@ -2637,7 +2643,7 @@
           "content_sha256": "ecba6ee6af3bbfc8f96475a6d5dc031b9648949a55f35760529189323dcb2011",
           "source_sha256": "1fff442d632f1c26700d7c6ec8f1a48b0c2eb2cf529a4b48358b12916eb93b00",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184203+00:00",
+          "collected_at": "2026-11-06T13:14:34.215140+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner_client.h#L14"
         },
         {
@@ -2648,7 +2654,7 @@
           "content_sha256": "4b2fa08b15d5c1b128a7c27b0cdca54af1f28727e21745a206e0b1ee8e82dcd0",
           "source_sha256": "423f364293a16ec6fb0bb45aa1f55c02e504a41c11b32015f2afd9a7de068a9b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184206+00:00",
+          "collected_at": "2026-11-06T13:14:34.215143+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner_server.h#L3"
         },
         {
@@ -2659,7 +2665,7 @@
           "content_sha256": "8fe44e7e442644bec7724a4252325bebfed2dae8007387b7d28a554598e0290b",
           "source_sha256": "423f364293a16ec6fb0bb45aa1f55c02e504a41c11b32015f2afd9a7de068a9b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184209+00:00",
+          "collected_at": "2026-11-06T13:14:34.215145+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner_server.h#L13"
         },
         {
@@ -2670,7 +2676,7 @@
           "content_sha256": "4f29d89dfa98bac9f5f7dc7b07f7a50dcf452b03d37fc499a18dfd9619989abd",
           "source_sha256": "423f364293a16ec6fb0bb45aa1f55c02e504a41c11b32015f2afd9a7de068a9b",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184212+00:00",
+          "collected_at": "2026-11-06T13:14:34.215148+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/frost_cosigner_server.h#L16"
         },
         {
@@ -2681,7 +2687,7 @@
           "content_sha256": "695e178fa96f0da1c35a5b8e52904e0224592499365aa54436b4b740d1869c06",
           "source_sha256": "9c7e53a65dd5bc6b1f23c3b967fbb7bc6c993089b03f0d53cf73c373dd46b719",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.184215+00:00",
+          "collected_at": "2026-11-06T13:14:34.215151+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/platform_service.h#L20"
         }
       ],
@@ -2719,8 +2725,8 @@
       ]
     },
     {
-      "id": "1a3b1853-462a-4b16-b461-dddb345a80da",
-      "public_id": "QSI-2026-11911",
+      "id": "b557774d-f0ae-4ea5-bed4-6d32d10dfe8f",
+      "public_id": "QSI-2026-18015",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable ECDSA: threshold signing and MPC protocols (1 file(s))",
       "description": "2 reference(s) to ECDSA across 1 file(s), e.g. include/cosigner/sign_algorithm.h:10. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -2745,7 +2751,7 @@
       "affected_asset": "source-code:ECDSA:threshold_mpc",
       "data_source": "include/cosigner/sign_algorithm.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:45:07.180138+00:00",
+      "detected_at": "2026-11-06T13:14:34.211182+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -2842,7 +2848,7 @@
           "content_sha256": "7352349ce44da6c46a0059400e65ebf3677bd6b31dd5798edabce56faa7250fd",
           "source_sha256": "99f94f61f6a92527b18600cbda1f670165e5c81277ec57e2665b4f04569b2c7f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.196393+00:00",
+          "collected_at": "2026-11-06T13:14:34.228431+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/sign_algorithm.h#L10"
         },
         {
@@ -2853,7 +2859,7 @@
           "content_sha256": "42921b9b13eaa15a54bcf54577536b5f909c8ee17a9903904f23574aab6d0a8a",
           "source_sha256": "99f94f61f6a92527b18600cbda1f670165e5c81277ec57e2665b4f04569b2c7f",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.196400+00:00",
+          "collected_at": "2026-11-06T13:14:34.228439+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/cosigner/sign_algorithm.h#L11"
         }
       ],
@@ -2891,8 +2897,8 @@
       ]
     },
     {
-      "id": "b9632069-4b8d-467b-9f41-919f8cae554e",
-      "public_id": "QSI-2026-11913",
+      "id": "1a2e07b3-c32d-4c16-8c70-905a0df0f311",
+      "public_id": "QSI-2026-18017",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: threshold signing and MPC protocols (3 file(s))",
       "description": "4 reference(s) to Ed25519 across 3 file(s), e.g. src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp:401. Role, judged from paths, function names and nearby code: threshold signing and MPC protocols. Paillier, Pedersen commitments and the discrete-logarithm proofs inside threshold ECDSA and EdDSA protocols all fall to Shor's algorithm; a post-quantum threshold scheme is a protocol change, not a parameter change.",
@@ -2917,7 +2923,7 @@
       "affected_asset": "source-code:Ed25519:threshold_mpc",
       "data_source": "src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:45:07.202014+00:00",
+      "detected_at": "2026-11-06T13:14:34.242863+00:00",
       "risk_score": 41.8,
       "risk_breakdown": {
         "mosca": {
@@ -3014,7 +3020,7 @@
           "content_sha256": "6e04b3a3cf25de443120e16f8ddcdb7aafa7990e30bdf5de33b1dc0767d9d6f1",
           "source_sha256": "15e49277a9de05d894ab60fec551a03a165cbf819503c0ef62c9731a8e940510",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.265518+00:00",
+          "collected_at": "2026-11-06T13:14:34.366093+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp#L401"
         },
         {
@@ -3025,7 +3031,7 @@
           "content_sha256": "8f5dbe923034531e4f5a747ea0773d731c8847ed0736b3a926eb779f1cb67ba3",
           "source_sha256": "15e49277a9de05d894ab60fec551a03a165cbf819503c0ef62c9731a8e940510",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.265529+00:00",
+          "collected_at": "2026-11-06T13:14:34.366103+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/asymmetric_eddsa_cosigner_server.cpp#L497"
         },
         {
@@ -3036,7 +3042,7 @@
           "content_sha256": "d641b422ac935789b7ebad5d737cd2cba4e16e40fddb2b7fc4ce726830eea908",
           "source_sha256": "e8264a8e3e84d0925f268fb503668164566314721d12e7add8fa3c9cf6956585",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.265532+00:00",
+          "collected_at": "2026-11-06T13:14:34.366107+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/eddsa_online_signing_service.cpp#L382"
         },
         {
@@ -3047,7 +3053,7 @@
           "content_sha256": "2a70a07e1414d949a17e73ec9234ce658a7c844cbec200b77d7b88e9143e8f1a",
           "source_sha256": "a356cd59f4b11d71d5c389462a1cd5335f82f73e1c2ba76e89f075d880fe8a59",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.265536+00:00",
+          "collected_at": "2026-11-06T13:14:34.366110+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/cosigner/frost_cosigner_server.cpp#L65"
         }
       ],
@@ -3085,8 +3091,8 @@
       ]
     },
     {
-      "id": "3bfb3145-a5a6-4159-9c48-7e8350da065e",
-      "public_id": "QSI-2026-11912",
+      "id": "d99e2a5a-b1ec-491d-8973-2939a2c05587",
+      "public_id": "QSI-2026-18016",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Quantum-vulnerable Ed25519: role not determined (2 file(s))",
       "description": "2 reference(s) to Ed25519 across 2 file(s), e.g. include/crypto/ed25519_algebra/ed25519_algebra.h:71. Role, judged from paths, function names and nearby code: role not determined. The code does not show what the keys protect; review decides the priority.",
@@ -3111,7 +3117,7 @@
       "affected_asset": "source-code:Ed25519:general",
       "data_source": "include/crypto/ed25519_algebra/ed25519_algebra.h",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T18:45:07.192230+00:00",
+      "detected_at": "2026-11-06T13:14:34.224913+00:00",
       "risk_score": 40.2,
       "risk_breakdown": {
         "mosca": {
@@ -3208,7 +3214,7 @@
           "content_sha256": "5d36dd9af9202966201c370110f445cf52d9bd129264d997a21fc82ed06dfd59",
           "source_sha256": "f2e14ae6c9654a17d94401fedf48d44faf89f98bbb7fa3ade977d78e16c859f5",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.204781+00:00",
+          "collected_at": "2026-11-06T13:14:34.261712+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/include/crypto/ed25519_algebra/ed25519_algebra.h#L71"
         },
         {
@@ -3219,7 +3225,7 @@
           "content_sha256": "e6eb5ecf7d33590258b8512c167df9e0bf49c6d9289b9bbf5840dae21e0ad146",
           "source_sha256": "f772f412431b5cd19b6a98ce6ca6211c53ed71bdaac46e2f1d620e4317ff39b3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T18:45:07.204788+00:00",
+          "collected_at": "2026-11-06T13:14:34.261721+00:00",
           "url": "https://github.com/fireblocks/mpc-lib/blob/00ae08b7f1bdbb887aedece384aca2f942aae432/src/common/crypto/ed25519_algebra/ed25519_algebra.c#L671"
         }
       ],
@@ -3278,13 +3284,13 @@
     },
     "assumptions": "Planning assumptions: x for key establishment, x for signatures, y are the defaults of the risk profile “Crypto exchange, custodian or wallet”, not the client's figures; with the client's actual lifetimes the verdict can change.",
     "pq_findings": [
-      "QSI-2026-11907",
-      "QSI-2026-11908",
-      "QSI-2026-11909",
-      "QSI-2026-11910",
-      "QSI-2026-11911",
-      "QSI-2026-11913",
-      "QSI-2026-11912"
+      "QSI-2026-18011",
+      "QSI-2026-18012",
+      "QSI-2026-18013",
+      "QSI-2026-18014",
+      "QSI-2026-18015",
+      "QSI-2026-18017",
+      "QSI-2026-18016"
     ],
     "roles": [
       {
@@ -3320,12 +3326,12 @@
           }
         ],
         "findings": [
-          "QSI-2026-11907",
-          "QSI-2026-11908",
-          "QSI-2026-11909",
-          "QSI-2026-11910",
-          "QSI-2026-11911",
-          "QSI-2026-11913"
+          "QSI-2026-18011",
+          "QSI-2026-18012",
+          "QSI-2026-18013",
+          "QSI-2026-18014",
+          "QSI-2026-18015",
+          "QSI-2026-18017"
         ],
         "files": 56
       },
@@ -3342,7 +3348,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-11912"
+          "QSI-2026-18016"
         ],
         "files": 2
       }
@@ -3409,7 +3415,7 @@
         "affected": [
           {
             "algorithm": "ECDSA",
-            "rows": 14
+            "rows": 15
           },
           {
             "algorithm": "Ed25519",
@@ -3544,7 +3550,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11907",
+        "finding": "QSI-2026-18011",
         "finding_title": "Quantum-vulnerable Paillier: threshold signing and MPC protocols (30 file(s))",
         "severity": "medium"
       },
@@ -3562,7 +3568,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11908",
+        "finding": "QSI-2026-18012",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))",
         "severity": "medium"
       },
@@ -3580,7 +3586,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11909",
+        "finding": "QSI-2026-18013",
         "finding_title": "Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (7 file(s))",
         "severity": "medium"
       },
@@ -3598,7 +3604,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11910",
+        "finding": "QSI-2026-18014",
         "finding_title": "Quantum-vulnerable FROST: threshold signing and MPC protocols (7 file(s))",
         "severity": "medium"
       },
@@ -3616,7 +3622,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11911",
+        "finding": "QSI-2026-18015",
         "finding_title": "Quantum-vulnerable ECDSA: threshold signing and MPC protocols (1 file(s))",
         "severity": "medium"
       },
@@ -3634,7 +3640,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11913",
+        "finding": "QSI-2026-18017",
         "finding_title": "Quantum-vulnerable Ed25519: threshold signing and MPC protocols (3 file(s))",
         "severity": "medium"
       },
@@ -3652,7 +3658,7 @@
         "post_tests": "Inventory review signed off by the system owner.",
         "closure_criteria": "Inventory entry with owner, lifetime and target algorithm exists.",
         "status": "todo",
-        "finding": "QSI-2026-11912",
+        "finding": "QSI-2026-18016",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (2 file(s))",
         "severity": "medium"
       },
@@ -3670,7 +3676,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows No standardized post-quantum replacement. Plan threshold schemes over post-quantum signatures as they mature (NIST threshold call, IR 8214C), or protocols that avoid Paillier (oblivious-transfer based) or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11907",
+        "finding": "QSI-2026-18011",
         "finding_title": "Quantum-vulnerable Paillier: threshold signing and MPC protocols (30 file(s))",
         "severity": "medium"
       },
@@ -3688,7 +3694,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows  or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11908",
+        "finding": "QSI-2026-18012",
         "finding_title": "Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (8 file(s))",
         "severity": "medium"
       },
@@ -3706,7 +3712,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows The signature scheme is fixed by the blockchain or verifier. Track chain-level post-quantum proposals and threshold post-quantum signatures (NIST IR 8214C); keep key-share refresh and crypto-agility in the custody design or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11909",
+        "finding": "QSI-2026-18013",
         "finding_title": "Quantum-vulnerable Threshold ECDSA: threshold signing and MPC protocols (7 file(s))",
         "severity": "medium"
       },
@@ -3724,7 +3730,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows As for the single-signer scheme it produces: ML-DSA or SLH-DSA where the verifier allows; threshold post-quantum signatures are still research (NIST IR 8214C) or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11910",
+        "finding": "QSI-2026-18014",
         "finding_title": "Quantum-vulnerable FROST: threshold signing and MPC protocols (7 file(s))",
         "severity": "medium"
       },
@@ -3742,7 +3748,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11911",
+        "finding": "QSI-2026-18015",
         "finding_title": "Quantum-vulnerable ECDSA: threshold signing and MPC protocols (1 file(s))",
         "severity": "medium"
       },
@@ -3760,7 +3766,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11913",
+        "finding": "QSI-2026-18017",
         "finding_title": "Quantum-vulnerable Ed25519: threshold signing and MPC protocols (3 file(s))",
         "severity": "medium"
       },
@@ -3778,7 +3784,7 @@
         "post_tests": "Verify the negotiated/used algorithm on the production asset.",
         "closure_criteria": "Re-audit shows ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it or a hybrid scheme in use.",
         "status": "todo",
-        "finding": "QSI-2026-11912",
+        "finding": "QSI-2026-18016",
         "finding_title": "Quantum-vulnerable Ed25519: role not determined (2 file(s))",
         "severity": "medium"
       }
@@ -4016,7 +4022,8 @@
       "quantum_status": "grover_margin",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "SHA-2",
@@ -4028,7 +4035,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4040,7 +4048,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4052,7 +4061,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4064,7 +4074,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4076,7 +4087,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4088,7 +4100,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4100,7 +4113,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4112,7 +4126,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4124,7 +4139,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4136,7 +4152,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4148,7 +4165,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4160,7 +4178,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4172,7 +4191,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4184,7 +4204,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -4196,7 +4217,21 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
+    },
+    {
+      "algorithm": "ECDSA",
+      "family": "signature",
+      "parameter": "",
+      "usage": "implementation constant: secp256k1 group order n",
+      "library": "",
+      "location": "src/common/crypto/GFp_curve_algebra/GFp_curve_algebra.c:16",
+      "quantum_status": "vulnerable_shor",
+      "classical_status": "ok",
+      "confidence": "medium",
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4208,7 +4243,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4220,7 +4256,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4232,7 +4269,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4244,7 +4282,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4256,7 +4295,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4268,7 +4308,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4280,7 +4321,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4292,7 +4334,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4304,7 +4347,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4316,7 +4360,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Ed25519",
@@ -4328,7 +4373,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4340,7 +4386,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4352,7 +4399,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 8
+      "occurrences": 8,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4364,7 +4412,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4376,7 +4425,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4388,7 +4438,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4400,7 +4451,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4412,7 +4464,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4424,7 +4477,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4436,7 +4490,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4448,7 +4503,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4460,7 +4516,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4472,7 +4529,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 25
+      "occurrences": 25,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4484,7 +4542,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 14
+      "occurrences": 14,
+      "origin": "own"
     },
     {
       "algorithm": "FROST",
@@ -4496,7 +4555,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 12
+      "occurrences": 12,
+      "origin": "own"
     },
     {
       "algorithm": "Finite-field Diffie-Hellman",
@@ -4508,7 +4568,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Finite-field Diffie-Hellman",
@@ -4520,7 +4581,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4532,7 +4594,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4544,7 +4607,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4556,7 +4620,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4568,7 +4633,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4580,7 +4646,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4592,7 +4659,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4604,7 +4672,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4616,7 +4685,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4628,7 +4698,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4640,7 +4711,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4652,7 +4724,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 33
+      "occurrences": 33,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4664,7 +4737,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 31
+      "occurrences": 31,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4676,7 +4750,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 26
+      "occurrences": 26,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4688,7 +4763,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 33
+      "occurrences": 33,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4700,7 +4776,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 54
+      "occurrences": 54,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4712,7 +4789,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 62
+      "occurrences": 62,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4724,7 +4802,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4736,7 +4815,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 5
+      "occurrences": 5,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4748,7 +4828,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4760,7 +4841,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4772,7 +4854,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 46
+      "occurrences": 46,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4784,7 +4867,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 4
+      "occurrences": 4,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4796,7 +4880,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 91
+      "occurrences": 91,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4808,7 +4893,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 16
+      "occurrences": 16,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4820,7 +4906,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 83
+      "occurrences": 83,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4832,7 +4919,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4844,7 +4932,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 21
+      "occurrences": 21,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4856,7 +4945,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 107
+      "occurrences": 107,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4868,7 +4958,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 14
+      "occurrences": 14,
+      "origin": "own"
     },
     {
       "algorithm": "Paillier",
@@ -4880,7 +4971,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 230
+      "occurrences": 230,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4892,7 +4984,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4904,7 +4997,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4916,7 +5010,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 7
+      "occurrences": 7,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4928,7 +5023,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4940,7 +5036,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4952,7 +5049,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4964,7 +5062,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Pedersen commitment",
@@ -4976,7 +5075,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 6
+      "occurrences": 6,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -4988,7 +5088,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -5000,7 +5101,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -5012,7 +5114,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 3
+      "occurrences": 3,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -5024,7 +5127,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 9
+      "occurrences": 9,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -5036,7 +5140,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 10
+      "occurrences": 10,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -5048,7 +5153,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 14
+      "occurrences": 14,
+      "origin": "own"
     },
     {
       "algorithm": "Threshold ECDSA",
@@ -5060,7 +5166,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "X25519",
@@ -5072,7 +5179,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "low",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -5106,8 +5214,8 @@
       "library": "",
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
-      "count": 12,
-      "rows": 12,
+      "count": 13,
+      "rows": 13,
       "examples": [
         "include/cosigner/bam_ecdsa_cosigner.h",
         "include/cosigner/bam_ecdsa_cosigner_client.h",

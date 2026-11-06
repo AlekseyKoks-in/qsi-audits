@@ -75,7 +75,7 @@
             "qsiFindingKey/v1": "0f1866f57949bcc0f570965f128a101d"
           },
           "properties": {
-            "qsiId": "QSI-2026-12887",
+            "qsiId": "QSI-2026-19058",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -93,7 +93,7 @@
             "qsiFindingKey/v1": "ede492d68e8699e95192c4d206c7540b"
           },
           "properties": {
-            "qsiId": "QSI-2026-12877",
+            "qsiId": "QSI-2026-19048",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -111,7 +111,7 @@
             "qsiFindingKey/v1": "58db0e9b2f8fdc1d344f6ae0bf00c8c6"
           },
           "properties": {
-            "qsiId": "QSI-2026-12879",
+            "qsiId": "QSI-2026-19050",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -129,7 +129,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-12880",
+            "qsiId": "QSI-2026-19051",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -147,7 +147,7 @@
             "qsiFindingKey/v1": "00c1c70d6a6efa251990a2f97d10f223"
           },
           "properties": {
-            "qsiId": "QSI-2026-12883",
+            "qsiId": "QSI-2026-19054",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -165,7 +165,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-12886",
+            "qsiId": "QSI-2026-19057",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -183,7 +183,7 @@
             "qsiFindingKey/v1": "a0ab6acfa522e5871a59de356f7555aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-12878",
+            "qsiId": "QSI-2026-19049",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -201,7 +201,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-12881",
+            "qsiId": "QSI-2026-19052",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -219,7 +219,7 @@
             "qsiFindingKey/v1": "7d2be8335c70b9674380348f82c9f4c0"
           },
           "properties": {
-            "qsiId": "QSI-2026-12882",
+            "qsiId": "QSI-2026-19053",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -237,7 +237,7 @@
             "qsiFindingKey/v1": "cf5929702d5659f76c095f384b49872b"
           },
           "properties": {
-            "qsiId": "QSI-2026-12884",
+            "qsiId": "QSI-2026-19055",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -255,7 +255,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-12885",
+            "qsiId": "QSI-2026-19056",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -264,13 +264,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/trezor-firmware-en @ 72489948b3c4/80f0642e-51ac-4e04-8c1c-fa6fcc6b2df6"
+        "id": "qsi/trezor-firmware-en @ 72489948b3c4/31f58d4b-707d-45c9-9ec1-84cf933c5c62"
       },
       "properties": {
-        "qsiContentSha256": "90dd7412a16c9c32e0ab86bd7ea84f18277cb6f27e0cc88c4eafa5a87e5841cc",
+        "qsiContentSha256": "13b90bd6a503995ced0fe9466852d19ca47ae99edc1a0de8bb11ff7023f1ea6c",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:34:13.523043+00:00",
+        "qsiGeneratedAt": "2026-11-06T14:05:21.935542+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

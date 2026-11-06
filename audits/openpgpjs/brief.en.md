@@ -1,6 +1,6 @@
 # Post-quantum cryptography review: openpgpjs @ 8bc35df48879
 
-*One-page brief* · Reviewed: 2026-11-05 10:22 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: OpenPGP.js project — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 13:42 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: OpenPGP.js project — public repository (passive review)
 
 Source: https://github.com/openpgpjs/openpgpjs/tree/8bc35df4887933a3b2661e3741b33ba5f347b935
 
@@ -12,13 +12,13 @@ Source: https://github.com/openpgpjs/openpgpjs/tree/8bc35df4887933a3b2661e3741b3
 
 ## What matters most
 
-1. **Medium** · Quantum-vulnerable X25519: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-14400) · *preliminary*\
+1. **Medium** · Quantum-vulnerable X25519: key wrapping and data encryption at rest (5 file(s)) (QSI-2026-18422) · *preliminary*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-2. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-14405) · *preliminary*\
+2. **Medium** · Quantum-vulnerable ECDH: key wrapping and data encryption at rest (1 file(s)) (QSI-2026-18427) · *preliminary*\
    What to do: Wrap keys with ML-KEM or a hybrid KEM (X25519 + ML-KEM-768) and re-wrap the stored keys; data that may already have been copied needs its…
-3. **Medium** · Quantum-vulnerable ECDSA: role not determined (7 file(s)) (QSI-2026-14399) · *preliminary*\
+3. **Medium** · Quantum-vulnerable ECDSA: role not determined (7 file(s)) (QSI-2026-18421) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form…
-4. **Medium** · Quantum-vulnerable ECDH: role not determined (2 file(s)) (QSI-2026-14403) · *preliminary*\
+4. **Medium** · Quantum-vulnerable ECDH: role not determined (2 file(s)) (QSI-2026-18425) · *preliminary*\
    What to do: Classify each usage, record data lifetimes, and plan migration to Hybrid key establishment with ML-KEM (FIPS 203), e.g. X25519MLKEM768 in…
 
 4 more in the full report.
@@ -34,7 +34,7 @@ Source: https://github.com/openpgpjs/openpgpjs/tree/8bc35df4887933a3b2661e3741b3
 
 Static review of source code and manifests; files analysed: 108. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `6ba60d2fe26fff5449e901937402a320a15a555fc5c63efec0277ec11bcb19ce`
+Full report, content SHA-256: `cff272bdb4c9f50966105528b2d58b2fb87a8575672ed940c834c9df415c9db3`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

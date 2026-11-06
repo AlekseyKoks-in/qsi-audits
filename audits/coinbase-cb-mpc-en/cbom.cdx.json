@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:6e9188e1-9ce2-4d55-a367-90bf55e73c61",
+  "serialNumber": "urn:uuid:5b50e617-a109-4c44-a91b-506f37ae5efe",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-05T09:57:28Z",
+    "timestamp": "2026-11-06T13:12:12Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4a47d94a-2e73-4b5a-a13e-939f2435d8eb",
+      "bom-ref": "81354a07-2254-4540-a8b1-64ed6e97c260",
       "name": "AES-128",
       "properties": [
         {
@@ -75,7 +75,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9d63e14d-27bc-4d05-a29a-26bc08cadbf5",
+      "bom-ref": "b70749ee-a504-450b-a851-c0e617303206",
       "name": "AES-192",
       "properties": [
         {
@@ -128,7 +128,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5796e80a-7fbb-485d-86ca-936e5c72b464",
+      "bom-ref": "6a62acd1-5ed9-4b5a-8ff4-45ff89b8f1ae",
       "name": "AES-256",
       "properties": [
         {
@@ -181,7 +181,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e2915c7e-fd42-42ae-9d97-3d41500e71b2",
+      "bom-ref": "1e7f961c-9cf7-4d90-b1a4-f07dab52e674",
       "name": "BLAKE2",
       "properties": [
         {
@@ -229,7 +229,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "549a4158-4bca-4bf0-9bd2-7edf24580938",
+      "bom-ref": "1b46fe87-522d-4744-9536-25b5213f3fcf",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -271,7 +271,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b8b68bc7-d7ff-4476-9541-7b94b728c735",
+      "bom-ref": "9613a95e-c4bf-45cf-92e7-f396e713831f",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -313,7 +313,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c1da0b05-59c0-49cd-930a-c5ac33222981",
+      "bom-ref": "d9b4e012-6f9d-429f-b9a1-d6a1d3cbc39b",
       "name": "ECDH",
       "properties": [
         {
@@ -362,7 +362,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "933b2166-5825-4a61-a5dc-05bf99e06559",
+      "bom-ref": "c134f9e7-9610-49b7-8df1-c05e96e20ef4",
       "name": "ECDH",
       "properties": [
         {
@@ -411,7 +411,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a29ce910-3c21-48e8-84b6-af4e5e72d568",
+      "bom-ref": "afb80e7f-549e-4f37-b353-dca521d6c4e6",
       "name": "ECDH",
       "properties": [
         {
@@ -460,7 +460,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "64f4ac0d-5734-4da1-a98a-ca8f620c1b79",
+      "bom-ref": "dc0ef16b-b36c-4ca6-94bd-7295f9a6b51d",
       "name": "ECDH",
       "properties": [
         {
@@ -509,7 +509,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f0382915-55d8-40c1-b903-5cba1ab0eed9",
+      "bom-ref": "e31395c0-e22d-4c25-99a4-254e83e74340",
       "name": "ECDH",
       "properties": [
         {
@@ -558,7 +558,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8d923366-f8bb-4558-9cb5-425bb9b7ebfd",
+      "bom-ref": "a3a0f382-f0e1-4ddc-9946-e292a231befb",
       "name": "ECDSA",
       "properties": [
         {
@@ -612,7 +612,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9dab2da4-1add-4a59-8846-4e62d49d9eba",
+      "bom-ref": "ff91f4be-9007-4c7a-a40d-c25b25629a6f",
       "name": "ECDSA",
       "properties": [
         {
@@ -659,7 +659,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "95262e93-55fe-41e9-b5df-953fb655be14",
+      "bom-ref": "b1acbc67-e7a5-4af7-9497-88c9acc4507a",
       "name": "ECDSA",
       "properties": [
         {
@@ -706,7 +706,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b1a5a597-889b-4206-95c7-f4286bfb880b",
+      "bom-ref": "59fec2fc-0591-434f-a16b-50e1aedf7a1f",
       "name": "ECDSA",
       "properties": [
         {
@@ -753,7 +753,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c7a37d17-ca0b-4069-b2dd-5e4de985ff9c",
+      "bom-ref": "38dee6ca-f292-47a1-b220-19bdeb558d70",
       "name": "ECDSA",
       "properties": [
         {
@@ -807,7 +807,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d88939e8-9b6d-4f6a-bfa8-505564b27d93",
+      "bom-ref": "c0ba170a-f95a-4b42-87bc-36c627c9f219",
       "name": "ECDSA",
       "properties": [
         {
@@ -861,7 +861,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9f2f014f-cf67-4b9c-941e-ac55b773e4a9",
+      "bom-ref": "ec5bad88-2e46-4559-94e8-8963a2759dce",
       "name": "ECDSA",
       "properties": [
         {
@@ -908,7 +908,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b47afa68-829f-4cb2-a701-2d6f95a2a4c8",
+      "bom-ref": "b3947807-317d-46c8-884b-c8faf7df4c59",
       "name": "ECDSA",
       "properties": [
         {
@@ -955,7 +955,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "aa98f6b4-a270-44ec-86a8-e46e9056cc30",
+      "bom-ref": "05b9916a-96be-47aa-975f-b29305b96c8c",
       "name": "ECDSA",
       "properties": [
         {
@@ -1002,7 +1002,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0fe1f904-878e-40ae-b447-2280bb0decc8",
+      "bom-ref": "722ac716-4c54-4f12-896f-b7f80bdf8411",
       "name": "ECDSA",
       "properties": [
         {
@@ -1049,7 +1049,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b3ce223a-48a9-4c57-8087-5fe924ca2626",
+      "bom-ref": "1d9a25ba-d690-4868-87ae-2b58b1b77e3a",
       "name": "ECDSA",
       "properties": [
         {
@@ -1096,7 +1096,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5b6fff46-7107-4082-b3bd-7644ea72382e",
+      "bom-ref": "cbd1e526-08b6-4151-96fe-2d8a460d8717",
       "name": "ECDSA",
       "properties": [
         {
@@ -1150,7 +1150,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e8707bc7-98ba-49c7-a31c-e10fb41deae7",
+      "bom-ref": "7f4f7706-72e1-48f8-be32-62f1d4e2f4bb",
       "name": "ECDSA",
       "properties": [
         {
@@ -1197,7 +1197,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a652f15f-0eba-4b5d-a9a8-3df8d23d9eb6",
+      "bom-ref": "9bd8eba0-170b-4c53-8d2a-b26354aab5b3",
       "name": "ECDSA",
       "properties": [
         {
@@ -1244,7 +1244,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dda5e368-48fd-43b2-85ed-73fdbd46d735",
+      "bom-ref": "d0bdb053-c0b6-407d-ba2d-7177a1b40309",
       "name": "ECDSA",
       "properties": [
         {
@@ -1298,7 +1298,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4eee6d4c-4a19-43a0-96a1-082ca48903ed",
+      "bom-ref": "0545f9b9-4f6f-44da-9f4d-e6a23e049948",
       "name": "ECDSA",
       "properties": [
         {
@@ -1352,7 +1352,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "551ccf86-f429-4cc7-93d7-17f58646f872",
+      "bom-ref": "ebb237c1-ff95-42ba-9787-b267bb271f7b",
       "name": "ECDSA",
       "properties": [
         {
@@ -1399,7 +1399,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0ababee3-b5c1-4afa-934f-884d654dd383",
+      "bom-ref": "4d0580f2-dfaf-481b-87fd-e4bb312b1646",
       "name": "ECDSA",
       "properties": [
         {
@@ -1453,7 +1453,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "249c0d3c-8bc9-49f4-9795-1c8077049ff4",
+      "bom-ref": "c4d07ef4-9fc9-425a-af95-0ca9c8ffd589",
       "name": "ECDSA",
       "properties": [
         {
@@ -1507,7 +1507,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5a7163b0-624b-461c-922e-65b865c3fee9",
+      "bom-ref": "4b152b0f-ca21-4850-9e9a-49bb8a755ad9",
       "name": "ECDSA",
       "properties": [
         {
@@ -1561,7 +1561,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "89f851e1-4b53-49c3-b496-d00e23bf155c",
+      "bom-ref": "5024cfd2-e469-465f-98b4-69581a4787ab",
       "name": "ECDSA",
       "properties": [
         {
@@ -1608,7 +1608,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "35b28a4a-bd28-43b9-a203-7430410fa2db",
+      "bom-ref": "c21d9c3e-bad9-4f44-b9e5-a02ee98a2a31",
       "name": "ECDSA",
       "properties": [
         {
@@ -1655,7 +1655,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8646485e-8950-4114-b7fa-115041b08f0b",
+      "bom-ref": "b1623548-62ef-40fd-ba97-d9a2fa2bf08d",
       "name": "ECDSA",
       "properties": [
         {
@@ -1702,7 +1702,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "aae4cea2-7b0d-4186-812b-79617d5ed947",
+      "bom-ref": "27a550f3-7846-4bef-880b-a40b190ca692",
       "name": "ECDSA",
       "properties": [
         {
@@ -1756,7 +1756,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "50d48a58-06a9-4c0a-af06-2fc7cf6b19a7",
+      "bom-ref": "1de7b9e6-e49f-4e8d-8ebb-38085140d003",
       "name": "ECDSA",
       "properties": [
         {
@@ -1810,7 +1810,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f90ac549-dd24-4a08-9710-953fb95f7b6b",
+      "bom-ref": "5c96a10f-7d2b-48c9-b615-ac0767bcd3c8",
       "name": "Ed25519",
       "properties": [
         {
@@ -1859,7 +1859,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7483931b-cbfc-4333-b9a3-93f8857ab67a",
+      "bom-ref": "83df20ff-57fe-4ffd-b7fb-bdc2c40da590",
       "name": "Ed25519",
       "properties": [
         {
@@ -1913,7 +1913,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d2923cac-7216-4af3-8841-24b24c86e9dd",
+      "bom-ref": "992d8ca3-846d-4e6f-92a0-694fdbd62283",
       "name": "Ed25519",
       "properties": [
         {
@@ -1967,7 +1967,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f033e1b4-8b2a-46c4-8ddd-303d5d5666e9",
+      "bom-ref": "ab65b8a8-3b1f-44b6-8be0-4fe2ff180977",
       "name": "Ed25519",
       "properties": [
         {
@@ -2021,7 +2021,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9a628240-75fc-47c4-a17d-4cef18a898aa",
+      "bom-ref": "a74c5ee0-8e98-4ffa-9e9a-31bc9da188f5",
       "name": "Ed25519",
       "properties": [
         {
@@ -2070,7 +2070,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3c79544d-d715-48d4-a1ad-613cf233b7cc",
+      "bom-ref": "d7213cd7-6be5-41a1-9e1b-6dcc0a32b228",
       "name": "Ed25519",
       "properties": [
         {
@@ -2119,7 +2119,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2190c504-a9c0-40f0-a196-6c950628f686",
+      "bom-ref": "4ecd5aff-b5b7-43ae-a3a0-1127a644ab84",
       "name": "Ed25519",
       "properties": [
         {
@@ -2168,7 +2168,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2820e373-6644-445f-b2b9-68ac22f82a35",
+      "bom-ref": "e8dca2d4-8ede-4566-8442-ed854b7ab857",
       "name": "Ed25519",
       "properties": [
         {
@@ -2217,7 +2217,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "53ee5b86-6749-43b3-9ebb-226aa7a29b2e",
+      "bom-ref": "84d3c64f-e5d4-42c7-88e6-7934bdaef95f",
       "name": "Ed25519",
       "properties": [
         {
@@ -2271,7 +2271,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cb764a2d-da4b-4064-aa79-d99fa76860b9",
+      "bom-ref": "392e484e-1852-46d6-9ee4-ee8679940698",
       "name": "Ed25519",
       "properties": [
         {
@@ -2320,7 +2320,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7fe1bf7e-5127-4c67-99c6-758310ff3518",
+      "bom-ref": "1415e37f-75d8-429e-b85f-40395b313ce2",
       "name": "Ed25519",
       "properties": [
         {
@@ -2374,7 +2374,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b4c98b1f-f74d-41fc-aaff-cc40ddcb30ae",
+      "bom-ref": "32556c0d-be91-42a2-8f1b-54a3dac36108",
       "name": "Ed25519",
       "properties": [
         {
@@ -2428,7 +2428,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9953f972-e523-49f8-8155-0521b486cf32",
+      "bom-ref": "f127399e-9439-4095-bf57-50b4d178c93b",
       "name": "Ed25519",
       "properties": [
         {
@@ -2477,7 +2477,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d26bc34f-d8f6-4e1c-9aa3-53dd28265370",
+      "bom-ref": "202fef28-bbcc-495d-b358-7e401b8c26d4",
       "name": "Ed25519",
       "properties": [
         {
@@ -2531,7 +2531,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "16872611-0cae-4360-a432-59cef033b62e",
+      "bom-ref": "1877e3f2-1f36-4949-a888-5e552fff6f6b",
       "name": "Ed25519",
       "properties": [
         {
@@ -2585,7 +2585,61 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "da81d661-78ed-446b-9aba-a69a932d04a1",
+      "bom-ref": "657aaaa8-5350-46b5-850b-f9c8a32ee3be",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "src/cbmpc/crypto/ec25519_core.cpp:914"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/coinbase/cb-mpc/blob/0b716706f998633912ee2be9b9bf8909aed66088/src/cbmpc/crypto/ec25519_core.cpp#L914"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "implementation constant: edwards25519 curve constant d"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "Ed25519",
+          "curve": "Ed25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "fcf09d93-1a11-4b1a-be2d-7e25bb28a444",
       "name": "Ed25519",
       "properties": [
         {
@@ -2639,7 +2693,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "37c6e0d4-bd66-40f8-905a-0964d1652300",
+      "bom-ref": "2a223ab2-c5f5-4157-bd44-182e5a951d72",
       "name": "Ed25519",
       "properties": [
         {
@@ -2693,7 +2747,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "798535e7-65f4-4efd-b099-d4b9a8549aaa",
+      "bom-ref": "256e503a-26bd-4506-a019-3ee8611372dc",
       "name": "Ed25519",
       "properties": [
         {
@@ -2747,7 +2801,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "84e561bc-4ed2-4864-be95-579a7cf1667d",
+      "bom-ref": "31968268-44a0-44c2-92de-8b731e8a732a",
       "name": "Ed25519",
       "properties": [
         {
@@ -2801,7 +2855,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "06a227a3-f89e-4ed7-bc21-0d7fe1cf7d80",
+      "bom-ref": "cc2afb1a-bac2-4364-b40c-429502ecea14",
       "name": "ElGamal",
       "properties": [
         {
@@ -2847,7 +2901,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f3a83dbf-ebab-45b5-adde-35fadcfa81b4",
+      "bom-ref": "50b46e09-eb56-41d7-b360-e8470d229b61",
       "name": "ElGamal",
       "properties": [
         {
@@ -2893,7 +2947,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5e0f9b61-e01b-49d7-bc14-c7f7ada5e987",
+      "bom-ref": "3cf09534-fcd1-4a9f-8e90-f19e2f7f98a8",
       "name": "ElGamal",
       "properties": [
         {
@@ -2939,7 +2993,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1c197ece-bae5-4ee2-b8f5-d4a31a9e17b2",
+      "bom-ref": "fc4c1006-0a8e-446a-ba83-fd2eeb2c61f5",
       "name": "ElGamal",
       "properties": [
         {
@@ -2985,7 +3039,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3af10753-2b20-4d74-b8ab-a149e7dcc610",
+      "bom-ref": "1cc78f1a-52f2-47cc-a345-d05e163fb04e",
       "name": "HKDF",
       "properties": [
         {
@@ -3033,7 +3087,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "70d58f85-4f20-43b2-8c13-e4cf41529e1b",
+      "bom-ref": "fc86e6f9-5433-4c05-a134-95e643bd4f69",
       "name": "HKDF",
       "properties": [
         {
@@ -3081,7 +3135,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "994ec3bc-6898-4e09-8e47-406245df06cf",
+      "bom-ref": "8020c3fe-9041-4a8a-9f1d-d7fadd0a4597",
       "name": "HKDF",
       "properties": [
         {
@@ -3129,7 +3183,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "326d8946-109a-4c87-b6c3-5a2261cf757b",
+      "bom-ref": "62443c8f-0b49-47a6-bc3f-87294b4057a5",
       "name": "HMAC",
       "properties": [
         {
@@ -3177,7 +3231,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4d92fe1a-300e-44f7-bf4f-a16f760c6ee5",
+      "bom-ref": "4b278583-f252-4053-aa5a-5743924f6f24",
       "name": "ML-KEM",
       "properties": [
         {
@@ -3227,7 +3281,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f5518f50-5f51-4cde-8880-d9535638d07a",
+      "bom-ref": "d01b95c5-e436-4201-a01b-cb29e6f86b49",
       "name": "ML-KEM",
       "properties": [
         {
@@ -3281,7 +3335,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0625d0ad-8563-4bac-9342-d0780d448564",
+      "bom-ref": "083d756b-09bb-4b41-ab71-493707660368",
       "name": "Paillier",
       "properties": [
         {
@@ -3331,7 +3385,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "08af5d55-461f-4cb0-ad10-79287cd3163b",
+      "bom-ref": "70e5183a-c70f-490f-8b4d-31b9c4b81167",
       "name": "Paillier",
       "properties": [
         {
@@ -3381,7 +3435,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b13a7504-8957-4f2a-b0d9-16d1ba9ae601",
+      "bom-ref": "f2df3b81-ce51-4ddc-afe5-360d61129910",
       "name": "Paillier",
       "properties": [
         {
@@ -3431,7 +3485,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4e1e8e35-5d83-435a-aa13-6dca5e3ca847",
+      "bom-ref": "92afd923-344e-492b-ac4b-70af9ac0f94e",
       "name": "Paillier",
       "properties": [
         {
@@ -3481,7 +3535,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "70fe34ef-ccec-4597-bfae-00bea72db61a",
+      "bom-ref": "5a7e4dc2-c705-455d-a095-353598f16292",
       "name": "Paillier",
       "properties": [
         {
@@ -3531,7 +3585,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "05bb3f90-b154-472c-8dbf-3f6270a9ee16",
+      "bom-ref": "a24ffa72-de88-4b7c-813d-e6995135a2a9",
       "name": "Paillier",
       "properties": [
         {
@@ -3581,7 +3635,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8d49eee4-19cb-46bd-af40-9c93a821d9b6",
+      "bom-ref": "3ab1965e-368c-4b79-a2f0-94a20b3b132c",
       "name": "Paillier",
       "properties": [
         {
@@ -3631,7 +3685,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7e862336-a62d-466a-9389-65612efaf819",
+      "bom-ref": "69e7da0c-8980-4234-9fd3-a811ac778cbe",
       "name": "Paillier",
       "properties": [
         {
@@ -3681,7 +3735,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "76dfb127-7cec-481b-8ea1-768910f63e92",
+      "bom-ref": "a0692500-3184-4ca4-8006-8b1840418561",
       "name": "Paillier",
       "properties": [
         {
@@ -3731,7 +3785,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c98e41b9-3364-4306-86e2-da2f6c3347e0",
+      "bom-ref": "f40215a0-f8f5-47e9-b69a-74328529c49b",
       "name": "Paillier",
       "properties": [
         {
@@ -3781,7 +3835,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a184c355-ffc1-4366-b4b7-516a1561c097",
+      "bom-ref": "3fa93fe9-4e94-4e09-8ab9-8a7cfc2f120d",
       "name": "Paillier",
       "properties": [
         {
@@ -3831,7 +3885,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6a88ba23-9528-478c-8096-c5c49cc0631f",
+      "bom-ref": "110ac4e6-51a7-4a19-a3b6-0bc3e84e4b3e",
       "name": "Paillier",
       "properties": [
         {
@@ -3881,7 +3935,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "af85f36c-183d-4d28-be6b-9dbd81b4fa41",
+      "bom-ref": "823f2a50-4b94-4d18-bb32-6d228f2f1051",
       "name": "Paillier",
       "properties": [
         {
@@ -3931,7 +3985,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ae634104-b6de-469e-bed2-6ff203c695cf",
+      "bom-ref": "555a3c18-6550-4419-969c-3167971af3bd",
       "name": "Paillier",
       "properties": [
         {
@@ -3981,7 +4035,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "77ba92b3-264e-4a81-953c-7ea7cbd5899a",
+      "bom-ref": "c59f19b8-8900-469c-810f-fc7575ecc830",
       "name": "Paillier",
       "properties": [
         {
@@ -4031,7 +4085,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d5cb4108-a3ec-48e3-9922-663d7c9f1ba0",
+      "bom-ref": "e20ba295-33b4-4e8e-b18a-ad0b87043c0f",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4077,7 +4131,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7535308a-cf66-4e7d-ac1f-fbf97b94718c",
+      "bom-ref": "066e91ce-5bd7-4568-b72c-b86a77dcf67d",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4123,7 +4177,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "82df6354-d47f-4b9f-9df6-c76b6fbbd507",
+      "bom-ref": "1d9be543-1461-4372-b4a2-7174b83ccaa1",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4169,7 +4223,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e8a39fab-a546-486b-8d53-37eb76ecea0e",
+      "bom-ref": "07d6131c-05d6-45f3-a39a-d997392678a8",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4215,7 +4269,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a48cd257-da83-4934-a11d-28c256d2346d",
+      "bom-ref": "63748130-35b8-4948-874d-a3aaeefc6f38",
       "name": "RIPEMD-160",
       "properties": [
         {
@@ -4265,7 +4319,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "916d22a1-2ae6-436f-b4f3-7dcae0b3078f",
+      "bom-ref": "c6515766-4ab6-4202-93f8-b6d4c3a2a875",
       "name": "RSA",
       "properties": [
         {
@@ -4312,7 +4366,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "80ee07c6-94d9-4241-ae54-91c6961f1681",
+      "bom-ref": "cbb38313-df87-44e2-bcb5-74b95c698387",
       "name": "RSA",
       "properties": [
         {
@@ -4363,7 +4417,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b2b14890-2f5b-4262-bb19-c90ec2edc72d",
+      "bom-ref": "ddd55ac7-4a6b-46cc-90af-fad29419fd6c",
       "name": "RSA",
       "properties": [
         {
@@ -4410,7 +4464,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ddb91635-6e67-4f8e-aafe-854c912f32e6",
+      "bom-ref": "a56260c0-c5d6-4f41-a7ce-9b7338c766dc",
       "name": "SHA-1",
       "properties": [
         {
@@ -4461,7 +4515,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1528ae78-4881-4e3d-bff7-732e42e79646",
+      "bom-ref": "abc615d6-7e96-40eb-a281-bc09ceb0f610",
       "name": "SHA-2",
       "properties": [
         {
@@ -4509,7 +4563,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8b749a28-858d-4642-86bd-e4d8865baf15",
+      "bom-ref": "5fd3f35a-887f-4311-b5f4-4a50a16b9a21",
       "name": "SHA-2",
       "properties": [
         {
@@ -4557,7 +4611,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9bb15efa-6b2a-409d-a5c9-bd5069bff732",
+      "bom-ref": "c513a7c0-c177-4605-9e61-2354ef0d9a8d",
       "name": "SHA-3",
       "properties": [
         {
@@ -4605,7 +4659,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "70b1e554-eb03-4771-8bb9-b3aa8824aed0",
+      "bom-ref": "34ad871d-15c9-488c-a4f5-ff837b28d6df",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -4655,7 +4709,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "02c30ca7-cb75-4306-ba78-1e4385702acf",
+      "bom-ref": "21398b55-9d12-4e47-be31-e27db865b659",
       "name": "Schnorr (BIP-340)",
       "properties": [
         {
@@ -4705,7 +4759,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9fb59bc3-9549-4b8b-ab01-08786a20c90a",
+      "bom-ref": "9ecb9f5b-7175-40be-bc42-2c60dce4b925",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -4755,7 +4809,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6dca0907-421b-4b46-b4ef-19e356947af2",
+      "bom-ref": "d8b42604-620b-40cf-909e-e369fc423fe0",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -4805,7 +4859,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bcf4f189-d731-4269-bd97-99ef76d5694a",
+      "bom-ref": "0550895c-5db3-4708-9e66-18360166113a",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -4855,7 +4909,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d01804f5-2193-4d2c-b116-4df8cdf1b064",
+      "bom-ref": "4cae124c-8287-43c8-8c4b-26decef4aa35",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -4905,7 +4959,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2a4841d8-a9c2-4efb-b18c-c04a1058febb",
+      "bom-ref": "83cc9f88-c281-460d-8c85-8272ed689d22",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -4955,7 +5009,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0be1df2c-8bc0-4b4d-9304-c4cfee361836",
+      "bom-ref": "e50e1476-9862-4d75-91a9-ee93fa531eb8",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -5005,7 +5059,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cc20f3a0-4704-416d-844e-46070bba316d",
+      "bom-ref": "07452337-078a-441f-a7b7-9484979e634a",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -5055,7 +5109,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3e525461-55b4-471b-b486-38d57d89979c",
+      "bom-ref": "dcc3577d-19b8-44e3-a53c-1be9df18d32c",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -5105,7 +5159,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d4fe7816-ad89-478f-9347-cbb10ead6382",
+      "bom-ref": "c72a0894-9f3a-4d8b-9d81-c35152095918",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -5155,7 +5209,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d3b2029c-9ae3-4478-ac81-5b04b7ce1809",
+      "bom-ref": "100eb637-8150-4f0e-a16a-53256ada3e7c",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -5205,7 +5259,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5dde6ef0-7632-4958-81d6-abfaa8d6f00a",
+      "bom-ref": "690cf9a5-addb-4314-8bfe-062c7662f591",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -5255,7 +5309,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c7297f74-a3f1-43cc-a78c-54eecba09172",
+      "bom-ref": "a812ac44-dd27-490f-b232-fc5c0d0ed5e6",
       "name": "Threshold ECDSA",
       "properties": [
         {
@@ -5305,7 +5359,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "df3f957a-2f32-4f5d-ba9b-674670c49822",
+      "bom-ref": "6c4f6ac8-bc96-40e3-b262-cf52f4517efa",
       "name": "Threshold ECDSA",
       "properties": [
         {

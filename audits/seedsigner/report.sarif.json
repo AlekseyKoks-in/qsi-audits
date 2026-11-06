@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "8ad74d5e91020d090855f54daded6d9a"
           },
           "properties": {
-            "qsiId": "QSI-2026-12818",
+            "qsiId": "QSI-2026-18989",
             "severity": "high",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "374e4ccd6278bca8118c7218de2c65d6"
           },
           "properties": {
-            "qsiId": "QSI-2026-12819",
+            "qsiId": "QSI-2026-18990",
             "severity": "high",
             "confidence": "medium",
             "classification": "potential_crypto_risk",
@@ -136,7 +136,7 @@
             "qsiFindingKey/v1": "955da9092a51713c056a2bffa9f96e91"
           },
           "properties": {
-            "qsiId": "QSI-2026-12816",
+            "qsiId": "QSI-2026-18987",
             "severity": "medium",
             "confidence": "high",
             "classification": "pq_long_term_risk",
@@ -154,7 +154,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-12817",
+            "qsiId": "QSI-2026-18988",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -163,13 +163,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/seedsigner @ ada81cde050e/b01f7e22-9418-4a84-ac38-cae35df8b502"
+        "id": "qsi/seedsigner @ ada81cde050e/87733b6d-a403-43e6-96bc-93e4e1806be1"
       },
       "properties": {
-        "qsiContentSha256": "0d233bfb8d1a65a906d6c82ae8f7ee22cae7fe48eb5749141f8ef70df99894fd",
+        "qsiContentSha256": "01996796bcafb8fce4023132d4bba49a64437dd673f115989e79cf74109bfa43",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:25:46.148640+00:00",
+        "qsiGeneratedAt": "2026-11-06T13:57:18.181417+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

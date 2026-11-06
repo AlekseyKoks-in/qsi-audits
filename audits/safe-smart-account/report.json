@@ -1,8 +1,8 @@
 {
-  "content_sha256": "2bf95ac0248f27ddee30b12ec0d10f567f58e9bf3ed85495587dedda41cc19f2",
+  "content_sha256": "a78c7f23d1423e7637d8911f87319e67fed03020af9361b43d60c729eb96d13b",
   "schema": "qsi.report/1",
   "language": "ru",
-  "generated_at": "2026-11-04T19:21:35.913268+00:00",
+  "generated_at": "2026-11-06T13:53:12.483207+00:00",
   "report_version": 1,
   "organization": {
     "name": "QSI"
@@ -15,13 +15,13 @@
     "is_demo": false
   },
   "audit": {
-    "id": "aa39ad88-f811-4f3d-9a1c-55e49434dbae",
+    "id": "da003a3e-e362-465b-af60-fbcb4b6322d3",
     "mode": "document",
     "title": "Document audit: safe-smart-account",
     "status": "completed",
     "engine_version": "1.3.0",
-    "started_at": "2026-11-04T19:20:50.526353+00:00",
-    "finished_at": "2026-11-04T19:21:35.779338+00:00",
+    "started_at": "2026-11-06T13:52:28.347588+00:00",
+    "finished_at": "2026-11-06T13:53:12.358422+00:00",
     "risk_profile": "crypto_exchange",
     "risk_profile_name": "Криптобиржа, кастодиан или кошелёк",
     "parameters": {
@@ -509,7 +509,7 @@
   "coverage": [
     {
       "area": "source_code",
-      "detail": ".solcover.js: 15 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": ".solcover.js: 15 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1079,12 +1079,12 @@
     },
     {
       "area": "source_code",
-      "detail": "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1099,87 +1099,87 @@
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_accessors.ts: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/deploy/deploy_accessors.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_factories.ts: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/deploy/deploy_factories.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_handlers.ts: 30 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/deploy/deploy_handlers.ts: 30 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_libraries.ts: 44 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/deploy/deploy_libraries.ts: 44 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_migrations.ts: 21 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/deploy/deploy_migrations.ts: 21 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_safe_l2.ts: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/deploy/deploy_safe_l2.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/deploy/deploy_safe_singleton.ts: 16 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/deploy/deploy_safe_singleton.ts: 16 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/index.ts: 4 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/index.ts: 4 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/deploy_contracts.ts: 10 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/tasks/deploy_contracts.ts: 10 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/local_verify.ts: 47 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/tasks/local_verify.ts: 47 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/tasks/show_codesize.ts: 37 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/tasks/show_codesize.ts: 37 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/constants.ts: 1 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/utils/constants.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/execution.ts: 284 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/utils/execution.ts: 284 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/multisend.ts: 25 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/utils/multisend.ts: 25 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/proxies.ts: 28 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/utils/proxies.ts: 28 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "src/utils/solc.ts: 18 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "src/utils/solc.ts: 18 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
       "area": "source_code",
-      "detail": "types/solc.d.ts: 1 lines scanned with 16 rule patterns and 145 registry patterns",
+      "detail": "types/solc.d.ts: 1 lines scanned with 16 rule patterns and 266 registry patterns",
       "status": "checked"
     },
     {
@@ -1210,9 +1210,9 @@
       "count": 20,
       "rows": 20,
       "examples": [
-        ".solcover.js: 15 lines scanned with 16 rule patterns and 145 registry patterns",
-        "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 145 registry patterns",
-        "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 145 registry patterns"
+        ".solcover.js: 15 lines scanned with 16 rule patterns and 266 registry patterns",
+        "eslint.config.mjs: 20 lines scanned with 16 rule patterns and 266 registry patterns",
+        "hardhat.config.ts: 134 lines scanned with 16 rule patterns and 266 registry patterns"
       ]
     },
     {
@@ -1702,12 +1702,22 @@
       "grover_reduced": 8,
       "not_applicable": 20,
       "vulnerable_shor": 5
+    },
+    "inventory_by_origin": {
+      "dependency": {
+        "total": 20,
+        "vulnerable_shor": 0
+      },
+      "own": {
+        "total": 13,
+        "vulnerable_shor": 5
+      }
     }
   },
   "findings": [
     {
-      "id": "06ba6459-d496-4b62-a74b-78b841e2f3c6",
-      "public_id": "QSI-2026-12624",
+      "id": "6195cd5b-ece9-43f5-9bf7-405d90494315",
+      "public_id": "QSI-2026-18794",
       "rule_id": "SOL-ECRECOVER",
       "title": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol",
       "description": "ecrecover в строка 32. (см. SWC-117/SWC-121)",
@@ -1727,7 +1737,7 @@
       "affected_asset": "contract:certora/harnesses/SafeHarness.sol",
       "data_source": "certora/harnesses/SafeHarness.sol",
       "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.712564+00:00",
+      "detected_at": "2026-11-06T13:53:12.291989+00:00",
       "risk_score": 43.6,
       "risk_breakdown": {
         "score": 43.6,
@@ -1783,7 +1793,7 @@
           "content_sha256": "e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0",
           "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.731193+00:00",
+          "collected_at": "2026-11-06T13:53:12.313966+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32"
         },
         {
@@ -1794,7 +1804,7 @@
           "content_sha256": "3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef",
           "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.731200+00:00",
+          "collected_at": "2026-11-06T13:53:12.313973+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34"
         }
       ],
@@ -1817,8 +1827,8 @@
       ]
     },
     {
-      "id": "54f6f94e-1cd3-4e80-9b7f-fa30be1f31b3",
-      "public_id": "QSI-2026-12625",
+      "id": "784e4ebc-c81f-416e-837a-8face9ed5eaf",
+      "public_id": "QSI-2026-18795",
       "rule_id": "SOL-UNCHECKED-CALL",
       "title": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol",
       "description": "Результат низкоуровневого вызова не проверяется в строка 88. (см. SWC-104)",
@@ -1838,7 +1848,7 @@
       "affected_asset": "contract:certora/harnesses/SafeHarness.sol",
       "data_source": "certora/harnesses/SafeHarness.sol",
       "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.729138+00:00",
+      "detected_at": "2026-11-06T13:53:12.310259+00:00",
       "risk_score": 43.6,
       "risk_breakdown": {
         "score": 43.6,
@@ -1894,7 +1904,7 @@
           "content_sha256": "8e885c80b50cce328ce145786c0515613599e25c3226c2115c450b873c5e9506",
           "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.741596+00:00",
+          "collected_at": "2026-11-06T13:53:12.321338+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L88"
         }
       ],
@@ -1917,8 +1927,8 @@
       ]
     },
     {
-      "id": "51ceea4e-c44a-4419-8c66-1983f6c8a4c8",
-      "public_id": "QSI-2026-12623",
+      "id": "2ea05c73-c235-47ac-bfcc-695543aa7ab1",
+      "public_id": "QSI-2026-18793",
       "rule_id": "CODE-QV-ASYMMETRIC",
       "title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
       "description": "5 упоминаний ECDSA в 3 файл(ах), например certora/harnesses/SafeHarness.sol:32. Роль по путям, именам функций и соседнему коду: подпись транзакций и сообщений. CRQC восстанавливает закрытый ключ по уже известному открытому (в блокчейне после первой траты, при повторном использовании адреса): средствам и подтверждениям под этими ключами нужен путь миграции.",
@@ -1938,7 +1948,7 @@
       "affected_asset": "source-code:ECDSA:transaction_signing",
       "data_source": "certora/harnesses/SafeHarness.sol",
       "analyzer": "source_code 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.700689+00:00",
+      "detected_at": "2026-11-06T13:53:12.281642+00:00",
       "risk_score": 35.6,
       "risk_breakdown": {
         "mosca": {
@@ -2035,7 +2045,7 @@
           "content_sha256": "e416f88cf9d56a07a6ec143b9f07aa6080e9077660994d8459f67a4f2d8d05f0",
           "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.716440+00:00",
+          "collected_at": "2026-11-06T13:53:12.298450+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L32"
         },
         {
@@ -2046,7 +2056,7 @@
           "content_sha256": "3a44416872ad9ffc133c483f76208b50cb892390311baf7040e8c9825678d4ef",
           "source_sha256": "0c6a4b08571e47ad101a82574a077630f939562100cb09dec20dda1a8f7cc401",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.716447+00:00",
+          "collected_at": "2026-11-06T13:53:12.298458+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/certora/harnesses/SafeHarness.sol#L34"
         },
         {
@@ -2057,7 +2067,7 @@
           "content_sha256": "be7c18bdbce908e503f1c899b447b921a9a3880ec49ae5d3d5ea33045ae5aec7",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.716451+00:00",
+          "collected_at": "2026-11-06T13:53:12.298462+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L403"
         },
         {
@@ -2068,7 +2078,7 @@
           "content_sha256": "361e3d349b65a6cf85ae3cc313307e936af7349c06d154fd2e39b0f84d9b4714",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.716454+00:00",
+          "collected_at": "2026-11-06T13:53:12.298465+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L406"
         },
         {
@@ -2079,7 +2089,7 @@
           "content_sha256": "a189cee56b6fb9aa095cce0a3b5099d5f195bc22ad24f9e656e950cde6a753c0",
           "source_sha256": "d2d395bd775bb64117ad4d323fb164f4dd5ef7c616c64f26beeabbf0096121b3",
           "collector": "source_code 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.716458+00:00",
+          "collected_at": "2026-11-06T13:53:12.298469+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/src/utils/execution.ts#L113"
         }
       ],
@@ -2117,8 +2127,8 @@
       ]
     },
     {
-      "id": "deacc89e-9aac-40db-ac24-78ab1c09a130",
-      "public_id": "QSI-2026-12626",
+      "id": "8531b252-4776-4324-88a6-a3f8fa9c7c5c",
+      "public_id": "QSI-2026-18796",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
       "description": "pragma >=0.7.0 <0.9.0 в 50 файл(ах), впервые в contracts/Safe.sol:2. (см. SWC-103)",
@@ -2138,7 +2148,7 @@
       "affected_asset": "solidity:pragma:>=0.7.0 <0.9.0",
       "data_source": "contracts/Safe.sol",
       "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.738519+00:00",
+      "detected_at": "2026-11-06T13:53:12.318916+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2194,7 +2204,7 @@
           "content_sha256": "e88d87460c9e31999f74a385f7211f2a3d247576a8d5e7321fb8ab7610726718",
           "source_sha256": "60d4d0321549c9aac50e381d55d64d7837d886f3956382bd1a4dfec1789db130",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750362+00:00",
+          "collected_at": "2026-11-06T13:53:12.331134+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/Safe.sol#L2"
         },
         {
@@ -2205,7 +2215,7 @@
           "content_sha256": "15c9f4200fba8411f86f51e4783fa81326529bbdedb3a85d3d69541f7783cbd7",
           "source_sha256": "6030700562329d1ebd42ec3c0494b10c9001dbe9080fbb4abf75c1563ed466db",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750370+00:00",
+          "collected_at": "2026-11-06T13:53:12.331145+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/SafeL2.sol#L2"
         },
         {
@@ -2216,7 +2226,7 @@
           "content_sha256": "af5c840a272a5dab66211c10e60731181ce16ddf9518928201829db6baacef22",
           "source_sha256": "ea5890f27c3a488246ecb1880d632f4a5a30fcbbb65a512bad7a1c5b88f86082",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750373+00:00",
+          "collected_at": "2026-11-06T13:53:12.331150+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/accessors/SimulateTxAccessor.sol#L2"
         },
         {
@@ -2227,7 +2237,7 @@
           "content_sha256": "c8eec2e4083c16adc0bf1e7eea14ca740cca55b1f5676d9cb4a355576c6800c6",
           "source_sha256": "dcea582290abd1dc0ce89171389d78b716e89f6c788fce523c5cb562e81743e8",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750377+00:00",
+          "collected_at": "2026-11-06T13:53:12.331154+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/Executor.sol#L2"
         },
         {
@@ -2238,7 +2248,7 @@
           "content_sha256": "f0696aecda7f2d4390ae2470ec51a56b07a6565df8ff4be3d0a6524628ffb825",
           "source_sha256": "da724d64eb3238f1cb3355bf8b87c459cf812fc3f6dd100f2f89290a8a169eb9",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750380+00:00",
+          "collected_at": "2026-11-06T13:53:12.331158+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/FallbackManager.sol#L2"
         },
         {
@@ -2249,7 +2259,7 @@
           "content_sha256": "2f8023b221054a49f2c7512edfc7f592b58e8c7053625f4af7216c1251f2bd74",
           "source_sha256": "e1db96b2ed4f15aa42c8ceca0d8701048e7b6fe276cb437a4f814d85f69119a9",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750383+00:00",
+          "collected_at": "2026-11-06T13:53:12.331162+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/GuardManager.sol#L3"
         },
         {
@@ -2260,7 +2270,7 @@
           "content_sha256": "6fd7193061543bd17b02478604b1e136ee186957854410e2482d2fd544017605",
           "source_sha256": "3b7be17091c7c9e37c9ddaba41e57464b1c4a334500d34eaddd94721f8cd83b3",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750385+00:00",
+          "collected_at": "2026-11-06T13:53:12.331167+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/ModuleManager.sol#L3"
         },
         {
@@ -2271,7 +2281,7 @@
           "content_sha256": "43281753a6047468ec8145eb656909a730f9b1bb7e3a6388e81a52f7cc0c1714",
           "source_sha256": "c9744122158f543336c11bafc70d376711f48c4dd310fe09f385231f264a3fc1",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750388+00:00",
+          "collected_at": "2026-11-06T13:53:12.331172+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/base/OwnerManager.sol#L2"
         },
         {
@@ -2282,7 +2292,7 @@
           "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
           "source_sha256": "719f239f789764c2d79150ab0d6d5b3b49af4fee4409f0e6c3303350e30aad3a",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750392+00:00",
+          "collected_at": "2026-11-06T13:53:12.331176+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7702.sol#L2"
         },
         {
@@ -2293,7 +2303,7 @@
           "content_sha256": "4664953c5c56b94f26d9fa72c0444fa3beca0a4b56a03b25c953cc22e4ff357f",
           "source_sha256": "445d712873ba07b5ef800edd7038d8483da9d2ae1f56ee972e18076a7ee90992",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.750395+00:00",
+          "collected_at": "2026-11-06T13:53:12.331180+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/common/EIP7951.sol#L2"
         }
       ],
@@ -2316,8 +2326,8 @@
       ]
     },
     {
-      "id": "1f8ab43b-0021-4ad3-a8d5-0d7d6418ddf7",
-      "public_id": "QSI-2026-12627",
+      "id": "eb4bf5ce-4e34-44cd-9b1d-bf64d773372a",
+      "public_id": "QSI-2026-18797",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
       "description": "pragma >=0.5.0 <0.9.0 в 1 файл(ах), впервые в contracts/interfaces/ViewStorageAccessible.sol:2. (см. SWC-103)",
@@ -2337,7 +2347,7 @@
       "affected_asset": "solidity:pragma:>=0.5.0 <0.9.0",
       "data_source": "contracts/interfaces/ViewStorageAccessible.sol",
       "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.747123+00:00",
+      "detected_at": "2026-11-06T13:53:12.328434+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2393,7 +2403,7 @@
           "content_sha256": "983f9c51447ea383d35f05b85564c2a8e5c2eb17d9109edf52dad4e588c49ca6",
           "source_sha256": "c03720d0b31ec9208f2372c1ed397e2b4e7c77f60dc80a571721e50d66a598cf",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.758952+00:00",
+          "collected_at": "2026-11-06T13:53:12.339823+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/interfaces/ViewStorageAccessible.sol#L2"
         }
       ],
@@ -2416,8 +2426,8 @@
       ]
     },
     {
-      "id": "b126d759-d5a6-4d0e-8712-a6aaa65766e9",
-      "public_id": "QSI-2026-12628",
+      "id": "24e1f444-7049-434d-9a9b-65e78779892d",
+      "public_id": "QSI-2026-18798",
       "rule_id": "SOL-FLOATING-PRAGMA",
       "title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
       "description": "pragma >=0.7.4 <0.9.0 в 1 файл(ах), впервые в contracts/libraries/SafeStorage.sol:2. (см. SWC-103)",
@@ -2437,7 +2447,7 @@
       "affected_asset": "solidity:pragma:>=0.7.4 <0.9.0",
       "data_source": "contracts/libraries/SafeStorage.sol",
       "analyzer": "solidity 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.756550+00:00",
+      "detected_at": "2026-11-06T13:53:12.337511+00:00",
       "risk_score": 34.8,
       "risk_breakdown": {
         "score": 34.8,
@@ -2493,7 +2503,7 @@
           "content_sha256": "11c26335bd27fe89dda40165c6fea219ab0021d1c0b45a5bace32a1322a9ae25",
           "source_sha256": "642b3e3f69348c8bb715ed222fd510f71e265f6cf45b71b8d7d88b2bdff00cea",
           "collector": "solidity 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.766583+00:00",
+          "collected_at": "2026-11-06T13:53:12.346657+00:00",
           "url": "https://github.com/safe-global/safe-smart-account/blob/247b8ce3bdbf204a120e77f5b369d137424ddc58/contracts/libraries/SafeStorage.sol#L2"
         }
       ],
@@ -2516,8 +2526,8 @@
       ]
     },
     {
-      "id": "e84e53e7-fe07-4413-8295-6137e4147e8f",
-      "public_id": "QSI-2026-12630",
+      "id": "747a1b36-77ad-4c7e-be36-003f3cf771a4",
+      "public_id": "QSI-2026-18800",
       "rule_id": "DEP-ADVISORY-DEV",
       "title": "176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки",
       "description": "OSV.dev сообщает 176 бюллетеней (94 с оценкой high или critical) для 46 пакет(ов) npm, которые подтягивают только инструменты разработки или сборки (package-lock.json): например, @fastify/busboy@2.1.1 [dev]: GHSA-gxm5-99cw-xjw9, GHSA-x8mw-p69m-v3mx; @humanfs/node@0.16.7 [dev]: GHSA-p498-v437-472g; @isaacs/brace-expansion@5.0.0 [dev]: GHSA-7h2j-956f-4vf2; @openzeppelin/contracts@3.4.2 [dev]: GHSA-7grf-83vw-6f5x, GHSA-88g8-f5mf-f5rj, GHSA-mx2q-35m2-x2rh; adm-zip@0.4.16 [dev]: GHSA-7q85-xj36-vmfc, GHSA-8238-w5pm-2374, GHSA-c6fg-446q-cg94, GHSA-j5f4-cc29-5x44, GHSA-p634-w6r4-rjp2, GHSA-rcw4-f5rp-g42v, GHSA-xcpc-8h2w-3j85. Манифесты помечают их так (devDependencies, \"dev\": true в package-lock.json, [dev-dependencies]/[build-dependencies] через граф Cargo.lock), поэтому в поставляемый продукт они не входят.",
@@ -2537,7 +2547,7 @@
       "affected_asset": "dependencies:npm:non-runtime",
       "data_source": "OSV.dev",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.770596+00:00",
+      "detected_at": "2026-11-06T13:53:12.349818+00:00",
       "risk_score": 15.5,
       "risk_breakdown": {
         "score": 15.5,
@@ -2593,7 +2603,7 @@
           "content_sha256": "e7e0d4ba12d0451485a23e0ef896adc8947c8f2642b075c4597d34ce70699112",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.811480+00:00",
+          "collected_at": "2026-11-06T13:53:12.390235+00:00",
           "url": "https://osv.dev/"
         }
       ],
@@ -2616,8 +2626,8 @@
       ]
     },
     {
-      "id": "b7163ab5-18b3-44a7-924c-c2e4530cd5f5",
-      "public_id": "QSI-2026-12629",
+      "id": "dbcaaea6-c28e-418c-aee4-2e074a2e9f73",
+      "public_id": "QSI-2026-18799",
       "rule_id": "DEP-NO-PQC-LIBRARY",
       "title": "Не обнаружено криптобиблиотек с поддержкой PQC",
       "description": "В 3 манифестах зависимостей QSI нашёл криптобиблиотеки (@noble/curves, @noble/hashes, @noble/secp256k1, elliptic, ethers, secp256k1), но ни одной из списка поддерживающих PQC.",
@@ -2637,7 +2647,7 @@
       "affected_asset": "dependencies",
       "data_source": "dependency manifests",
       "analyzer": "dependencies 1.3.0",
-      "detected_at": "2026-11-04T19:21:35.762536+00:00",
+      "detected_at": "2026-11-06T13:53:12.344713+00:00",
       "risk_score": 13.3,
       "risk_breakdown": {
         "score": 13.3,
@@ -2700,7 +2710,7 @@
           "content_sha256": "47e156b611a62a94da8b2ebeeacd5c7d245cbbdc38b44af530ee4ffe425233ff",
           "source_sha256": null,
           "collector": "dependencies 1.3.0",
-          "collected_at": "2026-11-04T19:21:35.773180+00:00",
+          "collected_at": "2026-11-06T13:53:12.353179+00:00",
           "url": null
         }
       ],
@@ -2728,7 +2738,7 @@
     },
     "assumptions": "Допущения планирования: x для обмена ключами, x для подписей, y — значения по умолчанию профиля риска «Криптобиржа, кастодиан или кошелёк», а не данные клиента; с фактическими сроками клиента вывод может измениться.",
     "pq_findings": [
-      "QSI-2026-12623"
+      "QSI-2026-18793"
     ],
     "roles": [
       {
@@ -2744,7 +2754,7 @@
           }
         ],
         "findings": [
-          "QSI-2026-12623"
+          "QSI-2026-18793"
         ],
         "files": 3
       }
@@ -2876,7 +2886,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-12624",
+        "finding": "QSI-2026-18794",
         "finding_title": "Прямое использование ecrecover в certora/harnesses/SafeHarness.sol",
         "severity": "medium"
       },
@@ -2894,7 +2904,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-12625",
+        "finding": "QSI-2026-18795",
         "finding_title": "Непроверенный низкоуровневый вызов в certora/harnesses/SafeHarness.sol",
         "severity": "medium"
       }
@@ -2914,7 +2924,7 @@
         "post_tests": "Инвентаризация согласована владельцем системы.",
         "closure_criteria": "Существует запись инвентаризации с владельцем, сроком жизни и целевым алгоритмом.",
         "status": "todo",
-        "finding": "QSI-2026-12623",
+        "finding": "QSI-2026-18793",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -2932,7 +2942,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-12626",
+        "finding": "QSI-2026-18796",
         "finding_title": "Плавающая версия компилятора (>=0.7.0 <0.9.0) в 50 файл(ах)",
         "severity": "low"
       },
@@ -2950,7 +2960,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-12627",
+        "finding": "QSI-2026-18797",
         "finding_title": "Плавающая версия компилятора (>=0.5.0 <0.9.0) в 1 файл(ах)",
         "severity": "low"
       },
@@ -2968,7 +2978,7 @@
         "post_tests": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "closure_criteria": "Повторите статический анализ и добавьте модульный/фазз-тест, проверяющий шаблон.",
         "status": "todo",
-        "finding": "QSI-2026-12628",
+        "finding": "QSI-2026-18798",
         "finding_title": "Плавающая версия компилятора (>=0.7.4 <0.9.0) в 1 файл(ах)",
         "severity": "low"
       },
@@ -2986,7 +2996,7 @@
         "post_tests": "Проверьте фактически используемый алгоритм на рабочем активе.",
         "closure_criteria": "Повторный аудит показывает использование ML-DSA (FIPS 204) или SLH-DSA (FIPS 205), в гибридной/композитной форме, где это поддерживает экосистема или гибридной схемы.",
         "status": "todo",
-        "finding": "QSI-2026-12623",
+        "finding": "QSI-2026-18793",
         "finding_title": "Квантово-уязвимый ECDSA: подпись транзакций и сообщений (3 файл(ов))",
         "severity": "medium"
       },
@@ -3004,7 +3014,7 @@
         "post_tests": "Выполните процедуру повторной проверки из находки.",
         "closure_criteria": "Сканирование не сообщает бюллетеней для пакетов инструментов, либо оставшиеся зафиксированы.",
         "status": "todo",
-        "finding": "QSI-2026-12630",
+        "finding": "QSI-2026-18800",
         "finding_title": "176 бюллетеней в 46 пакет(ах) npm, нужных только для разработки или сборки",
         "severity": "info"
       }
@@ -3235,7 +3245,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Keccak-256",
@@ -3247,7 +3258,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Keccak-256",
@@ -3259,7 +3271,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Keccak-256",
@@ -3271,7 +3284,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Keccak-256",
@@ -3283,7 +3297,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Keccak-256",
@@ -3295,7 +3310,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "Keccak-256",
@@ -3307,7 +3323,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Keccak-256",
@@ -3319,19 +3336,8 @@
       "quantum_status": "grover_reduced",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 2
-    },
-    {
-      "algorithm": "Crypto library",
-      "family": "library",
-      "parameter": "1.2.0",
-      "usage": "npm dependency",
-      "library": "@noble/hashes (noble-hashes)",
-      "location": "package-lock.json",
-      "quantum_status": "not_applicable",
-      "classical_status": "ok",
-      "confidence": "high",
-      "occurrences": 1
+      "occurrences": 2,
+      "origin": "own"
     },
     {
       "algorithm": "Crypto library",
@@ -3343,7 +3349,21 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
+    },
+    {
+      "algorithm": "Crypto library",
+      "family": "library",
+      "parameter": "1.2.0",
+      "usage": "npm dependency",
+      "library": "@noble/hashes (noble-hashes)",
+      "location": "package-lock.json",
+      "quantum_status": "not_applicable",
+      "classical_status": "ok",
+      "confidence": "high",
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3355,7 +3375,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3367,7 +3388,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3379,7 +3401,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3391,7 +3414,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3403,7 +3427,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3415,7 +3440,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3427,7 +3453,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3439,7 +3466,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3451,7 +3479,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3463,7 +3492,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3475,7 +3505,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3487,7 +3518,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3499,7 +3531,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3511,7 +3544,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3523,7 +3557,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3535,7 +3570,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3547,7 +3583,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "Crypto library",
@@ -3559,7 +3596,8 @@
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "dependency"
     },
     {
       "algorithm": "ECDSA",
@@ -3571,7 +3609,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3583,7 +3622,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3595,7 +3635,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3607,7 +3648,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "high",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     },
     {
       "algorithm": "ECDSA",
@@ -3619,7 +3661,8 @@
       "quantum_status": "vulnerable_shor",
       "classical_status": "ok",
       "confidence": "medium",
-      "occurrences": 1
+      "occurrences": 1,
+      "origin": "own"
     }
   ],
   "inventory_grouped": [
@@ -3640,7 +3683,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "1.2.0",
-      "library": "@noble/hashes (noble-hashes)",
+      "library": "@noble/curves (noble-curves)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,
@@ -3652,7 +3695,7 @@
     {
       "algorithm": "Crypto library",
       "parameter": "1.2.0",
-      "library": "@noble/curves (noble-curves)",
+      "library": "@noble/hashes (noble-hashes)",
       "quantum_status": "not_applicable",
       "classical_status": "ok",
       "count": 1,

@@ -1,24 +1,24 @@
 # Post-quantum cryptography review: librustzcash-en @ 8672a4b2d60f
 
-*One-page brief* · Reviewed: 2026-11-04 18:54 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
+*One-page brief* · Reviewed: 2026-11-06 14:45 UTC · Risk profile: Crypto exchange, custodian or wallet · Client: Electric Coin Company (Zcash) — public repository (passive review)
 
 Source: https://github.com/zcash/librustzcash/tree/8672a4b2d60f432664780e6a4e85f49a36805a2a
 
 **Post-quantum maturity:** Level 0 of 4 — no post-quantum cryptography. **Next step:** Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.
 
-**Findings:** Critical 0 · High 2 · Medium 10 · Low 32 · Info 7
+**Findings:** Critical 0 · High 2 · Medium 10 · Low 32 · Info 8
 
 **Quantum timeline (Mosca: x + y − z):** Signatures 10 + 5 − 8 = 7 → too late
 
 ## What matters most
 
-1. **High** · rustls-webpki 0.101.7 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-12058)\
+1. **High** · rustls-webpki 0.101.7 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-19354)\
    What to do: Upgrade to a fixed version (0.103.13, 0.104.0-alpha.7).
-2. **High** · rustls-webpki 0.103.3 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-12062)\
+2. **High** · rustls-webpki 0.103.3 is affected by GHSA-82j2-j2ch-gfr8 (CVE-2026-93599, RUSTSEC-2026-0104) (QSI-2026-19358)\
    What to do: Upgrade to a fixed version (0.103.13, 0.104.0-alpha.7).
-3. **Medium** · serde_with 3.16.0 is affected by GHSA-7gcf-g7xr-8hxj (QSI-2026-12067)\
+3. **Medium** · serde_with 3.16.0 is affected by GHSA-7gcf-g7xr-8hxj (QSI-2026-19363)\
    What to do: Upgrade to a fixed version (3.21.0).
-4. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s)) (QSI-2026-12031) · *preliminary*\
+4. **Medium** · Quantum-vulnerable Pedersen commitment: threshold signing and MPC protocols (4 file(s)) (QSI-2026-19326) · *preliminary*\
    What to do: Track post-quantum threshold signatures (NIST IR 8214C) and keep the protocol layer ready to swap the signature scheme; record which keys…
 
 40 more in the full report.
@@ -38,7 +38,7 @@ Advisories for the versions in use: 42; unlikely to apply to this build: 14 (a C
 
 Static review of source code and manifests; files analysed: 333. No requests were sent to the owner's systems.
 
-Full report, content SHA-256: `03b3c2491116445855ca64e958f067d951c66e342cfeed96f84e97c91650ed99`
+Full report, content SHA-256: `e1b0abee7d7863be0a77b7194c2f432378f13c2d741199efd1b8fa5ca30a2057`
 
 Full report signature (report.sig.json): Ed25519 key, SHA-256 fingerprint `5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e`. bundle.sig.json lists the SHA-256 of every file in this bundle and is signed too; verify-bundle checks it offline.
 

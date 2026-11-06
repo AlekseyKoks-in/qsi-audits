@@ -2,10 +2,10 @@
 
 61 audit bundles over **53 codebases**: a machine-readable inventory of every cryptographic
 primitive the scanner found, what it is used for, and what a quantum computer does to it. Across those codebases
-**3,924 inventory rows**, of which **1,899 fall to Shor's algorithm**, **28 are post-quantum** and
-**12 are hybrid** (post-quantum combined with classical), from **30,787 parsed files**. Those last two
+**3,984 inventory rows**, of which **1,942 fall to Shor's algorithm**, **28 are post-quantum** and
+**14 are hybrid** (post-quantum combined with classical), from **30,766 parsed files**. Those last two
 are kept apart on purpose: write-ups of mine dated before 2026-10-30 quote a single "29 post-quantum" that was
-28+12-style addition of the two, which is why one number appeared in two different places.
+28+14-style addition of the two, which is why one number appeared in two different places.
 
 ### What those rows rest on
 
@@ -14,18 +14,18 @@ table to read before quoting any other number in this repository.
 
 | what the row rests on | rows | Shor-breakable |
 |---|---:|---:|
-| a line of source code | 2,235 | 1,448 |
+| a line of source code | 2,236 | 1,448 |
 | name of a dependency in a manifest | 859 | 0 |
-| name of a source file (low confidence) | 365 | 164 |
+| name of a source file (low confidence) | 348 | 159 |
 | a deployed smart contract | 126 | 3 |
 | OpenPGP key committed to the repository | 119 | 119 |
-| a certificate or key file | 112 | 59 |
+| a certificate or key file | 114 | 59 |
 | the chain a wallet supports | 105 | 105 |
-| other | 3 | 1 |
+| other | 77 | 49 |
 
 Two things in that table are worth saying out loud rather than leaving for a careful reader to notice.
 
-**164 of the 1,899 Shor-breakable rows rest on the name of a source file**, not on a line of
+**159 of the 1,942 Shor-breakable rows rest on the name of a source file**, not on a line of
 code. That signal exists because `trezor-firmware/crypto/pbkdf2.c` *defines* PBKDF2 instead of calling it, so no
 call-site pattern reaches it and the inventory missed it entirely — a file named after an algorithm is the project
 telling you what is in it. It is still weaker evidence than a call, the reports mark it `confidence: low`, and a
@@ -153,14 +153,14 @@ the description says so as an explicit warning rather than leaving a reader to i
 aside test, fuzzing, benchmark and example code and the files no analyzer reads, that is 84% of what
 could be read — and the 518 that still did not fit are named in the report and are every one of them
 `optiga-trust-m`'s vendored mbedtls headers. The bundle goes from 136 rows and 90
-Shor-breakable to **201 and 112**. 44 of the added rows are committed OpenPGP keys rather than
+Shor-breakable to **202 and 113**. 44 of the added rows are committed OpenPGP keys rather than
 implemented cryptography, which the breakdown above separates, so the honest statement of the improvement is
-136 → 157 rows of cryptography this project actually contains.
+136 → 158 rows of cryptography this project actually contains.
 
 **`krux` is still left at its earlier bundle**, and the reason is narrower than a size limit. Re-read at full
 depth it yields 248 inventory rows — but **230 of them come from `firmware/MaixPy` and 11 from `src/krux`**, with
 1,677 files still not fitting. That is a 23% sample of the tree whose composition depends on the order files are
-visited, presented as an inventory of a hardware wallet. The 93-row bundle published here covers Krux's own code
+visited, presented as an inventory of a hardware wallet. The 99-row bundle published here covers Krux's own code
 and the `embit` it pins, within the budget, and answers the question a reader actually has. The full run is kept
 as evidence rather than published as a measurement.
 
@@ -170,8 +170,8 @@ Every bundle published here except `nitro` was re-audited on 5 November at its r
 and analyst decisions, with the engine as it stands after the corrections of 2 to 5 November. `nitro` keeps its
 earlier bundle: its scope was never recorded, and the reconstructed one parses 1,036 files where the published
 bundle parsed 1,038, so a re-run would be a different measurement presented as a correction. The portfolio now
-holds **3,924 inventory rows, 1,899 Shor-breakable**, and the ten-codebase Bitcoin slice
-**771 and 530** (695 and 448 before). `bitcoin-core/secp256k1` is **35 of 35**: its ECDH
+holds **3,984 inventory rows, 1,942 Shor-breakable**, and the ten-codebase Bitcoin slice
+**808 and 555** (695 and 448 before). `bitcoin-core/secp256k1` has **39 Shor-breakable rows of 40**: its ECDH
 module was not recognised before. Most of the movement is the scanner learning words it lacked — ECDH on secp256k1,
 BIP-340 in Rust and C, Ed25519 implementations — and some is false rows leaving. Every codebase that moved:
 
@@ -179,35 +179,35 @@ BIP-340 in Rust and C, Ed25519 implementations — and some is false rows leavin
 |---|---:|---:|---:|---:|---|
 | `agave` | 200 | **208** | 103 | **111** | references to Solana's Ed25519 verify program (`ed25519_program::id()`) |
 | `bdk-wallet` | 10 | **14** | 7 | **11** | BIP-340 rows added; one test helper (`persist_test_utils.rs`) no longer counted |
-| `bitbox02-firmware` | 199 | **201** | 104 | **112** | ECDH/BIP-340 rows added; false rows removed: `i2c_ecc.c` as ECDSA, LVGL `lv_os_none.c` as JWS "none" |
+| `bitbox02-firmware` | 199 | **202** | 104 | **113** | ECDH/BIP-340 rows added; false rows removed: `i2c_ecc.c` as ECDSA, LVGL `lv_os_none.c` as JWS "none" |
 | `bitgo-mpc` | 91 | **93** | 66 | **68** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `bitwarden-sdk` | 119 | **120** | 12 | **13** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
-| `coinbase-cb-mpc` | 103 | **107** | 88 | **92** | ECDSA/ECDH call sites; the one file fewer is a file no analyzer reads; second pass: `base_ecc_secp256k1.h` no longer an ECDSA row by file name alone (tree 182 → 181 files) |
-| `embit` | 77 | **82** | 55 | **60** | ECDH and BIP-340 rows of its secp256k1-zkp and Python key code |
-| `ethers-js` | 100 | **103** | 29 | **32** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
+| `coinbase-cb-mpc` | 103 | **108** | 88 | **93** | ECDSA/ECDH call sites; the one file fewer is a file no analyzer reads; second pass: `base_ecc_secp256k1.h` no longer an ECDSA row by file name alone (tree 182 → 181 files) |
+| `embit` | 77 | **87** | 55 | **64** | ECDH and BIP-340 rows of its secp256k1-zkp and Python key code |
+| `ethers-js` | 100 | **114** | 29 | **43** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `foundry` | 103 | **100** | 16 | **17** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `frost` | 59 | **57** | 33 | **33** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `halo2` | 74 | **63** | 46 | **45** | `halo2_gadgets/src/ecc.rs` no longer read as ECDSA; generic field/group traits no longer Jubjub |
-| `jade` | 110 | **138** | 74 | **102** | the libwally-core it pins, as above |
-| `krux` | 98 | **93** | 64 | **59** | eleven `bench*.c` rows of the vendored secp256k1-zkp removed; ECDH and BIP-340 rows added |
+| `jade` | 110 | **144** | 74 | **107** | the libwally-core it pins, as above |
+| `krux` | 98 | **99** | 64 | **64** | eleven `bench*.c` rows of the vendored secp256k1-zkp removed; ECDH and BIP-340 rows added |
 | `librustzcash` | 156 | **147** | 23 | **26** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
-| `libwally-core` | 77 | **97** | 56 | **76** | the C++ wrapper `wally.hpp` and `wally_crypto.h` declarations: ECDH, ECDSA, BIP-340 |
-| `monero` | 116 | **136** | 79 | **99** | the Ed25519 implementation in `external/supercop` now recognised; second pass: XSalsa20-Poly1305 (libsodium header) and AES-CFB key wrapping in `gen_ssl_cert.cpp` |
+| `libwally-core` | 77 | **103** | 56 | **81** | the C++ wrapper `wally.hpp` and `wally_crypto.h` declarations: ECDH, ECDSA, BIP-340 |
+| `monero` | 116 | **137** | 79 | **99** | the Ed25519 implementation in `external/supercop` now recognised; second pass: XSalsa20-Poly1305 (libsodium header) and AES-CFB key wrapping in `gen_ssl_cert.cpp` |
 | `noir` | 73 | **71** | 9 | **9** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `openpgpjs` | 65 | **64** | 35 | **32** | `ecc_kem.js` no longer ECDSA, `ecc_dsa.js` no longer classical DSA; second pass: Twofish (`cipher/twofish.js`) and CFB mode |
 | `orchard` | 70 | **66** | 42 | **42** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `pasta-curves` | 9 | **5** | 5 | **5** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `rage` | 45 | **43** | 13 | **13** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `reddsa` | 12 | **9** | 4 | **4** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
-| `rust-bitcoin` | 28 | **42** | 11 | **25** | BIP-340 (`XOnlyPublicKey`, taproot) and ECDSA call sites now recognised |
-| `rust-secp256k1` | 32 | **43** | 32 | **43** | ECDH and BIP-340 forms of the Rust bindings now recognised (`XOnlyPublicKey`, `sign_schnorr*`) |
+| `rust-bitcoin` | 28 | **48** | 11 | **25** | BIP-340 (`XOnlyPublicKey`, taproot) and ECDSA call sites now recognised |
+| `rust-secp256k1` | 32 | **49** | 32 | **48** | ECDH and BIP-340 forms of the Rust bindings now recognised (`XOnlyPublicKey`, `sign_schnorr*`) |
 | `sapling-crypto` | 58 | **53** | 37 | **36** | `circuit/ecc.rs` no longer read as ECDSA; generic traits no longer Jubjub |
-| `scroll` | 92 | **88** | 7 | **7** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
-| `secp256k1` | 32 | **35** | 32 | **35** | ECDH module (`secp256k1_ecdh`, ElligatorSwift XDH) now recognised |
+| `scroll` | 92 | **89** | 7 | **7** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
+| `secp256k1` | 32 | **40** | 32 | **39** | ECDH module (`secp256k1_ecdh`, ElligatorSwift XDH) now recognised |
 | `seedsigner` | 7 | **9** | 1 | **3** | whole tree read: the release-signing OpenPGP key and BIP-340 rows (tree 166 → 373 files) |
 | `tachyon` | 29 | **25** | 10 | **10** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
-| `trezor-firmware` | 111 | **112** | 73 | **74** | one ECDH row (`zkp_ecdsa.c`); the one file fewer is a file no analyzer reads (tree 888 → 887 files) |
-| `trustwallet-wallet-core` | 355 | **394** | 254 | **293** | BIP-340 (Babylon), Ed25519 variants (Cardano, Waves) and ECDSA call sites now recognised (tree 2,105 → 2,104 files) |
+| `trezor-firmware` | 111 | **113** | 73 | **74** | one ECDH row (`zkp_ecdsa.c`); the one file fewer is a file no analyzer reads (tree 888 → 887 files) |
+| `trustwallet-wallet-core` | 355 | **396** | 254 | **294** | BIP-340 (Babylon), Ed25519 variants (Cardano, Waves) and ECDSA call sites now recognised (tree 2,105 → 2,104 files) |
 | `zcash-android-wallet-sdk` | 51 | **48** | 7 | **7** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `zcash-swift-wallet-sdk` | 46 | **43** | 3 | **3** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
 | `zebra` | 148 | **146** | 65 | **68** | pattern corrections of 2026-11-02 to 2026-11-05 (ECDH/BIP-340/Ed25519 vocabulary, Jubjub traits, benchmarks) |
@@ -223,6 +223,19 @@ Whirlpool entries, common MD5/SHA-1/DES spellings), re-audited all 60 bundles ag
 did are `coinbase-cb-mpc` and its twin (one false row gone), `monero` and `openpgpjs` (two real rows each), as
 the table states.
 
+## Third pass, 2026-11-06: constants, toolchain defaults, test vectors
+
+All 60 bundles again, after three engine changes. (1) An implementation is now recognised by the standard constants
+it has to contain — a curve's prime and order, a hash's round constants — whatever its functions are called; this
+adds real rows to every codebase that carries its own secp256k1, SHA-2 or Ed25519 code (`libwally-core`, `jade`,
+`krux`, `embit`, `rust-secp256k1`, `rust-bitcoin`, `ethers-js` and others). (2) A Go `tls.Config` that leaves
+`CurvePreferences` unset is inventoried as the hybrid X25519MLKEM768 that Go 1.24+ offers by default (`lightwalletd`,
+`scroll`), at low confidence because the file does not show the Go version. (3) libsecp256k1's test vectors and test
+helpers (`vectors.h`, `testutil.h`, `testrand*.h`) are test code; the first run of this pass counted them as
+implementations and was corrected before publication. Totals moved from 3,924 / 1,899 to **3,984 / 1,942**,
+hybrid rows from 12 to **14**. `nitro` again keeps its published bundle (different tree). Before-states and
+logs are in the archive of this run.
+
 ## A federal mandate now describes this method
 
 OMB **M-26-15** of 24 June 2026 asks agencies to build "a dynamic, continuously updated inventory of all
@@ -235,7 +248,7 @@ These bundles use two of those three methods and **declare the third**: live net
 19 March 2027, so nobody can claim conformance to them yet.
 
 The memorandum's algorithm table names seven quantum-vulnerable algorithms and then adds "Other non-PQC
-Asymmetric Algorithms". Measured here, **40% of the 1,899 Shor-breakable rows fall only under
+Asymmetric Algorithms". Measured here, **39% of the 1,942 Shor-breakable rows fall only under
 that catch-all**, across 16 distinct algorithms, the largest being Ed25519 — which the memorandum never
 names. A tool built from the seven named algorithms finds RSA and ECDSA and misses the cryptography modern
 systems are actually built from. The full mapping, and the one gap this exercise found in my own registry (MQV,
@@ -245,9 +258,9 @@ the seventh named algorithm, which had no entry), are in
 
 On 27 October 2026 NIST published **IR 8547 in final form**, stricter than its 2024 draft: ECDSA, EdDSA, RSA and
 Diffie-Hellman are now deprecated after 2030 at every key size, not only at 112 bits. Measured here, that puts a
-2030 milestone on **340 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
+2030 milestone on **341 rows the draft left alone until 2035** — standard Ed25519, P-256, P-384, RSA-3072
 and up — and says nothing at all about the 461 secp256k1 rows, a curve NIST never approved; with the
-509 rows in families no NIST standard covers, more than half of the exposure here sits outside NIST's dates.
+509 rows in families no NIST standard covers, about half of the exposure here (970 of 1,942 rows) sits outside NIST's dates.
 The split is section 3 of the same report.
 
 ## A check any project can run: does your scanner have a word for this cryptography?
@@ -350,19 +363,19 @@ exclude all 8 so nothing is counted twice.
 
 ## The Bitcoin self-custody slice
 
-Ten codebases, **771 inventory rows, 530 Shor-breakable**. This is the slice cited in grant
+Ten codebases, **808 inventory rows, 555 Shor-breakable**. This is the slice cited in grant
 applications, so it is here in full.
 
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 201 | 112 | 0 |
-| `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 138 | 102 | 0 |
-| `libwally-core` | Blockstream (libwally) | `374df231d054` | 249 | 97 | 76 | 0 |
-| `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 112 | 74 | 7 |
-| `krux` | Krux (selfcustody) | `9b3a4314a205` | 246 | 93 | 59 | 0 |
-| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 118 | 43 | 43 | 0 |
-| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 90 | 35 | 35 | 0 |
-| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 42 | 25 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 202 | 113 | 0 |
+| `jade` | Blockstream (Jade) | `a59d14c2b397` | 733 | 144 | 107 | 0 |
+| `libwally-core` | Blockstream (libwally) | `374df231d054` | 245 | 103 | 81 | 0 |
+| `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 113 | 74 | 7 |
+| `krux` | Krux (selfcustody) | `9b3a4314a205` | 244 | 99 | 64 | 0 |
+| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 114 | 49 | 48 | 0 |
+| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 85 | 40 | 39 | 0 |
+| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 48 | 25 | 0 |
 | `seedsigner` | SeedSigner | `ada81cde050e` | 76 | 9 | 3 | 0 |
 | `bdk` | Bitcoin Dev Kit | `f2528da88b10` | 44 | 1 | 1 | 0 |
 
@@ -377,27 +390,27 @@ none.
 
 | codebase | upstream | commit | files | inventory rows | Shor-breakable | post-quantum |
 |---|---|---|---:|---:|---:|---:|
-| `trustwallet-wallet-core` | Trust Wallet | `adf80f8bac98` | 1695 | 394 | 293 | 0 |
+| `trustwallet-wallet-core` | Trust Wallet | `adf80f8bac98` | 1695 | 396 | 294 | 0 |
 | `agave` | Anza (Solana) | `7700cb3128c1` | 1293 | 208 | 111 | 0 |
-| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 201 | 112 | 0 |
+| `bitbox02-firmware` | BitBox (Shift Crypto) | `ae548ef4e40f` | 2645 | 202 | 113 | 0 |
 | `librustzcash` | Electric Coin Company (Zcash) | `8672a4b2d60f` | 333 | 147 | 26 | 0 |
 | `zebra` | Zcash Foundation | `147a6a8bf7d3` | 439 | 146 | 68 | 0 |
-| `jade` | Blockstream (Jade) | `a59d14c2b397` | 737 | 138 | 102 | 0 |
-| `monero` | Monero | `3fd0f88c20f5` | 1117 | 136 | 99 | 0 |
+| `jade` | Blockstream (Jade) | `a59d14c2b397` | 733 | 144 | 107 | 0 |
+| `monero` | Monero | `3fd0f88c20f5` | 1117 | 137 | 99 | 0 |
 | `bitwarden-sdk` | Bitwarden | `25b6c8c3860a` | 1625 | 120 | 13 | 5 |
-| `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 112 | 74 | 7 |
+| `ethers-js` | ethers.js project | `3ea4c226dd0b` | 759 | 114 | 43 | 0 |
+| `trezor-firmware` | SatoshiLabs (Trezor) | `72489948b3c4` | 411 | 113 | 74 | 7 |
 | `rustls` | rustls project | `84bf9eaa9857` | 137 | 111 | 29 | 0 |
+| `coinbase-cb-mpc` | Coinbase | `0b716706f998` | 174 | 108 | 93 | 2 |
 | `nitro` | Offchain Labs (Arbitrum) | `ccc5c828d9ea` | 1038 | 108 | 13 | 0 |
-| `coinbase-cb-mpc` | Coinbase | `0b716706f998` | 174 | 107 | 92 | 2 |
-| `ethers-js` | ethers.js project | `3ea4c226dd0b` | 759 | 103 | 32 | 0 |
+| `libwally-core` | Blockstream (libwally) | `374df231d054` | 245 | 103 | 81 | 0 |
 | `foundry` | Foundry (Paradigm) | `7f0a409a5c20` | 760 | 100 | 17 | 0 |
-| `libwally-core` | Blockstream (libwally) | `374df231d054` | 249 | 97 | 76 | 0 |
+| `krux` | Krux (selfcustody) | `9b3a4314a205` | 244 | 99 | 64 | 0 |
 | `bitgo-mpc` | BitGo | `3c892fd6a388` | 271 | 93 | 68 | 0 |
-| `krux` | Krux (selfcustody) | `9b3a4314a205` | 246 | 93 | 59 | 0 |
+| `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 90 | 88 | 0 |
 | `aave-v3-origin` | Aave DAO | `8305565ae342` | 645 | 89 | 2 | 0 |
-| `fireblocks-mpc-lib` | Fireblocks | `00ae08b7f1bd` | 123 | 89 | 87 | 0 |
-| `scroll` | Scroll | `3046bbd18a6a` | 387 | 88 | 7 | 0 |
-| `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 142 | 82 | 60 | 0 |
+| `scroll` | Scroll | `3046bbd18a6a` | 387 | 89 | 7 | 0 |
+| `embit` | embit (SeedSigner, Krux) | `2b375a33bd89` | 140 | 87 | 64 | 0 |
 | `zingolib` | Zingo Labs | `81d799775f11` | 205 | 82 | 3 | 1 |
 | `noir` | Aztec / Noir | `5c98fecd3fe6` | 783 | 71 | 9 | 0 |
 | `lido-core` | Lido | `2bd532298d85` | 267 | 69 | 7 | 0 |
@@ -409,22 +422,22 @@ none.
 | `frost` | Zcash Foundation | `0966bd1529aa` | 61 | 57 | 33 | 0 |
 | `sapling-crypto` | Electric Coin Company (Zcash) | `88a7946b4a30` | 37 | 53 | 36 | 0 |
 | `metamask-extension` | MetaMask (Consensys) | `d2db7ee9a19b` | 4870 | 50 | 12 | 0 |
+| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 114 | 49 | 48 | 0 |
+| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 48 | 25 | 0 |
 | `zcash-android-wallet-sdk` | Electric Coin Company (Zcash) | `a95780ac00e0` | 350 | 48 | 7 | 0 |
 | `rage` | str4d (rage / age encryption) | `b5b68c4f4f7e` | 54 | 43 | 13 | 3 |
-| `rust-secp256k1` | rust-secp256k1 | `fe8b3bec962f` | 118 | 43 | 43 | 0 |
 | `zcash-swift-wallet-sdk` | Electric Coin Company (Zcash) | `4895ee058da9` | 205 | 43 | 3 | 0 |
-| `rust-bitcoin` | rust-bitcoin | `f127ba2ae14e` | 125 | 42 | 25 | 0 |
+| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 85 | 40 | 39 | 0 |
 | `cairo` | StarkWare | `68a61f6c6251` | 563 | 38 | 14 | 0 |
-| `secp256k1` | Bitcoin Core (libsecp256k1) | `1b4181f93f7a` | 90 | 35 | 35 | 0 |
 | `safe-smart-account` | Safe | `247b8ce3bdbf` | 77 | 33 | 5 | 0 |
 | `tachyon` | Tachyon (Zcash) | `6cdaebccf147` | 58 | 25 | 10 | 0 |
 | `signal-desktop` | Signal Messenger | `17502b9d1a9e` | 2202 | 22 | 0 | 2 |
 | `bdk-wallet` | Bitcoin Dev Kit (bdk_wallet) | `09c677305139` | 27 | 14 | 11 | 0 |
 | `rustcrypto-rsa` | RustCrypto project | `f96c4b5d629a` | 35 | 11 | 6 | 0 |
 | `sigstore-js` | Sigstore project | `769a53d87132` | 180 | 10 | 3 | 0 |
+| `lightwalletd` | Electric Coin Company (Zcash) | `4abfe9cd7b9b` | 34 | 9 | 3 | 0 |
 | `reddsa` | Zcash Foundation | `04e973bcf8d4` | 15 | 9 | 4 | 0 |
 | `seedsigner` | SeedSigner | `ada81cde050e` | 76 | 9 | 3 | 0 |
-| `lightwalletd` | Electric Coin Company (Zcash) | `4abfe9cd7b9b` | 34 | 8 | 3 | 0 |
 | `zodl-android` | Zodl (ex-Zashi, ECC) | `229dd3bff749` | 1609 | 8 | 3 | 0 |
 | `matrix-js-sdk` | Matrix.org Foundation | `61b08bd037a3` | 240 | 6 | 1 | 0 |
 | `pasta-curves` | Electric Coin Company (Zcash) | `e3c0f0246f56` | 35 | 5 | 5 | 0 |
@@ -458,7 +471,7 @@ inventory rows and no secp256k1 at all, because a shallow clone leaves git submo
 cryptography lives in one; materialised, it is 110 rows and 74 Shor-breakable. Krux measured 13 rows and a single
 ECDSA row, because the scanner's own directory-skip list silently overrode the audit scope that named
 `vendor/embit`, and did so before counting anything, so the report never mentioned what it had declined; read
-correctly, Krux is 93 rows and 59 Shor-breakable. A census then compared every stored audit's declared
+correctly, Krux is 99 rows and 64 Shor-breakable. A census then compared every stored audit's declared
 `.gitmodules` paths against the files its own signed bundle says it parsed and found **18 in-scope submodules
 that had never reached the scanner at all**. Both rules are now enforced by the runner and pinned by tests.
 
@@ -486,8 +499,8 @@ that is the most useful message I can get — the two corrections above both beg
 
 61 подписанных комплектов аудита по **53 кодовым базам**: машиночитаемая инвентаризация
 криптографических примитивов — какой алгоритм, где, для чего, и что с ним делает квантовый компьютер. Всего
-**3,924 строк инвентаризации**, из них **1,899 ломает алгоритм Шора**, и **28 уже
-постквантовых**; разобрано **30,787 файлов**.
+**3,984 строк инвентаризации**, из них **1,942 ломает алгоритм Шора**, и **28 уже
+постквантовых**; разобрано **30,766 файлов**.
 
 Каждый комплект привязан к коммиту апстрима, несёт подпись Ed25519 и CBOM в формате CycloneDX и сделан до того,
 как кто-либо за это заплатил. Смысл публикации в том, что ни одной цифре выше верить не нужно.
@@ -503,7 +516,7 @@ payload и сверяет ключ каждого комплекта с `PUBLIC-
 версии тех же аудитов, а `trezor-vendored-crypto` — подаудит вложенного каталога внутри `trezor-firmware`. В
 итогах они исключены, иначе портфель считал бы себя дважды.
 
-**Срез самостоятельного хранения биткоина:** десять кодовых баз, **771 строк, 530 ломает Шор**. Та же
+**Срез самостоятельного хранения биткоина:** десять кодовых баз, **808 строк, 555 ломает Шор**. Та же
 криптография лежит в трёх разных местах — Jade вносит исходники libwally в своё дерево, Krux подключает `embit`
 как git-подмодуль, SeedSigner — тот же `embit` как релиз с PyPI с замком по хешу, — поэтому аудит, не прошедший
 по закреплению, объявляет биткоин-подписанта чистым. И три самых рекомендуемых аппаратных кошелька разошлись: у

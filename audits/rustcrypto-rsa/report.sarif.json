@@ -100,7 +100,7 @@
             "qsiFindingKey/v1": "03839e83face834cc2d9cd1a759474aa"
           },
           "properties": {
-            "qsiId": "QSI-2026-12589",
+            "qsiId": "QSI-2026-18754",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -118,7 +118,7 @@
             "qsiFindingKey/v1": "5d5896bc38551d03bd526f5dd1436d20"
           },
           "properties": {
-            "qsiId": "QSI-2026-12591",
+            "qsiId": "QSI-2026-18756",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -145,7 +145,7 @@
             "qsiFindingKey/v1": "749cd33e8ce297b13a1f623c6cbe216a"
           },
           "properties": {
-            "qsiId": "QSI-2026-12592",
+            "qsiId": "QSI-2026-18757",
             "severity": "low",
             "confidence": "low",
             "classification": "known_vulnerable_component",
@@ -172,7 +172,7 @@
             "qsiFindingKey/v1": "a2b4e730b01b31b465ed265057b59982"
           },
           "properties": {
-            "qsiId": "QSI-2026-12590",
+            "qsiId": "QSI-2026-18755",
             "severity": "info",
             "confidence": "medium",
             "classification": "insufficient_data",
@@ -181,13 +181,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/rustcrypto-rsa @ f96c4b5d629a/bac3db89-d10d-4388-9640-d57ea268e096"
+        "id": "qsi/rustcrypto-rsa @ f96c4b5d629a/5e6407f2-4f54-4e84-b4f7-dc8b548aeb62"
       },
       "properties": {
-        "qsiContentSha256": "d4ac682f1e883dc2bcfa4f3a479d5145f55f521d5d06e837964de3dd4e4af4b9",
+        "qsiContentSha256": "ac412823ecaa175f8be5a76d35eb3ccfb46ff2a08a22c9a4b48c91ad8b0f3e93",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "security_software",
-        "qsiGeneratedAt": "2026-11-04T19:19:48.419402+00:00",
+        "qsiGeneratedAt": "2026-11-06T13:50:54.096124+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

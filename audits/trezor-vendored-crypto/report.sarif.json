@@ -50,7 +50,7 @@
             "qsiFindingKey/v1": "b0ce23c355b8aec47fc055e507bcd95e"
           },
           "properties": {
-            "qsiId": "QSI-2026-12889",
+            "qsiId": "QSI-2026-19291",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -68,7 +68,7 @@
             "qsiFindingKey/v1": "e4a7477d9ffc12eb0bd0186a2fe1f3a0"
           },
           "properties": {
-            "qsiId": "QSI-2026-12891",
+            "qsiId": "QSI-2026-19293",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -86,7 +86,7 @@
             "qsiFindingKey/v1": "19207464dbdbe30139596cfeedfa2d61"
           },
           "properties": {
-            "qsiId": "QSI-2026-12888",
+            "qsiId": "QSI-2026-19290",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -104,7 +104,7 @@
             "qsiFindingKey/v1": "22e492588f5031e09c2045ab9138ee42"
           },
           "properties": {
-            "qsiId": "QSI-2026-12890",
+            "qsiId": "QSI-2026-19292",
             "severity": "medium",
             "confidence": "medium",
             "classification": "pq_long_term_risk",
@@ -113,13 +113,13 @@
         }
       ],
       "automationDetails": {
-        "id": "qsi/trezor-vendored-crypto @ 72489948b3c4/9a0e7c00-3b77-4cd5-9b67-ea655f1a872a"
+        "id": "qsi/trezor-vendored-crypto @ 72489948b3c4/dec43503-c3d5-4ee3-bac4-415de182564e"
       },
       "properties": {
-        "qsiContentSha256": "487f14cbb0c7e7be4ab1ac3ef88d38f863fafb73da4da9bc920f75bebb1087fd",
+        "qsiContentSha256": "61dd2de82e4d564b1a3f4c220a2b6a15bf0407f3722f3b05d874bae599441e13",
         "qsiReportVersion": 1,
         "qsiRiskProfile": "crypto_exchange",
-        "qsiGeneratedAt": "2026-11-04T19:36:46.039211+00:00",
+        "qsiGeneratedAt": "2026-11-06T14:40:10.979521+00:00",
         "qsiIntegrity": "derived from the signed report.json; verify that file's signature, not this one"
       },
       "versionControlProvenance": [

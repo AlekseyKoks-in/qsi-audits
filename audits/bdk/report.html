@@ -12,7 +12,7 @@
   @page {
     size: A4; margin: 22mm 18mm 20mm 18mm;
     @top-left { content: "bdk @ f2528da88b10 · Security \26  Post-Quantum Readiness Audit Report"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
-    @top-right { content: "v1 · 59ffd452de4a"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
+    @top-right { content: "v1 · 95752fd04b54"; font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
     @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Inter, "DejaVu Sans", sans-serif; color: #86868b; }
     @bottom-left { content: "This report presents automated and documented analysis results for the stated scope. It is not a legal opinion…"; font: 6.5pt Inter, "DejaVu Sans", sans-serif; color: #a1a1a6; }
   }
@@ -82,12 +82,12 @@
   </div>
   <table>
     <tr><td>Organization</td><td>QSI</td></tr>
-    <tr><td>Report date</td><td>2026-11-04 20:13 UTC</td></tr>
+    <tr><td>Report date</td><td>2026-11-06 12:54 UTC</td></tr>
     <tr><td>Report version</td><td>1</td></tr>
-    <tr><td>Audit run</td><td>1b96b952-ec67-48fd-a3c4-a009fb69fe9a · Document audit · 2026-11-04 20:13 UTC</td></tr>
+    <tr><td>Audit run</td><td>2a9df95e-9959-43a5-a637-3e7b07f304cc · Document audit · 2026-11-06 12:54 UTC</td></tr>
     <tr><td>Analyzer engine</td><td>qsi-engine 1.3.0</td></tr>
     <tr><td>Risk profile</td><td>Crypto exchange, custodian or wallet</td></tr>
-    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">59ffd452de4aa332fec2fab0ef94887896d51b13df2992df5d90513da39d4abe</td></tr>
+    <tr><td>Content SHA-256</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">95752fd04b542a6ac39fb243df69a7edd813f6c4f3e4845154c658f482fc2657</td></tr>
 <tr><td>Signature key (Ed25519, SHA-256 fingerprint; the signature is the separate file report.sig.json)</td><td style="font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt">5b3cf9c9bd0fa54447e2b5dfa7a6bab569bd0c666fa46949599e5c348d17083e</td></tr>  </table>
 </div>
 
@@ -130,7 +130,7 @@
   <h3>Top 5</h3>
   <table class="data">
     <tr><th>ID</th><th>Severity</th><th>Detailed findings</th><th>Priority score</th></tr>
-<tr><td>QSI-2026-13330</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) <span class="tag pre">preliminary</span></td><td>35.6</td></tr>  </table>
+<tr><td>QSI-2026-17718</td><td><span class="sev sev-medium">Medium</span></td><td>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s)) <span class="tag pre">preliminary</span></td><td>35.6</td></tr>  </table>
   <p class="note">Mosca&#39;s inequality (x + y &gt; z): x = 10, y = 5, z = 8 → migration would finish too late under this scenario. z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
 <p class="note"><strong>Post-quantum maturity: Level 0 of 4 — no post-quantum cryptography.</strong> Next step: Inventory where classical public-key cryptography protects long-lived data and keys, and choose the first migration: usually a hybrid TLS key exchange and wrapped keys.</p></section>
 
@@ -148,7 +148,7 @@
   <p>Finding classes: confirmed technical vulnerability; known vulnerable component (a dependency version named in an advisory; whether the affected code is reachable is assessed separately, and a component confirmed by review becomes a vulnerability); confirmed configuration error; potential cryptographic risk; long-term post-quantum risk; improvement recommendation; insufficient data. Heuristic findings are marked preliminary; analyst decisions are shown next to the findings.</p>
   <h3>Coverage of checks</h3>
   <table class="data"><tr><th>Area</th><th>Status</th><th>Count</th><th>Examples</th></tr>
-<tr><td>dependencies</td><td>checked</td><td>7</td><td class="small">crates/bitcoind_rpc/Cargo.toml: 4 dependencies parsed (0 pinned); crates/chain/Cargo.toml: 9 dependencies parsed (0 pinned); crates/core/Cargo.toml: 5 dependencies parsed (0 pinned)</td></tr><tr><td>source_code</td><td>checked</td><td>37</td><td class="small">crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 145 registry patterns; crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 145 registry patterns; 137 lines in #[cfg(test)] modules ignored; crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 145 registry patterns; 38 lines in #[cfg(test)] modules ignored</td></tr><tr><td>entropy</td><td>checked</td><td>1</td><td class="small">random-number generation: 37 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)</td></tr><tr><td>osv_advisories</td><td>not checked</td><td>1</td><td class="small">no exactly pinned versions to query</td></tr>  </table>
+<tr><td>dependencies</td><td>checked</td><td>7</td><td class="small">crates/bitcoind_rpc/Cargo.toml: 4 dependencies parsed (0 pinned); crates/chain/Cargo.toml: 9 dependencies parsed (0 pinned); crates/core/Cargo.toml: 5 dependencies parsed (0 pinned)</td></tr><tr><td>source_code</td><td>checked</td><td>37</td><td class="small">crates/bitcoind_rpc/src/bip158.rs: 197 lines scanned with 16 rule patterns and 266 registry patterns; crates/bitcoind_rpc/src/lib.rs: 627 lines scanned with 16 rule patterns and 266 registry patterns; 137 lines in #[cfg(test)] modules ignored; crates/chain/src/balance.rs: 105 lines scanned with 16 rule patterns and 266 registry patterns; 38 lines in #[cfg(test)] modules ignored</td></tr><tr><td>entropy</td><td>checked</td><td>1</td><td class="small">random-number generation: 37 code files read with 0 macro definitions from the tree; 0 ineffective guard(s), 0 weak random-bytes provider(s), 0 weak key-generation site(s)</td></tr><tr><td>osv_advisories</td><td>not checked</td><td>1</td><td class="small">no exactly pinned versions to query</td></tr>  </table>
   <p class="note">Long lists are grouped here; the full per-file list is in the JSON report, signed with the same key.</p>
 </section>
 
@@ -189,13 +189,13 @@
   <td><div class="bar"><span style="width: 0.0%"></span></div></td></tr>
   </table>
   <table class="data"><tr><th>ID</th><th>Detailed findings</th><th>Classification</th><th>Severity</th><th>Confidence</th></tr>
-<tr><td>QSI-2026-13330</td><td>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr>  </table>
+<tr><td>QSI-2026-17718</td><td>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))</td><td class="small">Long-term post-quantum risk</td><td><span class="sev sev-medium">Medium</span></td><td>Medium, preliminary</td></tr>  </table>
 </section>
 
 <section class="chapter" id="details">
   <h2>Detailed findings</h2>
-  <article class="finding" id="QSI-2026-13330">
-    <header><span class="fid">QSI-2026-13330 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
+  <article class="finding" id="QSI-2026-17718">
+    <header><span class="fid">QSI-2026-17718 · CODE-QV-ASYMMETRIC</span><span><span class="sev sev-medium">Medium</span></span></header>
     <h3>Quantum-vulnerable ECDSA: transaction and message signing (1 file(s))</h3>
     <p><span class="tag">Long-term post-quantum risk</span><span class="tag">Confidence: Medium</span><span class="tag pre">preliminary — requires further verification</span></p>
     <p>2 reference(s) to ECDSA across 1 file(s), e.g. crates/chain/src/spk_iter.rs:2. Role, judged from paths, function names and nearby code: transaction and message signing. A CRQC derives the private key from a public key that is already known (on chain after the first spend, in reused addresses): funds and approvals controlled by these keys need a migration path.</p>
@@ -203,13 +203,13 @@
       <dt>Affected asset</dt><dd>source-code:ECDSA:transaction_signing</dd>
       <dt>Data source</dt><dd>crates/chain/src/spk_iter.rs</dd>
       <dt>Detection method</dt><dd>Regular-expression matching of crypto API patterns; the role comes from words in paths, enclosing function names and the lines around the matches.</dd>
-      <dt>Analyzer</dt><dd>source_code 1.3.0 · 2026-11-04 20:13 UTC</dd>
+      <dt>Analyzer</dt><dd>source_code 1.3.0 · 2026-11-06 12:54 UTC</dd>
       <dt>Priority score</dt><dd>35.6 / 100 (Crypto exchange, custodian or wallet)</dd>
       <dt>CVSS v3.1</dt><dd>not applicable</dd>
 <dt>Mosca&#39;s inequality (x + y &gt; z)</dt><dd>x=10.0, y=5.0, z=8.0 → migration would finish too late under this scenario</dd>    </dl>
     <h4>Potential impact</h4><p>Long-term risk depends on what the algorithm protects: signatures (authenticity until migration) or key exchange/encryption (retroactive decryption of recorded data).</p>
     <h4>Reproduction steps</h4><pre>Open crates/chain/src/spk_iter.rs:2 and inspect the quoted lines; the evidence lists further files.</pre>
-    <h4 id="ev-QSI-2026-13330">Evidence</h4>
+    <h4 id="ev-QSI-2026-17718">Evidence</h4>
       <div class="ev-meta">file_excerpt · <a href="https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L2">crates/chain/src/spk_iter.rs</a> · line 2 · SHA-256 58953e8cd2768468… · File 5df96d8c7921b330…</div>
       <pre>    1 | use crate::{
     2 |     bitcoin::{secp256k1::Secp256k1, ScriptBuf},
@@ -227,7 +227,7 @@
 <section class="chapter" id="evidence">
   <h2>Evidence</h2>
   <table class="data"><tr><th>ID</th><th>Type</th><th>Data source</th><th>SHA-256</th></tr>
-<tr><td><a href="#ev-QSI-2026-13330">QSI-2026-13330</a></td><td>file_excerpt</td><td><a href="https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L2">crates/chain/src/spk_iter.rs</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">58953e8cd27684683f75e8c61ebc1f8b6d9c286a2f5983b56e89a0ae255886b5</td></tr><tr><td><a href="#ev-QSI-2026-13330">QSI-2026-13330</a></td><td>file_excerpt</td><td><a href="https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L40">crates/chain/src/spk_iter.rs</a> (line 40)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2100b069271cc49191876e6a859414230e335185aeb5ec18d55ed509e55d5e14</td></tr>  </table>
+<tr><td><a href="#ev-QSI-2026-17718">QSI-2026-17718</a></td><td>file_excerpt</td><td><a href="https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L2">crates/chain/src/spk_iter.rs</a> (line 2)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">58953e8cd27684683f75e8c61ebc1f8b6d9c286a2f5983b56e89a0ae255886b5</td></tr><tr><td><a href="#ev-QSI-2026-17718">QSI-2026-17718</a></td><td>file_excerpt</td><td><a href="https://github.com/bitcoindevkit/bdk/blob/f2528da88b1041bdddf547d677511aea19ad3573/crates/chain/src/spk_iter.rs#L40">crates/chain/src/spk_iter.rs</a> (line 40)</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2100b069271cc49191876e6a859414230e335185aeb5ec18d55ed509e55d5e14</td></tr>  </table>
 </section>
 
 <section class="chapter" id="pq">
@@ -244,12 +244,12 @@
   <p class="note">Levels: 0 none; 1 present, not wired; 2 in use outside the critical paths; 3 hybrid in a critical path; 4 post-quantum by default in the critical paths (root of trust, key wrapping, channel key exchange). Judged from code and manifests.</p>
   <h3>What the quantum-vulnerable algorithms do</h3>
   <table class="data"><tr><th>Role</th><th>Algorithms (files)</th><th>ID</th><th>First step</th></tr>
-<tr><td><strong>transaction and message signing</strong></td><td>ECDSA (1)</td><td class="small"><a href="#QSI-2026-13330">QSI-2026-13330</a></td><td class="small">Follow each chain&#39;s post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them</td></tr>  </table>
+<tr><td><strong>transaction and message signing</strong></td><td>ECDSA (1)</td><td class="small"><a href="#QSI-2026-17718">QSI-2026-17718</a></td><td class="small">Follow each chain&#39;s post-quantum roadmap, avoid public-key reuse, and keep signers ready to add post-quantum signature schemes as chains adopt them</td></tr>  </table>
   <p class="note">Roles are judged from file paths, function names and the code around each match; review confirms them. Root-of-trust keys and wrapped keys come first: they are hard to replace or can be recorded today.</p>
   <p class="note">z is a planning assumption chosen per risk profile, not a prediction. A cryptographically relevant quantum computer is not publicly known to exist today.</p>
   <table class="data"><tr><th>Quantum status</th><th>Count</th></tr>
 <tr><td>vulnerable (Shor)</td><td>1</td></tr>  </table>
-  <p><strong>Detailed findings:</strong> QSI-2026-13330</p>
+  <p><strong>Detailed findings:</strong> QSI-2026-17718</p>
   <h3>PQC readiness questionnaire</h3>
 <p class="muted">No readiness questionnaire was completed for this project.</p>  <h3>Quantum algorithms relevant to this inventory</h3>
   <table class="data"><tr><th>Quantum algorithm</th><th>Effect</th><th>Inventoried algorithms (rows)</th><th>What it means for this audit</th></tr>
@@ -269,7 +269,7 @@
 <section class="chapter" id="plan">
   <h2>Remediation plan</h2>
   <article class="finding">
-    <header><span class="fid">QSI-2026-13330 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
+    <header><span class="fid">QSI-2026-17718 · P3 · 90 days</span><span class="tag">short-term risk reduction</span></header>
     <h3>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</h3>
     <dl class="meta">
       <dt>Rationale</dt><dd>Migration cannot be planned without knowing where and why the algorithm is used.</dd>
@@ -281,7 +281,7 @@
     </dl>
   </article>
   <article class="finding">
-    <header><span class="fid">QSI-2026-13330 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
+    <header><span class="fid">QSI-2026-17718 · P4 · 90 days</span><span class="tag">root-cause fix</span></header>
     <h3>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</h3>
     <dl class="meta">
       <dt>Rationale</dt><dd>Removes dependence on a quantum-vulnerable public-key primitive.</dd>
@@ -304,13 +304,13 @@
 <tr><td colspan="4" class="muted">None</td></tr>  </table>
   <h3>90 days</h3>
   <table class="data"><tr><th>Priority</th><th>ID</th><th>Action</th><th>Type</th></tr>
-<tr><td>P3</td><td>QSI-2026-13330</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-13330</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr>  </table>
+<tr><td>P3</td><td>QSI-2026-17718</td><td>Add ECDSA usages at source code to the cryptographic inventory with an owner and a data-lifetime estimate; design for crypto-agility (algorithm identifiers, configurable providers).</td><td class="small">short-term risk reduction</td></tr><tr><td>P4</td><td>QSI-2026-17718</td><td>Plan migration of ECDSA to ML-DSA (FIPS 204) or SLH-DSA (FIPS 205), in a hybrid/composite form where the ecosystem supports it (or a hybrid scheme) once supported by your libraries, protocols and counterparties.</td><td class="small">root-cause fix</td></tr>  </table>
 </section>
 
 <section class="chapter" id="retests">
   <h2>Verification after remediation</h2>
   <table class="data"><tr><th>ID</th><th>Retest procedure</th></tr>
-<tr><td>QSI-2026-13330</td><td>Re-run the inventory after refactoring.</td></tr>  </table>
+<tr><td>QSI-2026-17718</td><td>Re-run the inventory after refactoring.</td></tr>  </table>
 </section>
 
 <section class="chapter" id="tools">
@@ -330,7 +330,7 @@
   <table class="data"><tr><th>Algorithm</th><th>Parameter</th><th>Location</th><th>Quantum status</th><th>Classical status</th></tr>
 <tr><td>ECDSA</td><td>secp256k1</td><td class="small">crates/chain/src/spk_iter.rs:2</td><td>vulnerable (Shor)</td><td>acceptable</td></tr>  </table>
   <h3>B. JSON</h3>
-  <p class="small">qsi.report/1 · SHA-256 59ffd452de4aa332fec2fab0ef94887896d51b13df2992df5d90513da39d4abe</p>
+  <p class="small">qsi.report/1 · SHA-256 95752fd04b542a6ac39fb243df69a7edd813f6c4f3e4845154c658f482fc2657</p>
   <h3>C. Input files</h3>
   <table class="data"><tr><th>File</th><th>Size</th><th>SHA-256</th><th>Redactions</th></tr>
 <tr><td>crates/bitcoind_rpc/Cargo.toml</td><td>1205</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">83b91c7a3e4ca359834c618240fa8f3a0a5e758f6732d666046c41a11bf49d1e</td><td>0</td></tr><tr><td>crates/bitcoind_rpc/src/bip158.rs</td><td>6761</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b34cdc094a2395ce3336c503df9bcc0ee29f344f741ab25a3392d80020c1f06e</td><td>0</td></tr><tr><td>crates/bitcoind_rpc/src/lib.rs</td><td>24629</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">baf69cb786789de4b5f1b9357cd496200656552d93bf3ae8958180b289c7d41e</td><td>0</td></tr><tr><td>crates/chain/Cargo.toml</td><td>1488</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">0a170fa2a682fa7b5dd32a1a18d3c923136b75e44bf0bbc6497a6a565d8b38b3</td><td>0</td></tr><tr><td>crates/chain/src/balance.rs</td><td>3239</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c4722689b26a97489acec069808665f2d99f21756d149dd98526a622fb596188</td><td>0</td></tr><tr><td>crates/chain/src/canonical.rs</td><td>28704</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6d3081611bb7099213687c0ec0225ace91dd7662cdd20161b30cd37d16c34022</td><td>0</td></tr><tr><td>crates/chain/src/canonical_task.rs</td><td>19546</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a774ade1336130608faff6ce1ecca7b07b9665c1a4c00eeb6a29fa0691d525ef</td><td>0</td></tr><tr><td>crates/chain/src/canonical_view_task.rs</td><td>8775</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f60cac7e957c47be21c1e66c8a75230b8f1bea954d6784716a24ca05c9afcb32</td><td>0</td></tr><tr><td>crates/chain/src/chain_data.rs</td><td>13411</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">770bdca6ee7e8706a14a4ab08f93fb094d2c7ba5149452d23f75d71f3adf64c7</td><td>0</td></tr><tr><td>crates/chain/src/descriptor_ext.rs</td><td>1395</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c046997e44f8ebdf762a39d259763091cd70ec1897e22cc7e6ac253705bdf837</td><td>0</td></tr><tr><td>crates/chain/src/example_utils.rs</td><td>2544</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">8f76a44443ebc40cceff4833b82898a1eda21784774582649e4a3edd2d80c710</td><td>0</td></tr><tr><td>crates/chain/src/indexed_tx_graph.rs</td><td>20256</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9d90f8c1ce2109d50a351f4c8c9f7e360bde210957cfc95f825ffedc509226ad</td><td>0</td></tr><tr><td>crates/chain/src/indexer.rs</td><td>2332</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">2745f08c61b5c64bad7768ae5a5f5cd94bbf608120f62df8ff0fead96b227653</td><td>0</td></tr><tr><td>crates/chain/src/indexer/keychain_txout.rs</td><td>55225</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">13f5011338a01c5776262b07538efd04338f13c9ad33349a06c925b5d38a8539</td><td>0</td></tr><tr><td>crates/chain/src/indexer/spk_txout.rs</td><td>19747</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3f60ae8ee0ec261ba9a93407ef2d9e232787526bf4fad22daf6877e9ca1f1820</td><td>0</td></tr><tr><td>crates/chain/src/lib.rs</td><td>2931</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">90a0f842b2b47069220959344f84c0aa4c8ecfc1344bff8572dd2e307e176d9e</td><td>0</td></tr><tr><td>crates/chain/src/local_chain.rs</td><td>35484</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">81ff161a87ed2621837edac91ef5f4b44e01d8ad2cdb2fcd2a7e71c64b69fc1f</td><td>0</td></tr><tr><td>crates/chain/src/rusqlite_impl.rs</td><td>31001</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">f0d1ee07c37b7463e0d6d51509518fb765da6a043a0f80ef5253d8dd7e39a8da</td><td>0</td></tr><tr><td>crates/chain/src/spk_iter.rs</td><td>11496</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">5df96d8c7921b3306d986d117a4348e9afe98be7c27c94b1ef8fe1ab13c2f7b9</td><td>0</td></tr><tr><td>crates/chain/src/tx_data_traits.rs</td><td>3937</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">3955c21e9df3f266e015156de68802b855c4eff8b4248dcb2beba6ccf3ca9748</td><td>0</td></tr><tr><td>crates/chain/src/tx_graph.rs</td><td>54561</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6e99486950e6e752f1451b68fef0df8f2b365c4c816c33aac9b263e6a75bf317</td><td>0</td></tr><tr><td>crates/core/Cargo.toml</td><td>967</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b7d7c5845ff0fe6681193d2de326a75c076e01201a1a7ee345dda16980f1cb28</td><td>0</td></tr><tr><td>crates/core/src/block_id.rs</td><td>1431</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9b95ef3640317298b5a38d6fa7b89fdac18edc53aac55292b7a85f0f4f850619</td><td>0</td></tr><tr><td>crates/core/src/chain_query.rs</td><td>1659</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">369fb027368651a610f09a66bce4adaf2fc7774eeff122ab6a368a3b0471ac6b</td><td>0</td></tr><tr><td>crates/core/src/checkpoint.rs</td><td>26783</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">fbb0c2a3f0d13941adc50f6d8ba9f84cd703d1505f51a098dd4fa011acc01f4f</td><td>0</td></tr><tr><td>crates/core/src/checkpoint_entry.rs</td><td>5428</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">6864fd17b358f33675409d53e65ff00d83cd929d507c600bf1dbfb1f80c7cb76</td><td>0</td></tr><tr><td>crates/core/src/lib.rs</td><td>2986</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">70bd648e7f01758a128bd04cce0251d5194bd1e84b9ae4a9ac90a0e6d9f5e327</td><td>0</td></tr><tr><td>crates/core/src/merge.rs</td><td>2522</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">a7d01b0607e0b525e9841d59a2d011bd2e8d2edb807a888634db7400922b5c49</td><td>0</td></tr><tr><td>crates/core/src/spk_client.rs</td><td>26500</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">b36f7eac9ea9faef7ca22e2604d857d218ed1b1aa47a2657edb659e5a501b91d</td><td>0</td></tr><tr><td>crates/core/src/tx_update.rs</td><td>4343</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">4fa8a8f174889198258acc3293f726142d6c1882c41468be839c4db8077e2af7</td><td>0</td></tr><tr><td>crates/electrum/Cargo.toml</td><td>984</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">71d66c3d4f5fad2b279c8ce0d48ada975679f93668f9425670e14d1fe19b0200</td><td>0</td></tr><tr><td>crates/electrum/src/bdk_electrum_client.rs</td><td>36790</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">e390a2b8437c83a9d14daeb3f923b19797efea2fb50e6a11fb8f79f58b12f53b</td><td>0</td></tr><tr><td>crates/electrum/src/lib.rs</td><td>1100</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">bbbeb08934d653c218be80344abe9f46b62085154b47ca29fe0b704f1370d3c0</td><td>0</td></tr><tr><td>crates/esplora/Cargo.toml</td><td>1748</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1daccf1d0415e843e617673ccedabfb49813555855b01c80f8cf9b3853a2acda</td><td>0</td></tr><tr><td>crates/esplora/src/async_ext.rs</td><td>28886</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">c2fb578219b5fc719a943f6529f68b25857c9191c866752f283b005c31698aed</td><td>0</td></tr><tr><td>crates/esplora/src/blocking_ext.rs</td><td>35556</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">dd5711d633b794f71c5b5ce84767028799dd1f8d9f61cc01d1b995a0f15a27e0</td><td>0</td></tr><tr><td>crates/esplora/src/lib.rs</td><td>2777</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">69cd2fb696e1b267c0891e57eadac8ada2f1a27fe96305e6889930569f9580ff</td><td>0</td></tr><tr><td>crates/file_store/Cargo.toml</td><td>761</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">afcf61e36799750107cce36d0333badc52cbaaf3803d7eca9ec35e164de765d4</td><td>0</td></tr><tr><td>crates/file_store/src/entry_iter.rs</td><td>2635</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">00cb247c7ca63d3ae44317c2abbaffdd5b36a49bfbbf99ff5fca9c79234a299b</td><td>0</td></tr><tr><td>crates/file_store/src/lib.rs</td><td>1714</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1010d865adab4b312801b24b93f4f851d6da991ba31e449907aba70aad735550</td><td>0</td></tr><tr><td>crates/file_store/src/store.rs</td><td>23655</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">9390058ea9f9ab92fe1ca6732e3dbf06fd99822533b48b5a91d5a98ae46fcfce</td><td>0</td></tr><tr><td>crates/testenv/Cargo.toml</td><td>1067</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">1595b83bbd626078abc111bd7ac9233df0406f944473aa8d0e1a956de0dc4845</td><td>0</td></tr><tr><td>crates/testenv/src/lib.rs</td><td>21293</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">16bd1975ff6ead0e1f8bb86c65f33bec630835b2f21f48ff6c61e4dde0ea97aa</td><td>0</td></tr><tr><td>crates/testenv/src/utils.rs</td><td>5585</td><td class="small" style="font-family: 'DejaVu Sans Mono', monospace">50b9ebfe246c3d0be4e277d2acd16773aabe06d1bfff2ee1e87f38efe851b894</td><td>0</td></tr>  </table>
