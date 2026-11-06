@@ -90,15 +90,15 @@ rows really are a manifest and a single provider line.
 | Codebase | Shor-breakable rows |
 |---|---:|
 | `trustwallet-wallet-core` | 294 |
+| `agave` | 115 |
 | `bitbox02-firmware` | 113 |
-| `agave` | 111 |
 | `jade` | 107 |
 | `monero` | 99 |
 | `fireblocks-mpc-lib` | 88 |
 | `libwally-core` | 81 |
 | `bitgo-mpc` | 68 |
 
-Across all 53 codebases, 1 942 inventory rows fall to Shor's algorithm. The point of grading the other
+Across all 53 codebases, 1 946 inventory rows fall to Shor's algorithm. The point of grading the other
 column is that "has started" and "is protected" are different questions, and only the first one is measurable
 from source at all.
 

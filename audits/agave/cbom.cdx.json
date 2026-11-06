@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:63917fd9-4afb-4ed3-bb14-919d7a5891a5",
+  "serialNumber": "urn:uuid:cfbb6c58-adc8-4e02-9cfa-5c0350e0572d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-11-06T12:54:16Z",
+    "timestamp": "2026-11-06T21:56:09Z",
     "tools": {
       "components": [
         {
@@ -22,7 +22,7 @@
   "components": [
     {
       "type": "cryptographic-asset",
-      "bom-ref": "feefbf21-cdb8-45cc-9570-7c8c0876de46",
+      "bom-ref": "42d84fe4-fdb9-48ee-bfda-341c380cf004",
       "name": "BLAKE3",
       "properties": [
         {
@@ -70,7 +70,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4c8870ad-7f2a-454f-8b49-101cac977254",
+      "bom-ref": "6faf23d0-2c11-4a73-9f47-b27e3e8878e6",
       "name": "BLAKE3",
       "properties": [
         {
@@ -118,7 +118,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "66ab9b2d-635b-476e-8efa-d145e8c63d80",
+      "bom-ref": "43f176df-09b3-4f48-8bed-574e7d489af4",
       "name": "BLAKE3",
       "properties": [
         {
@@ -162,7 +162,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "65a1f845-ee27-44e9-b1eb-4f79317216af",
+      "bom-ref": "087599c4-9b27-48b5-ab4a-f1088b2a0f39",
       "name": "BLAKE3",
       "properties": [
         {
@@ -206,7 +206,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f06617ce-5cb8-42ef-9a41-a8d8db2abe4a",
+      "bom-ref": "5bf8f1e2-5799-420a-ae3a-b9a29f8a11e0",
       "name": "BLAKE3",
       "properties": [
         {
@@ -250,7 +250,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "57387320-bd67-453a-ba11-7422bcde18da",
+      "bom-ref": "e9f6b56a-7cab-4f83-8275-87bffbff40c0",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -296,7 +296,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "193d2d80-bfc5-46c9-b7e5-04efafe1d3a6",
+      "bom-ref": "cdf96ad0-76b0-4efd-9d83-0a9097b58e92",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -342,7 +342,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "70f2aadf-1f7a-4f50-bf3e-bb8af7645dc8",
+      "bom-ref": "4b4b93a1-a317-459d-98f2-52ab8690d11c",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -388,7 +388,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2cdd5836-50d5-43ee-bb6a-a6383228b24e",
+      "bom-ref": "324080bf-b09a-4e2d-b6bc-2b8906029df7",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -430,7 +430,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0858de9e-a44e-46b5-a5ba-5f481315e4f3",
+      "bom-ref": "51addb62-f687-4b6d-9413-9b2bdcd6b934",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -476,7 +476,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "210957d4-787b-42d8-8374-6eb99ec999e7",
+      "bom-ref": "68389ab1-9d6e-4e9c-b7b7-10dab16fb4a1",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -522,7 +522,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0443bc5e-4c43-4ae6-8b1f-0ef17e4fc6b4",
+      "bom-ref": "923dd559-1cec-4409-892d-d95388b49da7",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -564,7 +564,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4ebb7ccd-7329-4a26-a3b1-d2690e7b179b",
+      "bom-ref": "2c58f82f-5c87-4b29-9556-b18c8f44d249",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -610,7 +610,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cdcffcb4-ecf1-43a2-8f03-dc1933983df9",
+      "bom-ref": "f7518d94-f42e-44bd-8cbf-29f3d7221a30",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -656,7 +656,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "55d7e34c-d1a7-47f7-b1b8-d3e553888266",
+      "bom-ref": "bfc88582-64c6-4df8-9697-d1e412982c17",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -702,7 +702,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c442b2e8-0ece-499e-9b62-b72eef6640c1",
+      "bom-ref": "9e26f197-553c-4a82-bd8d-d7377f6c8c6e",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -748,7 +748,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0f65d4d4-43c1-4790-b5ff-7d5d6fa9d7f0",
+      "bom-ref": "8cb8a619-b68f-4c25-a6c8-f2dfb16e8757",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -790,7 +790,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d4dbc258-881c-4c6c-b6fa-4d1626e93e63",
+      "bom-ref": "a03cfb94-93b6-4cef-8ca4-1b6da01dfbbf",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -832,7 +832,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2e2e413a-aac9-4104-856f-e41116825b23",
+      "bom-ref": "2434ba4f-72ad-4533-9975-89490ffdec06",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -878,7 +878,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "606d564f-a65b-454b-bb6b-424e2ac617b7",
+      "bom-ref": "4ae3491a-fb22-4c56-8028-ccc9cd235d3c",
       "name": "BN254 (alt_bn128)",
       "properties": [
         {
@@ -924,7 +924,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "46ccdc0e-e7da-4637-8933-91c7f829133e",
+      "bom-ref": "07ebe716-165f-480f-a465-d41616f54dfc",
       "name": "Bulletproofs",
       "properties": [
         {
@@ -970,7 +970,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d1ccaed0-92e8-46e4-91de-ef485c08d191",
+      "bom-ref": "52ae7ef7-0221-4bd0-8e6d-ceaed75659de",
       "name": "Bulletproofs",
       "properties": [
         {
@@ -1016,171 +1016,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c67521b5-029d-4d99-8eb7-3a2353dbcbb5",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "rustls (rustls)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "8d714e0a-bd1f-475f-93d5-9dc62fa36bb3",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "curve25519-dalek (ed25519-dalek)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "9a31db6f-9095-4565-9246-1b1ffc458909",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "ed25519-dalek (ed25519-dalek)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "7c10b47c-439f-4431-b4cd-4c78feb277cb",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency; PQC: OpenSSL 3.5 implements ML-KEM (incl. X25519MLKEM768), ML-DSA and SLH-DSA (checked with OpenSSL 3.5.5); earlier versions do not."
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "openssl (OpenSSL)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "4fdb67fa-330e-4126-b54c-a342d60c39bf",
+      "bom-ref": "3cf80a2c-1303-4675-8bd3-bf974a946e89",
       "name": "Crypto library",
       "properties": [
         {
@@ -1221,7 +1057,89 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d8a73072-6067-4a2c-9ca3-753e61be6749",
+      "bom-ref": "bbb8a632-08d9-41ff-87da-e97ec5a6676a",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "curve25519-dalek (ed25519-dalek)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "57d2a017-a849-47bb-83b4-bbcb8f630b0f",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "rustls (rustls)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "41418a69-2a11-4d18-ad4b-7ca96bd142fa",
       "name": "Crypto library",
       "properties": [
         {
@@ -1262,7 +1180,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4de4ca20-3547-45e9-9630-363ef2d3c152",
+      "bom-ref": "1232a33f-1e2b-4616-8ce9-2237804a70fb",
       "name": "Crypto library",
       "properties": [
         {
@@ -1275,7 +1193,7 @@
         },
         {
           "name": "qsi:location",
-          "value": "Cargo.toml"
+          "value": "Cargo.lock"
         },
         {
           "name": "qsi:usage",
@@ -1303,7 +1221,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f18910a8-058c-41f8-b56a-abc0cba4c50c",
+      "bom-ref": "afaef7f0-e7c5-4a80-91ab-5a27905c7304",
       "name": "Crypto library",
       "properties": [
         {
@@ -1316,7 +1234,7 @@
         },
         {
           "name": "qsi:location",
-          "value": "Cargo.toml"
+          "value": "Cargo.lock"
         },
         {
           "name": "qsi:usage",
@@ -1332,7 +1250,7 @@
         },
         {
           "name": "qsi:library",
-          "value": "curve25519-dalek (ed25519-dalek)"
+          "value": "ed25519-dalek (ed25519-dalek)"
         }
       ],
       "cryptoProperties": {
@@ -1344,7 +1262,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "331c209a-c768-4888-938d-1d65a890b059",
+      "bom-ref": "c33ed6f0-bb7f-44ca-8161-9ef5db056edb",
       "name": "Crypto library",
       "properties": [
         {
@@ -1385,7 +1303,89 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "83f70f28-6a2a-424c-9a29-abdac6ccf12a",
+      "bom-ref": "249ab246-608b-4441-a232-d9eed1cfe75c",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "curve25519-dalek (ed25519-dalek)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "91659aef-04f9-4239-90e7-104e5d6f2b7e",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency; PQC: OpenSSL 3.5 implements ML-KEM (incl. X25519MLKEM768), ML-DSA and SLH-DSA (checked with OpenSSL 3.5.5); earlier versions do not."
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "openssl (OpenSSL)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "838b4161-5db6-4d98-888e-5cf5e47d5a38",
       "name": "Crypto library",
       "properties": [
         {
@@ -1426,7 +1426,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "43c2f527-b4b0-4647-b715-cbedb2e68b05",
+      "bom-ref": "004f4ffe-012f-4722-a638-5ad30ca6b0c2",
       "name": "Crypto library",
       "properties": [
         {
@@ -1467,7 +1467,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f69cde1a-92f1-4620-9d93-ca7c0fd34f39",
+      "bom-ref": "d3d87ff3-95f2-4192-a185-92eee5460437",
       "name": "Crypto library",
       "properties": [
         {
@@ -1508,7 +1508,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d45c04b6-c264-4f99-b242-cec43c434caa",
+      "bom-ref": "d4081694-27d0-4eb6-9d69-925c5b132461",
       "name": "Crypto library",
       "properties": [
         {
@@ -1549,7 +1549,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f3e61334-32d3-4620-b8b1-6c579b896921",
+      "bom-ref": "e42d7ad6-52c9-4859-a783-fc909ed7c04d",
       "name": "Crypto library",
       "properties": [
         {
@@ -1590,7 +1590,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "21f4928c-bc5b-4720-80ad-85648e0b5849",
+      "bom-ref": "68d8c0cd-c787-428f-83aa-fd2953f3791d",
       "name": "Crypto library",
       "properties": [
         {
@@ -1631,48 +1631,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8bb0d271-f509-4d3e-906f-7a8f6572d2e9",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "programs/sbf/Cargo.lock"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "rustls (rustls)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "ff2d8200-6fca-40e0-b898-0d631924d5ab",
+      "bom-ref": "567660bd-6364-4f41-b67d-fa414ec910b9",
       "name": "Crypto library",
       "properties": [
         {
@@ -1713,7 +1672,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cc37a665-d566-44fc-a26d-5611bab8c447",
+      "bom-ref": "5784e3e5-099d-437e-ac4e-9a6941f50bb1",
       "name": "Crypto library",
       "properties": [
         {
@@ -1754,7 +1713,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9b683817-e9c5-4cfe-b6b5-748d8c128b55",
+      "bom-ref": "f8407493-3674-4a30-8fdf-6c44011b25bc",
       "name": "Crypto library",
       "properties": [
         {
@@ -1795,7 +1754,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b010c70b-11a9-46ba-a437-92146935e109",
+      "bom-ref": "fb94e3d4-801a-410c-b49b-18c32532a2d9",
       "name": "Crypto library",
       "properties": [
         {
@@ -1836,7 +1795,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2156f9b6-3944-40f3-aa19-c65edb902929",
+      "bom-ref": "c359fd24-0628-4779-9fcc-37db952d3fc0",
       "name": "Crypto library",
       "properties": [
         {
@@ -1877,7 +1836,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9ffc4268-9a3a-4775-ab9e-a6759d8fe882",
+      "bom-ref": "b5861224-8c93-42a8-8f63-3d77f776cb89",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "programs/sbf/Cargo.lock"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "rustls (rustls)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "85c749ae-660c-44e7-9af3-163195c0ab21",
       "name": "Crypto library",
       "properties": [
         {
@@ -1918,7 +1918,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d15cbd53-00e6-4222-bbbf-5800566f828f",
+      "bom-ref": "88f62a48-57a3-4939-b588-86f6d85fc98d",
       "name": "Crypto library",
       "properties": [
         {
@@ -1959,7 +1959,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0559d173-894c-4fd3-ba95-7a616bc43703",
+      "bom-ref": "4e9b6e35-ae55-46da-bb38-6b3a95f75ee1",
       "name": "Crypto library",
       "properties": [
         {
@@ -2000,48 +2000,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "63d6c8ce-829c-4cfc-9cb1-e45ad2ea8127",
-      "name": "Crypto library",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "not_applicable"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "sdk/Cargo.toml"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "crates.io dependency"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "high"
-        },
-        {
-          "name": "qsi:source",
-          "value": "dependencies"
-        },
-        {
-          "name": "qsi:library",
-          "value": "curve25519-dalek (ed25519-dalek)"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "unknown"
-        }
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "033b877b-7cff-41e4-881e-f8a13af73470",
+      "bom-ref": "09d6df3e-4343-421e-9a9d-81242f02086e",
       "name": "Crypto library",
       "properties": [
         {
@@ -2082,7 +2041,48 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f98715a3-fb52-4165-88d0-41f58ce82b5a",
+      "bom-ref": "0280b31c-8785-4229-beef-6816e4b5f62b",
+      "name": "Crypto library",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "not_applicable"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "sdk/Cargo.toml"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "crates.io dependency"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "high"
+        },
+        {
+          "name": "qsi:source",
+          "value": "dependencies"
+        },
+        {
+          "name": "qsi:library",
+          "value": "curve25519-dalek (ed25519-dalek)"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "unknown"
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "4c5522d5-0db4-46b8-b089-f313f52031e8",
       "name": "Crypto library",
       "properties": [
         {
@@ -2123,7 +2123,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dd78389a-ef6d-4f25-bfa8-e2e3e3edf389",
+      "bom-ref": "94104d63-91d6-4ac6-8d7e-fefdb2310bed",
       "name": "Crypto library",
       "properties": [
         {
@@ -2164,7 +2164,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "afd97c2e-6c7b-44e8-bd0a-41ff1e1f4d64",
+      "bom-ref": "c2a06986-f0ee-4df4-b438-5cfc740c8b59",
       "name": "Crypto library",
       "properties": [
         {
@@ -2205,7 +2205,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4acd9aa3-b8ba-4ae1-98d4-9197cd600533",
+      "bom-ref": "1df04d53-bec7-479a-86a4-457ba0452f73",
       "name": "Crypto library",
       "properties": [
         {
@@ -2246,7 +2246,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b60d45ca-b6d1-4968-a40d-75afa99f9f51",
+      "bom-ref": "7f7060f8-417c-4f0e-81bf-7815a81432c5",
       "name": "Crypto library",
       "properties": [
         {
@@ -2287,7 +2287,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fe180078-1f84-4caa-975a-faf795ef3057",
+      "bom-ref": "71a5d92f-5edc-449d-9f53-ac8e50c6695f",
       "name": "ECDSA",
       "properties": [
         {
@@ -2341,7 +2341,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "30091c81-ccc2-4b56-85f9-d298c4c1bf06",
+      "bom-ref": "ccaa2555-28ee-4d3d-a516-05a4f0f5737e",
       "name": "ECDSA",
       "properties": [
         {
@@ -2395,7 +2395,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9c83eb27-0c0b-4e5a-85bf-bdb1c4a7c864",
+      "bom-ref": "4ed37675-14e0-47cb-a8e6-add03958e4a4",
       "name": "ECDSA",
       "properties": [
         {
@@ -2449,7 +2449,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c7a6ec99-dfd6-4f4a-a181-53c31e1af073",
+      "bom-ref": "3168b436-a3f0-43b1-b7d9-ed8b4edec2f7",
       "name": "ECDSA",
       "properties": [
         {
@@ -2499,7 +2499,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2b6189a2-081b-4edb-8a5d-48e4ae45334b",
+      "bom-ref": "c2015f49-7556-4ccf-a0e2-92751b566075",
       "name": "ECDSA",
       "properties": [
         {
@@ -2549,7 +2549,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ef92ccd4-1c32-407f-abdb-44efe321375e",
+      "bom-ref": "e7fb1ed2-2dc9-4efb-8050-2721e6171451",
       "name": "ECDSA",
       "properties": [
         {
@@ -2599,7 +2599,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bf31eaa1-863c-4c2e-9693-06dd390e3c62",
+      "bom-ref": "92de95ce-19b0-4137-9ab1-4792d9ca0f03",
       "name": "ECDSA",
       "properties": [
         {
@@ -2649,7 +2649,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c3853a61-ae9b-4e14-bad5-d06e08de9b01",
+      "bom-ref": "8b7d7d02-7da8-49e5-ad4c-40c4240d2b18",
       "name": "ECDSA",
       "properties": [
         {
@@ -2699,7 +2699,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1787f69f-1cbb-4e66-90d8-caa9bc8223bd",
+      "bom-ref": "9efb02d4-1f38-4a23-94e2-76448577d361",
       "name": "ECDSA",
       "properties": [
         {
@@ -2749,7 +2749,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "63dc8a2b-aba0-4ed4-bc9b-8cd1398dcb6e",
+      "bom-ref": "ba3f1ad7-8259-45e0-ac22-a27a09f759de",
       "name": "ECDSA",
       "properties": [
         {
@@ -2799,7 +2799,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c3ff28b9-4d2c-4a12-a6b7-4334cda7c2c8",
+      "bom-ref": "b8cb05d5-237c-4a19-b736-bcba69cec61e",
       "name": "ECDSA",
       "properties": [
         {
@@ -2849,7 +2849,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "435aa4cc-2a73-40c5-b07f-9353656580fe",
+      "bom-ref": "fe0d03f3-f496-4886-ba82-e8e691aa257d",
       "name": "ECDSA",
       "properties": [
         {
@@ -2899,7 +2899,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b3f0f26c-27b7-4039-9826-bef0ad19606d",
+      "bom-ref": "323bb59e-7fa5-4985-8e32-6d701caec385",
       "name": "ECDSA",
       "properties": [
         {
@@ -2949,7 +2949,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2432b6d5-5476-497e-a6c6-6d374ee5cc47",
+      "bom-ref": "e5c60bba-e784-495f-bef1-464f78573a36",
       "name": "Ed25519",
       "properties": [
         {
@@ -3003,7 +3003,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "af42817f-a39d-414c-852b-b5ee693a811b",
+      "bom-ref": "634296dc-534e-4f92-96b8-d9c93be4dc84",
       "name": "Ed25519",
       "properties": [
         {
@@ -3057,7 +3057,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bdf6bce0-f462-4688-9521-4d1a4957a910",
+      "bom-ref": "de946b86-f4a4-4eca-b14e-e49f9584232d",
       "name": "Ed25519",
       "properties": [
         {
@@ -3111,7 +3111,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2c590bf4-621d-475c-b3ff-bf5bb53f3ea7",
+      "bom-ref": "42c9924b-a7d1-4628-b974-4c336ff562dc",
       "name": "Ed25519",
       "properties": [
         {
@@ -3165,7 +3165,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4b95ce6b-910d-4fbe-bfd6-714885bc6c7f",
+      "bom-ref": "0fcc4340-a72a-45a5-b079-24fa85dd4e64",
       "name": "Ed25519",
       "properties": [
         {
@@ -3219,7 +3219,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a6f03f90-40fb-4958-a3ed-212eb588b6be",
+      "bom-ref": "c776d75d-14c3-4fb0-8953-f2e8e6f57fb8",
       "name": "Ed25519",
       "properties": [
         {
@@ -3273,7 +3273,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "982001e7-3c45-4fd3-b3bf-883df0db020c",
+      "bom-ref": "c19dc723-32a3-4736-959f-1eacb696463f",
       "name": "Ed25519",
       "properties": [
         {
@@ -3327,7 +3327,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9446bca2-6697-4173-b6ab-69863195655c",
+      "bom-ref": "9b8f4ba3-e3f0-43ae-89bc-4aefa0143546",
       "name": "Ed25519",
       "properties": [
         {
@@ -3381,7 +3381,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b9e51239-acdc-4ad0-8c37-f185e68b52a8",
+      "bom-ref": "b7b78f98-d6ef-4acf-9f45-f1b8cf416d99",
       "name": "Ed25519",
       "properties": [
         {
@@ -3431,7 +3431,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "69bcbca6-5810-4ba7-bc7f-c7eda8e7084e",
+      "bom-ref": "fda2e181-b4ab-4504-bec5-c60395d9540e",
       "name": "Ed25519",
       "properties": [
         {
@@ -3485,7 +3485,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cd24c97a-24ae-4e88-a5bc-bc58f4609b12",
+      "bom-ref": "33e526e5-2daf-4c48-8689-250711a482ca",
       "name": "Ed25519",
       "properties": [
         {
@@ -3539,7 +3539,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "51b393ce-d6fa-4cf3-8975-9a274060a5dd",
+      "bom-ref": "71922585-a023-4a22-8c9a-6a97821aec70",
       "name": "Ed25519",
       "properties": [
         {
@@ -3593,61 +3593,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8609b986-4c49-43e6-91a0-6a66d1939a64",
-      "name": "Ed25519",
-      "properties": [
-        {
-          "name": "qsi:quantum_status",
-          "value": "vulnerable_shor"
-        },
-        {
-          "name": "qsi:classical_status",
-          "value": "ok"
-        },
-        {
-          "name": "qsi:location",
-          "value": "sdk/src/ed25519_instruction.rs:10"
-        },
-        {
-          "name": "qsi:url",
-          "value": "https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/ed25519_instruction.rs#L10"
-        },
-        {
-          "name": "qsi:usage",
-          "value": "source code (1 reference(s))"
-        },
-        {
-          "name": "qsi:confidence",
-          "value": "medium"
-        },
-        {
-          "name": "qsi:source",
-          "value": "source_code"
-        },
-        {
-          "name": "qsi:registry_id",
-          "value": "ed25519"
-        }
-      ],
-      "cryptoProperties": {
-        "assetType": "algorithm",
-        "algorithmProperties": {
-          "primitive": "signature",
-          "parameterSetIdentifier": "Ed25519",
-          "curve": "Ed25519",
-          "cryptoFunctions": [
-            "sign",
-            "verify"
-          ],
-          "classicalSecurityLevel": 128,
-          "nistQuantumSecurityLevel": 0
-        },
-        "oid": "1.3.101.112"
-      }
-    },
-    {
-      "type": "cryptographic-asset",
-      "bom-ref": "57619ecf-2d32-465f-8f21-fb054159d4b4",
+      "bom-ref": "4ff2450f-49cc-40a2-a578-91eeecd12343",
       "name": "Ed25519",
       "properties": [
         {
@@ -3701,7 +3647,61 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e760d84d-4a93-4978-a4ad-ea97bfc7407f",
+      "bom-ref": "fe92fd39-bee7-43d4-a4ee-da98c21a7b36",
+      "name": "Ed25519",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "ok"
+        },
+        {
+          "name": "qsi:location",
+          "value": "sdk/src/ed25519_instruction.rs:10"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/sdk/src/ed25519_instruction.rs#L10"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (1 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "ed25519"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "Ed25519",
+          "curve": "Ed25519",
+          "cryptoFunctions": [
+            "sign",
+            "verify"
+          ],
+          "classicalSecurityLevel": 128,
+          "nistQuantumSecurityLevel": 0
+        },
+        "oid": "1.3.101.112"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "98270e8b-57f4-47be-b995-abb0f42573c7",
       "name": "Ed25519",
       "properties": [
         {
@@ -3755,7 +3755,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ba313a4a-420f-4148-9da2-1b7dc2f8b414",
+      "bom-ref": "f2ed3a62-f3b0-4c6a-a856-e9446cea5978",
       "name": "Ed25519",
       "properties": [
         {
@@ -3809,7 +3809,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7b512e8d-0182-4f67-852f-c118967a4fe5",
+      "bom-ref": "9047fbed-b5a2-47b7-a055-5743aea03866",
       "name": "Ed25519",
       "properties": [
         {
@@ -3863,7 +3863,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5bdb64b7-6f98-4341-94de-e93da036c0d5",
+      "bom-ref": "56e45b5a-5e1a-43cf-a307-0615084e8a5d",
       "name": "Ed25519",
       "properties": [
         {
@@ -3917,7 +3917,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "94bd0c97-7a0f-4cf4-93c8-7aa7c1171e70",
+      "bom-ref": "3736fc5d-65a8-4265-9e9e-482c9fea0127",
       "name": "Ed25519",
       "properties": [
         {
@@ -3971,7 +3971,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9c14cbf8-8215-4d0c-a88f-f7d8c4b70e84",
+      "bom-ref": "93ddbc2d-5535-4201-8177-53955a3463cd",
       "name": "Ed25519",
       "properties": [
         {
@@ -4024,7 +4024,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6b910858-9fbe-456c-944a-02841fcea37c",
+      "bom-ref": "82fbbd81-8f6e-4dc8-a54e-deaaaa1f73cc",
       "name": "Ed25519",
       "properties": [
         {
@@ -4077,7 +4077,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cde1ec2e-933c-442f-b2c1-abc3fb4934fe",
+      "bom-ref": "98be8912-0617-4c0f-b0cf-35d1e9b21afb",
       "name": "Ed25519",
       "properties": [
         {
@@ -4130,7 +4130,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5a816f98-d787-4f46-a363-cab02d031a40",
+      "bom-ref": "bb475223-4ea2-4e88-842b-456cd5bed6b5",
       "name": "Ed25519",
       "properties": [
         {
@@ -4183,7 +4183,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f1e138eb-0e60-4a6d-b8c4-1e85d7f2bdcf",
+      "bom-ref": "16d609a9-510f-4f51-88ac-413c167bafdf",
       "name": "ElGamal",
       "properties": [
         {
@@ -4196,15 +4196,19 @@
         },
         {
           "name": "qsi:location",
-          "value": "zk-token-sdk/src/encryption/elgamal.rs"
+          "value": "clap-v3-utils/src/keypair.rs:969"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/clap-v3-utils/src/keypair.rs#L969"
         },
         {
           "name": "qsi:usage",
-          "value": "implemented in a file of this name"
+          "value": "source code (3 reference(s))"
         },
         {
           "name": "qsi:confidence",
-          "value": "low"
+          "value": "medium"
         },
         {
           "name": "qsi:source",
@@ -4229,7 +4233,107 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8ca56f73-8646-4c53-ab6b-633131830380",
+      "bom-ref": "e7d94913-25e4-4f75-bbc5-6fbc1de3b287",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "zk-keygen/src/main.rs:189"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-keygen/src/main.rs#L189"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (10 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "a17fcb12-992b-4804-ad63-22e165a3ee65",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "zk-token-sdk/src/encryption/elgamal.rs:88"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/encryption/elgamal.rs#L88"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (9 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "5f5e6572-cd94-42a1-b7db-2c9152a68f0e",
       "name": "ElGamal",
       "properties": [
         {
@@ -4275,7 +4379,107 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "16eda960-af15-4de9-ac4e-8c8c75c6dafe",
+      "bom-ref": "1a89104b-e51a-4760-aa15-c228989ef848",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "zk-token-sdk/src/errors.rs:35"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/errors.rs#L35"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "b39a0825-3216-486c-bdf6-02fc530b54ad",
+      "name": "ElGamal",
+      "properties": [
+        {
+          "name": "qsi:quantum_status",
+          "value": "vulnerable_shor"
+        },
+        {
+          "name": "qsi:classical_status",
+          "value": "deprecated"
+        },
+        {
+          "name": "qsi:location",
+          "value": "zk-token-sdk/src/instruction/withdraw.rs:5"
+        },
+        {
+          "name": "qsi:url",
+          "value": "https://github.com/anza-xyz/agave/blob/7700cb3128c1f19820de67b81aa45d18f73d2ac0/zk-token-sdk/src/instruction/withdraw.rs#L5"
+        },
+        {
+          "name": "qsi:usage",
+          "value": "source code (2 reference(s))"
+        },
+        {
+          "name": "qsi:confidence",
+          "value": "medium"
+        },
+        {
+          "name": "qsi:source",
+          "value": "source_code"
+        },
+        {
+          "name": "qsi:registry_id",
+          "value": "elgamal"
+        }
+      ],
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "cryptoFunctions": [
+            "encrypt",
+            "decrypt"
+          ],
+          "nistQuantumSecurityLevel": 0
+        }
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "c51e173b-c839-4697-bbf6-88b0a08f2a04",
       "name": "ElGamal",
       "properties": [
         {
@@ -4321,7 +4525,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0866ae71-8b90-46e9-a221-3e14a5953a9b",
+      "bom-ref": "b5e73d56-a84d-4578-a4c8-8e10950d1b72",
       "name": "ElGamal",
       "properties": [
         {
@@ -4367,7 +4571,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4972968e-c0f7-4707-a8dd-ec9da8f1b907",
+      "bom-ref": "8f635ac5-5439-4acd-9afb-a3ab3bb0aa39",
       "name": "HMAC",
       "properties": [
         {
@@ -4415,7 +4619,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7fd4a329-aead-48a1-81af-279f51d2c8d6",
+      "bom-ref": "8148171f-5be3-439d-8132-4b458f4ee8db",
       "name": "Keccak-256",
       "properties": [
         {
@@ -4465,7 +4669,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a2693ffa-855d-49d2-a250-389f3a5a596f",
+      "bom-ref": "d96e9853-a2ec-4c95-aca7-4e5791b26bf6",
       "name": "Keccak-256",
       "properties": [
         {
@@ -4515,7 +4719,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2c4766c8-6ff1-4dd8-bbdd-96deb8ebee96",
+      "bom-ref": "bd7c9500-a442-4908-8f07-e5a8979ac5a8",
       "name": "Keccak-256",
       "properties": [
         {
@@ -4565,7 +4769,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "291793d1-cf72-4c7b-8914-412b52be7b77",
+      "bom-ref": "e2e83deb-b928-4f98-948b-c255ff2dafad",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4611,7 +4815,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "caad246e-641c-445b-ae66-0fd9e63c7caa",
+      "bom-ref": "22bb26d8-36ab-48f9-9baf-b20b2a114239",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4657,7 +4861,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2b74e592-dc7b-45ce-93f4-a7098daf7ec5",
+      "bom-ref": "0c83659d-720d-4201-b4fb-d32e58cf66d0",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4703,7 +4907,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9da07f73-4ee9-40f6-bb29-920d22ba0f60",
+      "bom-ref": "069166a9-9f6c-45bc-b1f9-94d08603b1a3",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4749,7 +4953,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bc33e3e4-5296-4d9c-b38f-8024a79cde0e",
+      "bom-ref": "e9932a85-060f-492a-87e4-20a9a2e243e7",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4795,7 +4999,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c8de8b0e-298d-452c-a376-00d6bcb805c4",
+      "bom-ref": "d0e9b364-c46a-436a-be92-82cd2f26f2e9",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4841,7 +5045,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "fc9d3514-e380-4878-a2f3-819a805ffc79",
+      "bom-ref": "b91b541e-8391-4e41-a329-525d9ff1bf9d",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4887,7 +5091,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b26935c6-13f8-4224-8741-3396360ec115",
+      "bom-ref": "cc0c2b9b-dd5a-48b8-9325-b3ad747fe362",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4933,7 +5137,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f755014b-9f39-4f0b-8457-67cc255ffa30",
+      "bom-ref": "0084468f-fed8-43f5-aa80-efcbd54ae33c",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -4979,7 +5183,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "1ccd568e-5824-47c3-9c81-9370afa26bfa",
+      "bom-ref": "a7f19cfe-e791-48bc-ba1f-8c164017798d",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5025,7 +5229,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0158a62d-abf7-4b7b-b5f5-5550fcdc98f1",
+      "bom-ref": "c2dbaf63-e9a3-4b7b-a275-6b7fab9373ca",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5071,7 +5275,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0720b996-7bb4-46c2-8637-325c0aaebed1",
+      "bom-ref": "57f3681b-4813-4846-b066-48403ecd3468",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5117,7 +5321,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "391408d5-6b79-4ac7-ab0e-a502ae677759",
+      "bom-ref": "f2b930c7-edaa-4329-a644-e7dbbbce89ee",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5163,7 +5367,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "586607df-c82f-4cfe-933b-c15b60a79dae",
+      "bom-ref": "bb94354f-6f81-4982-a028-4bb2ebe2b1b3",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5209,7 +5413,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "00d37a6c-9b33-4473-90c4-69974a813a68",
+      "bom-ref": "e9e6b118-d826-410d-8e40-332231ca0feb",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5255,7 +5459,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "164b9492-2ccc-4181-9039-5071f95d76fd",
+      "bom-ref": "f208937e-420b-49dc-83cd-ae374eade6f1",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5301,7 +5505,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ddafed19-4a95-4e85-b92d-46b751ea4118",
+      "bom-ref": "3d101c5c-03db-417f-8a22-d6a8c14e9ab1",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5347,7 +5551,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f26f6d83-d0b4-4d94-8014-b5b113652d46",
+      "bom-ref": "04dc6835-0386-4aa3-a72d-c0964c37db52",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5393,7 +5597,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b06b3588-ee77-4357-8e68-732e55427632",
+      "bom-ref": "1db5bd6f-3000-4dfd-bd83-4b3ecde5ab27",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5439,7 +5643,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7fbd63d2-dd0b-4aa1-85ff-50457e53a028",
+      "bom-ref": "7d67f297-90ad-4475-8c2e-fb49c67346bb",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5485,7 +5689,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "18876ff0-7776-4860-84b2-200f57ebf8a3",
+      "bom-ref": "a84ca5f3-c6cf-4641-8d6f-ef6ba4214f9c",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5531,7 +5735,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3138c0fb-0f98-4c55-8c8e-1a280e0f384c",
+      "bom-ref": "e864425e-9b8c-4e14-83b5-c62085861739",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5577,7 +5781,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d59b7756-fab5-437e-92a2-a5b7653b09d0",
+      "bom-ref": "611e5c3c-904c-4583-a19d-d275c630bbb0",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5623,7 +5827,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3ee84868-1529-42fd-9c95-900bce8002fd",
+      "bom-ref": "514e98c9-7e65-4dd7-abac-64c376a10109",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5669,7 +5873,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3c3645f8-9b63-4015-8d09-d7fcd1c137b9",
+      "bom-ref": "1cb509af-0164-41f3-9027-7afcfa1abde9",
       "name": "Pedersen commitment",
       "properties": [
         {
@@ -5715,7 +5919,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7d412f32-a1c1-4c8b-a48a-799856404aaf",
+      "bom-ref": "894f79d4-752e-4294-8094-27e1c945a792",
       "name": "Poseidon",
       "properties": [
         {
@@ -5763,7 +5967,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "19b0e5aa-c4ae-4f2c-8e06-b11c394399f6",
+      "bom-ref": "9adb0a4a-dca9-4be0-99d0-a0762f00a6ef",
       "name": "Poseidon",
       "properties": [
         {
@@ -5811,7 +6015,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2fd6e884-a140-43b8-9131-808630aef1b3",
+      "bom-ref": "3a5b7676-5aa8-428b-9ccf-7da377e6ee68",
       "name": "Poseidon",
       "properties": [
         {
@@ -5859,7 +6063,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cf1fe723-4369-4ef3-9f8a-1e1e6ee58394",
+      "bom-ref": "40dee95b-e4f1-4cda-8773-8551a00845a4",
       "name": "Poseidon",
       "properties": [
         {
@@ -5907,7 +6111,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "237d4da8-3aec-4f88-9a23-73a4866955e3",
+      "bom-ref": "0b35307f-8e01-4e80-8377-f0c30657d88d",
       "name": "Poseidon",
       "properties": [
         {
@@ -5955,7 +6159,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6c645d47-08a6-4da3-89dd-8f5f283a134e",
+      "bom-ref": "6bec9220-4ed5-451b-9809-e1c1f5e26383",
       "name": "Poseidon",
       "properties": [
         {
@@ -6003,7 +6207,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "aa40f14e-0a65-442a-8e3e-3b5976451022",
+      "bom-ref": "72c63a4e-3ced-4e3a-b757-7c014b49c9ef",
       "name": "Poseidon",
       "properties": [
         {
@@ -6051,7 +6255,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "78f4ae80-a8a4-4cbb-8152-7f3e0c7d5bdc",
+      "bom-ref": "0c20cbd2-5039-4d0d-b973-6d7f032642ae",
       "name": "Poseidon",
       "properties": [
         {
@@ -6099,7 +6303,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "09f3e2da-098e-4f54-aebf-2cdc2e66f21f",
+      "bom-ref": "1b214c21-1017-4ad0-9e3f-894d5fe8f6f3",
       "name": "Poseidon",
       "properties": [
         {
@@ -6147,7 +6351,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "82b87742-1508-408a-be70-3079e85dae5e",
+      "bom-ref": "1e55669f-b24d-4ec3-aa38-7a0dd80b01ce",
       "name": "Poseidon",
       "properties": [
         {
@@ -6195,7 +6399,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "aa6fb888-104b-49a1-b516-110d3c4a429d",
+      "bom-ref": "adbbe260-03c9-4bb3-b080-c14ce74bb733",
       "name": "Poseidon",
       "properties": [
         {
@@ -6243,7 +6447,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c57be901-f2ee-4386-873c-79989df999a5",
+      "bom-ref": "dcf21aee-b1f1-458f-ad5c-22cf8fe9740b",
       "name": "RSA",
       "properties": [
         {
@@ -6291,7 +6495,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2176efec-8eaa-4a76-9414-670a9ceff38c",
+      "bom-ref": "5316bc21-93ad-4da8-8c27-5f99398d6f9a",
       "name": "RSA",
       "properties": [
         {
@@ -6339,7 +6543,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b6ddcc94-9bdf-4f17-9395-c261674aa9c5",
+      "bom-ref": "a7efc36a-e16d-439f-875d-00da19062ddd",
       "name": "RSA",
       "properties": [
         {
@@ -6387,7 +6591,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0c054e8d-b2f6-49e0-a24c-ecea43d8756c",
+      "bom-ref": "d13e12bc-9e83-49c8-914d-ab4961205add",
       "name": "RSA",
       "properties": [
         {
@@ -6435,7 +6639,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b4bb3085-1d37-4f8b-bea8-8ddf0dc4c053",
+      "bom-ref": "0ad6ffc5-e10a-467f-85fd-771eddb57813",
       "name": "RSA",
       "properties": [
         {
@@ -6483,7 +6687,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "99582317-4ee3-49d3-9c13-5941997dcb4b",
+      "bom-ref": "af8e88d5-f1f0-49cd-b106-f302947956b5",
       "name": "RSA",
       "properties": [
         {
@@ -6531,7 +6735,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "021f1d5d-02a2-4fe7-9377-6c833ab69022",
+      "bom-ref": "71d849b6-dd16-456c-bde6-e4eb3376f5d5",
       "name": "RSA",
       "properties": [
         {
@@ -6579,7 +6783,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "95470aa2-8ff8-4a2a-9e9d-22a6c79ce213",
+      "bom-ref": "836cb0f1-19b7-4ae7-829a-8d208d33c5ea",
       "name": "RSA",
       "properties": [
         {
@@ -6627,7 +6831,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ec48c5ef-08f9-4b36-9258-829026553fb2",
+      "bom-ref": "98b7a73c-5ed9-41bf-8838-f453d3108acf",
       "name": "RSA",
       "properties": [
         {
@@ -6675,7 +6879,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4f69ed5e-d89a-448d-8af9-2191f0d38909",
+      "bom-ref": "21458f31-ee07-44dd-a9c7-dd3d08294bdd",
       "name": "RSA",
       "properties": [
         {
@@ -6723,7 +6927,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f4716ae3-f2fc-4d5a-9137-a8efea33fb0f",
+      "bom-ref": "e3cf89fe-2a4b-4abe-9154-1a8f3e965874",
       "name": "RSA",
       "properties": [
         {
@@ -6771,7 +6975,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "483e6eb4-54f7-4fb5-8e06-5dd647d761d1",
+      "bom-ref": "24030a5f-a579-4be6-aea6-6f6d3e396312",
       "name": "RSA",
       "properties": [
         {
@@ -6819,7 +7023,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e1f3714e-7d9c-4112-b19c-d2aa76d94bd2",
+      "bom-ref": "4fc3602b-604e-4982-ad3b-2b87f0574407",
       "name": "RSA",
       "properties": [
         {
@@ -6867,7 +7071,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bd89e79e-563d-4a54-bf48-31f711dfeff2",
+      "bom-ref": "ba7ee9a5-3c0f-4131-93fe-225c104fccc6",
       "name": "RSA",
       "properties": [
         {
@@ -6915,7 +7119,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "82a54385-0f73-4a2e-b55f-27a465f59e27",
+      "bom-ref": "137032e3-f596-41e2-a7f8-98eb060aadf5",
       "name": "RSA",
       "properties": [
         {
@@ -6963,7 +7167,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "dadfa9a9-0595-46c6-9158-7de360cad7c2",
+      "bom-ref": "3ac38096-bd58-421b-8537-80d9fc4d6c1e",
       "name": "RSA",
       "properties": [
         {
@@ -7011,7 +7215,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "772c87b1-8f59-433e-a1e6-b487febccd67",
+      "bom-ref": "0af489a5-c17a-4adc-974f-45ba015900a2",
       "name": "RSA",
       "properties": [
         {
@@ -7059,7 +7263,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9751f8f0-93c0-4903-98e3-95f3d38b53c3",
+      "bom-ref": "66254ecb-8493-4755-8fad-7cf80f1307fb",
       "name": "RSA",
       "properties": [
         {
@@ -7107,7 +7311,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e4b631de-b6cf-40f7-afe5-9583ae9550fe",
+      "bom-ref": "8c47bba4-a49c-4f2f-a958-08c741238da4",
       "name": "RSA",
       "properties": [
         {
@@ -7155,7 +7359,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "872042e9-1687-4de3-9c56-9a97ae4269d2",
+      "bom-ref": "ba66e41f-11a3-44ab-9ef2-1d27043ca5f4",
       "name": "RSA",
       "properties": [
         {
@@ -7203,7 +7407,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "a49f6b0b-4513-4b8d-a81c-e634f40eee67",
+      "bom-ref": "61295086-f31f-4480-a0a7-634b55ded88c",
       "name": "RSA",
       "properties": [
         {
@@ -7251,7 +7455,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7b508c9d-90b3-4cb4-89fd-ac6f9845a386",
+      "bom-ref": "16ce2c96-7d51-4296-be64-8fd2863bfc33",
       "name": "RSA",
       "properties": [
         {
@@ -7299,7 +7503,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "123cfbe1-a8b4-4ca7-9151-30a3124de1f7",
+      "bom-ref": "0f70f061-bb96-4d8e-bad9-2e300a498b24",
       "name": "RSA",
       "properties": [
         {
@@ -7347,7 +7551,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ec27b850-fa55-4dbd-893f-e5bf97cd1b28",
+      "bom-ref": "31ee3142-2af9-45af-9c6e-357498b63301",
       "name": "RSA",
       "properties": [
         {
@@ -7395,7 +7599,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "3bf998a9-9e6b-4da2-b0d6-5225f7f7d0fa",
+      "bom-ref": "52663845-523f-4735-a74c-e70e4903a8c9",
       "name": "RSA",
       "properties": [
         {
@@ -7443,7 +7647,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c065e135-5466-4bb2-9ef2-ce98a6c8180e",
+      "bom-ref": "165c461d-9f25-41a5-a16c-262fb13dac24",
       "name": "RSA",
       "properties": [
         {
@@ -7491,7 +7695,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0bc0e896-a100-4e6d-99fe-cbe601a2c833",
+      "bom-ref": "de9fed55-10f3-45b1-b01c-269092fe1a27",
       "name": "RSA",
       "properties": [
         {
@@ -7539,7 +7743,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "32cba562-3d5b-44f7-b845-b9f7a6c43227",
+      "bom-ref": "766a2ebf-10d2-4e31-87fa-3db03c5f4db4",
       "name": "RSA",
       "properties": [
         {
@@ -7587,7 +7791,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "6b932791-bfad-486e-9e5f-50c8d2b81fba",
+      "bom-ref": "e30b234c-693d-4ee0-9881-b3187c30f60c",
       "name": "RSA",
       "properties": [
         {
@@ -7635,7 +7839,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "66d79421-9559-463f-9371-b6e708923a18",
+      "bom-ref": "3018d6fa-d732-4fc5-8347-9de06bbf2f90",
       "name": "SHA-1",
       "properties": [
         {
@@ -7682,7 +7886,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d7e1925d-9a6b-482c-b3ac-9a577533adcf",
+      "bom-ref": "34afb453-255a-4fa9-a25a-d27df406affa",
       "name": "SHA-1",
       "properties": [
         {
@@ -7729,7 +7933,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8f8c47dd-62b6-4f41-95e5-917bc18ebe6c",
+      "bom-ref": "556a80d4-849e-4a61-b4c0-e5c85a57d2db",
       "name": "SHA-1",
       "properties": [
         {
@@ -7776,7 +7980,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5c692e37-63b1-4691-9736-9ced8d904fa1",
+      "bom-ref": "ecfe33f9-a145-4112-89ca-b727be182770",
       "name": "SHA-1",
       "properties": [
         {
@@ -7823,7 +8027,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4cd8cef3-43ed-4863-a487-da5403f8423f",
+      "bom-ref": "efa57acd-a11c-4afe-8606-690ba81f861b",
       "name": "SHA-1",
       "properties": [
         {
@@ -7870,7 +8074,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "391fb6df-555d-4c65-99e3-8f9b32536e0e",
+      "bom-ref": "78571511-58e8-4d3b-9d48-4dd88d3e7318",
       "name": "SHA-1",
       "properties": [
         {
@@ -7917,7 +8121,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "60ea03fe-eef4-4455-b582-1289e76464cf",
+      "bom-ref": "376c87bd-528e-46aa-a427-5a86ca23d951",
       "name": "SHA-1",
       "properties": [
         {
@@ -7964,7 +8168,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b9a35a6d-851e-4e26-a66d-2db305ca4b08",
+      "bom-ref": "f7d4a8f1-dca8-4106-bda7-91f6717758e4",
       "name": "SHA-1",
       "properties": [
         {
@@ -8011,7 +8215,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "4284613c-e793-43e5-b025-851c8d2d0532",
+      "bom-ref": "4b41f88a-8f02-4921-ba72-14b00ebfa03c",
       "name": "SHA-1",
       "properties": [
         {
@@ -8058,7 +8262,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "bec56d71-4a3b-48d1-92c4-54f66cddfd13",
+      "bom-ref": "6e6e56ea-c03b-4324-8392-06e68af1d4b8",
       "name": "SHA-1",
       "properties": [
         {
@@ -8105,7 +8309,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2fabb385-c404-4328-a04c-a20f8022c421",
+      "bom-ref": "3f933233-d7fe-48fa-8925-94e2e7209fc9",
       "name": "SHA-1",
       "properties": [
         {
@@ -8152,7 +8356,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f69d2e8e-7dd5-4ab7-8f87-c1b1e46877e6",
+      "bom-ref": "5829bb7b-cb1b-46af-a880-d4720cda5878",
       "name": "SHA-1",
       "properties": [
         {
@@ -8199,7 +8403,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "387ba4b2-8489-4238-acbe-1327adddd82f",
+      "bom-ref": "4cb558bc-6f13-413b-b2c1-ebb4469521b2",
       "name": "SHA-1",
       "properties": [
         {
@@ -8246,7 +8450,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0095a5ac-aee0-48bd-a258-1e7d179277c3",
+      "bom-ref": "0b6857d7-ee2a-47b9-be39-91581788fa57",
       "name": "SHA-1",
       "properties": [
         {
@@ -8293,7 +8497,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "89e6f0f3-8856-4e77-bfb2-b10d9d21889b",
+      "bom-ref": "dc4c5c55-98db-4d0d-b4c9-1e9d11fdec2b",
       "name": "SHA-1",
       "properties": [
         {
@@ -8340,7 +8544,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c1fb641b-a8ed-460d-82be-f75ff102fbd1",
+      "bom-ref": "2986ea6e-a175-414f-a487-7b466f989163",
       "name": "SHA-2",
       "properties": [
         {
@@ -8392,7 +8596,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "933eec0f-3708-40da-a7df-72c05fd746c5",
+      "bom-ref": "837c68e8-145d-4510-8b14-3625c0e1538e",
       "name": "SHA-2",
       "properties": [
         {
@@ -8444,7 +8648,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f8150655-3148-4703-9dc1-9ebe136dc63c",
+      "bom-ref": "ad81eb12-7635-4c09-b6a3-af6d99089b0c",
       "name": "SHA-2",
       "properties": [
         {
@@ -8496,7 +8700,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d4c3d0aa-7202-4847-9dcf-38891a16e66f",
+      "bom-ref": "faa3da6b-43c4-4997-bb5d-b06784f54779",
       "name": "SHA-2",
       "properties": [
         {
@@ -8544,7 +8748,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "88054361-b5f7-42d8-9190-4a6d6ebb42d7",
+      "bom-ref": "4cd5f263-e8aa-4095-9265-342fa10b8e78",
       "name": "SHA-2",
       "properties": [
         {
@@ -8592,7 +8796,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "36465d3f-3493-49e1-be1d-177d9ae5c66a",
+      "bom-ref": "1ef25348-e7e2-4b08-b7e1-8e5f583ffce2",
       "name": "SHA-2",
       "properties": [
         {
@@ -8640,7 +8844,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "de2ff722-cce3-469c-90dd-08086de5cf2a",
+      "bom-ref": "0b80f4a9-e31b-442f-bb7b-63d88ab10873",
       "name": "SHA-2",
       "properties": [
         {
@@ -8688,7 +8892,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "f4c95a98-4e42-4421-93a6-d802764775fd",
+      "bom-ref": "8b5e0e89-f784-4454-961c-f029ed972102",
       "name": "SHA-2",
       "properties": [
         {
@@ -8736,7 +8940,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "e42bff9e-5a1c-488c-b0e9-fd56ec8a25d9",
+      "bom-ref": "3d826318-b06f-4876-aa7f-4035cf38167e",
       "name": "SHA-2",
       "properties": [
         {
@@ -8784,7 +8988,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cddc25e5-cdf3-408a-8761-83c8fd9518cc",
+      "bom-ref": "5a2f5920-c5a6-4658-8b92-947ac1299c65",
       "name": "SHA-2",
       "properties": [
         {
@@ -8832,7 +9036,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "36f6fadc-8847-4d5f-b184-abefc38faae1",
+      "bom-ref": "90815f50-fa7c-49a5-8d23-1603a53d3c73",
       "name": "SHA-2",
       "properties": [
         {
@@ -8880,7 +9084,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "484c82c4-d530-4ca0-887d-d82530d0a442",
+      "bom-ref": "f4f0df8f-182a-42c5-ac9b-8968e22d31ae",
       "name": "SHA-2",
       "properties": [
         {
@@ -8928,7 +9132,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "972fd090-4b1e-41dc-a5f4-83fb64877eb9",
+      "bom-ref": "bd6613b0-115f-4b76-b638-7885cd011e87",
       "name": "SHA-2",
       "properties": [
         {
@@ -8976,7 +9180,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "756ee1b1-6e0e-465c-8ae1-e8442d198717",
+      "bom-ref": "fae1ccae-87df-4401-a530-fda0fca15894",
       "name": "SHA-2",
       "properties": [
         {
@@ -9024,7 +9228,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2d98b34d-cc8e-4562-ba39-c16a1915f81b",
+      "bom-ref": "41af3aa7-1a20-494c-9750-7b3af4e78382",
       "name": "SHA-2",
       "properties": [
         {
@@ -9072,7 +9276,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "2a106d83-004e-4f72-bdd7-661bb091405e",
+      "bom-ref": "c435b784-fcb2-4e81-b2eb-cb824d500866",
       "name": "SHA-2",
       "properties": [
         {
@@ -9120,7 +9324,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "283e8dc3-7213-41e7-b295-523a13aab872",
+      "bom-ref": "30511f1a-7b7b-474f-91f6-567a2713167e",
       "name": "SHA-2",
       "properties": [
         {
@@ -9168,7 +9372,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c8efd845-81fd-4c58-a17d-f4546d67aab7",
+      "bom-ref": "9fff344b-934c-43ec-b868-5d9b66bfc23a",
       "name": "SHA-2",
       "properties": [
         {
@@ -9216,7 +9420,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "7366a4b3-3e90-4fc3-a15c-381d4921b69c",
+      "bom-ref": "0cdd94ad-d323-4425-9825-0af7b02ea6c6",
       "name": "SHA-2",
       "properties": [
         {
@@ -9264,7 +9468,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5f1c89aa-8d56-461d-9713-83fdc3b3acd4",
+      "bom-ref": "1ff4df0e-603d-43fd-bb73-8d8b3588216e",
       "name": "SHA-2",
       "properties": [
         {
@@ -9312,7 +9516,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "ac161d03-513b-47da-b170-dbc5717c2826",
+      "bom-ref": "2ce877d3-0fda-40a5-8a70-17ef9ccc6eb8",
       "name": "SHA-2",
       "properties": [
         {
@@ -9360,7 +9564,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "5f5e06cb-ee03-4332-b96c-74b67f22e99f",
+      "bom-ref": "014fbdff-6f2c-47c0-9a31-97dbfa6cf941",
       "name": "SHA-2",
       "properties": [
         {
@@ -9408,7 +9612,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "c939988c-31e5-4e6a-8ab2-7547416122d3",
+      "bom-ref": "abfc5a9f-5190-4d62-9cd2-68e00cf49567",
       "name": "SHA-2",
       "properties": [
         {
@@ -9456,7 +9660,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "8993bcbd-fe47-4a78-920a-6fdc23858125",
+      "bom-ref": "307b4130-8a10-46d1-8235-a3011023103b",
       "name": "SHA-2",
       "properties": [
         {
@@ -9504,7 +9708,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "34abb589-b28f-462d-97f0-13fdbbb3d3f2",
+      "bom-ref": "c6c43c5f-bb96-4956-94cf-5476369b7acb",
       "name": "SHA-2",
       "properties": [
         {
@@ -9552,7 +9756,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "d8dff22f-3131-4499-994b-168a3aebdcaa",
+      "bom-ref": "ae6c5a92-357e-4d04-a6eb-7dfcb6cb19f2",
       "name": "SHA-2",
       "properties": [
         {
@@ -9600,7 +9804,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "271f497e-e5d8-43c5-9034-8fa07addebd8",
+      "bom-ref": "6b0b9207-f675-460f-b90a-4eda31170dc5",
       "name": "SHA-2",
       "properties": [
         {
@@ -9648,7 +9852,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "9207563d-a566-4527-83e9-285880979921",
+      "bom-ref": "467b87fb-0dc5-4165-850d-7cc26fe89258",
       "name": "SHA-3",
       "properties": [
         {
@@ -9700,7 +9904,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "cac82b52-c08f-4b95-bf45-37011e501b46",
+      "bom-ref": "8e4b7df4-aa63-4d18-8266-16a4a638e718",
       "name": "SHA-3",
       "properties": [
         {
@@ -9752,7 +9956,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "0d6e7592-8e4c-4b1c-807f-76f53935f176",
+      "bom-ref": "1570bbad-a604-4c5f-b384-6ac71d14bddb",
       "name": "SHA-3",
       "properties": [
         {
@@ -9804,7 +10008,7 @@
     },
     {
       "type": "cryptographic-asset",
-      "bom-ref": "b6b258a7-8893-4b2f-99e2-91a164878ae4",
+      "bom-ref": "dacd4853-a6b6-4084-935d-ac4b65b92f84",
       "name": "SHAKE",
       "properties": [
         {
